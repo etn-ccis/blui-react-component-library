@@ -63,11 +63,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const defaultClasses = useStyles(theme);
     const [anchorEl, setAnchorEl] = useState(null);
 
-    const canDisplayMenu = useCallback(() => Boolean((menu || menuGroups.length > 0) && anchorEl), [
-        menu,
-        menuGroups,
-        anchorEl,
-    ]);
+    const canDisplayMenu = useCallback(() => Boolean(menu || menuGroups.length > 0), [menu, menuGroups]);
 
     const openMenu = useCallback(
         (event: MouseEvent) => {
@@ -100,7 +96,11 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 ...aProps,
                 classes: {
                     ...aProps.classes,
-                    root: clsx(defaultClasses.avatarRoot,  (preserveOnClick ? '' : defaultClasses.noCursor), aProps?.classes?.root)
+                    root: clsx(
+                        defaultClasses.avatarRoot,
+                        preserveOnClick ? '' : defaultClasses.noCursor,
+                        aProps?.classes?.root
+                    ),
                 },
             });
         },
@@ -160,13 +160,18 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 onClose: closeMenu,
                 ...menu.props,
             });
-        } else {
-            return (
-                <Menu open={Boolean(anchorEl)} anchorEl={anchorEl} onClose={closeMenu} {...MenuProps} MenuListProps={{style: {padding:0}}}>
-                    {printMenu()}
-                </Menu>
-            );
         }
+        return (
+            <Menu
+                open={Boolean(anchorEl)}
+                anchorEl={anchorEl}
+                onClose={closeMenu}
+                {...MenuProps}
+                MenuListProps={{ style: { padding: 0 } }}
+            >
+                {printMenu()}
+            </Menu>
+        );
     }, [menu, anchorEl, closeMenu, MenuProps, printMenu]);
 
     return (
