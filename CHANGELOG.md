@@ -18,6 +18,8 @@
     - DrawerLayout
 - Updated index file for simpler import
     - `import {ComponentName} from '@pxblue/react-components';`
+    - This change deprecates usage of the `default` import. 
+    
 
 ## v1.1.0
 Adds a new component for EmptyState
