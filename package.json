@@ -50,7 +50,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pxblue/react-components"
+    "url": "https://github.com/pxblue/react-component-library"
   },
   "keywords": [
     "react",
@@ -58,9 +58,9 @@
     "pxblue"
   ],
   "bugs": {
-    "url": "https://github.com/pxblue/component-library/issues"
+    "url": "https://github.com/pxblue/react-component-library/issues"
   },
-  "homepage": "https://github.com/pxblue/component-library#readme",
+  "homepage": "https://github.com/pxblue/react-component-library#readme",
   "directories": {
     "doc": "docs"
   },
