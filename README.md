@@ -1,4 +1,4 @@
-# PX Blue UI Components for React
+# PX Blue React Components
 [![](https://img.shields.io/circleci/project/github/pxblue/react-component-library/master.svg?style=flat)](https://circleci.com/gh/pxblue/react-component-library/tree/master)
 ![npm](https://img.shields.io/npm/v/@pxblue/react-components?label=%40pxblue%2Freact-components)
 
