@@ -4,8 +4,10 @@ import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
+import Collapse from '@material-ui/core/Collapse';
 import { InfoListItem } from '../InfoListItem';
 import PropTypes from 'prop-types';
+import { ExpandMore, ExpandLess } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -60,6 +62,9 @@ export type NavItem = {
     subtitle?: string;
     title: string;
     divider?: boolean;
+    indentation?: number;
+    subItems?: NavItem[];
+    expanded?: boolean;
 };
 
 export type DrawerNavGroupProps = {
@@ -77,10 +82,11 @@ export type DrawerNavGroupProps = {
     open?: boolean;
     title?: string;
     titleColor?: string;
+    hidePadding?: boolean;
 };
 
-function NavigationListItem(item: NavItem, props: DrawerNavGroupProps): ReactNode {
-    const { title, subtitle, icon, statusColor, onClick, active } = item;
+function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: string): ReactNode {
+    const { title, subtitle, icon, statusColor, onClick, active, indentation } = item;
     const { divider = true } = props;
     if (!title && !icon) {
         return null;
@@ -101,6 +107,7 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps): ReactNod
         chevron,
         iconColor,
         onSelect,
+        hidePadding = !icon,
     } = props;
 
     const action = (): void => {
@@ -109,6 +116,20 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps): ReactNod
         }
         if (onClick) {
             onClick();
+        }
+    };
+
+    const getExpandIcon = (): JSX.Element => {
+        if (chevron) {
+            return null;
+        }
+        switch (expand) {
+            case 'less':
+                return <ExpandLess />;
+            case 'more':
+                return <ExpandMore />;
+            default:
+                return null;
         }
     };
 
@@ -127,8 +148,11 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps): ReactNod
                 icon={icon}
                 iconColor={active ? activeIconColor : iconColor}
                 chevron={chevron}
+                rightComponent={getExpandIcon()}
                 backgroundColor={'transparent'}
                 onClick={(): void => action()}
+                style={{ paddingLeft: theme.spacing(indentation * 4 + 2) }}
+                hidePadding={hidePadding}
             />
         </div>
     );
@@ -137,6 +161,43 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps): ReactNod
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const classes = useStyles(props);
     const { open, items, title, content, backgroundColor, titleColor } = props;
+
+    // recursively loop through item list and the subItems
+    function getDrawerItemList(item: NavItem, index: number, indentation: number): JSX.Element {
+        if (item.subItems) {
+            // if there are more sub pages, add the bucket header and recurse on this function
+            return (
+                <React.Fragment key={`${item.title}_Fragment_${indentation}`}>
+                    <div key={`${item.title}_item_${indentation}_${index}`}>
+                        {NavigationListItem(
+                            { ...item, indentation },
+                            { ...props, chevron: false },
+                            item.expanded ? 'less' : 'more'
+                        )}
+                    </div>
+                    <Collapse in={item.expanded} key={`${item.title}_group_${indentation}_${index}`}>
+                        <List
+                            style={{
+                                paddingBottom: 0,
+                                paddingTop: 0,
+                            }}
+                        >
+                            {item.subItems.map((subItem: NavItem, subItemIndex: number) =>
+                                getDrawerItemList(subItem, subItemIndex, indentation + 1)
+                            )}
+                        </List>
+                    </Collapse>
+                </React.Fragment>
+            );
+        }
+        // otherwise, we reached a leaf node. return
+        return (
+            <div key={`${item.title}_item_${indentation}_${index}`}>
+                {NavigationListItem({ ...item, indentation }, props)}
+            </div>
+        );
+    }
+
     return (
         <>
             <List
@@ -159,9 +220,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                 }
             >
                 <div key={`${title}_title`}>{(title || content) && <Divider />}</div>
-                {items.map((item: NavItem, index: number) => (
-                    <div key={`${title}_item_${index}`}>{NavigationListItem(item, props)}</div>
-                ))}
+                {items.map((item: NavItem, index: number) => getDrawerItemList(item, index, 0))}
             </List>
         </>
     );

@@ -53,16 +53,27 @@ stories.addParameters({
 
 type DrawerState = {
     selected: string;
+    expanded?: string[];
 };
 
 const store = new Store<DrawerState>({
     selected: '',
+    expanded: [],
 });
 
 const userGuide = 'User Guide';
 const license = 'License';
 const accessibility = 'Accessibility';
 const notifications = 'Notifications';
+const gettingStarted = 'Getting Started';
+const tutorials = 'Tutorials';
+const forDevelopers = 'For Developers';
+const forDesigners = 'ForDesigners';
+const environmentSetup = 'Environment Setup';
+const community = 'Community';
+const hallOfFame = 'Hall of Fame';
+const contribute = 'Contribute';
+const contributingGuide = 'Contributing Guide';
 
 export const padDrawer = (drawer: JSX.Element): JSX.Element => (
     <div style={{ padding: 20, display: 'flex', height: '100%' }}>{drawer}</div>
@@ -444,6 +455,149 @@ stories.add(
                             </div>
                         </DrawerSubheader>
                         {defaultDrawerBody(state)}
+                    </Drawer>,
+                ]}
+            </State>
+        );
+    }
+);
+
+stories.add(
+    'with nested list items',
+    (): JSX.Element => {
+        const drawerItemList = (state: DrawerState): JSX.Element => (
+            <DrawerBody>
+                <DrawerNavGroup
+                    title={'Default Navigation Group'}
+                    divider={false}
+                    items={[
+                        {
+                            title: userGuide,
+                            onClick: (): void => {
+                                if (state.expanded?.includes(userGuide)) {
+                                    store.set({ expanded: [] });
+                                } else {
+                                    store.set({ expanded: [userGuide] });
+                                }
+                            },
+                            expanded: state.expanded?.includes(userGuide),
+                            subItems: [
+                                {
+                                    title: gettingStarted,
+                                    active: state.selected === gettingStarted,
+                                    onClick: (): void => {
+                                        store.set({ selected: gettingStarted });
+                                    },
+                                },
+                                {
+                                    title: tutorials,
+                                    onClick: (): void => {
+                                        if (state.expanded?.includes(tutorials)) {
+                                            store.set({ expanded: [userGuide] });
+                                        } else {
+                                            store.set({ expanded: [userGuide, tutorials] });
+                                        }
+                                    },
+                                    expanded: state.expanded?.includes(tutorials),
+                                    subItems: [
+                                        {
+                                            title: forDevelopers,
+                                            active: state.selected === forDevelopers,
+                                            onClick: (): void => {
+                                                store.set({ selected: forDevelopers });
+                                            },
+                                        },
+                                        {
+                                            title: forDesigners,
+                                            active: state.selected === forDesigners,
+                                            onClick: (): void => {
+                                                store.set({ selected: forDesigners });
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: environmentSetup,
+                                    active: state.selected === environmentSetup,
+                                    onClick: (): void => {
+                                        store.set({ selected: environmentSetup });
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            title: community,
+                            onClick: (): void => {
+                                if (state.expanded?.includes(community)) {
+                                    store.set({ expanded: [] });
+                                } else {
+                                    store.set({ expanded: [community] });
+                                }
+                            },
+                            expanded: state.expanded?.includes(community),
+                            subItems: [
+                                {
+                                    title: license,
+                                    active: state.selected === license,
+                                    onClick: (): void => {
+                                        store.set({ selected: license });
+                                    },
+                                },
+                                {
+                                    title: contribute,
+                                    expanded: state.expanded?.includes(contribute),
+                                    onClick: (): void => {
+                                        if (state.expanded?.includes(contribute)) {
+                                            store.set({ expanded: [community] });
+                                        } else {
+                                            store.set({ expanded: [community, contribute] });
+                                        }
+                                    },
+                                    subItems: [
+                                        {
+                                            title: hallOfFame,
+                                            active: state.selected === hallOfFame,
+                                            onClick: (): void => {
+                                                store.set({ selected: hallOfFame });
+                                            },
+                                        },
+                                        {
+                                            title: contributingGuide,
+                                            active: state.selected === contributingGuide,
+                                            onClick: (): void => {
+                                                store.set({ selected: contributingGuide });
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            title: accessibility,
+                            onClick: (): void => {
+                                store.set({ selected: accessibility });
+                            },
+                            active: state.selected === accessibility,
+                        },
+                        {
+                            title: notifications,
+                            onClick: (): void => {
+                                store.set({ selected: notifications });
+                            },
+                            active: state.selected === notifications,
+                        },
+                    ]}
+                />
+                <div style={{ flex: '1 1 0px' }} />
+            </DrawerBody>
+        );
+
+        return (
+            <State store={store}>
+                {(state): JSX.Element[] => [
+                    <Drawer open={true} key={'drawer'}>
+                        <DrawerHeader title={'Power Xpert Blue'} />
+                        {drawerItemList(state)}
                     </Drawer>,
                 ]}
             </State>

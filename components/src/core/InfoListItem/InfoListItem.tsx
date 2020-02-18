@@ -133,7 +133,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         } else if (!hidePadding) {
             return (
                 <ListItemAvatar>
-                    <Avatar style={{ backgroundColor: 'transparent' }} />
+                    <Avatar style={{ opacity: 0 }} />
                 </ListItemAvatar>
             );
         }

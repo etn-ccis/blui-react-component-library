@@ -49,7 +49,7 @@ addDecorator((storyFn) => (
     </MuiThemeProvider>
 ));
 
-addDecorator(withKnobs({escapeHTML: false}));
+addDecorator(withKnobs({ escapeHTML: false }));
 
 // automatically import all files ending in *.stories.js
 configure(require.context('../stories', true, /\.stories\.(js|tsx)$/), module);
