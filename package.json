@@ -12,42 +12,6 @@
     "start:storybook": "yarn install:dependencies && yarn link:components && cd demos/storybook && yarn start",
     "start": "yarn start:showcase"
   },
-  "dependencies": {
-    "@pxblue/colors": "^2.0.0",
-    "color": "^3.1.2"
-  },
-  "devDependencies": {
-    "@material-ui/core": "^4.0.0",
-    "@material-ui/icons": "^3.0.2",
-    "@pxblue/colors": "^2.0.0",
-    "@pxblue/eslint-config": "1.1.3",
-    "@pxblue/prettier-config": "1.0.2",
-    "@pxblue/themes": "^3.0.2",
-    "@types/enzyme": "^3.10.4",
-    "@types/enzyme-adapter-react-16": "^1.0.5",
-    "@types/jest": "^24.9.0",
-    "@types/react-dom": "^16.9.4",
-    "@typescript-eslint/eslint-plugin": "^2.16.0",
-    "@typescript-eslint/parser": "^2.16.0",
-    "clsx": "^1.1.0",
-    "enzyme": "^3.5.0",
-    "enzyme-adapter-react-16": "^1.8.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.9.0",
-    "eslint-plugin-react": "^7.17.0",
-    "jest": "^24.0.0",
-    "prettier": "^1.19.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "ts-jest": "^24.3.0",
-    "typescript": "^3.7.4"
-  },
-  "peerDependencies": {
-    "@material-ui/core": "^4.7.2",
-    "@pxblue/colors": "^2.0.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/pxblue/react-component-library"
