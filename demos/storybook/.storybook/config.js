@@ -32,6 +32,10 @@ const newViewports = {
 };
 
 addParameters({
+    /* Users will see this while the component is loading. */
+    notes: {
+        markdown: '<div> </div>'
+    },
     viewport: {
         viewports: newViewports
     },
