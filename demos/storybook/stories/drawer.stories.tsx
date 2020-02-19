@@ -53,12 +53,12 @@ stories.addParameters({
 
 type DrawerState = {
     selected: string;
-    expanded?: string[];
+    expanded?: Set<string>;
 };
 
 const store = new Store<DrawerState>({
     selected: '',
-    expanded: [],
+    expanded: new Set(),
 });
 
 const userGuide = 'User Guide';
@@ -68,7 +68,7 @@ const notifications = 'Notifications';
 const gettingStarted = 'Getting Started';
 const tutorials = 'Tutorials';
 const forDevelopers = 'For Developers';
-const forDesigners = 'ForDesigners';
+const forDesigners = 'For Designers';
 const environmentSetup = 'Environment Setup';
 const community = 'Community';
 const hallOfFame = 'Hall of Fame';
@@ -468,18 +468,20 @@ stories.add(
         const drawerItemList = (state: DrawerState): JSX.Element => (
             <DrawerBody>
                 <DrawerNavGroup
-                    divider={false}
+                    divider={boolean('divider', true)}
+                    title={'Default Navigation Group'}
                     items={[
                         {
                             title: userGuide,
                             onClick: (): void => {
-                                if (state.expanded?.includes(userGuide)) {
-                                    store.set({ expanded: [] });
+                                if (state.expanded?.has(userGuide)) {
+                                    state.expanded?.delete(userGuide);
+                                    store.set({ expanded: state.expanded });
                                 } else {
-                                    store.set({ expanded: [userGuide] });
+                                    store.set({ expanded: state.expanded?.add(userGuide) });
                                 }
                             },
-                            expanded: state.expanded?.includes(userGuide),
+                            expanded: state.expanded?.has(userGuide),
                             subItems: [
                                 {
                                     title: gettingStarted,
@@ -491,13 +493,14 @@ stories.add(
                                 {
                                     title: tutorials,
                                     onClick: (): void => {
-                                        if (state.expanded?.includes(tutorials)) {
-                                            store.set({ expanded: [userGuide] });
+                                        if (state.expanded?.has(tutorials)) {
+                                            state.expanded?.delete(tutorials);
+                                            store.set({ expanded: state.expanded });
                                         } else {
-                                            store.set({ expanded: [userGuide, tutorials] });
+                                            store.set({ expanded: state.expanded?.add(tutorials) });
                                         }
                                     },
-                                    expanded: state.expanded?.includes(tutorials),
+                                    expanded: state.expanded?.has(tutorials),
                                     subItems: [
                                         {
                                             title: forDevelopers,
@@ -527,13 +530,14 @@ stories.add(
                         {
                             title: community,
                             onClick: (): void => {
-                                if (state.expanded?.includes(community)) {
-                                    store.set({ expanded: [] });
+                                if (state.expanded?.has(community)) {
+                                    state.expanded?.delete(community);
+                                    store.set({ expanded: state.expanded });
                                 } else {
-                                    store.set({ expanded: [community] });
+                                    store.set({ expanded: state.expanded?.add(community) });
                                 }
                             },
-                            expanded: state.expanded?.includes(community),
+                            expanded: state.expanded?.has(community),
                             subItems: [
                                 {
                                     title: license,
@@ -544,12 +548,13 @@ stories.add(
                                 },
                                 {
                                     title: contribute,
-                                    expanded: state.expanded?.includes(contribute),
+                                    expanded: state.expanded?.has(contribute),
                                     onClick: (): void => {
-                                        if (state.expanded?.includes(contribute)) {
-                                            store.set({ expanded: [community] });
+                                        if (state.expanded?.has(contribute)) {
+                                            state.expanded?.delete(contribute);
+                                            store.set({ expanded: state.expanded });
                                         } else {
-                                            store.set({ expanded: [community, contribute] });
+                                            store.set({ expanded: state.expanded?.add(contribute) });
                                         }
                                     },
                                     subItems: [

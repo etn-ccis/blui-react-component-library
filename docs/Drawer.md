@@ -100,7 +100,7 @@ The `items` prop of the `DrawerNavGroup` takes a list of items with the followin
 |-----------------|----------------------------------------------|--------------------|----------|------------------------------|
 | active          | Is the item the current active item          | `boolean`          | no       | false                        |  
 | chevron         | Show chevron icon to the right               | `boolean`          | no       | false                        |  
-| divider         | Show a divider line below the item           | `boolean`          | no       | true                         | 
+| divider         | Show a divider line below the top-level item | `boolean`          | no       | true                         | 
 | expanded        | Is the nested item group expanded            | `boolean`          | no       | false                        | 
 | icon            | A component to render for the icon           | `React.Component`  | no       |                              |    
 | indentation     | Which level is the level at in the hierarchy | `number`           | no       |                              |     

@@ -7,7 +7,8 @@ import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import { InfoListItem } from '../InfoListItem';
 import PropTypes from 'prop-types';
-import { ExpandMore, ExpandLess } from '@material-ui/icons';
+import { ExpandMore, ExpandLess, ArrowDropUp, ArrowDropDown } from '@material-ui/icons';
+import { white } from '@pxblue/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -51,6 +52,11 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: '0px 24px 24px 0px',
             opacity: 0.9,
         },
+        secondaryLevelListGroup: {
+            backgroundColor: theme.palette.type === 'light' ? white[200] : 'transparent',
+            paddingBottom: 0,
+            paddingTop: 0,
+        }
     })
 );
 
@@ -128,6 +134,10 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
                 return <ExpandLess />;
             case 'more':
                 return <ExpandMore />;
+            case 'lessSolid':
+                return <ArrowDropUp />;
+            case 'moreSolid':
+                return <ArrowDropDown />;
             default:
                 return null;
         }
@@ -171,16 +181,19 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                     <div key={`${item.title}_item_${indentation}_${index}`}>
                         {NavigationListItem(
                             { ...item, indentation },
-                            { ...props, chevron: false },
-                            item.expanded ? 'less' : 'more'
+                            { 
+                                ...props, 
+                                chevron: false, 
+                                // adding dividers for top level nav items
+                                divider: !(indentation) && props.divider,
+                            },
+                            // use outlined arrow for top level nav items, solid otherwise
+                            indentation? (item.expanded ? 'lessSolid' : 'moreSolid') : (item.expanded ? 'less' : 'more') 
                         )}
                     </div>
                     <Collapse in={item.expanded} key={`${item.title}_group_${indentation}_${index}`}>
                         <List
-                            style={{
-                                paddingBottom: 0,
-                                paddingTop: 0,
-                            }}
+                            className = {classes.secondaryLevelListGroup}
                         >
                             {item.subItems.map((subItem: NavItem, subItemIndex: number) =>
                                 getDrawerItemList(subItem, subItemIndex, indentation + 1)
@@ -193,7 +206,14 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         // otherwise, we reached a leaf node. return
         return (
             <div key={`${item.title}_item_${indentation}_${index}`}>
-                {NavigationListItem({ ...item, indentation }, props)}
+                {NavigationListItem(
+                    { ...item, indentation }, 
+                    {
+                        ...props, 
+                        // adding dividers for top level nav items
+                        divider: !(indentation) && props.divider,
+                    })
+                    }
             </div>
         );
     }

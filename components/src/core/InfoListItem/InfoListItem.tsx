@@ -184,35 +184,43 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             },
             style
         );
+    const listItemChild = <>
+        <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
+        {divider && (
+            <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
+        )}
+        {(icon || !hidePadding) && getIcon()}
+        {leftComponent}
+        <ListItemText
+            style={leftComponent ? { marginLeft: 16 } : {}}
+            primary={title}
+            secondary={getSubtitle()}
+            primaryTypographyProps={{
+                noWrap: true,
+                variant: 'body1',
+                className: classes.title,
+                style: { color: fontColor },
+            }}
+            secondaryTypographyProps={{
+                noWrap: true,
+                variant: 'subtitle2',
+                className: classes.subtitle,
+                style: { color: fontColor || 'inherit' },
+            }}
+        />
+        {getRightComponent()}
+        </>
 
     return (
-        <ListItem style={getWrapperStyle()} onClick={(): void => onClick()} dense={dense}>
-            <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
-            {divider && (
-                <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
-            )}
-            {(icon || !hidePadding) && getIcon()}
-            {leftComponent}
-            <ListItemText
-                style={leftComponent ? { marginLeft: 16 } : {}}
-                primary={title}
-                secondary={getSubtitle()}
-                primaryTypographyProps={{
-                    noWrap: true,
-                    variant: 'body1',
-                    className: classes.title,
-                    style: { color: fontColor },
-                }}
-                secondaryTypographyProps={{
-                    noWrap: true,
-                    variant: 'subtitle2',
-                    className: classes.subtitle,
-                    style: { color: fontColor || 'inherit' },
-                }}
-            />
-            {getRightComponent()}
+        onClick? 
+        <ListItem style={getWrapperStyle()} onClick={(): void => onClick()} dense={dense} button>
+            {listItemChild}
         </ListItem>
-    );
+        : 
+        <ListItem style={getWrapperStyle()} dense={dense}>
+            {listItemChild}
+        </ListItem>) ;
+        
 };
 
 InfoListItem.displayName = 'InfoListItem';
@@ -243,7 +251,6 @@ InfoListItem.defaultProps = {
     chevron: false,
     dense: false,
     hidePadding: false,
-    onClick: (): void => {},
     subtitleSeparator: '\u00B7',
     fontColor: 'inherit',
 };
