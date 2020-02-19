@@ -5,7 +5,7 @@ import { text, color, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import {storyWrapper} from "../src/util";
+import { storyWrapper } from '../src/util';
 
 export const stories = storiesOf('playground/List Item Tag', module);
 stories.addDecorator(storyWrapper);
