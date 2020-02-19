@@ -79,22 +79,22 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 A `DrawerNavGroup` will render inside of the `DrawerBody` and is used to organize links. Each group consists of a group title and a series of navigation items. Most style props are inherited from the `DrawerBody` but can be overridden at the NavGroup level if desired.
 
 ### DrawerNavGroup API
-| Prop Name             | Description                             | Type              | Required | Default |
-|-----------------------|-----------------------------------------|-------------------|----------|---------|
-| activeBackgroundColor | Background color for the 'active' item  | `string`          | no       |         |
-| activeFontColor       | Font color for the 'active' item        | `string`          | no       |         |
-| activeIconColor       | Icon color for the 'active' item        | `string`          | no       |         | 
-| backgroundColor       | The color used for the background       | `string`          | no       |         |   
-| content               | Custom element, substitute for title    | `React.Component` | no       |         |    
-| divider               | Whether to show a line between items    | `boolean`         | no       | true    |    
-| fontColor             | The color used for the text             | `string`          | no       |         |   
-| iconColor             | The color used for the icon             | `string`          | no       |         |   
-| items                 | List of navigation items to render      | `NavItem[]`       | no       |         |  
-| title                 | Text to display in the group header     | `string`          | no       |         |  
-
+| Prop Name             | Description                                                   | Type              | Required | Default |
+|-----------------------|---------------------------------------------------------------|-------------------|----------|---------|
+| activeBackgroundColor | Background color for the 'active' item                        | `string`          | no       |         |
+| activeFontColor       | Font color for the 'active' item                              | `string`          | no       |         |
+| activeIconColor       | Icon color for the 'active' item                              | `string`          | no       |         | 
+| backgroundColor       | The color used for the background                             | `string`          | no       |         |   
+| content               | Custom element, substitute for title                          | `React.Component` | no       |         |    
+| divider               | Whether to show a line between items                          | `boolean`         | no       | true    |    
+| fontColor             | The color used for the text                                   | `string`          | no       |         |   
+| iconColor             | The color used for the icon                                   | `string`          | no       |         |   
+| items                 | List of navigation items to render                            | `NavItem[]`       | no       |         |  
+| title                 | Text to display in the group header                           | `string`          | no       |         |  
+| useSolidExpandArrows  | whether to use solid arrows for nav items below the top level | `boolean`         | no       | false   |
 
 #### NavItem Object
-The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`):
+The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`).
 
 | Attribute       | Description                                  | Type               | Required | Default                      |
 |-----------------|----------------------------------------------|--------------------|----------|------------------------------|

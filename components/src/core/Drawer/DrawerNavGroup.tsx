@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: theme.palette.type === 'light' ? white[200] : 'transparent',
             paddingBottom: 0,
             paddingTop: 0,
-        }
+        },
     })
 );
 
@@ -89,6 +89,7 @@ export type DrawerNavGroupProps = {
     title?: string;
     titleColor?: string;
     hidePadding?: boolean;
+    useSolidExpandArrows?: boolean;
 };
 
 function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: string): ReactNode {
@@ -113,7 +114,7 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
         chevron,
         iconColor,
         onSelect,
-        hidePadding = !icon,
+        hidePadding,
     } = props;
 
     const action = (): void => {
@@ -143,6 +144,10 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
         }
     };
 
+    // 2 indents for top level nav items
+    // 2, 4, 6, ... for secondary level and beyond
+    const paddingLeft = theme.spacing(indentation ? (indentation - 1) * 4 + 2 : 2);
+
     return (
         <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
             {active && <div className={classes.active} style={{ backgroundColor: activeBackgroundColor }} />}
@@ -161,7 +166,7 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
                 rightComponent={getExpandIcon()}
                 backgroundColor={'transparent'}
                 onClick={(): void => action()}
-                style={{ paddingLeft: theme.spacing(indentation * 4 + 2) }}
+                style={{ paddingLeft: paddingLeft }}
                 hidePadding={hidePadding}
             />
         </div>
@@ -170,7 +175,7 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const classes = useStyles(props);
-    const { open, items, title, content, backgroundColor, titleColor } = props;
+    const { open, items, title, content, backgroundColor, titleColor, useSolidExpandArrows, divider } = props;
 
     // recursively loop through item list and the subItems
     function getDrawerItemList(item: NavItem, index: number, indentation: number): JSX.Element {
@@ -181,20 +186,24 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                     <div key={`${item.title}_item_${indentation}_${index}`}>
                         {NavigationListItem(
                             { ...item, indentation },
-                            { 
-                                ...props, 
-                                chevron: false, 
+                            {
+                                ...props,
+                                chevron: false,
                                 // adding dividers for top level nav items
-                                divider: !(indentation) && props.divider,
+                                divider: !indentation && divider,
                             },
                             // use outlined arrow for top level nav items, solid otherwise
-                            indentation? (item.expanded ? 'lessSolid' : 'moreSolid') : (item.expanded ? 'less' : 'more') 
+                            indentation && useSolidExpandArrows
+                                ? item.expanded
+                                    ? 'lessSolid'
+                                    : 'moreSolid'
+                                : item.expanded
+                                ? 'less'
+                                : 'more'
                         )}
                     </div>
                     <Collapse in={item.expanded} key={`${item.title}_group_${indentation}_${index}`}>
-                        <List
-                            className = {classes.secondaryLevelListGroup}
-                        >
+                        <List className={classes.secondaryLevelListGroup}>
                             {item.subItems.map((subItem: NavItem, subItemIndex: number) =>
                                 getDrawerItemList(subItem, subItemIndex, indentation + 1)
                             )}
@@ -207,13 +216,13 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         return (
             <div key={`${item.title}_item_${indentation}_${index}`}>
                 {NavigationListItem(
-                    { ...item, indentation }, 
+                    { ...item, indentation },
                     {
-                        ...props, 
+                        ...props,
                         // adding dividers for top level nav items
-                        divider: !(indentation) && props.divider,
-                    })
+                        divider: !indentation && divider,
                     }
+                )}
             </div>
         );
     }
@@ -274,4 +283,9 @@ DrawerNavGroup.propTypes = {
     title: PropTypes.string,
     titleColor: PropTypes.string,
     divider: PropTypes.bool,
+};
+
+DrawerNavGroup.defaultProps = {
+    divider: true,
+    useSolidExpandArrows: false,
 };

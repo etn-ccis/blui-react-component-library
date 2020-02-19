@@ -132,8 +132,9 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             return <ListItemIcon style={{ color: getIconColor() }}>{icon}</ListItemIcon>;
         } else if (!hidePadding) {
             return (
+                // a dummy component to maintain the padding
                 <ListItemAvatar>
-                    <Avatar style={{ backgroundColor: 'transparent' }} />
+                    <Avatar style={{ opacity: 0 }} />
                 </ListItemAvatar>
             );
         }
@@ -184,43 +185,44 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             },
             style
         );
-    const listItemChild = <>
-        <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
-        {divider && (
-            <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
-        )}
-        {(icon || !hidePadding) && getIcon()}
-        {leftComponent}
-        <ListItemText
-            style={leftComponent ? { marginLeft: 16 } : {}}
-            primary={title}
-            secondary={getSubtitle()}
-            primaryTypographyProps={{
-                noWrap: true,
-                variant: 'body1',
-                className: classes.title,
-                style: { color: fontColor },
-            }}
-            secondaryTypographyProps={{
-                noWrap: true,
-                variant: 'subtitle2',
-                className: classes.subtitle,
-                style: { color: fontColor || 'inherit' },
-            }}
-        />
-        {getRightComponent()}
+    const listItemChild = (
+        <>
+            <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
+            {divider && (
+                <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
+            )}
+            {(icon || !hidePadding) && getIcon()}
+            {leftComponent}
+            <ListItemText
+                style={leftComponent ? { marginLeft: 16 } : {}}
+                primary={title}
+                secondary={getSubtitle()}
+                primaryTypographyProps={{
+                    noWrap: true,
+                    variant: 'body1',
+                    className: classes.title,
+                    style: { color: fontColor },
+                }}
+                secondaryTypographyProps={{
+                    noWrap: true,
+                    variant: 'subtitle2',
+                    className: classes.subtitle,
+                    style: { color: fontColor || 'inherit' },
+                }}
+            />
+            {getRightComponent()}
         </>
+    );
 
-    return (
-        onClick? 
+    return onClick ? (
         <ListItem style={getWrapperStyle()} onClick={(): void => onClick()} dense={dense} button>
             {listItemChild}
         </ListItem>
-        : 
+    ) : (
         <ListItem style={getWrapperStyle()} dense={dense}>
             {listItemChild}
-        </ListItem>) ;
-        
+        </ListItem>
+    );
 };
 
 InfoListItem.displayName = 'InfoListItem';

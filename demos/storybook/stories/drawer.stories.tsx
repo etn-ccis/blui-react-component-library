@@ -20,6 +20,8 @@ import {
     PinDrop,
     Search,
     Toc,
+    Settings,
+    Comment,
 } from '@material-ui/icons';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -53,7 +55,7 @@ stories.addParameters({
 
 type DrawerState = {
     selected: string;
-    expanded?: Set<string>;
+    expanded: Set<string>;
 };
 
 const store = new Store<DrawerState>({
@@ -465,26 +467,31 @@ stories.add(
 stories.add(
     'with nested list items',
     (): JSX.Element => {
+        const useIcon = boolean('Use icons', true);
+        const useIconForSecondaryItems = boolean('Use icons for non-top-level items', false);
         const drawerItemList = (state: DrawerState): JSX.Element => (
             <DrawerBody>
                 <DrawerNavGroup
                     divider={boolean('divider', true)}
                     title={'Default Navigation Group'}
+                    useSolidExpandArrows={boolean('useSolidExpandArrows', true)}
                     items={[
                         {
                             title: userGuide,
+                            icon: useIcon ? <AddAPhoto /> : undefined,
                             onClick: (): void => {
-                                if (state.expanded?.has(userGuide)) {
-                                    state.expanded?.delete(userGuide);
+                                if (state.expanded.has(userGuide)) {
+                                    state.expanded.delete(userGuide);
                                     store.set({ expanded: state.expanded });
                                 } else {
-                                    store.set({ expanded: state.expanded?.add(userGuide) });
+                                    store.set({ expanded: state.expanded.add(userGuide) });
                                 }
                             },
-                            expanded: state.expanded?.has(userGuide),
+                            expanded: state.expanded.has(userGuide),
                             subItems: [
                                 {
                                     title: gettingStarted,
+                                    icon: (useIcon && useIconForSecondaryItems) ? <AirportShuttle /> : undefined,
                                     active: state.selected === gettingStarted,
                                     onClick: (): void => {
                                         store.set({ selected: gettingStarted });
@@ -492,18 +499,20 @@ stories.add(
                                 },
                                 {
                                     title: tutorials,
+                                    icon: (useIcon && useIconForSecondaryItems) ? <Dashboard /> : undefined,
                                     onClick: (): void => {
-                                        if (state.expanded?.has(tutorials)) {
-                                            state.expanded?.delete(tutorials);
+                                        if (state.expanded.has(tutorials)) {
+                                            state.expanded.delete(tutorials);
                                             store.set({ expanded: state.expanded });
                                         } else {
-                                            store.set({ expanded: state.expanded?.add(tutorials) });
+                                            store.set({ expanded: state.expanded.add(tutorials) });
                                         }
                                     },
-                                    expanded: state.expanded?.has(tutorials),
+                                    expanded: state.expanded.has(tutorials),
                                     subItems: [
                                         {
                                             title: forDevelopers,
+                                            icon: (useIcon && useIconForSecondaryItems) ? <Devices /> : undefined,
                                             active: state.selected === forDevelopers,
                                             onClick: (): void => {
                                                 store.set({ selected: forDevelopers });
@@ -511,6 +520,7 @@ stories.add(
                                         },
                                         {
                                             title: forDesigners,
+                                            icon: (useIcon && useIconForSecondaryItems) ? <FitnessCenter /> : undefined,
                                             active: state.selected === forDesigners,
                                             onClick: (): void => {
                                                 store.set({ selected: forDesigners });
@@ -520,6 +530,7 @@ stories.add(
                                 },
                                 {
                                     title: environmentSetup,
+                                    icon: (useIcon && useIconForSecondaryItems) ? <Settings /> : undefined,
                                     active: state.selected === environmentSetup,
                                     onClick: (): void => {
                                         store.set({ selected: environmentSetup });
@@ -529,44 +540,49 @@ stories.add(
                         },
                         {
                             title: community,
+                            icon: useIcon ? <Comment /> : undefined,
                             onClick: (): void => {
-                                if (state.expanded?.has(community)) {
-                                    state.expanded?.delete(community);
+                                if (state.expanded.has(community)) {
+                                    state.expanded.delete(community);
                                     store.set({ expanded: state.expanded });
                                 } else {
-                                    store.set({ expanded: state.expanded?.add(community) });
+                                    store.set({ expanded: state.expanded.add(community) });
                                 }
                             },
-                            expanded: state.expanded?.has(community),
+                            expanded: state.expanded.has(community),
                             subItems: [
                                 {
                                     title: license,
                                     active: state.selected === license,
+                                    icon: (useIcon && useIconForSecondaryItems) ? <Devices /> : undefined,
                                     onClick: (): void => {
                                         store.set({ selected: license });
                                     },
                                 },
                                 {
                                     title: contribute,
-                                    expanded: state.expanded?.has(contribute),
+                                    icon: (useIcon && useIconForSecondaryItems) ? <Search /> : undefined,
+                                    expanded: state.expanded.has(contribute),
                                     onClick: (): void => {
-                                        if (state.expanded?.has(contribute)) {
-                                            state.expanded?.delete(contribute);
+                                        if (state.expanded.has(contribute)) {
+                                            state.expanded.delete(contribute);
                                             store.set({ expanded: state.expanded });
                                         } else {
-                                            store.set({ expanded: state.expanded?.add(contribute) });
+                                            store.set({ expanded: state.expanded.add(contribute) });
                                         }
                                     },
                                     subItems: [
                                         {
                                             title: hallOfFame,
                                             active: state.selected === hallOfFame,
+                                            icon: (useIcon && useIconForSecondaryItems) ? <PinDrop /> : undefined,
                                             onClick: (): void => {
                                                 store.set({ selected: hallOfFame });
                                             },
                                         },
                                         {
                                             title: contributingGuide,
+                                            icon: (useIcon && useIconForSecondaryItems) ? <Toc /> : undefined,
                                             active: state.selected === contributingGuide,
                                             onClick: (): void => {
                                                 store.set({ selected: contributingGuide });
@@ -578,6 +594,7 @@ stories.add(
                         },
                         {
                             title: accessibility,
+                            icon: useIcon ? <Accessibility /> : undefined,
                             onClick: (): void => {
                                 store.set({ selected: accessibility });
                             },
@@ -585,6 +602,7 @@ stories.add(
                         },
                         {
                             title: notifications,
+                            icon: useIcon ? <NotificationsActive /> : undefined,
                             onClick: (): void => {
                                 store.set({ selected: notifications });
                             },
@@ -596,7 +614,7 @@ stories.add(
             </DrawerBody>
         );
 
-        return (
+        return padDrawer(
             <State store={store}>
                 {(state): JSX.Element[] => [
                     <Drawer open={true} key={'drawer'}>
