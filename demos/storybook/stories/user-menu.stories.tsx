@@ -58,9 +58,15 @@ stories.add('with custom colors', () => {
     });
     const classes = useStyles();
     const avatar = <Avatar classes={{ root: classes.root }}>CD</Avatar>;
-    defaultMenuItems[0].fontColor = color('fontColor', Colors.gray[500], 'Menu');
-    defaultMenuItems[0].iconColor = color('iconColor', Colors.blue[800], 'Menu');
-    return <UserMenu avatar={avatar} menuGroups={defaultMenuItems} MenuProps={{ classes: { paper: classes.paper } }} />;
+    const fontColor = color('fontColor', Colors.gray[500], 'Menu');
+    const iconColor = color('iconColor', Colors.blue[800], 'Menu');
+    return (
+        <UserMenu
+            avatar={avatar}
+            menuGroups={[{ ...defaultMenuItems[0], fontColor, iconColor }]}
+            MenuProps={{ classes: { paper: classes.paper } }}
+        />
+    );
 });
 
 stories.add('with a non-text avatar', () => {

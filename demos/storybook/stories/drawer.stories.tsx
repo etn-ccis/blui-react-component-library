@@ -491,7 +491,7 @@ stories.add(
                             subItems: [
                                 {
                                     title: gettingStarted,
-                                    icon: (useIcon && useIconForSecondaryItems) ? <AirportShuttle /> : undefined,
+                                    icon: useIcon && useIconForSecondaryItems ? <AirportShuttle /> : undefined,
                                     active: state.selected === gettingStarted,
                                     onClick: (): void => {
                                         store.set({ selected: gettingStarted });
@@ -499,7 +499,7 @@ stories.add(
                                 },
                                 {
                                     title: tutorials,
-                                    icon: (useIcon && useIconForSecondaryItems) ? <Dashboard /> : undefined,
+                                    icon: useIcon && useIconForSecondaryItems ? <Dashboard /> : undefined,
                                     onClick: (): void => {
                                         if (state.expanded.has(tutorials)) {
                                             state.expanded.delete(tutorials);
@@ -512,7 +512,7 @@ stories.add(
                                     subItems: [
                                         {
                                             title: forDevelopers,
-                                            icon: (useIcon && useIconForSecondaryItems) ? <Devices /> : undefined,
+                                            icon: useIcon && useIconForSecondaryItems ? <Devices /> : undefined,
                                             active: state.selected === forDevelopers,
                                             onClick: (): void => {
                                                 store.set({ selected: forDevelopers });
@@ -520,7 +520,7 @@ stories.add(
                                         },
                                         {
                                             title: forDesigners,
-                                            icon: (useIcon && useIconForSecondaryItems) ? <FitnessCenter /> : undefined,
+                                            icon: useIcon && useIconForSecondaryItems ? <FitnessCenter /> : undefined,
                                             active: state.selected === forDesigners,
                                             onClick: (): void => {
                                                 store.set({ selected: forDesigners });
@@ -530,7 +530,7 @@ stories.add(
                                 },
                                 {
                                     title: environmentSetup,
-                                    icon: (useIcon && useIconForSecondaryItems) ? <Settings /> : undefined,
+                                    icon: useIcon && useIconForSecondaryItems ? <Settings /> : undefined,
                                     active: state.selected === environmentSetup,
                                     onClick: (): void => {
                                         store.set({ selected: environmentSetup });
@@ -554,14 +554,14 @@ stories.add(
                                 {
                                     title: license,
                                     active: state.selected === license,
-                                    icon: (useIcon && useIconForSecondaryItems) ? <Devices /> : undefined,
+                                    icon: useIcon && useIconForSecondaryItems ? <Devices /> : undefined,
                                     onClick: (): void => {
                                         store.set({ selected: license });
                                     },
                                 },
                                 {
                                     title: contribute,
-                                    icon: (useIcon && useIconForSecondaryItems) ? <Search /> : undefined,
+                                    icon: useIcon && useIconForSecondaryItems ? <Search /> : undefined,
                                     expanded: state.expanded.has(contribute),
                                     onClick: (): void => {
                                         if (state.expanded.has(contribute)) {
@@ -575,14 +575,14 @@ stories.add(
                                         {
                                             title: hallOfFame,
                                             active: state.selected === hallOfFame,
-                                            icon: (useIcon && useIconForSecondaryItems) ? <PinDrop /> : undefined,
+                                            icon: useIcon && useIconForSecondaryItems ? <PinDrop /> : undefined,
                                             onClick: (): void => {
                                                 store.set({ selected: hallOfFame });
                                             },
                                         },
                                         {
                                             title: contributingGuide,
-                                            icon: (useIcon && useIconForSecondaryItems) ? <Toc /> : undefined,
+                                            icon: useIcon && useIconForSecondaryItems ? <Toc /> : undefined,
                                             active: state.selected === contributingGuide,
                                             onClick: (): void => {
                                                 store.set({ selected: contributingGuide });
