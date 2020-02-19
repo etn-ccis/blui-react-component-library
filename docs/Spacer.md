@@ -4,7 +4,7 @@ An invisible utility component that acts as a spacer element in various layouts.
 <img width="40%" alt="Spacer used in Drawer Body" src="./images/spacer.png"><br/>
 
 ### Usage
-```
+```typescript
 import { Spacer } from '@pxblue/react-components';
 ...
 <div style={{display: 'flex'}}>

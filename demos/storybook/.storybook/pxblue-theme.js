@@ -32,7 +32,24 @@ export default create({
     inputTextColor: colors.black[500],
     inputBorderRadius: 4,
 
-    brandTitle: 'PX Blue React Component Library',
+    brandTitle: 'PX Blue Angular Component Library',
     brandImage: 'https://pxblue.github.io/static/media/pxblue.d5fa6462.svg',
     brandUrl: 'https://pxblue.github.io',
+    addonNotesTheme: {
+        h1: {
+            color: colors.blue[500]
+        },
+        h2: {
+            color: colors.blue[500],
+        },
+        h3: {
+            color: colors.blue[500],
+        },
+        h4: {
+            color: colors.blue[500],
+        },
+        table: {
+            width: '100%'
+        }
+    }
 });

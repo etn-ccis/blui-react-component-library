@@ -4,11 +4,10 @@ import { Spacer } from '@pxblue/react-components';
 import { Typography } from '@material-ui/core';
 import { number } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
+import {storyWrapper} from "../src/util";
 
-export const stories = storiesOf('Spacer', module);
-stories.addParameters({
-    notes: { markdown: require('./../../../docs/Spacer.md') },
-});
+export const stories = storiesOf('playground/Spacer', module);
+stories.addDecorator(storyWrapper);
 
 stories.add('flex layout', () => {
     const flex1 = number('Item 1 Flex', 1, { range: true, min: 1, max: 5, step: 1 });

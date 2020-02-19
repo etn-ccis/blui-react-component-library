@@ -5,11 +5,10 @@ import { ChannelValue, InfoListItem } from '@pxblue/react-components';
 import { List } from '@material-ui/core';
 import { boolean, color, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
+import {storyWrapper} from "../src/util";
 
-export const stories = storiesOf('Info List Item', module);
-stories.addParameters({
-    notes: { markdown: require('./../../../docs/InfoListItem.md') },
-});
+export const stories = storiesOf('playground/Info List Item', module);
+stories.addDecorator(storyWrapper);
 
 stories.add('basic list item', () => (
     <InfoListItem
