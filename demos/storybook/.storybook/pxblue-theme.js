@@ -1,4 +1,3 @@
-Learn more or give us feedback
 import { create } from '@storybook/theming/create';
 import * as colors from '@pxblue/colors';
 

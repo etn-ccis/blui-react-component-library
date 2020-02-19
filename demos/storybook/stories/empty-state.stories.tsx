@@ -9,11 +9,10 @@ import AlertIcon from '@material-ui/icons/NotificationImportant';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import { text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
+import {storyWrapper} from "../src/util";
 
-export const stories = storiesOf('Empty State', module);
-stories.addParameters({
-    notes: { markdown: require('./../../../docs/EmptyState.md') },
-});
+export const stories = storiesOf('playground/Empty State', module);
+stories.addDecorator(storyWrapper);
 
 stories.add('with actions', () => {
     const title = text('Title', 'No Devices');
