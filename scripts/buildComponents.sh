@@ -17,7 +17,7 @@ yarn && yarn build
 cd ..
 
 echo -e "${BLUE}Copying Package Resources${NC}"
-cp -r package.json ./dist/package.json
+cp -r components/package.json ./dist/package.json
 cp -r README.md ./dist/README.md
 cp -r LICENSE ./dist/LICENSE
 cp -r CHANGELOG.md ./dist/CHANGELOG.md
