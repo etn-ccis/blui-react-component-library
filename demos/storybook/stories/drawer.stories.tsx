@@ -42,16 +42,14 @@ import { boolean, color, number, optionsKnob, select, text } from '@storybook/ad
 import { OptionsKnobOptionsDisplay } from '@storybook/addon-knobs/dist/components/types/Options';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
+import {storyWrapper} from "../src/util";
 
 const EatonLogo = require('../assets/EatonLogo.svg');
 const topologyBgImage = require('../assets/topology_40.png');
 const farmBgImage = require('../assets/farm.jpg');
 
-export const stories = storiesOf('Drawer', module);
-
-stories.addParameters({
-    notes: { markdown: require('./../../../docs/Drawer.md') },
-});
+export const stories = storiesOf('playground/Drawer', module);
+stories.addDecorator(storyWrapper);
 
 type DrawerState = {
     selected: string;

@@ -4,7 +4,7 @@ The `UserMenu` is an Avatar that opens a Menu when clicked. It is typically used
 The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `Menu`.
 
 ## Usage 
-```
+```typescript
 import { UserMenu } from '@pxblue/react-components';
 import { Avatar, Menu } from '@material-ui/core';
 import {Email, Settings} from "@material-ui/icons";

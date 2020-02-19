@@ -7,12 +7,11 @@ import { InfoListItem, ScoreCard, Hero, HeroBanner } from '@pxblue/react-compone
 import { List, ListItem, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
 import { boolean, color, text, number } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
+import {storyWrapper} from "../src/util";
 const backgroundImage = require('../assets/topology_40.png');
 
-export const stories = storiesOf('Score Card', module);
-stories.addParameters({
-    notes: { markdown: require('./../../../docs/ScoreCard.md') },
-});
+export const stories = storiesOf('playground/Score Card', module);
+stories.addDecorator(storyWrapper);
 
 const heroes: JSX.Element[] = [
     <Hero

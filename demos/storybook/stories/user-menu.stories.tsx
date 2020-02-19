@@ -8,14 +8,12 @@ import { action } from '@storybook/addon-actions';
 import { color, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
+import {storyWrapper} from "../src/util";
 const EatonLogo = require('../assets/EatonLogo.svg');
-
 const tRex = require('../assets/trex.jpeg');
 
-export const stories = storiesOf('User Menu', module);
-stories.addParameters({
-    notes: { markdown: require('./../../../docs/UserMenu.md') },
-});
+export const stories = storiesOf('playground/User Menu', module);
+stories.addDecorator(storyWrapper);
 
 const defaultMenuItems: UserMenuGroup[] = [
     {
