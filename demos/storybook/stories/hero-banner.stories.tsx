@@ -2,7 +2,6 @@ import React from 'react';
 
 import * as Colors from '@pxblue/colors';
 import { Hero, HeroBanner } from '@pxblue/react-components';
-//@ts-ignore
 import { GradeA, Leaf, CurrentCircled, Temp } from '@pxblue/icons-mui';
 import { number } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';

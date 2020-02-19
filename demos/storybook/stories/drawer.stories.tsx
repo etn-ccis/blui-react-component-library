@@ -468,7 +468,6 @@ stories.add(
         const drawerItemList = (state: DrawerState): JSX.Element => (
             <DrawerBody>
                 <DrawerNavGroup
-                    title={'Default Navigation Group'}
                     divider={false}
                     items={[
                         {

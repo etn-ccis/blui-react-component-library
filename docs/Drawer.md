@@ -93,19 +93,22 @@ A `DrawerNavGroup` will render inside of the `DrawerBody` and is used to organiz
 | title                 | Text to display in the group header     | `string`          | no       |         |  
 
 
-#### Item Object
+#### NavItem Object
 The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`):
 
-| Attribute       | Description                             | Type               | Required | Default                      |
-|-----------------|-----------------------------------------|--------------------|----------|------------------------------|
-| active          | Is the item the current active item     | `boolean`          | no       | false                        |  
-| chevron         | Show chevron icon to the right          | `boolean`          | no       | false                        |  
-| divider         | Show a divider line below the item      | `boolean`          | no       | true                         |  
-| icon            | A component to render for the icon      | `React.Component`  | no       |                              |      
-| onClick         | A function to execute when clicked      | `function`         | no       |                              |    
-| statusColor     | Status stripe and icon color            | `string`           | no       |                              |    
-| subtitle        | The text to show on the second line     | `string`           | no       |                              |    
-| title           | The text to show on the first line      | `string`           | no       |                              |    
+| Attribute       | Description                                  | Type               | Required | Default                      |
+|-----------------|----------------------------------------------|--------------------|----------|------------------------------|
+| active          | Is the item the current active item          | `boolean`          | no       | false                        |  
+| chevron         | Show chevron icon to the right               | `boolean`          | no       | false                        |  
+| divider         | Show a divider line below the item           | `boolean`          | no       | true                         | 
+| expanded        | Is the nested item group expanded            | `boolean`          | no       | false                        | 
+| icon            | A component to render for the icon           | `React.Component`  | no       |                              |    
+| indentation     | Which level is the level at in the hierarchy | `number`           | no       |                              |     
+| onClick         | A function to execute when clicked           | `function`         | no       |                              |    
+| statusColor     | Status stripe and icon color                 | `string`           | no       |                              |   
+| subItems        | The items nested under this item             | `navItem[]`        | no       |                              |  
+| subtitle        | The text to show on the second line          | `string`           | no       |                              |    
+| title           | The text to show on the first line           | `string`           | yes       |                              |    
 
 
 ## Drawer Footer

@@ -1,10 +1,7 @@
 import React from 'react';
-
 import * as Colors from '@pxblue/colors';
 import { Hero, ChannelValue } from '@pxblue/react-components';
-//@ts-ignore
 import { GradeA, Leaf } from '@pxblue/icons-mui';
-
 import { text, number } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 

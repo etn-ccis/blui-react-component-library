@@ -1,7 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import { GradeA, Temp, Moisture as Humidity } from '@pxblue/icons-mui';
 import { MoreVert, Search, Mail, ChevronRight, Notifications, ListAlt, Cloud } from '@material-ui/icons';
 import { InfoListItem, ScoreCard, Hero, HeroBanner } from '@pxblue/react-components';
