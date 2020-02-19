@@ -1,11 +1,10 @@
 import React from 'react';
-import { configure, addDecorator, addParameters } from '@storybook/react';
+import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { ReactThemes } from '@pxblue/themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
-import './styles.css';
 import pxblue from './pxblue-theme';
 
 const newViewports = {
@@ -33,11 +32,16 @@ const newViewports = {
 };
 
 addParameters({
+    /* Users will see this while the component is loading. */
+    notes: {
+        markdown: '<div> </div>'
+    },
     viewport: {
-        viewports: newViewports,
+        viewports: newViewports
     },
     options: {
         theme: pxblue,
+        showRoots: true,
     },
 });
 
@@ -50,6 +54,3 @@ addDecorator((storyFn) => (
 ));
 
 addDecorator(withKnobs({escapeHTML: false}));
-
-// automatically import all files ending in *.stories.js
-configure(require.context('../stories', true, /\.stories\.(js|tsx)$/), module);

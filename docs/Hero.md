@@ -1,8 +1,9 @@
 # Hero
 The PX Blue Hero components are used to call attention to particular values that are of the most importance to the user. These are typically displayed in a banner.
 
-<img width="100%" alt="Hero Banner" src="./images/heroes.png">
-
+<div style="width: 100%; text-align:center">
+<img width="100%" style="max-width: 600px" alt="Hero Banner" src="./images/heroes.png">
+</div>
 
 ## Hero
 The Hero component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, PX Blue icon, or Progress Icon. It will also accept Text/Emoji values.

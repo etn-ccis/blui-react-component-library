@@ -9,11 +9,10 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 // @ts-ignore
 import EatonLogo from '../assets/EatonLogo.svg';
+import {storyWrapper} from "../src/util";
 
-export const stories = storiesOf('Drawer Layout', module);
-stories.addParameters({
-    notes: { markdown: require('./../../../docs/DrawerLayout.md') },
-});
+export const stories = storiesOf('playground/Drawer Layout', module);
+stories.addDecorator(storyWrapper);
 
 const defaultBody = (
     <DrawerBody>
