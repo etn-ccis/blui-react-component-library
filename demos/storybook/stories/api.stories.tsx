@@ -4,11 +4,13 @@ import React from 'react';
 export const stories = storiesOf('API/Documentation', module);
 
 const autoNavToDocs = () => {
-   window.top.document.getElementsByClassName('simplebar-content')[1].setAttribute('style', 'display: none');
+   const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
+   banner.setAttribute('style', 'display: none');
+   // If we are currently on the 'Canvas' tab.
    if (window.top.location.href.includes('/story/')) {
       window.top.history.replaceState(null, '', window.top.location.href.replace('/story/', '/info/'));
       //@ts-ignore
-      window.top.document.getElementsByClassName('css-mtwlrt')[0].click();
+      banner.children[0].children[0].children[0].children[1].click(); // click the Notes tab.
    }
 };
 
