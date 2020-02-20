@@ -1530,6 +1530,11 @@
     "@pxblue/colors" "^2.0.0"
     color "^3.1.2"
 
+"@pxblue/storybook-themes@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@pxblue/storybook-themes/-/storybook-themes-1.0.0.tgz#28438d9db4facc930cdecf4f90a5e51ce52d0270"
+  integrity sha512-jtt5aNQB5O9ZiWVGOR5fAGq0dleii1ceavD13ZvfAZawXQnuXe/OrvSdUMmzBoGqKbAmoI4WaCtlqEQBR/tWSw==
+
 "@pxblue/themes@^2.0.0":
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/@pxblue/themes/-/themes-2.2.4.tgz#ef663d4625c35dc1a2dd813bb65963143b839db0"

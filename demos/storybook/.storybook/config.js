@@ -5,7 +5,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { ReactThemes } from '@pxblue/themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
-import pxblue from './pxblue-theme';
+import { pxblueTheme } from '@pxblue/storybook-themes';
 
 const newViewports = {
     iPhone5: {
@@ -31,16 +31,20 @@ const newViewports = {
     },
 };
 
+pxblueTheme.brandTitle = 'PX Blue React Component Library';
+pxblueTheme.brandImage = 'https://pxblue.github.io/static/media/pxblue.d5fa6462.svg';
+pxblueTheme.brandUrl = 'https://pxblue.github.io';
+
 addParameters({
     /* Users will see this while the component is loading. */
     notes: {
-        markdown: '<div> </div>'
+        markdown: '<div> </div>',
     },
     viewport: {
-        viewports: newViewports
+        viewports: newViewports,
     },
     options: {
-        theme: pxblue,
+        theme: pxblueTheme,
         showRoots: true,
     },
 });
@@ -53,4 +57,4 @@ addDecorator((storyFn) => (
     </MuiThemeProvider>
 ));
 
-addDecorator(withKnobs({escapeHTML: false}));
+addDecorator(withKnobs({ escapeHTML: false }));

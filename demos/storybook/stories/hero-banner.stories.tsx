@@ -6,7 +6,7 @@ import { Hero, HeroBanner } from '@pxblue/react-components';
 import { GradeA, Leaf, CurrentCircled, Temp } from '@pxblue/icons-mui';
 import { number } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import {storyWrapper} from "../src/util";
+import { storyWrapper } from '../src/util';
 
 export const stories = storiesOf('playground/Hero Banner', module);
 stories.addDecorator(storyWrapper);

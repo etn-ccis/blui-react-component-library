@@ -9,7 +9,7 @@ import AlertIcon from '@material-ui/icons/NotificationImportant';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import { text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import {storyWrapper} from "../src/util";
+import { storyWrapper } from '../src/util';
 
 export const stories = storiesOf('playground/Empty State', module);
 stories.addDecorator(storyWrapper);
