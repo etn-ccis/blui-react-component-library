@@ -5,7 +5,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { ReactThemes } from '@pxblue/themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
-import { pxblueTheme } from '@pxblue/storybook-theme';
+import { pxblueTheme } from '@pxblue/storybook-themes';
 
 const newViewports = {
     iPhone5: {
