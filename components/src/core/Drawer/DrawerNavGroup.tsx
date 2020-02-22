@@ -13,11 +13,11 @@ import { white } from '@pxblue/colors';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         navGroupTextHeader: {
-            width: '95%',
             display: 'block',
             alignItems: 'center',
             lineHeight: '3rem',
             height: theme.spacing(6),
+            letterSpacing: 1,
         },
         subheader: {
             paddingLeft: theme.spacing(2),
@@ -86,6 +86,7 @@ export type DrawerNavGroupProps = {
     items: NavItem[];
     onSelect?: Function;
     open?: boolean;
+    ripple?: boolean;
     title?: string;
     titleColor?: string;
     hidePadding?: boolean;
@@ -115,6 +116,7 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
         iconColor,
         onSelect,
         hidePadding,
+        ripple,
     } = props;
 
     const action = (): void => {
@@ -168,6 +170,7 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
                 onClick={(): void => action()}
                 style={{ paddingLeft: paddingLeft }}
                 hidePadding={hidePadding}
+                ripple={ripple}
             />
         </div>
     );
@@ -240,7 +243,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                         }}
                     >
                         {title && (
-                            <Typography noWrap variant={'subtitle2'} className={classes.navGroupTextHeader}>
+                            <Typography noWrap variant={'overline'} className={classes.navGroupTextHeader}>
                                 {title}
                             </Typography>
                         )}
@@ -280,6 +283,7 @@ DrawerNavGroup.propTypes = {
     ).isRequired,
     onSelect: PropTypes.func,
     open: PropTypes.bool,
+    ripple: PropTypes.bool,
     title: PropTypes.string,
     titleColor: PropTypes.string,
     divider: PropTypes.bool,
@@ -287,5 +291,6 @@ DrawerNavGroup.propTypes = {
 
 DrawerNavGroup.defaultProps = {
     divider: true,
+    ripple: true,
     useSolidExpandArrows: false,
 };

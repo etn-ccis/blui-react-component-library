@@ -90,6 +90,7 @@ A `DrawerNavGroup` will render inside of the `DrawerBody` and is used to organiz
 | fontColor             | The color used for the text                                   | `string`          | no       |         |   
 | iconColor             | The color used for the icon                                   | `string`          | no       |         |   
 | items                 | List of navigation items to render                            | `NavItem[]`       | no       |         |  
+| ripple                | Whether to apply ripple effect on all the items               | `boolean`         | no       | true    |
 | title                 | Text to display in the group header                           | `string`          | no       |         |  
 | useSolidExpandArrows  | whether to use solid arrows for nav items below the top level | `boolean`         | no       | false   |
 

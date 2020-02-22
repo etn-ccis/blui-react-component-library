@@ -473,6 +473,8 @@ stories.add(
                     divider={boolean('divider', true)}
                     title={'Default Navigation Group'}
                     useSolidExpandArrows={boolean('useSolidExpandArrows', true)}
+                    hidePadding={!useIcon}
+                    ripple = {boolean('ripple', true)}
                     items={[
                         {
                             title: userGuide,

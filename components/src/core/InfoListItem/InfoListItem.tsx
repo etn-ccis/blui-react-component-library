@@ -72,6 +72,7 @@ export type InfoListItemProps = {
     leftComponent?: JSX.Element;
     onClick?: Function;
     rightComponent?: JSX.Element;
+    ripple?:boolean;
     statusColor?: string;
     style?: CSSProperties;
     subtitle?: string | Array<string | JSX.Element>;
@@ -100,6 +101,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         subtitle,
         subtitleSeparator,
         title,
+        ripple,
     } = props;
 
     const getIconColor = (): string => {
@@ -214,12 +216,14 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         </>
     );
 
-    return onClick ? (
-        <ListItem style={getWrapperStyle()} onClick={(): void => onClick()} dense={dense} button>
+    const onClickFn = onClick ? onClick : (() : void => {});
+
+    return ripple ? (
+        <ListItem style={getWrapperStyle()} onClick={(): void => onClickFn()} dense={dense} button>
             {listItemChild}
         </ListItem>
     ) : (
-        <ListItem style={getWrapperStyle()} dense={dense}>
+        <ListItem style={getWrapperStyle()} onClick={(): void => onClickFn()} dense={dense}>
             {listItemChild}
         </ListItem>
     );
@@ -253,6 +257,7 @@ InfoListItem.defaultProps = {
     chevron: false,
     dense: false,
     hidePadding: false,
+    ripple: false,
     subtitleSeparator: '\u00B7',
     fontColor: 'inherit',
 };

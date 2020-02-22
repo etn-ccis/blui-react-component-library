@@ -33,6 +33,7 @@ import * as Colors from '@pxblue/colors';
 | leftComponent     | Component to render on the left side    | `React.Component`                                  | no       |                     | `<ListItemText/>`                       |
 | onClick           | A function to execute when clicked      | `function`                                         | no       |                     | `() => console.log('pressed')`          |
 | rightComponent    | Component to render on the right side   | `React.Component`                                  | no       |                     | `<ChannelValue/>`                       |
+| ripple            | Whether we want any ripple effect       | `boolean`                                          | no       | false               |                                         |
 | statusColor       | Status stripe and icon color            | `string`                                           | no       |                     | '#ff3333', 'orange'                     |
 | subtitle          | The text to show on the second line     | `string` &vert; `Array<React.ReactNode>`           | no       |                     | 'Subtitle', ['one', 'two', <Leaf/>]     |
 | subtitleSeparator | Separator character for subtitle        | `string`                                           | no       | '·' ('\u00B7')      | '-', '/'                                |
