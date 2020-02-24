@@ -44,6 +44,8 @@ jobs:
   build_storybook:
     docker:
       - image: circleci/node:12.9.1-browsers
+    environment:
+      - MASTER_BRANCH: master
     steps:
       - checkout
       - restore_cache:
@@ -66,6 +68,12 @@ jobs:
           command: |
             cp -r ./dist/. ./demos/storybook/node_modules/@pxblue/react-components
             cd demos/storybook
+
+            # If we are building the master branch, use the published component library.
+            if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
+              yarn add @pxblue/react-components
+            fi
+
             yarn build-storybook
       - run:
           name: Lint
