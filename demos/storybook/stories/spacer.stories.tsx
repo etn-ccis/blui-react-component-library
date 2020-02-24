@@ -8,6 +8,11 @@ import { storyWrapper } from '../src/util';
 
 export const stories = storiesOf('playground/Spacer', module);
 stories.addDecorator(storyWrapper);
+stories.addParameters({
+   options: {
+      showPanel: true,
+   },
+});
 
 stories.add('flex layout', () => {
     const flex1 = number('Item 1 Flex', 1, { range: true, min: 1, max: 5, step: 1 });

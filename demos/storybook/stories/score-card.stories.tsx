@@ -13,6 +13,11 @@ const backgroundImage = require('../assets/topology_40.png');
 
 export const stories = storiesOf('playground/Score Card', module);
 stories.addDecorator(storyWrapper);
+stories.addParameters({
+   options: {
+      showPanel: true,
+   },
+});
 
 const heroes: JSX.Element[] = [
     <Hero

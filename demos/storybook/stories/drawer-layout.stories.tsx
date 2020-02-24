@@ -13,6 +13,11 @@ import { storyWrapper } from '../src/util';
 
 export const stories = storiesOf('playground/Drawer Layout', module);
 stories.addDecorator(storyWrapper);
+stories.addParameters({
+   options: {
+      showPanel: true,
+   },
+});
 
 const defaultBody = (
     <DrawerBody>
