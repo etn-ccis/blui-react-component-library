@@ -88,6 +88,8 @@ jobs:
   build_showcase:
     docker:
       - image: circleci/node:12.9.1-browsers
+    environment:
+      - MASTER_BRANCH: master
     steps:
       - checkout
       - restore_cache:
