@@ -72,7 +72,7 @@ export type InfoListItemProps = {
     leftComponent?: JSX.Element;
     onClick?: Function;
     rightComponent?: JSX.Element;
-    ripple?:boolean;
+    ripple?: boolean;
     statusColor?: string;
     style?: CSSProperties;
     subtitle?: string | Array<string | JSX.Element>;
@@ -216,7 +216,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         </>
     );
 
-    const onClickFn = onClick ? onClick : (() : void => {});
+    const onClickFn = onClick ? onClick : (): void => {};
 
     return ripple ? (
         <ListItem style={getWrapperStyle()} onClick={(): void => onClickFn()} dense={dense} button>

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -7,8 +7,8 @@ import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import { InfoListItem } from '../InfoListItem';
 import PropTypes from 'prop-types';
-import { ExpandMore, ExpandLess, ArrowDropUp, ArrowDropDown } from '@material-ui/icons';
-import { white } from '@pxblue/colors';
+import { ExpandLess, ExpandLessOutlined } from '@material-ui/icons';
+import { white, black } from '@pxblue/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
             lineHeight: '3rem',
             height: theme.spacing(6),
-            letterSpacing: 1,
+            color: theme.palette.text.primary,
+            fontWeight: 600,
         },
         subheader: {
             paddingLeft: theme.spacing(2),
@@ -29,6 +30,8 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         listItem: {
+            color: theme.palette.text.secondary,
+            fontWeight: 300,
             '&:hover': {
                 backgroundColor: 'rgba(0, 0, 0, 0.08)',
             },
@@ -53,24 +56,56 @@ const useStyles = makeStyles((theme: Theme) =>
             opacity: 0.9,
         },
         secondaryLevelListGroup: {
-            backgroundColor: theme.palette.type === 'light' ? white[200] : 'transparent',
+            backgroundColor: theme.palette.type === 'light' ? white[200] : black['A200'],
             paddingBottom: 0,
             paddingTop: 0,
+        },
+        rightComponent: {
+            transitionDuration: '300ms',
+            cursor: 'inherit', 
+            display: 'flex', 
+            height: 48, 
+            alignItems: 'center',
+            '&.expanded': {
+                transform: 'rotate(180deg)',
+            }
         },
     })
 );
 
-export type NavItem = {
-    active?: boolean;
-    icon?: JSX.Element;
+export type NestedNavItem = {
+    // Icon on the right. Will be flipped upside down if item is expanded
+    rightComponent?: JSX.Element;
+
+    // onClick of the entire row
     onClick?: Function;
-    statusColor?: string;
-    subtitle?: string;
+
+    // onClick for the rightComponent
+    onClickIcon?: Function;
+
+    // text to be displayed
     title: string;
+
+    // secondary text as a hint text
+    subtitle?: string;
+
+    // any items listed inside this
+    subItems?: NestedNavItem[];
+
+    // if the item has a divider under its content
     divider?: boolean;
-    indentation?: number;
-    subItems?: NavItem[];
-    expanded?: boolean;
+
+    // item id to match for the active state.
+    // Should be unique within the entire list. Will be used as the list key too.
+    itemID: string;
+};
+
+export type NavItem = NestedNavItem & {
+    // Status stripe.
+    statusColor?: string;
+
+    // icon on the left
+    icon?: JSX.Element;
 };
 
 export type DrawerNavGroupProps = {
@@ -78,9 +113,12 @@ export type DrawerNavGroupProps = {
     activeFontColor?: string;
     activeIconColor?: string;
     backgroundColor?: string;
+
+    // override by rightComponent
     chevron?: boolean;
     content?: ReactNode;
     divider?: boolean;
+    nestedDivider?: boolean;
     fontColor?: string;
     iconColor?: string;
     items: NavItem[];
@@ -90,21 +128,28 @@ export type DrawerNavGroupProps = {
     title?: string;
     titleColor?: string;
     hidePadding?: boolean;
-    useSolidExpandArrows?: boolean;
+    activeItem?: string;
 };
 
-function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: string): ReactNode {
-    const { title, subtitle, icon, statusColor, onClick, active, indentation } = item;
-    const { divider = true } = props;
-    if (!title && !icon) {
-        return null;
-    }
+// renderer function for each nav item / nested nav item
+function NavigationListItem(
+    item: NavItem | NestedNavItem,
+    props: DrawerNavGroupProps,
+    depth: number = 0,
+    initialIsExpanded: boolean = false
+): ReactNode {
+    const { onClick, title, subtitle, subItems, divider: itemDivider = false, onClickIcon, itemID } = item;
+    const icon = (item as NavItem).icon;
+    const { divider: groupDivider = true, nestedDivider = false } = props;
+
+    const [expanded, setExpanded] = useState(initialIsExpanded);
 
     const classes = useStyles(props);
     const theme = useTheme();
+    // @ts-ignore
+    const primary50Color = theme.palette.primary[50];
     const {
-        // @ts-ignore
-        activeBackgroundColor = theme.palette.type === 'light' ? theme.palette.primary[50] : theme.palette.primary.main,
+        activeBackgroundColor = theme.palette.type === 'light' ? primary50Color : theme.palette.primary.main,
         activeFontColor = theme.palette.type === 'light'
             ? theme.palette.primary.main
             : theme.palette.primary.contrastText,
@@ -117,7 +162,10 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
         onSelect,
         hidePadding,
         ripple,
+        activeItem,
     } = props;
+
+    const divider = itemDivider ? itemDivider : nestedDivider ? nestedDivider : groupDivider;
 
     const action = (): void => {
         if (onSelect) {
@@ -128,27 +176,43 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
         }
     };
 
-    const getExpandIcon = (): JSX.Element => {
+
+    function getRightActionIcon(): JSX.Element {
+        if (item.rightComponent) {
+            return item.rightComponent;
+        }
         if (chevron) {
             return null;
         }
-        switch (expand) {
-            case 'less':
-                return <ExpandLess />;
-            case 'more':
-                return <ExpandMore />;
-            case 'lessSolid':
-                return <ArrowDropUp />;
-            case 'moreSolid':
-                return <ArrowDropDown />;
-            default:
-                return null;
+        if (!subItems) {
+            return null;
         }
+        if (depth) {
+            return <ExpandLessOutlined />;
+        }
+        return <ExpandLess />;
+    }
+
+    let rightActionIcon = getRightActionIcon();
+
+    const rightAction = (): void => {
+        if (!rightActionIcon) return;
+        if (onClickIcon) {
+            onClickIcon();
+        } else {
+            action();
+        } 
+        console.log('right action');
+        setExpanded(!expanded);
     };
 
     // 2 indents for top level nav items
     // 2, 4, 6, ... for secondary level and beyond
-    const paddingLeft = theme.spacing(indentation ? (indentation - 1) * 4 + 2 : 2);
+    const paddingLeft = theme.spacing(depth ? (depth - 1) * 4 + 2 : 2);
+
+    const active = activeItem === itemID;
+
+    const statusColor = (item as NavItem).statusColor;
 
     return (
         <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
@@ -157,15 +221,20 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
                 dense
                 title={title}
                 subtitle={subtitle}
-                divider={
-                    item.divider === undefined ? (divider ? 'full' : undefined) : item.divider ? 'full' : undefined
-                }
+                divider={divider ? 'full' : undefined}
                 statusColor={statusColor}
                 fontColor={active ? activeFontColor : fontColor}
                 icon={icon}
                 iconColor={active ? activeIconColor : iconColor}
                 chevron={chevron}
-                rightComponent={getExpandIcon()}
+                rightComponent={
+                    <div
+                        onClick={(_) => rightAction()}
+                        className={`${classes.rightComponent} ${expanded && 'expanded'}`}
+                    >
+                        {rightActionIcon}
+                    </div>
+                }
                 backgroundColor={'transparent'}
                 onClick={(): void => action()}
                 style={{ paddingLeft: paddingLeft }}
@@ -178,56 +247,42 @@ function NavigationListItem(item: NavItem, props: DrawerNavGroupProps, expand?: 
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const classes = useStyles(props);
-    const { open, items, title, content, backgroundColor, titleColor, useSolidExpandArrows, divider } = props;
+    const { open, items, title, content, backgroundColor, titleColor } = props;
 
-    // recursively loop through item list and the subItems
-    function getDrawerItemList(item: NavItem, index: number, indentation: number): JSX.Element {
+    /* recursively loop through item list and the subItems
+     * returns [
+        Element to render,
+        if there is an active nav item
+       ] 
+    */
+    function getDrawerItemList(item: NavItem, depth: number): [JSX.Element, boolean] {
+        let isExpanded = false;
         if (item.subItems) {
             // if there are more sub pages, add the bucket header and recurse on this function
-            return (
-                <React.Fragment key={`${item.title}_Fragment_${indentation}`}>
-                    <div key={`${item.title}_item_${indentation}_${index}`}>
-                        {NavigationListItem(
-                            { ...item, indentation },
-                            {
-                                ...props,
-                                chevron: false,
-                                // adding dividers for top level nav items
-                                divider: !indentation && divider,
-                            },
-                            // use outlined arrow for top level nav items, solid otherwise
-                            indentation && useSolidExpandArrows
-                                ? item.expanded
-                                    ? 'lessSolid'
-                                    : 'moreSolid'
-                                : item.expanded
-                                ? 'less'
-                                : 'more'
-                        )}
-                    </div>
-                    <Collapse in={item.expanded} key={`${item.title}_group_${indentation}_${index}`}>
-                        <List className={classes.secondaryLevelListGroup}>
-                            {item.subItems.map((subItem: NavItem, subItemIndex: number) =>
-                                getDrawerItemList(subItem, subItemIndex, indentation + 1)
-                            )}
-                        </List>
-                    </Collapse>
-                </React.Fragment>
+
+            const collapsibleComponent = (
+                <Collapse in={isExpanded} key={`${item.title}_group_${depth}`}>
+                    <List className={classes.secondaryLevelListGroup}>
+                        {item.subItems.map((subItem: NavItem) => {
+                            const [elt, isSubItemExpanded] = getDrawerItemList(subItem, depth + 1);
+                            isExpanded = isExpanded || isSubItemExpanded;
+                            return elt;
+                        })}
+                    </List>
+                </Collapse>
             );
+
+            return [
+                <React.Fragment key={`${item.title}_Fragment_${depth}`}>
+                    <div key={`${item.itemID}`}>{NavigationListItem(item, props, depth, isExpanded)}</div>
+                    {collapsibleComponent}
+                </React.Fragment>,
+                true,
+            ];
         }
-        // otherwise, we reached a leaf node. return
-        return (
-            <div key={`${item.title}_item_${indentation}_${index}`}>
-                {NavigationListItem(
-                    { ...item, indentation },
-                    {
-                        ...props,
-                        // adding dividers for top level nav items
-                        divider: !indentation && divider,
-                    }
-                )}
-            </div>
-        );
+        // Otherwise, we reached a leaf node. Return.
+        isExpanded = item.itemID === props.activeItem;
+        return [<div key={`${item.itemID}`}>{NavigationListItem(item, props, depth, isExpanded)}</div>, isExpanded];
     }
 
     return (
@@ -243,7 +298,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                         }}
                     >
                         {title && (
-                            <Typography noWrap variant={'overline'} className={classes.navGroupTextHeader}>
+                            <Typography noWrap variant={'subtitle2'} className={classes.navGroupTextHeader}>
                                 {title}
                             </Typography>
                         )}
@@ -252,7 +307,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                 }
             >
                 <div key={`${title}_title`}>{(title || content) && <Divider />}</div>
-                {items.map((item: NavItem, index: number) => getDrawerItemList(item, index, 0))}
+                {items.map((item: NavItem) => getDrawerItemList(item, 0))}
             </List>
         </>
     );
@@ -292,5 +347,4 @@ DrawerNavGroup.propTypes = {
 DrawerNavGroup.defaultProps = {
     divider: true,
     ripple: true,
-    useSolidExpandArrows: false,
 };
