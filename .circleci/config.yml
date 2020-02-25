@@ -78,7 +78,7 @@ jobs:
       - run:
           name: Lint
           command: |
-            echo "LINT HERE"
+            echo "UH OH"
       - persist_to_workspace:
           root: .
           paths:
