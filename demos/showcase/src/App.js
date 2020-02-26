@@ -1,34 +1,67 @@
 import React, { useState } from 'react';
-import { Hero, HeroBanner, ChannelValue,
-EmptyState, InfoListItem, ScoreCard, Spacer,
-Drawer, DrawerBody, DrawerNavGroup, DrawerFooter, DrawerHeader, DrawerSubheader, UserMenu,
-DrawerLayout, ListItemTag } from '@pxblue/react-components';
+import {
+    Hero,
+    HeroBanner,
+    ChannelValue,
+    EmptyState,
+    InfoListItem,
+    ScoreCard,
+    Spacer,
+    Drawer,
+    DrawerBody,
+    DrawerNavGroup,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerSubheader,
+    UserMenu,
+    DrawerLayout,
+    ListItemTag,
+} from '@pxblue/react-components';
 
-import DevicesIcon from '@material-ui/icons/Devices'
+import DevicesIcon from '@material-ui/icons/Devices';
 import SendIcon from '@material-ui/icons/Send';
-import { Add, Menu, NotificationsActive, List as ListIcon, Public, Email, Settings, Gavel, Help } from '@material-ui/icons'
+import {
+    Add,
+    Menu,
+    NotificationsActive,
+    List as ListIcon,
+    Public,
+    Email,
+    Settings,
+    Gavel,
+    Help,
+} from '@material-ui/icons';
 
 import Trend from '@material-ui/icons/TrendingUp';
 import Timer from '@material-ui/icons/Timer';
 
-import { List, Card, ListItem, ListItemText, ListItemSecondaryAction, AppBar, Toolbar, Typography, Select, MenuItem, Divider, Hidden } from '@material-ui/core';
+import {
+    List,
+    Card,
+    ListItem,
+    ListItemText,
+    ListItemSecondaryAction,
+    AppBar,
+    Toolbar,
+    Typography,
+    Select,
+    MenuItem,
+    Divider,
+    Hidden,
+} from '@material-ui/core';
 import { ChevronRight, MoreVert } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
 import { Pie, Battery } from '@pxblue/react-progress-icons';
 import { GradeA, Leaf, CurrentCircled, VoltageCircled, Temp, Moisture as Humidity, Device } from '@pxblue/icons-mui';
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 import { useTheme } from '@material-ui/core/styles';
 
 import top from './topology_40.png';
 // import farm from './farm.jpg';
 import EatonLogo from './EatonLogo.svg';
-import Avatar from "@material-ui/core/Avatar";
+import Avatar from '@material-ui/core/Avatar';
 
-const locations = [
-    "All Locations",
-    "Gary Steelworks",
-    "Semaine Prochaine"
-];
+const locations = ['All Locations', 'Gary Steelworks', 'Semaine Prochaine'];
 
 export default () => {
     const [open, setOpen] = useState(false);
@@ -37,94 +70,107 @@ export default () => {
     const theme = useTheme();
 
     return (
-        <DrawerLayout drawer={
-            <Drawer open={open} width={300}
+        <DrawerLayout
+            drawer={
+                <Drawer
+                    open={open}
+                    width={300}
                     ModalProps={{
-                        onBackdropClick: () => setOpen(!open)
-                    }}>
-                <DrawerHeader
-                    title={'Showcase App'}
-                    subtitle={'Components in Context'}
-                    backgroundColor={Colors.blue[500]}
-                    fontColor={Colors.white[50]}
-                    backgroundImage={top}
-                    icon={<Menu/>}
-                    onIconClick={() => setOpen(!open)}
-                />
-                <DrawerSubheader>
-                    <Select
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
-                        style={{height: 56, padding: 16, width: '100%'}}
-                    >
-                        {locations.map((loc, ind) => (
-                            <MenuItem key={`location${ind}`} value={ind}>{loc}</MenuItem>
-                        ))}
-                    </Select>
-                </DrawerSubheader>
-                <DrawerBody>
-                    <DrawerNavGroup
-                        items={[
-                            {
-                                title: 'Overview',
-                                icon: <ListIcon/>,
-                                active: route === 0,
-                                onClick: () => setRoute(0)
-                            },
-                            {
-                                title: 'Timeline',
-                                subtitle: '2 Alarms',
-                                icon: <NotificationsActive/>,
-                                status: Colors.red[500],
-                                active: route === 1,
-                                onClick: () => setRoute(1)
-                            },
-                            {
-                                title: 'Locations',
-                                icon: <Public/>,
-                                active: route === 2,
-                                onClick: () => setRoute(2)
-                            },
-                            {
-                                title: 'Devices',
-                                icon: <Device/>,
-                                active: route === 3,
-                                onClick: () => setRoute(3)
-                            },
-                        ]}
+                        onBackdropClick: () => setOpen(!open),
+                    }}
+                >
+                    <DrawerHeader
+                        title={'Showcase App'}
+                        subtitle={'Components in Context'}
+                        backgroundColor={Colors.blue[500]}
+                        fontColor={Colors.white[50]}
+                        backgroundImage={top}
+                        icon={<Menu />}
+                        onIconClick={() => setOpen(!open)}
                     />
-                    <Spacer/>
-                    <Divider/>
-                    <DrawerNavGroup
-                        items={[
-                            {
-                                title: 'Settings',
-                                icon: <Settings/>,
-                                active: route === 4,
-                                onClick: () => setRoute(4)
-                            },
-                            {
-                                title: 'Legal',
-                                icon: <Gavel/>,
-                                active: route === 5,
-                                onClick: () => setRoute(5)
-                            },
-                            {
-                                title: 'Help',
-                                icon: <Help/>,
-                                active: route === 6,
-                                onClick: () => setRoute(6)
-                            }
-                        ]}
-                    />
-                </DrawerBody>
-                <DrawerFooter>
-                    <div style={{'display': 'flex', 'justifyContent': 'center'}}>
-                        <img src={EatonLogo} style={{'margin': '10px'}} alt="Eaton Logo" height={50} width={'auto'}/>
-                    </div>
-                </DrawerFooter>
-            </Drawer>
-        }>
+                    <DrawerSubheader>
+                        <Select
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            style={{ height: 56, padding: 16, width: '100%' }}
+                        >
+                            {locations.map((loc, ind) => (
+                                <MenuItem key={`location${ind}`} value={ind}>
+                                    {loc}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </DrawerSubheader>
+                    <DrawerBody>
+                        <DrawerNavGroup
+                            items={[
+                                {
+                                    title: 'Overview',
+                                    icon: <ListIcon />,
+                                    active: route === 0,
+                                    onClick: () => setRoute(0),
+                                },
+                                {
+                                    title: 'Timeline',
+                                    subtitle: '2 Alarms',
+                                    icon: <NotificationsActive />,
+                                    status: Colors.red[500],
+                                    active: route === 1,
+                                    onClick: () => setRoute(1),
+                                },
+                                {
+                                    title: 'Locations',
+                                    icon: <Public />,
+                                    active: route === 2,
+                                    onClick: () => setRoute(2),
+                                },
+                                {
+                                    title: 'Devices',
+                                    icon: <Device />,
+                                    active: route === 3,
+                                    onClick: () => setRoute(3),
+                                },
+                            ]}
+                        />
+                        <Spacer />
+                        <Divider />
+                        <DrawerNavGroup
+                            items={[
+                                {
+                                    title: 'Settings',
+                                    icon: <Settings />,
+                                    active: route === 4,
+                                    onClick: () => setRoute(4),
+                                },
+                                {
+                                    title: 'Legal',
+                                    icon: <Gavel />,
+                                    active: route === 5,
+                                    onClick: () => setRoute(5),
+                                },
+                                {
+                                    title: 'Help',
+                                    icon: <Help />,
+                                    active: route === 6,
+                                    onClick: () => setRoute(6),
+                                },
+                            ]}
+                        />
+                    </DrawerBody>
+                    <DrawerFooter>
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <img
+                                src={EatonLogo}
+                                style={{ margin: '10px' }}
+                                alt="Eaton Logo"
+                                height={50}
+                                width={'auto'}
+                            />
+                        </div>
+                    </DrawerFooter>
+                </Drawer>
+            }
+        >
             <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <AppBar position={'static'} color={'primary'}>
                     <Toolbar style={{ padding: '0 16px' }}>
@@ -142,14 +188,14 @@ export default () => {
                                     items: [
                                         {
                                             title: 'Log Out',
-                                            icon: <SendIcon />
+                                            icon: <SendIcon />,
                                         },
                                         {
                                             title: 'Account Settings',
                                             icon: <Settings />,
-                                            divider: true
+                                            divider: true,
                                         },
-                                    ]
+                                    ],
                                 },
                                 {
                                     title: 'Contact Us',
@@ -162,9 +208,9 @@ export default () => {
                                             title: '1-866-905-9988',
                                             icon: <Email />,
                                         },
-                                    ]
-                                }]
-                            }
+                                    ],
+                                },
+                            ]}
                         />
                     </Toolbar>
                 </AppBar>
@@ -178,9 +224,7 @@ export default () => {
                             headerSubtitle={'High Humidity Alarm'}
                             headerInfo={'4 Devices'}
                             headerFontColor={Colors.white[50]}
-                            actionItems={[
-                                <MoreVert onClick={() => alert('something did')} />,
-                            ]}
+                            actionItems={[<MoreVert onClick={() => alert('something did')} />]}
                             badge={
                                 <HeroBanner style={{ minWidth: 210 }}>
                                     <Hero
@@ -206,25 +250,34 @@ export default () => {
                                 <List style={{ padding: 0 }}>
                                     <ListItem>
                                         <ListItemText primary="View Location" />
-                                        <ListItemSecondaryAction style={{display: 'flex'}}> <ChevronRight /> </ListItemSecondaryAction>
+                                        <ListItemSecondaryAction style={{ display: 'flex' }}>
+                                            {' '}
+                                            <ChevronRight />{' '}
+                                        </ListItemSecondaryAction>
                                     </ListItem>
                                 </List>
                             }
                         >
                             <List style={{ padding: '16px 0' }}>
-                                <InfoListItem dense style={{ height: 36 }}
+                                <InfoListItem
+                                    dense
+                                    style={{ height: 36 }}
                                     fontColor={Colors.red[500]}
                                     iconColor={Colors.red[500]}
                                     title={'1 Alarm'}
                                     icon={<Leaf color={'inherit'} />}
                                 />
-                                <InfoListItem dense style={{ height: 36 }}
+                                <InfoListItem
+                                    dense
+                                    style={{ height: 36 }}
                                     fontColor={Colors.blue[500]}
                                     iconColor={Colors.blue[500]}
                                     title={'1 Event'}
                                     icon={<Leaf color={'inherit'} />}
                                 />
-                                <InfoListItem dense style={{ height: 36 }}
+                                <InfoListItem
+                                    dense
+                                    style={{ height: 36 }}
                                     title={'Online'}
                                     icon={<Leaf color={'inherit'} />}
                                 />
@@ -238,14 +291,12 @@ export default () => {
                             headerSubtitle={'Normal'}
                             headerInfo={'4 Devices'}
                             headerFontColor={Colors.white[50]}
-                            actionItems={[
-                                <MoreVert onClick={() => alert('something did')} />,
-                            ]}
+                            actionItems={[<MoreVert onClick={() => alert('something did')} />]}
                             badge={
                                 <HeroBanner>
                                     <Hero
                                         icon={<GradeA fontSize={'inherit'} htmlColor={Colors.green[500]} />}
-                                        iconBackgroundColor={ theme.palette.background.paper }
+                                        iconBackgroundColor={theme.palette.background.paper}
                                         label={'Health'}
                                         iconSize={72}
                                         value={98}
@@ -259,36 +310,46 @@ export default () => {
                                 <List style={{ padding: 0 }}>
                                     <ListItem>
                                         <ListItemText primary="View Location" />
-                                        <ListItemSecondaryAction style={{display: 'flex'}}> <ChevronRight /> </ListItemSecondaryAction>
+                                        <ListItemSecondaryAction style={{ display: 'flex' }}>
+                                            {' '}
+                                            <ChevronRight />{' '}
+                                        </ListItemSecondaryAction>
                                     </ListItem>
                                 </List>
                             }
                         >
                             <List style={{ padding: '16px 0' }}>
-                                <InfoListItem dense style={{ height: 36 }}
+                                <InfoListItem
+                                    dense
+                                    style={{ height: 36 }}
                                     title={'0 Alarms'}
                                     icon={<Leaf color={'inherit'} />}
                                 />
-                                <InfoListItem dense style={{ height: 36 }}
+                                <InfoListItem
+                                    dense
+                                    style={{ height: 36 }}
                                     fontColor={Colors.blue[500]}
                                     iconColor={Colors.blue[500]}
                                     title={'1 Event'}
                                     icon={<Leaf color={'inherit'} />}
                                 />
-                                <InfoListItem dense style={{ height: 36 }}
+                                <InfoListItem
+                                    dense
+                                    style={{ height: 36 }}
                                     title={'Online'}
                                     icon={<Leaf color={'inherit'} />}
                                 />
                             </List>
                         </ScoreCard>
-
                     </div>
 
                     <Card style={{ marginTop: 10 }}>
                         <List style={{ color: Colors.gray['800'], padding: 0 }}>
                             <HeroBanner divider>
                                 <Hero
-                                    icon={<GradeA fontSize={'inherit'} color={'inherit'} htmlColor={Colors.green[500]} />}
+                                    icon={
+                                        <GradeA fontSize={'inherit'} color={'inherit'} htmlColor={Colors.green[500]} />
+                                    }
                                     label={'Healthy'}
                                     value={96}
                                     units={'/100'}
@@ -299,8 +360,11 @@ export default () => {
                                     label={'Load'}
                                     fontSize={'normal'}
                                 >
-                                    <ChannelValue value={65} units={'%'}
-                                        icon={<Trend htmlColor={Colors.red[500]} fontSize={'inherit'} />} />
+                                    <ChannelValue
+                                        value={65}
+                                        units={'%'}
+                                        icon={<Trend htmlColor={Colors.red[500]} fontSize={'inherit'} />}
+                                    />
                                 </Hero>
                                 <Hero
                                     icon={<Timer fontSize={'inherit'} color={'inherit'} />}
@@ -319,7 +383,8 @@ export default () => {
                                     <ChannelValue value={'Full'} />
                                 </Hero>
                             </HeroBanner>
-                            <InfoListItem dense
+                            <InfoListItem
+                                dense
                                 title={'Status'}
                                 divider={'full'}
                                 statusColor={Colors.green[500]}
@@ -333,7 +398,13 @@ export default () => {
                                 avatar
                                 subtitle={['Phase A', 'Phase B', 'Phase C']}
                                 icon={<VoltageCircled />}
-                                rightComponent={<span><ChannelValue fontSize={16} value={478} units={'V'} />, <ChannelValue fontSize={16} value={479} units={'V'} />, <ChannelValue fontSize={16} value={473} units={'V'} /></span>}
+                                rightComponent={
+                                    <span>
+                                        <ChannelValue fontSize={16} value={478} units={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={479} units={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={473} units={'V'} />
+                                    </span>
+                                }
                             />
                             <InfoListItem
                                 title={'Output Voltage'}
@@ -344,38 +415,63 @@ export default () => {
                                 subtitle={['Phase A', 'Phase B', 'Phase C']}
                                 icon={<VoltageCircled color={'inherit'} />}
                                 rightComponent={
-                                <span style={{ color: Colors.red[500] }}><ListItemTag label={'monitored'} style={{marginRight: 8}} /><ChannelValue fontSize={16} value={480} units={'V'} />, <ChannelValue fontSize={16} value={480} units={'V'} />, <ChannelValue fontSize={16} value={480} units={'V'} /></span>}
+                                    <span style={{ color: Colors.red[500] }}>
+                                        <ListItemTag label={'monitored'} style={{ marginRight: 8 }} />
+                                        <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={480} units={'V'} />
+                                    </span>
+                                }
                             />
-                            <InfoListItem dense
+                            <InfoListItem
+                                dense
                                 title={'Output Current'}
                                 divider={'full'}
                                 icon={<CurrentCircled color={'inherit'} />}
-                                rightComponent={<span><ChannelValue fontSize={16} value={15} units={'A'} />, <ChannelValue fontSize={16} value={14.9} units={'A'} />, <ChannelValue fontSize={16} value={15} units={'A'} /></span>}
+                                rightComponent={
+                                    <span>
+                                        <ChannelValue fontSize={16} value={15} units={'A'} />,{' '}
+                                        <ChannelValue fontSize={16} value={14.9} units={'A'} />,{' '}
+                                        <ChannelValue fontSize={16} value={15} units={'A'} />
+                                    </span>
+                                }
                             />
-                            <InfoListItem dense
+                            <InfoListItem
+                                dense
                                 title={'Temperature'}
                                 divider={'full'}
                                 icon={<Temp />}
                                 rightComponent={
-                                <>
-                                    <ListItemTag style={{marginRight: 8}} backgroundColor={Colors.white['300']} label={'active'} fontColor={Colors.green['500']} />
-                                    <ListItemTag
-                                    label={'OVERHEAT'}
-                                    backgroundColor={Colors.red['500']}
-                                    onClick={(_)=>{alert('You clicked me.')}}
-                                    style={{marginRight: 8}}
-                                    />
-                                    <ChannelValue fontSize={16} icon={<Trend htmlColor={Colors.red[500]} />} value={68} units={'°F'} />
-                                </>}
+                                    <>
+                                        <ListItemTag
+                                            style={{ marginRight: 8 }}
+                                            backgroundColor={Colors.white['300']}
+                                            label={'active'}
+                                            fontColor={Colors.green['500']}
+                                        />
+                                        <ListItemTag
+                                            label={'OVERHEAT'}
+                                            backgroundColor={Colors.red['500']}
+                                            onClick={(_) => {
+                                                alert('You clicked me.');
+                                            }}
+                                            style={{ marginRight: 8 }}
+                                        />
+                                        <ChannelValue
+                                            fontSize={16}
+                                            icon={<Trend htmlColor={Colors.red[500]} />}
+                                            value={68}
+                                            units={'°F'}
+                                        />
+                                    </>
+                                }
                             />
                         </List>
                     </Card>
                     <Card style={{ marginTop: '10px', padding: '10px' }}>
                         <EmptyState
-                            icon={
-                                <DevicesIcon fontSize={'inherit'} />
-                            }
-                            title={"No Devices"}
+                            icon={<DevicesIcon fontSize={'inherit'} />}
+                            title={'No Devices'}
                             actions={
                                 <Button variant="contained" color="primary">
                                     <Add style={{ marginRight: '5px' }} />
@@ -384,8 +480,8 @@ export default () => {
                             }
                         />
                     </Card>
-                </div >
+                </div>
             </div>
         </DrawerLayout>
-    )
+    );
 };

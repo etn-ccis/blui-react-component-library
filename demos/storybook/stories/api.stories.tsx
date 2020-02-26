@@ -3,7 +3,7 @@ import React from 'react';
 
 export const stories = storiesOf('API/Documentation', module);
 
-const autoNavToDocs = () => {
+const autoNavToDocs = (): void => {
     const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
     banner.setAttribute('style', 'display: none');
     // If we are currently on the 'Canvas' tab.
@@ -14,7 +14,7 @@ const autoNavToDocs = () => {
     }
 };
 
-const docFn = () => <>{autoNavToDocs()}</>;
+const docFn = (): JSX.Element => <>{autoNavToDocs()}</>;
 
 stories.add('Channel Value', docFn, { notes: { markdown: require('./../../../docs/ChannelValue.md') } });
 stories.add('Drawer', docFn, { notes: { markdown: require('./../../../docs/Drawer.md') } });

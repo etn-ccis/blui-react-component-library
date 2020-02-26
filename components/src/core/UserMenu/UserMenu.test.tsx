@@ -1,17 +1,16 @@
 import { Avatar } from '@material-ui/core';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
+import { createShallow } from '@material-ui/core/test-utils';
 import SendIcon from '@material-ui/icons/Send';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { findByTestId } from '../test-utils';
-import { Mount, Shallow } from '../types';
+import { Shallow } from '../types';
 import { UserMenu } from './UserMenu';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-let mount: Mount;
 let shallow: Shallow;
 
 describe('User Menu', () => {

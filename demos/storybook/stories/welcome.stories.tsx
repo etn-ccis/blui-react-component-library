@@ -5,6 +5,4 @@ import { storyWrapper } from '../src/util';
 export const stories = storiesOf('Intro/Welcome', module);
 stories.addDecorator(storyWrapper);
 
-stories.add('to pxblue', () => {
-    return <div>Hi, this is the library.</div>;
-});
+stories.add('to pxblue', (): JSX.Element => <div>Hi, this is the library.</div>);
