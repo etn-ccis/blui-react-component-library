@@ -76,6 +76,8 @@ jobs:
             fi
 
             yarn build-storybook
+            cd storybook-static
+            touch .nojekyll
       - run:
           name: Lint
           command: |
