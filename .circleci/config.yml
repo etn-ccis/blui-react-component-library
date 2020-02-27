@@ -29,7 +29,8 @@ jobs:
       - run:
           name: Lint
           command: |
-            echo "LINT HERE"
+            cd components
+            yarn lint
       - run:
           name: Test
           command: |
@@ -75,10 +76,13 @@ jobs:
             fi
 
             yarn build-storybook
+            cd storybook-static
+            touch .nojekyll
       - run:
           name: Lint
           command: |
-            echo "LINT HERE"
+            cd demos/storybook
+            yarn lint
       - persist_to_workspace:
           root: .
           paths:
@@ -119,10 +123,6 @@ jobs:
             fi
 
             yarn build
-      - run:
-          name: Lint
-          command: |
-            echo "LINT HERE"
 
   deploy_storybook:
     docker:
