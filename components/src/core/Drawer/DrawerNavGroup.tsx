@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
             lineHeight: '3rem',
             height: theme.spacing(6),
-            color: theme.palette.text.primary,
             fontWeight: 600,
         },
         subheader: {
@@ -62,13 +61,13 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         rightComponent: {
             transitionDuration: '300ms',
-            cursor: 'inherit', 
-            display: 'flex', 
-            height: 48, 
+            cursor: 'inherit',
+            display: 'flex',
+            height: 48,
             alignItems: 'center',
             '&.expanded': {
                 transform: 'rotate(180deg)',
-            }
+            },
         },
     })
 );
@@ -90,7 +89,7 @@ export type NestedNavItem = {
     subtitle?: string;
 
     // any items listed inside this
-    subItems?: NestedNavItem[];
+    items?: NestedNavItem[];
 
     // if the item has a divider under its content
     divider?: boolean;
@@ -135,14 +134,12 @@ export type DrawerNavGroupProps = {
 function NavigationListItem(
     item: NavItem | NestedNavItem,
     props: DrawerNavGroupProps,
-    depth: number = 0,
-    initialIsExpanded: boolean = false
+    depth = 0,
+    expanded = false
 ): ReactNode {
-    const { onClick, title, subtitle, subItems, divider: itemDivider = false, onClickIcon, itemID } = item;
+    const { onClick, title, subtitle, items: subItems, divider: itemDivider, onClickIcon, itemID } = item;
     const icon = (item as NavItem).icon;
-    const { divider: groupDivider = true, nestedDivider = false } = props;
-
-    const [expanded, setExpanded] = useState(initialIsExpanded);
+    const { divider: groupDivider = true, nestedDivider } = props;
 
     const classes = useStyles(props);
     const theme = useTheme();
@@ -156,7 +153,7 @@ function NavigationListItem(
         activeIconColor = theme.palette.type === 'light'
             ? theme.palette.primary.main
             : theme.palette.primary.contrastText,
-        fontColor,
+        fontColor = theme.palette.text.secondary,
         chevron,
         iconColor,
         onSelect,
@@ -165,7 +162,12 @@ function NavigationListItem(
         activeItem,
     } = props;
 
-    const divider = itemDivider ? itemDivider : nestedDivider ? nestedDivider : groupDivider;
+    let divider;
+    if (depth) {
+        divider = itemDivider !== undefined ? itemDivider : nestedDivider !== undefined ? nestedDivider : false;
+    } else {
+        divider = itemDivider !== undefined ? itemDivider : groupDivider;
+    }
 
     const action = (): void => {
         if (onSelect) {
@@ -175,7 +177,6 @@ function NavigationListItem(
             onClick();
         }
     };
-
 
     function getRightActionIcon(): JSX.Element {
         if (item.rightComponent) {
@@ -193,7 +194,7 @@ function NavigationListItem(
         return <ExpandLess />;
     }
 
-    let rightActionIcon = getRightActionIcon();
+    const rightActionIcon = getRightActionIcon();
 
     const rightAction = (): void => {
         if (!rightActionIcon) return;
@@ -201,9 +202,7 @@ function NavigationListItem(
             onClickIcon();
         } else {
             action();
-        } 
-        console.log('right action');
-        setExpanded(!expanded);
+        }
     };
 
     // 2 indents for top level nav items
@@ -228,12 +227,16 @@ function NavigationListItem(
                 iconColor={active ? activeIconColor : iconColor}
                 chevron={chevron}
                 rightComponent={
-                    <div
-                        onClick={(_) => rightAction()}
-                        className={`${classes.rightComponent} ${expanded && 'expanded'}`}
-                    >
-                        {rightActionIcon}
-                    </div>
+                    rightActionIcon && (
+                        <div
+                            onClick={(e): void => {
+                                if (e) rightAction();
+                            }}
+                            className={`${classes.rightComponent} ${expanded && 'expanded'}`}
+                        >
+                            {rightActionIcon}
+                        </div>
+                    )
                 }
                 backgroundColor={'transparent'}
                 onClick={(): void => action()}
@@ -243,6 +246,23 @@ function NavigationListItem(
             />
         </div>
     );
+}
+
+function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
+    // if leaf node, return
+    if (!item.items) {
+        return item.itemID === activeItem;
+    }
+
+    // else, loop through the branches
+    for (let i = 0; i < item.items.length; i++) {
+        if (findID(item.items[i], activeItem)) {
+            return true;
+        }
+    }
+
+    // no active items found, return false
+    return false;
 }
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
@@ -255,34 +275,50 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         if there is an active nav item
        ] 
     */
-    function getDrawerItemList(item: NavItem, depth: number): [JSX.Element, boolean] {
-        let isExpanded = false;
-        if (item.subItems) {
-            // if there are more sub pages, add the bucket header and recurse on this function
+    function getDrawerItemList(item: NavItem | NestedNavItem, depth: number): JSX.Element {
+        const [expanded, setExpanded] = useState(findID(item, props.activeItem));
 
+        if (item.items) {
+            // if there are more sub pages, add the bucket header and recurse on this function
             const collapsibleComponent = (
-                <Collapse in={isExpanded} key={`${item.title}_group_${depth}`}>
+                <Collapse in={expanded} key={`${item.title}_group_${depth}`}>
                     <List className={classes.secondaryLevelListGroup}>
-                        {item.subItems.map((subItem: NavItem) => {
-                            const [elt, isSubItemExpanded] = getDrawerItemList(subItem, depth + 1);
-                            isExpanded = isExpanded || isSubItemExpanded;
-                            return elt;
-                        })}
+                        {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                     </List>
                 </Collapse>
             );
 
-            return [
+            return (
                 <React.Fragment key={`${item.title}_Fragment_${depth}`}>
-                    <div key={`${item.itemID}`}>{NavigationListItem(item, props, depth, isExpanded)}</div>
+                    <div key={`${item.itemID}`}>
+                        {NavigationListItem(
+                            {
+                                ...item,
+                                onClickIcon: () => {
+                                    if (item.onClickIcon) {
+                                        item.onClickIcon();
+                                    }
+                                    setExpanded(!expanded);
+                                },
+                                onClick: () => {
+                                    if (item.onClick) {
+                                        item.onClick();
+                                    } else if (!item.onClickIcon) {
+                                        setExpanded(!expanded);
+                                    }
+                                },
+                            },
+                            props,
+                            depth,
+                            expanded
+                        )}
+                    </div>
                     {collapsibleComponent}
-                </React.Fragment>,
-                true,
-            ];
+                </React.Fragment>
+            );
         }
         // Otherwise, we reached a leaf node. Return.
-        isExpanded = item.itemID === props.activeItem;
-        return [<div key={`${item.itemID}`}>{NavigationListItem(item, props, depth, isExpanded)}</div>, isExpanded];
+        return <div key={`${item.itemID}`}>{NavigationListItem(item, props, depth, expanded)}</div>;
     }
 
     return (

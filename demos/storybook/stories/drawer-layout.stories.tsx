@@ -9,7 +9,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 // @ts-ignore
 import EatonLogo from '../assets/EatonLogo.svg';
-import {storyWrapper} from "../src/util";
+import { storyWrapper } from '../src/util';
 
 export const stories = storiesOf('playground/Drawer Layout', module);
 stories.addDecorator(storyWrapper);
@@ -17,38 +17,46 @@ stories.addDecorator(storyWrapper);
 const defaultBody = (
     <DrawerBody>
         <DrawerNavGroup
+            activeItem={''}
             items={[
                 {
                     title: 'Overview',
                     onClick: action('Overview'),
+                    itemID: 'Overview',
                     icon: <Apps />,
                 },
                 {
+                    itemID: 'Timeline',
                     title: 'Timeline',
                     onClick: action('Timeline'),
                     icon: <FormatListBulleted />,
                 },
                 {
+                    itemID: 'Locations',
                     title: 'Locations',
                     onClick: action('Locations'),
                     icon: <PinDrop />,
                 },
                 {
+                    itemID: 'Devices',
                     title: 'Devices',
                     onClick: action('Devices'),
                     icon: <NotificationsActive />,
                 },
                 {
+                    itemID: 'Settings',
                     title: 'Settings',
                     onClick: action('Settings'),
                     icon: <Settings />,
                 },
                 {
+                    itemID: 'Legal',
                     title: 'Legal',
                     onClick: action('Legal'),
                     icon: <Gavel />,
                 },
                 {
+                    itemID: 'Help',
                     title: 'Help',
                     onClick: action('Help'),
                     icon: <Help />,

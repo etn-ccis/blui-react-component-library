@@ -4,7 +4,7 @@ import { Hero, ChannelValue } from '@pxblue/react-components';
 import { GradeA, Leaf } from '@pxblue/icons-mui';
 import { text, number } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import {storyWrapper} from "../src/util";
+import { storyWrapper } from '../src/util';
 
 export const stories = storiesOf('playground/Hero', module);
 stories.addDecorator(storyWrapper);

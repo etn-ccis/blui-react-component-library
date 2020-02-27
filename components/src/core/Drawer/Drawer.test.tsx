@@ -105,17 +105,35 @@ describe('DrawerNavGroup', () => {
         const wrapper = mount(
             <DrawerNavGroup
                 items={[
-                    { title: 'a' },
+                    { title: 'a', itemID: 'a' },
                     {
                         title: 'b',
-                        subItems: [
-                            { title: 'b_0', subItems: [{ title: 'b_0_0' }, { title: 'b_0_1' }] },
-                            { title: 'b_1', subItems: [{ title: 'b_1_0' }] },
+                        itemID: 'b',
+                        items: [
+                            {
+                                title: 'b_0',
+                                itemID: 'b_0',
+                                items: [
+                                    { title: 'b_0_0', itemID: 'b_0_0' },
+                                    { title: 'b_0_1', itemID: 'b_0_1' },
+                                ],
+                            },
+                            { title: 'b_1', itemID: 'b_1', items: [{ title: 'b_1_0', itemID: 'b_1_0' }] },
                         ],
                     },
                     {
                         title: 'c',
-                        subItems: [{ title: 'c_0', subItems: [{ title: 'c_0_0' }, { title: 'c_0_1' }] }],
+                        itemID: 'c',
+                        items: [
+                            {
+                                title: 'c_0',
+                                itemID: 'c_0',
+                                items: [
+                                    { title: 'c_0_0', itemID: 'c_0_0' },
+                                    { title: 'c_0_1', itemID: 'c_0_1' },
+                                ],
+                            },
+                        ],
                     },
                 ]}
             />

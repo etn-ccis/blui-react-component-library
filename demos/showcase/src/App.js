@@ -36,6 +36,16 @@ export default () => {
     const [route, setRoute] = useState(0);
     const theme = useTheme();
 
+    const titleList = [
+        'Overview',
+        'Timeline',
+        'Locations',
+        'Devices',
+        'Settings',
+        'Legal',
+        'Help',
+    ]
+
     return (
         <DrawerLayout drawer={
             <Drawer open={open} width={300}
@@ -64,31 +74,32 @@ export default () => {
                 </DrawerSubheader>
                 <DrawerBody>
                     <DrawerNavGroup
+                        activeItem={titleList[route]}
                         items={[
                             {
-                                title: 'Overview',
+                                title: titleList[0],
+                                itemID: titleList[0],
                                 icon: <ListIcon/>,
-                                active: route === 0,
                                 onClick: () => setRoute(0)
                             },
                             {
-                                title: 'Timeline',
+                                title: titleList[1],
+                                itemID: titleList[1],
                                 subtitle: '2 Alarms',
                                 icon: <NotificationsActive/>,
                                 status: Colors.red[500],
-                                active: route === 1,
                                 onClick: () => setRoute(1)
                             },
                             {
-                                title: 'Locations',
+                                title: titleList[2],
+                                itemID: titleList[2],
                                 icon: <Public/>,
-                                active: route === 2,
                                 onClick: () => setRoute(2)
                             },
                             {
-                                title: 'Devices',
+                                title: titleList[3],
+                                itemID: titleList[3],
                                 icon: <Device/>,
-                                active: route === 3,
                                 onClick: () => setRoute(3)
                             },
                         ]}
@@ -98,21 +109,21 @@ export default () => {
                     <DrawerNavGroup
                         items={[
                             {
-                                title: 'Settings',
+                                title: titleList[4],
+                                itemID: titleList[4],
                                 icon: <Settings/>,
-                                active: route === 4,
                                 onClick: () => setRoute(4)
                             },
                             {
-                                title: 'Legal',
+                                title: titleList[5],
+                                itemID: titleList[5],
                                 icon: <Gavel/>,
-                                active: route === 5,
                                 onClick: () => setRoute(5)
                             },
                             {
-                                title: 'Help',
+                                title: titleList[6],
+                                itemID: titleList[6],
                                 icon: <Help/>,
-                                active: route === 6,
                                 onClick: () => setRoute(6)
                             }
                         ]}
@@ -142,24 +153,29 @@ export default () => {
                                     items: [
                                         {
                                             title: 'Log Out',
+                                            itemID: 'Log Out',
                                             icon: <SendIcon />
                                         },
                                         {
                                             title: 'Account Settings',
+                                            itemID: 'Account Settings',
                                             icon: <Settings />,
-                                            divider: true
+                                            divider: true,
                                         },
                                     ]
                                 },
                                 {
                                     title: 'Contact Us',
+                                    itemID: 'Contact Us',
                                     items: [
                                         {
                                             title: 'eatonhelp@eaton.com',
+                                            itemID: 'email',
                                             icon: <SendIcon />,
                                         },
                                         {
                                             title: '1-866-905-9988',
+                                            itemID: 'phone',
                                             icon: <Email />,
                                         },
                                     ]
@@ -383,6 +399,54 @@ export default () => {
                                 </Button>
                             }
                         />
+                    </Card>
+                    <Card style={{ marginTop: '10px', padding: '10px' }}>
+                            <DrawerBody>
+                                <DrawerNavGroup items={
+                                    [
+                                        {
+                                            title: 'Guides', 
+                                            itemID: 'Guides',
+                                            icon: <DevicesIcon />,
+                                            items: [
+                                                {
+                                                    title: 'Installation Manual',
+                                                    itemID: 'Installation Manual',
+                                                    items: [
+                                                        {
+                                                            title: '101',
+                                                            itemID: '101',
+                                                        },
+                                                        {
+                                                            title: '102',
+                                                            itemID: '102',
+                                                        },
+                                                    ]
+                                                },
+                                                {
+                                                    title: 'Maintenance',
+                                                    itemID: 'Maintenance',
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            title: 'Quality Control', 
+                                            itemID: 'Quality Control',
+                                            icon: <Settings />,
+                                            items: [
+                                                {
+                                                    title: 'Training',
+                                                    itemID: 'Training',
+                                                },
+                                                {
+                                                    title: 'Checklist',
+                                                    itemID: 'Checklist',
+                                                },
+                                            ] 
+                                        },
+                                    ]
+                                }/>
+                            </DrawerBody>
                     </Card>
                 </div >
             </div>

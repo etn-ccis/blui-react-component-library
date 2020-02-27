@@ -4,7 +4,7 @@ import { ChannelValue } from '@pxblue/react-components';
 import { boolean, number, text, color } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import {storyWrapper} from "../src/util";
+import { storyWrapper } from '../src/util';
 
 export const stories = storiesOf('playground/Channel Value', module);
 stories.addDecorator(storyWrapper);

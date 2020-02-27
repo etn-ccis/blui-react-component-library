@@ -34,10 +34,10 @@ const newViewports = {
 addParameters({
     /* Users will see this while the component is loading. */
     notes: {
-        markdown: '<div> </div>'
+        markdown: '<div> </div>',
     },
     viewport: {
-        viewports: newViewports
+        viewports: newViewports,
     },
     options: {
         theme: pxblue,
@@ -53,4 +53,4 @@ addDecorator((storyFn) => (
     </MuiThemeProvider>
 ));
 
-addDecorator(withKnobs({escapeHTML: false}));
+addDecorator(withKnobs({ escapeHTML: false }));

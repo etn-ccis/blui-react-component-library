@@ -15,7 +15,7 @@ module.exports = {
                     include: [path.resolve(__dirname, '../stories')], // You can specify directories
                 },
                 loaderOptions: {
-                    prettierConfig: '@pxblue/prettier-config'
+                    prettierConfig: '@pxblue/prettier-config',
                 },
             },
         },

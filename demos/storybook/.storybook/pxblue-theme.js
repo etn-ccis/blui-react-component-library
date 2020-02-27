@@ -37,7 +37,7 @@ export default create({
     brandUrl: 'https://pxblue.github.io',
     addonNotesTheme: {
         h1: {
-            color: colors.blue[500]
+            color: colors.blue[500],
         },
         h2: {
             color: colors.blue[500],
@@ -49,7 +49,7 @@ export default create({
             color: colors.blue[500],
         },
         table: {
-            width: '100%'
-        }
-    }
+            width: '100%',
+        },
+    },
 });
