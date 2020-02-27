@@ -9,6 +9,11 @@ import { storyWrapper } from '../src/util';
 
 export const stories = storiesOf('playground/List Item Tag', module);
 stories.addDecorator(storyWrapper);
+stories.addParameters({
+    options: {
+        showPanel: true,
+    },
+});
 
 stories.add('with different colors', () => (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
