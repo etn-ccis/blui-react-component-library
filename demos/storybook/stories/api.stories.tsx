@@ -4,15 +4,17 @@ import React from 'react';
 export const stories = storiesOf('API/Documentation', module);
 
 const autoNavToDocs = (): void => {
-    window.top.document.getElementsByClassName('simplebar-content')[1].setAttribute('style', 'display: none');
+    const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
+    banner.setAttribute('style', 'display: none');
+    // If we are currently on the 'Canvas' tab.
     if (window.top.location.href.includes('/story/')) {
         window.top.history.replaceState(null, '', window.top.location.href.replace('/story/', '/info/'));
         //@ts-ignore
-        window.top.document.getElementsByClassName('css-mtwlrt')[0].click();
+        banner.children[0].children[0].children[0].children[1].click(); // click the Notes tab.
     }
 };
 
-const docFn = (): void => <>{autoNavToDocs()}</>;
+const docFn = (): JSX.Element => <>{autoNavToDocs()}</>;
 
 stories.add('Channel Value', docFn, { notes: { markdown: require('./../../../docs/ChannelValue.md') } });
 stories.add('Drawer', docFn, { notes: { markdown: require('./../../../docs/Drawer.md') } });
