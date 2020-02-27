@@ -49,9 +49,9 @@ const farmBgImage = require('../assets/farm.jpg');
 export const stories = storiesOf('playground/Drawer', module);
 stories.addDecorator(storyWrapper);
 stories.addParameters({
-   options: {
-      showPanel: true,
-   },
+    options: {
+        showPanel: true,
+    },
 });
 
 type DrawerState = {

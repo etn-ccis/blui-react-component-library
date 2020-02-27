@@ -9,9 +9,9 @@ import { storyWrapper } from '../src/util';
 export const stories = storiesOf('playground/Spacer', module);
 stories.addDecorator(storyWrapper);
 stories.addParameters({
-   options: {
-      showPanel: true,
-   },
+    options: {
+        showPanel: true,
+    },
 });
 
 stories.add('flex layout', () => {

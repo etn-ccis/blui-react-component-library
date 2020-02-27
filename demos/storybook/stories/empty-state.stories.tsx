@@ -14,9 +14,9 @@ import { storyWrapper } from '../src/util';
 export const stories = storiesOf('playground/Empty State', module);
 stories.addDecorator(storyWrapper);
 stories.addParameters({
-   options: {
-      showPanel: true,
-   },
+    options: {
+        showPanel: true,
+    },
 });
 
 stories.add('with actions', () => {

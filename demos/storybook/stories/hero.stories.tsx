@@ -12,9 +12,9 @@ import { storyWrapper } from '../src/util';
 export const stories = storiesOf('playground/Hero', module);
 stories.addDecorator(storyWrapper);
 stories.addParameters({
-   options: {
-      showPanel: true,
-   },
+    options: {
+        showPanel: true,
+    },
 });
 
 stories.add('with basic properties', () => (

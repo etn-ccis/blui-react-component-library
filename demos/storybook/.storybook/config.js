@@ -1,7 +1,7 @@
 import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import {MuiThemeProvider, createMuiTheme, useTheme} from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme, useTheme } from '@material-ui/core/styles';
 import { ReactThemes } from '@pxblue/themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
@@ -58,6 +58,5 @@ addDecorator((storyFn) => (
         </div>
     </MuiThemeProvider>
 ));
-
 
 addDecorator(withKnobs({ escapeHTML: false }));
