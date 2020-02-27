@@ -12,16 +12,16 @@ stories.addDecorator(storyWrapper);
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            //@ts-ignore
-            color: Colors.white[50],
-            //@ts-ignore
-            backgroundColor: appliedTheme.palette.primary[500],
+            color: appliedTheme.palette.primary.contrastText,
+            backgroundColor: appliedTheme.palette.primary.main,
             backgroundImage: `url(${backgroundImage})`,
             height: '100%',
             width: '100%',
             display: 'flex',
             alignContent: 'center',
             justifyContent: 'center',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
         },
         container: {
             display: 'flex',
@@ -36,16 +36,16 @@ const useStyles = makeStyles(() =>
             maxWidth: 900,
             padding: 36,
             paddingBottom: 0,
-           fontWeight: 100,
+            fontWeight: 100,
         },
         link: {
             minWidth: 100,
             fontWeight: 600,
             borderColor: Colors.white[50],
             textTransform: 'none',
-           '&:hover': {
-               borderColor: Colors.white[50]
-           }
+            '&:hover': {
+                borderColor: Colors.white[50],
+            },
         },
         githubIcon: {
             width: 24,
@@ -53,10 +53,10 @@ const useStyles = makeStyles(() =>
             marginRight: 8,
             fill: Colors.white[50],
         },
-       github: {
-           fontWeight: 100,
-          color: Colors.white[50]
-       },
+        github: {
+            fontWeight: 100,
+            color: Colors.white[50],
+        },
         buttons: {
             display: 'flex',
             justifyContent: 'space-around',
