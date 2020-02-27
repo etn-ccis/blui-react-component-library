@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import { InfoListItem } from '../InfoListItem';
 import PropTypes from 'prop-types';
-import { ExpandLess, ExpandLessOutlined } from '@material-ui/icons';
+import { ExpandLess, ArrowDropUp } from '@material-ui/icons';
 import { white, black } from '@pxblue/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -97,6 +97,9 @@ export type NestedNavItem = {
     // item id to match for the active state.
     // Should be unique within the entire list. Will be used as the list key too.
     itemID: string;
+
+    // Show chevron icon to the right. Override by icon
+    chevron?: boolean;
 };
 
 export type NavItem = NestedNavItem & {
@@ -112,8 +115,6 @@ export type DrawerNavGroupProps = {
     activeFontColor?: string;
     activeIconColor?: string;
     backgroundColor?: string;
-
-    // override by rightComponent
     chevron?: boolean;
     content?: ReactNode;
     divider?: boolean;
@@ -137,7 +138,16 @@ function NavigationListItem(
     depth = 0,
     expanded = false
 ): ReactNode {
-    const { onClick, title, subtitle, items: subItems, divider: itemDivider, onClickIcon, itemID } = item;
+    const {
+        onClick,
+        title,
+        subtitle,
+        items: subItems,
+        divider: itemDivider,
+        onClickIcon,
+        itemID,
+        chevron: itemChevron,
+    } = item;
     const icon = (item as NavItem).icon;
     const { divider: groupDivider = true, nestedDivider } = props;
 
@@ -154,7 +164,7 @@ function NavigationListItem(
             ? theme.palette.primary.main
             : theme.palette.primary.contrastText,
         fontColor = theme.palette.text.secondary,
-        chevron,
+        chevron: groupChevron,
         iconColor,
         onSelect,
         hidePadding,
@@ -178,6 +188,8 @@ function NavigationListItem(
         }
     };
 
+    const chevron = groupChevron === undefined ? itemChevron : groupChevron;
+
     function getRightActionIcon(): JSX.Element {
         if (item.rightComponent) {
             return item.rightComponent;
@@ -189,7 +201,7 @@ function NavigationListItem(
             return null;
         }
         if (depth) {
-            return <ExpandLessOutlined />;
+            return <ArrowDropUp />;
         }
         return <ExpandLess />;
     }
@@ -269,12 +281,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const classes = useStyles(props);
     const { open, items, title, content, backgroundColor, titleColor } = props;
 
-    /* recursively loop through item list and the subItems
-     * returns [
-        Element to render,
-        if there is an active nav item
-       ] 
-    */
+    // recursively loop through item list and the subItems
     function getDrawerItemList(item: NavItem | NestedNavItem, depth: number): JSX.Element {
         const [expanded, setExpanded] = useState(findID(item, props.activeItem));
 
