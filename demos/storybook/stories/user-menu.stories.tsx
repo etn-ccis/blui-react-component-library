@@ -14,6 +14,11 @@ const tRex = require('../assets/trex.jpeg');
 
 export const stories = storiesOf('playground/User Menu', module);
 stories.addDecorator(storyWrapper);
+stories.addParameters({
+    options: {
+        showPanel: true,
+    },
+});
 
 const defaultMenuItems: UserMenuGroup[] = [
     {

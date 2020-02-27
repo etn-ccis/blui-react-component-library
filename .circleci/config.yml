@@ -29,7 +29,8 @@ jobs:
       - run:
           name: Lint
           command: |
-            echo "LINT HERE"
+            cd components
+            yarn lint
       - run:
           name: Test
           command: |
@@ -44,6 +45,8 @@ jobs:
   build_storybook:
     docker:
       - image: circleci/node:12.9.1-browsers
+    environment:
+      - MASTER_BRANCH: master
     steps:
       - checkout
       - restore_cache:
@@ -66,11 +69,20 @@ jobs:
           command: |
             cp -r ./dist/. ./demos/storybook/node_modules/@pxblue/react-components
             cd demos/storybook
+
+            # If we are building the master branch, use the published component library.
+            if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
+              yarn add @pxblue/react-components
+            fi
+
             yarn build-storybook
+            cd storybook-static
+            touch .nojekyll
       - run:
           name: Lint
           command: |
-            echo "LINT HERE"
+            cd demos/storybook
+            yarn lint
       - persist_to_workspace:
           root: .
           paths:
@@ -80,6 +92,8 @@ jobs:
   build_showcase:
     docker:
       - image: circleci/node:12.9.1-browsers
+    environment:
+      - MASTER_BRANCH: master
     steps:
       - checkout
       - restore_cache:
@@ -102,11 +116,13 @@ jobs:
           command: |
             cp -r ./dist/. ./demos/showcase/node_modules/@pxblue/react-components
             cd demos/showcase
+
+            # If we are building the master branch, use the published component library.
+            if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
+              yarn add @pxblue/react-components
+            fi
+
             yarn build
-      - run:
-          name: Lint
-          command: |
-            echo "LINT HERE"
 
   deploy_storybook:
     docker:

@@ -4,6 +4,7 @@ The InfoListItem is intended to be used in List views. It positions a title as w
 <img width="100%" alt="Info List Items in a variety of styles" src="./images/infoListItem.png">
 
 ## Usage
+
 ```typescript
 import { InfoListItem } from '@pxblue/react-components';
 import { GradeA, Leaf, CurrentCircled, VoltageCircled, Temp } from '@pxblue/icons-mui';
@@ -35,7 +36,7 @@ import * as Colors from '@pxblue/colors';
 | rightComponent    | Component to render on the right side   | `React.Component`                                  | no       |                     | `<ChannelValue/>`                       |
 | ripple            | Whether we want any ripple effect       | `boolean`                                          | no       | false               |                                         |
 | statusColor       | Status stripe and icon color            | `string`                                           | no       |                     | '#ff3333', 'orange'                     |
-| subtitle          | The text to show on the second line     | `string` &vert; `Array<React.ReactNode>`           | no       |                     | 'Subtitle', ['one', 'two', <Leaf/>]     |
+| subtitle          | The text to show on the second line     | `string` &vert; `Array<React.ReactNode>`           | no       |                     | 'Subtitle', ['one', 'two', `<Leaf/>`]   |
 | subtitleSeparator | Separator character for subtitle        | `string`                                           | no       | '·' ('\u00B7')      | '-', '/'                                |
 | title             | The text to show on the first line      | `string`                                           | yes      |                     | 123, 'on'                               |
 

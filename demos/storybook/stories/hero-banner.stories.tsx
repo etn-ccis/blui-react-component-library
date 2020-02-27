@@ -9,6 +9,11 @@ import { storyWrapper } from '../src/util';
 
 export const stories = storiesOf('playground/Hero Banner', module);
 stories.addDecorator(storyWrapper);
+stories.addParameters({
+    options: {
+        showPanel: true,
+    },
+});
 
 const heroes = [
     <Hero
