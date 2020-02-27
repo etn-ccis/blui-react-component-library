@@ -22,15 +22,18 @@ const defaultMenuItems: UserMenuGroup[] = [
             {
                 title: 'Log Out',
                 icon: <SendIcon />,
+                itemID: 'Log Out',
                 onClick: action('Log Out Selected'),
             },
             {
                 title: 'Account Settings',
+                itemID: 'Account Settings',
                 icon: <Settings />,
                 onClick: action('Account Settings Selected'),
             },
             {
                 title: 'Contact Us',
+                itemID: 'Contact Us',
                 icon: <Email />,
                 onClick: action('Contact Us Selected'),
             },
