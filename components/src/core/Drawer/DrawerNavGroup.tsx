@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
             zIndex: 0,
             position: 'absolute',
             height: '100%',
-            width: 'calc(100% - 8px)',
+            width: `calc(100% - ${theme.spacing(1)}px)`,
             left: 0,
             top: 0,
             backgroundColor:
@@ -53,6 +53,10 @@ const useStyles = makeStyles((theme: Theme) =>
                 theme.palette.type === 'light' ? theme.palette.secondary[50] : theme.palette.secondary.light,
             borderRadius: '0px 24px 24px 0px',
             opacity: 0.9,
+            '&.rectangular': {
+                width: '100%',
+                borderRadius: 0,
+            }
         },
         secondaryLevelListGroup: {
             backgroundColor: theme.palette.type === 'light' ? white[200] : black['A200'],
@@ -129,6 +133,7 @@ export type DrawerNavGroupProps = {
     titleColor?: string;
     hidePadding?: boolean;
     activeItem?: string;
+    activeBackgroundShape?: 'rounded' | 'rectangular';
 };
 
 // renderer function for each nav item / nested nav item
@@ -170,6 +175,7 @@ function NavigationListItem(
         hidePadding,
         ripple,
         activeItem,
+        activeBackgroundShape,
     } = props;
 
     let divider;
@@ -227,7 +233,7 @@ function NavigationListItem(
 
     return (
         <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
-            {active && <div className={classes.active} style={{ backgroundColor: activeBackgroundColor }} />}
+            {active && <div className={`${classes.active} ${activeBackgroundShape === 'rectangular'? 'rectangular' : ''}`} style={{ backgroundColor: activeBackgroundColor }} />}
             <InfoListItem
                 dense
                 title={title}
@@ -390,4 +396,5 @@ DrawerNavGroup.propTypes = {
 DrawerNavGroup.defaultProps = {
     divider: true,
     ripple: true,
+    activeBackgroundShape: 'rounded',
 };

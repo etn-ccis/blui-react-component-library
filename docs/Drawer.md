@@ -85,26 +85,27 @@ A `DrawerNavGroup` will render inside of the `DrawerBody` and is used to organiz
 We discourage you to use menu hierarchies with more than three levels, as it generally performs poorly on discoverability. 
 
 ### DrawerNavGroup API
-| Prop Name             | Description                                                      | Type              | Required | Default |
-|-----------------------|------------------------------------------------------------------|-------------------|----------|---------|
-| activeBackgroundColor | Background color for the 'active' item                           | `string`          | no       |         |
-| activeFontColor       | Font color for the 'active' item                                 | `string`          | no       |         |
-| activeIconColor       | Icon color for the 'active' item                                 | `string`          | no       |         | 
-| activeItem            | itemID for the 'active' item                                     | `string`          | no       |         | 
-| backgroundColor       | The color used for the background                                | `string`          | no       |         |   
-| chevron               | Whether to have chevrons for all menu items                      | `boolean`         | no       |         |    
-| content               | Custom element, substitute for title                             | `React.Component` | no       |         |    
-| divider               | Whether to show a line between all items                         | `boolean`         | no       | true    |    
-| fontColor             | The color used for the text                                      | `string`          | no       |         |   
-| hidePadding           | Whether to hide the paddings reserved for menu item icons        | `boolean`         | no       |         | 
-| iconColor             | The color used for the icon                                      | `string`          | no       |         |   
-| items                 | List of navigation items to render                               | `NavItem[]`       | yes      |         | 
-| nestedDivider         | Whether to show a line between nested menu items                 | `boolean`         | no       | false   |    
-| onSelect              | Function to execute when clicking on any menu item               | `function`        | no       |         |
-| open                  | When false, group header will be hidden (like a collapsed state) | `function`        | no       |         |
-| ripple                | Whether to apply ripple effect on all the items                  | `boolean`         | no       | true    |
-| title                 | Text to display in the group header                              | `string`          | no       |         |  
-| titleColor            | The color used for the title                                     | `string`          | no       |         | 
+| Prop Name             | Description                                                      | Type                      | Required | Default   |
+|-----------------------|------------------------------------------------------------------|---------------------------|----------|-----------|
+| activeBackgroundColor | Background color for the 'active' item                           | `string`                  | no       |           |
+| activeFontColor       | Font color for the 'active' item                                 | `string`                  | no       |           |
+| activeIconColor       | Icon color for the 'active' item                                 | `string`                  | no       |           | 
+| activeItem            | itemID for the 'active' item                                     | `string`                  | no       |           | 
+| activeItemShape       | shape of the active item background                              | `'rectangular'|'rounded'` | no       | 'rounded' | 
+| backgroundColor       | The color used for the background                                | `string`                  | no       |           |   
+| chevron               | Whether to have chevrons for all menu items                      | `boolean`                 | no       |           |    
+| content               | Custom element, substitute for title                             | `React.Component`         | no       |           |    
+| divider               | Whether to show a line between all items                         | `boolean`                 | no       | true      |    
+| fontColor             | The color used for the text                                      | `string`                  | no       |           |   
+| hidePadding           | Whether to hide the paddings reserved for menu item icons        | `boolean`                 | no       |           | 
+| iconColor             | The color used for the icon                                      | `string`                  | no       |           |   
+| items                 | List of navigation items to render                               | `NavItem[]`               | yes      |           | 
+| nestedDivider         | Whether to show a line between nested menu items                 | `boolean`                 | no       | false     |    
+| onSelect              | Function to execute when clicking on any menu item               | `function`                | no       |           |
+| open                  | When false, group header will be hidden (like a collapsed state) | `function`                | no       |           |
+| ripple                | Whether to apply ripple effect on all the items                  | `boolean`                 | no       | true      |
+| title                 | Text to display in the group header                              | `string`                  | no       |           |  
+| titleColor            | The color used for the title                                     | `string`                  | no       |           | 
 
 #### NavItem Object
 The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`).
