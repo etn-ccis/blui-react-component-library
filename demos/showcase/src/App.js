@@ -487,53 +487,55 @@ export default () => {
                             }
                         />
                     </Card>
-                    <Card style={{ marginTop: '10px', padding: '10px' }}>
-                            <DrawerBody>
-                                <DrawerNavGroup items={
-                                    [
-                                        {
-                                            title: 'Guides', 
-                                            itemID: 'Guides',
-                                            icon: <DevicesIcon />,
-                                            items: [
-                                                {
-                                                    title: 'Installation Manual',
-                                                    itemID: 'Installation Manual',
-                                                    items: [
-                                                        {
-                                                            title: '101',
-                                                            itemID: '101',
-                                                        },
-                                                        {
-                                                            title: '102',
-                                                            itemID: '102',
-                                                        },
-                                                    ]
-                                                },
-                                                {
-                                                    title: 'Maintenance',
-                                                    itemID: 'Maintenance',
-                                                },
-                                            ]
-                                        },
-                                        {
-                                            title: 'Quality Control', 
-                                            itemID: 'Quality Control',
-                                            icon: <Settings />,
-                                            items: [
-                                                {
-                                                    title: 'Training',
-                                                    itemID: 'Training',
-                                                },
-                                                {
-                                                    title: 'Checklist',
-                                                    itemID: 'Checklist',
-                                                },
-                                            ] 
-                                        },
-                                    ]
-                                }/>
-                            </DrawerBody>
+                    <Card style={{ marginTop: 10 }}>
+                        <DrawerNavGroup 
+                            title={'Nested drawer'} 
+                            open={true}
+                            items={
+                                [
+                                    {
+                                        title: 'Guides', 
+                                        itemID: 'Guides',
+                                        icon: <DevicesIcon />,
+                                        items: [
+                                            {
+                                                title: 'Installation Manual',
+                                                itemID: 'Installation Manual',
+                                                items: [
+                                                    {
+                                                        title: '101',
+                                                        itemID: '101',
+                                                    },
+                                                    {
+                                                        title: '102',
+                                                        itemID: '102',
+                                                    },
+                                                ]
+                                            },
+                                            {
+                                                title: 'Maintenance',
+                                                itemID: 'Maintenance',
+                                            },
+                                        ]
+                                    },
+                                    {
+                                        title: 'Quality Control', 
+                                        itemID: 'Quality Control',
+                                        icon: <Settings />,
+                                        items: [
+                                            {
+                                                title: 'Training',
+                                                itemID: 'Training',
+                                            },
+                                            {
+                                                title: 'Checklist',
+                                                itemID: 'Checklist',
+                                            },
+                                        ] 
+                                    },
+                                ]
+                            }
+                        />
                     </Card>
                 </div >
             </div>
