@@ -368,7 +368,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         if (item.items) {
             // if there are more sub pages, add the bucket header and recurse on this function
             const collapsibleComponent = (
-                <Collapse in={expanded} key={`${item.title}_group_${depth}`}>
+                <Collapse in={expanded && (open !== false)} key={`${item.title}_group_${depth}`}>
                     <List className={classes.secondaryLevelListGroup}>
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                     </List>

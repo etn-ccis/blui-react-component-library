@@ -475,6 +475,7 @@ stories.add(
     'with nested list items',
     (): JSX.Element => {
         const DrawerNavGroupID = 'DrawerNavGroup';
+        const open = boolean('Open', true, DrawerNavGroupID);
         const divider = boolean('divider', true, DrawerNavGroupID);
         const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
         const ripple = boolean('ripple', true, DrawerNavGroupID);
@@ -656,8 +657,8 @@ stories.add(
         return padDrawer(
             <State store={store}>
                 {(state): JSX.Element[] => [
-                    <Drawer open={true} key={'drawer'}>
-                        <DrawerHeader title={'Power Xpert Blue'} />
+                    <Drawer open={open} key={'drawer'}>
+                        <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />}/>
                         {drawerItemList(state)}
                     </Drawer>,
                 ]}

@@ -98,7 +98,7 @@ We **discourage** you to use menu hierarchies with more than three levels, as it
 | fontColor             | The color used for inactive menu items                           | `string`                  | no       | theme.palette.text.secondary |   
 | hidePadding           | Whether to hide the paddings reserved for menu item icons        | `boolean`                 | no       |           | 
 | iconColor             | The color used for the icon                                      | `string`                  | no       |           |   
-| items                 | List of navigation items to render                               | `NavItem[]`               | yes      |           | 
+| items                 | List of navigation items to render                               | `NestedNavItem[]`         | yes      |           | 
 | nestedDivider         | Whether to show a line between nested menu items                 | `boolean`                 | no       | false     |    
 | open                  | Whether the group is expanded                                    | `function`                | no       |           |
 | ripple                | Whether to apply material ripple effect to items                 | `boolean`                 | no       | true      |

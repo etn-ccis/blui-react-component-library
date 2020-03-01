@@ -20,7 +20,7 @@ const useStyles = makeStyles(() =>
             display: 'flex',
             alignContent: 'center',
             justifyContent: 'center',
-            backgroundSize: 'cover',
+            backgroundSize: '200%',
             backgroundPosition: 'center',
         },
         container: {

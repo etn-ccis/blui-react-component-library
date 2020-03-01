@@ -74,6 +74,8 @@ export default () => {
         'Settings',
         'Legal',
         'Help',
+        'Recent Locations',
+        'All Facilities',
     ]
 
     return (
@@ -127,7 +129,19 @@ export default () => {
                                 title: titleList[2],
                                 itemID: titleList[2],
                                 icon: <Public/>,
-                                onClick: () => setRoute(2)
+                                onClick: () => setRoute(2),
+                                items: [
+                                    {
+                                        title: titleList[7], 
+                                        itemID: titleList[7],
+                                        onClick: () => setRoute(7),
+                                    },
+                                    {
+                                        title: titleList[8], 
+                                        itemID: titleList[8],
+                                        onClick: () => setRoute(8),
+                                    }
+                                ]
                             },
                             {
                                 title: titleList[3],
