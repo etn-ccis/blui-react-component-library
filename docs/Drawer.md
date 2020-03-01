@@ -78,11 +78,10 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 | iconColor               | The color used for icons                       | `string`      | no       |         |
 | titleColor              | The color used for `DrawerNavGroup` title text | `string`      | no       |         |
 
-
 ## DrawerNavGroup 
 A `DrawerNavGroup` will render inside of the `DrawerBody` and is used to organize links. Each group consists of a group title and a series of navigation items. Most style props are inherited from the `DrawerBody` but can be overridden at the NavGroup level if desired.
 
-We discourage you to use menu hierarchies with more than three levels, as it generally performs poorly on discoverability. 
+We **discourage** you to use menu hierarchies with more than three levels, as it generally performs poorly on discoverability. 
 
 ### DrawerNavGroup API
 | Prop Name             | Description                                                      | Type                      | Required | Default   |
@@ -94,36 +93,85 @@ We discourage you to use menu hierarchies with more than three levels, as it gen
 | activeItemShape       | shape of the active item background                              | `'rectangular'|'rounded'` | no       | 'rounded' | 
 | backgroundColor       | The color used for the background                                | `string`                  | no       |           |   
 | chevron               | Whether to have chevrons for all menu items                      | `boolean`                 | no       |           |    
-| content               | Custom element, substitute for title                             | `React.Component`         | no       |           |    
+| titleContent          | Custom element, substitute for title                             | `React.Component`         | no       |           |    
 | divider               | Whether to show a line between all items                         | `boolean`                 | no       | true      |    
-| fontColor             | The color used for the text                                      | `string`                  | no       |           |   
+| fontColor             | The color used for inactive menu items                           | `string`                  | no       | theme.palette.text.secondary |   
 | hidePadding           | Whether to hide the paddings reserved for menu item icons        | `boolean`                 | no       |           | 
 | iconColor             | The color used for the icon                                      | `string`                  | no       |           |   
 | items                 | List of navigation items to render                               | `NavItem[]`               | yes      |           | 
 | nestedDivider         | Whether to show a line between nested menu items                 | `boolean`                 | no       | false     |    
-| onSelect              | Function to execute when clicking on any menu item               | `function`                | no       |           |
-| open                  | When false, group header will be hidden (like a collapsed state) | `function`                | no       |           |
-| ripple                | Whether to apply ripple effect on all the items                  | `boolean`                 | no       | true      |
+| open                  | Whether the group is expanded                                    | `function`                | no       |           |
+| ripple                | Whether to apply material ripple effect to items                 | `boolean`                 | no       | true      |
 | title                 | Text to display in the group header                              | `string`                  | no       |           |  
-| titleColor            | The color used for the title                                     | `string`                  | no       |           | 
+| titleColor            | Font color for group header                                      | `string`                  | no       |           | 
 
 #### NavItem Object
-The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`).
+The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). NavItem can also include a list of `NestedNavItem` to build a tree (see the section "NestedNavItem Object" below).
 
-| Attribute       | Description                                                                                                    | Type               | Required | Default                      |
-|-----------------|----------------------------------------------------------------------------------------------------------------|--------------------|----------|------------------------------|
-| chevron         | Show chevron icon to the right. Override by `rightComponent`                                                   | `boolean`          | no       | false                        |  
-| divider         | Show a divider line below the top-level item                                                                   | `boolean`          | no       | true                         | 
-| icon            | A component to render for the icon, not allowed for nested items                                               | `React.Component`  | no       |                              |    
-| onClick         | A function to execute when clicked                                                                             | `function`         | no       |                              |    
-| onClickIcon     | A function to execute when clicked on the rightComponent                                                       | `function`         | no       |                              |    
-| rightComponent  | An icon to display to the right                                                                                | `React.Component`  | no       | `<ExpandLess />` for top level items, `<ArrowDropUp>` for nested items |   
-| statusColor     | Status stripe and icon color, not allowed for nested items                                                     | `string`           | no       |                              |   
-| itemID          | An unique identifier of the NavItem. Set the menu item to 'active' when matches with DrawerNavGroup.activeItem | `string`           | yes      |                              |  
-| items           | The items nested under this item                                                                               | `navItem[]`        | no       |                              |  
-| subtitle        | The text to show on the second line                                                                            | `string`           | no       |                              |    
-| title           | The text to show on the first line                                                                             | `string`           | yes      |                              |    
+| Attribute       | Description                                                                                                    | Type               | Required | Default                          |
+|-----------------|----------------------------------------------------------------------------------------------------------------|--------------------|----------|----------------------------------|
+| chevron         | Show chevron icon to the right. Override by `rightComponent`                                                   | `boolean`          | no       | false                            |  
+| collapseIcon    | Icon used to collapse drawer                                                                                   | `JSX.Element`      | no       | expandIcon rotated 180 deg       |  
+| divider         | Show a divider line below the top-level item                                                                   | `boolean`          | no       | true                             | 
+| expandIcon      | Icon used to expand drawer                                                                                     | `JSX.Element`      | no       | `<ExpandLess />`                 |  
+| icon            | A component to render for the icon                                                                             | `JSX.Element`      | no       |                                  |
+| itemID          | An unique identifier of the NavItem. Set the menu item to 'active' when matches with DrawerNavGroup.activeItem | `string`           | yes      |                                  |  
+| items           | The items nested under this item                                                                               | `NestedNavItem[]`  | no       |                                  |    
+| onClick         | A function to execute when clicked                                                                             | `function`         | no       |                                  |       
+| rightComponent  | An icon to display to the right                                                                                | `JSX.Element`      | no       |                                  |   
+| statusColor     | Status stripe and icon color                                                                                   | `string`           | no       |                                  |   
+| subtitle        | The text to show on the second line                                                                            | `string`           | no       |                                  |    
+| title           | The text to show on the first line                                                                             | `string`           | yes      |                                  |    
 
+#### NestedNavItem Object
+If your Drawer needs to include a hierarchied menu item tree rather than just a plain list of NavItems, you will need to have a list of `NestedNavItem`s in the `items` field of the `NavItem` object. For example, you can have: 
+
+``` typescript
+<DrawerNavGroup 
+    items=[
+        {
+            title: 'a',
+            itemID: 'a',
+            items: [
+                {
+                    title: 'a-1',
+                    itemID: 'a-1',
+                },
+                {
+                    title: 'a-2',
+                    itemID: 'a-2',
+                    items: [
+                        {
+                            title: 'a-2-1',
+                            itemID: 'a-2-1',
+                        },
+                        {
+                            title: 'a-2-2',
+                            itemID: 'a-2-2',
+                        },
+                    ]
+                },
+                {
+                    title: 'a-3',
+                    itemID: 'a-3',
+                },
+            ]
+        }, 
+        {
+            title: 'b',
+            itemID: 'b',
+            items: [
+                {
+                    title: 'b-1',
+                    itemID: 'b-1',
+                },
+            ]
+        }, 
+    ]
+/>
+```
+
+The API of `NestedNavItem` is the same as that of `NavItem`, except the `statusColor` and `icon` fields are not allowed. Besides, the default `expandIcon` prop is `<ArrowDropUp />`.
 
 ## Drawer Footer
 The `DrawerFooter` is an optional section that renders at the bottom of the `Drawer`. It can be used to add any custom content.

@@ -1366,13 +1366,13 @@
   resolved "https://registry.yarnpkg.com/@pxblue/react-progress-icons/-/react-progress-icons-2.0.0.tgz#b1e1aa21ae871b60a3cdadd926569737e581a7e2"
   integrity sha512-S1upGm3FReTL/mwzjxAAvHubtCfgwbqKzJbOA47pRkE9tKpebi/eMoitA1RwATTYdwxjcvVF7373UZctcLa0+A==
 
-"@pxblue/themes@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@pxblue/themes/-/themes-3.0.2.tgz#d5b83b414a83e2f96a8e0f28b034b8470ae48f69"
-  integrity sha512-csaANyUWvKBphw+2p2GbdECZLmjs6Vp0FtghprwQhLyztK5BHnhm4vJaXkYNlfGnJazNxMZwU+JQtrTEL0LSZg==
+"@pxblue/react-themes@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-themes/-/react-themes-4.0.0.tgz#5b3b2f87b9558439a59a0fadd06cc9bcb375c477"
+  integrity sha512-w0VFVZ+BLPk0AVNL0vWK7z8cl8Ec2seHOu68Dwl2R+CZ7iVuz6f+1I/KXjzjL458YWjNK1lu9UiaCX34MxvpHQ==
   dependencies:
     "@pxblue/colors" "^2.0.0"
-    typeface-open-sans "^0.0.54"
+    typeface-open-sans "^0.0.75"
 
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
@@ -9593,6 +9593,11 @@ typeface-open-sans@^0.0.54:
   version "0.0.54"
   resolved "https://registry.npmjs.org/typeface-open-sans/-/typeface-open-sans-0.0.54.tgz#20f5b5ea5c7f95d89dc1f8b2d2b1457680129cee"
   integrity sha512-w6wOd6EicZdZKf0jSU/K3EzEi3zFgvWQSN7NOpRIQI5KeMWmC5Pg/lqtBVJHB0pRChYRmLdhf4h8ROur0A3JZQ==
+
+typeface-open-sans@^0.0.75:
+  version "0.0.75"
+  resolved "https://registry.yarnpkg.com/typeface-open-sans/-/typeface-open-sans-0.0.75.tgz#20d0c330f14c0c40463c334adbedd6005389abe4"
+  integrity sha512-0lLmB7pfj113OP4T78SbpSmC4OCdFQ0vUxdSXQccsSb6qF76F92iEuC/DghFgmPswTyidk8+Hwf+PS/htiJoRQ==
 
 uglify-js@3.4.x:
   version "3.4.10"

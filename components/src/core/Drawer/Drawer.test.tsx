@@ -97,7 +97,7 @@ describe('DrawerNavGroup', () => {
     });
 
     it('renders custom content correctly', () => {
-        const wrapper = mount(<DrawerNavGroup content={<Avatar />} items={[]} />);
+        const wrapper = mount(<DrawerNavGroup titleContent={<Avatar />} items={[]} />);
         expect(wrapper.find(Avatar).length).toEqual(1);
     });
 

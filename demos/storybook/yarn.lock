@@ -1525,19 +1525,18 @@
     "@pxblue/colors" "^2.0.0"
     color "^3.1.2"
 
-"@pxblue/themes@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@pxblue/themes/-/themes-3.0.2.tgz#d5b83b414a83e2f96a8e0f28b034b8470ae48f69"
-  integrity sha512-csaANyUWvKBphw+2p2GbdECZLmjs6Vp0FtghprwQhLyztK5BHnhm4vJaXkYNlfGnJazNxMZwU+JQtrTEL0LSZg==
+"@pxblue/react-themes@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-themes/-/react-themes-4.0.0.tgz#5b3b2f87b9558439a59a0fadd06cc9bcb375c477"
+  integrity sha512-w0VFVZ+BLPk0AVNL0vWK7z8cl8Ec2seHOu68Dwl2R+CZ7iVuz6f+1I/KXjzjL458YWjNK1lu9UiaCX34MxvpHQ==
+  dependencies:
+    "@pxblue/colors" "^2.0.0"
+    typeface-open-sans "^0.0.75"
 
 "@pxblue/storybook-themes@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@pxblue/storybook-themes/-/storybook-themes-1.0.1.tgz#a66be26afbd9e6880ca668084ceb9aa4fec1c2e1"
   integrity sha512-XktRBQ0bDwUQk6dPHsC2+/XCUP3Lct+Do4lkpPvfBCgQGLtINXfdY1D+mW2LkXRqnHCrQGJO9pIqHzRbKUrHZg==
-
-  dependencies:
-    "@pxblue/colors" "^2.0.0"
-    typeface-open-sans "^0.0.54"
 
 "@reach/router@^1.2.1":
   version "1.2.1"
@@ -12880,10 +12879,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeface-open-sans@^0.0.54:
-  version "0.0.54"
-  resolved "https://registry.yarnpkg.com/typeface-open-sans/-/typeface-open-sans-0.0.54.tgz#20f5b5ea5c7f95d89dc1f8b2d2b1457680129cee"
-  integrity sha512-w6wOd6EicZdZKf0jSU/K3EzEi3zFgvWQSN7NOpRIQI5KeMWmC5Pg/lqtBVJHB0pRChYRmLdhf4h8ROur0A3JZQ==
+typeface-open-sans@^0.0.75:
+  version "0.0.75"
+  resolved "https://registry.yarnpkg.com/typeface-open-sans/-/typeface-open-sans-0.0.75.tgz#20d0c330f14c0c40463c334adbedd6005389abe4"
+  integrity sha512-0lLmB7pfj113OP4T78SbpSmC4OCdFQ0vUxdSXQccsSb6qF76F92iEuC/DghFgmPswTyidk8+Hwf+PS/htiJoRQ==
 
 typescript@^3.6.4:
   version "3.7.5"

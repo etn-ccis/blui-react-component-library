@@ -1,7 +1,7 @@
 # Change Log
 
-## v2.2.0
-- Adds ability to nest menu items for Drawer-related components
+## v3.0.0
+- Adds support for nested items in the Drawer component
 
 ## v2.1.0
 - Adds InfoListTag Component

@@ -29,8 +29,6 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         listItem: {
-            color: theme.palette.text.secondary,
-            fontWeight: 300,
             '&:hover': {
                 backgroundColor: 'rgba(0, 0, 0, 0.08)',
             },
@@ -56,19 +54,22 @@ const useStyles = makeStyles((theme: Theme) =>
             '&.rectangular': {
                 width: '100%',
                 borderRadius: 0,
-            }
+            },
         },
         secondaryLevelListGroup: {
             backgroundColor: theme.palette.type === 'light' ? white[200] : black['A200'],
             paddingBottom: 0,
             paddingTop: 0,
         },
-        rightComponent: {
+        expandIcon: {
             transitionDuration: '300ms',
             cursor: 'inherit',
             display: 'flex',
             height: 48,
+            width: 48,
+            marginRight: -12,
             alignItems: 'center',
+            justifyContent: 'space-around',
             '&.expanded': {
                 transform: 'rotate(180deg)',
             },
@@ -77,33 +78,38 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type NestedNavItem = {
-    // Icon on the right. Will be flipped upside down if item is expanded
-    rightComponent?: JSX.Element;
 
-    // onClick of the entire row
-    onClick?: Function;
+    // Show chevron icon to the right. Override by icon
+    chevron?: boolean;
 
-    // onClick for the rightComponent
-    onClickIcon?: Function;
-
-    // text to be displayed
-    title: string;
-
-    // secondary text as a hint text
-    subtitle?: string;
-
-    // any items listed inside this
-    items?: NestedNavItem[];
+    // icon used to collapse drawer
+    collapseIcon?: JSX.Element;
 
     // if the item has a divider under its content
     divider?: boolean;
+
+    // icon used to expand drawer
+    expandIcon?: JSX.Element;
+
+    // any items listed inside this
+    items?: NestedNavItem[];
 
     // item id to match for the active state.
     // Should be unique within the entire list. Will be used as the list key too.
     itemID: string;
 
-    // Show chevron icon to the right. Override by icon
-    chevron?: boolean;
+    // onClick of the entire row
+    onClick?: Function;
+
+    // component to be rendered on the right next to the expandIcon
+    rightComponent?: JSX.Element;
+
+    // secondary text as a hint text
+    subtitle?: string;
+
+    // text to be displayed
+    title: string;
+
 };
 
 export type NavItem = NestedNavItem & {
@@ -115,33 +121,74 @@ export type NavItem = NestedNavItem & {
 };
 
 export type DrawerNavGroupProps = {
+
+    // Background color for the 'active' item  
     activeBackgroundColor?: string;
+
+    // Font color for the 'active' item   
     activeFontColor?: string;
+
+    // Icon color for the 'active' item   
     activeIconColor?: string;
-    backgroundColor?: string;
-    chevron?: boolean;
-    content?: ReactNode;
-    divider?: boolean;
-    nestedDivider?: boolean;
-    fontColor?: string;
-    iconColor?: string;
-    items: NavItem[];
-    onSelect?: Function;
-    open?: boolean;
-    ripple?: boolean;
-    title?: string;
-    titleColor?: string;
-    hidePadding?: boolean;
+
+    // itemID for the 'active' item  
     activeItem?: string;
+
+    // shape of the active item background   
     activeBackgroundShape?: 'rounded' | 'rectangular';
+
+    // The color used for the background
+    backgroundColor?: string;
+
+    // Whether to have chevrons for all menu items    
+    chevron?: boolean;
+
+    // Custom element, substitute for title
+    titleContent?: ReactNode;
+
+    // Whether to show a line between all items   
+    divider?: boolean;
+
+    // The color used for the text 
+    fontColor?: string;
+
+    // Whether to hide the paddings reserved for menu item icons
+    hidePadding?: boolean;
+
+    // The color used for the icon
+    iconColor?: string;
+
+    // List of navigation items to render
+    items: NavItem[];
+
+    // Whether to show a line between nested menu items
+    nestedDivider?: boolean;
+
+    // internal API
+    // will apply to all menu items when onClick 
+    onSelect?: Function; 
+
+    // Whether the group is expanded
+    // Controlled by <DrawerBody />
+    open?: boolean;
+
+    // Whether to apply material ripple effect to items
+    ripple?: boolean;
+
+    // Text to display in the group header
+    title?: string;
+
+    // Font color for group header
+    titleColor?: string;
 };
 
 // renderer function for each nav item / nested nav item
 function NavigationListItem(
-    item: NavItem | NestedNavItem,
-    props: DrawerNavGroupProps,
+    navItem: NavItem | NestedNavItem,
+    navGroupProps: DrawerNavGroupProps,
     depth = 0,
-    expanded = false
+    expanded = false,
+    expandHandler = (): void => {}
 ): ReactNode {
     const {
         onClick,
@@ -149,14 +196,16 @@ function NavigationListItem(
         subtitle,
         items: subItems,
         divider: itemDivider,
-        onClickIcon,
         itemID,
         chevron: itemChevron,
-    } = item;
-    const icon = (item as NavItem).icon;
-    const { divider: groupDivider = true, nestedDivider } = props;
+        rightComponent,
+        collapseIcon,
+        expandIcon,
+    } = navItem;
+    const icon = (navItem as NavItem).icon;
+    const { divider: groupDivider = true, nestedDivider } = navGroupProps;
 
-    const classes = useStyles(props);
+    const classes = useStyles(navGroupProps);
     const theme = useTheme();
     // @ts-ignore
     const primary50Color = theme.palette.primary[50];
@@ -176,7 +225,7 @@ function NavigationListItem(
         ripple,
         activeItem,
         activeBackgroundShape,
-    } = props;
+    } = navGroupProps;
 
     let divider;
     if (depth) {
@@ -194,17 +243,11 @@ function NavigationListItem(
         }
     };
 
-    const chevron = groupChevron === undefined ? itemChevron : groupChevron;
+    const chevron = itemChevron !== undefined ? itemChevron : groupChevron;
 
-    function getRightActionIcon(): JSX.Element {
-        if (item.rightComponent) {
-            return item.rightComponent;
-        }
-        if (chevron) {
-            return null;
-        }
-        if (!subItems) {
-            return null;
+    function getExpandIcon(): JSX.Element {
+        if (expandIcon) {
+            return expandIcon;
         }
         if (depth) {
             return <ArrowDropUp />;
@@ -212,16 +255,43 @@ function NavigationListItem(
         return <ExpandLess />;
     }
 
-    const rightActionIcon = getRightActionIcon();
-
-    const rightAction = (): void => {
-        if (!rightActionIcon) return;
-        if (onClickIcon) {
-            onClickIcon();
-        } else {
-            action();
+    function getActionComponent(): JSX.Element {
+        if (chevron) {
+            return null;
         }
-    };
+        if (!subItems) {
+            return null;
+        }
+        if (collapseIcon) {
+            return (
+                <div
+                    onClick={(e): void => {
+                        if (e) {
+                            expandHandler();
+                        }
+                    }}
+                    className={classes.expandIcon}
+                >
+                    {expanded ? collapseIcon : getExpandIcon()}
+                </div>
+            );
+        }
+
+        return (
+            <div
+                onClick={(e): void => {
+                    if (e) {
+                        expandHandler();
+                    }
+                }}
+                className={`${classes.expandIcon} ${expanded ? 'expanded' : ''}`}
+            >
+                {getExpandIcon()}
+            </div>
+        );
+    }
+
+    const actionComponent = getActionComponent();
 
     // 2 indents for top level nav items
     // 2, 4, 6, ... for secondary level and beyond
@@ -229,11 +299,16 @@ function NavigationListItem(
 
     const active = activeItem === itemID;
 
-    const statusColor = (item as NavItem).statusColor;
+    const statusColor = (navItem as NavItem).statusColor;
 
     return (
         <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
-            {active && <div className={`${classes.active} ${activeBackgroundShape === 'rectangular'? 'rectangular' : ''}`} style={{ backgroundColor: activeBackgroundColor }} />}
+            {active && (
+                <div
+                    className={`${classes.active} ${activeBackgroundShape === 'rectangular' ? 'rectangular' : ''}`}
+                    style={{ backgroundColor: activeBackgroundColor }}
+                />
+            )}
             <InfoListItem
                 dense
                 title={title}
@@ -245,19 +320,18 @@ function NavigationListItem(
                 iconColor={active ? activeIconColor : iconColor}
                 chevron={chevron}
                 rightComponent={
-                    rightActionIcon && (
-                        <div
-                            onClick={(e): void => {
-                                if (e) rightAction();
-                            }}
-                            className={`${classes.rightComponent} ${expanded && 'expanded'}`}
-                        >
-                            {rightActionIcon}
+                    (actionComponent || rightComponent) && (
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            {rightComponent}
+                            {actionComponent}
                         </div>
                     )
                 }
                 backgroundColor={'transparent'}
-                onClick={(): void => action()}
+                onClick={(): void => {
+                    action();
+                    expandHandler();
+                }}
                 style={{ paddingLeft: paddingLeft }}
                 hidePadding={hidePadding}
                 ripple={ripple}
@@ -285,7 +359,7 @@ function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const classes = useStyles(props);
-    const { open, items, title, content, backgroundColor, titleColor } = props;
+    const { open, items, title, titleContent, backgroundColor, titleColor } = props;
 
     // recursively loop through item list and the subItems
     function getDrawerItemList(item: NavItem | NestedNavItem, depth: number): JSX.Element {
@@ -304,27 +378,9 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             return (
                 <React.Fragment key={`${item.title}_Fragment_${depth}`}>
                     <div key={`${item.itemID}`}>
-                        {NavigationListItem(
-                            {
-                                ...item,
-                                onClickIcon: () => {
-                                    if (item.onClickIcon) {
-                                        item.onClickIcon();
-                                    }
-                                    setExpanded(!expanded);
-                                },
-                                onClick: () => {
-                                    if (item.onClick) {
-                                        item.onClick();
-                                    } else if (!item.onClickIcon) {
-                                        setExpanded(!expanded);
-                                    }
-                                },
-                            },
-                            props,
-                            depth,
-                            expanded
-                        )}
+                        {NavigationListItem(item, props, depth, expanded, () => {
+                            setExpanded(!expanded);
+                        })}
                     </div>
                     {collapsibleComponent}
                 </React.Fragment>
@@ -351,11 +407,11 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                                 {title}
                             </Typography>
                         )}
-                        {content}
+                        {titleContent}
                     </ListSubheader>
                 }
             >
-                <div key={`${title}_title`}>{(title || content) && <Divider />}</div>
+                <div key={`${title}_title`}>{(title || titleContent) && <Divider />}</div>
                 {items.map((item: NavItem) => getDrawerItemList(item, 0))}
             </List>
         </>
@@ -370,7 +426,7 @@ DrawerNavGroup.propTypes = {
     activeIconColor: PropTypes.string,
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
-    content: PropTypes.element,
+    titleContent: PropTypes.element,
     fontColor: PropTypes.string,
     iconColor: PropTypes.string,
     // @ts-ignore

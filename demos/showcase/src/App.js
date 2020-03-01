@@ -22,6 +22,7 @@ import DevicesIcon from '@material-ui/icons/Devices';
 import SendIcon from '@material-ui/icons/Send';
 import {
     Add,
+    Remove,
     Menu,
     NotificationsActive,
     List as ListIcon,
@@ -30,6 +31,7 @@ import {
     Settings,
     Gavel,
     Help,
+    MoreVert,
 } from '@material-ui/icons';
 
 import Trend from '@material-ui/icons/TrendingUp';
@@ -38,9 +40,6 @@ import Timer from '@material-ui/icons/Timer';
 import {
     List,
     Card,
-    ListItem,
-    ListItemText,
-    ListItemSecondaryAction,
     AppBar,
     Toolbar,
     Typography,
@@ -49,7 +48,6 @@ import {
     Divider,
     Hidden,
 } from '@material-ui/core';
-import { ChevronRight, MoreVert } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
 import { Pie, Battery } from '@pxblue/react-progress-icons';
 import { GradeA, Leaf, CurrentCircled, VoltageCircled, Temp, Moisture as Humidity, Device } from '@pxblue/icons-mui';
@@ -57,7 +55,6 @@ import Button from '@material-ui/core/Button';
 import { useTheme } from '@material-ui/core/styles';
 
 import top from './topology_40.png';
-// import farm from './farm.jpg';
 import EatonLogo from './EatonLogo.svg';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -166,8 +163,8 @@ export default () => {
                     />
                 </DrawerBody>
                 <DrawerFooter>
-                    <div style={{'display': 'flex', 'justifyContent': 'center'}}>
-                        <img src={EatonLogo} style={{'margin': '10px'}} alt="Eaton Logo" height={50} width={'auto'}/>
+                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                        <img src={EatonLogo} style={{'margin': 10}} alt="Eaton Logo" height={50} width={'auto'}/>
                     </div>
                 </DrawerFooter>
             </Drawer>
@@ -254,15 +251,12 @@ export default () => {
                             }
                             badgeOffset={0}
                             actionRow={
-                                <List style={{ padding: 0 }}>
-                                    <ListItem>
-                                        <ListItemText primary="View Location" />
-                                        <ListItemSecondaryAction style={{ display: 'flex' }}>
-                                            {' '}
-                                            <ChevronRight />{' '}
-                                        </ListItemSecondaryAction>
-                                    </ListItem>
-                                </List>
+                                <InfoListItem
+                                    dense
+                                    chevron
+                                    title={'More'}
+                                    hidePadding
+                                />
                             }
                         >
                             <List style={{ padding: '16px 0' }}>
@@ -314,15 +308,12 @@ export default () => {
                             }
                             badgeOffset={-52}
                             actionRow={
-                                <List style={{ padding: 0 }}>
-                                    <ListItem>
-                                        <ListItemText primary="View Location" />
-                                        <ListItemSecondaryAction style={{ display: 'flex' }}>
-                                            {' '}
-                                            <ChevronRight />{' '}
-                                        </ListItemSecondaryAction>
-                                    </ListItem>
-                                </List>
+                                <InfoListItem
+                                    dense
+                                    chevron
+                                    title={'View Location'}
+                                    hidePadding
+                                />
                             }
                         >
                             <List style={{ padding: '16px 0' }}>
@@ -446,7 +437,6 @@ export default () => {
                             <InfoListItem
                                 dense
                                 title={'Temperature'}
-                                divider={'full'}
                                 icon={<Temp />}
                                 rightComponent={
                                     <>
@@ -489,7 +479,7 @@ export default () => {
                     </Card>
                     <Card style={{ marginTop: 10 }}>
                         <DrawerNavGroup 
-                            title={'Nested drawer'} 
+                            title={'Resources'} 
                             open={true}
                             items={
                                 [
@@ -497,6 +487,9 @@ export default () => {
                                         title: 'Guides', 
                                         itemID: 'Guides',
                                         icon: <DevicesIcon />,
+                                        rightComponent: <ListItemTag label={'new'} onClick={() => alert('You clicked me.')} />,
+                                        expandIcon: <Add />,
+                                        collapseIcon: <Remove />,
                                         items: [
                                             {
                                                 title: 'Installation Manual',
@@ -530,6 +523,21 @@ export default () => {
                                             {
                                                 title: 'Checklist',
                                                 itemID: 'Checklist',
+                                            },
+                                        ] 
+                                    },
+                                    {
+                                        title: 'Report', 
+                                        itemID: 'Report',
+                                        icon: <ListIcon />,
+                                        items: [
+                                            {
+                                                title: '2020',
+                                                itemID: '2020',
+                                            },
+                                            {
+                                                title: '2021',
+                                                itemID: '2021',
                                             },
                                         ] 
                                     },

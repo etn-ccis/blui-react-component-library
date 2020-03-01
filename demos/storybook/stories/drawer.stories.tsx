@@ -20,6 +20,8 @@ import {
     PinDrop,
     Search,
     Toc,
+    Add,
+    Remove,
 } from '@material-ui/icons';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -33,6 +35,8 @@ import {
     DrawerBody,
     DrawerFooter,
     DrawerNavGroup,
+    ListItemTag,
+    ChannelValue,
 } from '@pxblue/react-components';
 import { State, Store } from '@sambego/storybook-state';
 import { boolean, color, number, optionsKnob, select, text } from '@storybook/addon-knobs';
@@ -333,7 +337,7 @@ stories.add(
                                 divider={bodyDividers}
                                 activeItem={state.selected}
                                 items={links2}
-                                content={
+                                titleContent={
                                     <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
                                         <div>{groupTitle2}</div>
                                         <div>Software Version v1.0.3</div>
@@ -470,22 +474,88 @@ stories.add(
 stories.add(
     'with nested list items',
     (): JSX.Element => {
-        const useIcon = boolean('Use icons', true);
+        const DrawerNavGroupID = 'DrawerNavGroup';
+        const divider = boolean('divider', true, DrawerNavGroupID);
+        const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
+        const ripple = boolean('ripple', true, DrawerNavGroupID);
+        const chevron = boolean('chevron', false, DrawerNavGroupID);
+        const rounded = select('activeBackgroundShape', ['rounded', 'rectangular'], 'rounded', DrawerNavGroupID);
+
+        const NavItemID = 'NavItem';
+        const useIcon = boolean('Use icons', true, NavItemID);
+        const useRightComponent = select(
+            'rightComponent',
+            ['undefined', '<ListItemTag />', '<ChannelValue />'],
+            'undefined',
+            NavItemID
+        );
+        const useExpandIcon = select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', NavItemID);
+        const useCollapseIcon = select(
+            'collapseIcon',
+            ['undefined', '<Remove />', '<AddAPhoto />'],
+            'undefined',
+            NavItemID
+        );
+
+        const rightComponent = ((): JSX.Element | undefined => {
+            switch (useRightComponent) {
+                case 'undefined':
+                    return undefined;
+                case '<ListItemTag />':
+                    return <ListItemTag label="56+" backgroundColor={Colors.gold[50]} fontColor={Colors.gold[800]} />;
+                case '<ChannelValue />':
+                    return <ChannelValue value={2} units={'V'} />;
+                default:
+                    break;
+            }
+        })();
+
+        const expandIcon = ((): JSX.Element | undefined => {
+            switch (useExpandIcon) {
+                case 'undefined':
+                    return undefined;
+                case '<Add />':
+                    return <Add />;
+                case '<PinDrop />':
+                    return <PinDrop />;
+                default:
+                    break;
+            }
+        })();
+
+        const collapseIcon = ((): JSX.Element | undefined => {
+            switch (useCollapseIcon) {
+                case 'undefined':
+                    return undefined;
+                case '<Remove />':
+                    return <Remove />;
+                case '<AddAPhoto />':
+                    return <AddAPhoto />;
+                default:
+                    break;
+            }
+        })();
+
         const drawerItemList = (state: DrawerState): JSX.Element => (
             <DrawerBody>
                 <DrawerNavGroup
-                    divider={boolean('DrawerNavGroup.divider', true)}
-                    nestedDivider={boolean('DrawerNavGroup.nestedDivider', false)}
+                    divider={divider}
+                    nestedDivider={nestedDivider}
                     title={'Default Navigation Group'}
                     hidePadding={!useIcon}
-                    ripple={boolean('DrawerNavGroup.ripple', true)}
+                    ripple={ripple}
                     activeItem={state.selected}
                     titleColor={Colors.black[500]}
+                    activeBackgroundShape={rounded}
+                    chevron={chevron}
                     items={[
                         {
                             title: userGuide,
                             icon: useIcon ? <AddAPhoto /> : undefined,
                             itemID: userGuide,
+                            rightComponent: rightComponent,
+                            expandIcon: expandIcon,
+                            collapseIcon: collapseIcon,
                             items: [
                                 {
                                     title: gettingStarted,

@@ -2,7 +2,7 @@ import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { MuiThemeProvider, createMuiTheme, useTheme } from '@material-ui/core/styles';
-import { ReactThemes } from '@pxblue/themes';
+import { blue as blueTheme } from '@pxblue/react-themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
 import { pxblueTheme } from '@pxblue/storybook-themes';
@@ -49,7 +49,7 @@ addParameters({
     },
 });
 
-export const appliedTheme = createMuiTheme(ReactThemes.blue);
+export const appliedTheme = createMuiTheme(blueTheme);
 
 addDecorator((storyFn) => (
     <MuiThemeProvider theme={appliedTheme}>

@@ -151,7 +151,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             );
         } else if (chevron) {
             return (
-                <ListItemSecondaryAction>
+                <ListItemSecondaryAction style={{ display: 'flex' }}>
                     <Chevron color={'inherit'} />
                 </ListItemSecondaryAction>
             );
@@ -189,10 +189,6 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         );
     const listItemChild = (
         <>
-            <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
-            {divider && (
-                <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
-            )}
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}
             <ListItemText
@@ -216,14 +212,17 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         </>
     );
 
-    const onClickFn = onClick ? onClick : (): void => {};
-
-    return ripple ? (
-        <ListItem style={getWrapperStyle()} onClick={(): void => onClickFn()} dense={dense} button>
-            {listItemChild}
-        </ListItem>
-    ) : (
-        <ListItem style={getWrapperStyle()} onClick={(): void => onClickFn()} dense={dense}>
+    return (
+        <ListItem
+            style={getWrapperStyle()}
+            onClick={onClick ? (): void => onClick() : undefined}
+            dense={dense}
+            button={ripple ? true : undefined}
+        >
+            <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
+            {divider && (
+                <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
+            )}
             {listItemChild}
         </ListItem>
     );
