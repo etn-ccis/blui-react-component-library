@@ -8,6 +8,10 @@ The Drawer component is wrapper around the Material UI Drawer that adds specific
 ## Drawer
 The Drawer component is the parent container, which manages the overall state of the drawer and renders the child components.
 
+<div style="width: 100%; text-align: center">
+    <img width="100%" style="max-width: 400px" alt="Drawer Anatomy" src="./images/drawerAnatomy.png">
+</div>
+
 ### Drawer Usage
 ```typescript
 import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerFooter } from '@pxblue/react-components';
