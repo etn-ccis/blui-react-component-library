@@ -524,6 +524,7 @@ export default () => {
                                     title: 'Report',
                                     itemID: 'Report',
                                     icon: <ListIcon />,
+                                    divider: false,
                                     items: [
                                         {
                                             title: '2020',
