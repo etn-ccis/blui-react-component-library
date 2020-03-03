@@ -10,5 +10,6 @@ export const storyWrapper = (storyFn: any) => {
         //@ts-ignore
         banner.children[0].children[0].children[0].children[0].click(); // Click the 'Canvas' button
     }
+    window.top.document.title = 'test';
     return <>{storyFn()}</>;
 };
