@@ -480,7 +480,7 @@ stories.add(
         const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
         const ripple = boolean('ripple', true, DrawerNavGroupID);
         const chevron = boolean('chevron', false, DrawerNavGroupID);
-        const rounded = select('activeBackgroundShape', ['rounded', 'rectangular'], 'rounded', DrawerNavGroupID);
+        const rounded = select('activeBackgroundShape', ['rounded', 'square'], 'rounded', DrawerNavGroupID);
 
         const NavItemID = 'NavItem';
         const useIcon = boolean('Use icons', true, NavItemID);
@@ -658,7 +658,7 @@ stories.add(
             <State store={store}>
                 {(state): JSX.Element[] => [
                     <Drawer open={open} key={'drawer'}>
-                        <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />}/>
+                        <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
                         {drawerItemList(state)}
                     </Drawer>,
                 ]}

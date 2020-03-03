@@ -8,7 +8,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { InfoListItem } from '../InfoListItem';
 import PropTypes from 'prop-types';
 import { ExpandLess, ArrowDropUp } from '@material-ui/icons';
-import { white, black } from '@pxblue/colors';
+import { white, black, gray } from '@pxblue/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -51,10 +51,10 @@ const useStyles = makeStyles((theme: Theme) =>
                 theme.palette.type === 'light' ? theme.palette.secondary[50] : theme.palette.secondary.light,
             borderRadius: '0px 24px 24px 0px',
             opacity: 0.9,
-            '&.rectangular': {
-                width: '100%',
-                borderRadius: 0,
-            },
+        },
+        activeSquare: {
+            width: '100%',
+            borderRadius: 0,
         },
         secondaryLevelListGroup: {
             backgroundColor: theme.palette.type === 'light' ? white[200] : black['A200'],
@@ -70,15 +70,14 @@ const useStyles = makeStyles((theme: Theme) =>
             marginRight: -12,
             alignItems: 'center',
             justifyContent: 'space-around',
-            '&.expanded': {
-                transform: 'rotate(180deg)',
-            },
+        },
+        expandIconExpanded: {
+            transform: 'rotate(180deg)',
         },
     })
 );
 
 export type NestedNavItem = {
-
     // Show chevron icon to the right. Override by icon
     chevron?: boolean;
 
@@ -109,7 +108,6 @@ export type NestedNavItem = {
 
     // text to be displayed
     title: string;
-
 };
 
 export type NavItem = NestedNavItem & {
@@ -121,35 +119,34 @@ export type NavItem = NestedNavItem & {
 };
 
 export type DrawerNavGroupProps = {
-
-    // Background color for the 'active' item  
+    // Background color for the 'active' item
     activeBackgroundColor?: string;
 
-    // Font color for the 'active' item   
+    // Font color for the 'active' item
     activeFontColor?: string;
 
-    // Icon color for the 'active' item   
+    // Icon color for the 'active' item
     activeIconColor?: string;
 
-    // itemID for the 'active' item  
+    // itemID for the 'active' item
     activeItem?: string;
 
-    // shape of the active item background   
-    activeBackgroundShape?: 'rounded' | 'rectangular';
+    // shape of the active item background
+    activeBackgroundShape?: 'rounded' | 'square';
 
     // The color used for the background
     backgroundColor?: string;
 
-    // Whether to have chevrons for all menu items    
+    // Whether to have chevrons for all menu items
     chevron?: boolean;
 
     // Custom element, substitute for title
     titleContent?: ReactNode;
 
-    // Whether to show a line between all items   
+    // Whether to show a line between all items
     divider?: boolean;
 
-    // The color used for the text 
+    // The color used for the text
     fontColor?: string;
 
     // Whether to hide the paddings reserved for menu item icons
@@ -165,8 +162,8 @@ export type DrawerNavGroupProps = {
     nestedDivider?: boolean;
 
     // internal API
-    // will apply to all menu items when onClick 
-    onSelect?: Function; 
+    // will apply to all menu items when onClick
+    onSelect?: Function;
 
     // Whether the group is expanded
     // Controlled by <DrawerBody />
@@ -217,9 +214,9 @@ function NavigationListItem(
         activeIconColor = theme.palette.type === 'light'
             ? theme.palette.primary.main
             : theme.palette.primary.contrastText,
-        fontColor = theme.palette.text.secondary,
+        fontColor = gray[500],
         chevron: groupChevron,
-        iconColor,
+        iconColor = gray[500],
         onSelect,
         hidePadding,
         ripple,
@@ -284,7 +281,7 @@ function NavigationListItem(
                         expandHandler();
                     }
                 }}
-                className={`${classes.expandIcon} ${expanded ? 'expanded' : ''}`}
+                className={`${classes.expandIcon} ${expanded ? classes.expandIconExpanded : ''}`}
             >
                 {getExpandIcon()}
             </div>
@@ -305,7 +302,7 @@ function NavigationListItem(
         <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
             {active && (
                 <div
-                    className={`${classes.active} ${activeBackgroundShape === 'rectangular' ? 'rectangular' : ''}`}
+                    className={`${classes.active} ${activeBackgroundShape === 'square' ? classes.activeSquare : ''}`}
                     style={{ backgroundColor: activeBackgroundColor }}
                 />
             )}
@@ -321,7 +318,7 @@ function NavigationListItem(
                 chevron={chevron}
                 rightComponent={
                     (actionComponent || rightComponent) && (
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', color: iconColor }}>
                             {rightComponent}
                             {actionComponent}
                         </div>
@@ -330,7 +327,7 @@ function NavigationListItem(
                 backgroundColor={'transparent'}
                 onClick={(): void => {
                     action();
-                    expandHandler();
+                    if (!onClick) expandHandler();
                 }}
                 style={{ paddingLeft: paddingLeft }}
                 hidePadding={hidePadding}
@@ -368,7 +365,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         if (item.items) {
             // if there are more sub pages, add the bucket header and recurse on this function
             const collapsibleComponent = (
-                <Collapse in={expanded && (open !== false)} key={`${item.title}_group_${depth}`}>
+                <Collapse in={expanded && open !== false} key={`${item.title}_group_${depth}`}>
                     <List className={classes.secondaryLevelListGroup}>
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                     </List>

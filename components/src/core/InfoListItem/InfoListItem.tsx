@@ -187,30 +187,6 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             },
             style
         );
-    const listItemChild = (
-        <>
-            {(icon || !hidePadding) && getIcon()}
-            {leftComponent}
-            <ListItemText
-                style={leftComponent ? { marginLeft: 16 } : {}}
-                primary={title}
-                secondary={getSubtitle()}
-                primaryTypographyProps={{
-                    noWrap: true,
-                    variant: 'body1',
-                    className: classes.title,
-                    style: { color: fontColor },
-                }}
-                secondaryTypographyProps={{
-                    noWrap: true,
-                    variant: 'subtitle2',
-                    className: classes.subtitle,
-                    style: { color: fontColor || 'inherit' },
-                }}
-            />
-            {getRightComponent()}
-        </>
-    );
 
     return (
         <ListItem
@@ -219,11 +195,32 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             dense={dense}
             button={ripple ? true : undefined}
         >
-            <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
-            {divider && (
-                <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
-            )}
-            {listItemChild}
+            <>
+                <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
+                {divider && (
+                    <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
+                )}
+                {(icon || !hidePadding) && getIcon()}
+                {leftComponent}
+                <ListItemText
+                    style={leftComponent ? { marginLeft: 16 } : {}}
+                    primary={title}
+                    secondary={getSubtitle()}
+                    primaryTypographyProps={{
+                        noWrap: true,
+                        variant: 'body1',
+                        className: classes.title,
+                        style: { color: fontColor },
+                    }}
+                    secondaryTypographyProps={{
+                        noWrap: true,
+                        variant: 'subtitle2',
+                        className: classes.subtitle,
+                        style: { color: fontColor || 'inherit' },
+                    }}
+                />
+                {getRightComponent()}
+            </>
         </ListItem>
     );
 };

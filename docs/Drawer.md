@@ -94,7 +94,7 @@ We **discourage** you to use menu hierarchies with more than three levels, as it
 | activeFontColor       | Font color for the 'active' item                                 | `string`                  | no       |           |
 | activeIconColor       | Icon color for the 'active' item                                 | `string`                  | no       |           | 
 | activeItem            | itemID for the 'active' item                                     | `string`                  | no       |           | 
-| activeItemShape       | shape of the active item background                              | `'rectangular'|'rounded'` | no       | 'rounded' | 
+| activeItemShape       | shape of the active item background                              | `'square'|'rounded'`      | no       | 'rounded' | 
 | backgroundColor       | The color used for the background                                | `string`                  | no       |           |   
 | chevron               | Whether to have chevrons for all menu items                      | `boolean`                 | no       |           |    
 | titleContent          | Custom element, substitute for title                             | `React.Component`         | no       |           |    

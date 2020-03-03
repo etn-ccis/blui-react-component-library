@@ -12,7 +12,6 @@ import {
     Gavel,
     Help,
     MoreVert,
-    
 } from '@material-ui/icons';
 import Trend from '@material-ui/icons/TrendingUp';
 import Timer from '@material-ui/icons/Timer';
@@ -432,21 +431,21 @@ export default () => {
                                 title={'Temperature'}
                                 icon={<Temp />}
                                 rightComponent={
-                                    <div style={{display: 'flex', alignItems: 'center'}}>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <ListItemTag
                                             backgroundColor={Colors.white['300']}
                                             label={'active'}
                                             fontColor={Colors.green['500']}
+                                            style={{ marginRight: 8 }}
                                         />
-                                        <Spacer width={8} />
                                         <ListItemTag
+                                            style={{ marginRight: 8 }}
                                             label={'OVERHEAT'}
                                             backgroundColor={Colors.red['500']}
                                             onClick={(_) => {
                                                 alert('You clicked me.');
                                             }}
                                         />
-                                        <Spacer width={8} />
                                         <ChannelValue
                                             fontSize={16}
                                             icon={<Trend htmlColor={Colors.red[500]} />}

@@ -2,6 +2,7 @@
 
 ## v3.0.0
 - Adds support for nested items in the Drawer component
+- **Breaking Change:** content prop in DrawerNavGroup has been replaced with titleContent.
 - **Breaking Change:** items prop in DrawerNavGroup will no longer work.
     ```tsx
     /* Old syntax */
