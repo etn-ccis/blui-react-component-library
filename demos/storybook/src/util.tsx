@@ -1,5 +1,12 @@
 import React from 'react';
 
+export const updateTitle = (): void => {
+    setTimeout(() => {
+        window.top.document.title = 'PX Blue | React Components';
+    }, 10);
+};
+
+
 export const storyWrapper = (storyFn: any) => {
     const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
     banner.setAttribute('style', 'display: unset');
@@ -10,6 +17,6 @@ export const storyWrapper = (storyFn: any) => {
         //@ts-ignore
         banner.children[0].children[0].children[0].children[0].click(); // Click the 'Canvas' button
     }
-    window.top.document.title = 'test';
+    updateTitle();
     return <>{storyFn()}</>;
 };

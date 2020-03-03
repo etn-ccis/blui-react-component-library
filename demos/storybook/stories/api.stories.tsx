@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
+import {updateTitle} from "../src/util";
 
 export const stories = storiesOf('API/Documentation', module);
 
@@ -12,6 +13,7 @@ const autoNavToDocs = (): void => {
         //@ts-ignore
         banner.children[0].children[0].children[0].children[1].click(); // click the Notes tab.
     }
+    updateTitle();
 };
 
 const docFn = (): JSX.Element => <>{autoNavToDocs()}</>;
