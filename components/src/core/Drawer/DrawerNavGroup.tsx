@@ -51,11 +51,12 @@ const useStyles = makeStyles((theme: Theme) =>
                 theme.palette.type === 'light' ? theme.palette.secondary[50] : theme.palette.secondary.light,
             borderRadius: '0px 24px 24px 0px',
             opacity: 0.9,
+            '& $square': {
+                width: '100%',
+                borderRadius: 0,
+            },
         },
-        activeSquare: {
-            width: '100%',
-            borderRadius: 0,
-        },
+        square: {},
         secondaryLevelListGroup: {
             backgroundColor: theme.palette.type === 'light' ? white[200] : black['A200'],
             paddingBottom: 0,
@@ -70,10 +71,11 @@ const useStyles = makeStyles((theme: Theme) =>
             marginRight: -12,
             alignItems: 'center',
             justifyContent: 'space-around',
+            '& $expanded': {
+                transform: 'rotate(180deg)',
+            },
         },
-        expandIconExpanded: {
-            transform: 'rotate(180deg)',
-        },
+        expanded: {},
     })
 );
 
@@ -259,21 +261,6 @@ function NavigationListItem(
         if (!subItems) {
             return null;
         }
-        if (collapseIcon) {
-            return (
-                <div
-                    onClick={(e): void => {
-                        if (e) {
-                            expandHandler();
-                        }
-                    }}
-                    className={classes.expandIcon}
-                >
-                    {expanded ? collapseIcon : getExpandIcon()}
-                </div>
-            );
-        }
-
         return (
             <div
                 onClick={(e): void => {
@@ -281,9 +268,9 @@ function NavigationListItem(
                         expandHandler();
                     }
                 }}
-                className={`${classes.expandIcon} ${expanded ? classes.expandIconExpanded : ''}`}
+                className={`${classes.expandIcon} ${!collapseIcon && expanded ? classes.expanded : ''}`}
             >
-                {getExpandIcon()}
+                {collapseIcon && expanded ? collapseIcon : getExpandIcon()}
             </div>
         );
     }
@@ -302,7 +289,7 @@ function NavigationListItem(
         <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
             {active && (
                 <div
-                    className={`${classes.active} ${activeBackgroundShape === 'square' ? classes.activeSquare : ''}`}
+                    className={`${classes.active} ${activeBackgroundShape === 'square' ? classes.square : ''}`}
                     style={{ backgroundColor: activeBackgroundColor }}
                 />
             )}
