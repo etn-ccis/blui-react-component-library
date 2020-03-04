@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '../ChannelValue';
 import PropTypes from 'prop-types';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -65,6 +66,8 @@ export type HeroProps = {
     iconSize?: number;
     label: string;
     onClick?: Function;
+    showTooltipOnHover?:boolean;
+    tooltipClasses?: object;
     value?: string | number;
     valueIcon?: JSX.Element;
     units?: string;
@@ -72,7 +75,13 @@ export type HeroProps = {
 
 export const Hero = (props: HeroProps): JSX.Element => {
     const classes = useStyles(props);
-    const { fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units } = props;
+    const { fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units, showTooltipOnHover, tooltipClasses } = props;
+
+    const labelElement = (
+            <Typography variant={'subtitle1'} color={'inherit'} className={classes.label} data-test={'hero-label'}>
+                {label}
+            </Typography>
+        );
 
     return (
         <div
@@ -97,9 +106,9 @@ export const Hero = (props: HeroProps): JSX.Element => {
                 {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
                 {props.children}
             </span>
-            <Typography variant={'subtitle1'} color={'inherit'} className={classes.label}>
-                {label}
-            </Typography>
+            { showTooltipOnHover ? <Tooltip title={label} classes={tooltipClasses} arrow>
+                {labelElement}
+            </Tooltip> : labelElement }
         </div>
     );
 };
@@ -121,4 +130,5 @@ Hero.defaultProps = {
     fontSize: 'normal',
     iconBackgroundColor: 'transparent',
     iconSize: 36,
+    showTooltipOnHover: false,
 };

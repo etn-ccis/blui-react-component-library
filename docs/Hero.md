@@ -32,16 +32,18 @@ import { Hero } from '@pxblue/react-components';
 ```
 
 ### Hero API
-| Prop Name           | Description                             | Type                                                               | Required | Default                | Examples                       |
-|---------------------|-----------------------------------------|--------------------------------------------------------------------|----------|------------------------|--------------------------------|
-| icon                | The primary icon                        | `React.Component` &vert; `string`                                  | yes      |                        | `<Icon/>`                      |
-| label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        | 'Status'                       |
-| iconSize            | The size of the primary icon (10-72)    | `number`                                                           | no       | 36                     | 24                             |
-| iconBackgroundColor | The color used behind the primary icon  | `string`                                                           | no       | 'transparent'          | 'red'                          |
-| fontSize            | The text size for the value line        | 'normal' &vert; 'small'                                            | no       | 'normal'               |                                |
-| value               | The value for the channel               | `string` &vert; `number`                                           | no       |                        | 240, 'Off'                     |
-| units               | Text to show after the value            | `string`                                                           | no       |                        | 'Hz', '$'                      |
-| valueIcon           | The inline icon with the value          | `React.Component`                                                  | no       |                        | `<Icon/>`                      |
+| Prop Name           | Description                                  | Type                                        | Required | Default                | Examples                       |
+|---------------------|----------------------------------------------|---------------------------------------------|----------|------------------------|--------------------------------|
+| icon                | The primary icon                             | `React.Component` &vert; `string`           | yes      |                        | `<Icon/>`                      |
+| label               | The text shown below the `ChannelValue`      | `string`                                    | yes      |                        | 'Status'                       |
+| iconSize            | The size of the primary icon (10-72)         | `number`                                    | no       | 36                     | 24                             |
+| iconBackgroundColor | The color used behind the primary icon       | `string`                                    | no       | 'transparent'          | 'red'                          |
+| fontSize            | The text size for the value line             | 'normal' &vert; 'small'                     | no       | 'normal'               |                                |
+| value               | The value for the channel                    | `string` &vert; `number`                    | no       |                        | 240, 'Off'                     |
+| showTooltipOnHover  | Whether to show a tooltip on hover the label | `boolean`                                   | no       | false                  |                                |
+| tooltipClasses      | The styles applied to the tooltip            | `object`                                    | no       |                        |                                |
+| units               | Text to show after the value                 | `string`                                    | no       |                        | 'Hz', '$'                      |
+| valueIcon           | The inline icon with the value               | `React.Component`                           | no       |                        | `<Icon/>`                      |
 
 
 ## HeroBanner
