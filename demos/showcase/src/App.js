@@ -244,7 +244,6 @@ export default () => {
                                         value={98}
                                         units={'°F'}
                                         fontSize={'normal'}
-                                        showTooltipOnHover
                                     />
                                     <Hero
                                         icon={<Humidity fontSize={'inherit'} htmlColor={Colors.blue[300]} />}
