@@ -66,7 +66,7 @@ export type HeroProps = {
     iconSize?: number;
     label: string;
     onClick?: Function;
-    showTooltipOnHover?:boolean;
+    showTooltipOnHover?: boolean;
     tooltipClasses?: object;
     value?: string | number;
     valueIcon?: JSX.Element;
@@ -75,13 +75,25 @@ export type HeroProps = {
 
 export const Hero = (props: HeroProps): JSX.Element => {
     const classes = useStyles(props);
-    const { fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units, showTooltipOnHover, tooltipClasses } = props;
+    const {
+        fontSize,
+        icon,
+        iconBackgroundColor,
+        iconSize,
+        label,
+        onClick,
+        value,
+        valueIcon,
+        units,
+        showTooltipOnHover,
+        tooltipClasses,
+    } = props;
 
     const labelElement = (
-            <Typography variant={'subtitle1'} color={'inherit'} className={classes.label} data-test={'hero-label'}>
-                {label}
-            </Typography>
-        );
+        <Typography variant={'subtitle1'} color={'inherit'} className={classes.label} data-test={'hero-label'}>
+            {label}
+        </Typography>
+    );
 
     return (
         <div
@@ -106,9 +118,13 @@ export const Hero = (props: HeroProps): JSX.Element => {
                 {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
                 {props.children}
             </span>
-            { showTooltipOnHover ? <Tooltip title={label} classes={tooltipClasses} arrow>
-                {labelElement}
-            </Tooltip> : labelElement }
+            {showTooltipOnHover ? (
+                <Tooltip title={label} classes={tooltipClasses} arrow>
+                    {labelElement}
+                </Tooltip>
+            ) : (
+                labelElement
+            )}
         </div>
     );
 };

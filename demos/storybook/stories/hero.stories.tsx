@@ -2,7 +2,7 @@ import React from 'react';
 import * as Colors from '@pxblue/colors';
 import { Hero, ChannelValue } from '@pxblue/react-components';
 import { GradeA, Leaf } from '@pxblue/icons-mui';
-import { text, number } from '@storybook/addon-knobs';
+import { text, number, boolean } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { storyWrapper } from '../src/util';
 
@@ -24,7 +24,11 @@ stories.add('with basic properties', () => (
 ));
 
 stories.add('with ChannelValue children', () => (
-    <Hero label={text('label', 'Duration')} icon={<Leaf fontSize={'inherit'} htmlColor={Colors.green[500]} />}>
+    <Hero
+        label={text('label', 'Duration')}
+        icon={<Leaf fontSize={'inherit'} htmlColor={Colors.green[500]} />}
+        showTooltipOnHover={boolean('showTooltipOnHover', false)}
+    >
         <ChannelValue fontSize={'large'} value={number('hours', 1)} units={'h'} />
         <ChannelValue fontSize={'large'} value={number('minutes', 27)} units={'m'} />
     </Hero>
