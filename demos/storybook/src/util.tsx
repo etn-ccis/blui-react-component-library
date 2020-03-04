@@ -6,7 +6,6 @@ export const updateTitle = (): void => {
     }, 10);
 };
 
-
 export const storyWrapper = (storyFn: any) => {
     const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
     banner.setAttribute('style', 'display: unset');
@@ -19,4 +18,10 @@ export const storyWrapper = (storyFn: any) => {
     }
     updateTitle();
     return <>{storyFn()}</>;
+};
+
+export const storyParams = {
+    options: {
+        showPanel: true,
+    },
 };

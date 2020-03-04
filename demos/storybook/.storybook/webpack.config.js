@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var path = require('path');
 
 module.exports = ({ config }) => {
     config.module.rules.push({
@@ -11,7 +12,8 @@ module.exports = ({ config }) => {
         ],
     });
     config.module.rules.push({
-        test: /\.stories\.(ts)$/,
+        include: [path.resolve(__dirname, '../stories')], // You can specify directories
+        test: /\.(tsx)$/,
         use: [
             {
                 loader: require.resolve('awesome-typescript-loader'),
