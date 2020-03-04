@@ -8,7 +8,7 @@ import { action } from '@storybook/addon-actions';
 import { color, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { storyWrapper } from '../src/util';
+import { storyWrapper } from '../src/utils';
 const EatonLogo = require('../assets/EatonLogo.svg');
 const tRex = require('../assets/trex.jpeg');
 
