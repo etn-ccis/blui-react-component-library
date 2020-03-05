@@ -243,8 +243,12 @@ function NavigationListItem(
 
     const chevron = itemChevron !== undefined ? itemChevron : groupChevron;
 
-    const rightComponent = navItem.rightComponent ? navItem.rightComponent : (
-        (!subItems && chevron) ? <ChevronRight /> : undefined
+    const rightComponent = navItem.rightComponent ? (
+        navItem.rightComponent
+    ) : !subItems && chevron ? (
+        <ChevronRight />
+    ) : (
+        undefined
     );
 
     function getExpandIcon(): JSX.Element {

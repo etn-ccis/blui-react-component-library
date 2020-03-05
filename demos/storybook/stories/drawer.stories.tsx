@@ -583,29 +583,29 @@ stories.add(
                                         {
                                             title: forDesigners,
                                             itemID: forDesigners,
-                                            items : [
+                                            items: [
                                                 {
                                                     title: componentLibrary,
                                                     itemID: componentLibrary,
                                                     onClick: (): void => {
                                                         store.set({ selected: componentLibrary });
                                                     },
-                                                }, 
+                                                },
                                                 {
                                                     title: typographyRules,
                                                     itemID: typographyRules,
                                                     onClick: (): void => {
                                                         store.set({ selected: typographyRules });
                                                     },
-                                                }, 
+                                                },
                                                 {
                                                     title: themeRules,
                                                     itemID: themeRules,
                                                     onClick: (): void => {
                                                         store.set({ selected: themeRules });
                                                     },
-                                                }, 
-                                            ]
+                                                },
+                                            ],
                                         },
                                     ],
                                 },
