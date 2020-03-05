@@ -1,3 +1,4 @@
+import {StoryFnReactReturnType} from "@storybook/react/dist/client/preview/types";
 import React from 'react';
 
 export const updateTitle = (): void => {
@@ -29,6 +30,18 @@ export const storyWrapper = (storyFn: any) => {
     updateTitle();
     return <>{storyFn()}</>;
 };
+
+export const getReadMe = (): StoryFnReactReturnType => {
+    const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
+    banner.setAttribute('style', 'display: none');
+    // If we are currently on the 'Canvas' tab.
+    if (window.top.location.href.includes('/story/')) {
+        window.top.history.replaceState(null, '', window.top.location.href.replace('/story/', '/info/'));
+        (banner.children[0].children[0].children[0].children[1] as HTMLElement).click(); // click the Notes tab.
+    }
+    return <></>;
+};
+getReadMe.story = { name: 'README' };
 
 export const storyParams = {
     options: {
