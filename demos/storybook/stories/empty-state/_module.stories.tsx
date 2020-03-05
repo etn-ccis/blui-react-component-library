@@ -6,7 +6,7 @@ const emptyStateModule = {
     title: `${COMPONENT_SECTION_NAME}/Empty State`,
     component: EmptyState,
     decorators: [storyWrapper],
-    parameters: storyParams,
+    parameters: {...storyParams, notes: { markdown: require('./../../../../docs/EmptyState.md') } }
 };
 
 /* Display order goes here */

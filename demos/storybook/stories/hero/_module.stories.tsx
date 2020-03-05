@@ -6,7 +6,7 @@ const heroModule = {
     title: `${COMPONENT_SECTION_NAME}/Hero`,
     component: Hero,
     decorators: [storyWrapper],
-    parameters: storyParams,
+    parameters: {...storyParams, notes: { markdown: require('./../../../../docs/Hero.md') } }
 };
 
 /* Display order goes here */

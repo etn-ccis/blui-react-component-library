@@ -36,7 +36,7 @@ export const withCustomHeader = (): StoryFnReactReturnType => {
                             </div>
                         }
                     />
-                    {defaultDrawerBody(state)}
+                    {defaultDrawerBody(state, store)}
                 </Drawer>,
             ]}
         </State>

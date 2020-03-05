@@ -6,7 +6,7 @@ const spacerModule = {
     title: `${COMPONENT_SECTION_NAME}/Spacer`,
     component: Spacer,
     decorators: [storyWrapper],
-    parameters: storyParams,
+    parameters: {...storyParams, notes: { markdown: require('./../../../../docs/Spacer.md') } }
 };
 
 /* Display order goes here */

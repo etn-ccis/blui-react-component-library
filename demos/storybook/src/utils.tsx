@@ -22,9 +22,9 @@ export const storyWrapper = (storyFn: any) => {
 
     // If we are currently on the 'Notes' tab.
     if (window.top.location.href.includes('/info/')) {
-        window.top.history.replaceState(null, '', window.top.location.href.replace('/info/', '/story/'));
+      //  window.top.history.replaceState(null, '', window.top.location.href.replace('/info/', '/story/'));
         //@ts-ignore
-        banner.children[0].children[0].children[0].children[0].click(); // Click the 'Canvas' button
+       // banner.children[0].children[0].children[0].children[0].click(); // Click the 'Canvas' button
     }
     updateTitle();
     return <>{storyFn()}</>;
@@ -34,4 +34,5 @@ export const storyParams = {
     options: {
         showPanel: true,
     },
+    notes: {}
 };
