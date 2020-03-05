@@ -2,7 +2,7 @@ import { Button, createStyles, makeStyles, Typography } from '@material-ui/core'
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { appliedTheme } from '../.storybook/config';
-import { storyWrapper } from '../src/util';
+import { storyWrapper } from '../src/utils';
 import * as Colors from '@pxblue/colors';
 const backgroundImage = require('../assets/circles-bg.svg');
 
@@ -28,6 +28,7 @@ const useStyles = makeStyles(() =>
             flexDirection: 'column',
             justifyContent: 'center',
             textAlign: 'center',
+            padding: '0 8px',
         },
         icon: {
             textAlign: 'center',

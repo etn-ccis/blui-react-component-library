@@ -1,8 +1,8 @@
 import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { MuiThemeProvider, createMuiTheme, useTheme } from '@material-ui/core/styles';
-import { blue as blueTheme } from '@pxblue/react-themes';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { blue as ReactTheme } from '@pxblue/react-themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
 import { pxblueTheme } from '@pxblue/storybook-themes';
@@ -32,10 +32,11 @@ const newViewports = {
 };
 
 pxblueTheme.brandTitle = 'PX Blue React Component Library';
-pxblueTheme.brandImage = require('../assets/pxblue.svg');
+pxblueTheme.brandImage = require('../assets/pxblue react.svg');
 pxblueTheme.brandUrl = 'https://pxblue.github.io';
 
 addParameters({
+    name: 'PXBlue',
     /* Users will see this while the component is loading. */
     notes: {
         markdown: '<div> </div>',
@@ -49,7 +50,7 @@ addParameters({
     },
 });
 
-export const appliedTheme = createMuiTheme(blueTheme);
+export const appliedTheme = createMuiTheme(ReactTheme);
 
 addDecorator((storyFn) => (
     <MuiThemeProvider theme={appliedTheme}>

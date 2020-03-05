@@ -4,7 +4,7 @@ import { Spacer } from '@pxblue/react-components';
 import { Typography } from '@material-ui/core';
 import { number } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { storyWrapper } from '../src/util';
+import { storyWrapper } from '../src/utils';
 
 export const stories = storiesOf('playground/Spacer', module);
 stories.addDecorator(storyWrapper);

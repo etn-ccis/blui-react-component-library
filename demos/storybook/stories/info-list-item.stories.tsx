@@ -5,7 +5,7 @@ import { ChannelValue, InfoListItem } from '@pxblue/react-components';
 import { List } from '@material-ui/core';
 import { boolean, color, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { storyWrapper } from '../src/util';
+import { storyWrapper } from '../src/utils';
 
 export const stories = storiesOf('playground/Info List Item', module);
 stories.addDecorator(storyWrapper);
