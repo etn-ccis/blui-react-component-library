@@ -9,7 +9,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 // @ts-ignore
 import EatonLogo from '../assets/EatonLogo.svg';
-import { storyWrapper } from '../src/util';
+import { storyWrapper } from '../src/utils';
 
 export const stories = storiesOf('playground/Drawer Layout', module);
 stories.addDecorator(storyWrapper);
