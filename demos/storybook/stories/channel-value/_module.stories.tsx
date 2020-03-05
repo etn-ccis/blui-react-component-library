@@ -1,6 +1,6 @@
 import { ChannelValue } from '@pxblue/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
-import { storyParams, storyWrapper } from '../../src/util';
+import { storyParams, storyWrapper } from '../../src/utils';
 
 const channelValueModule = {
     title: `${COMPONENT_SECTION_NAME}/Channel Value`,
