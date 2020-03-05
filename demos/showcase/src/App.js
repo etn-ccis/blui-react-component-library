@@ -1,4 +1,29 @@
 import React, { useState } from 'react';
+
+import {
+    Add,
+    Remove,
+    Menu,
+    NotificationsActive,
+    List as ListIcon,
+    Public,
+    Email,
+    Settings,
+    Gavel,
+    Help,
+    MoreVert,
+} from '@material-ui/icons';
+import Trend from '@material-ui/icons/TrendingUp';
+import Timer from '@material-ui/icons/Timer';
+import DevicesIcon from '@material-ui/icons/Devices';
+import SendIcon from '@material-ui/icons/Send';
+import { useTheme } from '@material-ui/core/styles';
+import { List, Card, AppBar, Toolbar, Typography, Select, MenuItem, Divider, Hidden, Button } from '@material-ui/core';
+
+import * as Colors from '@pxblue/colors';
+import { Pie, Battery } from '@pxblue/react-progress-icons';
+import { GradeA, Leaf, CurrentCircled, VoltageCircled, Temp, Moisture as Humidity, Device } from '@pxblue/icons-mui';
+
 import {
     Hero,
     HeroBanner,
@@ -18,46 +43,7 @@ import {
     ListItemTag,
 } from '@pxblue/react-components';
 
-import DevicesIcon from '@material-ui/icons/Devices';
-import SendIcon from '@material-ui/icons/Send';
-import {
-    Add,
-    Menu,
-    NotificationsActive,
-    List as ListIcon,
-    Public,
-    Email,
-    Settings,
-    Gavel,
-    Help,
-} from '@material-ui/icons';
-
-import Trend from '@material-ui/icons/TrendingUp';
-import Timer from '@material-ui/icons/Timer';
-
-import {
-    List,
-    Card,
-    ListItem,
-    ListItemText,
-    ListItemSecondaryAction,
-    AppBar,
-    Toolbar,
-    Typography,
-    Select,
-    MenuItem,
-    Divider,
-    Hidden,
-} from '@material-ui/core';
-import { ChevronRight, MoreVert } from '@material-ui/icons';
-import * as Colors from '@pxblue/colors';
-import { Pie, Battery } from '@pxblue/react-progress-icons';
-import { GradeA, Leaf, CurrentCircled, VoltageCircled, Temp, Moisture as Humidity, Device } from '@pxblue/icons-mui';
-import Button from '@material-ui/core/Button';
-import { useTheme } from '@material-ui/core/styles';
-
 import top from './topology_40.png';
-// import farm from './farm.jpg';
 import EatonLogo from './EatonLogo.svg';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -68,6 +54,18 @@ export default () => {
     const [location, setLocation] = useState(0);
     const [route, setRoute] = useState(0);
     const theme = useTheme();
+
+    const titleList = [
+        'Overview',
+        'Timeline',
+        'Locations',
+        'Devices',
+        'Settings',
+        'Legal',
+        'Help',
+        'Recent Locations',
+        'All Facilities',
+    ];
 
     return (
         <DrawerLayout
@@ -103,31 +101,44 @@ export default () => {
                     </DrawerSubheader>
                     <DrawerBody>
                         <DrawerNavGroup
+                            activeItem={titleList[route]}
                             items={[
                                 {
-                                    title: 'Overview',
+                                    title: titleList[0],
+                                    itemID: titleList[0],
                                     icon: <ListIcon />,
-                                    active: route === 0,
                                     onClick: () => setRoute(0),
                                 },
                                 {
-                                    title: 'Timeline',
+                                    title: titleList[1],
+                                    itemID: titleList[1],
                                     subtitle: '2 Alarms',
                                     icon: <NotificationsActive />,
                                     status: Colors.red[500],
-                                    active: route === 1,
                                     onClick: () => setRoute(1),
                                 },
                                 {
-                                    title: 'Locations',
+                                    title: titleList[2],
+                                    itemID: titleList[2],
                                     icon: <Public />,
-                                    active: route === 2,
                                     onClick: () => setRoute(2),
+                                    items: [
+                                        {
+                                            title: titleList[7],
+                                            itemID: titleList[7],
+                                            onClick: () => setRoute(7),
+                                        },
+                                        {
+                                            title: titleList[8],
+                                            itemID: titleList[8],
+                                            onClick: () => setRoute(8),
+                                        },
+                                    ],
                                 },
                                 {
-                                    title: 'Devices',
+                                    title: titleList[3],
+                                    itemID: titleList[3],
                                     icon: <Device />,
-                                    active: route === 3,
                                     onClick: () => setRoute(3),
                                 },
                             ]}
@@ -137,21 +148,21 @@ export default () => {
                         <DrawerNavGroup
                             items={[
                                 {
-                                    title: 'Settings',
+                                    title: titleList[4],
+                                    itemID: titleList[4],
                                     icon: <Settings />,
-                                    active: route === 4,
                                     onClick: () => setRoute(4),
                                 },
                                 {
-                                    title: 'Legal',
+                                    title: titleList[5],
+                                    itemID: titleList[5],
                                     icon: <Gavel />,
-                                    active: route === 5,
                                     onClick: () => setRoute(5),
                                 },
                                 {
-                                    title: 'Help',
+                                    title: titleList[6],
+                                    itemID: titleList[6],
                                     icon: <Help />,
-                                    active: route === 6,
                                     onClick: () => setRoute(6),
                                 },
                             ]}
@@ -159,13 +170,7 @@ export default () => {
                     </DrawerBody>
                     <DrawerFooter>
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <img
-                                src={EatonLogo}
-                                style={{ margin: '10px' }}
-                                alt="Eaton Logo"
-                                height={50}
-                                width={'auto'}
-                            />
+                            <img src={EatonLogo} style={{ margin: 10 }} alt="Eaton Logo" height={50} width={'auto'} />
                         </div>
                     </DrawerFooter>
                 </Drawer>
@@ -188,10 +193,12 @@ export default () => {
                                     items: [
                                         {
                                             title: 'Log Out',
+                                            itemID: 'Log Out',
                                             icon: <SendIcon />,
                                         },
                                         {
                                             title: 'Account Settings',
+                                            itemID: 'Account Settings',
                                             icon: <Settings />,
                                             divider: true,
                                         },
@@ -199,13 +206,16 @@ export default () => {
                                 },
                                 {
                                     title: 'Contact Us',
+                                    itemID: 'Contact Us',
                                     items: [
                                         {
                                             title: 'eatonhelp@eaton.com',
+                                            itemID: 'email',
                                             icon: <SendIcon />,
                                         },
                                         {
                                             title: '1-866-905-9988',
+                                            itemID: 'phone',
                                             icon: <Email />,
                                         },
                                     ],
@@ -246,17 +256,7 @@ export default () => {
                                 </HeroBanner>
                             }
                             badgeOffset={0}
-                            actionRow={
-                                <List style={{ padding: 0 }}>
-                                    <ListItem>
-                                        <ListItemText primary="View Location" />
-                                        <ListItemSecondaryAction style={{ display: 'flex' }}>
-                                            {' '}
-                                            <ChevronRight />{' '}
-                                        </ListItemSecondaryAction>
-                                    </ListItem>
-                                </List>
-                            }
+                            actionRow={<InfoListItem dense chevron title={'More'} hidePadding />}
                         >
                             <List style={{ padding: '16px 0' }}>
                                 <InfoListItem
@@ -306,17 +306,7 @@ export default () => {
                                 </HeroBanner>
                             }
                             badgeOffset={-52}
-                            actionRow={
-                                <List style={{ padding: 0 }}>
-                                    <ListItem>
-                                        <ListItemText primary="View Location" />
-                                        <ListItemSecondaryAction style={{ display: 'flex' }}>
-                                            {' '}
-                                            <ChevronRight />{' '}
-                                        </ListItemSecondaryAction>
-                                    </ListItem>
-                                </List>
-                            }
+                            actionRow={<InfoListItem dense chevron title={'View Location'} hidePadding />}
                         >
                             <List style={{ padding: '16px 0' }}>
                                 <InfoListItem
@@ -439,23 +429,22 @@ export default () => {
                             <InfoListItem
                                 dense
                                 title={'Temperature'}
-                                divider={'full'}
                                 icon={<Temp />}
                                 rightComponent={
-                                    <>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <ListItemTag
-                                            style={{ marginRight: 8 }}
                                             backgroundColor={Colors.white['300']}
                                             label={'active'}
                                             fontColor={Colors.green['500']}
+                                            style={{ marginRight: 8 }}
                                         />
                                         <ListItemTag
+                                            style={{ marginRight: 8 }}
                                             label={'OVERHEAT'}
                                             backgroundColor={Colors.red['500']}
                                             onClick={(_) => {
                                                 alert('You clicked me.');
                                             }}
-                                            style={{ marginRight: 8 }}
                                         />
                                         <ChannelValue
                                             fontSize={16}
@@ -463,7 +452,7 @@ export default () => {
                                             value={68}
                                             units={'°F'}
                                         />
-                                    </>
+                                    </div>
                                 }
                             />
                         </List>
@@ -478,6 +467,75 @@ export default () => {
                                     Add Device
                                 </Button>
                             }
+                        />
+                    </Card>
+                    <Card style={{ marginTop: 10 }}>
+                        <DrawerNavGroup
+                            title={'Resources'}
+                            open={true}
+                            items={[
+                                {
+                                    title: 'Guides',
+                                    itemID: 'Guides',
+                                    icon: <DevicesIcon />,
+                                    rightComponent: (
+                                        <ListItemTag label={'new'} onClick={() => alert('You clicked me.')} />
+                                    ),
+                                    expandIcon: <Add />,
+                                    collapseIcon: <Remove />,
+                                    items: [
+                                        {
+                                            title: 'Installation Manual',
+                                            itemID: 'Installation Manual',
+                                            items: [
+                                                {
+                                                    title: '101',
+                                                    itemID: '101',
+                                                },
+                                                {
+                                                    title: '102',
+                                                    itemID: '102',
+                                                },
+                                            ],
+                                        },
+                                        {
+                                            title: 'Maintenance',
+                                            itemID: 'Maintenance',
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: 'Quality Control',
+                                    itemID: 'Quality Control',
+                                    icon: <Settings />,
+                                    items: [
+                                        {
+                                            title: 'Training',
+                                            itemID: 'Training',
+                                        },
+                                        {
+                                            title: 'Checklist',
+                                            itemID: 'Checklist',
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: 'Report',
+                                    itemID: 'Report',
+                                    icon: <ListIcon />,
+                                    divider: false,
+                                    items: [
+                                        {
+                                            title: '2020',
+                                            itemID: '2020',
+                                        },
+                                        {
+                                            title: '2021',
+                                            itemID: '2021',
+                                        },
+                                    ],
+                                },
+                            ]}
                         />
                     </Card>
                 </div>

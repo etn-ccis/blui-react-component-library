@@ -1,4 +1,46 @@
 # Change Log
+
+## v3.0.0
+- Adds support for nested items in the Drawer component
+- **Breaking Change:** content prop in DrawerNavGroup has been replaced with titleContent.
+- **Breaking Change:** items prop in DrawerNavGroup will no longer work.
+    ```tsx
+    /* Old syntax */
+    <DrawerNavGroup 
+        items={[
+            { 
+                title: ..., 
+                active: ...,
+                ...
+            },
+            { 
+                title: ..., 
+                active: ...,
+                ...
+            },
+            ...
+    ]}
+    />
+    
+    /* New syntax */
+    <DrawerNavGroup 
+      	activeItem={...}
+        items={[
+            { 
+                title: ..., 
+              	itemID: ...,
+                ...
+            },
+            { 
+                title: ..., 
+                itemID: ...,
+                ...
+            },
+            ...
+        ]}
+    />
+    ```
+
 ## v2.1.0
 - Adds InfoListTag Component
     - Displays additional information inside an InfoListItem.
@@ -17,7 +59,7 @@
     - DrawerFooter
     - DrawerLayout
 - **Breaking Change:** Simpler import syntax - _default_ imports will no longer work.
-    ```
+    ```typescript
     /* Old import syntax */
     import ComponentName from '@pxblue/react-components/core/ComponentName';
 

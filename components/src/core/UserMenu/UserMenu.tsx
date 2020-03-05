@@ -182,6 +182,8 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     );
 };
 
+UserMenu.displayName = 'UserMenu';
+
 UserMenu.propTypes = {
     avatar: PropTypes.element,
     classes: PropTypes.shape({
