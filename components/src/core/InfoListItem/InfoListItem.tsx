@@ -72,6 +72,7 @@ export type InfoListItemProps = {
     leftComponent?: JSX.Element;
     onClick?: Function;
     rightComponent?: JSX.Element;
+    ripple?: boolean;
     statusColor?: string;
     style?: CSSProperties;
     subtitle?: string | Array<string | JSX.Element>;
@@ -100,6 +101,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         subtitle,
         subtitleSeparator,
         title,
+        ripple,
     } = props;
 
     const getIconColor = (): string => {
@@ -132,8 +134,9 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             return <ListItemIcon style={{ color: getIconColor() }}>{icon}</ListItemIcon>;
         } else if (!hidePadding) {
             return (
+                // a dummy component to maintain the padding
                 <ListItemAvatar>
-                    <Avatar style={{ backgroundColor: 'transparent' }} />
+                    <Avatar style={{ opacity: 0 }} />
                 </ListItemAvatar>
             );
         }
@@ -148,7 +151,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             );
         } else if (chevron) {
             return (
-                <ListItemSecondaryAction>
+                <ListItemSecondaryAction style={{ display: 'flex' }}>
                     <Chevron color={'inherit'} />
                 </ListItemSecondaryAction>
             );
@@ -186,31 +189,38 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         );
 
     return (
-        <ListItem style={getWrapperStyle()} onClick={(): void => onClick()} dense={dense}>
-            <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
-            {divider && (
-                <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
-            )}
-            {(icon || !hidePadding) && getIcon()}
-            {leftComponent}
-            <ListItemText
-                style={leftComponent ? { marginLeft: 16 } : {}}
-                primary={title}
-                secondary={getSubtitle()}
-                primaryTypographyProps={{
-                    noWrap: true,
-                    variant: 'body1',
-                    className: classes.title,
-                    style: { color: fontColor },
-                }}
-                secondaryTypographyProps={{
-                    noWrap: true,
-                    variant: 'subtitle2',
-                    className: classes.subtitle,
-                    style: { color: fontColor || 'inherit' },
-                }}
-            />
-            {getRightComponent()}
+        <ListItem
+            style={getWrapperStyle()}
+            onClick={onClick ? (): void => onClick() : undefined}
+            dense={dense}
+            button={ripple ? true : undefined}
+        >
+            <>
+                <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
+                {divider && (
+                    <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
+                )}
+                {(icon || !hidePadding) && getIcon()}
+                {leftComponent}
+                <ListItemText
+                    style={leftComponent ? { marginLeft: 16 } : {}}
+                    primary={title}
+                    secondary={getSubtitle()}
+                    primaryTypographyProps={{
+                        noWrap: true,
+                        variant: 'body1',
+                        className: classes.title,
+                        style: { color: fontColor },
+                    }}
+                    secondaryTypographyProps={{
+                        noWrap: true,
+                        variant: 'subtitle2',
+                        className: classes.subtitle,
+                        style: { color: fontColor || 'inherit' },
+                    }}
+                />
+                {getRightComponent()}
+            </>
         </ListItem>
     );
 };
@@ -243,7 +253,7 @@ InfoListItem.defaultProps = {
     chevron: false,
     dense: false,
     hidePadding: false,
-    onClick: (): void => {},
+    ripple: false,
     subtitleSeparator: '\u00B7',
     fontColor: 'inherit',
 };

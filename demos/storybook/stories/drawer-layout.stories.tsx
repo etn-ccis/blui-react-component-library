@@ -22,38 +22,46 @@ stories.addParameters({
 const defaultBody = (
     <DrawerBody>
         <DrawerNavGroup
+            activeItem={''}
             items={[
                 {
                     title: 'Overview',
                     onClick: action('Overview'),
+                    itemID: 'Overview',
                     icon: <Apps />,
                 },
                 {
+                    itemID: 'Timeline',
                     title: 'Timeline',
                     onClick: action('Timeline'),
                     icon: <FormatListBulleted />,
                 },
                 {
+                    itemID: 'Locations',
                     title: 'Locations',
                     onClick: action('Locations'),
                     icon: <PinDrop />,
                 },
                 {
+                    itemID: 'Devices',
                     title: 'Devices',
                     onClick: action('Devices'),
                     icon: <NotificationsActive />,
                 },
                 {
+                    itemID: 'Settings',
                     title: 'Settings',
                     onClick: action('Settings'),
                     icon: <Settings />,
                 },
                 {
+                    itemID: 'Legal',
                     title: 'Legal',
                     onClick: action('Legal'),
                     icon: <Gavel />,
                 },
                 {
+                    itemID: 'Help',
                     title: 'Help',
                     onClick: action('Help'),
                     icon: <Help />,

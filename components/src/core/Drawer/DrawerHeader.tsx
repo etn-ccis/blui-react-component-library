@@ -95,12 +95,17 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const getHeaderContent = (): ReactNode =>
         titleContent || (
             <div className={classes.content}>
-                <Typography noWrap variant={'h6'} className={classes.title}>
+                <Typography noWrap variant={'h6'} className={classes.title} data-test={'drawer-header-title'}>
                     {title}
                 </Typography>
 
                 {subtitle && (
-                    <Typography noWrap variant={'subtitle1'} className={classes.subtitle}>
+                    <Typography
+                        noWrap
+                        variant={'subtitle1'}
+                        className={classes.subtitle}
+                        data-test={'drawer-header-subtitle'}
+                    >
                         {subtitle}
                     </Typography>
                 )}

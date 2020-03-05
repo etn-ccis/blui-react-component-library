@@ -19,4 +19,4 @@ Besides what's listed below, as an extension of [Material UI's Typography API](h
 | --------------- | ----------------------------- | -------- | -------- | --------- | --------- |
 | label           | The label text                | `string` | yes      |           | `'Foo'`   |
 | fontColor       | Color of the label            | `string` | no       | `#ffffff` | `'white'` |
-| backgroundColor | Color of the label background | `string` | no       | `#007bc1` | `'green'` ||
+| backgroundColor | Color of the label background | `string` | no       | `#007bc1` | `'green'` |

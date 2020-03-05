@@ -20,6 +20,8 @@ import {
     PinDrop,
     Search,
     Toc,
+    Add,
+    Remove,
 } from '@material-ui/icons';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -33,7 +35,8 @@ import {
     DrawerBody,
     DrawerFooter,
     DrawerNavGroup,
-    NavItem,
+    ListItemTag,
+    ChannelValue,
 } from '@pxblue/react-components';
 import { State, Store } from '@sambego/storybook-state';
 import { boolean, color, number, optionsKnob, select, text } from '@storybook/addon-knobs';
@@ -66,6 +69,18 @@ const userGuide = 'User Guide';
 const license = 'License';
 const accessibility = 'Accessibility';
 const notifications = 'Notifications';
+const gettingStarted = 'Getting Started';
+const tutorials = 'Tutorials';
+const forDevelopers = 'For Developers';
+const forDesigners = 'For Designers';
+const environmentSetup = 'Environment Setup';
+const community = 'Community';
+const hallOfFame = 'Hall of Fame';
+const contribute = 'Contribute';
+const contributingGuide = 'Contributing Guide';
+const componentLibrary = 'Component Library';
+const typographyRules = 'Typography Rules';
+const themeRules = 'Theme Rules';
 
 export const padDrawer = (drawer: JSX.Element): JSX.Element => (
     <div style={{ padding: 20, display: 'flex', height: '100%' }}>{drawer}</div>
@@ -75,38 +90,39 @@ export const defaultDrawerBody = (state: DrawerState): JSX.Element => (
     <DrawerBody>
         <DrawerNavGroup
             title={'Default Navigation Group'}
+            activeItem={state.selected}
             items={[
                 {
                     title: userGuide,
+                    itemID: userGuide,
                     onClick: (): void => {
                         store.set({ selected: userGuide });
                     },
                     icon: <MoveToInboxIcon />,
-                    active: state.selected === userGuide,
                 },
                 {
                     title: license,
+                    itemID: license,
                     onClick: (): void => {
                         store.set({ selected: license });
                     },
                     icon: <SendIcon />,
-                    active: state.selected === license,
                 },
                 {
                     title: accessibility,
+                    itemID: accessibility,
                     onClick: (): void => {
                         store.set({ selected: accessibility });
                     },
                     icon: <Accessibility />,
-                    active: state.selected === accessibility,
                 },
                 {
                     title: notifications,
+                    itemID: notifications,
                     onClick: (): void => {
                         store.set({ selected: notifications });
                     },
                     icon: <NotificationsActive />,
-                    active: state.selected === notifications,
                 },
             ]}
         />
@@ -199,96 +215,94 @@ stories.add(
         const schedule = 'Schedule';
         const agreement = 'License Agreement';
 
-        const links1 = (state: any): NavItem[] =>
-            [
-                {
-                    title: overview,
-                    onClick: (): void => {
-                        store.set({ selected: overview });
-                    },
-                    icon: <Dashboard />,
-                    active: state.selected === overview,
+        const links1 = [
+            {
+                title: overview,
+                itemID: overview,
+                onClick: (): void => {
+                    store.set({ selected: overview });
                 },
-                {
-                    title: timeline,
-                    onClick: (): void => {
-                        store.set({ selected: timeline });
-                    },
-                    icon: <Toc />,
-                    active: state.selected === timeline,
+                icon: <Dashboard />,
+            },
+            {
+                title: timeline,
+                itemID: timeline,
+                onClick: (): void => {
+                    store.set({ selected: timeline });
                 },
-                {
-                    title: locations,
-                    onClick: (): void => {
-                        store.set({ selected: locations });
-                    },
-                    icon: <PinDrop />,
-                    active: state.selected === locations,
+                icon: <Toc />,
+            },
+            {
+                title: locations,
+                itemID: locations,
+                onClick: (): void => {
+                    store.set({ selected: locations });
                 },
-                {
-                    title: devices,
-                    subtitle: '5 new warnings',
-                    statusColor: Colors.yellow[500],
-                    onClick: (): void => {
-                        store.set({ selected: devices });
-                    },
-                    icon: <Devices />,
-                    active: state.selected === devices,
+                icon: <PinDrop />,
+            },
+            {
+                title: devices,
+                itemID: devices,
+                subtitle: '5 new warnings',
+                statusColor: Colors.yellow[500],
+                onClick: (): void => {
+                    store.set({ selected: devices });
                 },
-                {
-                    title: photos,
-                    onClick: (): void => {
-                        store.set({ selected: photos });
-                    },
-                    icon: <AddAPhoto />,
-                    active: state.selected === photos,
+                icon: <Devices />,
+            },
+            {
+                title: photos,
+                itemID: photos,
+                onClick: (): void => {
+                    store.set({ selected: photos });
                 },
-                {
-                    title: schedule,
-                    onClick: (): void => {
-                        store.set({ selected: schedule });
-                    },
-                    icon: <AirportShuttle />,
-                    active: state.selected === schedule,
+                icon: <AddAPhoto />,
+            },
+            {
+                title: schedule,
+                itemID: schedule,
+                onClick: (): void => {
+                    store.set({ selected: schedule });
                 },
-            ].slice(0, numberLinksGroup1);
+                icon: <AirportShuttle />,
+            },
+        ].slice(0, numberLinksGroup1);
 
-        const links2 = (state: any): NavItem[] =>
-            [
-                {
-                    title: userGuide,
-                    onClick: (): void => {
-                        store.set({ selected: userGuide });
-                    },
-                    icon: <MoveToInboxIcon />,
-                    active: state.selected === userGuide,
+        const links2 = [
+            {
+                title: userGuide,
+                itemID: userGuide,
+                onClick: (): void => {
+                    store.set({ selected: userGuide });
                 },
-                {
-                    title: agreement,
-                    subtitle: 'For Eaton employees only',
-                    onClick: (): void => {
-                        store.set({ selected: agreement });
-                    },
-                    icon: <SendIcon />,
-                    active: state.selected === agreement,
+                icon: <MoveToInboxIcon />,
+            },
+            {
+                title: agreement,
+                itemID: agreement,
+                subtitle: 'For Eaton employees only',
+                onClick: (): void => {
+                    store.set({ selected: agreement });
                 },
-                {
-                    title: accessibility,
-                    onClick: (): void => {
-                        store.set({ selected: accessibility });
-                    },
-                    icon: <Accessibility />,
-                    active: state.selected === accessibility,
+                icon: <SendIcon />,
+            },
+            {
+                title: accessibility,
+                itemID: accessibility,
+                onClick: (): void => {
+                    store.set({ selected: accessibility });
                 },
-                {
-                    title: notifications,
-                    onClick: (): void => {
-                        store.set({ selected: notifications });
-                    },
-                    icon: <NotificationsActive />,
-                    active: state.selected === notifications,
+                icon: <Accessibility />,
+            },
+            {
+                title: notifications,
+                itemID: notifications,
+                onClick: (): void => {
+                    store.set({ selected: notifications });
                 },
-            ].slice(0, numberLinksGroup2);
+                icon: <NotificationsActive />,
+            },
+        ].slice(0, numberLinksGroup2);
 
         // Footer
         const showFooter = boolean('show footer', true, footerGroupId);
@@ -316,12 +330,18 @@ stories.add(
                             activeIconColor={bodyActiveIconColor}
                             chevron={bodyChevron}
                         >
-                            <DrawerNavGroup divider={bodyDividers} items={links1(state)} title={groupTitle1} />
+                            <DrawerNavGroup
+                                activeItem={state.selected}
+                                divider={bodyDividers}
+                                items={links1}
+                                title={groupTitle1}
+                            />
                             <DrawerNavGroup
                                 divider={bodyDividers}
-                                items={links2(state)}
-                                content={
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                activeItem={state.selected}
+                                items={links2}
+                                titleContent={
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
                                         <div>{groupTitle2}</div>
                                         <div>Software Version v1.0.3</div>
                                     </div>
@@ -447,6 +467,222 @@ stories.add(
                             </div>
                         </DrawerSubheader>
                         {defaultDrawerBody(state)}
+                    </Drawer>,
+                ]}
+            </State>
+        );
+    }
+);
+
+stories.add(
+    'with nested list items',
+    (): JSX.Element => {
+        const DrawerNavGroupID = 'DrawerNavGroup';
+        const open = boolean('Open', true, DrawerNavGroupID);
+        const divider = boolean('divider', true, DrawerNavGroupID);
+        const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
+        const ripple = boolean('ripple', true, DrawerNavGroupID);
+        const chevron = boolean('chevron', false, DrawerNavGroupID);
+        const rounded = select('activeBackgroundShape', ['rounded', 'square'], 'rounded', DrawerNavGroupID);
+
+        const NavItemID = 'NavItem';
+        const useIcon = boolean('Use icons', true, NavItemID);
+        const useRightComponent = select(
+            'rightComponent',
+            ['undefined', '<ListItemTag />', '<ChannelValue />'],
+            'undefined',
+            NavItemID
+        );
+        const useExpandIcon = select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', NavItemID);
+        const useCollapseIcon = select(
+            'collapseIcon',
+            ['undefined', '<Remove />', '<AddAPhoto />'],
+            'undefined',
+            NavItemID
+        );
+
+        const rightComponent = ((): JSX.Element | undefined => {
+            switch (useRightComponent) {
+                case 'undefined':
+                    return undefined;
+                case '<ListItemTag />':
+                    return <ListItemTag label="56+" backgroundColor={Colors.gold[50]} fontColor={Colors.gold[800]} />;
+                case '<ChannelValue />':
+                    return <ChannelValue value={2} units={'V'} />;
+                default:
+                    break;
+            }
+        })();
+
+        const expandIcon = ((): JSX.Element | undefined => {
+            switch (useExpandIcon) {
+                case 'undefined':
+                    return undefined;
+                case '<Add />':
+                    return <Add />;
+                case '<PinDrop />':
+                    return <PinDrop />;
+                default:
+                    break;
+            }
+        })();
+
+        const collapseIcon = ((): JSX.Element | undefined => {
+            switch (useCollapseIcon) {
+                case 'undefined':
+                    return undefined;
+                case '<Remove />':
+                    return <Remove />;
+                case '<AddAPhoto />':
+                    return <AddAPhoto />;
+                default:
+                    break;
+            }
+        })();
+
+        const drawerItemList = (state: DrawerState): JSX.Element => (
+            <DrawerBody>
+                <DrawerNavGroup
+                    divider={divider}
+                    nestedDivider={nestedDivider}
+                    title={'Default Navigation Group'}
+                    hidePadding={!useIcon}
+                    ripple={ripple}
+                    activeItem={state.selected}
+                    titleColor={Colors.black[500]}
+                    activeBackgroundShape={rounded}
+                    chevron={chevron}
+                    items={[
+                        {
+                            title: userGuide,
+                            icon: useIcon ? <AddAPhoto /> : undefined,
+                            itemID: userGuide,
+                            rightComponent: rightComponent,
+                            expandIcon: expandIcon,
+                            collapseIcon: collapseIcon,
+                            items: [
+                                {
+                                    title: gettingStarted,
+                                    itemID: gettingStarted,
+                                    subtitle: 'Introduction to Eaton',
+                                    onClick: (): void => {
+                                        store.set({ selected: gettingStarted });
+                                    },
+                                },
+                                {
+                                    title: tutorials,
+                                    itemID: tutorials,
+                                    items: [
+                                        {
+                                            title: forDevelopers,
+                                            itemID: forDevelopers,
+                                            onClick: (): void => {
+                                                store.set({ selected: forDevelopers });
+                                            },
+                                        },
+                                        {
+                                            title: forDesigners,
+                                            itemID: forDesigners,
+                                            items: [
+                                                {
+                                                    title: componentLibrary,
+                                                    itemID: componentLibrary,
+                                                    onClick: (): void => {
+                                                        store.set({ selected: componentLibrary });
+                                                    },
+                                                },
+                                                {
+                                                    title: typographyRules,
+                                                    itemID: typographyRules,
+                                                    onClick: (): void => {
+                                                        store.set({ selected: typographyRules });
+                                                    },
+                                                },
+                                                {
+                                                    title: themeRules,
+                                                    itemID: themeRules,
+                                                    onClick: (): void => {
+                                                        store.set({ selected: themeRules });
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: environmentSetup,
+                                    itemID: environmentSetup,
+                                    onClick: (): void => {
+                                        store.set({ selected: environmentSetup });
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            title: community,
+                            itemID: community,
+                            icon: useIcon ? <FitnessCenter /> : undefined,
+                            onClick: (): void => {
+                                store.set({ selected: community });
+                            },
+                            items: [
+                                {
+                                    title: license,
+                                    itemID: license,
+                                    onClick: (): void => {
+                                        store.set({ selected: license });
+                                    },
+                                },
+                                {
+                                    title: contribute,
+                                    itemID: contribute,
+                                    items: [
+                                        {
+                                            title: hallOfFame,
+                                            itemID: hallOfFame,
+                                            onClick: (): void => {
+                                                store.set({ selected: hallOfFame });
+                                            },
+                                        },
+                                        {
+                                            title: contributingGuide,
+                                            itemID: contributingGuide,
+                                            onClick: (): void => {
+                                                store.set({ selected: contributingGuide });
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            title: accessibility,
+                            itemID: accessibility,
+                            icon: useIcon ? <Accessibility /> : undefined,
+                            onClick: (): void => {
+                                store.set({ selected: accessibility });
+                            },
+                        },
+                        {
+                            title: notifications,
+                            itemID: notifications,
+                            icon: useIcon ? <NotificationsActive /> : undefined,
+                            onClick: (): void => {
+                                store.set({ selected: notifications });
+                            },
+                        },
+                    ]}
+                />
+                <div style={{ flex: '1 1 0px' }} />
+            </DrawerBody>
+        );
+
+        return padDrawer(
+            <State store={store}>
+                {(state): JSX.Element[] => [
+                    <Drawer open={open} key={'drawer'}>
+                        <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
+                        {drawerItemList(state)}
                     </Drawer>,
                 ]}
             </State>

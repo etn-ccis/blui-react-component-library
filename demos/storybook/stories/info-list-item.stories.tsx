@@ -1,6 +1,5 @@
 import React from 'react';
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import { GradeA, Leaf, Temp, Device } from '@pxblue/icons-mui';
 import { ChannelValue, InfoListItem } from '@pxblue/react-components';
 import { List } from '@material-ui/core';
