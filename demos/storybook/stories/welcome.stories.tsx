@@ -28,6 +28,7 @@ const useStyles = makeStyles(() =>
             flexDirection: 'column',
             justifyContent: 'center',
             textAlign: 'center',
+            padding: '0 8px',
         },
         icon: {
             textAlign: 'center',
