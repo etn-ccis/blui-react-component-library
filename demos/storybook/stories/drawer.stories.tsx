@@ -40,7 +40,7 @@ import { boolean, color, number, optionsKnob, select, text } from '@storybook/ad
 import { OptionsKnobOptionsDisplay } from '@storybook/addon-knobs/dist/components/types/Options';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { storyWrapper } from '../src/util';
+import { storyWrapper } from '../src/utils';
 
 const EatonLogo = require('../assets/EatonLogo.svg');
 const topologyBgImage = require('../assets/topology_40.png');

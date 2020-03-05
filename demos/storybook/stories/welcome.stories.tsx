@@ -2,7 +2,7 @@ import { Button, createStyles, makeStyles, Typography } from '@material-ui/core'
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { appliedTheme } from '../.storybook/config';
-import { storyWrapper } from '../src/util';
+import { storyWrapper } from '../src/utils';
 import * as Colors from '@pxblue/colors';
 const backgroundImage = require('../assets/circles-bg.svg');
 
@@ -12,22 +12,23 @@ stories.addDecorator(storyWrapper);
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            //@ts-ignore
-            color: Colors.white[50],
-            //@ts-ignore
-            backgroundColor: appliedTheme.palette.primary[500],
+            color: appliedTheme.palette.primary.contrastText,
+            backgroundColor: appliedTheme.palette.primary.main,
             backgroundImage: `url(${backgroundImage})`,
             height: '100%',
             width: '100%',
             display: 'flex',
             alignContent: 'center',
             justifyContent: 'center',
+            backgroundSize: '200%',
+            backgroundPosition: 'center',
         },
         container: {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             textAlign: 'center',
+            padding: '0 8px',
         },
         icon: {
             textAlign: 'center',
@@ -36,16 +37,16 @@ const useStyles = makeStyles(() =>
             maxWidth: 900,
             padding: 36,
             paddingBottom: 0,
-           fontWeight: 100,
+            fontWeight: 100,
         },
         link: {
             minWidth: 100,
             fontWeight: 600,
             borderColor: Colors.white[50],
             textTransform: 'none',
-           '&:hover': {
-               borderColor: Colors.white[50]
-           }
+            '&:hover': {
+                borderColor: Colors.white[50],
+            },
         },
         githubIcon: {
             width: 24,
@@ -53,10 +54,10 @@ const useStyles = makeStyles(() =>
             marginRight: 8,
             fill: Colors.white[50],
         },
-       github: {
-           fontWeight: 100,
-          color: Colors.white[50]
-       },
+        github: {
+            fontWeight: 100,
+            color: Colors.white[50],
+        },
         buttons: {
             display: 'flex',
             justifyContent: 'space-around',
