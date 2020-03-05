@@ -1,0 +1,19 @@
+import { UserMenu } from '@pxblue/react-components';
+import { COMPONENT_SECTION_NAME } from '../../src/constants';
+import { storyParams, storyWrapper } from '../../src/utils';
+
+const userMenuModule = {
+    title: `${COMPONENT_SECTION_NAME}/User Menu`,
+    component: UserMenu,
+    decorators: [storyWrapper],
+    parameters: storyParams,
+};
+
+/* Display order goes here */
+export { withDefaultColors } from './with-default-colors';
+export * from './with-custom-colors';
+export * from './with-non-text-avatar';
+export * from './with-menu-header';
+export * from './with-custom-menu';
+
+export default userMenuModule;
