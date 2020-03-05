@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import {updateTitle} from "../src/util";
+import { updateTitle } from '../src/util';
 
 export const stories = storiesOf('API/Documentation', module);
 
