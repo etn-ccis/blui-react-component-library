@@ -6,7 +6,6 @@ import { color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { menuItems } from './with-default-colors';
 
-
 export const withCustomColors = (): StoryFnReactReturnType => {
     const useStyles = makeStyles({
         root: {
@@ -23,13 +22,7 @@ export const withCustomColors = (): StoryFnReactReturnType => {
     items.fontColor = color('fontColor', Colors.gray[500], 'Menu');
     items.iconColor = color('iconColor', Colors.blue[800], 'Menu');
 
-    return (
-        <UserMenu
-            avatar={avatar}
-            menuGroups={[items]}
-            MenuProps={{ classes: { paper: classes.paper } }}
-        />
-    );
+    return <UserMenu avatar={avatar} menuGroups={[items]} MenuProps={{ classes: { paper: classes.paper } }} />;
 };
 
 withCustomColors.story = { name: 'with custom colors' };

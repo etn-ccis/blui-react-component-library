@@ -39,4 +39,4 @@ export const withDefaultColors = (): StoryFnReactReturnType => {
     return <UserMenu avatar={avatar} menuGroups={menuItems} />;
 };
 
-withDefaultColors.story = { name: 'with default colors '};
+withDefaultColors.story = { name: 'with default colors ' };
