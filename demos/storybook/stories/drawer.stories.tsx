@@ -78,6 +78,9 @@ const community = 'Community';
 const hallOfFame = 'Hall of Fame';
 const contribute = 'Contribute';
 const contributingGuide = 'Contributing Guide';
+const componentLibrary = 'Component Library';
+const typographyRules = 'Typography Rules';
+const themeRules = 'Theme Rules';
 
 export const padDrawer = (drawer: JSX.Element): JSX.Element => (
     <div style={{ padding: 20, display: 'flex', height: '100%' }}>{drawer}</div>
@@ -580,9 +583,29 @@ stories.add(
                                         {
                                             title: forDesigners,
                                             itemID: forDesigners,
-                                            onClick: (): void => {
-                                                store.set({ selected: forDesigners });
-                                            },
+                                            items : [
+                                                {
+                                                    title: componentLibrary,
+                                                    itemID: componentLibrary,
+                                                    onClick: (): void => {
+                                                        store.set({ selected: componentLibrary });
+                                                    },
+                                                }, 
+                                                {
+                                                    title: typographyRules,
+                                                    itemID: typographyRules,
+                                                    onClick: (): void => {
+                                                        store.set({ selected: typographyRules });
+                                                    },
+                                                }, 
+                                                {
+                                                    title: themeRules,
+                                                    itemID: themeRules,
+                                                    onClick: (): void => {
+                                                        store.set({ selected: themeRules });
+                                                    },
+                                                }, 
+                                            ]
                                         },
                                     ],
                                 },

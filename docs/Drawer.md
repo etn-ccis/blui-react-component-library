@@ -96,7 +96,7 @@ We **discourage** you to use menu hierarchies with more than three levels, as it
 | activeItem            | itemID for the 'active' item                                     | `string`                  | no       |           | 
 | activeItemShape       | shape of the active item background                              | `'square'|'rounded'`      | no       | 'rounded' | 
 | backgroundColor       | The color used for the background                                | `string`                  | no       |           |   
-| chevron               | Whether to have chevrons for all menu items                      | `boolean`                 | no       |           |    
+| chevron               | Whether to have chevrons for menu items with no sub items        | `boolean`                 | no       |           |    
 | titleContent          | Custom element, substitute for title                             | `React.Component`         | no       |           |    
 | divider               | Whether to show a line between all items                         | `boolean`                 | no       | true      |    
 | fontColor             | The color used for inactive menu items                           | `string`                  | no       | theme.palette.text.secondary |   

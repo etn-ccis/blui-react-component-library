@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import { InfoListItem } from '../InfoListItem';
 import PropTypes from 'prop-types';
-import { ExpandLess, ArrowDropUp } from '@material-ui/icons';
+import { ExpandLess, ArrowDropUp, ChevronRight } from '@material-ui/icons';
 import { white, black, gray } from '@pxblue/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -197,7 +197,6 @@ function NavigationListItem(
         divider: itemDivider,
         itemID,
         chevron: itemChevron,
-        rightComponent,
         collapseIcon,
         expandIcon,
     } = navItem;
@@ -244,6 +243,10 @@ function NavigationListItem(
 
     const chevron = itemChevron !== undefined ? itemChevron : groupChevron;
 
+    const rightComponent = navItem.rightComponent ? navItem.rightComponent : (
+        (!subItems && chevron) ? <ChevronRight /> : undefined
+    );
+
     function getExpandIcon(): JSX.Element {
         if (expandIcon) {
             return expandIcon;
@@ -255,9 +258,6 @@ function NavigationListItem(
     }
 
     function getActionComponent(): JSX.Element {
-        if (chevron) {
-            return null;
-        }
         if (!subItems) {
             return null;
         }
@@ -302,7 +302,6 @@ function NavigationListItem(
                 fontColor={active ? activeFontColor : fontColor}
                 icon={icon}
                 iconColor={active ? activeIconColor : iconColor}
-                chevron={chevron}
                 rightComponent={
                     (actionComponent || rightComponent) && (
                         <div style={{ display: 'flex', alignItems: 'center', color: iconColor }}>
