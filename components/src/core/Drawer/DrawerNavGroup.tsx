@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 theme.palette.type === 'light' ? theme.palette.secondary[50] : theme.palette.secondary.light,
             borderRadius: '0px 24px 24px 0px',
             opacity: 0.9,
-            '& $square': {
+            '&$square': {
                 width: '100%',
                 borderRadius: 0,
             },
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) =>
             marginRight: -12,
             alignItems: 'center',
             justifyContent: 'space-around',
-            '& $expanded': {
+            '&$expanded': {
                 transform: 'rotate(180deg)',
             },
         },
