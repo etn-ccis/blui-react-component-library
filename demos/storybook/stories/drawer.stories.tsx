@@ -483,7 +483,7 @@ stories.add(
         const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
         const ripple = boolean('ripple', true, DrawerNavGroupID);
         const chevron = boolean('chevron', false, DrawerNavGroupID);
-        const rounded = select('activeBackgroundShape', ['rounded', 'square'], 'rounded', DrawerNavGroupID);
+        const round = select('activeBackgroundShape', ['round', 'square'], 'round', DrawerNavGroupID);
 
         const NavItemID = 'NavItem';
         const useIcon = boolean('Use icons', true, NavItemID);
@@ -550,7 +550,7 @@ stories.add(
                     ripple={ripple}
                     activeItem={state.selected}
                     titleColor={Colors.black[500]}
-                    activeBackgroundShape={rounded}
+                    activeBackgroundShape={round}
                     chevron={chevron}
                     items={[
                         {
