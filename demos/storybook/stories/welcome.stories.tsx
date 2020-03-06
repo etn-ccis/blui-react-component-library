@@ -6,7 +6,7 @@ import { hideTopBanner, storyWrapper } from '../src/utils';
 import * as Colors from '@pxblue/colors';
 const backgroundImage = require('../assets/circles-bg.svg');
 
-export const stories = storiesOf('Intro/Welcome', module);
+export const stories = storiesOf('Intro/Overview', module);
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -71,7 +71,7 @@ stories.addParameters({
 
 stories.addDecorator(storyWrapper);
 
-stories.add('to pxblue', () => {
+stories.add('PX Blue React Components', () => {
     const classes = useStyles();
     const icon = require('../assets/pxb-icon.svg');
     hideTopBanner();
