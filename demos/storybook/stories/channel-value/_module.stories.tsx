@@ -10,7 +10,7 @@ const channelValueModule = {
 };
 
 /* Display order goes here */
-export { getReadMe } from '../../src/utils';
+export { getReadMeStory } from '../../src/utils';
 export * from './with-value';
 export * from './with-units';
 export * from './with-icon';

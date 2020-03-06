@@ -1,52 +1,63 @@
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
+import {README_STORY_NAME} from "./constants";
+
+const STORY_PATH = '/story/';
+const NOTES_PATH = '/info/';
+const getBanner = (): HTMLElement => window.top.document.getElementsByClassName('simplebar-content')[1] as HTMLElement;
+const setBannerStyle = (display: string): void => getBanner().setAttribute('style', `display: ${display}`);
+export const showTopBanner = (): void => setBannerStyle('unset');
+export const hideTopBanner = (): void => setBannerStyle('none');
+
+export const selectCanvasTab = (): void => {
+    window.top.history.replaceState(null, '', window.top.location.href.replace(NOTES_PATH, STORY_PATH));
+    (getBanner().children[0].children[0].children[0].children[0] as HTMLElement).click(); // click the Canvas tab.
+};
+
+const selectNotesTab = (): void => {
+    window.top.history.replaceState(null, '', window.top.location.href.replace(STORY_PATH, NOTES_PATH));
+    (getBanner().children[0].children[0].children[0].children[1] as HTMLElement).click(); // click the Notes tab.
+};
 
 export const updateTitle = (): void => {
     setTimeout(() => {
         window.top.document.title = 'PX Blue | React Components';
     }, 10);
-    (function() {
-        var link = window.top.document.querySelector("link[rel*='icon']") || document.createElement('link');
-        // @ts-ignore
-        link.type = 'image/x-icon';
-        // @ts-ignore
-        link.rel = 'shortcut icon';
-        // @ts-ignore
-        link.href = './pxblue.png';
-        window.top.document.getElementsByTagName('head')[0].appendChild(link);
-    })();
+
+    const link: any = window.top.document.querySelector("link[rel*='icon']") || document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = './pxblue.png';
+    window.top.document.getElementsByTagName('head')[0].appendChild(link);
 };
 
 let prevUrl = '';
-export const storyWrapper = (storyFn: any) => {
-    const currentUrl = window.location.href;
-    const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
-    banner.setAttribute('style', 'display: unset');
-
-
-    // If we are changing stories, default to Canvas tab.
-    if (prevUrl.includes('/story/') && currentUrl.includes('/info/')
-       || prevUrl.includes('/info/') && currentUrl.includes('/story/')) {
-        //  window.top.history.replaceState(null, '', window.top.location.href.replace('/info/', '/story/'));
-        //@ts-ignore
-        // banner.children[0].children[0].children[0].children[0].click(); // Click the 'Canvas' button
-    }
+// Auto-navigates the user to the Canvas tab when switching stories.
+export const storyWrapper = (storyFn: any): any => {
+    const currentUrl = window.top.location.href;
+    showTopBanner();
     updateTitle();
+
+    const currStoryUrl = currentUrl.replace(STORY_PATH, '').replace(NOTES_PATH, '');
+    const prevStoryUrl = prevUrl.replace(STORY_PATH, '').replace(NOTES_PATH, '');
+
+    // If user changed stories while on the Notes tab, but not from the README story.
+    if (currStoryUrl !==  prevStoryUrl && !currentUrl.includes('get-read-me') && currentUrl.includes(NOTES_PATH)) {
+        selectCanvasTab();
+    }
     prevUrl = currentUrl;
     return <>{storyFn()}</>;
 };
 
-export const getReadMe = (): StoryFnReactReturnType => {
-    const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
-    banner.setAttribute('style', 'display: none');
-    // If we are currently on the Canvas tab, go to Notes tab.
-    if (window.top.location.href.includes('/story/')) {
-        window.top.history.replaceState(null, '', window.top.location.href.replace('/story/', '/info/'));
-        (banner.children[0].children[0].children[0].children[1] as HTMLElement).click(); // click the Notes tab.
+export const getReadMeStory = (): StoryFnReactReturnType => {
+    hideTopBanner();
+    // If we are currently on the Canvas tab, go to Notes tab.  The README story never shows the Canvas.
+    if (window.top.location.href.includes(STORY_PATH)) {
+        selectNotesTab();
     }
     return <></>;
 };
-getReadMe.story = { name: 'ReadMe' };
+getReadMeStory.story = { name: README_STORY_NAME };
 
 export const storyParams = {
     options: {
