@@ -15,10 +15,10 @@ const drawerModule = {
 
 /* Display order goes here */
 export { getReadMeStory } from '../../src/utils';
-export { withStandardInputs } from './with-standard-inputs';
 export * from './with-custom-header';
 export * from './with-subheader';
 export * from './with-nested-list-items';
 export * from './in-a-drawerLayout';
+export * from './with-full-config';
 
 export default drawerModule;

@@ -27,60 +27,22 @@ type DrawerState = {
     selected: string;
 };
 
-const localStore = new Store<DrawerState>({
+const store = new Store<DrawerState>({
     selected: '',
 });
 
 const userGuide = 'User Guide';
-const license = 'License';
 const accessibility = 'Accessibility';
 const notifications = 'Notifications';
+const overview = 'Overview';
+const timeline = 'Timeline';
+const locations = 'Locations';
+const devices = 'Devices';
+const photos = 'Photos';
+const schedule = 'Schedule';
+const agreement = 'License Agreement';
 
-export const defaultDrawerBody = (state: DrawerState, store: Store<DrawerState>): JSX.Element => (
-    <DrawerBody>
-        <DrawerNavGroup
-            title={'Default Navigation Group'}
-            activeItem={state.selected}
-            items={[
-                {
-                    title: userGuide,
-                    itemID: userGuide,
-                    onClick: (): void => {
-                        store.set({ selected: userGuide });
-                    },
-                    icon: <MoveToInboxIcon />,
-                },
-                {
-                    title: license,
-                    itemID: license,
-                    onClick: (): void => {
-                        store.set({ selected: license });
-                    },
-                    icon: <SendIcon />,
-                },
-                {
-                    title: accessibility,
-                    itemID: accessibility,
-                    onClick: (): void => {
-                        store.set({ selected: accessibility });
-                    },
-                    icon: <Accessibility />,
-                },
-                {
-                    title: notifications,
-                    itemID: notifications,
-                    onClick: (): void => {
-                        store.set({ selected: notifications });
-                    },
-                    icon: <NotificationsActive />,
-                },
-            ]}
-        />
-        <div style={{ flex: '1 1 0px' }} />
-    </DrawerBody>
-);
-
-export const withStandardInputs = (): StoryFnReactReturnType => {
+export const withFullConfig = (): StoryFnReactReturnType => {
     const drawerGroupId = 'Drawer';
     const headerGroupId = 'Header';
     const bodyGroupId = 'Body';
@@ -154,20 +116,12 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
         bodyGroupId
     );
 
-    const overview = 'Overview';
-    const timeline = 'Timeline';
-    const locations = 'Locations';
-    const devices = 'Devices';
-    const photos = 'Photos';
-    const schedule = 'Schedule';
-    const agreement = 'License Agreement';
-
     const links1 = [
         {
             title: overview,
             itemID: overview,
             onClick: (): void => {
-                localStore.set({ selected: overview });
+                store.set({ selected: overview });
             },
             icon: <Dashboard />,
         },
@@ -175,7 +129,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
             title: timeline,
             itemID: timeline,
             onClick: (): void => {
-                localStore.set({ selected: timeline });
+                store.set({ selected: timeline });
             },
             icon: <Toc />,
         },
@@ -183,7 +137,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
             title: locations,
             itemID: locations,
             onClick: (): void => {
-                localStore.set({ selected: locations });
+                store.set({ selected: locations });
             },
             icon: <PinDrop />,
         },
@@ -193,7 +147,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
             subtitle: '5 new warnings',
             statusColor: Colors.yellow[500],
             onClick: (): void => {
-                localStore.set({ selected: devices });
+                store.set({ selected: devices });
             },
             icon: <Devices />,
         },
@@ -201,7 +155,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
             title: photos,
             itemID: photos,
             onClick: (): void => {
-                localStore.set({ selected: photos });
+                store.set({ selected: photos });
             },
             icon: <AddAPhoto />,
         },
@@ -209,7 +163,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
             title: schedule,
             itemID: schedule,
             onClick: (): void => {
-                localStore.set({ selected: schedule });
+                store.set({ selected: schedule });
             },
             icon: <AirportShuttle />,
         },
@@ -220,7 +174,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
             title: userGuide,
             itemID: userGuide,
             onClick: (): void => {
-                localStore.set({ selected: userGuide });
+                store.set({ selected: userGuide });
             },
             icon: <MoveToInboxIcon />,
         },
@@ -229,7 +183,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
             itemID: agreement,
             subtitle: 'For Eaton employees only',
             onClick: (): void => {
-                localStore.set({ selected: agreement });
+                store.set({ selected: agreement });
             },
             icon: <SendIcon />,
         },
@@ -237,7 +191,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
             title: accessibility,
             itemID: accessibility,
             onClick: (): void => {
-                localStore.set({ selected: accessibility });
+                store.set({ selected: accessibility });
             },
             icon: <Accessibility />,
         },
@@ -245,7 +199,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
             title: notifications,
             itemID: notifications,
             onClick: (): void => {
-                localStore.set({ selected: notifications });
+                store.set({ selected: notifications });
             },
             icon: <NotificationsActive />,
         },
@@ -256,7 +210,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
     const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
 
     return (
-        <State store={localStore}>
+        <State store={store}>
             {(state): JSX.Element[] => [
                 <Drawer open={open} width={width} key={'drawer'}>
                     <DrawerHeader
@@ -316,4 +270,4 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
     );
 };
 
-withStandardInputs.story = { name: 'with standard inputs' };
+withFullConfig.story = { name: 'with full config' };

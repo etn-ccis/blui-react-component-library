@@ -19,7 +19,9 @@ const selectNotesTab = (): void => {
     (getBanner().children[0].children[0].children[0].children[1] as HTMLElement).click(); // click the Notes tab.
 };
 
-const updateNotesTabText = (): void => { getBanner().children[0].children[0].children[0].children[1].children[0].innerHTML = 'ReadMe'; };
+const updateNotesTabText = (): void => {
+    getBanner().children[0].children[0].children[0].children[1].children[0].innerHTML = 'ReadMe';
+};
 
 export const updateTitle = (): void => {
     setTimeout(() => {

@@ -1,11 +1,13 @@
 import { Typography } from '@material-ui/core';
+import MoveToInboxIcon from '@material-ui/core/SvgIcon/SvgIcon';
+import { Accessibility, NotificationsActive } from '@material-ui/icons';
+import SendIcon from '@material-ui/icons/Send';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Drawer, DrawerHeader } from '@pxblue/react-components/core/Drawer';
+import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
 import { State, Store } from '@sambego/storybook-state';
 import { boolean } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { defaultDrawerBody } from './with-standard-inputs';
 
 const farmBgImage = require('../../assets/farm.jpg');
 
@@ -16,6 +18,11 @@ type DrawerState = {
 const store = new Store<DrawerState>({
     selected: '',
 });
+
+const userGuide = 'User Guide';
+const accessibility = 'Accessibility';
+const notifications = 'Notifications';
+const license = 'License';
 
 export const withCustomHeader = (): StoryFnReactReturnType => {
     const open = boolean('Open', true);
@@ -36,7 +43,47 @@ export const withCustomHeader = (): StoryFnReactReturnType => {
                             </div>
                         }
                     />
-                    {defaultDrawerBody(state, store)}
+                    <DrawerBody>
+                        <DrawerNavGroup
+                            title={'Default Navigation Group'}
+                            activeItem={state.selected}
+                            items={[
+                                {
+                                    title: userGuide,
+                                    itemID: userGuide,
+                                    onClick: (): void => {
+                                        store.set({ selected: userGuide });
+                                    },
+                                    icon: <MoveToInboxIcon />,
+                                },
+                                {
+                                    title: license,
+                                    itemID: license,
+                                    onClick: (): void => {
+                                        store.set({ selected: license });
+                                    },
+                                    icon: <SendIcon />,
+                                },
+                                {
+                                    title: accessibility,
+                                    itemID: accessibility,
+                                    onClick: (): void => {
+                                        store.set({ selected: accessibility });
+                                    },
+                                    icon: <Accessibility />,
+                                },
+                                {
+                                    title: notifications,
+                                    itemID: notifications,
+                                    onClick: (): void => {
+                                        store.set({ selected: notifications });
+                                    },
+                                    icon: <NotificationsActive />,
+                                },
+                            ]}
+                        />
+                        <div style={{ flex: '1 1 0px' }} />
+                    </DrawerBody>
                 </Drawer>,
             ]}
         </State>
