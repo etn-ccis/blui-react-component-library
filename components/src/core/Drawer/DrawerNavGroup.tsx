@@ -134,7 +134,7 @@ export type DrawerNavGroupProps = {
     activeItem?: string;
 
     // shape of the active item background
-    activeBackgroundShape?: 'rounded' | 'square';
+    activeBackgroundShape?: 'round' | 'square';
 
     // The color used for the background
     backgroundColor?: string;
@@ -426,7 +426,7 @@ DrawerNavGroup.propTypes = {
     activeFontColor: PropTypes.string,
     activeIconColor: PropTypes.string,
     activeItem: PropTypes.string,
-    activeBackgroundShape: PropTypes.oneOf(['rounded', 'square']),
+    activeBackgroundShape: PropTypes.oneOf(['round', 'square']),
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
     titleContent: PropTypes.node,
@@ -452,5 +452,5 @@ DrawerNavGroup.propTypes = {
 DrawerNavGroup.defaultProps = {
     divider: true,
     ripple: true,
-    activeBackgroundShape: 'rounded',
+    activeBackgroundShape: 'round',
 };
