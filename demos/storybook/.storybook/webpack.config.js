@@ -9,7 +9,7 @@ module.exports = ({ config }) => {
         use: [
             {
                 loader: require.resolve('awesome-typescript-loader'),
-                options: { noImplicitAny: false }
+                options: { noImplicitAny: false },
             },
             {
                 loader: require.resolve('@storybook/source-loader'),

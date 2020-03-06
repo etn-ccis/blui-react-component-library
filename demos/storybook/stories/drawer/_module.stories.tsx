@@ -10,7 +10,7 @@ const drawerModule = {
     title: `${COMPONENT_SECTION_NAME}/Drawer`,
     component: Drawer,
     decorators: [storyWrapper, padDrawer],
-    parameters: {...storyParams, notes: { markdown: require('./../../../../docs/Drawer.md') } }
+    parameters: { ...storyParams, notes: { markdown: require('./../../../../docs/Drawer.md') } },
 };
 
 /* Display order goes here */

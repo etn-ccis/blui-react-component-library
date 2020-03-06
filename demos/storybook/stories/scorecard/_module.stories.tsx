@@ -6,7 +6,7 @@ const scorecardModule = {
     title: `${COMPONENT_SECTION_NAME}/Scorecard`,
     component: ScoreCard,
     decorators: [storyWrapper],
-    parameters: {...storyParams, notes: { markdown: require('./../../../../docs/ScoreCard.md') } }
+    parameters: { ...storyParams, notes: { markdown: require('./../../../../docs/ScoreCard.md') } },
 };
 
 /* Display order goes here */

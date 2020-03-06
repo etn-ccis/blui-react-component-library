@@ -6,7 +6,7 @@ const userMenuModule = {
     title: `${COMPONENT_SECTION_NAME}/User Menu`,
     component: UserMenu,
     decorators: [storyWrapper],
-    parameters: {...storyParams, notes: { markdown: require('./../../../../docs/UserMenu.md') } }
+    parameters: { ...storyParams, notes: { markdown: require('./../../../../docs/UserMenu.md') } },
 };
 
 /* Display order goes here */

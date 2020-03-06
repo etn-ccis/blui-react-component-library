@@ -6,7 +6,7 @@ const listItemTagModule = {
     title: `${COMPONENT_SECTION_NAME}/List Item Tag`,
     component: ListItemTag,
     decorators: [storyWrapper],
-    parameters: {...storyParams, notes: { markdown: require('./../../../../docs/ListItemTag.md') } }
+    parameters: { ...storyParams, notes: { markdown: require('./../../../../docs/ListItemTag.md') } },
 };
 
 /* Display order goes here */

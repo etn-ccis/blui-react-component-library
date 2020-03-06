@@ -110,7 +110,7 @@ export const inDrawerLayout = (): StoryFnReactReturnType => {
                     height: '100%',
                     padding: '30px',
                     boxSizing: 'border-box',
-                    fontSize: '60px'
+                    fontSize: '60px',
                 }}
             >
                 Body content goes here.

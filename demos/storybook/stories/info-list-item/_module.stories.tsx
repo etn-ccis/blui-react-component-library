@@ -6,7 +6,7 @@ const infoListModule = {
     title: `${COMPONENT_SECTION_NAME}/Info List Item`,
     component: InfoListItem,
     decorators: [storyWrapper],
-    parameters: {...storyParams, notes: { markdown: require('./../../../../docs/InfoListItem.md') } }
+    parameters: { ...storyParams, notes: { markdown: require('./../../../../docs/InfoListItem.md') } },
 };
 
 /* Display order goes here */

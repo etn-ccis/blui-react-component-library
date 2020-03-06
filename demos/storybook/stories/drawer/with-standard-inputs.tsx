@@ -218,7 +218,8 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
         },
     ].slice(0, numberLinksGroup1);
 
-    const links2 = [/*
+    const links2 = [
+        /*
         {
             title: userGuide,
             itemID: userGuide,

@@ -1,4 +1,4 @@
-import {StoryFnReactReturnType} from "@storybook/react/dist/client/preview/types";
+import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
 export const updateTitle = (): void => {
@@ -17,35 +17,40 @@ export const updateTitle = (): void => {
     })();
 };
 
+let prevUrl = '';
 export const storyWrapper = (storyFn: any) => {
+    const currentUrl = window.location.href;
     const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
     banner.setAttribute('style', 'display: unset');
 
-    // If we are currently on the 'Notes' tab.
-    if (window.top.location.href.includes('/info/')) {
-      //  window.top.history.replaceState(null, '', window.top.location.href.replace('/info/', '/story/'));
+
+    // If we are changing stories, default to Canvas tab.
+    if (prevUrl.includes('/story/') && currentUrl.includes('/info/')
+       || prevUrl.includes('/info/') && currentUrl.includes('/story/')) {
+        //  window.top.history.replaceState(null, '', window.top.location.href.replace('/info/', '/story/'));
         //@ts-ignore
-       // banner.children[0].children[0].children[0].children[0].click(); // Click the 'Canvas' button
+        // banner.children[0].children[0].children[0].children[0].click(); // Click the 'Canvas' button
     }
     updateTitle();
+    prevUrl = currentUrl;
     return <>{storyFn()}</>;
 };
 
 export const getReadMe = (): StoryFnReactReturnType => {
     const banner = window.top.document.getElementsByClassName('simplebar-content')[1];
     banner.setAttribute('style', 'display: none');
-    // If we are currently on the 'Canvas' tab.
+    // If we are currently on the Canvas tab, go to Notes tab.
     if (window.top.location.href.includes('/story/')) {
         window.top.history.replaceState(null, '', window.top.location.href.replace('/story/', '/info/'));
         (banner.children[0].children[0].children[0].children[1] as HTMLElement).click(); // click the Notes tab.
     }
     return <></>;
 };
-getReadMe.story = { name: 'README' };
+getReadMe.story = { name: 'ReadMe' };
 
 export const storyParams = {
     options: {
         showPanel: true,
     },
-    notes: {}
+    notes: {},
 };

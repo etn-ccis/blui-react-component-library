@@ -6,7 +6,7 @@ const channelValueModule = {
     title: `${COMPONENT_SECTION_NAME}/Channel Value`,
     component: ChannelValue,
     decorators: [storyWrapper],
-    parameters: {...storyParams, notes: { markdown: require('./../../../../docs/ChannelValue.md') } }
+    parameters: { ...storyParams, notes: { markdown: require('./../../../../docs/ChannelValue.md') } },
 };
 
 /* Display order goes here */
