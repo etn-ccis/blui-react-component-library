@@ -150,6 +150,20 @@ stories.add(
             },
             drawerGroupId
         );
+        const drawerRippleKnob = select('ripple', ['true', 'false', 'undefined'], 'undefined', drawerGroupId);
+        const drawerRipple = ((): boolean | undefined => {
+            switch (drawerRippleKnob) {
+                case 'true':
+                    return true;
+                case 'false':
+                    return false;
+                case 'undefined':
+                    return undefined;
+                default:
+                    return undefined;
+            }
+        })();
+        const drawerChevron = boolean('chevron', false, drawerGroupId);
 
         // Header
         const headerTitle = text('title', 'PX Blue Drawer', headerGroupId);
@@ -308,10 +322,12 @@ stories.add(
         const showFooter = boolean('show footer', true, footerGroupId);
         const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
 
+        // console.log(drawerRipple);
+
         return padDrawer(
             <State store={store}>
                 {(state): JSX.Element[] => [
-                    <Drawer open={open} width={width} key={'drawer'}>
+                    <Drawer open={open} width={width} key={'drawer'} ripple={drawerRipple} chevron={drawerChevron}>
                         <DrawerHeader
                             title={headerTitle}
                             subtitle={headerSubtitle}

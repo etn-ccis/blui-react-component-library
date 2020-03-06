@@ -105,6 +105,12 @@ export type NestedNavItem = {
     // component to be rendered on the right next to the expandIcon
     rightComponent?: JSX.Element;
 
+    // Whether to apply material ripple effect to items
+    ripple?: boolean;
+
+    // Status stripe.
+    statusColor?: string;
+
     // secondary text as a hint text
     subtitle?: string;
 
@@ -113,9 +119,6 @@ export type NestedNavItem = {
 };
 
 export type NavItem = NestedNavItem & {
-    // Status stripe.
-    statusColor?: string;
-
     // icon on the left
     icon?: JSX.Element;
 };
@@ -142,11 +145,16 @@ export type DrawerNavGroupProps = {
     // Whether to have chevrons for all menu items
     chevron?: boolean;
 
-    // Custom element, substitute for title
-    titleContent?: ReactNode;
+    // Icon used to collapse drawer
+    // Overriden by NavItem.expandIcon
+    collapseIcon?: JSX.Element;
 
     // Whether to show a line between all items
     divider?: boolean;
+
+    // Icon used to expand drawer
+    // Overriden by NavItem.expandIcon
+    expandIcon?: JSX.Element;
 
     // The color used for the text
     fontColor?: string;
@@ -179,6 +187,9 @@ export type DrawerNavGroupProps = {
 
     // Font color for group header
     titleColor?: string;
+
+    // Custom element, substitute for title
+    titleContent?: ReactNode;
 };
 
 // renderer function for each nav item / nested nav item
@@ -197,8 +208,9 @@ function NavigationListItem(
         divider: itemDivider,
         itemID,
         chevron: itemChevron,
-        collapseIcon,
-        expandIcon,
+        collapseIcon: itemCollapseIcon,
+        expandIcon: itemExpandIcon,
+        statusColor,
     } = navItem;
     const icon = (navItem as NavItem).icon;
     const { divider: groupDivider = true, nestedDivider } = navGroupProps;
@@ -223,6 +235,8 @@ function NavigationListItem(
         ripple,
         activeItem,
         activeBackgroundShape,
+        expandIcon: groupExpandIcon,
+        collapseIcon: groupCollapseIcon,
     } = navGroupProps;
 
     let divider;
@@ -251,9 +265,14 @@ function NavigationListItem(
         undefined
     );
 
+    const collapseIcon = itemCollapseIcon ? itemCollapseIcon : groupCollapseIcon;
+
     function getExpandIcon(): JSX.Element {
-        if (expandIcon) {
-            return expandIcon;
+        if (itemExpandIcon) {
+            return itemExpandIcon;
+        }
+        if (groupExpandIcon) {
+            return groupExpandIcon;
         }
         if (depth) {
             return <ArrowDropUp />;
@@ -286,8 +305,6 @@ function NavigationListItem(
     const paddingLeft = theme.spacing(depth ? (depth - 1) * 4 + 2 : 2);
 
     const active = activeItem === itemID;
-
-    const statusColor = (navItem as NavItem).statusColor;
 
     return (
         <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
@@ -413,19 +430,16 @@ DrawerNavGroup.propTypes = {
     activeIconColor: PropTypes.string,
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
-    titleContent: PropTypes.element,
+    collapseIcon: PropTypes.element,
+    divider: PropTypes.bool,
+    expandIcon: PropTypes.element,
     fontColor: PropTypes.string,
     iconColor: PropTypes.string,
     // @ts-ignore
     items: PropTypes.arrayOf(
         PropTypes.shape({
-            active: PropTypes.bool,
-            icon: PropTypes.element,
-            onClick: PropTypes.func,
-            statusColor: PropTypes.string,
-            subtitle: PropTypes.string,
-            title: PropTypes.string.isRequired,
-            divider: PropTypes.bool,
+            chevron: PropTypes.bool,
+            collapseIcon: PropTypes.element,
         })
     ).isRequired,
     onSelect: PropTypes.func,
@@ -433,7 +447,7 @@ DrawerNavGroup.propTypes = {
     ripple: PropTypes.bool,
     title: PropTypes.string,
     titleColor: PropTypes.string,
-    divider: PropTypes.bool,
+    titleContent: PropTypes.element,
 };
 
 DrawerNavGroup.defaultProps = {

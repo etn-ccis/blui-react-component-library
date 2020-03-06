@@ -107,6 +107,7 @@ export default () => {
                                     title: titleList[0],
                                     itemID: titleList[0],
                                     icon: <ListIcon />,
+                                    // statusColor: 'red',
                                     onClick: () => setRoute(0),
                                 },
                                 {
@@ -114,7 +115,6 @@ export default () => {
                                     itemID: titleList[1],
                                     subtitle: '2 Alarms',
                                     icon: <NotificationsActive />,
-                                    status: Colors.red[500],
                                     onClick: () => setRoute(1),
                                 },
                                 {
@@ -126,11 +126,13 @@ export default () => {
                                         {
                                             title: titleList[7],
                                             itemID: titleList[7],
+                                            // statusColor: 'red',
                                             onClick: () => setRoute(7),
                                         },
                                         {
                                             title: titleList[8],
                                             itemID: titleList[8],
+                                            // statusColor: 'red',
                                             onClick: () => setRoute(8),
                                         },
                                     ],

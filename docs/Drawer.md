@@ -72,15 +72,18 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 ```
 
 ### DrawerBody API
-| Prop Name               | Description                                    | Type          | Required | Default |
-|-------------------------|------------------------------------------------|---------------|----------|---------|
-| activeBackgroundColor   | Background color for the 'active' item         | `string`      | no       |         |
-| activeFontColor         | Font color for the 'active' item               | `string`      | no       |         |
-| activeIconColor         | Icon color for the 'active' item               | `string`      | no       |         |
-| backgroundColor         | The color used for the background              | `string`      | no       |         |
-| fontColor               | The color used for the text                    | `string`      | no       |         |
-| iconColor               | The color used for icons                       | `string`      | no       |         |
-| titleColor              | The color used for `DrawerNavGroup` title text | `string`      | no       |         |
+| Prop Name               | Description                                               | Type          | Required | Default                    |
+|-------------------------|-----------------------------------------------------------|---------------|----------|----------------------------|
+| activeBackgroundColor   | Background color for the 'active' item                    | `string`      | no       |                            |
+| activeFontColor         | Font color for the 'active' item                          | `string`      | no       |                            |
+| activeIconColor         | Icon color for the 'active' item                          | `string`      | no       |                            |
+| backgroundColor         | The color used for the background                         | `string`      | no       |                            |
+| chevron                 | Whether to have chevrons for menu items with no sub items | `boolean`     | no       | false                      |  
+| collapseIcon            | Icon used to collapse drawer                              | `JSX.Element` | no       | expandIcon rotated 180 deg |  
+| expandIcon              | Icon used to expand drawer                                | `JSX.Element` | no       | `<ExpandLess />`           |  
+| fontColor               | The color used for the text                               | `string`      | no       |                            |
+| iconColor               | The color used for icons                                  | `string`      | no       |                            |
+| titleColor              | The color used for `DrawerNavGroup` title text            | `string`      | no       |                            |
 
 ## DrawerNavGroup 
 A `DrawerNavGroup` will render inside of the `DrawerBody` and is used to organize links. Each group consists of a group title and a series of navigation items. Most style props are inherited from the `DrawerBody` but can be overridden at the NavGroup level if desired.
@@ -96,9 +99,10 @@ We **discourage** you to use menu hierarchies with more than three levels, as it
 | activeItem            | itemID for the 'active' item                                     | `string`                  | no       |           | 
 | activeItemShape       | shape of the active item background                              | `'square'|'rounded'`      | no       | 'rounded' | 
 | backgroundColor       | The color used for the background                                | `string`                  | no       |           |   
-| chevron               | Whether to have chevrons for menu items with no sub items        | `boolean`                 | no       |           |    
-| titleContent          | Custom element, substitute for title                             | `React.Component`         | no       |           |    
-| divider               | Whether to show a line between all items                         | `boolean`                 | no       | true      |    
+| chevron               | Whether to have chevrons for menu items with no sub items        | `boolean`                 | no       | false     |
+| collapseIcon          | Icon used to collapse drawer                                     | `JSX.Element`             | no       | expandIcon rotated 180 deg |  
+| divider               | Whether to show a line between all items                         | `boolean`                 | no       | true      |
+| expandIcon            | Icon used to expand drawer                                       | `JSX.Element`             | no       | `<ExpandLess />` |  
 | fontColor             | The color used for inactive menu items                           | `string`                  | no       | theme.palette.text.secondary |   
 | hidePadding           | Whether to hide the paddings reserved for menu item icons        | `boolean`                 | no       |           | 
 | iconColor             | The color used for the icon                                      | `string`                  | no       |           |   
@@ -108,6 +112,7 @@ We **discourage** you to use menu hierarchies with more than three levels, as it
 | ripple                | Whether to apply material ripple effect to items                 | `boolean`                 | no       | true      |
 | title                 | Text to display in the group header                              | `string`                  | no       |           |  
 | titleColor            | Font color for group header                                      | `string`                  | no       |           | 
+| titleContent          | Custom element, substitute for title                             | `React.Component`         | no       |           |    
 
 #### NavItem Object
 The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). NavItem can also include a list of `NestedNavItem` to build a tree (see the section "NestedNavItem Object" below).

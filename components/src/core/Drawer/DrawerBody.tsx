@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
 
 const useStyles = makeStyles({
     root: {
@@ -17,43 +18,72 @@ export type DrawerBodyProps = {
     activeIconColor?: string;
     backgroundColor?: string;
     chevron?: boolean;
+    collapseIcon?: JSX.Element;
+    expandIcon?: JSX.Element;
     fontColor?: string;
     iconColor?: string;
     onSelect?: Function;
     open?: boolean;
+    ripple?: boolean;
     titleColor?: string;
 };
 
-export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {
-    const classes = useStyles(props);
-    const { backgroundColor } = props;
-    const children = React.Children.toArray(props.children);
+export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
+    const classes = useStyles(bodyProps);
+    const { backgroundColor } = bodyProps;
+    const children = React.Children.toArray(bodyProps.children);
     return (
         <div className={classes.root} style={{ backgroundColor }}>
-            {children.map((child: any) => {
+            {children.map((child: any, index) => {
                 if (!child) {
                     return null;
                 }
 
-                const isNavGroup = child.type && child.type.displayName === 'DrawerNavGroup';
-                const groupProps = child.props;
-                return React.cloneElement(
-                    child,
-                    isNavGroup
-                        ? {
-                              activeBackgroundColor: groupProps.activeBackgroundColor || props.activeBackgroundColor,
-                              activeFontColor: groupProps.activeFontColor || props.activeFontColor,
-                              activeIconColor: groupProps.activeIconColor || props.activeIconColor,
-                              backgroundColor: groupProps.backgroundColor || props.backgroundColor,
-                              chevron: groupProps.chevron === undefined ? props.chevron : groupProps.chevron,
-                              fontColor: groupProps.fontColor || props.fontColor,
-                              iconColor: groupProps.iconColor || props.iconColor,
-                              onSelect: props.onSelect,
-                              open: props.open,
-                              titleColor: groupProps.titleColor || props.titleColor,
-                          }
-                        : {}
+                if (child.type && child.type.displayName !== 'DrawerNavGroup') return null;
+                // const isNavGroup = child.type && child.type.displayName === 'DrawerNavGroup';
+                const groupProps: DrawerNavGroupProps = child.props;
+
+                return (
+                    <DrawerNavGroup
+                        {...groupProps}
+                        key={index.toString()}
+                        activeBackgroundColor={groupProps.activeBackgroundColor || bodyProps.activeBackgroundColor}
+                        activeFontColor={groupProps.activeFontColor || bodyProps.activeFontColor}
+                        activeIconColor={groupProps.activeIconColor || bodyProps.activeIconColor}
+                        backgroundColor={groupProps.backgroundColor || bodyProps.backgroundColor}
+                        chevron={groupProps.chevron === undefined ? bodyProps.chevron : groupProps.chevron}
+                        collapseIcon={groupProps.collapseIcon || bodyProps.collapseIcon}
+                        expandIcon={groupProps.expandIcon || bodyProps.expandIcon}
+                        fontColor={groupProps.fontColor || bodyProps.fontColor}
+                        iconColor={groupProps.iconColor || bodyProps.iconColor}
+                        onSelect={bodyProps.onSelect}
+                        open={bodyProps.open}
+                        ripple={groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple}
+                        titleColor={groupProps.titleColor || bodyProps.titleColor}
+                    />
                 );
+
+                // return React.cloneElement(
+                //     child,
+                //     isNavGroup
+                //         ? {
+                //               activeBackgroundColor:
+                //                   groupProps.activeBackgroundColor || bodyProps.activeBackgroundColor,
+                //               activeFontColor: groupProps.activeFontColor || bodyProps.activeFontColor,
+                //               activeIconColor: groupProps.activeIconColor || bodyProps.activeIconColor,
+                //               backgroundColor: groupProps.backgroundColor || bodyProps.backgroundColor,
+                //               chevron: groupProps.chevron === undefined ? bodyProps.chevron : groupProps.chevron,
+                //               collapseIcon: groupProps.collapseIcon || bodyProps.collapseIcon,
+                //               expandIcon: groupProps.expandIcon || bodyProps.expandIcon,
+                //               fontColor: groupProps.fontColor || bodyProps.fontColor,
+                //               iconColor: groupProps.iconColor || bodyProps.iconColor,
+                //               onSelect: bodyProps.onSelect,
+                //               open: bodyProps.open,
+                //               ripple: groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple,
+                //               titleColor: groupProps.titleColor || bodyProps.titleColor,
+                //           }
+                //         : {}
+                // );
             })}
         </div>
     );
@@ -66,10 +96,17 @@ DrawerBody.propTypes = {
     activeIconColor: PropTypes.string,
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
+    collapseIcon: PropTypes.element,
+    expandIcon: PropTypes.element,
     fontColor: PropTypes.string,
     iconColor: PropTypes.string,
     onSelect: PropTypes.func,
     open: PropTypes.bool,
+    ripple: PropTypes.bool,
     titleColor: PropTypes.string,
 };
-DrawerBody.defaultProps = {};
+
+DrawerBody.defaultProps = {
+    ripple: false,
+    chevron: false,
+};

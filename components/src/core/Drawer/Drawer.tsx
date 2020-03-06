@@ -27,12 +27,16 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type DrawerComponentProps = {
+    chevron?: boolean;
+    collapseIcon?: JSX.Element;
+    expandIcon?: JSX.Element;
     open: boolean;
+    ripple?: boolean;
     width?: number;
 } & Omit<DrawerProps, 'translate'>;
 
 export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
-    let hoverDelay: any;
+    let hoverDelay: NodeJS.Timeout;
     const classes = useStyles(props);
     const theme = useTheme();
     const [hover, setHover] = useState(false);
@@ -65,9 +69,13 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
             .map((child) =>
                 React.cloneElement(child, {
                     open: isDrawerOpen(),
+                    chevron: props.chevron,
+                    collapseIcon: props.collapseIcon,
+                    expandIcon: props.expandIcon,
                     onSelect: () => {
                         setHover(false);
                     },
+                    ripple: props.ripple,
                 })
             );
 
@@ -136,6 +144,10 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
 
 DrawerComponent.displayName = 'PXBlueDrawer';
 DrawerComponent.propTypes = {
+    chevron: PropTypes.bool,
+    collapseIcon: PropTypes.element,
+    expandIcon: PropTypes.element,
     open: PropTypes.bool.isRequired,
+    ripple: PropTypes.bool,
     width: PropTypes.number,
 };
