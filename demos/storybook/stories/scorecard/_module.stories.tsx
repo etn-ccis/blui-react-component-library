@@ -10,6 +10,7 @@ const scorecardModule = {
 };
 
 /* Display order goes here */
+export { getReadMeStory } from '../../src/utils';
 export * from './with-min-config';
 export * from './with-background-and-actions';
 export { withHeroes } from './with-heroes';

@@ -10,6 +10,7 @@ const listItemTagModule = {
 };
 
 /* Display order goes here */
+export { getReadMeStory } from '../../src/utils';
 export * from './with-diff-colors';
 export * from './with-typography-props';
 

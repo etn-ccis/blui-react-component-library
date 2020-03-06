@@ -10,6 +10,7 @@ const heroModule = {
 };
 
 /* Display order goes here */
+export { getReadMeStory } from '../../src/utils';
 export * from './with-basic-props';
 export * from './with-channelValue-children';
 export * from './in-a-banner';

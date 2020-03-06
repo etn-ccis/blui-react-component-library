@@ -10,6 +10,7 @@ const userMenuModule = {
 };
 
 /* Display order goes here */
+export { getReadMeStory } from '../../src/utils';
 export { withDefaultColors } from './with-default-colors';
 export * from './with-custom-colors';
 export * from './with-non-text-avatar';

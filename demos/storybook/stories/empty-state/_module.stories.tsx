@@ -10,6 +10,7 @@ const emptyStateModule = {
 };
 
 /* Display order goes here */
+export { getReadMeStory } from '../../src/utils';
 export * from './as-text-only';
 export * from './with-actions';
 export * from './as-a-placeholder';

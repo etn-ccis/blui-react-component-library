@@ -14,6 +14,7 @@ const drawerModule = {
 };
 
 /* Display order goes here */
+export { getReadMeStory } from '../../src/utils';
 export { withStandardInputs } from './with-standard-inputs';
 export * from './with-custom-header';
 export * from './with-subheader';

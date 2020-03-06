@@ -10,6 +10,7 @@ const spacerModule = {
 };
 
 /* Display order goes here */
+export { getReadMeStory } from '../../src/utils';
 export * from './flex-layout';
 export * from './static-layout';
 

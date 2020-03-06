@@ -2,7 +2,7 @@ import { Button, createStyles, makeStyles, Typography } from '@material-ui/core'
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { appliedTheme } from '../.storybook/config';
-import {hideTopBanner, selectCanvasTab} from '../src/utils';
+import {hideTopBanner, selectCanvasTab, storyWrapper} from '../src/utils';
 import * as Colors from '@pxblue/colors';
 const backgroundImage = require('../assets/circles-bg.svg');
 
@@ -69,18 +69,12 @@ stories.addParameters({
    },
 });
 
-const goToCanvas = (): void => {
-   // If we are currently on the 'Notes' tab.
-   if (window.top.location.href.includes('/info/')) {
-      selectCanvasTab();
-   }
-};
+stories.addDecorator(storyWrapper);
 
 stories.add('to pxblue', () => {
    const classes = useStyles();
    const icon = require('../assets/pxb-icon.svg');
    hideTopBanner();
-   goToCanvas();
    return (
       <div className={classes.root}>
          <div className={classes.container}>

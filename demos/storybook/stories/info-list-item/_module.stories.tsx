@@ -10,6 +10,7 @@ const infoListModule = {
 };
 
 /* Display order goes here */
+export { getReadMeStory } from '../../src/utils';
 export * from './basic-list-item';
 export * from './with-icon';
 export * from './with-long-text';
