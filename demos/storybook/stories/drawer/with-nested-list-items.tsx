@@ -239,7 +239,7 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
             {(state): JSX.Element[] => [
                 <Drawer open={open} key={'drawer'}>
                     <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
-                    {drawerItemList(state, store)}
+                    {drawerItemList(state)}
                 </Drawer>,
             ]}
         </State>

@@ -1,6 +1,6 @@
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import {README_STORY_NAME} from "./constants";
+import { README_STORY_NAME } from './constants';
 
 const STORY_PATH = '/story/';
 const NOTES_PATH = '/info/';
@@ -42,7 +42,7 @@ export const storyWrapper = (storyFn: any): any => {
     const prevStoryUrl = prevUrl.replace(STORY_PATH, '').replace(NOTES_PATH, '');
 
     // If user changed stories while on the Notes tab, but not from the README story.
-    if (currStoryUrl !==  prevStoryUrl && !currentUrl.includes('get-read-me') && currentUrl.includes(NOTES_PATH)) {
+    if (currStoryUrl !== prevStoryUrl && !currentUrl.includes('get-read-me') && currentUrl.includes(NOTES_PATH)) {
         selectCanvasTab();
     }
     prevUrl = currentUrl;

@@ -31,56 +31,54 @@ const localStore = new Store<DrawerState>({
     selected: '',
 });
 
-export const defaultDrawerBody = (state: DrawerState, store: Store<DrawerState>): JSX.Element => {
-    const userGuide = 'User Guide';
-    const license = 'License';
-    const accessibility = 'Accessibility';
-    const notifications = 'Notifications';
+const userGuide = 'User Guide';
+const license = 'License';
+const accessibility = 'Accessibility';
+const notifications = 'Notifications';
 
-    return (
-        <DrawerBody>
-            <DrawerNavGroup
-                title={'Default Navigation Group'}
-                activeItem={state.selected}
-                items={[
-                    {
-                        title: userGuide,
-                        itemID: userGuide,
-                        onClick: (): void => {
-                            store.set({ selected: userGuide });
-                        },
-                        icon: <MoveToInboxIcon />,
+export const defaultDrawerBody = (state: DrawerState, store: Store<DrawerState>): JSX.Element => (
+    <DrawerBody>
+        <DrawerNavGroup
+            title={'Default Navigation Group'}
+            activeItem={state.selected}
+            items={[
+                {
+                    title: userGuide,
+                    itemID: userGuide,
+                    onClick: (): void => {
+                        store.set({ selected: userGuide });
                     },
-                    {
-                        title: license,
-                        itemID: license,
-                        onClick: (): void => {
-                            store.set({ selected: license });
-                        },
-                        icon: <SendIcon />,
+                    icon: <MoveToInboxIcon />,
+                },
+                {
+                    title: license,
+                    itemID: license,
+                    onClick: (): void => {
+                        store.set({ selected: license });
                     },
-                    {
-                        title: accessibility,
-                        itemID: accessibility,
-                        onClick: (): void => {
-                            store.set({ selected: accessibility });
-                        },
-                        icon: <Accessibility />,
+                    icon: <SendIcon />,
+                },
+                {
+                    title: accessibility,
+                    itemID: accessibility,
+                    onClick: (): void => {
+                        store.set({ selected: accessibility });
                     },
-                    {
-                        title: notifications,
-                        itemID: notifications,
-                        onClick: (): void => {
-                            store.set({ selected: notifications });
-                        },
-                        icon: <NotificationsActive />,
+                    icon: <Accessibility />,
+                },
+                {
+                    title: notifications,
+                    itemID: notifications,
+                    onClick: (): void => {
+                        store.set({ selected: notifications });
                     },
-                ]}
-            />
-            <div style={{ flex: '1 1 0px' }} />
-        </DrawerBody>
-    );
-};
+                    icon: <NotificationsActive />,
+                },
+            ]}
+        />
+        <div style={{ flex: '1 1 0px' }} />
+    </DrawerBody>
+);
 
 export const withStandardInputs = (): StoryFnReactReturnType => {
     const drawerGroupId = 'Drawer';
@@ -104,7 +102,6 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
     // Header
     const headerTitle = text('title', 'PX Blue Drawer', headerGroupId);
     const headerSubtitle = text('subtitle', 'Organize your menu items here', headerGroupId);
-
     const headerIconOptions = select('icon', ['Menu', 'Fitness', 'None'], 'Menu', headerGroupId);
     let headerIcon: JSX.Element;
     switch (headerIconOptions) {
@@ -219,7 +216,6 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
     ].slice(0, numberLinksGroup1);
 
     const links2 = [
-        /*
         {
             title: userGuide,
             itemID: userGuide,
@@ -252,7 +248,7 @@ export const withStandardInputs = (): StoryFnReactReturnType => {
                 localStore.set({ selected: notifications });
             },
             icon: <NotificationsActive />,
-        }, */
+        },
     ].slice(0, numberLinksGroup2);
 
     // Footer
