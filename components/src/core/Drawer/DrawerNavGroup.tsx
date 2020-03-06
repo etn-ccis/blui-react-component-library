@@ -105,6 +105,9 @@ export type NestedNavItem = {
     // component to be rendered on the right next to the expandIcon
     rightComponent?: JSX.Element;
 
+    // Status stripe color
+    statusColor?: string;
+
     // secondary text as a hint text
     subtitle?: string;
 
@@ -113,9 +116,6 @@ export type NestedNavItem = {
 };
 
 export type NavItem = NestedNavItem & {
-    // Status stripe.
-    statusColor?: string;
-
     // icon on the left
     icon?: JSX.Element;
 };
@@ -200,7 +200,8 @@ function NavigationListItem(
         collapseIcon,
         expandIcon,
     } = navItem;
-    const icon = (navItem as NavItem).icon;
+    // only allow icons for the top level items
+    const icon = (!depth) ? (navItem as NavItem).icon : undefined;
     const { divider: groupDivider = true, nestedDivider } = navGroupProps;
 
     const classes = useStyles(navGroupProps);
@@ -407,25 +408,37 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 
 DrawerNavGroup.displayName = 'DrawerNavGroup';
 
+const NestedNavItemPropTypes = {
+    chevron: PropTypes.bool,
+    collapseIcon: PropTypes.element,
+    divider: PropTypes.bool,
+    expandIcon: PropTypes.element,
+    itemID: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    rightComponent: PropTypes.element,
+    statusColor: PropTypes.string,
+    subtitle: PropTypes.string,
+    title: PropTypes.string.isRequired,
+};
+
 DrawerNavGroup.propTypes = {
     activeBackgroundColor: PropTypes.string,
     activeFontColor: PropTypes.string,
     activeIconColor: PropTypes.string,
+    activeItem: PropTypes.string,
+    activeBackgroundShape: PropTypes.oneOf(['rounded', 'square']),
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
-    titleContent: PropTypes.element,
+    titleContent: PropTypes.node,
     fontColor: PropTypes.string,
+    hidePadding: PropTypes.bool,
     iconColor: PropTypes.string,
     // @ts-ignore
     items: PropTypes.arrayOf(
         PropTypes.shape({
-            active: PropTypes.bool,
+            items: PropTypes.arrayOf(PropTypes.shape(NestedNavItemPropTypes)),
             icon: PropTypes.element,
-            onClick: PropTypes.func,
-            statusColor: PropTypes.string,
-            subtitle: PropTypes.string,
-            title: PropTypes.string.isRequired,
-            divider: PropTypes.bool,
+            ...NestedNavItemPropTypes,
         })
     ).isRequired,
     onSelect: PropTypes.func,

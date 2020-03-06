@@ -175,7 +175,7 @@ If your Drawer needs to include a hierarchied menu item tree rather than just a 
 />
 ```
 
-The API of `NestedNavItem` is the same as that of `NavItem`, except the `statusColor` and `icon` fields are not allowed. Besides, the default `expandIcon` prop is `<ArrowDropUp />`.
+The API of `NestedNavItem` is the same as that of `NavItem`, except that the `icon` field is not allowed. Besides, the default `expandIcon` prop is `<ArrowDropUp />`.
 
 ## Drawer Footer
 The `DrawerFooter` is an optional section that renders at the bottom of the `Drawer`. It can be used to add any custom content.
