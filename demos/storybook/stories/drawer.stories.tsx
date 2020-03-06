@@ -130,17 +130,31 @@ export const defaultDrawerBody = (state: DrawerState): JSX.Element => (
     </DrawerBody>
 );
 
+const switchBoolean = (value: 'true' | 'false' | 'undefined'): boolean | undefined => {
+    switch (value) {
+        case 'true':
+            return true;
+        case 'false':
+            return false;
+        case 'undefined':
+            return undefined;
+        default:
+            return undefined;
+    }
+};
+
 stories.add(
     'with standard inputs',
     (): JSX.Element => {
         const drawerGroupId = 'Drawer';
-        const headerGroupId = 'Header';
-        const bodyGroupId = 'Body';
-        const footerGroupId = 'Footer';
+        const headerGroupId = 'DrawerHeader';
+        const bodyGroupId = 'DrawerBody';
+        const navGroupGroupId = 'DrawerNavGroup (NavGroup 1)';
+        const footerGroupId = 'DrawerFooter';
 
-        const open = boolean('Open', true, drawerGroupId);
+        const open = boolean('open', true, drawerGroupId);
         const width = number(
-            'Width',
+            'width',
             350,
             {
                 range: true,
@@ -151,19 +165,9 @@ stories.add(
             drawerGroupId
         );
         const drawerRippleKnob = select('ripple', ['true', 'false', 'undefined'], 'undefined', drawerGroupId);
-        const drawerRipple = ((): boolean | undefined => {
-            switch (drawerRippleKnob) {
-                case 'true':
-                    return true;
-                case 'false':
-                    return false;
-                case 'undefined':
-                    return undefined;
-                default:
-                    return undefined;
-            }
-        })();
-        const drawerChevron = boolean('chevron', false, drawerGroupId);
+        const drawerRipple = switchBoolean(drawerRippleKnob);
+        const drawerChevronKnob = select('chevron', ['true', 'false', 'undefined'], 'undefined', drawerGroupId);
+        const drawerChevron = switchBoolean(drawerChevronKnob);
 
         // Header
         const headerTitle = text('title', 'PX Blue Drawer', headerGroupId);
@@ -195,8 +199,13 @@ stories.add(
         const bodyActiveFontColor = color('activeFontColor', Colors.blue[500], bodyGroupId);
         const bodyActiveIconColor = color('activeIconColor', Colors.blue[500], bodyGroupId);
         const bodyActiveBackgroundColor = color('activeBackgroundColor', Colors.blue[50], bodyGroupId);
-        const bodyChevron = boolean('chevron', false, bodyGroupId);
         const bodyDividers = boolean('showDividers', true, bodyGroupId);
+
+        // NavGroup
+        const navGroupRippleKnob = select('ripple', ['true', 'false', 'undefined'], 'undefined', navGroupGroupId);
+        const navGroupRipple = switchBoolean(navGroupRippleKnob);
+        const navGroupChevronKnob = select('chevron', ['true', 'false', 'undefined'], 'undefined', navGroupGroupId);
+        const navGroupChevron = switchBoolean(navGroupChevronKnob);
 
         const numberLinksGroup1 = number(
             'links1',
@@ -322,8 +331,6 @@ stories.add(
         const showFooter = boolean('show footer', true, footerGroupId);
         const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
 
-        // console.log(drawerRipple);
-
         return padDrawer(
             <State store={store}>
                 {(state): JSX.Element[] => [
@@ -344,13 +351,14 @@ stories.add(
                             activeFontColor={bodyActiveFontColor}
                             activeBackgroundColor={bodyActiveBackgroundColor}
                             activeIconColor={bodyActiveIconColor}
-                            chevron={bodyChevron}
                         >
                             <DrawerNavGroup
                                 activeItem={state.selected}
                                 divider={bodyDividers}
                                 items={links1}
                                 title={groupTitle1}
+                                ripple={navGroupRipple}
+                                chevron={navGroupChevron}
                             />
                             <DrawerNavGroup
                                 divider={bodyDividers}
@@ -493,14 +501,24 @@ stories.add(
 stories.add(
     'with nested list items',
     (): JSX.Element => {
-        const DrawerNavGroupID = 'DrawerNavGroup';
-        const open = boolean('Open', true, DrawerNavGroupID);
-        const divider = boolean('divider', true, DrawerNavGroupID);
+        // Drawer
+        const DrawerID = 'Drawer';
+        const open = boolean('open', true, DrawerID);
+        const drawerChevronKnob = select('chevron', ['true', 'false', 'undefined'], 'undefined', DrawerID);
+        const drawerChevron = switchBoolean(drawerChevronKnob);
+        const drawerDividerKnob = select('divider', ['true', 'false', 'undefined'], 'undefined', DrawerID);
+        const drawerDivider = switchBoolean(drawerDividerKnob);
+
+        // DrawerNavGroup Group 1
+        const DrawerNavGroupID = 'DrawerNavGroup (My Group)';
+        const navGroupDividerKnob = select('divider', ['true', 'false', 'undefined'], 'undefined', DrawerNavGroupID);
+        const navGroupDivider = switchBoolean(navGroupDividerKnob);
         const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
-        const ripple = boolean('ripple', true, DrawerNavGroupID);
-        const chevron = boolean('chevron', false, DrawerNavGroupID);
+        const navGroupChevronKnob = select('chevron', ['true', 'false', 'undefined'], 'undefined', DrawerNavGroupID);
+        const navGroupChevron = switchBoolean(navGroupChevronKnob);
         const rounded = select('activeBackgroundShape', ['rounded', 'square'], 'rounded', DrawerNavGroupID);
 
+        // NavItem
         const NavItemID = 'NavItem';
         const useIcon = boolean('Use icons', true, NavItemID);
         const useRightComponent = select(
@@ -509,7 +527,12 @@ stories.add(
             'undefined',
             NavItemID
         );
-        const useExpandIcon = select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', NavItemID);
+        const navItemExpandIconKnob = select(
+            'expandIcon',
+            ['undefined', '<Add />', '<PinDrop />'],
+            'undefined',
+            NavItemID
+        );
         const useCollapseIcon = select(
             'collapseIcon',
             ['undefined', '<Remove />', '<AddAPhoto />'],
@@ -530,8 +553,8 @@ stories.add(
             }
         })();
 
-        const expandIcon = ((): JSX.Element | undefined => {
-            switch (useExpandIcon) {
+        const NavItemExpandIcon = ((): JSX.Element | undefined => {
+            switch (navItemExpandIconKnob) {
                 case 'undefined':
                     return undefined;
                 case '<Add />':
@@ -559,22 +582,20 @@ stories.add(
         const drawerItemList = (state: DrawerState): JSX.Element => (
             <DrawerBody>
                 <DrawerNavGroup
-                    divider={divider}
+                    divider={navGroupDivider}
                     nestedDivider={nestedDivider}
-                    title={'Default Navigation Group'}
+                    title={'My Group'}
                     hidePadding={!useIcon}
-                    ripple={ripple}
                     activeItem={state.selected}
-                    titleColor={Colors.black[500]}
                     activeBackgroundShape={rounded}
-                    chevron={chevron}
+                    chevron={navGroupChevron}
                     items={[
                         {
                             title: userGuide,
                             icon: useIcon ? <AddAPhoto /> : undefined,
                             itemID: userGuide,
                             rightComponent: rightComponent,
-                            expandIcon: expandIcon,
+                            expandIcon: NavItemExpandIcon,
                             collapseIcon: collapseIcon,
                             items: [
                                 {
@@ -689,14 +710,138 @@ stories.add(
                         },
                     ]}
                 />
-                <div style={{ flex: '1 1 0px' }} />
+                <DrawerNavGroup
+                    title={'NavGroup in its default states'}
+                    hidePadding={!useIcon}
+                    activeItem={state.selected}
+                    items={[
+                        {
+                            title: userGuide,
+                            icon: useIcon ? <AddAPhoto /> : undefined,
+                            itemID: userGuide,
+                            rightComponent: rightComponent,
+                            expandIcon: NavItemExpandIcon,
+                            collapseIcon: collapseIcon,
+                            items: [
+                                {
+                                    title: gettingStarted,
+                                    itemID: gettingStarted,
+                                    subtitle: 'Introduction to Eaton',
+                                    onClick: (): void => {
+                                        store.set({ selected: gettingStarted });
+                                    },
+                                },
+                                {
+                                    title: tutorials,
+                                    itemID: tutorials,
+                                    items: [
+                                        {
+                                            title: forDevelopers,
+                                            itemID: forDevelopers,
+                                            onClick: (): void => {
+                                                store.set({ selected: forDevelopers });
+                                            },
+                                        },
+                                        {
+                                            title: forDesigners,
+                                            itemID: forDesigners,
+                                            items: [
+                                                {
+                                                    title: componentLibrary,
+                                                    itemID: componentLibrary,
+                                                    onClick: (): void => {
+                                                        store.set({ selected: componentLibrary });
+                                                    },
+                                                },
+                                                {
+                                                    title: typographyRules,
+                                                    itemID: typographyRules,
+                                                    onClick: (): void => {
+                                                        store.set({ selected: typographyRules });
+                                                    },
+                                                },
+                                                {
+                                                    title: themeRules,
+                                                    itemID: themeRules,
+                                                    onClick: (): void => {
+                                                        store.set({ selected: themeRules });
+                                                    },
+                                                },
+                                            ],
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: environmentSetup,
+                                    itemID: environmentSetup,
+                                    onClick: (): void => {
+                                        store.set({ selected: environmentSetup });
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            title: community,
+                            itemID: community,
+                            icon: useIcon ? <FitnessCenter /> : undefined,
+                            onClick: (): void => {
+                                store.set({ selected: community });
+                            },
+                            items: [
+                                {
+                                    title: license,
+                                    itemID: license,
+                                    onClick: (): void => {
+                                        store.set({ selected: license });
+                                    },
+                                },
+                                {
+                                    title: contribute,
+                                    itemID: contribute,
+                                    items: [
+                                        {
+                                            title: hallOfFame,
+                                            itemID: hallOfFame,
+                                            onClick: (): void => {
+                                                store.set({ selected: hallOfFame });
+                                            },
+                                        },
+                                        {
+                                            title: contributingGuide,
+                                            itemID: contributingGuide,
+                                            onClick: (): void => {
+                                                store.set({ selected: contributingGuide });
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            title: accessibility,
+                            itemID: accessibility,
+                            icon: useIcon ? <Accessibility /> : undefined,
+                            onClick: (): void => {
+                                store.set({ selected: accessibility });
+                            },
+                        },
+                        {
+                            title: notifications,
+                            itemID: notifications,
+                            icon: useIcon ? <NotificationsActive /> : undefined,
+                            onClick: (): void => {
+                                store.set({ selected: notifications });
+                            },
+                        },
+                    ]}
+                />
             </DrawerBody>
         );
 
         return padDrawer(
             <State store={store}>
                 {(state): JSX.Element[] => [
-                    <Drawer open={open} key={'drawer'}>
+                    <Drawer open={open} key={'drawer'} chevron={drawerChevron} divider={drawerDivider}>
                         <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
                         {drawerItemList(state)}
                     </Drawer>,

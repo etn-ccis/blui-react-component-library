@@ -451,7 +451,5 @@ DrawerNavGroup.propTypes = {
 };
 
 DrawerNavGroup.defaultProps = {
-    divider: true,
-    ripple: true,
     activeBackgroundShape: 'rounded',
 };

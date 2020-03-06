@@ -33,6 +33,7 @@ export type DrawerComponentProps = {
     open: boolean;
     ripple?: boolean;
     width?: number;
+    divider?: boolean;
 } & Omit<DrawerProps, 'translate'>;
 
 export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
@@ -40,6 +41,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const classes = useStyles(props);
     const theme = useTheme();
     const [hover, setHover] = useState(false);
+    const { chevron, ripple, collapseIcon, expandIcon, divider, ...drawerProps } = props;
 
     const isDrawerOpen = (): boolean => hover || props.open;
 
@@ -69,13 +71,14 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
             .map((child) =>
                 React.cloneElement(child, {
                     open: isDrawerOpen(),
-                    chevron: props.chevron,
-                    collapseIcon: props.collapseIcon,
-                    expandIcon: props.expandIcon,
+                    chevron: chevron,
+                    collapseIcon: collapseIcon,
+                    expandIcon: expandIcon,
+                    divider: divider,
                     onSelect: () => {
                         setHover(false);
                     },
-                    ripple: props.ripple,
+                    ripple: ripple,
                 })
             );
 
@@ -105,7 +108,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 
     const getMobileNavigationMenu = (): JSX.Element => (
-        <Drawer {...props} open={isDrawerOpen()} classes={{ paper: classes.drawer }}>
+        <Drawer {...drawerProps} open={isDrawerOpen()} classes={{ paper: classes.drawer }}>
             <div className={`${classes.smooth} ${classes.content}`} style={{ width: '100%' }}>
                 {getDrawerContents()}
             </div>
@@ -118,7 +121,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         return (
             <>
                 <Drawer
-                    {...props}
+                    {...drawerProps}
                     variant="permanent"
                     open={isDrawerOpen()}
                     classes={{ paper: classes.paper }}
@@ -150,4 +153,9 @@ DrawerComponent.propTypes = {
     open: PropTypes.bool.isRequired,
     ripple: PropTypes.bool,
     width: PropTypes.number,
+};
+DrawerComponent.defaultProps = {
+    ripple: true,
+    chevron: false,
+    divider: false,
 };

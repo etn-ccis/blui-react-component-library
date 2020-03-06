@@ -19,6 +19,7 @@ export type DrawerBodyProps = {
     backgroundColor?: string;
     chevron?: boolean;
     collapseIcon?: JSX.Element;
+    divider?: boolean;
     expandIcon?: JSX.Element;
     fontColor?: string;
     iconColor?: string;
@@ -40,7 +41,6 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                 }
 
                 if (child.type && child.type.displayName !== 'DrawerNavGroup') return null;
-                // const isNavGroup = child.type && child.type.displayName === 'DrawerNavGroup';
                 const groupProps: DrawerNavGroupProps = child.props;
 
                 return (
@@ -53,6 +53,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                         backgroundColor={groupProps.backgroundColor || bodyProps.backgroundColor}
                         chevron={groupProps.chevron === undefined ? bodyProps.chevron : groupProps.chevron}
                         collapseIcon={groupProps.collapseIcon || bodyProps.collapseIcon}
+                        divider={groupProps.divider === undefined ? bodyProps.divider : groupProps.chevron}
                         expandIcon={groupProps.expandIcon || bodyProps.expandIcon}
                         fontColor={groupProps.fontColor || bodyProps.fontColor}
                         iconColor={groupProps.iconColor || bodyProps.iconColor}
@@ -62,28 +63,6 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                         titleColor={groupProps.titleColor || bodyProps.titleColor}
                     />
                 );
-
-                // return React.cloneElement(
-                //     child,
-                //     isNavGroup
-                //         ? {
-                //               activeBackgroundColor:
-                //                   groupProps.activeBackgroundColor || bodyProps.activeBackgroundColor,
-                //               activeFontColor: groupProps.activeFontColor || bodyProps.activeFontColor,
-                //               activeIconColor: groupProps.activeIconColor || bodyProps.activeIconColor,
-                //               backgroundColor: groupProps.backgroundColor || bodyProps.backgroundColor,
-                //               chevron: groupProps.chevron === undefined ? bodyProps.chevron : groupProps.chevron,
-                //               collapseIcon: groupProps.collapseIcon || bodyProps.collapseIcon,
-                //               expandIcon: groupProps.expandIcon || bodyProps.expandIcon,
-                //               fontColor: groupProps.fontColor || bodyProps.fontColor,
-                //               iconColor: groupProps.iconColor || bodyProps.iconColor,
-                //               onSelect: bodyProps.onSelect,
-                //               open: bodyProps.open,
-                //               ripple: groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple,
-                //               titleColor: groupProps.titleColor || bodyProps.titleColor,
-                //           }
-                //         : {}
-                // );
             })}
         </div>
     );
@@ -97,6 +76,7 @@ DrawerBody.propTypes = {
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
     collapseIcon: PropTypes.element,
+    divider: PropTypes.bool,
     expandIcon: PropTypes.element,
     fontColor: PropTypes.string,
     iconColor: PropTypes.string,
@@ -106,7 +86,4 @@ DrawerBody.propTypes = {
     titleColor: PropTypes.string,
 };
 
-DrawerBody.defaultProps = {
-    ripple: false,
-    chevron: false,
-};
+DrawerBody.defaultProps = {};
