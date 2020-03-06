@@ -1,6 +1,5 @@
 import { Typography } from '@material-ui/core';
-import MoveToInboxIcon from '@material-ui/core/SvgIcon/SvgIcon';
-import { Accessibility, NotificationsActive } from '@material-ui/icons';
+import {Accessibility, AddAPhoto, NotificationsActive} from '@material-ui/icons';
 import SendIcon from '@material-ui/icons/Send';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
@@ -54,7 +53,7 @@ export const withCustomHeader = (): StoryFnReactReturnType => {
                                     onClick: (): void => {
                                         store.set({ selected: userGuide });
                                     },
-                                    icon: <MoveToInboxIcon />,
+                                    icon: <AddAPhoto />,
                                 },
                                 {
                                     title: license,

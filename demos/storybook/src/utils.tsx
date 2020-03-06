@@ -2,10 +2,19 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { README_STORY_NAME } from './constants';
 
+let banner: HTMLElement;
+
 const STORY_PATH = '/story/';
 const NOTES_PATH = '/info/';
-const getBanner = (): HTMLElement => window.top.document.getElementsByClassName('simplebar-content')[1] as HTMLElement;
+const getBanner = (): HTMLElement => {
+    if (!banner) {
+        banner = window.top.document.getElementsByClassName('simplebar-content')[1] as HTMLElement;
+    }
+    return banner;
+};
 const setBannerStyle = (display: string): void => getBanner().setAttribute('style', `display: ${display}`);
+
+
 export const showTopBanner = (): void => setBannerStyle('unset');
 export const hideTopBanner = (): void => setBannerStyle('none');
 
