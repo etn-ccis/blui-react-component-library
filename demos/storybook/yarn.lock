@@ -1517,10 +1517,10 @@
   resolved "https://registry.npmjs.org/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
-"@pxblue/react-components@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/@pxblue/react-components/-/react-components-2.1.0.tgz#e9a0337e5c8ce63e8ae253b44f9dbdb3e5e5a199"
-  integrity sha512-5vAUhgNjy1StEWcCOhLEYf0O+2ROqI1v8UPQ4pWJ74PjxdVXcCw/2ZJAYtr6uOqVF3rJvncYxukfz0mFQzs54g==
+"@pxblue/react-components@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@pxblue/react-components/-/react-components-2.0.0.tgz#a0469cc068964d1a51a5f11cb6c63cfb46f59dee"
+  integrity sha512-h7KHjUNsbRRoc2i9dBPwcTH++g2Bqrz6pdVsrU6HjOc3z7IPh2dixsm5ijXVabfDXBtkpMx9uJF7vwmI5QKkTQ==
   dependencies:
     "@pxblue/colors" "^2.0.0"
     color "^3.1.2"
@@ -1535,7 +1535,7 @@
 
 "@pxblue/storybook-themes@^1.0.2":
   version "1.0.2"
-  resolved "https://registry.npmjs.org/@pxblue/storybook-themes/-/storybook-themes-1.0.2.tgz#ba3787811c34a995293482f3a6f60ead836daf30"
+  resolved "https://registry.yarnpkg.com/@pxblue/storybook-themes/-/storybook-themes-1.0.2.tgz#ba3787811c34a995293482f3a6f60ead836daf30"
   integrity sha512-syh1dFdcKi9lfS9Kzwavn5S9njjqGVDKAyoh0x/su7+OQ25cuOWll9Ot5NqOU3K8iPA7xDpLZsmBQpUfmV6iiw==
 
 "@reach/router@^1.2.1":
