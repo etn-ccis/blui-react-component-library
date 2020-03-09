@@ -85,7 +85,7 @@ stories.add('to pxblue', () => {
                 </Typography>
                 <Typography variant={'h4'}>React Component Library</Typography>
                 <Typography variant={'subtitle1'} className={classes.description}>
-                    Learn about our PX Blue components in the API section or interact with them in the Playground.
+                   🦖 <strong>PX Ptera was Here</strong> 🦖
                 </Typography>
 
                 <div className={classes.buttons}>
