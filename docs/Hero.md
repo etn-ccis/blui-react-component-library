@@ -32,6 +32,8 @@ import { Hero } from '@pxblue/react-components';
 ```
 
 ### Hero API
+<div style="overflow-x: scroll;">
+
 | Prop Name           | Description                             | Type                                                               | Required | Default                | Examples                       |
 |---------------------|-----------------------------------------|--------------------------------------------------------------------|----------|------------------------|--------------------------------|
 | icon                | The primary icon                        | `React.Component` \| `string`                                      | yes      |                        | `<Icon/>`                      |
@@ -42,7 +44,7 @@ import { Hero } from '@pxblue/react-components';
 | value               | The value for the channel               | `string` \| `number`                                               | no       |                        | 240, 'Off'                     |
 | units               | Text to show after the value            | `string`                                                           | no       |                        | 'Hz', '$'                      |
 | valueIcon           | The inline icon with the value          | `React.Component`                                                  | no       |                        | `<Icon/>`                      |
-
+</div>
 
 ## HeroBanner
 The HeroBanner component is a simple wrapper component that is used to contain ```<Hero/>```s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four ```<Hero/>``` components as its children.
@@ -61,7 +63,12 @@ import Hero from '@pxblue/react-components/core/Hero';
 ```
 
 ### HeroBanner API
+
+<div style="overflow-x: scroll;">
+
 | Prop Name | Description                             | Type      | Required | Default | Examples |
 |-----------|-----------------------------------------|-----------|----------|---------|----------|
 | divider   | Whether to show the line separator      | `boolean` | no       | false   |          |
 | limit     | Max number of children to display       | `number`  | no       | 4       |          |
+
+</div>

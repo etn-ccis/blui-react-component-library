@@ -39,6 +39,9 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 
 
 ## API
+
+<div style="overflow-x: scroll;">
+
 | Prop Name         | Description                                      | Type                     | Required | Default     |
 |-------------------|--------------------------------------------------|--------------------------|----------|-------------|
 | avatar            | MUI Avatar that displays                         | `Avatar`                 | no       |             |  
@@ -50,9 +53,12 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 | menuSubtitle      | Subtitle shown when menu is open                 | `string`                 | no       |             |                                         
 | menuGroups        | Groups of menu items that display                | `UserMenuGroups`         | no       |             |                                         
 | MenuProps         | Property overrides for the MUI Menu              | `MenuProps`              | no       |             |                                         
+</div>
 
 #### UserMenuGroups Object
 The `menuGroups` prop of the `UserMenu` includes many properties from the `DrawerNavGroup` array found within a `DrawerBody`.
+
+<div style="overflow-x: scroll;">
 
 | Prop Name             | Description                             | Type              | Required | Default |
 |-----------------------|-----------------------------------------|-------------------|----------|---------|
@@ -60,8 +66,11 @@ The `menuGroups` prop of the `UserMenu` includes many properties from the `Drawe
 | iconColor             | The color used for icons                | `string`          | no       |         |
 | items                 | List of navigation items to render      | `UserMenuItem[]`  | no       |         |  
 | title                 | Text to display in the group header     | `string`          | no       |         |  
+</div>
 
 #### UserMenuItem Object
+
+<div style="overflow-x: scroll;">
 
 | Attribute       | Description                             | Type               | Required | Default                      |
 |-----------------|-----------------------------------------|--------------------|----------|------------------------------|
@@ -73,6 +82,7 @@ The `menuGroups` prop of the `UserMenu` includes many properties from the `Drawe
 | subtitle        | The text to show on the second line     | `string`           | no       |                              |    
 | title           | The text to show on the first line      | `string`           | no       |                              |    
 
+</div>
 
 ### Classes
 You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:

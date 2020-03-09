@@ -18,6 +18,7 @@ import { EmptyState } from '@pxblue/react-components';
 ## API
 
 <div style="overflow-x: scroll;">
+
 | Prop Name   | Description                             | Type              | Required | Default | Examples                              |
 |-------------|-----------------------------------------|-------------------|----------|---------|---------------------------------------|
 | title       | The main text to display                | `string`          | yes      |         | 'No Data Found'                       |

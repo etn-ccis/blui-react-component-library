@@ -31,6 +31,7 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 ### Drawer API
 
 <div style="overflow-x: scroll;">
+
 | Prop Name           | Description                                      | Type        | Required | Default  |          
 |---------------------|--------------------------------------------------|-------------|----------|----------|
 | open                | Controls the open/closed state of the drawer     | `boolean`   | yes      |          |
@@ -43,6 +44,7 @@ The `DrawerHeader` contains the content at the top of the `Drawer`. By default, 
 ### DrawerHeader API
 
 <div style="overflow-x: scroll;">
+
 | Prop Name         | Description                                    | Type              | Required | Default                      |
 |-------------------|------------------------------------------------|-------------------|----------|------------------------------|
 | backgroundColor   | The color used for the background              | `string`          | no       | `theme.palette.primary.main` |
@@ -84,6 +86,7 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 ### DrawerBody API
 
 <div style="overflow-x: scroll;">
+
 | Prop Name               | Description                                    | Type          | Required | Default |
 |-------------------------|------------------------------------------------|---------------|----------|---------|
 | activeBackgroundColor   | Background color for the 'active' item         | `string`      | no       |         |
@@ -103,6 +106,7 @@ The `items` property supports nested items to generate collapsible sections in t
 ### DrawerNavGroup API
 
 <div style="overflow-x: scroll;">
+
 | Prop Name             | Description                                                      | Type                      | Required | Default   |
 |-----------------------|------------------------------------------------------------------|---------------------------|----------|-----------|
 | activeBackgroundColor | Background color for the 'active' item                           | `string`                  | no       |           |
@@ -129,6 +133,7 @@ The `items` property supports nested items to generate collapsible sections in t
 The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). NavItem can also include a list of `NestedNavItem` to create a tree structure (see below).
 
 <div style="overflow-x: scroll;">
+
 | Attribute       | Description                                                                                                    | Type               | Required | Default                          |
 |-----------------|----------------------------------------------------------------------------------------------------------------|--------------------|----------|----------------------------------|
 | chevron         | Show chevron icon to the right (shortcut for `rightComponent` )                                                | `boolean`          | no       | false                            |  
@@ -190,6 +195,7 @@ The `DrawerFooter` is an optional section that renders at the bottom of the `Dra
 ### Drawer Footer API
 
 <div style="overflow-x: scroll;">
+
 | Prop Name       | Description                             | Type          | Required | Default |
 |-----------------|-----------------------------------------|---------------|----------|---------|
 | backgroundColor | The color used for the background       | `string`      | no       |         |   

@@ -20,6 +20,8 @@ import * as Colors from '@pxblue/colors';
 ```
 
 ### API
+
+<div style="overflow-x: scroll;">
 | Prop Name         | Description                                      | Type                                               | Required | Default             | Examples                                |
 |-------------------|--------------------------------------------------|----------------------------------------------------|----------|---------------------|-----------------------------------------|
 | avatar            | Show colored background for icon                 | `boolean`                                          | no       | false               |                                         |
@@ -40,3 +42,4 @@ import * as Colors from '@pxblue/colors';
 | subtitleSeparator | Separator character for subtitle                 | `string`                                           | no       | '·' ('\u00B7')      | '-', '/'                                |
 | title             | The text to show on the first line               | `string`                                           | yes      |                     | 123, 'on'                               |
 
+</div>
