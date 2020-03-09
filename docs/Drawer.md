@@ -1,5 +1,5 @@
 # Drawer
-The Drawer component is wrapper around the Material UI Drawer that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `DrawerHeader`, `DrawerSubheader`, `DrawerBody`, , `DrawerNavGroup`, and `DrawerFooter` to help organize the content.
+The Drawer component is a wrapper around the Material UI Drawer that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `DrawerHeader`, `DrawerSubheader`, `DrawerBody`, `DrawerNavGroup`, and `DrawerFooter` to help organize the content.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 200px" alt="Nested Drawer" src="./images/drawer.png">
@@ -41,7 +41,7 @@ The `DrawerHeader` contains the content at the top of the `Drawer`. By default, 
 ### DrawerHeader API
 | Prop Name         | Description                                    | Type              | Required | Default                      |
 |-------------------|------------------------------------------------|-------------------|----------|------------------------------|
-| backgroundColor   | The color used for the background              | `string`          | no       | `theme.palette.primary[500]` |
+| backgroundColor   | The color used for the background              | `string`          | no       | `theme.palette.primary.main` |
 | backgroundImage   | An image to display in the header              | `string`          | no       |                              |
 | backgroundOpacity | The opacity of the background image            | `number`          | no       | `0.3`                        |
 | fontColor         | The color of the text elements                 | `string`          | no       | `Colors.white[50]`           |
@@ -122,7 +122,7 @@ The `items` prop of the `DrawerNavGroup` takes a list of items with the followin
 | chevron         | Show chevron icon to the right (shortcut for `rightComponent` )                                                | `boolean`          | no       | false                            |  
 | collapseIcon    | Icon used to collapse drawer                                                                                   | `JSX.Element`      | no       | expandIcon rotated 180 deg       |  
 | divider         | Show a divider line below the top-level item                                                                   | `boolean`          | no       | true                             | 
-| expandIcon      | Icon used to expand drawer                                                                                     | `JSX.Element`      | no       | `<ExpandLess />`                 |  
+| expandIcon      | Icon used to expand drawer                                                                                     | `JSX.Element`      | no       | `<ExpandLess />`, or  `<ArrowDropUp />` if it is a `NestedNavItem` |  
 | icon            | A component to render for the left icon                                                                        | `JSX.Element`      | no       |                                  |
 | itemID          | An unique identifier of the NavItem. Item will have 'active' style when this matches  DrawerNavGroup.activeItem | `string`           | yes      |                                  |  
 | items           | The items nested under this item                                                                               | `NestedNavItem[]`  | no       |                                  |    
@@ -133,7 +133,8 @@ The `items` prop of the `DrawerNavGroup` takes a list of items with the followin
 | title           | The text to show on the first line                                                                             | `string`           | yes      |                                  |    
 
 #### NestedNavItem Object
-The `items` property of the NavItem can be nested to create a tree structure with expand/collapse panels. Nested items take the same properties as `NavItem` with the exception of `icon` (nested items cannot use icons). Besides, the default `expandIcon` prop is `<ArrowDropUp />`.
+The `items` property of the NavItem can be nested to create a tree structure with expand/collapse panels. Nested items take the same properties as `NavItem` with the exception of `icon` (nested items cannot use icons). 
+
 ``` typescript
 <DrawerNavGroup 
     items=[

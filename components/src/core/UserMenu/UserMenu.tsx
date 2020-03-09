@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
             cursor: 'pointer',
             //@ts-ignore
             backgroundColor: theme.palette.primary[50],
-            //@ts-ignore
-            color: theme.palette.primary[500],
+            color: theme.palette.primary.main,
             height: theme.spacing(5),
             width: theme.spacing(5),
         },

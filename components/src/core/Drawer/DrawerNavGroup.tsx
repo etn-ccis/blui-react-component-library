@@ -201,7 +201,7 @@ function NavigationListItem(
         expandIcon,
     } = navItem;
     // only allow icons for the top level items
-    const icon = (!depth) ? (navItem as NavItem).icon : undefined;
+    const icon = !depth ? (navItem as NavItem).icon : undefined;
     const { divider: groupDivider = true, nestedDivider } = navGroupProps;
 
     const classes = useStyles(navGroupProps);

@@ -114,7 +114,6 @@ export default () => {
                                     itemID: titleList[1],
                                     subtitle: '2 Alarms',
                                     icon: <NotificationsActive />,
-                                    status: Colors.red[500],
                                     onClick: () => setRoute(1),
                                 },
                                 {
@@ -146,6 +145,12 @@ export default () => {
                         <Spacer />
                         <Divider />
                         <DrawerNavGroup
+                            titleContent={
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+                                    <div>Account Configuration</div>
+                                    <div>v1.0.3</div>
+                                </div>
+                            }
                             items={[
                                 {
                                     title: titleList[4],
@@ -206,7 +211,6 @@ export default () => {
                                 },
                                 {
                                     title: 'Contact Us',
-                                    itemID: 'Contact Us',
                                     items: [
                                         {
                                             title: 'eatonhelp@eaton.com',
