@@ -3,7 +3,7 @@ import React from "react";
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import {getReadMe, storyParams, storyWrapper} from '../../src/utils';
 
-const centerHero = (storyFn): any => <div style={{ alignItems: 'center', display: 'flex', height: '100%' }}>{storyFn()}</div>;
+const centerHero = (storyFn: any): JSX.Element => <div style={{ alignItems: 'center', display: 'flex', height: '100%' }}>{storyFn()}</div>;
 
 const heroModule = {
     title: `${COMPONENT_SECTION_NAME}/Hero`,

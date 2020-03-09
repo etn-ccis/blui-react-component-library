@@ -3,8 +3,7 @@ import React from 'react';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import {getReadMe, storyParams, storyWrapper} from '../../src/utils';
 
-//@ts-ignore
-const padDrawer = (storyFn): any => <div style={{ margin: 20, display: 'flex', height: '100%' }}>{storyFn()}</div>;
+const padDrawer = (storyFn: any): JSX.Element => <div style={{ margin: 20, display: 'flex', height: '100%' }}>{storyFn()}</div>;
 
 const drawerModule = {
     title: `${COMPONENT_SECTION_NAME}/Drawer`,
