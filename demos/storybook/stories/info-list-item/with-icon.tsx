@@ -17,4 +17,4 @@ export const withIcon = (): StoryFnReactReturnType => (
     />
 );
 
-withIcon.story = { name: 'with name' };
+withIcon.story = { name: 'with icon' };
