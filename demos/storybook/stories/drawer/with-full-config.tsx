@@ -93,28 +93,8 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const bodyChevron = boolean('chevron', false, bodyGroupId);
     const bodyDividers = boolean('showDividers', true, bodyGroupId);
 
-    const numberLinksGroup1 = number(
-        'links1',
-        4,
-        {
-            range: true,
-            min: 0,
-            max: 6,
-            step: 1,
-        },
-        bodyGroupId
-    );
-    const numberLinksGroup2 = number(
-        'links2',
-        2,
-        {
-            range: true,
-            min: 0,
-            max: 4,
-            step: 1,
-        },
-        bodyGroupId
-    );
+    const numberLinksGroup1 = 4;
+    const numberLinksGroup2 = 2;
 
     const links1 = [
         {
