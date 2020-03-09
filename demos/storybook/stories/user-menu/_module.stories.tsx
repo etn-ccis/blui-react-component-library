@@ -15,6 +15,7 @@ export { withDefaultColors } from './with-default-colors';
 export * from './with-custom-colors';
 export * from './with-non-text-avatar';
 export * from './with-menu-header';
+export * from './with-menu-placement-options';
 export * from './with-custom-menu';
 
 export default userMenuModule;
