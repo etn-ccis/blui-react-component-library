@@ -36,6 +36,7 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 |---------------------|--------------------------------------------------|-------------|----------|----------|
 | open                | Controls the open/closed state of the drawer     | `boolean`   | yes      |          |
 | width               | Sets the width of the drawer (in px) when open   | `number `   | no       |          |
+
 </div>
 
 ## DrawerHeader
@@ -56,6 +57,7 @@ The `DrawerHeader` contains the content at the top of the `Drawer`. By default, 
 | subtitle          | The text to show on the second line            | `string`          | no       |                              |
 | title             | The text to show on the first line             | `string`          | no       |                              |
 | titleContent      | Custom content for header title area           | `React.Component` | no       |                              |
+
 </div>
 
 ## DrawerSubheader
@@ -96,6 +98,7 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 | fontColor               | The color used for the text                    | `string`      | no       |         |
 | iconColor               | The color used for icons                       | `string`      | no       |         |
 | titleColor              | The color used for `DrawerNavGroup` title text | `string`      | no       |         |
+
 </div>
 
 ## DrawerNavGroup 
@@ -127,6 +130,7 @@ The `items` property supports nested items to generate collapsible sections in t
 | ripple                | Whether to apply material ripple effect to items                 | `boolean`                 | no       | true      |
 | title                 | Text to display in the group header                              | `string`                  | no       |           |  
 | titleColor            | Font color for group header title text                           | `string`                  | no       |           | 
+
 </div>
 
 #### NavItem Object
@@ -148,6 +152,7 @@ The `items` prop of the `DrawerNavGroup` takes a list of items with the followin
 | statusColor     | Status stripe and icon color                                                                                   | `string`           | no       |                                  |   
 | subtitle        | The text to show on the second line                                                                            | `string`           | no       |                                  |    
 | title           | The text to show on the first line                                                                             | `string`           | yes      |                                  |    
+
 </div>
 
 #### NestedNavItem Object
@@ -199,6 +204,7 @@ The `DrawerFooter` is an optional section that renders at the bottom of the `Dra
 | Prop Name       | Description                             | Type          | Required | Default |
 |-----------------|-----------------------------------------|---------------|----------|---------|
 | backgroundColor | The color used for the background       | `string`      | no       |         |   
+
 </div>
 
 ### Usage
