@@ -30,7 +30,7 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 
 ### Drawer API
 
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 
 | Prop Name           | Description                                      | Type        | Required | Default  |          
 |---------------------|--------------------------------------------------|-------------|----------|----------|
@@ -43,7 +43,7 @@ The `DrawerHeader` contains the content at the top of the `Drawer`. By default, 
     
 ### DrawerHeader API
 
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 
 | Prop Name         | Description                                    | Type              | Required | Default                      |
 |-------------------|------------------------------------------------|-------------------|----------|------------------------------|
@@ -85,7 +85,7 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 
 ### DrawerBody API
 
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 
 | Prop Name               | Description                                    | Type          | Required | Default |
 |-------------------------|------------------------------------------------|---------------|----------|---------|
@@ -105,7 +105,7 @@ The `items` property supports nested items to generate collapsible sections in t
 
 ### DrawerNavGroup API
 
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 
 | Prop Name             | Description                                                      | Type                      | Required | Default   |
 |-----------------------|------------------------------------------------------------------|---------------------------|----------|-----------|
@@ -132,7 +132,7 @@ The `items` property supports nested items to generate collapsible sections in t
 #### NavItem Object
 The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). NavItem can also include a list of `NestedNavItem` to create a tree structure (see below).
 
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 
 | Attribute       | Description                                                                                                    | Type               | Required | Default                          |
 |-----------------|----------------------------------------------------------------------------------------------------------------|--------------------|----------|----------------------------------|
@@ -194,7 +194,7 @@ The `DrawerFooter` is an optional section that renders at the bottom of the `Dra
 
 ### Drawer Footer API
 
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 
 | Prop Name       | Description                             | Type          | Required | Default |
 |-----------------|-----------------------------------------|---------------|----------|---------|

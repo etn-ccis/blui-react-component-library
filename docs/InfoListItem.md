@@ -21,7 +21,7 @@ import * as Colors from '@pxblue/colors';
 
 ### API
 
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 | Prop Name         | Description                                      | Type                                               | Required | Default             | Examples                                |
 |-------------------|--------------------------------------------------|----------------------------------------------------|----------|---------------------|-----------------------------------------|
 | avatar            | Show colored background for icon                 | `boolean`                                          | no       | false               |                                         |

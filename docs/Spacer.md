@@ -16,7 +16,7 @@ import { Spacer } from '@pxblue/react-components';
 
 ### API
 
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 
 | Prop Name             | Description                                 | Type                  | Required | Default                      | Examples                              |
 |-----------------------|---------------------------------------------|-----------------------|----------|------------------------------|---------------------------------------|

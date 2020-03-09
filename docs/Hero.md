@@ -32,7 +32,7 @@ import { Hero } from '@pxblue/react-components';
 ```
 
 ### Hero API
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 
 | Prop Name           | Description                             | Type                                                               | Required | Default                | Examples                       |
 |---------------------|-----------------------------------------|--------------------------------------------------------------------|----------|------------------------|--------------------------------|
@@ -44,6 +44,7 @@ import { Hero } from '@pxblue/react-components';
 | value               | The value for the channel               | `string` \| `number`                                               | no       |                        | 240, 'Off'                     |
 | units               | Text to show after the value            | `string`                                                           | no       |                        | 'Hz', '$'                      |
 | valueIcon           | The inline icon with the value          | `React.Component`                                                  | no       |                        | `<Icon/>`                      |
+
 </div>
 
 ## HeroBanner
@@ -64,7 +65,7 @@ import Hero from '@pxblue/react-components/core/Hero';
 
 ### HeroBanner API
 
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 
 | Prop Name | Description                             | Type      | Required | Default | Examples |
 |-----------|-----------------------------------------|-----------|----------|---------|----------|

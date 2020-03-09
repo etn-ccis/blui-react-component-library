@@ -15,7 +15,7 @@ import { ListItemTag } from '@pxblue/react-components';
 
 Besides what's listed below, as an extension of [Material UI's Typography API](https://material-ui.com/api/typography/), the component will pass in all extra props.
 
-<div style="overflow-x: scroll;">
+<div style="overflow: auto;">
 
 | Prop Name       | Description                   | Type     | Required | Default   | Example   |
 | --------------- | ----------------------------- | -------- | -------- | --------- | --------- |
