@@ -19,9 +19,9 @@ import { ChannelValue } from '@pxblue/react-components';
 ### API
 | Prop Name   | Description                                    | Type                     | Required | Default   | Examples           |
 |-------------|------------------------------------------------|--------------------------|----------|-----------|--------------------|
-| value       | The the value (bold text) to display           | `string` &vert; `number` | yes      |           | '125'              |
+| value       | The the value (bold text) to display           | `string` \| `number`     | yes      |           | '125'              |
 | units       | The text to display for the units (light text) | `string`                 | no       |           | 'Hz'               |
 | icon        | The inline icon to display                     | `React.Component`        | no       |           | 'Hz'               |
 | prefix      | Show units before the value                    | `boolean`                | no       | false     |                    |
-| fontSize    | The size of the font                           | `string` &vert; `number` | no       | 'inherit' | '12rem'            |
+| fontSize    | The size of the font                           | `string` \| `number`     | no       | 'inherit' | '12rem'            |
 | color       | The color of the font                          | `string`                 | no       | 'inherit' | 'rgba(0,0,0,0.25)' |

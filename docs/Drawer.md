@@ -99,7 +99,7 @@ The `items` property supports nested items to generate collapsible sections in t
 | activeFontColor       | Font color for the 'active' item                                 | `string`                  | no       |           |
 | activeIconColor       | Icon color for the 'active' item                                 | `string`                  | no       |           | 
 | activeItem            | `itemID` of the 'active' item                                    | `string`                  | no       |           | 
-| activeItemShape       | Shape of the active item highlight                               | `'square' | 'round'`      | no       | 'round'   | 
+| activeItemShape       | Shape of the active item highlight                               | `'square'` \| `'round'`   | no       | 'round'   | 
 | backgroundColor       | The color used for the background                                | `string`                  | no       |           |   
 | chevron               | Show chevron icon (shortcut for `rightComponent`)                | `boolean`                 | no       |           |    
 | titleContent          | Custom element to render as the title                            | `React.Component`         | no       |           |    
@@ -124,7 +124,7 @@ The `items` prop of the `DrawerNavGroup` takes a list of items with the followin
 | divider         | Show a divider line below the top-level item                                                                   | `boolean`          | no       | true                             | 
 | expandIcon      | Icon used to expand drawer                                                                                     | `JSX.Element`      | no       | `<ExpandLess />`, or  `<ArrowDropUp />` if it is a `NestedNavItem` |  
 | icon            | A component to render for the left icon                                                                        | `JSX.Element`      | no       |                                  |
-| itemID          | An unique identifier of the NavItem. Item will have 'active' style when this matches  DrawerNavGroup.activeItem | `string`           | yes      |                                  |  
+| itemID          | An unique identifier of the NavItem. Item will have 'active' style when this matches  DrawerNavGroup.activeItem | `string`          | yes      |                                  |  
 | items           | The items nested under this item                                                                               | `NestedNavItem[]`  | no       |                                  |    
 | onClick         | A function to execute when clicked                                                                             | `function`         | no       |                                  |       
 | rightComponent  | An icon/component to display to the right                                                                      | `JSX.Element`      | no       |                                  |   
