@@ -74,13 +74,6 @@ export const storyParams = {
     notes: {},
 };
 
-const marked = require('marked');
-marked.setOptions({
-    baseUrl: 'https://pxblue-components.github.io/react-dev'
-});
-
-
-// Returns a markdown string.
 export const getReadMe = (name: string): any => {
     const md = require(`./../../../docs/${name}`);
 
