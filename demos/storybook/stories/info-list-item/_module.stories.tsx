@@ -1,12 +1,12 @@
 import { InfoListItem } from '@pxblue/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
-import { storyParams, storyWrapper } from '../../src/utils';
+import {getReadMe, storyParams, storyWrapper} from '../../src/utils';
 
 const infoListModule = {
     title: `${COMPONENT_SECTION_NAME}/Info List Item`,
     component: InfoListItem,
     decorators: [storyWrapper],
-    parameters: { ...storyParams, notes: { markdown: require('./../../../../docs/InfoListItem.md') } },
+    parameters: { ...storyParams, notes: { markdown: getReadMe('InfoListItem.md') } },
 };
 
 /* Display order goes here */

@@ -1,7 +1,7 @@
 import { Drawer } from '@pxblue/react-components';
 import React from 'react';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
-import { storyParams, storyWrapper } from '../../src/utils';
+import {getReadMe, storyParams, storyWrapper} from '../../src/utils';
 
 //@ts-ignore
 const padDrawer = (storyFn): any => <div style={{ margin: 20, display: 'flex', height: '100%' }}>{storyFn()}</div>;
@@ -10,7 +10,7 @@ const drawerModule = {
     title: `${COMPONENT_SECTION_NAME}/Drawer`,
     component: Drawer,
     decorators: [storyWrapper, padDrawer],
-    parameters: { ...storyParams, notes: { markdown: require('./../../../../docs/Drawer.md') } },
+    parameters: { ...storyParams, notes: { markdown: getReadMe('Drawer.md') } },
 };
 
 /* Display order goes here */
