@@ -15,8 +15,9 @@ import { ChannelValue } from '@pxblue/react-components';
 <ChannelValue value={100} units={'%'} icon={<Icon/>} />
 ```
 
-
 ### API
+<div style="overflow-x: scroll;">
+
 | Prop Name   | Description                                    | Type                     | Required | Default   | Examples           |
 |-------------|------------------------------------------------|--------------------------|----------|-----------|--------------------|
 | value       | The the value (bold text) to display           | `string` \| `number`     | yes      |           | '125'              |
@@ -25,3 +26,5 @@ import { ChannelValue } from '@pxblue/react-components';
 | prefix      | Show units before the value                    | `boolean`                | no       | false     |                    |
 | fontSize    | The size of the font                           | `string` \| `number`     | no       | 'inherit' | '12rem'            |
 | color       | The color of the font                          | `string`                 | no       | 'inherit' | 'rgba(0,0,0,0.25)' |
+
+</div>

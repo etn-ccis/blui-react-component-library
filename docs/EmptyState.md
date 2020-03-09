@@ -16,10 +16,12 @@ import { EmptyState } from '@pxblue/react-components';
 ```
  
 ## API
+
+<div style="overflow-x: scroll;">
 | Prop Name   | Description                             | Type              | Required | Default | Examples                              |
 |-------------|-----------------------------------------|-------------------|----------|---------|---------------------------------------|
 | title       | The main text to display                | `string`          | yes      |         | 'No Data Found'                       |
 | description | The secondary text to display           | `string`          | no       |         | 'Come back to this page later'        |
 | icon        | The primary icon                        | `React.Component` | no       |         | `<DevicesIcon fontSize={'inherit'}/>` |
 | actions     | Additional components to render below   | `React.Component` | no       |         | `<Button>Add Device</Button>`         |
-
+</div>
