@@ -28,10 +28,6 @@ const selectNotesTab = (): void => {
     (getBanner().children[0].children[0].children[0].children[1] as HTMLElement).click(); // click the Notes tab.
 };
 
-const updateNotesTabText = (): void => {
-    getBanner().children[0].children[0].children[0].children[1].children[0].innerHTML = 'ReadMe';
-};
-
 export const updateTitle = (): void => {
     setTimeout(() => {
         window.top.document.title = 'PX Blue | React Components';
@@ -50,7 +46,6 @@ export const storyWrapper = (storyFn: any): any => {
     const currentUrl = window.top.location.href;
     showTopBanner();
     updateTitle();
-    updateNotesTabText();
 
     const currStoryUrl = currentUrl.replace(STORY_PATH, '').replace(NOTES_PATH, '');
     const prevStoryUrl = prevUrl.replace(STORY_PATH, '').replace(NOTES_PATH, '');
