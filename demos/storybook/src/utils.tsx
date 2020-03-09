@@ -14,7 +14,6 @@ const getBanner = (): HTMLElement => {
 };
 const setBannerStyle = (display: string): void => getBanner().setAttribute('style', `display: ${display}`);
 
-
 export const showTopBanner = (): void => setBannerStyle('unset');
 export const hideTopBanner = (): void => setBannerStyle('none');
 

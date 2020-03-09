@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import ExpandMoreIcon from '@material-ui/core/SvgIcon/SvgIcon';
-import {Accessibility, NotificationsActive, Search, AddAPhoto} from '@material-ui/icons';
+import { Accessibility, NotificationsActive, Search, AddAPhoto } from '@material-ui/icons';
 import SendIcon from '@material-ui/icons/Send';
 import MenuIcon from '@material-ui/icons/Menu';
 import {

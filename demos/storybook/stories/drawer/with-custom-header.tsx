@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core';
-import {Accessibility, AddAPhoto, NotificationsActive} from '@material-ui/icons';
+import { Accessibility, AddAPhoto, NotificationsActive } from '@material-ui/icons';
 import SendIcon from '@material-ui/icons/Send';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
