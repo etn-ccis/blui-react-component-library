@@ -1,6 +1,6 @@
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { README_STORY_NAME } from './constants';
+import {COMPONENT_SECTION_NAME, README_STORY_NAME} from './constants';
 
 let banner: HTMLElement;
 
@@ -79,14 +79,15 @@ export const getReadMe = (name: string): any => {
 
     // Locate all relative links that use href syntax and replace them with absolute URLs.
     md.default = (md.default).replace(/\(.\/.*md\)/g, (substring: string) => {
-        const root = 'https://pxblue-components.github.io/react-dev/';
-        const path = '?path=/info/api-documentation'; // THIS WILL CHANGE
+        // Example: http://localhost:6006/?path=/info/components-hero--get-read-me-story
+        const root = window.top.location.href.split('/?')[0];
+        const path = `?path=/info/${COMPONENT_SECTION_NAME.toLowerCase()}`;
 
         // Get component from link. (./HeroBanner.md) => HeroBanner
         const component = substring.split('/')[1].split('.')[0];
         // Storybook uses dash-limited-syntax in their URL schema.
         const dashed = component.replace(/\.?([A-Z])/g, (x) => `-${x.toLowerCase()}`);
-        return `(${root}${path}-${dashed})`;
+        return `(${root}${path}${dashed}--get-read-me-story)`;
     });
     return md;
 };
