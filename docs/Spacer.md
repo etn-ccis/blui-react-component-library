@@ -15,12 +15,17 @@ import { Spacer } from '@pxblue/react-components';
 ```
 
 ### API
+
+<div style="overflow: auto;">
+
 | Prop Name             | Description                                 | Type                  | Required | Default                      | Examples                              |
 |-----------------------|---------------------------------------------|-----------------------|----------|------------------------------|---------------------------------------|
 | classes               | Classes object to override styles           | `Object`              | no       |                              | {root: 'customRootClass'}             |
 | flex                  | Flex grow/shrink value for flex layouts     | `number`              | no       | 1                            |                                       |
 | height                | Height (in px) for static layouts           | `number`              | no       |                              |                                       |
 | width                 | Width (in px) for static layouts            | `number`              | no       |                              |                                       |
+
+</div>
 
 ### Classes
 You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:

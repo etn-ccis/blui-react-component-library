@@ -2,33 +2,31 @@ import { Button, createStyles, makeStyles, Typography } from '@material-ui/core'
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { appliedTheme } from '../.storybook/config';
-import { storyWrapper } from '../src/utils';
+import { hideTopBanner, storyWrapper } from '../src/utils';
 import * as Colors from '@pxblue/colors';
 const backgroundImage = require('../assets/circles-bg.svg');
 
-export const stories = storiesOf('Intro/Welcome', module);
-stories.addDecorator(storyWrapper);
+export const stories = storiesOf('Intro/Overview', module);
 
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            color: appliedTheme.palette.primary.contrastText,
-            backgroundColor: appliedTheme.palette.primary.main,
+            //@ts-ignore
+            color: Colors.white[50],
+            //@ts-ignore
+            backgroundColor: appliedTheme.palette.primary[500],
             backgroundImage: `url(${backgroundImage})`,
             height: '100%',
             width: '100%',
             display: 'flex',
             alignContent: 'center',
             justifyContent: 'center',
-            backgroundSize: '200%',
-            backgroundPosition: 'center',
         },
         container: {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             textAlign: 'center',
-            padding: '0 8px',
         },
         icon: {
             textAlign: 'center',
@@ -71,9 +69,12 @@ stories.addParameters({
     },
 });
 
-stories.add('to pxblue', () => {
+stories.addDecorator(storyWrapper);
+
+stories.add('PX Blue React Components', () => {
     const classes = useStyles();
     const icon = require('../assets/pxb-icon.svg');
+    hideTopBanner();
     return (
         <div className={classes.root}>
             <div className={classes.container}>
@@ -85,7 +86,7 @@ stories.add('to pxblue', () => {
                 </Typography>
                 <Typography variant={'h4'}>React Component Library</Typography>
                 <Typography variant={'subtitle1'} className={classes.description}>
-                    Learn about our PX Blue components in the API section or interact with them in the Playground.
+                    Learn about and interact with our PX Blue components using Storybook.
                 </Typography>
 
                 <div className={classes.buttons}>

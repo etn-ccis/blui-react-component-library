@@ -1,23 +1,14 @@
 import { Typography } from '@material-ui/core';
 import { Apps, FormatListBulleted, Gavel, Help, NotificationsActive, PinDrop, Settings } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
 import { DrawerLayout } from '@pxblue/react-components';
+import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
 import { action } from '@storybook/addon-actions';
 import { boolean, number } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 // @ts-ignore
-import EatonLogo from '../assets/EatonLogo.svg';
-import { storyWrapper } from '../src/utils';
-
-export const stories = storiesOf('playground/Drawer Layout', module);
-stories.addDecorator(storyWrapper);
-stories.addParameters({
-    options: {
-        showPanel: true,
-    },
-});
+import EatonLogo from '../../assets/EatonLogo.svg';
 
 const defaultBody = (
     <DrawerBody>
@@ -71,7 +62,7 @@ const defaultBody = (
     </DrawerBody>
 );
 
-stories.add('basic usage', () => {
+export const inDrawerLayout = (): StoryFnReactReturnType => {
     const open = boolean('Open', true);
     const width = number('Width', 350, {
         range: true,
@@ -115,15 +106,17 @@ stories.add('basic usage', () => {
             <div
                 style={{
                     backgroundColor: '#b7b7b7',
-                    fontSize: '16pt',
                     color: 'white',
                     height: '100%',
                     padding: '30px',
                     boxSizing: 'border-box',
+                    fontSize: '60px',
                 }}
             >
                 Body content goes here.
             </div>
         </DrawerLayout>
     );
-});
+};
+
+inDrawerLayout.story = { name: 'in a DrawerLayout' };

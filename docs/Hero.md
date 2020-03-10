@@ -32,17 +32,20 @@ import { Hero } from '@pxblue/react-components';
 ```
 
 ### Hero API
+<div style="overflow: auto;">
+
 | Prop Name           | Description                             | Type                                                               | Required | Default                | Examples                       |
 |---------------------|-----------------------------------------|--------------------------------------------------------------------|----------|------------------------|--------------------------------|
-| icon                | The primary icon                        | `React.Component` &vert; `string`                                  | yes      |                        | `<Icon/>`                      |
+| icon                | The primary icon                        | `React.Component` \| `string`                                      | yes      |                        | `<Icon/>`                      |
 | label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        | 'Status'                       |
 | iconSize            | The size of the primary icon (10-72)    | `number`                                                           | no       | 36                     | 24                             |
 | iconBackgroundColor | The color used behind the primary icon  | `string`                                                           | no       | 'transparent'          | 'red'                          |
-| fontSize            | The text size for the value line        | 'normal' &vert; 'small'                                            | no       | 'normal'               |                                |
-| value               | The value for the channel               | `string` &vert; `number`                                           | no       |                        | 240, 'Off'                     |
+| fontSize            | The text size for the value line        | `'normal'` \| `'small'`                                            | no       | 'normal'               |                                |
+| value               | The value for the channel               | `string` \| `number`                                               | no       |                        | 240, 'Off'                     |
 | units               | Text to show after the value            | `string`                                                           | no       |                        | 'Hz', '$'                      |
 | valueIcon           | The inline icon with the value          | `React.Component`                                                  | no       |                        | `<Icon/>`                      |
 
+</div>
 
 ## HeroBanner
 The HeroBanner component is a simple wrapper component that is used to contain ```<Hero/>```s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four ```<Hero/>``` components as its children.
@@ -61,7 +64,12 @@ import Hero from '@pxblue/react-components/core/Hero';
 ```
 
 ### HeroBanner API
+
+<div style="overflow: auto;">
+
 | Prop Name | Description                             | Type      | Required | Default | Examples |
 |-----------|-----------------------------------------|-----------|----------|---------|----------|
 | divider   | Whether to show the line separator      | `boolean` | no       | false   |          |
 | limit     | Max number of children to display       | `number`  | no       | 4       |          |
+
+</div>

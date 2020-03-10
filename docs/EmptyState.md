@@ -16,6 +16,9 @@ import { EmptyState } from '@pxblue/react-components';
 ```
  
 ## API
+
+<div style="overflow: auto;">
+
 | Prop Name   | Description                             | Type              | Required | Default | Examples                              |
 |-------------|-----------------------------------------|-------------------|----------|---------|---------------------------------------|
 | title       | The main text to display                | `string`          | yes      |         | 'No Data Found'                       |
@@ -23,3 +26,4 @@ import { EmptyState } from '@pxblue/react-components';
 | icon        | The primary icon                        | `React.Component` | no       |         | `<DevicesIcon fontSize={'inherit'}/>` |
 | actions     | Additional components to render below   | `React.Component` | no       |         | `<Button>Add Device</Button>`         |
 
+</div>

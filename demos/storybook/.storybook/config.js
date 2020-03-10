@@ -32,7 +32,7 @@ const newViewports = {
 };
 
 pxblueTheme.brandTitle = 'PX Blue React Component Library';
-pxblueTheme.brandImage = require('../assets/pxblue react.svg');
+pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
 pxblueTheme.brandUrl = 'https://pxblue.github.io';
 
 addParameters({

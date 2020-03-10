@@ -29,16 +29,23 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 ```
 
 ### Drawer API
+
+<div style="overflow: auto;">
+
 | Prop Name           | Description                                      | Type        | Required | Default  |          
 |---------------------|--------------------------------------------------|-------------|----------|----------|
 | open                | Controls the open/closed state of the drawer     | `boolean`   | yes      |          |
 | width               | Sets the width of the drawer (in px) when open   | `number `   | no       |          |
 
+</div>
 
 ## DrawerHeader
 The `DrawerHeader` contains the content at the top of the `Drawer`. By default, it renders multiple lines of text in the PX Blue style. If you supply a `titleContent`, you can render your own custom content in the title area. 
     
 ### DrawerHeader API
+
+<div style="overflow: auto;">
+
 | Prop Name         | Description                                    | Type              | Required | Default                      |
 |-------------------|------------------------------------------------|-------------------|----------|------------------------------|
 | backgroundColor   | The color used for the background              | `string`          | no       | `theme.palette.primary.main` |
@@ -50,6 +57,8 @@ The `DrawerHeader` contains the content at the top of the `Drawer`. By default, 
 | subtitle          | The text to show on the second line            | `string`          | no       |                              |
 | title             | The text to show on the first line             | `string`          | no       |                              |
 | titleContent      | Custom content for header title area           | `React.Component` | no       |                              |
+
+</div>
 
 ## DrawerSubheader
 The `DrawerSubheader` is an optional section that renders below the header and above the body of the `Drawer`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
@@ -77,6 +86,9 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 ```
 
 ### DrawerBody API
+
+<div style="overflow: auto;">
+
 | Prop Name               | Description                                    | Type          | Required | Default |
 |-------------------------|------------------------------------------------|---------------|----------|---------|
 | activeBackgroundColor   | Background color for the 'active' item         | `string`      | no       |         |
@@ -87,19 +99,24 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 | iconColor               | The color used for icons                       | `string`      | no       |         |
 | titleColor              | The color used for `DrawerNavGroup` title text | `string`      | no       |         |
 
+</div>
+
 ## DrawerNavGroup 
 A `DrawerNavGroup` is used inside of the `DrawerBody` to organize links/content. Each group consists of an (optional) group title and a series of NavItems. Most visual props are inherited from the `DrawerBody` but can be overridden at the NavGroup level if desired.
 
 The `items` property supports nested items to generate collapsible sections in the menu. This can be used to create an arbitrary tree depth, but we do not recommend going more than two levels deep in a navigation Drawer.
 
 ### DrawerNavGroup API
+
+<div style="overflow: auto;">
+
 | Prop Name             | Description                                                      | Type                      | Required | Default   |
 |-----------------------|------------------------------------------------------------------|---------------------------|----------|-----------|
 | activeBackgroundColor | Background color for the 'active' item                           | `string`                  | no       |           |
 | activeFontColor       | Font color for the 'active' item                                 | `string`                  | no       |           |
 | activeIconColor       | Icon color for the 'active' item                                 | `string`                  | no       |           | 
 | activeItem            | `itemID` of the 'active' item                                    | `string`                  | no       |           | 
-| activeItemShape       | Shape of the active item highlight                               | `'square' | 'round'`      | no       | 'round'   | 
+| activeItemShape       | Shape of the active item highlight                               | `'square'` \| `'round'`   | no       | 'round'   | 
 | backgroundColor       | The color used for the background                                | `string`                  | no       |           |   
 | chevron               | Show chevron icon (shortcut for `rightComponent`)                | `boolean`                 | no       |           |    
 | titleContent          | Custom element to render as the title                            | `React.Component`         | no       |           |    
@@ -114,8 +131,12 @@ The `items` property supports nested items to generate collapsible sections in t
 | title                 | Text to display in the group header                              | `string`                  | no       |           |  
 | titleColor            | Font color for group header title text                           | `string`                  | no       |           | 
 
+</div>
+
 #### NavItem Object
 The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). NavItem can also include a list of `NestedNavItem` to create a tree structure (see below).
+
+<div style="overflow: auto;">
 
 | Attribute       | Description                                                                                                    | Type               | Required | Default                          |
 |-----------------|----------------------------------------------------------------------------------------------------------------|--------------------|----------|----------------------------------|
@@ -124,13 +145,15 @@ The `items` prop of the `DrawerNavGroup` takes a list of items with the followin
 | divider         | Show a divider line below the top-level item                                                                   | `boolean`          | no       | true                             | 
 | expandIcon      | Icon used to expand drawer                                                                                     | `JSX.Element`      | no       | `<ExpandLess />`, or  `<ArrowDropUp />` if it is a `NestedNavItem` |  
 | icon            | A component to render for the left icon                                                                        | `JSX.Element`      | no       |                                  |
-| itemID          | An unique identifier of the NavItem. Item will have 'active' style when this matches  DrawerNavGroup.activeItem | `string`           | yes      |                                  |  
+| itemID          | An unique identifier of the NavItem. Item will have 'active' style when this matches  DrawerNavGroup.activeItem | `string`          | yes      |                                  |  
 | items           | The items nested under this item                                                                               | `NestedNavItem[]`  | no       |                                  |    
 | onClick         | A function to execute when clicked                                                                             | `function`         | no       |                                  |       
 | rightComponent  | An icon/component to display to the right                                                                      | `JSX.Element`      | no       |                                  |   
 | statusColor     | Status stripe and icon color                                                                                   | `string`           | no       |                                  |   
 | subtitle        | The text to show on the second line                                                                            | `string`           | no       |                                  |    
 | title           | The text to show on the first line                                                                             | `string`           | yes      |                                  |    
+
+</div>
 
 #### NestedNavItem Object
 The `items` property of the NavItem can be nested to create a tree structure with expand/collapse panels. Nested items take the same properties as `NavItem` with the exception of `icon` (nested items cannot use icons). 
@@ -175,9 +198,14 @@ The `DrawerFooter` is an optional section that renders at the bottom of the `Dra
 
 
 ### Drawer Footer API
+
+<div style="overflow: auto;">
+
 | Prop Name       | Description                             | Type          | Required | Default |
 |-----------------|-----------------------------------------|---------------|----------|---------|
 | backgroundColor | The color used for the background       | `string`      | no       |         |   
+
+</div>
 
 ### Usage
 ```typescript
