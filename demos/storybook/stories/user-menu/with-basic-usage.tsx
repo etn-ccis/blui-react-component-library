@@ -1,7 +1,7 @@
 import { Avatar } from '@material-ui/core';
 import { Email, Settings } from '@material-ui/icons';
 import SendIcon from '@material-ui/icons/Send';
-import {UserMenu, UserMenuGroup, UserMenuItem} from '@pxblue/react-components';
+import { UserMenu, UserMenuGroup, UserMenuItem } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
@@ -25,22 +25,16 @@ const menuItems: UserMenuItem[] = [
         title: 'Contact Us',
         icon: <Email />,
         onClick: action('Contact Us Selected'),
-    }
+    },
 ];
 
-const menuGroups: UserMenuGroup[] = [
+export const getMenu = (): UserMenuGroup[] => [
     {
         fontColor: '',
         iconColor: '',
-        items: menuItems
-    }
+        items: menuItems,
+    },
 ];
-
-export const getMenu = (): UserMenuGroup[] => {
-    menuGroups[0].fontColor = '';
-    menuGroups[0].iconColor = '';
-    return menuGroups;
-};
 
 export const withBasicUsage = (): StoryFnReactReturnType => {
     const value = text('value', 'AB');
