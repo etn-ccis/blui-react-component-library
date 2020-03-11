@@ -1,7 +1,6 @@
 import { Avatar, Divider, Menu, MenuItem, Typography } from '@material-ui/core';
 import { UserMenu } from '@pxblue/react-components';
 import { State, Store } from '@sambego/storybook-state';
-import { action } from '@storybook/addon-actions';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 const EatonLogo = require('../../assets/EatonLogo.svg');
