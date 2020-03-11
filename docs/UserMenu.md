@@ -1,6 +1,14 @@
 # UserMenu
 The `UserMenu` is an Avatar that opens a Menu when clicked. It is typically used in the top-right corner of an application and indicates who is logged in.
 
+<div style="display:flex; justify-content: space-around">
+
+<img width="30%" alt="UserMenu Avatar" src="./images/userMenuAvatar.png">
+<img width="35%" alt="UserMenu Opened" src="./images/userMenuOpened.png">
+
+</div>
+
+
 The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `Menu`.
 
 ## Usage 
