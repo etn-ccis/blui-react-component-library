@@ -24,8 +24,7 @@ export const withScoreBadge = (): StoryFnReactReturnType => (
                 <ListItem onClick={action('view location')}>
                     <ListItemText primary="View Location" />
                     <ListItemSecondaryAction style={{ display: 'flex' }}>
-                        {' '}
-                        <ChevronRight />{' '}
+                        <ChevronRight />
                     </ListItemSecondaryAction>
                 </ListItem>
             </List>

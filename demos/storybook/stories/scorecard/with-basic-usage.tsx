@@ -5,10 +5,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 
 export const withBasicUsage = (): StoryFnReactReturnType => (
-    <ScoreCard
-        style={{ width: 400, flex: '0 0 auto' }}
-        headerTitle={text('headerTitle', 'Card Title')}
-    >
+    <ScoreCard style={{ width: 400, flex: '0 0 auto' }} headerTitle={text('headerTitle', 'Card Title')}>
         <List>
             <ListItem>
                 <ListItemText primary={'Body Content'} />

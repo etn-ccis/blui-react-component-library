@@ -1,15 +1,21 @@
 import { List, ListItem, ListItemText } from '@material-ui/core';
+import * as Colors from '@pxblue/colors';
 import { ScoreCard } from '@pxblue/react-components';
-import { text } from '@storybook/addon-knobs';
+import { color, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
-export const withHeaderInfo = (): StoryFnReactReturnType => (
+const backgroundImage = require('../../assets/topology_40.png');
+
+export const withCustomHeader = (): StoryFnReactReturnType => (
     <ScoreCard
         style={{ width: 400, flex: '0 0 auto' }}
         headerTitle={text('headerTitle', 'Card Title')}
         headerSubtitle={text('headerSubtitle', 'Card Subtitle')}
         headerInfo={text('headerInfo', '4 Devices')}
+        headerColor={color('headerColor', Colors.red[500])}
+        headerFontColor={color('headerFontColor', Colors.white[50])}
+        headerBackgroundImage={backgroundImage}
     >
         <List>
             <ListItem>
@@ -19,4 +25,4 @@ export const withHeaderInfo = (): StoryFnReactReturnType => (
     </ScoreCard>
 );
 
-withHeaderInfo.story = { name: 'with header info' };
+withCustomHeader.story = { name: 'with custom header' };
