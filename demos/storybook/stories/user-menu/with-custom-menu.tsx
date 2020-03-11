@@ -17,7 +17,6 @@ const store = new Store<UserMenuState>({
 export const withCustomMenu = (): StoryFnReactReturnType => {
     const avatar = <Avatar src={tRex} />;
     const open = (): void => {
-        action('open');
         store.set({ open: true });
     };
     const close = (): void => {
@@ -66,7 +65,7 @@ export const withCustomMenu = (): StoryFnReactReturnType => {
     return (
         <State store={store}>
             {(state): JSX.Element => (
-                <UserMenu avatar={avatar} onOpen={open} menu={menu(state)} onClose={action('close')} />
+                <UserMenu avatar={avatar} onOpen={open} menu={menu(state)}  />
             )}
         </State>
     );
