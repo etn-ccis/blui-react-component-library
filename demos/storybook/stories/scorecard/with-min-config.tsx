@@ -1,5 +1,4 @@
 import { List, ListItem, ListItemText } from '@material-ui/core';
-//@ts-ignore
 import { ScoreCard } from '@pxblue/react-components';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
@@ -8,8 +7,8 @@ import React from 'react';
 export const withMinConfig = (): StoryFnReactReturnType => (
     <ScoreCard
         style={{ width: 400, flex: '0 0 auto' }}
-        headerTitle={text('Title', 'Card Title')}
-        headerSubtitle={text('Subtitle', 'Card Subtitle')}
+        headerTitle={text('headerTitle', 'Card Title')}
+        headerSubtitle={text('headerSubtitle', 'Card Subtitle')}
     >
         <List>
             <ListItem>

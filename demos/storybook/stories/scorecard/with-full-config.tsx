@@ -19,8 +19,8 @@ export const withFullConfig = (): StoryFnReactReturnType => (
         headerInfo={text('headerInfo', '4 Devices')}
         headerColor={color('headerColor', Colors.red[500])}
         headerFontColor={color('headerFontColor', Colors.white[50])}
-        headerBackgroundImage={boolean('Use Background Image', true) ? backgroundImage : undefined}
-        actionLimit={number('Action Limit', 3, { range: true, min: 1, max: 6, step: 1 })}
+        headerBackgroundImage={boolean('headerBackgroundImage', true) ? backgroundImage : undefined}
+        actionLimit={number('actionLimit', 3, { range: true, min: 1, max: 6, step: 1 })}
         actionItems={[
             <MoreVert onClick={action('clicked more')} key={'morevert'} />,
             <Search onClick={action('clicked search')} key={'search'} />,
@@ -30,12 +30,11 @@ export const withFullConfig = (): StoryFnReactReturnType => (
             <Cloud onClick={action('clicked cloud')} key={'cloud'} />,
         ].slice(0, number('Actions Length', 1, { range: true, min: 0, max: 6, step: 1 }))}
         actionRow={
-            <List style={{ margin: 0 }}>
-                <ListItem>
+            <List style={{ cursor: 'pointer'}}>
+                <ListItem onClick={action('view location')}>
                     <ListItemText primary="View Location" />
-                    <ListItemSecondaryAction style={{ display: 'flex' }}>
-                        {' '}
-                        <ChevronRight />{' '}
+                    <ListItemSecondaryAction>
+                        <ChevronRight />
                     </ListItemSecondaryAction>
                 </ListItem>
             </List>

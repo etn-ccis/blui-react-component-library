@@ -1,7 +1,6 @@
 import { List, ListItem, ListItemSecondaryAction, ListItemText } from '@material-ui/core';
 import { ChevronRight, Cloud, ListAlt, MoreVert, Notifications } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import { GradeA } from '@pxblue/icons-mui';
 import { Hero, HeroBanner, InfoListItem, ScoreCard } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
@@ -21,8 +20,8 @@ export const withScoreBadge = (): StoryFnReactReturnType => (
         headerBackgroundImage={backgroundImage}
         actionItems={[<MoreVert onClick={action('clicked more')} key={'morevert'} />]}
         actionRow={
-            <List style={{ margin: 0 }}>
-                <ListItem>
+            <List style={{ cursor: 'pointer' }}>
+                <ListItem onClick={action('view location')}>
                     <ListItemText primary="View Location" />
                     <ListItemSecondaryAction style={{ display: 'flex' }}>
                         {' '}
