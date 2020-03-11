@@ -11,19 +11,19 @@ const menuItems: UserMenuItem[] = [
         itemID: '1',
         title: 'Account',
         icon: <Settings />,
-        onClick: action('Account Selected'),
+        onClick: action('click \'Account\''),
     },
     {
         itemID: '2',
         title: 'Contact Us',
         icon: <Email />,
-        onClick: action('Contact Us Selected'),
+        onClick: action('click \'Contact Us\''),
     },
     {
         itemID: '3',
         title: 'Log Out',
         icon: <ExitToApp />,
-        onClick: action('Log Out Selected'),
+        onClick: action('click \'Log Out\''),
     },
 ];
 
@@ -36,7 +36,7 @@ export const menuGroups = [
 export const withBasicUsage = (): StoryFnReactReturnType => {
     const value = text('value', 'AB');
     const avatar = <Avatar>{value}</Avatar>;
-    return <UserMenu avatar={avatar} menuGroups={menuGroups} />;
+    return <UserMenu avatar={avatar} menuGroups={menuGroups} onOpen={action('open')} onClose={action('close')} />;
 };
 
 withBasicUsage.story = { name: 'with basic usage ' };

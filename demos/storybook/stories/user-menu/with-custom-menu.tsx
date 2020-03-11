@@ -1,6 +1,7 @@
 import { Avatar, Divider, Menu, MenuItem, Typography } from '@material-ui/core';
 import { UserMenu } from '@pxblue/react-components';
 import { State, Store } from '@sambego/storybook-state';
+import { action } from '@storybook/addon-actions';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 const EatonLogo = require('../../assets/EatonLogo.svg');
@@ -14,14 +15,15 @@ const store = new Store<UserMenuState>({
 });
 
 export const withCustomMenu = (): StoryFnReactReturnType => {
+    const avatar = <Avatar src={tRex} />;
     const open = (): void => {
+        action('open');
         store.set({ open: true });
     };
     const close = (): void => {
         store.set({ open: false });
     };
-    const avatar = <Avatar src={tRex} />;
-    store.set({ open: false });
+
     const menu = (state: any): JSX.Element => (
         <Menu open={state.open} onClose={close}>
             <div key={'header'} style={{ position: 'relative', padding: 10 }}>
@@ -59,9 +61,13 @@ export const withCustomMenu = (): StoryFnReactReturnType => {
         </Menu>
     );
 
+    store.set({ open: false });
+
     return (
         <State store={store}>
-            {(state): JSX.Element => <UserMenu avatar={avatar} onOpen={open} menu={menu(state)} />}
+            {(state): JSX.Element => (
+                <UserMenu avatar={avatar} onOpen={open} menu={menu(state)} onClose={action('close')} />
+            )}
         </State>
     );
 };
