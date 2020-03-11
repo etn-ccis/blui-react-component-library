@@ -1,7 +1,6 @@
 import { List, ListItem, ListItemSecondaryAction, ListItemText } from '@material-ui/core';
 import { ChevronRight, Cloud, ListAlt, Mail, MoreVert, Notifications, Search } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import { HeroBanner, InfoListItem, ScoreCard } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { boolean, color, number, text } from '@storybook/addon-knobs';
@@ -28,7 +27,7 @@ export const withFullConfig = (): StoryFnReactReturnType => (
             <Notifications onClick={action('clicked alarms')} key={'notifications'} />,
             <ListAlt onClick={action('clicked list')} key={'listalt'} />,
             <Cloud onClick={action('clicked cloud')} key={'cloud'} />,
-        ].slice(0, number('Actions Length', 1, { range: true, min: 0, max: 6, step: 1 }))}
+        ].slice(0, number('Number of Actions', 1, { range: true, min: 0, max: 6, step: 1 }))}
         actionRow={
             <List style={{ cursor: 'pointer'}}>
                 <ListItem onClick={action('view location')}>
@@ -44,7 +43,7 @@ export const withFullConfig = (): StoryFnReactReturnType => (
                 {heroes.slice(0, number('Number of Heroes', 1, { range: true, min: 0, max: 2, step: 1 }))}
             </HeroBanner>
         }
-        badgeOffset={number('badge.offset', -40)}
+        badgeOffset={number('badgeOffset', -40)}
     >
         <List style={{ padding: '16px 0' }}>
             <InfoListItem dense style={{ height: 36 }} title={'0 Alarms'} icon={<Notifications color={'inherit'} />} />

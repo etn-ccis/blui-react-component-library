@@ -43,7 +43,7 @@ export const withScoreBadge = (): StoryFnReactReturnType => (
                 />
             </HeroBanner>
         }
-        badgeOffset={number('badge.offset', -52)}
+        badgeOffset={number('badgeOffset', -52)}
     >
         <List style={{ padding: '16px 0' }}>
             <InfoListItem dense style={{ height: 36 }} title={'0 Alarms'} icon={<Notifications color={'inherit'} />} />

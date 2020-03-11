@@ -4,11 +4,10 @@ import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
-export const withMinConfig = (): StoryFnReactReturnType => (
+export const withBasicUsage = (): StoryFnReactReturnType => (
     <ScoreCard
         style={{ width: 400, flex: '0 0 auto' }}
         headerTitle={text('headerTitle', 'Card Title')}
-        headerSubtitle={text('headerSubtitle', 'Card Subtitle')}
     >
         <List>
             <ListItem>
@@ -18,4 +17,4 @@ export const withMinConfig = (): StoryFnReactReturnType => (
     </ScoreCard>
 );
 
-withMinConfig.story = { name: 'with minimum config' };
+withBasicUsage.story = { name: 'with basic usage' };

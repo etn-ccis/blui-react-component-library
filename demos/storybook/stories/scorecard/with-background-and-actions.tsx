@@ -1,6 +1,7 @@
 import { List, ListItem, ListItemSecondaryAction, ListItemText } from '@material-ui/core';
 import { ChevronRight, Cloud, ListAlt, Mail, MoreVert, Notifications, Search } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
+//@ts-ignore
 import { ScoreCard } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { color, number, text } from '@storybook/addon-knobs';
@@ -12,9 +13,9 @@ const backgroundImage = require('../../assets/topology_40.png');
 export const withBackgroundAndActions = (): StoryFnReactReturnType => (
     <ScoreCard
         style={{ width: 400, flex: '0 0 auto' }}
-        headerTitle={text('headerTitle', 'Substation 3')}
-        headerSubtitle={text('headerSubtitle', 'High Humidity Alarm')}
-        headerInfo={text('headerInfo', '4 Devices')}
+        headerTitle={'Substation 3'}
+        headerSubtitle={'High Humidity Alarm'}
+        headerInfo={'4 Devices'}
         headerColor={color('headerColor', Colors.red[500])}
         headerFontColor={color('headerFontColor', Colors.white[50])}
         headerBackgroundImage={backgroundImage}
@@ -26,7 +27,7 @@ export const withBackgroundAndActions = (): StoryFnReactReturnType => (
             <Notifications onClick={action('clicked alarms')} key={'notifications'} />,
             <ListAlt onClick={action('clicked list')} key={'listalt'} />,
             <Cloud onClick={action('clicked cloud')} key={'cloud'} />,
-        ].slice(0, number('Actions Length', 1, { range: true, min: 0, max: 6, step: 1 }))}
+        ].slice(0, number('Number of Actions', 1, { range: true, min: 0, max: 6, step: 1 }))}
         actionRow={
             <List style={{ cursor: 'pointer' }}>
                 <ListItem onClick={action('view location')}>
