@@ -1,6 +1,6 @@
 import { Spacer } from '@pxblue/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
-import {getReadMe, storyParams, storyWrapper} from '../../src/utils';
+import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
 
 const spacerModule = {
     title: `${COMPONENT_SECTION_NAME}/Spacer`,
