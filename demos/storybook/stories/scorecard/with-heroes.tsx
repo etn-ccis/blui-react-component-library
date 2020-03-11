@@ -34,10 +34,6 @@ export const heroes: JSX.Element[] = [
     />,
 ];
 
-export const badge = (
-    <HeroBanner>{heroes.slice(0, number('Number of Heroes', 1, { range: true, min: 0, max: 2, step: 1 }))}</HeroBanner>
-);
-
 export const withHeroes = (): StoryFnReactReturnType => (
     <ScoreCard
         style={{ width: 400, flex: '0 0 auto' }}
@@ -49,7 +45,11 @@ export const withHeroes = (): StoryFnReactReturnType => (
         headerBackgroundImage={backgroundImage}
         actionItems={[<MoreVert onClick={action('clicked more')} key={'morevert'} />]}
         actionRow={actionRow}
-        badge={badge}
+        badge={
+            <HeroBanner>
+                {heroes.slice(0, number('Number of Heroes', 1, { range: true, min: 0, max: 2, step: 1 }))}
+            </HeroBanner>
+        }
         badgeOffset={0}
     >
         <List>

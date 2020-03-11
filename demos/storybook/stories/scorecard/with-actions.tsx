@@ -38,8 +38,8 @@ export const withActions = (): StoryFnReactReturnType => (
         headerColor={Colors.red[500]}
         headerFontColor={Colors.white[50]}
         headerBackgroundImage={backgroundImage}
-        actionItems={actionItems.slice(0, number('Number of Actions', 3, { range: true, min: 0, max: 6, step: 1 }))}
-        actionLimit={number('actionLimit', 6, { range: true, min: 1, max: 6, step: 1 })}
+        actionItems={actionItems}
+        actionLimit={number('actionLimit', 3, { range: true, min: 1, max: 6, step: 1 })}
         actionRow={actionRow}
     >
         <List>
