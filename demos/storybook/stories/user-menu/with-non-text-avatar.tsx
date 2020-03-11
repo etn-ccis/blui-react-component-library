@@ -3,7 +3,7 @@ import SendIcon from '@material-ui/core/SvgIcon/SvgIcon';
 import { UserMenu } from '@pxblue/react-components';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { menuItems } from './with-default-colors';
+import { getMenu } from './with-basic-usage';
 const tRex = require('../../assets/trex.jpeg');
 
 export const withNonTextAvatar = (): StoryFnReactReturnType => {
@@ -15,8 +15,8 @@ export const withNonTextAvatar = (): StoryFnReactReturnType => {
     );
     return (
         <div style={{ display: 'flex', width: '100px', justifyContent: 'space-between' }}>
-            <UserMenu avatar={tRexAvatar} menuGroups={menuItems} />
-            <UserMenu avatar={iconAvatar} menuGroups={menuItems} />
+            <UserMenu avatar={tRexAvatar} menuGroups={getMenu()} />
+            <UserMenu avatar={iconAvatar} menuGroups={getMenu()} />
         </div>
     );
 };

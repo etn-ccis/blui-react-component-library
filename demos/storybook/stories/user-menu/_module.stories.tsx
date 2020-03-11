@@ -11,7 +11,7 @@ const userMenuModule = {
 
 /* Display order goes here */
 export { getReadMeStory } from '../../src/utils';
-export { withDefaultColors } from './with-default-colors';
+export { withBasicUsage } from './with-basic-usage';
 export * from './with-custom-colors';
 export * from './with-non-text-avatar';
 export * from './with-menu-header';
