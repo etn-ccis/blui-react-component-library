@@ -165,6 +165,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
                 onClose={closeMenu}
+                getContentAnchorEl={null}
                 {...MenuProps}
                 MenuListProps={{ style: { padding: 0 } }}
             >
