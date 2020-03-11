@@ -7,7 +7,7 @@ import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
-const items: UserMenuItem[] = [
+const menuItems: UserMenuItem[] = [
     {
         itemID: '1',
         title: 'Log Out',
@@ -28,18 +28,18 @@ const items: UserMenuItem[] = [
     }
 ];
 
-const menuItems: UserMenuGroup[] = [
+const menuGroups: UserMenuGroup[] = [
     {
         fontColor: '',
         iconColor: '',
-        items
+        items: menuItems
     }
 ];
 
 export const getMenu = (): UserMenuGroup[] => {
-    menuItems[0].fontColor = '';
-    menuItems[0].iconColor = '';
-    return menuItems;
+    menuGroups[0].fontColor = '';
+    menuGroups[0].iconColor = '';
+    return menuGroups;
 };
 
 export const withBasicUsage = (): StoryFnReactReturnType => {
