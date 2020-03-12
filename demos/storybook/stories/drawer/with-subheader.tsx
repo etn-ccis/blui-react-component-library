@@ -57,17 +57,17 @@ const accordion = (
 
 export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnType => {
     const valuesObj = {
-        Filter: 'Filter',
-        Accordion: 'Accordion',
+        filter: 'Filter',
+        accordion: 'Accordion',
     };
-    const defaultValue = 'Filter';
     const optionsObj = {
         display: 'inline-radio' as OptionsKnobOptionsDisplay,
     };
-    const value = optionsKnob('Subheader Content', valuesObj, defaultValue, optionsObj);
+    const subheaderContent = optionsKnob('Subheader Content', valuesObj, 'Filter', optionsObj);
+
     return (
         <Drawer open={boolean('open', true)}>
-            <DrawerHeader icon={<Menu />} title={'Subheader Demo'} />
+            <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
             <DrawerSubheader>
                 <div
                     style={{
@@ -76,12 +76,11 @@ export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnTy
                         padding: '20px',
                     }}
                 >
-                    {value === 'Filter' ? filter : accordion}
+                    {subheaderContent === 'Filter' ? filter : accordion}
                 </div>
             </DrawerSubheader>
             <DrawerBody>
                 <DrawerNavGroup
-                    title={'Default Navigation Group'}
                     activeItem={context.state.selected}
                     items={navGroupItems1}
                 />

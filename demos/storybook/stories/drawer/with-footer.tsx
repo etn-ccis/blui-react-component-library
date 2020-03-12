@@ -15,7 +15,6 @@ export const withFooter = (context: DrawerStoryContext): StoryFnReactReturnType 
         <DrawerHeader icon={<Menu />} title={'Footer Example'} />
         <DrawerBody>
             <DrawerNavGroup
-                title={'Default Navigation Group'}
                 activeItem={context.state.selected}
                 items={navGroupItems1}
             />
