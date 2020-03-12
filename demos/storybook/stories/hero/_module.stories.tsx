@@ -18,8 +18,9 @@ const heroModule = {
 export { getReadMeStory } from '../../src/utils';
 export * from './with-basic-usage';
 export * from './with-value-and-units';
-export * from './with-icon-colors';
 export * from './with-channelValue-children';
+export * from './with-icon-colors';
+export * from './with-full-config';
 export * from './within-a-HeroBanner';
 
 export default heroModule;
