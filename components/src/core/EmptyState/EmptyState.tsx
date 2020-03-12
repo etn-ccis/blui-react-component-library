@@ -6,9 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 
 export type EmptyStateProps = {
-    title?: string;
+    title: string;
     description?: string;
-    icon?: JSX.Element;
+    icon: JSX.Element;
     actions?: JSX.Element;
     iconStyles?: CSSProperties;
 };
@@ -51,9 +51,9 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
 
 EmptyState.displayName = 'EmptyState';
 EmptyState.propTypes = {
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
     description: PropTypes.string,
-    icon: PropTypes.element,
+    icon: PropTypes.element.isRequired,
     actions: PropTypes.element,
     iconStyles: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
