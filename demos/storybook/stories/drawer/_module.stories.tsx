@@ -35,8 +35,9 @@ export { getReadMeStory } from '../../src/utils';
 export { withBasicConfig } from './with-basic-config';
 export * from './with-custom-header';
 export * from './with-subheader';
-export * from './with-footer';
+export { withMultipleNavGroups } from './with-multiple-DrawerNavGroups';
 export * from './with-nested-list-items';
+export * from './with-footer';
 export * from './with-full-config';
 export * from './within-a-DrawerLayout';
 

@@ -1,23 +1,23 @@
-import { Accessibility, AddAPhoto, Mail, Menu, NotificationsActive } from '@material-ui/icons';
-import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxblue/react-components';
-import { boolean, text } from '@storybook/addon-knobs';
-import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
+import {Accessibility, Menu, NotificationsActive, PermIdentity, Today} from '@material-ui/icons';
+import {Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem} from '@pxblue/react-components';
+import {boolean, text} from '@storybook/addon-knobs';
+import {StoryFnReactReturnType} from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { DrawerStoryContext } from './util';
+import {DrawerStoryContext} from './util';
 
 export const navGroupItems1: NavItem[] = [
     {
-        title: 'User Guide',
+        title: 'Identity Management',
         itemID: '1',
-        icon: <AddAPhoto />,
+        icon: <PermIdentity />,
         onClick: (): void => {
             // Set DrawerNavGroup activeItem here.
         },
     },
     {
-        title: 'License',
+        title: 'Calendar',
         itemID: '2',
-        icon: <Mail />,
+        icon: <Today />,
     },
     {
         title: 'Accessibility',
