@@ -11,8 +11,9 @@ const scorecardModule = {
 
 /* Display order goes here */
 export { getReadMeStory } from '../../src/utils';
-export * from './with-min-config';
-export * from './with-background-and-actions';
+export * from './with-basic-usage';
+export * from './with-custom-header';
+export { withActions } from './with-actions';
 export { withHeroes } from './with-heroes';
 export * from './with-score-badge';
 export * from './with-full-config';

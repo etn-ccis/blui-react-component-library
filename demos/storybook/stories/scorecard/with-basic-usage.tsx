@@ -1,16 +1,11 @@
 import { List, ListItem, ListItemText } from '@material-ui/core';
-//@ts-ignore
 import { ScoreCard } from '@pxblue/react-components';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
-export const withMinConfig = (): StoryFnReactReturnType => (
-    <ScoreCard
-        style={{ width: 400, flex: '0 0 auto' }}
-        headerTitle={text('Title', 'Card Title')}
-        headerSubtitle={text('Subtitle', 'Card Subtitle')}
-    >
+export const withBasicUsage = (): StoryFnReactReturnType => (
+    <ScoreCard style={{ width: 400, flex: '0 0 auto' }} headerTitle={text('headerTitle', 'Card Title')}>
         <List>
             <ListItem>
                 <ListItemText primary={'Body Content'} />
@@ -19,4 +14,4 @@ export const withMinConfig = (): StoryFnReactReturnType => (
     </ScoreCard>
 );
 
-withMinConfig.story = { name: 'with minimum config' };
+withBasicUsage.story = { name: 'with basic usage' };

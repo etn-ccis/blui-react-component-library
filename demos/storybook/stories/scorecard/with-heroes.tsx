@@ -1,13 +1,13 @@
-import { List, ListItem, ListItemSecondaryAction, ListItemText } from '@material-ui/core';
-import { ChevronRight, MoreVert } from '@material-ui/icons';
+import { List, ListItem, ListItemText } from '@material-ui/core';
+import { MoreVert } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import { Moisture as Humidity, Temp } from '@pxblue/icons-mui';
 import { Hero, HeroBanner, ScoreCard } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
+import { actionRow } from './with-actions';
 
 const backgroundImage = require('../../assets/topology_40.png');
 
@@ -44,20 +44,10 @@ export const withHeroes = (): StoryFnReactReturnType => (
         headerFontColor={Colors.white[50]}
         headerBackgroundImage={backgroundImage}
         actionItems={[<MoreVert onClick={action('clicked more')} key={'morevert'} />]}
-        actionRow={
-            <List style={{ margin: 0 }}>
-                <ListItem>
-                    <ListItemText primary="View Location" />
-                    <ListItemSecondaryAction style={{ display: 'flex' }}>
-                        {' '}
-                        <ChevronRight />{' '}
-                    </ListItemSecondaryAction>
-                </ListItem>
-            </List>
-        }
+        actionRow={actionRow}
         badge={
             <HeroBanner>
-                {heroes.slice(0, number('heroes.length', 1, { range: true, min: 0, max: 2, step: 1 }))}
+                {heroes.slice(0, number('Number of Heroes', 1, { range: true, min: 0, max: 2, step: 1 }))}
             </HeroBanner>
         }
         badgeOffset={0}
