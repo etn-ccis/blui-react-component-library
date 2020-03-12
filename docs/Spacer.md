@@ -3,7 +3,7 @@ An invisible utility component that acts as a spacer element in various layouts.
 
 <img width="40%" alt="Spacer used in Drawer Body" src="./images/spacer.png"><br/>
 
-### Usage
+## Usage
 ```typescript
 import { Spacer } from '@pxblue/react-components';
 ...
@@ -14,7 +14,7 @@ import { Spacer } from '@pxblue/react-components';
 </div>
 ```
 
-### API
+## API
 
 <div style="overflow: auto;">
 
