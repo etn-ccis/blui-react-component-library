@@ -1,12 +1,11 @@
 import { List } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import { Device, GradeA, Leaf, Temp } from '@pxblue/icons-mui';
 import { ChannelValue, InfoListItem } from '@pxblue/react-components';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
-export const inAFullList = (): StoryFnReactReturnType => (
+export const withinFullList = (): StoryFnReactReturnType => (
     <List style={{ color: Colors.gray['800'], padding: 0 }}>
         <InfoListItem
             dense
@@ -72,4 +71,4 @@ export const inAFullList = (): StoryFnReactReturnType => (
     </List>
 );
 
-inAFullList.story = { name: 'in a full list' };
+withinFullList.story = { name: 'within a full list' };

@@ -3,7 +3,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
-export const basicListItem = (): StoryFnReactReturnType => (
+export const withBasicUsage = (): StoryFnReactReturnType => (
     <InfoListItem
         dense
         title={text('title', 'Info List Item')}
@@ -13,4 +13,4 @@ export const basicListItem = (): StoryFnReactReturnType => (
     />
 );
 
-basicListItem.story = { name: 'basic list item' };
+withBasicUsage.story = { name: 'with basic usage' };

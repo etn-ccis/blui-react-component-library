@@ -1,5 +1,4 @@
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import { Leaf } from '@pxblue/icons-mui';
 import { InfoListItem } from '@pxblue/react-components';
 import { boolean, color, text } from '@storybook/addon-knobs';

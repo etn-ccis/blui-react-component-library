@@ -1,11 +1,10 @@
-//@ts-ignore
 import { Leaf, Temp } from '@pxblue/icons-mui';
 import { InfoListItem } from '@pxblue/react-components';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
-export const arrayForSubtitles = (): StoryFnReactReturnType => (
+export const withArrayForSubtitles = (): StoryFnReactReturnType => (
     <InfoListItem
         dense
         title={text('Title', 'Temperature')}
@@ -16,4 +15,4 @@ export const arrayForSubtitles = (): StoryFnReactReturnType => (
     />
 );
 
-arrayForSubtitles.story = { name: 'array for subtitles' };
+withArrayForSubtitles.story = { name: 'with array for subtitles' };

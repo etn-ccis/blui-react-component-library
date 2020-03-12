@@ -1,4 +1,3 @@
-//@ts-ignore
 import { Device } from '@pxblue/icons-mui';
 import { ChannelValue, InfoListItem } from '@pxblue/react-components';
 import { boolean, text } from '@storybook/addon-knobs';
