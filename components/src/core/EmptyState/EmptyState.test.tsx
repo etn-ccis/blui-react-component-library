@@ -46,7 +46,7 @@ describe('EmptyState', () => {
     });
 
     it('renders with icon', () => {
-        let wrapper = shallow(<EmptyState icon={<PersonIcon />} title="Test" />);
+        const wrapper = shallow(<EmptyState icon={<PersonIcon />} title="Test" />);
         expect(wrapper.find(PersonIcon).length).toEqual(1);
     });
 
