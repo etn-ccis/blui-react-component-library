@@ -6,11 +6,9 @@ import React from 'react';
 
 export const withArrayForSubtitles = (): StoryFnReactReturnType => (
     <InfoListItem
-        dense
-        title={text('Title', 'Temperature')}
+        title={'Temperature'}
         subtitle={['4', <Leaf key={'subtitle'} fontSize={'inherit'} />, 'leaves']}
-        subtitleSeparator={text('separator', '-')}
-        divider={'full'}
+        subtitleSeparator={text('subtitleSeparator', '___')}
         icon={<Temp />}
     />
 );
