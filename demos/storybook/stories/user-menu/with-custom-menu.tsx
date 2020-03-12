@@ -63,9 +63,7 @@ export const withCustomMenu = (): StoryFnReactReturnType => {
 
     return (
         <State store={store}>
-            {(state): JSX.Element => (
-                <UserMenu avatar={avatar} onOpen={open} menu={menu(state)}  />
-            )}
+            {(state): JSX.Element => <UserMenu avatar={avatar} onOpen={open} menu={menu(state)} />}
         </State>
     );
 };
