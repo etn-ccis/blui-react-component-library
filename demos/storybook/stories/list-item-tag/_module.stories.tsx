@@ -13,7 +13,7 @@ const listItemTagModule = {
 export { getReadMeStory } from '../../src/utils';
 export * from './with-basic-usage';
 export * from './with-custom-colors';
-export * from './within-InfoListItem';
 export * from './with-full-config';
+export * from './within-InfoListItem';
 
 export default listItemTagModule;
