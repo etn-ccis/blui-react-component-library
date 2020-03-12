@@ -9,22 +9,17 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 
 export const withActions = (): StoryFnReactReturnType => (
-     <EmptyState
-         icon={<DevicesIcon fontSize={'inherit'} />}
-         title={'No Devices'}
-         description={'Not a single one'}
-         actions={
-             <Button
-                 variant="contained"
-                 color="primary"
-                 style={{ margin: '10px' }}
-                 onClick={action('Button Clicked')}
-             >
-                 <AddIcon style={{ marginRight: '5px' }} />
-                 {text('Action Text', 'Add Device')}
-             </Button>
-         }
-     />
- );
+    <EmptyState
+        icon={<DevicesIcon fontSize={'inherit'} />}
+        title={'No Devices'}
+        description={'Not a single one'}
+        actions={
+            <Button variant="contained" color="primary" style={{ margin: '10px' }} onClick={action('Button Clicked')}>
+                <AddIcon style={{ marginRight: '5px' }} />
+                {text('Action Text', 'Add Device')}
+            </Button>
+        }
+    />
+);
 
 withActions.story = { name: 'with actions' };
