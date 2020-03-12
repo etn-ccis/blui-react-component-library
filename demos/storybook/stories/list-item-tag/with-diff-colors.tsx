@@ -9,7 +9,6 @@ export const withDifferentColors = (): StoryFnReactReturnType => (
         label={text('label', 'active')}
         backgroundColor={color('backgroundColor', Colors.gold['500'])}
         fontColor={color('fontColor', Colors.black['500'])}
-        style={{ boxSizing: 'border-box' }}
     />
 );
 
