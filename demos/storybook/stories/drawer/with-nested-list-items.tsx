@@ -27,15 +27,16 @@ const themeRules = 'Theme Rules';
 
 export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactReturnType => {
     const DrawerNavGroupID = 'DrawerNavGroup';
-    const open = boolean('Open', true, DrawerNavGroupID);
+    const open = boolean('open', true, DrawerNavGroupID);
     const divider = boolean('divider', true, DrawerNavGroupID);
     const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
     const ripple = boolean('ripple', true, DrawerNavGroupID);
     const chevron = boolean('chevron', false, DrawerNavGroupID);
     const round = select('activeBackgroundShape', ['round', 'square'], 'round', DrawerNavGroupID);
+    const showIcon = boolean('Show Top-Level Icons', true, DrawerNavGroupID);
 
     const NavItemID = 'NavItem';
-    const useIcon = boolean('Use icons', true, NavItemID);
+    const hidePadding = boolean('hidePadding', false, NavItemID);
     const useRightComponent = select(
         'rightComponent',
         ['undefined', '<ListItemTag />', '<ChannelValue />'],
@@ -94,8 +95,8 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
             <DrawerNavGroup
                 divider={divider}
                 nestedDivider={nestedDivider}
-                title={'Default Navigation Group'}
-                hidePadding={!useIcon}
+                title={'Multi-Level Navigation Group'}
+                hidePadding={hidePadding}
                 ripple={ripple}
                 activeItem={state.selected}
                 titleColor={Colors.black[500]}
@@ -104,7 +105,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                 items={[
                     {
                         title: userGuide,
-                        icon: useIcon ? <AddAPhoto /> : undefined,
+                        icon: showIcon ? <AddAPhoto /> : undefined,
                         itemID: userGuide,
                         rightComponent: rightComponent,
                         expandIcon: expandIcon,
@@ -170,7 +171,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                     {
                         title: community,
                         itemID: community,
-                        icon: useIcon ? <FitnessCenter /> : undefined,
+                        icon: showIcon ? <FitnessCenter /> : undefined,
                         onClick: (): void => {
                             context.store.set({ selected: community });
                         },
@@ -207,7 +208,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                     {
                         title: accessibility,
                         itemID: accessibility,
-                        icon: useIcon ? <Accessibility /> : undefined,
+                        icon: showIcon ? <Accessibility /> : undefined,
                         onClick: (): void => {
                             context.store.set({ selected: accessibility });
                         },
@@ -215,14 +216,13 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                     {
                         title: notifications,
                         itemID: notifications,
-                        icon: useIcon ? <NotificationsActive /> : undefined,
+                        icon: showIcon ? <NotificationsActive /> : undefined,
                         onClick: (): void => {
                             context.store.set({ selected: notifications });
                         },
                     },
                 ]}
             />
-            <div style={{ flex: '1 1 0px' }} />
         </DrawerBody>
     );
 
