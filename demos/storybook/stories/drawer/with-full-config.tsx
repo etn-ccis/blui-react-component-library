@@ -19,17 +19,10 @@ import { State, Store } from '@sambego/storybook-state';
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
+import { DrawerState, DrawerStoryContext } from './util';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
 const topologyBgImage = require('../../assets/topology_40.png');
-
-type DrawerState = {
-    selected: string;
-};
-
-const store = new Store<DrawerState>({
-    selected: '',
-});
 
 const userGuide = 'User Guide';
 const accessibility = 'Accessibility';
@@ -42,15 +35,15 @@ const photos = 'Photos';
 const schedule = 'Schedule';
 const agreement = 'License Agreement';
 
-export const withFullConfig = (): StoryFnReactReturnType => {
+export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnType => {
     const drawerGroupId = 'Drawer';
     const headerGroupId = 'Header';
     const bodyGroupId = 'Body';
     const footerGroupId = 'Footer';
 
-    const open = boolean('Open', true, drawerGroupId);
+    const open = boolean('open', true, drawerGroupId);
     const width = number(
-        'Width',
+        'width',
         350,
         {
             range: true,
@@ -101,7 +94,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             title: overview,
             itemID: overview,
             onClick: (): void => {
-                store.set({ selected: overview });
+                context.store.set({ selected: overview });
             },
             icon: <Dashboard />,
         },
@@ -109,7 +102,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             title: timeline,
             itemID: timeline,
             onClick: (): void => {
-                store.set({ selected: timeline });
+                context.store.set({ selected: timeline });
             },
             icon: <Toc />,
         },
@@ -117,7 +110,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             title: locations,
             itemID: locations,
             onClick: (): void => {
-                store.set({ selected: locations });
+                context.store.set({ selected: locations });
             },
             icon: <PinDrop />,
         },
@@ -127,7 +120,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             subtitle: '5 new warnings',
             statusColor: Colors.yellow[500],
             onClick: (): void => {
-                store.set({ selected: devices });
+                context.store.set({ selected: devices });
             },
             icon: <Devices />,
         },
@@ -135,7 +128,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             title: photos,
             itemID: photos,
             onClick: (): void => {
-                store.set({ selected: photos });
+                context.store.set({ selected: photos });
             },
             icon: <AddAPhoto />,
         },
@@ -143,7 +136,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             title: schedule,
             itemID: schedule,
             onClick: (): void => {
-                store.set({ selected: schedule });
+                context.store.set({ selected: schedule });
             },
             icon: <AirportShuttle />,
         },
@@ -154,7 +147,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             title: userGuide,
             itemID: userGuide,
             onClick: (): void => {
-                store.set({ selected: userGuide });
+                context.store.set({ selected: userGuide });
             },
             icon: <MoveToInboxIcon />,
         },
@@ -163,7 +156,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             itemID: agreement,
             subtitle: 'For Eaton employees only',
             onClick: (): void => {
-                store.set({ selected: agreement });
+                context.store.set({ selected: agreement });
             },
             icon: <SendIcon />,
         },
@@ -171,7 +164,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             title: accessibility,
             itemID: accessibility,
             onClick: (): void => {
-                store.set({ selected: accessibility });
+                context.store.set({ selected: accessibility });
             },
             icon: <Accessibility />,
         },
@@ -179,7 +172,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             title: notifications,
             itemID: notifications,
             onClick: (): void => {
-                store.set({ selected: notifications });
+                context.store.set({ selected: notifications });
             },
             icon: <NotificationsActive />,
         },
@@ -190,63 +183,53 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
 
     return (
-        <State store={store}>
-            {(state): JSX.Element[] => [
-                <Drawer open={open} width={width} key={'drawer'}>
-                    <DrawerHeader
-                        title={headerTitle}
-                        subtitle={headerSubtitle}
-                        icon={headerIcon}
-                        backgroundImage={headerBackgroundImage}
-                        fontColor={headerFontColor}
-                        backgroundColor={headerBackgroundColor}
-                    />
+        <Drawer open={open} width={width} key={'drawer'}>
+            <DrawerHeader
+                title={headerTitle}
+                subtitle={headerSubtitle}
+                icon={headerIcon}
+                backgroundImage={headerBackgroundImage}
+                fontColor={headerFontColor}
+                backgroundColor={headerBackgroundColor}
+            />
 
-                    <DrawerBody
-                        iconColor={bodyIconColor}
-                        fontColor={bodyFontColor}
-                        backgroundColor={bodyBackgroundColor}
-                        activeFontColor={bodyActiveFontColor}
-                        activeBackgroundColor={bodyActiveBackgroundColor}
-                        activeIconColor={bodyActiveIconColor}
-                        chevron={bodyChevron}
-                    >
-                        <DrawerNavGroup
-                            activeItem={state.selected}
-                            divider={bodyDividers}
-                            items={links1}
-                            title={groupTitle1}
-                        />
-                        <DrawerNavGroup
-                            divider={bodyDividers}
-                            activeItem={state.selected}
-                            items={links2}
-                            titleContent={
-                                <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
-                                    <div>{groupTitle2}</div>
-                                    <div>Software Version v1.0.3</div>
-                                </div>
-                            }
-                        />
-                    </DrawerBody>
+            <DrawerBody
+                iconColor={bodyIconColor}
+                fontColor={bodyFontColor}
+                backgroundColor={bodyBackgroundColor}
+                activeFontColor={bodyActiveFontColor}
+                activeBackgroundColor={bodyActiveBackgroundColor}
+                activeIconColor={bodyActiveIconColor}
+                chevron={bodyChevron}
+            >
+                <DrawerNavGroup
+                    activeItem={context.state.selected}
+                    divider={bodyDividers}
+                    items={links1}
+                    title={groupTitle1}
+                />
+                <DrawerNavGroup
+                    divider={bodyDividers}
+                    activeItem={context.state.selected}
+                    items={links2}
+                    titleContent={
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+                            <div>{groupTitle2}</div>
+                            <div>Software Version v1.0.3</div>
+                        </div>
+                    }
+                />
+            </DrawerBody>
 
-                    {showFooter && (
-                        <DrawerFooter backgroundColor={footerBackgroundColor}>
-                            <Divider />
-                            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                <img
-                                    src={EatonLogo}
-                                    style={{ margin: '10px' }}
-                                    alt="Eaton Logo"
-                                    height={50}
-                                    width={'auto'}
-                                />
-                            </div>
-                        </DrawerFooter>
-                    )}
-                </Drawer>,
-            ]}
-        </State>
+            {showFooter && (
+                <DrawerFooter backgroundColor={footerBackgroundColor}>
+                    <Divider />
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
+                    </div>
+                </DrawerFooter>
+            )}
+        </Drawer>
     );
 };
 

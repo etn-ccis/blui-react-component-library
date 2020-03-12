@@ -3,18 +3,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@pxblue/react-components';
 import { Drawer, DrawerHeader } from '@pxblue/react-components/core/Drawer';
-import { State, Store } from '@sambego/storybook-state';
 import { boolean, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-
-type DrawerState = {
-    selected: string;
-};
-
-const store = new Store<DrawerState>({
-    selected: '',
-});
+import { DrawerState, DrawerStoryContext } from './util';
 
 const userGuide = 'User Guide';
 const license = 'License';
@@ -33,7 +25,7 @@ const componentLibrary = 'Component Library';
 const typographyRules = 'Typography Rules';
 const themeRules = 'Theme Rules';
 
-export const withNestedListItems = (): StoryFnReactReturnType => {
+export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactReturnType => {
     const DrawerNavGroupID = 'DrawerNavGroup';
     const open = boolean('Open', true, DrawerNavGroupID);
     const divider = boolean('divider', true, DrawerNavGroupID);
@@ -123,7 +115,7 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                                 itemID: gettingStarted,
                                 subtitle: 'Introduction to Eaton',
                                 onClick: (): void => {
-                                    store.set({ selected: gettingStarted });
+                                    context.store.set({ selected: gettingStarted });
                                 },
                             },
                             {
@@ -134,7 +126,7 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                                         title: forDevelopers,
                                         itemID: forDevelopers,
                                         onClick: (): void => {
-                                            store.set({ selected: forDevelopers });
+                                            context.store.set({ selected: forDevelopers });
                                         },
                                     },
                                     {
@@ -145,21 +137,21 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                                                 title: componentLibrary,
                                                 itemID: componentLibrary,
                                                 onClick: (): void => {
-                                                    store.set({ selected: componentLibrary });
+                                                    context.store.set({ selected: componentLibrary });
                                                 },
                                             },
                                             {
                                                 title: typographyRules,
                                                 itemID: typographyRules,
                                                 onClick: (): void => {
-                                                    store.set({ selected: typographyRules });
+                                                    context.store.set({ selected: typographyRules });
                                                 },
                                             },
                                             {
                                                 title: themeRules,
                                                 itemID: themeRules,
                                                 onClick: (): void => {
-                                                    store.set({ selected: themeRules });
+                                                    context.store.set({ selected: themeRules });
                                                 },
                                             },
                                         ],
@@ -170,7 +162,7 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                                 title: environmentSetup,
                                 itemID: environmentSetup,
                                 onClick: (): void => {
-                                    store.set({ selected: environmentSetup });
+                                    context.store.set({ selected: environmentSetup });
                                 },
                             },
                         ],
@@ -180,14 +172,14 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                         itemID: community,
                         icon: useIcon ? <FitnessCenter /> : undefined,
                         onClick: (): void => {
-                            store.set({ selected: community });
+                            context.store.set({ selected: community });
                         },
                         items: [
                             {
                                 title: license,
                                 itemID: license,
                                 onClick: (): void => {
-                                    store.set({ selected: license });
+                                    context.store.set({ selected: license });
                                 },
                             },
                             {
@@ -198,14 +190,14 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                                         title: hallOfFame,
                                         itemID: hallOfFame,
                                         onClick: (): void => {
-                                            store.set({ selected: hallOfFame });
+                                            context.store.set({ selected: hallOfFame });
                                         },
                                     },
                                     {
                                         title: contributingGuide,
                                         itemID: contributingGuide,
                                         onClick: (): void => {
-                                            store.set({ selected: contributingGuide });
+                                            context.store.set({ selected: contributingGuide });
                                         },
                                     },
                                 ],
@@ -217,7 +209,7 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                         itemID: accessibility,
                         icon: useIcon ? <Accessibility /> : undefined,
                         onClick: (): void => {
-                            store.set({ selected: accessibility });
+                            context.store.set({ selected: accessibility });
                         },
                     },
                     {
@@ -225,7 +217,7 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                         itemID: notifications,
                         icon: useIcon ? <NotificationsActive /> : undefined,
                         onClick: (): void => {
-                            store.set({ selected: notifications });
+                            context.store.set({ selected: notifications });
                         },
                     },
                 ]}
@@ -235,14 +227,10 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
     );
 
     return (
-        <State store={store}>
-            {(state): JSX.Element[] => [
-                <Drawer open={open} key={'drawer'}>
-                    <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
-                    {drawerItemList(state)}
-                </Drawer>,
-            ]}
-        </State>
+        <Drawer open={open} key={'drawer'}>
+            <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
+            {drawerItemList(context.state)}
+        </Drawer>
     );
 };
 
