@@ -1,4 +1,4 @@
-import { Divider } from '@material-ui/core';
+import {Divider} from '@material-ui/core';
 import {
     Accessibility,
     AddAPhoto,
@@ -14,12 +14,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MoveToInboxIcon from '@material-ui/icons/MoveToInbox';
 import SendIcon from '@material-ui/icons/Send';
 import * as Colors from '@pxblue/colors';
-import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components';
-import { State, Store } from '@sambego/storybook-state';
-import { boolean, color, number, select, text } from '@storybook/addon-knobs';
-import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
+import {Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup} from '@pxblue/react-components';
+import {boolean, color, number, select, text} from '@storybook/addon-knobs';
+import {StoryFnReactReturnType} from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { DrawerState, DrawerStoryContext } from './util';
+import {DrawerStoryContext} from './util';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
 const topologyBgImage = require('../../assets/topology_40.png');
