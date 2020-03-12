@@ -10,7 +10,7 @@ export const withFullConfig = (): StoryFnReactReturnType => (
         value={text('value', text('value', '123'))}
         units={text('units', 'hz')}
         color={color('textColor', Colors.red[500])}
-        icon={<Trend htmlColor={color('icon.htmlColor', Colors.black[500])} />}
+        icon={boolean('Show Icon', true) ? <Trend htmlColor={color('icon.htmlColor', Colors.black[500])} /> : undefined}
         fontSize={number('fontSize', 30)}
         prefix={boolean('prefix', false)}
     />
