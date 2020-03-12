@@ -19,11 +19,11 @@ import { EmptyState } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name   | Description                             | Type              | Required | Default | Examples                              |
-|-------------|-----------------------------------------|-------------------|----------|---------|---------------------------------------|
-| title       | The main text to display                | `string`          | yes      |         | 'No Data Found'                       |
-| description | The secondary text to display           | `string`          | no       |         | 'Come back to this page later'        |
-| icon        | The primary icon                        | `React.Component` | no       |         | `<DevicesIcon fontSize={'inherit'}/>` |
-| actions     | Additional components to render below   | `React.Component` | no       |         | `<Button>Add Device</Button>`         |
+| Prop Name   | Description                             | Type              | Required | Default |
+|-------------|-----------------------------------------|-------------------|----------|---------|
+| title       | The main text to display                | `string`          | yes      |         |
+| description | The secondary text to display           | `string`          | no       |         | 
+| icon        | The primary icon                        | `React.Component` | yes      |         |
+| actions     | Additional components to render below   | `React.Component` | no       |         |
 
 </div>
