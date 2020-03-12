@@ -1,8 +1,7 @@
-import * as Colors from '@pxblue/colors';
-import {Schedule} from '@material-ui/icons';
-import {ChannelValue, Hero} from '@pxblue/react-components';
-import {number} from '@storybook/addon-knobs';
-import {StoryFnReactReturnType} from '@storybook/react/dist/client/preview/types';
+import { Schedule } from '@material-ui/icons';
+import { ChannelValue, Hero } from '@pxblue/react-components';
+import { number } from '@storybook/addon-knobs';
+import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
 export const withChannelValueChildren = (): StoryFnReactReturnType => (
