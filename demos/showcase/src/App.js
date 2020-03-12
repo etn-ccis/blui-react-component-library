@@ -540,6 +540,25 @@ export default () => {
                             ]}
                         />
                     </Card>
+                    <div style={{ marginTop: 10 }}>
+                        <DrawerHeader 
+                            title={'My Station'}
+                            subtitle={'Online'}
+                            icon={<Email />}
+                        />
+                    </div>
+                    <div style={{ marginTop: 10 }}>
+                        <DrawerHeader 
+                            titleContent = {
+                                <div style={{border: '1px dashed white'}}>
+                                    This is a custom content. <br />
+                                    The header has a minimum height but can stretch depends on the height of the titleContent.
+                                    <br />
+                                    like this.
+                                </div>
+                            }
+                        />
+                    </div>
                 </div>
             </div>
         </DrawerLayout>

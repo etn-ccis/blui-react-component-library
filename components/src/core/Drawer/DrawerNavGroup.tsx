@@ -153,7 +153,6 @@ export type DrawerNavGroupProps = {
     divider?: boolean;
 
     // Icon used to expand drawer
-    // Overriden by NavItem.expandIcon
     expandIcon?: JSX.Element;
 
     // The color used for the text
