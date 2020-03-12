@@ -17,5 +17,6 @@ export * from './with-non-text-avatar';
 export * from './with-menu-header';
 export * from './with-menu-placement-options';
 export * from './with-custom-menu';
+export * from './with-full-config';
 
 export default userMenuModule;

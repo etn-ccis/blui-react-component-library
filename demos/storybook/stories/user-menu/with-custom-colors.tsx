@@ -21,8 +21,8 @@ export const withCustomColors = (): StoryFnReactReturnType => {
     const classes = useStyles();
     const avatar = <Avatar classes={{ root: classes.root }}>CD</Avatar>;
     const group: UserMenuGroup = Object.assign({}, menuGroups[0]);
-    group.fontColor = color('fontColor', Colors.gray[500], 'Menu');
-    group.iconColor = color('iconColor', Colors.blue[800], 'Menu');
+    group.fontColor = color('menuGroups.fontColor', Colors.gray[500], 'Menu');
+    group.iconColor = color('menuGroups.iconColor', Colors.blue[800], 'Menu');
 
     return (
         <UserMenu
