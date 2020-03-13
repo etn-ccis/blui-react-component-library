@@ -19,27 +19,28 @@ import * as Colors from '@pxblue/colors';
 />
 ```
 
-### API
+## API
 
 <div style="overflow: auto;">
-| Prop Name         | Description                                      | Type                                               | Required | Default             | Examples                                |
-|-------------------|--------------------------------------------------|----------------------------------------------------|----------|---------------------|-----------------------------------------|
-| avatar            | Show colored background for icon                 | `boolean`                                          | no       | false               |                                         |
-| backgroundColor   | The color used for the background                | `string`                                           | no       |                     | 'white', 'blue'                         |
-| chevron           | Add a chevron icon on the right                  | `boolean`                                          | no       | false               |                                         |
-| dense             | Smaller height row with less padding             | `boolean`                                          | no       | false               |                                         |
-| divider           | Show a row separator below the row               | `'full'` \| `'partial'`                            | no       |                     |                                         |
-| fontColor         | Title text color                                 | `string`                                           | no       |                     | '#ff3333', 'orange'                     |
-| hidePadding       | Remove left padding if no icon is used           | `boolean`                                          | no       | false               |                                         |
-| icon              | A component to render for the icon               | `React.Component`                                  | no       |                     | `<Leaf color={'inherit'} />`            |
-| iconColor         | Color override for the row icon                  | `string`                                           | no       |                     |                                         |
-| leftComponent     | Component to render on the left side             | `React.Component`                                  | no       |                     | `<ListItemText/>`                       |
-| onClick           | A function to execute when clicked               | `function`                                         | no       |                     | `() => console.log('pressed')`          |
-| rightComponent    | Component to render on the right side            | `React.Component`                                  | no       |                     | `<ChannelValue/>`                       |
-| ripple            | Whether to apply material ripple effect on click | `boolean`                                          | no       | false               |                                         |
-| statusColor       | Status stripe and icon color                     | `string`                                           | no       |                     | '#ff3333', 'orange'                     |
-| subtitle          | The text to show on the second line              | `string` \| `Array<React.ReactNode>`               | no       |                     | 'Subtitle', ['one', 'two', `<Leaf/>`]   |
-| subtitleSeparator | Separator character for subtitle                 | `string`                                           | no       | '·' ('\u00B7')      | '-', '/'                                |
-| title             | The text to show on the first line               | `string`                                           | yes      |                     | 123, 'on'                               |
+
+| Prop Name         | Description                                      | Type                                               | Required | Default             |
+|-------------------|--------------------------------------------------|----------------------------------------------------|----------|---------------------|
+| avatar            | Show colored background for icon                 | `boolean`                                          | no       | false               |
+| backgroundColor   | The color used for the background                | `string`                                           | no       |                     |
+| chevron           | Add a chevron icon on the right                  | `boolean`                                          | no       | false               |
+| dense             | Smaller height row with less padding             | `boolean`                                          | no       | false               |
+| divider           | Show a row separator below the row               | `'full'` \| `'partial'`                            | no       |                     |
+| fontColor         | Title text color                                 | `string`                                           | no       |                     |
+| hidePadding       | Remove left padding if no icon is used           | `boolean`                                          | no       | false               |
+| icon              | A component to render for the icon               | `React.Component`                                  | no       |                     |
+| iconColor         | Color override for the row icon                  | `string`                                           | no       |                     |
+| leftComponent     | Component to render on the left side             | `React.Component`                                  | no       |                     |
+| onClick           | A function to execute when clicked               | `function`                                         | no       |                     |
+| rightComponent    | Component to render on the right side            | `React.Component`                                  | no       |                     |
+| ripple            | Whether to apply material ripple effect on click | `boolean`                                          | no       | false               |
+| statusColor       | Status stripe and icon color                     | `string`                                           | no       |                     |
+| subtitle          | The text to show on the second line              | `string` \| `Array<React.ReactNode>`               | no       |                     |
+| subtitleSeparator | Separator character for subtitle                 | `string`                                           | no       | '·' ('\u00B7')      |
+| title             | The text to show on the first line               | `string`                                           | yes      |                     |
 
 </div>
