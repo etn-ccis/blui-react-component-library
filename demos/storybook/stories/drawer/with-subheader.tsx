@@ -80,10 +80,7 @@ export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnTy
                 </div>
             </DrawerSubheader>
             <DrawerBody>
-                <DrawerNavGroup
-                    activeItem={context.state.selected}
-                    items={navGroupItems1}
-                />
+                <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
             </DrawerBody>
         </Drawer>
     );

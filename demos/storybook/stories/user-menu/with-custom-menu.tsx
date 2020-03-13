@@ -14,14 +14,14 @@ const store = new Store<UserMenuState>({
 });
 
 export const withCustomMenu = (): StoryFnReactReturnType => {
+    const avatar = <Avatar src={tRex} />;
     const open = (): void => {
         store.set({ open: true });
     };
     const close = (): void => {
         store.set({ open: false });
     };
-    const avatar = <Avatar src={tRex} />;
-    store.set({ open: false });
+
     const menu = (state: any): JSX.Element => (
         <Menu open={state.open} onClose={close}>
             <div key={'header'} style={{ position: 'relative', padding: 10 }}>
@@ -58,6 +58,8 @@ export const withCustomMenu = (): StoryFnReactReturnType => {
             />
         </Menu>
     );
+
+    store.set({ open: false });
 
     return (
         <State store={store}>

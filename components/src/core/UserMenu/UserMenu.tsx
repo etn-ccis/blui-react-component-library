@@ -165,6 +165,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
                 onClose={closeMenu}
+                getContentAnchorEl={null}
                 {...MenuProps}
                 MenuListProps={{ style: { padding: 0 } }}
             >
@@ -184,7 +185,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
 UserMenu.displayName = 'UserMenu';
 
 UserMenu.propTypes = {
-    avatar: PropTypes.element,
+    avatar: PropTypes.element.isRequired,
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
@@ -208,7 +209,7 @@ UserMenu.propTypes = {
                 })
             ),
         })
-    ),
+    ).isRequired,
     MenuProps: PropTypes.object,
     onClose: PropTypes.func,
     onOpen: PropTypes.func,
