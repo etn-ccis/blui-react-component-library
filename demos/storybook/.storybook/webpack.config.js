@@ -5,6 +5,18 @@ var path = require('path');
 module.exports = ({ config }) => {
     config.module.rules.push({
         include: [path.resolve(__dirname, '../stories')], // You can specify directories
+        test: /\.(ts)$/,
+        use: [
+            {
+                loader: require.resolve('awesome-typescript-loader'),
+                options: { noImplicitAny: false },
+            },
+        ],
+        enforce: 'pre',
+    });
+
+    config.module.rules.push({
+        include: [path.resolve(__dirname, '../stories')], // You can specify directories
         test: /\.(tsx)$/,
         use: [
             {

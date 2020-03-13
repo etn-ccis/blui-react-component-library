@@ -38,10 +38,7 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps)
         label,
         fontColor,
         backgroundColor,
-        variant,
-        noWrap,
         style,
-        display,
         ...other
     } = props;
     const theme = useTheme();
@@ -58,9 +55,6 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps)
                 },
                 style
             )}
-            noWrap={noWrap}
-            variant={variant}
-            display={display}
             data-test={'list-item-tag'}
             {...other}
         >

@@ -3,18 +3,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@pxblue/react-components';
 import { Drawer, DrawerHeader } from '@pxblue/react-components/core/Drawer';
-import { State, Store } from '@sambego/storybook-state';
 import { boolean, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-
-type DrawerState = {
-    selected: string;
-};
-
-const store = new Store<DrawerState>({
-    selected: '',
-});
+import { DrawerState, DrawerStoryContext } from './util';
 
 const userGuide = 'User Guide';
 const license = 'License';
@@ -33,17 +25,18 @@ const componentLibrary = 'Component Library';
 const typographyRules = 'Typography Rules';
 const themeRules = 'Theme Rules';
 
-export const withNestedListItems = (): StoryFnReactReturnType => {
+export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactReturnType => {
     const DrawerNavGroupID = 'DrawerNavGroup';
-    const open = boolean('Open', true, DrawerNavGroupID);
+    const open = boolean('open', true, DrawerNavGroupID);
     const divider = boolean('divider', true, DrawerNavGroupID);
     const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
     const ripple = boolean('ripple', true, DrawerNavGroupID);
     const chevron = boolean('chevron', false, DrawerNavGroupID);
     const round = select('activeBackgroundShape', ['round', 'square'], 'round', DrawerNavGroupID);
+    const showIcon = boolean('Show Top-Level Icons', true, DrawerNavGroupID);
 
     const NavItemID = 'NavItem';
-    const useIcon = boolean('Use icons', true, NavItemID);
+    const hidePadding = boolean('hidePadding', false, NavItemID);
     const useRightComponent = select(
         'rightComponent',
         ['undefined', '<ListItemTag />', '<ChannelValue />'],
@@ -102,8 +95,8 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
             <DrawerNavGroup
                 divider={divider}
                 nestedDivider={nestedDivider}
-                title={'Default Navigation Group'}
-                hidePadding={!useIcon}
+                title={'Multi-Level Navigation Group'}
+                hidePadding={hidePadding}
                 ripple={ripple}
                 activeItem={state.selected}
                 titleColor={Colors.black[500]}
@@ -112,7 +105,7 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                 items={[
                     {
                         title: userGuide,
-                        icon: useIcon ? <AddAPhoto /> : undefined,
+                        icon: showIcon ? <AddAPhoto /> : undefined,
                         itemID: userGuide,
                         rightComponent: rightComponent,
                         expandIcon: expandIcon,
@@ -123,7 +116,7 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                                 itemID: gettingStarted,
                                 subtitle: 'Introduction to Eaton',
                                 onClick: (): void => {
-                                    store.set({ selected: gettingStarted });
+                                    context.store.set({ selected: gettingStarted });
                                 },
                             },
                             {
@@ -134,7 +127,7 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                                         title: forDevelopers,
                                         itemID: forDevelopers,
                                         onClick: (): void => {
-                                            store.set({ selected: forDevelopers });
+                                            context.store.set({ selected: forDevelopers });
                                         },
                                     },
                                     {
@@ -145,21 +138,21 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                                                 title: componentLibrary,
                                                 itemID: componentLibrary,
                                                 onClick: (): void => {
-                                                    store.set({ selected: componentLibrary });
+                                                    context.store.set({ selected: componentLibrary });
                                                 },
                                             },
                                             {
                                                 title: typographyRules,
                                                 itemID: typographyRules,
                                                 onClick: (): void => {
-                                                    store.set({ selected: typographyRules });
+                                                    context.store.set({ selected: typographyRules });
                                                 },
                                             },
                                             {
                                                 title: themeRules,
                                                 itemID: themeRules,
                                                 onClick: (): void => {
-                                                    store.set({ selected: themeRules });
+                                                    context.store.set({ selected: themeRules });
                                                 },
                                             },
                                         ],
@@ -170,7 +163,7 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                                 title: environmentSetup,
                                 itemID: environmentSetup,
                                 onClick: (): void => {
-                                    store.set({ selected: environmentSetup });
+                                    context.store.set({ selected: environmentSetup });
                                 },
                             },
                         ],
@@ -178,16 +171,16 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                     {
                         title: community,
                         itemID: community,
-                        icon: useIcon ? <FitnessCenter /> : undefined,
+                        icon: showIcon ? <FitnessCenter /> : undefined,
                         onClick: (): void => {
-                            store.set({ selected: community });
+                            context.store.set({ selected: community });
                         },
                         items: [
                             {
                                 title: license,
                                 itemID: license,
                                 onClick: (): void => {
-                                    store.set({ selected: license });
+                                    context.store.set({ selected: license });
                                 },
                             },
                             {
@@ -198,14 +191,14 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                                         title: hallOfFame,
                                         itemID: hallOfFame,
                                         onClick: (): void => {
-                                            store.set({ selected: hallOfFame });
+                                            context.store.set({ selected: hallOfFame });
                                         },
                                     },
                                     {
                                         title: contributingGuide,
                                         itemID: contributingGuide,
                                         onClick: (): void => {
-                                            store.set({ selected: contributingGuide });
+                                            context.store.set({ selected: contributingGuide });
                                         },
                                     },
                                 ],
@@ -215,34 +208,29 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
                     {
                         title: accessibility,
                         itemID: accessibility,
-                        icon: useIcon ? <Accessibility /> : undefined,
+                        icon: showIcon ? <Accessibility /> : undefined,
                         onClick: (): void => {
-                            store.set({ selected: accessibility });
+                            context.store.set({ selected: accessibility });
                         },
                     },
                     {
                         title: notifications,
                         itemID: notifications,
-                        icon: useIcon ? <NotificationsActive /> : undefined,
+                        icon: showIcon ? <NotificationsActive /> : undefined,
                         onClick: (): void => {
-                            store.set({ selected: notifications });
+                            context.store.set({ selected: notifications });
                         },
                     },
                 ]}
             />
-            <div style={{ flex: '1 1 0px' }} />
         </DrawerBody>
     );
 
     return (
-        <State store={store}>
-            {(state): JSX.Element[] => [
-                <Drawer open={open} key={'drawer'}>
-                    <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
-                    {drawerItemList(state)}
-                </Drawer>,
-            ]}
-        </State>
+        <Drawer open={open} key={'drawer'}>
+            <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
+            {drawerItemList(context.state)}
+        </Drawer>
     );
 };
 

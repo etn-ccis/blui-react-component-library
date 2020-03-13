@@ -1,5 +1,4 @@
 import * as Colors from '@pxblue/colors';
-//@ts-ignore
 import { CurrentCircled, GradeA, Leaf, Temp } from '@pxblue/icons-mui';
 import { Hero, HeroBanner } from '@pxblue/react-components';
 import { number } from '@storybook/addon-knobs';
@@ -42,4 +41,4 @@ export const inBanner = (): StoryFnReactReturnType => {
     return <HeroBanner>{heroes.slice(0, numberDisplayed)}</HeroBanner>;
 };
 
-inBanner.story = { name: 'in a banner' };
+inBanner.story = { name: 'within a HeroBanner' };

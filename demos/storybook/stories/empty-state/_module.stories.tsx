@@ -11,8 +11,9 @@ const emptyStateModule = {
 
 /* Display order goes here */
 export { getReadMeStory } from '../../src/utils';
-export * from './as-text-only';
+export * from './with-basic-usage';
+export * from './with-description';
 export * from './with-actions';
-export * from './as-a-placeholder';
+export * from './with-full-config';
 
 export default emptyStateModule;

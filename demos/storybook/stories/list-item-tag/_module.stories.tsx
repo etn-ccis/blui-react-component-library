@@ -11,7 +11,9 @@ const listItemTagModule = {
 
 /* Display order goes here */
 export { getReadMeStory } from '../../src/utils';
-export * from './with-diff-colors';
-export * from './with-typography-props';
+export * from './with-basic-usage';
+export * from './with-custom-colors';
+export * from './with-full-config';
+export * from './within-InfoListItem';
 
 export default listItemTagModule;

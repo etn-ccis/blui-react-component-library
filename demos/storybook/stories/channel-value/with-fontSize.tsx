@@ -1,17 +1,17 @@
 import Trend from '@material-ui/icons/TrendingUp';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '@pxblue/react-components';
-import { number, text } from '@storybook/addon-knobs';
+import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
-export const withExtraLargeFontSize = (): StoryFnReactReturnType => (
+export const withFontSize = (): StoryFnReactReturnType => (
     <ChannelValue
-        value={text('value', text('value', '123'))}
-        units={text('units', 'hz')}
+        value={'123'}
+        units={'hz'}
         icon={<Trend htmlColor={Colors.red[500]} />}
-        fontSize={number('font size', 30)}
+        fontSize={number('fontSize', 30)}
     />
 );
 
-withExtraLargeFontSize.story = { name: 'with extraLarge font size' };
+withFontSize.story = { name: 'with fontSize' };

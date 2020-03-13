@@ -4,7 +4,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 
 export const withUnits = (): StoryFnReactReturnType => (
-    <ChannelValue value={text('value', text('value', '123'))} units={text('units', 'hz')} />
+    <ChannelValue value={'123'} units={text('units', 'hz')} />
 );
 
 withUnits.story = { name: 'with units' };

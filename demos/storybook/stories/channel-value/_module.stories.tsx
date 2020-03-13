@@ -11,10 +11,10 @@ const channelValueModule = {
 
 /* Display order goes here */
 export { getReadMeStory } from '../../src/utils';
-export * from './with-value';
+export * from './with-basic-usage';
 export * from './with-units';
 export * from './with-icon';
-export * from './with-extraLarge-font-size';
-export * from './with-all-props';
+export * from './with-fontSize';
+export * from './with-full-config';
 
 export default channelValueModule;

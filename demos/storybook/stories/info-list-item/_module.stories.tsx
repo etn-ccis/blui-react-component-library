@@ -16,14 +16,15 @@ const infoListModule = {
 
 /* Display order goes here */
 export { getReadMeStory } from '../../src/utils';
-export * from './basic-list-item';
+export * from './with-basic-usage';
+export * from './with-subtitle';
 export * from './with-icon';
-export * from './with-long-text';
-export * from './array-for-subtitles';
+export * from './with-array-for-subtitles';
 export * from './with-avatar';
-export * from './with-status-and-background-color';
-export * from './with-custom-control';
-export * from './with-custom-leftComponent';
-export * from './in-a-full-list';
+export * from './with-background-color';
+export * from './with-leftComponent';
+export * from './with-rightComponent';
+export * from './with-full-config';
+export * from './within-full-list';
 
 export default infoListModule;
