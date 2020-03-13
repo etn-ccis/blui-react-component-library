@@ -18,7 +18,7 @@ import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import {WITH_FULL_CONFIG_STORY_NAME} from "../../src/constants";
+import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 import { DrawerStoryContext } from './util';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
