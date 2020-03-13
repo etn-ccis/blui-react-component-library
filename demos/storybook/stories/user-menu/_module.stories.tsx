@@ -18,5 +18,6 @@ export * from './with-menu-header';
 export * from './with-menu-placement-options';
 export * from './with-custom-menu';
 export * from './with-full-config';
+export * from './within-a-toolbar';
 
 export default userMenuModule;
