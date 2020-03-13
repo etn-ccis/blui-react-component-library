@@ -5,7 +5,7 @@ import { HeroBanner, InfoListItem, ScoreCard } from '@pxblue/react-components';
 import { boolean, color, number, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import {WITH_FULL_CONFIG_STORY_NAME} from "../../src/constants";
+import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 import { actionItems, actionRow } from './with-actions';
 import { heroes } from './with-heroes';
 

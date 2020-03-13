@@ -1,12 +1,12 @@
-import {Divider} from '@material-ui/core';
-import {Menu} from '@material-ui/icons';
+import { Divider } from '@material-ui/core';
+import { Menu } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
-import {Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup} from '@pxblue/react-components/core/Drawer';
-import {boolean, color} from '@storybook/addon-knobs';
-import {StoryFnReactReturnType} from '@storybook/react/dist/client/preview/types';
+import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
+import { boolean, color } from '@storybook/addon-knobs';
+import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import {DrawerStoryContext} from './util';
-import {navGroupItems2} from "./with-multiple-DrawerNavGroups";
+import { DrawerStoryContext } from './util';
+import { navGroupItems2 } from './with-multiple-DrawerNavGroups';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
 
@@ -14,10 +14,7 @@ export const withFooter = (context: DrawerStoryContext): StoryFnReactReturnType 
     <Drawer open={boolean('open', true)}>
         <DrawerHeader icon={<Menu />} title={'Footer Example'} />
         <DrawerBody>
-            <DrawerNavGroup
-                activeItem={context.state.selected}
-                items={navGroupItems2}
-            />
+            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems2} />
         </DrawerBody>
 
         <DrawerFooter backgroundColor={color('backgroundColor', Colors.white[50])}>

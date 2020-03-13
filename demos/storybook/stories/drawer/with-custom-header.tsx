@@ -25,10 +25,7 @@ export const withCustomHeader = (context: DrawerStoryContext): StoryFnReactRetur
             }
         />
         <DrawerBody>
-            <DrawerNavGroup
-                activeItem={context.state.selected}
-                items={navGroupItems1}
-            />
+            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
         </DrawerBody>
     </Drawer>
 );

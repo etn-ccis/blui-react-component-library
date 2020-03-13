@@ -1,9 +1,9 @@
-import {Accessibility, Menu, NotificationsActive, PermIdentity, Today} from '@material-ui/icons';
-import {Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem} from '@pxblue/react-components';
-import {boolean, text} from '@storybook/addon-knobs';
-import {StoryFnReactReturnType} from '@storybook/react/dist/client/preview/types';
+import { Accessibility, Menu, NotificationsActive, PermIdentity, Today } from '@material-ui/icons';
+import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxblue/react-components';
+import { boolean, text } from '@storybook/addon-knobs';
+import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import {DrawerStoryContext} from './util';
+import { DrawerStoryContext } from './util';
 
 export const navGroupItems1: NavItem[] = [
     {
