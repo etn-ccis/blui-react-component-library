@@ -14,7 +14,7 @@ export const withCustomColors = (): StoryFnReactReturnType => {
             backgroundColor: color('backgroundColor', Colors.blue[800], 'Avatar'),
         },
         paper: {
-            backgroundColor: color('backgroundColor', Colors.blue[50], 'Menu'),
+            backgroundColor: color('backgroundColor', Colors.white[50], 'Menu'),
         },
     });
 

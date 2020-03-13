@@ -19,28 +19,6 @@ export const navGroupItems2: NavItem[] = [
         itemID: 'group2-2',
         icon: <Toc />,
     },
-    {
-        title: 'Locations',
-        itemID: 'group2-3',
-        icon: <PinDrop />,
-    },
-    {
-        title: 'Devices',
-        subtitle: '5 new warnings',
-        statusColor: Colors.yellow[500],
-        itemID: 'group2-4',
-        icon: <Devices />,
-    },
-    {
-        title: 'Photos',
-        itemID: 'group2-5',
-        icon: <AddAPhoto />,
-    },
-    {
-        title: 'Schedule',
-        itemID: 'group2-6',
-        icon: <AirportShuttle />,
-    },
 ];
 
 export const withMultipleNavGroups = (context: DrawerStoryContext): StoryFnReactReturnType => (

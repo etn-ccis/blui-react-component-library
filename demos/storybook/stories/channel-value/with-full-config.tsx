@@ -6,15 +6,18 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 
-export const withFullConfig = (): StoryFnReactReturnType => (
-    <ChannelValue
-        value={text('value', text('value', '123'))}
-        units={text('units', 'hz')}
-        color={color('textColor', Colors.red[500])}
-        icon={boolean('Show Icon', true) ? <Trend htmlColor={color('icon.htmlColor', Colors.black[500])} /> : undefined}
-        fontSize={number('fontSize', 30)}
-        prefix={boolean('prefix', false)}
-    />
-);
+export const withFullConfig = (): StoryFnReactReturnType => {
+    const value = text('value', '123');
+    const units = text('units', 'hz');
+    const textColor = color('color', Colors.red[500]);
+    const iconColor = color('icon.htmlColor', Colors.black[500]);
+    const icon = boolean('Show Icon', true) ? <Trend htmlColor={iconColor} /> : undefined;
+    const fontSize = number('fontSize', 30);
+    const prefix = boolean('prefix', false);
+
+    return (
+        <ChannelValue value={value} units={units} color={textColor} icon={icon} fontSize={fontSize} prefix={prefix} />
+    );
+};
 
 withFullConfig.story = { name: WITH_FULL_CONFIG_STORY_NAME };

@@ -67,7 +67,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             headerIcon = <FitnessCenter />;
             break;
         default:
-            headerIcon = <></>;
+            headerIcon = null;
     }
     const headerFontColor = color('fontColor', Colors.white[50], headerGroupId);
     const headerBackgroundColor = color('backgroundColor', Colors.blue[800], headerGroupId);
