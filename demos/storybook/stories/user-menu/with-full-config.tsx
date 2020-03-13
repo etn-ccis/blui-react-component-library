@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { color, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
+import {WITH_FULL_CONFIG_STORY_NAME} from "../../src/constants";
 import { menuGroups } from './with-basic-usage';
 
 export const withFullConfig = (): StoryFnReactReturnType => {
@@ -66,4 +67,4 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     );
 };
 
-withFullConfig.story = { name: 'with full config' };
+withFullConfig.story = { name: WITH_FULL_CONFIG_STORY_NAME };

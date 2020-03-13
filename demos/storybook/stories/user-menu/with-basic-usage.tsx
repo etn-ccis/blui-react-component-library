@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
+import {WITH_MIN_PROPS_STORY_NAME} from "../../src/constants";
 
 const menuItems: UserMenuItem[] = [
     {
@@ -39,4 +40,4 @@ export const withBasicUsage = (): StoryFnReactReturnType => {
     return <UserMenu avatar={avatar} menuGroups={menuGroups} onOpen={action('open')} onClose={action('close')} />;
 };
 
-withBasicUsage.story = { name: 'with basic usage ' };
+withBasicUsage.story = { name: WITH_MIN_PROPS_STORY_NAME };

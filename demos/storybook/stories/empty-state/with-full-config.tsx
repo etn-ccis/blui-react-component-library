@@ -6,6 +6,7 @@ import { color, number, text } from '@storybook/addon-knobs';
 import * as Colors from '@pxblue/colors';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
+import {WITH_FULL_CONFIG_STORY_NAME} from "../../src/constants";
 
 export const withFullConfig = (): StoryFnReactReturnType => {
     const title = text('title', 'Predictions Page Coming Soon');
@@ -36,4 +37,4 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     );
 };
 
-withFullConfig.story = { name: 'with full config' };
+withFullConfig.story = { name: WITH_FULL_CONFIG_STORY_NAME };
