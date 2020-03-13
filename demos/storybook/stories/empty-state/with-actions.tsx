@@ -8,26 +8,18 @@ import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
-export const withActions = (): StoryFnReactReturnType => {
-    const title = text('title', 'No Devices');
-    const actionText = text('Action Text', 'Add Device');
-    return (
-        <EmptyState
-            icon={<DevicesIcon fontSize={'inherit'} />}
-            title={title}
-            actions={
-                <Button
-                    variant="contained"
-                    color="primary"
-                    style={{ margin: '10px' }}
-                    onClick={action('Button Clicked')}
-                >
-                    <AddIcon style={{ marginRight: '5px' }} />
-                    {actionText}
-                </Button>
-            }
-        />
-    );
-};
+export const withActions = (): StoryFnReactReturnType => (
+    <EmptyState
+        icon={<DevicesIcon fontSize={'inherit'} />}
+        title={'No Devices'}
+        description={'Not a single one'}
+        actions={
+            <Button variant="contained" color="primary" style={{ margin: '10px' }} onClick={action('Button Clicked')}>
+                <AddIcon style={{ marginRight: '5px' }} />
+                {text('Action Text', 'Add Device')}
+            </Button>
+        }
+    />
+);
 
 withActions.story = { name: 'with actions' };
