@@ -58,7 +58,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     const headerTitle = text('title', 'PX Blue Drawer', headerGroupId);
     const headerSubtitle = text('subtitle', 'Organize your menu items here', headerGroupId);
     const headerIconOptions = select('icon', ['Menu', 'Fitness', 'None'], 'Menu', headerGroupId);
-    let headerIcon: JSX.Element;
+    let headerIcon: JSX.Element | null;
     switch (headerIconOptions) {
         case 'Menu':
             headerIcon = <MenuIcon />;
