@@ -19,14 +19,6 @@ jobs:
             - components/node_modules
           key: v2-dependencies-react-{{ checksum "components/yarn.lock" }}
       - run:
-          name: Build Library
-          command: |
-            yarn build
-      - run:
-          name: Test Artifacts
-          command: |
-            yarn test:artifacts
-      - run:
           name: Lint
           command: |
             cd components
@@ -35,6 +27,14 @@ jobs:
           name: Test
           command: |
             yarn test
+      - run:
+          name: Build Library
+          command: |
+            yarn build
+      - run:
+          name: Test Artifacts
+          command: |
+            yarn test:artifacts
       # Save the dist folder for use in future jobs.
       - persist_to_workspace:
           root: .

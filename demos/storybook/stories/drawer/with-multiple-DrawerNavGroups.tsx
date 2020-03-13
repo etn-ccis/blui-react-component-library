@@ -1,5 +1,4 @@
-import { AddAPhoto, AirportShuttle, Dashboard, Devices, Menu, PinDrop, Toc } from '@material-ui/icons';
-import * as Colors from '@pxblue/colors';
+import { Dashboard, Menu, Toc } from '@material-ui/icons';
 import { NavItem, Spacer } from '@pxblue/react-components';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
 import { boolean, text } from '@storybook/addon-knobs';
