@@ -6,6 +6,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { Fan } from '@pxblue/icons-mui';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 
 export const withFullConfig = (): StoryFnReactReturnType => (
     <Hero
@@ -21,4 +22,4 @@ export const withFullConfig = (): StoryFnReactReturnType => (
     />
 );
 
-withFullConfig.story = { name: 'with full config' };
+withFullConfig.story = { name: WITH_FULL_CONFIG_STORY_NAME };

@@ -3,6 +3,7 @@ import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxbl
 import { boolean, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
+import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
 import { DrawerStoryContext } from './util';
 
 export const navGroupItems1: NavItem[] = [
@@ -40,4 +41,4 @@ export const withBasicConfig = (context: DrawerStoryContext): StoryFnReactReturn
     </Drawer>
 );
 
-withBasicConfig.story = { name: 'with basic config' };
+withBasicConfig.story = { name: WITH_MIN_PROPS_STORY_NAME };
