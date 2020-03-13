@@ -1,5 +1,4 @@
-import { AddAPhoto, AirportShuttle, Dashboard, Devices, Menu, PinDrop, Toc } from '@material-ui/icons';
-import * as Colors from '@pxblue/colors';
+import { Dashboard, Menu, Toc } from '@material-ui/icons';
 import { NavItem, Spacer } from '@pxblue/react-components';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
 import { boolean, text } from '@storybook/addon-knobs';
@@ -18,28 +17,6 @@ export const navGroupItems2: NavItem[] = [
         title: 'Timeline',
         itemID: 'group2-2',
         icon: <Toc />,
-    },
-    {
-        title: 'Locations',
-        itemID: 'group2-3',
-        icon: <PinDrop />,
-    },
-    {
-        title: 'Devices',
-        subtitle: '5 new warnings',
-        statusColor: Colors.yellow[500],
-        itemID: 'group2-4',
-        icon: <Devices />,
-    },
-    {
-        title: 'Photos',
-        itemID: 'group2-5',
-        icon: <AddAPhoto />,
-    },
-    {
-        title: 'Schedule',
-        itemID: 'group2-6',
-        icon: <AirportShuttle />,
     },
 ];
 

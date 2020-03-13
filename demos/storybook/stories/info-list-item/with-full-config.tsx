@@ -16,7 +16,8 @@ export const withFullConfig = (): StoryFnReactReturnType => {
         <InfoListItem
             title={text('title', 'Info List Item')}
             subtitle={text('subtitle', 'with all customizable properties')}
-            icon={<Device />}
+            icon={boolean('Show Icon', true) ? <Device /> : undefined}
+            hidePadding={boolean('hidePadding', false)}
             statusColor={color('statusColor', Colors.yellow[500])}
             iconColor={color('iconColor', Colors.blue[500])}
             fontColor={color('fontColor', Colors.blue[500])}
@@ -25,7 +26,6 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             chevron={boolean('chevron', true)}
             dense={boolean('dense', false)}
             divider={appliedDivider}
-            hidePadding={boolean('hidePadding', false)}
             ripple={boolean('ripple', true)}
             onClick={action('clicked')}
         />

@@ -34,7 +34,10 @@ export const navGroupItems1: NavItem[] = [
 
 export const withBasicConfig = (context: DrawerStoryContext): StoryFnReactReturnType => (
     <Drawer open={boolean('open', true)}>
-        <DrawerHeader icon={boolean('Show Icon', true) ? <Menu /> : undefined} title={text('title', 'Simple Drawer')} />
+        <DrawerHeader
+            icon={boolean('Show Header Icon', true) ? <Menu /> : undefined}
+            title={text('title', 'Simple Drawer')}
+        />
         <DrawerBody>
             <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
         </DrawerBody>

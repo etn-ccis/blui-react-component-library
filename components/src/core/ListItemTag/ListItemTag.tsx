@@ -33,14 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps): JSX.Element => {
-    const {
-        classes: userClasses = {},
-        label,
-        fontColor,
-        backgroundColor,
-        style,
-        ...other
-    } = props;
+    const { classes: userClasses = {}, label, fontColor, backgroundColor, style, ...other } = props;
     const theme = useTheme();
     const defaultClasses = useStyles(theme);
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
