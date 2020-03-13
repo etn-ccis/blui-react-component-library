@@ -52,14 +52,14 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 
 | Prop Name         | Description                                      | Type                     | Required | Default     |
 |-------------------|--------------------------------------------------|--------------------------|----------|-------------|
-| avatar            | MUI Avatar that displays                         | `Avatar`                 | no       |             |  
+| avatar            | MUI Avatar that displays                         | `Avatar`                 | yes      |             |  
 | classes           | Style overrides                                  | `StyleRules`             | no       |             |           
 | onClose           | Function called when the menu is closed          | `Function`               | no       |             |                                         
 | onOpen            | Function called when the menu is opened          | `Function`               | no       |             |                                         
 | menu              | Custom MUI Menu displayed when Avatar is clicked | Material-UI `Menu`       | no       |             |                                         
 | menuTitle         | Title shown when menu is open                    | `string`                 | no       |             |                                         
 | menuSubtitle      | Subtitle shown when menu is open                 | `string`                 | no       |             |                                         
-| menuGroups        | Groups of menu items that display                | `UserMenuGroups`         | no       |             |                                         
+| menuGroups        | Groups of menu items that display                | `UserMenuGroups`         | yes      |             |                                         
 | MenuProps         | Property overrides for the MUI Menu              | `MenuProps`              | no       |             |          
                                
 </div>
@@ -73,7 +73,7 @@ The `menuGroups` prop of the `UserMenu` includes many properties from the `Drawe
 |-----------------------|-----------------------------------------|-------------------|----------|---------|
 | fontColor             | The color used for the text             | `string`          | no       |         |
 | iconColor             | The color used for icons                | `string`          | no       |         |
-| items                 | List of navigation items to render      | `UserMenuItem[]`  | no       |         |  
+| items                 | List of navigation items to render      | `UserMenuItem[]`  | yes      |         |  
 | title                 | Text to display in the group header     | `string`          | no       |         |  
 
 </div>
@@ -90,7 +90,7 @@ The `menuGroups` prop of the `UserMenu` includes many properties from the `Drawe
 | onClick         | A function to execute when clicked      | `function`         | no       |                              |    
 | statusColor     | Status stripe and icon color            | `string`           | no       |                              |    
 | subtitle        | The text to show on the second line     | `string`           | no       |                              |    
-| title           | The text to show on the first line      | `string`           | no       |                              |    
+| title           | The text to show on the first line      | `string`           | yes      |                              |    
 
 </div>
 
