@@ -17,10 +17,10 @@ Besides what's listed below, as an extension of [Material UI's Typography API](h
 
 <div style="overflow: auto;">
 
-| Prop Name       | Description                   | Type     | Required | Default   | Example   |
-| --------------- | ----------------------------- | -------- | -------- | --------- | --------- |
-| label           | The label text                | `string` | yes      |           | `'Foo'`   |
-| fontColor       | Color of the label            | `string` | no       | `#ffffff` | `'white'` |
-| backgroundColor | Color of the label background | `string` | no       | `#007bc1` | `'green'` |
+| Prop Name       | Description                   | Type     | Required | Default   | 
+| --------------- | ----------------------------- | -------- | -------- | --------- | 
+| label           | The label text                | `string` | yes      |           |
+| fontColor       | Color of the label            | `string` | no       | `#ffffff` | 
+| backgroundColor | Color of the label background | `string` | no       | `#007bc1` | 
 
 </div>

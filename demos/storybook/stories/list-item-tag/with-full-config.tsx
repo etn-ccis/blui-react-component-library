@@ -4,8 +4,9 @@ import { action } from '@storybook/addon-actions';
 import { boolean, color, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
+import {WITH_FULL_CONFIG_STORY_NAME} from "../../src/constants";
 
-export const withTypographyProps = (): StoryFnReactReturnType => (
+export const withFullConfig = (): StoryFnReactReturnType => (
     <ListItemTag
         label={text('label', 'clickable')}
         backgroundColor={color('backgroundColor', Colors.green['700'])}
@@ -42,4 +43,4 @@ export const withTypographyProps = (): StoryFnReactReturnType => (
     />
 );
 
-withTypographyProps.story = { name: 'with typography props' };
+withFullConfig.story = { name: WITH_FULL_CONFIG_STORY_NAME };
