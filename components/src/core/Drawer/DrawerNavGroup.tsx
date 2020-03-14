@@ -6,7 +6,11 @@ import { Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import { InfoListItem } from '../InfoListItem';
-import { PXBlueDrawerInheritableGroupProperties, PXBlueDrawerInheritableProperties } from './Drawer';
+import {
+    PXBlueDrawerInheritableGroupProperties,
+    PXBlueDrawerInheritableProperties,
+    PXBlueDrawerInheritableGroupPropertiesPropTypes,
+} from './Drawer';
 import PropTypes from 'prop-types';
 import { ExpandLess, ArrowDropUp, ChevronRight } from '@material-ui/icons';
 import { white, black, gray } from '@pxblue/colors';
@@ -94,11 +98,7 @@ export type NestedNavItem = {
     // component to be rendered on the right next to the expandIcon
     rightComponent?: JSX.Element;
 
-<<<<<<< HEAD
-    // Status stripe.
-=======
     // Status stripe color
->>>>>>> dev
     statusColor?: string;
 
     // secondary text as a hint text
@@ -114,45 +114,9 @@ export type NavItem = NestedNavItem & {
 };
 
 export type DrawerNavGroupProps = {
-<<<<<<< HEAD
-=======
-    // Background color for the 'active' item
-    activeBackgroundColor?: string;
-
-    // Font color for the 'active' item
-    activeFontColor?: string;
-
-    // Icon color for the 'active' item
-    activeIconColor?: string;
-
-    // itemID for the 'active' item
-    activeItem?: string;
-
-    // shape of the active item background
-    activeBackgroundShape?: 'round' | 'square';
-
-    // The color used for the background
+    // internal API
     backgroundColor?: string;
 
-    // Whether to have chevrons for all menu items
-    chevron?: boolean;
-
-    // Custom element, substitute for title
-    titleContent?: ReactNode;
-
-    // Whether to show a line between all items
-    divider?: boolean;
-
-    // The color used for the text
-    fontColor?: string;
-
-    // Whether to hide the paddings reserved for menu item icons
-    hidePadding?: boolean;
-
-    // The color used for the icon
-    iconColor?: string;
-
->>>>>>> dev
     // List of navigation items to render
     items: NavItem[];
 
@@ -193,13 +157,7 @@ function NavigationListItem(
         onClick,
         statusColor,
     } = navItem;
-<<<<<<< HEAD
     const icon = (navItem as NavItem).itemIcon;
-=======
-    // only allow icons for the top level items
-    const icon = !depth ? (navItem as NavItem).icon : undefined;
-    const { divider: groupDivider = true, nestedDivider } = navGroupProps;
->>>>>>> dev
 
     const classes = useStyles(navGroupProps);
     const theme = useTheme();
@@ -223,18 +181,6 @@ function NavigationListItem(
         activeItem,
         nestedDivider,
         onSelect,
-        open,
-        titleColor,
-        // itemFontColor: fontColor = gray[500],
-        // chevron: groupChevron,
-        // itemIconColor: iconColor = gray[500],
-        // onSelect,
-        // hidePadding: groupHidePadding,
-        // ripple,
-        // activeItem,
-        // activeItemBackgroundShape: activeBackgroundShape,
-        // expandIcon: groupExpandIcon,
-        // collapseIcon: groupCollapseIcon,
     } = navGroupProps;
 
     // handle inheritables
@@ -249,22 +195,23 @@ function NavigationListItem(
     const activeItemIconColor =
         item_activeItemIconColor ||
         group_activeItemIconColor ||
-        (theme.palette.type === 'light'
-        ? theme.palette.primary.main
-        : theme.palette.primary.contrastText);
-    const activeItemBackgroundShape =
-        item_activeItemBackgroundShape ||
-        group_activeItemBackgroundShape ||
-        'round';
+        (theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText);
+    const activeItemBackgroundShape = item_activeItemBackgroundShape || group_activeItemBackgroundShape || 'round';
     const chevron = item_chevron !== undefined ? item_chevron : group_chevron;
-
+    const collapseIcon = item_collapseIcon || group_collapseIcon;
     let divider;
     if (depth) {
         divider = item_divider !== undefined ? item_divider : nestedDivider !== undefined ? nestedDivider : false;
     } else {
-        divider = item_divider !== undefined ? item_divider : groupDivider;
+        divider = item_divider !== undefined ? item_divider : group_divider;
     }
+    const expandIcon = item_expandIcon || group_expandIcon || (depth ? <ArrowDropUp /> : <ExpandLess />);
+    const hidePadding = item_hidePadding !== undefined ? item_hidePadding : group_hidePadding;
+    const itemFontColor = item_itemFontColor || group_itemFontColor || gray[500];
+    const itemIconColor = item_itemIconColor || group_itemIconColor || gray[500];
+    const ripple = item_ripple !== undefined ? item_ripple : group_ripple !== undefined ? group_ripple : true;
 
+    // row action
     const action = (): void => {
         if (onSelect) {
             onSelect();
@@ -282,21 +229,6 @@ function NavigationListItem(
         undefined
     );
 
-    const collapseIcon = item_collapseIcon ? item_collapseIcon : groupCollapseIcon;
-
-    function getExpandIcon(): JSX.Element {
-        if (item_expandIcon) {
-            return item_expandIcon;
-        }
-        if (groupExpandIcon) {
-            return groupExpandIcon;
-        }
-        if (depth) {
-            return <ArrowDropUp />;
-        }
-        return <ExpandLess />;
-    }
-
     function getActionComponent(): JSX.Element {
         if (!items) {
             return null;
@@ -310,7 +242,7 @@ function NavigationListItem(
                 }}
                 className={`${classes.expandIcon} ${!collapseIcon && expanded ? classes.expanded : ''}`}
             >
-                {collapseIcon && expanded ? collapseIcon : getExpandIcon()}
+                {collapseIcon && expanded ? collapseIcon : expandIcon}
             </div>
         );
     }
@@ -327,8 +259,8 @@ function NavigationListItem(
         <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
             {active && (
                 <div
-                    className={`${classes.active} ${activeBackgroundShape === 'square' ? classes.square : ''}`}
-                    style={{ backgroundColor: activeBackgroundColor }}
+                    className={`${classes.active} ${activeItemBackgroundShape === 'square' ? classes.square : ''}`}
+                    style={{ backgroundColor: activeItemBackgroundColor }}
                 />
             )}
             <InfoListItem
@@ -337,12 +269,12 @@ function NavigationListItem(
                 subtitle={itemSubtitle}
                 divider={divider ? 'full' : undefined}
                 statusColor={statusColor}
-                fontColor={active ? activeFontColor : fontColor}
+                fontColor={active ? activeItemFontColor : itemFontColor}
                 icon={icon}
-                iconColor={active ? activeIconColor : iconColor}
+                iconColor={active ? activeItemIconColor : itemIconColor}
                 rightComponent={
                     (actionComponent || rightComponent) && (
-                        <div style={{ display: 'flex', alignItems: 'center', color: iconColor }}>
+                        <div style={{ display: 'flex', alignItems: 'center', color: itemIconColor }}>
                             {rightComponent}
                             {actionComponent}
                         </div>
@@ -353,7 +285,7 @@ function NavigationListItem(
                     action();
                     if (!onClick) expandHandler();
                 }}
-                style={{ paddingLeft: paddingLeft }}
+                style={{ paddingLeft }}
                 hidePadding={hidePadding}
                 ripple={ripple}
             />
@@ -441,71 +373,19 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 
 DrawerNavGroup.displayName = 'DrawerNavGroup';
 
-const NestedNavItemPropTypes = {
-    chevron: PropTypes.bool,
-    collapseIcon: PropTypes.element,
-    divider: PropTypes.bool,
-    expandIcon: PropTypes.element,
-    itemID: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
-    rightComponent: PropTypes.element,
-    statusColor: PropTypes.string,
-    subtitle: PropTypes.string,
-    title: PropTypes.string.isRequired,
-};
-
 DrawerNavGroup.propTypes = {
-<<<<<<< HEAD
-    activeItemBackgroundColor: PropTypes.string,
-    activeItemFontColor: PropTypes.string,
-    activeItemIconColor: PropTypes.string,
     backgroundColor: PropTypes.string,
-    chevron: PropTypes.bool,
-    collapseIcon: PropTypes.element,
-    divider: PropTypes.bool,
-    expandIcon: PropTypes.element,
-    itemFontColor: PropTypes.string,
-    itemIconColor: PropTypes.string,
     // @ts-ignore
     items: PropTypes.arrayOf(
         PropTypes.shape({
-            chevron: PropTypes.bool,
-            collapseIcon: PropTypes.element,
-=======
-    activeBackgroundColor: PropTypes.string,
-    activeFontColor: PropTypes.string,
-    activeIconColor: PropTypes.string,
-    activeItem: PropTypes.string,
-    activeBackgroundShape: PropTypes.oneOf(['round', 'square']),
-    backgroundColor: PropTypes.string,
-    chevron: PropTypes.bool,
-    titleContent: PropTypes.node,
-    fontColor: PropTypes.string,
-    hidePadding: PropTypes.bool,
-    iconColor: PropTypes.string,
-    // @ts-ignore
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            items: PropTypes.arrayOf(PropTypes.shape(NestedNavItemPropTypes)),
-            icon: PropTypes.element,
-            ...NestedNavItemPropTypes,
->>>>>>> dev
+            itemIcon: PropTypes.element,
+            itemID: PropTypes.string.isRequired,
+            itemSubtitle: PropTypes.string,
+            itemTitle: PropTypes.string.isRequired,
+            onClick: PropTypes.func,
+            rightComponent: PropTypes.element,
+            statusColor: PropTypes.string,
         })
     ).isRequired,
-    onSelect: PropTypes.func,
-    open: PropTypes.bool,
-    ripple: PropTypes.bool,
-    groupTitle: PropTypes.string,
-    titleColor: PropTypes.string,
-<<<<<<< HEAD
-    groupTitleContent: PropTypes.element,
-=======
-    divider: PropTypes.bool,
-};
-
-DrawerNavGroup.defaultProps = {
-    divider: true,
-    ripple: true,
-    activeBackgroundShape: 'round',
->>>>>>> dev
+    ...PXBlueDrawerInheritableGroupPropertiesPropTypes,
 };

@@ -40,7 +40,7 @@ export type PXBlueDrawerInheritableProperties = {
     activeItemIconColor?: string;
 
     // shape of the active item background
-    activeItemBackgroundShape?: 'rounded' | 'square';
+    activeItemBackgroundShape?: 'round' | 'square';
 
     // Whether to have chevrons for all menu items
     chevron?: boolean;
@@ -243,13 +243,34 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
 };
 
 DrawerComponent.displayName = 'PXBlueDrawer';
-DrawerComponent.propTypes = {
+
+export const PXBlueDrawerInheritablePropertiesPropTypes = {
+    activeItemBackgroundColor: PropTypes.string,
+    activeItemFontColor: PropTypes.string,
+    activeItemIconColor: PropTypes.string,
+    activeItemBackgroundShape: PropTypes.oneOf(['round', 'square']),
     chevron: PropTypes.bool,
     collapseIcon: PropTypes.element,
+    divider: PropTypes.bool,
     expandIcon: PropTypes.element,
-    open: PropTypes.bool,
+    hidePadding: PropTypes.bool,
+    itemFontColor: PropTypes.string,
+    itemIconColor: PropTypes.string,
     ripple: PropTypes.bool,
+};
+export const PXBlueDrawerInheritableGroupPropertiesPropTypes = {
+    activeItem: PropTypes.string,
+    nestedDivider: PropTypes.bool,
+    onSelect: PropTypes.func,
+    open: PropTypes.bool,
+    titleColor: PropTypes.string,
+    ...PXBlueDrawerInheritablePropertiesPropTypes,
+};
+// @ts-ignore
+DrawerComponent.propTypes = {
     width: PropTypes.number,
+    variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
+    ...PXBlueDrawerInheritableGroupPropertiesPropTypes,
 };
 DrawerComponent.defaultProps = {
     variant: 'permanent',
