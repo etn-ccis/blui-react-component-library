@@ -90,7 +90,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         backgroundOpacity,
     } = props;
 
-    const toolbarBackgroundColor = String(backgroundColor || theme.palette.primary.main);
+    const toolbarBackgroundColor = backgroundColor || theme.palette.primary.main;
 
     const getHeaderContent = (): ReactNode =>
         titleContent || (

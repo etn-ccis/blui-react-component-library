@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
             cursor: 'pointer',
             //@ts-ignore
             backgroundColor: theme.palette.primary[50],
-            //@ts-ignore
-            color: theme.palette.primary[500],
+            color: theme.palette.primary.main,
             height: theme.spacing(5),
             width: theme.spacing(5),
         },
@@ -166,6 +165,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
                 onClose={closeMenu}
+                getContentAnchorEl={null}
                 {...MenuProps}
                 MenuListProps={{ style: { padding: 0 } }}
             >
@@ -185,7 +185,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
 UserMenu.displayName = 'UserMenu';
 
 UserMenu.propTypes = {
-    avatar: PropTypes.element,
+    avatar: PropTypes.element.isRequired,
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
@@ -209,7 +209,7 @@ UserMenu.propTypes = {
                 })
             ),
         })
-    ),
+    ).isRequired,
     MenuProps: PropTypes.object,
     onClose: PropTypes.func,
     onOpen: PropTypes.func,

@@ -8,8 +8,5 @@ module.exports = {
         browser: true,
         jest: true,
     },
-    rules: {
-        '@typescript-eslint/no-require-imports': 'off',
-        '@typescript-eslint/no-var-requires': 'off',
-    },
+    rules: {},
 };

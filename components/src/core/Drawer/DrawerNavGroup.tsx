@@ -94,7 +94,11 @@ export type NestedNavItem = {
     // component to be rendered on the right next to the expandIcon
     rightComponent?: JSX.Element;
 
+<<<<<<< HEAD
     // Status stripe.
+=======
+    // Status stripe color
+>>>>>>> dev
     statusColor?: string;
 
     // secondary text as a hint text
@@ -110,6 +114,45 @@ export type NavItem = NestedNavItem & {
 };
 
 export type DrawerNavGroupProps = {
+<<<<<<< HEAD
+=======
+    // Background color for the 'active' item
+    activeBackgroundColor?: string;
+
+    // Font color for the 'active' item
+    activeFontColor?: string;
+
+    // Icon color for the 'active' item
+    activeIconColor?: string;
+
+    // itemID for the 'active' item
+    activeItem?: string;
+
+    // shape of the active item background
+    activeBackgroundShape?: 'round' | 'square';
+
+    // The color used for the background
+    backgroundColor?: string;
+
+    // Whether to have chevrons for all menu items
+    chevron?: boolean;
+
+    // Custom element, substitute for title
+    titleContent?: ReactNode;
+
+    // Whether to show a line between all items
+    divider?: boolean;
+
+    // The color used for the text
+    fontColor?: string;
+
+    // Whether to hide the paddings reserved for menu item icons
+    hidePadding?: boolean;
+
+    // The color used for the icon
+    iconColor?: string;
+
+>>>>>>> dev
     // List of navigation items to render
     items: NavItem[];
 
@@ -150,7 +193,13 @@ function NavigationListItem(
         onClick,
         statusColor,
     } = navItem;
+<<<<<<< HEAD
     const icon = (navItem as NavItem).itemIcon;
+=======
+    // only allow icons for the top level items
+    const icon = !depth ? (navItem as NavItem).icon : undefined;
+    const { divider: groupDivider = true, nestedDivider } = navGroupProps;
+>>>>>>> dev
 
     const classes = useStyles(navGroupProps);
     const theme = useTheme();
@@ -392,7 +441,21 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 
 DrawerNavGroup.displayName = 'DrawerNavGroup';
 
+const NestedNavItemPropTypes = {
+    chevron: PropTypes.bool,
+    collapseIcon: PropTypes.element,
+    divider: PropTypes.bool,
+    expandIcon: PropTypes.element,
+    itemID: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    rightComponent: PropTypes.element,
+    statusColor: PropTypes.string,
+    subtitle: PropTypes.string,
+    title: PropTypes.string.isRequired,
+};
+
 DrawerNavGroup.propTypes = {
+<<<<<<< HEAD
     activeItemBackgroundColor: PropTypes.string,
     activeItemFontColor: PropTypes.string,
     activeItemIconColor: PropTypes.string,
@@ -408,6 +471,25 @@ DrawerNavGroup.propTypes = {
         PropTypes.shape({
             chevron: PropTypes.bool,
             collapseIcon: PropTypes.element,
+=======
+    activeBackgroundColor: PropTypes.string,
+    activeFontColor: PropTypes.string,
+    activeIconColor: PropTypes.string,
+    activeItem: PropTypes.string,
+    activeBackgroundShape: PropTypes.oneOf(['round', 'square']),
+    backgroundColor: PropTypes.string,
+    chevron: PropTypes.bool,
+    titleContent: PropTypes.node,
+    fontColor: PropTypes.string,
+    hidePadding: PropTypes.bool,
+    iconColor: PropTypes.string,
+    // @ts-ignore
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            items: PropTypes.arrayOf(PropTypes.shape(NestedNavItemPropTypes)),
+            icon: PropTypes.element,
+            ...NestedNavItemPropTypes,
+>>>>>>> dev
         })
     ).isRequired,
     onSelect: PropTypes.func,
@@ -415,5 +497,15 @@ DrawerNavGroup.propTypes = {
     ripple: PropTypes.bool,
     groupTitle: PropTypes.string,
     titleColor: PropTypes.string,
+<<<<<<< HEAD
     groupTitleContent: PropTypes.element,
+=======
+    divider: PropTypes.bool,
+};
+
+DrawerNavGroup.defaultProps = {
+    divider: true,
+    ripple: true,
+    activeBackgroundShape: 'round',
+>>>>>>> dev
 };

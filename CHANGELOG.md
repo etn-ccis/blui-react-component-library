@@ -2,41 +2,29 @@
 
 ## v3.0.0
 - Adds support for nested items in the Drawer component
-- **Breaking Change:** content prop in DrawerNavGroup has been replaced with titleContent.
-- **Breaking Change:** items prop in DrawerNavGroup will no longer work.
+
+**Breaking Changes:** 
+- DrawerNavGroup prop `content` has been renamed to `titleContent`.
+- New method for identifying current active item in DrawerNavGroup. Each item now has a unique `id` property and the DrawerNavGroup has a prop for `activeItem` that identifies the item that should be active.
     ```tsx
     /* Old syntax */
     <DrawerNavGroup 
         items={[
             { 
-                title: ..., 
-                active: ...,
-                ...
+                title: 'Item 1', 
+                active: true,
             },
-            { 
-                title: ..., 
-                active: ...,
-                ...
-            },
-            ...
-    ]}
+        ]}
     />
     
     /* New syntax */
     <DrawerNavGroup 
-      	activeItem={...}
+      	activeItem={'item1id'}
         items={[
             { 
-                title: ..., 
-              	itemID: ...,
-                ...
+                title: 'Item 1', 
+              	itemID: 'item1id',
             },
-            { 
-                title: ..., 
-                itemID: ...,
-                ...
-            },
-            ...
         ]}
     />
     ```

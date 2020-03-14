@@ -148,6 +148,12 @@ export default () => {
                         <Spacer />
                         <Divider />
                         <DrawerNavGroup
+                            titleContent={
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+                                    <div>Account Configuration</div>
+                                    <div>v1.0.3</div>
+                                </div>
+                            }
                             items={[
                                 {
                                     title: titleList[4],
@@ -208,7 +214,6 @@ export default () => {
                                 },
                                 {
                                     title: 'Contact Us',
-                                    itemID: 'Contact Us',
                                     items: [
                                         {
                                             title: 'eatonhelp@eaton.com',
