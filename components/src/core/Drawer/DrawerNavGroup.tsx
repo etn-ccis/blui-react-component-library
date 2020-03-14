@@ -6,6 +6,7 @@ import { Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import { InfoListItem } from '../InfoListItem';
+import { PXBlueDrawerInheritableGroupProperties, PXBlueDrawerInheritableProperties } from './Drawer';
 import PropTypes from 'prop-types';
 import { ExpandLess, ArrowDropUp, ChevronRight } from '@material-ui/icons';
 import { white, black, gray } from '@pxblue/colors';
@@ -80,18 +81,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type NestedNavItem = {
-    // Show chevron icon to the right. Override by icon
-    chevron?: boolean;
-
-    // icon used to collapse drawer
-    collapseIcon?: JSX.Element;
-
-    // if the item has a divider under its content
-    divider?: boolean;
-
-    // icon used to expand drawer
-    expandIcon?: JSX.Element;
-
     // any items listed inside this
     items?: NestedNavItem[];
 
@@ -105,91 +94,31 @@ export type NestedNavItem = {
     // component to be rendered on the right next to the expandIcon
     rightComponent?: JSX.Element;
 
-    // Whether to apply material ripple effect to items
-    ripple?: boolean;
-
     // Status stripe.
     statusColor?: string;
 
     // secondary text as a hint text
-    subtitle?: string;
+    itemSubtitle?: string;
 
     // text to be displayed
-    title: string;
-};
+    itemTitle: string;
+} & PXBlueDrawerInheritableProperties;
 
 export type NavItem = NestedNavItem & {
     // icon on the left
-    icon?: JSX.Element;
+    itemIcon?: JSX.Element;
 };
 
 export type DrawerNavGroupProps = {
-    // Background color for the 'active' item
-    activeBackgroundColor?: string;
-
-    // Font color for the 'active' item
-    activeFontColor?: string;
-
-    // Icon color for the 'active' item
-    activeIconColor?: string;
-
-    // itemID for the 'active' item
-    activeItem?: string;
-
-    // shape of the active item background
-    activeBackgroundShape?: 'rounded' | 'square';
-
-    // The color used for the background
-    backgroundColor?: string;
-
-    // Whether to have chevrons for all menu items
-    chevron?: boolean;
-
-    // Icon used to collapse drawer
-    // Overriden by NavItem.expandIcon
-    collapseIcon?: JSX.Element;
-
-    // Whether to show a line between all items
-    divider?: boolean;
-
-    // Icon used to expand drawer
-    expandIcon?: JSX.Element;
-
-    // The color used for the text
-    fontColor?: string;
-
-    // Whether to hide the paddings reserved for menu item icons
-    hidePadding?: boolean;
-
-    // The color used for the icon
-    iconColor?: string;
-
     // List of navigation items to render
     items: NavItem[];
 
-    // Whether to show a line between nested menu items
-    nestedDivider?: boolean;
-
-    // internal API
-    // will apply to all menu items when onClick
-    onSelect?: Function;
-
-    // Whether the group is expanded
-    // Controlled by <DrawerBody />
-    open?: boolean;
-
-    // Whether to apply material ripple effect to items
-    ripple?: boolean;
-
     // Text to display in the group header
-    title?: string;
-
-    // Font color for group header
-    titleColor?: string;
+    groupTitle?: string;
 
     // Custom element, substitute for title
-    titleContent?: ReactNode;
-};
+    groupTitleContent?: ReactNode;
+} & PXBlueDrawerInheritableGroupProperties;
 
 // renderer function for each nav item / nested nav item
 function NavigationListItem(
@@ -200,49 +129,91 @@ function NavigationListItem(
     expandHandler = (): void => {}
 ): ReactNode {
     const {
-        onClick,
-        title,
-        subtitle,
-        items: subItems,
-        divider: itemDivider,
+        // inheritables
+        activeItemBackgroundColor: item_activeItemBackgroundColor,
+        activeItemFontColor: item_activeItemFontColor,
+        activeItemIconColor: item_activeItemIconColor,
+        activeItemBackgroundShape: item_activeItemBackgroundShape,
+        chevron: item_chevron,
+        collapseIcon: item_collapseIcon,
+        divider: item_divider,
+        expandIcon: item_expandIcon,
+        hidePadding: item_hidePadding,
+        itemFontColor: item_itemFontColor,
+        itemIconColor: item_itemIconColor,
+        ripple: item_ripple,
+        // non inheritables
+        itemTitle,
+        itemSubtitle,
+        items,
         itemID,
-        chevron: itemChevron,
-        collapseIcon: itemCollapseIcon,
-        expandIcon: itemExpandIcon,
+        onClick,
         statusColor,
     } = navItem;
-    const icon = (navItem as NavItem).icon;
-    const { divider: groupDivider = true, nestedDivider } = navGroupProps;
+    const icon = (navItem as NavItem).itemIcon;
 
     const classes = useStyles(navGroupProps);
     const theme = useTheme();
     // @ts-ignore
     const primary50Color = theme.palette.primary[50];
     const {
-        activeBackgroundColor = theme.palette.type === 'light' ? primary50Color : theme.palette.primary.main,
-        activeFontColor = theme.palette.type === 'light'
-            ? theme.palette.primary.main
-            : theme.palette.primary.contrastText,
-        activeIconColor = theme.palette.type === 'light'
-            ? theme.palette.primary.main
-            : theme.palette.primary.contrastText,
-        fontColor = gray[500],
-        chevron: groupChevron,
-        iconColor = gray[500],
-        onSelect,
-        hidePadding,
-        ripple,
+        // inheritble
+        activeItemBackgroundColor: group_activeItemBackgroundColor,
+        activeItemFontColor: group_activeItemFontColor,
+        activeItemIconColor: group_activeItemIconColor,
+        activeItemBackgroundShape: group_activeItemBackgroundShape,
+        chevron: group_chevron,
+        collapseIcon: group_collapseIcon,
+        divider: group_divider,
+        expandIcon: group_expandIcon,
+        hidePadding: group_hidePadding,
+        itemFontColor: group_itemFontColor,
+        itemIconColor: group_itemIconColor,
+        ripple: group_ripple,
+        // non inheritable
         activeItem,
-        activeBackgroundShape,
-        expandIcon: groupExpandIcon,
-        collapseIcon: groupCollapseIcon,
+        nestedDivider,
+        onSelect,
+        open,
+        titleColor,
+        // itemFontColor: fontColor = gray[500],
+        // chevron: groupChevron,
+        // itemIconColor: iconColor = gray[500],
+        // onSelect,
+        // hidePadding: groupHidePadding,
+        // ripple,
+        // activeItem,
+        // activeItemBackgroundShape: activeBackgroundShape,
+        // expandIcon: groupExpandIcon,
+        // collapseIcon: groupCollapseIcon,
     } = navGroupProps;
+
+    // handle inheritables
+    const activeItemBackgroundColor =
+        item_activeItemBackgroundColor ||
+        group_activeItemBackgroundColor ||
+        (theme.palette.type === 'light' ? primary50Color : theme.palette.primary.main);
+    const activeItemFontColor =
+        item_activeItemFontColor ||
+        group_activeItemFontColor ||
+        (theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText);
+    const activeItemIconColor =
+        item_activeItemIconColor ||
+        group_activeItemIconColor ||
+        (theme.palette.type === 'light'
+        ? theme.palette.primary.main
+        : theme.palette.primary.contrastText);
+    const activeItemBackgroundShape =
+        item_activeItemBackgroundShape ||
+        group_activeItemBackgroundShape ||
+        'round';
+    const chevron = item_chevron !== undefined ? item_chevron : group_chevron;
 
     let divider;
     if (depth) {
-        divider = itemDivider !== undefined ? itemDivider : nestedDivider !== undefined ? nestedDivider : false;
+        divider = item_divider !== undefined ? item_divider : nestedDivider !== undefined ? nestedDivider : false;
     } else {
-        divider = itemDivider !== undefined ? itemDivider : groupDivider;
+        divider = item_divider !== undefined ? item_divider : groupDivider;
     }
 
     const action = (): void => {
@@ -254,21 +225,19 @@ function NavigationListItem(
         }
     };
 
-    const chevron = itemChevron !== undefined ? itemChevron : groupChevron;
-
     const rightComponent = navItem.rightComponent ? (
         navItem.rightComponent
-    ) : !subItems && chevron ? (
+    ) : !items && chevron ? (
         <ChevronRight />
     ) : (
         undefined
     );
 
-    const collapseIcon = itemCollapseIcon ? itemCollapseIcon : groupCollapseIcon;
+    const collapseIcon = item_collapseIcon ? item_collapseIcon : groupCollapseIcon;
 
     function getExpandIcon(): JSX.Element {
-        if (itemExpandIcon) {
-            return itemExpandIcon;
+        if (item_expandIcon) {
+            return item_expandIcon;
         }
         if (groupExpandIcon) {
             return groupExpandIcon;
@@ -280,7 +249,7 @@ function NavigationListItem(
     }
 
     function getActionComponent(): JSX.Element {
-        if (!subItems) {
+        if (!items) {
             return null;
         }
         return (
@@ -315,8 +284,8 @@ function NavigationListItem(
             )}
             <InfoListItem
                 dense
-                title={title}
-                subtitle={subtitle}
+                title={itemTitle}
+                subtitle={itemSubtitle}
                 divider={divider ? 'full' : undefined}
                 statusColor={statusColor}
                 fontColor={active ? activeFontColor : fontColor}
@@ -362,7 +331,7 @@ function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const classes = useStyles(props);
-    const { open, items, title, titleContent, backgroundColor, titleColor } = props;
+    const { open, items, groupTitle: title, groupTitleContent: titleContent, backgroundColor, titleColor } = props;
 
     // recursively loop through item list and the subItems
     function getDrawerItemList(item: NavItem | NestedNavItem, depth: number): JSX.Element {
@@ -371,7 +340,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         if (item.items) {
             // if there are more sub pages, add the bucket header and recurse on this function
             const collapsibleComponent = (
-                <Collapse in={expanded && open !== false} key={`${item.title}_group_${depth}`}>
+                <Collapse in={expanded && open !== false} key={`${item.itemTitle}_group_${depth}`}>
                     <List className={classes.secondaryLevelListGroup}>
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                     </List>
@@ -379,7 +348,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             );
 
             return (
-                <React.Fragment key={`${item.title}_Fragment_${depth}`}>
+                <React.Fragment key={`${item.itemTitle}_Fragment_${depth}`}>
                     <div key={`${item.itemID}`}>
                         {NavigationListItem(item, props, depth, expanded, () => {
                             setExpanded(!expanded);
@@ -424,16 +393,16 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 DrawerNavGroup.displayName = 'DrawerNavGroup';
 
 DrawerNavGroup.propTypes = {
-    activeBackgroundColor: PropTypes.string,
-    activeFontColor: PropTypes.string,
-    activeIconColor: PropTypes.string,
+    activeItemBackgroundColor: PropTypes.string,
+    activeItemFontColor: PropTypes.string,
+    activeItemIconColor: PropTypes.string,
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
     collapseIcon: PropTypes.element,
     divider: PropTypes.bool,
     expandIcon: PropTypes.element,
-    fontColor: PropTypes.string,
-    iconColor: PropTypes.string,
+    itemFontColor: PropTypes.string,
+    itemIconColor: PropTypes.string,
     // @ts-ignore
     items: PropTypes.arrayOf(
         PropTypes.shape({
@@ -444,11 +413,7 @@ DrawerNavGroup.propTypes = {
     onSelect: PropTypes.func,
     open: PropTypes.bool,
     ripple: PropTypes.bool,
-    title: PropTypes.string,
+    groupTitle: PropTypes.string,
     titleColor: PropTypes.string,
-    titleContent: PropTypes.element,
-};
-
-DrawerNavGroup.defaultProps = {
-    activeBackgroundShape: 'rounded',
+    groupTitleContent: PropTypes.element,
 };

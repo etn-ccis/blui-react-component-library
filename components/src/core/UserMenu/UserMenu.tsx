@@ -138,9 +138,9 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                     <DrawerNavGroup
                         divider={false}
                         open={true}
-                        iconColor={group.iconColor}
-                        fontColor={group.fontColor}
-                        title={group.title}
+                        itemIconColor={group.iconColor}
+                        itemFontColor={group.fontColor}
+                        groupTitle={group.title}
                         items={group.items}
                         onSelect={closeMenu}
                     />

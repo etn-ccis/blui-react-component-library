@@ -92,12 +92,12 @@ describe('DrawerNavGroup', () => {
     });
 
     it('renders text correctly', () => {
-        const wrapper = mount(<DrawerNavGroup title={'foo'} items={[]} />);
+        const wrapper = mount(<DrawerNavGroup groupTitle={'foo'} items={[]} />);
         expect(wrapper.text()).toEqual('foo');
     });
 
     it('renders custom content correctly', () => {
-        const wrapper = mount(<DrawerNavGroup titleContent={<Avatar />} items={[]} />);
+        const wrapper = mount(<DrawerNavGroup groupTitleContent={<Avatar />} items={[]} />);
         expect(wrapper.find(Avatar).length).toEqual(1);
     });
 
@@ -105,32 +105,32 @@ describe('DrawerNavGroup', () => {
         const wrapper = mount(
             <DrawerNavGroup
                 items={[
-                    { title: 'a', itemID: 'a' },
+                    { itemTitle: 'a', itemID: 'a' },
                     {
-                        title: 'b',
+                        itemTitle: 'b',
                         itemID: 'b',
                         items: [
                             {
-                                title: 'b_0',
+                                itemTitle: 'b_0',
                                 itemID: 'b_0',
                                 items: [
-                                    { title: 'b_0_0', itemID: 'b_0_0' },
-                                    { title: 'b_0_1', itemID: 'b_0_1' },
+                                    { itemTitle: 'b_0_0', itemID: 'b_0_0' },
+                                    { itemTitle: 'b_0_1', itemID: 'b_0_1' },
                                 ],
                             },
-                            { title: 'b_1', itemID: 'b_1', items: [{ title: 'b_1_0', itemID: 'b_1_0' }] },
+                            { itemTitle: 'b_1', itemID: 'b_1', items: [{ itemTitle: 'b_1_0', itemID: 'b_1_0' }] },
                         ],
                     },
                     {
-                        title: 'c',
+                        itemTitle: 'c',
                         itemID: 'c',
                         items: [
                             {
-                                title: 'c_0',
+                                itemTitle: 'c_0',
                                 itemID: 'c_0',
                                 items: [
-                                    { title: 'c_0_0', itemID: 'c_0_0' },
-                                    { title: 'c_0_1', itemID: 'c_0_1' },
+                                    { itemTitle: 'c_0_0', itemID: 'c_0_0' },
+                                    { itemTitle: 'c_0_1', itemID: 'c_0_1' },
                                 ],
                             },
                         ],

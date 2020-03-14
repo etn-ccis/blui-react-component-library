@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import { PXBlueDrawerInheritableGroupProperties } from './Drawer';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
 
 const useStyles = makeStyles({
@@ -13,21 +14,8 @@ const useStyles = makeStyles({
 });
 
 export type DrawerBodyProps = {
-    activeBackgroundColor?: string;
-    activeFontColor?: string;
-    activeIconColor?: string;
-    backgroundColor?: string;
-    chevron?: boolean;
-    collapseIcon?: JSX.Element;
-    divider?: boolean;
-    expandIcon?: JSX.Element;
-    fontColor?: string;
-    iconColor?: string;
-    onSelect?: Function;
-    open?: boolean;
-    ripple?: boolean;
-    titleColor?: string;
-};
+    backgroundColor?: string,
+} & PXBlueDrawerInheritableGroupProperties;
 
 export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
     const classes = useStyles(bodyProps);
@@ -43,23 +31,36 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                 if (child.type && child.type.displayName !== 'DrawerNavGroup') return null;
                 const groupProps: DrawerNavGroupProps = child.props;
 
+                // for any DrawerNavGroup, if a prop is not set (undefined), inherit from the DrawerBody
+                // open and onSelect is always determined by DrawerBody
                 return (
                     <DrawerNavGroup
                         {...groupProps}
                         key={index.toString()}
-                        activeBackgroundColor={groupProps.activeBackgroundColor || bodyProps.activeBackgroundColor}
-                        activeFontColor={groupProps.activeFontColor || bodyProps.activeFontColor}
-                        activeIconColor={groupProps.activeIconColor || bodyProps.activeIconColor}
-                        backgroundColor={groupProps.backgroundColor || bodyProps.backgroundColor}
+                        activeItem={groupProps.activeItem || bodyProps.activeItem}
+                        activeItemBackgroundColor={
+                            groupProps.activeItemBackgroundColor || bodyProps.activeItemBackgroundColor
+                        }
+                        activeItemFontColor={groupProps.activeItemFontColor || bodyProps.activeItemFontColor}
+                        activeItemIconColor={groupProps.activeItemIconColor || bodyProps.activeItemIconColor}
+                        activeItemBackgroundShape={
+                            groupProps.activeItemBackgroundShape || bodyProps.activeItemBackgroundShape
+                        }
                         chevron={groupProps.chevron === undefined ? bodyProps.chevron : groupProps.chevron}
                         collapseIcon={groupProps.collapseIcon || bodyProps.collapseIcon}
-                        divider={groupProps.divider === undefined ? bodyProps.divider : groupProps.chevron}
+                        divider={groupProps.divider === undefined ? bodyProps.divider : groupProps.divider}
                         expandIcon={groupProps.expandIcon || bodyProps.expandIcon}
-                        fontColor={groupProps.fontColor || bodyProps.fontColor}
-                        iconColor={groupProps.iconColor || bodyProps.iconColor}
+                        hidePadding={
+                            groupProps.hidePadding === undefined ? bodyProps.hidePadding : groupProps.hidePadding
+                        }
+                        itemFontColor={groupProps.itemFontColor || bodyProps.itemFontColor}
+                        itemIconColor={groupProps.itemIconColor || bodyProps.itemIconColor}
+                        nestedDivider={
+                            groupProps.nestedDivider === undefined ? bodyProps.nestedDivider : groupProps.nestedDivider
+                        }
+                        ripple={groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple}
                         onSelect={bodyProps.onSelect}
                         open={bodyProps.open}
-                        ripple={groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple}
                         titleColor={groupProps.titleColor || bodyProps.titleColor}
                     />
                 );
@@ -69,21 +70,6 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
 };
 
 DrawerBody.displayName = 'DrawerBody';
-DrawerBody.propTypes = {
-    activeBackgroundColor: PropTypes.string,
-    activeFontColor: PropTypes.string,
-    activeIconColor: PropTypes.string,
-    backgroundColor: PropTypes.string,
-    chevron: PropTypes.bool,
-    collapseIcon: PropTypes.element,
-    divider: PropTypes.bool,
-    expandIcon: PropTypes.element,
-    fontColor: PropTypes.string,
-    iconColor: PropTypes.string,
-    onSelect: PropTypes.func,
-    open: PropTypes.bool,
-    ripple: PropTypes.bool,
-    titleColor: PropTypes.string,
-};
+DrawerBody.propTypes = {};
 
 DrawerBody.defaultProps = {};

@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme: Theme) =>
 // these types are inherited from the Drawer level to the NestedNavItem
 // parent props will be overriden by the child props if defined
 export type PXBlueDrawerInheritableProperties = {
-
     // Background color for the 'active' item
     activeItemBackgroundColor?: string;
 
@@ -42,9 +41,6 @@ export type PXBlueDrawerInheritableProperties = {
 
     // shape of the active item background
     activeItemBackgroundShape?: 'rounded' | 'square';
-
-    // The color used for the background
-    backgroundColor?: string;
 
     // Whether to have chevrons for all menu items
     chevron?: boolean;
@@ -59,62 +55,79 @@ export type PXBlueDrawerInheritableProperties = {
     // Icon used to expand drawer
     expandIcon?: JSX.Element;
 
-    // The color used for the item text
-    itemFontColor?: string;
-
     // Whether to hide the paddings reserved for menu item icons
     hidePadding?: boolean;
 
+    // The color used for the item text
+    itemFontColor?: string;
+
     // The color used for the icon
     itemIconColor?: string;
-    
+
     // Whether to apply material ripple effect to items
     ripple?: boolean;
-
-    // Font color for group header
-    titleColor?: string;
 };
 
 // type shared by Drawer, DrawerBody, DrawerNavGroup
 // inheritable props but not for NestedNavItem
 export type PXBlueDrawerInheritableGroupProperties = {
-
-    // internal API
-    // will apply to all menu items when onClick
-    onSelect?: Function;
-
-    // Font color for group header
-    titleColor?: string;
-
     // itemID for the 'active' item
     activeItem?: string;
 
     // Whether to show a line between nested menu items
     nestedDivider?: boolean;
 
-    // internal API (only allowed for Drawer)
+    // internal API
+    // will apply to all menu items when onClick
+    onSelect?: () => void;
+
+    // internal API (only public for Drawer)
     // Whether the group is expanded
     open?: boolean;
-};
+
+    // Font color for group header
+    titleColor?: string;
+} & PXBlueDrawerInheritableProperties;
 
 export type DrawerComponentProps = {
-    chevron?: boolean;
-    collapseIcon?: JSX.Element;
-    expandIcon?: JSX.Element;
-    open: boolean;
-    ripple?: boolean;
+    // drawer width
     width?: number;
-    divider?: boolean;
-} & Omit<DrawerProps, 'translate'>;
+
+    // types of drawer
+    // only open or variant is allowed but not both
+    variant?: 'permanent' | 'persistent' | 'temporary';
+} & PXBlueDrawerInheritableGroupProperties &
+    Omit<DrawerProps, 'translate'>;
 
 export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     let hoverDelay: NodeJS.Timeout;
     const classes = useStyles(props);
     const theme = useTheme();
     const [hover, setHover] = useState(false);
-    const { chevron, ripple, collapseIcon, expandIcon, divider, ...drawerProps } = props;
+    const {
+        activeItem,
+        activeItemBackgroundColor,
+        activeItemFontColor,
+        activeItemIconColor,
+        activeItemBackgroundShape,
+        chevron,
+        collapseIcon,
+        divider,
+        expandIcon,
+        hidePadding,
+        itemFontColor,
+        itemIconColor,
+        nestedDivider,
+        open,
+        onSelect,
+        ripple,
+        titleColor,
+        variant,
+        width,
+        ...drawerProps // for Material-UI's Drawer component
+    } = props;
 
-    const isDrawerOpen = (): boolean => hover || props.open;
+    const isDrawerOpen = (): boolean => hover || open;
 
     const findChildByType = (type: string): JSX.Element[] =>
         React.Children.map(props.children, (child: any) => {
@@ -139,19 +152,32 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const getBody = (): JSX.Element[] =>
         findChildByType('DrawerBody')
             .slice(0, 1)
-            .map((child) =>
-                React.cloneElement(child, {
+            .map((child) => {
+                return React.cloneElement(child, {
+                    activeItem,
+                    activeItemBackgroundColor,
+                    activeItemFontColor,
+                    activeItemIconColor,
+                    activeItemBackgroundShape,
+                    chevron,
+                    collapseIcon,
+                    divider,
+                    expandIcon,
+                    hidePadding,
+                    itemFontColor,
+                    itemIconColor,
+                    nestedDivider,
+                    ripple,
+                    titleColor,
                     open: isDrawerOpen(),
-                    chevron: chevron,
-                    collapseIcon: collapseIcon,
-                    expandIcon: expandIcon,
-                    divider: divider,
                     onSelect: () => {
+                        if (onSelect) {
+                            onSelect();
+                        }
                         setHover(false);
                     },
-                    ripple: ripple,
-                })
-            );
+                });
+            });
 
     const getFooter = (): JSX.Element[] =>
         findChildByType('DrawerFooter')
@@ -187,13 +213,13 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 
     const getDesktopNavigationMenu = (): JSX.Element => {
-        const containerWidth = isDrawerOpen() ? props.width || theme.spacing(45) : theme.spacing(7);
-        const contentWidth = props.width || theme.spacing(45);
+        const containerWidth = isDrawerOpen() ? width || theme.spacing(45) : theme.spacing(7);
+        const contentWidth = width || theme.spacing(45);
         return (
             <>
                 <Drawer
                     {...drawerProps}
-                    variant="permanent"
+                    variant={variant}
                     open={isDrawerOpen()}
                     classes={{ paper: classes.paper }}
                     style={{ minHeight: '100%' }}
@@ -221,12 +247,10 @@ DrawerComponent.propTypes = {
     chevron: PropTypes.bool,
     collapseIcon: PropTypes.element,
     expandIcon: PropTypes.element,
-    open: PropTypes.bool.isRequired,
+    open: PropTypes.bool,
     ripple: PropTypes.bool,
     width: PropTypes.number,
 };
 DrawerComponent.defaultProps = {
-    ripple: true,
-    chevron: false,
-    divider: false,
+    variant: 'permanent',
 };
