@@ -162,7 +162,7 @@ describe('DrawerNavGroup', () => {
 
     it('inherits and overrides properties from Drawer', () => {
         const wrapper = shallow(
-            <Drawer activeItemBackgroundColor={'white'} divider={true}>
+            <Drawer activeItemBackgroundColor={'white'} divider={true} open={true}>
                 <DrawerBody>
                     <DrawerNavGroup items={[{ title: '', itemID: '' }]} />
                     <DrawerNavGroup

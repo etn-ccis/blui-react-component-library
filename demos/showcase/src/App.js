@@ -484,7 +484,6 @@ export default () => {
                     <Card style={{ marginTop: theme.spacing(1) }}>
                         <DrawerNavGroup
                             title={'Resources'}
-                            open={true}
                             items={[
                                 {
                                     title: 'Guides',

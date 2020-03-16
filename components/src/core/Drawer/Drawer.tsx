@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/sty
 import { Drawer, DrawerProps } from '@material-ui/core';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
+import {DrawerBodyProps} from './DrawerBody';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -74,7 +75,7 @@ export type PXBlueDrawerInheritableProperties = {
 
 // type shared by Drawer, DrawerBody, DrawerNavGroup
 // inheritable props but not for NestedNavItem
-export type PXBlueDrawerInheritableGroupProperties = {
+export type PXBlueDrawerNavGroupInheritableProperties = {
     // itemID for the 'active' item
     activeItem?: string;
 
@@ -84,10 +85,6 @@ export type PXBlueDrawerInheritableGroupProperties = {
     // Whether to show a line between nested menu items
     nestedDivider?: boolean;
 
-    // internal API (public only for Drawer)
-    // Whether the group is expanded
-    open?: boolean;
-
     // Font color for group header
     titleColor?: string;
 } & PXBlueDrawerInheritableProperties;
@@ -96,7 +93,10 @@ export type DrawerComponentProps = {
     // drawer width
     width?: number;
 
-} & PXBlueDrawerInheritableGroupProperties &
+    // if drawer is open
+    open: boolean;
+
+} & PXBlueDrawerNavGroupInheritableProperties &
     Omit<DrawerProps, 'translate'>;
 
 export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
@@ -123,7 +123,6 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         onItemSelect,
         ripple,
         titleColor,
-        variant,
         width,
         ...drawerProps // for Material-UI's Drawer component
     } = props;
@@ -148,7 +147,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const getSubHeader = (): JSX.Element[] =>
         findChildByType('DrawerSubheader')
             .slice(0, 1)
-            .map((child) => React.cloneElement(child, { open: isDrawerOpen() }));
+            .map((child) => React.cloneElement(child, { drawerOpen: isDrawerOpen() }));
 
     const getBody = (): JSX.Element[] =>
         findChildByType('DrawerBody')
@@ -171,20 +170,20 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     nestedDivider,
                     ripple,
                     titleColor,
-                    open: isDrawerOpen(),
+                    drawerOpen: isDrawerOpen(),
                     onItemSelect: () => {
                         if (onItemSelect) {
                             onItemSelect();
                         }
                         setHover(false);
                     },
-                })
+                } as DrawerBodyProps)
             );
 
     const getFooter = (): JSX.Element[] =>
         findChildByType('DrawerFooter')
             .slice(0, 1)
-            .map((child) => React.cloneElement(child, { open: isDrawerOpen() }));
+            .map((child) => React.cloneElement(child, { drawerOpen: isDrawerOpen() }));
 
     const getDrawerContents = (): JSX.Element => (
         <>
@@ -260,19 +259,18 @@ export const PXBlueDrawerInheritablePropertiesPropTypes = {
     itemIconColor: PropTypes.string,
     ripple: PropTypes.bool,
 };
-export const PXBlueDrawerInheritableGroupPropertiesPropTypes = {
+export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
     activeItem: PropTypes.string,
     nestedDivider: PropTypes.bool,
     onItemSelect: PropTypes.func,
-    open: PropTypes.bool,
     titleColor: PropTypes.string,
     ...PXBlueDrawerInheritablePropertiesPropTypes,
 };
 // @ts-ignore
 DrawerComponent.propTypes = {
     width: PropTypes.number,
-    variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
-    ...PXBlueDrawerInheritableGroupPropertiesPropTypes,
+    open: PropTypes.bool.isRequired,
+    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerComponent.defaultProps = {
     variant: 'permanent',

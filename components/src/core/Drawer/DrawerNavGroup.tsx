@@ -7,9 +7,9 @@ import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import { InfoListItem } from '../InfoListItem';
 import {
-    PXBlueDrawerInheritableGroupProperties,
+    PXBlueDrawerNavGroupInheritableProperties,
     PXBlueDrawerInheritableProperties,
-    PXBlueDrawerInheritableGroupPropertiesPropTypes,
+    PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 } from './Drawer';
 import PropTypes from 'prop-types';
 import { ExpandLess, ArrowDropUp, ChevronRight } from '@material-ui/icons';
@@ -117,6 +117,9 @@ export type DrawerNavGroupProps = {
     // internal API
     backgroundColor?: string;
 
+    // internal API
+    drawerOpen?: boolean;
+
     // List of navigation items to render
     items: NavItem[];
 
@@ -125,7 +128,7 @@ export type DrawerNavGroupProps = {
 
     // Custom element, substitute for title
     titleContent?: ReactNode;
-} & PXBlueDrawerInheritableGroupProperties;
+} & PXBlueDrawerNavGroupInheritableProperties;
 
 // renderer function for each nav item / nested nav item
 function NavigationListItem(
@@ -144,7 +147,7 @@ function NavigationListItem(
     const theme = useTheme();
     // @ts-ignore
     const primary50Color = theme.palette.primary[50];
-    const { activeItem, nestedDivider } = navGroupProps;
+    const { activeItem, drawerOpen, nestedDivider } = navGroupProps;
 
     // handle inheritables
     const activeItemBackgroundColor =
@@ -185,6 +188,7 @@ function NavigationListItem(
             : navGroupProps.ripple !== undefined
             ? navGroupProps.ripple
             : true;
+            
 
     // row action
     const action = (): void => {
@@ -291,7 +295,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const classes = useStyles(props);
     const theme = useTheme();
     const {
-        open,
+        drawerOpen,
         items,
         title,
         titleContent,
@@ -299,6 +303,8 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         titleColor = theme.palette.text.primary,
         nestedBackgroundColor,
     } = props;
+
+    const open = drawerOpen !== undefined ? drawerOpen : true; // so that DrawerNavGroup can be placed in a <Card />
 
     // recursively loop through item list and the subItems
     function getDrawerItemList(item: NavItem | NestedNavItem, depth: number): JSX.Element {
@@ -361,6 +367,7 @@ DrawerNavGroup.displayName = 'DrawerNavGroup';
 
 DrawerNavGroup.propTypes = {
     backgroundColor: PropTypes.string,
+    drawerOpen: PropTypes.bool,
     // @ts-ignore
     items: PropTypes.arrayOf(
         PropTypes.shape({
@@ -373,5 +380,5 @@ DrawerNavGroup.propTypes = {
             statusColor: PropTypes.string,
         })
     ).isRequired,
-    ...PXBlueDrawerInheritableGroupPropertiesPropTypes,
+    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };

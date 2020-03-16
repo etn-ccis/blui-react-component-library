@@ -136,7 +136,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 <div className={defaultClasses.navGroups} key={index}>
                     <DrawerNavGroup
                         divider={false}
-                        open={true}
+                        drawerOpen={true}
                         itemIconColor={group.iconColor}
                         itemFontColor={group.fontColor}
                         title={group.title}

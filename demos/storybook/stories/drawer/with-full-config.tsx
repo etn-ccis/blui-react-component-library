@@ -87,7 +87,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     const navItemId = 'NavItem';
     const footerGroupId = 'Footer';
 
-    const drawerKnobs: Partial<DrawerComponentProps> = {
+    const drawerKnobs: DrawerComponentProps = {
         activeItemBackgroundColor: color('activeItemBackgroundColor', Colors.blue[50], drawerGroupId),
         activeItemFontColor: color('activeItemFontColor', Colors.blue[500], drawerGroupId),
         activeItemIconColor: color('activeItemIconColor', Colors.blue[500], drawerGroupId),

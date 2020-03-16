@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { PXBlueDrawerInheritableGroupProperties, PXBlueDrawerInheritableGroupPropertiesPropTypes } from './Drawer';
+import { PXBlueDrawerNavGroupInheritableProperties, PXBlueDrawerNavGroupInheritablePropertiesPropTypes } from './Drawer';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
 
 const useStyles = makeStyles({
@@ -15,7 +15,8 @@ const useStyles = makeStyles({
 
 export type DrawerBodyProps = {
     backgroundColor?: string;
-} & PXBlueDrawerInheritableGroupProperties;
+    drawerOpen?: boolean;
+} & PXBlueDrawerNavGroupInheritableProperties;
 
 export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
     const classes = useStyles(bodyProps);
@@ -62,7 +63,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                         nestedBackgroundColor={groupProps.nestedBackgroundColor || bodyProps.nestedBackgroundColor}
                         ripple={groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple}
                         onItemSelect={bodyProps.onItemSelect}
-                        open={bodyProps.open}
+                        drawerOpen={bodyProps.drawerOpen}
                         titleColor={groupProps.titleColor || bodyProps.titleColor}
                     />
                 );
@@ -76,5 +77,6 @@ DrawerBody.displayName = 'DrawerBody';
 // @ts-ignore
 DrawerBody.propTypes = {
     backgroundColor: PropTypes.string,
-    ...PXBlueDrawerInheritableGroupPropertiesPropTypes,
+    drawerOpen: PropTypes.bool,
+    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
