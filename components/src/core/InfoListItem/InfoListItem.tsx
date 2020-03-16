@@ -16,9 +16,14 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemIcon,
-    ListItemSecondaryAction,
+    ListItemProps as StandardListItemProps,
+    ListItemAvatarProps as StandardListItemAvatarProps,
+    ListItemTextProps as StandardListItemTextProps,
+    ListItemIconProps as StandardListItemIconProps,
+    ListItemSecondaryActionProps as StandardListItemSecondaryActionProps,
     ListItemText,
     Typography,
+    ListItemSecondaryAction,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -53,22 +58,41 @@ const useStyles = makeStyles((theme: Theme) =>
             lineHeight: 1.3,
             color: 'inherit',
         },
+        rightComponent: {
+            flex: '0 0 auto',
+            marginLeft: 16,
+            display: 'flex',
+            alignItems: 'center'
+        }
     })
 );
 
 const MAX_SUBTITLE_ELEMENTS = 6;
+
+type InfoListItemClasses = {
+     title?: string;
+     subtitle?: string;
+     icon?: string;
+     avatar?: string;
+}
 
 export type DividerType = 'full' | 'partial';
 export type InfoListItemProps = {
     avatar?: boolean;
     backgroundColor?: string;
     chevron?: boolean;
+    classes?: InfoListItemClasses;
     dense?: boolean;
     divider?: DividerType;
     fontColor?: string;
     hidePadding?: boolean;
     icon?: JSX.Element;
     iconColor?: string;
+    ListItemAvatarProps?: StandardListItemAvatarProps;
+    ListItemProps?: Omit<StandardListItemProps, 'button'|'onClick'>;
+    ListItemTextProps?: StandardListItemTextProps;
+    ListItemIconProps?: StandardListItemIconProps;
+    ListItemSecondaryActionProps?: StandardListItemSecondaryActionProps;
     leftComponent?: JSX.Element;
     onClick?: Function;
     rightComponent?: JSX.Element;
@@ -82,17 +106,23 @@ export type InfoListItemProps = {
 
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const theme = useTheme();
-    const classes = useStyles(theme);
+    const defaultClasses = useStyles(theme);
     const {
         avatar,
         backgroundColor,
         chevron,
+        classes,
         dense,
         divider,
         fontColor,
         hidePadding,
         icon,
         iconColor,
+        ListItemSecondaryActionProps,
+        ListItemAvatarProps,
+        ListItemProps,
+        ListItemTextProps,
+        ListItemIconProps,
         leftComponent,
         onClick,
         rightComponent,
@@ -119,7 +149,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const getIcon = (): JSX.Element | undefined => {
         if (icon && avatar) {
             return (
-                <ListItemAvatar>
+                <ListItemAvatar {...ListItemAvatarProps}>
                     <Avatar
                         style={{
                             backgroundColor: statusColor || Colors.black[500],
@@ -131,11 +161,11 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 </ListItemAvatar>
             );
         } else if (icon) {
-            return <ListItemIcon style={{ color: getIconColor() }}>{icon}</ListItemIcon>;
+            return <ListItemIcon style={{ color: getIconColor() }} {...ListItemIconProps}>{icon}</ListItemIcon>;
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
-                <ListItemAvatar>
+                <ListItemAvatar {...ListItemAvatarProps}>
                     <Avatar style={{ opacity: 0 }} />
                 </ListItemAvatar>
             );
@@ -145,13 +175,13 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const getRightComponent = (): JSX.Element | undefined => {
         if (rightComponent) {
             return (
-                <div style={{ flex: '0 0 auto', marginLeft: 16, display: 'flex', alignItems: 'center' }}>
+                <div className={defaultClasses.rightComponent}>
                     {rightComponent}
                 </div>
             );
         } else if (chevron) {
             return (
-                <ListItemSecondaryAction style={{ display: 'flex' }}>
+                <ListItemSecondaryAction style={{ display: 'flex' }} {...ListItemSecondaryActionProps}>
                     <Chevron color={'inherit'} />
                 </ListItemSecondaryAction>
             );
@@ -159,7 +189,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
 
     const interpunct = (): JSX.Element => (
-        <Typography className={`${classes.withSmallMargins} ${classes.separator}`}>
+        <Typography className={`${defaultClasses.withSmallMargins} ${defaultClasses.separator}`}>
             {subtitleSeparator || '\u00B7'}
         </Typography>
     );
@@ -194,11 +224,12 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             onClick={onClick ? (): void => onClick() : undefined}
             dense={dense}
             button={ripple ? true : undefined}
+            {...ListItemProps as any}
         >
             <>
-                <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
+                <div className={defaultClasses.statusStripe} style={{ backgroundColor: statusColor }} />
                 {divider && (
-                    <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
+                    <Divider className={defaultClasses.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
                 )}
                 {(icon || !hidePadding) && getIcon()}
                 {leftComponent}
@@ -209,15 +240,16 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     primaryTypographyProps={{
                         noWrap: true,
                         variant: 'body1',
-                        className: classes.title,
+                        className: defaultClasses.title,
                         style: { color: fontColor },
                     }}
                     secondaryTypographyProps={{
                         noWrap: true,
                         variant: 'subtitle2',
-                        className: classes.subtitle,
+                        className: defaultClasses.subtitle,
                         style: { color: fontColor || 'inherit' },
                     }}
+                    {...ListItemTextProps}
                 />
                 {getRightComponent()}
             </>
