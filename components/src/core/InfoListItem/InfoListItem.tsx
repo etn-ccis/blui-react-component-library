@@ -20,7 +20,7 @@ import {
     Typography,
     ListItemSecondaryAction,
 } from '@material-ui/core';
-import clsx from "clsx";
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -58,11 +58,11 @@ const useStyles = makeStyles((theme: Theme) =>
             flex: '0 0 auto',
             marginLeft: 16,
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
         },
         chevron: {
-            display: 'flex'
-        }
+            display: 'flex',
+        },
     })
 );
 
@@ -70,10 +70,10 @@ const MAX_SUBTITLE_ELEMENTS = 6;
 
 type InfoListItemClasses = {
     root?: string;
-     title?: string;
-     subtitle?: string;
+    title?: string;
+    subtitle?: string;
     rightComponent?: string;
-}
+};
 
 export type DividerType = 'full' | 'partial';
 export type InfoListItemProps = {
@@ -163,11 +163,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
 
     const getRightComponent = (): JSX.Element | undefined => {
         if (rightComponent) {
-            return (
-                <div className={clsx(defaultClasses.rightComponent, classes.rightComponent)}>
-                    {rightComponent}
-                </div>
-            );
+            return <div className={clsx(defaultClasses.rightComponent, classes.rightComponent)}>{rightComponent}</div>;
         } else if (chevron) {
             return (
                 <ListItemSecondaryAction className={defaultClasses.chevron}>
@@ -218,7 +214,10 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             <>
                 <div className={defaultClasses.statusStripe} style={{ backgroundColor: statusColor }} />
                 {divider && (
-                    <Divider className={defaultClasses.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
+                    <Divider
+                        className={defaultClasses.divider}
+                        style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }}
+                    />
                 )}
                 {(icon || !hidePadding) && getIcon()}
                 {leftComponent}
@@ -254,7 +253,7 @@ InfoListItem.propTypes = {
         root: PropTypes.string,
         title: PropTypes.string,
         subtitle: PropTypes.string,
-        rightComponent: PropTypes.string
+        rightComponent: PropTypes.string,
     }),
     dense: PropTypes.bool,
     divider: PropTypes.oneOf(['full', 'partial']),
