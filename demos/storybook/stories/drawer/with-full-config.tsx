@@ -7,6 +7,7 @@ import {
     Dashboard,
     Devices,
     FitnessCenter,
+    List,
     NotificationsActive,
     Remove,
     PinDrop,
@@ -53,7 +54,7 @@ const annualReport = 'Annual Report';
 const colorContrastGuide = 'Color Contrast Guide';
 const screenReader = 'Screen Reader';
 
-const getIcon = (icon: string): JSX.Element | undefined => {
+export const getIcon = (icon: string): JSX.Element | undefined => {
     switch (icon) {
         case '<Add />':
             return <Add />;
@@ -67,6 +68,8 @@ const getIcon = (icon: string): JSX.Element | undefined => {
             return <Menu />;
         case '<FitnessCenter />':
             return <FitnessCenter />;
+        case '<List />':
+            return <List />;
         case 'undefined':
         default:
             return undefined;
