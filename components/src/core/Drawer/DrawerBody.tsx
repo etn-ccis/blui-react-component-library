@@ -32,7 +32,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                 const groupProps: DrawerNavGroupProps = child.props;
 
                 // for any DrawerNavGroup, if a prop is not set (undefined), inherit from the DrawerBody
-                // open and onSelect is always determined by DrawerBody
+                // open and onItemSelect is always determined by DrawerBody
                 return (
                     <DrawerNavGroup
                         {...groupProps}
@@ -61,7 +61,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                         }
                         nestedBackgroundColor={groupProps.nestedBackgroundColor || bodyProps.nestedBackgroundColor}
                         ripple={groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple}
-                        onSelect={bodyProps.onSelect}
+                        onItemSelect={bodyProps.onItemSelect}
                         open={bodyProps.open}
                         titleColor={groupProps.titleColor || bodyProps.titleColor}
                     />

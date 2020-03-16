@@ -141,7 +141,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         itemFontColor={group.fontColor}
                         title={group.title}
                         items={group.items}
-                        onSelect={closeMenu}
+                        onItemSelect={closeMenu}
                     />
                 </div>
             )),

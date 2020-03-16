@@ -66,7 +66,7 @@ export type PXBlueDrawerInheritableProperties = {
 
     // internal API
     // will apply to all menu items when onClick
-    onSelect?: () => void;
+    onItemSelect?: () => void;
 
     // Whether to apply material ripple effect to items
     ripple?: boolean;
@@ -123,7 +123,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         nestedBackgroundColor,
         nestedDivider,
         open,
-        onSelect,
+        onItemSelect,
         ripple,
         titleColor,
         variant,
@@ -175,9 +175,9 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     ripple,
                     titleColor,
                     open: isDrawerOpen(),
-                    onSelect: () => {
-                        if (onSelect) {
-                            onSelect();
+                    onItemSelect: () => {
+                        if (onItemSelect) {
+                            onItemSelect();
                         }
                         setHover(false);
                     },
@@ -266,7 +266,7 @@ export const PXBlueDrawerInheritablePropertiesPropTypes = {
 export const PXBlueDrawerInheritableGroupPropertiesPropTypes = {
     activeItem: PropTypes.string,
     nestedDivider: PropTypes.bool,
-    onSelect: PropTypes.func,
+    onItemSelect: PropTypes.func,
     open: PropTypes.bool,
     titleColor: PropTypes.string,
     ...PXBlueDrawerInheritablePropertiesPropTypes,

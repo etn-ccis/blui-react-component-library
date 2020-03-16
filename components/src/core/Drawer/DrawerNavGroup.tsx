@@ -176,7 +176,7 @@ function NavigationListItem(
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
     const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || gray[500];
     const itemIconColor = navItem.itemIconColor || navGroupProps.itemIconColor || gray[500];
-    const onSelect = navItem.onSelect || navGroupProps.onSelect;
+    const onItemSelect = navItem.onItemSelect || navGroupProps.onItemSelect;
     const ripple =
         navItem.ripple !== undefined
             ? navItem.ripple
@@ -186,8 +186,8 @@ function NavigationListItem(
 
     // row action
     const action = (): void => {
-        if (onSelect) {
-            onSelect();
+        if (onItemSelect) {
+            onItemSelect();
         }
         if (onClick) {
             onClick();

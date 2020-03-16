@@ -121,7 +121,7 @@ export default () => {
                                     itemID: titleList[2],
                                     icon: <Public />,
                                     onClick: () => setRoute(2),
-                                    onSelect: () => {}, // to prevent auto collapse on click
+                                    onItemSelect: () => {}, // to prevent auto collapse on click
                                     items: [
                                         {
                                             title: titleList[7],
@@ -228,7 +228,6 @@ export default () => {
                                             title: '1-866-905-9988',
                                             itemID: 'phone',
                                             icon: <Email />,
-                                            onSelect: () => {},
                                         },
                                     ],
                                 },
