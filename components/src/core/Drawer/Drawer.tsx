@@ -90,11 +90,11 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
 } & PXBlueDrawerInheritableProperties;
 
 export type DrawerComponentProps = {
-    // drawer width
-    width?: number;
-
-    // if drawer is open
+    // Controls the open/closed state of the drawer
     open: boolean;
+
+    // Sets the width of the drawer (in px) when open
+    width?: number;
 } & PXBlueDrawerNavGroupInheritableProperties &
     Omit<DrawerProps, 'translate'>;
 

@@ -85,12 +85,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type NestedNavItem = {
-    // any items listed inside this
-    items?: NestedNavItem[];
-
     // item id to match for the active state.
     // Should be unique within the entire list. Will be used as the list key too.
     itemID: string;
+
+    // any items listed inside this
+    items?: NestedNavItem[];
 
     // onClick of the entire row
     onClick?: Function;
