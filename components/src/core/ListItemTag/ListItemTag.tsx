@@ -12,7 +12,7 @@ export type ListItemTagProps = {
     fontColor?: string;
 
     /* The string label of the tag. */
-    label: string;    
+    label: string;
 } & TypographyProps;
 
 const useStyles = makeStyles((theme: Theme) =>
