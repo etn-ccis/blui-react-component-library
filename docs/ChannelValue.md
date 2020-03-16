@@ -28,3 +28,13 @@ import { ChannelValue } from '@pxblue/react-components';
 | color       | The color of the font                          | `string`                 | no       | 'inherit' |
 
 </div>
+
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                 |
+|------------------|---------------------------------------------|
+| root             | Styles applied to the root element          |
+| icon             | Styles applied to the icon element          |
+| units            | Styles applied to the units element         |
+| value            | Styles applied to the value element         |
