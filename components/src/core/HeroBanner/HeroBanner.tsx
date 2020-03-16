@@ -2,28 +2,34 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles({
-    banner: {
+    root: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
     },
 });
 
+type HeroBannerClasses = {
+    root?: string;
+}
+
 export type HeroBannerProps = {
+    classes?: HeroBannerClasses;
     divider?: boolean;
     limit?: number;
 };
 
 export const HeroBanner = (props: HeroBannerProps & any): JSX.Element => {
-    const { divider, limit } = props;
-    const classes = useStyles(props);
+    const { classes, divider, limit } = props;
+    const defaultClasses = useStyles(props);
     const isArray = Array.isArray(props.children);
 
     return (
         <React.Fragment>
-            <div className={classes.banner} style={props.style}>
+            <div className={clsx(defaultClasses.root, classes.root)} style={props.style}>
                 {props.children && isArray && props.children.slice(0, limit).map((child: any) => child)}
                 {props.children && !isArray && <>{props.children}</>}
             </div>
@@ -34,10 +40,14 @@ export const HeroBanner = (props: HeroBannerProps & any): JSX.Element => {
 
 HeroBanner.displayName = 'HeroBanner';
 HeroBanner.propType = {
+    classes: PropTypes.shape({
+        root: PropTypes.string
+    }),
     divider: PropTypes.bool,
     limit: PropTypes.number,
 };
 HeroBanner.defaultProps = {
+    classes: {},
     divider: false,
     limit: 4,
 };

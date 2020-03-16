@@ -85,3 +85,11 @@ import Hero from '@pxblue/react-components/core/Hero';
 | limit     | Max number of children to display       | `number`  | no       | 4       |
 
 </div>
+
+
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                 |
+|------------------|---------------------------------------------|
+| root             | Styles applied to the root element          |
