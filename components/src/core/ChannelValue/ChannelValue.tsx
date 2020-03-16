@@ -1,18 +1,17 @@
 import React, { useCallback } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { combine } from '../utilities';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles, Theme, useTheme} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-const styles = makeStyles({
+const styles = makeStyles((theme: Theme) =>({
     root: {
         display: 'inline-flex',
         alignItems: 'center',
         lineHeight: 1.2,
     },
     icon: {
-        marginRight: 4,
+        marginRight: theme.spacing(0.5),
         display: 'inline',
         fontSize: 'inherit',
     },
@@ -27,7 +26,7 @@ const styles = makeStyles({
     value: {
         fontWeight: 600,
     },
-});
+}));
 
 type ChannelValueClasses = {
     root?: string;
@@ -47,7 +46,7 @@ export type ChannelValueProps = {
 
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const { classes, color, fontSize, icon, prefix, units, value } = props;
-    const defaultClasses = styles(props);
+    const defaultClasses = styles(useTheme());
 
     const getUnitElement = useCallback(
         (): JSX.Element => (
@@ -56,7 +55,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                     <Typography
                         variant={'h6'}
                         color={'inherit'}
-                        className={clsx(combine([defaultClasses.text, defaultClasses.units]), classes.units)}
+                        className={clsx(defaultClasses.text, defaultClasses.units, classes.units)}
                         data-test={'unit'}
                     >
                         {units}
@@ -64,7 +63,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                 )}
             </>
         ),
-        [units, classes, combine]
+        [units, classes]
     );
 
     const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
@@ -83,7 +82,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
             <Typography
                 variant={'h6'}
                 color={'inherit'}
-                className={clsx(combine([defaultClasses.text, defaultClasses.value]), classes.value)}
+                className={clsx(defaultClasses.text, defaultClasses.value, classes.value)}
                 data-test={'value'}
             >
                 {value}
