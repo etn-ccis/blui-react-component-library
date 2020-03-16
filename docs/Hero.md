@@ -35,13 +35,14 @@ import { Hero } from '@pxblue/react-components';
 
 | Prop Name           | Description                             | Type                                                               | Required | Default                |
 |---------------------|-----------------------------------------|--------------------------------------------------------------------|----------|------------------------|
-| icon                | The primary icon                        | `React.Component` \| `string`                                      | yes      |                        |
-| label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        |
-| iconSize            | The size of the primary icon (10-72)    | `number`                                                           | no       | 36                     |
-| iconBackgroundColor | The color used behind the primary icon  | `string`                                                           | no       | 'transparent'          |
+| classes             | Style overrides                         | `StyleRules`                                                       | no       |                        |
 | fontSize            | The text size for the value line        | `'normal'` \| `'small'`                                            | no       | 'normal'               |
-| value               | The value for the channel               | `string` \| `number`                                               | no       |                        |
+| icon                | The primary icon                        | `React.Component` \| `string`                                      | yes      |                        |
+| iconBackgroundColor | The color used behind the primary icon  | `string`                                                           | no       | 'transparent'          |
+| iconSize            | The size of the primary icon (10-72)    | `number`                                                           | no       | 36                     |
+| label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        |
 | units               | Text to show after the value            | `string`                                                           | no       |                        |
+| value               | The value for the channel               | `string` \| `number`                                               | no       |                        |
 | valueIcon           | The inline icon with the value          | `React.Component`                                                  | no       |                        |
 
 </div>
