@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import * as Colors from '@pxblue/colors';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
-import clsx from "clsx";
+import clsx from 'clsx';
 
 type EmptyStateClasses = {
     root?: string;
@@ -35,11 +35,11 @@ const useStyles = makeStyles({
     icon: {
         marginBottom: 15,
         display: 'flex',
-        fontSize: 100
+        fontSize: 100,
     },
     actions: {
-        marginTop: 10
-    }
+        marginTop: 10,
+    },
 });
 
 export const EmptyState: React.FC<EmptyStateProps> = (props) => {
@@ -47,11 +47,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     const defaultClasses = useStyles(props);
     return (
         <div className={clsx(defaultClasses.root, classes.root)} data-test={'frame'}>
-            {icon && (
-                <div className={clsx(defaultClasses.icon, classes.icon)}>
-                    {icon}
-                </div>
-            )}
+            {icon && <div className={clsx(defaultClasses.icon, classes.icon)}>{icon}</div>}
             <Typography variant="h6" color="inherit" className={classes.title}>
                 {title}
             </Typography>
@@ -73,12 +69,12 @@ EmptyState.propTypes = {
         icon: PropTypes.string,
         title: PropTypes.string,
         description: PropTypes.string,
-        actions: PropTypes.string
+        actions: PropTypes.string,
     }),
     description: PropTypes.string,
     icon: PropTypes.element.isRequired,
     title: PropTypes.string.isRequired,
 };
 EmptyState.defaultProps = {
-    classes: {}
+    classes: {},
 };
