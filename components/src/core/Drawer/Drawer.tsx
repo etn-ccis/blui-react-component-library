@@ -33,14 +33,14 @@ export type PXBlueDrawerInheritableProperties = {
     // Background color for the 'active' item
     activeItemBackgroundColor?: string;
 
+    // shape of the active item background
+    activeItemBackgroundShape?: 'round' | 'square';
+
     // Font color for the 'active' item
     activeItemFontColor?: string;
 
     // Icon color for the 'active' item
     activeItemIconColor?: string;
-
-    // shape of the active item background
-    activeItemBackgroundShape?: 'round' | 'square';
 
     // Whether to have chevrons for all menu items
     chevron?: boolean;
@@ -64,6 +64,10 @@ export type PXBlueDrawerInheritableProperties = {
     // The color used for the icon
     itemIconColor?: string;
 
+    // internal API
+    // will apply to all menu items when onClick
+    onSelect?: () => void;
+
     // Whether to apply material ripple effect to items
     ripple?: boolean;
 };
@@ -74,12 +78,11 @@ export type PXBlueDrawerInheritableGroupProperties = {
     // itemID for the 'active' item
     activeItem?: string;
 
+    // background color for nested menu items
+    nestedBackgroundColor?: string;
+
     // Whether to show a line between nested menu items
     nestedDivider?: boolean;
-
-    // internal API
-    // will apply to all menu items when onClick
-    onSelect?: () => void;
 
     // internal API (only public for Drawer)
     // Whether the group is expanded
@@ -117,6 +120,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         hidePadding,
         itemFontColor,
         itemIconColor,
+        nestedBackgroundColor,
         nestedDivider,
         open,
         onSelect,
@@ -152,8 +156,8 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const getBody = (): JSX.Element[] =>
         findChildByType('DrawerBody')
             .slice(0, 1)
-            .map((child) => {
-                return React.cloneElement(child, {
+            .map((child) =>
+                React.cloneElement(child, {
                     activeItem,
                     activeItemBackgroundColor,
                     activeItemFontColor,
@@ -166,6 +170,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     hidePadding,
                     itemFontColor,
                     itemIconColor,
+                    nestedBackgroundColor,
                     nestedDivider,
                     ripple,
                     titleColor,
@@ -176,8 +181,8 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                         }
                         setHover(false);
                     },
-                });
-            });
+                })
+            );
 
     const getFooter = (): JSX.Element[] =>
         findChildByType('DrawerFooter')

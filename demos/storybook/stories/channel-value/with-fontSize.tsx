@@ -8,7 +8,7 @@ import React from 'react';
 export const withFontSize = (): StoryFnReactReturnType => (
     <ChannelValue
         value={'123'}
-        units={'hz'}
+        unit={'hz'}
         icon={<Trend htmlColor={Colors.red[500]} />}
         fontSize={number('fontSize', 30)}
     />

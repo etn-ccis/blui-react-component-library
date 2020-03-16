@@ -6,6 +6,11 @@ The EmptyState component is an element that can be used as a placeholder when no
 </div>
 
 ## Usage
+
+<div style="width: 100%; text-align: center">
+    <img width="100%" style="max-width: 600px" alt="Empty State Anatomy" src="./images/emptyStateAnatomy.png">
+</div>
+
 ```typescript
 import { EmptyState } from '@pxblue/react-components';
 

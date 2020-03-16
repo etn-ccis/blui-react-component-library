@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         square: {},
-        secondaryLevelListGroup: {
+        nestedListGroup: {
             backgroundColor: theme.palette.type === 'light' ? white[200] : black['A200'],
             paddingBottom: 0,
             paddingTop: 0,
@@ -102,15 +102,15 @@ export type NestedNavItem = {
     statusColor?: string;
 
     // secondary text as a hint text
-    itemSubtitle?: string;
+    subtitle?: string;
 
     // text to be displayed
-    itemTitle: string;
+    title: string;
 } & PXBlueDrawerInheritableProperties;
 
 export type NavItem = NestedNavItem & {
     // icon on the left
-    itemIcon?: JSX.Element;
+    icon?: JSX.Element;
 };
 
 export type DrawerNavGroupProps = {
@@ -121,10 +121,10 @@ export type DrawerNavGroupProps = {
     items: NavItem[];
 
     // Text to display in the group header
-    groupTitle?: string;
+    title?: string;
 
     // Custom element, substitute for title
-    groupTitleContent?: ReactNode;
+    titleContent?: ReactNode;
 } & PXBlueDrawerInheritableGroupProperties;
 
 // renderer function for each nav item / nested nav item
@@ -135,81 +135,54 @@ function NavigationListItem(
     expanded = false,
     expandHandler = (): void => {}
 ): ReactNode {
-    const {
-        // inheritables
-        activeItemBackgroundColor: item_activeItemBackgroundColor,
-        activeItemFontColor: item_activeItemFontColor,
-        activeItemIconColor: item_activeItemIconColor,
-        activeItemBackgroundShape: item_activeItemBackgroundShape,
-        chevron: item_chevron,
-        collapseIcon: item_collapseIcon,
-        divider: item_divider,
-        expandIcon: item_expandIcon,
-        hidePadding: item_hidePadding,
-        itemFontColor: item_itemFontColor,
-        itemIconColor: item_itemIconColor,
-        ripple: item_ripple,
-        // non inheritables
-        itemTitle,
-        itemSubtitle,
-        items,
-        itemID,
-        onClick,
-        statusColor,
-    } = navItem;
-    const icon = (navItem as NavItem).itemIcon;
+    const { title: itemTitle, subtitle: itemSubtitle, items, itemID, onClick, statusColor } = navItem;
+    const icon = (navItem as NavItem).icon;
 
     const classes = useStyles(navGroupProps);
     const theme = useTheme();
     // @ts-ignore
     const primary50Color = theme.palette.primary[50];
-    const {
-        // inheritble
-        activeItemBackgroundColor: group_activeItemBackgroundColor,
-        activeItemFontColor: group_activeItemFontColor,
-        activeItemIconColor: group_activeItemIconColor,
-        activeItemBackgroundShape: group_activeItemBackgroundShape,
-        chevron: group_chevron,
-        collapseIcon: group_collapseIcon,
-        divider: group_divider,
-        expandIcon: group_expandIcon,
-        hidePadding: group_hidePadding,
-        itemFontColor: group_itemFontColor,
-        itemIconColor: group_itemIconColor,
-        ripple: group_ripple,
-        // non inheritable
-        activeItem,
-        nestedDivider,
-        onSelect,
-    } = navGroupProps;
+    const { activeItem, nestedDivider } = navGroupProps;
 
     // handle inheritables
     const activeItemBackgroundColor =
-        item_activeItemBackgroundColor ||
-        group_activeItemBackgroundColor ||
+        navItem.activeItemBackgroundColor ||
+        navGroupProps.activeItemBackgroundColor ||
         (theme.palette.type === 'light' ? primary50Color : theme.palette.primary.main);
     const activeItemFontColor =
-        item_activeItemFontColor ||
-        group_activeItemFontColor ||
+        navItem.activeItemFontColor ||
+        navGroupProps.activeItemFontColor ||
         (theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText);
     const activeItemIconColor =
-        item_activeItemIconColor ||
-        group_activeItemIconColor ||
+        navItem.activeItemIconColor ||
+        navGroupProps.activeItemIconColor ||
         (theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText);
-    const activeItemBackgroundShape = item_activeItemBackgroundShape || group_activeItemBackgroundShape || 'round';
-    const chevron = item_chevron !== undefined ? item_chevron : group_chevron;
-    const collapseIcon = item_collapseIcon || group_collapseIcon;
+    const activeItemBackgroundShape =
+        navItem.activeItemBackgroundShape || navGroupProps.activeItemBackgroundShape || 'round';
+    const chevron = navItem.chevron !== undefined ? navItem.chevron : navGroupProps.chevron;
+    const collapseIcon = navItem.collapseIcon || navGroupProps.collapseIcon;
     let divider;
     if (depth) {
-        divider = item_divider !== undefined ? item_divider : nestedDivider !== undefined ? nestedDivider : false;
+        divider = navItem.divider !== undefined ? navItem.divider : nestedDivider !== undefined ? nestedDivider : false;
     } else {
-        divider = item_divider !== undefined ? item_divider : group_divider;
+        divider =
+            navItem.divider !== undefined
+                ? navItem.divider
+                : navGroupProps.divider !== undefined
+                ? navGroupProps.divider
+                : true;
     }
-    const expandIcon = item_expandIcon || group_expandIcon || (depth ? <ArrowDropUp /> : <ExpandLess />);
-    const hidePadding = item_hidePadding !== undefined ? item_hidePadding : group_hidePadding;
-    const itemFontColor = item_itemFontColor || group_itemFontColor || gray[500];
-    const itemIconColor = item_itemIconColor || group_itemIconColor || gray[500];
-    const ripple = item_ripple !== undefined ? item_ripple : group_ripple !== undefined ? group_ripple : true;
+    const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropUp /> : <ExpandLess />);
+    const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
+    const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || gray[500];
+    const itemIconColor = navItem.itemIconColor || navGroupProps.itemIconColor || gray[500];
+    const onSelect = navItem.onSelect || navGroupProps.onSelect;
+    const ripple =
+        navItem.ripple !== undefined
+            ? navItem.ripple
+            : navGroupProps.ripple !== undefined
+            ? navGroupProps.ripple
+            : true;
 
     // row action
     const action = (): void => {
@@ -283,7 +256,9 @@ function NavigationListItem(
                 backgroundColor={'transparent'}
                 onClick={(): void => {
                     action();
-                    if (!onClick) expandHandler();
+                    if (!onClick) {
+                        expandHandler();
+                    }
                 }}
                 style={{ paddingLeft }}
                 hidePadding={hidePadding}
@@ -312,7 +287,16 @@ function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const classes = useStyles(props);
-    const { open, items, groupTitle: title, groupTitleContent: titleContent, backgroundColor, titleColor } = props;
+    const theme = useTheme();
+    const {
+        open,
+        items,
+        title,
+        titleContent,
+        backgroundColor,
+        titleColor = theme.palette.text.primary,
+        nestedBackgroundColor,
+    } = props;
 
     // recursively loop through item list and the subItems
     function getDrawerItemList(item: NavItem | NestedNavItem, depth: number): JSX.Element {
@@ -321,15 +305,15 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         if (item.items) {
             // if there are more sub pages, add the bucket header and recurse on this function
             const collapsibleComponent = (
-                <Collapse in={expanded && open !== false} key={`${item.itemTitle}_group_${depth}`}>
-                    <List className={classes.secondaryLevelListGroup}>
+                <Collapse in={expanded && open !== false} key={`${item.title}_group_${depth}`}>
+                    <List className={classes.nestedListGroup} style={{ backgroundColor: nestedBackgroundColor }}>
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                     </List>
                 </Collapse>
             );
 
             return (
-                <React.Fragment key={`${item.itemTitle}_Fragment_${depth}`}>
+                <React.Fragment key={`${item.title}_Fragment_${depth}`}>
                     <div key={`${item.itemID}`}>
                         {NavigationListItem(item, props, depth, expanded, () => {
                             setExpanded(!expanded);
@@ -378,10 +362,10 @@ DrawerNavGroup.propTypes = {
     // @ts-ignore
     items: PropTypes.arrayOf(
         PropTypes.shape({
-            itemIcon: PropTypes.element,
+            icon: PropTypes.element,
             itemID: PropTypes.string.isRequired,
-            itemSubtitle: PropTypes.string,
-            itemTitle: PropTypes.string.isRequired,
+            subtitle: PropTypes.string,
+            title: PropTypes.string.isRequired,
             onClick: PropTypes.func,
             rightComponent: PropTypes.element,
             statusColor: PropTypes.string,

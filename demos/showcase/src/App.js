@@ -76,6 +76,7 @@ export default () => {
                     ModalProps={{
                         onBackdropClick: () => setOpen(!open),
                     }}
+                    activeItem={titleList[route]}
                 >
                     <DrawerHeader
                         title={'Showcase App'}
@@ -90,7 +91,7 @@ export default () => {
                         <Select
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
-                            style={{ height: 56, padding: 16, width: '100%' }}
+                            style={{ height: theme.spacing(7), padding: theme.spacing(2), width: '100%' }}
                         >
                             {locations.map((loc, ind) => (
                                 <MenuItem key={`location${ind}`} value={ind}>
@@ -101,13 +102,11 @@ export default () => {
                     </DrawerSubheader>
                     <DrawerBody>
                         <DrawerNavGroup
-                            activeItem={titleList[route]}
                             items={[
                                 {
                                     title: titleList[0],
                                     itemID: titleList[0],
                                     icon: <ListIcon />,
-                                    // statusColor: 'red',
                                     onClick: () => setRoute(0),
                                 },
                                 {
@@ -122,17 +121,16 @@ export default () => {
                                     itemID: titleList[2],
                                     icon: <Public />,
                                     onClick: () => setRoute(2),
+                                    onSelect: () => {}, // to prevent auto collapse on click
                                     items: [
                                         {
                                             title: titleList[7],
                                             itemID: titleList[7],
-                                            // statusColor: 'red',
                                             onClick: () => setRoute(7),
                                         },
                                         {
                                             title: titleList[8],
                                             itemID: titleList[8],
-                                            // statusColor: 'red',
                                             onClick: () => setRoute(8),
                                         },
                                     ],
@@ -178,7 +176,13 @@ export default () => {
                     </DrawerBody>
                     <DrawerFooter>
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <img src={EatonLogo} style={{ margin: 10 }} alt="Eaton Logo" height={50} width={'auto'} />
+                            <img
+                                src={EatonLogo}
+                                style={{ margin: theme.spacing(1) }}
+                                alt="Eaton Logo"
+                                height={50}
+                                width={'auto'}
+                            />
                         </div>
                     </DrawerFooter>
                 </Drawer>
@@ -186,9 +190,9 @@ export default () => {
         >
             <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <AppBar position={'static'} color={'primary'}>
-                    <Toolbar style={{ padding: '0 16px' }}>
+                    <Toolbar style={{ padding: `0 ${theme.spacing(2)}px` }}>
                         <Hidden smUp>
-                            <Menu style={{ marginRight: 32 }} onClick={() => setOpen(!open)} />
+                            <Menu style={{ marginRight: theme.spacing(4) }} onClick={() => setOpen(!open)} />
                         </Hidden>
                         <Typography variant={'h6'}>Showcase</Typography>
                         <Spacer flex={1} />
@@ -224,6 +228,7 @@ export default () => {
                                             title: '1-866-905-9988',
                                             itemID: 'phone',
                                             icon: <Email />,
+                                            onSelect: () => {},
                                         },
                                     ],
                                 },
@@ -249,14 +254,14 @@ export default () => {
                                         label={'Temperature'}
                                         iconSize={48}
                                         value={98}
-                                        units={'°F'}
+                                        unit={'°F'}
                                         fontSize={'normal'}
                                     />
                                     <Hero
                                         icon={<Humidity fontSize={'inherit'} htmlColor={Colors.blue[300]} />}
                                         label={'Humidity'}
                                         value={54}
-                                        units={'%'}
+                                        unit={'%'}
                                         iconSize={48}
                                         fontSize={'normal'}
                                     />
@@ -291,7 +296,7 @@ export default () => {
                             </List>
                         </ScoreCard>
                         <ScoreCard
-                            style={{ flex: '1 1 0px', maxWidth: 400, marginLeft: 10 }}
+                            style={{ flex: '1 1 0px', maxWidth: 400, marginLeft: theme.spacing(1) }}
                             headerColor={Colors.blue[500]}
                             headerBackgroundImage={top}
                             headerTitle={'Substation 3'}
@@ -307,7 +312,7 @@ export default () => {
                                         label={'Health'}
                                         iconSize={72}
                                         value={98}
-                                        units={'%'}
+                                        unit={'%'}
                                         fontSize={'normal'}
                                     />
                                 </HeroBanner>
@@ -340,7 +345,7 @@ export default () => {
                         </ScoreCard>
                     </div>
 
-                    <Card style={{ marginTop: 10 }}>
+                    <Card style={{ marginTop: theme.spacing(1) }}>
                         <List style={{ color: Colors.gray['800'], padding: 0 }}>
                             <HeroBanner divider>
                                 <Hero
@@ -349,7 +354,7 @@ export default () => {
                                     }
                                     label={'Healthy'}
                                     value={96}
-                                    units={'/100'}
+                                    unit={'/100'}
                                     fontSize={'normal'}
                                 />
                                 <Hero
@@ -359,7 +364,7 @@ export default () => {
                                 >
                                     <ChannelValue
                                         value={65}
-                                        units={'%'}
+                                        unit={'%'}
                                         icon={<Trend htmlColor={Colors.red[500]} fontSize={'inherit'} />}
                                     />
                                 </Hero>
@@ -368,8 +373,8 @@ export default () => {
                                     label={'Estimated'}
                                     fontSize={'normal'}
                                 >
-                                    <ChannelValue value={1} units={'h'} />
-                                    <ChannelValue value={26} units={'m'} />
+                                    <ChannelValue value={1} unit={'h'} />
+                                    <ChannelValue value={26} unit={'m'} />
                                 </Hero>
                                 <Hero
                                     icon={<Battery color={Colors.blue[500]} percent={100} size={36} />}
@@ -397,9 +402,9 @@ export default () => {
                                 icon={<VoltageCircled />}
                                 rightComponent={
                                     <span>
-                                        <ChannelValue fontSize={16} value={478} units={'V'} />,{' '}
-                                        <ChannelValue fontSize={16} value={479} units={'V'} />,{' '}
-                                        <ChannelValue fontSize={16} value={473} units={'V'} />
+                                        <ChannelValue fontSize={16} value={478} unit={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={479} unit={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={473} unit={'V'} />
                                     </span>
                                 }
                             />
@@ -414,9 +419,9 @@ export default () => {
                                 rightComponent={
                                     <span style={{ color: Colors.red[500] }}>
                                         <ListItemTag label={'monitored'} style={{ marginRight: 8 }} />
-                                        <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
-                                        <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
-                                        <ChannelValue fontSize={16} value={480} units={'V'} />
+                                        <ChannelValue fontSize={16} value={480} unit={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={480} unit={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={480} unit={'V'} />
                                     </span>
                                 }
                             />
@@ -427,9 +432,9 @@ export default () => {
                                 icon={<CurrentCircled color={'inherit'} />}
                                 rightComponent={
                                     <span>
-                                        <ChannelValue fontSize={16} value={15} units={'A'} />,{' '}
-                                        <ChannelValue fontSize={16} value={14.9} units={'A'} />,{' '}
-                                        <ChannelValue fontSize={16} value={15} units={'A'} />
+                                        <ChannelValue fontSize={16} value={15} unit={'A'} />,{' '}
+                                        <ChannelValue fontSize={16} value={14.9} unit={'A'} />,{' '}
+                                        <ChannelValue fontSize={16} value={15} unit={'A'} />
                                     </span>
                                 }
                             />
@@ -443,10 +448,10 @@ export default () => {
                                             backgroundColor={Colors.white['300']}
                                             label={'active'}
                                             fontColor={Colors.green['500']}
-                                            style={{ marginRight: 8 }}
+                                            style={{ marginRight: theme.spacing(1) }}
                                         />
                                         <ListItemTag
-                                            style={{ marginRight: 8 }}
+                                            style={{ marginRight: theme.spacing(1) }}
                                             label={'OVERHEAT'}
                                             backgroundColor={Colors.red['500']}
                                             onClick={(_) => {
@@ -457,17 +462,18 @@ export default () => {
                                             fontSize={16}
                                             icon={<Trend htmlColor={Colors.red[500]} />}
                                             value={68}
-                                            units={'°F'}
+                                            unit={'°F'}
                                         />
                                     </div>
                                 }
                             />
                         </List>
                     </Card>
-                    <Card style={{ marginTop: '10px', padding: '10px' }}>
+                    <Card style={{ marginTop: theme.spacing(1), padding: theme.spacing(3) }}>
                         <EmptyState
                             icon={<DevicesIcon fontSize={'inherit'} />}
                             title={'No Devices'}
+                            description={'Contact your local admin for details'}
                             actions={
                                 <Button variant="contained" color="primary">
                                     <Add style={{ marginRight: '5px' }} />
@@ -476,7 +482,7 @@ export default () => {
                             }
                         />
                     </Card>
-                    <Card style={{ marginTop: 10 }}>
+                    <Card style={{ marginTop: theme.spacing(1) }}>
                         <DrawerNavGroup
                             title={'Resources'}
                             open={true}
@@ -545,22 +551,6 @@ export default () => {
                             ]}
                         />
                     </Card>
-                    <div style={{ marginTop: 10 }}>
-                        <DrawerHeader title={'My Station'} subtitle={'Online'} icon={<Email />} />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                        <DrawerHeader
-                            titleContent={
-                                <div style={{ border: '1px dashed white' }}>
-                                    This is a custom content. <br />
-                                    The header has a minimum height but can stretch depends on the height of the
-                                    titleContent.
-                                    <br />
-                                    like this.
-                                </div>
-                            }
-                        />
-                    </div>
                 </div>
             </div>
         </DrawerLayout>

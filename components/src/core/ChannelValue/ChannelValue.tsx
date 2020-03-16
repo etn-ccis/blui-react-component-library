@@ -32,31 +32,34 @@ export type ChannelValueProps = {
     value: number | string;
     icon?: JSX.Element;
     units?: string;
+    unit?: string; // alias units
     prefix?: boolean;
     fontSize?: number | string;
     color?: string;
 };
 
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
-    const { color, fontSize, icon, prefix, value, units } = props;
+    const { color, fontSize, icon, prefix, value, unit: unitAlias, units } = props;
     const classes = styles(props);
+
+    const unit = unitAlias || units;
 
     const getUnitElement = useCallback(
         (): JSX.Element => (
             <>
-                {units && (
+                {unit && (
                     <Typography
                         variant={'h6'}
                         color={'inherit'}
                         className={combine([classes.text, classes.unit])}
                         data-test={'unit'}
                     >
-                        {units}
+                        {unit}
                     </Typography>
                 )}
             </>
         ),
-        [units, classes, combine]
+        [unit, units, classes, combine]
     );
 
     const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
@@ -89,6 +92,7 @@ ChannelValue.displayName = 'ChannelValue';
 ChannelValue.propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     icon: PropTypes.element,
+    unit: PropTypes.string,
     units: PropTypes.string,
     prefix: PropTypes.bool,
     fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

@@ -67,12 +67,26 @@ export type HeroProps = {
     onClick?: Function;
     value?: string | number;
     valueIcon?: JSX.Element;
+    unit?: string; // alias units
     units?: string;
 };
 
 export const Hero = (props: HeroProps): JSX.Element => {
     const classes = useStyles(props);
-    const { fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units } = props;
+    const {
+        fontSize,
+        icon,
+        iconBackgroundColor,
+        iconSize,
+        label,
+        onClick,
+        value,
+        valueIcon,
+        unit: aliasUnit,
+        units,
+    } = props;
+
+    const unit = aliasUnit || units;
 
     return (
         <div
@@ -94,7 +108,7 @@ export const Hero = (props: HeroProps): JSX.Element => {
                 {icon}
             </span>
             <span className={classes.values} style={{ fontSize: normalizeFontSize(fontSize) }}>
-                {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
+                {!props.children && value && <ChannelValue value={value} unit={unit} icon={valueIcon} />}
                 {props.children}
             </span>
             <Typography variant={'subtitle1'} color={'inherit'} className={classes.label}>
@@ -115,6 +129,7 @@ Hero.propType = {
     onClick: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     valueIcon: PropTypes.element,
+    unit: PropTypes.string,
     units: PropTypes.string,
 };
 Hero.defaultProps = {

@@ -11,16 +11,16 @@ export const stories = storiesOf('Intro/Overview', module);
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            //@ts-ignore
-            color: Colors.white[50],
-            //@ts-ignore
-            backgroundColor: appliedTheme.palette.primary[500],
+            color: appliedTheme.palette.primary.contrastText,
+            backgroundColor: appliedTheme.palette.primary.main,
             backgroundImage: `url(${backgroundImage})`,
             height: '100%',
             width: '100%',
             display: 'flex',
             alignContent: 'center',
             justifyContent: 'center',
+            backgroundSize: '110%',
+            backgroundPosition: 'center',
         },
         container: {
             display: 'flex',

@@ -6,8 +6,8 @@ import React from 'react';
 
 export const withChannelValueChildren = (): StoryFnReactReturnType => (
     <Hero label={'Duration'} icon={<Schedule fontSize={'inherit'} />}>
-        <ChannelValue fontSize={'large'} value={number('ChannelValue.hours', 1)} units={'h'} />
-        <ChannelValue fontSize={'large'} value={number('ChannelValue.minutes', 27)} units={'m'} />
+        <ChannelValue fontSize={'large'} value={number('ChannelValue.hours', 1)} unit={'h'} />
+        <ChannelValue fontSize={'large'} value={number('ChannelValue.minutes', 27)} unit={'m'} />
     </Hero>
 );
 

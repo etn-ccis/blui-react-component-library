@@ -14,7 +14,7 @@ export const withFooter = (context: DrawerStoryContext): StoryFnReactReturnType 
     <Drawer open={boolean('open', true)}>
         <DrawerHeader icon={<Menu />} title={'Footer Example'} />
         <DrawerBody>
-            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems2} />
+            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems2(context)} />
         </DrawerBody>
 
         <DrawerFooter backgroundColor={color('backgroundColor', Colors.white[50])}>

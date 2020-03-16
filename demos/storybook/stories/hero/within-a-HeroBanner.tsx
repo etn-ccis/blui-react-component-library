@@ -12,14 +12,14 @@ export const inBanner = (): StoryFnReactReturnType => {
             icon={<GradeA fontSize={'inherit'} htmlColor={Colors.green[500]} />}
             label={'Healthy'}
             value={96}
-            units={'/100'}
+            unit={'/100'}
         />,
         <Hero
             key={'hero2'}
             icon={<CurrentCircled fontSize={'inherit'} htmlColor={Colors.yellow[500]} />}
             label={'Load'}
             value={'90'}
-            units={'%'}
+            unit={'%'}
             fontSize={'normal'}
         />,
         <Hero
@@ -27,14 +27,14 @@ export const inBanner = (): StoryFnReactReturnType => {
             icon={<Temp fontSize={'inherit'} htmlColor={Colors.green[500]} />}
             label={'Temp'}
             value={55}
-            units={'C'}
+            unit={'C'}
         />,
         <Hero
             key={'hero4'}
             icon={<Leaf fontSize={'inherit'} htmlColor={Colors.green[500]} />}
             label={'Battery'}
             value={96}
-            units={'/100'}
+            unit={'/100'}
         />,
     ];
     const numberDisplayed = number('count', 4, { range: true, min: 0, max: 4, step: 1 });

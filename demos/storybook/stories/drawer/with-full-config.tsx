@@ -1,20 +1,33 @@
 import { Divider } from '@material-ui/core';
 import {
     Accessibility,
+    Add,
     AddAPhoto,
     AirportShuttle,
     Dashboard,
     Devices,
     FitnessCenter,
     NotificationsActive,
+    Remove,
     PinDrop,
     Toc,
+    Menu,
 } from '@material-ui/icons';
-import MenuIcon from '@material-ui/icons/Menu';
 import MoveToInboxIcon from '@material-ui/icons/MoveToInbox';
 import SendIcon from '@material-ui/icons/Send';
 import * as Colors from '@pxblue/colors';
-import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components';
+import {
+    Drawer,
+    DrawerComponentProps,
+    DrawerBody,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerNavGroup,
+    DrawerHeaderProps,
+    DrawerBodyProps,
+    DrawerNavGroupProps,
+    NavItem,
+} from '@pxblue/react-components';
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
@@ -23,6 +36,7 @@ import { DrawerStoryContext } from './util';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
 const topologyBgImage = require('../../assets/topology_40.png');
+const farmBgImage = require('../../assets/farm.jpg');
 
 const userGuide = 'User Guide';
 const accessibility = 'Accessibility';
@@ -34,69 +48,155 @@ const devices = 'Devices';
 const photos = 'Photos';
 const schedule = 'Schedule';
 const agreement = 'License Agreement';
+const monthlyReport = 'Monthly Report';
+const annualReport = 'Annual Report';
+const colorContrastGuide = 'Color Contrast Guide';
+const screenReader = 'Screen Reader';
+
+const getIcon = (icon: string): JSX.Element | undefined => {
+    switch (icon) {
+        case '<Add />':
+            return <Add />;
+        case '<PinDrop />':
+            return <PinDrop />;
+        case '<Remove />':
+            return <Remove />;
+        case '<AddAPhoto />':
+            return <AddAPhoto />;
+        case '<Menu />':
+            return <Menu />;
+        case '<FitnessCenter />':
+            return <FitnessCenter />;
+        case 'undefined':
+        default:
+            return undefined;
+    }
+};
+
+const headerBackgroundImageOptions = {
+    Pattern: topologyBgImage,
+    Farm: farmBgImage,
+    undefined: undefined,
+};
 
 export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnType => {
     const drawerGroupId = 'Drawer';
     const headerGroupId = 'Header';
     const bodyGroupId = 'Body';
+    const navGroupId = 'NavGroup 1';
+    const navItemId = 'NavItem';
     const footerGroupId = 'Footer';
 
-    const open = boolean('open', true, drawerGroupId);
-    const width = number(
-        'width',
-        350,
-        {
-            range: true,
-            min: 200,
-            max: 700,
-            step: 50,
-        },
-        drawerGroupId
-    );
+    const drawerKnobs: Partial<DrawerComponentProps> = {
+        activeItemBackgroundColor: color('activeItemBackgroundColor', Colors.blue[50], drawerGroupId),
+        activeItemFontColor: color('activeItemFontColor', Colors.blue[500], drawerGroupId),
+        activeItemIconColor: color('activeItemIconColor', Colors.blue[500], drawerGroupId),
+        activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'round', drawerGroupId),
+        chevron: boolean('chevron', false, drawerGroupId),
+        collapseIcon: getIcon(
+            select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', drawerGroupId)
+        ),
+        divider: boolean('divider', true, drawerGroupId),
+        expandIcon: getIcon(select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', drawerGroupId)),
+        hidePadding: boolean('hidePadding', false, drawerGroupId),
+        itemFontColor: color('itemFontColor', Colors.gray[500], drawerGroupId),
+        itemIconColor: color('itemIconColor', Colors.gray[500], drawerGroupId),
+        nestedBackgroundColor: color('nestedBackgroundColor', Colors.white[200], drawerGroupId),
+        nestedDivider: boolean('nestedDivider', false, drawerGroupId),
+        open: boolean('open', true, drawerGroupId),
+        ripple: boolean('ripple', true, drawerGroupId),
+        width: number(
+            'width',
+            350,
+            {
+                range: true,
+                min: 200,
+                max: 700,
+                step: 50,
+            },
+            drawerGroupId
+        ),
+    };
 
-    // Header
-    const headerTitle = text('title', 'PX Blue Drawer', headerGroupId);
-    const headerSubtitle = text('subtitle', 'Organize your menu items here', headerGroupId);
-    const headerIconOptions = select('icon', ['Menu', 'Fitness', 'None'], 'Menu', headerGroupId);
-    let headerIcon: JSX.Element | null;
-    switch (headerIconOptions) {
-        case 'Menu':
-            headerIcon = <MenuIcon />;
-            break;
-        case 'Fitness':
-            headerIcon = <FitnessCenter />;
-            break;
-        default:
-            headerIcon = null;
-    }
-    const headerFontColor = color('fontColor', Colors.white[50], headerGroupId);
-    const headerBackgroundColor = color('backgroundColor', Colors.blue[800], headerGroupId);
-    const headerBackground = select('backgroundImage', ['None', 'Pattern'], 'Pattern', headerGroupId);
-    const headerBackgroundImage = headerBackground === 'Pattern' ? topologyBgImage : '';
+    const headerKnobs: Partial<DrawerHeaderProps> = {
+        backgroundColor: color('backgroundColor', Colors.gold[800], headerGroupId),
+        backgroundImage:
+            headerBackgroundImageOptions[
+                select('backgroundImage', ['undefined', 'Pattern', 'Farm'], 'Pattern', headerGroupId)
+            ],
+        backgroundOpacity: number('backgroundOpacity', 0.4, { range: true, min: 0, max: 1, step: 0.1 }, headerGroupId),
+        fontColor: color('fontColor', Colors.white[50], headerGroupId),
+        icon: getIcon(select('icon', ['<Menu />', '<FitnessCenter />', 'undefined'], '<Menu />', headerGroupId)),
+        subtitle: text('subtitle', 'Organize your menu items here', headerGroupId),
+        title: text('title', 'PX Blue Drawer', headerGroupId),
+    };
 
-    // Body
-    const groupTitle1 = text('title1', 'NavGroup 1', bodyGroupId);
-    const groupTitle2 = text('title2', 'NavGroup 2', bodyGroupId);
-    const bodyFontColor = color('fontColor', Colors.black[500], bodyGroupId);
-    const bodyIconColor = color('iconColor', Colors.blue[500], bodyGroupId);
-    const bodyBackgroundColor = color('backgroundColor', Colors.white[50], bodyGroupId);
-    const bodyActiveFontColor = color('activeFontColor', Colors.blue[500], bodyGroupId);
-    const bodyActiveIconColor = color('activeIconColor', Colors.blue[500], bodyGroupId);
-    const bodyActiveBackgroundColor = color('activeBackgroundColor', Colors.blue[50], bodyGroupId);
-    const bodyChevron = boolean('chevron', false, bodyGroupId);
-    const bodyDividers = boolean('showDividers', true, bodyGroupId);
+    const bodyKnobs: Partial<DrawerBodyProps> = {
+        backgroundColor: color('backgroundColor', Colors.white[50], bodyGroupId),
+    };
 
-    const numberLinksGroup1 = 4;
-    const numberLinksGroup2 = 2;
+    const navGroupKnobs: Partial<DrawerNavGroupProps> = {
+        activeItemBackgroundColor: color('activeItemBackgroundColor', Colors.blue[50], navGroupId),
+        activeItemFontColor: color('activeItemFontColor', Colors.blue[500], navGroupId),
+        activeItemIconColor: color('activeItemIconColor', Colors.blue[500], navGroupId),
+        activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'round', navGroupId),
+        chevron: boolean('chevron', false, navGroupId),
+        collapseIcon: getIcon(
+            select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', navGroupId)
+        ),
+        divider: boolean('divider', true, navGroupId),
+        expandIcon: getIcon(select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', navGroupId)),
+        hidePadding: boolean('hidePadding', false, navGroupId),
+        itemFontColor: color('itemFontColor', Colors.gray[500], navGroupId),
+        itemIconColor: color('itemIconColor', Colors.gray[500], navGroupId),
+        nestedBackgroundColor: color('nestedBackgroundColor', Colors.white[200], navGroupId),
+        nestedDivider: boolean('nestedDivider', false, navGroupId),
+        ripple: boolean('ripple', true, navGroupId),
+        title: text('title', 'NavGroup 1', navGroupId),
+    };
+
+    const navItemKnobs: Partial<NavItem> = {
+        activeItemBackgroundColor: color('activeItemBackgroundColor', Colors.blue[50], navItemId),
+        activeItemFontColor: color('activeItemFontColor', Colors.blue[500], navItemId),
+        activeItemIconColor: color('activeItemIconColor', Colors.blue[500], navItemId),
+        activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'round', navItemId),
+        chevron: boolean('chevron', false, navItemId),
+        collapseIcon: getIcon(
+            select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', navItemId)
+        ),
+        divider: boolean('divider', true, navItemId),
+        expandIcon: getIcon(select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', navItemId)),
+        hidePadding: boolean('hidePadding', false, navItemId),
+        itemFontColor: color('itemFontColor', Colors.gray[500], navItemId),
+        itemIconColor: color('itemIconColor', Colors.gray[500], navItemId),
+        ripple: boolean('ripple', true, navItemId),
+        statusColor: color('statusColor', Colors.green[300], navItemId),
+        subtitle: text('subtitle', 'Learn more about us', navItemId),
+        title: text('title', overview, navItemId),
+    };
 
     const links1 = [
         {
-            title: overview,
-            itemID: overview,
-            onClick: (): void => {
-                context.store.set({ selected: overview });
-            },
+            title: 'title', // placeholder text when the knob is empty
+            itemID: '0',
+            items: [
+                {
+                    title: monthlyReport,
+                    itemID: monthlyReport,
+                    onClick: (): void => {
+                        context.store.set({ selected: monthlyReport });
+                    },
+                },
+                {
+                    title: annualReport,
+                    itemID: annualReport,
+                    onClick: (): void => {
+                        context.store.set({ selected: annualReport });
+                    },
+                },
+            ],
             icon: <Dashboard />,
+            ...navItemKnobs,
         },
         {
             title: timeline,
@@ -140,7 +240,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             },
             icon: <AirportShuttle />,
         },
-    ].slice(0, numberLinksGroup1);
+    ];
 
     const links2 = [
         {
@@ -163,10 +263,23 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         {
             title: accessibility,
             itemID: accessibility,
-            onClick: (): void => {
-                context.store.set({ selected: accessibility });
-            },
             icon: <Accessibility />,
+            items: [
+                {
+                    title: colorContrastGuide,
+                    itemID: colorContrastGuide,
+                    onClick: (): void => {
+                        context.store.set({ selected: colorContrastGuide });
+                    },
+                },
+                {
+                    title: screenReader,
+                    itemID: screenReader,
+                    onClick: (): void => {
+                        context.store.set({ selected: screenReader });
+                    },
+                },
+            ],
         },
         {
             title: notifications,
@@ -176,45 +289,28 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             },
             icon: <NotificationsActive />,
         },
-    ].slice(0, numberLinksGroup2);
+    ];
 
     // Footer
-    const showFooter = boolean('show footer', true, footerGroupId);
+    const showFooter = boolean('Show footer', true, footerGroupId);
     const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
 
     return (
-        <Drawer open={open} width={width} key={'drawer'}>
-            <DrawerHeader
-                title={headerTitle}
-                subtitle={headerSubtitle}
-                icon={headerIcon}
-                backgroundImage={headerBackgroundImage}
-                fontColor={headerFontColor}
-                backgroundColor={headerBackgroundColor}
-            />
-
-            <DrawerBody
-                iconColor={bodyIconColor}
-                fontColor={bodyFontColor}
-                backgroundColor={bodyBackgroundColor}
-                activeFontColor={bodyActiveFontColor}
-                activeBackgroundColor={bodyActiveBackgroundColor}
-                activeIconColor={bodyActiveIconColor}
-                chevron={bodyChevron}
-            >
+        <Drawer key={'drawer'} activeItem={context.state.selected} {...drawerKnobs}>
+            <DrawerHeader {...headerKnobs} />
+            <DrawerBody {...bodyKnobs}>
+                <DrawerNavGroup items={links1} {...navGroupKnobs} />
                 <DrawerNavGroup
-                    activeItem={context.state.selected}
-                    divider={bodyDividers}
-                    items={links1}
-                    title={groupTitle1}
-                />
-                <DrawerNavGroup
-                    divider={bodyDividers}
-                    activeItem={context.state.selected}
                     items={links2}
                     titleContent={
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
-                            <div>{groupTitle2}</div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                fontWeight: 600,
+                            }}
+                        >
+                            <div>NavGroup 2</div>
                             <div>Software Version v1.0.3</div>
                         </div>
                     }

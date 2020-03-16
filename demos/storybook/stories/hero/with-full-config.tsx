@@ -11,7 +11,7 @@ import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 export const withFullConfig = (): StoryFnReactReturnType => (
     <Hero
         label={text('label', 'Velocity')}
-        units={text('units', 'RPM')}
+        unit={text('unit', 'RPM')}
         onClick={action('clicked')}
         value={text('value', '470')}
         valueIcon={boolean('Show Value Icon', true) ? <TrendingUpIcon /> : undefined}

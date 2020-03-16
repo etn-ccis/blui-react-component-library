@@ -28,7 +28,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                     return null;
                 }
 
-                if (child.type && child.type.displayName !== 'DrawerNavGroup') return null;
+                if (child.type && child.type.displayName !== 'DrawerNavGroup') return child;
                 const groupProps: DrawerNavGroupProps = child.props;
 
                 // for any DrawerNavGroup, if a prop is not set (undefined), inherit from the DrawerBody
@@ -59,6 +59,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                         nestedDivider={
                             groupProps.nestedDivider === undefined ? bodyProps.nestedDivider : groupProps.nestedDivider
                         }
+                        nestedBackgroundColor={groupProps.nestedBackgroundColor || bodyProps.nestedBackgroundColor}
                         ripple={groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple}
                         onSelect={bodyProps.onSelect}
                         open={bodyProps.open}

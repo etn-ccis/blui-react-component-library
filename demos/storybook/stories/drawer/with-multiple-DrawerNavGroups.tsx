@@ -7,16 +7,22 @@ import React from 'react';
 import { DrawerStoryContext } from './util';
 import { navGroupItems1 } from './with-basic-config';
 
-export const navGroupItems2: NavItem[] = [
+export const navGroupItems2 = (context: DrawerStoryContext): NavItem[] => [
     {
         title: 'Overview',
         itemID: 'group2-1',
         icon: <Dashboard />,
+        onClick: (): void => {
+            context.store.set({ selected: 'group2-1' });
+        },
     },
     {
         title: 'Timeline',
         itemID: 'group2-2',
         icon: <Toc />,
+        onClick: (): void => {
+            context.store.set({ selected: 'group2-2' });
+        },
     },
 ];
 
@@ -33,7 +39,7 @@ export const withMultipleNavGroups = (context: DrawerStoryContext): StoryFnReact
             <DrawerNavGroup
                 title={text('title2', 'Second DrawerNavGroup')}
                 activeItem={context.state.selected}
-                items={navGroupItems2}
+                items={navGroupItems2(context)}
             />
         </DrawerBody>
     </Drawer>

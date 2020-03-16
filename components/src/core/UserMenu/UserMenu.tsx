@@ -139,7 +139,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         open={true}
                         itemIconColor={group.iconColor}
                         itemFontColor={group.fontColor}
-                        groupTitle={group.title}
+                        title={group.title}
                         items={group.items}
                         onSelect={closeMenu}
                     />

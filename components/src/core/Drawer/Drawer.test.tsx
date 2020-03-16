@@ -92,12 +92,12 @@ describe('DrawerNavGroup', () => {
     });
 
     it('renders text correctly', () => {
-        const wrapper = mount(<DrawerNavGroup groupTitle={'foo'} items={[]} />);
+        const wrapper = mount(<DrawerNavGroup title={'foo'} items={[]} />);
         expect(wrapper.text()).toEqual('foo');
     });
 
     it('renders custom content correctly', () => {
-        const wrapper = mount(<DrawerNavGroup groupTitleContent={<Avatar />} items={[]} />);
+        const wrapper = mount(<DrawerNavGroup titleContent={<Avatar />} items={[]} />);
         expect(wrapper.find(Avatar).length).toEqual(1);
     });
 
@@ -105,32 +105,32 @@ describe('DrawerNavGroup', () => {
         const wrapper = mount(
             <DrawerNavGroup
                 items={[
-                    { itemTitle: 'a', itemID: 'a' },
+                    { title: 'a', itemID: 'a' },
                     {
-                        itemTitle: 'b',
+                        title: 'b',
                         itemID: 'b',
                         items: [
                             {
-                                itemTitle: 'b_0',
+                                title: 'b_0',
                                 itemID: 'b_0',
                                 items: [
-                                    { itemTitle: 'b_0_0', itemID: 'b_0_0' },
-                                    { itemTitle: 'b_0_1', itemID: 'b_0_1' },
+                                    { title: 'b_0_0', itemID: 'b_0_0' },
+                                    { title: 'b_0_1', itemID: 'b_0_1' },
                                 ],
                             },
-                            { itemTitle: 'b_1', itemID: 'b_1', items: [{ itemTitle: 'b_1_0', itemID: 'b_1_0' }] },
+                            { title: 'b_1', itemID: 'b_1', items: [{ title: 'b_1_0', itemID: 'b_1_0' }] },
                         ],
                     },
                     {
-                        itemTitle: 'c',
+                        title: 'c',
                         itemID: 'c',
                         items: [
                             {
-                                itemTitle: 'c_0',
+                                title: 'c_0',
                                 itemID: 'c_0',
                                 items: [
-                                    { itemTitle: 'c_0_0', itemID: 'c_0_0' },
-                                    { itemTitle: 'c_0_1', itemID: 'c_0_1' },
+                                    { title: 'c_0_0', itemID: 'c_0_0' },
+                                    { title: 'c_0_1', itemID: 'c_0_1' },
                                 ],
                             },
                         ],
@@ -158,5 +158,29 @@ describe('DrawerNavGroup', () => {
         navItemList.forEach((item, index) => {
             expect(item.prop('title')).toEqual(expectedNavItemTitleList[index]);
         });
+    });
+
+    it('inherits and overrides properties from Drawer', () => {
+        const wrapper = shallow(
+            <Drawer activeItemBackgroundColor={'white'} divider={true}>
+                <DrawerBody>
+                    <DrawerNavGroup items={[{ title: '', itemID: '' }]} />
+                    <DrawerNavGroup
+                        activeItemBackgroundColor={'black'}
+                        divider={false}
+                        items={[{ title: '', itemID: '' }]}
+                    />
+                </DrawerBody>
+            </Drawer>
+        )
+            .find(DrawerBody)
+            .at(0)
+            .dive();
+        const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
+        expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
+        expect(firstDrawerNavGroup.props.divider).toBeTruthy();
+        const secondDrawerNavGroup = wrapper.find(DrawerNavGroup).get(1);
+        expect(secondDrawerNavGroup.props.activeItemBackgroundColor).toEqual('black');
+        expect(secondDrawerNavGroup.props.divider).toBeFalsy();
     });
 });
