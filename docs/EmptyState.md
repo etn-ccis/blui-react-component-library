@@ -27,3 +27,14 @@ import { EmptyState } from '@pxblue/react-components';
 | actions     | Additional components to render below   | `React.Component` | no       |         |
 
 </div>
+
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                 |
+|------------------|---------------------------------------------|
+| root             | Styles applied to the root element          |
+| icon             | Styles applied to the icon                  |
+| title            | Styles applied to the title                 |
+| description      | Styles applied to the description           |
+| actions          | Styles applied to the actions               |
