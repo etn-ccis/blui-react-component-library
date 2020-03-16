@@ -25,6 +25,7 @@ import {
     Typography,
     ListItemSecondaryAction,
 } from '@material-ui/core';
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -63,6 +64,9 @@ const useStyles = makeStyles((theme: Theme) =>
             marginLeft: 16,
             display: 'flex',
             alignItems: 'center'
+        },
+        chevron: {
+            display: 'flex'
         }
     })
 );
@@ -70,10 +74,10 @@ const useStyles = makeStyles((theme: Theme) =>
 const MAX_SUBTITLE_ELEMENTS = 6;
 
 type InfoListItemClasses = {
+    root?: string;
      title?: string;
      subtitle?: string;
-     icon?: string;
-     avatar?: string;
+    rightComponent?: string;
 }
 
 export type DividerType = 'full' | 'partial';
@@ -118,7 +122,6 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         hidePadding,
         icon,
         iconColor,
-        ListItemSecondaryActionProps,
         ListItemAvatarProps,
         ListItemProps,
         ListItemTextProps,
@@ -175,13 +178,13 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const getRightComponent = (): JSX.Element | undefined => {
         if (rightComponent) {
             return (
-                <div className={defaultClasses.rightComponent}>
+                <div className={clsx(defaultClasses.rightComponent, classes.rightComponent)}>
                     {rightComponent}
                 </div>
             );
         } else if (chevron) {
             return (
-                <ListItemSecondaryAction style={{ display: 'flex' }} {...ListItemSecondaryActionProps}>
+                <ListItemSecondaryAction className={defaultClasses.chevron}>
                     <Chevron color={'inherit'} />
                 </ListItemSecondaryAction>
             );
@@ -221,6 +224,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     return (
         <ListItem
             style={getWrapperStyle()}
+            className={classes.root}
             onClick={onClick ? (): void => onClick() : undefined}
             dense={dense}
             button={ripple ? true : undefined}
@@ -240,13 +244,13 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     primaryTypographyProps={{
                         noWrap: true,
                         variant: 'body1',
-                        className: defaultClasses.title,
+                        className: clsx(defaultClasses.title, classes.title),
                         style: { color: fontColor },
                     }}
                     secondaryTypographyProps={{
                         noWrap: true,
                         variant: 'subtitle2',
-                        className: defaultClasses.subtitle,
+                        className: clsx(defaultClasses.subtitle, classes.subtitle),
                         style: { color: fontColor || 'inherit' },
                     }}
                     {...ListItemTextProps}
@@ -262,6 +266,12 @@ InfoListItem.propTypes = {
     avatar: PropTypes.bool,
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        title: PropTypes.string,
+        subtitle: PropTypes.string,
+        rightComponent: PropTypes.string
+    }),
     dense: PropTypes.bool,
     divider: PropTypes.oneOf(['full', 'partial']),
     fontColor: PropTypes.string,
