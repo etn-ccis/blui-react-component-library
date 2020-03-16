@@ -24,7 +24,7 @@ describe('Hero', () => {
 
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<Hero icon={'A'} label={'Healthy'} value={96} unit={'/100'} />, div);
+        ReactDOM.render(<Hero icon={'A'} label={'Healthy'} value={96} units={'/100'} />, div);
         ReactDOM.unmountComponentAtNode(div);
     });
     it('should render with the wrapper class', () => {

@@ -17,7 +17,7 @@ The ChannelValue component is used to display...a channel value (and units). Thi
 ```typescript
 import { ChannelValue } from '@pxblue/react-components';
 ...
-<ChannelValue value={100} unit={'%'} icon={<Icon/>} />
+<ChannelValue value={100} units={'%'} icon={<Icon/>} />
 ```
 
 ### API
@@ -26,7 +26,7 @@ import { ChannelValue } from '@pxblue/react-components';
 | Prop Name   | Description                                    | Type                     | Required | Default   |
 |-------------|------------------------------------------------|--------------------------|----------|-----------|
 | value       | The the value (bold text) to display           | `string` \| `number`     | yes      |           |
-| unit        | The text to display for the unit (light text)  | `string`                 | no       |           |
+| units       | The text to display for the unit (light text)  | `string`                 | no       |           |
 | icon        | The inline icon to display                     | `React.Component`        | no       |           |
 | prefix      | Show units before the value                    | `boolean`                | no       | false     |
 | fontSize    | The size of the font                           | `string` \| `number`     | no       | 'inherit' |

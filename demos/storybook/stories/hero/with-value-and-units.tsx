@@ -9,7 +9,7 @@ export const withValueUnits = (): StoryFnReactReturnType => (
         icon={<GradeB fontSize={'inherit'} />}
         label={'Efficiency'}
         value={text('value', '88')}
-        unit={text('units', '%')}
+        units={text('units', '%')}
     />
 );
 

@@ -36,7 +36,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                 return (
                     <DrawerNavGroup
                         {...groupProps}
-                        key={index.toString()}
+                        key={`NavGroup_${index}`}
                         activeItem={groupProps.activeItem || bodyProps.activeItem}
                         activeItemBackgroundColor={
                             groupProps.activeItemBackgroundColor || bodyProps.activeItemBackgroundColor

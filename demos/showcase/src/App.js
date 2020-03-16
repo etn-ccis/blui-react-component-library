@@ -253,14 +253,14 @@ export default () => {
                                         label={'Temperature'}
                                         iconSize={48}
                                         value={98}
-                                        unit={'°F'}
+                                        units={'°F'}
                                         fontSize={'normal'}
                                     />
                                     <Hero
                                         icon={<Humidity fontSize={'inherit'} htmlColor={Colors.blue[300]} />}
                                         label={'Humidity'}
                                         value={54}
-                                        unit={'%'}
+                                        units={'%'}
                                         iconSize={48}
                                         fontSize={'normal'}
                                     />
@@ -311,7 +311,7 @@ export default () => {
                                         label={'Health'}
                                         iconSize={72}
                                         value={98}
-                                        unit={'%'}
+                                        units={'%'}
                                         fontSize={'normal'}
                                     />
                                 </HeroBanner>
@@ -353,7 +353,7 @@ export default () => {
                                     }
                                     label={'Healthy'}
                                     value={96}
-                                    unit={'/100'}
+                                    units={'/100'}
                                     fontSize={'normal'}
                                 />
                                 <Hero
@@ -363,7 +363,7 @@ export default () => {
                                 >
                                     <ChannelValue
                                         value={65}
-                                        unit={'%'}
+                                        units={'%'}
                                         icon={<Trend htmlColor={Colors.red[500]} fontSize={'inherit'} />}
                                     />
                                 </Hero>
@@ -372,8 +372,8 @@ export default () => {
                                     label={'Estimated'}
                                     fontSize={'normal'}
                                 >
-                                    <ChannelValue value={1} unit={'h'} />
-                                    <ChannelValue value={26} unit={'m'} />
+                                    <ChannelValue value={1} units={'h'} />
+                                    <ChannelValue value={26} units={'m'} />
                                 </Hero>
                                 <Hero
                                     icon={<Battery color={Colors.blue[500]} percent={100} size={36} />}
@@ -401,9 +401,9 @@ export default () => {
                                 icon={<VoltageCircled />}
                                 rightComponent={
                                     <span>
-                                        <ChannelValue fontSize={16} value={478} unit={'V'} />,{' '}
-                                        <ChannelValue fontSize={16} value={479} unit={'V'} />,{' '}
-                                        <ChannelValue fontSize={16} value={473} unit={'V'} />
+                                        <ChannelValue fontSize={16} value={478} units={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={479} units={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={473} units={'V'} />
                                     </span>
                                 }
                             />
@@ -418,9 +418,9 @@ export default () => {
                                 rightComponent={
                                     <span style={{ color: Colors.red[500] }}>
                                         <ListItemTag label={'monitored'} style={{ marginRight: 8 }} />
-                                        <ChannelValue fontSize={16} value={480} unit={'V'} />,{' '}
-                                        <ChannelValue fontSize={16} value={480} unit={'V'} />,{' '}
-                                        <ChannelValue fontSize={16} value={480} unit={'V'} />
+                                        <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
+                                        <ChannelValue fontSize={16} value={480} units={'V'} />
                                     </span>
                                 }
                             />
@@ -431,9 +431,9 @@ export default () => {
                                 icon={<CurrentCircled color={'inherit'} />}
                                 rightComponent={
                                     <span>
-                                        <ChannelValue fontSize={16} value={15} unit={'A'} />,{' '}
-                                        <ChannelValue fontSize={16} value={14.9} unit={'A'} />,{' '}
-                                        <ChannelValue fontSize={16} value={15} unit={'A'} />
+                                        <ChannelValue fontSize={16} value={15} units={'A'} />,{' '}
+                                        <ChannelValue fontSize={16} value={14.9} units={'A'} />,{' '}
+                                        <ChannelValue fontSize={16} value={15} units={'A'} />
                                     </span>
                                 }
                             />
@@ -461,7 +461,7 @@ export default () => {
                                             fontSize={16}
                                             icon={<Trend htmlColor={Colors.red[500]} />}
                                             value={68}
-                                            unit={'°F'}
+                                            units={'°F'}
                                         />
                                     </div>
                                 }

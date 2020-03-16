@@ -18,15 +18,15 @@ import { Hero } from '@pxblue/react-components';
     icon={<Icon/>}
     label={'Label'}
     value={99}
-    unit={'%'}
+    units={'%'}
 />
 // Complex example with multiple values as children
 <Hero
     icon={<Icon/>}
     label={'Label'}
 >
-    <ChannelValue value={1} unit={'h'} />
-    <ChannelValue value={26} unit={'m'} />
+    <ChannelValue value={1} units={'h'} />
+    <ChannelValue value={26} units={'m'} />
 </Hero>
 ```
 
@@ -41,7 +41,7 @@ import { Hero } from '@pxblue/react-components';
 | iconBackgroundColor | The color used behind the primary icon  | `string`                                                           | no       | 'transparent'          |
 | fontSize            | The text size for the value line        | `'normal'` \| `'small'`                                            | no       | 'normal'               |
 | value               | The value for the channel               | `string` \| `number`                                               | no       |                        |
-| unit                | Text to show after the value            | `string`                                                           | no       |                        |
+| units               | Text to show after the value            | `string`                                                           | no       |                        |
 | valueIcon           | The inline icon with the value          | `React.Component`                                                  | no       |                        |
 
 </div>

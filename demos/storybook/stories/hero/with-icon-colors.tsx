@@ -11,7 +11,7 @@ export const withIconColors = (): StoryFnReactReturnType => (
         icon={<Temp fontSize={'inherit'} htmlColor={color('icon.htmlColor', Colors.white[500])} />}
         label={'Temperature'}
         value={'38'}
-        unit={'°C'}
+        units={'°C'}
     />
 );
 

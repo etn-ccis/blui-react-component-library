@@ -136,7 +136,9 @@ function NavigationListItem(
     expandHandler = (): void => {}
 ): ReactNode {
     const { title: itemTitle, subtitle: itemSubtitle, items, itemID, onClick, statusColor } = navItem;
-    const icon = (navItem as NavItem).icon;
+
+    // only allow icons for the top level items
+    const icon = !depth ? (navItem as NavItem).icon : undefined;
 
     const classes = useStyles(navGroupProps);
     const theme = useTheme();

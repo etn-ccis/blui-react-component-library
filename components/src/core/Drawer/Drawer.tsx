@@ -96,9 +96,6 @@ export type DrawerComponentProps = {
     // drawer width
     width?: number;
 
-    // types of drawer
-    // only open or variant is allowed but not both
-    variant?: 'permanent' | 'persistent' | 'temporary';
 } & PXBlueDrawerInheritableGroupProperties &
     Omit<DrawerProps, 'translate'>;
 
@@ -224,7 +221,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
             <>
                 <Drawer
                     {...drawerProps}
-                    variant={variant}
+                    variant={'permanent'}
                     open={isDrawerOpen()}
                     classes={{ paper: classes.paper }}
                     style={{ minHeight: '100%' }}

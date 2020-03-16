@@ -6,7 +6,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 
 export const withIcon = (): StoryFnReactReturnType => (
-    <ChannelValue value={'123'} unit={'hz'} icon={<Trend htmlColor={color('icon.htmlColor', Colors.red[500])} />} />
+    <ChannelValue value={'123'} units={'hz'} icon={<Trend htmlColor={color('icon.htmlColor', Colors.red[500])} />} />
 );
 
 withIcon.story = { name: 'with icon' };
