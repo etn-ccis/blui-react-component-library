@@ -277,9 +277,10 @@ InfoListItem.propTypes = {
 InfoListItem.defaultProps = {
     avatar: false,
     chevron: false,
+    classes: {},
     dense: false,
+    fontColor: 'inherit',
     hidePadding: false,
     ripple: false,
     subtitleSeparator: '\u00B7',
-    fontColor: 'inherit',
 };

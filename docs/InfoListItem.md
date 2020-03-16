@@ -44,3 +44,13 @@ import * as Colors from '@pxblue/colors';
 | title             | The text to show on the first line               | `string`                                           | yes      |                     |
 
 </div>
+
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                         |
+|------------------|-----------------------------------------------------|
+| root             | Styles applied to the root element                  |     
+| title            | Styles applied to the title element                 |
+| subtitle         | Styles applied to the subtitle element              |
+| rightComponent   | Styles applied to the rightComponent parent element |
