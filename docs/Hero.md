@@ -46,6 +46,18 @@ import { Hero } from '@pxblue/react-components';
 
 </div>
 
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                 |
+|------------------|---------------------------------------------|
+| root             | Styles applied to the root element          |
+| icon             | Styles applied to the icon element          |
+| label            | Styles applied to the label element         |
+| values           | Styles applied to the value element         |
+
+
+
 # HeroBanner
 The HeroBanner component is a simple wrapper component that is used to contain ```<Hero/>```s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four ```<Hero/>``` components as its children.
 
