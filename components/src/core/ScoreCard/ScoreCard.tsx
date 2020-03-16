@@ -87,7 +87,7 @@ export type ScoreCordProps = {
     actionRow?: JSX.Element;
     badge?: JSX.Element;
     badgeOffset?: number;
-    classes: ScoreCardClasses;
+    classes?: ScoreCardClasses;
     headerBackgroundImage?: string;
     headerColor?: string;
     headerFontColor?: string;
