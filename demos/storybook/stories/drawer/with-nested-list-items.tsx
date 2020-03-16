@@ -1,4 +1,4 @@
-import { Accessibility, AddAPhoto, FitnessCenter, NotificationsActive, Add, PinDrop, Remove } from '@material-ui/icons';
+import { Accessibility, AddAPhoto, FitnessCenter, NotificationsActive } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@pxblue/react-components';
