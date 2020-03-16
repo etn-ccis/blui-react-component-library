@@ -1,7 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { PXBlueDrawerNavGroupInheritableProperties, PXBlueDrawerNavGroupInheritablePropertiesPropTypes } from './Drawer';
+import {
+    PXBlueDrawerNavGroupInheritableProperties,
+    PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+} from './Drawer';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
 
 const useStyles = makeStyles({

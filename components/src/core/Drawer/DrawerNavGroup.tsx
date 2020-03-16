@@ -147,7 +147,7 @@ function NavigationListItem(
     const theme = useTheme();
     // @ts-ignore
     const primary50Color = theme.palette.primary[50];
-    const { activeItem, drawerOpen, nestedDivider } = navGroupProps;
+    const { activeItem, nestedDivider } = navGroupProps;
 
     // handle inheritables
     const activeItemBackgroundColor =
@@ -188,7 +188,6 @@ function NavigationListItem(
             : navGroupProps.ripple !== undefined
             ? navGroupProps.ripple
             : true;
-            
 
     // row action
     const action = (): void => {

@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/sty
 import { Drawer, DrawerProps } from '@material-ui/core';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
-import {DrawerBodyProps} from './DrawerBody';
+import { DrawerBodyProps } from './DrawerBody';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -95,7 +95,6 @@ export type DrawerComponentProps = {
 
     // if drawer is open
     open: boolean;
-
 } & PXBlueDrawerNavGroupInheritableProperties &
     Omit<DrawerProps, 'translate'>;
 

@@ -72,17 +72,7 @@ export type HeroProps = {
 
 export const Hero = (props: HeroProps): JSX.Element => {
     const classes = useStyles(props);
-    const {
-        fontSize,
-        icon,
-        iconBackgroundColor,
-        iconSize,
-        label,
-        onClick,
-        value,
-        valueIcon,
-        units,
-    } = props;
+    const { fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units } = props;
 
     return (
         <div

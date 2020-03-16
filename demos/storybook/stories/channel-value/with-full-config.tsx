@@ -15,7 +15,9 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const fontSize = number('fontSize', 30);
     const prefix = boolean('prefix', false);
 
-    return <ChannelValue value={value} units={units} color={textColor} icon={icon} fontSize={fontSize} prefix={prefix} />;
+    return (
+        <ChannelValue value={value} units={units} color={textColor} icon={icon} fontSize={fontSize} prefix={prefix} />
+    );
 };
 
 withFullConfig.story = { name: WITH_FULL_CONFIG_STORY_NAME };
