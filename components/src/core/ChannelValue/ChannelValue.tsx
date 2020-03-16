@@ -29,13 +29,13 @@ const styles = makeStyles({
 });
 
 export type ChannelValueProps = {
-    value: number | string;
-    icon?: JSX.Element;
-    units?: string;
-    unit?: string; // alias units
-    prefix?: boolean;
-    fontSize?: number | string;
     color?: string;
+    fontSize?: number | string;
+    icon?: JSX.Element;
+    prefix?: boolean;
+    unit?: string; // alias units
+    units?: string;
+    value: number | string;
 };
 
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
@@ -90,13 +90,13 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
 
 ChannelValue.displayName = 'ChannelValue';
 ChannelValue.propTypes = {
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    color: PropTypes.string,
+    fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     icon: PropTypes.element,
+    prefix: PropTypes.bool,
     unit: PropTypes.string,
     units: PropTypes.string,
-    prefix: PropTypes.bool,
-    fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    color: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 ChannelValue.defaultProps = {
     color: 'inherit',

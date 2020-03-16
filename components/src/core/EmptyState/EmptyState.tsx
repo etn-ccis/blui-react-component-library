@@ -6,11 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 
 export type EmptyStateProps = {
-    title: string;
+    actions?: JSX.Element;
     description?: string;
     icon: JSX.Element;
-    actions?: JSX.Element;
     iconStyles?: CSSProperties;
+    title: string;
 };
 
 const useStyles = makeStyles({

@@ -38,20 +38,20 @@ type UserMenuClasses = {
 
 export type UserMenuItem = Omit<NavItem, 'active'>;
 export type UserMenuGroup = {
-    title?: string;
     fontColor?: string;
     iconColor?: string;
     items: UserMenuItem[];
+    title?: string;
 };
 
 export type UserMenuProps = {
     avatar: JSX.Element;
     classes?: UserMenuClasses;
     menu?: JSX.Element;
-    menuTitle?: string;
-    menuSubtitle?: string;
     menuGroups?: UserMenuGroup[];
     MenuProps?: Omit<standardMenuProps, 'open'>;
+    menuSubtitle?: string;
+    menuTitle?: string;
     onClose?: Function;
     onOpen?: Function;
 };

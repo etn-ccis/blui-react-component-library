@@ -5,14 +5,14 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 export type ListItemTagProps = {
-    /* The string label of the tag. */
-    label: string;
+    /* Color of the label background. Default is blue['500'] */
+    backgroundColor?: string;
 
     /* Color of the label. Default is white['50']. */
     fontColor?: string;
 
-    /* Color of the label background. Default is blue['500'] */
-    backgroundColor?: string;
+    /* The string label of the tag. */
+    label: string;    
 } & TypographyProps;
 
 const useStyles = makeStyles((theme: Theme) =>

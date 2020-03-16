@@ -149,6 +149,8 @@ function NavigationListItem(
         navItem.activeItemBackgroundColor ||
         navGroupProps.activeItemBackgroundColor ||
         (theme.palette.type === 'light' ? primary50Color : theme.palette.primary.main);
+    const activeItemBackgroundShape =
+        navItem.activeItemBackgroundShape || navGroupProps.activeItemBackgroundShape || 'round';
     const activeItemFontColor =
         navItem.activeItemFontColor ||
         navGroupProps.activeItemFontColor ||
@@ -157,8 +159,6 @@ function NavigationListItem(
         navItem.activeItemIconColor ||
         navGroupProps.activeItemIconColor ||
         (theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText);
-    const activeItemBackgroundShape =
-        navItem.activeItemBackgroundShape || navGroupProps.activeItemBackgroundShape || 'round';
     const chevron = navItem.chevron !== undefined ? navItem.chevron : navGroupProps.chevron;
     const collapseIcon = navItem.collapseIcon || navGroupProps.collapseIcon;
     let divider;

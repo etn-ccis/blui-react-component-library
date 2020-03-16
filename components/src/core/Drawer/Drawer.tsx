@@ -84,7 +84,7 @@ export type PXBlueDrawerInheritableGroupProperties = {
     // Whether to show a line between nested menu items
     nestedDivider?: boolean;
 
-    // internal API (only public for Drawer)
+    // internal API (public only for Drawer)
     // Whether the group is expanded
     open?: boolean;
 
