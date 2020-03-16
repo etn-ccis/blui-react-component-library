@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 
 type HeroBannerClasses = {
     root?: string;
-}
+};
 
 export type HeroBannerProps = {
     classes?: HeroBannerClasses;
@@ -41,7 +41,7 @@ export const HeroBanner = (props: HeroBannerProps & any): JSX.Element => {
 HeroBanner.displayName = 'HeroBanner';
 HeroBanner.propType = {
     classes: PropTypes.shape({
-        root: PropTypes.string
+        root: PropTypes.string,
     }),
     divider: PropTypes.bool,
     limit: PropTypes.number,
