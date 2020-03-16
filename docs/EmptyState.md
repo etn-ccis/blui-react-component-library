@@ -35,7 +35,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | Name             | Description                                 |
 |------------------|---------------------------------------------|
 | root             | Styles applied to the root element          |
+| actions          | Styles applied to the actions               |
+| description      | Styles applied to the description           |
 | icon             | Styles applied to the icon                  |
 | title            | Styles applied to the title                 |
-| description      | Styles applied to the description           |
-| actions          | Styles applied to the actions               |

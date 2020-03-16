@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import * as Colors from '@pxblue/colors';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
@@ -21,7 +21,7 @@ export type EmptyStateProps = {
     title: string;
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         height: '100%',
         color: Colors.gray[500],
@@ -33,18 +33,18 @@ const useStyles = makeStyles({
         alignItems: 'center',
     },
     icon: {
-        marginBottom: 15,
+        marginBottom: theme.spacing(2),
         display: 'flex',
         fontSize: 100,
     },
     actions: {
-        marginTop: 10,
+        marginTop: theme.spacing(1)
     },
-});
+}));
 
 export const EmptyState: React.FC<EmptyStateProps> = (props) => {
     const { actions, classes, description, icon, title } = props;
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useStyles(useTheme());
     return (
         <div className={clsx(defaultClasses.root, classes.root)} data-test={'frame'}>
             {icon && <div className={clsx(defaultClasses.icon, classes.icon)}>{icon}</div>}
