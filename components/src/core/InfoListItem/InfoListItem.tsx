@@ -16,11 +16,6 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemIcon,
-    ListItemProps as StandardListItemProps,
-    ListItemAvatarProps as StandardListItemAvatarProps,
-    ListItemTextProps as StandardListItemTextProps,
-    ListItemIconProps as StandardListItemIconProps,
-    ListItemSecondaryActionProps as StandardListItemSecondaryActionProps,
     ListItemText,
     Typography,
     ListItemSecondaryAction,
@@ -92,11 +87,6 @@ export type InfoListItemProps = {
     hidePadding?: boolean;
     icon?: JSX.Element;
     iconColor?: string;
-    ListItemAvatarProps?: StandardListItemAvatarProps;
-    ListItemProps?: Omit<StandardListItemProps, 'button'|'onClick'>;
-    ListItemTextProps?: StandardListItemTextProps;
-    ListItemIconProps?: StandardListItemIconProps;
-    ListItemSecondaryActionProps?: StandardListItemSecondaryActionProps;
     leftComponent?: JSX.Element;
     onClick?: Function;
     rightComponent?: JSX.Element;
@@ -122,10 +112,6 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         hidePadding,
         icon,
         iconColor,
-        ListItemAvatarProps,
-        ListItemProps,
-        ListItemTextProps,
-        ListItemIconProps,
         leftComponent,
         onClick,
         rightComponent,
@@ -152,7 +138,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const getIcon = (): JSX.Element | undefined => {
         if (icon && avatar) {
             return (
-                <ListItemAvatar {...ListItemAvatarProps}>
+                <ListItemAvatar>
                     <Avatar
                         style={{
                             backgroundColor: statusColor || Colors.black[500],
@@ -164,11 +150,11 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 </ListItemAvatar>
             );
         } else if (icon) {
-            return <ListItemIcon style={{ color: getIconColor() }} {...ListItemIconProps}>{icon}</ListItemIcon>;
+            return <ListItemIcon style={{ color: getIconColor() }}>{icon}</ListItemIcon>;
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
-                <ListItemAvatar {...ListItemAvatarProps}>
+                <ListItemAvatar>
                     <Avatar style={{ opacity: 0 }} />
                 </ListItemAvatar>
             );
@@ -228,7 +214,6 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             onClick={onClick ? (): void => onClick() : undefined}
             dense={dense}
             button={ripple ? true : undefined}
-            {...ListItemProps as any}
         >
             <>
                 <div className={defaultClasses.statusStripe} style={{ backgroundColor: statusColor }} />
@@ -253,7 +238,6 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                         className: clsx(defaultClasses.subtitle, classes.subtitle),
                         style: { color: fontColor || 'inherit' },
                     }}
-                    {...ListItemTextProps}
                 />
                 {getRightComponent()}
             </>
