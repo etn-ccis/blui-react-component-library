@@ -56,7 +56,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                         variant={'h6'}
                         color={'inherit'}
                         className={clsx(defaultClasses.text, defaultClasses.units, classes.units)}
-                        data-test={'unit'}
+                        data-test={'units'}
                     >
                         {units}
                     </Typography>
