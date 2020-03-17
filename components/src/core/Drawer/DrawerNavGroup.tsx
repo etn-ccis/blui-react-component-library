@@ -278,7 +278,9 @@ function NavigationListItem(
                         expandHandler();
                     }
                 }}
-                className={`${defaultClasses.expandIcon} ${!collapseIcon && expanded ? defaultClasses.expanded : ''}`}
+                className={clsx(defaultClasses.expandIcon, classes.expandIcon, {
+                    [defaultClasses.expanded]: !collapseIcon && expanded
+                })}
             >
                 {collapseIcon && expanded ? collapseIcon : getExpandIcon()}
             </div>
@@ -306,9 +308,9 @@ function NavigationListItem(
         >
             {active && (
                 <div
-                    className={`${defaultClasses.active} ${
-                        activeBackgroundShape === 'square' ? defaultClasses.square : ''
-                    }`}
+                    className={clsx(defaultClasses.active, classes.active, {
+                        [defaultClasses.square]: activeBackgroundShape === 'square'
+                    })}
                     style={{ backgroundColor: activeBackgroundColor }}
                 />
             )}
@@ -360,6 +362,8 @@ function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
 }
 
 type DrawerNavGroupClasses = {
+    active?: string;
+    expandIcon?: string;
     groupHeader?: string;
     listItemContainer?: string;
     secondaryLevelListGroup?: string;
@@ -455,6 +459,8 @@ DrawerNavGroup.propTypes = {
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
     classes: PropTypes.shape({
+        active: PropTypes.string,
+        expandIcon: PropTypes.string,
         listItemContainer: PropTypes.string,
         groupHeader: PropTypes.string,
         secondaryLevelListGroup: PropTypes.string,
