@@ -37,9 +37,6 @@ const useStyles = makeStyles((theme: Theme) =>
             width: 6,
             zIndex: 100,
         },
-        withSmallMargins: {
-            margin: `0 ${theme.spacing(0.5)}`,
-        },
         title: {
             fontWeight: 600,
             lineHeight: 1.2,
@@ -53,6 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'inline-block',
             lineHeight: 1.3,
             color: 'inherit',
+            margin: `0 ${theme.spacing(0.5)}`,
         },
         rightComponent: {
             flex: '0 0 auto',
@@ -70,9 +68,10 @@ const MAX_SUBTITLE_ELEMENTS = 6;
 
 type InfoListItemClasses = {
     root?: string;
-    title?: string;
-    subtitle?: string;
     rightComponent?: string;
+    separator?: string;
+    subtitle?: string;
+    title?: string;
 };
 
 export type DividerType = 'full' | 'partial';
@@ -174,7 +173,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
 
     const interpunct = (): JSX.Element => (
-        <Typography className={clsx(defaultClasses.withSmallMargins, defaultClasses.separator)}>
+        <Typography className={clsx(defaultClasses.separator, classes.separator)}>
             {subtitleSeparator || '\u00B7'}
         </Typography>
     );
@@ -251,9 +250,10 @@ InfoListItem.propTypes = {
     chevron: PropTypes.bool,
     classes: PropTypes.shape({
         root: PropTypes.string,
-        title: PropTypes.string,
-        subtitle: PropTypes.string,
         rightComponent: PropTypes.string,
+        separator: PropTypes.string,
+        subtitle: PropTypes.string,
+        title: PropTypes.string,
     }),
     dense: PropTypes.bool,
     divider: PropTypes.oneOf(['full', 'partial']),
