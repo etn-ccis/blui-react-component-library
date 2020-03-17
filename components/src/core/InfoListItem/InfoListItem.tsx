@@ -174,7 +174,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
 
     const interpunct = (): JSX.Element => (
-        <Typography className={`${defaultClasses.withSmallMargins} ${defaultClasses.separator}`}>
+        <Typography className={clsx(defaultClasses.withSmallMargins, defaultClasses.separator)}>
             {subtitleSeparator || '\u00B7'}
         </Typography>
     );
