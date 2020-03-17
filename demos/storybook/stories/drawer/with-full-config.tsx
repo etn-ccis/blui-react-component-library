@@ -85,6 +85,7 @@ const headerBackgroundImageOptions = {
 };
 
 export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnType => {
+    // storybook tab names
     const drawerGroupId = 'Drawer';
     const headerGroupId = 'Header';
     const bodyGroupId = 'Body';
@@ -123,7 +124,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         ),
     };
 
-    const headerKnobs: Partial<DrawerHeaderProps> = {
+    const headerKnobs: DrawerHeaderProps = {
         backgroundColor: color('backgroundColor', Colors.gold[800], headerGroupId),
         backgroundImage:
             headerBackgroundImageOptions[
@@ -136,12 +137,12 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         title: text('title', 'PX Blue Drawer', headerGroupId),
     };
 
-    const bodyKnobs: Partial<DrawerBodyProps> = {
+    const bodyKnobs: DrawerBodyProps = {
         backgroundColor: color('backgroundColor', Colors.white[50], bodyGroupId),
     };
 
     const navGroupKnobs: Partial<DrawerNavGroupProps> = {
-        title: text('drawerNavGroup.title', 'NavGroup 1', navGroupId),
+        title: text('drawerNavGroup[0].title', 'NavGroup 1', navGroupId),
     };
 
     const navItemKnobs: Partial<NavItem> = {
@@ -151,9 +152,14 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         title: text('title', overview, navItemId),
     };
 
+    // DrawerNavGroup.items
     const links1 = [
         {
-            title: 'title', // placeholder text when the knob is empty
+            icon: navItemKnobs.icon,
+            statusColor: navItemKnobs.statusColor,
+            subtitle: navItemKnobs.subtitle,
+            // title is a required prop, using a placeholder in case the knob is empty
+            title: navItemKnobs.title || 'title',
             itemID: '0',
             items: [
                 {
@@ -171,7 +177,6 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                     },
                 },
             ],
-            ...navItemKnobs,
         },
         {
             title: timeline,
@@ -266,15 +271,43 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         },
     ];
 
-    // Footer
+    // Footer props
     const showFooter = boolean('Show footer', true, footerGroupId);
     const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
 
+    // You can replace the knob props with your own values
     return (
-        <Drawer key={'drawer'} activeItem={context.state.selected} {...drawerKnobs}>
-            <DrawerHeader {...headerKnobs} />
-            <DrawerBody {...bodyKnobs}>
-                <DrawerNavGroup items={links1} {...navGroupKnobs} />
+        <Drawer
+            key={'drawer'}
+            activeItem={context.state.selected}
+            activeItemBackgroundColor={drawerKnobs.activeItemBackgroundColor}
+            activeItemFontColor={drawerKnobs.activeItemFontColor}
+            activeItemIconColor={drawerKnobs.activeItemIconColor}
+            activeItemBackgroundShape={drawerKnobs.activeItemBackgroundShape}
+            chevron={drawerKnobs.chevron}
+            collapseIcon={drawerKnobs.collapseIcon}
+            divider={drawerKnobs.divider}
+            expandIcon={drawerKnobs.expandIcon}
+            hidePadding={drawerKnobs.hidePadding}
+            itemFontColor={drawerKnobs.itemFontColor}
+            itemIconColor={drawerKnobs.itemIconColor}
+            nestedBackgroundColor={drawerKnobs.nestedBackgroundColor}
+            nestedDivider={drawerKnobs.nestedDivider}
+            open={drawerKnobs.open}
+            ripple={drawerKnobs.ripple}
+            width={drawerKnobs.width}
+        >
+            <DrawerHeader
+                backgroundColor={headerKnobs.backgroundColor}
+                backgroundImage={headerKnobs.backgroundImage}
+                backgroundOpacity={headerKnobs.backgroundOpacity}
+                fontColor={headerKnobs.fontColor}
+                icon={headerKnobs.icon}
+                subtitle={headerKnobs.subtitle}
+                title={headerKnobs.title}
+            />
+            <DrawerBody backgroundColor={bodyKnobs.backgroundColor}>
+                <DrawerNavGroup items={links1} title={navGroupKnobs.title} />
                 <DrawerNavGroup
                     items={links2}
                     titleContent={
