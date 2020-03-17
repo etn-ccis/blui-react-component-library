@@ -26,9 +26,21 @@ import { EmptyState } from '@pxblue/react-components';
 
 | Prop Name   | Description                             | Type              | Required | Default |
 |-------------|-----------------------------------------|-------------------|----------|---------|
-| title       | The main text to display                | `string`          | yes      |         |
-| description | The secondary text to display           | `string`          | no       |         | 
-| icon        | The primary icon                        | `React.Component` | yes      |         |
 | actions     | Additional components to render below   | `React.Component` | no       |         |
+| classes     | Style overrides                         | `StyleRules`      | no       |         |    
+| icon        | The primary icon                        | `React.Component` | yes      |         |
+| description | The secondary text to display           | `string`          | no       |         | 
+| title       | The main text to display                | `string`          | yes      |         |
 
 </div>
+
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                 |
+|------------------|---------------------------------------------|
+| root             | Styles applied to the root element          |
+| actions          | Styles applied to the actions               |
+| description      | Styles applied to the description           |
+| icon             | Styles applied to the icon                  |
+| title            | Styles applied to the title                 |

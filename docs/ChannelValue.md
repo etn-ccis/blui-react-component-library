@@ -25,11 +25,22 @@ import { ChannelValue } from '@pxblue/react-components';
 
 | Prop Name   | Description                                    | Type                     | Required | Default   |
 |-------------|------------------------------------------------|--------------------------|----------|-----------|
-| value       | The the value (bold text) to display           | `string` \| `number`     | yes      |           |
-| units       | The text to display for the unit (light text)  | `string`                 | no       |           |
+| color       | The color of the font                          | `string`                 | no       | 'inherit' |
+| classes     | Style overrides                                | `StyleRules`             | no       |           |    
+| fontSize    | The size of the font                           | `string` \| `number`     | no       | 'inherit' |   
 | icon        | The inline icon to display                     | `React.Component`        | no       |           |
 | prefix      | Show units before the value                    | `boolean`                | no       | false     |
-| fontSize    | The size of the font                           | `string` \| `number`     | no       | 'inherit' |
-| color       | The color of the font                          | `string`                 | no       | 'inherit' |
+| units       | The text to display for the units (light text) | `string`                 | no       |           |
+| value       | The the value (bold text) to display           | `string` \| `number`     | yes      |           |
 
 </div>
+
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                 |
+|------------------|---------------------------------------------|
+| root             | Styles applied to the root element          |
+| icon             | Styles applied to the icon element          |
+| units            | Styles applied to the units element         |
+| value            | Styles applied to the value element         |

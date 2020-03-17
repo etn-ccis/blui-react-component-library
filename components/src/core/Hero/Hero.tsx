@@ -4,10 +4,11 @@ import Typography from '@material-ui/core/Typography';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '../ChannelValue';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        wrapper: {
+        root: {
             fontSize: '1rem',
             display: 'flex',
             flexDirection: 'column',
@@ -57,8 +58,16 @@ const normalizeFontSize = (size: FontSize): string => (size === 'small' ? '1rem'
 
 type FontSize = 'normal' | 'small';
 
+type HeroClasses = {
+    root?: string;
+    icon?: string;
+    values?: string;
+    label?: string;
+};
+
 export type HeroProps = {
     children?: React.ReactNode;
+    classes?: HeroClasses;
     fontSize?: FontSize;
     icon: string | JSX.Element;
     iconBackgroundColor?: string;
@@ -71,18 +80,18 @@ export type HeroProps = {
 };
 
 export const Hero = (props: HeroProps): JSX.Element => {
-    const classes = useStyles(props);
-    const { fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units } = props;
+    const defaultClasses = useStyles(props);
+    const { classes, fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units } = props;
 
     return (
         <div
             style={{ cursor: onClick ? 'pointer' : 'default' }}
-            className={classes.wrapper}
+            className={clsx(defaultClasses.root, classes.root)}
             onClick={onClick ? (): void => onClick() : undefined}
             data-test={'wrapper'}
         >
             <span
-                className={classes.icon}
+                className={clsx(defaultClasses.icon, classes.icon)}
                 style={{
                     fontSize: normalizeIconSize(iconSize),
                     height: Math.max(36, iconSize),
@@ -93,11 +102,14 @@ export const Hero = (props: HeroProps): JSX.Element => {
             >
                 {icon}
             </span>
-            <span className={classes.values} style={{ fontSize: normalizeFontSize(fontSize) }}>
+            <span
+                className={clsx(defaultClasses.values, classes.values)}
+                style={{ fontSize: normalizeFontSize(fontSize) }}
+            >
                 {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
                 {props.children}
             </span>
-            <Typography variant={'subtitle1'} color={'inherit'} className={classes.label}>
+            <Typography variant={'subtitle1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
                 {label}
             </Typography>
         </div>
@@ -106,6 +118,12 @@ export const Hero = (props: HeroProps): JSX.Element => {
 
 Hero.displayName = 'Hero';
 Hero.propType = {
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        values: PropTypes.string,
+        icon: PropTypes.string,
+        labels: PropTypes.string,
+    }),
     children: PropTypes.element,
     fontSize: PropTypes.oneOf(['normal', 'small']),
     icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
@@ -118,6 +136,7 @@ Hero.propType = {
     units: PropTypes.string,
 };
 Hero.defaultProps = {
+    classes: {},
     fontSize: 'normal',
     iconBackgroundColor: 'transparent',
     iconSize: 36,
