@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles({
     root: {
@@ -11,12 +12,17 @@ const useStyles = makeStyles({
     },
 });
 
+type DrawerBodyClasses = {
+    root?: string;
+};
+
 export type DrawerBodyProps = {
     activeBackgroundColor?: string;
     activeFontColor?: string;
     activeIconColor?: string;
     backgroundColor?: string;
     chevron?: boolean;
+    classes: DrawerBodyClasses;
     fontColor?: string;
     iconColor?: string;
     onSelect?: Function;
@@ -25,11 +31,11 @@ export type DrawerBodyProps = {
 };
 
 export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {
-    const classes = useStyles(props);
-    const { backgroundColor } = props;
+    const defaultClasses = useStyles(props);
+    const { backgroundColor, classes } = props;
     const children = React.Children.toArray(props.children);
     return (
-        <div className={classes.root} style={{ backgroundColor }}>
+        <div className={clsx(defaultClasses.root, classes.root)} style={{ backgroundColor }}>
             {children.map((child: any) => {
                 if (!child) {
                     return null;
@@ -65,6 +71,9 @@ DrawerBody.propTypes = {
     activeFontColor: PropTypes.string,
     activeIconColor: PropTypes.string,
     backgroundColor: PropTypes.string,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     chevron: PropTypes.bool,
     fontColor: PropTypes.string,
     iconColor: PropTypes.string,
@@ -72,4 +81,6 @@ DrawerBody.propTypes = {
     open: PropTypes.bool,
     titleColor: PropTypes.string,
 };
-DrawerBody.defaultProps = {};
+DrawerBody.defaultProps = {
+    classes: {},
+};
