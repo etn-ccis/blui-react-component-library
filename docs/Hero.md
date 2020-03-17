@@ -35,16 +35,29 @@ import { Hero } from '@pxblue/react-components';
 
 | Prop Name           | Description                             | Type                                                               | Required | Default                |
 |---------------------|-----------------------------------------|--------------------------------------------------------------------|----------|------------------------|
-| icon                | The primary icon                        | `React.Component` \| `string`                                      | yes      |                        |
-| label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        |
-| iconSize            | The size of the primary icon (10-72)    | `number`                                                           | no       | 36                     |
-| iconBackgroundColor | The color used behind the primary icon  | `string`                                                           | no       | 'transparent'          |
+| classes             | Style overrides                         | `StyleRules`                                                       | no       |                        |
 | fontSize            | The text size for the value line        | `'normal'` \| `'small'`                                            | no       | 'normal'               |
-| value               | The value for the channel               | `string` \| `number`                                               | no       |                        |
+| icon                | The primary icon                        | `React.Component` \| `string`                                      | yes      |                        |
+| iconBackgroundColor | The color used behind the primary icon  | `string`                                                           | no       | 'transparent'          |
+| iconSize            | The size of the primary icon (10-72)    | `number`                                                           | no       | 36                     |
+| label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        |
 | units               | Text to show after the value            | `string`                                                           | no       |                        |
+| value               | The value for the channel               | `string` \| `number`                                               | no       |                        |
 | valueIcon           | The inline icon with the value          | `React.Component`                                                  | no       |                        |
 
 </div>
+
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                 |
+|------------------|---------------------------------------------|
+| root             | Styles applied to the root element          |
+| icon             | Styles applied to the icon element          |
+| label            | Styles applied to the label element         |
+| values           | Styles applied to the value element         |
+
+
 
 # HeroBanner
 The HeroBanner component is a simple wrapper component that is used to contain ```<Hero/>```s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four ```<Hero/>``` components as its children.
@@ -72,3 +85,11 @@ import Hero from '@pxblue/react-components/core/Hero';
 | limit     | Max number of children to display       | `number`  | no       | 4       |
 
 </div>
+
+
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                 |
+|------------------|---------------------------------------------|
+| root             | Styles applied to the root element          |

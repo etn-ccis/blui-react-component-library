@@ -58,16 +58,35 @@ import { Temp } from '@pxblue/icons-mui';
 
 | Prop Name             | Description                                 | Type                  | Required | Default                      |
 |-----------------------|---------------------------------------------|-----------------------|----------|------------------------------|
-| headerTitle           | The primary text                            | `string`              | yes      |                              |
-| headerSubtitle        | The secondary text                          | `string`              | no       |                              | 
-| headerInfo            | Tertiary text                               | `string`              | no       |                              |
-| headerColor           | The color of the header                     | `string`              | no       | `theme.palette.primary.main` |
-| headerFontColor       | The color for text and icons in header      | `string`              | no       | `white`                      | 
-| headerBackgroundImage | An image to display in the header           | `string`              | no       |                              | 
 | actionItems           | Icons to show to the right of the text      | `JSX.Element[]`       | no       |                              |
 | actionLimit           | Max number of actionItems in the header     | `number`              | no       | 3                            |  
+| actionRow             | Component to render for the footer          | `React.Component`     | no       |                              |
 | badge                 | The component to render in the callout area | `React.Component`     | no       |                              |
 | badgeOffset           | Vertical offset for the badge component     | `number`              | no       |                              |
-| actionRow             | Component to render for the footer          | `React.Component`     | no       |                              |
+| classes               | Style overrides                             | `StyleRules`          | no       |                              |     
+| headerBackgroundImage | An image to display in the header           | `string`              | no       |                              | 
+| headerColor           | The color of the header                     | `string`              | no       | `theme.palette.primary.main` |
+| headerFontColor       | The color for text and icons in header      | `string`              | no       | `white`                      | 
+| headerInfo            | Tertiary text                               | `string`              | no       |                              |
+| headerTitle           | The primary text                            | `string`              | yes      |                              |
+| headerSubtitle        | The secondary text                          | `string`              | no       |                              | 
 
 </div>
+
+
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                              |
+|------------------|----------------------------------------------------------|
+| root             | Styles applied to the root element                       |
+| actionItems      | Styles applied to the action items container             |
+| badgeWrapper     | Styles applied to the badge container                    |
+| bodyWrapper      | Styles applied to the child nodes container              |
+| content          | Styles applied to justify all body content               |
+| header           | Styles applied to the header container                   |
+| headerBackground | Styles applied to header background image                |
+| headerContent    | Styles applied to the header text and actions container  |
+| headerInfo       | Styles applied to the tertiary text element              |
+| headerTitle      | Styles applied to the title element                      |
+| headerSubtitle   | Styles applied to the subtitle element                   |
