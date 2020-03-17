@@ -40,8 +40,6 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 
 </div>
 
-You may use the inheritables to override the default styles -- see the [Inheritables](#interitables) section below.
-
 ## DrawerHeader
 The `DrawerHeader` contains the content at the top of the `Drawer`. By default, it renders multiple lines of text in the PX Blue style. If you supply a `titleContent`, you can render your own custom content in the title area. 
     
@@ -114,8 +112,6 @@ The `items` property supports nested items to generate collapsible sections in t
 | title                           | Text to display in the group header                        | `string`          | no       |         |  
 | titleContent                    | Custom element, substitute for title                       | `React.Component` | no       |         | 
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                 | no       |         |
-
-You may use the inheritables to override the default styles -- see the [Inheritables](#interitables) section below.
 
 #### NavItem Object
 The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). NavItem can also include a list of `NestedNavItem` to create a tree structure (see below).
