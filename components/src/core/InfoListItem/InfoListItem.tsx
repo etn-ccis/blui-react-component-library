@@ -16,10 +16,11 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemIcon,
-    ListItemSecondaryAction,
     ListItemText,
     Typography,
+    ListItemSecondaryAction,
 } from '@material-ui/core';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -36,9 +37,6 @@ const useStyles = makeStyles((theme: Theme) =>
             width: 6,
             zIndex: 100,
         },
-        withSmallMargins: {
-            margin: `0 ${theme.spacing(0.5)}`,
-        },
         title: {
             fontWeight: 600,
             lineHeight: 1.2,
@@ -52,17 +50,36 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'inline-block',
             lineHeight: 1.3,
             color: 'inherit',
+            margin: `0 ${theme.spacing(0.5)}`,
+        },
+        rightComponent: {
+            flex: '0 0 auto',
+            marginLeft: theme.spacing(2),
+            display: 'flex',
+            alignItems: 'center',
+        },
+        chevron: {
+            display: 'flex',
         },
     })
 );
 
 const MAX_SUBTITLE_ELEMENTS = 6;
 
+type InfoListItemClasses = {
+    root?: string;
+    rightComponent?: string;
+    separator?: string;
+    subtitle?: string;
+    title?: string;
+};
+
 export type DividerType = 'full' | 'partial';
 export type InfoListItemProps = {
     avatar?: boolean;
     backgroundColor?: string;
     chevron?: boolean;
+    classes?: InfoListItemClasses;
     dense?: boolean;
     divider?: DividerType;
     fontColor?: string;
@@ -82,11 +99,12 @@ export type InfoListItemProps = {
 
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const theme = useTheme();
-    const classes = useStyles(theme);
+    const defaultClasses = useStyles(theme);
     const {
         avatar,
         backgroundColor,
         chevron,
+        classes,
         dense,
         divider,
         fontColor,
@@ -144,14 +162,10 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
 
     const getRightComponent = (): JSX.Element | undefined => {
         if (rightComponent) {
-            return (
-                <div style={{ flex: '0 0 auto', marginLeft: 16, display: 'flex', alignItems: 'center' }}>
-                    {rightComponent}
-                </div>
-            );
+            return <div className={clsx(defaultClasses.rightComponent, classes.rightComponent)}>{rightComponent}</div>;
         } else if (chevron) {
             return (
-                <ListItemSecondaryAction style={{ display: 'flex' }}>
+                <ListItemSecondaryAction className={defaultClasses.chevron}>
                     <Chevron color={'inherit'} />
                 </ListItemSecondaryAction>
             );
@@ -159,7 +173,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
 
     const interpunct = (): JSX.Element => (
-        <Typography className={`${classes.withSmallMargins} ${classes.separator}`}>
+        <Typography className={clsx(defaultClasses.separator, classes.separator)}>
             {subtitleSeparator || '\u00B7'}
         </Typography>
     );
@@ -191,14 +205,18 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     return (
         <ListItem
             style={getWrapperStyle()}
+            className={classes.root}
             onClick={onClick ? (): void => onClick() : undefined}
             dense={dense}
             button={ripple ? true : undefined}
         >
             <>
-                <div className={classes.statusStripe} style={{ backgroundColor: statusColor }} />
+                <div className={defaultClasses.statusStripe} style={{ backgroundColor: statusColor }} />
                 {divider && (
-                    <Divider className={classes.divider} style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }} />
+                    <Divider
+                        className={defaultClasses.divider}
+                        style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }}
+                    />
                 )}
                 {(icon || !hidePadding) && getIcon()}
                 {leftComponent}
@@ -209,13 +227,13 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     primaryTypographyProps={{
                         noWrap: true,
                         variant: 'body1',
-                        className: classes.title,
+                        className: clsx(defaultClasses.title, classes.title),
                         style: { color: fontColor },
                     }}
                     secondaryTypographyProps={{
                         noWrap: true,
                         variant: 'subtitle2',
-                        className: classes.subtitle,
+                        className: clsx(defaultClasses.subtitle, classes.subtitle),
                         style: { color: fontColor || 'inherit' },
                     }}
                 />
@@ -230,6 +248,13 @@ InfoListItem.propTypes = {
     avatar: PropTypes.bool,
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        rightComponent: PropTypes.string,
+        separator: PropTypes.string,
+        subtitle: PropTypes.string,
+        title: PropTypes.string,
+    }),
     dense: PropTypes.bool,
     divider: PropTypes.oneOf(['full', 'partial']),
     fontColor: PropTypes.string,
@@ -251,9 +276,10 @@ InfoListItem.propTypes = {
 InfoListItem.defaultProps = {
     avatar: false,
     chevron: false,
+    classes: {},
     dense: false,
+    fontColor: 'inherit',
     hidePadding: false,
     ripple: false,
     subtitleSeparator: '\u00B7',
-    fontColor: 'inherit',
 };
