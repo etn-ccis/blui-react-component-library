@@ -28,10 +28,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type DrawerClasses = {
     root?: string;
-    paper?: string;
-    drawer?: string;
-    smooth?: string;
     content?: string;
+    drawer?: string;
+    paper?: string;
+    smooth?: string;
 };
 
 export type DrawerComponentProps = {
