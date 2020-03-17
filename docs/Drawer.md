@@ -209,7 +209,6 @@ The following props can be set at any level in the drawer hierarchy (`Drawer`, `
 | hidePadding               | Whether to hide the paddings reserved for menu item icons  | `boolean`          | no       |                                                            |
 | itemFontColor             | The color used for the item text                           | `string`           | no       | gray[500]                                                  |
 | itemIconColor             | The color used for the icon                                | `string`           | no       | gray[500]                                                  |
-| onItemSelect              | will apply to all menu items when onClick                  | `() => void`       | no       |                                                            |
 | ripple                    | Whether to apply material ripple effect to items           | `boolean`          | no       | true                                                       |
 
 The following props control the NavGroup and thus only apply to `Drawer`, and `DrawerNavGroupProps` (so not `NavItem` or `NestedNavItem`):

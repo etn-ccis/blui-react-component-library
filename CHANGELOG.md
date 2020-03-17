@@ -1,10 +1,22 @@
 # Change Log
 
 ## v3.0.0
-- Adds support for nested items in the Drawer component
+- Adds support for nested items in the Drawer component; adjusted Drawer API.
 
 **Breaking Changes:** 
-- DrawerNavGroup prop `content` has been renamed to `titleContent`.
+- A few props got renamed to avoid further ambiguities: 
+    - DrawerNavGroup prop `content` has been renamed to `titleContent`.
+    - Anything controling the look of a `NavItem` / `NestedNavItem`, has been renamed to include 'item' in them. These are inheritable properties that might get confusing in different drawer hierarchy levels. List of affected props: 
+
+| Previous              | Current                   |
+| --------------------- | ------------------------- |
+| activeBackgroundColor | activeItemBackgroundColor |
+| activeBackgroundShape | activeItemBackgroundShape |
+| activeFontColor       | activeItemFontColor       |
+| activeIconColor       | activeItemIconColor       |
+| fontColor             | itemFontColor             |
+| iconColor             | itemIconColor             |
+
 - New method for identifying current active item in DrawerNavGroup. Each item now has a unique `id` property and the DrawerNavGroup has a prop for `activeItem` that identifies the item that should be active.
     ```tsx
     /* Old syntax */
