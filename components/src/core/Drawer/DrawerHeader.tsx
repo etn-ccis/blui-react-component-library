@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
             lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
             marginTop: '-2px',
         },
-        headerBackground: {
+        background: {
             position: 'absolute',
             zIndex: 0,
             width: '100%',
@@ -66,8 +66,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type DrawerHeaderClasses = {
     root?: string;
+    background?: string;
     content?: string;
-    headerBackground?: string;
     navigation?: string;
     nonClickableIcon?: string;
     subtitle?: string;
@@ -134,7 +134,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         <>
             {backgroundImage && (
                 <div
-                    className={clsx(defaultClasses.headerBackground, classes.headerBackground)}
+                    className={clsx(defaultClasses.background, classes.background)}
                     style={{
                         backgroundImage: `url(${backgroundImage})`,
                         opacity: backgroundOpacity,
@@ -188,8 +188,8 @@ DrawerHeader.propTypes = {
     backgroundOpacity: PropTypes.number,
     classes: PropTypes.shape({
         root: PropTypes.string,
+        background: PropTypes.string,
         content: PropTypes.string,
-        headerBackground: PropTypes.string,
         navigation: PropTypes.string,
         nonClickableIcon: PropTypes.string,
         subtitle: PropTypes.string,

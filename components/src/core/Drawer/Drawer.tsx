@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
             overflow: 'hidden',
             position: 'unset',
         },
-        drawer: {
+        paperMobile: {
             maxWidth: '85%',
             width: theme.spacing(45),
         },
@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'column',
             height: '100%',
+           width: '100%'
         },
     })
 );
@@ -107,14 +108,8 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 
     const getMobileNavigationMenu = (): JSX.Element => (
-        <Drawer {...props} open={isDrawerOpen()} classes={{ paper: clsx(defaultClasses.drawer, props.classes.paper) }}>
-            <div
-                className={`${clsx(defaultClasses.smooth, classes.smooth)} ${clsx(
-                    defaultClasses.content,
-                    classes.content
-                )}`}
-                style={{ width: '100%' }}
-            >
+        <Drawer {...props} open={isDrawerOpen()} classes={{ paper: clsx(defaultClasses.paperMobile, props.classes.paper) }}>
+            <div className={clsx(defaultClasses.smooth, classes.smooth, defaultClasses.content, classes.content)}>
                 {getDrawerContents()}
             </div>
         </Drawer>
@@ -158,8 +153,8 @@ DrawerComponent.propTypes = {
     classes: PropTypes.shape({
         root: PropTypes.string,
         content: PropTypes.string,
-        drawer: PropTypes.string,
         paper: PropTypes.string,
+        paperMobile: PropTypes.string,
         smooth: PropTypes.string,
     }),
     open: PropTypes.bool.isRequired,
