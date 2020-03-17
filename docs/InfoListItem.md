@@ -50,7 +50,8 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 
 | Name             | Description                                         |
 |------------------|-----------------------------------------------------|
-| root             | Styles applied to the root element                  |     
-| title            | Styles applied to the title element                 |
+| root             | Styles applied to the root element                  |  
+| rightComponent   | Styles applied to the rightComponent parent element |   
+| separator        | Styles applied to subtitle delimiter                | 
 | subtitle         | Styles applied to the subtitle element              |
-| rightComponent   | Styles applied to the rightComponent parent element |
+| title            | Styles applied to the title element                 |
