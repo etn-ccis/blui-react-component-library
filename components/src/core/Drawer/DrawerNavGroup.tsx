@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { ReactNode, useState } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -12,7 +13,7 @@ import { white, black, gray } from '@pxblue/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        navGroupTextHeader: {
+        groupHeader: {
             display: 'block',
             alignItems: 'center',
             lineHeight: '3rem',
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
             fontWeight: 600,
         },
         subheader: {
+            paddingBottom: 0,
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
             cursor: 'text',
@@ -28,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 paddingRight: theme.spacing(3),
             },
         },
-        listItem: {
+        listItemContainer: {
             '&:hover': {
                 backgroundColor: 'rgba(0, 0, 0, 0.08)',
             },
@@ -142,6 +144,9 @@ export type DrawerNavGroupProps = {
     // Whether to have chevrons for all menu items
     chevron?: boolean;
 
+    // Class overrides
+    classes?: DrawerNavGroupClasses;
+
     // Custom element, substitute for title
     titleContent?: ReactNode;
 
@@ -202,9 +207,9 @@ function NavigationListItem(
     } = navItem;
     // only allow icons for the top level items
     const icon = !depth ? (navItem as NavItem).icon : undefined;
-    const { divider: groupDivider = true, nestedDivider } = navGroupProps;
+    const { classes, divider: groupDivider = true, nestedDivider } = navGroupProps;
 
-    const classes = useStyles(navGroupProps);
+    const defaultClasses = useStyles(navGroupProps);
     const theme = useTheme();
     // @ts-ignore
     const primary50Color = theme.palette.primary[50];
@@ -273,7 +278,7 @@ function NavigationListItem(
                         expandHandler();
                     }
                 }}
-                className={`${classes.expandIcon} ${!collapseIcon && expanded ? classes.expanded : ''}`}
+                className={`${defaultClasses.expandIcon} ${!collapseIcon && expanded ? defaultClasses.expanded : ''}`}
             >
                 {collapseIcon && expanded ? collapseIcon : getExpandIcon()}
             </div>
@@ -291,10 +296,10 @@ function NavigationListItem(
     const statusColor = (navItem as NavItem).statusColor;
 
     return (
-        <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
+        <div style={{ position: 'relative' }} className={clsx(defaultClasses.listItemContainer, classes.listItemContainer, active && defaultClasses.listItemNoHover)}>
             {active && (
                 <div
-                    className={`${classes.active} ${activeBackgroundShape === 'square' ? classes.square : ''}`}
+                    className={`${defaultClasses.active} ${activeBackgroundShape === 'square' ? defaultClasses.square : ''}`}
                     style={{ backgroundColor: activeBackgroundColor }}
                 />
             )}
@@ -345,9 +350,16 @@ function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
     return false;
 }
 
+type DrawerNavGroupClasses = {
+    groupHeader?: string;
+    listItemContainer?: string;
+    secondaryLevelListGroup?: string;
+    subheader?: string;
+};
+
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
-    const classes = useStyles(props);
-    const { open, items, title, titleContent, backgroundColor, titleColor } = props;
+    const defaultClasses = useStyles(props);
+    const { backgroundColor, classes, items, open, title, titleContent, titleColor } = props;
 
     // recursively loop through item list and the subItems
     function getDrawerItemList(item: NavItem | NestedNavItem, depth: number): JSX.Element {
@@ -357,7 +369,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             // if there are more sub pages, add the bucket header and recurse on this function
             const collapsibleComponent = (
                 <Collapse in={expanded && open !== false} key={`${item.title}_group_${depth}`}>
-                    <List className={classes.secondaryLevelListGroup}>
+                    <List className={clsx(defaultClasses.secondaryLevelListGroup, classes.secondaryLevelListGroup)}>
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                     </List>
                 </Collapse>
@@ -381,17 +393,17 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     return (
         <>
             <List
-                style={{ paddingBottom: '0', backgroundColor }}
+                style={{ backgroundColor }}
                 subheader={
                     <ListSubheader
-                        className={classes.subheader}
+                        className={clsx(defaultClasses.subheader, classes.subheader)}
                         style={{
                             position: 'unset',
                             color: open ? titleColor : 'transparent',
                         }}
                     >
                         {title && (
-                            <Typography noWrap variant={'subtitle2'} className={classes.navGroupTextHeader}>
+                            <Typography noWrap variant={'subtitle2'} className={clsx(defaultClasses.groupHeader, classes.groupHeader)}>
                                 {title}
                             </Typography>
                         )}
@@ -429,6 +441,12 @@ DrawerNavGroup.propTypes = {
     activeBackgroundShape: PropTypes.oneOf(['round', 'square']),
     backgroundColor: PropTypes.string,
     chevron: PropTypes.bool,
+    classes: PropTypes.shape({
+        listItemContainer: PropTypes.string,
+        groupHeader:  PropTypes.string,
+        secondaryLevelListGroup: PropTypes.string,
+        subheader:  PropTypes.string
+    }),
     titleContent: PropTypes.node,
     fontColor: PropTypes.string,
     hidePadding: PropTypes.bool,
@@ -450,7 +468,8 @@ DrawerNavGroup.propTypes = {
 };
 
 DrawerNavGroup.defaultProps = {
+    activeBackgroundShape: 'round',
+    classes: {},
     divider: true,
     ripple: true,
-    activeBackgroundShape: 'round',
 };
