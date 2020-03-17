@@ -5,10 +5,10 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 export type ListItemTagProps = {
-    /* Color of the label background. Default is blue['500'] */
+    /* Color of the label background. Default is theme.palette.primary.main */
     backgroundColor?: string;
 
-    /* Color of the label. Default is white['50']. */
+    /* Color of the label. Default is theme.palette.primary.contrastText. */
     fontColor?: string;
 
     /* The string label of the tag. */

@@ -32,10 +32,11 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 
 <div style="overflow: auto;">
 
-| Prop Name           | Description                                      | Type        | Required | Default  |          
-|---------------------|--------------------------------------------------|-------------|----------|----------|
-| open                | Controls the open/closed state of the drawer     | `boolean`   | yes      |          |
-| width               | Sets the width of the drawer (in px) when open   | `number `   | no       |          |
+| Prop Name                       | Description                                                | Type      | Required | Default  |          
+|---------------------------------|------------------------------------------------------------|-----------|----------|----------|
+| open                            | Controls the open/closed state of the drawer               | `boolean` | yes      |          |
+| width                           | Sets the width of the drawer (in px) when open             | `number ` | no       |          |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -         | no       |          |
 
 </div>
 
@@ -106,12 +107,13 @@ The `items` property supports nested items to generate collapsible sections in t
 
 <div style="overflow: auto;">
 
-| Prop Name             | Description                                                      | Type                      | Required | Default   |
-|-----------------------|------------------------------------------------------------------|---------------------------|----------|-----------|
-| backgroundColor       | The color used for the background                                | `string`                  | no       |           | 
-| items                 | List of NavItems to render                                       | `NestedNavItem[]`         | yes      |           | 
-| title                 | Text to display in the group header                              | `string`                  | no       |           |  
-| titleContent          | Custom element, substitute for title                             | `React.Component`         | no       |           |    
+| Prop Name                       | Description                                                | Type              | Required | Default |
+|---------------------------------|------------------------------------------------------------|-------------------|----------|---------|
+| backgroundColor                 | The color used for the background                          | `string`          | no       |         | 
+| items                           | List of NavItems to render                                 | `NestedNavItem[]` | yes      |         | 
+| title                           | Text to display in the group header                        | `string`          | no       |         |  
+| titleContent                    | Custom element, substitute for title                       | `React.Component` | no       |         | 
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                 | no       |         |
 
 You may use the inheritables to override the default styles -- see the [Inheritables](#interitables) section below.
 
@@ -120,18 +122,17 @@ The `items` prop of the `DrawerNavGroup` takes a list of items with the followin
 
 <div style="overflow: auto;">
 
-| Attribute      | Description                                                  | Type              | Required | Default |
-| -------------- | ------------------------------------------------------------ | ----------------- | -------- | ------- |
-| icon           | A component to render for the left icon                      | `JSX.Element`     | no       |         |
-| itemID         | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string` | yes      |         |
-| items          | The items nested under this item                             | `NestedNavItem[]` | no       |         |
-| onClick        | A function to execute when clicked                           | `function`        | no       |         |
-| rightComponent | An icon/component to display to the right                    | `JSX.Element`     | no       |         |
-| statusColor    | Status stripe and icon color                                 | `string`          | no       |         |
-| subtitle       | The text to show on the second line                          | `string`          | no       |         |
-| title          | The text to show on the first line                           | `string`          | yes      |         |
-
-You may use the inheritables to override the default styles -- see the [Inheritables](#interitables) section below.
+| Attribute                       | Description                                                  | Type              | Required | Default |
+| ------------------------------- | ------------------------------------------------------------ | ----------------- | -------- | ------- |
+| icon                            | A component to render for the left icon                      | `JSX.Element`     | no       |         |
+| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string` | yes      |         |
+| items                           | The items nested under this item                             | `NestedNavItem[]` | no       |         |
+| onClick                         | A function to execute when clicked                           | `function`        | no       |         |
+| rightComponent                  | An icon/component to display to the right                    | `JSX.Element`     | no       |         |
+| statusColor                     | Status stripe and icon color                                 | `string`          | no       |         |
+| subtitle                        | The text to show on the second line                          | `string`          | no       |         |
+| title                           | The text to show on the first line                           | `string`          | yes      |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy   | -                 | no       |         |
 
 </div>
 
@@ -196,24 +197,24 @@ import DrawerFooter from '@pxblue/react-components/core/Drawer';
 </DrawerFooter>
 ```
 
-## Interitables
-There are a few optional props that controls the cosmetics of the drawer items and are shared between `Drawer`, `DrawerNavGroup`, `NavItem` and `NestedNavItem`. These properties are inheritable, meaning that the children can inherit the props from their parents if the child prop is set to undefined, and can override the parent props by setting child props to certain values. 
+## Shared Props
+The following props can be set at any level in the drawer hierarchy (`Drawer`, `DrawerNavGroup`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
 
-| Name                      | Description                                                | Type               | Required | Default                                                      |
-| ------------------------- | ---------------------------------------------------------- | ------------------ | -------- | ------------------------------------------------------------ |
-| activeItemBackgroundColor | Background color for the 'active' item                     | `string`           | no       | (theme.palette.type === 'light' ? primary50Color : theme.palette.primary.main) |
-| activeItemBackgroundShape | shape of the active item background                        | `'round'|'square'` | no       | round                                                        |
-| activeItemFontColor       | Font color for the 'active' item                           | `string`           | no       | (theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText) 
-| activeItemIconColor       | Icon color for the 'active' item                           | `string`           | no       | (theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText) |
-| chevron                   | Whether to have chevrons for all menu items                | `boolean`          | no       |                                                              |
-| collapseIcon              | Icon used to collapse drawer                               | `JSX.Element`      | no       | `expandIcon` rotated 180 degree                              |
-| divider                   | Whether to show a line between all items                   | `boolean`          | no       | true                                                         |
-| expandIcon                | Icon used to expand drawer                                 | `JSX.Element`      | no       | `<ExpandLess />` at top-level, `<ArrowDropUp />` otherwise   |
-| hidePadding               | Whether to hide the paddings reserved for menu item icons  | `boolean`          | no       |                                                              |
-| itemFontColor             | The color used for the item text                           | `string`           | no       | gray[500]                                                    |
-| itemIconColor             | The color used for the icon                                | `string`           | no       | gray[500]                                                    |
-| onItemSelect              | will apply to all menu items when onClick                  | `() => void`       | no       |                                                              |
-| ripple                    | Whether to apply material ripple effect to items           | `boolean`          | no       | true                                                         |
+| Name                      | Description                                                | Type               | Required | Default                                                    |
+| ------------------------- | ---------------------------------------------------------- | ------------------ | -------- | ---------------------------------------------------------- |
+| activeItemBackgroundColor | Background color for the 'active' item                     | `string`           | no       | varies for light/dark theme                                |
+| activeItemBackgroundShape | shape of the active item background                        | `'round'|'square'` | no       | round                                                      |
+| activeItemFontColor       | Font color for the 'active' item                           | `string`           | no       | varies for light/dark theme                                |
+| activeItemIconColor       | Icon color for the 'active' item                           | `string`           | no       | varies for light/dark theme                                |
+| chevron                   | Whether to have chevrons for all menu items                | `boolean`          | no       |                                                            |
+| collapseIcon              | Icon used to collapse drawer                               | `JSX.Element`      | no       | `expandIcon` rotated 180 degrees                           |
+| divider                   | Whether to show a line between all items                   | `boolean`          | no       | true                                                       |
+| expandIcon                | Icon used to expand drawer                                 | `JSX.Element`      | no       | `<ExpandLess />` at top-level, `<ArrowDropUp />` otherwise |
+| hidePadding               | Whether to hide the paddings reserved for menu item icons  | `boolean`          | no       |                                                            |
+| itemFontColor             | The color used for the item text                           | `string`           | no       | gray[500]                                                  |
+| itemIconColor             | The color used for the icon                                | `string`           | no       | gray[500]                                                  |
+| onItemSelect              | will apply to all menu items when onClick                  | `() => void`       | no       |                                                            |
+| ripple                    | Whether to apply material ripple effect to items           | `boolean`          | no       | true                                                       |
 
 The following props control the NavGroup and thus only apply to `Drawer`, and `DrawerNavGroupProps` (so not `NavItem` or `NestedNavItem`):
 

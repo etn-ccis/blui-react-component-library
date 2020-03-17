@@ -70,6 +70,8 @@ export const getIcon = (icon: string): JSX.Element | undefined => {
             return <FitnessCenter />;
         case '<List />':
             return <List />;
+        case '<Dashboard />':
+            return <Dashboard />;
         case 'undefined':
         default:
             return undefined;
@@ -86,7 +88,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     const drawerGroupId = 'Drawer';
     const headerGroupId = 'Header';
     const bodyGroupId = 'Body';
-    const navGroupId = 'NavGroup 1';
+    const navGroupId = 'NavGroup';
     const navItemId = 'NavItem';
     const footerGroupId = 'Footer';
 
@@ -139,40 +141,11 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     };
 
     const navGroupKnobs: Partial<DrawerNavGroupProps> = {
-        activeItemBackgroundColor: color('activeItemBackgroundColor', Colors.blue[50], navGroupId),
-        activeItemFontColor: color('activeItemFontColor', Colors.blue[500], navGroupId),
-        activeItemIconColor: color('activeItemIconColor', Colors.blue[500], navGroupId),
-        activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'round', navGroupId),
-        chevron: boolean('chevron', false, navGroupId),
-        collapseIcon: getIcon(
-            select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', navGroupId)
-        ),
-        divider: boolean('divider', true, navGroupId),
-        expandIcon: getIcon(select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', navGroupId)),
-        hidePadding: boolean('hidePadding', false, navGroupId),
-        itemFontColor: color('itemFontColor', Colors.gray[500], navGroupId),
-        itemIconColor: color('itemIconColor', Colors.gray[500], navGroupId),
-        nestedBackgroundColor: color('nestedBackgroundColor', Colors.white[200], navGroupId),
-        nestedDivider: boolean('nestedDivider', false, navGroupId),
-        ripple: boolean('ripple', true, navGroupId),
-        title: text('title', 'NavGroup 1', navGroupId),
+        title: text('drawerNavGroup.title', 'NavGroup 1', navGroupId),
     };
 
     const navItemKnobs: Partial<NavItem> = {
-        activeItemBackgroundColor: color('activeItemBackgroundColor', Colors.blue[50], navItemId),
-        activeItemFontColor: color('activeItemFontColor', Colors.blue[500], navItemId),
-        activeItemIconColor: color('activeItemIconColor', Colors.blue[500], navItemId),
-        activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'round', navItemId),
-        chevron: boolean('chevron', false, navItemId),
-        collapseIcon: getIcon(
-            select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', navItemId)
-        ),
-        divider: boolean('divider', true, navItemId),
-        expandIcon: getIcon(select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', navItemId)),
-        hidePadding: boolean('hidePadding', false, navItemId),
-        itemFontColor: color('itemFontColor', Colors.gray[500], navItemId),
-        itemIconColor: color('itemIconColor', Colors.gray[500], navItemId),
-        ripple: boolean('ripple', true, navItemId),
+        icon: getIcon(select('icon', ['<Dashboard />', '<FitnessCenter />', 'undefined'], '<Dashboard />', navItemId)),
         statusColor: color('statusColor', Colors.green[300], navItemId),
         subtitle: text('subtitle', 'Learn more about us', navItemId),
         title: text('title', overview, navItemId),
@@ -198,7 +171,6 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                     },
                 },
             ],
-            icon: <Dashboard />,
             ...navItemKnobs,
         },
         {

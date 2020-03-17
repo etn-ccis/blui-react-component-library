@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: 'column',
             width: 'calc(100% - 56px)',
             boxSizing: 'border-box',
+            zIndex: 1,
         },
         navigation: {
             [theme.breakpoints.down('xs')]: {
