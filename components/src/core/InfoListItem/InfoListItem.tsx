@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         rightComponent: {
             flex: '0 0 auto',
-            marginLeft: 16,
+            marginLeft: theme.spacing(2),
             display: 'flex',
             alignItems: 'center',
         },
