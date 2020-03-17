@@ -22,7 +22,7 @@ export type DrawerBodyProps = {
     activeIconColor?: string;
     backgroundColor?: string;
     chevron?: boolean;
-    classes: DrawerBodyClasses;
+    classes?: DrawerBodyClasses;
     fontColor?: string;
     iconColor?: string;
     onSelect?: Function;
