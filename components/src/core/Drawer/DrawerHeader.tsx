@@ -78,7 +78,7 @@ export type DrawerHeaderProps = {
     backgroundColor?: string;
     backgroundImage?: string;
     backgroundOpacity?: number;
-    classes: DrawerHeaderClasses;
+    classes?: DrawerHeaderClasses;
     fontColor?: string;
     icon?: ReactNode;
     onIconClick?: Function;
