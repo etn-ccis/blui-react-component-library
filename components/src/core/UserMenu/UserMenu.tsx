@@ -38,20 +38,20 @@ type UserMenuClasses = {
 
 export type UserMenuItem = Omit<NavItem, 'active'>;
 export type UserMenuGroup = {
-    title?: string;
     fontColor?: string;
     iconColor?: string;
     items: UserMenuItem[];
+    title?: string;
 };
 
 export type UserMenuProps = {
     avatar: JSX.Element;
     classes?: UserMenuClasses;
     menu?: JSX.Element;
-    menuTitle?: string;
-    menuSubtitle?: string;
     menuGroups?: UserMenuGroup[];
     MenuProps?: Omit<standardMenuProps, 'open'>;
+    menuSubtitle?: string;
+    menuTitle?: string;
     onClose?: Function;
     onOpen?: Function;
 };
@@ -136,12 +136,12 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 <div className={defaultClasses.navGroups} key={index}>
                     <DrawerNavGroup
                         divider={false}
-                        open={true}
-                        iconColor={group.iconColor}
-                        fontColor={group.fontColor}
+                        drawerOpen={true}
+                        itemIconColor={group.iconColor}
+                        itemFontColor={group.fontColor}
                         title={group.title}
                         items={group.items}
-                        onSelect={closeMenu}
+                        onItemSelect={closeMenu}
                     />
                 </div>
             )),

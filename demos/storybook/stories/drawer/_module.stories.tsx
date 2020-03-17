@@ -38,7 +38,7 @@ export * from './with-subheader';
 export { withMultipleNavGroups } from './with-multiple-DrawerNavGroups';
 export * from './with-nested-list-items';
 export * from './with-footer';
-export * from './with-full-config';
+export { withFullConfig } from './with-full-config';
 export * from './within-a-DrawerLayout';
 
 export default drawerModule;

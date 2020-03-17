@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: 'column',
             width: 'calc(100% - 56px)',
             boxSizing: 'border-box',
+            zIndex: 1,
         },
         navigation: {
             [theme.breakpoints.down('xs')]: {
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
             height: theme.spacing(8),
             display: 'flex',
             alignItems: 'center',
+            zIndex: 1,
         },
         title: {
             fontWeight: 600,

@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/sty
 import { Drawer, DrawerProps } from '@material-ui/core';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
+import { DrawerBodyProps } from './DrawerBody';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -26,18 +27,106 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+// type shared by Drawer, DrawerBody, DrawerNavGroup, NestedNavItem
+// these types are inherited from the Drawer level to the NestedNavItem
+// parent props will be overriden by the child props if defined
+export type PXBlueDrawerInheritableProperties = {
+    // Background color for the 'active' item
+    activeItemBackgroundColor?: string;
+
+    // shape of the active item background
+    activeItemBackgroundShape?: 'round' | 'square';
+
+    // Font color for the 'active' item
+    activeItemFontColor?: string;
+
+    // Icon color for the 'active' item
+    activeItemIconColor?: string;
+
+    // Whether to have chevrons for all menu items
+    chevron?: boolean;
+
+    // Icon used to collapse drawer
+    // default is expandIcon rotated 180 degrees
+    collapseIcon?: JSX.Element;
+
+    // Whether to show a line between all items
+    divider?: boolean;
+
+    // Icon used to expand drawer
+    expandIcon?: JSX.Element;
+
+    // Whether to hide the paddings reserved for menu item icons
+    hidePadding?: boolean;
+
+    // The color used for the item text
+    itemFontColor?: string;
+
+    // The color used for the icon
+    itemIconColor?: string;
+
+    // internal API
+    // will apply to all menu items when onClick
+    onItemSelect?: () => void;
+
+    // Whether to apply material ripple effect to items
+    ripple?: boolean;
+};
+
+// type shared by Drawer, DrawerBody, DrawerNavGroup
+// inheritable props but not for NestedNavItem
+export type PXBlueDrawerNavGroupInheritableProperties = {
+    // itemID for the 'active' item
+    activeItem?: string;
+
+    // background color for nested menu items
+    nestedBackgroundColor?: string;
+
+    // Whether to show a line between nested menu items
+    nestedDivider?: boolean;
+
+    // Font color for group header
+    titleColor?: string;
+} & PXBlueDrawerInheritableProperties;
+
 export type DrawerComponentProps = {
+    // Controls the open/closed state of the drawer
     open: boolean;
+
+    // Sets the width of the drawer (in px) when open
     width?: number;
-} & Omit<DrawerProps, 'translate'>;
+} & PXBlueDrawerNavGroupInheritableProperties &
+    Omit<DrawerProps, 'translate'>;
 
 export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
-    let hoverDelay: any;
+    let hoverDelay: NodeJS.Timeout;
     const classes = useStyles(props);
     const theme = useTheme();
     const [hover, setHover] = useState(false);
+    const {
+        activeItem,
+        activeItemBackgroundColor,
+        activeItemFontColor,
+        activeItemIconColor,
+        activeItemBackgroundShape,
+        chevron,
+        collapseIcon,
+        divider,
+        expandIcon,
+        hidePadding,
+        itemFontColor,
+        itemIconColor,
+        nestedBackgroundColor,
+        nestedDivider,
+        open,
+        onItemSelect,
+        ripple,
+        titleColor,
+        width,
+        ...drawerProps // for Material-UI's Drawer component
+    } = props;
 
-    const isDrawerOpen = (): boolean => hover || props.open;
+    const isDrawerOpen = (): boolean => hover || open;
 
     const findChildByType = (type: string): JSX.Element[] =>
         React.Children.map(props.children, (child: any) => {
@@ -57,24 +146,43 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const getSubHeader = (): JSX.Element[] =>
         findChildByType('DrawerSubheader')
             .slice(0, 1)
-            .map((child) => React.cloneElement(child, { open: isDrawerOpen() }));
+            .map((child) => React.cloneElement(child, { drawerOpen: isDrawerOpen() }));
 
     const getBody = (): JSX.Element[] =>
         findChildByType('DrawerBody')
             .slice(0, 1)
             .map((child) =>
                 React.cloneElement(child, {
-                    open: isDrawerOpen(),
-                    onSelect: () => {
+                    activeItem,
+                    activeItemBackgroundColor,
+                    activeItemFontColor,
+                    activeItemIconColor,
+                    activeItemBackgroundShape,
+                    chevron,
+                    collapseIcon,
+                    divider,
+                    expandIcon,
+                    hidePadding,
+                    itemFontColor,
+                    itemIconColor,
+                    nestedBackgroundColor,
+                    nestedDivider,
+                    ripple,
+                    titleColor,
+                    drawerOpen: isDrawerOpen(),
+                    onItemSelect: () => {
+                        if (onItemSelect) {
+                            onItemSelect();
+                        }
                         setHover(false);
                     },
-                })
+                } as DrawerBodyProps)
             );
 
     const getFooter = (): JSX.Element[] =>
         findChildByType('DrawerFooter')
             .slice(0, 1)
-            .map((child) => React.cloneElement(child, { open: isDrawerOpen() }));
+            .map((child) => React.cloneElement(child, { drawerOpen: isDrawerOpen() }));
 
     const getDrawerContents = (): JSX.Element => (
         <>
@@ -97,7 +205,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 
     const getMobileNavigationMenu = (): JSX.Element => (
-        <Drawer {...props} open={isDrawerOpen()} classes={{ paper: classes.drawer }}>
+        <Drawer {...drawerProps} open={isDrawerOpen()} classes={{ paper: classes.drawer }}>
             <div className={`${classes.smooth} ${classes.content}`} style={{ width: '100%' }}>
                 {getDrawerContents()}
             </div>
@@ -105,13 +213,13 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 
     const getDesktopNavigationMenu = (): JSX.Element => {
-        const containerWidth = isDrawerOpen() ? props.width || theme.spacing(45) : theme.spacing(7);
-        const contentWidth = props.width || theme.spacing(45);
+        const containerWidth = isDrawerOpen() ? width || theme.spacing(45) : theme.spacing(7);
+        const contentWidth = width || theme.spacing(45);
         return (
             <>
                 <Drawer
-                    {...props}
-                    variant="permanent"
+                    {...drawerProps}
+                    variant={'permanent'}
                     open={isDrawerOpen()}
                     classes={{ paper: classes.paper }}
                     style={{ minHeight: '100%' }}
@@ -135,7 +243,34 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
 };
 
 DrawerComponent.displayName = 'PXBlueDrawer';
+
+export const PXBlueDrawerInheritablePropertiesPropTypes = {
+    activeItemBackgroundColor: PropTypes.string,
+    activeItemFontColor: PropTypes.string,
+    activeItemIconColor: PropTypes.string,
+    activeItemBackgroundShape: PropTypes.oneOf(['round', 'square']),
+    chevron: PropTypes.bool,
+    collapseIcon: PropTypes.element,
+    divider: PropTypes.bool,
+    expandIcon: PropTypes.element,
+    hidePadding: PropTypes.bool,
+    itemFontColor: PropTypes.string,
+    itemIconColor: PropTypes.string,
+    ripple: PropTypes.bool,
+};
+export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
+    activeItem: PropTypes.string,
+    nestedDivider: PropTypes.bool,
+    onItemSelect: PropTypes.func,
+    titleColor: PropTypes.string,
+    ...PXBlueDrawerInheritablePropertiesPropTypes,
+};
+// @ts-ignore
 DrawerComponent.propTypes = {
-    open: PropTypes.bool.isRequired,
     width: PropTypes.number,
+    open: PropTypes.bool.isRequired,
+    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+};
+DrawerComponent.defaultProps = {
+    variant: 'permanent',
 };

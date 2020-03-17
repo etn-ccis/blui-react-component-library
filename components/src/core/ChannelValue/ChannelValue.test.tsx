@@ -43,8 +43,8 @@ describe('ChannelValue', () => {
     });
     it('should render units properly', () => {
         let wrapper = shallow(<ChannelValue value={1} units={'X'} />);
-        expect(findByTestId('unit', wrapper).length).toEqual(1);
+        expect(findByTestId('units', wrapper).length).toEqual(1);
         wrapper = shallow(<ChannelValue value={1} />);
-        expect(findByTestId('unit', wrapper).length).toEqual(0);
+        expect(findByTestId('units', wrapper).length).toEqual(0);
     });
 });
