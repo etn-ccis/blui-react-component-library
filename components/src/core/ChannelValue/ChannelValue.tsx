@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles, Theme, useTheme} from '@material-ui/core/styles';
+import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-const styles = makeStyles((theme: Theme) =>({
+const styles = makeStyles((theme: Theme) => ({
     root: {
         display: 'inline-flex',
         alignItems: 'center',

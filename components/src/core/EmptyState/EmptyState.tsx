@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles, useTheme} from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import * as Colors from '@pxblue/colors';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 100,
     },
     actions: {
-        marginTop: theme.spacing(1)
+        marginTop: theme.spacing(1),
     },
 }));
 
