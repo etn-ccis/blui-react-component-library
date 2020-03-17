@@ -26,13 +26,12 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-
 type DrawerClasses = {
-   root?: string;
-   paper?: string;
-   drawer?: string;
-   smooth?: string;
-   content?: string;
+    root?: string;
+    paper?: string;
+    drawer?: string;
+    smooth?: string;
+    content?: string;
 };
 
 export type DrawerComponentProps = {
@@ -108,8 +107,14 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 
     const getMobileNavigationMenu = (): JSX.Element => (
-        <Drawer {...props} open={isDrawerOpen()} classes={{ paper: (clsx(defaultClasses.drawer, props.classes.paper)) }}>
-            <div className={`${clsx(defaultClasses.smooth, classes.smooth)} ${clsx(defaultClasses.content, classes.content)}`} style={{ width: '100%' }}>
+        <Drawer {...props} open={isDrawerOpen()} classes={{ paper: clsx(defaultClasses.drawer, props.classes.paper) }}>
+            <div
+                className={`${clsx(defaultClasses.smooth, classes.smooth)} ${clsx(
+                    defaultClasses.content,
+                    classes.content
+                )}`}
+                style={{ width: '100%' }}
+            >
                 {getDrawerContents()}
             </div>
         </Drawer>
@@ -127,7 +132,10 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     classes={{ paper: clsx(defaultClasses.paper, props.classes.paper) }}
                     style={{ minHeight: '100%' }}
                 >
-                    <div className={clsx(defaultClasses.smooth, classes.smooth)} style={{ width: containerWidth, height: '100%' }}>
+                    <div
+                        className={clsx(defaultClasses.smooth, classes.smooth)}
+                        style={{ width: containerWidth, height: '100%' }}
+                    >
                         <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
                             {getDrawerContents()}
                         </div>
@@ -147,16 +155,16 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
 
 DrawerComponent.displayName = 'PXBlueDrawer';
 DrawerComponent.propTypes = {
-   classes: PropTypes.shape({
-      root: PropTypes.string,
-      content: PropTypes.string,
-      drawer: PropTypes.string,
-      paper: PropTypes.string,
-      smooth: PropTypes.string,
-   }),
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        content: PropTypes.string,
+        drawer: PropTypes.string,
+        paper: PropTypes.string,
+        smooth: PropTypes.string,
+    }),
     open: PropTypes.bool.isRequired,
     width: PropTypes.number,
 };
 DrawerComponent.defaultProps = {
-   classes: {}
+    classes: {},
 };

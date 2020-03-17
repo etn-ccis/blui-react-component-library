@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 import React, { ReactNode, useState } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -296,10 +296,19 @@ function NavigationListItem(
     const statusColor = (navItem as NavItem).statusColor;
 
     return (
-        <div style={{ position: 'relative' }} className={clsx(defaultClasses.listItemContainer, classes.listItemContainer, active && defaultClasses.listItemNoHover)}>
+        <div
+            style={{ position: 'relative' }}
+            className={clsx(
+                defaultClasses.listItemContainer,
+                classes.listItemContainer,
+                active && defaultClasses.listItemNoHover
+            )}
+        >
             {active && (
                 <div
-                    className={`${defaultClasses.active} ${activeBackgroundShape === 'square' ? defaultClasses.square : ''}`}
+                    className={`${defaultClasses.active} ${
+                        activeBackgroundShape === 'square' ? defaultClasses.square : ''
+                    }`}
                     style={{ backgroundColor: activeBackgroundColor }}
                 />
             )}
@@ -403,7 +412,11 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                         }}
                     >
                         {title && (
-                            <Typography noWrap variant={'subtitle2'} className={clsx(defaultClasses.groupHeader, classes.groupHeader)}>
+                            <Typography
+                                noWrap
+                                variant={'subtitle2'}
+                                className={clsx(defaultClasses.groupHeader, classes.groupHeader)}
+                            >
                                 {title}
                             </Typography>
                         )}
@@ -443,9 +456,9 @@ DrawerNavGroup.propTypes = {
     chevron: PropTypes.bool,
     classes: PropTypes.shape({
         listItemContainer: PropTypes.string,
-        groupHeader:  PropTypes.string,
+        groupHeader: PropTypes.string,
         secondaryLevelListGroup: PropTypes.string,
-        subheader:  PropTypes.string
+        subheader: PropTypes.string,
     }),
     titleContent: PropTypes.node,
     fontColor: PropTypes.string,
