@@ -109,7 +109,6 @@ export type DrawerComponentProps = {
     Omit<DrawerProps, 'translate'>;
 
 export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
-    const { classes, open, width } = props;
     let hoverDelay: NodeJS.Timeout;
     const defaultClasses = useStyles(props);
     const theme = useTheme();
@@ -121,6 +120,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         activeItemIconColor,
         activeItemBackgroundShape,
         chevron,
+        classes,
         collapseIcon,
         divider,
         expandIcon,
@@ -290,7 +290,6 @@ DrawerComponent.propTypes = {
     }),
     open: PropTypes.bool.isRequired,
     width: PropTypes.number,
-    open: PropTypes.bool.isRequired,
     ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerComponent.defaultProps = {
