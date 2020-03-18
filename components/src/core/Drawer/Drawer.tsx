@@ -4,6 +4,7 @@ import { Drawer, DrawerProps } from '@material-ui/core';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
 import { DrawerBodyProps } from './DrawerBody';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -11,21 +12,29 @@ const useStyles = makeStyles((theme: Theme) =>
             overflow: 'hidden',
             position: 'unset',
         },
-        drawer: {
+        paperMobile: {
             maxWidth: '85%',
             width: theme.spacing(45),
         },
         smooth: {
-            height: '100%',
             transition: 'width 175ms cubic-bezier(.4, 0, .2, 1)',
         },
         content: {
             display: 'flex',
             flexDirection: 'column',
             height: '100%',
+           width: '100%'
         },
     })
 );
+
+type DrawerClasses = {
+    root?: string;
+    content?: string;
+    drawer?: string;
+    paper?: string;
+    smooth?: string;
+};
 
 // type shared by Drawer, DrawerBody, DrawerNavGroup, NestedNavItem
 // these types are inherited from the Drawer level to the NestedNavItem
@@ -90,6 +99,7 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
 } & PXBlueDrawerInheritableProperties;
 
 export type DrawerComponentProps = {
+    classes?: DrawerClasses;
     // Controls the open/closed state of the drawer
     open: boolean;
 
@@ -100,7 +110,7 @@ export type DrawerComponentProps = {
 
 export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     let hoverDelay: NodeJS.Timeout;
-    const classes = useStyles(props);
+    const defaultClasses = useStyles(props);
     const theme = useTheme();
     const [hover, setHover] = useState(false);
     const {
@@ -110,6 +120,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         activeItemIconColor,
         activeItemBackgroundShape,
         chevron,
+        classes,
         collapseIcon,
         divider,
         expandIcon,
@@ -205,8 +216,8 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 
     const getMobileNavigationMenu = (): JSX.Element => (
-        <Drawer {...drawerProps} open={isDrawerOpen()} classes={{ paper: classes.drawer }}>
-            <div className={`${classes.smooth} ${classes.content}`} style={{ width: '100%' }}>
+        <Drawer {...props} open={isDrawerOpen()} classes={{ paper: clsx(defaultClasses.paperMobile, props.classes.paper) }}>
+            <div className={clsx(defaultClasses.smooth, classes.smooth, defaultClasses.content, classes.content)}>
                 {getDrawerContents()}
             </div>
         </Drawer>
@@ -221,11 +232,14 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     {...drawerProps}
                     variant={'permanent'}
                     open={isDrawerOpen()}
-                    classes={{ paper: classes.paper }}
+                    classes={{ paper: clsx(defaultClasses.paper, props.classes.paper) }}
                     style={{ minHeight: '100%' }}
                 >
-                    <div className={classes.smooth} style={{ width: containerWidth }}>
-                        <div className={classes.content} style={{ width: contentWidth }}>
+                    <div
+                        className={clsx(defaultClasses.smooth, classes.smooth)}
+                        style={{ width: containerWidth, height: '100%' }}
+                    >
+                        <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
                             {getDrawerContents()}
                         </div>
                     </div>
@@ -267,10 +281,20 @@ export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
 };
 // @ts-ignore
 DrawerComponent.propTypes = {
-    width: PropTypes.number,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        content: PropTypes.string,
+        paper: PropTypes.string,
+        paperMobile: PropTypes.string,
+        smooth: PropTypes.string,
+    }),
     open: PropTypes.bool.isRequired,
+    width: PropTypes.number,
     ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerComponent.defaultProps = {
     variant: 'permanent',
+};
+DrawerComponent.defaultProps = {
+    classes: {},
 };

@@ -40,6 +40,20 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 
 </div>
 
+
+#### Classes
+
+You can override the classes used by PX Blue by passing a `classes` prop. The Drawer supports the following keys:
+
+| Name             | Description                                     |
+|------------------|-------------------------------------------------|
+| root             | Styles applied to the root element              |
+| content          | Styles applied to the drawer content container  |
+| paper            | MUI Drawer style override for desktop viewports |
+| paperMobile      | MUI Drawer style override for mobile  viewports |
+| smooth           | Styles applied to the open/close animation      |
+
+
 ## DrawerHeader
 The `DrawerHeader` contains the content at the top of the `Drawer`. By default, it renders multiple lines of text in the PX Blue style. If you supply a `titleContent`, you can render your own custom content in the title area. 
     
@@ -61,6 +75,21 @@ The `DrawerHeader` contains the content at the top of the `Drawer`. By default, 
 
 </div>
 
+
+#### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. The DrawerHeader supports the following keys:
+
+| Name             | Description                                     |
+|------------------|-------------------------------------------------|
+| root             | Styles applied to the root element              |
+| content          | Styles applied to the content container         |
+| background       | Styles applied to the header background         |
+| navigation       | Styles applied to the icon element              |
+| nonClickableIcon | Styles applied to the non-clickable icon element|
+| subtitle         | Styles applied to the subtitle element          |
+| title            | Styles applied to the title element             |
+
+
 ## DrawerSubheader
 The `DrawerSubheader` is an optional section that renders below the header and above the body of the `Drawer`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
 
@@ -72,6 +101,7 @@ import DrawerSubheader from '@pxblue/react-components/core/Drawer';
     <div>Custom Subheader Content</div>
 </DrawerSubheader>
 ```
+
 
 ## DrawerBody
 The `DrawerBody` is a wrapper for the main content of the Drawer. The typical use case is to display `DrawerNavGroup` elements, but custom elements (e.g., for spacing) are accepted as well.
@@ -96,6 +126,13 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 
 </div>
 
+#### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. The DrawerBody supports the following keys:
+
+| Name             | Description                                     |
+|------------------|-------------------------------------------------|
+| root             | Styles applied to the root element              |
+
 ## DrawerNavGroup 
 A `DrawerNavGroup` is used inside of the `DrawerBody` to organize links/content. Each group consists of an (optional) group title and a series of NavItems. Most visual props are inherited from the `DrawerBody` but can be overridden at the NavGroup level if desired.
 
@@ -112,6 +149,20 @@ The `items` property supports nested items to generate collapsible sections in t
 | title                           | Text to display in the group header                        | `string`          | no       |         |  
 | titleContent                    | Custom element, substitute for title                       | `React.Component` | no       |         | 
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                 | no       |         |
+
+
+#### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. The DrawerNavGroup supports the following keys:
+
+| Name                        | Description                                     |
+|-----------------------------|-------------------------------------------------|
+| active                      | Styles applied to the active element            |
+| expandIcon                  | Styles applied to the expandIcon element        |
+| groupHeader                 | Styles applied to the NavGroup header element   |
+| listItemContainer           | Styles applied to the NavItem container         |
+| nestedListGroup             | Styles applied to nested NavItems               |
+| subheader                   | Styles applied to the List subheader element    |
+
 
 #### NavItem Object
 The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). NavItem can also include a list of `NestedNavItem` to create a tree structure (see below).

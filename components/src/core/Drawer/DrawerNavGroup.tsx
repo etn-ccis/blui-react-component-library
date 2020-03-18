@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { ReactNode, useState } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -17,7 +18,7 @@ import { white, black, gray } from '@pxblue/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        navGroupTextHeader: {
+        groupHeader: {
             display: 'block',
             alignItems: 'center',
             lineHeight: '3rem',
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
             fontWeight: 600,
         },
         subheader: {
+            paddingBottom: 0,
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
             cursor: 'text',
@@ -33,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 paddingRight: theme.spacing(3),
             },
         },
-        listItem: {
+        listItemContainer: {
             '&:hover': {
                 backgroundColor: 'rgba(0, 0, 0, 0.08)',
             },
@@ -117,6 +119,8 @@ export type DrawerNavGroupProps = {
     // internal API
     backgroundColor?: string;
 
+    classes?: DrawerNavGroupClasses;
+
     // internal API
     drawerOpen?: boolean;
 
@@ -143,11 +147,11 @@ function NavigationListItem(
     // only allow icons for the top level items
     const icon = !depth ? (navItem as NavItem).icon : undefined;
 
-    const classes = useStyles(navGroupProps);
+    const defaultClasses = useStyles(navGroupProps);
     const theme = useTheme();
     // @ts-ignore
     const primary50Color = theme.palette.primary[50];
-    const { activeItem, nestedDivider } = navGroupProps;
+    const { activeItem, classes, nestedDivider  } = navGroupProps;
 
     // handle inheritables
     const activeItemBackgroundColor =
@@ -218,7 +222,9 @@ function NavigationListItem(
                         expandHandler();
                     }
                 }}
-                className={`${classes.expandIcon} ${!collapseIcon && expanded ? classes.expanded : ''}`}
+                className={clsx(defaultClasses.expandIcon, classes.expandIcon, {
+                    [defaultClasses.expanded]: !collapseIcon && expanded
+                })}
             >
                 {collapseIcon && expanded ? collapseIcon : expandIcon}
             </div>
@@ -234,10 +240,19 @@ function NavigationListItem(
     const active = activeItem === itemID;
 
     return (
-        <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
+        <div
+            style={{ position: 'relative' }}
+            className={clsx(
+                defaultClasses.listItemContainer,
+                classes.listItemContainer,
+                active && defaultClasses.listItemNoHover
+            )}
+        >
             {active && (
                 <div
-                    className={`${classes.active} ${activeItemBackgroundShape === 'square' ? classes.square : ''}`}
+                    className={clsx(defaultClasses.active, classes.active, {
+                        [defaultClasses.square]: activeItemBackgroundShape === 'square'
+                    })}
                     style={{ backgroundColor: activeItemBackgroundColor }}
                 />
             )}
@@ -290,10 +305,20 @@ function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
     return false;
 }
 
+type DrawerNavGroupClasses = {
+    active?: string;
+    expandIcon?: string;
+    groupHeader?: string;
+    listItemContainer?: string;
+    nestedListGroup?: string;
+    subheader?: string;
+};
+
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
-    const classes = useStyles(props);
+    const defaultClasses = useStyles(props);
     const theme = useTheme();
     const {
+        classes,
         drawerOpen,
         items,
         title,
@@ -313,7 +338,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             // if there are more sub pages, add the bucket header and recurse on this function
             const collapsibleComponent = (
                 <Collapse in={expanded && open !== false} key={`${item.title}_group_${depth}`}>
-                    <List className={classes.nestedListGroup} style={{ backgroundColor: nestedBackgroundColor }}>
+                    <List className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)} style={{ backgroundColor: nestedBackgroundColor }}>
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                     </List>
                 </Collapse>
@@ -337,17 +362,21 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     return (
         <>
             <List
-                style={{ paddingBottom: '0', backgroundColor }}
+                style={{ backgroundColor }}
                 subheader={
                     <ListSubheader
-                        className={classes.subheader}
+                        className={clsx(defaultClasses.subheader, classes.subheader)}
                         style={{
                             position: 'unset',
                             color: open ? titleColor : 'transparent',
                         }}
                     >
                         {title && (
-                            <Typography noWrap variant={'subtitle2'} className={classes.navGroupTextHeader}>
+                            <Typography
+                                noWrap
+                                variant={'subtitle2'}
+                                className={clsx(defaultClasses.groupHeader, classes.groupHeader)}
+                            >
                                 {title}
                             </Typography>
                         )}
@@ -366,6 +395,14 @@ DrawerNavGroup.displayName = 'DrawerNavGroup';
 
 DrawerNavGroup.propTypes = {
     backgroundColor: PropTypes.string,
+    classes: PropTypes.shape({
+        active: PropTypes.string,
+        expandIcon: PropTypes.string,
+        listItemContainer: PropTypes.string,
+        groupHeader: PropTypes.string,
+        nestedListGroup: PropTypes.string,
+        subheader: PropTypes.string,
+    }),
     drawerOpen: PropTypes.bool,
     // @ts-ignore
     items: PropTypes.arrayOf(
@@ -380,4 +417,8 @@ DrawerNavGroup.propTypes = {
         })
     ).isRequired,
     ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+};
+
+DrawerNavGroup.defaultProps = {
+    classes: {},
 };

@@ -6,6 +6,7 @@ import {
     PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 } from './Drawer';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
+import clsx from 'clsx';
 
 const useStyles = makeStyles({
     root: {
@@ -16,18 +17,23 @@ const useStyles = makeStyles({
     },
 });
 
+type DrawerBodyClasses = {
+    root?: string;
+};
+
 export type DrawerBodyProps = {
     backgroundColor?: string;
+    classes?: DrawerBodyClasses;
     drawerOpen?: boolean;
 } & PXBlueDrawerNavGroupInheritableProperties;
 
 export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
-    const classes = useStyles(bodyProps);
-    const { backgroundColor } = bodyProps;
+    const defaultClasses = useStyles(bodyProps);
+    const { backgroundColor, classes } = bodyProps;
     const children = React.Children.toArray(bodyProps.children);
     return (
-        <div className={classes.root} style={{ backgroundColor }}>
-            {children.map((child: any, index) => {
+        <div className={clsx(defaultClasses.root, classes.root)} style={{ backgroundColor }}>
+            {children.map((child: any, index: number) => {
                 if (!child) {
                     return null;
                 }
@@ -80,6 +86,12 @@ DrawerBody.displayName = 'DrawerBody';
 // @ts-ignore
 DrawerBody.propTypes = {
     backgroundColor: PropTypes.string,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
     drawerOpen: PropTypes.bool,
     ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+};
+DrawerBody.defaultProps = {
+    classes: {},
 };
