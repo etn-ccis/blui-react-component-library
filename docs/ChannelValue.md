@@ -9,6 +9,11 @@ The ChannelValue component is used to display...a channel value (and units). Thi
 
 
 ## Usage
+
+<div style="text-align:center; width: 100%">
+    <img width="100%" style="max-width: 200px" alt="Channel Value Anatomy" src="./images/channelValueAnatomy.png">
+</div>
+
 ```typescript
 import { ChannelValue } from '@pxblue/react-components';
 ...

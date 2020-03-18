@@ -1,12 +1,13 @@
-import { Accessibility, Add, AddAPhoto, FitnessCenter, NotificationsActive, PinDrop, Remove } from '@material-ui/icons';
+import { Accessibility, AddAPhoto, FitnessCenter, NotificationsActive } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@pxblue/react-components';
 import { Drawer, DrawerHeader } from '@pxblue/react-components/core/Drawer';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { DrawerState, DrawerStoryContext } from './util';
+import { getIcon } from './with-full-config';
 
 const userGuide = 'User Guide';
 const license = 'License';
@@ -30,12 +31,23 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
     const open = boolean('open', true, DrawerNavGroupID);
     const divider = boolean('divider', true, DrawerNavGroupID);
     const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
-    const ripple = boolean('ripple', true, DrawerNavGroupID);
     const chevron = boolean('chevron', false, DrawerNavGroupID);
-    const round = select('activeBackgroundShape', ['round', 'square'], 'round', DrawerNavGroupID);
-    const showIcon = boolean('Show Top-Level Icons', true, DrawerNavGroupID);
+    const nestedBackgroundColor = color('nestedBackgroundColor', Colors.white[200], DrawerNavGroupID);
+    const groupUseExpandIcon = select(
+        'expandIcon',
+        ['undefined', '<Add />', '<PinDrop />'],
+        'undefined',
+        DrawerNavGroupID
+    );
+    const groupUseCollapseIcon = select(
+        'collapseIcon',
+        ['undefined', '<Remove />', '<AddAPhoto />'],
+        'undefined',
+        DrawerNavGroupID
+    );
 
     const NavItemID = 'NavItem';
+    const showIcon = boolean('Show Top-Level Icons', true, NavItemID);
     const hidePadding = boolean('hidePadding', false, NavItemID);
     const useRightComponent = select(
         'rightComponent',
@@ -43,8 +55,8 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
         'undefined',
         NavItemID
     );
-    const useExpandIcon = select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', NavItemID);
-    const useCollapseIcon = select(
+    const itemUseExpandIcon = select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', NavItemID);
+    const itemUseCollapseIcon = select(
         'collapseIcon',
         ['undefined', '<Remove />', '<AddAPhoto />'],
         'undefined',
@@ -64,32 +76,6 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
         }
     })();
 
-    const expandIcon = ((): JSX.Element | undefined => {
-        switch (useExpandIcon) {
-            case 'undefined':
-                return undefined;
-            case '<Add />':
-                return <Add />;
-            case '<PinDrop />':
-                return <PinDrop />;
-            default:
-                break;
-        }
-    })();
-
-    const collapseIcon = ((): JSX.Element | undefined => {
-        switch (useCollapseIcon) {
-            case 'undefined':
-                return undefined;
-            case '<Remove />':
-                return <Remove />;
-            case '<AddAPhoto />':
-                return <AddAPhoto />;
-            default:
-                break;
-        }
-    })();
-
     const drawerItemList = (state: DrawerState): JSX.Element => (
         <DrawerBody>
             <DrawerNavGroup
@@ -97,19 +83,19 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                 nestedDivider={nestedDivider}
                 title={'Multi-Level Navigation Group'}
                 hidePadding={hidePadding}
-                ripple={ripple}
                 activeItem={state.selected}
-                titleColor={Colors.black[500]}
-                activeBackgroundShape={round}
                 chevron={chevron}
+                nestedBackgroundColor={nestedBackgroundColor}
+                expandIcon={getIcon(groupUseExpandIcon)}
+                collapseIcon={getIcon(groupUseCollapseIcon)}
                 items={[
                     {
                         title: userGuide,
                         icon: showIcon ? <AddAPhoto /> : undefined,
                         itemID: userGuide,
                         rightComponent: rightComponent,
-                        expandIcon: expandIcon,
-                        collapseIcon: collapseIcon,
+                        expandIcon: getIcon(itemUseExpandIcon),
+                        collapseIcon: getIcon(itemUseCollapseIcon),
                         items: [
                             {
                                 title: gettingStarted,

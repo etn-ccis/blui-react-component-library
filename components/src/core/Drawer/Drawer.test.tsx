@@ -159,4 +159,28 @@ describe('DrawerNavGroup', () => {
             expect(item.prop('title')).toEqual(expectedNavItemTitleList[index]);
         });
     });
+
+    it('inherits and overrides properties from Drawer', () => {
+        const wrapper = shallow(
+            <Drawer activeItemBackgroundColor={'white'} divider={true} open={true}>
+                <DrawerBody>
+                    <DrawerNavGroup items={[{ title: '', itemID: '' }]} />
+                    <DrawerNavGroup
+                        activeItemBackgroundColor={'black'}
+                        divider={false}
+                        items={[{ title: '', itemID: '' }]}
+                    />
+                </DrawerBody>
+            </Drawer>
+        )
+            .find(DrawerBody)
+            .at(0)
+            .dive();
+        const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
+        expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
+        expect(firstDrawerNavGroup.props.divider).toBeTruthy();
+        const secondDrawerNavGroup = wrapper.find(DrawerNavGroup).get(1);
+        expect(secondDrawerNavGroup.props.activeItemBackgroundColor).toEqual('black');
+        expect(secondDrawerNavGroup.props.divider).toBeFalsy();
+    });
 });

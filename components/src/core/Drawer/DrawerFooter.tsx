@@ -1,6 +1,6 @@
-import {makeStyles} from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
     root: {
@@ -10,17 +10,17 @@ const useStyles = makeStyles({
 
 export type DrawerFooterProps = {
     backgroundColor?: string;
-    open?: boolean;
+    drawerOpen?: boolean;
 };
 
 export const DrawerFooter: React.FC<DrawerFooterProps> = (props) => {
     const classes = useStyles(props);
-    const { backgroundColor, children, open } = props;
+    const { children, backgroundColor, drawerOpen } = props;
     return (
         <div
             className={classes.root}
             style={{
-                visibility: open ? 'inherit' : 'hidden',
+                visibility: drawerOpen ? 'inherit' : 'hidden',
                 backgroundColor: backgroundColor,
             }}
         >
@@ -33,5 +33,5 @@ DrawerFooter.displayName = 'DrawerFooter';
 
 DrawerFooter.propTypes = {
     backgroundColor: PropTypes.string,
-    open: PropTypes.bool,
+    drawerOpen: PropTypes.bool,
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, Typography, Divider, Theme, makeStyles, createStyles } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
 import PropTypes from 'prop-types';
-import clsx from "clsx";
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -34,10 +34,10 @@ const useStyles = makeStyles((theme: Theme) =>
             fontSize: '1.125rem',
         },
         headerSubtitle: {
-            lineHeight: 1.4
+            lineHeight: 1.4,
         },
         headerInfo: {
-            fontWeight: 300
+            fontWeight: 300,
         },
         headerBackground: {
             position: 'absolute',
@@ -79,7 +79,7 @@ type ScoreCardClasses = {
     headerInfo?: string;
     headerTitle?: string;
     headerSubtitle?: string;
-}
+};
 
 export type ScoreCordProps = {
     actionItems?: JSX.Element[];
@@ -133,7 +133,12 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         if (!headerInfo) return;
         if (typeof headerInfo === 'string') {
             return (
-                <Typography noWrap variant={'body2'} style={{ color: fontColor() }} className={clsx(defaultClasses.headerInfo, classes.headerInfo)}>
+                <Typography
+                    noWrap
+                    variant={'body2'}
+                    style={{ color: fontColor() }}
+                    className={clsx(defaultClasses.headerInfo, classes.headerInfo)}
+                >
                     {headerInfo}
                 </Typography>
             );
@@ -145,8 +150,12 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         if (!headerSubtitle) return;
         if (typeof headerSubtitle === 'string') {
             return (
-                <Typography noWrap variant={'body2'} style={{ color: fontColor() }}
-                            className={clsx(defaultClasses.headerSubtitle, classes.headerSubtitle)}>
+                <Typography
+                    noWrap
+                    variant={'body2'}
+                    style={{ color: fontColor() }}
+                    className={clsx(defaultClasses.headerSubtitle, classes.headerSubtitle)}
+                >
                     {headerSubtitle}
                 </Typography>
             );
@@ -172,7 +181,11 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     const getActionItems = (): JSX.Element[] | undefined => {
         if (actionItems) {
             return actionItems.slice(0, actionLimit).map((actionItem, index) => (
-                <div key={`${index}`} className={clsx(defaultClasses.actionItems, classes.actionItems)} data-test={'action-item'}>
+                <div
+                    key={`${index}`}
+                    className={clsx(defaultClasses.actionItems, classes.actionItems)}
+                    data-test={'action-item'}
+                >
                     {actionItem}
                 </div>
             ));
@@ -262,5 +275,5 @@ ScoreCard.propTypes = {
 ScoreCard.defaultProps = {
     actionLimit: 3,
     badgeOffset: 0,
-    classes: {}
+    classes: {},
 };

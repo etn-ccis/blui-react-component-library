@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles, Theme, useTheme} from '@material-ui/core/styles';
+import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-const styles = makeStyles((theme: Theme) =>({
+const styles = makeStyles((theme: Theme) => ({
     root: {
         display: 'inline-flex',
         alignItems: 'center',
@@ -56,7 +56,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                         variant={'h6'}
                         color={'inherit'}
                         className={clsx(defaultClasses.text, defaultClasses.units, classes.units)}
-                        data-test={'unit'}
+                        data-test={'units'}
                     >
                         {units}
                     </Typography>

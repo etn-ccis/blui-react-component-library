@@ -76,6 +76,7 @@ export default () => {
                     ModalProps={{
                         onBackdropClick: () => setOpen(!open),
                     }}
+                    activeItem={titleList[route]}
                 >
                     <DrawerHeader
                         title={'Showcase App'}
@@ -90,7 +91,7 @@ export default () => {
                         <Select
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
-                            style={{ height: 56, padding: 16, width: '100%' }}
+                            style={{ height: theme.spacing(7), padding: theme.spacing(2), width: '100%' }}
                         >
                             {locations.map((loc, ind) => (
                                 <MenuItem key={`location${ind}`} value={ind}>
@@ -101,7 +102,6 @@ export default () => {
                     </DrawerSubheader>
                     <DrawerBody>
                         <DrawerNavGroup
-                            activeItem={titleList[route]}
                             items={[
                                 {
                                     title: titleList[0],
@@ -121,6 +121,7 @@ export default () => {
                                     itemID: titleList[2],
                                     icon: <Public />,
                                     onClick: () => setRoute(2),
+                                    onItemSelect: () => {}, // to prevent auto collapse on click
                                     items: [
                                         {
                                             title: titleList[7],
@@ -175,7 +176,13 @@ export default () => {
                     </DrawerBody>
                     <DrawerFooter>
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <img src={EatonLogo} style={{ margin: 10 }} alt="Eaton Logo" height={50} width={'auto'} />
+                            <img
+                                src={EatonLogo}
+                                style={{ margin: theme.spacing(1) }}
+                                alt="Eaton Logo"
+                                height={50}
+                                width={'auto'}
+                            />
                         </div>
                     </DrawerFooter>
                 </Drawer>
@@ -183,9 +190,9 @@ export default () => {
         >
             <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <AppBar position={'static'} color={'primary'}>
-                    <Toolbar style={{ padding: '0 16px' }}>
+                    <Toolbar style={{ padding: `0 ${theme.spacing(2)}px` }}>
                         <Hidden smUp>
-                            <Menu style={{ marginRight: 32 }} onClick={() => setOpen(!open)} />
+                            <Menu style={{ marginRight: theme.spacing(4) }} onClick={() => setOpen(!open)} />
                         </Hidden>
                         <Typography variant={'h6'}>Showcase</Typography>
                         <Spacer flex={1} />
@@ -288,7 +295,7 @@ export default () => {
                             </List>
                         </ScoreCard>
                         <ScoreCard
-                            style={{ flex: '1 1 0px', maxWidth: 400, marginLeft: 10 }}
+                            style={{ flex: '1 1 0px', maxWidth: 400, marginLeft: theme.spacing(1) }}
                             headerColor={Colors.blue[500]}
                             headerBackgroundImage={top}
                             headerTitle={'Substation 3'}
@@ -337,7 +344,7 @@ export default () => {
                         </ScoreCard>
                     </div>
 
-                    <Card style={{ marginTop: 10 }}>
+                    <Card style={{ marginTop: theme.spacing(1) }}>
                         <List style={{ color: Colors.gray['800'], padding: 0 }}>
                             <HeroBanner divider>
                                 <Hero
@@ -440,10 +447,10 @@ export default () => {
                                             backgroundColor={Colors.white['300']}
                                             label={'active'}
                                             fontColor={Colors.green['500']}
-                                            style={{ marginRight: 8 }}
+                                            style={{ marginRight: theme.spacing(1) }}
                                         />
                                         <ListItemTag
-                                            style={{ marginRight: 8 }}
+                                            style={{ marginRight: theme.spacing(1) }}
                                             label={'OVERHEAT'}
                                             backgroundColor={Colors.red['500']}
                                             onClick={(_) => {
@@ -461,10 +468,11 @@ export default () => {
                             />
                         </List>
                     </Card>
-                    <Card style={{ marginTop: '10px', padding: '10px' }}>
+                    <Card style={{ marginTop: theme.spacing(1), padding: theme.spacing(3) }}>
                         <EmptyState
                             icon={<DevicesIcon fontSize={'inherit'} />}
                             title={'No Devices'}
+                            description={'Contact your local admin for details'}
                             actions={
                                 <Button variant="contained" color="primary">
                                     <Add style={{ marginRight: '5px' }} />
@@ -473,10 +481,9 @@ export default () => {
                             }
                         />
                     </Card>
-                    <Card style={{ marginTop: 10 }}>
+                    <Card style={{ marginTop: theme.spacing(1) }}>
                         <DrawerNavGroup
                             title={'Resources'}
-                            open={true}
                             items={[
                                 {
                                     title: 'Guides',
