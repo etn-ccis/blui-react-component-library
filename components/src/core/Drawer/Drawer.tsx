@@ -137,6 +137,9 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         ...drawerProps // for Material-UI's Drawer component
     } = props;
 
+
+    const getWidth = (): number => width;
+
     const isDrawerOpen = (): boolean => hover || open;
 
     const findChildByType = (type: string): JSX.Element[] =>
