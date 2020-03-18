@@ -35,7 +35,7 @@ export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
     return (
         <div className={classes.root}>
             <div className={classes.drawer}>{drawer}</div>
-            <div id={'pxb-drawerlayout-content'} className={classes.content}>
+            <div id={'@@pxb-drawerlayout-content'} className={classes.content}>
                 {children}
             </div>
         </div>

@@ -234,7 +234,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         const containerWidth = isDrawerOpen() ? width || theme.spacing(45) : theme.spacing(7);
         const contentWidth = width || theme.spacing(45);
 
-        const content = document.getElementById('pxb-drawerlayout-content');
+        const content = document.getElementById('@@pxb-drawerlayout-content');
         if (content) {
             content.style.marginLeft = `${containerWidth}px`;
         }
@@ -251,7 +251,6 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     <div
                         className={clsx(defaultClasses.smooth, classes.smooth)}
                         style={{ width: containerWidth, height: '100%' }}
-                        id={'pxblue-drawer-content-width'}
                     >
                         <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
                             {getDrawerContents()}
