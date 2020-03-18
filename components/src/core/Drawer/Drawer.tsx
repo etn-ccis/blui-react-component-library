@@ -228,9 +228,9 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         const containerWidth = isDrawerOpen() ? width || theme.spacing(45) : theme.spacing(7);
         const contentWidth = width || theme.spacing(45);
 
-        const c = document.getElementById('pxb-layout-content');
-        if (c) {
-            c.style.marginLeft = containerWidth+'px';
+        const content = document.getElementById('pxb-drawerlayout-content');
+        if (content) {
+            content.style.marginLeft = `${containerWidth}px`;
         }
 
         return (

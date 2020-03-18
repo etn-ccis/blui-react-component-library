@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import {makeStyles, useTheme} from '@material-ui/core/styles';
+import {makeStyles, Theme, useTheme} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 export type DrawerLayoutProps = {
@@ -7,7 +7,7 @@ export type DrawerLayoutProps = {
     drawer: ReactNode;
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         display: 'flex',
         height: '100%',
@@ -34,8 +34,8 @@ export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
     const classes = useStyles(useTheme());
     return (
         <div className={classes.root}>
-            <div id={'pxb-layout-drawer'} className={classes.drawer}>{drawer}</div>
-            <div id={'pxb-layout-content'} className={classes.content}>{children}</div>
+            <div className={classes.drawer}>{drawer}</div>
+            <div id={'pxb-drawerlayout-content'} className={classes.content}>{children}</div>
         </div>
     );
 };
