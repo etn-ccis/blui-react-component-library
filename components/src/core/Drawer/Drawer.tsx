@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'column',
             height: '100%',
-           width: '100%'
+            width: '100%'
         },
     })
 );
@@ -137,9 +137,6 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         ...drawerProps // for Material-UI's Drawer component
     } = props;
 
-
-    const getWidth = (): number => width;
-
     const isDrawerOpen = (): boolean => hover || open;
 
     const findChildByType = (type: string): JSX.Element[] =>
@@ -185,6 +182,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     titleColor,
                     drawerOpen: isDrawerOpen(),
                     onItemSelect: () => {
+                        window.scrollTo(0,0);
                         if (onItemSelect) {
                             onItemSelect();
                         }
@@ -229,6 +227,12 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const getDesktopNavigationMenu = (): JSX.Element => {
         const containerWidth = isDrawerOpen() ? width || theme.spacing(45) : theme.spacing(7);
         const contentWidth = width || theme.spacing(45);
+
+        const c = document.getElementById('pxb-layout-content');
+        if (c) {
+            c.style.marginLeft = containerWidth+'px';
+        }
+
         return (
             <>
                 <Drawer
@@ -241,6 +245,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     <div
                         className={clsx(defaultClasses.smooth, classes.smooth)}
                         style={{ width: containerWidth, height: '100%' }}
+                        id={'pxblue-drawer-content-width'}
                     >
                         <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
                             {getDrawerContents()}
