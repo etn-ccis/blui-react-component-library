@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'column',
             height: '100%',
-            width: '100%'
+            width: '100%',
         },
     })
 );
@@ -182,7 +182,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     titleColor,
                     drawerOpen: isDrawerOpen(),
                     onItemSelect: () => {
-                        window.scrollTo(0,0);
+                        window.scrollTo(0, 0);
                         if (onItemSelect) {
                             onItemSelect();
                         }
@@ -217,7 +217,11 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 
     const getMobileNavigationMenu = (): JSX.Element => (
-        <Drawer {...props} open={isDrawerOpen()} classes={{ paper: clsx(defaultClasses.paperMobile, props.classes.paper) }}>
+        <Drawer
+            {...props}
+            open={isDrawerOpen()}
+            classes={{ paper: clsx(defaultClasses.paperMobile, props.classes.paper) }}
+        >
             <div className={clsx(defaultClasses.smooth, classes.smooth, defaultClasses.content, classes.content)}>
                 {getDrawerContents()}
             </div>

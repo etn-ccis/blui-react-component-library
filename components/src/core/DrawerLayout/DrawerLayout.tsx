@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import {makeStyles, Theme, useTheme} from '@material-ui/core/styles';
+import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 export type DrawerLayoutProps = {
@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         height: '100%',
         transition: 'margin 175ms cubic-bezier(.4, 0, .2, 1)',
         [theme.breakpoints.down('xs')]: {
-            marginLeft: '0!important'
-        }
+            marginLeft: '0!important',
+        },
     },
 }));
 
@@ -35,7 +35,9 @@ export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
     return (
         <div className={classes.root}>
             <div className={classes.drawer}>{drawer}</div>
-            <div id={'pxb-drawerlayout-content'} className={classes.content}>{children}</div>
+            <div id={'pxb-drawerlayout-content'} className={classes.content}>
+                {children}
+            </div>
         </div>
     );
 };
