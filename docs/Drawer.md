@@ -160,7 +160,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 | expandIcon                  | Styles applied to the expandIcon element        |
 | groupHeader                 | Styles applied to the NavGroup header element   |
 | listItemContainer           | Styles applied to the NavItem container         |
-| secondaryListLevelGroup     | Styles applied to nested NavItems               |
+| nestedListGroup             | Styles applied to nested NavItems               |
 | subheader                   | Styles applied to the List subheader element    |
 
 
