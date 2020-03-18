@@ -59,6 +59,9 @@ export type PXBlueDrawerInheritableProperties = {
     // default is expandIcon rotated 180 degrees
     collapseIcon?: JSX.Element;
 
+    // Scroll to top of page on navigation
+    disableScrollTop?: boolean;
+
     // Whether to show a line between all items
     divider?: boolean;
 
@@ -182,7 +185,6 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     titleColor,
                     drawerOpen: isDrawerOpen(),
                     onItemSelect: () => {
-                        window.scrollTo(0, 0);
                         if (onItemSelect) {
                             onItemSelect();
                         }
@@ -277,6 +279,7 @@ export const PXBlueDrawerInheritablePropertiesPropTypes = {
     activeItemBackgroundShape: PropTypes.oneOf(['round', 'square']),
     chevron: PropTypes.bool,
     collapseIcon: PropTypes.element,
+    disableScrollTop: PropTypes.bool,
     divider: PropTypes.bool,
     expandIcon: PropTypes.element,
     hidePadding: PropTypes.bool,
@@ -291,6 +294,8 @@ export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
     titleColor: PropTypes.string,
     ...PXBlueDrawerInheritablePropertiesPropTypes,
 };
+
+
 // @ts-ignore
 DrawerComponent.propTypes = {
     classes: PropTypes.shape({
@@ -305,8 +310,6 @@ DrawerComponent.propTypes = {
     ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerComponent.defaultProps = {
-    variant: 'permanent',
-};
-DrawerComponent.defaultProps = {
     classes: {},
+    variant: 'permanent',
 };

@@ -59,6 +59,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                         backgroundColor={bodyProps.backgroundColor}
                         chevron={groupProps.chevron === undefined ? bodyProps.chevron : groupProps.chevron}
                         collapseIcon={groupProps.collapseIcon || bodyProps.collapseIcon}
+                        disableScrollTop={groupProps.disableScrollTop === undefined ? bodyProps.disableScrollTop : groupProps.disableScrollTop}
                         divider={groupProps.divider === undefined ? bodyProps.divider : groupProps.divider}
                         expandIcon={groupProps.expandIcon || bodyProps.expandIcon}
                         hidePadding={

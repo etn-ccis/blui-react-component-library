@@ -181,6 +181,7 @@ function NavigationListItem(
                 ? navGroupProps.divider
                 : true;
     }
+    const disableScrollTop = navItem.disableScrollTop === undefined ? navGroupProps.disableScrollTop : navItem.disableScrollTop;
     const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropUp /> : <ExpandLess />);
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
     const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || gray[500];
@@ -195,6 +196,10 @@ function NavigationListItem(
 
     // row action
     const action = (): void => {
+        // Don't scroll to top of page when clicking expandable items.
+        if (!disableScrollTop && !items) {
+            window.scrollTo(0, 0);
+        }
         if (onItemSelect) {
             onItemSelect();
         }
