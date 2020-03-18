@@ -288,3 +288,11 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
     </>
 </DrawerLayout>
 ```
+
+
+## Limitations
+The PX Blue react component library is currently is not dependent on a single Router provider.  
+Because of this limitation, there are a few things additional steps that need happen for users to have an optimal routing experience.
+It is recommended that when new page content loads, the window is adjusted so the top of the page is shown.
+If your application supports routing that occurs outside the scope of the Drawer, the window will have to be manually adjusted.
+If you are using React-Router, the [documentation](https://reacttraining.com/react-router/web/guides/scroll-restoration) references this situation and has a solution. 
