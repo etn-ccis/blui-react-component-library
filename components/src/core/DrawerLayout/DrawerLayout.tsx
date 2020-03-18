@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import {createStyles, makeStyles, Theme, useTheme} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 export type DrawerLayoutProps = {
@@ -7,7 +7,7 @@ export type DrawerLayoutProps = {
     drawer: ReactNode;
 };
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
         display: 'flex',
         height: '100%',
