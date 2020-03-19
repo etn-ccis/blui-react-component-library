@@ -293,11 +293,11 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name          | Description                                           | Type              | Required  | Default |
-|--------------------|-------------------------------------------------------|-------------------|-----------|---------|
-| children           | Page's body content                                   | `React.ReactNode` | yes       |         |   
-| drawer             | Drawer component to be embedded                       | `JSX.Element`     | yes       |         |   
-| variantBreakpoints | Change the drawer variant according to the breakpoint | `{[key: string]: DrawerProps['variant']}`| no | See below |   
+| Prop Name          | Description                                           | Type                                     | Required  | Default   |
+|--------------------|-------------------------------------------------------|------------------------------------------|-----------|-----------|
+| children           | Page's body content                                   | `React.ReactNode`                        | yes       |           |   
+| drawer             | Drawer component to be embedded                       | `React.FC<DrawerProps>`                 | yes       |           |   
+| variantBreakpoints | Change the drawer variant according to the breakpoint | `{[key: string]: DrawerProps['variant']}`| no        | See below |   
 
 </div>
 

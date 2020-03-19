@@ -9,7 +9,7 @@ export type DrawerLayoutProps = {
     children: React.ReactNode;
 
     // Drawer component to be embedded
-    drawer: JSX.Element;
+    drawer: JSX.Element | React.FC<DrawerProps>;
 
     // Change the drawer variant according to the break point
     variantBreakpoints?: {
@@ -46,13 +46,26 @@ export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
     } = props;
     const classes = useStyles(props);
     const getDrawerContent = (): JSX.Element[] | JSX.Element => {
-        if (drawer.type && drawer.type.displayName === 'PXBlueDrawer') {
+        // if the drawer is a JSX.Element
+        const drawerElement = drawer as JSX.Element;
+        if (drawerElement.type && drawerElement.type.displayName === 'PXBlueDrawer') {
             return Object.keys(variantBreakpoints).map(
                 (bp): JSX.Element =>
-                    useMediaQuery(bp) && <Drawer key={bp} variant={variantBreakpoints[bp]} {...drawer.props} />
+                    useMediaQuery(bp) && <Drawer key={bp} variant={variantBreakpoints[bp]} {...drawerElement.props} />
             );
         }
-        return drawer;
+
+        // if the drawer is a React.FC
+        const drawerFC = drawer as React.FC<DrawerProps>;
+        return Object.keys(variantBreakpoints).map(
+            (bp): JSX.Element =>
+                useMediaQuery(bp) &&
+                drawerFC({
+                    key: bp,
+                    variant: variantBreakpoints,
+                    ...drawerElement.props,
+                })
+        );
     };
     return (
         <div className={classes.root}>
