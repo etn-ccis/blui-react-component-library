@@ -5,12 +5,10 @@ import { InfoListItem } from './InfoListItem';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { ListItemIcon, ListItemAvatar, Avatar } from '@material-ui/core';
+import { ListItemAvatar } from '@material-ui/core';
 
 import Chevron from '@material-ui/icons/ChevronRight';
 import PersonIcon from '@material-ui/icons/Person';
-
-import * as Colors from '@pxblue/colors';
 
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 
