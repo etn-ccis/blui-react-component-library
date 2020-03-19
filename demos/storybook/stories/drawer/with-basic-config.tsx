@@ -1,11 +1,10 @@
-import { Accessibility, NotificationsActive, PermIdentity, Today } from '@material-ui/icons';
+import { Accessibility, Menu, NotificationsActive, PermIdentity, Today } from '@material-ui/icons';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxblue/react-components';
-import { boolean, text, select } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
 import { DrawerStoryContext } from './util';
-import { getIcon } from './with-full-config';
 
 export const navGroupItems1: NavItem[] = [
     {
@@ -33,17 +32,13 @@ export const navGroupItems1: NavItem[] = [
     },
 ];
 
-export const withBasicConfig = (context: DrawerStoryContext): StoryFnReactReturnType => {
-    const iconKnob = select('icon', ['<Menu />', '<List />', 'undefined'], '<Menu />');
-    const icon = getIcon(iconKnob);
-    return (
-        <Drawer open={boolean('open', true)}>
-            <DrawerHeader icon={icon} title={text('title', 'Simple Drawer')} />
-            <DrawerBody>
-                <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
-            </DrawerBody>
-        </Drawer>
-    );
-};
+export const withBasicConfig = (context: DrawerStoryContext): StoryFnReactReturnType => (
+    <Drawer open={boolean('open', true)}>
+        <DrawerHeader icon={<Menu />} title={text('title', 'Simple Drawer')} />
+        <DrawerBody>
+            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
+        </DrawerBody>
+    </Drawer>
+);
 
 withBasicConfig.story = { name: WITH_MIN_PROPS_STORY_NAME };

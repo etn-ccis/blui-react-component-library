@@ -4,10 +4,8 @@ import {
     Add,
     AddAPhoto,
     AirportShuttle,
-    Dashboard,
     Devices,
     FitnessCenter,
-    List,
     NotificationsActive,
     Remove,
     PinDrop,
@@ -54,7 +52,7 @@ const annualReport = 'Annual Report';
 const colorContrastGuide = 'Color Contrast Guide';
 const screenReader = 'Screen Reader';
 
-export const getIcon = (icon: string): JSX.Element | undefined => {
+const getIcon = (icon: string): JSX.Element | undefined => {
     switch (icon) {
         case '<Add />':
             return <Add />;
@@ -68,10 +66,6 @@ export const getIcon = (icon: string): JSX.Element | undefined => {
             return <Menu />;
         case '<FitnessCenter />':
             return <FitnessCenter />;
-        case '<List />':
-            return <List />;
-        case '<Dashboard />':
-            return <Dashboard />;
         case 'undefined':
         default:
             return undefined;
