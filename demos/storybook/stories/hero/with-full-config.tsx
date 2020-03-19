@@ -19,6 +19,7 @@ export const withFullConfig = (): StoryFnReactReturnType => (
         icon={<Fan fontSize={'inherit'} htmlColor={color('icon.htmlColor', Colors.white[50])} />}
         iconSize={number('iconSize', 35)}
         fontSize={select('fontSize', ['normal', 'small'], 'small')}
+        enableToolTip={boolean('enableToolTip', false)}
     />
 );
 

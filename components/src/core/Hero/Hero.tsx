@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '../ChannelValue';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import {Tooltip, TooltipProps as BaseTooltipProps} from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -69,11 +70,13 @@ export type HeroProps = {
     children?: React.ReactNode;
     classes?: HeroClasses;
     fontSize?: FontSize;
+    enableToolTip?: boolean;
     icon: string | JSX.Element;
     iconBackgroundColor?: string;
     iconSize?: number;
     label: string;
     onClick?: Function;
+    ToolTipProps?: Omit<BaseTooltipProps, 'children'|'title'>;
     value?: string | number;
     valueIcon?: JSX.Element;
     units?: string;
@@ -81,7 +84,29 @@ export type HeroProps = {
 
 export const Hero = (props: HeroProps): JSX.Element => {
     const defaultClasses = useStyles(props);
-    const { classes, fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units } = props;
+    const {
+        classes,
+        enableToolTip,
+        fontSize,
+        icon,
+        iconBackgroundColor,
+        iconSize,
+        label,
+        onClick,
+        ToolTipProps,
+        value,
+        valueIcon,
+        units,
+    } = props;
+
+    const getLabel = useCallback(
+        () => (
+            <Typography variant={'subtitle1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
+                {label}
+            </Typography>
+        ),
+        [label, classes]
+    );
 
     return (
         <div
@@ -109,9 +134,12 @@ export const Hero = (props: HeroProps): JSX.Element => {
                 {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
                 {props.children}
             </span>
-            <Typography variant={'subtitle1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
-                {label}
-            </Typography>
+            {enableToolTip && (
+                <Tooltip title={label} aria-label={label} arrow={true} {...ToolTipProps}>
+                    {getLabel()}
+                </Tooltip>
+            )}
+            {!enableToolTip && getLabel()}
         </div>
     );
 };
@@ -125,18 +153,21 @@ Hero.propType = {
         labels: PropTypes.string,
     }),
     children: PropTypes.element,
+    enableToolTip: PropTypes.bool,
     fontSize: PropTypes.oneOf(['normal', 'small']),
     icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     iconBackgroundColor: PropTypes.string,
     iconSize: PropTypes.number,
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func,
+    TooltipProps: PropTypes.object,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     valueIcon: PropTypes.element,
     units: PropTypes.string,
 };
 Hero.defaultProps = {
     classes: {},
+    enableToolTip: false,
     fontSize: 'normal',
     iconBackgroundColor: 'transparent',
     iconSize: 36,
