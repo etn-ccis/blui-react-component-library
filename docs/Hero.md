@@ -39,7 +39,7 @@ import { Hero } from '@pxblue/react-components';
 | fontSize            | The text size for the value line        | `'normal'` \| `'small'`                                            | no       | 'normal'               |
 | icon                | The primary icon                        | `React.Component` \| `string`                                      | yes      |                        |
 | iconBackgroundColor | The color used behind the primary icon  | `string`                                                           | no       | 'transparent'          |
-| iconSize            | The size of the primary icon (10-72)    | `number`                                                           | no       | 36                     |
+| iconSize            | The size of the primary icon (min 10px) | `number`                                                           | no       | 36                     |
 | label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        |
 | units               | Text to show after the value            | `string`                                                           | no       |                        |
 | value               | The value for the channel               | `string` \| `number`                                               | no       |                        |
