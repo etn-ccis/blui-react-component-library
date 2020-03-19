@@ -5,15 +5,7 @@ import Chevron from '@material-ui/icons/ChevronRight';
 import { separate, withKeys } from '../utilities';
 
 //Material-UI Components
-import {
-    Avatar,
-    Divider,
-    ListItem,
-    ListItemAvatar,
-    ListItemIcon,
-    ListItemText,
-    Typography,
-} from '@material-ui/core';
+import { Avatar, Divider, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import { useStyles } from './InfoListItem.styles';
 
@@ -55,6 +47,7 @@ export type InfoListItemProps = {
 };
 
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
+
     const defaultClasses = useStyles(props);
     const {
         avatar,
@@ -73,18 +66,20 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         title,
         ripple,
         wrapSubtitle,
-        wrapTitle
+        wrapTitle,
     } = props;
+
+    const combine = (className: keyof InfoListItemClasses): string => clsx(defaultClasses[className], classes[className]);
 
     const getIcon = (): JSX.Element | undefined => {
         if (icon && avatar) {
             return (
                 <ListItemAvatar>
-                    <Avatar className={clsx(defaultClasses.avatar, classes.avatar)}>{icon}</Avatar>
+                    <Avatar className={combine('avatar')}>{icon}</Avatar>
                 </ListItemAvatar>
             );
         } else if (icon) {
-            return <ListItemIcon className={clsx(defaultClasses.icon, classes.icon)}>{icon}</ListItemIcon>;
+            return <ListItemIcon className={combine('icon')}>{icon}</ListItemIcon>;
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
@@ -97,14 +92,14 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
 
     const getRightComponent = (): JSX.Element | undefined => {
         if (rightComponent) {
-            return <div className={clsx(defaultClasses.rightComponent, classes.rightComponent)}>{rightComponent}</div>;
+            return <div className={combine('rightComponent')}>{rightComponent}</div>;
         } else if (chevron) {
-            return <Chevron color={'inherit'} className={defaultClasses.rightComponent} />;
+            return <Chevron color={'inherit'} className={combine('rightComponent')} />;
         }
     };
 
     const interpunct = (): JSX.Element => (
-        <Typography className={clsx(defaultClasses.separator, classes.separator)}>
+        <Typography className={combine('separator')}>
             {subtitleSeparator || '\u00B7'}
         </Typography>
     );
@@ -125,11 +120,11 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
 
     return (
         <ListItem
-            style={style}
-            className={clsx(defaultClasses.root, classes.root)}
-            onClick={onClick ? (): void => onClick() : undefined}
-            dense={dense}
             button={ripple ? true : undefined}
+            className={combine('root')}
+            dense={dense}
+            onClick={onClick ? (): void => onClick() : undefined}
+            style={style}
         >
             <>
                 <div className={defaultClasses.statusStripe} />
@@ -143,12 +138,12 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     primaryTypographyProps={{
                         noWrap: !wrapTitle,
                         variant: 'body1',
-                        className: clsx(defaultClasses.title, classes.title),
+                        className: combine('title'),
                     }}
                     secondaryTypographyProps={{
                         noWrap: !wrapSubtitle,
                         variant: 'subtitle2',
-                        className: clsx(defaultClasses.subtitle, classes.subtitle),
+                        className: combine('subtitle'),
                     }}
                 />
                 {getRightComponent()}
@@ -189,7 +184,7 @@ InfoListItem.propTypes = {
     subtitleSeparator: PropTypes.string,
     title: PropTypes.string.isRequired,
     wrapSubtitle: PropTypes.bool,
-    wrapTitle: PropTypes.bool
+    wrapTitle: PropTypes.bool,
 };
 
 InfoListItem.defaultProps = {
@@ -202,5 +197,5 @@ InfoListItem.defaultProps = {
     ripple: false,
     subtitleSeparator: '\u00B7',
     wrapSubtitle: false,
-    wrapTitle: false
+    wrapTitle: false,
 };
