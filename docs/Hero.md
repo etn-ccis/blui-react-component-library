@@ -36,11 +36,13 @@ import { Hero } from '@pxblue/react-components';
 | Prop Name           | Description                             | Type                                                               | Required | Default                |
 |---------------------|-----------------------------------------|--------------------------------------------------------------------|----------|------------------------|
 | classes             | Style overrides                         | `StyleRules`                                                       | no       |                        |
+| enableToolTip       | Show a MUI ToolTip on label hover       | `boolean`                                                          | no       | false                  |           
 | fontSize            | The text size for the value line        | `'normal'` \| `'small'`                                            | no       | 'normal'               |
 | icon                | The primary icon                        | `React.Component` \| `string`                                      | yes      |                        |
 | iconBackgroundColor | The color used behind the primary icon  | `string`                                                           | no       | 'transparent'          |
 | iconSize            | The size of the primary icon (10-72)    | `number`                                                           | no       | 36                     |
 | label               | The text shown below the `ChannelValue` | `string`                                                           | yes      |                        |
+| ToolTipProps        | MUI ToolTip overrides                   | `ToolTipProps`                                                     | no       |                        |
 | units               | Text to show after the value            | `string`                                                           | no       |                        |
 | value               | The value for the channel               | `string` \| `number`                                               | no       |                        |
 | valueIcon           | The inline icon with the value          | `React.Component`                                                  | no       |                        |

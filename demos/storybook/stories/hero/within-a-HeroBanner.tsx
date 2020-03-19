@@ -1,7 +1,7 @@
 import * as Colors from '@pxblue/colors';
 import { CurrentCircled, GradeA, Leaf, Temp } from '@pxblue/icons-mui';
 import { Hero, HeroBanner } from '@pxblue/react-components';
-import {boolean, color, number} from '@storybook/addon-knobs';
+import {boolean, number} from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import {makeStyles} from "@material-ui/core";
