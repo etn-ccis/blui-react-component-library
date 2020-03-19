@@ -13,7 +13,6 @@ import {
     ListItemIcon,
     ListItemText,
     Typography,
-    ListItemSecondaryAction,
 } from '@material-ui/core';
 import clsx from 'clsx';
 import { useStyles } from './InfoListItem.styles';
@@ -49,6 +48,8 @@ export type InfoListItemProps = {
     subtitle?: string | Array<string | JSX.Element>;
     subtitleSeparator?: string;
     title: string;
+    wrapSubtitle?: boolean;
+    wrapTitle?: boolean;
 };
 
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
@@ -69,6 +70,8 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         subtitleSeparator,
         title,
         ripple,
+        wrapSubtitle,
+        wrapTitle
     } = props;
 
     const getIcon = (): JSX.Element | undefined => {
@@ -94,11 +97,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (rightComponent) {
             return <div className={clsx(defaultClasses.rightComponent, classes.rightComponent)}>{rightComponent}</div>;
         } else if (chevron) {
-            return (
-                <ListItemSecondaryAction className={defaultClasses.chevron}>
-                    <Chevron color={'inherit'} />
-                </ListItemSecondaryAction>
-            );
+            return <Chevron color={'inherit'} className={defaultClasses.rightComponent} />;
         }
     };
 
@@ -122,6 +121,19 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         return withKeys(separate(renderableSubtitleParts, () => interpunct()));
     };
 
+
+    const getMinHeight = (): number => dense ? 52 : 72;
+    const getWrapperStyle = (): CSSProperties =>
+        Object.assign(
+            {
+                backgroundColor: backgroundColor || 'transparent',
+                cursor: onClick ? 'pointer' : 'default',
+                height: (wrapSubtitle || wrapTitle) ? 'unset' : getMinHeight(),
+                minHeight: getMinHeight()
+            },
+            style
+        );
+
     return (
         <ListItem
             style={style}
@@ -140,12 +152,12 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     className={defaultClasses.listItemText}
                     secondary={getSubtitle()}
                     primaryTypographyProps={{
-                        noWrap: true,
+                        noWrap: !wrapTitle,
                         variant: 'body1',
                         className: clsx(defaultClasses.title, classes.title),
                     }}
                     secondaryTypographyProps={{
-                        noWrap: true,
+                        noWrap: !wrapSubtitle,
                         variant: 'subtitle2',
                         className: clsx(defaultClasses.subtitle, classes.subtitle),
                     }}
@@ -185,6 +197,8 @@ InfoListItem.propTypes = {
     ]),
     subtitleSeparator: PropTypes.string,
     title: PropTypes.string.isRequired,
+    wrapSubtitle: PropTypes.bool,
+    wrapTitle: PropTypes.bool
 };
 InfoListItem.defaultProps = {
     avatar: false,
@@ -195,4 +209,6 @@ InfoListItem.defaultProps = {
     hidePadding: false,
     ripple: false,
     subtitleSeparator: '\u00B7',
+    wrapSubtitle: false,
+    wrapTitle: false
 };
