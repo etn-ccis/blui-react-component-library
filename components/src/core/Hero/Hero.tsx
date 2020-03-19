@@ -5,7 +5,7 @@ import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '../ChannelValue';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {Tooltip, TooltipProps as BaseTooltipProps} from '@material-ui/core';
+import { Tooltip, TooltipProps as BaseTooltipProps } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -76,7 +76,7 @@ export type HeroProps = {
     iconSize?: number;
     label: string;
     onClick?: Function;
-    ToolTipProps?: Omit<BaseTooltipProps, 'children'|'title'>;
+    ToolTipProps?: Omit<BaseTooltipProps, 'children' | 'title'>;
     value?: string | number;
     valueIcon?: JSX.Element;
     units?: string;
