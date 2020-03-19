@@ -1,12 +1,14 @@
 import {
     Accessibility,
     Add,
-    AddAPhoto, Dashboard,
-    FitnessCenter, List,
+    AddAPhoto,
+    Dashboard,
+    FitnessCenter,
+    List,
     Menu,
     NotificationsActive,
     PinDrop,
-    Remove
+    Remove,
 } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import * as Colors from '@pxblue/colors';

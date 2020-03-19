@@ -1,4 +1,4 @@
-import {Accessibility, Menu, NotificationsActive, PermIdentity, Today} from '@material-ui/icons';
+import { Accessibility, Menu, NotificationsActive, PermIdentity, Today } from '@material-ui/icons';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxblue/react-components';
 import { boolean, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
