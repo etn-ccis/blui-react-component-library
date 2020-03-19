@@ -3,6 +3,7 @@ import { InfoListItemProps } from './InfoListItem';
 import color from 'color';
 import * as Colors from '@pxblue/colors';
 
+const getMinHeight = (props: InfoListItemProps): number => props.dense ? 52 : 72;
 const getIconColor = (props: InfoListItemProps): string => {
     const { avatar, iconColor, statusColor } = props;
     if (iconColor) return iconColor;
@@ -15,9 +16,10 @@ const getIconColor = (props: InfoListItemProps): string => {
 export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
     createStyles({
         root: {
-            backgroundColor: (props): string => props.backgroundColor || 'transparent',
+            backgroundColor: (props): string => props.backgroundColor || theme.palette.background.default,
             cursor: (props): string => (props.onClick ? 'pointer' : 'default'),
-            height: (props): number => (props.dense ? 52 : 72),
+            height: (props): any => (props.wrapSubtitle || props.wrapTitle) ? 'unset' : getMinHeight(props),
+            minHeight: (props): number => getMinHeight(props),
             '&:hover': {
                 backgroundColor: (props): string => (props.onClick ? 'rgba(0, 0, 0, 0.08)' : ''),
             },
@@ -25,9 +27,6 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         avatar: {
             backgroundColor: (props): string => props.statusColor || Colors.black[500],
             color: (props): string => getIconColor(props),
-        },
-        chevron: {
-            display: 'flex',
         },
         divider: {
             position: 'absolute',

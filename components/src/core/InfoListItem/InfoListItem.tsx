@@ -21,6 +21,8 @@ const MAX_SUBTITLE_ELEMENTS = 6;
 
 type InfoListItemClasses = {
     root?: string;
+    avatar?: string;
+    icon?: string;
     rightComponent?: string;
     separator?: string;
     subtitle?: string;
@@ -78,11 +80,11 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (icon && avatar) {
             return (
                 <ListItemAvatar>
-                    <Avatar className={defaultClasses.avatar}>{icon}</Avatar>
+                    <Avatar className={clsx(defaultClasses.avatar, classes.avatar)}>{icon}</Avatar>
                 </ListItemAvatar>
             );
         } else if (icon) {
-            return <ListItemIcon className={defaultClasses.icon}>{icon}</ListItemIcon>;
+            return <ListItemIcon className={clsx(defaultClasses.icon, classes.icon)}>{icon}</ListItemIcon>;
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
@@ -120,19 +122,6 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
 
         return withKeys(separate(renderableSubtitleParts, () => interpunct()));
     };
-
-
-    const getMinHeight = (): number => dense ? 52 : 72;
-    const getWrapperStyle = (): CSSProperties =>
-        Object.assign(
-            {
-                backgroundColor: backgroundColor || 'transparent',
-                cursor: onClick ? 'pointer' : 'default',
-                height: (wrapSubtitle || wrapTitle) ? 'unset' : getMinHeight(),
-                minHeight: getMinHeight()
-            },
-            style
-        );
 
     return (
         <ListItem
@@ -175,6 +164,8 @@ InfoListItem.propTypes = {
     chevron: PropTypes.bool,
     classes: PropTypes.shape({
         root: PropTypes.string,
+        avatar: PropTypes.string,
+        icon: PropTypes.string,
         rightComponent: PropTypes.string,
         separator: PropTypes.string,
         subtitle: PropTypes.string,
@@ -200,6 +191,7 @@ InfoListItem.propTypes = {
     wrapSubtitle: PropTypes.bool,
     wrapTitle: PropTypes.bool
 };
+
 InfoListItem.defaultProps = {
     avatar: false,
     chevron: false,
