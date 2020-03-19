@@ -1,12 +1,7 @@
 import React from 'react';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import Chevron from '@material-ui/icons/ChevronRight';
-import * as Colors from '@pxblue/colors';
-import color from 'color';
-
 import { separate, withKeys } from '../utilities';
 
 //Material-UI Components
@@ -21,48 +16,7 @@ import {
     ListItemSecondaryAction,
 } from '@material-ui/core';
 import clsx from 'clsx';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        divider: {
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-        },
-        statusStripe: {
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            width: 6,
-            zIndex: 100,
-        },
-        title: {
-            fontWeight: 600,
-            lineHeight: 1.2,
-            display: 'block',
-        },
-        subtitle: {
-            fontWeight: 400,
-            lineHeight: 1.3,
-        },
-        separator: {
-            display: 'inline-block',
-            lineHeight: 1.3,
-            color: 'inherit',
-            margin: `0 ${theme.spacing(0.5)}`,
-        },
-        rightComponent: {
-            flex: '0 0 auto',
-            marginLeft: theme.spacing(2),
-            display: 'flex',
-            alignItems: 'center',
-        },
-        chevron: {
-            display: 'flex',
-        },
-    })
-);
+import { useStyles } from './InfoListItem.styles';
 
 const MAX_SUBTITLE_ELEMENTS = 6;
 
@@ -98,23 +52,18 @@ export type InfoListItemProps = {
 };
 
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
-    const theme = useTheme();
-    const defaultClasses = useStyles(theme);
+    const defaultClasses = useStyles(props);
     const {
         avatar,
-        backgroundColor,
         chevron,
         classes,
         dense,
         divider,
-        fontColor,
         hidePadding,
         icon,
-        iconColor,
         leftComponent,
         onClick,
         rightComponent,
-        statusColor,
         style,
         subtitle,
         subtitleSeparator,
@@ -122,34 +71,15 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         ripple,
     } = props;
 
-    const getIconColor = (): string => {
-        if (iconColor) return iconColor;
-        if (avatar) {
-            return statusColor
-                ? color(statusColor).isDark()
-                    ? Colors.white[50]
-                    : Colors.black[500]
-                : Colors.white[50]; // default avatar is dark gray -> white text
-        }
-        return statusColor ? statusColor : 'inherit';
-    };
-
     const getIcon = (): JSX.Element | undefined => {
         if (icon && avatar) {
             return (
                 <ListItemAvatar>
-                    <Avatar
-                        style={{
-                            backgroundColor: statusColor || Colors.black[500],
-                            color: getIconColor(),
-                        }}
-                    >
-                        {icon}
-                    </Avatar>
+                    <Avatar className={defaultClasses.avatar}>{icon}</Avatar>
                 </ListItemAvatar>
             );
         } else if (icon) {
-            return <ListItemIcon style={{ color: getIconColor() }}>{icon}</ListItemIcon>;
+            return <ListItemIcon className={defaultClasses.icon}>{icon}</ListItemIcon>;
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
@@ -192,49 +122,32 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         return withKeys(separate(renderableSubtitleParts, () => interpunct()));
     };
 
-    const getWrapperStyle = (): CSSProperties =>
-        Object.assign(
-            {
-                backgroundColor: backgroundColor || 'transparent',
-                cursor: onClick ? 'pointer' : 'default',
-                height: dense ? 52 : 72,
-            },
-            style
-        );
-
     return (
         <ListItem
-            style={getWrapperStyle()}
-            className={classes.root}
+            style={style}
+            className={clsx(defaultClasses.root, classes.root)}
             onClick={onClick ? (): void => onClick() : undefined}
             dense={dense}
             button={ripple ? true : undefined}
         >
             <>
-                <div className={defaultClasses.statusStripe} style={{ backgroundColor: statusColor }} />
-                {divider && (
-                    <Divider
-                        className={defaultClasses.divider}
-                        style={{ zIndex: 0, left: divider === 'full' ? 0 : 72 }}
-                    />
-                )}
+                <div className={defaultClasses.statusStripe} />
+                {divider && <Divider className={defaultClasses.divider} />}
                 {(icon || !hidePadding) && getIcon()}
                 {leftComponent}
                 <ListItemText
-                    style={leftComponent ? { marginLeft: 16 } : {}}
                     primary={title}
+                    className={defaultClasses.listItemText}
                     secondary={getSubtitle()}
                     primaryTypographyProps={{
                         noWrap: true,
                         variant: 'body1',
                         className: clsx(defaultClasses.title, classes.title),
-                        style: { color: fontColor },
                     }}
                     secondaryTypographyProps={{
                         noWrap: true,
                         variant: 'subtitle2',
                         className: clsx(defaultClasses.subtitle, classes.subtitle),
-                        style: { color: fontColor || 'inherit' },
                     }}
                 />
                 {getRightComponent()}
