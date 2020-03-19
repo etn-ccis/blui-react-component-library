@@ -18,7 +18,6 @@ import {
     ListItemIcon,
     ListItemText,
     Typography,
-    ListItemSecondaryAction,
 } from '@material-ui/core';
 import clsx from 'clsx';
 
