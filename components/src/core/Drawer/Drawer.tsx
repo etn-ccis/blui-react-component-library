@@ -122,12 +122,14 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         ripple,
         titleColor,
         width,
-        variant,
         ...drawerProps // for Material-UI's Drawer component
     } = props;
 
+    const variant = props.variant || 'persistent'; // to allow drawerLayout to override this
+
     const isDrawerOpen = (): boolean => {
         if (variant === 'persistent') return hover || open;
+        if (variant === 'permanent') return true;
         return open;
     };
 

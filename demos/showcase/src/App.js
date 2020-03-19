@@ -261,7 +261,7 @@ export default () => {
                         />
                     </Toolbar>
                 </AppBar>
-                <div style={{ padding: 10, flex: 1, overflow: 'auto' }}>
+                <div style={{ padding: theme.spacing(), flex: 1, overflow: 'auto' }}>
                     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                         <ScoreCard
                             style={{ maxWidth: 400 }}
