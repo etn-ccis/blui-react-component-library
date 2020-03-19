@@ -189,13 +189,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
 
 
-    const getMinHeight = (): any => {
-        if (wrapSubtitle || wrapSubtitle) {
-            return dense ? 52 : 72;
-        }
-        return dense ? 52 : 72;
-    }
-
+    const getMinHeight = (): number => dense ? 52 : 72;
     const getWrapperStyle = (): CSSProperties =>
         Object.assign(
             {
