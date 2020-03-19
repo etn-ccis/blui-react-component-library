@@ -1,4 +1,13 @@
-import { Accessibility, AddAPhoto, FitnessCenter, NotificationsActive } from '@material-ui/icons';
+import {
+    Accessibility,
+    Add,
+    AddAPhoto, Dashboard,
+    FitnessCenter, List,
+    Menu,
+    NotificationsActive,
+    PinDrop,
+    Remove
+} from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@pxblue/react-components';
@@ -7,7 +16,6 @@ import { boolean, select, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { DrawerState, DrawerStoryContext } from './util';
-import { getIcon } from './with-full-config';
 
 const userGuide = 'User Guide';
 const license = 'License';
@@ -25,6 +33,22 @@ const contributingGuide = 'Contributing Guide';
 const componentLibrary = 'Component Library';
 const typographyRules = 'Typography Rules';
 const themeRules = 'Theme Rules';
+
+const getIcon = (icon: string): JSX.Element | undefined => {
+    switch (icon) {
+        case '<Add />':
+            return <Add />;
+        case '<PinDrop />':
+            return <PinDrop />;
+        case '<Remove />':
+            return <Remove />;
+        case '<AddAPhoto />':
+            return <AddAPhoto />;
+        case 'undefined':
+        default:
+            return undefined;
+    }
+};
 
 export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactReturnType => {
     const DrawerNavGroupID = 'DrawerNavGroup';
