@@ -1,10 +1,20 @@
-import React, { ReactNode } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import { DrawerProps, useMediaQuery } from '@material-ui/core';
+import { Drawer } from '../Drawer';
 
 export type DrawerLayoutProps = {
+    // Page's body
     children: React.ReactNode;
-    drawer: ReactNode;
+
+    // Drawer component to be embedded
+    drawer: JSX.Element;
+
+    // Change the drawer variant according to the break point
+    variantBreakpoints?: {
+        [key: string]: DrawerProps['variant'];
+    };
 };
 
 const useStyles = makeStyles({
@@ -25,11 +35,24 @@ const useStyles = makeStyles({
 });
 
 export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
-    const { children, drawer } = props;
+    const theme = useTheme();
+    const {
+        children,
+        drawer,
+        variantBreakpoints = {
+            [theme.breakpoints.down('xs')]: 'temporary',
+            [theme.breakpoints.up('sm')]: 'persistent',
+        },
+    } = props;
     const classes = useStyles(props);
     return (
         <div className={classes.root}>
-            <div className={classes.drawer}>{drawer}</div>
+            <div className={classes.drawer}>
+                {Object.keys(variantBreakpoints).map(
+                    (bp): JSX.Element =>
+                        useMediaQuery(bp) && <Drawer key={bp} variant={variantBreakpoints[bp]} {...drawer.props} />
+                )}
+            </div>
             <div className={classes.content}>{children}</div>
         </div>
     );

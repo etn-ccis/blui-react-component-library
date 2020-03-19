@@ -73,8 +73,8 @@ const useStyles = makeStyles((theme: Theme) =>
             transitionDuration: '300ms',
             cursor: 'inherit',
             display: 'flex',
-            height: 48,
-            width: 48,
+            height: theme.spacing(6),
+            width: theme.spacing(6),
             marginRight: -12,
             alignItems: 'center',
             justifyContent: 'space-around',
@@ -151,7 +151,7 @@ function NavigationListItem(
     const theme = useTheme();
     // @ts-ignore
     const primary50Color = theme.palette.primary[50];
-    const { activeItem, classes, nestedDivider  } = navGroupProps;
+    const { activeItem, classes, nestedDivider } = navGroupProps;
 
     // handle inheritables
     const activeItemBackgroundColor =
@@ -223,7 +223,7 @@ function NavigationListItem(
                     }
                 }}
                 className={clsx(defaultClasses.expandIcon, classes.expandIcon, {
-                    [defaultClasses.expanded]: !collapseIcon && expanded
+                    [defaultClasses.expanded]: !collapseIcon && expanded,
                 })}
             >
                 {collapseIcon && expanded ? collapseIcon : expandIcon}
@@ -251,7 +251,7 @@ function NavigationListItem(
             {active && (
                 <div
                     className={clsx(defaultClasses.active, classes.active, {
-                        [defaultClasses.square]: activeItemBackgroundShape === 'square'
+                        [defaultClasses.square]: activeItemBackgroundShape === 'square',
                     })}
                     style={{ backgroundColor: activeItemBackgroundColor }}
                 />
@@ -338,7 +338,10 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             // if there are more sub pages, add the bucket header and recurse on this function
             const collapsibleComponent = (
                 <Collapse in={expanded && open !== false} key={`${item.title}_group_${depth}`}>
-                    <List className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)} style={{ backgroundColor: nestedBackgroundColor }}>
+                    <List
+                        className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)}
+                        style={{ backgroundColor: nestedBackgroundColor }}
+                    >
                         {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
                     </List>
                 </Collapse>
@@ -362,7 +365,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     return (
         <>
             <List
-                style={{ backgroundColor }}
+                style={{ backgroundColor, paddingBottom: 0 }}
                 subheader={
                     <ListSubheader
                         className={clsx(defaultClasses.subheader, classes.subheader)}

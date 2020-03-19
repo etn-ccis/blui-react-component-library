@@ -35,6 +35,7 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 | Prop Name                       | Description                                                | Type      | Required | Default  |          
 |---------------------------------|------------------------------------------------------------|-----------|----------|----------|
 | open                            | Controls the open/closed state of the drawer               | `boolean` | yes      |          |
+| variant                         | The variant to use                                         | `'permanent' | 'persistent' | 'temporary'`| no | 
 | width                           | Sets the width of the drawer (in px) when open             | `number ` | no       |          |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -         | no       |          |
 
@@ -50,9 +51,6 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 | root             | Styles applied to the root element              |
 | content          | Styles applied to the drawer content container  |
 | paper            | MUI Drawer style override for desktop viewports |
-| paperMobile      | MUI Drawer style override for mobile  viewports |
-| smooth           | Styles applied to the open/close animation      |
-
 
 ## DrawerHeader
 The `DrawerHeader` contains the content at the top of the `Drawer`. By default, it renders multiple lines of text in the PX Blue style. If you supply a `titleContent`, you can render your own custom content in the title area. 
@@ -221,11 +219,11 @@ The `items` property of the NavItem can be nested to create a tree structure wit
 />
 ```
 
-## Drawer Footer
+## DrawerFooter
 The `DrawerFooter` is an optional section that renders at the bottom of the `Drawer`. It can be used to add any custom content (as children).
 
 
-### Drawer Footer API
+### DrawerFooter API
 
 <div style="overflow: auto;">
 
@@ -278,11 +276,34 @@ The `DrawerLayout` component is used to provide the appropriate resizing behavio
     <img width="100%" style="max-width: 600px" alt="DrawerLayout with labels" src="./images/drawerLayout.png">
 </div>
 
+### DrawerLayout API
+
+<div style="overflow: auto;">
+
+| Prop Name          | Description                                           | Type              | Required  | Default |
+|--------------------|-------------------------------------------------------|-------------------|-----------|---------|
+| children           | Page's body content                                   | `React.ReactNode` | yes       |         |   
+| drawer             | Drawer component to be embedded                       | `JSX.Element`     | yes       |         |   
+| variantBreakpoints | Change the drawer variant according to the breakpoint | `{[key: string]: DrawerProps['variant']}`| no | See below |   
+
+</div>
+
+The `variantBreakpoints` prop takes an object, with a media query string as its key, and a Drawer variant as the corresponding value. By default, the prop is set to 
+
+``` typescript
+{
+    [theme.breakpoints.down('xs')]: 'temporary', 
+    [theme.breakpoints.up('sm')]: 'persistent',
+}
+```
+
+which means the Drawer will have variant `temporary` at `xs` or below, and `persistent` at `sm` or above. Manually set the `variant` prop in `<Drawer />` will override this setting. 
+
 ## DrawerLayout Usage
 ```typescript
 import { Drawer, DrawerLayout } from '@pxblue/react-components';
 ...
-<DrawerLayout drawer={<Drawer ... />} >
+<DrawerLayout drawer={<Drawer ... />}>
     <>
         /* Page content goes here */
     </>

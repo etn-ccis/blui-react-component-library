@@ -33,6 +33,7 @@ const drawerModule = {
 /* Display order goes here */
 export { getReadMeStory } from '../../src/utils';
 export { withBasicConfig } from './with-basic-config';
+export * from './with-different-variants';
 export * from './with-custom-header';
 export * from './with-subheader';
 export { withMultipleNavGroups } from './with-multiple-DrawerNavGroups';
