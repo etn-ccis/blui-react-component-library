@@ -50,15 +50,13 @@ export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
             return Object.keys(variantBreakpoints).map(
                 (bp): JSX.Element =>
                     useMediaQuery(bp) && <Drawer key={bp} variant={variantBreakpoints[bp]} {...drawer.props} />
-                )
-        } 
+            );
+        }
         return drawer;
-    }
+    };
     return (
         <div className={classes.root}>
-            <div className={classes.drawer}>
-                { getDrawerContent() }
-            </div>
+            <div className={classes.drawer}>{getDrawerContent()}</div>
             <div className={classes.content}>{children}</div>
         </div>
     );

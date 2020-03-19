@@ -35,12 +35,17 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 | Prop Name                       | Description                                                | Type      | Required | Default  |          
 |---------------------------------|------------------------------------------------------------|-----------|----------|----------|
 | open                            | Controls the open/closed state of the drawer               | `boolean` | yes      |          |
-| variant                         | The variant to use                                         | `'permanent' | 'persistent' | 'temporary'`| no | 
+| variant                         | The variant to use (see below)                             | `'permanent' | 'persistent' | 'temporary'`| no | |
 | width                           | Sets the width of the drawer (in px) when open             | `number ` | no       |          |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -         | no       |          |
 
 </div>
 
+The `Drawer` has three `variant`s: 
+- **Permanent**: Always open, even when `open` is set to false.
+- **Persistent**: When `open` is set to false, the Drawer collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent Drawer.
+- **Temporary**: When `open` is set to false, the drawer is hidden; when `open` is set to true, it slides in.
+The drawer variant overrides that set in variantBreakpoints.
 
 #### Classes
 
@@ -73,7 +78,6 @@ The `DrawerHeader` contains the content at the top of the `Drawer`. By default, 
 
 </div>
 
-
 #### Classes
 You can override the classes used by PX Blue by passing a `classes` prop. The DrawerHeader supports the following keys:
 
@@ -99,7 +103,6 @@ import DrawerSubheader from '@pxblue/react-components/core/Drawer';
     <div>Custom Subheader Content</div>
 </DrawerSubheader>
 ```
-
 
 ## DrawerBody
 The `DrawerBody` is a wrapper for the main content of the Drawer. The typical use case is to display `DrawerNavGroup` elements, but custom elements (e.g., for spacing) are accepted as well.
@@ -222,6 +225,14 @@ The `items` property of the NavItem can be nested to create a tree structure wit
 ## DrawerFooter
 The `DrawerFooter` is an optional section that renders at the bottom of the `Drawer`. It can be used to add any custom content (as children).
 
+### Usage
+```typescript
+import DrawerFooter from '@pxblue/react-components/core/Drawer';
+...
+<DrawerFooter>
+    <div>Custom Footer goes here</div>
+</DrawerFooter>
+```
 
 ### DrawerFooter API
 
@@ -232,15 +243,6 @@ The `DrawerFooter` is an optional section that renders at the bottom of the `Dra
 | backgroundColor | The color used for the background | `string`      | no       |         |   
 
 </div>
-
-### Usage
-```typescript
-import DrawerFooter from '@pxblue/react-components/core/Drawer';
-...
-<DrawerFooter>
-    <div>Custom Footer goes here</div>
-</DrawerFooter>
-```
 
 ## Shared Props
 The following props can be set at any level in the drawer hierarchy (`Drawer`, `DrawerNavGroup`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
@@ -276,6 +278,17 @@ The `DrawerLayout` component is used to provide the appropriate resizing behavio
     <img width="100%" style="max-width: 600px" alt="DrawerLayout with labels" src="./images/drawerLayout.png">
 </div>
 
+## DrawerLayout Usage
+```typescript
+import { Drawer, DrawerLayout } from '@pxblue/react-components';
+...
+<DrawerLayout drawer={<Drawer ... />}>
+    <>
+        /* Page content goes here */
+    </>
+</DrawerLayout>
+```
+
 ### DrawerLayout API
 
 <div style="overflow: auto;">
@@ -299,13 +312,3 @@ The `variantBreakpoints` prop takes an object, with a media query string as its 
 
 which means the Drawer will have variant `temporary` at `xs` or below, and `persistent` at `sm` or above. Manually set the `variant` prop in `<Drawer />` will override this setting. 
 
-## DrawerLayout Usage
-```typescript
-import { Drawer, DrawerLayout } from '@pxblue/react-components';
-...
-<DrawerLayout drawer={<Drawer ... />}>
-    <>
-        /* Page content goes here */
-    </>
-</DrawerLayout>
-```
