@@ -6,8 +6,8 @@ import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
 import { addClickEvents, DrawerState } from './util';
 import { navGroupItems1 } from './with-basic-config';
 
-const padDrawer = (storyFn: any): JSX.Element => (
-    <div style={{ margin: 20, display: 'flex', height: '100%' }}>{storyFn()}</div>
+const alignDrawer = (storyFn: any): JSX.Element => (
+    <div style={{ display: 'flex', height: '100%', alignSelf: 'flex-start', width: '100%' }}>{storyFn()}</div>
 );
 
 const store = new Store<DrawerState>({
@@ -26,7 +26,7 @@ const wrapStore = (storyFn: any): JSX.Element => (
 const drawerModule = {
     title: `${COMPONENT_SECTION_NAME}/Drawer`,
     component: Drawer,
-    decorators: [storyWrapper, padDrawer, wrapStore],
+    decorators: [storyWrapper, alignDrawer, wrapStore],
     parameters: { ...storyParams, notes: { markdown: getReadMe('Drawer.md') } },
 };
 
