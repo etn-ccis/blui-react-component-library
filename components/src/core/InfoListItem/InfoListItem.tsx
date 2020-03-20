@@ -1,72 +1,34 @@
 import React from 'react';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
-import PropTypes from 'prop-types';
-import Chevron from '@material-ui/icons/ChevronRight';
-import { separate, withKeys } from '../utilities';
-
-//Material-UI Components
-import { Avatar, Divider, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 import clsx from 'clsx';
+import { separate, withKeys } from '../utilities';
+import {InfoListItemClasses, InfoListItemProps} from "./InfoListItem.types";
 import { useStyles } from './InfoListItem.styles';
 
+import { Avatar, Divider, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
+import Chevron from '@material-ui/icons/ChevronRight';
+
 const MAX_SUBTITLE_ELEMENTS = 6;
-
-type InfoListItemClasses = {
-    root?: string;
-    avatar?: string;
-    icon?: string;
-    listItem?: string;
-    rightComponent?: string;
-    separator?: string;
-    subtitle?: string;
-    title?: string;
-};
-
-export type DividerType = 'full' | 'partial';
-export type InfoListItemProps = {
-    avatar?: boolean;
-    backgroundColor?: string;
-    chevron?: boolean;
-    classes?: InfoListItemClasses;
-    dense?: boolean;
-    divider?: DividerType;
-    fontColor?: string;
-    hidePadding?: boolean;
-    icon?: JSX.Element;
-    iconColor?: string;
-    leftComponent?: JSX.Element;
-    onClick?: Function;
-    rightComponent?: JSX.Element;
-    ripple?: boolean;
-    statusColor?: string;
-    style?: CSSProperties;
-    subtitle?: string | Array<string | JSX.Element>;
-    subtitleSeparator?: string;
-    title: string;
-    wrapSubtitle?: boolean;
-    wrapTitle?: boolean;
-};
 
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const defaultClasses = useStyles(props);
     const {
-        avatar,
-        chevron,
-        classes,
-        dense,
+        avatar = false,
+        chevron = false,
+        classes = {},
+        dense = false,
         divider,
-        hidePadding,
+        hidePadding = false,
         icon,
         leftComponent,
         onClick,
         rightComponent,
         style,
         subtitle,
-        subtitleSeparator,
+        subtitleSeparator = '\u00B7',
         title,
-        ripple,
-        wrapSubtitle,
-        wrapTitle,
+        ripple = false,
+        wrapSubtitle = false,
+        wrapTitle = false,
     } = props;
 
     const combine = (className: keyof InfoListItemClasses): string =>
@@ -152,50 +114,3 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
 };
 
 InfoListItem.displayName = 'InfoListItem';
-InfoListItem.propTypes = {
-    avatar: PropTypes.bool,
-    backgroundColor: PropTypes.string,
-    chevron: PropTypes.bool,
-    classes: PropTypes.shape({
-        root: PropTypes.string,
-        avatar: PropTypes.string,
-        icon: PropTypes.string,
-        listItem: PropTypes.string,
-        rightComponent: PropTypes.string,
-        separator: PropTypes.string,
-        subtitle: PropTypes.string,
-        title: PropTypes.string,
-    }),
-    dense: PropTypes.bool,
-    divider: PropTypes.oneOf(['full', 'partial']),
-    fontColor: PropTypes.string,
-    hidePadding: PropTypes.bool,
-    icon: PropTypes.element,
-    iconColor: PropTypes.string,
-    leftComponent: PropTypes.element,
-    onClick: PropTypes.func,
-    rightComponent: PropTypes.element,
-    statusColor: PropTypes.string,
-    style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-    subtitle: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
-    ]),
-    subtitleSeparator: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    wrapSubtitle: PropTypes.bool,
-    wrapTitle: PropTypes.bool,
-};
-
-InfoListItem.defaultProps = {
-    avatar: false,
-    chevron: false,
-    classes: {},
-    dense: false,
-    fontColor: 'inherit',
-    hidePadding: false,
-    ripple: false,
-    subtitleSeparator: '\u00B7',
-    wrapSubtitle: false,
-    wrapTitle: false,
-};
