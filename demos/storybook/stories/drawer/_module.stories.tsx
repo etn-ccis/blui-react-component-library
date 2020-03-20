@@ -26,7 +26,7 @@ const wrapStore = (storyFn: any): JSX.Element => (
 const drawerModule = {
     title: `${COMPONENT_SECTION_NAME}/Drawer`,
     component: Drawer,
-    decorators: [storyWrapper, padDrawer],
+    decorators: [storyWrapper, padDrawer, wrapStore],
     parameters: { ...storyParams, notes: { markdown: getReadMe('Drawer.md') } },
 };
 
