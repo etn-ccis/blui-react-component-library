@@ -20,7 +20,7 @@ let shallow: Shallow;
 describe('InfoListItem', () => {
     beforeEach(() => {
         mount = createMount({ strict: true });
-        shallow = createShallow({ dive: true });
+        shallow = createShallow();
     });
 
     afterEach(() => {
