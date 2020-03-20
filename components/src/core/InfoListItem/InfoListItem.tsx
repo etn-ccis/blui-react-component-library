@@ -15,6 +15,7 @@ type InfoListItemClasses = {
     root?: string;
     avatar?: string;
     icon?: string;
+    listItem?: string;
     rightComponent?: string;
     separator?: string;
     subtitle?: string;
@@ -47,7 +48,6 @@ export type InfoListItemProps = {
 };
 
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
-
     const defaultClasses = useStyles(props);
     const {
         avatar,
@@ -69,7 +69,8 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         wrapTitle,
     } = props;
 
-    const combine = (className: keyof InfoListItemClasses): string => clsx(defaultClasses[className], classes[className]);
+    const combine = (className: keyof InfoListItemClasses): string =>
+        clsx(defaultClasses[className], classes[className]);
 
     const getIcon = (): JSX.Element | undefined => {
         if (icon && avatar) {
@@ -99,9 +100,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
 
     const interpunct = (): JSX.Element => (
-        <Typography className={combine('separator')}>
-            {subtitleSeparator || '\u00B7'}
-        </Typography>
+        <Typography className={combine('separator')}>{subtitleSeparator || '\u00B7'}</Typography>
     );
 
     const getSubtitle = (): string | null => {
@@ -119,14 +118,14 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
 
     return (
-        <ListItem
-            button={ripple ? true : undefined}
-            className={combine('root')}
-            dense={dense}
-            onClick={onClick ? (): void => onClick() : undefined}
-            style={style}
-        >
-            <>
+        <div className={combine('root')}>
+            <ListItem
+                button={ripple ? true : undefined}
+                className={combine('listItem')}
+                dense={dense}
+                onClick={onClick ? (): void => onClick() : undefined}
+                style={style}
+            >
                 <div className={defaultClasses.statusStripe} />
                 {divider && <Divider className={defaultClasses.divider} />}
                 {(icon || !hidePadding) && getIcon()}
@@ -147,8 +146,8 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     }}
                 />
                 {getRightComponent()}
-            </>
-        </ListItem>
+            </ListItem>
+        </div>
     );
 };
 
@@ -161,6 +160,7 @@ InfoListItem.propTypes = {
         root: PropTypes.string,
         avatar: PropTypes.string,
         icon: PropTypes.string,
+        listItem: PropTypes.string,
         rightComponent: PropTypes.string,
         separator: PropTypes.string,
         subtitle: PropTypes.string,

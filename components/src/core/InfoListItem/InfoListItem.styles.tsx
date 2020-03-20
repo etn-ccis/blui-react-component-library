@@ -13,22 +13,23 @@ const getIconColor = (props: InfoListItemProps): string => {
     return statusColor ? statusColor : 'inherit';
 };
 
-
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
     createStyles({
         root: {
-            backgroundColor: (props) => props.backgroundColor || theme.palette.background.default,
             cursor: (props) => (props.onClick ? 'pointer' : 'default'),
-            height: (props) => (props.wrapSubtitle || props.wrapTitle ? 'unset' : getMinHeight(props)),
-            minHeight: (props) => getMinHeight(props),
-            '&:hover': {
-                backgroundColor: (props) => (props.onClick ? 'rgba(0, 0, 0, 0.08)' : ''),
-            },
+            backgroundColor: (props) => props.backgroundColor || theme.palette.background.default,
         },
         avatar: {
             backgroundColor: (props) => props.statusColor || Colors.black[500],
             color: (props) => getIconColor(props),
+        },
+        listItem: {
+            height: (props) => (props.wrapSubtitle || props.wrapTitle ? 'unset' : getMinHeight(props)),
+            minHeight: (props) => getMinHeight(props),
+            '&:hover': {
+                backgroundColor: (props) => (props.onClick ? 'rgba(0, 0, 0, .08)' : ''),
+            },
         },
         divider: {
             position: 'absolute',

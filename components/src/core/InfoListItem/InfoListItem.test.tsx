@@ -39,7 +39,7 @@ describe('InfoListItem', () => {
         wrapper = shallow(<InfoListItem hidePadding title="Test" />);
         expect(wrapper.find(PersonIcon).length).toEqual(0);
     });
-/* No longer using in-line props to modify styling.
+    /* No longer using in-line props to modify styling.
     TODO: Update this test to work.
     it('renders correct icon Color', () => {
         let wrapper = shallow(<InfoListItem icon={<PersonIcon />} title="Test" />);
