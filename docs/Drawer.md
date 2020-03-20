@@ -26,6 +26,17 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
     </DrawerBody>
     <DrawerFooter />
 </Drawer>
+
+// a responsive Drawer using Drawer variant 
+import { useMediaQuery } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
+const theme = useTheme();
+const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
+<Drawer 
+    open={true}
+    variant={xsDown ? 'temporary' : 'persistent'}
+>
+</Drawer>
 ```
 
 ### Drawer API
