@@ -15,6 +15,7 @@ import { boolean, select, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { DrawerState, DrawerStoryContext } from './util';
+import {makeStyles} from "@material-ui/core";
 
 const userGuide = 'User Guide';
 const license = 'License';
@@ -49,8 +50,19 @@ const getIcon = (icon: string): JSX.Element | undefined => {
     }
 };
 
+// @ts-ignore
+const useStyles = makeStyles({
+    nestedListGroup: {
+       backgroundColor: 'red!important',
+        fontWeight: '200!important',
+        fontSize: '14px!important',
+        fontColor: 'white!important'
+    },
+});
+
 export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactReturnType => {
     const DrawerNavGroupID = 'DrawerNavGroup';
+    const classes = useStyles();
     const open = boolean('open', true, DrawerNavGroupID);
     const divider = boolean('divider', true, DrawerNavGroupID);
     const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
@@ -102,11 +114,11 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
     const drawerItemList = (state: DrawerState): JSX.Element => (
         <DrawerBody>
             <DrawerNavGroup
+                classes={{nestedListGroup: classes.nestedListGroup}}
                 divider={divider}
                 nestedDivider={nestedDivider}
                 title={'Multi-Level Navigation Group'}
                 hidePadding={hidePadding}
-                activeItem={state.selected}
                 chevron={chevron}
                 nestedBackgroundColor={nestedBackgroundColor}
                 expandIcon={getIcon(groupUseExpandIcon)}
