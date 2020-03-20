@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useMediaQuery } from '@material-ui/core';
 
 import {
     Add,
@@ -54,6 +55,7 @@ export default () => {
     const [location, setLocation] = useState(0);
     const [route, setRoute] = useState(0);
     const theme = useTheme();
+    const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
     const titleList = [
         'Overview',
@@ -77,6 +79,7 @@ export default () => {
                         onBackdropClick: () => setOpen(!open),
                     }}
                     activeItem={titleList[route]}
+                    variant={xsDown ? 'temporary' : 'persistent'}
                 >
                     <DrawerHeader
                         title={'Showcase App'}
@@ -107,14 +110,20 @@ export default () => {
                                     title: titleList[0],
                                     itemID: titleList[0],
                                     icon: <ListIcon />,
-                                    onClick: () => setRoute(0),
+                                    onClick: () => {
+                                        setRoute(0);
+                                        if (xsDown) setOpen(false);
+                                    },
                                 },
                                 {
                                     title: titleList[1],
                                     itemID: titleList[1],
                                     subtitle: '2 Alarms',
                                     icon: <NotificationsActive />,
-                                    onClick: () => setRoute(1),
+                                    onClick: () => {
+                                        setRoute(1);
+                                        if (xsDown) setOpen(false);
+                                    },
                                 },
                                 {
                                     title: titleList[2],
@@ -126,12 +135,18 @@ export default () => {
                                         {
                                             title: titleList[7],
                                             itemID: titleList[7],
-                                            onClick: () => setRoute(7),
+                                            onClick: () => {
+                                                setRoute(7);
+                                                if (xsDown) setOpen(false);
+                                            },
                                         },
                                         {
                                             title: titleList[8],
                                             itemID: titleList[8],
-                                            onClick: () => setRoute(8),
+                                            onClick: () => {
+                                                setRoute(8);
+                                                if (xsDown) setOpen(false);
+                                            },
                                         },
                                     ],
                                 },
@@ -139,7 +154,10 @@ export default () => {
                                     title: titleList[3],
                                     itemID: titleList[3],
                                     icon: <Device />,
-                                    onClick: () => setRoute(3),
+                                    onClick: () => {
+                                        setRoute(3);
+                                        if (xsDown) setOpen(false);
+                                    },
                                 },
                             ]}
                         />
@@ -157,19 +175,28 @@ export default () => {
                                     title: titleList[4],
                                     itemID: titleList[4],
                                     icon: <Settings />,
-                                    onClick: () => setRoute(4),
+                                    onClick: () => {
+                                        setRoute(4);
+                                        if (xsDown) setOpen(false);
+                                    },
                                 },
                                 {
                                     title: titleList[5],
                                     itemID: titleList[5],
                                     icon: <Gavel />,
-                                    onClick: () => setRoute(5),
+                                    onClick: () => {
+                                        setRoute(5);
+                                        if (xsDown) setOpen(false);
+                                    },
                                 },
                                 {
                                     title: titleList[6],
                                     itemID: titleList[6],
                                     icon: <Help />,
-                                    onClick: () => setRoute(6),
+                                    onClick: () => {
+                                        setRoute(6);
+                                        if (xsDown) setOpen(false);
+                                    },
                                 },
                             ]}
                         />
@@ -235,7 +262,7 @@ export default () => {
                         />
                     </Toolbar>
                 </AppBar>
-                <div style={{ padding: 10, flex: 1, overflow: 'auto' }}>
+                <div style={{ padding: theme.spacing(), flex: 1, overflow: 'auto' }}>
                     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                         <ScoreCard
                             style={{ maxWidth: 400 }}

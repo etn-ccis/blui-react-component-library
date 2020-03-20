@@ -1,10 +1,13 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 export type DrawerLayoutProps = {
+    // Page's body
     children: React.ReactNode;
-    drawer: ReactNode;
+
+    // Drawer component to be embedded
+    drawer: React.ReactNode;
 };
 
 const useStyles = makeStyles({

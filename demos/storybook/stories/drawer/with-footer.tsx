@@ -11,13 +11,13 @@ import { navGroupItems2 } from './with-multiple-DrawerNavGroups';
 const EatonLogo = require('../../assets/EatonLogo.svg');
 
 export const withFooter = (context: DrawerStoryContext): StoryFnReactReturnType => (
-    <Drawer open={boolean('open', true)}>
+    <Drawer open={boolean('Drawer.open', true)}>
         <DrawerHeader icon={<Menu />} title={'Footer Example'} />
         <DrawerBody>
             <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems2(context)} />
         </DrawerBody>
 
-        <DrawerFooter backgroundColor={color('backgroundColor', Colors.white[50])}>
+        <DrawerFooter backgroundColor={color('DrawerFooter.backgroundColor', Colors.white[50])}>
             <Divider />
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
