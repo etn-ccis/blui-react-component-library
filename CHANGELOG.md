@@ -1,7 +1,8 @@
 # Change Log
 
 ## v3.0.0
-- Adds support for nested items in the Drawer component; adjusted Drawer and DrawerLayout API.
+- Adds support for nested items in the Drawer component; 
+- Additional styling props added to Drawer; 
 
 **Breaking Changes:** 
 - A few props got renamed to avoid further ambiguities: 
@@ -40,7 +41,6 @@
         ]}
     />
     ```
-- DrawerLayout's `drawer` prop now takes `JSX.Element` instead of `ReactNode`.
 
 ## v2.1.0
 - Adds InfoListTag Component

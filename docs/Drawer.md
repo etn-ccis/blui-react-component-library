@@ -1,5 +1,5 @@
 # Drawer
-The Drawer component is a wrapper around the Material UI Drawer that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `DrawerHeader`, `DrawerSubheader`, `DrawerBody`, `DrawerNavGroup`, and `DrawerFooter` to help organize the content.
+The Drawer component is a wrapper around the Material UI Drawer that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `DrawerHeader`, `DrawerSubheader`, `DrawerBody`, `DrawerNavGroup`, `DrawerFooter`, and `DrawerLayout` to help organize the content.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 200px" alt="Nested Drawer" src="./images/drawer.png">
@@ -45,7 +45,6 @@ The `Drawer` has three `variant`s:
 - **Permanent**: Always open, even when `open` is set to false.
 - **Persistent**: When `open` is set to false, the Drawer collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent Drawer.
 - **Temporary**: When `open` is set to false, the drawer is hidden; when `open` is set to true, it slides in.
-The drawer variant overrides that set in variantBreakpoints.
 
 #### Classes
 
@@ -293,22 +292,10 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name          | Description                                           | Type                                     | Required  | Default   |
-|--------------------|-------------------------------------------------------|------------------------------------------|-----------|-----------|
-| children           | Page's body content                                   | `React.ReactNode`                        | yes       |           |   
-| drawer             | Drawer component to be embedded                       | `React.FC<DrawerProps>`                 | yes       |           |   
-| variantBreakpoints | Change the drawer variant according to the breakpoint | `{[key: string]: DrawerProps['variant']}`| no        | See below |   
+| Prop Name          | Description                     | Type              | Required | Default |
+|--------------------|---------------------------------|-------------------|----------|---------|
+| children           | Page's body content             | `React.ReactNode` | yes      |         |   
+| drawer             | Drawer component to be embedded | `React.ReactNode` | yes      |         |    
 
 </div>
-
-The `variantBreakpoints` prop takes an object, with a media query string as its key, and a Drawer variant as the corresponding value. By default, the prop is set to 
-
-``` typescript
-{
-    [theme.breakpoints.down('xs')]: 'temporary', 
-    [theme.breakpoints.up('sm')]: 'persistent',
-}
-```
-
-which means the Drawer will have variant `temporary` at `xs` or below, and `persistent` at `sm` or above. Manually set the `variant` prop in `<Drawer />` will override this setting. 
 

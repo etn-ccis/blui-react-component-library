@@ -79,6 +79,7 @@ export default () => {
                         onBackdropClick: () => setOpen(!open),
                     }}
                     activeItem={titleList[route]}
+                    variant={xsDown ? 'temporary' : 'persistent'}
                 >
                     <DrawerHeader
                         title={'Showcase App'}
