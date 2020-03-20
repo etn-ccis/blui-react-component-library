@@ -54,7 +54,6 @@ export default () => {
     const [location, setLocation] = useState(0);
     const [route, setRoute] = useState(0);
     const theme = useTheme();
-    const classes  = useStyles();
 
     const titleList = [
         'Overview',
