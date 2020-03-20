@@ -53,6 +53,9 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | Name             | Description                                         |
 |------------------|-----------------------------------------------------|
 | root             | Styles applied to the root element                  |  
+| avatar           | Styles applied to the Avatar element                |   
+| icon             | Styles applied to the icon element                  |   
+| listItem         | Styles applied to the MUI ListItem element          |   
 | rightComponent   | Styles applied to the rightComponent parent element |   
 | separator        | Styles applied to subtitle delimiter                | 
 | subtitle         | Styles applied to the subtitle element              |
