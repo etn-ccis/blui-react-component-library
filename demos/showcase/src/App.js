@@ -46,20 +46,8 @@ import {
 import top from './topology_40.png';
 import EatonLogo from './EatonLogo.svg';
 import Avatar from '@material-ui/core/Avatar';
-import {makeStyles} from "@material-ui/styles";
 
 const locations = ['All Locations', 'Gary Steelworks', 'Semaine Prochaine'];
-
-
-// @ts-ignore
-const useStyles = makeStyles({
-    nestedListGroup: {
-        backgroundColor: 'red!important',
-        fontWeight: '200!important',
-        fontSize: '14px!important',
-        color: 'white!important'
-    },
-});
 
 export default () => {
     const [open, setOpen] = useState(false);
@@ -115,8 +103,6 @@ export default () => {
                     </DrawerSubheader>
                     <DrawerBody>
                         <DrawerNavGroup
-
-                            classes={{nestedListGroup: classes.nestedListGroup}}
                             items={[
                                 {
                                     title: titleList[0],
