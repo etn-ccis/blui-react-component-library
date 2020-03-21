@@ -218,10 +218,14 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const containerWidth = isDrawerOpen() ? width || defaultContentWidth : defaultNavigationRailWidth;
     const contentWidth = width || defaultContentWidth;
 
-   const content = document.getElementById('@@pxb-drawerlayout-content');
-   if (content) {
-      content.style.marginLeft = `${containerWidth}px`;
-   }
+    // TODO: Find a better way to rerender.
+   // Initial draw doesn't have parent container rendered so margin not applied on first load.
+    setTimeout(() => {
+      const content = document.getElementById('@@pxb-drawerlayout-content');
+      if (content) {
+         content.style.marginLeft = `${containerWidth}px`;
+      }
+    });
 
     return (
         <Drawer
