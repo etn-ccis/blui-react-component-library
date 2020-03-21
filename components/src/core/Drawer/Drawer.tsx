@@ -1,39 +1,27 @@
 import React, { useState } from 'react';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Drawer, DrawerProps } from '@material-ui/core';
-import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
 import { DrawerBodyProps } from './DrawerBody';
 import clsx from 'clsx';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        paper: {
-            overflow: 'hidden',
-            position: 'unset',
-        },
-        paperMobile: {
-            maxWidth: '85%',
-            width: theme.spacing(45),
-        },
-        smooth: {
-            transition: 'width 175ms cubic-bezier(.4, 0, .2, 1)',
-        },
-        content: {
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            width: '100%',
-        },
-    })
-);
+const useStyles = makeStyles({
+    paper: {
+        overflow: 'hidden',
+        position: 'unset',
+    },
+    content: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        width: '100%',
+    },
+});
 
 type DrawerClasses = {
     root?: string;
     content?: string;
-    drawer?: string;
     paper?: string;
-    smooth?: string;
 };
 
 // type shared by Drawer, DrawerBody, DrawerNavGroup, NestedNavItem
@@ -140,7 +128,13 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         ...drawerProps // for Material-UI's Drawer component
     } = props;
 
-    const isDrawerOpen = (): boolean => hover || open;
+    const variant = props.variant || 'persistent'; // to allow drawerLayout to override this
+
+    const isDrawerOpen = (): boolean => {
+        if (variant === 'persistent') return hover || open;
+        if (variant === 'permanent') return true;
+        return open;
+    };
 
     const findChildByType = (type: string): JSX.Element[] =>
         React.Children.map(props.children, (child: any) => {
@@ -218,54 +212,33 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         </>
     );
 
-    const getMobileNavigationMenu = (): JSX.Element => (
+    const defaultContentWidth = theme.spacing(45);
+    const defaultNavigationRailWidth = theme.spacing(7);
+
+    const containerWidth = isDrawerOpen() ? width || defaultContentWidth : defaultNavigationRailWidth;
+    const contentWidth = width || defaultContentWidth;
+
+   const content = document.getElementById('@@pxb-drawerlayout-content');
+   if (content) {
+      content.style.marginLeft = `${containerWidth}px`;
+   }
+
+    return (
         <Drawer
-            {...props}
+            {...drawerProps}
+            variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
-            classes={{ paper: clsx(defaultClasses.paperMobile, props.classes.paper) }}
+            classes={{ paper: clsx(defaultClasses.paper, props.classes.paper) }}
+            style={{
+                minHeight: '100%',
+                width: containerWidth,
+                transition: 'width 175ms cubic-bezier(.4, 0, .2, 1)',
+            }}
         >
-            <div className={clsx(defaultClasses.smooth, classes.smooth, defaultClasses.content, classes.content)}>
+            <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
                 {getDrawerContents()}
             </div>
         </Drawer>
-    );
-
-    const getDesktopNavigationMenu = (): JSX.Element => {
-        const containerWidth = isDrawerOpen() ? width || theme.spacing(45) : theme.spacing(7);
-        const contentWidth = width || theme.spacing(45);
-
-        const content = document.getElementById('@@pxb-drawerlayout-content');
-        if (content) {
-            content.style.marginLeft = `${containerWidth}px`;
-        }
-
-        return (
-            <>
-                <Drawer
-                    {...drawerProps}
-                    variant={'permanent'}
-                    open={isDrawerOpen()}
-                    classes={{ paper: clsx(defaultClasses.paper, props.classes.paper) }}
-                    style={{ minHeight: '100%' }}
-                >
-                    <div
-                        className={clsx(defaultClasses.smooth, classes.smooth)}
-                        style={{ width: containerWidth, height: '100%' }}
-                    >
-                        <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
-                            {getDrawerContents()}
-                        </div>
-                    </div>
-                </Drawer>
-            </>
-        );
-    };
-
-    return (
-        <>
-            <Hidden smUp>{getMobileNavigationMenu()}</Hidden>
-            <Hidden xsDown>{getDesktopNavigationMenu()}</Hidden>
-        </>
     );
 };
 
@@ -301,8 +274,6 @@ DrawerComponent.propTypes = {
         root: PropTypes.string,
         content: PropTypes.string,
         paper: PropTypes.string,
-        paperMobile: PropTypes.string,
-        smooth: PropTypes.string,
     }),
     open: PropTypes.bool.isRequired,
     width: PropTypes.number,
@@ -310,5 +281,4 @@ DrawerComponent.propTypes = {
 };
 DrawerComponent.defaultProps = {
     classes: {},
-    variant: 'permanent',
 };

@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { DrawerLayout } from '@pxblue/react-components';
 import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
-import { boolean, number } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 // @ts-ignore
@@ -15,12 +15,13 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
         drawer={
             <Drawer
                 open={boolean('open', true)}
-                width={number('Width', 350, {
+                width={number('width', 350, {
                     range: true,
                     min: 200,
                     max: 700,
                     step: 50,
                 })}
+                variant={select('variant', ['permanent', 'persistent', 'temporary'], 'permanent')}
             >
                 <DrawerHeader
                     icon={<MenuIcon />}

@@ -73,8 +73,8 @@ const useStyles = makeStyles((theme: Theme) =>
             transitionDuration: '300ms',
             cursor: 'inherit',
             display: 'flex',
-            height: 48,
-            width: 48,
+            height: theme.spacing(6),
+            width: theme.spacing(6),
             marginRight: -12,
             alignItems: 'center',
             justifyContent: 'space-around',
@@ -370,7 +370,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     return (
         <>
             <List
-                style={{ backgroundColor }}
+                style={{ backgroundColor, paddingBottom: 0 }}
                 subheader={
                     <ListSubheader
                         className={clsx(defaultClasses.subheader, classes.subheader)}

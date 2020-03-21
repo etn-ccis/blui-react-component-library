@@ -4,10 +4,8 @@ import {
     Add,
     AddAPhoto,
     AirportShuttle,
-    Dashboard,
     Devices,
     FitnessCenter,
-    List,
     NotificationsActive,
     Remove,
     PinDrop,
@@ -54,7 +52,7 @@ const annualReport = 'Annual Report';
 const colorContrastGuide = 'Color Contrast Guide';
 const screenReader = 'Screen Reader';
 
-export const getIcon = (icon: string): JSX.Element | undefined => {
+const getIcon = (icon: string): JSX.Element | undefined => {
     switch (icon) {
         case '<Add />':
             return <Add />;
@@ -68,10 +66,6 @@ export const getIcon = (icon: string): JSX.Element | undefined => {
             return <Menu />;
         case '<FitnessCenter />':
             return <FitnessCenter />;
-        case '<List />':
-            return <List />;
-        case '<Dashboard />':
-            return <Dashboard />;
         case 'undefined':
         default:
             return undefined;
@@ -111,6 +105,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         nestedDivider: boolean('nestedDivider', false, drawerGroupId),
         open: boolean('open', true, drawerGroupId),
         ripple: boolean('ripple', true, drawerGroupId),
+        variant: select('variant', ['permanent', 'persistent', 'temporary'], 'persistent', drawerGroupId),
         width: number(
             'width',
             350,
@@ -295,6 +290,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             nestedDivider={drawerKnobs.nestedDivider}
             open={drawerKnobs.open}
             ripple={drawerKnobs.ripple}
+            variant={drawerKnobs.variant}
             width={drawerKnobs.width}
         >
             <DrawerHeader

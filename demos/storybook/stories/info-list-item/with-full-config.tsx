@@ -28,6 +28,8 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             divider={appliedDivider}
             ripple={boolean('ripple', true)}
             onClick={action('clicked')}
+            wrapTitle={boolean('wrapTitle', false)}
+            wrapSubtitle={boolean('wrapSubtitle', false)}
         />
     );
 };

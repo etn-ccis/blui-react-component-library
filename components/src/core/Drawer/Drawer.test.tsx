@@ -46,12 +46,10 @@ describe('Drawer', () => {
             </Drawer>
         );
 
-        // Finding two copies of each component because we are rendering twice for
-        // different screen size.
-        expect(wrapper.find(DrawerHeader).length).toEqual(2);
-        expect(wrapper.find(DrawerSubheader).length).toEqual(2);
-        expect(wrapper.find(DrawerBody).length).toEqual(2);
-        expect(wrapper.find(DrawerFooter).length).toEqual(2);
+        expect(wrapper.find(DrawerHeader).length).toEqual(1);
+        expect(wrapper.find(DrawerSubheader).length).toEqual(1);
+        expect(wrapper.find(DrawerBody).length).toEqual(1);
+        expect(wrapper.find(DrawerFooter).length).toEqual(1);
     });
 });
 

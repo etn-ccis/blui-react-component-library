@@ -1,5 +1,5 @@
 # Drawer
-The Drawer component is a wrapper around the Material UI Drawer that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `DrawerHeader`, `DrawerSubheader`, `DrawerBody`, `DrawerNavGroup`, and `DrawerFooter` to help organize the content.
+The Drawer component is a wrapper around the Material UI Drawer that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `DrawerHeader`, `DrawerSubheader`, `DrawerBody`, `DrawerNavGroup`, `DrawerFooter`, and `DrawerLayout` to help organize the content.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 200px" alt="Nested Drawer" src="./images/drawer.png">
@@ -26,6 +26,17 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
     </DrawerBody>
     <DrawerFooter />
 </Drawer>
+
+// a responsive Drawer using Drawer variant 
+import { useMediaQuery } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
+const theme = useTheme();
+const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
+<Drawer 
+    open={true}
+    variant={xsDown ? 'temporary' : 'persistent'}
+>
+</Drawer>
 ```
 
 ### Drawer API
@@ -35,11 +46,16 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 | Prop Name                       | Description                                                | Type      | Required | Default  |          
 |---------------------------------|------------------------------------------------------------|-----------|----------|----------|
 | open                            | Controls the open/closed state of the drawer               | `boolean` | yes      |          |
+| variant                         | The variant to use (see below)                             | `'permanent' | 'persistent' | 'temporary'`| no | |
 | width                           | Sets the width of the drawer (in px) when open             | `number ` | no       |          |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -         | no       |          |
 
 </div>
 
+The `Drawer` has three `variant`s: 
+- **Permanent**: Always open, even when `open` is set to false.
+- **Persistent**: When `open` is set to false, the Drawer collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent Drawer.
+- **Temporary**: When `open` is set to false, the drawer is hidden; when `open` is set to true, it slides in.
 
 #### Classes
 
@@ -50,9 +66,6 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 | root             | Styles applied to the root element              |
 | content          | Styles applied to the drawer content container  |
 | paper            | MUI Drawer style override for desktop viewports |
-| paperMobile      | MUI Drawer style override for mobile  viewports |
-| smooth           | Styles applied to the open/close animation      |
-
 
 ## DrawerHeader
 The `DrawerHeader` contains the content at the top of the `Drawer`. By default, it renders multiple lines of text in the PX Blue style. If you supply a `titleContent`, you can render your own custom content in the title area. 
@@ -74,7 +87,6 @@ The `DrawerHeader` contains the content at the top of the `Drawer`. By default, 
 | titleContent      | Custom content for header title area           | `React.Component` | no       |                              |
 
 </div>
-
 
 #### Classes
 You can override the classes used by PX Blue by passing a `classes` prop. The DrawerHeader supports the following keys:
@@ -101,7 +113,6 @@ import DrawerSubheader from '@pxblue/react-components/core/Drawer';
     <div>Custom Subheader Content</div>
 </DrawerSubheader>
 ```
-
 
 ## DrawerBody
 The `DrawerBody` is a wrapper for the main content of the Drawer. The typical use case is to display `DrawerNavGroup` elements, but custom elements (e.g., for spacing) are accepted as well.
@@ -221,19 +232,8 @@ The `items` property of the NavItem can be nested to create a tree structure wit
 />
 ```
 
-## Drawer Footer
+## DrawerFooter
 The `DrawerFooter` is an optional section that renders at the bottom of the `Drawer`. It can be used to add any custom content (as children).
-
-
-### Drawer Footer API
-
-<div style="overflow: auto;">
-
-| Prop Name       | Description                       | Type          | Required | Default |
-|-----------------|-----------------------------------|---------------|----------|---------|
-| backgroundColor | The color used for the background | `string`      | no       |         |   
-
-</div>
 
 ### Usage
 ```typescript
@@ -243,6 +243,16 @@ import DrawerFooter from '@pxblue/react-components/core/Drawer';
     <div>Custom Footer goes here</div>
 </DrawerFooter>
 ```
+
+### DrawerFooter API
+
+<div style="overflow: auto;">
+
+| Prop Name       | Description                       | Type          | Required | Default |
+|-----------------|-----------------------------------|---------------|----------|---------|
+| backgroundColor | The color used for the background | `string`      | no       |         |   
+
+</div>
 
 ## Shared Props
 The following props can be set at any level in the drawer hierarchy (`Drawer`, `DrawerNavGroup`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
@@ -283,12 +293,24 @@ The `DrawerLayout` component is used to provide the appropriate resizing behavio
 ```typescript
 import { Drawer, DrawerLayout } from '@pxblue/react-components';
 ...
-<DrawerLayout drawer={<Drawer ... />} >
+<DrawerLayout drawer={<Drawer ... />}>
     <>
         /* Page content goes here */
     </>
 </DrawerLayout>
 ```
+
+### DrawerLayout API
+
+<div style="overflow: auto;">
+
+| Prop Name          | Description                     | Type              | Required | Default |
+|--------------------|---------------------------------|-------------------|----------|---------|
+| children           | Page's body content             | `React.ReactNode` | yes      |         |   
+| drawer             | Drawer component to be embedded | `React.ReactNode` | yes      |         |    
+
+</div>
+
 
 
 > **Note on Scrolling**: When using client-side routing in your application, you may notice that the window scroll position does not reset when navigating to new routes. To address this issue, you will need to manually update the scroll position when new pages are loaded. If you are using React Router they have [several examples](https://reacttraining.com/react-router/web/guides/scroll-restoration) on how to implement this in your application.
