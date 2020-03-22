@@ -216,7 +216,7 @@ export default () => {
             }
         >
             <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <AppBar position={'static'} color={'primary'}>
+                <AppBar position={'sticky'} color={'primary'}>
                     <Toolbar style={{ padding: `0 ${theme.spacing(2)}px` }}>
                         <Hidden smUp>
                             <Menu style={{ marginRight: theme.spacing(4) }} onClick={() => setOpen(!open)} />
@@ -262,7 +262,7 @@ export default () => {
                         />
                     </Toolbar>
                 </AppBar>
-                <div style={{ padding: theme.spacing(), flex: 1, overflow: 'auto' }}>
+                <div style={{ padding: theme.spacing(), flex: 1 }}>
                     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                         <ScoreCard
                             style={{ maxWidth: 400 }}
