@@ -46,11 +46,6 @@ export type DrawerNavItem = {
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        listItemContainer: {
-            '&:hover': {
-                backgroundColor: 'rgba(0, 0, 0, 0.08)',
-            },
-        },
         listItemNoHover: {
             '&:hover': {
                 backgroundColor: 'unset',
@@ -149,22 +144,20 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
             ? navGroupProps.ripple
             : true;
 
-    // row action
-    const action = (): void => {
+    const hasAction = Boolean(onItemSelect || onClick || expandHandler);
+    const onClickAction = (): void => {
         if (onItemSelect) {
             onItemSelect();
         }
         if (onClick) {
             onClick();
         }
+        if (expandHandler) {
+            expandHandler();
+        }
     };
 
-    let rightComponent: ReactNode;
-    if (navItem.rightComponent) {
-        rightComponent = navItem.rightComponent;
-    } else if (!items && chevron) {
-        rightComponent = <ChevronRight />;
-    }
+    const rightComponent = navItem.rightComponent || (chevron && !items) ? <ChevronRight /> : undefined;
 
     function getActionComponent(): JSX.Element {
         if (!items) {
@@ -197,11 +190,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     return (
         <div
             style={{ position: 'relative' }}
-            className={clsx(
-                defaultClasses.listItemContainer,
-                classes.listItemContainer,
-                active && defaultClasses.listItemNoHover
-            )}
+            className={clsx(classes.listItemContainer, active && defaultClasses.listItemNoHover)}
         >
             {active && (
                 <div
@@ -229,12 +218,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                     )
                 }
                 backgroundColor={'transparent'}
-                onClick={(): void => {
-                    action();
-                    if (!onClick) {
-                        expandHandler();
-                    }
-                }}
+                onClick={hasAction ? onClickAction : undefined}
                 style={{ paddingLeft }}
                 hidePadding={hidePadding}
                 ripple={ripple}
