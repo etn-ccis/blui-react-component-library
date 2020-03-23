@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Drawer, DrawerProps } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -218,9 +218,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const containerWidth = isDrawerOpen() ? width || defaultContentWidth : defaultNavigationRailWidth;
     const contentWidth = width || defaultContentWidth;
 
-    // TODO: Find a better way to rerender.
-   // Initial draw doesn't have parent container rendered so margin not applied on first load.
-    setTimeout(() => {
+    useEffect(() => {
       const content = document.getElementById('@@pxb-drawerlayout-content');
       if (content) {
          content.style.marginLeft = `${containerWidth}px`;
