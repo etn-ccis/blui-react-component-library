@@ -18,7 +18,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
     createStyles({
         root: {
             cursor: (props) => (props.onClick ? 'pointer' : 'default'),
-            backgroundColor: (props) => props.backgroundColor || theme.palette.background.default,
+            backgroundColor: (props) => props.backgroundColor || 'inherit',
         },
         avatar: {
             backgroundColor: (props) => props.statusColor || Colors.black[500],

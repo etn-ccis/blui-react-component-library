@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { createMuiTheme, MuiThemeProvider, CssBaseline } from '@material-ui/core';
 import * as PXBThemes from '@pxblue/react-themes';
-import App from './App';
 import './index.css';
+import { MainRouter } from './router';
 require('typeface-open-sans');
 
 ReactDOM.render(
     <MuiThemeProvider theme={createMuiTheme(PXBThemes.blue)}>
         <CssBaseline />
-        <App />
+        <MainRouter />
     </MuiThemeProvider>,
     document.getElementById('root')
 );
