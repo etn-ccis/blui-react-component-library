@@ -1,2 +1,2 @@
 export * from './InfoListItem';
-export * from './InfoListItem.types';
+export * from './InfoListItem.styles';

@@ -1,7 +1,18 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import color from 'color';
 import * as Colors from '@pxblue/colors';
-import {InfoListItemProps} from "./InfoListItem.types";
+import {InfoListItemProps} from "./InfoListItem";
+
+export type InfoListItemClasses = {
+    root?: string;
+    avatar?: string;
+    icon?: string;
+    listItem?: string;
+    rightComponent?: string;
+    separator?: string;
+    subtitle?: string;
+    title?: string;
+};
 
 const getMinHeight = (props: InfoListItemProps): number => (props.dense ? 52 : 72);
 const getIconColor = (props: InfoListItemProps): string => {
