@@ -242,15 +242,6 @@ function NavigationListItem(
 
     const active = activeItem === itemID;
 
-
-    const infoListClasses = {
-        title: ''
-    };
-
-    if (depth !== 0) {
-        infoListClasses.title = clsx(defaultClasses.nestedTitle, classes.nestedTitle);
-    }
-
     return (
         <div
             style={{ position: 'relative' }}
@@ -295,7 +286,7 @@ function NavigationListItem(
                 style={{ paddingLeft }}
                 hidePadding={hidePadding}
                 ripple={ripple}
-                classes={infoListClasses}
+                classes={depth > 0 ? {title: clsx(defaultClasses.nestedTitle, classes.nestedTitle)} : {}}
             />
         </div>
     );
