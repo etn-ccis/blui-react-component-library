@@ -220,7 +220,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         if (content) {
             content.style.marginLeft = `${containerWidth}px`;
         }
-    });
+    }, [containerWidth]);
 
     return (
         <Drawer
