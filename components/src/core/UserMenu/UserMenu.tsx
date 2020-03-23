@@ -2,7 +2,7 @@ import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/cor
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -62,6 +62,29 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const defaultClasses = useStyles(theme);
     const [anchorEl, setAnchorEl] = useState(null);
 
+    const closeMenu = useCallback(() => {
+        onClose();
+        setAnchorEl(null);
+    }, [onClose]);
+
+    // Add closeMenu function to each item that has an onClick function.
+    useEffect(() => {
+        for (const group of menuGroups) {
+            for (const item of group.items) {
+                const onClick = item.onClick;
+                if (onClick) {
+                    item.onClick = (): void => {
+                        onClick();
+                        closeMenu();
+                    }
+                } else {
+                    item.InfoListItemProps = { ripple: false, ...item.InfoListItemProps };
+                }
+            }
+        }
+    }, [menuGroups]);
+
+
     const canDisplayMenu = useCallback(() => Boolean(menu || menuGroups.length > 0), [menu, menuGroups]);
 
     const openMenu = useCallback(
@@ -71,11 +94,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         },
         [onOpen]
     );
-
-    const closeMenu = useCallback(() => {
-        onClose();
-        setAnchorEl(null);
-    }, [onClose]);
 
     /* Clones Avatar that user provides UserMenu & appends a click event so it opens the menu. */
     const formatAvatar = useCallback(
@@ -141,7 +159,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         itemFontColor={group.fontColor}
                         title={group.title}
                         items={group.items}
-                        onItemSelect={closeMenu}
                     />
                 </div>
             )),

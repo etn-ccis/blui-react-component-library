@@ -11,7 +11,7 @@ export const withinToolbar = (): StoryFnReactReturnType => {
     const useStyles = makeStyles({
         listItem: {
             height: 40,
-            minHeight: 'unset'
+            minHeight: 'unset',
         },
         title: {
             color: Colors.gray[100],
