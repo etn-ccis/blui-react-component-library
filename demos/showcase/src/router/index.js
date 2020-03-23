@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { DrawerLayout } from '@pxblue/react-components';
 import { NavigationDrawer } from './NavigationDrawer';
 import { App } from '../App';
 import { SharedAppBar } from '../components/SharedAppBar';
+import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
