@@ -1,18 +1,60 @@
-import { AppBar, Avatar, Toolbar, Typography } from '@material-ui/core';
-import {Spacer, UserMenu, UserMenuGroup} from '@pxblue/react-components';
+import {AppBar, Avatar, makeStyles, Toolbar, Typography} from '@material-ui/core';
+import {Spacer, UserMenu, UserMenuItem} from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { menuGroups } from './with-basic-usage';
 import * as Colors from '@pxblue/colors';
+import {Email, ExitToApp, Settings} from "@material-ui/icons";
 
 export const withinToolbar = (): StoryFnReactReturnType => {
-    const group: UserMenuGroup = Object.assign({}, menuGroups[0]);
-    group.items.push({
-        itemID: '4',
-        title: 'Project Dixie',
-        subtitle: 'v1.2'
+
+    const useStyles = makeStyles({
+        listItem: {
+            height: 40,
+            minHeight: 'unset'
+        },
+        title: {
+            color: Colors.gray[100],
+            fontSize: 12,
+            textAlign: 'right'
+        }
     });
+
+    const menuItems: UserMenuItem[] = [
+        {
+            itemID: '1',
+            title: 'Account',
+            icon: <Settings />,
+            onClick: action("click 'Account'"),
+        },
+        {
+            itemID: '2',
+            title: 'Contact Us',
+            icon: <Email />,
+            onClick: action("click 'Contact Us'"),
+        },
+        {
+            itemID: '3',
+            title: 'Log Out',
+            divider: true,
+            icon: <ExitToApp />,
+            onClick: action("click 'Log Out'"),
+        },
+        {
+            itemID: '4',
+            title: 'v1.03.54',
+            InfoListItemProps: {
+                classes: useStyles()
+            }
+        },
+    ];
+
+    const menuGroups = [
+        {
+            items: menuItems,
+        },
+    ];
+
    return <div style={{width: '80%', height: 150}}>
         <AppBar position={'relative'} color={'primary'} style={{marginTop: '-32px'}}>
             <Toolbar style={{padding: '0 16px'}}>

@@ -5,7 +5,7 @@ import { gray } from '@pxblue/colors';
 import clsx from 'clsx';
 import { PXBlueDrawerInheritableProperties } from './Drawer';
 import { DrawerNavGroupProps } from './DrawerNavGroup';
-import { InfoListItem, InfoListItemProps as BaseInfoListItemProps } from './../InfoListItem';
+import { InfoListItem } from '../InfoListItem';
 
 export type NavItem = {
     // icon on the left

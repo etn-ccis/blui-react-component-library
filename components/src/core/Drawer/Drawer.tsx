@@ -58,7 +58,7 @@ export type PXBlueDrawerInheritableProperties = {
     hidePadding?: boolean;
 
     // InfoListItem overrides for NavItem
-    InfoListItemProps?: BaseInfoListItemProps;
+    InfoListItemProps?: Partial<BaseInfoListItemProps>;
 
     // The color used for the item text
     itemFontColor?: string;
