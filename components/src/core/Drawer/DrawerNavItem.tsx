@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React  from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import { ArrowDropUp, ChevronRight, ExpandLess } from '@material-ui/icons';
 import { gray } from '@pxblue/colors';
