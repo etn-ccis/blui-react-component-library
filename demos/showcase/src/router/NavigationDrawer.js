@@ -29,8 +29,8 @@ export const titleList = [
     'All Facilities',
 ];
 
-export const NavigationDrawer = () => {
-    const [open, setOpen] = useState(false);
+export const NavigationDrawer = (props) => {
+    const { open, setOpen } = props;
     const [location, setLocation] = useState(0);
     const [route, setRoute] = useState(0);
     const theme = useTheme();

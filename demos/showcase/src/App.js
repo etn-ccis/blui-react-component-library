@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Add, Remove, Menu, List as ListIcon, Email, Settings, MoreVert } from '@material-ui/icons';
+import { Add, Remove, List as ListIcon, Settings, MoreVert } from '@material-ui/icons';
 import Trend from '@material-ui/icons/TrendingUp';
 import Timer from '@material-ui/icons/Timer';
 import DevicesIcon from '@material-ui/icons/Devices';
-import SendIcon from '@material-ui/icons/Send';
 import { useTheme } from '@material-ui/core/styles';
-import { List, Card, AppBar, Toolbar, Typography, Hidden, Button } from '@material-ui/core';
+import { List, Card, Button } from '@material-ui/core';
 
 import * as Colors from '@pxblue/colors';
 import { Pie, Battery } from '@pxblue/react-progress-icons';
@@ -19,67 +18,17 @@ import {
     EmptyState,
     InfoListItem,
     ScoreCard,
-    Spacer,
     DrawerNavGroup,
-    UserMenu,
     ListItemTag,
 } from '@pxblue/react-components';
 
 import top from './topology_40.png';
-import Avatar from '@material-ui/core/Avatar';
 
 export const App = () => {
-    const [open, setOpen] = useState(false);
     const theme = useTheme();
 
     return (
         <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <AppBar position={'sticky'} color={'primary'}>
-                <Toolbar style={{ padding: `0 ${theme.spacing(2)}px` }}>
-                    <Hidden smUp>
-                        <Menu style={{ marginRight: theme.spacing(4) }} onClick={() => setOpen(!open)} />
-                    </Hidden>
-                    <Typography variant={'h6'}>Showcase</Typography>
-                    <Spacer flex={1} />
-                    <UserMenu
-                        avatar={<Avatar>MS</Avatar>}
-                        menuTitle={'Marshall Sutter'}
-                        menuSubtitle={'msutter@acmesteel.com'}
-                        menuGroups={[
-                            {
-                                items: [
-                                    {
-                                        title: 'Log Out',
-                                        itemID: 'Log Out',
-                                        icon: <SendIcon />,
-                                    },
-                                    {
-                                        title: 'Account Settings',
-                                        itemID: 'Account Settings',
-                                        icon: <Settings />,
-                                        divider: true,
-                                    },
-                                ],
-                            },
-                            {
-                                title: 'Contact Us',
-                                items: [
-                                    {
-                                        title: 'eatonhelp@eaton.com',
-                                        itemID: 'email',
-                                        icon: <SendIcon />,
-                                    },
-                                    {
-                                        title: '1-866-905-9988',
-                                        itemID: 'phone',
-                                        icon: <Email />,
-                                    },
-                                ],
-                            },
-                        ]}
-                    />
-                </Toolbar>
-            </AppBar>
             <div style={{ padding: theme.spacing(), flex: 1 }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                     <ScoreCard
