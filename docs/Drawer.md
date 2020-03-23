@@ -310,3 +310,6 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 </div>
 
+
+
+> **Note on Scrolling**: When using client-side routing in your application, you may notice that the window scroll position does not reset when navigating to new routes. To address this issue, you will need to manually update the scroll position when new pages are loaded. If you are using React Router they have [several examples](https://reacttraining.com/react-router/web/guides/scroll-restoration) on how to implement this in your application.

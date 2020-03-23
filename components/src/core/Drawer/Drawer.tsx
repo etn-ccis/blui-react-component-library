@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Drawer, DrawerProps } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -215,6 +215,13 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const containerWidth = isDrawerOpen() ? width || defaultContentWidth : defaultNavigationRailWidth;
     const contentWidth = width || defaultContentWidth;
 
+    useEffect(() => {
+        const content = document.getElementById('@@pxb-drawerlayout-content');
+        if (content) {
+            content.style.marginLeft = `${containerWidth}px`;
+        }
+    }, [containerWidth]);
+
     return (
         <Drawer
             {...drawerProps}
@@ -257,6 +264,7 @@ export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
     titleColor: PropTypes.string,
     ...PXBlueDrawerInheritablePropertiesPropTypes,
 };
+
 // @ts-ignore
 DrawerComponent.propTypes = {
     classes: PropTypes.shape({

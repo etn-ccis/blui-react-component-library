@@ -43,9 +43,9 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^4.7.2",
+    "@pxblue/colors": "^2.0.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "@pxblue/colors": "^2.0.0"
+    "react-dom": "^16.8.6"
   },
   "repository": {
     "type": "git",
