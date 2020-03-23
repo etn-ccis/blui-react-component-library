@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Drawer, DrawerProps } from '@material-ui/core';
 import PropTypes from 'prop-types';
@@ -46,9 +46,6 @@ export type PXBlueDrawerInheritableProperties = {
     // Icon used to collapse drawer
     // default is expandIcon rotated 180 degrees
     collapseIcon?: JSX.Element;
-
-    // Scroll to top of page on navigation
-    disableScrollTop?: boolean;
 
     // Whether to show a line between all items
     divider?: boolean;
@@ -219,10 +216,10 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const contentWidth = width || defaultContentWidth;
 
     useEffect(() => {
-      const content = document.getElementById('@@pxb-drawerlayout-content');
-      if (content) {
-         content.style.marginLeft = `${containerWidth}px`;
-      }
+        const content = document.getElementById('@@pxb-drawerlayout-content');
+        if (content) {
+            content.style.marginLeft = `${containerWidth}px`;
+        }
     });
 
     return (
@@ -253,7 +250,6 @@ export const PXBlueDrawerInheritablePropertiesPropTypes = {
     activeItemBackgroundShape: PropTypes.oneOf(['round', 'square']),
     chevron: PropTypes.bool,
     collapseIcon: PropTypes.element,
-    disableScrollTop: PropTypes.bool,
     divider: PropTypes.bool,
     expandIcon: PropTypes.element,
     hidePadding: PropTypes.bool,
@@ -268,7 +264,6 @@ export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
     titleColor: PropTypes.string,
     ...PXBlueDrawerInheritablePropertiesPropTypes,
 };
-
 
 // @ts-ignore
 DrawerComponent.propTypes = {

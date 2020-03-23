@@ -266,7 +266,6 @@ The following props can be set at any level in the drawer hierarchy (`Drawer`, `
 | chevron                   | Whether to have chevrons for all menu items                | `boolean`          | no       |                                                            |
 | collapseIcon              | Icon used to collapse drawer                               | `JSX.Element`      | no       | `expandIcon` rotated 180 degrees                           |
 | divider                   | Whether to show a line between all items                   | `boolean`          | no       | true                                                       |
-| disableScrollTop          | Disable automatic scroll reset when clicking a NavItem         | `boolean`          | no       |                                                            |
 | expandIcon                | Icon used to expand drawer                                 | `JSX.Element`      | no       | `<ExpandLess />` at top-level, `<ArrowDropUp />` otherwise |
 | hidePadding               | Whether to hide the paddings reserved for menu item icons  | `boolean`          | no       |                                                            |
 | itemFontColor             | The color used for the item text                           | `string`           | no       | gray[500]                                                  |

@@ -181,7 +181,6 @@ function NavigationListItem(
                 ? navGroupProps.divider
                 : true;
     }
-    const disableScrollTop = navItem.disableScrollTop === undefined ? navGroupProps.disableScrollTop : navItem.disableScrollTop;
     const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropUp /> : <ExpandLess />);
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
     const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || gray[500];
@@ -201,9 +200,6 @@ function NavigationListItem(
         }
         if (onClick) {
             onClick();
-            if (!disableScrollTop) {
-                window.scrollTo(0, 0);
-            }
         }
     };
 

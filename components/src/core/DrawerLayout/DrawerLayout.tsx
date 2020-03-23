@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import {createStyles, makeStyles, Theme, useTheme} from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 export type DrawerLayoutProps = {
@@ -10,27 +10,29 @@ export type DrawerLayoutProps = {
     drawer: React.ReactNode;
 };
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-    root: {
-        display: 'flex',
-        height: '100%',
-        width: '100%',
-    },
-    drawer: {
-        display: 'flex',
-        position: 'fixed',
-        height: '100%',
-        alignItems: 'stretch',
-    },
-    content: {
-        width: '100%',
-        height: '100%',
-        transition: 'margin 175ms cubic-bezier(.4, 0, .2, 1)',
-        [theme.breakpoints.down('xs')]: {
-            marginLeft: '0!important',
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: 'flex',
+            height: '100%',
+            width: '100%',
         },
-    },
-}));
+        drawer: {
+            display: 'flex',
+            position: 'fixed',
+            height: '100%',
+            alignItems: 'stretch',
+        },
+        content: {
+            width: '100%',
+            height: '100%',
+            transition: 'margin 175ms cubic-bezier(.4, 0, .2, 1)',
+            [theme.breakpoints.down('xs')]: {
+                marginLeft: '0!important',
+            },
+        },
+    })
+);
 
 export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
     const { children, drawer } = props;
