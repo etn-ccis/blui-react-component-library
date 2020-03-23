@@ -8,7 +8,5 @@
     "@babel/proposal-class-properties",
     "babel-plugin-typescript-to-proptypes"
   ],
-  "ignore": [
-    "**/*.test.tsx"
-  ]
+  "ignore": ["**/*.test.tsx"]
 }
