@@ -246,9 +246,9 @@ function NavigationListItem(
     const infoListClasses = {
         title: ''
     };
-    
+
     if (depth !== 0) {
-        infoListClasses.title = defaultClasses.nestedTitle + classes.nestedTitle;
+        infoListClasses.title = clsx(defaultClasses.nestedTitle, classes.nestedTitle);
     }
 
     return (
