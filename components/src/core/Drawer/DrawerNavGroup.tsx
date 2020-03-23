@@ -83,6 +83,9 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         expanded: {},
+        nestedTitle: {
+            fontWeight: 400
+        },
     })
 );
 
@@ -283,6 +286,7 @@ function NavigationListItem(
                 style={{ paddingLeft }}
                 hidePadding={hidePadding}
                 ripple={ripple}
+                classes={depth > 0 ? {title: clsx(defaultClasses.nestedTitle, classes.nestedTitle)} : {}}
             />
         </div>
     );
@@ -312,6 +316,7 @@ type DrawerNavGroupClasses = {
     listItemContainer?: string;
     nestedListGroup?: string;
     subheader?: string;
+    nestedTitle?: string;
 };
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
@@ -405,6 +410,7 @@ DrawerNavGroup.propTypes = {
         groupHeader: PropTypes.string,
         nestedListGroup: PropTypes.string,
         subheader: PropTypes.string,
+        nestedTitle: PropTypes.string,
     }),
     drawerOpen: PropTypes.bool,
     // @ts-ignore
