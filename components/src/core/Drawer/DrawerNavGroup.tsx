@@ -128,9 +128,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                             navGroupProps={props}
                             depth={depth}
                             expanded={expanded}
-                            expandHandler={(): void => {
-                                setExpanded(!expanded);
-                            }}
+                            expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
                         />
                     </div>
                     {collapsibleComponent}
