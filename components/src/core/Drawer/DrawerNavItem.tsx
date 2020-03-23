@@ -11,8 +11,6 @@ export type NavItem = {
     // icon on the left
     icon?: JSX.Element;
 
-    InfoListItemProps?: BaseInfoListItemProps;
-
     // item id to match for the active state.
     // Should be unique within the entire list. Will be used as the list key too.
     itemID: string;
@@ -140,6 +138,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     }
     const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropUp /> : <ExpandLess />);
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
+    const InfoListItemProps = navItem.InfoListItemProps || navGroupProps.InfoListItemProps;
     const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || gray[500];
     const itemIconColor = navItem.itemIconColor || navGroupProps.itemIconColor || gray[500];
     const onItemSelect = navItem.onItemSelect || navGroupProps.onItemSelect;
@@ -240,7 +239,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                 hidePadding={hidePadding}
                 ripple={ripple}
                 classes={depth > 0 ? { title: clsx(defaultClasses.nestedTitle, classes.nestedTitle) } : {}}
-                {...navItem.InfoListItemProps}
+                {...InfoListItemProps}
             />
         </div>
     );
