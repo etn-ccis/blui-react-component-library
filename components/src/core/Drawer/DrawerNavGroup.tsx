@@ -196,15 +196,14 @@ function NavigationListItem(
 
     // row action
     const action = (): void => {
-        // Don't scroll to top of page when clicking expandable items.
-        if (!disableScrollTop && !items) {
-            window.scrollTo(0, 0);
-        }
         if (onItemSelect) {
             onItemSelect();
         }
         if (onClick) {
             onClick();
+            if (!disableScrollTop) {
+                window.scrollTo(0, 0);
+            }
         }
     };
 
