@@ -27,7 +27,8 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             color: (props) => getIconColor(props),
         },
         listItem: {
-            height: '100%',
+            height: 'inherit',
+            minHeight: 'inherit',
             '&:hover': {
                 backgroundColor: (props) => (props.onClick ? 'rgba(0, 0, 0, .08)' : ''),
             },
