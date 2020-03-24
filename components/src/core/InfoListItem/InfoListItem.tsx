@@ -105,13 +105,12 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
 
     return (
-        <div className={combine('root')}>
+        <div className={combine('root')} style={style}>
             <ListItem
-                button={ripple ? true : undefined}
+                button={onClick && ripple ? true : undefined}
                 className={combine('listItem')}
                 dense={dense}
                 onClick={onClick ? (): void => onClick() : undefined}
-                style={style}
             >
                 <div className={defaultClasses.statusStripe} />
                 {divider && <Divider className={defaultClasses.divider} />}

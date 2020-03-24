@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
-            height: '100%',
             width: '100%',
         },
         drawer: {
@@ -25,7 +24,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         content: {
             width: '100%',
-            height: '100%',
             transition: 'margin 175ms cubic-bezier(.4, 0, .2, 1)',
             [theme.breakpoints.down('xs')]: {
                 marginLeft: '0!important',

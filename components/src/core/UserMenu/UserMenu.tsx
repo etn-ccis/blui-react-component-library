@@ -71,6 +71,26 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const defaultClasses = useStyles(theme);
     const [anchorEl, setAnchorEl] = useState(null);
 
+    const closeMenu = useCallback(() => {
+        onClose();
+        setAnchorEl(null);
+    }, [onClose]);
+
+    // Add closeMenu function to each item that has an onClick function.
+    useEffect(() => {
+        for (const group of menuGroups) {
+            for (const item of group.items) {
+                const onClick = item.onClick;
+                if (onClick) {
+                    item.onClick = (): void => {
+                        onClick();
+                        closeMenu();
+                    };
+                }
+            }
+        }
+    }, [menuGroups]);
+
     const canDisplayMenu = useCallback(() => Boolean(menu || menuGroups.length > 0), [menu, menuGroups]);
 
     const openMenu = useCallback(
@@ -80,11 +100,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         },
         [onOpen]
     );
-
-    const closeMenu = useCallback(() => {
-        onClose();
-        setAnchorEl(null);
-    }, [onClose]);
 
     /* Clones Avatar that user provides UserMenu & appends a click event so it opens the menu. */
     const formatAvatar = useCallback(
@@ -150,7 +165,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         itemFontColor={group.fontColor}
                         title={group.title}
                         items={group.items}
-                        onItemSelect={closeMenu}
                     />
                 </div>
             )),

@@ -66,6 +66,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                         }
                         itemFontColor={groupProps.itemFontColor || bodyProps.itemFontColor}
                         itemIconColor={groupProps.itemIconColor || bodyProps.itemIconColor}
+                        InfoListItemProps={groupProps.InfoListItemProps || bodyProps.InfoListItemProps}
                         nestedDivider={
                             groupProps.nestedDivider === undefined ? bodyProps.nestedDivider : groupProps.nestedDivider
                         }
