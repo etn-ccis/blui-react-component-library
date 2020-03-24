@@ -223,10 +223,12 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
 
     useEffect(() => {
         const content = document.getElementById('@@pxb-drawerlayout-content');
+        console.log(variant);
+        console.log(containerWidth);
         if (content) {
             content.style.marginLeft = variant === 'temporary' ? '0px' : `${containerWidth}px`;
         }
-    }, [containerWidth]);
+    }, [containerWidth, variant]);
 
     return (
         <Drawer
