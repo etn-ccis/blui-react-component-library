@@ -4,6 +4,7 @@ import { Drawer, DrawerProps } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { DrawerBodyProps } from './DrawerBody';
 import clsx from 'clsx';
+import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
 
 const useStyles = makeStyles({
     paper: {
@@ -55,6 +56,9 @@ export type PXBlueDrawerInheritableProperties = {
 
     // Whether to hide the paddings reserved for menu item icons
     hidePadding?: boolean;
+
+    // InfoListItem overrides for NavItem
+    InfoListItemProps?: Partial<BaseInfoListItemProps>;
 
     // The color used for the item text
     itemFontColor?: string;
@@ -113,6 +117,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         divider,
         expandIcon,
         hidePadding,
+        InfoListItemProps,
         itemFontColor,
         itemIconColor,
         nestedBackgroundColor,
@@ -168,6 +173,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                     divider,
                     expandIcon,
                     hidePadding,
+                    InfoListItemProps,
                     itemFontColor,
                     itemIconColor,
                     nestedBackgroundColor,
@@ -253,6 +259,7 @@ export const PXBlueDrawerInheritablePropertiesPropTypes = {
     divider: PropTypes.bool,
     expandIcon: PropTypes.element,
     hidePadding: PropTypes.bool,
+    InfoListItemProps: PropTypes.object,
     itemFontColor: PropTypes.string,
     itemIconColor: PropTypes.string,
     ripple: PropTypes.bool,
