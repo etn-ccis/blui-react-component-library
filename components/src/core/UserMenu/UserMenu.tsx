@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-type UserMenuClasses = {
+export type UserMenuClasses = {
     root?: string;
 };
 

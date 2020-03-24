@@ -4,7 +4,7 @@ import * as Colors from '@pxblue/colors';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
-type EmptyStateClasses = {
+export type EmptyStateClasses = {
     root?: string;
     icon?: string;
     title?: string;

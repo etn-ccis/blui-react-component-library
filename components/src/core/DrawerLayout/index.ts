@@ -1,1 +1,1 @@
-export { DrawerLayout, DrawerLayoutProps } from './DrawerLayout';
+export * from './DrawerLayout';

@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     },
 });
 
-type HeroBannerClasses = {
+export type HeroBannerClasses = {
     root?: string;
 };
 

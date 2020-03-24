@@ -3,7 +3,6 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '../ChannelValue';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -58,7 +57,7 @@ const normalizeFontSize = (size: FontSize): string => (size === 'small' ? '1rem'
 
 type FontSize = 'normal' | 'small';
 
-type HeroClasses = {
+export type HeroClasses = {
     root?: string;
     icon?: string;
     values?: string;

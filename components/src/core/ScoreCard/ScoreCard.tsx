@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     })
 );
-type ScoreCardClasses = {
+export type ScoreCardClasses = {
     root?: string;
     actionItems?: string;
     badgeWrapper?: string;
