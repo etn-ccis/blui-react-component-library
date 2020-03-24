@@ -2,7 +2,7 @@ import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/cor
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -76,12 +76,11 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                     item.onClick = (): void => {
                         onClick();
                         closeMenu();
-                    }
+                    };
                 }
             }
         }
     }, [menuGroups]);
-
 
     const canDisplayMenu = useCallback(() => Boolean(menu || menuGroups.length > 0), [menu, menuGroups]);
 

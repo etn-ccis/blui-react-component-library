@@ -19,8 +19,8 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         root: {
             cursor: (props) => (props.onClick ? 'pointer' : 'default'),
             backgroundColor: (props) => props.backgroundColor || 'inherit',
-            height: (props) => (props.wrapSubtitle || props.wrapTitle) ? 'unset' : getHeight(props),
-            minHeight: (props) =>  (props.wrapSubtitle || props.wrapTitle) ? getHeight(props) : 'unset'
+            height: (props) => (props.wrapSubtitle || props.wrapTitle ? 'unset' : getHeight(props)),
+            minHeight: (props) => (props.wrapSubtitle || props.wrapTitle ? getHeight(props) : 'unset'),
         },
         avatar: {
             backgroundColor: (props) => props.statusColor || Colors.black[500],

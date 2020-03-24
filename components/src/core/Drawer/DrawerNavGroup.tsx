@@ -135,7 +135,15 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             );
         }
         // Otherwise, we reached a leaf node. Return.
-        return <DrawerNavItem key={`${item.itemID}`} navItem={item} navGroupProps={props} depth={depth} expanded={expanded} />;
+        return (
+            <DrawerNavItem
+                key={`${item.itemID}`}
+                navItem={item}
+                navGroupProps={props}
+                depth={depth}
+                expanded={expanded}
+            />
+        );
     }
 
     return (

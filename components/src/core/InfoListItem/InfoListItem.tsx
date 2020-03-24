@@ -120,7 +120,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     return (
         <div className={combine('root')} style={style}>
             <ListItem
-                button={(onClick && ripple) ? true : undefined}
+                button={onClick && ripple ? true : undefined}
                 className={combine('listItem')}
                 dense={dense}
                 onClick={onClick ? (): void => onClick() : undefined}
