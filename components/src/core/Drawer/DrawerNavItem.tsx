@@ -1,6 +1,6 @@
-import React  from 'react';
+import React from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import { ArrowDropUp, ChevronRight, ExpandLess } from '@material-ui/icons';
+import { ArrowDropUp, ChevronRight, ExpandLess, Info } from '@material-ui/icons';
 import { gray } from '@pxblue/colors';
 import clsx from 'clsx';
 import { PXBlueDrawerInheritableProperties } from './Drawer';
@@ -133,7 +133,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     }
     const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropUp /> : <ExpandLess />);
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
-    const InfoListItemProps = navItem.InfoListItemProps || navGroupProps.InfoListItemProps;
+    const InfoListItemProps = navItem.InfoListItemProps || navGroupProps.InfoListItemProps || {};
     const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || gray[500];
     const itemIconColor = navItem.itemIconColor || navGroupProps.itemIconColor || gray[500];
     const onItemSelect = navItem.onItemSelect || navGroupProps.onItemSelect;
@@ -183,7 +183,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
 
     // 0 indents for top level nav items
     // 0, 2, 4, ... for secondary level and beyond
-    const paddingLeft = theme.spacing(depth ? ((depth - 1) * 4) : 0);
+    const paddingLeft = theme.spacing(depth ? (depth - 1) * 4 : 0);
 
     const active = activeItem === itemID;
 
@@ -222,8 +222,15 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                 style={{ paddingLeft }}
                 hidePadding={hidePadding}
                 ripple={ripple}
-                classes={depth > 0 ? { title: clsx(defaultClasses.nestedTitle, classes.nestedTitle) } : {}}
                 {...InfoListItemProps}
+                classes={
+                    depth > 0
+                        ? Object.assign(
+                              { title: clsx(defaultClasses.nestedTitle, classes.nestedTitle) },
+                              InfoListItemProps.classes
+                          )
+                        : InfoListItemProps.classes
+                }
             />
         </div>
     );
