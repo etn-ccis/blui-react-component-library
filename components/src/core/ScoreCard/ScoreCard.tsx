@@ -2,7 +2,6 @@ import { CSSProperties } from '@material-ui/styles';
 import React from 'react';
 import { Card, Typography, Divider, Theme, makeStyles, createStyles } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -100,14 +99,14 @@ export type ScoreCordProps = {
 export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     const defaultClasses = useStyles(props);
     const {
-        actionLimit,
+        actionLimit = 3,
         actionItems,
         actionRow,
         badge,
-        badgeOffset,
+        badgeOffset = 0,
         headerBackgroundImage,
         children,
-        classes,
+        classes = {},
         headerColor,
         headerFontColor,
         headerInfo,
@@ -245,35 +244,3 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
 };
 
 ScoreCard.displayName = 'ScoreCard';
-ScoreCard.propTypes = {
-    actionItems: PropTypes.arrayOf(PropTypes.element),
-    actionLimit: PropTypes.number,
-    actionRow: PropTypes.element,
-    badge: PropTypes.element,
-    badgeOffset: PropTypes.number,
-    classes: PropTypes.shape({
-        root: PropTypes.string,
-        actionItems: PropTypes.string,
-        badgeWrapper: PropTypes.string,
-        bodyWrapper: PropTypes.string,
-        content: PropTypes.string,
-        header: PropTypes.string,
-        headerBackground: PropTypes.string,
-        headerContent: PropTypes.string,
-        headerInfo: PropTypes.string,
-        headerTitle: PropTypes.string,
-        headerSubtitle: PropTypes.string,
-    }),
-    headerBackgroundImage: PropTypes.string,
-    headerColor: PropTypes.string,
-    headerFontColor: PropTypes.string,
-    headerInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    headerTitle: PropTypes.string.isRequired,
-    headerSubtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-};
-ScoreCard.defaultProps = {
-    actionLimit: 3,
-    badgeOffset: 0,
-    classes: {},
-};

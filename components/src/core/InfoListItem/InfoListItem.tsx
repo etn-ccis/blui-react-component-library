@@ -1,11 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
 import { separate, withKeys } from '../utilities';
-import {InfoListItemClasses, useStyles} from './InfoListItem.styles';
+import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
 
 import { Avatar, Divider, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 import Chevron from '@material-ui/icons/ChevronRight';
-import {CSSProperties} from "@material-ui/core/styles/withStyles";
+import { CSSProperties } from '@material-ui/core/styles/withStyles';
 
 export type DividerType = 'full' | 'partial';
 export type InfoListItemProps = {

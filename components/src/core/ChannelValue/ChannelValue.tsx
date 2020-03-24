@@ -45,7 +45,7 @@ export type ChannelValueProps = {
 };
 
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
-    const { classes, color, fontSize, icon, prefix, units, value } = props;
+    const { classes = {}, color = 'inherit', fontSize = 'inherit', icon, prefix = false, units, value } = props;
     const defaultClasses = styles(useTheme());
 
     const getUnitElement = useCallback(
@@ -93,23 +93,3 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
 };
 
 ChannelValue.displayName = 'ChannelValue';
-ChannelValue.propTypes = {
-    classes: PropTypes.shape({
-        root: PropTypes.string,
-        icon: PropTypes.string,
-        value: PropTypes.string,
-        units: PropTypes.string,
-    }),
-    color: PropTypes.string,
-    fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    icon: PropTypes.element,
-    prefix: PropTypes.bool,
-    units: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-};
-ChannelValue.defaultProps = {
-    classes: {},
-    color: 'inherit',
-    fontSize: 'inherit',
-    prefix: false,
-};

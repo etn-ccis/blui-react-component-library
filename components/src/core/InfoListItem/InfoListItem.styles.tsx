@@ -1,7 +1,7 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import color from 'color';
 import * as Colors from '@pxblue/colors';
-import {InfoListItemProps} from "./InfoListItem";
+import { InfoListItemProps } from './InfoListItem';
 
 export type InfoListItemClasses = {
     root?: string;
@@ -79,13 +79,13 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         subtitle: {
             fontWeight: 400,
             lineHeight: 1.3,
-            color: (props) => props.fontColor || 'inherit'
+            color: (props) => props.fontColor || 'inherit',
         },
         title: {
             fontWeight: 600,
             lineHeight: 1.2,
             display: 'block',
-            color: (props) => props.fontColor  || 'inherit'
+            color: (props) => props.fontColor || 'inherit',
         },
     })
 );
