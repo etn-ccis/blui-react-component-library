@@ -28,7 +28,7 @@ export const App = () => {
     const theme = useTheme();
 
     return (
-        <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{  display: 'flex', flexDirection: 'column' }}>
             <div style={{ padding: theme.spacing(), flex: 1 }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                     <ScoreCard
