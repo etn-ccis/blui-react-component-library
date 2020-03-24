@@ -9,7 +9,7 @@ import {Email, ExitToApp, Settings} from "@material-ui/icons";
 export const withinToolbar = (): StoryFnReactReturnType => {
 
     const useStyles = makeStyles({
-        listItem: {
+        root: {
             height: 40,
             minHeight: 'unset',
         },

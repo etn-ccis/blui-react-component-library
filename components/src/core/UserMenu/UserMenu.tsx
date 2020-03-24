@@ -77,8 +77,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         onClick();
                         closeMenu();
                     }
-                } else {
-                    item.InfoListItemProps = { ripple: false, ...item.InfoListItemProps };
                 }
             }
         }
