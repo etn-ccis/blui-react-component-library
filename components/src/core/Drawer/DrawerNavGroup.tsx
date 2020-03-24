@@ -122,25 +122,20 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 
             return (
                 <React.Fragment key={`${item.title}_Fragment_${depth}`}>
-                    <div key={`${item.itemID}`}>
-                        <DrawerNavItem
-                            navItem={item}
-                            navGroupProps={props}
-                            depth={depth}
-                            expanded={expanded}
-                            expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
-                        />
-                    </div>
+                    <DrawerNavItem
+                        key={`${item.itemID}`}
+                        navItem={item}
+                        navGroupProps={props}
+                        depth={depth}
+                        expanded={expanded}
+                        expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
+                    />
                     {collapsibleComponent}
                 </React.Fragment>
             );
         }
         // Otherwise, we reached a leaf node. Return.
-        return (
-            <div key={`${item.itemID}`}>
-                <DrawerNavItem navItem={item} navGroupProps={props} depth={depth} expanded={expanded} />
-            </div>
-        );
+        return <DrawerNavItem key={`${item.itemID}`} navItem={item} navGroupProps={props} depth={depth} expanded={expanded} />;
     }
 
     return (

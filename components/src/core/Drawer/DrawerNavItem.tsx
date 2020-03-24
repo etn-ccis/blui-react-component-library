@@ -181,9 +181,9 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
 
     const actionComponent = getActionComponent();
 
-    // 2 indents for top level nav items
-    // 2, 4, 6, ... for secondary level and beyond
-    const paddingLeft = theme.spacing(depth ? (depth - 1) * 4 + 2 : 2);
+    // 0 indents for top level nav items
+    // 0, 2, 4, ... for secondary level and beyond
+    const paddingLeft = theme.spacing(depth ? ((depth - 1) * 4) : 0);
 
     const active = activeItem === itemID;
 
