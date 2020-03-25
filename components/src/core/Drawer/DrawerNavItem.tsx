@@ -44,12 +44,18 @@ export type DrawerNavItem = {
     expandHandler?: Function;
 };
 
+// First nested item has no additional indentation.  All items start with 16px indentation.
+const calcNestedPadding = (theme: Theme, depth: number): number => theme.spacing(depth ? (depth-1) * 4 : 0) + theme.spacing(2);
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         listItemNoHover: {
             '&:hover': {
                 backgroundColor: 'unset',
             },
+        },
+        infoListItem: {
+            paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth)
         },
         active: {
             content: '""',
@@ -97,7 +103,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     // only allow icons for the top level items
     const icon = !depth ? (navItem as NavItem).icon : undefined;
 
-    const defaultClasses = useStyles(navGroupProps);
+    const defaultClasses = useStyles(props);
     const theme = useTheme();
     // @ts-ignore
     const primary50Color = theme.palette.primary[50];
@@ -180,12 +186,11 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     }
 
     const actionComponent = getActionComponent();
-
-    // 0 indents for top level nav items
-    // 0, 2, 4, ... for secondary level and beyond
-    const paddingLeft = theme.spacing(depth ? (depth - 1) * 4 : 0);
-
     const active = activeItem === itemID;
+    const infoListItemClasses = {
+        listItem: defaultClasses.infoListItem,
+        title: (depth > 0) ? clsx(defaultClasses.nestedTitle, classes.nestedTitle) : ''
+    };
 
     return (
         <div
@@ -219,18 +224,10 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                 }
                 backgroundColor={'transparent'}
                 onClick={hasAction ? onClickAction : undefined}
-                style={{ paddingLeft }}
                 hidePadding={hidePadding}
                 ripple={ripple}
                 {...InfoListItemProps}
-                classes={
-                    depth > 0
-                        ? Object.assign(
-                              { title: clsx(defaultClasses.nestedTitle, classes.nestedTitle) },
-                              InfoListItemProps.classes
-                          )
-                        : InfoListItemProps.classes
-                }
+                classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
             />
         </div>
     );
