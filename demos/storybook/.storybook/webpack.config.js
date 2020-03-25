@@ -2,12 +2,17 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var path = require('path');
 
-const options = { noImplicitAny: false, useCache: true, forceIsolatedModules: true, isolatedModules: true  };
+const options = {
+    noImplicitAny: false,
+    useCache: true,
+    forceIsolatedModules: true,
+    isolatedModules: true
+};
 
 module.exports = ({ config }) => {
     config.module.rules.push({
-        include: [path.resolve(__dirname, '../stories')], // You can specify directories
-        exclude: [path.resolve(__dirname, '../node_modules')], // You can specify directories\
+        include: [path.resolve(__dirname, '../stories')],
+        exclude: [path.resolve(__dirname, '../node_modules')],
         test: /\.(ts)$/,
         use: [
             {
@@ -19,8 +24,8 @@ module.exports = ({ config }) => {
     });
 
     config.module.rules.push({
-        include: [path.resolve(__dirname, '../stories')], // You can specify directories\
-        exclude: [path.resolve(__dirname, '../node_modules')], // You can specify directories\
+        include: [path.resolve(__dirname, '../stories')],
+        exclude: [path.resolve(__dirname, '../node_modules')],
         test: /\.(tsx)$/,
         use: [
             {
@@ -47,6 +52,5 @@ module.exports = ({ config }) => {
     });
     config.plugins.push(new MiniCssExtractPlugin({ filename: '[name].css' }));
     config.watchOptions = { ignored: [/node_modules([\\]+|\/)+(?!@pxblue)/] };
-    config.resolve.extensions.push('.ts', '.tsx');
     return config;
 };
