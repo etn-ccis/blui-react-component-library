@@ -2,26 +2,30 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var path = require('path');
 
+const options = { noImplicitAny: false, useCache: true, forceIsolatedModules: true, isolatedModules: true  };
+
 module.exports = ({ config }) => {
     config.module.rules.push({
         include: [path.resolve(__dirname, '../stories')], // You can specify directories
+        exclude: [path.resolve(__dirname, '../node_modules')], // You can specify directories\
         test: /\.(ts)$/,
         use: [
             {
                 loader: require.resolve('awesome-typescript-loader'),
-                options: { noImplicitAny: false },
+                options
             },
         ],
         enforce: 'pre',
     });
 
     config.module.rules.push({
-        include: [path.resolve(__dirname, '../stories')], // You can specify directories
+        include: [path.resolve(__dirname, '../stories')], // You can specify directories\
+        exclude: [path.resolve(__dirname, '../node_modules')], // You can specify directories\
         test: /\.(tsx)$/,
         use: [
             {
                 loader: require.resolve('awesome-typescript-loader'),
-                options: { noImplicitAny: false },
+                options
             },
             {
                 loader: require.resolve('@storybook/source-loader'),
