@@ -134,11 +134,12 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 | Prop Name               | Description                                    | Type          | Required | Default |
 |-------------------------|------------------------------------------------|---------------|----------|---------|
 | backgroundColor         | The color used for the background              | `string`      | no       |         |
+| classes                 | Style overrides                                | `StyleRules`  | no       |         |
 
 </div>
 
 #### Classes
-You can override the classes used by PX Blue by passing a `classes` prop. The DrawerBody supports the following keys:
+You can override the classes used by PX Blue by passing a `classes` prop. The `DrawerBody` supports the following keys:
 
 | Name             | Description                                     |
 |------------------|-------------------------------------------------|
@@ -156,6 +157,7 @@ The `items` property supports nested items to generate collapsible sections in t
 | Prop Name                       | Description                                                | Type              | Required | Default |
 |---------------------------------|------------------------------------------------------------|-------------------|----------|---------|
 | backgroundColor                 | The color used for the background                          | `string`          | no       |         | 
+| classes                         | Style overrides                                            | `StyleRules`      | no       |         |
 | items                           | List of NavItems to render                                 | `NestedNavItem[]` | yes      |         | 
 | title                           | Text to display in the group header                        | `string`          | no       |         |  
 | titleContent                    | Custom element, substitute for title                       | `React.Component` | no       |         | 
@@ -163,7 +165,7 @@ The `items` property supports nested items to generate collapsible sections in t
 
 
 #### Classes
-You can override the classes used by PX Blue by passing a `classes` prop. The DrawerNavGroup supports the following keys:
+You can override the classes used by PX Blue by passing a `classes` prop. The `DrawerNavGroup` supports the following keys:
 
 | Name                        | Description                                     |
 |-----------------------------|-------------------------------------------------|
@@ -177,7 +179,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 
 
 #### NavItem Object
-The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). NavItem can also include a list of `NestedNavItem` to create a tree structure (see below).
+The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). A `NavItem` can also include a list of `NestedNavItem` to create a tree structure (see below).
 
 <div style="overflow: auto;">
 
