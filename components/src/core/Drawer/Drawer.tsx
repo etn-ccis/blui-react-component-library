@@ -112,7 +112,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         activeItemIconColor,
         activeItemBackgroundShape,
         chevron,
-        classes,
+        classes = {},
         collapseIcon,
         divider,
         expandIcon,
@@ -248,41 +248,3 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
 };
 
 DrawerComponent.displayName = 'PXBlueDrawer';
-
-export const PXBlueDrawerInheritablePropertiesPropTypes = {
-    activeItemBackgroundColor: PropTypes.string,
-    activeItemFontColor: PropTypes.string,
-    activeItemIconColor: PropTypes.string,
-    activeItemBackgroundShape: PropTypes.oneOf(['round', 'square']),
-    chevron: PropTypes.bool,
-    collapseIcon: PropTypes.element,
-    divider: PropTypes.bool,
-    expandIcon: PropTypes.element,
-    hidePadding: PropTypes.bool,
-    InfoListItemProps: PropTypes.object,
-    itemFontColor: PropTypes.string,
-    itemIconColor: PropTypes.string,
-    ripple: PropTypes.bool,
-};
-export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
-    activeItem: PropTypes.string,
-    nestedDivider: PropTypes.bool,
-    onItemSelect: PropTypes.func,
-    titleColor: PropTypes.string,
-    ...PXBlueDrawerInheritablePropertiesPropTypes,
-};
-
-// @ts-ignore
-DrawerComponent.propTypes = {
-    classes: PropTypes.shape({
-        root: PropTypes.string,
-        content: PropTypes.string,
-        paper: PropTypes.string,
-    }),
-    open: PropTypes.bool.isRequired,
-    width: PropTypes.number,
-    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
-};
-DrawerComponent.defaultProps = {
-    classes: {},
-};

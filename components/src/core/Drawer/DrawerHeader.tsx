@@ -4,7 +4,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import { Typography } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -95,8 +94,8 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const {
         backgroundColor,
         backgroundImage,
-        backgroundOpacity,
-        classes,
+        backgroundOpacity = 0.3,
+        classes = {},
         icon,
         fontColor = theme.palette.getContrastText(backgroundColor || theme.palette.primary.main),
         onIconClick,
@@ -180,27 +179,3 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
 };
 
 DrawerHeader.displayName = 'DrawerHeader';
-DrawerHeader.defaultProps = {
-    backgroundOpacity: 0.3,
-    classes: {},
-};
-DrawerHeader.propTypes = {
-    backgroundColor: PropTypes.string,
-    backgroundImage: PropTypes.string,
-    backgroundOpacity: PropTypes.number,
-    classes: PropTypes.shape({
-        root: PropTypes.string,
-        background: PropTypes.string,
-        content: PropTypes.string,
-        navigation: PropTypes.string,
-        nonClickableIcon: PropTypes.string,
-        subtitle: PropTypes.string,
-        title: PropTypes.string,
-    }),
-    fontColor: PropTypes.string,
-    icon: PropTypes.element,
-    onIconClick: PropTypes.func,
-    subtitle: PropTypes.string,
-    title: PropTypes.string,
-    titleContent: PropTypes.element,
-};
