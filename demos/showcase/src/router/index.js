@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { DrawerLayout } from '@pxblue/react-components';
 import { NavigationDrawer } from './NavigationDrawer';
@@ -14,13 +14,13 @@ const ScrollToTop = () => {
     }, [pathname]);
 
     return null;
-}
+};
 
 export const MainRouter = () => {
     const [open, setOpen] = useState(true);
     return (
         <Router>
-            <ScrollToTop/>
+            <ScrollToTop />
             <DrawerLayout drawer={<NavigationDrawer open={open} setOpen={setOpen} />}>
                 <Switch>
                     <Route path="*">

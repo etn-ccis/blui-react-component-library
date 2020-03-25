@@ -45,7 +45,8 @@ export type DrawerNavItem = {
 };
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
-const calcNestedPadding = (theme: Theme, depth: number): number => theme.spacing(depth ? (depth-1) * 4 : 0) + theme.spacing(2);
+const calcNestedPadding = (theme: Theme, depth: number): number =>
+    theme.spacing(depth ? (depth - 1) * 4 : 0) + theme.spacing(2);
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         infoListItem: {
-            paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth)
+            paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth),
         },
         active: {
             content: '""',
@@ -157,8 +158,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
         }
         if (onClick) {
             onClick();
-        }
-        else if (expandHandler) {
+        } else if (expandHandler) {
             expandHandler();
         }
     };
@@ -174,6 +174,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                 onClick={(e): void => {
                     if (e) {
                         expandHandler();
+                        e.stopPropagation();
                     }
                 }}
                 className={clsx(defaultClasses.expandIcon, classes.expandIcon, {
@@ -189,7 +190,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     const active = activeItem === itemID;
     const infoListItemClasses = {
         listItem: defaultClasses.infoListItem,
-        title: (depth > 0) ? clsx(defaultClasses.nestedTitle, classes.nestedTitle) : ''
+        title: depth > 0 ? clsx(defaultClasses.nestedTitle, classes.nestedTitle) : '',
     };
 
     return (
