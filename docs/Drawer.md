@@ -134,11 +134,12 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 | Prop Name               | Description                                    | Type          | Required | Default |
 |-------------------------|------------------------------------------------|---------------|----------|---------|
 | backgroundColor         | The color used for the background              | `string`      | no       |         |
+| classes                 | Style overrides                                | `StyleRules`  | no       |         |
 
 </div>
 
 #### Classes
-You can override the classes used by PX Blue by passing a `classes` prop. The DrawerBody supports the following keys:
+You can override the classes used by PX Blue by passing a `classes` prop. The `DrawerBody` supports the following keys:
 
 | Name             | Description                                     |
 |------------------|-------------------------------------------------|
@@ -156,6 +157,7 @@ The `items` property supports nested items to generate collapsible sections in t
 | Prop Name                       | Description                                                | Type              | Required | Default |
 |---------------------------------|------------------------------------------------------------|-------------------|----------|---------|
 | backgroundColor                 | The color used for the background                          | `string`          | no       |         | 
+| classes                         | Style overrides                                            | `StyleRules`      | no       |         |
 | items                           | List of NavItems to render                                 | `NestedNavItem[]` | yes      |         | 
 | title                           | Text to display in the group header                        | `string`          | no       |         |  
 | titleContent                    | Custom element, substitute for title                       | `React.Component` | no       |         | 
@@ -163,7 +165,7 @@ The `items` property supports nested items to generate collapsible sections in t
 
 
 #### Classes
-You can override the classes used by PX Blue by passing a `classes` prop. The DrawerNavGroup supports the following keys:
+You can override the classes used by PX Blue by passing a `classes` prop. The `DrawerNavGroup` supports the following keys:
 
 | Name                        | Description                                     |
 |-----------------------------|-------------------------------------------------|
@@ -176,8 +178,32 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 | nestedTitle                 | Styles applied to nested NavItem title          |
 
 
+## DrawerFooter
+The `DrawerFooter` is an optional section that renders at the bottom of the `Drawer`. It can be used to add any custom content (as children).
+
+### Usage
+```typescript
+import DrawerFooter from '@pxblue/react-components/core/Drawer';
+...
+<DrawerFooter>
+    <div>Custom Footer goes here</div>
+</DrawerFooter>
+```
+
+### DrawerFooter API
+
+<div style="overflow: auto;">
+
+| Prop Name       | Description                       | Type          | Required | Default |
+|-----------------|-----------------------------------|---------------|----------|---------|
+| backgroundColor | The color used for the background | `string`      | no       |         |   
+
+</div>
+
+## DrawerNavItem
+
 #### NavItem Object
-The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). NavItem can also include a list of `NestedNavItem` to create a tree structure (see below).
+The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). A `NavItem` can also include a list of `NestedNavItem` to create a tree structure (see below).
 
 <div style="overflow: auto;">
 
@@ -233,30 +259,9 @@ The `items` property of the NavItem can be nested to create a tree structure wit
 />
 ```
 
-## DrawerFooter
-The `DrawerFooter` is an optional section that renders at the bottom of the `Drawer`. It can be used to add any custom content (as children).
-
-### Usage
-```typescript
-import DrawerFooter from '@pxblue/react-components/core/Drawer';
-...
-<DrawerFooter>
-    <div>Custom Footer goes here</div>
-</DrawerFooter>
-```
-
-### DrawerFooter API
-
-<div style="overflow: auto;">
-
-| Prop Name       | Description                       | Type          | Required | Default |
-|-----------------|-----------------------------------|---------------|----------|---------|
-| backgroundColor | The color used for the background | `string`      | no       |         |   
-
-</div>
 
 ## Shared Props
-The following props can be set at any level in the drawer hierarchy (`Drawer`, `DrawerNavGroup`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
+The following props can be set at any level in the drawer hierarchy (`Drawer`, `DrawerBody`, `DrawerNavGroup`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
 
 | Name                      | Description                                                | Type               | Required | Default                                                    |
 | ------------------------- | ---------------------------------------------------------- | ------------------ | -------- | ---------------------------------------------------------- |
@@ -269,6 +274,7 @@ The following props can be set at any level in the drawer hierarchy (`Drawer`, `
 | divider                   | Whether to show a line between all items                   | `boolean`          | no       | true                                                       |
 | expandIcon                | Icon used to expand drawer                                 | `JSX.Element`      | no       | `<ExpandLess />` at top-level, `<ArrowDropUp />` otherwise |
 | hidePadding               | Whether to hide the paddings reserved for menu item icons  | `boolean`          | no       |                                                            |
+| InfoListItemProps         | Used to override InfoListItem props set by the Drawer      | `InfoListItemProps`| no       |                                                            |
 | itemFontColor             | The color used for the item text                           | `string`           | no       | gray[500]                                                  |
 | itemIconColor             | The color used for the icon                                | `string`           | no       | gray[500]                                                  |
 | ripple                    | Whether to apply material ripple effect to items           | `boolean`          | no       | true                                                       |
@@ -281,6 +287,8 @@ The following props control the NavGroup and thus only apply to `Drawer`, and `D
 | nestedBackgroundColor | background color for nested menu items           | `string`  | no       | theme.palette.type === 'light' ? white[200] : black['A200'], |
 | nestedDivider         | Whether to show a line between nested menu items | `boolean` | no       | false                                                        |
 | titleColor            | Font color for group header                      | `string`  | no       | theme.palette.text.primary                                   |
+
+
 
 # DrawerLayout
 The `DrawerLayout` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with  a PX Blue `Drawer`. It accepts a `Drawer` as a prop, and the main page content is passed in through child elements.
