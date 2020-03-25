@@ -152,7 +152,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
         if (onClick) {
             onClick();
         }
-        if (expandHandler) {
+        else if (expandHandler) {
             expandHandler();
         }
     };
