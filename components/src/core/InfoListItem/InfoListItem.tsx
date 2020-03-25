@@ -42,7 +42,7 @@ export type InfoListItemProps = {
     style?: CSSProperties;
     subtitle?: string | Array<string | JSX.Element>;
     subtitleSeparator?: string;
-    title: string;
+    title: React.ReactNode;
     wrapSubtitle?: boolean;
     wrapTitle?: boolean;
 };
