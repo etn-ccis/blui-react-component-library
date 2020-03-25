@@ -147,12 +147,15 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     const hasAction = Boolean(onItemSelect || onClick || expandHandler);
     const onClickAction = (): void => {
         if (onItemSelect) {
+            console.log('on Item select');
             onItemSelect();
         }
         if (onClick) {
+            console.log('click handler');
             onClick();
         }
-        if (expandHandler) {
+        else if (expandHandler) {
+            console.log('expand handler');
             expandHandler();
         }
     };
@@ -167,7 +170,9 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
             <div
                 onClick={(e): void => {
                     if (e) {
+                        console.log('click expander');
                         expandHandler();
+                        e.stopPropagation();
                     }
                 }}
                 className={clsx(defaultClasses.expandIcon, classes.expandIcon, {
