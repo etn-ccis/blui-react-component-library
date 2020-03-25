@@ -178,6 +178,58 @@ You can override the classes used by PX Blue by passing a `classes` prop. The `D
 | nestedTitle                 | Styles applied to nested NavItem title          |
 
 
+## DrawerFooter
+The `DrawerFooter` is an optional section that renders at the bottom of the `Drawer`. It can be used to add any custom content (as children).
+
+### Usage
+```typescript
+import DrawerFooter from '@pxblue/react-components/core/Drawer';
+...
+<DrawerFooter>
+    <div>Custom Footer goes here</div>
+</DrawerFooter>
+```
+
+### DrawerFooter API
+
+<div style="overflow: auto;">
+
+| Prop Name       | Description                       | Type          | Required | Default |
+|-----------------|-----------------------------------|---------------|----------|---------|
+| backgroundColor | The color used for the background | `string`      | no       |         |   
+
+</div>
+
+## Shared Props
+The following props can be set at any level in the drawer hierarchy (`Drawer`, `DrawerBody`, `DrawerNavGroup`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
+
+| Name                      | Description                                                | Type               | Required | Default                                                    |
+| ------------------------- | ---------------------------------------------------------- | ------------------ | -------- | ---------------------------------------------------------- |
+| activeItemBackgroundColor | Background color for the 'active' item                     | `string`           | no       | varies for light/dark theme                                |
+| activeItemBackgroundShape | shape of the active item background                        | `'round'|'square'` | no       | round                                                      |
+| activeItemFontColor       | Font color for the 'active' item                           | `string`           | no       | varies for light/dark theme                                |
+| activeItemIconColor       | Icon color for the 'active' item                           | `string`           | no       | varies for light/dark theme                                |
+| chevron                   | Whether to have chevrons for all menu items                | `boolean`          | no       |                                                            |
+| collapseIcon              | Icon used to collapse drawer                               | `JSX.Element`      | no       | `expandIcon` rotated 180 degrees                           |
+| divider                   | Whether to show a line between all items                   | `boolean`          | no       | true                                                       |
+| expandIcon                | Icon used to expand drawer                                 | `JSX.Element`      | no       | `<ExpandLess />` at top-level, `<ArrowDropUp />` otherwise |
+| hidePadding               | Whether to hide the paddings reserved for menu item icons  | `boolean`          | no       |                                                            |
+| InfoListItemProps         | Used to override InfoListItem props set by the Drawer      | `InfoListItemProps`| no       |                                                            |
+| itemFontColor             | The color used for the item text                           | `string`           | no       | gray[500]                                                  |
+| itemIconColor             | The color used for the icon                                | `string`           | no       | gray[500]                                                  |
+| ripple                    | Whether to apply material ripple effect to items           | `boolean`          | no       | true                                                       |
+
+The following props control the NavGroup and thus only apply to `Drawer`, and `DrawerNavGroupProps` (so not `NavItem` or `NestedNavItem`):
+
+| Name                  | Description                                      | Type      | Required | Default                                                      |
+| --------------------- | ------------------------------------------------ | --------- | -------- | ------------------------------------------------------------ |
+| activeItem            | itemID for the 'active' item                     | `string`  | no       |                                                              |
+| nestedBackgroundColor | background color for nested menu items           | `string`  | no       | theme.palette.type === 'light' ? white[200] : black['A200'], |
+| nestedDivider         | Whether to show a line between nested menu items | `boolean` | no       | false                                                        |
+| titleColor            | Font color for group header                      | `string`  | no       | theme.palette.text.primary                                   |
+
+## DrawerNavItem
+
 #### NavItem Object
 The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). A `NavItem` can also include a list of `NestedNavItem` to create a tree structure (see below).
 
@@ -235,54 +287,7 @@ The `items` property of the NavItem can be nested to create a tree structure wit
 />
 ```
 
-## DrawerFooter
-The `DrawerFooter` is an optional section that renders at the bottom of the `Drawer`. It can be used to add any custom content (as children).
 
-### Usage
-```typescript
-import DrawerFooter from '@pxblue/react-components/core/Drawer';
-...
-<DrawerFooter>
-    <div>Custom Footer goes here</div>
-</DrawerFooter>
-```
-
-### DrawerFooter API
-
-<div style="overflow: auto;">
-
-| Prop Name       | Description                       | Type          | Required | Default |
-|-----------------|-----------------------------------|---------------|----------|---------|
-| backgroundColor | The color used for the background | `string`      | no       |         |   
-
-</div>
-
-## Shared Props
-The following props can be set at any level in the drawer hierarchy (`Drawer`, `DrawerNavGroup`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
-
-| Name                      | Description                                                | Type               | Required | Default                                                    |
-| ------------------------- | ---------------------------------------------------------- | ------------------ | -------- | ---------------------------------------------------------- |
-| activeItemBackgroundColor | Background color for the 'active' item                     | `string`           | no       | varies for light/dark theme                                |
-| activeItemBackgroundShape | shape of the active item background                        | `'round'|'square'` | no       | round                                                      |
-| activeItemFontColor       | Font color for the 'active' item                           | `string`           | no       | varies for light/dark theme                                |
-| activeItemIconColor       | Icon color for the 'active' item                           | `string`           | no       | varies for light/dark theme                                |
-| chevron                   | Whether to have chevrons for all menu items                | `boolean`          | no       |                                                            |
-| collapseIcon              | Icon used to collapse drawer                               | `JSX.Element`      | no       | `expandIcon` rotated 180 degrees                           |
-| divider                   | Whether to show a line between all items                   | `boolean`          | no       | true                                                       |
-| expandIcon                | Icon used to expand drawer                                 | `JSX.Element`      | no       | `<ExpandLess />` at top-level, `<ArrowDropUp />` otherwise |
-| hidePadding               | Whether to hide the paddings reserved for menu item icons  | `boolean`          | no       |                                                            |
-| itemFontColor             | The color used for the item text                           | `string`           | no       | gray[500]                                                  |
-| itemIconColor             | The color used for the icon                                | `string`           | no       | gray[500]                                                  |
-| ripple                    | Whether to apply material ripple effect to items           | `boolean`          | no       | true                                                       |
-
-The following props control the NavGroup and thus only apply to `Drawer`, and `DrawerNavGroupProps` (so not `NavItem` or `NestedNavItem`):
-
-| Name                  | Description                                      | Type      | Required | Default                                                      |
-| --------------------- | ------------------------------------------------ | --------- | -------- | ------------------------------------------------------------ |
-| activeItem            | itemID for the 'active' item                     | `string`  | no       |                                                              |
-| nestedBackgroundColor | background color for nested menu items           | `string`  | no       | theme.palette.type === 'light' ? white[200] : black['A200'], |
-| nestedDivider         | Whether to show a line between nested menu items | `boolean` | no       | false                                                        |
-| titleColor            | Font color for group header                      | `string`  | no       | theme.palette.text.primary                                   |
 
 # DrawerLayout
 The `DrawerLayout` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with  a PX Blue `Drawer`. It accepts a `Drawer` as a prop, and the main page content is passed in through child elements.
