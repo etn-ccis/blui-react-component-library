@@ -1,7 +1,7 @@
 import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
 const useStyles = makeStyles((theme: Theme) =>
