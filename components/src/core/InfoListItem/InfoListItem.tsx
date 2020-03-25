@@ -181,7 +181,7 @@ InfoListItem.propTypes = {
         PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
     ]),
     subtitleSeparator: PropTypes.string,
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     wrapSubtitle: PropTypes.bool,
     wrapTitle: PropTypes.bool,
 };
