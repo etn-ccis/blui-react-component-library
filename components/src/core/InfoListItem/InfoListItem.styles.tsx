@@ -23,7 +23,9 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             '&:hover': {
                 backgroundColor: (props) =>
                     props.onClick
-                        ? props.backgroundColor !== 'inherit' && props.backgroundColor !== 'transparent'
+                        ? props.backgroundColor &&
+                          props.backgroundColor !== 'inherit' &&
+                          props.backgroundColor !== 'transparent'
                             ? color(props.backgroundColor)
                                   .darken(0.08)
                                   .hex()
