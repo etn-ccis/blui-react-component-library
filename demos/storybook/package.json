@@ -31,8 +31,8 @@
     "scripts": {
         "start": "yarn storybook",
         "build": "react-scripts build",
-        "storybook": "start-storybook -p 6006 -s ../../docs/,./assets",
-        "build-storybook": "build-storybook -s ../../docs/,./assets",
+        "storybook": "start-storybook -p 6006 -s ../../docs/,./assets,./node_modules/typeface-open-sans/files",
+        "build-storybook": "build-storybook -s ../../docs/,./assets,./node_modules/typeface-open-sans/files",
         "lint": "eslint \"stories/**\"",
         "lint:fix": "eslint \"stories/**\" --fix",
         "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write"
@@ -64,6 +64,8 @@
         "eslint-plugin-react": "^7.17.0",
         "mini-css-extract-plugin": "^0.7.0",
         "prettier": "^1.19.1",
+        "sass-loader": "^8.0.2",
+        "typeface-open-sans": "0.0.75"
         "sass-loader": "^8.0.2",
         "ts-loader": "^6.2.2"
     }
