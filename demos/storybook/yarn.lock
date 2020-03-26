@@ -1533,10 +1533,10 @@
     "@pxblue/colors" "^2.0.0"
     typeface-open-sans "^0.0.75"
 
-"@pxblue/storybook-themes@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@pxblue/storybook-themes/-/storybook-themes-1.0.3.tgz#4297687952ef0801443c5437d3905f4c372d3152"
-  integrity sha512-AQCQQgKa0X7HNBdfUdw7xkz+NKl5PT2D+bwG0rUPawFWFsFtlpl57SSpE6xoB61BQdEOBOiroGf8wN1r4bOj3w==
+"@pxblue/storybook-themes@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@pxblue/storybook-themes/-/storybook-themes-1.0.4.tgz#79c5e9ae7890606fb7ce1b4f5a48b462f812fa7e"
+  integrity sha512-hRSz9/lqPPMK1i+g1YNsE6z8oETsSfQYO6QoPTLl7+iK1kRExZXe0N+gGLu84e8Q1f1QNQkKu58SC7uIBLxDMg==
 
 "@reach/router@^1.2.1":
   version "1.2.1"
@@ -12879,7 +12879,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeface-open-sans@^0.0.75:
+typeface-open-sans@0.0.75, typeface-open-sans@^0.0.75:
   version "0.0.75"
   resolved "https://registry.yarnpkg.com/typeface-open-sans/-/typeface-open-sans-0.0.75.tgz#20d0c330f14c0c40463c334adbedd6005389abe4"
   integrity sha512-0lLmB7pfj113OP4T78SbpSmC4OCdFQ0vUxdSXQccsSb6qF76F92iEuC/DghFgmPswTyidk8+Hwf+PS/htiJoRQ==

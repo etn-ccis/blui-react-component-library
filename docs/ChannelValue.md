@@ -20,7 +20,7 @@ import { ChannelValue } from '@pxblue/react-components';
 <ChannelValue value={100} units={'%'} icon={<Icon/>} />
 ```
 
-### API
+## API
 <div style="overflow: auto;">
 
 | Prop Name   | Description                                    | Type                     | Required | Default   |
