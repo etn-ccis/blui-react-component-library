@@ -58,13 +58,13 @@
         "@types/react-dom": "16.9.3",
         "@typescript-eslint/eslint-plugin": "^2.16.0",
         "@typescript-eslint/parser": "^2.16.0",
-        "awesome-typescript-loader": "^5.2.1",
         "css-loader": "^3.4.2",
         "eslint": "^6.8.0",
         "eslint-config-prettier": "^6.9.0",
         "eslint-plugin-react": "^7.17.0",
         "mini-css-extract-plugin": "^0.7.0",
         "prettier": "^1.19.1",
-        "sass-loader": "^8.0.2"
+        "sass-loader": "^8.0.2",
+        "ts-loader": "^6.2.2"
     }
 }
