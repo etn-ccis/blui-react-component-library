@@ -11,7 +11,6 @@ export const stories = storiesOf('Intro/Overview', module);
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            marginTop: -40, /* Size of the top bar */
             color: appliedTheme.palette.primary.contrastText,
             backgroundColor: appliedTheme.palette.primary.main,
             backgroundImage: `url(${backgroundImage})`,
