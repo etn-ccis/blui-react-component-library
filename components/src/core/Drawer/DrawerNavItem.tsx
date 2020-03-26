@@ -189,7 +189,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     const actionComponent = getActionComponent();
     const active = activeItem === itemID;
     const infoListItemClasses = {
-        listItem: defaultClasses.infoListItem,
+        root: defaultClasses.infoListItem,
         title: depth > 0 ? clsx(defaultClasses.nestedTitle, classes.nestedTitle) : '',
     };
 
