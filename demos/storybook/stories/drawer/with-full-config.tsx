@@ -4,6 +4,7 @@ import {
     Add,
     AddAPhoto,
     AirportShuttle,
+    Dashboard,
     Devices,
     FitnessCenter,
     NotificationsActive,
@@ -66,6 +67,8 @@ const getIcon = (icon: string): JSX.Element | undefined => {
             return <Menu />;
         case '<FitnessCenter />':
             return <FitnessCenter />;
+        case '<Dashboard />':
+            return <Dashboard />;
         case 'undefined':
         default:
             return undefined;
