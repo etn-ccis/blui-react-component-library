@@ -17,7 +17,7 @@ const getIconColor = (props: InfoListItemProps): string => {
 export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
     createStyles({
         root: {
-            cursor: (props) => (props.onClick ? 'pointer' : 'default'),
+            cursor: (props) => (props.onClick ? 'pointer' : 'inherit'),
             backgroundColor: (props) => props.backgroundColor || 'inherit',
             height: (props) => (props.wrapSubtitle || props.wrapTitle ? 'unset' : getHeight(props)),
             minHeight: (props) => (props.wrapSubtitle || props.wrapTitle ? getHeight(props) : 'unset'),

@@ -85,7 +85,7 @@ export const Hero = (props: HeroProps): JSX.Element => {
 
     return (
         <div
-            style={{ cursor: onClick ? 'pointer' : 'default' }}
+            style={{ cursor: onClick ? 'pointer' : 'inherit' }}
             className={clsx(defaultClasses.root, classes.root)}
             onClick={onClick ? (): void => onClick() : undefined}
             data-test={'wrapper'}

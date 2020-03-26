@@ -1,6 +1,5 @@
-import { CSSProperties } from '@material-ui/styles';
 import React from 'react';
-import { Card, Typography, Divider, Theme, makeStyles, createStyles } from '@material-ui/core';
+import { Card, Typography, Divider, Theme, makeStyles, createStyles, CardProps } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -81,7 +80,7 @@ type ScoreCardClasses = {
     headerSubtitle?: string;
 };
 
-export type ScoreCordProps = {
+export type ScoreCordProps = CardProps & {
     actionItems?: JSX.Element[];
     actionLimit?: number;
     actionRow?: JSX.Element;
@@ -94,7 +93,6 @@ export type ScoreCordProps = {
     headerInfo?: string | JSX.Element;
     headerTitle: string;
     headerSubtitle?: string | JSX.Element;
-    style?: CSSProperties;
 };
 
 export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
@@ -113,7 +111,7 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         headerInfo,
         headerTitle,
         headerSubtitle,
-        style,
+        ...cardProps
     } = props;
 
     const fontColor = (): string => headerFontColor || Colors.white[50];
@@ -221,7 +219,7 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     };
 
     return (
-        <Card className={clsx(defaultClasses.root, classes.root)} style={style} data-test={'card'}>
+        <Card className={clsx(defaultClasses.root, classes.root)} data-test={'card'} {...cardProps}>
             <div
                 data-test={'header'}
                 className={clsx(defaultClasses.header, classes.header)}
@@ -270,7 +268,6 @@ ScoreCard.propTypes = {
     headerInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     headerTitle: PropTypes.string.isRequired,
     headerSubtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
 ScoreCard.defaultProps = {
     actionLimit: 3,
