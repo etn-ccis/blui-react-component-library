@@ -1,11 +1,23 @@
 import React from 'react';
-import clsx from 'clsx';
 import { separate, withKeys } from '../utilities';
-import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
+import { useStyles } from './InfoListItem.styles';
 
 import { Avatar, Divider, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 import Chevron from '@material-ui/icons/ChevronRight';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
+import clsx from 'clsx';
+
+const MAX_SUBTITLE_ELEMENTS = 6;
+
+type InfoListItemClasses = {
+    root?: string;
+    avatar?: string;
+    icon?: string;
+    rightComponent?: string;
+    separator?: string;
+    subtitle?: string;
+    title?: string;
+};
 
 export type DividerType = 'full' | 'partial';
 export type InfoListItemProps = {
@@ -31,8 +43,6 @@ export type InfoListItemProps = {
     wrapSubtitle?: boolean;
     wrapTitle?: boolean;
 };
-
-const MAX_SUBTITLE_ELEMENTS = 6;
 
 export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const defaultClasses = useStyles(props);
@@ -105,35 +115,34 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
 
     return (
-        <div className={combine('root')} style={style}>
-            <ListItem
-                button={onClick && ripple ? true : undefined}
-                className={combine('listItem')}
-                dense={dense}
-                onClick={onClick ? (): void => onClick() : undefined}
-            >
-                <div className={defaultClasses.statusStripe} />
-                {divider && <Divider className={defaultClasses.divider} />}
-                {(icon || !hidePadding) && getIcon()}
-                {leftComponent}
-                <ListItemText
-                    primary={title}
-                    className={defaultClasses.listItemText}
-                    secondary={getSubtitle()}
-                    primaryTypographyProps={{
-                        noWrap: !wrapTitle,
-                        variant: 'body1',
-                        className: combine('title'),
-                    }}
-                    secondaryTypographyProps={{
-                        noWrap: !wrapSubtitle,
-                        variant: 'subtitle2',
-                        className: combine('subtitle'),
-                    }}
-                />
-                {getRightComponent()}
-            </ListItem>
-        </div>
+        <ListItem
+            button={onClick && ripple ? true : undefined}
+            className={combine('root')}
+            style={style}
+            dense={dense}
+            onClick={onClick ? (): void => onClick() : undefined}
+        >
+            <div className={defaultClasses.statusStripe} />
+            {divider && <Divider className={defaultClasses.divider} />}
+            {(icon || !hidePadding) && getIcon()}
+            {leftComponent}
+            <ListItemText
+                primary={title}
+                className={defaultClasses.listItemText}
+                secondary={getSubtitle()}
+                primaryTypographyProps={{
+                    noWrap: !wrapTitle,
+                    variant: 'body1',
+                    className: combine('title'),
+                }}
+                secondaryTypographyProps={{
+                    noWrap: !wrapSubtitle,
+                    variant: 'subtitle2',
+                    className: combine('subtitle'),
+                }}
+            />
+            {getRightComponent()}
+        </ListItem>
     );
 };
 

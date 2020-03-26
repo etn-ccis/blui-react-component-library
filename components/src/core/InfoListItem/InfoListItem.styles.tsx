@@ -28,21 +28,25 @@ const getIconColor = (props: InfoListItemProps): string => {
 export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
     createStyles({
         root: {
-            cursor: (props) => (props.onClick ? 'pointer' : 'default'),
+            cursor: (props) => (props.onClick ? 'pointer' : 'inherit'),
             backgroundColor: (props) => props.backgroundColor || 'inherit',
-            height: (props) => (props.wrapSubtitle || props.wrapTitle ? 'unset' : getHeight(props)),
-            minHeight: (props) => (props.wrapSubtitle || props.wrapTitle ? getHeight(props) : 'unset'),
+            minHeight: (props) => getHeight(props),
+            '&:hover': {
+                backgroundColor: (props) =>
+                    props.onClick
+                        ? props.backgroundColor &&
+                          props.backgroundColor !== 'inherit' &&
+                          props.backgroundColor !== 'transparent'
+                            ? color(props.backgroundColor)
+                                  .darken(0.08)
+                                  .hex()
+                            : 'rgba(0,0,0,0.08)'
+                        : '',
+            },
         },
         avatar: {
             backgroundColor: (props) => props.statusColor || Colors.black[500],
             color: (props) => getIconColor(props),
-        },
-        listItem: {
-            height: 'inherit',
-            minHeight: 'inherit',
-            '&:hover': {
-                backgroundColor: (props) => (props.onClick ? 'rgba(0, 0, 0, .08)' : ''),
-            },
         },
         divider: {
             position: 'absolute',
