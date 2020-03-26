@@ -73,6 +73,8 @@ import { Temp } from '@pxblue/icons-mui';
 
 </div>
 
+The `ScoreCard` also extends all Material UI Card props.
+
 
 ### Classes
 You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:

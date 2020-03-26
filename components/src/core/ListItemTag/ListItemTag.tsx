@@ -44,7 +44,7 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps)
                 {
                     color: fontColor,
                     backgroundColor: backgroundColor,
-                    cursor: props.onClick ? 'pointer' : 'default',
+                    cursor: props.onClick ? 'pointer' : 'inherit',
                 },
                 style
             )}

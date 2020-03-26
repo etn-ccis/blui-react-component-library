@@ -314,7 +314,6 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 | Prop Name          | Description                     | Type              | Required | Default |
 |--------------------|---------------------------------|-------------------|----------|---------|
-| children           | Page's body content             | `React.ReactNode` | yes      |         |   
 | drawer             | Drawer component to be embedded | `React.ReactNode` | yes      |         |    
 
 </div>
