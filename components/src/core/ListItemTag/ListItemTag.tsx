@@ -5,14 +5,14 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 export type ListItemTagProps = {
-    /* The string label of the tag. */
-    label: string;
+    /* Color of the label background. Default is theme.palette.primary.main */
+    backgroundColor?: string;
 
-    /* Color of the label. Default is white['50']. */
+    /* Color of the label. Default is theme.palette.primary.contrastText. */
     fontColor?: string;
 
-    /* Color of the label background. Default is blue['500'] */
-    backgroundColor?: string;
+    /* The string label of the tag. */
+    label: string;
 } & TypographyProps;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -33,17 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps): JSX.Element => {
-    const {
-        classes: userClasses = {},
-        label,
-        fontColor,
-        backgroundColor,
-        variant,
-        noWrap,
-        style,
-        display,
-        ...other
-    } = props;
+    const { classes: userClasses = {}, label, fontColor, backgroundColor, style, ...other } = props;
     const theme = useTheme();
     const defaultClasses = useStyles(theme);
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
@@ -54,13 +44,10 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps)
                 {
                     color: fontColor,
                     backgroundColor: backgroundColor,
-                    cursor: props.onClick ? 'pointer' : 'default',
+                    cursor: props.onClick ? 'pointer' : 'inherit',
                 },
                 style
             )}
-            noWrap={noWrap}
-            variant={variant}
-            display={display}
             data-test={'list-item-tag'}
             {...other}
         >

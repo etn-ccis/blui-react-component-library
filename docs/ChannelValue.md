@@ -1,23 +1,46 @@
 # ChannelValue
 The ChannelValue component is used to display...a channel value (and units). This component abstracts the styles used to display the channel and units as well as an optional inline icon. These are used as part of the [Hero](./Hero.md) component, but can also be used inline (e.g., in a list).
 
-<img width="100%" alt="Channel Value in Hero" src="./images/heroes.png">
-<img width="100%" alt="Channel Value in a list item" src="./images/channelValue.png">
+<div style="text-align:center; width: 100%">
+    <img width="100%" style="max-width: 600px" alt="Channel Value in Hero" src="./images/heroes.png">
+    <hr />
+    <img width="100%" style="max-width: 600px" alt="Channel Value in a list item" src="./images/channelValue.png">
+</div>
+
 
 ## Usage
+
+<div style="text-align:center; width: 100%">
+    <img width="100%" style="max-width: 200px" alt="Channel Value Anatomy" src="./images/channelValueAnatomy.png">
+</div>
+
 ```typescript
 import { ChannelValue } from '@pxblue/react-components';
 ...
 <ChannelValue value={100} units={'%'} icon={<Icon/>} />
 ```
 
+## API
+<div style="overflow: auto;">
 
-### API
-| Prop Name   | Description                                    | Type                     | Required | Default   | Examples           |
-|-------------|------------------------------------------------|--------------------------|----------|-----------|--------------------|
-| value       | The the value (bold text) to display           | `string` &vert; `Number` | yes      |           | '125'              |
-| units       | The text to display for the units (light text) | `string`                 | no       |           | 'Hz'               |
-| icon        | The inline icon to display                     | `React.Component`        | no       |           | 'Hz'               |
-| prefix      | Show units before the value                    | `boolean`                | no       | false     |                    |
-| fontSize    | The size of the font                           | `string` &vert; `Number` | no       | 'inherit' | '12rem'            |
-| color       | The color of the font                          | `string`                 | no       | 'inherit' | 'rgba(0,0,0,0.25)' |
+| Prop Name   | Description                                    | Type                     | Required | Default   |
+|-------------|------------------------------------------------|--------------------------|----------|-----------|
+| color       | The color of the font                          | `string`                 | no       | 'inherit' |
+| classes     | Style overrides                                | `StyleRules`             | no       |           |    
+| fontSize    | The size of the font                           | `string` \| `number`     | no       | 'inherit' |   
+| icon        | The inline icon to display                     | `React.Component`        | no       |           |
+| prefix      | Show units before the value                    | `boolean`                | no       | false     |
+| units       | The text to display for the units (light text) | `string`                 | no       |           |
+| value       | The the value (bold text) to display           | `string` \| `number`     | yes      |           |
+
+</div>
+
+### Classes
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name             | Description                                 |
+|------------------|---------------------------------------------|
+| root             | Styles applied to the root element          |
+| icon             | Styles applied to the icon element          |
+| units            | Styles applied to the units element         |
+| value            | Styles applied to the value element         |

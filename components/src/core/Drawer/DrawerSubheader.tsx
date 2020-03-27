@@ -3,12 +3,12 @@ import { Divider } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 export type DrawerSubheaderProps = {
-    open?: boolean;
+    drawerOpen?: boolean;
 };
 
 export const DrawerSubheader: React.FC<DrawerSubheaderProps> = (props) => (
     <>
-        <div style={{ visibility: props.open ? 'inherit' : 'hidden' }}>{props.children}</div>
+        <div style={{ visibility: props.drawerOpen ? 'inherit' : 'hidden' }}>{props.children}</div>
         <Divider />
     </>
 );
@@ -16,5 +16,5 @@ export const DrawerSubheader: React.FC<DrawerSubheaderProps> = (props) => (
 DrawerSubheader.displayName = 'DrawerSubheader';
 
 DrawerSubheader.propTypes = {
-    open: PropTypes.bool,
+    drawerOpen: PropTypes.bool,
 };

@@ -2,17 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { createMuiTheme, MuiThemeProvider, CssBaseline } from '@material-ui/core';
-import * as PXBThemes from '@pxblue/themes/react';
-import App from './App';
+import * as PXBThemes from '@pxblue/react-themes';
 import './index.css';
+import { MainRouter } from './router';
 require('typeface-open-sans');
 
 ReactDOM.render(
-<MuiThemeProvider theme={createMuiTheme(PXBThemes.blue)}>
-    <CssBaseline/>
-    <App/>
-</MuiThemeProvider>
-, document.getElementById('root'));
+    <MuiThemeProvider theme={createMuiTheme(PXBThemes.blue)}>
+        <CssBaseline />
+        <MainRouter />
+    </MuiThemeProvider>,
+    document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

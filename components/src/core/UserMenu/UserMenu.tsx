@@ -2,7 +2,7 @@ import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/cor
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
             cursor: 'pointer',
             //@ts-ignore
             backgroundColor: theme.palette.primary[50],
-            //@ts-ignore
-            color: theme.palette.primary[500],
+            color: theme.palette.primary.main,
             height: theme.spacing(5),
             width: theme.spacing(5),
         },
@@ -39,20 +38,20 @@ type UserMenuClasses = {
 
 export type UserMenuItem = Omit<NavItem, 'active'>;
 export type UserMenuGroup = {
-    title?: string;
     fontColor?: string;
     iconColor?: string;
     items: UserMenuItem[];
+    title?: string;
 };
 
 export type UserMenuProps = {
     avatar: JSX.Element;
     classes?: UserMenuClasses;
     menu?: JSX.Element;
-    menuTitle?: string;
-    menuSubtitle?: string;
     menuGroups?: UserMenuGroup[];
     MenuProps?: Omit<standardMenuProps, 'open'>;
+    menuSubtitle?: string;
+    menuTitle?: string;
     onClose?: Function;
     onOpen?: Function;
 };
@@ -63,6 +62,26 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const defaultClasses = useStyles(theme);
     const [anchorEl, setAnchorEl] = useState(null);
 
+    const closeMenu = useCallback(() => {
+        onClose();
+        setAnchorEl(null);
+    }, [onClose]);
+
+    // Add closeMenu function to each item that has an onClick function.
+    useEffect(() => {
+        for (const group of menuGroups) {
+            for (const item of group.items) {
+                const onClick = item.onClick;
+                if (onClick) {
+                    item.onClick = (): void => {
+                        onClick();
+                        closeMenu();
+                    };
+                }
+            }
+        }
+    }, [menuGroups]);
+
     const canDisplayMenu = useCallback(() => Boolean(menu || menuGroups.length > 0), [menu, menuGroups]);
 
     const openMenu = useCallback(
@@ -72,11 +91,6 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         },
         [onOpen]
     );
-
-    const closeMenu = useCallback(() => {
-        onClose();
-        setAnchorEl(null);
-    }, [onClose]);
 
     /* Clones Avatar that user provides UserMenu & appends a click event so it opens the menu. */
     const formatAvatar = useCallback(
@@ -137,12 +151,11 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 <div className={defaultClasses.navGroups} key={index}>
                     <DrawerNavGroup
                         divider={false}
-                        open={true}
-                        iconColor={group.iconColor}
-                        fontColor={group.fontColor}
+                        drawerOpen={true}
+                        itemIconColor={group.iconColor}
+                        itemFontColor={group.fontColor}
                         title={group.title}
                         items={group.items}
-                        onSelect={closeMenu}
                     />
                 </div>
             )),
@@ -166,6 +179,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
                 onClose={closeMenu}
+                getContentAnchorEl={null}
                 {...MenuProps}
                 MenuListProps={{ style: { padding: 0 } }}
             >
@@ -182,8 +196,10 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     );
 };
 
+UserMenu.displayName = 'UserMenu';
+
 UserMenu.propTypes = {
-    avatar: PropTypes.element,
+    avatar: PropTypes.element.isRequired,
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
@@ -207,7 +223,7 @@ UserMenu.propTypes = {
                 })
             ),
         })
-    ),
+    ).isRequired,
     MenuProps: PropTypes.object,
     onClose: PropTypes.func,
     onOpen: PropTypes.func,

@@ -1,6 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import {
+    PXBlueDrawerNavGroupInheritableProperties,
+    PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+} from './Drawer';
+import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
+import clsx from 'clsx';
 
 const useStyles = makeStyles({
     root: {
@@ -11,48 +17,65 @@ const useStyles = makeStyles({
     },
 });
 
-export type DrawerBodyProps = {
-    activeBackgroundColor?: string;
-    activeFontColor?: string;
-    activeIconColor?: string;
-    backgroundColor?: string;
-    chevron?: boolean;
-    fontColor?: string;
-    iconColor?: string;
-    onSelect?: Function;
-    open?: boolean;
-    titleColor?: string;
+type DrawerBodyClasses = {
+    root?: string;
 };
 
-export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {
-    const classes = useStyles(props);
-    const { backgroundColor } = props;
-    const children = React.Children.toArray(props.children);
+export type DrawerBodyProps = {
+    backgroundColor?: string;
+    classes?: DrawerBodyClasses;
+    drawerOpen?: boolean;
+} & PXBlueDrawerNavGroupInheritableProperties;
+
+export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
+    const defaultClasses = useStyles(bodyProps);
+    const { backgroundColor, classes } = bodyProps;
+    const children = React.Children.toArray(bodyProps.children);
     return (
-        <div className={classes.root} style={{ backgroundColor }}>
-            {children.map((child: any) => {
+        <div className={clsx(defaultClasses.root, classes.root)} style={{ backgroundColor }}>
+            {children.map((child: any, index: number) => {
                 if (!child) {
                     return null;
                 }
 
-                const isNavGroup = child.type && child.type.displayName === 'DrawerNavGroup';
-                const groupProps = child.props;
-                return React.cloneElement(
-                    child,
-                    isNavGroup
-                        ? {
-                              activeBackgroundColor: groupProps.activeBackgroundColor || props.activeBackgroundColor,
-                              activeFontColor: groupProps.activeFontColor || props.activeFontColor,
-                              activeIconColor: groupProps.activeIconColor || props.activeIconColor,
-                              backgroundColor: groupProps.backgroundColor || props.backgroundColor,
-                              chevron: groupProps.chevron === undefined ? props.chevron : groupProps.chevron,
-                              fontColor: groupProps.fontColor || props.fontColor,
-                              iconColor: groupProps.iconColor || props.iconColor,
-                              onSelect: props.onSelect,
-                              open: props.open,
-                              titleColor: groupProps.titleColor || props.titleColor,
-                          }
-                        : {}
+                if (child.type && child.type.displayName !== 'DrawerNavGroup') return child;
+                const groupProps: DrawerNavGroupProps = child.props;
+
+                // for any DrawerNavGroup, if a prop is not set (undefined), inherit from the DrawerBody
+                // open and onItemSelect is always determined by DrawerBody
+                return (
+                    <DrawerNavGroup
+                        {...groupProps}
+                        key={`NavGroup_${index}`}
+                        activeItem={groupProps.activeItem || bodyProps.activeItem}
+                        activeItemBackgroundColor={
+                            groupProps.activeItemBackgroundColor || bodyProps.activeItemBackgroundColor
+                        }
+                        activeItemFontColor={groupProps.activeItemFontColor || bodyProps.activeItemFontColor}
+                        activeItemIconColor={groupProps.activeItemIconColor || bodyProps.activeItemIconColor}
+                        activeItemBackgroundShape={
+                            groupProps.activeItemBackgroundShape || bodyProps.activeItemBackgroundShape
+                        }
+                        backgroundColor={bodyProps.backgroundColor}
+                        chevron={groupProps.chevron === undefined ? bodyProps.chevron : groupProps.chevron}
+                        collapseIcon={groupProps.collapseIcon || bodyProps.collapseIcon}
+                        divider={groupProps.divider === undefined ? bodyProps.divider : groupProps.divider}
+                        expandIcon={groupProps.expandIcon || bodyProps.expandIcon}
+                        hidePadding={
+                            groupProps.hidePadding === undefined ? bodyProps.hidePadding : groupProps.hidePadding
+                        }
+                        itemFontColor={groupProps.itemFontColor || bodyProps.itemFontColor}
+                        itemIconColor={groupProps.itemIconColor || bodyProps.itemIconColor}
+                        InfoListItemProps={groupProps.InfoListItemProps || bodyProps.InfoListItemProps}
+                        nestedDivider={
+                            groupProps.nestedDivider === undefined ? bodyProps.nestedDivider : groupProps.nestedDivider
+                        }
+                        nestedBackgroundColor={groupProps.nestedBackgroundColor || bodyProps.nestedBackgroundColor}
+                        ripple={groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple}
+                        onItemSelect={bodyProps.onItemSelect}
+                        drawerOpen={bodyProps.drawerOpen}
+                        titleColor={groupProps.titleColor || bodyProps.titleColor}
+                    />
                 );
             })}
         </div>
@@ -60,16 +83,16 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (props) => {
 };
 
 DrawerBody.displayName = 'DrawerBody';
+
+// @ts-ignore
 DrawerBody.propTypes = {
-    activeBackgroundColor: PropTypes.string,
-    activeFontColor: PropTypes.string,
-    activeIconColor: PropTypes.string,
     backgroundColor: PropTypes.string,
-    chevron: PropTypes.bool,
-    fontColor: PropTypes.string,
-    iconColor: PropTypes.string,
-    onSelect: PropTypes.func,
-    open: PropTypes.bool,
-    titleColor: PropTypes.string,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    drawerOpen: PropTypes.bool,
+    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
-DrawerBody.defaultProps = {};
+DrawerBody.defaultProps = {
+    classes: {},
+};

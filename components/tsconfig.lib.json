@@ -6,6 +6,7 @@
     "declaration": true
   },
   "exclude": [
-    "src/**/*.test.tsx"
+    "src/**/*.test.tsx",
+    "src/core/test-utils.tsx"
   ]
 }

@@ -1,0 +1,34 @@
+<!-- Used for styling story container -->
+<style>
+    html,
+    body,
+    #root,
+    .wrapper {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #efefef;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .rotate {
+        animation: rotation 2s infinite linear;
+    }
+
+    @keyframes rotation {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(359deg);
+        }
+    }
+</style>

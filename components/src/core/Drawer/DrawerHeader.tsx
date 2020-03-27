@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: 'column',
             width: 'calc(100% - 56px)',
             boxSizing: 'border-box',
+            zIndex: 1,
         },
         navigation: {
             [theme.breakpoints.down('xs')]: {
@@ -37,6 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
             height: theme.spacing(8),
             display: 'flex',
             alignItems: 'center',
+            zIndex: 1,
         },
         title: {
             fontWeight: 600,
@@ -47,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
             lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
             marginTop: '-2px',
         },
-        headerBackground: {
+        background: {
             position: 'absolute',
             zIndex: 0,
             width: '100%',
@@ -63,10 +66,21 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+type DrawerHeaderClasses = {
+    root?: string;
+    background?: string;
+    content?: string;
+    navigation?: string;
+    nonClickableIcon?: string;
+    subtitle?: string;
+    title?: string;
+};
+
 export type DrawerHeaderProps = {
     backgroundColor?: string;
     backgroundImage?: string;
     backgroundOpacity?: number;
+    classes?: DrawerHeaderClasses;
     fontColor?: string;
     icon?: ReactNode;
     onIconClick?: Function;
@@ -76,31 +90,42 @@ export type DrawerHeaderProps = {
 };
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
-    const classes = useStyles(props);
     const theme = useTheme();
+    const defaultClasses = useStyles(theme);
     const {
-        icon,
         backgroundColor,
-        fontColor = theme.palette.getContrastText(backgroundColor || theme.palette.primary.main),
-        onIconClick,
-        titleContent,
-        title,
-        subtitle,
         backgroundImage,
         backgroundOpacity,
+        classes,
+        icon,
+        fontColor = theme.palette.getContrastText(backgroundColor || theme.palette.primary.main),
+        onIconClick,
+        subtitle,
+        title,
+        titleContent,
     } = props;
 
-    const toolbarBackgroundColor = String(backgroundColor || theme.palette.primary.main);
+    const toolbarBackgroundColor = backgroundColor || theme.palette.primary.main;
 
     const getHeaderContent = (): ReactNode =>
         titleContent || (
-            <div className={classes.content}>
-                <Typography noWrap variant={'h6'} className={classes.title}>
+            <div className={clsx(defaultClasses.content, classes.content)}>
+                <Typography
+                    noWrap
+                    variant={'h6'}
+                    className={clsx(defaultClasses.title, classes.title)}
+                    data-test={'drawer-header-title'}
+                >
                     {title}
                 </Typography>
 
                 {subtitle && (
-                    <Typography noWrap variant={'subtitle1'} className={classes.subtitle}>
+                    <Typography
+                        noWrap
+                        variant={'subtitle1'}
+                        className={clsx(defaultClasses.subtitle, classes.subtitle)}
+                        data-test={'drawer-header-subtitle'}
+                    >
                         {subtitle}
                     </Typography>
                 )}
@@ -111,7 +136,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         <>
             {backgroundImage && (
                 <div
-                    className={classes.headerBackground}
+                    className={clsx(defaultClasses.background, classes.background)}
                     style={{
                         backgroundImage: `url(${backgroundImage})`,
                         opacity: backgroundOpacity,
@@ -123,10 +148,13 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
 
     return (
         <>
-            <Toolbar className={classes.root} style={{ color: fontColor, backgroundColor: toolbarBackgroundColor }}>
+            <Toolbar
+                className={clsx(defaultClasses.root, classes.root)}
+                style={{ color: fontColor, backgroundColor: toolbarBackgroundColor }}
+            >
                 {getBackgroundImage()}
                 {icon && (
-                    <div className={classes.navigation}>
+                    <div className={clsx(defaultClasses.navigation, classes.navigation)}>
                         {onIconClick && (
                             <IconButton
                                 color={'inherit'}
@@ -137,7 +165,11 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                                 {icon}
                             </IconButton>
                         )}
-                        {!onIconClick && <div className={classes.nonClickableIcon}>{icon}</div>}
+                        {!onIconClick && (
+                            <div className={clsx(defaultClasses.nonClickableIcon, classes.nonClickableIcon)}>
+                                {icon}
+                            </div>
+                        )}
                     </div>
                 )}
                 {getHeaderContent()}
@@ -150,11 +182,21 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
 DrawerHeader.displayName = 'DrawerHeader';
 DrawerHeader.defaultProps = {
     backgroundOpacity: 0.3,
+    classes: {},
 };
 DrawerHeader.propTypes = {
     backgroundColor: PropTypes.string,
     backgroundImage: PropTypes.string,
     backgroundOpacity: PropTypes.number,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        background: PropTypes.string,
+        content: PropTypes.string,
+        navigation: PropTypes.string,
+        nonClickableIcon: PropTypes.string,
+        subtitle: PropTypes.string,
+        title: PropTypes.string,
+    }),
     fontColor: PropTypes.string,
     icon: PropTypes.element,
     onIconClick: PropTypes.func,

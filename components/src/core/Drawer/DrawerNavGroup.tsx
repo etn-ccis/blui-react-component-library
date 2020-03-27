@@ -1,22 +1,30 @@
-import React, { ReactNode } from 'react';
+import clsx from 'clsx';
+import React, { ReactNode, useState } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
-import { InfoListItem } from '../InfoListItem';
+import Collapse from '@material-ui/core/Collapse';
+import {
+    PXBlueDrawerNavGroupInheritableProperties,
+    PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+} from './Drawer';
 import PropTypes from 'prop-types';
+import { white, black } from '@pxblue/colors';
+import { DrawerNavItem, NavItem, NestedNavItem } from './DrawerNavItem';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        navGroupTextHeader: {
-            width: '95%',
+        groupHeader: {
             display: 'block',
             alignItems: 'center',
             lineHeight: '3rem',
             height: theme.spacing(6),
+            fontWeight: 600,
         },
         subheader: {
+            paddingBottom: 0,
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
             cursor: 'text',
@@ -25,174 +33,178 @@ const useStyles = makeStyles((theme: Theme) =>
                 paddingRight: theme.spacing(3),
             },
         },
-        listItem: {
-            '&:hover': {
-                backgroundColor: 'rgba(0, 0, 0, 0.08)',
-            },
-        },
-        listItemNoHover: {
-            '&:hover': {
-                backgroundColor: 'unset',
-            },
-        },
-        active: {
-            content: '""',
-            zIndex: 0,
-            position: 'absolute',
-            height: '100%',
-            width: 'calc(100% - 8px)',
-            left: 0,
-            top: 0,
-            backgroundColor:
-                //@ts-ignore
-                theme.palette.type === 'light' ? theme.palette.secondary[50] : theme.palette.secondary.light,
-            borderRadius: '0px 24px 24px 0px',
-            opacity: 0.9,
+        nestedListGroup: {
+            backgroundColor: theme.palette.type === 'light' ? white[200] : black['A200'],
+            paddingBottom: 0,
+            paddingTop: 0,
         },
     })
 );
 
-export type NavItem = {
-    active?: boolean;
-    icon?: JSX.Element;
-    onClick?: Function;
-    statusColor?: string;
-    subtitle?: string;
-    title: string;
-    divider?: boolean;
-};
-
 export type DrawerNavGroupProps = {
-    activeBackgroundColor?: string;
-    activeFontColor?: string;
-    activeIconColor?: string;
+    // internal API
     backgroundColor?: string;
-    chevron?: boolean;
-    content?: ReactNode;
-    divider?: boolean;
-    fontColor?: string;
-    iconColor?: string;
+
+    classes?: DrawerNavGroupClasses;
+
+    // internal API
+    drawerOpen?: boolean;
+
+    // List of navigation items to render
     items: NavItem[];
-    onSelect?: Function;
-    open?: boolean;
+
+    // Text to display in the group header
     title?: string;
-    titleColor?: string;
+
+    // Custom element, substitute for title
+    titleContent?: ReactNode;
+} & PXBlueDrawerNavGroupInheritableProperties;
+
+type DrawerNavGroupClasses = {
+    active?: string;
+    expandIcon?: string;
+    groupHeader?: string;
+    listItemContainer?: string;
+    nestedListGroup?: string;
+    subheader?: string;
+    nestedTitle?: string;
 };
 
-function NavigationListItem(item: NavItem, props: DrawerNavGroupProps): ReactNode {
-    const { title, subtitle, icon, statusColor, onClick, active } = item;
-    const { divider = true } = props;
-    if (!title && !icon) {
-        return null;
+function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
+    // if leaf node, return
+    if (!item.items) {
+        return item.itemID === activeItem;
     }
 
-    const classes = useStyles(props);
-    const theme = useTheme();
-    const {
-        // @ts-ignore
-        activeBackgroundColor = theme.palette.type === 'light' ? theme.palette.primary[50] : theme.palette.primary.main,
-        activeFontColor = theme.palette.type === 'light'
-            ? theme.palette.primary.main
-            : theme.palette.primary.contrastText,
-        activeIconColor = theme.palette.type === 'light'
-            ? theme.palette.primary.main
-            : theme.palette.primary.contrastText,
-        fontColor,
-        chevron,
-        iconColor,
-        onSelect,
-    } = props;
-
-    const action = (): void => {
-        if (onSelect) {
-            onSelect();
+    // else, loop through the branches
+    for (let i = 0; i < item.items.length; i++) {
+        if (findID(item.items[i], activeItem)) {
+            return true;
         }
-        if (onClick) {
-            onClick();
-        }
-    };
+    }
 
-    return (
-        <div style={{ position: 'relative' }} className={`${classes.listItem} ${active && classes.listItemNoHover}`}>
-            {active && <div className={classes.active} style={{ backgroundColor: activeBackgroundColor }} />}
-            <InfoListItem
-                dense
-                title={title}
-                subtitle={subtitle}
-                divider={
-                    item.divider === undefined ? (divider ? 'full' : undefined) : item.divider ? 'full' : undefined
-                }
-                statusColor={statusColor}
-                fontColor={active ? activeFontColor : fontColor}
-                icon={icon}
-                iconColor={active ? activeIconColor : iconColor}
-                chevron={chevron}
-                backgroundColor={'transparent'}
-                onClick={(): void => action()}
-            />
-        </div>
-    );
+    // no active items found, return false
+    return false;
 }
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
-    const classes = useStyles(props);
-    const { open, items, title, content, backgroundColor, titleColor } = props;
-    return (
-        <>
-            <List
-                style={{ paddingBottom: '0', backgroundColor }}
-                subheader={
-                    <ListSubheader
-                        className={classes.subheader}
-                        style={{
-                            position: 'unset',
-                            color: open ? titleColor : 'transparent',
-                        }}
+    const defaultClasses = useStyles(props);
+    const theme = useTheme();
+    const {
+        classes,
+        drawerOpen,
+        items,
+        title,
+        titleContent,
+        backgroundColor,
+        titleColor = theme.palette.text.primary,
+        nestedBackgroundColor,
+    } = props;
+
+    const open = drawerOpen !== undefined ? drawerOpen : true; // so that DrawerNavGroup can be placed in a <Card />
+
+    // recursively loop through item list and the subItems
+    function getDrawerItemList(item: NavItem | NestedNavItem, depth: number): JSX.Element {
+        const [expanded, setExpanded] = useState(findID(item, props.activeItem));
+
+        if (item.items) {
+            // if there are more sub pages, add the bucket header and recurse on this function
+            const collapsibleComponent = (
+                <Collapse in={expanded && open !== false} key={`${item.title}_group_${depth}`}>
+                    <List
+                        className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)}
+                        style={{ backgroundColor: nestedBackgroundColor }}
                     >
-                        {title && (
-                            <Typography noWrap variant={'subtitle2'} className={classes.navGroupTextHeader}>
-                                {title}
-                            </Typography>
-                        )}
-                        {content}
-                    </ListSubheader>
-                }
-            >
-                <div key={`${title}_title`}>{(title || content) && <Divider />}</div>
-                {items.map((item: NavItem, index: number) => (
-                    <div key={`${title}_item_${index}`}>{NavigationListItem(item, props)}</div>
-                ))}
-            </List>
-        </>
+                        {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
+                    </List>
+                </Collapse>
+            );
+
+            return (
+                <React.Fragment key={`${item.title}_Fragment_${depth}`}>
+                    <DrawerNavItem
+                        key={`${item.itemID}`}
+                        navItem={item}
+                        navGroupProps={props}
+                        depth={depth}
+                        expanded={expanded}
+                        expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
+                    />
+                    {collapsibleComponent}
+                </React.Fragment>
+            );
+        }
+        // Otherwise, we reached a leaf node. Return.
+        return (
+            <DrawerNavItem
+                key={`${item.itemID}`}
+                navItem={item}
+                navGroupProps={props}
+                depth={depth}
+                expanded={expanded}
+            />
+        );
+    }
+
+    return (
+        <List
+            style={{ backgroundColor, paddingBottom: 0 }}
+            subheader={
+                <ListSubheader
+                    className={clsx(defaultClasses.subheader, classes.subheader)}
+                    style={{
+                        position: 'unset',
+                        color: open ? titleColor : 'transparent',
+                    }}
+                >
+                    {title && (
+                        <Typography
+                            noWrap
+                            variant={'subtitle2'}
+                            className={clsx(defaultClasses.groupHeader, classes.groupHeader)}
+                        >
+                            {title}
+                        </Typography>
+                    )}
+                    {titleContent}
+                </ListSubheader>
+            }
+        >
+            <div key={`${title}_title`}>{(title || titleContent) && <Divider />}</div>
+            {items.map((item: NavItem) => getDrawerItemList(item, 0))}
+        </List>
     );
 };
 
 DrawerNavGroup.displayName = 'DrawerNavGroup';
 
 DrawerNavGroup.propTypes = {
-    activeBackgroundColor: PropTypes.string,
-    activeFontColor: PropTypes.string,
-    activeIconColor: PropTypes.string,
     backgroundColor: PropTypes.string,
-    chevron: PropTypes.bool,
-    content: PropTypes.element,
-    fontColor: PropTypes.string,
-    iconColor: PropTypes.string,
+    classes: PropTypes.shape({
+        active: PropTypes.string,
+        expandIcon: PropTypes.string,
+        listItemContainer: PropTypes.string,
+        groupHeader: PropTypes.string,
+        nestedListGroup: PropTypes.string,
+        subheader: PropTypes.string,
+        nestedTitle: PropTypes.string,
+    }),
+    drawerOpen: PropTypes.bool,
     // @ts-ignore
     items: PropTypes.arrayOf(
         PropTypes.shape({
-            active: PropTypes.bool,
             icon: PropTypes.element,
-            onClick: PropTypes.func,
-            statusColor: PropTypes.string,
+            itemID: PropTypes.string.isRequired,
             subtitle: PropTypes.string,
             title: PropTypes.string.isRequired,
-            divider: PropTypes.bool,
+            onClick: PropTypes.func,
+            rightComponent: PropTypes.element,
+            statusColor: PropTypes.string,
         })
     ).isRequired,
-    onSelect: PropTypes.func,
-    open: PropTypes.bool,
-    title: PropTypes.string,
-    titleColor: PropTypes.string,
-    divider: PropTypes.bool,
+    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+};
+
+DrawerNavGroup.defaultProps = {
+    classes: {},
 };

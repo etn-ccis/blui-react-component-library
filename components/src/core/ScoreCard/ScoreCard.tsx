@@ -1,12 +1,12 @@
-import { CSSProperties } from '@material-ui/styles';
 import React from 'react';
-import { Card, Typography, Divider, Theme, makeStyles, createStyles } from '@material-ui/core';
+import { Card, Typography, Divider, Theme, makeStyles, createStyles, CardProps } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        card: {
+        root: {
             flex: '1 1 0px',
         },
         flexColumn: {
@@ -26,6 +26,17 @@ const useStyles = makeStyles((theme: Theme) =>
             zIndex: 1,
             alignItems: 'flex-start',
             padding: theme.spacing(2),
+        },
+        headerTitle: {
+            color: Colors.white[50], // this.fontColor(),
+            fontWeight: 600,
+            fontSize: '1.125rem',
+        },
+        headerSubtitle: {
+            lineHeight: 1.4,
+        },
+        headerInfo: {
+            fontWeight: 300,
         },
         headerBackground: {
             position: 'absolute',
@@ -49,35 +60,43 @@ const useStyles = makeStyles((theme: Theme) =>
             marginRight: 16,
             marginLeft: 16,
         },
-        actionItem: {
+        actionItems: {
             marginLeft: theme.spacing(1.5),
             cursor: 'pointer',
         },
-        title: {
-            color: Colors.white[50], // this.fontColor(),
-            fontWeight: 600,
-            fontSize: '1.125rem',
-        },
     })
 );
+type ScoreCardClasses = {
+    root?: string;
+    actionItems?: string;
+    badgeWrapper?: string;
+    bodyWrapper?: string;
+    content?: string;
+    header?: string;
+    headerBackground?: string;
+    headerContent?: string;
+    headerInfo?: string;
+    headerTitle?: string;
+    headerSubtitle?: string;
+};
 
-export type ScoreCordProps = {
+export type ScoreCordProps = CardProps & {
     actionItems?: JSX.Element[];
     actionLimit?: number;
     actionRow?: JSX.Element;
     badge?: JSX.Element;
     badgeOffset?: number;
+    classes?: ScoreCardClasses;
     headerBackgroundImage?: string;
     headerColor?: string;
     headerFontColor?: string;
     headerInfo?: string | JSX.Element;
     headerTitle: string;
     headerSubtitle?: string | JSX.Element;
-    style?: CSSProperties;
 };
 
 export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
-    const classes = useStyles(props);
+    const defaultClasses = useStyles(props);
     const {
         actionLimit,
         actionItems,
@@ -86,12 +105,13 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         badgeOffset,
         headerBackgroundImage,
         children,
+        classes,
         headerColor,
         headerFontColor,
         headerInfo,
         headerTitle,
         headerSubtitle,
-        style,
+        ...cardProps
     } = props;
 
     const fontColor = (): string => headerFontColor || Colors.white[50];
@@ -100,7 +120,7 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         if (headerBackgroundImage) {
             return (
                 <div
-                    className={classes.headerBackground}
+                    className={clsx(defaultClasses.headerBackground, classes.headerBackground)}
                     style={{ backgroundImage: `url(${headerBackgroundImage})` }}
                 />
             );
@@ -111,7 +131,12 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         if (!headerInfo) return;
         if (typeof headerInfo === 'string') {
             return (
-                <Typography noWrap variant={'body2'} style={{ color: fontColor(), fontWeight: 300 }}>
+                <Typography
+                    noWrap
+                    variant={'body2'}
+                    style={{ color: fontColor() }}
+                    className={clsx(defaultClasses.headerInfo, classes.headerInfo)}
+                >
                     {headerInfo}
                 </Typography>
             );
@@ -123,7 +148,12 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         if (!headerSubtitle) return;
         if (typeof headerSubtitle === 'string') {
             return (
-                <Typography noWrap variant={'body2'} style={{ color: fontColor(), lineHeight: 1.4 }}>
+                <Typography
+                    noWrap
+                    variant={'body2'}
+                    style={{ color: fontColor() }}
+                    className={clsx(defaultClasses.headerSubtitle, classes.headerSubtitle)}
+                >
                     {headerSubtitle}
                 </Typography>
             );
@@ -132,11 +162,11 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     };
 
     const getHeaderText = (): JSX.Element => (
-        <div className={classes.flexColumn} style={{ flex: '1 1 0px', overflow: 'hidden' }}>
+        <div className={defaultClasses.flexColumn} style={{ flex: '1 1 0px', overflow: 'hidden' }}>
             <Typography
                 variant={'h6'}
                 noWrap
-                className={classes.title}
+                className={clsx(defaultClasses.headerTitle, classes.headerTitle)}
                 style={headerFontColor ? { color: headerFontColor } : {}}
             >
                 {headerTitle}
@@ -149,7 +179,11 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     const getActionItems = (): JSX.Element[] | undefined => {
         if (actionItems) {
             return actionItems.slice(0, actionLimit).map((actionItem, index) => (
-                <div key={`${index}`} className={classes.actionItem} data-test={'action-item'}>
+                <div
+                    key={`${index}`}
+                    className={clsx(defaultClasses.actionItems, classes.actionItems)}
+                    data-test={'action-item'}
+                >
                     {actionItem}
                 </div>
             ));
@@ -160,7 +194,7 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         if (badge) {
             return (
                 <div
-                    className={classes.badgeWrapper}
+                    className={clsx(defaultClasses.badgeWrapper, classes.badgeWrapper)}
                     style={{
                         alignSelf: badgeOffset !== 0 ? 'flex-start' : 'center',
                         marginTop: badgeOffset,
@@ -185,20 +219,20 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     };
 
     return (
-        <Card className={classes.card} style={style} data-test={'card'}>
+        <Card className={clsx(defaultClasses.root, classes.root)} data-test={'card'} {...cardProps}>
             <div
                 data-test={'header'}
-                className={classes.header}
+                className={clsx(defaultClasses.header, classes.header)}
                 style={Object.assign({ color: fontColor() }, headerColor ? { backgroundColor: headerColor } : {})}
             >
                 {getBackgroundImage()}
-                <div className={classes.headerContent}>
+                <div className={clsx(defaultClasses.headerContent, classes.headerContent)}>
                     {getHeaderText()}
                     {getActionItems()}
                 </div>
             </div>
-            <div className={classes.content} data-test={'content'}>
-                <div className={classes.bodyWrapper} data-test={'body-wrapper'}>
+            <div className={clsx(defaultClasses.content, classes.content)} data-test={'content'}>
+                <div className={clsx(defaultClasses.bodyWrapper, classes.bodyWrapper)} data-test={'body-wrapper'}>
                     {children}
                 </div>
                 {getHeroes()}
@@ -215,15 +249,28 @@ ScoreCard.propTypes = {
     actionRow: PropTypes.element,
     badge: PropTypes.element,
     badgeOffset: PropTypes.number,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        actionItems: PropTypes.string,
+        badgeWrapper: PropTypes.string,
+        bodyWrapper: PropTypes.string,
+        content: PropTypes.string,
+        header: PropTypes.string,
+        headerBackground: PropTypes.string,
+        headerContent: PropTypes.string,
+        headerInfo: PropTypes.string,
+        headerTitle: PropTypes.string,
+        headerSubtitle: PropTypes.string,
+    }),
     headerBackgroundImage: PropTypes.string,
     headerColor: PropTypes.string,
     headerFontColor: PropTypes.string,
     headerInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     headerTitle: PropTypes.string.isRequired,
     headerSubtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
 };
 ScoreCard.defaultProps = {
     actionLimit: 3,
     badgeOffset: 0,
+    classes: {},
 };
