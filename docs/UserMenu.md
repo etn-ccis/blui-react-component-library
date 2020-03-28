@@ -8,10 +8,14 @@ The `UserMenu` is an Avatar that opens a Menu when clicked. It is typically used
 
 </div>
 
-
 The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `Menu`.
 
 ## Usage 
+
+<div style="width: 100%; text-align: center">
+    <img width="100%" style="max-width: 500px" alt="User Menu Anatomy" src="./images/userMenuAnatomy.png">
+</div>
+
 ```typescript
 import { UserMenu } from '@pxblue/react-components';
 import { Avatar, Menu } from '@material-ui/core';
@@ -45,7 +49,6 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 
 ```
 
-
 ## API
 
 <div style="overflow: auto;">
@@ -54,14 +57,14 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 |-------------------|--------------------------------------------------|--------------------------|----------|-------------|
 | avatar            | MUI Avatar that displays                         | `Avatar`                 | yes      |             |  
 | classes           | Style overrides                                  | `StyleRules`             | no       |             |           
+| menu              | Custom MUI Menu displayed when Avatar is clicked | Material-UI `Menu`       | no       |             |                                         
+| menuGroups        | Groups of menu items that display                | `UserMenuGroups[]`       | yes      |             |                                         
+| menuSubtitle      | Subtitle shown when menu is open                 | `string`                 | no       |             |                                         
+| menuTitle         | Title shown when menu is open                    | `string`                 | no       |             |                                         
+| MenuProps         | Property overrides for the MUI Menu              | `MenuProps`              | no       |             |          
 | onClose           | Function called when the menu is closed          | `Function`               | no       |             |                                         
 | onOpen            | Function called when the menu is opened          | `Function`               | no       |             |                                         
-| menu              | Custom MUI Menu displayed when Avatar is clicked | Material-UI `Menu`       | no       |             |                                         
-| menuTitle         | Title shown when menu is open                    | `string`                 | no       |             |                                         
-| menuSubtitle      | Subtitle shown when menu is open                 | `string`                 | no       |             |                                         
-| menuGroups        | Groups of menu items that display                | `UserMenuGroups`         | yes      |             |                                         
-| MenuProps         | Property overrides for the MUI Menu              | `MenuProps`              | no       |             |          
-                               
+                   
 </div>
 
 #### UserMenuGroups Object
