@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import { ArrowDropUp, ChevronRight, ExpandLess } from '@material-ui/icons';
+import { ArrowDropDown, ChevronRight, ExpandMore } from '@material-ui/icons';
 import { gray } from '@pxblue/colors';
 import clsx from 'clsx';
 import { PXBlueDrawerInheritableProperties } from './Drawer';
@@ -138,7 +138,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                 ? navGroupProps.divider
                 : true;
     }
-    const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropUp /> : <ExpandLess />);
+    const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropDown /> : <ExpandMore />);
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
     const InfoListItemProps = navItem.InfoListItemProps || navGroupProps.InfoListItemProps || {};
     const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || gray[500];
