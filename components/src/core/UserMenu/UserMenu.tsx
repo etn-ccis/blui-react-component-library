@@ -223,7 +223,7 @@ UserMenu.propTypes = {
                 })
             ),
         })
-    ).isRequired,
+    ),
     MenuProps: PropTypes.object,
     onClose: PropTypes.func,
     onOpen: PropTypes.func,

@@ -58,7 +58,7 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 | avatar            | MUI Avatar that displays                         | `Avatar`                 | yes      |             |  
 | classes           | Style overrides                                  | `StyleRules`             | no       |             |           
 | menu              | Custom MUI Menu displayed when Avatar is clicked | Material-UI `Menu`       | no       |             |                                         
-| menuGroups        | Groups of menu items that display                | `UserMenuGroups[]`       | yes      |             |                                         
+| menuGroups        | Groups of menu items that display                | `UserMenuGroups[]`       | no       |             |                                         
 | menuSubtitle      | Subtitle shown when menu is open                 | `string`                 | no       |             |                                         
 | menuTitle         | Title shown when menu is open                    | `string`                 | no       |             |                                         
 | MenuProps         | Property overrides for the MUI Menu              | `MenuProps`              | no       |             |          
