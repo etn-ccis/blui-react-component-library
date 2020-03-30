@@ -163,7 +163,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
         }
     };
 
-    const rightComponent = navItem.rightComponent || (chevron && !items) ? <ChevronRight /> : undefined;
+    const rightComponent = navItem.rightComponent || (chevron && !items ? <ChevronRight /> : undefined);
 
     function getActionComponent(): JSX.Element {
         if (!items) {
