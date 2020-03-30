@@ -81,7 +81,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         },
         title: {
             fontWeight: 600,
-            lineHeight: 1.2,
+            lineHeight: 1.25,
             display: 'block',
             color: (props) => props.fontColor,
         },
