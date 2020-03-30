@@ -13,7 +13,7 @@ const getIconColor = (props: InfoListItemProps): string => {
     return statusColor ? statusColor : 'inherit';
 };
 
-const isWrapEnabled = (props: InfoListItemProps): boolean => (props.wrapSubtitle || props.wrapTitle);
+const isWrapEnabled = (props: InfoListItemProps): boolean => props.wrapSubtitle || props.wrapTitle;
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
@@ -21,8 +21,8 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         root: {
             cursor: (props) => (props.onClick ? 'pointer' : 'inherit'),
             backgroundColor: (props) => props.backgroundColor || 'inherit',
-            minHeight: (props) => (isWrapEnabled(props)) ? getHeight(props) : 'unset',
-            height: (props) => (!isWrapEnabled(props)) ? getHeight(props) : 'auto',
+            minHeight: (props) => (isWrapEnabled(props) ? getHeight(props) : 'unset'),
+            height: (props) => (!isWrapEnabled(props) ? getHeight(props) : 'auto'),
             '&:hover': {
                 backgroundColor: (props) =>
                     props.onClick
