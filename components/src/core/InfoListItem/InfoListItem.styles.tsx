@@ -7,7 +7,6 @@ export type InfoListItemClasses = {
     root?: string;
     avatar?: string;
     icon?: string;
-    listItem?: string;
     rightComponent?: string;
     separator?: string;
     subtitle?: string;

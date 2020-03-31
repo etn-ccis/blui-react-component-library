@@ -1,6 +1,6 @@
 import React from 'react';
 import { separate, withKeys } from '../utilities';
-import { useStyles } from './InfoListItem.styles';
+import {InfoListItemClasses, useStyles} from './InfoListItem.styles';
 
 import { Avatar, Divider, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 import Chevron from '@material-ui/icons/ChevronRight';
@@ -8,16 +8,6 @@ import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import clsx from 'clsx';
 
 const MAX_SUBTITLE_ELEMENTS = 6;
-
-type InfoListItemClasses = {
-    root?: string;
-    avatar?: string;
-    icon?: string;
-    rightComponent?: string;
-    separator?: string;
-    subtitle?: string;
-    title?: string;
-};
 
 export type DividerType = 'full' | 'partial';
 export type InfoListItemProps = {
