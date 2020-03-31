@@ -1,6 +1,8 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import { ArrowDropDown, ChevronRight, ExpandMore } from '@material-ui/icons';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import { gray } from '@pxblue/colors';
 import clsx from 'clsx';
 import { PXBlueDrawerInheritableProperties } from './Drawer';
