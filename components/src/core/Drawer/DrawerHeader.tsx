@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         title: {
             fontWeight: 600,
-            lineHeight: '1.5rem',
+            lineHeight: '1.6rem', // Anything lower than 1.6rem cuts off bottom text of 'g' or 'y'.
         },
         subtitle: {
             fontWeight: 300,

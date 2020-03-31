@@ -1,6 +1,8 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import { ArrowDropUp, ChevronRight, ExpandLess } from '@material-ui/icons';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import { gray } from '@pxblue/colors';
 import clsx from 'clsx';
 import { PXBlueDrawerInheritableProperties } from './Drawer';
@@ -138,7 +140,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                 ? navGroupProps.divider
                 : true;
     }
-    const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropUp /> : <ExpandLess />);
+    const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropDown /> : <ExpandMore />);
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
     const InfoListItemProps = navItem.InfoListItemProps || navGroupProps.InfoListItemProps || {};
     const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || gray[500];
@@ -163,7 +165,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
         }
     };
 
-    const rightComponent = navItem.rightComponent || (chevron && !items) ? <ChevronRight /> : undefined;
+    const rightComponent = navItem.rightComponent || (chevron && !items ? <ChevronRight /> : undefined);
 
     function getActionComponent(): JSX.Element {
         if (!items) {
@@ -189,7 +191,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     const actionComponent = getActionComponent();
     const active = activeItem === itemID;
     const infoListItemClasses = {
-        listItem: defaultClasses.infoListItem,
+        root: defaultClasses.infoListItem,
         title: depth > 0 ? clsx(defaultClasses.nestedTitle, classes.nestedTitle) : '',
     };
 

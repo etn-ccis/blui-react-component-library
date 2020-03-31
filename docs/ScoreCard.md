@@ -1,14 +1,14 @@
 # ScoreCard
 Card component that calls attention to particular values.
 
-<div style="text-align: center; width: 100%; display: flex; justify-content: space-evenly; margin-bottom: 20px">
+<div style="align-items: center; text-align: center; width: 100%; display: flex; justify-content: space-evenly; margin-bottom: 20px">
     <img width="40%" alt="Score Card with multiple highlighted values" src="./images/scoreCard.png"><br/>
     <img width="40%" alt="Score Card with single badge-style value" src="./images/scoreCard_alt.png"><br/>
 </div>
 
 ## Usage
 
-<div style="text-align: center; width: 100%; display: flex; justify-content: space-evenly; margin-bottom: 20px">
+<div style="align-items: center; text-align: center; width: 100%; display: flex; justify-content: space-evenly; margin-bottom: 20px">
     <img width="80%" alt="Score Card with labels on different parts" src="./images/scoreCardAnatomy.png"><br/>
 </div>
 
@@ -72,6 +72,8 @@ import { Temp } from '@pxblue/icons-mui';
 | headerSubtitle        | The secondary text                          | `string`              | no       |                              | 
 
 </div>
+
+The `ScoreCard` also extends all Material UI Card props.
 
 
 ### Classes

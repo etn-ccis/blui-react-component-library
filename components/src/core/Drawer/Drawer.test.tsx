@@ -14,6 +14,7 @@ import { DrawerBody } from './DrawerBody';
 import { DrawerFooter } from './DrawerFooter';
 import { DrawerNavGroup } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
+import { MoreVert } from '@material-ui/icons';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -97,6 +98,14 @@ describe('DrawerNavGroup', () => {
     it('renders custom content correctly', () => {
         const wrapper = mount(<DrawerNavGroup titleContent={<Avatar />} items={[]} />);
         expect(wrapper.find(Avatar).length).toEqual(1);
+    });
+
+    it('renders rightComponent correctly', () => {
+        let wrapper = mount(<DrawerNavGroup items={[{ title: '', itemID: '', rightComponent: <MoreVert /> }]} />);
+        expect(wrapper.find(MoreVert).length).toEqual(1);
+
+        wrapper = mount(<DrawerNavGroup items={[{ title: '', itemID: '' }]} />);
+        expect(wrapper.find(MoreVert).length).toEqual(0);
     });
 
     it('renders its menu items recursively in the correct order', () => {

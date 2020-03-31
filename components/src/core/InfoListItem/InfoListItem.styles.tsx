@@ -24,25 +24,32 @@ const getIconColor = (props: InfoListItemProps): string => {
     return statusColor ? statusColor : 'inherit';
 };
 
+const isWrapEnabled = (props: InfoListItemProps): boolean => props.wrapSubtitle || props.wrapTitle;
+
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
     createStyles({
         root: {
-            cursor: (props) => (props.onClick ? 'pointer' : 'default'),
+            cursor: (props) => (props.onClick ? 'pointer' : 'inherit'),
             backgroundColor: (props) => props.backgroundColor || 'inherit',
-            height: (props) => (props.wrapSubtitle || props.wrapTitle ? 'unset' : getHeight(props)),
-            minHeight: (props) => (props.wrapSubtitle || props.wrapTitle ? getHeight(props) : 'unset'),
+            minHeight: (props) => (isWrapEnabled(props) ? getHeight(props) : 'unset'),
+            height: (props) => (!isWrapEnabled(props) ? getHeight(props) : 'auto'),
+            '&:hover': {
+                backgroundColor: (props) =>
+                    props.onClick
+                        ? props.backgroundColor &&
+                          props.backgroundColor !== 'inherit' &&
+                          props.backgroundColor !== 'transparent'
+                            ? color(props.backgroundColor)
+                                  .darken(0.08)
+                                  .hex()
+                            : 'rgba(0,0,0,0.08)'
+                        : '',
+            },
         },
         avatar: {
             backgroundColor: (props) => props.statusColor || Colors.black[500],
             color: (props) => getIconColor(props),
-        },
-        listItem: {
-            height: 'inherit',
-            minHeight: 'inherit',
-            '&:hover': {
-                backgroundColor: (props) => (props.onClick ? 'rgba(0, 0, 0, .08)' : ''),
-            },
         },
         divider: {
             position: 'absolute',
@@ -85,7 +92,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         },
         title: {
             fontWeight: 600,
-            lineHeight: 1.2,
+            lineHeight: 1.25,
             display: 'block',
             color: (props) => props.fontColor || 'inherit',
         },

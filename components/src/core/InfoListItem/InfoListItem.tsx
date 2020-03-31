@@ -105,35 +105,34 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     };
 
     return (
-        <div className={combine('root')} style={style}>
-            <ListItem
-                button={onClick && ripple ? true : undefined}
-                className={combine('listItem')}
-                dense={dense}
-                onClick={onClick ? (): void => onClick() : undefined}
-            >
-                <div className={defaultClasses.statusStripe} />
-                {divider && <Divider className={defaultClasses.divider} />}
-                {(icon || !hidePadding) && getIcon()}
-                {leftComponent}
-                <ListItemText
-                    primary={title}
-                    className={defaultClasses.listItemText}
-                    secondary={getSubtitle()}
-                    primaryTypographyProps={{
-                        noWrap: !wrapTitle,
-                        variant: 'body1',
-                        className: combine('title'),
-                    }}
-                    secondaryTypographyProps={{
-                        noWrap: !wrapSubtitle,
-                        variant: 'subtitle2',
-                        className: combine('subtitle'),
-                    }}
-                />
-                {getRightComponent()}
-            </ListItem>
-        </div>
+        <ListItem
+            button={onClick && ripple ? true : undefined}
+            className={combine('root')}
+            style={style}
+            dense={dense}
+            onClick={onClick ? (): void => onClick() : undefined}
+        >
+            <div className={defaultClasses.statusStripe} />
+            {divider && <Divider className={defaultClasses.divider} />}
+            {(icon || !hidePadding) && getIcon()}
+            {leftComponent}
+            <ListItemText
+                primary={title}
+                className={defaultClasses.listItemText}
+                secondary={getSubtitle()}
+                primaryTypographyProps={{
+                    noWrap: !wrapTitle,
+                    variant: 'body1',
+                    className: combine('title'),
+                }}
+                secondaryTypographyProps={{
+                    noWrap: !wrapSubtitle,
+                    variant: 'subtitle2',
+                    className: combine('subtitle'),
+                }}
+            />
+            {getRightComponent()}
+        </ListItem>
     );
 };
 

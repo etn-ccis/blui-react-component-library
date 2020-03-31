@@ -10,6 +10,11 @@ The Hero component displays a particular icon, value/units, and a label. The ico
 The value section of the Hero utilizes a [ChannelValue](./ChannelValue.md) component. To display a single simple value, the information can be passed as props (```value```, ```units```, ```valueIcon```). For more complex values (such as a duration that displays hours and minutes), you can pass in ```<ChannelValue>``` components as children and they will be displayed inline.
 
 ## Hero Usage
+
+<div style="width: 100%; text-align: center">
+    <img width="100%" style="max-width: 500px" alt="Hero Anatomy" src="./images/heroAnatomy.png">
+</div>
+
 ```typescript
 import { Hero } from '@pxblue/react-components';
 
@@ -56,8 +61,6 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | icon             | Styles applied to the icon element          |
 | label            | Styles applied to the label element         |
 | values           | Styles applied to the value element         |
-
-
 
 # HeroBanner
 The HeroBanner component is a simple wrapper component that is used to contain ```<Hero/>```s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four ```<Hero/>``` components as its children.

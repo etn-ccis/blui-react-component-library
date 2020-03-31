@@ -14,12 +14,12 @@ const useStyles = makeStyles(() =>
             color: appliedTheme.palette.primary.contrastText,
             backgroundColor: appliedTheme.palette.primary.main,
             backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: '200%',
             height: '100%',
             width: '100%',
             display: 'flex',
             alignContent: 'center',
             justifyContent: 'center',
-            backgroundSize: '200%',
             backgroundPosition: 'center',
         },
         container: {
