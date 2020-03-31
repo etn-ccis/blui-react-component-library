@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
@@ -18,7 +17,7 @@ module.exports = {
         '@storybook/addon-viewport',
         '@storybook/addon-storysource',
     ],
-    webpackFinal: async config => {
+    webpackFinal: async (config)=> {
         config.module.rules.push({
             include: [path.resolve(__dirname, '../stories')],
             exclude: [path.resolve(__dirname, '../node_modules')],
