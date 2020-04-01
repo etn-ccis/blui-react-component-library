@@ -5,7 +5,7 @@ var path = require('path');
 
 const options = {
     transpileOnly: true,
-    configFile: path.resolve(__dirname, '../tsConfig.json')
+    configFile: path.resolve(__dirname, '../tsconfig.json')
 };
 
 module.exports = {
