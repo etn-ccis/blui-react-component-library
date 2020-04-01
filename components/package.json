@@ -5,7 +5,6 @@
   "scripts": {
     "test": "jest src",
     "type-check": "tsc --noEmit",
-    "build:original": "tsc --p tsconfig.lib.json",
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc --p tsconfig.lib.json --emitDeclarationOnly",
     "build:js": "babel src --out-dir ../dist --extensions \".ts,.tsx\"",
