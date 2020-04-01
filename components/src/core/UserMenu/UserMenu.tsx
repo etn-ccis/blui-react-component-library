@@ -1,8 +1,7 @@
 import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -32,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-type UserMenuClasses = {
+export type UserMenuClasses = {
     root?: string;
 };
 
@@ -57,7 +56,17 @@ export type UserMenuProps = {
 };
 
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
-    const { avatar, menu, classes, menuTitle, menuSubtitle, menuGroups, MenuProps, onClose, onOpen } = props;
+    const {
+        avatar,
+        classes = {},
+        menu,
+        menuTitle,
+        menuSubtitle,
+        menuGroups = [],
+        MenuProps = {},
+        onClose = (): void => {},
+        onOpen = (): void => {},
+    } = props;
     const theme = useTheme();
     const defaultClasses = useStyles(theme);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -197,42 +206,3 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
 };
 
 UserMenu.displayName = 'UserMenu';
-
-UserMenu.propTypes = {
-    avatar: PropTypes.element.isRequired,
-    classes: PropTypes.shape({
-        root: PropTypes.string,
-    }),
-    menu: PropTypes.element,
-    menuTitle: PropTypes.string,
-    menuSubtitle: PropTypes.string,
-    // @ts-ignore
-    menuGroups: PropTypes.arrayOf(
-        PropTypes.shape({
-            title: PropTypes.string,
-            fontColor: PropTypes.string,
-            iconColor: PropTypes.string,
-            items: PropTypes.arrayOf(
-                PropTypes.shape({
-                    icon: PropTypes.element,
-                    onClick: PropTypes.func,
-                    statusColor: PropTypes.string,
-                    subtitle: PropTypes.string,
-                    title: PropTypes.string,
-                    divider: PropTypes.bool,
-                })
-            ),
-        })
-    ),
-    MenuProps: PropTypes.object,
-    onClose: PropTypes.func,
-    onOpen: PropTypes.func,
-};
-
-UserMenu.defaultProps = {
-    classes: {},
-    menuGroups: [],
-    MenuProps: {},
-    onClose: (): void => {},
-    onOpen: (): void => {},
-};

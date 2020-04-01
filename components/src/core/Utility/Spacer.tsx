@@ -1,5 +1,4 @@
 import { CSSProperties } from '@material-ui/styles';
-import PropTypes from 'prop-types';
 import React from 'react';
 import clsx from 'clsx';
 
@@ -15,7 +14,7 @@ export type SpacerClasses = {
 };
 
 export const Spacer: React.FC<SpacerProps> = (props) => {
-    const { flex, width, height, children, classes, style } = props;
+    const { children, classes = {}, flex = 1, height, style, width } = props;
 
     return (
         <div
@@ -36,15 +35,3 @@ export const Spacer: React.FC<SpacerProps> = (props) => {
 };
 
 Spacer.displayName = 'Spacer';
-Spacer.propTypes = {
-    flex: PropTypes.number,
-    width: PropTypes.number,
-    height: PropTypes.number,
-    classes: PropTypes.shape({
-        root: PropTypes.string,
-    }),
-};
-Spacer.defaultProps = {
-    flex: 1,
-    classes: {},
-};

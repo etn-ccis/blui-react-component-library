@@ -1,7 +1,17 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { InfoListItemProps } from './InfoListItem';
 import color from 'color';
 import * as Colors from '@pxblue/colors';
+import { InfoListItemProps } from './InfoListItem';
+
+export type InfoListItemClasses = {
+    root?: string;
+    avatar?: string;
+    icon?: string;
+    rightComponent?: string;
+    separator?: string;
+    subtitle?: string;
+    title?: string;
+};
 
 const getHeight = (props: InfoListItemProps): number => (props.dense ? 52 : 72);
 const getIconColor = (props: InfoListItemProps): string => {
@@ -83,7 +93,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             fontWeight: 600,
             lineHeight: 1.25,
             display: 'block',
-            color: (props) => props.fontColor,
+            color: (props) => props.fontColor || 'inherit',
         },
     })
 );
