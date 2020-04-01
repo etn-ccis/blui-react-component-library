@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, useTheme, lighten } from '@material-ui/core/styles';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -68,9 +68,6 @@ const useStyles = makeStyles((theme: Theme) =>
             width: `calc(100% - ${theme.spacing(1)}px)`,
             left: 0,
             top: 0,
-            backgroundColor:
-                //@ts-ignore
-                theme.palette.type === 'light' ? theme.palette.secondary[50] : theme.palette.secondary.light,
             borderRadius: '0px 24px 24px 0px',
             opacity: 0.9,
             '&$square': {
@@ -108,15 +105,14 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
 
     const defaultClasses = useStyles(props);
     const theme = useTheme();
-    // @ts-ignore
-    const primary50Color = theme.palette.primary[50];
+    const lightestPrimaryColor = lighten(theme.palette.primary.main, 0.88);
     const { activeItem, classes, nestedDivider } = navGroupProps;
 
     // handle inheritables
     const activeItemBackgroundColor =
         navItem.activeItemBackgroundColor ||
         navGroupProps.activeItemBackgroundColor ||
-        (theme.palette.type === 'light' ? primary50Color : theme.palette.primary.main);
+        (theme.palette.type === 'light' ? lightestPrimaryColor : theme.palette.primary.main);
     const activeItemBackgroundShape =
         navItem.activeItemBackgroundShape || navGroupProps.activeItemBackgroundShape || 'round';
     const activeItemFontColor =
