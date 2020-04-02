@@ -68,9 +68,6 @@ const useStyles = makeStyles((theme: Theme) =>
             width: `calc(100% - ${theme.spacing(1)}px)`,
             left: 0,
             top: 0,
-            backgroundColor:
-                //@ts-ignore
-                theme.palette.type === 'light' ? theme.palette.secondary[50] : theme.palette.secondary.light,
             borderRadius: '0px 24px 24px 0px',
             opacity: 0.9,
             '&$square': {
@@ -108,8 +105,8 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
 
     const defaultClasses = useStyles(props);
     const theme = useTheme();
-    // @ts-ignore
-    const primary50Color = theme.palette.primary[50];
+    
+    const primary50Color = theme.palette.primary.light;
     const { activeItem, classes = {}, nestedDivider } = navGroupProps;
 
     // handle inheritables
