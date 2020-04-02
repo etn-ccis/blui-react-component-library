@@ -1,5 +1,5 @@
 import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
-import { createStyles, makeStyles, Theme, lighten } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         avatarRoot: {
             cursor: 'pointer',
-            backgroundColor: lighten(theme.palette.primary.main, 0.88), // [50]
+            backgroundColor: theme.palette.primary.light,
             color: theme.palette.primary.main,
             height: theme.spacing(5),
             width: theme.spacing(5),
