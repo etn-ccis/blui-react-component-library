@@ -50,7 +50,7 @@
         ]
     },
     "devDependencies": {
-        "@babel/core": "^7.8.3",
+        "@babel/core": "^7.9.0",
         "@pxblue/eslint-config": "1.1.5",
         "@pxblue/prettier-config": "1.0.2",
         "@types/node": "12.11.7",
@@ -62,10 +62,11 @@
         "eslint": "^6.8.0",
         "eslint-config-prettier": "^6.9.0",
         "eslint-plugin-react": "^7.17.0",
+        "js-levenshtein": "^1.1.6",
         "mini-css-extract-plugin": "^0.7.0",
         "prettier": "^1.19.1",
-        "typeface-open-sans": "0.0.75",
         "sass-loader": "^8.0.2",
-        "ts-loader": "^6.2.2"
+        "ts-loader": "^6.2.2",
+        "typeface-open-sans": "0.0.75"
     }
 }
