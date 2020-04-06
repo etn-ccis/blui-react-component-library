@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
     root: {
@@ -22,7 +23,7 @@ export type HeroBannerProps = {
 };
 
 export const HeroBanner = (props: HeroBannerProps & any): JSX.Element => {
-    const { classes = {}, divider = false, limit = 4 } = props;
+    const { classes, divider, limit} = props;
     const defaultClasses = useStyles(props);
     const isArray = Array.isArray(props.children);
     return (
@@ -37,3 +38,15 @@ export const HeroBanner = (props: HeroBannerProps & any): JSX.Element => {
 };
 
 HeroBanner.displayName = 'HeroBanner';
+HeroBanner.propType = {
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    divider: PropTypes.bool,
+    limit: PropTypes.number,
+};
+HeroBanner.defaultProps = {
+    classes: {},
+    divider: false,
+    limit: 4,
+};

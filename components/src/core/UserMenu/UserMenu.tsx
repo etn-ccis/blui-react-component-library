@@ -2,6 +2,7 @@ import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/cor
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { useCallback, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -57,14 +58,14 @@ export type UserMenuProps = {
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
     const {
         avatar,
-        classes = {},
+        classes,
         menu,
         menuTitle,
         menuSubtitle,
-        menuGroups = [],
-        MenuProps = {},
-        onClose = (): void => {},
-        onOpen = (): void => {},
+        menuGroups,
+        MenuProps,
+        onClose,
+        onOpen,
     } = props;
     const theme = useTheme();
     const defaultClasses = useStyles(theme);
@@ -205,3 +206,42 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
 };
 
 UserMenu.displayName = 'UserMenu';
+
+UserMenu.propTypes = {
+    avatar: PropTypes.element.isRequired,
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    menu: PropTypes.element,
+    menuTitle: PropTypes.string,
+    menuSubtitle: PropTypes.string,
+    // @ts-ignore
+    menuGroups: PropTypes.arrayOf(
+        PropTypes.shape({
+            title: PropTypes.string,
+            fontColor: PropTypes.string,
+            iconColor: PropTypes.string,
+            items: PropTypes.arrayOf(
+                PropTypes.shape({
+                    icon: PropTypes.element,
+                    onClick: PropTypes.func,
+                    statusColor: PropTypes.string,
+                    subtitle: PropTypes.string,
+                    title: PropTypes.string,
+                    divider: PropTypes.bool,
+                })
+            ),
+        })
+    ),
+    MenuProps: PropTypes.object,
+    onClose: PropTypes.func,
+    onOpen: PropTypes.func,
+};
+
+UserMenu.defaultProps = {
+    classes: {},
+    menuGroups: [],
+    MenuProps: {},
+    onClose: (): void => {},
+    onOpen: (): void => {},
+};

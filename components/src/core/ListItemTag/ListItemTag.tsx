@@ -1,6 +1,7 @@
 import { Typography, TypographyProps } from '@material-ui/core';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 export type ListItemTagProps = {
@@ -35,12 +36,12 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps)
     const {
         backgroundColor,
         classes: userClasses = {},
-        display = 'inline',
+        display,
         fontColor,
         label,
-        noWrap = true,
+        noWrap,
         style,
-        variant = 'overline',
+        variant,
         ...other
     } = props;
     const theme = useTheme();
@@ -68,4 +69,15 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps)
     );
 };
 
+
+ListItemTag.propTypes = {
+    label: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string,
+    fontColor: PropTypes.string,
+};
+ListItemTag.defaultProps = {
+    noWrap: true,
+    variant: 'overline',
+    display: 'inline',
+};
 ListItemTag.displayName = 'ListItemTag';

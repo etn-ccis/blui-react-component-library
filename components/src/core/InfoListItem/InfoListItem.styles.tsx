@@ -13,6 +13,7 @@ export type InfoListItemClasses = {
     title?: string;
 };
 
+
 const getHeight = (props: InfoListItemProps): number => (props.dense ? 52 : 72);
 const getIconColor = (props: InfoListItemProps): string => {
     const { avatar, iconColor, statusColor } = props;

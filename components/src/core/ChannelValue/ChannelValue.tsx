@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -44,7 +45,7 @@ export type ChannelValueProps = {
 };
 
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
-    const { classes = {}, color = 'inherit', fontSize = 'inherit', icon, prefix = false, units, value } = props;
+    const { classes, color, fontSize, icon, prefix,  units, value } = props;
     const defaultClasses = useStyles(useTheme());
 
     const getUnitElement = useCallback(
@@ -92,3 +93,23 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
 };
 
 ChannelValue.displayName = 'ChannelValue';
+ChannelValue.propTypes = {
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        icon: PropTypes.string,
+        value: PropTypes.string,
+        units: PropTypes.string,
+    }),
+    color: PropTypes.string,
+    fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    icon: PropTypes.element,
+    prefix: PropTypes.bool,
+    units: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
+ChannelValue.defaultProps = {
+    classes: {},
+    color: 'inherit',
+    fontSize: 'inherit',
+    prefix: false,
+};

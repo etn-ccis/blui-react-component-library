@@ -6,8 +6,9 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import { Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
+import PropTypes from 'prop-types';
 import {
-    PXBlueDrawerNavGroupInheritableProperties,
+    PXBlueDrawerNavGroupInheritableProperties, PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 } from './Drawer';
 import { white, black } from '@pxblue/colors';
 import { DrawerNavItem, NavItem, NestedNavItem } from './DrawerNavItem';
@@ -89,7 +90,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const defaultClasses = useStyles(props);
     const theme = useTheme();
     const {
-        classes = {},
+        classes,
         drawerOpen,
         items,
         title,
@@ -175,3 +176,34 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 };
 
 DrawerNavGroup.displayName = 'DrawerNavGroup';
+
+DrawerNavGroup.propTypes = {
+    backgroundColor: PropTypes.string,
+    classes: PropTypes.shape({
+        active: PropTypes.string,
+        expandIcon: PropTypes.string,
+        listItemContainer: PropTypes.string,
+        groupHeader: PropTypes.string,
+        nestedListGroup: PropTypes.string,
+        subheader: PropTypes.string,
+        nestedTitle: PropTypes.string,
+    }),
+    drawerOpen: PropTypes.bool,
+    // @ts-ignore
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            icon: PropTypes.element,
+            itemID: PropTypes.string.isRequired,
+            subtitle: PropTypes.string,
+            title: PropTypes.string.isRequired,
+            onClick: PropTypes.func,
+            rightComponent: PropTypes.element,
+            statusColor: PropTypes.string,
+        })
+    ).isRequired,
+    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+};
+
+DrawerNavGroup.defaultProps = {
+    classes: {},
+};

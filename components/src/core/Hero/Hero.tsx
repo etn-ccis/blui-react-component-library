@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '../ChannelValue';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -81,11 +82,11 @@ export type HeroProps = {
 export const Hero = (props: HeroProps): JSX.Element => {
     const defaultClasses = useStyles(props);
     const {
-        classes = {},
-        fontSize = 'normal',
+        classes,
+        fontSize,
         icon,
-        iconBackgroundColor = 'transparent',
-        iconSize = 36,
+        iconBackgroundColor,
+        iconSize,
         label,
         onClick,
         value,
@@ -126,4 +127,31 @@ export const Hero = (props: HeroProps): JSX.Element => {
     );
 };
 
+
 Hero.displayName = 'Hero';
+Hero.propType = {
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        values: PropTypes.string,
+        icon: PropTypes.string,
+        labels: PropTypes.string,
+    }),
+    children: PropTypes.element,
+    fontSize: PropTypes.oneOf(['normal', 'small']),
+    icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    iconBackgroundColor: PropTypes.string,
+    iconSize: PropTypes.number,
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    valueIcon: PropTypes.element,
+    units: PropTypes.string,
+};
+Hero.defaultProps = {
+    classes: {},
+    fontSize: 'normal',
+    iconBackgroundColor: 'transparent',
+    iconSize: 36,
+};
+
+
