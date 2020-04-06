@@ -8,5 +8,6 @@ module.exports = {
         '@storybook/addon-notes',
         '@storybook/addon-viewport',
         '@storybook/addon-storysource',
+        'storybook-dark-mode/register'
     ],
 };
