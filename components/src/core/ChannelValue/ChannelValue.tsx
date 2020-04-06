@@ -45,7 +45,7 @@ export type ChannelValueProps = {
 };
 
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
-    const { classes, color, fontSize, icon, prefix,  units, value } = props;
+    const { classes, color, fontSize, icon, prefix, units, value } = props;
     const defaultClasses = useStyles(useTheme());
 
     const getUnitElement = useCallback(

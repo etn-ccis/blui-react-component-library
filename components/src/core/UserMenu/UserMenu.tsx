@@ -56,17 +56,7 @@ export type UserMenuProps = {
 };
 
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
-    const {
-        avatar,
-        classes,
-        menu,
-        menuTitle,
-        menuSubtitle,
-        menuGroups,
-        MenuProps,
-        onClose,
-        onOpen,
-    } = props;
+    const { avatar, classes, menu, menuTitle, menuSubtitle, menuGroups, MenuProps, onClose, onOpen } = props;
     const theme = useTheme();
     const defaultClasses = useStyles(theme);
     const [anchorEl, setAnchorEl] = useState(null);

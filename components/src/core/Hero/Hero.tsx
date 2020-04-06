@@ -81,18 +81,7 @@ export type HeroProps = {
 
 export const Hero = (props: HeroProps): JSX.Element => {
     const defaultClasses = useStyles(props);
-    const {
-        classes,
-        fontSize,
-        icon,
-        iconBackgroundColor,
-        iconSize,
-        label,
-        onClick,
-        value,
-        valueIcon,
-        units,
-    } = props;
+    const { classes, fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units } = props;
 
     return (
         <div
@@ -127,7 +116,6 @@ export const Hero = (props: HeroProps): JSX.Element => {
     );
 };
 
-
 Hero.displayName = 'Hero';
 Hero.propType = {
     classes: PropTypes.shape({
@@ -153,5 +141,3 @@ Hero.defaultProps = {
     iconBackgroundColor: 'transparent',
     iconSize: 36,
 };
-
-

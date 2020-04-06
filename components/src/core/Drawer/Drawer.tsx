@@ -247,7 +247,6 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 };
 
-
 DrawerComponent.displayName = 'PXBlueDrawer';
 
 export const PXBlueDrawerInheritablePropertiesPropTypes = {
@@ -287,4 +286,3 @@ DrawerComponent.propTypes = {
 DrawerComponent.defaultProps = {
     classes: {},
 };
-

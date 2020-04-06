@@ -242,7 +242,6 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     );
 };
 
-
 ScoreCard.displayName = 'ScoreCard';
 ScoreCard.propTypes = {
     actionItems: PropTypes.arrayOf(PropTypes.element),

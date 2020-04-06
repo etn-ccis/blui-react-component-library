@@ -1,6 +1,6 @@
 import React from 'react';
 import { separate, withKeys } from '../utilities';
-import {InfoListItemClasses, useStyles} from './InfoListItem.styles';
+import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
 
 import { Avatar, Divider, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 import Chevron from '@material-ui/icons/ChevronRight';

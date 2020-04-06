@@ -23,7 +23,7 @@ export type HeroBannerProps = {
 };
 
 export const HeroBanner = (props: HeroBannerProps & any): JSX.Element => {
-    const { classes, divider, limit} = props;
+    const { classes, divider, limit } = props;
     const defaultClasses = useStyles(props);
     const isArray = Array.isArray(props.children);
     return (

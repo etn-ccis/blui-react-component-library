@@ -69,7 +69,6 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps)
     );
 };
 
-
 ListItemTag.propTypes = {
     label: PropTypes.string.isRequired,
     backgroundColor: PropTypes.string,

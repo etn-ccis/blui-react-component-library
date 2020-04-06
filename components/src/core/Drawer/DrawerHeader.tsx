@@ -203,4 +203,3 @@ DrawerHeader.propTypes = {
     title: PropTypes.string,
     titleContent: PropTypes.element,
 };
-
