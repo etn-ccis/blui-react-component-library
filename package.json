@@ -32,8 +32,5 @@
     "doc": "docs"
   },
   "author": "pxblue <pxblue@eaton.com>",
-  "license": "BSD-3-Clause",
-  "devDependencies": {
-    "storybook-dark-mode": "^0.4.0"
-  }
+  "license": "BSD-3-Clause"
 }
