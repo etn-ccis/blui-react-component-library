@@ -6,8 +6,7 @@ import { blue as ReactTheme } from '@pxblue/react-themes';
 import { blueDark as ReactThemeDark } from '@pxblue/react-themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
-import { pxblueTheme } from '@pxblue/storybook-themes';
-import { pxblueDarkTheme } from './darkTheme';
+import { pxblueTheme, pxblueDarkTheme } from '@pxblue/storybook-themes';
 import { useDarkMode } from 'storybook-dark-mode';
 
 const newViewports = {
@@ -37,6 +36,10 @@ const newViewports = {
 pxblueTheme.brandTitle = 'PX Blue React Component Library';
 pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
 pxblueTheme.brandUrl = 'https://pxblue.github.io';
+
+pxblueDarkTheme.brandTitle = 'PX Blue React Component Library';
+pxblueDarkTheme.brandImage = require('../assets/pxblue-react.svg');
+pxblueDarkTheme.brandUrl = 'https://pxblue.github.io';
 
 addParameters({
     name: 'PXBlue',

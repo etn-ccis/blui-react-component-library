@@ -1533,10 +1533,10 @@
     "@pxblue/colors" "^2.0.0"
     typeface-open-sans "^0.0.75"
 
-"@pxblue/storybook-themes@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@pxblue/storybook-themes/-/storybook-themes-1.0.4.tgz#79c5e9ae7890606fb7ce1b4f5a48b462f812fa7e"
-  integrity sha512-hRSz9/lqPPMK1i+g1YNsE6z8oETsSfQYO6QoPTLl7+iK1kRExZXe0N+gGLu84e8Q1f1QNQkKu58SC7uIBLxDMg==
+"@pxblue/storybook-themes@^1.1.0-beta.1":
+  version "1.1.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@pxblue/storybook-themes/-/storybook-themes-1.1.0-beta.1.tgz#da671219b05e87b1baf8055a3957694321e0cf7b"
+  integrity sha512-hzWrdDebjldfxXYK7qJ8XklTTgVmISNiS2sklQerCQ2M++NhpP6NjSfOiA4lZa36CInmEuDeNehXTk9qhMd5TA==
 
 "@reach/router@^1.2.1":
   version "1.2.1"
