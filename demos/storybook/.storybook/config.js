@@ -33,13 +33,9 @@ const newViewports = {
     },
 };
 
-pxblueTheme.brandTitle = 'PX Blue React Component Library';
-pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
-pxblueTheme.brandUrl = 'https://pxblue.github.io';
-
-pxblueDarkTheme.brandTitle = 'PX Blue React Component Library';
-pxblueDarkTheme.brandImage = require('../assets/pxblue-react.svg');
-pxblueDarkTheme.brandUrl = 'https://pxblue.github.io';
+pxblueTheme.brandTitle = pxblueDarkTheme.brandTitle = 'PX Blue React Component Library';
+pxblueTheme.brandImage = pxblueDarkTheme.brandImage = require('../assets/pxblue-react.svg');
+pxblueTheme.brandUrl = pxblueDarkTheme.brandUrl = 'https://pxblue.github.io';
 
 addParameters({
     name: 'PXBlue',
@@ -67,9 +63,13 @@ window.localStorage.setItem('sb-addon-themes-3', JSON.stringify(themeInit));
 export const appliedTheme = createMuiTheme(ReactTheme);
 export const appliedThemeDark = createMuiTheme(ReactThemeDark);
 
+const getCanvasBackground = () => {
+    return useDarkMode() ? 'transparent' : '#efefef';
+};
+
 addDecorator((storyFn) => (
     <MuiThemeProvider theme={useDarkMode() ? appliedThemeDark : appliedTheme}>
-        <div className={'wrapper'} style={{ color: Colors.gray['800'] }}>
+        <div className={'wrapper'} style={{ color: Colors.gray['800'], backgroundColor: getCanvasBackground() }}>
             {storyFn()}
         </div>
     </MuiThemeProvider>
