@@ -1,6 +1,5 @@
-import React, { ReactNode } from 'react';
+import React  from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 
 export type DrawerLayoutProps = {
     // Drawer component to be embedded
@@ -43,6 +42,3 @@ export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
 };
 
 DrawerLayout.displayName = 'DrawerLayout';
-DrawerLayout.propTypes = {
-    drawer: PropTypes.element.isRequired,
-};

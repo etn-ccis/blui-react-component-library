@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-const styles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         display: 'inline-flex',
         alignItems: 'center',
@@ -28,7 +27,7 @@ const styles = makeStyles((theme: Theme) => ({
     },
 }));
 
-type ChannelValueClasses = {
+export type ChannelValueClasses = {
     root?: string;
     icon?: string;
     units?: string;
@@ -45,8 +44,8 @@ export type ChannelValueProps = {
 };
 
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
-    const { classes, color, fontSize, icon, prefix, units, value } = props;
-    const defaultClasses = styles(useTheme());
+    const { classes = {}, color = 'inherit', fontSize = 'inherit', icon, prefix = false, units, value } = props;
+    const defaultClasses = useStyles(useTheme());
 
     const getUnitElement = useCallback(
         (): JSX.Element => (
@@ -93,23 +92,3 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
 };
 
 ChannelValue.displayName = 'ChannelValue';
-ChannelValue.propTypes = {
-    classes: PropTypes.shape({
-        root: PropTypes.string,
-        icon: PropTypes.string,
-        value: PropTypes.string,
-        units: PropTypes.string,
-    }),
-    color: PropTypes.string,
-    fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    icon: PropTypes.element,
-    prefix: PropTypes.bool,
-    units: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-};
-ChannelValue.defaultProps = {
-    classes: {},
-    color: 'inherit',
-    fontSize: 'inherit',
-    prefix: false,
-};
