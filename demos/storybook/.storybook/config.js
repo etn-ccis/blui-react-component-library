@@ -64,7 +64,7 @@ export const appliedTheme = createMuiTheme(ReactTheme);
 export const appliedThemeDark = createMuiTheme(ReactThemeDark);
 
 const getCanvasBackground = () => {
-    return useDarkMode() ? 'transparent' : '#efefef';
+    return useDarkMode() ? Colors.black['A200'] : Colors.gray[50];
 };
 
 addDecorator((storyFn) => (
