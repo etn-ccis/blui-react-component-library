@@ -6,7 +6,7 @@ import { blue as ReactTheme } from '@pxblue/react-themes';
 import { blueDark as ReactThemeDark } from '@pxblue/react-themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
-import { pxblueTheme, pxblueDarkTheme } from '@pxblue/storybook-themes';
+import { pxblueTheme } from '@pxblue/storybook-themes';
 import { useDarkMode } from 'storybook-dark-mode';
 
 const newViewports = {
@@ -33,9 +33,9 @@ const newViewports = {
     },
 };
 
-pxblueTheme.brandTitle = pxblueDarkTheme.brandTitle = 'PX Blue React Component Library';
-pxblueTheme.brandImage = pxblueDarkTheme.brandImage = require('../assets/pxblue-react.svg');
-pxblueTheme.brandUrl = pxblueDarkTheme.brandUrl = 'https://pxblue.github.io';
+pxblueTheme.brandTitle = 'PX Blue React Component Library';
+pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
+pxblueTheme.brandUrl = 'https://pxblue.github.io';
 
 addParameters({
     name: 'PXBlue',
@@ -53,12 +53,9 @@ addParameters({
         // Override the default light theme
         light: { ...pxblueTheme },
         // Override the default dark theme
-        dark: { ...pxblueDarkTheme }
+        dark: { ...pxblueTheme }
     }
 });
-
-const themeInit = { dark: pxblueDarkTheme, light: pxblueTheme, current: 'light' }
-window.localStorage.setItem('sb-addon-themes-3', JSON.stringify(themeInit));
 
 export const appliedTheme = createMuiTheme(ReactTheme);
 export const appliedThemeDark = createMuiTheme(ReactThemeDark);
