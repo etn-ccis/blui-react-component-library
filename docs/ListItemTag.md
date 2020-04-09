@@ -20,7 +20,7 @@ Besides what's listed below, as an extension of [Material UI's Typography API](h
 | Prop Name       | Description                   | Type     | Required | Default   | 
 | --------------- | ----------------------------- | -------- | -------- | --------- | 
 | label           | The label text                | `string` | yes      |           |
-| fontColor       | Color of the label            | `string` | no       | `#ffffff` | 
-| backgroundColor | Color of the label background | `string` | no       | `#007bc1` | 
+| fontColor       | Color of the label            | `string` | no       |           | 
+| backgroundColor | Color of the label background | `string` | no       |           | 
 
 </div>

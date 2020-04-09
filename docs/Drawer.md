@@ -79,7 +79,7 @@ The `DrawerHeader` contains the content at the top of the `Drawer`. By default, 
 | backgroundColor   | The color used for the background              | `string`          | no       | `theme.palette.primary.main` |
 | backgroundImage   | An image to display in the header              | `string`          | no       |                              |
 | backgroundOpacity | The opacity of the background image            | `number`          | no       | `0.3`                        |
-| fontColor         | The color of the text elements                 | `string`          | no       | `Colors.white[50]`           |
+| fontColor         | The color of the text elements                 | `string`          | no       | dynamic based on background  |
 | icon              | A component to render for the icon             | `React.Component` | no       |                              |
 | onIconClick       | A function to execute when the icon is clicked | `function`        | no       | `() => {}`                   |
 | subtitle          | The text to show on the second line            | `string`          | no       |                              |
