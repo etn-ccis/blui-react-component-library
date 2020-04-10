@@ -62,7 +62,7 @@ import { Temp } from '@pxblue/icons-mui';
 | actionLimit           | Max number of actionItems in the header     | `number`              | no       | 3                            |  
 | actionRow             | Component to render for the footer          | `React.Component`     | no       |                              |
 | badge                 | The component to render in the callout area | `React.Component`     | no       |                              |
-| badgeOffset           | Vertical offset for the badge component     | `number`              | no       |                              |
+| badgeOffset           | Vertical offset for the badge component     | `number`              | no       | 0                            |
 | classes               | Style overrides                             | `StyleRules`          | no       |                              |     
 | headerBackgroundImage | An image to display in the header           | `string`              | no       |                              | 
 | headerColor           | The color of the header                     | `string`              | no       | `theme.palette.primary.main` |

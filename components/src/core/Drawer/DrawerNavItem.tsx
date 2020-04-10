@@ -105,9 +105,9 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
 
     const defaultClasses = useStyles(props);
     const theme = useTheme();
-    
+
     const primary50Color = theme.palette.primary.light;
-    const { activeItem, classes = {}, nestedDivider } = navGroupProps;
+    const { activeItem, classes, nestedDivider } = navGroupProps;
 
     // handle inheritables
     const activeItemBackgroundColor =
