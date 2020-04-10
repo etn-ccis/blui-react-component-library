@@ -16,6 +16,7 @@ module.exports = {
         '@storybook/addon-notes',
         '@storybook/addon-viewport',
         '@storybook/addon-storysource',
+        'storybook-dark-mode/register'
     ],
     webpackFinal: async (config)=> {
         config.module.rules.push({

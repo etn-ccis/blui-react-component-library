@@ -3,9 +3,11 @@ import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { blue as ReactTheme } from '@pxblue/react-themes';
+import { blueDark as ReactThemeDark } from '@pxblue/react-themes';
 import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
 import { pxblueTheme } from '@pxblue/storybook-themes';
+import { useDarkMode } from 'storybook-dark-mode';
 
 const newViewports = {
     iPhone5: {
@@ -45,16 +47,26 @@ addParameters({
         viewports: newViewports,
     },
     options: {
-        theme: pxblueTheme,
         showRoots: true,
     },
+    darkMode: {
+        // Override the default light theme
+        light: { ...pxblueTheme },
+        // Override the default dark theme
+        dark: { ...pxblueTheme }
+    }
 });
 
 export const appliedTheme = createMuiTheme(ReactTheme);
+export const appliedThemeDark = createMuiTheme(ReactThemeDark);
+
+const getCanvasBackground = () => {
+    return useDarkMode() ? Colors.black['A200'] : Colors.gray[50];
+};
 
 addDecorator((storyFn) => (
-    <MuiThemeProvider theme={appliedTheme}>
-        <div className={'wrapper'} style={{ color: Colors.gray['800'] }}>
+    <MuiThemeProvider theme={useDarkMode() ? appliedThemeDark : appliedTheme}>
+        <div className={'wrapper'} style={{ color: Colors.gray['800'], backgroundColor: getCanvasBackground() }}>
             {storyFn()}
         </div>
     </MuiThemeProvider>
