@@ -1,11 +1,12 @@
 import { EmptyState } from '@pxblue/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
+import { withA11y } from '@storybook/addon-a11y';
 
 const emptyStateModule = {
     title: `${COMPONENT_SECTION_NAME}/Empty State`,
     component: EmptyState,
-    decorators: [storyWrapper],
+    decorators: [storyWrapper, withA11y],
     parameters: { ...storyParams, notes: { markdown: getReadMe('EmptyState.md') } },
 };
 

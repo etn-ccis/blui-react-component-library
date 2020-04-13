@@ -1,11 +1,12 @@
 import { ScoreCard } from '@pxblue/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
+import { withA11y } from '@storybook/addon-a11y';
 
 const scorecardModule = {
     title: `${COMPONENT_SECTION_NAME}/Scorecard`,
     component: ScoreCard,
-    decorators: [storyWrapper],
+    decorators: [storyWrapper, withA11y],
     parameters: { ...storyParams, notes: { markdown: getReadMe('ScoreCard.md') } },
 };
 

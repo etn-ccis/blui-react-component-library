@@ -2,6 +2,7 @@ import { InfoListItem } from '@pxblue/react-components';
 import React from 'react';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
+import { withA11y } from '@storybook/addon-a11y';
 
 const padDrawer = (storyFn: any): JSX.Element => (
     <div style={{ margin: 20, width: '90%', backgroundColor: 'white' }}>{storyFn()}</div>
@@ -10,7 +11,7 @@ const padDrawer = (storyFn: any): JSX.Element => (
 const infoListModule = {
     title: `${COMPONENT_SECTION_NAME}/Info List Item`,
     component: InfoListItem,
-    decorators: [storyWrapper, padDrawer],
+    decorators: [storyWrapper, padDrawer, withA11y],
     parameters: { ...storyParams, notes: { markdown: getReadMe('InfoListItem.md') } },
 };
 
