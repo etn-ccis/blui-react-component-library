@@ -6,6 +6,7 @@ import { withA11y } from '@storybook/addon-a11y';
 const scorecardModule = {
     title: `${COMPONENT_SECTION_NAME}/Scorecard`,
     component: ScoreCard,
+    // @accessibility remove withA11y from decorators array to hide a11y addon
     decorators: [storyWrapper, withA11y],
     parameters: { ...storyParams, notes: { markdown: getReadMe('ScoreCard.md') } },
 };

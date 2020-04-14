@@ -11,6 +11,7 @@ const centerHero = (storyFn: any): JSX.Element => (
 const heroModule = {
     title: `${COMPONENT_SECTION_NAME}/Hero`,
     component: Hero,
+    // @accessibility remove withA11y from decorators array to hide a11y addon
     decorators: [storyWrapper, centerHero, withA11y],
     parameters: { ...storyParams, notes: { markdown: getReadMe('Hero.md') } },
 };

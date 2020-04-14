@@ -6,6 +6,7 @@ import { withA11y } from '@storybook/addon-a11y';
 const channelValueModule = {
     title: `${COMPONENT_SECTION_NAME}/Channel Value`,
     component: ChannelValue,
+    // @accessibility remove withA11y from decorators array to hide a11y addon
     decorators: [storyWrapper, withA11y],
     parameters: { ...storyParams, notes: { markdown: getReadMe('ChannelValue.md') } },
 };

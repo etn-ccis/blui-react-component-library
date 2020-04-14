@@ -11,6 +11,7 @@ const padDrawer = (storyFn: any): JSX.Element => (
 const infoListModule = {
     title: `${COMPONENT_SECTION_NAME}/Info List Item`,
     component: InfoListItem,
+    // @accessibility remove withA11y from decorators array to hide a11y addon
     decorators: [storyWrapper, padDrawer, withA11y],
     parameters: { ...storyParams, notes: { markdown: getReadMe('InfoListItem.md') } },
 };
