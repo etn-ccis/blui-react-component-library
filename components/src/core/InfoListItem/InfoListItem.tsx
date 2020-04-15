@@ -1,10 +1,11 @@
 import React from 'react';
-import { separate, withKeys } from '../utilities';
-import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
-
+import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import { Avatar, Divider, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 import Chevron from '@material-ui/icons/ChevronRight';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
+
+import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
+
+import { separate, withKeys } from '../utilities';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
