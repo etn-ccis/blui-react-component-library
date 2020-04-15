@@ -37,6 +37,9 @@ pxblueTheme.brandTitle = 'PX Blue React Component Library';
 pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
 pxblueTheme.brandUrl = 'https://pxblue.github.io';
 
+const themeInit = { dark: pxblueTheme, light: pxblueTheme, current: 'light' }
+window.localStorage.setItem('sb-addon-themes-3', JSON.stringify(themeInit));
+
 addParameters({
     name: 'PXBlue',
     /* Users will see this while the component is loading. */
