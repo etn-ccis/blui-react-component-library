@@ -2,6 +2,7 @@ import { Hero } from '@pxblue/react-components';
 import React from 'react';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
+import { withA11y } from '@storybook/addon-a11y';
 
 const centerHero = (storyFn: any): JSX.Element => (
     <div style={{ alignItems: 'center', display: 'flex', height: '100%' }}>{storyFn()}</div>
@@ -10,7 +11,8 @@ const centerHero = (storyFn: any): JSX.Element => (
 const heroModule = {
     title: `${COMPONENT_SECTION_NAME}/Hero`,
     component: Hero,
-    decorators: [storyWrapper, centerHero],
+    // @accessibility remove withA11y from decorators array to hide a11y addon
+    decorators: [storyWrapper, centerHero, withA11y],
     parameters: { ...storyParams, notes: { markdown: getReadMe('Hero.md') } },
 };
 

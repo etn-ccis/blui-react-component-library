@@ -1,11 +1,13 @@
 import { ChannelValue } from '@pxblue/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
+import { withA11y } from '@storybook/addon-a11y';
 
 const channelValueModule = {
     title: `${COMPONENT_SECTION_NAME}/Channel Value`,
     component: ChannelValue,
-    decorators: [storyWrapper],
+    // @accessibility remove withA11y from decorators array to hide a11y addon
+    decorators: [storyWrapper, withA11y],
     parameters: { ...storyParams, notes: { markdown: getReadMe('ChannelValue.md') } },
 };
 
