@@ -21,7 +21,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         root: {
             cursor: (props) => (props.onClick ? 'pointer' : 'inherit'),
             backgroundColor: (props) => props.backgroundColor || 'inherit',
-            minHeight: (props) => (isWrapEnabled(props) ? getHeight(props) : 'unset'),
+            minHeight: (props) => (isWrapEnabled(props) ? getHeight(props) : 'initial'),
             height: (props) => (!isWrapEnabled(props) ? getHeight(props) : 'auto'),
             '&:hover': {
                 backgroundColor: (props) =>

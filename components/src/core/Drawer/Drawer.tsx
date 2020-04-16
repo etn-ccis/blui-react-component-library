@@ -9,7 +9,7 @@ import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
 const useStyles = makeStyles({
     paper: {
         overflow: 'hidden',
-        position: 'unset',
+        position: 'inherit',
     },
     content: {
         display: 'flex',
@@ -224,7 +224,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     useEffect(() => {
         const content = document.getElementById('@@pxb-drawerlayout-content');
         if (content) {
-            content.style.marginLeft = variant === 'temporary' ? '0px' : `${containerWidth}px`;
+            content.style.paddingLeft = variant === 'temporary' ? '0px' : `${containerWidth}px`;
         }
     }, [containerWidth, variant]);
 

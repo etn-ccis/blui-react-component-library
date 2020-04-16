@@ -21,9 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         content: {
             width: '100%',
-            transition: 'margin 175ms cubic-bezier(.4, 0, .2, 1)',
+            transition: 'padding 175ms cubic-bezier(.4, 0, .2, 1)',
             [theme.breakpoints.down('xs')]: {
-                marginLeft: '0!important',
+                paddingLeft: '0!important',
             },
         },
     })
