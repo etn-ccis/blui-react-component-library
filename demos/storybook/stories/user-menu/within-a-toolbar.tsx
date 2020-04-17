@@ -10,7 +10,7 @@ export const withinToolbar = (): StoryFnReactReturnType => {
     const useStyles = makeStyles({
         root: {
             height: 40,
-            minHeight: 'unset',
+            minHeight: 'initial',
         },
         title: {
             color: Colors.gray[100],

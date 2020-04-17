@@ -18,7 +18,7 @@ const setBannerStyle = (display: string): void => {
 	banner.setAttribute('style', `display: ${display}`);
 }
 
-export const showTopBanner = (): void => setBannerStyle('unset');
+export const showTopBanner = (): void => setBannerStyle('initial');
 export const hideTopBanner = (): void => setBannerStyle('none');
 
 export const selectCanvasTab = (): void => {

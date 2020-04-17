@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: theme.spacing(5),
         },
         noCursor: {
-            cursor: 'unset',
+            cursor: 'inherit',
         },
     })
 );
