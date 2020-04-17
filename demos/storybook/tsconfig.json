@@ -18,5 +18,5 @@
         "jsx": "react"
     },
     "include": ["src", "stories"],
-    "exclude": [ "node_modules", ".storybook" ]
+    "exclude": ["node_modules", ".storybook"]
 }

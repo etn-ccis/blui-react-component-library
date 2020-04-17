@@ -5,7 +5,7 @@ var path = require('path');
 
 const options = {
     transpileOnly: true,
-    configFile: path.resolve(__dirname, '../tsconfig.json')
+    configFile: path.resolve(__dirname, '../tsconfig.json'),
 };
 
 module.exports = {
@@ -18,9 +18,9 @@ module.exports = {
         '@storybook/addon-storysource',
         'storybook-dark-mode/register',
         // @accessibility remove the following line and all other lines following @accessibility in the app to hide the a11y addon
-        '@storybook/addon-a11y/register'
+        '@storybook/addon-a11y/register',
     ],
-    webpackFinal: async (config)=> {
+    webpackFinal: async (config) => {
         config.module.rules.push({
             include: [path.resolve(__dirname, '../stories')],
             exclude: [path.resolve(__dirname, '../node_modules')],
@@ -28,7 +28,7 @@ module.exports = {
             use: [
                 {
                     loader: require.resolve('ts-loader'),
-                    options
+                    options,
                 },
             ],
         });
@@ -40,7 +40,7 @@ module.exports = {
             use: [
                 {
                     loader: require.resolve('ts-loader'),
-                    options
+                    options,
                 },
                 {
                     loader: require.resolve('@storybook/source-loader'),

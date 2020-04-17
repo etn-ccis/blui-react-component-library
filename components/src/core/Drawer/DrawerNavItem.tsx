@@ -54,11 +54,11 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         listItemNoHover: {
             '&:hover': {
-                /* TODO: 
+                /* TODO:
                  * I don't believe this style is actually doing anything. The original intent was to not show
                  * the background on hover over the active item, but this hover state is now controlled in the
                  * InfoListItem component and is based on the presence of a onClick property.
-                */
+                 */
                 backgroundColor: 'initial',
             },
         },

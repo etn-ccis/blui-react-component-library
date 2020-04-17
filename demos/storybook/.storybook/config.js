@@ -37,7 +37,7 @@ pxblueTheme.brandTitle = 'PX Blue React Component Library';
 pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
 pxblueTheme.brandUrl = 'https://pxblue.github.io';
 
-const themeInit = { dark: pxblueTheme, light: pxblueTheme, current: 'light' }
+const themeInit = { dark: pxblueTheme, light: pxblueTheme, current: 'light' };
 window.localStorage.setItem('sb-addon-themes-3', JSON.stringify(themeInit));
 
 addParameters({
@@ -56,8 +56,8 @@ addParameters({
         // Override the default light theme
         light: { ...pxblueTheme },
         // Override the default dark theme
-        dark: { ...pxblueTheme }
-    }
+        dark: { ...pxblueTheme },
+    },
 });
 
 export const appliedTheme = createMuiTheme(ReactTheme);
