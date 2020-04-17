@@ -2,7 +2,7 @@ import { List, ListItem, ListItemText } from '@material-ui/core';
 import { MoreVert } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
 import { Moisture as Humidity, Temp } from '@pxblue/icons-mui';
-import { Hero, HeroBanner, ScoreCard, InfoListItem } from '@pxblue/react-components';
+import { Hero, HeroBanner, ScoreCard } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
