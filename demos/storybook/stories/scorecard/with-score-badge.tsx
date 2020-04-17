@@ -1,11 +1,12 @@
-import { List, ListItem, ListItemSecondaryAction, ListItemText } from '@material-ui/core';
-import { ChevronRight, Cloud, ListAlt, MoreVert, Notifications } from '@material-ui/icons';
+import { List } from '@material-ui/core';
+import { Cloud, ListAlt, MoreVert, Notifications } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
 import { GradeA } from '@pxblue/icons-mui';
 import { Hero, HeroBanner, InfoListItem, ScoreCard } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
+import { actionRow } from './with-actions';
 import React from 'react';
 
 const backgroundImage = require('../../assets/topology_40.png');
@@ -19,16 +20,7 @@ export const withScoreBadge = (): StoryFnReactReturnType => (
         headerFontColor={Colors.white[50]}
         headerBackgroundImage={backgroundImage}
         actionItems={[<MoreVert onClick={action('clicked more')} key={'morevert'} />]}
-        actionRow={
-            <List style={{ cursor: 'pointer' }}>
-                <ListItem onClick={action('view location')}>
-                    <ListItemText primary="View Location" />
-                    <ListItemSecondaryAction style={{ display: 'flex' }}>
-                        <ChevronRight />
-                    </ListItemSecondaryAction>
-                </ListItem>
-            </List>
-        }
+        actionRow={actionRow}
         badge={
             <HeroBanner>
                 <Hero
