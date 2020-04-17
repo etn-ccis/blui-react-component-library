@@ -1,4 +1,7 @@
 # Change Log
+## v3.0.3
+- Fixes IE 11 issue where persistent Drawer will not close
+- Fixes some spacing issues when using the DrawerLayout
 
 ## v3.0.0
 - Adds support for nested items in the Drawer component; 

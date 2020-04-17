@@ -153,7 +153,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                 <ListSubheader
                     className={clsx(defaultClasses.subheader, classes.subheader)}
                     style={{
-                        position: 'unset',
+                        position: 'inherit',
                         color: open ? titleColor : 'transparent',
                     }}
                 >
