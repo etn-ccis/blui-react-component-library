@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
     root: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     },
 });
 
-type HeroBannerClasses = {
+export type HeroBannerClasses = {
     root?: string;
 };
 
@@ -26,7 +26,6 @@ export const HeroBanner = (props: HeroBannerProps & any): JSX.Element => {
     const { classes, divider, limit } = props;
     const defaultClasses = useStyles(props);
     const isArray = Array.isArray(props.children);
-
     return (
         <React.Fragment>
             <div className={clsx(defaultClasses.root, classes.root)} style={props.style}>

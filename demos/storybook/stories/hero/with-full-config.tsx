@@ -18,7 +18,7 @@ export const withFullConfig = (): StoryFnReactReturnType => (
         iconBackgroundColor={color('iconBackgroundColor', Colors.blue[500])}
         icon={<Fan fontSize={'inherit'} htmlColor={color('icon.htmlColor', Colors.white[50])} />}
         iconSize={number('iconSize', 35)}
-        fontSize={select('fontSize', ['normal', 'small'], 'small')}
+        fontSize={select('fontSize', ['normal', 'small'], 'normal')}
     />
 );
 

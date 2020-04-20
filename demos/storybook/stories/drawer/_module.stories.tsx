@@ -5,6 +5,7 @@ import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
 import { addClickEvents, DrawerState } from './util';
 import { navGroupItems1 } from './with-basic-config';
+import { withA11y } from '@storybook/addon-a11y';
 
 const alignDrawer = (storyFn: any): JSX.Element => (
     <div style={{ display: 'flex', height: '100%', alignSelf: 'flex-start', width: '100%' }}>{storyFn()}</div>
@@ -26,7 +27,8 @@ const wrapStore = (storyFn: any): JSX.Element => (
 const drawerModule = {
     title: `${COMPONENT_SECTION_NAME}/Drawer`,
     component: Drawer,
-    decorators: [storyWrapper, alignDrawer, wrapStore],
+    // @accessibility remove withA11y from decorators array to hide a11y addon
+    decorators: [storyWrapper, alignDrawer, wrapStore, withA11y],
     parameters: { ...storyParams, notes: { markdown: getReadMe('Drawer.md') } },
 };
 

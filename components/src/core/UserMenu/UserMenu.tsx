@@ -1,8 +1,8 @@
 import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         avatarRoot: {
             cursor: 'pointer',
-            //@ts-ignore
-            backgroundColor: theme.palette.primary[50],
+            backgroundColor: theme.palette.primary.light,
             color: theme.palette.primary.main,
             height: theme.spacing(5),
             width: theme.spacing(5),
@@ -32,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-type UserMenuClasses = {
+export type UserMenuClasses = {
     root?: string;
 };
 
@@ -57,7 +56,7 @@ export type UserMenuProps = {
 };
 
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
-    const { avatar, menu, classes, menuTitle, menuSubtitle, menuGroups, MenuProps, onClose, onOpen } = props;
+    const { avatar, classes, menu, menuTitle, menuSubtitle, menuGroups, MenuProps, onClose, onOpen } = props;
     const theme = useTheme();
     const defaultClasses = useStyles(theme);
     const [anchorEl, setAnchorEl] = useState(null);

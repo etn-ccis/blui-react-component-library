@@ -3,8 +3,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '../ChannelValue';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flex: '1 1 0px',
             overflow: 'hidden',
             color: theme.palette.type === 'dark' ? Colors.gray[300] : Colors.gray[500],
-            padding: '16px 8px',
+            padding: `${theme.spacing(2)}px ${theme.spacing()}px`,
         },
         icon: {
             lineHeight: 1,
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
+            padding: theme.spacing(0.5),
         },
         values: {
             display: 'flex',
@@ -58,7 +59,7 @@ const normalizeFontSize = (size: FontSize): string => (size === 'small' ? '1rem'
 
 type FontSize = 'normal' | 'small';
 
-type HeroClasses = {
+export type HeroClasses = {
     root?: string;
     icon?: string;
     values?: string;
@@ -94,8 +95,8 @@ export const Hero = (props: HeroProps): JSX.Element => {
                 className={clsx(defaultClasses.icon, classes.icon)}
                 style={{
                     fontSize: normalizeIconSize(iconSize),
-                    height: Math.max(36, iconSize),
-                    width: Math.max(36, iconSize),
+                    height: Math.max(44, iconSize),
+                    width: Math.max(44, iconSize),
                     backgroundColor: iconBackgroundColor,
                     borderRadius: '50%',
                 }}

@@ -178,7 +178,6 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         </>
     );
 };
-
 DrawerHeader.displayName = 'DrawerHeader';
 DrawerHeader.defaultProps = {
     backgroundOpacity: 0.3,

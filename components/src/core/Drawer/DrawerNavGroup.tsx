@@ -6,11 +6,11 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import { Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
+import PropTypes from 'prop-types';
 import {
     PXBlueDrawerNavGroupInheritableProperties,
     PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 } from './Drawer';
-import PropTypes from 'prop-types';
 import { white, black } from '@pxblue/colors';
 import { DrawerNavItem, NavItem, NestedNavItem } from './DrawerNavItem';
 

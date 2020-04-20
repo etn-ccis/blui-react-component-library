@@ -1,12 +1,12 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import React from 'react';
 import {
     PXBlueDrawerNavGroupInheritableProperties,
     PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 } from './Drawer';
+import PropTypes from 'prop-types';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
-import clsx from 'clsx';
 
 const useStyles = makeStyles({
     root: {

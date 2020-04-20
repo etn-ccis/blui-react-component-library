@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
-const styles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         display: 'inline-flex',
         alignItems: 'center',
@@ -28,7 +28,7 @@ const styles = makeStyles((theme: Theme) => ({
     },
 }));
 
-type ChannelValueClasses = {
+export type ChannelValueClasses = {
     root?: string;
     icon?: string;
     units?: string;
@@ -46,7 +46,7 @@ export type ChannelValueProps = {
 
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const { classes, color, fontSize, icon, prefix, units, value } = props;
-    const defaultClasses = styles(useTheme());
+    const defaultClasses = useStyles(useTheme());
 
     const getUnitElement = useCallback(
         (): JSX.Element => (

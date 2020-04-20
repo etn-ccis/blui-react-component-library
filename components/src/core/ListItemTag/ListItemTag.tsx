@@ -1,8 +1,8 @@
 import { Typography, TypographyProps } from '@material-ui/core';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 export type ListItemTagProps = {
     /* Color of the label background. Default is theme.palette.primary.main */
@@ -33,7 +33,17 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps): JSX.Element => {
-    const { classes: userClasses = {}, label, fontColor, backgroundColor, style, ...other } = props;
+    const {
+        backgroundColor,
+        classes: userClasses = {},
+        display,
+        fontColor,
+        label,
+        noWrap,
+        style,
+        variant,
+        ...other
+    } = props;
     const theme = useTheme();
     const defaultClasses = useStyles(theme);
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
@@ -49,6 +59,9 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps)
                 style
             )}
             data-test={'list-item-tag'}
+            noWrap={noWrap}
+            variant={variant}
+            display={display}
             {...other}
         >
             {label}
@@ -66,3 +79,4 @@ ListItemTag.defaultProps = {
     variant: 'overline',
     display: 'inline',
 };
+ListItemTag.displayName = 'ListItemTag';

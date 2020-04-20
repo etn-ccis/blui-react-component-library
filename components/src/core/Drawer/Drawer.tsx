@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Drawer, DrawerProps } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import { DrawerBodyProps } from './DrawerBody';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
 
 const useStyles = makeStyles({
@@ -233,7 +233,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
             {...drawerProps}
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
-            classes={{ paper: clsx(defaultClasses.paper, props.classes.paper) }}
+            classes={{ paper: clsx(defaultClasses.paper, classes.paper) }}
             style={{
                 minHeight: '100%',
                 width: containerWidth,

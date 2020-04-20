@@ -2,10 +2,10 @@ import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import * as Colors from '@pxblue/colors';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
-type EmptyStateClasses = {
+export type EmptyStateClasses = {
     root?: string;
     icon?: string;
     title?: string;
@@ -60,7 +60,6 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         </div>
     );
 };
-
 EmptyState.displayName = 'EmptyState';
 EmptyState.propTypes = {
     actions: PropTypes.element,
