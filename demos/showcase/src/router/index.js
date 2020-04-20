@@ -21,7 +21,7 @@ export const MainRouter = () => {
     return (
         <Router>
             <ScrollToTop />
-            <DrawerLayout drawer={<NavigationDrawer open={open} setOpen={setOpen} />} classes={{ drawer: 'test' }}>
+            <DrawerLayout drawer={<NavigationDrawer open={open} setOpen={setOpen} />}>
                 <Switch>
                     <Route path="*">
                         <Switch>
