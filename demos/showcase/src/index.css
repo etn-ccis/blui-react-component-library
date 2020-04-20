@@ -9,3 +9,6 @@ body,
 * {
     box-sizing: border-box;
 }
+.test {
+    width: 500px;
+}
