@@ -1,11 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-
-export type DrawerLayoutProps = {
-    // Drawer component to be embedded
-    drawer: React.ReactNode;
-};
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -29,13 +25,25 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+type DrawerLayoutClasses = {
+    root?: string;
+    content?: string;
+    drawer?: string;
+};
+
+export type DrawerLayoutProps = {
+    // Drawer component to be embedded
+    drawer: React.ReactNode;
+    classes?: DrawerLayoutClasses;
+};
+
 export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
-    const { children, drawer } = props;
-    const classes = useStyles(useTheme());
+    const { children, drawer, classes } = props;
+    const defaultClasses = useStyles(useTheme());
     return (
-        <div className={classes.root}>
-            <div className={classes.drawer}>{drawer}</div>
-            <div id={'@@pxb-drawerlayout-content'} className={classes.content}>
+        <div className={clsx(defaultClasses.root, classes.root)}>
+            <div className={clsx(defaultClasses.drawer, classes.drawer)}>{drawer}</div>
+            <div id={'@@pxb-drawerlayout-content'} className={clsx(defaultClasses.content, classes.content)}>
                 {children}
             </div>
         </div>
@@ -44,5 +52,13 @@ export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
 
 DrawerLayout.displayName = 'DrawerLayout';
 DrawerLayout.propTypes = {
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        content: PropTypes.string,
+        drawer: PropTypes.string,
+    }),
     drawer: PropTypes.element.isRequired,
+};
+DrawerLayout.defaultProps = {
+    classes: {},
 };
