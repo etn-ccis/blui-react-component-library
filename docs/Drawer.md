@@ -326,6 +326,14 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 </div>
 
-
-
 > **Note on Scrolling**: When using client-side routing in your application, you may notice that the window scroll position does not reset when navigating to new routes. To address this issue, you will need to manually update the scroll position when new pages are loaded. If you are using React Router they have [several examples](https://reacttraining.com/react-router/web/guides/scroll-restoration) on how to implement this in your application.
+
+#### Classes
+
+You can override the classes used by PX Blue by passing a `classes` prop. The DrawerLayout supports the following keys:
+
+| Name             | Description                                     |
+|------------------|-------------------------------------------------|
+| root             | Styles applied to the root element              |
+| content          | Styles applied to the body content container    |
+| drawer           | Styles applied to the drawer container          |
