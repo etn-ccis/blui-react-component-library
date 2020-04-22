@@ -1,6 +1,6 @@
 # Drawer
 
-The Drawer component is a wrapper around the Material UI Drawer that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `DrawerHeader`, `DrawerSubheader`, `DrawerBody`, `DrawerNavGroup`, `DrawerFooter`, and `DrawerLayout` to help organize the content.
+The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for ``<DrawerHeader>``, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 200px" alt="Nested Drawer" src="./images/drawer.png">
@@ -8,7 +8,7 @@ The Drawer component is a wrapper around the Material UI Drawer that adds specif
 
 ## Drawer
 
-The Drawer component is the parent container, which manages the overall state of the drawer and renders the child components.
+The `<Drawer>` component is the parent container, which manages the overall state of the drawer and renders the child components.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 500px" alt="Drawer Anatomy" src="./images/drawerAnatomy.png">
@@ -58,8 +58,8 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 The `Drawer` has three `variant`s:
 
 -   **Permanent**: Always open, even when `open` is set to false.
--   **Persistent**: When `open` is set to false, the Drawer collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent Drawer.
--   **Temporary**: When `open` is set to false, the drawer is hidden; when `open` is set to true, it slides in.
+-   **Persistent**: When `open` is set to false, the `<Drawer>` collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent `<Drawer>`.
+-   **Temporary**: When `open` is set to false, the `<Drawer>` is hidden; when `open` is set to true, it slides in.
 
 #### Classes
 
@@ -71,15 +71,15 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 | content | Styles applied to the drawer content container  |
 | paper   | MUI Drawer style override for desktop viewports |
 
-## DrawerHeader
+## Drawer Header
 
-The `DrawerHeader` contains the content at the top of the `Drawer`. By default, it renders multiple lines of text in the PX Blue style. If you supply a `titleContent`, you can render your own custom content in the title area.
+The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By default, it renders multiple lines of text in the PX Blue style. If you supply a `titleContent`, you can render your own custom content in the title area.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 600px" alt="Drawer Header Anatomy" src="./images/drawerHeaderAnatomy.png">
 </div>
 
-### DrawerHeader API
+### Drawer Header API
 
 <div style="overflow: auto;">
 
@@ -99,7 +99,7 @@ The `DrawerHeader` contains the content at the top of the `Drawer`. By default, 
 
 #### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. The DrawerHeader supports the following keys:
+You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerHeader>` supports the following keys:
 
 | Name             | Description                                      |
 | ---------------- | ------------------------------------------------ |
@@ -111,11 +111,11 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 | subtitle         | Styles applied to the subtitle element           |
 | title            | Styles applied to the title element              |
 
-## DrawerSubheader
+## Drawer Subheader
 
-The `DrawerSubheader` is an optional section that renders below the header and above the body of the `Drawer`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
+The `<DrawerSubheader>` is an optional section that renders below the header and above the body of the `<Drawer>`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
 
-### DrawerSubheader Usage
+### Drawer Subheader Usage
 
 ```tsx
 import DrawerSubheader from '@pxblue/react-components/core/Drawer';
@@ -125,11 +125,11 @@ import DrawerSubheader from '@pxblue/react-components/core/Drawer';
 </DrawerSubheader>
 ```
 
-## DrawerBody
+## Drawer Body
 
-The `DrawerBody` is a wrapper for the main content of the Drawer. The typical use case is to display `DrawerNavGroup` elements, but custom elements (e.g., for spacing) are accepted as well.
+The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical use case is to display `<DrawerNavGroup>` elements, but custom elements (e.g., for spacing) are accepted as well.
 
-### DrawerBody Usage
+### Drawer Body Usage
 
 ```tsx
 import DrawerBody from '@pxblue/react-components/core/Drawer';
@@ -140,7 +140,7 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 </DrawerBody>
 ```
 
-### DrawerBody API
+### Drawer Body API
 
 <div style="overflow: auto;">
 
@@ -153,15 +153,15 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 
 #### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. The `DrawerBody` supports the following keys:
+You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerBody>` supports the following keys:
 
 | Name | Description                        |
 | ---- | ---------------------------------- |
 | root | Styles applied to the root element |
 
-## DrawerNavGroup
+## Drawer Nav Group
 
-A `DrawerNavGroup` is used inside of the `DrawerBody` to organize links/content. Each group consists of an (optional) group title and a series of NavItems. Most visual props are inherited from the `DrawerBody` but can be overridden at the NavGroup level if desired.
+A `<DrawerNavGroup>` is used inside of the `<DrawerBody>` to organize links/content. Each group consists of an (optional) group title and a series of NavItems. Most visual props are inherited from the `<DrawerBody>` but can be overridden at the NavGroup level if desired.
 
 The `items` property supports nested items to generate collapsible sections in the menu. This can be used to create an arbitrary tree depth, but we do not recommend going more than two levels deep in a navigation Drawer.
 
@@ -169,7 +169,7 @@ The `items` property supports nested items to generate collapsible sections in t
     <img width="100%" style="max-width: 600px" alt="Drawer Nav Group Anatomy" src="./images/drawerNavGroupAnatomy.png">
 </div>
 
-### DrawerNavGroup API
+### Drawer Nav Group API
 
 <div style="overflow: auto;">
 
@@ -186,7 +186,7 @@ The `items` property supports nested items to generate collapsible sections in t
 
 #### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. The `DrawerNavGroup` supports the following keys:
+You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerNavGroup>` supports the following keys:
 
 | Name              | Description                                   |
 | ----------------- | --------------------------------------------- |
@@ -198,9 +198,9 @@ You can override the classes used by PX Blue by passing a `classes` prop. The `D
 | subheader         | Styles applied to the List subheader element  |
 | nestedTitle       | Styles applied to nested NavItem title        |
 
-## DrawerFooter
+## Drawer Footer
 
-The `DrawerFooter` is an optional section that renders at the bottom of the `Drawer`. It can be used to add any custom content (as children).
+The `<DrawerFooter>` is an optional section that renders at the bottom of the `<Drawer>`. It can be used to add any custom content (as children).
 
 ### Usage
 
@@ -212,7 +212,7 @@ import DrawerFooter from '@pxblue/react-components/core/Drawer';
 </DrawerFooter>
 ```
 
-### DrawerFooter API
+### Drawer Footer API
 
 <div style="overflow: auto;">
 
@@ -222,11 +222,11 @@ import DrawerFooter from '@pxblue/react-components/core/Drawer';
 
 </div>
 
-## DrawerNavItem
+## Drawer Nav Item
 
-#### NavItem Object
+#### Nav Item Object
 
-The `items` prop of the `DrawerNavGroup` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). A `NavItem` can also include a list of `NestedNavItem` to create a tree structure (see below).
+The `items` prop of the `<DrawerNavGroup>` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). A `NavItem` can also include a list of `NestedNavItem` to create a tree structure (see below).
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 600px" alt="Nav Item Anatomy" src="./images/navItemAnatomy.png">
@@ -248,7 +248,7 @@ The `items` prop of the `DrawerNavGroup` takes a list of items with the followin
 
 </div>
 
-#### NestedNavItem Object
+#### Nested Nav Item Object
 
 The `items` property of the NavItem can be nested to create a tree structure with expand/collapse panels. Nested items take the same properties as `NavItem` with the exception of `icon` (nested items cannot use icons).
 
@@ -289,7 +289,7 @@ The `items` property of the NavItem can be nested to create a tree structure wit
 
 ## Shared Props
 
-The following props can be set at any level in the drawer hierarchy (`Drawer`, `DrawerBody`, `DrawerNavGroup`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
+The following props can be set at any level in the drawer hierarchy (`<Drawer>`, `<DrawerNavGroup>`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
 
 <div style="overflow: auto;">
 
@@ -311,7 +311,7 @@ The following props can be set at any level in the drawer hierarchy (`Drawer`, `
 
 </div>
 
-The following props control the NavGroup and thus only apply to `Drawer`, and `DrawerNavGroupProps` (so not `NavItem` or `NestedNavItem`):
+The following props control the NavGroup and thus only apply to `<Drawer>`, and `DrawerNavGroupProps` (so not `NavItem` or `NestedNavItem`):
 
 <div style="overflow: auto;">
 
@@ -324,15 +324,15 @@ The following props control the NavGroup and thus only apply to `Drawer`, and `D
 
 </div>
 
-# DrawerLayout
+# Drawer Layout
 
-The `DrawerLayout` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with a PX Blue `Drawer`. It accepts a `Drawer` as a prop, and the main page content is passed in through child elements.
+The `<DrawerLayout>` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with a PX Blue `<Drawer>`. It accepts a `<Drawer>` as a prop, and the main page content is passed in through child elements.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 600px" alt="DrawerLayout with labels" src="./images/drawerLayout.png">
 </div>
 
-## DrawerLayout Usage
+## Drawer Layout Usage
 
 ```tsx
 import { Drawer, DrawerLayout } from '@pxblue/react-components';
@@ -344,7 +344,7 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 </DrawerLayout>
 ```
 
-### DrawerLayout API
+### Drawer Layout API
 
 <div style="overflow: auto;">
 
@@ -358,7 +358,7 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 #### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. The DrawerLayout supports the following keys:
+You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerLayout>` supports the following keys:
 
 | Name             | Description                                     |
 |------------------|-------------------------------------------------|

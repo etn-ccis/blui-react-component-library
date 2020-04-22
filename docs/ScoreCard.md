@@ -1,4 +1,4 @@
-# ScoreCard
+# Score Card
 
 Card component that calls attention to particular values.
 
@@ -74,7 +74,7 @@ import { Temp } from '@pxblue/icons-mui';
 
 </div>
 
-The `ScoreCard` also extends all Material UI Card props.
+The `<ScoreCard>` also extends all [Material UI `<Card>` props](https://material-ui.com/api/card/).
 
 ### Classes
 

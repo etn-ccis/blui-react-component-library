@@ -1,13 +1,13 @@
 # React Components
 We currently have the following components available for React applications:
 
-- [ChannelValue](https://github.com/pxblue/react-component-library/blob/dev/docs/ChannelValue.md)
+- [Channel Value](https://github.com/pxblue/react-component-library/blob/dev/docs/ChannelValue.md)
 - [Drawer](https://github.com/pxblue/react-component-library/blob/dev/docs/Drawer.md)
-- [DrawerLayout](https://github.com/pxblue/react-component-library/blob/dev/docs/DrawerLayout.md)
-- [EmptyState](https://github.com/pxblue/react-component-library/blob/dev/docs/EmptyState.md)
-- [Hero & HeroBanner](https://github.com/pxblue/react-component-library/blob/dev/docs/Hero.md)
-- [InfoListItem](https://github.com/pxblue/react-component-library/blob/dev/docs/InfoListItem.md)
-- [ListItemTag](https://github.com/pxblue/react-component-library/blob/dev/docs/ListItemTag.md)
-- [ScoreCard](https://github.com/pxblue/react-component-library/blob/dev/docs/ScoreCard.md)
+- [Drawer Layout](https://github.com/pxblue/react-component-library/blob/dev/docs/DrawerLayout.md)
+- [Empty State](https://github.com/pxblue/react-component-library/blob/dev/docs/EmptyState.md)
+- [Hero & Hero Banner](https://github.com/pxblue/react-component-library/blob/dev/docs/Hero.md)
+- [Info List Item](https://github.com/pxblue/react-component-library/blob/dev/docs/InfoListItem.md)
+- [List Item Tag](https://github.com/pxblue/react-component-library/blob/dev/docs/ListItemTag.md)
+- [Score Card](https://github.com/pxblue/react-component-library/blob/dev/docs/ScoreCard.md)
 - [Spacer](https://github.com/pxblue/react-component-library/blob/dev/docs/Spacer.md)
-- [UserMenu](https://github.com/pxblue/react-component-library/blob/dev/docs/UserMenu.md)
+- [User Menu](https://github.com/pxblue/react-component-library/blob/dev/docs/UserMenu.md)
