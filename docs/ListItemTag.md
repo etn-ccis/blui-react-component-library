@@ -1,6 +1,6 @@
-# ListItemTag
+# List Item Tag
 
-ListItemTag is a text item with a colored background and rounded corners that is used to tag lists.
+`<ListItemTag>` is a text item with a colored background and rounded corners that is used to tag lists.
 
 <img width="100%" alt="List Item Tag" src="./images/listItemTag.png">
 
@@ -14,7 +14,7 @@ import { ListItemTag } from '@pxblue/react-components';
 
 ## API
 
-Besides what's listed below, as an extension of [Material UI's Typography API](https://material-ui.com/api/typography/), the component will pass in all extra props.
+Besides what's listed below, as an extension of [Material UI's `<Typography>` API](https://material-ui.com/api/typography/), the component will pass in all extra props.
 
 <div style="overflow: auto;">
 

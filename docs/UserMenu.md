@@ -1,6 +1,6 @@
-# UserMenu
+# User Menu
 
-The `UserMenu` is an Avatar that opens a Menu when clicked. It is typically used in the top-right corner of an application and indicates who is logged in.
+The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically used in the top-right corner of an application and indicates who is logged in.
 
 <div style="align-items: center; display:flex; justify-content: space-around">
 
@@ -9,7 +9,7 @@ The `UserMenu` is an Avatar that opens a Menu when clicked. It is typically used
 
 </div>
 
-The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `Menu`.
+The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `<Menu>`.
 
 ## Usage
 
@@ -68,9 +68,9 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 
 </div>
 
-#### UserMenuGroups Object
+#### User Menu Groups Object
 
-The `menuGroups` prop of the `UserMenu` includes many properties from the `DrawerNavGroup` array found within a `DrawerBody`.
+The `menuGroups` prop of the `<UserMenu>` includes many properties from the `<DrawerNavGroup>` array found within a `<DrawerBody>`.
 
 <div style="overflow: auto;">
 
@@ -83,7 +83,7 @@ The `menuGroups` prop of the `UserMenu` includes many properties from the `Drawe
 
 </div>
 
-#### UserMenuItem Object
+#### User Menu Item Object
 
 <div style="overflow: auto;">
 

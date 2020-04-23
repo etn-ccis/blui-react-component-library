@@ -1,14 +1,14 @@
 # Hero
 
-The PX Blue Hero components are used to call attention to particular values that are of the most importance to the user. These are typically displayed in a banner.
+The PX Blue `<Hero>` components are used to call attention to particular values that are of the most importance to the user. These are typically displayed in a banner.
 
 <div style="width: 100%; text-align:center">
 <img width="100%" style="max-width: 600px" alt="Hero Banner" src="./images/heroes.png">
 </div>
 
-The Hero component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, PX Blue icon, or Progress Icon. It will also accept Text/Emoji values.
+The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [PX Blue icon](https://github.com/pxblue/icons), or [Progress Icon](https://github.com/pxblue/icons/tree/master/progress). It will also accept Text/Emoji values.
 
-The value section of the Hero utilizes a [ChannelValue](./ChannelValue.md) component. To display a single simple value, the information can be passed as props (`value`, `units`, `valueIcon`). For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
+The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) component. To display a single simple value, the information can be passed as props (`value`, `units`, `valueIcon`). For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
 
 ## Hero Usage
 
@@ -65,11 +65,11 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | label  | Styles applied to the label element |
 | values | Styles applied to the value element |
 
-# HeroBanner
+# Hero Banner
 
-The HeroBanner component is a simple wrapper component that is used to contain `<Hero/>`s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four `<Hero/>` components as its children.
+The `<HeroBanner>` component is a simple wrapper component that is used to contain `<Hero>`s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four `<Hero>` components as its children.
 
-## HeroBanner Usage
+## Hero Banner Usage
 
 ```tsx
 import HeroBanner from '@pxblue/react-components/core/HeroBanner';
@@ -83,7 +83,7 @@ import Hero from '@pxblue/react-components/core/Hero';
 </HeroBanner>
 ```
 
-## HeroBanner API
+## Hero Banner API
 
 <div style="overflow: auto;">
 
