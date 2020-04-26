@@ -49,7 +49,7 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 | Prop Name                       | Description                                                | Type                                         | Required | Default |
 | ------------------------------- | ---------------------------------------------------------- | -------------------------------------------- | -------- | ------- |
 | open                            | Controls the open/closed state of the drawer               | `boolean`                                    | yes      |         |
-| variant                         | The variant to use (see below)                             | ```'permanent'\|'persistent'\|'temporary'``` | no       |         |
+| variant                         | The variant to use (see below)                             | `'permanent'`\|`'persistent'`\|`'temporary'` | no       |         |
 | width                           | Sets the width of the drawer (in px) when open             | `number`                                     | no       |         |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                                            | no       |         |
 
@@ -296,7 +296,7 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 | Name                      | Description                                               | Type                    | Required | Default                                                      |
 | ------------------------- | --------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
 | activeItemBackgroundColor | Background color for the 'active' item                    | `string`                | no       | varies for light/dark theme                                  |
-| activeItemBackgroundShape | shape of the active item background                       | ```'round'\|'square'``` | no       | round                                                        |
+| activeItemBackgroundShape | shape of the active item background                       | `'round'`\|`'square'`   | no       | round                                                        |
 | activeItemFontColor       | Font color for the 'active' item                          | `string`                | no       | varies for light/dark theme                                  |
 | activeItemIconColor       | Icon color for the 'active' item                          | `string`                | no       | varies for light/dark theme                                  |
 | chevron                   | Whether to have chevrons for all menu items               | `boolean`               | no       |                                                              |
