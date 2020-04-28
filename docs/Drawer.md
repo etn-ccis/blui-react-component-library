@@ -46,12 +46,12 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                | Type                                       | Required | Default |
-| ------------------------------- | ---------------------------------------------------------- | ------------------------------------------ | -------- | ------- |
-| open                            | Controls the open/closed state of the drawer               | `boolean`                                  | yes      |         |
-| variant                         | The variant to use (see below)                             | `'permanent' | 'persistent' | 'temporary'` | no       |         |
-| width                           | Sets the width of the drawer (in px) when open             | `number`                                   | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                                          | no       |         |
+| Prop Name                       | Description                                                | Type                                         | Required | Default |
+| ------------------------------- | ---------------------------------------------------------- | -------------------------------------------- | -------- | ------- |
+| open                            | Controls the open/closed state of the drawer               | `boolean`                                    | yes      |         |
+| variant                         | The variant to use (see below)                             | `'permanent'`\|`'persistent'`\|`'temporary'` | no       |         |
+| width                           | Sets the width of the drawer (in px) when open             | `number`                                     | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                                            | no       |         |
 
 </div>
 
@@ -293,21 +293,21 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 
 <div style="overflow: auto;">
 
-| Name                      | Description                                               | Type                | Required | Default                                                      |
-| ------------------------- | --------------------------------------------------------- | ------------------- | -------- | ------------------------------------------------------------ |
-| activeItemBackgroundColor | Background color for the 'active' item                    | `string`            | no       | varies for light/dark theme                                  |
-| activeItemBackgroundShape | shape of the active item background                       | `'round'|'square'`  | no       | round                                                        |
-| activeItemFontColor       | Font color for the 'active' item                          | `string`            | no       | varies for light/dark theme                                  |
-| activeItemIconColor       | Icon color for the 'active' item                          | `string`            | no       | varies for light/dark theme                                  |
-| chevron                   | Whether to have chevrons for all menu items               | `boolean`           | no       |                                                              |
-| collapseIcon              | Icon used to collapse drawer                              | `JSX.Element`       | no       | `expandIcon` rotated 180 degrees                             |
-| divider                   | Whether to show a line between all items                  | `boolean`           | no       | true                                                         |
-| expandIcon                | Icon used to expand drawer                                | `JSX.Element`       | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
-| hidePadding               | Whether to hide the paddings reserved for menu item icons | `boolean`           | no       |                                                              |
-| InfoListItemProps         | Used to override InfoListItem props set by the Drawer     | `InfoListItemProps` | no       |                                                              |
-| itemFontColor             | The color used for the item text                          | `string`            | no       | gray[500]                                                    |
-| itemIconColor             | The color used for the icon                               | `string`            | no       | gray[500]                                                    |
-| ripple                    | Whether to apply material ripple effect to items          | `boolean`           | no       | true                                                         |
+| Name                      | Description                                               | Type                    | Required | Default                                                      |
+| ------------------------- | --------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
+| activeItemBackgroundColor | Background color for the 'active' item                    | `string`                | no       | varies for light/dark theme                                  |
+| activeItemBackgroundShape | shape of the active item background                       | `'round'`\|`'square'`   | no       | round                                                        |
+| activeItemFontColor       | Font color for the 'active' item                          | `string`                | no       | varies for light/dark theme                                  |
+| activeItemIconColor       | Icon color for the 'active' item                          | `string`                | no       | varies for light/dark theme                                  |
+| chevron                   | Whether to have chevrons for all menu items               | `boolean`               | no       |                                                              |
+| collapseIcon              | Icon used to collapse drawer                              | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                             |
+| divider                   | Whether to show a line between all items                  | `boolean`               | no       | true                                                         |
+| expandIcon                | Icon used to expand drawer                                | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
+| hidePadding               | Whether to hide the paddings reserved for menu item icons | `boolean`               | no       |                                                              |
+| InfoListItemProps         | Used to override InfoListItem props set by the Drawer     | `InfoListItemProps`     | no       |                                                              |
+| itemFontColor             | The color used for the item text                          | `string`                | no       | gray[500]                                                    |
+| itemIconColor             | The color used for the icon                               | `string`                | no       | gray[500]                                                    |
+| ripple                    | Whether to apply material ripple effect to items          | `boolean`               | no       | true                                                         |
 
 </div>
 
