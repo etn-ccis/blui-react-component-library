@@ -6,8 +6,6 @@ import { findByTestId } from '../test-utils';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import * as Colors from '@pxblue/colors';
-
 import { createShallow } from '@material-ui/core/test-utils';
 
 Enzyme.configure({ adapter: new Adapter() });

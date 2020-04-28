@@ -5,7 +5,6 @@ import { Divider, List, Typography } from '@material-ui/core';
 
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import { MoreVert } from '@material-ui/icons';
-import * as Colors from '@pxblue/colors';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { HeroBanner } from '../HeroBanner';
