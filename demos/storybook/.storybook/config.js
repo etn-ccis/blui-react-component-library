@@ -38,11 +38,9 @@ pxblueTheme.brandUrl = 'https://pxblue.github.io';
 
 if (window.top.location.hostname === 'localhost') {
     pxblueTheme.brandImage = require('../assets/pxblue-react-alpha.svg');
-}
-else if (window.top.location.pathname.slice(11) === '/react-dev/') {
+} else if (window.top.location.pathname.slice(0, 11) === '/react-dev/') {
     pxblueTheme.brandImage = require('../assets/pxblue-react-beta.svg');
-}
-else {
+} else {
     pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
 }
 
