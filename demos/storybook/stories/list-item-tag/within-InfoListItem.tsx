@@ -20,4 +20,4 @@ export const inInfoListItem = (): StoryFnReactReturnType => (
     </div>
 );
 
-inInfoListItem.story = { name: 'within an InfoListItem' };
+inInfoListItem.story = { name: 'within an Info List Item' };

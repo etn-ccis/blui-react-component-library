@@ -1,5 +1,5 @@
 import { Typography, TypographyProps } from '@material-ui/core';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -18,7 +18,6 @@ export type ListItemTagProps = {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            backgroundColor: theme.palette.primary.main,
             fontWeight: 'bold',
             letterSpacing: 1,
             borderRadius: theme.spacing(0.25),
@@ -26,38 +25,33 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingLeft: theme.spacing(0.5),
             paddingRight: theme.spacing(0.5),
             lineHeight: 'inherit',
-            color: theme.palette.primary.contrastText,
             overflow: 'hidden',
+            backgroundColor: (props: ListItemTagProps): string => props.backgroundColor || theme.palette.primary.main,
+            color: (props: ListItemTagProps): string => props.fontColor || theme.palette.primary.contrastText,
+            cursor: (props: ListItemTagProps): string => (props.onClick ? 'pointer' : 'inherit'),
         },
     })
 );
 
 export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps): JSX.Element => {
     const {
-        backgroundColor,
-        classes: userClasses = {},
+        classes: userClasses,
         display,
-        fontColor,
         label,
         noWrap,
         style,
         variant,
+        // leaving those here to allow prop transferring
+        fontColor, // eslint-disable-line @typescript-eslint/no-unused-vars
+        backgroundColor, // eslint-disable-line @typescript-eslint/no-unused-vars
         ...other
     } = props;
-    const theme = useTheme();
-    const defaultClasses = useStyles(theme);
+    const defaultClasses = useStyles(props);
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
     return (
         <Typography
             classes={{ root: clsx(defaultClasses.root, rootUserClass), ...otherUserClasses }}
-            style={Object.assign(
-                {
-                    color: fontColor,
-                    backgroundColor: backgroundColor,
-                    cursor: props.onClick ? 'pointer' : 'inherit',
-                },
-                style
-            )}
+            style={style}
             data-test={'list-item-tag'}
             noWrap={noWrap}
             variant={variant}
@@ -78,5 +72,6 @@ ListItemTag.defaultProps = {
     noWrap: true,
     variant: 'overline',
     display: 'inline',
+    classes: {},
 };
 ListItemTag.displayName = 'ListItemTag';

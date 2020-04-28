@@ -45,4 +45,4 @@ export const withMultipleNavGroups = (context: DrawerStoryContext): StoryFnReact
     </Drawer>
 );
 
-withMultipleNavGroups.story = { name: 'with multiple DrawerNavGroups' };
+withMultipleNavGroups.story = { name: 'with multiple Drawer Nav Groups' };

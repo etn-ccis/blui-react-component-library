@@ -6,6 +6,32 @@ import { ChannelValue } from '../ChannelValue';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
+const normalizeIconSize = (size: number): number => Math.max(10, size);
+const normalizeFontSize = (size: FontSize): string => (size === 'small' ? '1rem' : '1.25rem');
+
+type FontSize = 'normal' | 'small';
+
+export type HeroClasses = {
+    root?: string;
+    icon?: string;
+    label?: string;
+    values?: string;
+};
+
+export type HeroProps = {
+    children?: React.ReactNode;
+    classes?: HeroClasses;
+    fontSize?: FontSize;
+    icon: string | JSX.Element;
+    iconBackgroundColor?: string;
+    iconSize?: number;
+    label: string;
+    onClick?: Function;
+    value?: string | number;
+    valueIcon?: JSX.Element;
+    units?: string;
+};
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -31,6 +57,11 @@ const useStyles = makeStyles((theme: Theme) =>
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
             padding: theme.spacing(0.5),
+            borderRadius: '50%',
+            fontSize: (props: HeroProps): number => normalizeIconSize(props.iconSize),
+            height: (props: HeroProps): number => Math.max(44, props.iconSize),
+            width: (props: HeroProps): number => Math.max(44, props.iconSize),
+            backgroundColor: (props: HeroProps): string => props.iconBackgroundColor,
         },
         values: {
             display: 'flex',
@@ -39,6 +70,7 @@ const useStyles = makeStyles((theme: Theme) =>
             lineHeight: 1.2,
             maxWidth: '100%',
             overflow: 'hidden',
+            fontSize: (props: HeroProps): string => normalizeFontSize(props.fontSize),
         },
         label: {
             fontSize: 'inherit',
@@ -54,35 +86,9 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const normalizeIconSize = (size: number): number => Math.max(10, size);
-const normalizeFontSize = (size: FontSize): string => (size === 'small' ? '1rem' : '1.25rem');
-
-type FontSize = 'normal' | 'small';
-
-export type HeroClasses = {
-    root?: string;
-    icon?: string;
-    values?: string;
-    label?: string;
-};
-
-export type HeroProps = {
-    children?: React.ReactNode;
-    classes?: HeroClasses;
-    fontSize?: FontSize;
-    icon: string | JSX.Element;
-    iconBackgroundColor?: string;
-    iconSize?: number;
-    label: string;
-    onClick?: Function;
-    value?: string | number;
-    valueIcon?: JSX.Element;
-    units?: string;
-};
-
 export const Hero = (props: HeroProps): JSX.Element => {
     const defaultClasses = useStyles(props);
-    const { classes, fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units } = props;
+    const { classes, icon, label, onClick, value, valueIcon, units } = props;
 
     return (
         <div
@@ -91,22 +97,8 @@ export const Hero = (props: HeroProps): JSX.Element => {
             onClick={onClick ? (): void => onClick() : undefined}
             data-test={'wrapper'}
         >
-            <span
-                className={clsx(defaultClasses.icon, classes.icon)}
-                style={{
-                    fontSize: normalizeIconSize(iconSize),
-                    height: Math.max(44, iconSize),
-                    width: Math.max(44, iconSize),
-                    backgroundColor: iconBackgroundColor,
-                    borderRadius: '50%',
-                }}
-            >
-                {icon}
-            </span>
-            <span
-                className={clsx(defaultClasses.values, classes.values)}
-                style={{ fontSize: normalizeFontSize(fontSize) }}
-            >
+            <span className={clsx(defaultClasses.icon, classes.icon)}>{icon}</span>
+            <span className={clsx(defaultClasses.values, classes.values)}>
                 {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
                 {props.children}
             </span>

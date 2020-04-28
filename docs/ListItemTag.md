@@ -25,3 +25,11 @@ Besides what's listed below, as an extension of [Material UI's `<Typography>` AP
 | backgroundColor | Color of the label background | `string` | no       |         |
 
 </div>
+
+### Classes
+
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name | Description                        |
+| ---- | ---------------------------------- |
+| root | Styles applied to the root element |

@@ -1,6 +1,6 @@
 # Drawer
 
-The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for ``<DrawerHeader>``, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
+The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 200px" alt="Nested Drawer" src="./images/drawer.png">
@@ -67,7 +67,6 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 
 | Name    | Description                                     |
 | ------- | ----------------------------------------------- |
-| root    | Styles applied to the root element              |
 | content | Styles applied to the drawer content container  |
 | paper   | MUI Drawer style override for desktop viewports |
 
@@ -193,6 +192,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. The `<
 | active            | Styles applied to the active element          |
 | expandIcon        | Styles applied to the expandIcon element      |
 | groupHeader       | Styles applied to the NavGroup header element |
+| listGroup         | Styles applied to the NavGroup list           |
 | listItemContainer | Styles applied to the NavItem container       |
 | nestedListGroup   | Styles applied to nested NavItems             |
 | subheader         | Styles applied to the List subheader element  |
@@ -360,8 +360,8 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerLayout>` supports the following keys:
 
-| Name             | Description                                     |
-|------------------|-------------------------------------------------|
-| root             | Styles applied to the root element              |
-| content          | Styles applied to the body content container    |
-| drawer           | Styles applied to the drawer container          |
+| Name    | Description                                  |
+| ------- | -------------------------------------------- |
+| root    | Styles applied to the root element           |
+| content | Styles applied to the body content container |
+| drawer  | Styles applied to the drawer container       |

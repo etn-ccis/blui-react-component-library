@@ -8,15 +8,6 @@ import {
 import PropTypes from 'prop-types';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
 
-const useStyles = makeStyles({
-    root: {
-        display: 'flex',
-        flex: '1 1 0px',
-        flexDirection: 'column',
-        overflowY: 'auto',
-    },
-});
-
 type DrawerBodyClasses = {
     root?: string;
 };
@@ -27,12 +18,22 @@ export type DrawerBodyProps = {
     drawerOpen?: boolean;
 } & PXBlueDrawerNavGroupInheritableProperties;
 
+const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        flex: '1 1 0px',
+        flexDirection: 'column',
+        overflowY: 'auto',
+        backgroundColor: (props: DrawerBodyProps): string => props.backgroundColor,
+    },
+});
+
 export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
     const defaultClasses = useStyles(bodyProps);
-    const { backgroundColor, classes } = bodyProps;
+    const { classes } = bodyProps;
     const children = React.Children.toArray(bodyProps.children);
     return (
-        <div className={clsx(defaultClasses.root, classes.root)} style={{ backgroundColor }}>
+        <div className={clsx(defaultClasses.root, classes.root)}>
             {children.map((child: any, index: number) => {
                 if (!child) {
                     return null;

@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 type DrawerClasses = {
-    root?: string;
+    // root?: string;
     content?: string;
     paper?: string;
 };
@@ -275,7 +275,7 @@ export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
 // @ts-ignore
 DrawerComponent.propTypes = {
     classes: PropTypes.shape({
-        root: PropTypes.string,
+        // root: PropTypes.string,
         content: PropTypes.string,
         paper: PropTypes.string,
     }),

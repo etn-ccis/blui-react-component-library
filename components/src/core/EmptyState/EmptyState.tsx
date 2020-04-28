@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 
 export type EmptyStateClasses = {
     root?: string;
+    actions?: string;
+    description?: string;
     icon?: string;
     title?: string;
-    description?: string;
-    actions?: string;
 };
 
 export type EmptyStateProps = {
