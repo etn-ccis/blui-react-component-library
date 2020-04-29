@@ -34,8 +34,15 @@ const newViewports = {
 };
 
 pxblueTheme.brandTitle = 'PX Blue React Component Library';
-pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
 pxblueTheme.brandUrl = 'https://pxblue.github.io';
+
+if (window.top.location.hostname === 'localhost') {
+    pxblueTheme.brandImage = require('../assets/pxblue-react-alpha.svg');
+} else if (window.top.location.pathname.slice(0, 11) === '/react-dev/') {
+    pxblueTheme.brandImage = require('../assets/pxblue-react-beta.svg');
+} else {
+    pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
+}
 
 const themeInit = { dark: pxblueTheme, light: pxblueTheme, current: 'light' };
 window.localStorage.setItem('sb-addon-themes-3', JSON.stringify(themeInit));
