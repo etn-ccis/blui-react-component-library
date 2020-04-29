@@ -21,7 +21,7 @@ export type NavItem = {
     items?: NestedNavItem[];
 
     // onClick of the entire row
-    onClick?: Function;
+    onClick?: (e?: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
 
     // component to be rendered on the right next to the expandIcon
     rightComponent?: JSX.Element;
@@ -156,12 +156,12 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
             : true;
 
     const hasAction = Boolean(onItemSelect || onClick || expandHandler);
-    const onClickAction = (): void => {
+    const onClickAction = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
         if (onItemSelect) {
             onItemSelect();
         }
         if (onClick) {
-            onClick();
+            onClick(e);
         } else if (expandHandler) {
             expandHandler();
         }

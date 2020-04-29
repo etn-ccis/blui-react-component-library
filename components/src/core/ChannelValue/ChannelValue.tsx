@@ -10,7 +10,7 @@ export type ChannelValueClasses = {
     units?: string;
     value?: string;
 };
-export type ChannelValueProps = {
+export type ChannelValueProps = Omit<React.HTMLAttributes<HTMLSpanElement>, 'prefix'> & {
     classes?: ChannelValueClasses;
     color?: string;
     fontSize?: number | string;
@@ -49,7 +49,19 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
-    const { classes, icon, prefix, units, value } = props;
+    const {
+        classes,
+        icon,
+        prefix,
+        units,
+        value,
+        // leaving those here to allow prop transferring
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        color,
+        fontSize,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        ...otherSpanProps
+    } = props;
     const defaultClasses = useStyles(props);
 
     const getUnitElement = useCallback(
@@ -76,7 +88,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         });
 
     return (
-        <span className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'}>
+        <span className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherSpanProps}>
             {icon && (
                 <span className={clsx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
                     {changeIconDisplay(icon)}

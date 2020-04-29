@@ -31,17 +31,17 @@ type DrawerLayoutClasses = {
     drawer?: string;
 };
 
-export type DrawerLayoutProps = {
+export type DrawerLayoutProps = React.HTMLAttributes<HTMLDivElement> & {
+    classes?: DrawerLayoutClasses;
     // Drawer component to be embedded
     drawer: React.ReactNode;
-    classes?: DrawerLayoutClasses;
 };
 
 export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
-    const { children, drawer, classes } = props;
+    const { children, drawer, classes, ...otherDivProps } = props;
     const defaultClasses = useStyles(useTheme());
     return (
-        <div className={clsx(defaultClasses.root, classes.root)}>
+        <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
             <div className={clsx(defaultClasses.drawer, classes.drawer)}>{drawer}</div>
             <div id={'@@pxb-drawerlayout-content'} className={clsx(defaultClasses.content, classes.content)}>
                 {children}

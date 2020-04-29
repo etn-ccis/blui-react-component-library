@@ -22,6 +22,8 @@ import * as Colors from '@pxblue/colors';
 
 ## API
 
+Besides what's listed below, as an extension of [Material UI's `<ListItem>` API](https://material-ui.com/api/list-item/), the component will pass in all extra props.
+
 <div style="overflow: auto;">
 
 | Prop Name         | Description                                      | Type                                 | Required | Default        |

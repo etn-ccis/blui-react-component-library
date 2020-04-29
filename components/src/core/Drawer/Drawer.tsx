@@ -108,9 +108,9 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const {
         activeItem,
         activeItemBackgroundColor,
+        activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
-        activeItemBackgroundShape,
         chevron,
         classes,
         collapseIcon,

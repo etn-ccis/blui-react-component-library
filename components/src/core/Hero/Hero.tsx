@@ -18,15 +18,13 @@ export type HeroClasses = {
     values?: string;
 };
 
-export type HeroProps = {
-    children?: React.ReactNode;
+export type HeroProps = React.HTMLAttributes<HTMLDivElement> & {
     classes?: HeroClasses;
     fontSize?: FontSize;
     icon: string | JSX.Element;
     iconBackgroundColor?: string;
     iconSize?: number;
     label: string;
-    onClick?: Function;
     value?: string | number;
     valueIcon?: JSX.Element;
     units?: string;
@@ -88,14 +86,28 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Hero = (props: HeroProps): JSX.Element => {
     const defaultClasses = useStyles(props);
-    const { classes, icon, label, onClick, value, valueIcon, units } = props;
+    const {
+        classes,
+        icon,
+        label,
+        value,
+        valueIcon,
+        units,
+        // leaving those here to allow prop transferring
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        fontSize,
+        iconBackgroundColor,
+        iconSize,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        ...otherDivProps
+    } = props;
 
     return (
         <div
-            style={{ cursor: onClick ? 'pointer' : 'inherit' }}
+            style={{ cursor: props.onClick ? 'pointer' : 'inherit' }}
             className={clsx(defaultClasses.root, classes.root)}
-            onClick={onClick ? (): void => onClick() : undefined}
             data-test={'wrapper'}
+            {...otherDivProps}
         >
             <span className={clsx(defaultClasses.icon, classes.icon)}>{icon}</span>
             <span className={clsx(defaultClasses.values, classes.values)}>
@@ -117,13 +129,11 @@ Hero.propType = {
         icon: PropTypes.string,
         labels: PropTypes.string,
     }),
-    children: PropTypes.element,
     fontSize: PropTypes.oneOf(['normal', 'small']),
     icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     iconBackgroundColor: PropTypes.string,
     iconSize: PropTypes.number,
     label: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     valueIcon: PropTypes.element,
     units: PropTypes.string,

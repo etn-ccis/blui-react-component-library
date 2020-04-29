@@ -1,8 +1,9 @@
 # Change Log
 
-## v3.0.5
+## v3.1.0
 
 -   Style-related props are now overridable by the `classes` prop in each component
+-   Components now accepts props from from `React.HTMLAttributes<T>`, where `T` is the type of the root element.
 
 ## v3.0.3
 

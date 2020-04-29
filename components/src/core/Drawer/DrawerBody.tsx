@@ -12,7 +12,7 @@ type DrawerBodyClasses = {
     root?: string;
 };
 
-export type DrawerBodyProps = {
+export type DrawerBodyProps = React.HTMLAttributes<HTMLDivElement> & {
     backgroundColor?: string;
     classes?: DrawerBodyClasses;
     drawerOpen?: boolean;
@@ -30,10 +30,37 @@ const useStyles = makeStyles({
 
 export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
     const defaultClasses = useStyles(bodyProps);
-    const { classes } = bodyProps;
+    const {
+        classes,
+        drawerOpen,
+        // leaving those here to allow prop transferring
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        backgroundColor,
+        // from the shared props
+        activeItem,
+        activeItemBackgroundColor,
+        activeItemBackgroundShape,
+        activeItemFontColor,
+        activeItemIconColor,
+        chevron,
+        collapseIcon,
+        divider,
+        expandIcon,
+        hidePadding,
+        InfoListItemProps,
+        itemFontColor,
+        itemIconColor,
+        nestedBackgroundColor,
+        nestedDivider,
+        onItemSelect,
+        ripple,
+        titleColor,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        ...otherDivProps
+    } = bodyProps;
     const children = React.Children.toArray(bodyProps.children);
     return (
-        <div className={clsx(defaultClasses.root, classes.root)}>
+        <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
             {children.map((child: any, index: number) => {
                 if (!child) {
                     return null;
@@ -74,7 +101,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                         nestedBackgroundColor={groupProps.nestedBackgroundColor || bodyProps.nestedBackgroundColor}
                         ripple={groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple}
                         onItemSelect={bodyProps.onItemSelect}
-                        drawerOpen={bodyProps.drawerOpen}
+                        drawerOpen={drawerOpen}
                         titleColor={groupProps.titleColor || bodyProps.titleColor}
                     />
                 );

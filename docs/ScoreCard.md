@@ -55,6 +55,8 @@ import { Temp } from '@pxblue/icons-mui';
 
 ## API
 
+Besides what's listed below, as an extension of [Material UI's `<Card>` API](https://material-ui.com/api/card/), the component will pass in all extra props.
+
 <div style="overflow: auto;">
 
 | Prop Name             | Description                                 | Type              | Required | Default                      |
@@ -73,8 +75,6 @@ import { Temp } from '@pxblue/icons-mui';
 | headerSubtitle        | The secondary text                          | `string`          | no       |                              |
 
 </div>
-
-The `<ScoreCard>` also extends all [Material UI `<Card>` props](https://material-ui.com/api/card/).
 
 ### Classes
 

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React, { ReactNode, useState } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
+import List, { ListProps } from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
@@ -14,7 +14,7 @@ import {
 import { white, black } from '@pxblue/colors';
 import { DrawerNavItem, NavItem, NestedNavItem } from './DrawerNavItem';
 
-export type DrawerNavGroupProps = {
+export type DrawerNavGroupProps = ListProps & {
     // internal API
     backgroundColor?: string;
 
@@ -96,7 +96,37 @@ function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const defaultClasses = useStyles(props);
     const theme = useTheme();
-    const { classes, drawerOpen, items, title, titleColor = theme.palette.text.primary, titleContent } = props;
+    const {
+        classes,
+        drawerOpen,
+        items,
+        title,
+        titleColor = theme.palette.text.primary,
+        titleContent,
+        // leaving those here to allow prop transferring
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        backgroundColor,
+        // from the shared props
+        activeItem,
+        activeItemBackgroundColor,
+        activeItemBackgroundShape,
+        activeItemFontColor,
+        activeItemIconColor,
+        chevron,
+        collapseIcon,
+        divider,
+        expandIcon,
+        hidePadding,
+        InfoListItemProps,
+        itemFontColor,
+        itemIconColor,
+        nestedBackgroundColor,
+        nestedDivider,
+        onItemSelect,
+        ripple,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        ...otherListProps
+    } = props;
 
     const open = drawerOpen !== undefined ? drawerOpen : true; // so that DrawerNavGroup can be placed in a <Card />
 
@@ -162,6 +192,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
                     {titleContent}
                 </ListSubheader>
             }
+            {...otherListProps}
         >
             <div key={`${title}_title`}>{(title || titleContent) && <Divider />}</div>
             {items.map((item: NavItem) => getDrawerItemList(item, 0))}

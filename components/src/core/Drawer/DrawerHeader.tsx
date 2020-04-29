@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
-import { Typography } from '@material-ui/core';
+import { Typography, ToolbarProps } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -17,7 +17,7 @@ type DrawerHeaderClasses = {
     title?: string;
 };
 
-export type DrawerHeaderProps = {
+export type DrawerHeaderProps = ToolbarProps & {
     backgroundColor?: string;
     backgroundImage?: string;
     backgroundOpacity?: number;
@@ -96,7 +96,22 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const defaultClasses = useStyles(props);
-    const { backgroundImage, classes, icon, onIconClick, subtitle, title, titleContent } = props;
+    const {
+        backgroundImage,
+        classes,
+        icon,
+        onIconClick,
+        subtitle,
+        title,
+        titleContent,
+        // leaving those here to allow prop transferring
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        backgroundColor,
+        backgroundOpacity,
+        fontColor,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        ...otherToolbarProps
+    } = props;
 
     const getHeaderContent = (): ReactNode =>
         titleContent || (
@@ -129,7 +144,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
 
     return (
         <>
-            <Toolbar className={clsx(defaultClasses.root, classes.root)}>
+            <Toolbar className={clsx(defaultClasses.root, classes.root)} {...otherToolbarProps}>
                 {getBackgroundImage()}
                 {icon && (
                     <div className={clsx(defaultClasses.navigation, classes.navigation)}>

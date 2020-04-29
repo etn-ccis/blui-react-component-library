@@ -44,6 +44,8 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 ### Drawer API
 
+Besides what's listed below, as an extension of [Material UI's `<Drawer>` API](https://material-ui.com/api/drawer/), the component will pass in all extra props.
+
 <div style="overflow: auto;">
 
 | Prop Name                       | Description                                                | Type                                       | Required | Default |
@@ -79,6 +81,8 @@ The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By defau
 </div>
 
 ### Drawer Header API
+
+Besides what's listed below, as an extension of [Material UI's `<Toolbar>` API](https://material-ui.com/api/toolbar/), the component will pass in all extra props.
 
 <div style="overflow: auto;">
 
@@ -170,6 +174,8 @@ The `items` property supports nested items to generate collapsible sections in t
 
 ### Drawer Nav Group API
 
+Besides what's listed below, as an extension of [Material UI's `<List>` API](https://material-ui.com/api/list/), the component will pass in all extra props.
+
 <div style="overflow: auto;">
 
 | Prop Name                       | Description                                                | Type              | Required | Default |
@@ -254,7 +260,7 @@ The `items` property of the NavItem can be nested to create a tree structure wit
 
 ```tsx
 <DrawerNavGroup
-    items=[
+    items={[
         {
             title: 'a',
             itemID: 'a',
@@ -275,15 +281,15 @@ The `items` property of the NavItem can be nested to create a tree structure wit
                             title: 'a-2-2',
                             itemID: 'a-2-2',
                         },
-                    ]
+                    ],
                 },
                 {
                     title: 'a-3',
                     itemID: 'a-3',
                 },
-            ]
+            ],
         },
-    ]
+    ]}
 />
 ```
 

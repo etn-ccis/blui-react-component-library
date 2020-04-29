@@ -36,27 +36,21 @@ const useStyles = makeStyles((theme: Theme) =>
 export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps): JSX.Element => {
     const {
         classes: userClasses,
-        display,
         label,
-        noWrap,
-        style,
-        variant,
         // leaving those here to allow prop transferring
-        fontColor, // eslint-disable-line @typescript-eslint/no-unused-vars
-        backgroundColor, // eslint-disable-line @typescript-eslint/no-unused-vars
-        ...other
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        fontColor,
+        backgroundColor,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
+        ...otherTypographyProps
     } = props;
     const defaultClasses = useStyles(props);
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
     return (
         <Typography
             classes={{ root: clsx(defaultClasses.root, rootUserClass), ...otherUserClasses }}
-            style={style}
             data-test={'list-item-tag'}
-            noWrap={noWrap}
-            variant={variant}
-            display={display}
-            {...other}
+            {...otherTypographyProps}
         >
             {label}
         </Typography>

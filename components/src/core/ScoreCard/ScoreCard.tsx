@@ -118,10 +118,12 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         headerTitle,
         headerSubtitle,
         // leaving those here to allow prop transferring
-        headerColor, // eslint-disable-line @typescript-eslint/no-unused-vars
-        headerFontColor, // eslint-disable-line @typescript-eslint/no-unused-vars
-        badgeOffset, // eslint-disable-line @typescript-eslint/no-unused-vars
-        ...cardProps
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        headerColor,
+        headerFontColor,
+        badgeOffset,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
+        ...otherCardProps
     } = props;
 
     const getBackgroundImage = (): JSX.Element | undefined => {
@@ -204,7 +206,7 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     };
 
     return (
-        <Card className={clsx(defaultClasses.root, classes.root)} data-test={'card'} {...cardProps}>
+        <Card className={clsx(defaultClasses.root, classes.root)} data-test={'card'} {...otherCardProps}>
             <div data-test={'header'} className={clsx(defaultClasses.header, classes.header)}>
                 {getBackgroundImage()}
                 <div className={clsx(defaultClasses.headerContent, classes.headerContent)}>
