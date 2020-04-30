@@ -8,7 +8,7 @@ import { menuGroups } from './with-basic-usage';
 const tRex = require('../../assets/trex.jpeg');
 
 export const withNonTextAvatar = (): StoryFnReactReturnType => {
-    const tRexAvatar = <Avatar src={tRex} />;
+    const tRexAvatar = <Avatar src={tRex} alt={'User Avatar'} />;
     const iconAvatar = (
         <Avatar>
             <Pets />
