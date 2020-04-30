@@ -9,7 +9,7 @@ The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically us
 
 </div>
 
-The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `<Menu>`.
+The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `<Menu/>`.
 
 ## Usage
 
