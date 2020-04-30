@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'flex-start',
             flex: '1 1 0px',
             overflow: 'hidden',
-            color: theme.palette.type === 'dark' ? Colors.gray[300] : Colors.gray[500],
+            color: theme.palette.type === 'dark' ? Colors.gray[300] : Colors.black[500],
             padding: `${theme.spacing(2)}px ${theme.spacing()}px`,
         },
         icon: {

@@ -24,7 +24,7 @@ export type EmptyStateProps = React.HTMLAttributes<HTMLDivElement> & {
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100%',
-        color: Colors.gray[500],
+        color: Colors.black[500],
         minHeight: '100%',
         display: 'flex',
         justifyContent: 'center',
