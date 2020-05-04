@@ -18,10 +18,10 @@ export const DrawerFooter: React.FC<DrawerFooterProps> = (props) => {
     const classes = useStyles(props);
     const {
         children,
-        drawerOpen,
         // leaving those here to allow prop transferring
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
+        drawerOpen,
         /* eslint-disable @typescript-eslint/no-unused-vars */
         ...otherDivProps
     } = props;
