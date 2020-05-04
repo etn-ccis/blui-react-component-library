@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import {
     PXBlueDrawerNavGroupInheritableProperties,
     PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
@@ -12,7 +12,7 @@ type DrawerBodyClasses = {
     root?: string;
 };
 
-export type DrawerBodyProps = React.HTMLAttributes<HTMLDivElement> & {
+export type DrawerBodyProps = HTMLAttributes<HTMLDivElement> & {
     backgroundColor?: string;
     classes?: DrawerBodyClasses;
     drawerOpen?: boolean;

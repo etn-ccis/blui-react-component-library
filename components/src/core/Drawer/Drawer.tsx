@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 type DrawerClasses = {
-    // root?: string;
+    root?: string;
     content?: string;
     paper?: string;
 };
@@ -233,7 +233,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
             {...drawerProps}
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
-            classes={{ paper: clsx(defaultClasses.paper, classes.paper) }}
+            classes={{ root: clsx(classes.root), paper: clsx(defaultClasses.paper, classes.paper) }}
             style={{
                 minHeight: '100%',
                 width: containerWidth,
@@ -275,7 +275,7 @@ export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
 // @ts-ignore
 DrawerComponent.propTypes = {
     classes: PropTypes.shape({
-        // root: PropTypes.string,
+        root: PropTypes.string,
         content: PropTypes.string,
         paper: PropTypes.string,
     }),

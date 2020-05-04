@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { Divider } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-export type DrawerSubheaderProps = React.HTMLAttributes<HTMLDivElement> & {
+export type DrawerSubheaderProps = HTMLAttributes<HTMLDivElement> & {
     drawerOpen?: boolean;
 };
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, HTMLAttributes } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -10,7 +10,7 @@ export type ChannelValueClasses = {
     units?: string;
     value?: string;
 };
-export type ChannelValueProps = Omit<React.HTMLAttributes<HTMLSpanElement>, 'prefix'> & {
+export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> & {
     classes?: ChannelValueClasses;
     color?: string;
     fontSize?: number | string;

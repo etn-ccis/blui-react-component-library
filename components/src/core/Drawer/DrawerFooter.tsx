@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-export type DrawerFooterProps = React.HTMLAttributes<HTMLDivElement> & {
+export type DrawerFooterProps = HTMLAttributes<HTMLDivElement> & {
     backgroundColor?: string;
     drawerOpen?: boolean;
 };
@@ -10,6 +10,7 @@ const useStyles = makeStyles({
     root: {
         width: '100%',
         backgroundColor: (props: DrawerFooterProps): string => props.backgroundColor,
+        visibility: (props: DrawerFooterProps): 'inherit' | 'hidden' => (props.drawerOpen ? 'inherit' : 'hidden'),
     },
 });
 
@@ -25,13 +26,7 @@ export const DrawerFooter: React.FC<DrawerFooterProps> = (props) => {
         ...otherDivProps
     } = props;
     return (
-        <div
-            className={classes.root}
-            style={{
-                visibility: drawerOpen ? 'inherit' : 'hidden',
-            }}
-            {...otherDivProps}
-        >
+        <div className={classes.root} {...otherDivProps}>
             {children}
         </div>
     );

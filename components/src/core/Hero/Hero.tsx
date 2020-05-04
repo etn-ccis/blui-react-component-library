@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import * as Colors from '@pxblue/colors';
@@ -18,7 +18,7 @@ export type HeroClasses = {
     values?: string;
 };
 
-export type HeroProps = React.HTMLAttributes<HTMLDivElement> & {
+export type HeroProps = HTMLAttributes<HTMLDivElement> & {
     classes?: HeroClasses;
     fontSize?: FontSize;
     icon: string | JSX.Element;
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
             overflow: 'hidden',
             color: theme.palette.type === 'dark' ? Colors.gray[300] : Colors.gray[500],
             padding: `${theme.spacing(2)}px ${theme.spacing()}px`,
+            cursor: (props: HeroProps): 'pointer' | 'inherit' => (props.onClick ? 'pointer' : 'inherit'),
         },
         icon: {
             lineHeight: 1,
@@ -103,12 +104,7 @@ export const Hero = (props: HeroProps): JSX.Element => {
     } = props;
 
     return (
-        <div
-            style={{ cursor: props.onClick ? 'pointer' : 'inherit' }}
-            className={clsx(defaultClasses.root, classes.root)}
-            data-test={'wrapper'}
-            {...otherDivProps}
-        >
+        <div className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherDivProps}>
             <span className={clsx(defaultClasses.icon, classes.icon)}>{icon}</span>
             <span className={clsx(defaultClasses.values, classes.values)}>
                 {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}

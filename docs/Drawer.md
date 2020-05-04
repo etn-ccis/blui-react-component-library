@@ -44,8 +44,6 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 ### Drawer API
 
-Besides what's listed below, as an extension of [Material UI's `<Drawer>` API](https://material-ui.com/api/drawer/), the component will pass in all extra props.
-
 <div style="overflow: auto;">
 
 | Prop Name                       | Description                                                | Type                                         | Required | Default |
@@ -56,6 +54,8 @@ Besides what's listed below, as an extension of [Material UI's `<Drawer>` API](h
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                                            | no       |         |
 
 </div>
+
+Any other props will be passed to the root element [**Material UI Drawer**](https://material-ui.com/api/drawer/).
 
 The `Drawer` has three `variant`s:
 
@@ -71,6 +71,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 | ------- | ----------------------------------------------- |
 | content | Styles applied to the drawer content container  |
 | paper   | MUI Drawer style override for desktop viewports |
+| root    | MUI Drawer style override for the root element  |
 
 ## Drawer Header
 
@@ -81,8 +82,6 @@ The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By defau
 </div>
 
 ### Drawer Header API
-
-Besides what's listed below, as an extension of [Material UI's `<Toolbar>` API](https://material-ui.com/api/toolbar/), the component will pass in all extra props.
 
 <div style="overflow: auto;">
 
@@ -99,6 +98,8 @@ Besides what's listed below, as an extension of [Material UI's `<Toolbar>` API](
 | titleContent      | Custom content for header title area           | `React.Component` | no       |                              |
 
 </div>
+
+Any other props will be passed to the root element [**Material UI Toolbar**](https://material-ui.com/api/toolbar/).
 
 #### Classes
 
@@ -174,8 +175,6 @@ The `items` property supports nested items to generate collapsible sections in t
 
 ### Drawer Nav Group API
 
-Besides what's listed below, as an extension of [Material UI's `<List>` API](https://material-ui.com/api/list/), the component will pass in all extra props.
-
 <div style="overflow: auto;">
 
 | Prop Name                       | Description                                                | Type              | Required | Default |
@@ -188,6 +187,8 @@ Besides what's listed below, as an extension of [Material UI's `<List>` API](htt
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                 | no       |         |
 
 </div>
+
+Any other props will be passed to the root element [**Material UI List**](https://material-ui.com/api/list/).
 
 #### Classes
 
@@ -299,21 +300,21 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 
 <div style="overflow: auto;">
 
-| Name                      | Description                                               | Type                    | Required | Default                                                      |
-| ------------------------- | --------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
-| activeItemBackgroundColor | Background color for the 'active' item                    | `string`                | no       | varies for light/dark theme                                  |
-| activeItemBackgroundShape | shape of the active item background                       | `'round'`\|`'square'`   | no       | round                                                        |
-| activeItemFontColor       | Font color for the 'active' item                          | `string`                | no       | varies for light/dark theme                                  |
-| activeItemIconColor       | Icon color for the 'active' item                          | `string`                | no       | varies for light/dark theme                                  |
-| chevron                   | Whether to have chevrons for all menu items               | `boolean`               | no       |                                                              |
-| collapseIcon              | Icon used to collapse drawer                              | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                             |
-| divider                   | Whether to show a line between all items                  | `boolean`               | no       | true                                                         |
-| expandIcon                | Icon used to expand drawer                                | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
-| hidePadding               | Whether to hide the paddings reserved for menu item icons | `boolean`               | no       |                                                              |
-| InfoListItemProps         | Used to override InfoListItem props set by the Drawer     | `InfoListItemProps`     | no       |                                                              |
-| itemFontColor             | The color used for the item text                          | `string`                | no       | gray[500]                                                    |
-| itemIconColor             | The color used for the icon                               | `string`                | no       | gray[500]                                                    |
-| ripple                    | Whether to apply material ripple effect to items          | `boolean`               | no       | true                                                         |
+| Name                      | Description                                               | Type                  | Required | Default                                                      |
+| ------------------------- | --------------------------------------------------------- | --------------------- | -------- | ------------------------------------------------------------ |
+| activeItemBackgroundColor | Background color for the 'active' item                    | `string`              | no       | varies for light/dark theme                                  |
+| activeItemBackgroundShape | shape of the active item background                       | `'round'`\|`'square'` | no       | round                                                        |
+| activeItemFontColor       | Font color for the 'active' item                          | `string`              | no       | varies for light/dark theme                                  |
+| activeItemIconColor       | Icon color for the 'active' item                          | `string`              | no       | varies for light/dark theme                                  |
+| chevron                   | Whether to have chevrons for all menu items               | `boolean`             | no       |                                                              |
+| collapseIcon              | Icon used to collapse drawer                              | `JSX.Element`         | no       | `expandIcon` rotated 180 degrees                             |
+| divider                   | Whether to show a line between all items                  | `boolean`             | no       | true                                                         |
+| expandIcon                | Icon used to expand drawer                                | `JSX.Element`         | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
+| hidePadding               | Whether to hide the paddings reserved for menu item icons | `boolean`             | no       |                                                              |
+| InfoListItemProps         | Used to override InfoListItem props set by the Drawer     | `InfoListItemProps`   | no       |                                                              |
+| itemFontColor             | The color used for the item text                          | `string`              | no       | gray[500]                                                    |
+| itemIconColor             | The color used for the icon                               | `string`              | no       | gray[500]                                                    |
+| ripple                    | Whether to apply material ripple effect to items          | `boolean`             | no       | true                                                         |
 
 </div>
 

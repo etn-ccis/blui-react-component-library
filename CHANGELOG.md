@@ -2,23 +2,23 @@
 
 ## v3.1.0
 
--   Style-related props are now overridable by the `classes` prop in each component
--   Components now accepts props from from `React.HTMLAttributes<T>`, where `T` is the type of the root element.
+-   Style-related properties are now overridable by the `classes` prop in each component.
+-   Supplemental properties are now spread to the root component for each PX Blue component.
 
 ## v3.0.3
 
--   Fixes IE 11 issue where persistent Drawer will not close
--   Fixes some spacing issues when using the DrawerLayout
+-   Fixes IE 11 issue where persistent `<Drawer>` will not close.
+-   Fixes some spacing issues when using the `<DrawerLayout>`.
 
 ## v3.0.0
 
--   Adds support for nested items in the Drawer component;
--   Additional styling props added to Drawer;
+-   Adds support for nested items in the `<Drawer>` component.
+-   Additional styling props added to `<Drawer>`.
 
 **Breaking Changes:**
 
 -   A few props got renamed to avoid further ambiguities:
-    -   DrawerNavGroup prop `content` has been renamed to `titleContent`.
+    -   `<DrawerNavGroup>` prop `content` has been renamed to `titleContent`.
     -   Anything controling the look of a `NavItem` / `NestedNavItem`, has been renamed to include 'item' in them. These are inheritable properties that might get confusing in different drawer hierarchy levels. List of affected props:
 
 | Previous              | Current                   |
@@ -57,9 +57,9 @@
 
 ## v2.1.0
 
--   Adds InfoListTag Component
+-   Adds `<InfoListTag>` Component
     -   Displays additional information inside an InfoListItem.
--   Adds UserMenu Component
+-   Adds `<UserMenu>` Component
     -   Avatar which opens a Menu when clicked.
 -   Misc bug fixes
 
@@ -67,13 +67,13 @@
 
 -   Library converted to TypeScript to provide strong typings for TS projects.
 -   Adds new components for:
-    -   Drawer
-    -   DrawerHeader
-    -   DrawerSubheader
-    -   DrawerBody
-    -   DrawerNavGroup
-    -   DrawerFooter
-    -   DrawerLayout
+    -   `<Drawer>`
+    -   `<DrawerHeader>`
+    -   `<DrawerSubheader>`
+    -   `<DrawerBody>`
+    -   `<DrawerNavGroup>`
+    -   `<DrawerFooter>`
+    -   `<DrawerLayout>`
 -   **Breaking Change:** Simpler import syntax - _default_ imports will no longer work.
 
     ```typescript
@@ -86,11 +86,11 @@
 
 ## v1.1.0
 
-Adds a new component for EmptyState
+Adds a new component for `<EmptyState>`
 
 ## v1.0.0
 
-Fixes a bug in icon size for inline ChannelValue components
+Fixes a bug in icon size for inline `<ChannelValue>` components
 
 ## v0.0.1
 
