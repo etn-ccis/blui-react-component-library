@@ -4,68 +4,6 @@ import * as Colors from '@pxblue/colors';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            flex: '1 1 0px',
-        },
-        flexColumn: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'stretch',
-        },
-        header: {
-            height: 100,
-            overflow: 'hidden',
-            backgroundColor: theme.palette.primary.main,
-            position: 'relative',
-        },
-        headerContent: {
-            display: 'flex',
-            position: 'relative',
-            zIndex: 1,
-            alignItems: 'flex-start',
-            padding: theme.spacing(2),
-        },
-        headerTitle: {
-            color: Colors.white[50], // this.fontColor(),
-            fontWeight: 600,
-            fontSize: '1.125rem',
-        },
-        headerSubtitle: {
-            lineHeight: 1.4,
-        },
-        headerInfo: {
-            fontWeight: 300,
-        },
-        headerBackground: {
-            position: 'absolute',
-            zIndex: 0,
-            width: '100%',
-            backgroundSize: 'cover',
-            height: '100%',
-            opacity: 0.3,
-            backgroundPosition: 'center',
-        },
-        content: {
-            display: 'flex',
-            alignItems: 'center',
-            position: 'relative',
-        },
-        bodyWrapper: {
-            flex: '1 1 0px',
-        },
-        badgeWrapper: {
-            flex: '0 0 auto',
-            marginRight: 16,
-            marginLeft: 16,
-        },
-        actionItems: {
-            marginLeft: theme.spacing(1.5),
-            cursor: 'pointer',
-        },
-    })
-);
 export type ScoreCardClasses = {
     root?: string;
     actionItems?: string;
@@ -95,6 +33,77 @@ export type ScoreCordProps = CardProps & {
     headerSubtitle?: string | JSX.Element;
 };
 
+const fontColor = (props: ScoreCordProps): string => props.headerFontColor || Colors.white[50];
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flex: '1 1 0px',
+        },
+        flexColumn: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'stretch',
+        },
+        header: {
+            height: 100,
+            overflow: 'hidden',
+            position: 'relative',
+            backgroundColor: (props: ScoreCordProps): string => props.headerColor || theme.palette.primary.main,
+            color: fontColor,
+        },
+        headerContent: {
+            display: 'flex',
+            position: 'relative',
+            zIndex: 1,
+            alignItems: 'flex-start',
+            padding: theme.spacing(2),
+        },
+        headerTitle: {
+            color: fontColor,
+            fontWeight: 600,
+            fontSize: '1.125rem',
+        },
+        headerSubtitle: {
+            color: fontColor,
+            lineHeight: 1.4,
+        },
+        headerInfo: {
+            color: fontColor,
+            fontWeight: 300,
+        },
+        headerBackground: {
+            position: 'absolute',
+            zIndex: 0,
+            width: '100%',
+            backgroundSize: 'cover',
+            height: '100%',
+            opacity: 0.3,
+            backgroundPosition: 'center',
+            backgroundImage: (props: ScoreCordProps): string => `url(${props.headerBackgroundImage})`,
+        },
+        content: {
+            display: 'flex',
+            alignItems: 'center',
+            position: 'relative',
+        },
+        bodyWrapper: {
+            flex: '1 1 0px',
+        },
+        badgeWrapper: {
+            flex: '0 0 auto',
+            marginRight: 16,
+            marginLeft: 16,
+            alignSelf: (props: ScoreCordProps): string => (props.badgeOffset !== 0 ? 'flex-start' : 'center'),
+            marginTop: (props: ScoreCordProps): number => props.badgeOffset,
+        },
+        actionItems: {
+            marginLeft: theme.spacing(1.5),
+            cursor: 'pointer',
+        },
+    })
+);
+
 export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     const defaultClasses = useStyles(props);
     const {
@@ -102,28 +111,24 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         actionItems,
         actionRow,
         badge,
-        badgeOffset,
         headerBackgroundImage,
         children,
         classes,
-        headerColor,
-        headerFontColor,
         headerInfo,
         headerTitle,
         headerSubtitle,
-        ...cardProps
+        // leaving those here to allow prop transferring
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        headerColor,
+        headerFontColor,
+        badgeOffset,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
+        ...otherCardProps
     } = props;
-
-    const fontColor = (): string => headerFontColor || Colors.white[50];
 
     const getBackgroundImage = (): JSX.Element | undefined => {
         if (headerBackgroundImage) {
-            return (
-                <div
-                    className={clsx(defaultClasses.headerBackground, classes.headerBackground)}
-                    style={{ backgroundImage: `url(${headerBackgroundImage})` }}
-                />
-            );
+            return <div className={clsx(defaultClasses.headerBackground, classes.headerBackground)} />;
         }
     };
 
@@ -131,12 +136,7 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         if (!headerInfo) return;
         if (typeof headerInfo === 'string') {
             return (
-                <Typography
-                    noWrap
-                    variant={'body2'}
-                    style={{ color: fontColor() }}
-                    className={clsx(defaultClasses.headerInfo, classes.headerInfo)}
-                >
+                <Typography noWrap variant={'body2'} className={clsx(defaultClasses.headerInfo, classes.headerInfo)}>
                     {headerInfo}
                 </Typography>
             );
@@ -151,7 +151,6 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
                 <Typography
                     noWrap
                     variant={'body2'}
-                    style={{ color: fontColor() }}
                     className={clsx(defaultClasses.headerSubtitle, classes.headerSubtitle)}
                 >
                     {headerSubtitle}
@@ -163,12 +162,7 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
 
     const getHeaderText = (): JSX.Element => (
         <div className={defaultClasses.flexColumn} style={{ flex: '1 1 0px', overflow: 'hidden' }}>
-            <Typography
-                variant={'h6'}
-                noWrap
-                className={clsx(defaultClasses.headerTitle, classes.headerTitle)}
-                style={headerFontColor ? { color: headerFontColor } : {}}
-            >
+            <Typography variant={'h6'} noWrap className={clsx(defaultClasses.headerTitle, classes.headerTitle)}>
                 {headerTitle}
             </Typography>
             {getHeaderSubtitle()}
@@ -193,14 +187,7 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     const getHeroes = (): JSX.Element | undefined => {
         if (badge) {
             return (
-                <div
-                    className={clsx(defaultClasses.badgeWrapper, classes.badgeWrapper)}
-                    style={{
-                        alignSelf: badgeOffset !== 0 ? 'flex-start' : 'center',
-                        marginTop: badgeOffset,
-                    }}
-                    data-test={'badge-wrapper'}
-                >
+                <div className={clsx(defaultClasses.badgeWrapper, classes.badgeWrapper)} data-test={'badge-wrapper'}>
                     {badge}
                 </div>
             );
@@ -219,12 +206,8 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
     };
 
     return (
-        <Card className={clsx(defaultClasses.root, classes.root)} data-test={'card'} {...cardProps}>
-            <div
-                data-test={'header'}
-                className={clsx(defaultClasses.header, classes.header)}
-                style={Object.assign({ color: fontColor() }, headerColor ? { backgroundColor: headerColor } : {})}
-            >
+        <Card className={clsx(defaultClasses.root, classes.root)} data-test={'card'} {...otherCardProps}>
+            <div data-test={'header'} className={clsx(defaultClasses.header, classes.header)}>
                 {getBackgroundImage()}
                 <div className={clsx(defaultClasses.headerContent, classes.headerContent)}>
                     {getHeaderText()}

@@ -108,9 +108,9 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const {
         activeItem,
         activeItemBackgroundColor,
+        activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
-        activeItemBackgroundShape,
         chevron,
         classes,
         collapseIcon,
@@ -233,7 +233,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
             {...drawerProps}
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
-            classes={{ paper: clsx(defaultClasses.paper, classes.paper) }}
+            classes={{ root: clsx(classes.root), paper: clsx(defaultClasses.paper, classes.paper) }}
             style={{
                 minHeight: '100%',
                 width: containerWidth,

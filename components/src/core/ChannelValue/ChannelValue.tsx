@@ -1,32 +1,8 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, HTMLAttributes } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        display: 'inline-flex',
-        alignItems: 'center',
-        lineHeight: 1.2,
-    },
-    icon: {
-        marginRight: theme.spacing(0.5),
-        display: 'inline',
-        fontSize: 'inherit',
-    },
-    text: {
-        fontSize: 'inherit',
-        lineHeight: 'inherit',
-        letterSpacing: 0,
-    },
-    units: {
-        fontWeight: 300,
-    },
-    value: {
-        fontWeight: 600,
-    },
-}));
 
 export type ChannelValueClasses = {
     root?: string;
@@ -34,7 +10,7 @@ export type ChannelValueClasses = {
     units?: string;
     value?: string;
 };
-export type ChannelValueProps = {
+export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> & {
     classes?: ChannelValueClasses;
     color?: string;
     fontSize?: number | string;
@@ -44,9 +20,49 @@ export type ChannelValueProps = {
     value: number | string;
 };
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: 'inline-flex',
+            alignItems: 'center',
+            lineHeight: 1.2,
+            fontSize: (props: ChannelValueProps): string | number => props.fontSize,
+            color: (props: ChannelValueProps): string => props.color,
+        },
+        icon: {
+            marginRight: theme.spacing(0.5),
+            display: 'inline',
+            fontSize: 'inherit',
+        },
+        text: {
+            fontSize: 'inherit',
+            lineHeight: 'inherit',
+            letterSpacing: 0,
+        },
+        units: {
+            fontWeight: 300,
+        },
+        value: {
+            fontWeight: 600,
+        },
+    })
+);
+
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
-    const { classes, color, fontSize, icon, prefix, units, value } = props;
-    const defaultClasses = useStyles(useTheme());
+    const {
+        classes,
+        icon,
+        prefix,
+        units,
+        value,
+        // leaving those here to allow prop transferring
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        color,
+        fontSize,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        ...otherSpanProps
+    } = props;
+    const defaultClasses = useStyles(props);
 
     const getUnitElement = useCallback(
         (): JSX.Element => (
@@ -72,7 +88,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         });
 
     return (
-        <span className={clsx(defaultClasses.root, classes.root)} style={{ fontSize, color }} data-test={'wrapper'}>
+        <span className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherSpanProps}>
             {icon && (
                 <span className={clsx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
                     {changeIconDisplay(icon)}

@@ -14,8 +14,6 @@ import { ListItemTag } from '@pxblue/react-components';
 
 ## API
 
-Besides what's listed below, as an extension of [Material UI's `<Typography>` API](https://material-ui.com/api/typography/), the component will pass in all extra props.
-
 <div style="overflow: auto;">
 
 | Prop Name       | Description                   | Type     | Required | Default |
@@ -25,3 +23,13 @@ Besides what's listed below, as an extension of [Material UI's `<Typography>` AP
 | backgroundColor | Color of the label background | `string` | no       |         |
 
 </div>
+
+Any other props will be passed to the root element [**Material UI Typography**](https://material-ui.com/api/typography/).
+
+### Classes
+
+You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+
+| Name | Description                        |
+| ---- | ---------------------------------- |
+| root | Styles applied to the root element |

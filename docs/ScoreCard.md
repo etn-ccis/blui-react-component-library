@@ -74,7 +74,7 @@ import { Temp } from '@pxblue/icons-mui';
 
 </div>
 
-The `<ScoreCard>` also extends all [Material UI `<Card>` props](https://material-ui.com/api/card/).
+Any other props will be passed to the root element [**Material UI Card**](https://material-ui.com/api/card/).
 
 ### Classes
 

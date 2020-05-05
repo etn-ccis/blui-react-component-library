@@ -11,4 +11,4 @@ export const withChannelValueChildren = (): StoryFnReactReturnType => (
     </Hero>
 );
 
-withChannelValueChildren.story = { name: 'with channelValue children' };
+withChannelValueChildren.story = { name: 'with Channel Value children' };

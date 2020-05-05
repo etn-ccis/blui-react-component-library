@@ -1,11 +1,34 @@
 import React, { ReactNode } from 'react';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
-import { Typography } from '@material-ui/core';
+import { Typography, ToolbarProps } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+
+type DrawerHeaderClasses = {
+    root?: string;
+    background?: string;
+    content?: string;
+    navigation?: string;
+    nonClickableIcon?: string;
+    subtitle?: string;
+    title?: string;
+};
+
+export type DrawerHeaderProps = ToolbarProps & {
+    backgroundColor?: string;
+    backgroundImage?: string;
+    backgroundOpacity?: number;
+    classes?: DrawerHeaderClasses;
+    fontColor?: string;
+    icon?: ReactNode;
+    onIconClick?: Function;
+    subtitle?: string;
+    title?: string;
+    titleContent?: ReactNode;
+};
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -15,6 +38,9 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '100%',
             alignItems: 'flex-start',
             boxSizing: 'border-box',
+            backgroundColor: (props: DrawerHeaderProps): string => props.backgroundColor || theme.palette.primary.main,
+            color: (props: DrawerHeaderProps): string =>
+                props.fontColor || theme.palette.getContrastText(props.backgroundColor || theme.palette.primary.main),
         },
         content: {
             [theme.breakpoints.down('xs')]: {
@@ -57,6 +83,8 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundSize: 'cover',
             height: '100%',
             backgroundPosition: 'center',
+            backgroundImage: (props: DrawerHeaderProps): string => `url(${props.backgroundImage})`,
+            opacity: (props: DrawerHeaderProps): number => props.backgroundOpacity,
         },
         nonClickableIcon: {
             display: 'flex',
@@ -66,46 +94,24 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-type DrawerHeaderClasses = {
-    root?: string;
-    background?: string;
-    content?: string;
-    navigation?: string;
-    nonClickableIcon?: string;
-    subtitle?: string;
-    title?: string;
-};
-
-export type DrawerHeaderProps = {
-    backgroundColor?: string;
-    backgroundImage?: string;
-    backgroundOpacity?: number;
-    classes?: DrawerHeaderClasses;
-    fontColor?: string;
-    icon?: ReactNode;
-    onIconClick?: Function;
-    subtitle?: string;
-    title?: string;
-    titleContent?: ReactNode;
-};
-
 export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
-    const theme = useTheme();
-    const defaultClasses = useStyles(theme);
+    const defaultClasses = useStyles(props);
     const {
-        backgroundColor,
         backgroundImage,
-        backgroundOpacity,
         classes,
         icon,
-        fontColor = theme.palette.getContrastText(backgroundColor || theme.palette.primary.main),
         onIconClick,
         subtitle,
         title,
         titleContent,
+        // leaving those here to allow prop transferring
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        backgroundColor,
+        backgroundOpacity,
+        fontColor,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        ...otherToolbarProps
     } = props;
-
-    const toolbarBackgroundColor = backgroundColor || theme.palette.primary.main;
 
     const getHeaderContent = (): ReactNode =>
         titleContent || (
@@ -133,25 +139,12 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         );
 
     const getBackgroundImage = (): ReactNode => (
-        <>
-            {backgroundImage && (
-                <div
-                    className={clsx(defaultClasses.background, classes.background)}
-                    style={{
-                        backgroundImage: `url(${backgroundImage})`,
-                        opacity: backgroundOpacity,
-                    }}
-                />
-            )}
-        </>
+        <>{backgroundImage && <div className={clsx(defaultClasses.background, classes.background)} />}</>
     );
 
     return (
         <>
-            <Toolbar
-                className={clsx(defaultClasses.root, classes.root)}
-                style={{ color: fontColor, backgroundColor: toolbarBackgroundColor }}
-            >
+            <Toolbar className={clsx(defaultClasses.root, classes.root)} {...otherToolbarProps}>
                 {getBackgroundImage()}
                 {icon && (
                     <div className={clsx(defaultClasses.navigation, classes.navigation)}>

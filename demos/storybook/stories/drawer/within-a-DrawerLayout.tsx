@@ -62,4 +62,4 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
     </DrawerLayout>
 );
 
-inDrawerLayout.story = { name: 'within a DrawerLayout' };
+inDrawerLayout.story = { name: 'within a Drawer Layout' };
