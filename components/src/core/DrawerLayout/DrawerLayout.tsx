@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, HTMLAttributes } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -31,10 +31,10 @@ type DrawerLayoutClasses = {
     drawer?: string;
 };
 
-export type DrawerLayoutProps = React.HTMLAttributes<HTMLDivElement> & {
+export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> & {
     classes?: DrawerLayoutClasses;
     // Drawer component to be embedded
-    drawer: React.ReactNode;
+    drawer: ReactNode;
 };
 
 export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {

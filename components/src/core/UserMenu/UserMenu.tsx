@@ -1,7 +1,7 @@
 import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
@@ -43,7 +43,7 @@ export type UserMenuGroup = {
     title?: string;
 };
 
-export type UserMenuProps = React.HTMLAttributes<HTMLDivElement> & {
+export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     avatar: JSX.Element;
     classes?: UserMenuClasses;
     menu?: JSX.Element;

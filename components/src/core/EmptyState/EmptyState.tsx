@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import * as Colors from '@pxblue/colors';
 import Typography from '@material-ui/core/Typography';
@@ -13,7 +13,7 @@ export type EmptyStateClasses = {
     title?: string;
 };
 
-export type EmptyStateProps = React.HTMLAttributes<HTMLDivElement> & {
+export type EmptyStateProps = HTMLAttributes<HTMLDivElement> & {
     actions?: JSX.Element;
     classes?: EmptyStateClasses;
     description?: string;
