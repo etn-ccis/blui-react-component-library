@@ -8,6 +8,7 @@ import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
 import { pxblueTheme } from '@pxblue/storybook-themes';
 import { useDarkMode } from 'storybook-dark-mode';
+import { CssBaseline } from '@material-ui/core';
 
 const newViewports = {
     iPhone5: {
@@ -76,6 +77,7 @@ const getCanvasBackground = () => {
 
 addDecorator((storyFn) => (
     <MuiThemeProvider theme={useDarkMode() ? appliedThemeDark : appliedTheme}>
+        <CssBaseline />
         <div className={'wrapper'} style={{ color: Colors.gray['800'], backgroundColor: getCanvasBackground() }}>
             {storyFn()}
         </div>

@@ -33,9 +33,9 @@ const useStyles = makeStyles(() =>
         },
         description: {
             maxWidth: 900,
-            padding: 36,
+            padding: 20,
             paddingBottom: 0,
-            fontWeight: 100,
+            fontWeight: 400,
         },
         link: {
             minWidth: 100,
@@ -53,7 +53,7 @@ const useStyles = makeStyles(() =>
             fill: Colors.white[50],
         },
         github: {
-            fontWeight: 100,
+            fontWeight: 400,
             color: Colors.white[50],
         },
         buttons: {
