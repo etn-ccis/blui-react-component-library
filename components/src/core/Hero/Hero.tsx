@@ -1,7 +1,6 @@
 import React, { HTMLAttributes } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '../ChannelValue';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
