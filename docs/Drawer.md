@@ -312,8 +312,8 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 | expandIcon                | Icon used to expand drawer                                | `JSX.Element`         | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
 | hidePadding               | Whether to hide the paddings reserved for menu item icons | `boolean`             | no       |                                                              |
 | InfoListItemProps         | Used to override InfoListItem props set by the Drawer     | `InfoListItemProps`   | no       |                                                              |
-| itemFontColor             | The color used for the item text                          | `string`              | no       | black[500]                                                   |
-| itemIconColor             | The color used for the icon                               | `string`              | no       | black[500]                                                   |
+| itemFontColor             | The color used for the item text                          | `string`              | no       | varies for light/dark theme                                  |
+| itemIconColor             | The color used for the icon                               | `string`              | no       | varies for light/dark theme                                  |
 | ripple                    | Whether to apply material ripple effect to items          | `boolean`             | no       | true                                                         |
 
 </div>

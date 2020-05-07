@@ -16,11 +16,11 @@ import { ListItemTag } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name       | Description                   | Type     | Required | Default |
-| --------------- | ----------------------------- | -------- | -------- | ------- |
-| label           | The label text                | `string` | yes      |         |
-| fontColor       | Color of the label            | `string` | no       |         |
-| backgroundColor | Color of the label background | `string` | no       |         |
+| Prop Name       | Description                   | Type     | Required | Default                              |
+| --------------- | ----------------------------- | -------- | -------- | ------------------------------------ |
+| label           | The label text                | `string` | yes      |                                      |
+| fontColor       | Color of the label            | `string` | no       | `theme.palette.primary.contrastText` |
+| backgroundColor | Color of the label background | `string` | no       | `theme.palette.primary.main`         |
 
 </div>
 
