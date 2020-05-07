@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'flex-start',
             flex: '1 1 0px',
             overflow: 'hidden',
-            color: 'inherit',
+            color: theme.palette.text.primary,
             padding: `${theme.spacing(2)}px ${theme.spacing()}px`,
             cursor: (props: HeroProps): 'pointer' | 'inherit' => (props.onClick ? 'pointer' : 'inherit'),
         },
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
         values: {
             display: 'flex',
             alignItems: 'center',
-            color: 'inherit',
+            color: theme.palette.text.primary,
             lineHeight: 1.2,
             maxWidth: '100%',
             overflow: 'hidden',

@@ -23,7 +23,7 @@ export type EmptyStateProps = HTMLAttributes<HTMLDivElement> & {
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100%',
-        color: 'inherit',
+        color: theme.palette.text.primary,
         minHeight: '100%',
         display: 'flex',
         justifyContent: 'center',
