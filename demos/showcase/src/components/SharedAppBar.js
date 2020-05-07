@@ -1,9 +1,10 @@
-import { AppBar, Hidden, Toolbar, Typography } from '@material-ui/core';
-import { Email, Menu, Settings } from '@material-ui/icons';
+import { AppBar, Hidden, Toolbar, Typography, IconButton } from '@material-ui/core';
+import { Email, Menu, Settings, InvertColors } from '@material-ui/icons';
 import Avatar from '@material-ui/core/Avatar';
 import SendIcon from '@material-ui/icons/Send';
 import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import { store } from '../store';
 
 import { Spacer, UserMenu } from '@pxblue/react-components';
 
@@ -19,6 +20,15 @@ export const SharedAppBar = (props) => {
                 </Hidden>
                 <Typography variant={'h6'}>Showcase</Typography>
                 <Spacer flex={1} />
+                <IconButton
+                    color={'inherit'}
+                    onClick={() => {
+                        store.dispatch({ type: 'toggle' });
+                    }}
+                >
+                    <InvertColors />
+                </IconButton>
+                <Spacer width={theme.spacing(1)} flex={0} />
                 <UserMenu
                     avatar={<Avatar>MS</Avatar>}
                     menuTitle={'Marshall Sutter'}
