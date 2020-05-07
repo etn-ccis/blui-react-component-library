@@ -49,7 +49,7 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
     >
         <div
             style={{
-                backgroundColor: '#b7b7b7',
+                backgroundColor: '#777',
                 color: 'white',
                 height: '100%',
                 padding: '30px',
