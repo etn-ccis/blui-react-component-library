@@ -41,11 +41,13 @@ export const SharedAppBar = (props) => {
                                 {
                                     title: 'Log Out',
                                     icon: <SendIcon />,
+                                    onClick: () => {},
                                 },
                                 {
                                     title: 'Account Settings',
                                     icon: <Settings />,
                                     divider: true,
+                                    onClick: () => {},
                                 },
                             ],
                         },
@@ -55,10 +57,12 @@ export const SharedAppBar = (props) => {
                                 {
                                     title: 'eatonhelp@eaton.com',
                                     icon: <SendIcon />,
+                                    onClick: () => {},
                                 },
                                 {
                                     title: '1-866-905-9988',
                                     icon: <Email />,
+                                    onClick: () => {},
                                 },
                             ],
                         },

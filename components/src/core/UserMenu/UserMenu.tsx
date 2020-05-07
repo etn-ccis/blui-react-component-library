@@ -166,8 +166,9 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         itemIconColor={group.iconColor}
                         itemFontColor={group.fontColor}
                         title={group.title}
-                        items={group.items.map((item: UserMenuItem, index: number) =>
-                            Object.assign({ itemID: index.toString() }, item)
+                        items={group.items.map(
+                            (item: UserMenuItem, itemIndex: number): NavItem =>
+                                Object.assign({ itemID: itemIndex.toString() }, item)
                         )}
                     />
                 </div>
