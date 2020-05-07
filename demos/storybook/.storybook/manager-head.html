@@ -148,7 +148,7 @@
         /* Modern Browsers */
     }
 </style>
-<!-- <script>
-    window.STORYBOOK_GA_ID = 'UA-139646200-3';
-    window.STORYBOOK_REACT_GA_OPTIONS = {};
-</script> -->
+<!-- Add the Google Analytics Project ID (from Environment Variable definition so localhost won't affect analytics) -->
+<script>
+    window.STORYBOOK_GA_ID = "%STORYBOOK_GA_ID%";
+</script>
