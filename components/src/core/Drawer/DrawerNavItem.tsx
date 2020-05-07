@@ -3,7 +3,6 @@ import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/sty
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { black } from '@pxblue/colors';
 import clsx from 'clsx';
 import { PXBlueDrawerInheritableProperties } from './Drawer';
 import { DrawerNavGroupProps } from './DrawerNavGroup';
@@ -145,8 +144,8 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropDown /> : <ExpandMore />);
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
     const InfoListItemProps = navItem.InfoListItemProps || navGroupProps.InfoListItemProps || {};
-    const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || black[500];
-    const itemIconColor = navItem.itemIconColor || navGroupProps.itemIconColor || black[500];
+    const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || theme.palette.text.primary;
+    const itemIconColor = navItem.itemIconColor || navGroupProps.itemIconColor || theme.palette.text.primary;
     const onItemSelect = navItem.onItemSelect || navGroupProps.onItemSelect;
     const ripple =
         navItem.ripple !== undefined

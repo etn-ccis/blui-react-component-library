@@ -108,6 +108,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         nestedDivider: boolean('nestedDivider', false, drawerGroupId),
         open: boolean('open', true, drawerGroupId),
         ripple: boolean('ripple', true, drawerGroupId),
+        titleColor: color('titleColor', Colors.black[500], drawerGroupId),
         variant: select('variant', ['permanent', 'persistent', 'temporary'], 'persistent', drawerGroupId),
         width: number(
             'width',
@@ -293,6 +294,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             nestedDivider={drawerKnobs.nestedDivider}
             open={drawerKnobs.open}
             ripple={drawerKnobs.ripple}
+            titleColor={drawerKnobs.titleColor}
             variant={drawerKnobs.variant}
             width={drawerKnobs.width}
         >

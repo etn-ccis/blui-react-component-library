@@ -10,7 +10,7 @@ export const withIcon = (): StoryFnReactReturnType => (
         title={'Info List Item'}
         subtitle={'with an icon'}
         icon={<Leaf />}
-        iconColor={color('iconColor', Colors.green[500])}
+        iconColor={color('iconColor', Colors.green[700])}
     />
 );
 

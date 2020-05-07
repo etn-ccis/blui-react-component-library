@@ -7,6 +7,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 import { actionItems, actionRow } from './with-actions';
+import { useDarkMode } from 'storybook-dark-mode';
 import { heroes } from './with-heroes';
 
 const backgroundImage = require('../../assets/topology_40.png');
@@ -35,8 +36,8 @@ export const withFullConfig = (): StoryFnReactReturnType => (
             <InfoListItem
                 dense
                 style={{ height: 36 }}
-                fontColor={Colors.blue[500]}
-                iconColor={Colors.blue[500]}
+                fontColor={useDarkMode() ? Colors.blue[300] : Colors.blue[500]}
+                iconColor={useDarkMode() ? Colors.blue[300] : Colors.blue[500]}
                 title={'1 Event'}
                 icon={<ListAlt color={'inherit'} />}
             />

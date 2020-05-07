@@ -13,7 +13,16 @@ export const flexLayout = (): StoryFnReactReturnType => {
     return (
         <>
             <Typography>Horizontal</Typography>
-            <div style={{ width: 300, height: 50, display: 'flex', flexDirection: 'row', alignItems: 'stretch' }}>
+            <div
+                style={{
+                    width: 300,
+                    height: 50,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'stretch',
+                    color: Colors.black[900],
+                }}
+            >
                 <Spacer flex={flex1} style={{ background: Colors.blue[300] }}>
                     1
                 </Spacer>
@@ -25,7 +34,16 @@ export const flexLayout = (): StoryFnReactReturnType => {
                 </Spacer>
             </div>
             <Typography style={{ marginTop: 20 }}>Vertical</Typography>
-            <div style={{ width: 300, height: 150, display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
+            <div
+                style={{
+                    width: 300,
+                    height: 150,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'stretch',
+                    color: Colors.black[900],
+                }}
+            >
                 <Spacer flex={flex1} style={{ background: Colors.blue[300] }}>
                     1
                 </Spacer>

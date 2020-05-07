@@ -8,7 +8,7 @@ import { MainRouter } from './router';
 require('typeface-open-sans');
 
 ReactDOM.render(
-    <MuiThemeProvider theme={createMuiTheme(PXBThemes.blue)}>
+    <MuiThemeProvider theme={createMuiTheme(PXBThemes.blueDark)}>
         <CssBaseline />
         <MainRouter />
     </MuiThemeProvider>,

@@ -13,7 +13,7 @@ export const staticLayout = (): StoryFnReactReturnType => {
     return (
         <>
             <Typography>Horizontal</Typography>
-            <div style={{ width: 300, height: 50, display: 'inline' }}>
+            <div style={{ width: 300, height: 50, display: 'inline', color: Colors.black[900] }}>
                 <Spacer width={size1} style={{ background: Colors.blue[300], display: 'inline-block' }}>
                     1
                 </Spacer>
@@ -25,7 +25,7 @@ export const staticLayout = (): StoryFnReactReturnType => {
                 </Spacer>
             </div>
             <Typography style={{ marginTop: 20 }}>Vertical</Typography>
-            <div style={{ width: 300, height: 300 }}>
+            <div style={{ width: 300, height: 300, color: Colors.black[900] }}>
                 <Spacer height={size1} style={{ background: Colors.blue[300] }}>
                     1
                 </Spacer>

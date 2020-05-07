@@ -1,6 +1,5 @@
 import React, { HTMLAttributes } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import * as Colors from '@pxblue/colors';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -24,7 +23,7 @@ export type EmptyStateProps = HTMLAttributes<HTMLDivElement> & {
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100%',
-        color: Colors.black[500],
+        color: 'inherit',
         minHeight: '100%',
         display: 'flex',
         justifyContent: 'center',
