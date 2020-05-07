@@ -79,7 +79,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
                 )}
             </>
         ),
-        [units, classes]
+        [units, classes, defaultClasses]
     );
 
     const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
