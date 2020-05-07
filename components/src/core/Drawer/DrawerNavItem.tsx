@@ -220,7 +220,13 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                 iconColor={active ? activeItemIconColor : itemIconColor}
                 rightComponent={
                     (actionComponent || rightComponent) && (
-                        <div style={{ display: 'flex', alignItems: 'center', color: itemIconColor }}>
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                color: active ? activeItemIconColor : itemIconColor,
+                            }}
+                        >
                             {rightComponent}
                             {actionComponent}
                         </div>

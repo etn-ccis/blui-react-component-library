@@ -4,6 +4,7 @@
 
 -   Style-related properties are now overridable by the `classes` prop in each component.
 -   Supplemental properties are now spread to the root component for each PX Blue component.
+-   Changed component font colors to address potential accessibility issues.
 
 ## v3.0.3
 
