@@ -35,7 +35,8 @@ export type UserMenuClasses = {
     root?: string;
 };
 
-export type UserMenuItem = NavItem;
+// make itemID optional so that no legacy code is broken
+export type UserMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
 export type UserMenuGroup = {
     fontColor?: string;
     iconColor?: string;
@@ -165,7 +166,9 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         itemIconColor={group.iconColor}
                         itemFontColor={group.fontColor}
                         title={group.title}
-                        items={group.items}
+                        items={group.items.map((item: UserMenuItem, index: number) =>
+                            Object.assign({ itemID: index.toString() }, item)
+                        )}
                     />
                 </div>
             )),

@@ -40,12 +40,10 @@ export const SharedAppBar = (props) => {
                             items: [
                                 {
                                     title: 'Log Out',
-                                    itemID: 'Log Out',
                                     icon: <SendIcon />,
                                 },
                                 {
                                     title: 'Account Settings',
-                                    itemID: 'Account Settings',
                                     icon: <Settings />,
                                     divider: true,
                                 },
@@ -56,12 +54,10 @@ export const SharedAppBar = (props) => {
                             items: [
                                 {
                                     title: 'eatonhelp@eaton.com',
-                                    itemID: 'email',
                                     icon: <SendIcon />,
                                 },
                                 {
                                     title: '1-866-905-9988',
-                                    itemID: 'phone',
                                     icon: <Email />,
                                 },
                             ],
