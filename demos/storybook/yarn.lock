@@ -1415,10 +1415,10 @@
     "@pxblue/colors" "^2.0.1"
     typeface-open-sans "^0.0.75"
 
-"@pxblue/storybook-themes@^1.1.0-beta.1":
-  version "1.1.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@pxblue/storybook-themes/-/storybook-themes-1.1.0-beta.1.tgz#da671219b05e87b1baf8055a3957694321e0cf7b"
-  integrity sha512-hzWrdDebjldfxXYK7qJ8XklTTgVmISNiS2sklQerCQ2M++NhpP6NjSfOiA4lZa36CInmEuDeNehXTk9qhMd5TA==
+"@pxblue/storybook-themes@^1.1.0-beta.2":
+  version "1.1.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@pxblue/storybook-themes/-/storybook-themes-1.1.0-beta.2.tgz#ee8dc944e57851afe7ff200ae4ecdeb3e75000f3"
+  integrity sha512-ZOQ3vGBmYrXf1UnmbaHgpllCLRHdWkU8Ag/5X2fFle61uL+w3BY8uDYm6PTpgepeYi/PCvleBN+Qe+YJHyYdCw==
 
 "@pxblue/types@^1.0.0":
   version "1.0.0"
