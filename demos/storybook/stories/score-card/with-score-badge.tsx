@@ -8,6 +8,7 @@ import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { actionRow } from './with-actions';
 import React from 'react';
+import { useDarkMode } from 'storybook-dark-mode';
 
 const backgroundImage = require('../../assets/topology_40.png');
 
@@ -27,7 +28,7 @@ export const withScoreBadge = (): StoryFnReactReturnType => (
                     icon={<GradeA fontSize={'inherit'} htmlColor={Colors.green[500]} />}
                     label={'Grade'}
                     iconSize={72}
-                    iconBackgroundColor={Colors.white[50]}
+                    iconBackgroundColor={useDarkMode() ? Colors.black[900] : Colors.white[50]}
                     value={'98'}
                     units={'/100'}
                     fontSize={'normal'}
@@ -41,8 +42,8 @@ export const withScoreBadge = (): StoryFnReactReturnType => (
             <InfoListItem
                 dense
                 style={{ height: 36 }}
-                fontColor={Colors.blue[500]}
-                iconColor={Colors.blue[500]}
+                fontColor={useDarkMode() ? Colors.blue[300] : Colors.blue[500]}
+                iconColor={useDarkMode() ? Colors.blue[300] : Colors.blue[500]}
                 title={'1 Event'}
                 icon={<ListAlt color={'inherit'} />}
             />

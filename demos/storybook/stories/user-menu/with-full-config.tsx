@@ -26,7 +26,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const menuSubtitle = text('menuSubtitle', 'Menu Subtitle', 'Menu');
 
     const group: UserMenuGroup = Object.assign({}, menuGroups[0]);
-    group.fontColor = color('menuGroups.fontColor', Colors.gray[500], 'Menu');
+    group.fontColor = color('menuGroups.fontColor', Colors.black[500], 'Menu');
     group.iconColor = color('menuGroups.iconColor', Colors.blue[800], 'Menu');
     group.title = text('menuGroups[0].title', 'Account Management', 'Menu');
 

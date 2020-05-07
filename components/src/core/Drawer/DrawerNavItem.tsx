@@ -3,7 +3,6 @@ import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/sty
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { gray } from '@pxblue/colors';
 import clsx from 'clsx';
 import { PXBlueDrawerInheritableProperties } from './Drawer';
 import { DrawerNavGroupProps } from './DrawerNavGroup';
@@ -73,7 +72,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: `calc(100% - ${theme.spacing(1)}px)`,
             left: 0,
             top: 0,
-            borderRadius: '0px 24px 24px 0px',
+            borderRadius: `0px ${theme.spacing(3)}px ${theme.spacing(3)}px 0px`,
             opacity: 0.9,
             '&$square': {
                 width: '100%',
@@ -145,8 +144,8 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropDown /> : <ExpandMore />);
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
     const InfoListItemProps = navItem.InfoListItemProps || navGroupProps.InfoListItemProps || {};
-    const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || gray[500];
-    const itemIconColor = navItem.itemIconColor || navGroupProps.itemIconColor || gray[500];
+    const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || theme.palette.text.primary;
+    const itemIconColor = navItem.itemIconColor || navGroupProps.itemIconColor || theme.palette.text.primary;
     const onItemSelect = navItem.onItemSelect || navGroupProps.onItemSelect;
     const ripple =
         navItem.ripple !== undefined
@@ -221,7 +220,13 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                 iconColor={active ? activeItemIconColor : itemIconColor}
                 rightComponent={
                     (actionComponent || rightComponent) && (
-                        <div style={{ display: 'flex', alignItems: 'center', color: itemIconColor }}>
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                color: active ? activeItemIconColor : itemIconColor,
+                            }}
+                        >
                             {rightComponent}
                             {actionComponent}
                         </div>

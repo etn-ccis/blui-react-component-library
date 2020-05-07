@@ -4,7 +4,6 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { blue as ReactTheme } from '@pxblue/react-themes';
 import { blueDark as ReactThemeDark } from '@pxblue/react-themes';
-import * as Colors from '@pxblue/colors';
 import 'typeface-open-sans';
 import { pxblueTheme } from '@pxblue/storybook-themes';
 import { useDarkMode } from 'storybook-dark-mode';
@@ -71,16 +70,10 @@ addParameters({
 export const appliedTheme = createMuiTheme(ReactTheme);
 export const appliedThemeDark = createMuiTheme(ReactThemeDark);
 
-const getCanvasBackground = () => {
-    return useDarkMode() ? Colors.black['A200'] : Colors.gray[50];
-};
-
 addDecorator((storyFn) => (
     <MuiThemeProvider theme={useDarkMode() ? appliedThemeDark : appliedTheme}>
         <CssBaseline />
-        <div className={'wrapper'} style={{ color: Colors.gray['800'], backgroundColor: getCanvasBackground() }}>
-            {storyFn()}
-        </div>
+        <div className={'wrapper'}>{storyFn()}</div>
     </MuiThemeProvider>
 ));
 

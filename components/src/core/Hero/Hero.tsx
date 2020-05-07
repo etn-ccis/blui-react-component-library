@@ -1,7 +1,6 @@
 import React, { HTMLAttributes } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '../ChannelValue';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -40,13 +39,13 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'flex-start',
             flex: '1 1 0px',
             overflow: 'hidden',
-            color: theme.palette.type === 'dark' ? Colors.gray[300] : Colors.gray[500],
+            color: theme.palette.text.primary,
             padding: `${theme.spacing(2)}px ${theme.spacing()}px`,
             cursor: (props: HeroProps): 'pointer' | 'inherit' => (props.onClick ? 'pointer' : 'inherit'),
         },
         icon: {
             lineHeight: 1,
-            color: theme.palette.type === 'dark' ? Colors.gray[50] : Colors.gray[800],
+            color: theme.palette.text.secondary,
             marginBottom: 5,
             display: 'flex',
             alignItems: 'center',
@@ -65,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
         values: {
             display: 'flex',
             alignItems: 'center',
-            color: theme.palette.type === 'dark' ? Colors.gray[50] : Colors.gray[800],
+            color: theme.palette.text.primary,
             lineHeight: 1.2,
             maxWidth: '100%',
             overflow: 'hidden',

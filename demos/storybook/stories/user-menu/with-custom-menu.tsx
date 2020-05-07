@@ -14,7 +14,7 @@ const store = new Store<UserMenuState>({
 });
 
 export const withCustomMenu = (): StoryFnReactReturnType => {
-    const avatar = <Avatar src={tRex} />;
+    const avatar = <Avatar src={tRex} alt={'User Avatar'} />;
     const open = (): void => {
         store.set({ open: true });
     };

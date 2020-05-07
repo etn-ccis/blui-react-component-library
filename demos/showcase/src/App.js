@@ -43,7 +43,7 @@ export const App = () => {
                         badge={
                             <HeroBanner style={{ minWidth: 210 }}>
                                 <Hero
-                                    icon={<Temp fontSize={'inherit'} htmlColor={Colors.black[500]} />}
+                                    icon={<Temp fontSize={'inherit'} htmlColor={Colors.gray[500]} />}
                                     label={'Temperature'}
                                     iconSize={48}
                                     value={98}
@@ -139,7 +139,7 @@ export const App = () => {
                 </div>
 
                 <Card style={{ marginTop: theme.spacing(1) }}>
-                    <List style={{ color: Colors.gray['800'], padding: 0 }}>
+                    <List style={{ padding: 0 }}>
                         <HeroBanner divider>
                             <Hero
                                 icon={<GradeA fontSize={'inherit'} color={'inherit'} htmlColor={Colors.green[500]} />}
@@ -236,9 +236,11 @@ export const App = () => {
                             rightComponent={
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <ListItemTag
-                                        backgroundColor={Colors.white['300']}
+                                        backgroundColor={theme.palette.background.default}
                                         label={'active'}
-                                        fontColor={Colors.green['500']}
+                                        fontColor={
+                                            theme.palette.type === 'light' ? Colors.blue[700] : Colors.green['500']
+                                        }
                                         style={{ marginRight: theme.spacing(1) }}
                                     />
                                     <ListItemTag

@@ -10,7 +10,7 @@ export const withAvatar = (): StoryFnReactReturnType => (
         avatar
         title={'Info List Item'}
         subtitle={'with an avatar'}
-        statusColor={color('statusColor', Colors.green[500])}
+        statusColor={color('statusColor', Colors.green[700])}
         icon={<GradeA />}
     />
 );

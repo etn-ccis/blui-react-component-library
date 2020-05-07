@@ -128,7 +128,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 },
             });
         },
-        [avatar, onOpen]
+        [avatar, onOpen, defaultClasses, classes]
     );
 
     /* DrawerHeader needs wrapped with key div to avoid ref warning on FC. */

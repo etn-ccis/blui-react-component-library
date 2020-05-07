@@ -102,12 +102,13 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         divider: boolean('divider', true, drawerGroupId),
         expandIcon: getIcon(select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', drawerGroupId)),
         hidePadding: boolean('hidePadding', false, drawerGroupId),
-        itemFontColor: color('itemFontColor', Colors.gray[500], drawerGroupId),
-        itemIconColor: color('itemIconColor', Colors.gray[500], drawerGroupId),
+        itemFontColor: color('itemFontColor', Colors.black[500], drawerGroupId),
+        itemIconColor: color('itemIconColor', Colors.black[500], drawerGroupId),
         nestedBackgroundColor: color('nestedBackgroundColor', Colors.white[200], drawerGroupId),
         nestedDivider: boolean('nestedDivider', false, drawerGroupId),
         open: boolean('open', true, drawerGroupId),
         ripple: boolean('ripple', true, drawerGroupId),
+        titleColor: color('titleColor', Colors.black[500], drawerGroupId),
         variant: select('variant', ['permanent', 'persistent', 'temporary'], 'persistent', drawerGroupId),
         width: number(
             'width',
@@ -293,6 +294,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             nestedDivider={drawerKnobs.nestedDivider}
             open={drawerKnobs.open}
             ripple={drawerKnobs.ripple}
+            titleColor={drawerKnobs.titleColor}
             variant={drawerKnobs.variant}
             width={drawerKnobs.width}
         >

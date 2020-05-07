@@ -12,8 +12,12 @@ export const inInfoListItem = (): StoryFnReactReturnType => (
             subtitle={'Light and dark themes supported'}
             rightComponent={
                 <div style={{ width: 180, display: 'flex', justifyContent: 'space-between' }}>
-                    <ListItemTag label={'Build Passing'} backgroundColor={Colors.green['500']} />
-                    <ListItemTag label={'5 Bugs'} backgroundColor={Colors.yellow['500']} />
+                    <ListItemTag
+                        label={'Build Passing'}
+                        backgroundColor={Colors.green[300]}
+                        fontColor={Colors.black[900]}
+                    />
+                    <ListItemTag label={'5 Bugs'} backgroundColor={Colors.yellow[500]} fontColor={Colors.black[900]} />
                 </div>
             }
         />
