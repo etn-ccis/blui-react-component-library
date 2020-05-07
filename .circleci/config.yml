@@ -78,10 +78,10 @@ jobs:
 
             # master and dev branches should configure Google Analytics IDs before the build.
             if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-              SET STORYBOOK_GA_ID=$MASTER_GA
+              STORYBOOK_GA_ID=$MASTER_GA
             fi
             if [ $CIRCLE_BRANCH == $DEV_BRANCH ]; then
-              SET STORYBOOK_GA_ID=$DEV_GA
+              STORYBOOK_GA_ID=$DEV_GA
             fi
 
             yarn build-storybook
