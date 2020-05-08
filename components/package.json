@@ -1,6 +1,6 @@
 {
     "name": "@pxblue/react-components",
-    "version": "3.1.0",
+    "version": "4.0.0",
     "description": "React components for PX Blue applications",
     "scripts": {
         "test": "jest src",
@@ -20,7 +20,7 @@
         "@material-ui/icons": "^3.0.2",
         "@pxblue/eslint-config": "1.1.4",
         "@pxblue/prettier-config": "1.0.2",
-        "@pxblue/react-themes": "^4.0.0",
+        "@pxblue/react-themes": "^5.0.0",
         "@types/color": "^3.0.1",
         "@types/enzyme": "^3.10.4",
         "@types/enzyme-adapter-react-16": "^1.0.5",
