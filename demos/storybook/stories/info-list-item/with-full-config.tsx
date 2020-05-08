@@ -26,7 +26,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             chevron={boolean('chevron', true)}
             dense={boolean('dense', false)}
             divider={appliedDivider}
-            ripple={boolean('ripple', true)}
+            ripple={boolean('ripple', false)}
             onClick={action('clicked')}
             wrapTitle={boolean('wrapTitle', false)}
             wrapSubtitle={boolean('wrapSubtitle', false)}

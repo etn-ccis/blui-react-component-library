@@ -5,9 +5,12 @@ import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
 import { withA11y } from '@storybook/addon-a11y';
 import { useDarkMode } from 'storybook-dark-mode';
 import { black } from '@pxblue/colors';
+import List from '@material-ui/core/List';
 
 const padDrawer = (storyFn: any): JSX.Element => (
-    <div style={{ margin: 20, width: '90%', backgroundColor: useDarkMode() ? black[900] : 'white' }}>{storyFn()}</div>
+    <List style={{ margin: 20, width: '90%', backgroundColor: useDarkMode() ? black[900] : 'white', padding: 0 }}>
+        {storyFn()}
+    </List>
 );
 
 const infoListModule = {

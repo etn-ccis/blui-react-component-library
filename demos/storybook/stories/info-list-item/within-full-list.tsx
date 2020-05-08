@@ -1,4 +1,3 @@
-import { List } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
 import { Device, GradeA, Leaf, Temp } from '@pxblue/icons-mui';
 import { ChannelValue, InfoListItem } from '@pxblue/react-components';
@@ -13,7 +12,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
     const alertColor = useDarkMode() ? Colors.red[300] : Colors.red[500];
 
     return (
-        <List style={{ color: Colors.gray['800'], padding: 0 }}>
+        <>
             <InfoListItem
                 dense
                 title={'Status'}
@@ -76,7 +75,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                     <ChannelValue fontSize={16} icon={<Leaf htmlColor={Colors.green[500]} />} value={68} units={'°F'} />
                 }
             />
-        </List>
+        </>
     );
 };
 

@@ -10,7 +10,9 @@ import React from 'react';
 const backgroundImage = require('../../assets/topology_40.png');
 
 export const actionRow = (
-    <InfoListItem dense chevron title={'View Location'} hidePadding onClick={action('view location')} />
+    <List style={{ padding: 0 }}>
+        <InfoListItem dense chevron title={'View Location'} hidePadding onClick={action('view location')} />
+    </List>
 );
 
 export const actionItems = [
