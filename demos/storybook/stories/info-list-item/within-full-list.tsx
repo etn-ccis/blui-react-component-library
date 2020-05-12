@@ -1,17 +1,18 @@
-import { List } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
 import { Device, GradeA, Leaf, Temp } from '@pxblue/icons-mui';
 import { ChannelValue, InfoListItem } from '@pxblue/react-components';
 import { select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
+import { useDarkMode } from 'storybook-dark-mode';
 
 export const withinFullList = (): StoryFnReactReturnType => {
     const divider = select('divider', ['none', 'full', 'partial'], 'full');
     const appliedDivider = divider === 'none' ? undefined : divider;
+    const alertColor = useDarkMode() ? Colors.red[300] : Colors.red[500];
 
     return (
-        <List style={{ color: Colors.gray['800'], padding: 0 }}>
+        <>
             <InfoListItem
                 dense
                 title={'Status'}
@@ -39,12 +40,13 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 title={'Output Voltage'}
                 divider={appliedDivider}
                 avatar
-                statusColor={Colors.red[500]}
-                fontColor={Colors.red[500]}
+                statusColor={alertColor}
+                fontColor={alertColor}
+                iconColor={Colors.white[50]}
                 subtitle={['Phase A', 'Phase B', 'Phase C']}
                 icon={<GradeA color={'inherit'} />}
                 rightComponent={
-                    <span style={{ color: Colors.red[500] }}>
+                    <span style={{ color: alertColor }}>
                         <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
                         <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
                         <ChannelValue fontSize={16} value={480} units={'V'} />
@@ -73,7 +75,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                     <ChannelValue fontSize={16} icon={<Leaf htmlColor={Colors.green[500]} />} value={68} units={'°F'} />
                 }
             />
-        </List>
+        </>
     );
 };
 

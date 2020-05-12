@@ -9,8 +9,8 @@ import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 export const withFullConfig = (): StoryFnReactReturnType => (
     <ListItemTag
         label={text('label', 'clickable')}
-        backgroundColor={color('backgroundColor', Colors.green['700'])}
-        fontColor={color('fontColor', Colors.white['100'])}
+        backgroundColor={color('backgroundColor', Colors.green[500])}
+        fontColor={color('fontColor', Colors.black[900])}
         onClick={action('ListItemTag: onClick')}
         variant={select(
             'variant',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, HTMLAttributes } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -31,17 +31,17 @@ type DrawerLayoutClasses = {
     drawer?: string;
 };
 
-export type DrawerLayoutProps = {
-    // Drawer component to be embedded
-    drawer: React.ReactNode;
+export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> & {
     classes?: DrawerLayoutClasses;
+    // Drawer component to be embedded
+    drawer: ReactNode;
 };
 
 export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
-    const { children, drawer, classes } = props;
+    const { children, drawer, classes, ...otherDivProps } = props;
     const defaultClasses = useStyles(useTheme());
     return (
-        <div className={clsx(defaultClasses.root, classes.root)}>
+        <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
             <div className={clsx(defaultClasses.drawer, classes.drawer)}>{drawer}</div>
             <div id={'@@pxb-drawerlayout-content'} className={clsx(defaultClasses.content, classes.content)}>
                 {children}

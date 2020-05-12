@@ -33,7 +33,7 @@ const filter = (
         InputProps={{
             endAdornment: (
                 <InputAdornment position="end">
-                    <IconButton>
+                    <IconButton aria-label="filter button">
                         <Search />
                     </IconButton>
                 </InputAdornment>

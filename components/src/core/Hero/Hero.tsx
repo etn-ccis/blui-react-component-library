@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '../ChannelValue';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
+
+const normalizeIconSize = (size: number): number => Math.max(10, size);
+const normalizeFontSize = (size: FontSize): string => (size === 'small' ? '1rem' : '1.25rem');
+
+type FontSize = 'normal' | 'small';
+
+export type HeroClasses = {
+    root?: string;
+    icon?: string;
+    label?: string;
+    values?: string;
+};
+
+export type HeroProps = HTMLAttributes<HTMLDivElement> & {
+    classes?: HeroClasses;
+    fontSize?: FontSize;
+    icon: string | JSX.Element;
+    iconBackgroundColor?: string;
+    iconSize?: number;
+    label: string;
+    value?: string | number;
+    valueIcon?: JSX.Element;
+    units?: string;
+};
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -16,12 +39,13 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'flex-start',
             flex: '1 1 0px',
             overflow: 'hidden',
-            color: theme.palette.type === 'dark' ? Colors.gray[300] : Colors.gray[500],
-            padding: '16px 8px',
+            color: theme.palette.text.primary,
+            padding: `${theme.spacing(2)}px ${theme.spacing()}px`,
+            cursor: (props: HeroProps): 'pointer' | 'inherit' => (props.onClick ? 'pointer' : 'inherit'),
         },
         icon: {
             lineHeight: 1,
-            color: theme.palette.type === 'dark' ? Colors.gray[50] : Colors.gray[800],
+            color: theme.palette.text.secondary,
             marginBottom: 5,
             display: 'flex',
             alignItems: 'center',
@@ -30,14 +54,21 @@ const useStyles = makeStyles((theme: Theme) =>
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
+            padding: theme.spacing(0.5),
+            borderRadius: '50%',
+            fontSize: (props: HeroProps): number => normalizeIconSize(props.iconSize),
+            height: (props: HeroProps): number => Math.max(44, props.iconSize),
+            width: (props: HeroProps): number => Math.max(44, props.iconSize),
+            backgroundColor: (props: HeroProps): string => props.iconBackgroundColor,
         },
         values: {
             display: 'flex',
             alignItems: 'center',
-            color: theme.palette.type === 'dark' ? Colors.gray[50] : Colors.gray[800],
+            color: theme.palette.text.primary,
             lineHeight: 1.2,
             maxWidth: '100%',
             overflow: 'hidden',
+            fontSize: (props: HeroProps): string => normalizeFontSize(props.fontSize),
         },
         label: {
             fontSize: 'inherit',
@@ -53,59 +84,28 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const normalizeIconSize = (size: number): number => Math.max(10, size);
-const normalizeFontSize = (size: FontSize): string => (size === 'small' ? '1rem' : '1.25rem');
-
-type FontSize = 'normal' | 'small';
-
-type HeroClasses = {
-    root?: string;
-    icon?: string;
-    values?: string;
-    label?: string;
-};
-
-export type HeroProps = {
-    children?: React.ReactNode;
-    classes?: HeroClasses;
-    fontSize?: FontSize;
-    icon: string | JSX.Element;
-    iconBackgroundColor?: string;
-    iconSize?: number;
-    label: string;
-    onClick?: Function;
-    value?: string | number;
-    valueIcon?: JSX.Element;
-    units?: string;
-};
-
 export const Hero = (props: HeroProps): JSX.Element => {
     const defaultClasses = useStyles(props);
-    const { classes, fontSize, icon, iconBackgroundColor, iconSize, label, onClick, value, valueIcon, units } = props;
+    const {
+        classes,
+        icon,
+        label,
+        value,
+        valueIcon,
+        units,
+        // leaving those here to allow prop transferring
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        fontSize,
+        iconBackgroundColor,
+        iconSize,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        ...otherDivProps
+    } = props;
 
     return (
-        <div
-            style={{ cursor: onClick ? 'pointer' : 'inherit' }}
-            className={clsx(defaultClasses.root, classes.root)}
-            onClick={onClick ? (): void => onClick() : undefined}
-            data-test={'wrapper'}
-        >
-            <span
-                className={clsx(defaultClasses.icon, classes.icon)}
-                style={{
-                    fontSize: normalizeIconSize(iconSize),
-                    height: Math.max(36, iconSize),
-                    width: Math.max(36, iconSize),
-                    backgroundColor: iconBackgroundColor,
-                    borderRadius: '50%',
-                }}
-            >
-                {icon}
-            </span>
-            <span
-                className={clsx(defaultClasses.values, classes.values)}
-                style={{ fontSize: normalizeFontSize(fontSize) }}
-            >
+        <div className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherDivProps}>
+            <span className={clsx(defaultClasses.icon, classes.icon)}>{icon}</span>
+            <span className={clsx(defaultClasses.values, classes.values)}>
                 {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
                 {props.children}
             </span>
@@ -124,13 +124,11 @@ Hero.propType = {
         icon: PropTypes.string,
         labels: PropTypes.string,
     }),
-    children: PropTypes.element,
     fontSize: PropTypes.oneOf(['normal', 'small']),
     icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     iconBackgroundColor: PropTypes.string,
     iconSize: PropTypes.number,
     label: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     valueIcon: PropTypes.element,
     units: PropTypes.string,

@@ -5,6 +5,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import * as Colors from '@pxblue/colors';
 import { Email, ExitToApp, Settings } from '@material-ui/icons';
+import { useDarkMode } from 'storybook-dark-mode';
 
 export const withinToolbar = (): StoryFnReactReturnType => {
     const useStyles = makeStyles({
@@ -13,7 +14,7 @@ export const withinToolbar = (): StoryFnReactReturnType => {
             minHeight: 'initial',
         },
         title: {
-            color: Colors.gray[100],
+            color: Colors.gray[600],
             fontSize: 12,
             textAlign: 'right',
         },
@@ -56,7 +57,7 @@ export const withinToolbar = (): StoryFnReactReturnType => {
 
     return (
         <div style={{ width: '80%', height: 150 }}>
-            <AppBar position={'relative'} color={'primary'} style={{ marginTop: '-32px' }}>
+            <AppBar position={'relative'} color={'primary'} style={{ marginTop: -32 }}>
                 <Toolbar style={{ padding: '0 16px' }}>
                     <Typography variant={'h6'}>Toolbar Title</Typography>
                     <Spacer flex={1} />
@@ -70,7 +71,13 @@ export const withinToolbar = (): StoryFnReactReturnType => {
                     />
                 </Toolbar>
             </AppBar>
-            <div style={{ height: '100%', backgroundColor: Colors.white[50], padding: 16 }}>
+            <div
+                style={{
+                    height: '100%',
+                    backgroundColor: useDarkMode() ? Colors.black[900] : Colors.white[50],
+                    padding: 16,
+                }}
+            >
                 <Typography variant={'subtitle1'}>Body Content Goes Here</Typography>
             </div>
         </div>

@@ -12,7 +12,11 @@ const getBanner = (): HTMLElement => {
     }
     return banner;
 };
-const setBannerStyle = (display: string): void => getBanner().setAttribute('style', `display: ${display}`);
+const setBannerStyle = (display: string): void => {
+    const banner = getBanner();
+    if (!banner) return;
+    banner.setAttribute('style', `display: ${display}`);
+};
 
 export const showTopBanner = (): void => setBannerStyle('initial');
 export const hideTopBanner = (): void => setBannerStyle('none');

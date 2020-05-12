@@ -5,7 +5,6 @@ import { Divider, List, Typography } from '@material-ui/core';
 
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import { MoreVert } from '@material-ui/icons';
-import * as Colors from '@pxblue/colors';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { HeroBanner } from '../HeroBanner';
@@ -56,18 +55,20 @@ describe('ScoreCard', () => {
         expect(findByTestId('action-item', wrapper).length).toEqual(2);
         expect(wrapper.find(MoreVert).length).toEqual(2);
     });
+    /* This won't work if we use JSS to style the component
     it('renders correct header text color', () => {
         let wrapper = shallow(<ScoreCard headerTitle={'Test'} />);
         let title = wrapper.find(Typography);
 
         let div = findByTestId('header', wrapper);
-        expect(div.props().style.color).toEqual(Colors.white[50]);
+        expect(div.props().style.color).toEqual(Colors.white[50]); 
         wrapper = shallow(<ScoreCard headerTitle={'Test'} headerFontColor={'red'} />);
         title = wrapper.find(Typography);
         div = findByTestId('header', wrapper);
         expect(title.props().style.color).toEqual('red');
         expect(div.props().style.color).toEqual('red');
     });
+    */
     it('renders body content', () => {
         let wrapper = shallow(<ScoreCard headerTitle={'Test'} />);
         let content = findByTestId('content', wrapper);
@@ -101,13 +102,17 @@ describe('ScoreCard', () => {
         expect(content.children().length).toEqual(2); // body wrapper + badge
         expect(body.children().length).toEqual(0); // no body
         expect(badge.children(HeroBanner).length).toEqual(1);
+        /* These won't work if we use JSS to style the component
         expect(badge.props().style.marginTop).toEqual(0);
         expect(badge.props().style.alignSelf).toEqual('center');
+        */
 
         wrapper = shallow(<ScoreCard headerTitle={'Test'} badge={<HeroBanner />} badgeOffset={1} />);
         badge = findByTestId('badge-wrapper', wrapper);
         expect(badge.children(HeroBanner).length).toEqual(1);
+        /* These won't work if we use JSS to style the component
         expect(badge.props().style.marginTop).toEqual(1);
         expect(badge.props().style.alignSelf).toEqual('flex-start');
+        */
     });
 });

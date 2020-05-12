@@ -9,7 +9,7 @@ export const withBackgroundColor = (): StoryFnReactReturnType => (
     <InfoListItem
         title={'Info List Item'}
         subtitle={'with a configurable background color'}
-        fontColor={Colors.white[500]}
+        fontColor={Colors.white[50]}
         iconColor={Colors.white[50]}
         icon={<Leaf />}
         backgroundColor={color('backgroundColor', Colors.blue[500])}

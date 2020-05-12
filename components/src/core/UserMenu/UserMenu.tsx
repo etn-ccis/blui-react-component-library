@@ -1,8 +1,8 @@
 import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         avatarRoot: {
             cursor: 'pointer',
-            //@ts-ignore
-            backgroundColor: theme.palette.primary[50],
+            backgroundColor: theme.palette.primary.light,
             color: theme.palette.primary.main,
             height: theme.spacing(5),
             width: theme.spacing(5),
@@ -32,11 +31,12 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-type UserMenuClasses = {
+export type UserMenuClasses = {
     root?: string;
 };
 
-export type UserMenuItem = Omit<NavItem, 'active'>;
+// make itemID optional so that no legacy code is broken
+export type UserMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
 export type UserMenuGroup = {
     fontColor?: string;
     iconColor?: string;
@@ -44,7 +44,7 @@ export type UserMenuGroup = {
     title?: string;
 };
 
-export type UserMenuProps = {
+export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     avatar: JSX.Element;
     classes?: UserMenuClasses;
     menu?: JSX.Element;
@@ -57,7 +57,18 @@ export type UserMenuProps = {
 };
 
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
-    const { avatar, menu, classes, menuTitle, menuSubtitle, menuGroups, MenuProps, onClose, onOpen } = props;
+    const {
+        avatar,
+        classes,
+        menu,
+        menuGroups,
+        MenuProps,
+        menuSubtitle,
+        menuTitle,
+        onClose,
+        onOpen,
+        ...otherDivProps
+    } = props;
     const theme = useTheme();
     const defaultClasses = useStyles(theme);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -73,8 +84,8 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
             for (const item of group.items) {
                 const onClick = item.onClick;
                 if (onClick) {
-                    item.onClick = (): void => {
-                        onClick();
+                    item.onClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
+                        onClick(e);
                         closeMenu();
                     };
                 }
@@ -118,7 +129,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                 },
             });
         },
-        [avatar, onOpen]
+        [avatar, onOpen, defaultClasses, classes]
     );
 
     /* DrawerHeader needs wrapped with key div to avoid ref warning on FC. */
@@ -155,7 +166,10 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         itemIconColor={group.iconColor}
                         itemFontColor={group.fontColor}
                         title={group.title}
-                        items={group.items}
+                        items={group.items.map(
+                            (item: UserMenuItem, itemIndex: number): NavItem =>
+                                Object.assign({ itemID: itemIndex.toString() }, item)
+                        )}
                     />
                 </div>
             )),
@@ -189,7 +203,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     }, [menu, anchorEl, closeMenu, MenuProps, printMenu]);
 
     return (
-        <div className={clsx(defaultClasses.root, classes.root)}>
+        <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
             {formatAvatar(true)}
             {canDisplayMenu() && formatMenu()}
         </div>

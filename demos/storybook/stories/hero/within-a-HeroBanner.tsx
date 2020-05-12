@@ -38,7 +38,7 @@ export const inBanner = (): StoryFnReactReturnType => {
         />,
     ];
     const numberDisplayed = number('count', 4, { range: true, min: 0, max: 4, step: 1 });
-    return <HeroBanner>{heroes.slice(0, numberDisplayed)}</HeroBanner>;
+    return <HeroBanner style={{ width: numberDisplayed * 100 }}>{heroes.slice(0, numberDisplayed)}</HeroBanner>;
 };
 
-inBanner.story = { name: 'within a HeroBanner' };
+inBanner.story = { name: 'within a Hero Banner' };

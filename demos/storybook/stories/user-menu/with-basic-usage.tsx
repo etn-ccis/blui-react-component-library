@@ -9,19 +9,16 @@ import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
 
 const menuItems: UserMenuItem[] = [
     {
-        itemID: '1',
         title: 'Account',
         icon: <Settings />,
         onClick: action("click 'Account'"),
     },
     {
-        itemID: '2',
         title: 'Contact Us',
         icon: <Email />,
         onClick: action("click 'Contact Us'"),
     },
     {
-        itemID: '3',
         title: 'Log Out',
         icon: <ExitToApp />,
         onClick: action("click 'Log Out'"),

@@ -1,1 +1,1 @@
-export { ScoreCard, ScoreCordProps } from './ScoreCard';
+export * from './ScoreCard';

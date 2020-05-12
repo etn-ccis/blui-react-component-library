@@ -1,1 +1,1 @@
-export { ListItemTag, ListItemTagProps } from './ListItemTag';
+export * from './ListItemTag';

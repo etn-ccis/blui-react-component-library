@@ -1,44 +1,39 @@
 import React from 'react';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
-import PropTypes from 'prop-types';
+import {
+    Avatar,
+    Divider,
+    ListItem,
+    ListItemAvatar,
+    ListItemIcon,
+    ListItemText,
+    Typography,
+    ListItemProps,
+} from '@material-ui/core';
 import Chevron from '@material-ui/icons/ChevronRight';
-import { separate, withKeys } from '../utilities';
 
-//Material-UI Components
-import { Avatar, Divider, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
+import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
+
+import { separate, withKeys } from '../utilities';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useStyles } from './InfoListItem.styles';
 
 const MAX_SUBTITLE_ELEMENTS = 6;
 
-type InfoListItemClasses = {
-    root?: string;
-    avatar?: string;
-    icon?: string;
-    rightComponent?: string;
-    separator?: string;
-    subtitle?: string;
-    title?: string;
-};
-
 export type DividerType = 'full' | 'partial';
-export type InfoListItemProps = {
+export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & {
     avatar?: boolean;
     backgroundColor?: string;
     chevron?: boolean;
     classes?: InfoListItemClasses;
-    dense?: boolean;
     divider?: DividerType;
     fontColor?: string;
     hidePadding?: boolean;
     icon?: JSX.Element;
     iconColor?: string;
     leftComponent?: JSX.Element;
-    onClick?: Function;
     rightComponent?: JSX.Element;
     ripple?: boolean;
     statusColor?: string;
-    style?: CSSProperties;
     subtitle?: string | Array<string | JSX.Element>;
     subtitleSeparator?: string;
     title: React.ReactNode;
@@ -50,22 +45,28 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     const defaultClasses = useStyles(props);
     const {
         avatar,
+        button,
         chevron,
         classes,
-        dense,
         divider,
         hidePadding,
         icon,
         leftComponent,
-        onClick,
         rightComponent,
-        style,
+        ripple,
         subtitle,
         subtitleSeparator,
         title,
-        ripple,
         wrapSubtitle,
         wrapTitle,
+        // leaving those here to allow prop transferring
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        backgroundColor,
+        fontColor,
+        iconColor,
+        statusColor,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        ...otherListItemProps
     } = props;
 
     const combine = (className: keyof InfoListItemClasses): string =>
@@ -94,7 +95,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (rightComponent) {
             return <div className={combine('rightComponent')}>{rightComponent}</div>;
         } else if (chevron) {
-            return <Chevron color={'inherit'} className={combine('rightComponent')} />;
+            return <Chevron color={'inherit'} role={'button'} className={combine('rightComponent')} />;
         }
     };
 
@@ -116,14 +117,11 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         return withKeys(separate(renderableSubtitleParts, () => interpunct()));
     };
 
+    const hasRipple = button === undefined ? (props.onClick && ripple ? true : undefined) : button ? true : undefined;
+
     return (
-        <ListItem
-            button={onClick && ripple ? true : undefined}
-            className={combine('root')}
-            style={style}
-            dense={dense}
-            onClick={onClick ? (): void => onClick() : undefined}
-        >
+        // @ts-ignore
+        <ListItem button={hasRipple} className={combine('root')} {...otherListItemProps}>
             <div className={defaultClasses.statusStripe} />
             {divider && <Divider className={defaultClasses.divider} />}
             {(icon || !hidePadding) && getIcon()}
@@ -162,14 +160,12 @@ InfoListItem.propTypes = {
         subtitle: PropTypes.string,
         title: PropTypes.string,
     }),
-    dense: PropTypes.bool,
     divider: PropTypes.oneOf(['full', 'partial']),
     fontColor: PropTypes.string,
     hidePadding: PropTypes.bool,
     icon: PropTypes.element,
     iconColor: PropTypes.string,
     leftComponent: PropTypes.element,
-    onClick: PropTypes.func,
     rightComponent: PropTypes.element,
     statusColor: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),

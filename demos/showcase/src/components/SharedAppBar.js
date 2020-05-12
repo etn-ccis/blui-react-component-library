@@ -1,9 +1,10 @@
-import { AppBar, Hidden, Toolbar, Typography } from '@material-ui/core';
-import { Email, Menu, Settings } from '@material-ui/icons';
+import { AppBar, Hidden, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/core';
+import { Email, Menu, Settings, InvertColors } from '@material-ui/icons';
 import Avatar from '@material-ui/core/Avatar';
 import SendIcon from '@material-ui/icons/Send';
 import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import { store } from '../store';
 
 import { Spacer, UserMenu } from '@pxblue/react-components';
 
@@ -19,6 +20,17 @@ export const SharedAppBar = (props) => {
                 </Hidden>
                 <Typography variant={'h6'}>Showcase</Typography>
                 <Spacer flex={1} />
+                <Tooltip title={'Toggle Theme'} aria-label={'toggle the theme of the current showcase'}>
+                    <IconButton
+                        color={'inherit'}
+                        onClick={() => {
+                            store.dispatch({ type: 'toggle' });
+                        }}
+                    >
+                        <InvertColors />
+                    </IconButton>
+                </Tooltip>
+                <Spacer width={theme.spacing(1)} flex={0} />
                 <UserMenu
                     avatar={<Avatar>MS</Avatar>}
                     menuTitle={'Marshall Sutter'}
@@ -28,14 +40,14 @@ export const SharedAppBar = (props) => {
                             items: [
                                 {
                                     title: 'Log Out',
-                                    itemID: 'Log Out',
                                     icon: <SendIcon />,
+                                    onClick: () => {},
                                 },
                                 {
                                     title: 'Account Settings',
-                                    itemID: 'Account Settings',
                                     icon: <Settings />,
                                     divider: true,
+                                    onClick: () => {},
                                 },
                             ],
                         },
@@ -44,13 +56,13 @@ export const SharedAppBar = (props) => {
                             items: [
                                 {
                                     title: 'eatonhelp@eaton.com',
-                                    itemID: 'email',
                                     icon: <SendIcon />,
+                                    onClick: () => {},
                                 },
                                 {
                                     title: '1-866-905-9988',
-                                    itemID: 'phone',
                                     icon: <Email />,
+                                    onClick: () => {},
                                 },
                             ],
                         },

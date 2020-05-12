@@ -8,12 +8,13 @@
         "@material-ui/styles": "^4.5.0",
         "@pxblue/icons-mui": "^2.1.0",
         "@pxblue/react-progress-icons": "^2.0.0",
-        "@pxblue/react-themes": "^4.0.0",
+        "@pxblue/react-themes": "5.0.0-beta.0",
         "prop-types": "^15.7.2",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-router-dom": "^5.1.2",
         "react-scripts": "3.0.1",
+        "redux": "^4.0.5",
         "typeface-open-sans": "^0.0.54"
     },
     "devDependencies": {
