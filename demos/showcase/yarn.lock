@@ -1251,6 +1251,13 @@
   dependencies:
     "@pxblue/types" "^1.0.0"
 
+"@pxblue/colors@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/colors/-/colors-3.0.0.tgz#080fb5cfd5a08fea018ece7cac8022ed38f7878f"
+  integrity sha512-rMFW4an1V9M5KX4BiNzrbbaYe2fic4o9iGL8/bPYvITbeiwgAapyFX0VbMIoo8XKlIbNaxyn7oWnrxzI/tp8Rw==
+  dependencies:
+    "@pxblue/types" "^2.0.0"
+
 "@pxblue/icons-mui@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@pxblue/icons-mui/-/icons-mui-2.1.0.tgz#a4d5fdf65dccdea6d18b0e2b0247dbfb85088ed1"
@@ -1266,10 +1273,10 @@
   resolved "https://registry.yarnpkg.com/@pxblue/react-progress-icons/-/react-progress-icons-2.0.0.tgz#b1e1aa21ae871b60a3cdadd926569737e581a7e2"
   integrity sha512-S1upGm3FReTL/mwzjxAAvHubtCfgwbqKzJbOA47pRkE9tKpebi/eMoitA1RwATTYdwxjcvVF7373UZctcLa0+A==
 
-"@pxblue/react-themes@5.0.0-beta.0":
-  version "5.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-themes/-/react-themes-5.0.0-beta.0.tgz#a5fcbd507a92ce7f4d41542bdf8356fc1f6168a1"
-  integrity sha512-Iv3RnsWEP0/8sDlO1nCovwWg2WR4TTTZxIxsko7s649jkLIf6KFjA+vTX/G16u5SjoqSlmy4qEyjMPerUSFzoQ==
+"@pxblue/react-themes@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-themes/-/react-themes-5.0.0.tgz#22bde573215cc5b05db915708aef4c633d3ff06f"
+  integrity sha512-il5ELkkzjK4XOH+ypHXHvcGSdPwZFBVZgjGd3zJxGf+rDDC9JyAEWr5kY9afD02WO29a7aiA41IQRF1a2eUnwA==
   dependencies:
     "@pxblue/colors" "^2.0.1"
     typeface-open-sans "^0.0.75"
@@ -1278,6 +1285,11 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@pxblue/types/-/types-1.0.0.tgz#befa98a12ae95a407c252399c69677aa7427d97e"
   integrity sha512-K0liTITRTZfv7n/2UmbP0g/nTelr3aaDlA5XleGqC+1hLRab20MpVaOSgLRiU8+4f0vayGtbBm63HyHgoXMROw==
+
+"@pxblue/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/types/-/types-2.0.0.tgz#3df970352aca5256974a10a97d75a2264bad1eba"
+  integrity sha512-rHABCqYALGjrDxdCfw/v4mFsHhE9y9+vdSD3VHfIzA3HY1g1Bp/VWwEuEXWbtj2H5n75D+jkMQZ0rTqSKY3vLw==
 
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"

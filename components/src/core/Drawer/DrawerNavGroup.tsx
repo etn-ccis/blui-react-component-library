@@ -11,7 +11,7 @@ import {
     PXBlueDrawerNavGroupInheritableProperties,
     PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 } from './Drawer';
-import { white, black } from '@pxblue/colors';
+import { white, darkBlack } from '@pxblue/colors';
 import { DrawerNavItem, NavItem, NestedNavItem } from './DrawerNavItem';
 
 export type DrawerNavGroupProps = ListProps & {
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         nestedListGroup: {
             backgroundColor: (props: DrawerNavGroupProps): string =>
-                props.nestedBackgroundColor || (theme.palette.type === 'light' ? white[200] : black['A200']),
+                props.nestedBackgroundColor || (theme.palette.type === 'light' ? white[200] : darkBlack[100]),
             paddingBottom: 0,
             paddingTop: 0,
         },

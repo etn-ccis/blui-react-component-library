@@ -1,5 +1,11 @@
 # Change Log
+
+## v4.0.1
+
+-   Update theme definitions to use the [@pxblue/colors](https://www.npmjs.com/package/@pxblue/colors) version 3.0.0.
+
 ## v4.0.0
+
 -   Style-related properties are now overridable by the `classes` prop in each component.
 -   Supplemental properties are now spread to the root component for each PX Blue component.
 -   Changed component font colors to address potential accessibility issues.
