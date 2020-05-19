@@ -2,7 +2,7 @@
 
 ## v4.0.1
 
--   Update theme definitions to use the [@pxblue/colors](https://www.npmjs.com/package/@pxblue/colors) version 3.0.0.
+-   Themes updated to use [@pxblue/colors](https://www.npmjs.com/package/@pxblue/colors) version 3.0.0.
 
 ## v4.0.0
 
