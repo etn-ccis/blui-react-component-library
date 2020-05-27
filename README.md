@@ -11,7 +11,7 @@ Refer to the [Component Library](https://pxblue-components.github.io/react/?path
 
 To install the PX Blue react components from NPM as a dependency for your project, you can run the following command in your project root:
 
-```
+```shell
 yarn add @pxblue/react-components
 ```
 
@@ -21,7 +21,7 @@ yarn add @pxblue/react-components
 
 To work with this library, first clone down the repository and install dependencies:
 
-```
+```shell
 git clone https://github.com/pxblue/react-component-library
 cd react-component-library
 yarn install:dependencies
@@ -29,7 +29,7 @@ yarn install:dependencies
 
 The library can be built by running the following command. The resulting output will be in the /dist folder.
 
-```
+```shell
 yarn build
 ```
 
@@ -40,13 +40,13 @@ The first is a [Storybook](https://storybook.js.org/) application that allows yo
 
 You can build, link, and start the demo applications in a single step by calling either
 
-```
+```shell
 yarn start:showcase
 ```
 
 or
 
-```
+```shell
 yarn start:storybook
 ```
 

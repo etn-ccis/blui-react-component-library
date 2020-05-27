@@ -325,7 +325,7 @@ The following props control the NavGroup and thus only apply to `<Drawer>`, and 
 | Name                  | Description                                      | Type      | Required | Default                                                      |
 | --------------------- | ------------------------------------------------ | --------- | -------- | ------------------------------------------------------------ |
 | activeItem            | itemID for the 'active' item                     | `string`  | no       |                                                              |
-| nestedBackgroundColor | background color for nested menu items           | `string`  | no       | theme.palette.type === 'light' ? white[200] : black['A200'], |
+| nestedBackgroundColor | background color for nested menu items           | `string`  | no       | theme.palette.type === 'light' ? white[200] : darkBlack[100] |
 | nestedDivider         | Whether to show a line between nested menu items | `boolean` | no       | false                                                        |
 | titleColor            | Font color for group header                      | `string`  | no       | theme.palette.text.primary                                   |
 
