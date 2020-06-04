@@ -68,7 +68,7 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 
 </div>
 
-Any other props supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (`div`).
 
 #### User Menu Groups Object
 

@@ -31,7 +31,7 @@ import { Spacer } from '@pxblue/react-components';
 
 </div>
 
-Any other props supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (`div`).
 
 ### Classes
 

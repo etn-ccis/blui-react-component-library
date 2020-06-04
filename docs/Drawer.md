@@ -131,7 +131,7 @@ import DrawerSubheader from '@pxblue/react-components/core/Drawer';
 
 ### Drawer Subheader API
 
-Any props supplied will be provided to the root element (native element).
+Any props supplied will be provided to the root element (`div`).
 
 ## Drawer Body
 
@@ -159,7 +159,7 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 
 </div>
 
-Any other props supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (`div`).
 
 #### Classes
 
@@ -235,7 +235,7 @@ import DrawerFooter from '@pxblue/react-components/core/Drawer';
 
 </div>
 
-Any other props supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (`div`).
 
 ## Drawer Nav Item
 
@@ -369,7 +369,7 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 </div>
 
-Any other props supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (`div`).
 
 > **Note on Scrolling**: When using client-side routing in your application, you may notice that the window scroll position does not reset when navigating to new routes. To address this issue, you will need to manually update the scroll position when new pages are loaded. If you are using React Router they have [several examples](https://reacttraining.com/react-router/web/guides/scroll-restoration) on how to implement this in your application.
 
