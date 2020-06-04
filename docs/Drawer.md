@@ -55,7 +55,7 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 </div>
 
-Any other props will be passed to the root element [**Material UI Drawer**](https://material-ui.com/api/drawer/).
+Any other props will be provided to the root element [**Material UI Drawer**](https://material-ui.com/api/drawer/).
 
 The `Drawer` has three `variant`s:
 
@@ -99,7 +99,7 @@ The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By defau
 
 </div>
 
-Any other props will be passed to the root element [**Material UI Toolbar**](https://material-ui.com/api/toolbar/).
+Any other props will be provided to the root element [**Material UI Toolbar**](https://material-ui.com/api/toolbar/).
 
 #### Classes
 
@@ -129,6 +129,10 @@ import DrawerSubheader from '@pxblue/react-components/core/Drawer';
 </DrawerSubheader>
 ```
 
+### Drawer Subheader API
+
+Any props supplied will be provided to the root element (native element).
+
 ## Drawer Body
 
 The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical use case is to display `<DrawerNavGroup>` elements, but custom elements (e.g., for spacing) are accepted as well.
@@ -154,6 +158,8 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 | classes         | Style overrides                   | `StyleRules` | no       |         |
 
 </div>
+
+Any other props supplied will be provided to the root element (native element).
 
 #### Classes
 
@@ -188,7 +194,7 @@ The `items` property supports nested items to generate collapsible sections in t
 
 </div>
 
-Any other props will be passed to the root element [**Material UI List**](https://material-ui.com/api/list/).
+Any other props will be provided to the root element [**Material UI List**](https://material-ui.com/api/list/).
 
 #### Classes
 
@@ -228,6 +234,8 @@ import DrawerFooter from '@pxblue/react-components/core/Drawer';
 | backgroundColor | The color used for the background | `string` | no       |         |
 
 </div>
+
+Any other props supplied will be provided to the root element (native element).
 
 ## Drawer Nav Item
 
@@ -360,6 +368,8 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 | drawer    | Drawer component to be embedded | `React.ReactNode` | yes      |         |
 
 </div>
+
+Any other props supplied will be provided to the root element (native element).
 
 > **Note on Scrolling**: When using client-side routing in your application, you may notice that the window scroll position does not reset when navigating to new routes. To address this issue, you will need to manually update the scroll position when new pages are loaded. If you are using React Router they have [several examples](https://reacttraining.com/react-router/web/guides/scroll-restoration) on how to implement this in your application.
 

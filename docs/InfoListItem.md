@@ -48,7 +48,7 @@ import * as Colors from '@pxblue/colors';
 
 </div>
 
-Any other props will be passed to the root element [**Material UI ListItem**](https://material-ui.com/api/list-item/).
+Any other props will be provided to the root element [**Material UI ListItem**](https://material-ui.com/api/list-item/).
 
 ### Classes
 
