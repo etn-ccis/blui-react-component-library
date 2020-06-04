@@ -5,6 +5,7 @@ import { appliedTheme } from '../.storybook/config';
 import { hideTopBanner, storyWrapper } from '../src/utils';
 import * as Colors from '@pxblue/colors';
 const backgroundImage = require('../assets/circles-bg.svg');
+const packageJSON = require('@pxblue/react-components/package.json');
 
 export const stories = storiesOf('Intro/Overview', module);
 
@@ -85,6 +86,7 @@ stories.add('PX Blue React Components', () => {
                     Power Xpert <strong>Blue</strong>
                 </Typography>
                 <Typography variant={'h4'}>React Component Library</Typography>
+                {packageJSON.version && <Typography variant={'subtitle1'}>v{packageJSON.version}</Typography>}
                 <Typography variant={'subtitle1'} className={classes.description}>
                     Learn about and interact with our PX Blue components using Storybook.
                 </Typography>
