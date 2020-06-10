@@ -43,7 +43,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
                                   .darken(0.08)
                                   .hex()
                             : 'rgba(0,0,0,0.08)'
-                        : '',
+                        : undefined,
             },
         },
         avatar: {
