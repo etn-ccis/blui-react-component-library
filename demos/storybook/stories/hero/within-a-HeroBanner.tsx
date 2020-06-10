@@ -20,7 +20,6 @@ export const inBanner = (): StoryFnReactReturnType => {
             label={'Load'}
             value={'90'}
             units={'%'}
-            fontSize={'normal'}
         />,
         <Hero
             key={'hero3'}

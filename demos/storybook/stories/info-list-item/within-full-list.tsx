@@ -20,7 +20,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 statusColor={Colors.green[500]}
                 subtitleSeparator={'/'}
                 icon={<Leaf color={'inherit'} />}
-                rightComponent={<ChannelValue fontSize={16} value={'Online, ESS+'} />}
+                rightComponent={<ChannelValue style={{ fontSize: 16 }} value={'Online, ESS+'} />}
             />
             <InfoListItem
                 title={'Input Voltage'}
@@ -29,10 +29,9 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 subtitle={['Phase A', 'Phase B', 'Phase C']}
                 icon={<GradeA />}
                 rightComponent={
-                    <span>
-                        <ChannelValue fontSize={16} value={478} units={'V'} />,{' '}
-                        <ChannelValue fontSize={16} value={479} units={'V'} />,{' '}
-                        <ChannelValue fontSize={16} value={473} units={'V'} />
+                    <span style={{ fontSize: 16 }}>
+                        <ChannelValue value={478} units={'V'} />, <ChannelValue value={479} units={'V'} />,{' '}
+                        <ChannelValue value={473} units={'V'} />
                     </span>
                 }
             />
@@ -46,10 +45,9 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 subtitle={['Phase A', 'Phase B', 'Phase C']}
                 icon={<GradeA color={'inherit'} />}
                 rightComponent={
-                    <span style={{ color: alertColor }}>
-                        <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
-                        <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
-                        <ChannelValue fontSize={16} value={480} units={'V'} />
+                    <span style={{ color: alertColor, fontSize: 16 }}>
+                        <ChannelValue value={480} units={'V'} />, <ChannelValue value={480} units={'V'} />,{' '}
+                        <ChannelValue value={480} units={'V'} />
                     </span>
                 }
             />
@@ -59,10 +57,9 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 divider={appliedDivider}
                 icon={<Device color={'inherit'} />}
                 rightComponent={
-                    <span>
-                        <ChannelValue fontSize={16} value={15} units={'A'} />,{' '}
-                        <ChannelValue fontSize={16} value={14.9} units={'A'} />,{' '}
-                        <ChannelValue fontSize={16} value={15} units={'A'} />
+                    <span style={{ fontSize: 16 }}>
+                        <ChannelValue value={15} units={'A'} />, <ChannelValue value={14.9} units={'A'} />,{' '}
+                        <ChannelValue value={15} units={'A'} />
                     </span>
                 }
             />
@@ -72,7 +69,12 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 divider={appliedDivider}
                 icon={<Temp />}
                 rightComponent={
-                    <ChannelValue fontSize={16} icon={<Leaf htmlColor={Colors.green[500]} />} value={68} units={'°F'} />
+                    <ChannelValue
+                        style={{ fontSize: 16 }}
+                        icon={<Leaf htmlColor={Colors.green[500]} />}
+                        value={68}
+                        units={'°F'}
+                    />
                 }
             />
         </>

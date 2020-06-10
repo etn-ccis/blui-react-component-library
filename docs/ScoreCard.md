@@ -36,7 +36,6 @@ import { Temp } from '@pxblue/icons-mui';
                 iconSize={48}
                 value={98}
                 units={'°F'}
-                fontSize={'normal'}
             />
         </HeroBanner>
     }

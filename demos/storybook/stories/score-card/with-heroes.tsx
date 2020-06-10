@@ -20,7 +20,6 @@ export const heroes: JSX.Element[] = [
         iconBackgroundColor={Colors.white[50]}
         value={98}
         units={'°F'}
-        fontSize={'normal'}
     />,
     <Hero
         key={'hero2'}
@@ -30,7 +29,6 @@ export const heroes: JSX.Element[] = [
         iconBackgroundColor={Colors.white[50]}
         units={'%'}
         iconSize={48}
-        fontSize={'normal'}
     />,
 ];
 
