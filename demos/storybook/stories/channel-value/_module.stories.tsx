@@ -16,7 +16,6 @@ export { getReadMeStory } from '../../src/utils';
 export * from './with-basic-usage';
 export * from './with-units';
 export * from './with-icon';
-export * from './with-fontSize';
 export * from './with-full-config';
 
 export default channelValueModule;

@@ -13,7 +13,6 @@ export type ChannelValueClasses = {
 export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> & {
     classes?: ChannelValueClasses;
     color?: string;
-    fontSize?: number | string;
     icon?: JSX.Element;
     prefix?: boolean;
     units?: string;
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'inline-flex',
             alignItems: 'center',
             lineHeight: 1.2,
-            fontSize: (props: ChannelValueProps): string | number => props.fontSize,
+            fontSize: 'inherit',
             color: (props: ChannelValueProps): string => props.color,
         },
         icon: {
@@ -58,7 +57,6 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         // leaving those here to allow prop transferring
         /* eslint-disable @typescript-eslint/no-unused-vars */
         color,
-        fontSize,
         /* eslint-disable @typescript-eslint/no-unused-vars */
         ...otherSpanProps
     } = props;
@@ -117,7 +115,6 @@ ChannelValue.propTypes = {
         units: PropTypes.string,
     }),
     color: PropTypes.string,
-    fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     icon: PropTypes.element,
     prefix: PropTypes.bool,
     units: PropTypes.string,
@@ -126,6 +123,5 @@ ChannelValue.propTypes = {
 ChannelValue.defaultProps = {
     classes: {},
     color: 'inherit',
-    fontSize: 'inherit',
     prefix: false,
 };

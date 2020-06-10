@@ -43,7 +43,6 @@ import { Hero } from '@pxblue/react-components';
 | Prop Name           | Description                             | Type                          | Required | Default       |
 | ------------------- | --------------------------------------- | ----------------------------- | -------- | ------------- |
 | classes             | Style overrides                         | `StyleRules`                  | no       |               |
-| fontSize            | The text size for the value line        | `'normal'` \| `'small'`       | no       | 'normal'      |
 | icon                | The primary icon                        | `React.Component` \| `string` | yes      |               |
 | iconBackgroundColor | The color used behind the primary icon  | `string`                      | no       | 'transparent' |
 | iconSize            | The size of the primary icon (min 10px) | `number`                      | no       | 36            |

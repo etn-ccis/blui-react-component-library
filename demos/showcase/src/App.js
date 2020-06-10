@@ -48,7 +48,6 @@ export const App = () => {
                                     iconSize={48}
                                     value={98}
                                     units={'°F'}
-                                    fontSize={'normal'}
                                 />
                                 <Hero
                                     icon={<Humidity fontSize={'inherit'} htmlColor={Colors.blue[300]} />}
@@ -56,7 +55,6 @@ export const App = () => {
                                     value={54}
                                     units={'%'}
                                     iconSize={48}
-                                    fontSize={'normal'}
                                 />
                             </HeroBanner>
                         }
@@ -106,7 +104,6 @@ export const App = () => {
                                     iconSize={72}
                                     value={98}
                                     units={'%'}
-                                    fontSize={'normal'}
                                 />
                             </HeroBanner>
                         }
@@ -146,12 +143,10 @@ export const App = () => {
                                 label={'Healthy'}
                                 value={96}
                                 units={'/100'}
-                                fontSize={'normal'}
                             />
                             <Hero
                                 icon={<Pie color={Colors.blue[500]} percent={65} size={36} />}
                                 label={'Load'}
-                                fontSize={'normal'}
                             >
                                 <ChannelValue
                                     value={65}
@@ -162,7 +157,6 @@ export const App = () => {
                             <Hero
                                 icon={<Timer fontSize={'inherit'} color={'inherit'} />}
                                 label={'Estimated'}
-                                fontSize={'normal'}
                             >
                                 <ChannelValue value={1} units={'h'} />
                                 <ChannelValue value={26} units={'m'} />
@@ -171,7 +165,6 @@ export const App = () => {
                                 icon={<Battery color={Colors.blue[500]} percent={100} size={36} />}
                                 value={'Full'}
                                 label={'Battery'}
-                                fontSize={'normal'}
                             >
                                 <ChannelValue value={'Full'} />
                             </Hero>
@@ -183,7 +176,7 @@ export const App = () => {
                             statusColor={Colors.green[500]}
                             subtitleSeparator={'/'}
                             icon={<Leaf color={'inherit'} />}
-                            rightComponent={<ChannelValue fontSize={16} value={'Online, ESS+'} />}
+                            rightComponent={<ChannelValue style={{fontSize: 16}} value={'Online, ESS+'} />}
                         />
                         <InfoListItem
                             title={'Input Voltage'}
@@ -192,10 +185,10 @@ export const App = () => {
                             subtitle={['Phase A', 'Phase B', 'Phase C']}
                             icon={<VoltageCircled />}
                             rightComponent={
-                                <span>
-                                    <ChannelValue fontSize={16} value={478} units={'V'} />,{' '}
-                                    <ChannelValue fontSize={16} value={479} units={'V'} />,{' '}
-                                    <ChannelValue fontSize={16} value={473} units={'V'} />
+                                <span style={{fontSize: 16}}>
+                                    <ChannelValue value={478} units={'V'} />,{' '}
+                                    <ChannelValue value={479} units={'V'} />,{' '}
+                                    <ChannelValue value={473} units={'V'} />
                                 </span>
                             }
                         />
@@ -208,11 +201,11 @@ export const App = () => {
                             subtitle={['Phase A', 'Phase B', 'Phase C']}
                             icon={<VoltageCircled color={'inherit'} />}
                             rightComponent={
-                                <span style={{ color: Colors.red[500] }}>
+                                <span style={{ color: Colors.red[500], fontSize: 16 }}>
                                     <ListItemTag label={'monitored'} style={{ marginRight: 8 }} />
-                                    <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
-                                    <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
-                                    <ChannelValue fontSize={16} value={480} units={'V'} />
+                                    <ChannelValue value={480} units={'V'} />,{' '}
+                                    <ChannelValue value={480} units={'V'} />,{' '}
+                                    <ChannelValue value={480} units={'V'} />
                                 </span>
                             }
                         />
@@ -222,10 +215,10 @@ export const App = () => {
                             divider={'full'}
                             icon={<CurrentCircled color={'inherit'} />}
                             rightComponent={
-                                <span>
-                                    <ChannelValue fontSize={16} value={15} units={'A'} />,{' '}
-                                    <ChannelValue fontSize={16} value={14.9} units={'A'} />,{' '}
-                                    <ChannelValue fontSize={16} value={15} units={'A'} />
+                                <span style={{fontSize: 16}}>
+                                    <ChannelValue value={15} units={'A'} />,{' '}
+                                    <ChannelValue value={14.9} units={'A'} />,{' '}
+                                    <ChannelValue value={15} units={'A'} />
                                 </span>
                             }
                         />
@@ -252,7 +245,7 @@ export const App = () => {
                                         }}
                                     />
                                     <ChannelValue
-                                        fontSize={16}
+                                        style={{fontSize: 16}}
                                         icon={<Trend htmlColor={Colors.red[500]} />}
                                         value={68}
                                         units={'°F'}

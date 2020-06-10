@@ -1,5 +1,10 @@
 # Change Log
 
+## v5.0.0
+
+**Breaking Changes:**
+-   Removed `fontSize` prop from `<ChannelValue>` and `<Hero>` components. You can apply a font size directly through the style prop now: `<ChannelValue style={{fontSize: 24}}/>`
+
 ## v4.0.1
 
 -   Themes updated to use [@pxblue/colors](https://www.npmjs.com/package/@pxblue/colors) version 3.0.0.

@@ -6,9 +6,6 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 const normalizeIconSize = (size: number): number => Math.max(10, size);
-const normalizeFontSize = (size: FontSize): string => (size === 'small' ? '1rem' : '1.25rem');
-
-type FontSize = 'normal' | 'small';
 
 export type HeroClasses = {
     root?: string;
@@ -19,7 +16,6 @@ export type HeroClasses = {
 
 export type HeroProps = HTMLAttributes<HTMLDivElement> & {
     classes?: HeroClasses;
-    fontSize?: FontSize;
     icon: string | JSX.Element;
     iconBackgroundColor?: string;
     iconSize?: number;
@@ -68,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
             lineHeight: 1.2,
             maxWidth: '100%',
             overflow: 'hidden',
-            fontSize: (props: HeroProps): string => normalizeFontSize(props.fontSize),
+            fontSize: '1.25rem',
         },
         label: {
             fontSize: 'inherit',
@@ -94,8 +90,6 @@ export const Hero = (props: HeroProps): JSX.Element => {
         valueIcon,
         units,
         // leaving those here to allow prop transferring
-        /* eslint-disable @typescript-eslint/no-unused-vars */
-        fontSize,
         iconBackgroundColor,
         iconSize,
         /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -124,7 +118,6 @@ Hero.propType = {
         icon: PropTypes.string,
         labels: PropTypes.string,
     }),
-    fontSize: PropTypes.oneOf(['normal', 'small']),
     icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     iconBackgroundColor: PropTypes.string,
     iconSize: PropTypes.number,
@@ -135,7 +128,6 @@ Hero.propType = {
 };
 Hero.defaultProps = {
     classes: {},
-    fontSize: 'normal',
     iconBackgroundColor: 'transparent',
     iconSize: 36,
 };
