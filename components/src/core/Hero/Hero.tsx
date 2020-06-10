@@ -90,9 +90,8 @@ export const Hero = (props: HeroProps): JSX.Element => {
         valueIcon,
         units,
         // leaving those here to allow prop transferring
-        iconBackgroundColor,
-        iconSize,
-        /* eslint-disable @typescript-eslint/no-unused-vars */
+        iconBackgroundColor /* eslint-disable-line @typescript-eslint/no-unused-vars */,
+        iconSize /* eslint-disable-line @typescript-eslint/no-unused-vars */,
         ...otherDivProps
     } = props;
 

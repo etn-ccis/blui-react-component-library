@@ -14,9 +14,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const icon = boolean('Show Icon', true) ? <Trend htmlColor={iconColor} /> : undefined;
     const prefix = boolean('prefix', false);
 
-    return (
-        <ChannelValue value={value} units={units} color={textColor} icon={icon} prefix={prefix} />
-    );
+    return <ChannelValue value={value} units={units} color={textColor} icon={icon} prefix={prefix} />;
 };
 
 withFullConfig.story = { name: WITH_FULL_CONFIG_STORY_NAME };
