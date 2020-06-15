@@ -66,6 +66,11 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: Lint
+          command: |
+            cd demos/storybook
+            yarn lint
+      - run:
           name: Build Storybook
           command: |
             cp -r ./dist/. ./demos/storybook/node_modules/@pxblue/react-components
@@ -87,11 +92,6 @@ jobs:
             yarn build-storybook
             cd storybook-static
             touch .nojekyll
-      - run:
-          name: Lint
-          command: |
-            cd demos/storybook
-            yarn lint
       - persist_to_workspace:
           root: .
           paths:
