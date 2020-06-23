@@ -22,6 +22,9 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                     step: 50,
                 })}
                 variant={select('variant', ['permanent', 'persistent', 'temporary'], 'permanent')}
+                ModalProps={{
+                    disableEnforceFocus: true,
+                }}
             >
                 <DrawerHeader
                     icon={<MenuIcon />}
