@@ -1,5 +1,5 @@
-import { Dashboard, Menu, Toc } from '@material-ui/icons';
-import { NavItem, Spacer } from '@pxblue/react-components';
+import { Menu } from '@material-ui/icons';
+import { Spacer } from '@pxblue/react-components';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
 import { boolean, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';

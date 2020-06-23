@@ -29,7 +29,7 @@ export const navGroupItems1: NavItem[] = [
     },
 ];
 
-export const navGroupItems2:NavItem[] = [
+export const navGroupItems2: NavItem[] = [
     {
         title: 'Overview',
         itemID: '2-1',
