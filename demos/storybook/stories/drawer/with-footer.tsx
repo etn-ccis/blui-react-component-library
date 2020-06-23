@@ -6,7 +6,7 @@ import { boolean, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { DrawerStoryContext } from './util';
-import { navGroupItems2 } from './with-multiple-DrawerNavGroups';
+import { navGroupItems2 } from './with-basic-config';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
 
@@ -14,7 +14,7 @@ export const withFooter = (context: DrawerStoryContext): StoryFnReactReturnType 
     <Drawer open={boolean('Drawer.open', true)}>
         <DrawerHeader icon={<Menu />} title={'Footer Example'} />
         <DrawerBody>
-            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems2(context)} />
+            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems2} />
         </DrawerBody>
 
         <DrawerFooter backgroundColor={color('DrawerFooter.backgroundColor', Colors.white[50])}>

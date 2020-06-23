@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
 import { addClickEvents, DrawerState } from './util';
-import { navGroupItems1 } from './with-basic-config';
+import { navGroupItems1, navGroupItems2 } from './with-basic-config';
 import { withA11y } from '@storybook/addon-a11y';
 
 const alignDrawer = (storyFn: any): JSX.Element => (
@@ -19,6 +19,7 @@ const wrapStore = (storyFn: any): JSX.Element => (
     <State store={store}>
         {(state): ReactNode[] => {
             addClickEvents(store, navGroupItems1);
+            addClickEvents(store, navGroupItems2);
             return storyFn({ store, state });
         }}
     </State>
