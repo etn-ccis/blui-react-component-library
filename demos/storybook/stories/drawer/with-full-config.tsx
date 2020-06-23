@@ -297,6 +297,9 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             titleColor={drawerKnobs.titleColor}
             variant={drawerKnobs.variant}
             width={drawerKnobs.width}
+            ModalProps={{
+                disableEnforceFocus: true,
+            }}
         >
             <DrawerHeader
                 backgroundColor={headerKnobs.backgroundColor}
