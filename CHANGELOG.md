@@ -2,7 +2,7 @@
 
 ## V4.0.2
 
-- Add `info` prop to InfoListItem to support a third line of text.
+- Add `info` prop to `<InfoListItem>` to support a third line of text.
 
 ## v4.0.1
 
