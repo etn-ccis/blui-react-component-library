@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
@@ -15,9 +15,9 @@ export type EmptyStateClasses = {
 export type EmptyStateProps = HTMLAttributes<HTMLDivElement> & {
     actions?: JSX.Element;
     classes?: EmptyStateClasses;
-    description?: string;
+    description?: ReactNode;
     icon: JSX.Element;
-    title: string;
+    title: ReactNode;
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -69,9 +69,10 @@ EmptyState.propTypes = {
         description: PropTypes.string,
         actions: PropTypes.string,
     }),
-    description: PropTypes.string,
+    description: PropTypes.node,
     icon: PropTypes.element.isRequired,
-    title: PropTypes.string.isRequired,
+    //  @ts-ignore should be node but typescript throws an error here
+    title: PropTypes.node.isRequired,
 };
 EmptyState.defaultProps = {
     classes: {},
