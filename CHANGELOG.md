@@ -2,7 +2,7 @@
 
 ## V4.0.2
 
-- Change title and description types from `string` to `ReactNode`.
+- Updated several prop types to `ReactNode` to support wider range of input values.
 
 ## v4.0.1
 
