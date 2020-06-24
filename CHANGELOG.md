@@ -1,5 +1,9 @@
 # Change Log
 
+## V4.0.2
+
+- Add `info` prop to InfoListItem to support a third line of text.
+
 ## v4.0.1
 
 -   Themes updated to use [@pxblue/colors](https://www.npmjs.com/package/@pxblue/colors) version 3.0.0.

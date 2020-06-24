@@ -36,6 +36,7 @@ export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & 
     statusColor?: string;
     subtitle?: string | Array<string | JSX.Element>;
     subtitleSeparator?: string;
+    info?: string | Array<string | JSX.Element>;
     title: React.ReactNode;
     wrapSubtitle?: boolean;
     wrapTitle?: boolean;
@@ -56,6 +57,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         ripple,
         subtitle,
         subtitleSeparator,
+        info,
         title,
         wrapSubtitle,
         wrapTitle,
@@ -117,6 +119,20 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         return withKeys(separate(renderableSubtitleParts, () => interpunct()));
     };
 
+    const getInfo = (): string | null => {
+        if (!info) {
+            return null;
+        }
+        if (typeof info === 'string') {
+            return info;
+        }
+
+        const infoParts = Array.isArray(info) ? [...info] : [info];
+        const renderableInfoParts = infoParts.splice(0, MAX_SUBTITLE_ELEMENTS);
+
+        return withKeys(separate(renderableInfoParts, () => interpunct()));
+    };
+
     const hasRipple = button === undefined ? (props.onClick && ripple ? true : undefined) : button ? true : undefined;
 
     return (
@@ -129,7 +145,12 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
             <ListItemText
                 primary={title}
                 className={combine('listItemText')}
-                secondary={getSubtitle()}
+                secondary={
+                    <>
+                        <Typography variant={'body2'}>{getSubtitle()}</Typography>
+                        <Typography variant={'body2'}>{getInfo()}</Typography>
+                    </>
+                }
                 primaryTypographyProps={{
                     noWrap: !wrapTitle,
                     variant: 'body1',
@@ -174,6 +195,10 @@ InfoListItem.propTypes = {
         PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
     ]),
     subtitleSeparator: PropTypes.string,
+    info: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
+    ]),
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     wrapSubtitle: PropTypes.bool,
     wrapTitle: PropTypes.bool,
