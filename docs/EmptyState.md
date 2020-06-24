@@ -27,8 +27,8 @@ import { EmptyState } from '@pxblue/react-components';
 | actions     | Additional components to render below | `React.Component` | no       |         |
 | classes     | Style overrides                       | `StyleRules`      | no       |         |
 | icon        | The primary icon                      | `React.Component` | yes      |         |
-| description | The secondary text to display         | `string`          | no       |         |
-| title       | The main text to display              | `string`          | yes      |         |
+| description | The secondary text to display         | `ReactNode`       | no       |         |
+| title       | The main text to display              | `ReactNode`       | yes      |         |
 
 </div>
 
