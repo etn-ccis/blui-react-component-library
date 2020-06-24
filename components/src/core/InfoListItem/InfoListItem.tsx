@@ -165,8 +165,8 @@ InfoListItem.propTypes = {
     hidePadding: PropTypes.bool,
     icon: PropTypes.element,
     iconColor: PropTypes.string,
-    leftComponent: PropTypes.element,
-    rightComponent: PropTypes.element,
+    leftComponent: PropTypes.node,
+    rightComponent: PropTypes.node,
     statusColor: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     subtitle: PropTypes.oneOfType([
@@ -174,7 +174,7 @@ InfoListItem.propTypes = {
         PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
     ]),
     subtitleSeparator: PropTypes.string,
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    title: PropTypes.node.isRequired,
     wrapSubtitle: PropTypes.bool,
     wrapTitle: PropTypes.bool,
 };

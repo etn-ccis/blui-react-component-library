@@ -125,7 +125,7 @@ Hero.propTypes = {
         labels: PropTypes.string,
     }),
     fontSize: PropTypes.oneOf(['normal', 'small']),
-    icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    icon: PropTypes.node.isRequired,
     iconBackgroundColor: PropTypes.string,
     iconSize: PropTypes.number,
     label: PropTypes.string.isRequired,

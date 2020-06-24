@@ -182,9 +182,8 @@ export const App = () => {
                             divider={'full'}
                             statusColor={Colors.green[500]}
                             subtitleSeparator={'/'}
-                            icon={'X'}
-                            leftComponent={'Hello'}
-                            rightComponent={'A'}
+                            icon={<Leaf color={'inherit'} />}
+                            rightComponent={<ChannelValue fontSize={16} value={'Online, ESS+'} />}
                         />
                         <InfoListItem
                             title={'Input Voltage'}

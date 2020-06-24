@@ -88,7 +88,6 @@ export const NavigationDrawer = (props) => {
                                 navigate(0);
                                 if (xsDown) setOpen(false);
                             },
-                            rightComponent: 'A',
                         },
                         {
                             title: titleList[1],
