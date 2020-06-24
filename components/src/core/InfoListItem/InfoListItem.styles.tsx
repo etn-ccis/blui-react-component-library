@@ -6,9 +6,12 @@ import { InfoListItemProps } from './InfoListItem';
 export type InfoListItemClasses = {
     root?: string;
     avatar?: string;
+    divider?: string;
     icon?: string;
+    listItemText?: string;
     rightComponent?: string;
     separator?: string;
+    statusStripe?: string;
     subtitle?: string;
     title?: string;
 };

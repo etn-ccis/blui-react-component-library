@@ -122,13 +122,13 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     return (
         // @ts-ignore
         <ListItem button={hasRipple} className={combine('root')} {...otherListItemProps}>
-            <div className={defaultClasses.statusStripe} />
-            {divider && <Divider className={defaultClasses.divider} />}
+            <div className={combine('statusStripe')} />
+            {divider && <Divider className={combine('divider')} />}
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}
             <ListItemText
                 primary={title}
-                className={defaultClasses.listItemText}
+                className={combine('listItemText')}
                 secondary={getSubtitle()}
                 primaryTypographyProps={{
                     noWrap: !wrapTitle,
