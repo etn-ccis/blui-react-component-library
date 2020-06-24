@@ -133,7 +133,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     );
 
     /* DrawerHeader needs wrapped with key div to avoid ref warning on FC. */
-    const printHeader = useCallback((): JSX.Element => {
+    const printHeader = useCallback((): JSX.Element | undefined => {
         if (menuTitle) {
             const nonClickableAvatar = formatAvatar(false);
             return (

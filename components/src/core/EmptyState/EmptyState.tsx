@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
@@ -13,10 +13,10 @@ export type EmptyStateClasses = {
 };
 
 export type EmptyStateProps = HTMLAttributes<HTMLDivElement> & {
-    actions?: JSX.Element;
+    actions?: ReactNode;
     classes?: EmptyStateClasses;
     description?: string;
-    icon: JSX.Element;
+    icon: ReactNode;
     title: string;
 };
 

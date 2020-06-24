@@ -44,13 +44,13 @@ import { Hero } from '@pxblue/react-components';
 | ------------------- | --------------------------------------- | ----------------------------- | -------- | ------------- |
 | classes             | Style overrides                         | `StyleRules`                  | no       |               |
 | fontSize            | The text size for the value line        | `'normal'` \| `'small'`       | no       | 'normal'      |
-| icon                | The primary icon                        | `React.Component` \| `string` | yes      |               |
+| icon                | The primary icon                        | `HeroClasses`                 | yes      |               |
 | iconBackgroundColor | The color used behind the primary icon  | `string`                      | no       | 'transparent' |
 | iconSize            | The size of the primary icon (min 10px) | `number`                      | no       | 36            |
 | label               | The text shown below the `ChannelValue` | `string`                      | yes      |               |
 | units               | Text to show after the value            | `string`                      | no       |               |
 | value               | The value for the channel               | `string` \| `number`          | no       |               |
-| valueIcon           | The inline icon with the value          | `React.Component`             | no       |               |
+| valueIcon           | The inline icon with the value          | `JSX.Element`                 | no       |               |
 
 </div>
 
@@ -89,10 +89,11 @@ import Hero from '@pxblue/react-components/core/Hero';
 
 <div style="overflow: auto;">
 
-| Prop Name | Description                        | Type      | Required | Default |
-| --------- | ---------------------------------- | --------- | -------- | ------- |
-| divider   | Whether to show the line separator | `boolean` | no       | false   |
-| limit     | Max number of children to display  | `number`  | no       | 4       |
+| Prop Name | Description                        | Type                | Required | Default |
+| --------- | ---------------------------------- | ------------------- | -------- | ------- |
+| classes   | Style overrides                    | `HeroBannerClasses` | no       |         |
+| divider   | Whether to show the line separator | `boolean`           | no       | false   |
+| limit     | Max number of children to display  | `number`            | no       | 4       |
 
 </div>
 

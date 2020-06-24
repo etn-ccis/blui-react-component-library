@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const ListItemTag: React.FC<ListItemTagProps> = (props: ListItemTagProps): JSX.Element => {
+export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
     const {
         classes: userClasses,
         label,

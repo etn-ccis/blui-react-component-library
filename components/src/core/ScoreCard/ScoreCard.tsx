@@ -18,7 +18,7 @@ export type ScoreCardClasses = {
     headerSubtitle?: string;
 };
 
-export type ScoreCordProps = CardProps & {
+export type ScoreCardProps = CardProps & {
     actionItems?: JSX.Element[];
     actionLimit?: number;
     actionRow?: JSX.Element;
@@ -33,7 +33,7 @@ export type ScoreCordProps = CardProps & {
     headerSubtitle?: string | JSX.Element;
 };
 
-const fontColor = (props: ScoreCordProps): string => props.headerFontColor || Colors.white[50];
+const fontColor = (props: ScoreCardProps): string => props.headerFontColor || Colors.white[50];
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
             height: 100,
             overflow: 'hidden',
             position: 'relative',
-            backgroundColor: (props: ScoreCordProps): string => props.headerColor || theme.palette.primary.main,
+            backgroundColor: (props: ScoreCardProps): string => props.headerColor || theme.palette.primary.main,
             color: fontColor,
         },
         headerContent: {
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme: Theme) =>
             height: '100%',
             opacity: 0.3,
             backgroundPosition: 'center',
-            backgroundImage: (props: ScoreCordProps): string => `url(${props.headerBackgroundImage})`,
+            backgroundImage: (props: ScoreCardProps): string => `url(${props.headerBackgroundImage})`,
         },
         content: {
             display: 'flex',
@@ -94,8 +94,8 @@ const useStyles = makeStyles((theme: Theme) =>
             flex: '0 0 auto',
             marginRight: 16,
             marginLeft: 16,
-            alignSelf: (props: ScoreCordProps): string => (props.badgeOffset !== 0 ? 'flex-start' : 'center'),
-            marginTop: (props: ScoreCordProps): number => props.badgeOffset,
+            alignSelf: (props: ScoreCardProps): string => (props.badgeOffset !== 0 ? 'flex-start' : 'center'),
+            marginTop: (props: ScoreCardProps): number => props.badgeOffset,
         },
         actionItems: {
             marginLeft: theme.spacing(1.5),
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
+export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
     const defaultClasses = useStyles(props);
     const {
         actionLimit,

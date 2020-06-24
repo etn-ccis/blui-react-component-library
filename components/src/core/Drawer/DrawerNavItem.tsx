@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -23,7 +23,7 @@ export type NavItem = {
     onClick?: (e?: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
 
     // component to be rendered on the right next to the expandIcon
-    rightComponent?: JSX.Element;
+    rightComponent?: ReactNode;
 
     // Status stripe color
     statusColor?: string;

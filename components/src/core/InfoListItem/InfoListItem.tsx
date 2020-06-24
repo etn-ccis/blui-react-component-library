@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
     Avatar,
     Divider,
@@ -30,13 +30,13 @@ export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & 
     hidePadding?: boolean;
     icon?: JSX.Element;
     iconColor?: string;
-    leftComponent?: JSX.Element;
-    rightComponent?: JSX.Element;
+    leftComponent?: ReactNode;
+    rightComponent?: ReactNode;
     ripple?: boolean;
     statusColor?: string;
     subtitle?: string | Array<string | JSX.Element>;
     subtitleSeparator?: string;
-    title: React.ReactNode;
+    title: ReactNode;
     wrapSubtitle?: boolean;
     wrapTitle?: boolean;
 };
