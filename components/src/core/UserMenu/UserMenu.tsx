@@ -176,7 +176,10 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         [menuGroups, defaultClasses]
     );
 
-    const printMenu = (): JSX.Element[] => [printHeader()].concat(printMenuItems());
+    const printMenu = useCallback((): JSX.Element[] => [printHeader()].concat(printMenuItems()), [
+        printHeader,
+        printMenuItems,
+    ]);
 
     const formatMenu = useCallback((): JSX.Element => {
         /* If the user provides a menu, provide default props. */

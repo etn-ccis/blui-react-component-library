@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -104,42 +104,48 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
         subtitle,
         title,
         titleContent,
-        // leaving those here to allow prop transferring
+        // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
         backgroundOpacity,
         fontColor,
-        /* eslint-disable @typescript-eslint/no-unused-vars */
+        /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherToolbarProps
     } = props;
 
-    const getHeaderContent = (): ReactNode =>
-        titleContent || (
-            <div className={clsx(defaultClasses.content, classes.content)}>
-                <Typography
-                    noWrap
-                    variant={'h6'}
-                    className={clsx(defaultClasses.title, classes.title)}
-                    data-test={'drawer-header-title'}
-                >
-                    {title}
-                </Typography>
-
-                {subtitle && (
+    const getHeaderContent = useCallback(
+        (): ReactNode =>
+            titleContent || (
+                <div className={clsx(defaultClasses.content, classes.content)}>
                     <Typography
                         noWrap
-                        variant={'subtitle1'}
-                        className={clsx(defaultClasses.subtitle, classes.subtitle)}
-                        data-test={'drawer-header-subtitle'}
+                        variant={'h6'}
+                        className={clsx(defaultClasses.title, classes.title)}
+                        data-test={'drawer-header-title'}
                     >
-                        {subtitle}
+                        {title}
                     </Typography>
-                )}
-            </div>
-        );
 
-    const getBackgroundImage = (): JSX.Element | null =>
-        backgroundImage ? <div className={clsx(defaultClasses.background, classes.background)} /> : null;
+                    {subtitle && (
+                        <Typography
+                            noWrap
+                            variant={'subtitle1'}
+                            className={clsx(defaultClasses.subtitle, classes.subtitle)}
+                            data-test={'drawer-header-subtitle'}
+                        >
+                            {subtitle}
+                        </Typography>
+                    )}
+                </div>
+            ),
+        [defaultClasses, classes, title, subtitle, titleContent]
+    );
+
+    const getBackgroundImage = useCallback(
+        (): JSX.Element | null =>
+            backgroundImage ? <div className={clsx(defaultClasses.background, classes.background)} /> : null,
+        [backgroundImage, defaultClasses, classes]
+    );
 
     return (
         <>

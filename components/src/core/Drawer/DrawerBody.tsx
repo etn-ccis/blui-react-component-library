@@ -33,16 +33,14 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
     const {
         classes,
         drawerOpen,
-        // leaving those here to allow prop transferring
-        /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
-        // from the shared props
         activeItem,
         activeItemBackgroundColor,
         activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
         chevron,
+        children: bodyChildren,
         collapseIcon,
         divider,
         expandIcon,
@@ -55,10 +53,11 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
         onItemSelect,
         ripple,
         titleColor,
-        /* eslint-disable @typescript-eslint/no-unused-vars */
         ...otherDivProps
     } = bodyProps;
-    const children = React.Children.toArray(bodyProps.children);
+
+    const children = React.Children.toArray(bodyChildren);
+
     return (
         <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
             {children.map((child: any, index: number) => {
@@ -75,34 +74,28 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
                     <DrawerNavGroup
                         {...groupProps}
                         key={`NavGroup_${index}`}
-                        activeItem={groupProps.activeItem || bodyProps.activeItem}
-                        activeItemBackgroundColor={
-                            groupProps.activeItemBackgroundColor || bodyProps.activeItemBackgroundColor
-                        }
-                        activeItemFontColor={groupProps.activeItemFontColor || bodyProps.activeItemFontColor}
-                        activeItemIconColor={groupProps.activeItemIconColor || bodyProps.activeItemIconColor}
-                        activeItemBackgroundShape={
-                            groupProps.activeItemBackgroundShape || bodyProps.activeItemBackgroundShape
-                        }
-                        backgroundColor={bodyProps.backgroundColor}
-                        chevron={groupProps.chevron === undefined ? bodyProps.chevron : groupProps.chevron}
-                        collapseIcon={groupProps.collapseIcon || bodyProps.collapseIcon}
-                        divider={groupProps.divider === undefined ? bodyProps.divider : groupProps.divider}
-                        expandIcon={groupProps.expandIcon || bodyProps.expandIcon}
-                        hidePadding={
-                            groupProps.hidePadding === undefined ? bodyProps.hidePadding : groupProps.hidePadding
-                        }
-                        itemFontColor={groupProps.itemFontColor || bodyProps.itemFontColor}
-                        itemIconColor={groupProps.itemIconColor || bodyProps.itemIconColor}
-                        InfoListItemProps={groupProps.InfoListItemProps || bodyProps.InfoListItemProps}
+                        activeItem={groupProps.activeItem || activeItem}
+                        activeItemBackgroundColor={groupProps.activeItemBackgroundColor || activeItemBackgroundColor}
+                        activeItemFontColor={groupProps.activeItemFontColor || activeItemFontColor}
+                        activeItemIconColor={groupProps.activeItemIconColor || activeItemIconColor}
+                        activeItemBackgroundShape={groupProps.activeItemBackgroundShape || activeItemBackgroundShape}
+                        backgroundColor={backgroundColor}
+                        chevron={groupProps.chevron === undefined ? chevron : groupProps.chevron}
+                        collapseIcon={groupProps.collapseIcon || collapseIcon}
+                        divider={groupProps.divider === undefined ? divider : groupProps.divider}
+                        expandIcon={groupProps.expandIcon || expandIcon}
+                        hidePadding={groupProps.hidePadding === undefined ? hidePadding : groupProps.hidePadding}
+                        itemFontColor={groupProps.itemFontColor || itemFontColor}
+                        itemIconColor={groupProps.itemIconColor || itemIconColor}
+                        InfoListItemProps={groupProps.InfoListItemProps || InfoListItemProps}
                         nestedDivider={
-                            groupProps.nestedDivider === undefined ? bodyProps.nestedDivider : groupProps.nestedDivider
+                            groupProps.nestedDivider === undefined ? nestedDivider : groupProps.nestedDivider
                         }
-                        nestedBackgroundColor={groupProps.nestedBackgroundColor || bodyProps.nestedBackgroundColor}
-                        ripple={groupProps.ripple === undefined ? bodyProps.ripple : groupProps.ripple}
-                        onItemSelect={bodyProps.onItemSelect}
+                        nestedBackgroundColor={groupProps.nestedBackgroundColor || nestedBackgroundColor}
+                        ripple={groupProps.ripple === undefined ? ripple : groupProps.ripple}
+                        onItemSelect={onItemSelect}
                         drawerOpen={drawerOpen}
-                        titleColor={groupProps.titleColor || bodyProps.titleColor}
+                        titleColor={groupProps.titleColor || titleColor}
                     />
                 );
             })}

@@ -93,12 +93,12 @@ export const Hero: React.FC<HeroProps> = (props) => {
         value,
         valueIcon,
         units,
-        // leaving those here to allow prop transferring
+        // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         fontSize,
         iconBackgroundColor,
         iconSize,
-        /* eslint-disable @typescript-eslint/no-unused-vars */
+        /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherDivProps
     } = props;
 
