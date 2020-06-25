@@ -76,7 +76,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             display: 'inline-block',
             lineHeight: 1.3,
             color: 'inherit',
-            margin: `0 ${theme.spacing(0.5)}`,
+            margin: `0 ${theme.spacing(0.5)}px`,
         },
         statusStripe: {
             position: 'absolute',

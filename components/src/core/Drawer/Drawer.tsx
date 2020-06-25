@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, ReactNode } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Drawer, DrawerProps } from '@material-ui/core';
 import { DrawerBodyProps } from './DrawerBody';
@@ -74,6 +74,16 @@ export type PXBlueDrawerInheritableProperties = {
     ripple?: boolean;
 };
 
+const findChildByType = (children: ReactNode, type: string): JSX.Element[] =>
+    React.Children.map(children, (child: any) => {
+        if (child && child.type) {
+            const name = child.type.displayName;
+            if (name && name.includes(type)) {
+                return child;
+            }
+        }
+    }) || [];
+
 // type shared by Drawer, DrawerBody, DrawerNavGroup
 // inheritable props but not for NestedNavItem
 export type PXBlueDrawerNavGroupInheritableProperties = {
@@ -131,88 +141,114 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     } = props;
 
     const variant = props.variant || 'persistent'; // to allow drawerLayout to override this
-
-    const isDrawerOpen = (): boolean => {
+    const isDrawerOpen = useCallback((): boolean => {
         if (variant === 'persistent') return hover || open;
         if (variant === 'permanent') return true;
         return open;
-    };
+    }, [variant, hover, open]);
 
-    const findChildByType = (type: string): JSX.Element[] =>
-        React.Children.map(props.children, (child: any) => {
-            if (child && child.type) {
-                const name = child.type.displayName;
-                if (name && name.includes(type)) {
-                    return child;
-                }
-            }
-        }) || [];
+    const getHeader = useCallback(
+        (): JSX.Element[] =>
+            findChildByType(props.children, 'DrawerHeader')
+                .slice(0, 1)
+                .map((child) => React.cloneElement(child)),
+        [props.children]
+    );
 
-    const getHeader = (): JSX.Element[] =>
-        findChildByType('DrawerHeader')
-            .slice(0, 1)
-            .map((child) => React.cloneElement(child));
+    const getSubHeader = useCallback(
+        (): JSX.Element[] =>
+            findChildByType(props.children, 'DrawerSubheader')
+                .slice(0, 1)
+                .map((child) => React.cloneElement(child, { drawerOpen: isDrawerOpen() })),
+        [isDrawerOpen, props.children]
+    );
 
-    const getSubHeader = (): JSX.Element[] =>
-        findChildByType('DrawerSubheader')
-            .slice(0, 1)
-            .map((child) => React.cloneElement(child, { drawerOpen: isDrawerOpen() }));
+    const getBody = useCallback(
+        (): JSX.Element[] =>
+            findChildByType(props.children, 'DrawerBody')
+                .slice(0, 1)
+                .map((child) =>
+                    React.cloneElement(child, {
+                        activeItem,
+                        activeItemBackgroundColor,
+                        activeItemFontColor,
+                        activeItemIconColor,
+                        activeItemBackgroundShape,
+                        chevron,
+                        collapseIcon,
+                        divider,
+                        expandIcon,
+                        hidePadding,
+                        InfoListItemProps,
+                        itemFontColor,
+                        itemIconColor,
+                        nestedBackgroundColor,
+                        nestedDivider,
+                        ripple,
+                        titleColor,
+                        drawerOpen: isDrawerOpen(),
+                        onItemSelect: () => {
+                            if (onItemSelect) {
+                                onItemSelect();
+                            }
+                            setHover(false);
+                        },
+                    } as DrawerBodyProps)
+                ),
+        [
+            activeItem,
+            activeItemBackgroundColor,
+            activeItemFontColor,
+            activeItemIconColor,
+            activeItemBackgroundShape,
+            chevron,
+            collapseIcon,
+            divider,
+            expandIcon,
+            hidePadding,
+            InfoListItemProps,
+            itemFontColor,
+            itemIconColor,
+            nestedBackgroundColor,
+            nestedDivider,
+            ripple,
+            titleColor,
+            isDrawerOpen,
+            onItemSelect,
+            setHover,
+            props.children,
+        ]
+    );
 
-    const getBody = (): JSX.Element[] =>
-        findChildByType('DrawerBody')
-            .slice(0, 1)
-            .map((child) =>
-                React.cloneElement(child, {
-                    activeItem,
-                    activeItemBackgroundColor,
-                    activeItemFontColor,
-                    activeItemIconColor,
-                    activeItemBackgroundShape,
-                    chevron,
-                    collapseIcon,
-                    divider,
-                    expandIcon,
-                    hidePadding,
-                    InfoListItemProps,
-                    itemFontColor,
-                    itemIconColor,
-                    nestedBackgroundColor,
-                    nestedDivider,
-                    ripple,
-                    titleColor,
-                    drawerOpen: isDrawerOpen(),
-                    onItemSelect: () => {
-                        if (onItemSelect) {
-                            onItemSelect();
-                        }
+    const getFooter = useCallback(
+        (): JSX.Element[] =>
+            findChildByType(props.children, 'DrawerFooter')
+                .slice(0, 1)
+                .map((child) => React.cloneElement(child, { drawerOpen: isDrawerOpen() })),
+        [isDrawerOpen, props.children]
+    );
+
+    const getDrawerContents = useCallback(
+        (): JSX.Element => (
+            <>
+                {getHeader()}
+                <div
+                    style={{ flexDirection: 'column', flex: '1 1 0px', display: 'flex' }}
+                    onMouseEnter={(): void => {
+                        hoverDelay = setTimeout(() => setHover(true), 500);
+                    }}
+                    onMouseLeave={(): void => {
+                        clearTimeout(hoverDelay);
                         setHover(false);
-                    },
-                } as DrawerBodyProps)
-            );
-
-    const getFooter = (): JSX.Element[] =>
-        findChildByType('DrawerFooter')
-            .slice(0, 1)
-            .map((child) => React.cloneElement(child, { drawerOpen: isDrawerOpen() }));
-
-    const getDrawerContents = (): JSX.Element => (
-        <>
-            {getHeader()}
-            <div
-                style={{ flexDirection: 'column', flex: '1 1 0px', display: 'flex' }}
-                onMouseEnter={(): void => {
-                    hoverDelay = setTimeout(() => setHover(true), 500);
-                }}
-                onMouseLeave={(): void => {
-                    clearTimeout(hoverDelay);
-                    setHover(false);
-                }}
-            >
-                {getSubHeader()}
-                {getBody()}
-                {getFooter()}
-            </div>
-        </>
+                    }}
+                >
+                    {getSubHeader()}
+                    {getBody()}
+                    {getFooter()}
+                </div>
+            </>
+        ),
+        [setHover, hoverDelay, getSubHeader, getBody, getFooter]
     );
 
     const defaultContentWidth = theme.spacing(45);

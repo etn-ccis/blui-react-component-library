@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
+const findID = (item: NavItem | NestedNavItem, activeItem: string): boolean => {
     // if leaf node, return
     if (!item.items) {
         return item.itemID === activeItem;
@@ -91,7 +91,7 @@ function findID(item: NavItem | NestedNavItem, activeItem: string): boolean {
 
     // no active items found, return false
     return false;
-}
+};
 
 export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
     const defaultClasses = useStyles(props);
@@ -103,11 +103,10 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         title,
         titleColor = theme.palette.text.primary,
         titleContent,
-        // leaving those here to allow prop transferring
+        activeItem,
+        // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
-        // from the shared props
-        activeItem,
         activeItemBackgroundColor,
         activeItemBackgroundShape,
         activeItemFontColor,
@@ -124,51 +123,11 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         nestedDivider,
         onItemSelect,
         ripple,
-        /* eslint-disable @typescript-eslint/no-unused-vars */
+        /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherListProps
     } = props;
 
     const open = drawerOpen !== undefined ? drawerOpen : true; // so that DrawerNavGroup can be placed in a <Card />
-
-    // recursively loop through item list and the subItems
-    function getDrawerItemList(item: NavItem | NestedNavItem, depth: number): JSX.Element {
-        const [expanded, setExpanded] = useState(findID(item, props.activeItem));
-
-        if (item.items) {
-            // if there are more sub pages, add the bucket header and recurse on this function
-            const collapsibleComponent = (
-                <Collapse in={expanded && open !== false} key={`${item.title}_group_${depth}`}>
-                    <List className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)}>
-                        {item.items.map((subItem: NavItem) => getDrawerItemList(subItem, depth + 1))}
-                    </List>
-                </Collapse>
-            );
-
-            return (
-                <React.Fragment key={`${item.title}_Fragment_${depth}`}>
-                    <DrawerNavItem
-                        key={`${item.itemID}`}
-                        navItem={item}
-                        navGroupProps={props}
-                        depth={depth}
-                        expanded={expanded}
-                        expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
-                    />
-                    {collapsibleComponent}
-                </React.Fragment>
-            );
-        }
-        // Otherwise, we reached a leaf node. Return.
-        return (
-            <DrawerNavItem
-                key={`${item.itemID}`}
-                navItem={item}
-                navGroupProps={props}
-                depth={depth}
-                expanded={expanded}
-            />
-        );
-    }
 
     return (
         <List
@@ -195,7 +154,18 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
             {...otherListProps}
         >
             <div key={`${title}_title`}>{(title || titleContent) && <Divider />}</div>
-            {items.map((item: NavItem) => getDrawerItemList(item, 0))}
+            {items.map((item: NavItem, index: number) => (
+                <DrawerItemList
+                    key={`itemList_${index}`}
+                    item={item}
+                    depth={0}
+                    drawerOpen={open}
+                    defaultClasses={defaultClasses}
+                    classes={classes}
+                    groupProps={props}
+                    activeItem={activeItem}
+                />
+            ))}
         </List>
     );
 };
@@ -232,4 +202,69 @@ DrawerNavGroup.propTypes = {
 
 DrawerNavGroup.defaultProps = {
     classes: {},
+};
+
+/**
+ * DrawerItemList sub-component
+ */
+export type DrawerItemListProps = {
+    item: NavItem | NestedNavItem;
+    depth: number;
+    drawerOpen: boolean;
+    activeItem: string;
+    defaultClasses: Record<'groupHeader' | 'subheader' | 'nestedListGroup' | 'listGroup', string>;
+    classes: DrawerNavGroupClasses;
+    groupProps: DrawerNavGroupProps;
+};
+
+// recursively loop through item list and the subItems
+const DrawerItemList: React.FC<DrawerItemListProps> = (props) => {
+    const { item, depth, drawerOpen, activeItem, defaultClasses, classes, groupProps } = props;
+    const [expanded, setExpanded] = useState(findID(item, activeItem));
+
+    if (item.items) {
+        // if there are more sub pages, add the bucket header and recurse on this function
+        const collapsibleComponent = (
+            <Collapse in={expanded && drawerOpen !== false} key={`${item.title}_group_${depth}`}>
+                <List className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)}>
+                    {item.items.map((subItem: NavItem, index: number) => (
+                        <DrawerItemList
+                            key={`itemList_${index}`}
+                            item={subItem}
+                            depth={depth + 1}
+                            drawerOpen={drawerOpen}
+                            defaultClasses={defaultClasses}
+                            classes={classes}
+                            groupProps={groupProps}
+                            activeItem={activeItem}
+                        />
+                    ))}
+                </List>
+            </Collapse>
+        );
+
+        return (
+            <React.Fragment key={`${item.title}_Fragment_${depth}`}>
+                <DrawerNavItem
+                    key={`${item.itemID}`}
+                    navItem={item}
+                    navGroupProps={groupProps}
+                    depth={depth}
+                    expanded={expanded}
+                    expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
+                />
+                {collapsibleComponent}
+            </React.Fragment>
+        );
+    }
+    // Otherwise, we reached a leaf node. Return.
+    return (
+        <DrawerNavItem
+            key={`${item.itemID}`}
+            navItem={item}
+            navGroupProps={groupProps}
+            depth={depth}
+            expanded={expanded}
+        />
+    );
 };

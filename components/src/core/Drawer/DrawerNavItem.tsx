@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -155,20 +155,23 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
             : true;
 
     const hasAction = Boolean(onItemSelect || onClick || expandHandler);
-    const onClickAction = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
-        if (onItemSelect) {
-            onItemSelect();
-        }
-        if (onClick) {
-            onClick(e);
-        } else if (expandHandler) {
-            expandHandler();
-        }
-    };
+    const onClickAction = useCallback(
+        (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
+            if (onItemSelect) {
+                onItemSelect();
+            }
+            if (onClick) {
+                onClick(e);
+            } else if (expandHandler) {
+                expandHandler();
+            }
+        },
+        [onItemSelect, onClick, expandHandler]
+    );
 
     const rightComponent = navItem.rightComponent || (chevron && !items ? <ChevronRight /> : undefined);
 
-    function getActionComponent(): JSX.Element {
+    const getActionComponent = useCallback((): JSX.Element => {
         if (!items) {
             return null;
         }
@@ -187,7 +190,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                 {collapseIcon && expanded ? collapseIcon : expandIcon}
             </div>
         );
-    }
+    }, [items, expandHandler, classes, defaultClasses, collapseIcon, expanded, expandIcon]);
 
     const actionComponent = getActionComponent();
     const active = activeItem === itemID;

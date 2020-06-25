@@ -37,7 +37,7 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
     const {
         classes: userClasses,
         label,
-        // leaving those here to allow prop transferring
+        // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         fontColor,
         backgroundColor,

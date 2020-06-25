@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import {
     Avatar,
     Divider,
@@ -61,20 +61,22 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         title,
         wrapSubtitle,
         wrapTitle,
-        // leaving those here to allow prop transferring
+        // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
         fontColor,
         iconColor,
         statusColor,
-        /* eslint-disable @typescript-eslint/no-unused-vars */
+        /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherListItemProps
     } = props;
 
-    const combine = (className: keyof InfoListItemClasses): string =>
-        clsx(defaultClasses[className], classes[className]);
+    const combine = useCallback(
+        (className: keyof InfoListItemClasses): string => clsx(defaultClasses[className], classes[className]),
+        [defaultClasses, classes]
+    );
 
-    const getIcon = (): JSX.Element | undefined => {
+    const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon && avatar) {
             return (
                 <ListItemAvatar>
@@ -91,21 +93,26 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 </ListItemAvatar>
             );
         }
-    };
+    }, [icon, avatar, hidePadding, combine]);
 
-    const getRightComponent = (): JSX.Element | undefined => {
+    const getRightComponent = useCallback((): JSX.Element | undefined => {
         if (rightComponent) {
             return <div className={combine('rightComponent')}>{rightComponent}</div>;
         } else if (chevron) {
             return <Chevron color={'inherit'} role={'button'} className={combine('rightComponent')} />;
         }
-    };
+    }, [rightComponent, chevron, combine]);
 
-    const interpunct = (): JSX.Element => (
-        <Typography className={combine('separator')}>{subtitleSeparator || '\u00B7'}</Typography>
+    const getSeparator = useCallback(
+        (): JSX.Element => (
+            <Typography className={combine('separator')} component={'span'}>
+                {subtitleSeparator || '\u00B7'}
+            </Typography>
+        ),
+        [combine, subtitleSeparator]
     );
 
-    const getSubtitle = (): string | null => {
+    const getSubtitle = useCallback((): string | null => {
         if (!subtitle) {
             return null;
         }
@@ -116,10 +123,10 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
         const renderableSubtitleParts = subtitleParts.splice(0, MAX_SUBTITLE_ELEMENTS);
 
-        return withKeys(separate(renderableSubtitleParts, () => interpunct()));
-    };
+        return withKeys(separate(renderableSubtitleParts, () => getSeparator()));
+    }, [subtitle, getSeparator]);
 
-    const getInfo = (): string | null => {
+    const getInfo = useCallback((): string | null => {
         if (!info) {
             return null;
         }
@@ -130,8 +137,8 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         const infoParts = Array.isArray(info) ? [...info] : [info];
         const renderableInfoParts = infoParts.splice(0, MAX_SUBTITLE_ELEMENTS);
 
-        return withKeys(separate(renderableInfoParts, () => interpunct()));
-    };
+        return withKeys(separate(renderableInfoParts, () => getSeparator()));
+    }, [info, getSeparator]);
 
     const hasRipple = button === undefined ? (props.onClick && ripple ? true : undefined) : button ? true : undefined;
 
