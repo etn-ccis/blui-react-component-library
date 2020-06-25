@@ -2,7 +2,8 @@
 
 ## V4.0.2
 
-- Change title and description types from `string` to `ReactNode`.
+- Adds `info` prop to `<InfoListItem>` to support a third line of text.
+- Change title and description types from `string` to `ReactNode` for `<EmptyState>`.
 
 ## v4.0.1
 
