@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
     Avatar,
     Divider,
@@ -30,14 +30,14 @@ export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & 
     hidePadding?: boolean;
     icon?: JSX.Element;
     iconColor?: string;
-    leftComponent?: JSX.Element;
-    rightComponent?: JSX.Element;
+    info?: string | Array<string | JSX.Element>;
+    leftComponent?: ReactNode;
+    rightComponent?: ReactNode;
     ripple?: boolean;
     statusColor?: string;
     subtitle?: string | Array<string | JSX.Element>;
     subtitleSeparator?: string;
-    info?: string | Array<string | JSX.Element>;
-    title: React.ReactNode;
+    title: ReactNode;
     wrapSubtitle?: boolean;
     wrapTitle?: boolean;
 };
@@ -186,8 +186,12 @@ InfoListItem.propTypes = {
     hidePadding: PropTypes.bool,
     icon: PropTypes.element,
     iconColor: PropTypes.string,
-    leftComponent: PropTypes.element,
-    rightComponent: PropTypes.element,
+    info: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
+    ]),
+    leftComponent: PropTypes.node,
+    rightComponent: PropTypes.node,
     statusColor: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     subtitle: PropTypes.oneOfType([
@@ -195,11 +199,7 @@ InfoListItem.propTypes = {
         PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
     ]),
     subtitleSeparator: PropTypes.string,
-    info: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
-    ]),
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    title: PropTypes.node.isRequired,
     wrapSubtitle: PropTypes.bool,
     wrapTitle: PropTypes.bool,
 };

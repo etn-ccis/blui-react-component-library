@@ -1,7 +1,8 @@
-import React, { ReactNode, HTMLAttributes } from 'react';
+import React, { ReactElement, HTMLAttributes } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { DrawerComponentProps } from '../Drawer/Drawer';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-type DrawerLayoutClasses = {
+export type DrawerLayoutClasses = {
     root?: string;
     content?: string;
     drawer?: string;
@@ -34,7 +35,7 @@ type DrawerLayoutClasses = {
 export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> & {
     classes?: DrawerLayoutClasses;
     // Drawer component to be embedded
-    drawer: ReactNode;
+    drawer: ReactElement<DrawerComponentProps>;
 };
 
 export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {

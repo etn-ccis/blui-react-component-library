@@ -22,7 +22,7 @@ export type HeroBannerProps = HTMLAttributes<HTMLDivElement> & {
     limit?: number;
 };
 
-export const HeroBanner = (props: HeroBannerProps): JSX.Element => {
+export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
     const { classes, divider, limit, ...otherDivProps } = props;
     const defaultClasses = useStyles(props);
     const isArray = Array.isArray(props.children);
@@ -40,7 +40,7 @@ export const HeroBanner = (props: HeroBannerProps): JSX.Element => {
 };
 
 HeroBanner.displayName = 'HeroBanner';
-HeroBanner.propType = {
+HeroBanner.propTypes = {
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),

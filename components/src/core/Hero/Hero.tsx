@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { ChannelValue } from '../ChannelValue';
@@ -20,7 +20,7 @@ export type HeroClasses = {
 export type HeroProps = HTMLAttributes<HTMLDivElement> & {
     classes?: HeroClasses;
     fontSize?: FontSize;
-    icon: string | JSX.Element;
+    icon: ReactNode;
     iconBackgroundColor?: string;
     iconSize?: number;
     label: string;
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const Hero = (props: HeroProps): JSX.Element => {
+export const Hero: React.FC<HeroProps> = (props) => {
     const defaultClasses = useStyles(props);
     const {
         classes,
@@ -117,7 +117,7 @@ export const Hero = (props: HeroProps): JSX.Element => {
 };
 
 Hero.displayName = 'Hero';
-Hero.propType = {
+Hero.propTypes = {
     classes: PropTypes.shape({
         root: PropTypes.string,
         values: PropTypes.string,
@@ -125,7 +125,7 @@ Hero.propType = {
         labels: PropTypes.string,
     }),
     fontSize: PropTypes.oneOf(['normal', 'small']),
-    icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    icon: PropTypes.node.isRequired,
     iconBackgroundColor: PropTypes.string,
     iconSize: PropTypes.number,
     label: PropTypes.string.isRequired,

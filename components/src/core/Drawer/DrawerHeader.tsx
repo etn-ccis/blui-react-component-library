@@ -138,9 +138,8 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
             </div>
         );
 
-    const getBackgroundImage = (): ReactNode => (
-        <>{backgroundImage && <div className={clsx(defaultClasses.background, classes.background)} />}</>
-    );
+    const getBackgroundImage = (): JSX.Element | null =>
+        backgroundImage ? <div className={clsx(defaultClasses.background, classes.background)} /> : null;
 
     return (
         <>

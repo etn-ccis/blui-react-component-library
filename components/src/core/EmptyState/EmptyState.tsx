@@ -13,10 +13,10 @@ export type EmptyStateClasses = {
 };
 
 export type EmptyStateProps = HTMLAttributes<HTMLDivElement> & {
-    actions?: JSX.Element;
+    actions?: ReactNode;
     classes?: EmptyStateClasses;
     description?: ReactNode;
-    icon: JSX.Element;
+    icon: ReactNode;
     title: ReactNode;
 };
 
@@ -61,7 +61,7 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
 };
 EmptyState.displayName = 'EmptyState';
 EmptyState.propTypes = {
-    actions: PropTypes.element,
+    actions: PropTypes.node,
     classes: PropTypes.shape({
         root: PropTypes.string,
         icon: PropTypes.string,
@@ -70,7 +70,7 @@ EmptyState.propTypes = {
         actions: PropTypes.string,
     }),
     description: PropTypes.node,
-    icon: PropTypes.element.isRequired,
+    icon: PropTypes.node.isRequired,
     //  @ts-ignore should be node but typescript throws an error here
     title: PropTypes.node.isRequired,
 };
