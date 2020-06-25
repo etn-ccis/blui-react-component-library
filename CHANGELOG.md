@@ -2,7 +2,8 @@
 
 ## V4.0.2
 
-- Updated several prop types to `ReactNode` to support wider range of input values.
+- Updates several prop types to `ReactNode` to support wider range of input values.
+- Adds `info` prop to `<InfoListItem>` to support a third line of text.
 
 ## v4.0.1
 
