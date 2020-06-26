@@ -35,7 +35,8 @@
         "build-storybook": "build-storybook -s ../../docs/,./assets,./node_modules/typeface-open-sans/files",
         "lint": "eslint \"stories/**\"",
         "lint:fix": "eslint \"stories/**\" --fix",
-        "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write"
+        "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
+        "prettier:check": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check"
     },
     "browserslist": {
         "production": [
