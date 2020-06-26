@@ -16,6 +16,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
         <InfoListItem
             title={text('title', 'Info List Item')}
             subtitle={text('subtitle', 'with all customizable properties')}
+            info={text('info', 'more info...')}
             icon={boolean('Show Icon', true) ? <Device /> : undefined}
             hidePadding={boolean('hidePadding', false)}
             statusColor={color('statusColor', Colors.yellow[500])}
