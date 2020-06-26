@@ -21,6 +21,7 @@ jobs:
             - run:
                   name: Prettier Check
                   command: |
+                      cd components
                       yarn prettier:check
             - run:
                   name: Lint
@@ -69,6 +70,11 @@ jobs:
                   key: v2-dependencies-react-{{ checksum "demos/storybook/yarn.lock" }}
             - attach_workspace:
                   at: .
+            - run:
+                  name: Prettier Check
+                  command: |
+                      cd demos/storybook
+                      yarn prettier:check
             - run:
                   name: Lint
                   command: |
@@ -124,6 +130,11 @@ jobs:
                   key: v2-dependencies-react-{{ checksum "demos/showcase/yarn.lock" }}
             - attach_workspace:
                   at: .
+            - run:
+                  name: Prettier Check
+                  command: |
+                      cd demos/showcase
+                      yarn prettier:check
             - run:
                   name: Build Showcase
                   command: |
