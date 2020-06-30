@@ -48,6 +48,11 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
+    React.cloneElement(newIcon, {
+        style: Object.assign({}, newIcon.props.style, { display: 'block', fontSize: 'inherit' }),
+    });
+
 export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     const {
         classes,
@@ -55,11 +60,11 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         prefix,
         units,
         value,
-        // leaving those here to allow prop transferring
+        // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         color,
         fontSize,
-        /* eslint-disable @typescript-eslint/no-unused-vars */
+        /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherSpanProps
     } = props;
     const defaultClasses = useStyles(props);
@@ -81,11 +86,6 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         ),
         [units, classes, defaultClasses]
     );
-
-    const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
-        React.cloneElement(newIcon, {
-            style: Object.assign({}, newIcon.props.style, { display: 'block', fontSize: 'inherit' }),
-        });
 
     return (
         <span className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherSpanProps}>

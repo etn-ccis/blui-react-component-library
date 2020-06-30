@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import {
     Avatar,
     Divider,
@@ -30,13 +30,14 @@ export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & 
     hidePadding?: boolean;
     icon?: JSX.Element;
     iconColor?: string;
-    leftComponent?: JSX.Element;
-    rightComponent?: JSX.Element;
+    info?: string | Array<string | JSX.Element>;
+    leftComponent?: ReactNode;
+    rightComponent?: ReactNode;
     ripple?: boolean;
     statusColor?: string;
     subtitle?: string | Array<string | JSX.Element>;
     subtitleSeparator?: string;
-    title: React.ReactNode;
+    title: ReactNode;
     wrapSubtitle?: boolean;
     wrapTitle?: boolean;
 };
@@ -56,23 +57,26 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         ripple,
         subtitle,
         subtitleSeparator,
+        info,
         title,
         wrapSubtitle,
         wrapTitle,
-        // leaving those here to allow prop transferring
+        // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
         fontColor,
         iconColor,
         statusColor,
-        /* eslint-disable @typescript-eslint/no-unused-vars */
+        /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherListItemProps
     } = props;
 
-    const combine = (className: keyof InfoListItemClasses): string =>
-        clsx(defaultClasses[className], classes[className]);
+    const combine = useCallback(
+        (className: keyof InfoListItemClasses): string => clsx(defaultClasses[className], classes[className]),
+        [defaultClasses, classes]
+    );
 
-    const getIcon = (): JSX.Element | undefined => {
+    const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon && avatar) {
             return (
                 <ListItemAvatar>
@@ -89,21 +93,26 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 </ListItemAvatar>
             );
         }
-    };
+    }, [icon, avatar, hidePadding, combine]);
 
-    const getRightComponent = (): JSX.Element | undefined => {
+    const getRightComponent = useCallback((): JSX.Element | undefined => {
         if (rightComponent) {
             return <div className={combine('rightComponent')}>{rightComponent}</div>;
         } else if (chevron) {
             return <Chevron color={'inherit'} role={'button'} className={combine('rightComponent')} />;
         }
-    };
+    }, [rightComponent, chevron, combine]);
 
-    const interpunct = (): JSX.Element => (
-        <Typography className={combine('separator')}>{subtitleSeparator || '\u00B7'}</Typography>
+    const getSeparator = useCallback(
+        (): JSX.Element => (
+            <Typography className={combine('separator')} component={'span'}>
+                {subtitleSeparator || '\u00B7'}
+            </Typography>
+        ),
+        [combine, subtitleSeparator]
     );
 
-    const getSubtitle = (): string | null => {
+    const getSubtitle = useCallback((): string | null => {
         if (!subtitle) {
             return null;
         }
@@ -114,22 +123,41 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         const subtitleParts = Array.isArray(subtitle) ? [...subtitle] : [subtitle];
         const renderableSubtitleParts = subtitleParts.splice(0, MAX_SUBTITLE_ELEMENTS);
 
-        return withKeys(separate(renderableSubtitleParts, () => interpunct()));
-    };
+        return withKeys(separate(renderableSubtitleParts, () => getSeparator()));
+    }, [subtitle, getSeparator]);
+
+    const getInfo = useCallback((): string | null => {
+        if (!info) {
+            return null;
+        }
+        if (typeof info === 'string') {
+            return info;
+        }
+
+        const infoParts = Array.isArray(info) ? [...info] : [info];
+        const renderableInfoParts = infoParts.splice(0, MAX_SUBTITLE_ELEMENTS);
+
+        return withKeys(separate(renderableInfoParts, () => getSeparator()));
+    }, [info, getSeparator]);
 
     const hasRipple = button === undefined ? (props.onClick && ripple ? true : undefined) : button ? true : undefined;
 
     return (
         // @ts-ignore
         <ListItem button={hasRipple} className={combine('root')} {...otherListItemProps}>
-            <div className={defaultClasses.statusStripe} />
-            {divider && <Divider className={defaultClasses.divider} />}
+            <div className={combine('statusStripe')} />
+            {divider && <Divider className={combine('divider')} />}
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}
             <ListItemText
                 primary={title}
-                className={defaultClasses.listItemText}
-                secondary={getSubtitle()}
+                className={combine('listItemText')}
+                secondary={
+                    <>
+                        <Typography variant={'body2'}>{getSubtitle()}</Typography>
+                        <Typography variant={'body2'}>{getInfo()}</Typography>
+                    </>
+                }
                 primaryTypographyProps={{
                     noWrap: !wrapTitle,
                     variant: 'body1',
@@ -165,8 +193,12 @@ InfoListItem.propTypes = {
     hidePadding: PropTypes.bool,
     icon: PropTypes.element,
     iconColor: PropTypes.string,
-    leftComponent: PropTypes.element,
-    rightComponent: PropTypes.element,
+    info: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
+    ]),
+    leftComponent: PropTypes.node,
+    rightComponent: PropTypes.node,
     statusColor: PropTypes.string,
     style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     subtitle: PropTypes.oneOfType([
@@ -174,7 +206,7 @@ InfoListItem.propTypes = {
         PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
     ]),
     subtitleSeparator: PropTypes.string,
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    title: PropTypes.node.isRequired,
     wrapSubtitle: PropTypes.bool,
     wrapTitle: PropTypes.bool,
 };

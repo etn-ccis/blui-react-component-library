@@ -24,7 +24,7 @@ import { ListItemTag } from '@pxblue/react-components';
 
 </div>
 
-Any other props will be passed to the root element [**Material UI Typography**](https://material-ui.com/api/typography/).
+Any other props will be provided to the root element [**Material UI Typography**](https://material-ui.com/api/typography/).
 
 ### Classes
 

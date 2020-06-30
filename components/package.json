@@ -1,6 +1,6 @@
 {
     "name": "@pxblue/react-components",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "React components for PX Blue applications",
     "scripts": {
         "test": "jest src",
@@ -8,7 +8,8 @@
         "watch:storybook": "tsc --p tsconfig.lib.json --watch --outdir ../demos/storybook/node_modules/@pxblue/react-components",
         "lint": "eslint \"src/**/**.{tsx,ts}\"",
         "lint:fix": "eslint \"src/**/**.{tsx,ts}\" --fix",
-        "prettier": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write"
+        "prettier": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
+        "prettier:check": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check"
     },
     "prettier": "@pxblue/prettier-config",
     "dependencies": {
@@ -17,17 +18,17 @@
     },
     "devDependencies": {
         "@material-ui/core": "^4.0.0",
-        "@material-ui/icons": "^3.0.2",
-        "@pxblue/eslint-config": "1.1.4",
-        "@pxblue/prettier-config": "1.0.2",
+        "@material-ui/icons": "^4.0.0",
+        "@pxblue/eslint-config": "^2.0.0",
+        "@pxblue/prettier-config": "^1.0.2",
         "@pxblue/react-themes": "^5.0.0",
         "@types/color": "^3.0.1",
         "@types/enzyme": "^3.10.4",
         "@types/enzyme-adapter-react-16": "^1.0.5",
         "@types/jest": "^25.1.1",
         "@types/react-dom": "^16.9.4",
-        "@typescript-eslint/eslint-plugin": "^2.16.0",
-        "@typescript-eslint/parser": "^2.16.0",
+        "@typescript-eslint/eslint-plugin": "^3.0.0",
+        "@typescript-eslint/parser": "^3.0.0",
         "clsx": "^1.1.0",
         "enzyme": "^3.5.0",
         "enzyme-adapter-react-16": "^1.8.0",

@@ -28,7 +28,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write"
+        "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
+        "prettier:check": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check"
     },
     "eslintConfig": {
         "extends": "react-app"

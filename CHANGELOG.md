@@ -1,5 +1,10 @@
 # Change Log
 
+## V4.0.2
+
+- Updates several prop types to `ReactNode` to support wider range of input values.
+- Adds `info` prop to `<InfoListItem>` to support a third line of text.
+
 ## v4.0.1
 
 -   Themes updated to use [@pxblue/colors](https://www.npmjs.com/package/@pxblue/colors) version 3.0.0.

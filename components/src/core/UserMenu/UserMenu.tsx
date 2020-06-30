@@ -52,8 +52,8 @@ export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     MenuProps?: Omit<standardMenuProps, 'open'>;
     menuSubtitle?: string;
     menuTitle?: string;
-    onClose?: Function;
-    onOpen?: Function;
+    onClose?: () => void;
+    onOpen?: () => void;
 };
 
 export const UserMenu: React.FC<UserMenuProps> = (props) => {
@@ -133,7 +133,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     );
 
     /* DrawerHeader needs wrapped with key div to avoid ref warning on FC. */
-    const printHeader = useCallback((): JSX.Element => {
+    const printHeader = useCallback((): JSX.Element | undefined => {
         if (menuTitle) {
             const nonClickableAvatar = formatAvatar(false);
             return (
@@ -176,7 +176,10 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
         [menuGroups, defaultClasses]
     );
 
-    const printMenu = (): JSX.Element[] => [printHeader()].concat(printMenuItems());
+    const printMenu = useCallback((): JSX.Element[] => [printHeader()].concat(printMenuItems()), [
+        printHeader,
+        printMenuItems,
+    ]);
 
     const formatMenu = useCallback((): JSX.Element => {
         /* If the user provides a menu, provide default props. */

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Card, Typography, Divider, Theme, makeStyles, createStyles, CardProps } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
 import PropTypes from 'prop-types';
@@ -18,7 +18,7 @@ export type ScoreCardClasses = {
     headerSubtitle?: string;
 };
 
-export type ScoreCordProps = CardProps & {
+export type ScoreCardProps = CardProps & {
     actionItems?: JSX.Element[];
     actionLimit?: number;
     actionRow?: JSX.Element;
@@ -33,7 +33,7 @@ export type ScoreCordProps = CardProps & {
     headerSubtitle?: string | JSX.Element;
 };
 
-const fontColor = (props: ScoreCordProps): string => props.headerFontColor || Colors.white[50];
+const fontColor = (props: ScoreCardProps): string => props.headerFontColor || Colors.white[50];
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
             height: 100,
             overflow: 'hidden',
             position: 'relative',
-            backgroundColor: (props: ScoreCordProps): string => props.headerColor || theme.palette.primary.main,
+            backgroundColor: (props: ScoreCardProps): string => props.headerColor || theme.palette.primary.main,
             color: fontColor,
         },
         headerContent: {
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme: Theme) =>
             height: '100%',
             opacity: 0.3,
             backgroundPosition: 'center',
-            backgroundImage: (props: ScoreCordProps): string => `url(${props.headerBackgroundImage})`,
+            backgroundImage: (props: ScoreCardProps): string => `url(${props.headerBackgroundImage})`,
         },
         content: {
             display: 'flex',
@@ -94,8 +94,8 @@ const useStyles = makeStyles((theme: Theme) =>
             flex: '0 0 auto',
             marginRight: 16,
             marginLeft: 16,
-            alignSelf: (props: ScoreCordProps): string => (props.badgeOffset !== 0 ? 'flex-start' : 'center'),
-            marginTop: (props: ScoreCordProps): number => props.badgeOffset,
+            alignSelf: (props: ScoreCardProps): string => (props.badgeOffset !== 0 ? 'flex-start' : 'center'),
+            marginTop: (props: ScoreCardProps): number => props.badgeOffset,
         },
         actionItems: {
             marginLeft: theme.spacing(1.5),
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
+export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
     const defaultClasses = useStyles(props);
     const {
         actionLimit,
@@ -117,7 +117,7 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         headerInfo,
         headerTitle,
         headerSubtitle,
-        // leaving those here to allow prop transferring
+        // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         headerColor,
         headerFontColor,
@@ -126,13 +126,13 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
         ...otherCardProps
     } = props;
 
-    const getBackgroundImage = (): JSX.Element | undefined => {
+    const getBackgroundImage = useCallback((): JSX.Element | undefined => {
         if (headerBackgroundImage) {
             return <div className={clsx(defaultClasses.headerBackground, classes.headerBackground)} />;
         }
-    };
+    }, [headerBackgroundImage, defaultClasses, classes]);
 
-    const getHeaderInfo = (): JSX.Element | undefined => {
+    const getHeaderInfo = useCallback((): JSX.Element | undefined => {
         if (!headerInfo) return;
         if (typeof headerInfo === 'string') {
             return (
@@ -142,9 +142,9 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
             );
         }
         return headerInfo;
-    };
+    }, [headerInfo, defaultClasses, classes]);
 
-    const getHeaderSubtitle = (): JSX.Element | undefined => {
+    const getHeaderSubtitle = useCallback((): JSX.Element | undefined => {
         if (!headerSubtitle) return;
         if (typeof headerSubtitle === 'string') {
             return (
@@ -158,19 +158,22 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
             );
         }
         return headerSubtitle;
-    };
+    }, [headerSubtitle, defaultClasses, classes]);
 
-    const getHeaderText = (): JSX.Element => (
-        <div className={defaultClasses.flexColumn} style={{ flex: '1 1 0px', overflow: 'hidden' }}>
-            <Typography variant={'h6'} noWrap className={clsx(defaultClasses.headerTitle, classes.headerTitle)}>
-                {headerTitle}
-            </Typography>
-            {getHeaderSubtitle()}
-            {getHeaderInfo()}
-        </div>
+    const getHeaderText = useCallback(
+        (): JSX.Element => (
+            <div className={defaultClasses.flexColumn} style={{ flex: '1 1 0px', overflow: 'hidden' }}>
+                <Typography variant={'h6'} noWrap className={clsx(defaultClasses.headerTitle, classes.headerTitle)}>
+                    {headerTitle}
+                </Typography>
+                {getHeaderSubtitle()}
+                {getHeaderInfo()}
+            </div>
+        ),
+        [defaultClasses, classes, headerTitle, getHeaderSubtitle, getHeaderInfo]
     );
 
-    const getActionItems = (): JSX.Element[] | undefined => {
+    const getActionItems = useCallback((): JSX.Element[] | undefined => {
         if (actionItems) {
             return actionItems.slice(0, actionLimit).map((actionItem, index) => (
                 <div
@@ -182,9 +185,9 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
                 </div>
             ));
         }
-    };
+    }, [actionItems, actionLimit, defaultClasses, classes]);
 
-    const getHeroes = (): JSX.Element | undefined => {
+    const getHeroes = useCallback((): JSX.Element | undefined => {
         if (badge) {
             return (
                 <div className={clsx(defaultClasses.badgeWrapper, classes.badgeWrapper)} data-test={'badge-wrapper'}>
@@ -192,9 +195,9 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
                 </div>
             );
         }
-    };
+    }, [badge, defaultClasses, classes]);
 
-    const getFooter = (): JSX.Element | undefined => {
+    const getFooter = useCallback((): JSX.Element | undefined => {
         if (actionRow) {
             return (
                 <>
@@ -203,7 +206,7 @@ export const ScoreCard: React.FC<ScoreCordProps> = (props) => {
                 </>
             );
         }
-    };
+    }, [actionRow]);
 
     return (
         <Card className={clsx(defaultClasses.root, classes.root)} data-test={'card'} {...otherCardProps}>

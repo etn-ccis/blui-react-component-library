@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function interleave(array: any[], separator: Function): any[] {
+export function interleave(array: any[], separator: () => JSX.Element): any[] {
     const output: any[] = [];
     array.forEach((element: any, index: number) => {
         if (index) {
@@ -10,10 +10,9 @@ export function interleave(array: any[], separator: Function): any[] {
     });
     return output;
 }
-export function separate(array: any[], interpunct: Function): any {
+export function separate(array: any[], interpunct: () => JSX.Element): any {
     return interleave(array, () => interpunct());
 }
 export function withKeys(array: any[]): any {
     return array.map((element, index) => <React.Fragment key={index}>{element}</React.Fragment>);
 }
-export const combine = (list: any): any => list.join(' ');

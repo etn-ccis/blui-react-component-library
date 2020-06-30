@@ -10,6 +10,9 @@ export const withDifferentVariants = (context: DrawerStoryContext): StoryFnReact
     <Drawer
         open={boolean('open', true)}
         variant={select('variant', ['permanent', 'persistent', 'temporary'], 'permanent')}
+        ModalProps={{
+            disableEnforceFocus: true,
+        }}
     >
         <DrawerHeader icon={<Menu />} title={'Drawer with variants'} />
         <DrawerBody>

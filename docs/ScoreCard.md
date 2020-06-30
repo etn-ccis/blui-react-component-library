@@ -61,10 +61,10 @@ import { Temp } from '@pxblue/icons-mui';
 | --------------------- | ------------------------------------------- | ----------------- | -------- | ---------------------------- |
 | actionItems           | Icons to show to the right of the text      | `JSX.Element[]`   | no       |                              |
 | actionLimit           | Max number of actionItems in the header     | `number`          | no       | 3                            |
-| actionRow             | Component to render for the footer          | `React.Component` | no       |                              |
-| badge                 | The component to render in the callout area | `React.Component` | no       |                              |
+| actionRow             | Component to render for the footer          | `JSX.Element`     | no       |                              |
+| badge                 | The component to render in the callout area | `JSX.Element`     | no       |                              |
 | badgeOffset           | Vertical offset for the badge component     | `number`          | no       | 0                            |
-| classes               | Style overrides                             | `StyleRules`      | no       |                              |
+| classes               | Style overrides                             | `ScoreCardClasses`| no       |                              |
 | headerBackgroundImage | An image to display in the header           | `string`          | no       |                              |
 | headerColor           | The color of the header                     | `string`          | no       | `theme.palette.primary.main` |
 | headerFontColor       | The color for text and icons in header      | `string`          | no       | `white`                      |
@@ -74,7 +74,7 @@ import { Temp } from '@pxblue/icons-mui';
 
 </div>
 
-Any other props will be passed to the root element [**Material UI Card**](https://material-ui.com/api/card/).
+Any other props will be provided to the root element [**Material UI Card**](https://material-ui.com/api/card/).
 
 ### Classes
 

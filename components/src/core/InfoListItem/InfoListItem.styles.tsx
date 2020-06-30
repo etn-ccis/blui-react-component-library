@@ -6,9 +6,12 @@ import { InfoListItemProps } from './InfoListItem';
 export type InfoListItemClasses = {
     root?: string;
     avatar?: string;
+    divider?: string;
     icon?: string;
+    listItemText?: string;
     rightComponent?: string;
     separator?: string;
+    statusStripe?: string;
     subtitle?: string;
     title?: string;
 };
@@ -43,7 +46,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
                                   .darken(0.08)
                                   .hex()
                             : 'rgba(0,0,0,0.08)'
-                        : '',
+                        : undefined,
             },
         },
         avatar: {
@@ -73,7 +76,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             display: 'inline-block',
             lineHeight: 1.3,
             color: 'inherit',
-            margin: `0 ${theme.spacing(0.5)}`,
+            margin: `0 ${theme.spacing(0.5)}px`,
         },
         statusStripe: {
             position: 'absolute',
