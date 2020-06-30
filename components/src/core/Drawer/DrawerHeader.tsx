@@ -24,7 +24,7 @@ export type DrawerHeaderProps = ToolbarProps & {
     classes?: DrawerHeaderClasses;
     fontColor?: string;
     icon?: ReactNode;
-    onIconClick?: Function;
+    onIconClick?: () => void;
     subtitle?: string;
     title?: string;
     titleContent?: ReactNode;

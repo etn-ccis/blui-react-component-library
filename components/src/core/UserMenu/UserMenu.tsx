@@ -52,8 +52,8 @@ export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     MenuProps?: Omit<standardMenuProps, 'open'>;
     menuSubtitle?: string;
     menuTitle?: string;
-    onClose?: Function;
-    onOpen?: Function;
+    onClose?: () => void;
+    onOpen?: () => void;
 };
 
 export const UserMenu: React.FC<UserMenuProps> = (props) => {

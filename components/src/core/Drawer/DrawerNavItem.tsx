@@ -42,7 +42,7 @@ export type DrawerNavItem = {
     navGroupProps: DrawerNavGroupProps;
     depth: number;
     expanded: boolean;
-    expandHandler?: Function;
+    expandHandler?: () => void;
 };
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
