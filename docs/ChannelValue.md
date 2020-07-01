@@ -32,7 +32,7 @@ import { ChannelValue } from '@pxblue/react-components';
 | icon      | The inline icon to display                     | `JSX.Element`          | no       |           |
 | prefix    | Show units before the value                    | `boolean`              | no       | false     |
 | units     | The text to display for the units (light text) | `string`               | no       |           |
-| value     | The the value (bold text) to display           | `string` \| `number`   | yes      |           |
+| value     | The value (bold text) to display               | `string` \| `number`   | yes      |           |
 
 </div>
 
