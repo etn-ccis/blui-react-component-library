@@ -19,4 +19,4 @@ export const RTLProvider = (props) => {
             </div>
         </StylesProvider>
     );
-}
+};

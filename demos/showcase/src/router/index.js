@@ -22,9 +22,8 @@ export const MainRouter = () => {
     return (
         <Router>
             <ScrollToTop />
-            <RTLProvider rtl={false}>
+            <RTLProvider rtl={true}>
                 <DrawerLayout drawer={<NavigationDrawer open={open} setOpen={setOpen} />}>
-
                     <SharedAppBar
                         onClick={() => {
                             setOpen(!open);
@@ -35,9 +34,8 @@ export const MainRouter = () => {
                             <App />
                         </Route>
                     </Switch>
-
                 </DrawerLayout>
             </RTLProvider>
-        </Router >
+        </Router>
     );
 };
