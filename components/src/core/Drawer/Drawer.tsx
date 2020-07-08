@@ -270,11 +270,11 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
             classes={{ root: clsx(classes.root), paper: clsx(defaultClasses.paper, classes.paper) }}
-            style={{
+            style={Object.assign({
                 minHeight: '100%',
                 width: containerWidth,
                 transition: 'width 175ms cubic-bezier(.4, 0, .2, 1)',
-            }}
+            },drawerProps.style)}
         >
             <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
                 {getDrawerContents()}

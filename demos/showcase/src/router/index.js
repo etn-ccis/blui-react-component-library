@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { DrawerLayout } from '@pxblue/react-components';
 import { NavigationDrawer } from './NavigationDrawer';
 import { App } from '../App';
 import { SharedAppBar } from '../components/SharedAppBar';
 import { useLocation } from 'react-router-dom';
+import { RTLProvider } from '../pages/RTLProvider';
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -21,25 +22,22 @@ export const MainRouter = () => {
     return (
         <Router>
             <ScrollToTop />
-            <DrawerLayout drawer={<NavigationDrawer open={open} setOpen={setOpen} />}>
-                <Switch>
-                    <Route path="*">
-                        <Switch>
-                            <Route path="/">
-                                <SharedAppBar
-                                    onClick={() => {
-                                        setOpen(!open);
-                                    }}
-                                />
-                                <App />
-                            </Route>
-                            <Route path="*">
-                                <Redirect to={'/'} />
-                            </Route>
-                        </Switch>
-                    </Route>
-                </Switch>
-            </DrawerLayout>
-        </Router>
+            <RTLProvider rtl={false}>
+                <DrawerLayout drawer={<NavigationDrawer open={open} setOpen={setOpen} />}>
+
+                    <SharedAppBar
+                        onClick={() => {
+                            setOpen(!open);
+                        }}
+                    />
+                    <Switch>
+                        <Route path="*">
+                            <App />
+                        </Route>
+                    </Switch>
+
+                </DrawerLayout>
+            </RTLProvider>
+        </Router >
     );
 };
