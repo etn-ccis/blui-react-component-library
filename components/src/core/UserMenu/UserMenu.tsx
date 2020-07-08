@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
             cursor: 'inherit',
         },
         margins: {
-            marginLeft: -theme.spacing(1), 
+            marginLeft: -theme.spacing(1),
             marginRight: -theme.spacing(1),
         },
     })
@@ -149,7 +149,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
                         fontColor={'inherit'}
                         backgroundColor={'inherit'}
                         classes={{
-                            nonClickableIcon: defaultClasses.margins
+                            nonClickableIcon: defaultClasses.margins,
                         }}
                     />
                 </div>
