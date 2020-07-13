@@ -1,5 +1,5 @@
 import { AppBar, Hidden, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/core';
-import { Email, Menu, Settings, InvertColors } from '@material-ui/icons';
+import { Email, Menu, Settings, InvertColors, SwapHoriz } from '@material-ui/icons';
 import Avatar from '@material-ui/core/Avatar';
 import SendIcon from '@material-ui/icons/Send';
 import React from 'react';
@@ -24,10 +24,21 @@ export const SharedAppBar = (props) => {
                     <IconButton
                         color={'inherit'}
                         onClick={() => {
-                            store.dispatch({ type: 'toggle' });
+                            store.dispatch({ type: 'ToggleTheme' });
                         }}
                     >
                         <InvertColors />
+                    </IconButton>
+                </Tooltip>
+                <Spacer width={theme.spacing(1)} flex={0} />
+                <Tooltip title={'Toggle Theme'} aria-label={'toggle the app direction: ltr/rtl'}>
+                    <IconButton
+                        color={'inherit'}
+                        onClick={() => {
+                            store.dispatch({ type: 'ToggleDirection' });
+                        }}
+                    >
+                        <SwapHoriz />
                     </IconButton>
                 </Tooltip>
                 <Spacer width={theme.spacing(1)} flex={0} />

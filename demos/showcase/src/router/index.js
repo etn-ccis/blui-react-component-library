@@ -5,7 +5,6 @@ import { NavigationDrawer } from './NavigationDrawer';
 import { App } from '../App';
 import { SharedAppBar } from '../components/SharedAppBar';
 import { useLocation } from 'react-router-dom';
-import { RTLProvider } from '../pages/RTLProvider';
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -22,20 +21,18 @@ export const MainRouter = () => {
     return (
         <Router>
             <ScrollToTop />
-            <RTLProvider rtl={true}>
-                <DrawerLayout drawer={<NavigationDrawer open={open} setOpen={setOpen} />}>
-                    <SharedAppBar
-                        onClick={() => {
-                            setOpen(!open);
-                        }}
-                    />
-                    <Switch>
-                        <Route path="*">
-                            <App />
-                        </Route>
-                    </Switch>
-                </DrawerLayout>
-            </RTLProvider>
+            <DrawerLayout drawer={<NavigationDrawer open={open} setOpen={setOpen} />}>
+                <SharedAppBar
+                    onClick={() => {
+                        setOpen(!open);
+                    }}
+                />
+                <Switch>
+                    <Route path="*">
+                        <App />
+                    </Route>
+                </Switch>
+            </DrawerLayout>
         </Router>
     );
 };
