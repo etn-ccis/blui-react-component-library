@@ -57,10 +57,9 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                 height: '100%',
                 padding: '30px',
                 boxSizing: 'border-box',
-                fontSize: '60px',
             }}
         >
-            Body content goes here.
+            <Typography variant={'h2'}>Body content goes here.</Typography>
         </div>
     </DrawerLayout>
 );
