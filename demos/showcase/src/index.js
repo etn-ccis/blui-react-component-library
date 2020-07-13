@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import { createMuiTheme, MuiThemeProvider, CssBaseline } from '@material-ui/core';
-import * as PXBThemes from '@pxblue/react-themes';
+import { CssBaseline } from '@material-ui/core';
 import './index.css';
 import { MainRouter } from './router';
 import { store } from './store';
