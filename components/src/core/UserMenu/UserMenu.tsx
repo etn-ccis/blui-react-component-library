@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme: Theme) =>
         noCursor: {
             cursor: 'inherit',
         },
+        margins: {
+            marginLeft: -theme.spacing(1),
+            marginRight: -theme.spacing(1),
+        },
     })
 );
 
@@ -139,16 +143,14 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
             return (
                 <div className={defaultClasses.header} key={'header'}>
                     <DrawerHeader
-                        icon={
-                            /* TODO: Replace these inline styles with class overrides when the Drawer component supports it. */
-                            <div style={{ marginLeft: -theme.spacing(1), marginRight: -theme.spacing(1) }}>
-                                {nonClickableAvatar}
-                            </div>
-                        }
+                        icon={nonClickableAvatar}
                         title={menuTitle}
                         subtitle={menuSubtitle}
                         fontColor={'inherit'}
                         backgroundColor={'inherit'}
+                        classes={{
+                            nonClickableIcon: defaultClasses.margins,
+                        }}
                     />
                 </div>
             );

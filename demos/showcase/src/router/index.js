@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { DrawerLayout } from '@pxblue/react-components';
 import { NavigationDrawer } from './NavigationDrawer';
 import { App } from '../App';
@@ -22,21 +22,14 @@ export const MainRouter = () => {
         <Router>
             <ScrollToTop />
             <DrawerLayout drawer={<NavigationDrawer open={open} setOpen={setOpen} />}>
+                <SharedAppBar
+                    onClick={() => {
+                        setOpen(!open);
+                    }}
+                />
                 <Switch>
                     <Route path="*">
-                        <Switch>
-                            <Route path="/">
-                                <SharedAppBar
-                                    onClick={() => {
-                                        setOpen(!open);
-                                    }}
-                                />
-                                <App />
-                            </Route>
-                            <Route path="*">
-                                <Redirect to={'/'} />
-                            </Route>
-                        </Switch>
+                        <App />
                     </Route>
                 </Switch>
             </DrawerLayout>

@@ -268,8 +268,7 @@ export const App = () => {
                         title={'No Devices'}
                         description={'Contact your local admin for details'}
                         actions={
-                            <Button variant="contained" color="primary">
-                                <Add style={{ marginRight: '5px' }} />
+                            <Button variant="contained" color="primary" startIcon={<Add />}>
                                 Add Device
                             </Button>
                         }

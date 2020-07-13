@@ -1,13 +1,32 @@
 import { createStore } from 'redux';
 
-export const store = createStore((state = 'light', action) => {
+const initialState = {
+    theme: 'light',
+    direction: 'ltr',
+};
+
+export const store = createStore((state = initialState, action) => {
     switch (action.type) {
-        case 'dark':
-            return 'dark';
-        case 'light':
-            return 'light';
-        case 'toggle':
-            return state === 'light' ? 'dark' : 'light';
+        case 'DarkTheme':
+            return {
+                ...state,
+                theme: 'dark',
+            };
+        case 'LightTheme':
+            return {
+                ...state,
+                theme: 'light',
+            };
+        case 'ToggleTheme':
+            return {
+                ...state,
+                theme: state.theme === 'light' ? 'dark' : 'light',
+            };
+        case 'ToggleDirection':
+            return {
+                ...state,
+                direction: state.direction === 'ltr' ? 'rtl' : 'ltr',
+            };
         default:
             return state;
     }
