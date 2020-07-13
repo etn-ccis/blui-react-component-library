@@ -31,7 +31,7 @@ export const SharedAppBar = (props) => {
                     </IconButton>
                 </Tooltip>
                 <Spacer width={theme.spacing(1)} flex={0} />
-                <Tooltip title={'Toggle Theme'} aria-label={'toggle the app direction: ltr/rtl'}>
+                <Tooltip title={'Toggle Direction'} aria-label={'toggle the app direction: ltr/rtl'}>
                     <IconButton
                         color={'inherit'}
                         onClick={() => {
