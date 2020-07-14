@@ -154,8 +154,12 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 className={combine('listItemText')}
                 secondary={
                     <>
-                        <Typography variant={'body2'}>{getSubtitle()}</Typography>
-                        <Typography variant={'body2'}>{getInfo()}</Typography>
+                        <Typography variant={'body2'} noWrap={!wrapSubtitle}>
+                            {getSubtitle()}
+                        </Typography>
+                        <Typography variant={'body2'} noWrap={!wrapSubtitle}>
+                            {getInfo()}
+                        </Typography>
                     </>
                 }
                 primaryTypographyProps={{

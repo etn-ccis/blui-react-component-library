@@ -32,7 +32,7 @@ import * as Colors from '@pxblue/colors';
 | chevron           | Add a chevron icon on the right                  | `boolean`                            | no       | false          |
 | dense             | Smaller height row with less padding             | `boolean`                            | no       | false          |
 | divider           | Show a row separator below the row               | `'full'` \| `'partial'`              | no       |                |
-| fontColor         | Title text color                                 | `string`                             | no       |                |
+| fontColor         | Main text color                                  | `string`                             | no       |                |
 | hidePadding       | Remove left padding if no icon is used           | `boolean`                            | no       | false          |
 | icon              | A component to render for the icon               | `JSX.Element`                        | no       |                |
 | iconColor         | Color override for the row icon                  | `string`                             | no       |                |
