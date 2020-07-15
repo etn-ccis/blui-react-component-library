@@ -154,10 +154,15 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 className={combine('listItemText')}
                 secondary={
                     <>
-                        <Typography variant={'body2'} noWrap={!wrapSubtitle}>
+                        <Typography
+                            variant={'subtitle2'}
+                            component={'p'}
+                            noWrap={!wrapSubtitle}
+                            className={combine('subtitle')}
+                        >
                             {getSubtitle()}
                         </Typography>
-                        <Typography variant={'body2'} noWrap={!wrapSubtitle}>
+                        <Typography variant={'body2'} noWrap={!wrapSubtitle} className={combine('info')}>
                             {getInfo()}
                         </Typography>
                     </>
@@ -168,9 +173,9 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     className: combine('title'),
                 }}
                 secondaryTypographyProps={{
-                    noWrap: !wrapSubtitle,
+                    // noWrap: !wrapSubtitle,
                     variant: 'subtitle2',
-                    className: combine('subtitle'),
+                    // className: combine('subtitle'),
                 }}
             />
             {getRightComponent()}

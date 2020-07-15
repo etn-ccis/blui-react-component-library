@@ -62,6 +62,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | avatar         | Styles applied to the Avatar element                |
 | divider        | Styles applied to the divider element               |
 | icon           | Styles applied to the icon element                  |
+| info           | Styles applied to the third line of text element    |
 | listItemText   | Styles applied to the title/subtitle wrapper        |
 | rightComponent | Styles applied to the rightComponent parent element |
 | separator      | Styles applied to subtitle delimiter                |

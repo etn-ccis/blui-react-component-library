@@ -8,6 +8,7 @@ export type InfoListItemClasses = {
     avatar?: string;
     divider?: string;
     icon?: string;
+    info?: string;
     listItemText?: string;
     rightComponent?: string;
     separator?: string;
@@ -65,6 +66,11 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         },
         icon: {
             color: (props) => getIconColor(props),
+        },
+        info: {
+            fontWeight: 400,
+            lineHeight: 1.3,
+            color: (props) => props.fontColor || 'inherit',
         },
         rightComponent: {
             flex: '0 0 auto',
