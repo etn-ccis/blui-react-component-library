@@ -173,9 +173,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     className: combine('title'),
                 }}
                 secondaryTypographyProps={{
-                    // noWrap: !wrapSubtitle,
                     variant: 'subtitle2',
-                    // className: combine('subtitle'),
                 }}
             />
             {getRightComponent()}
