@@ -4,7 +4,7 @@ import { Add, Remove, List as ListIcon, Settings, MoreVert } from '@material-ui/
 import Trend from '@material-ui/icons/TrendingUp';
 import Timer from '@material-ui/icons/Timer';
 import DevicesIcon from '@material-ui/icons/Devices';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme, makeStyles, createStyles } from '@material-ui/core/styles';
 import { List, Card, Button } from '@material-ui/core';
 
 import * as Colors from '@pxblue/colors';
@@ -24,15 +24,28 @@ import {
 
 import top from './topology_40.png';
 
+const useStyles = makeStyles((theme) => createStyles({
+    scorecard: {
+        flex: '1 1 0px',
+        maxWidth: 400,
+        '&:not(:first-child)':{
+            marginLeft: theme.spacing(2),
+        }
+    },
+    listTag:{
+        marginRight: theme.spacing(1),
+    }
+}));
+
 export const App = () => {
     const theme = useTheme();
+    const classes = useStyles();
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ padding: theme.spacing(), flex: 1 }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                     <ScoreCard
-                        style={{ maxWidth: 400 }}
                         headerColor={Colors.red[500]}
                         headerBackgroundImage={top}
                         headerTitle={'Substation 3'}
@@ -62,6 +75,7 @@ export const App = () => {
                         }
                         badgeOffset={0}
                         actionRow={<InfoListItem dense chevron title={'More'} hidePadding />}
+                        classes={{root: classes.scorecard}}
                     >
                         <List style={{ padding: '16px 0' }}>
                             <InfoListItem
@@ -89,7 +103,6 @@ export const App = () => {
                         </List>
                     </ScoreCard>
                     <ScoreCard
-                        style={{ flex: '1 1 0px', maxWidth: 400, marginLeft: theme.spacing(1) }}
                         headerColor={Colors.blue[500]}
                         headerBackgroundImage={top}
                         headerTitle={'Substation 3'}
@@ -112,6 +125,7 @@ export const App = () => {
                         }
                         badgeOffset={-52}
                         actionRow={<InfoListItem dense chevron title={'View Location'} hidePadding />}
+                        classes={{root: classes.scorecard}}
                     >
                         <List style={{ padding: '16px 0' }}>
                             <InfoListItem
@@ -209,7 +223,7 @@ export const App = () => {
                             icon={<VoltageCircled color={'inherit'} />}
                             rightComponent={
                                 <span style={{ color: Colors.red[500] }}>
-                                    <ListItemTag label={'monitored'} style={{ marginRight: 8 }} />
+                                    <ListItemTag label={'monitored'} classes={{root: classes.listTag}} />
                                     <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
                                     <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
                                     <ChannelValue fontSize={16} value={480} units={'V'} />
@@ -241,15 +255,15 @@ export const App = () => {
                                         fontColor={
                                             theme.palette.type === 'light' ? Colors.blue[700] : Colors.green['500']
                                         }
-                                        style={{ marginRight: theme.spacing(1) }}
+                                        classes={{root: classes.listTag}}
                                     />
                                     <ListItemTag
-                                        style={{ marginRight: theme.spacing(1) }}
                                         label={'OVERHEAT'}
                                         backgroundColor={Colors.red['500']}
                                         onClick={(_) => {
                                             alert('You clicked me.');
                                         }}
+                                        classes={{root: classes.listTag}}
                                     />
                                     <ChannelValue
                                         fontSize={16}
@@ -262,6 +276,11 @@ export const App = () => {
                         />
                     </List>
                 </Card>
+                {/* <DrawerLayout 
+                    drawer={<NavigationDrawer/>}
+                >
+                    <span>Hello World</span>
+                    </DrawerLayout> */}
                 <Card style={{ marginTop: theme.spacing(1), padding: theme.spacing(3) }}>
                     <EmptyState
                         icon={<DevicesIcon fontSize={'inherit'} />}

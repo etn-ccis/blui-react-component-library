@@ -1,5 +1,10 @@
 # Change Log
 
+## vX.X.X (Version TBD)
+
+- Fixes RTL support issues in the `<DrawerLayout>`/`<Drawer>`
+- Fixes an issue with text wrapping in the `<InfoListItem>` subtitle
+
 ## V4.0.2
 
 - Updates several prop types to `ReactNode` to support wider range of input values.
@@ -32,7 +37,7 @@
 
 -   A few props got renamed to avoid further ambiguities:
     -   `<DrawerNavGroup>` prop `content` has been renamed to `titleContent`.
-    -   Anything controling the look of a `NavItem` / `NestedNavItem`, has been renamed to include 'item' in them. These are inheritable properties that might get confusing in different drawer hierarchy levels. List of affected props:
+    -   Anything controlling the look of a `NavItem` / `NestedNavItem`, has been renamed to include 'item' in them. These are inheritable properties that might get confusing in different drawer hierarchy levels. List of affected props:
 
 | Previous              | Current                   |
 | --------------------- | ------------------------- |
