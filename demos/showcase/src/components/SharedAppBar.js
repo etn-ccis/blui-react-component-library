@@ -8,11 +8,13 @@ import { store } from '../store';
 
 import { Spacer, UserMenu } from '@pxblue/react-components';
 
-const useStyles = makeStyles((theme) => createStyles({
-    menuButton:{
-        marginRight: theme.spacing(4)
-    }
-}));
+const useStyles = makeStyles((theme) =>
+    createStyles({
+        menuButton: {
+            marginRight: theme.spacing(4),
+        },
+    })
+);
 
 export const SharedAppBar = (props) => {
     const { onClick } = props;

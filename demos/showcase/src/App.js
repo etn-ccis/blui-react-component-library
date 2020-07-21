@@ -24,18 +24,20 @@ import {
 
 import top from './topology_40.png';
 
-const useStyles = makeStyles((theme) => createStyles({
-    scorecard: {
-        flex: '1 1 0px',
-        maxWidth: 400,
-        '&:not(:first-child)':{
-            marginLeft: theme.spacing(2),
-        }
-    },
-    listTag:{
-        marginRight: theme.spacing(1),
-    }
-}));
+const useStyles = makeStyles((theme) =>
+    createStyles({
+        scorecard: {
+            flex: '1 1 0px',
+            maxWidth: 400,
+            '&:not(:first-child)': {
+                marginLeft: theme.spacing(2),
+            },
+        },
+        listTag: {
+            marginRight: theme.spacing(1),
+        },
+    })
+);
 
 export const App = () => {
     const theme = useTheme();
@@ -75,7 +77,7 @@ export const App = () => {
                         }
                         badgeOffset={0}
                         actionRow={<InfoListItem dense chevron title={'More'} hidePadding />}
-                        classes={{root: classes.scorecard}}
+                        classes={{ root: classes.scorecard }}
                     >
                         <List style={{ padding: '16px 0' }}>
                             <InfoListItem
@@ -125,7 +127,7 @@ export const App = () => {
                         }
                         badgeOffset={-52}
                         actionRow={<InfoListItem dense chevron title={'View Location'} hidePadding />}
-                        classes={{root: classes.scorecard}}
+                        classes={{ root: classes.scorecard }}
                     >
                         <List style={{ padding: '16px 0' }}>
                             <InfoListItem
@@ -223,7 +225,7 @@ export const App = () => {
                             icon={<VoltageCircled color={'inherit'} />}
                             rightComponent={
                                 <span style={{ color: Colors.red[500] }}>
-                                    <ListItemTag label={'monitored'} classes={{root: classes.listTag}} />
+                                    <ListItemTag label={'monitored'} classes={{ root: classes.listTag }} />
                                     <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
                                     <ChannelValue fontSize={16} value={480} units={'V'} />,{' '}
                                     <ChannelValue fontSize={16} value={480} units={'V'} />
@@ -255,7 +257,7 @@ export const App = () => {
                                         fontColor={
                                             theme.palette.type === 'light' ? Colors.blue[700] : Colors.green['500']
                                         }
-                                        classes={{root: classes.listTag}}
+                                        classes={{ root: classes.listTag }}
                                     />
                                     <ListItemTag
                                         label={'OVERHEAT'}
@@ -263,7 +265,7 @@ export const App = () => {
                                         onClick={(_) => {
                                             alert('You clicked me.');
                                         }}
-                                        classes={{root: classes.listTag}}
+                                        classes={{ root: classes.listTag }}
                                     />
                                     <ChannelValue
                                         fontSize={16}
