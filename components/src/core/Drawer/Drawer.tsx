@@ -5,6 +5,7 @@ import { DrawerBodyProps } from './DrawerBody';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
+import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 
 const useStyles = makeStyles({
     paper: {
@@ -105,6 +106,9 @@ export type DrawerComponentProps = {
     // Controls the open/closed state of the drawer
     open: boolean;
 
+    // Refers to the id of the parent DrawerLayout
+    layoutID?: number | string;
+
     // Sets the width of the drawer (in px) when open
     width?: number;
 } & PXBlueDrawerNavGroupInheritableProperties &
@@ -114,6 +118,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     let hoverDelay: NodeJS.Timeout;
     const defaultClasses = useStyles(props);
     const theme = useTheme();
+    const {onPaddingChange} = useDrawerLayout();
     const [hover, setHover] = useState(false);
     const {
         activeItem,
@@ -130,6 +135,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         InfoListItemProps,
         itemFontColor,
         itemIconColor,
+        layoutID,
         nestedBackgroundColor,
         nestedDivider,
         open,
@@ -258,13 +264,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const contentWidth = width || defaultContentWidth;
 
     useEffect(() => {
-        const content = document.getElementById('@@pxb-drawerlayout-content');
-        if (content) {
-            content.style.paddingLeft =
-                theme.direction === 'ltr' ? (variant === 'temporary' ? '0px' : `${containerWidth}px`) : `0px`;
-            content.style.paddingRight =
-                theme.direction === 'rtl' ? (variant === 'temporary' ? '0px' : `${containerWidth}px`) : `0px`;
-        }
+         onPaddingChange(layoutID, variant === 'temporary' ? 0 : containerWidth);
     }, [containerWidth, variant, theme]);
 
     return (
