@@ -23,6 +23,7 @@ import {
 } from '@pxblue/react-components';
 
 import top from './topology_40.png';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -36,11 +37,15 @@ const useStyles = makeStyles((theme) =>
         listTag: {
             marginRight: theme.spacing(1),
         },
+        iconFlip: {
+            transform: 'scaleX(-1)',
+        },
     })
 );
 
 export const App = () => {
     const theme = useTheme();
+    const rtl = theme.direction === 'rtl';
     const classes = useStyles();
 
     return (
@@ -54,11 +59,22 @@ export const App = () => {
                         headerSubtitle={'High Humidity Alarm'}
                         headerInfo={'4 Devices'}
                         headerFontColor={Colors.white[50]}
-                        actionItems={[<MoreVert onClick={() => alert('something did')} />]}
+                        actionItems={[
+                            <MoreVert
+                                onClick={() => alert('something did')}
+                                className={clsx({ [classes.iconFlip]: rtl })}
+                            />,
+                        ]}
                         badge={
                             <HeroBanner style={{ minWidth: 210 }}>
                                 <Hero
-                                    icon={<Temp fontSize={'inherit'} htmlColor={Colors.gray[500]} />}
+                                    icon={
+                                        <Temp
+                                            fontSize={'inherit'}
+                                            htmlColor={Colors.gray[500]}
+                                            className={clsx({ [classes.iconFlip]: rtl })}
+                                        />
+                                    }
                                     label={'Temperature'}
                                     iconSize={48}
                                     value={98}
@@ -66,7 +82,13 @@ export const App = () => {
                                     fontSize={'normal'}
                                 />
                                 <Hero
-                                    icon={<Humidity fontSize={'inherit'} htmlColor={Colors.blue[300]} />}
+                                    icon={
+                                        <Humidity
+                                            fontSize={'inherit'}
+                                            htmlColor={Colors.blue[300]}
+                                            className={clsx({ [classes.iconFlip]: rtl })}
+                                        />
+                                    }
                                     label={'Humidity'}
                                     value={54}
                                     units={'%'}
@@ -86,7 +108,7 @@ export const App = () => {
                                 fontColor={Colors.red[500]}
                                 iconColor={Colors.red[500]}
                                 title={'1 Alarm'}
-                                icon={<Leaf color={'inherit'} />}
+                                icon={<Leaf color={'inherit'} className={clsx({ [classes.iconFlip]: rtl })} />}
                             />
                             <InfoListItem
                                 dense
@@ -94,13 +116,13 @@ export const App = () => {
                                 fontColor={Colors.blue[500]}
                                 iconColor={Colors.blue[500]}
                                 title={'1 Event'}
-                                icon={<Leaf color={'inherit'} />}
+                                icon={<Leaf color={'inherit'} className={clsx({ [classes.iconFlip]: rtl })} />}
                             />
                             <InfoListItem
                                 dense
                                 style={{ height: 36 }}
                                 title={'Online'}
-                                icon={<Leaf color={'inherit'} />}
+                                icon={<Leaf color={'inherit'} className={clsx({ [classes.iconFlip]: rtl })} />}
                             />
                         </List>
                     </ScoreCard>
@@ -111,7 +133,12 @@ export const App = () => {
                         headerSubtitle={'Normal'}
                         headerInfo={'4 Devices'}
                         headerFontColor={Colors.white[50]}
-                        actionItems={[<MoreVert onClick={() => alert('something did')} />]}
+                        actionItems={[
+                            <MoreVert
+                                onClick={() => alert('something did')}
+                                className={clsx({ [classes.iconFlip]: rtl })}
+                            />,
+                        ]}
                         badge={
                             <HeroBanner>
                                 <Hero
@@ -134,7 +161,7 @@ export const App = () => {
                                 dense
                                 style={{ height: 36 }}
                                 title={'0 Alarms'}
-                                icon={<Leaf color={'inherit'} />}
+                                icon={<Leaf color={'inherit'} className={clsx({ [classes.iconFlip]: rtl })} />}
                             />
                             <InfoListItem
                                 dense
@@ -142,13 +169,13 @@ export const App = () => {
                                 fontColor={Colors.blue[500]}
                                 iconColor={Colors.blue[500]}
                                 title={'1 Event'}
-                                icon={<Leaf color={'inherit'} />}
+                                icon={<Leaf color={'inherit'} className={clsx({ [classes.iconFlip]: rtl })} />}
                             />
                             <InfoListItem
                                 dense
                                 style={{ height: 36 }}
                                 title={'Online'}
-                                icon={<Leaf color={'inherit'} />}
+                                icon={<Leaf color={'inherit'} className={clsx({ [classes.iconFlip]: rtl })} />}
                             />
                         </List>
                     </ScoreCard>
@@ -165,18 +192,37 @@ export const App = () => {
                                 fontSize={'normal'}
                             />
                             <Hero
-                                icon={<Pie color={Colors.blue[500]} percent={65} size={36} />}
+                                icon={
+                                    <Pie
+                                        color={Colors.blue[500]}
+                                        percent={65}
+                                        size={36}
+                                        className={clsx({ [classes.iconFlip]: rtl })}
+                                    />
+                                }
                                 label={'Load'}
                                 fontSize={'normal'}
                             >
                                 <ChannelValue
                                     value={65}
                                     units={'%'}
-                                    icon={<Trend htmlColor={Colors.red[500]} fontSize={'inherit'} />}
+                                    icon={
+                                        <Trend
+                                            htmlColor={Colors.red[500]}
+                                            fontSize={'inherit'}
+                                            className={clsx({ [classes.iconFlip]: rtl })}
+                                        />
+                                    }
                                 />
                             </Hero>
                             <Hero
-                                icon={<Timer fontSize={'inherit'} color={'inherit'} />}
+                                icon={
+                                    <Timer
+                                        fontSize={'inherit'}
+                                        color={'inherit'}
+                                        className={clsx({ [classes.iconFlip]: rtl })}
+                                    />
+                                }
                                 label={'Estimated'}
                                 fontSize={'normal'}
                             >
@@ -184,7 +230,14 @@ export const App = () => {
                                 <ChannelValue value={26} units={'m'} />
                             </Hero>
                             <Hero
-                                icon={<Battery color={Colors.blue[500]} percent={100} size={36} />}
+                                icon={
+                                    <Battery
+                                        color={Colors.blue[500]}
+                                        percent={100}
+                                        size={36}
+                                        className={clsx({ [classes.iconFlip]: rtl })}
+                                    />
+                                }
                                 value={'Full'}
                                 label={'Battery'}
                                 fontSize={'normal'}
@@ -198,7 +251,7 @@ export const App = () => {
                             divider={'full'}
                             statusColor={Colors.green[500]}
                             subtitleSeparator={'/'}
-                            icon={<Leaf color={'inherit'} />}
+                            icon={<Leaf color={'inherit'} className={clsx({ [classes.iconFlip]: rtl })} />}
                             rightComponent={<ChannelValue fontSize={16} value={'Online, ESS+'} />}
                         />
                         <InfoListItem
@@ -206,7 +259,7 @@ export const App = () => {
                             divider={'full'}
                             avatar
                             subtitle={['Phase A', 'Phase B', 'Phase C']}
-                            icon={<VoltageCircled />}
+                            icon={<VoltageCircled className={clsx({ [classes.iconFlip]: rtl })} />}
                             rightComponent={
                                 <span>
                                     <ChannelValue fontSize={16} value={478} units={'V'} />,{' '}
@@ -222,7 +275,7 @@ export const App = () => {
                             statusColor={Colors.red[500]}
                             fontColor={Colors.red[500]}
                             subtitle={['Phase A', 'Phase B', 'Phase C']}
-                            icon={<VoltageCircled color={'inherit'} />}
+                            icon={<VoltageCircled color={'inherit'} className={clsx({ [classes.iconFlip]: rtl })} />}
                             rightComponent={
                                 <span style={{ color: Colors.red[500] }}>
                                     <ListItemTag label={'monitored'} classes={{ root: classes.listTag }} />
@@ -236,7 +289,7 @@ export const App = () => {
                             dense
                             title={'Output Current'}
                             divider={'full'}
-                            icon={<CurrentCircled color={'inherit'} />}
+                            icon={<CurrentCircled color={'inherit'} className={clsx({ [classes.iconFlip]: rtl })} />}
                             rightComponent={
                                 <span>
                                     <ChannelValue fontSize={16} value={15} units={'A'} />,{' '}
@@ -248,7 +301,7 @@ export const App = () => {
                         <InfoListItem
                             dense
                             title={'Temperature'}
-                            icon={<Temp />}
+                            icon={<Temp className={clsx({ [classes.iconFlip]: rtl })} />}
                             rightComponent={
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <ListItemTag
@@ -269,7 +322,12 @@ export const App = () => {
                                     />
                                     <ChannelValue
                                         fontSize={16}
-                                        icon={<Trend htmlColor={Colors.red[500]} />}
+                                        icon={
+                                            <Trend
+                                                htmlColor={Colors.red[500]}
+                                                className={clsx({ [classes.iconFlip]: rtl })}
+                                            />
+                                        }
                                         value={68}
                                         units={'°F'}
                                     />
@@ -280,11 +338,15 @@ export const App = () => {
                 </Card>
                 <Card style={{ marginTop: theme.spacing(1), padding: theme.spacing(3) }}>
                     <EmptyState
-                        icon={<DevicesIcon fontSize={'inherit'} />}
+                        icon={<DevicesIcon fontSize={'inherit'} className={clsx({ [classes.iconFlip]: rtl })} />}
                         title={'No Devices'}
                         description={'Contact your local admin for details'}
                         actions={
-                            <Button variant="contained" color="primary" startIcon={<Add />}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                startIcon={<Add className={clsx({ [classes.iconFlip]: rtl })} />}
+                            >
                                 Add Device
                             </Button>
                         }
@@ -297,10 +359,10 @@ export const App = () => {
                             {
                                 title: 'Guides',
                                 itemID: 'Guides',
-                                icon: <DevicesIcon />,
+                                icon: <DevicesIcon className={clsx({ [classes.iconFlip]: rtl })} />,
                                 rightComponent: <ListItemTag label={'new'} onClick={() => alert('You clicked me.')} />,
-                                expandIcon: <Add />,
-                                collapseIcon: <Remove />,
+                                expandIcon: <Add className={clsx({ [classes.iconFlip]: rtl })} />,
+                                collapseIcon: <Remove className={clsx({ [classes.iconFlip]: rtl })} />,
                                 items: [
                                     {
                                         title: 'Installation Manual',
@@ -325,7 +387,7 @@ export const App = () => {
                             {
                                 title: 'Quality Control',
                                 itemID: 'Quality Control',
-                                icon: <Settings />,
+                                icon: <Settings className={clsx({ [classes.iconFlip]: rtl })} />,
                                 items: [
                                     {
                                         title: 'Training',
@@ -340,7 +402,7 @@ export const App = () => {
                             {
                                 title: 'Report',
                                 itemID: 'Report',
-                                icon: <ListIcon />,
+                                icon: <ListIcon className={clsx({ [classes.iconFlip]: rtl })} />,
                                 divider: false,
                                 items: [
                                     {

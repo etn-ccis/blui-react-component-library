@@ -10,6 +10,7 @@
         "@pxblue/icons-mui": "^2.1.0",
         "@pxblue/react-progress-icons": "^2.0.0",
         "@pxblue/react-themes": "^5.0.1",
+        "clsx": "^1.1.1",
         "jss-rtl": "^0.3.0",
         "prop-types": "^15.7.2",
         "react": "^16.8.6",

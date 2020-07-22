@@ -1,9 +1,9 @@
+import React, { useState } from 'react';
 import top from '../topology_40.png';
 import { Gavel, Help, List as ListIcon, Menu, NotificationsActive, Public, Settings } from '@material-ui/icons';
-import { Divider, MenuItem, Select, useMediaQuery } from '@material-ui/core';
+import { Divider, MenuItem, Select, useMediaQuery, makeStyles } from '@material-ui/core';
 import { Device } from '@pxblue/icons-mui';
 import EatonLogo from '../EatonLogo.svg';
-import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTheme } from '@material-ui/core/styles';
 import * as Colors from '@pxblue/colors';
@@ -16,6 +16,7 @@ import {
     DrawerHeader,
     DrawerSubheader,
 } from '@pxblue/react-components';
+import clsx from 'clsx';
 
 export const titleList = [
     'Overview',
@@ -29,11 +30,19 @@ export const titleList = [
     'All Facilities',
 ];
 
+const useStyles = makeStyles({
+    iconFlip: {
+        transform: 'scaleX(-1)',
+    },
+});
+
 export const NavigationDrawer = (props) => {
     const { open, setOpen } = props;
+    const classes = useStyles();
     const [location, setLocation] = useState(0);
     const [route, setRoute] = useState(0);
     const theme = useTheme();
+    const rtl = theme.direction === 'rtl';
     const history = useHistory();
     const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
     const locations = ['All Locations', 'Gary Steelworks', 'Semaine Prochaine'];
@@ -60,9 +69,8 @@ export const NavigationDrawer = (props) => {
                 backgroundColor={Colors.blue[500]}
                 fontColor={Colors.white[50]}
                 backgroundImage={top}
-                icon={<Menu />}
+                icon={<Menu className={clsx({ [classes.iconFlip]: rtl })} />}
                 onIconClick={() => setOpen(!open)}
-            />
             />
             <DrawerSubheader>
                 <Select
@@ -83,7 +91,7 @@ export const NavigationDrawer = (props) => {
                         {
                             title: titleList[0],
                             itemID: titleList[0],
-                            icon: <ListIcon />,
+                            icon: <ListIcon className={clsx({ [classes.iconFlip]: rtl })} />,
                             onClick: () => {
                                 navigate(0);
                                 if (xsDown) setOpen(false);
@@ -93,7 +101,7 @@ export const NavigationDrawer = (props) => {
                             title: titleList[1],
                             itemID: titleList[1],
                             subtitle: '2 Alarms',
-                            icon: <NotificationsActive />,
+                            icon: <NotificationsActive className={clsx({ [classes.iconFlip]: rtl })} />,
                             onClick: () => {
                                 navigate(1);
                                 if (xsDown) setOpen(false);
@@ -102,7 +110,7 @@ export const NavigationDrawer = (props) => {
                         {
                             title: titleList[2],
                             itemID: titleList[2],
-                            icon: <Public />,
+                            icon: <Public className={clsx({ [classes.iconFlip]: rtl })} />,
                             onClick: () => navigate(2),
                             onItemSelect: () => {}, // to prevent auto collapse on click
                             items: [
@@ -127,7 +135,7 @@ export const NavigationDrawer = (props) => {
                         {
                             title: titleList[3],
                             itemID: titleList[3],
-                            icon: <Device />,
+                            icon: <Device className={clsx({ [classes.iconFlip]: rtl })} />,
                             onClick: () => {
                                 navigate(3);
                                 if (xsDown) setOpen(false);
@@ -148,7 +156,7 @@ export const NavigationDrawer = (props) => {
                         {
                             title: titleList[4],
                             itemID: titleList[4],
-                            icon: <Settings />,
+                            icon: <Settings className={clsx({ [classes.iconFlip]: rtl })} />,
                             onClick: () => {
                                 navigate(4);
                                 if (xsDown) setOpen(false);
@@ -157,7 +165,7 @@ export const NavigationDrawer = (props) => {
                         {
                             title: titleList[5],
                             itemID: titleList[5],
-                            icon: <Gavel />,
+                            icon: <Gavel className={clsx({ [classes.iconFlip]: rtl })} />,
                             onClick: () => {
                                 navigate(5);
                                 if (xsDown) setOpen(false);
@@ -166,7 +174,7 @@ export const NavigationDrawer = (props) => {
                         {
                             title: titleList[6],
                             itemID: titleList[6],
-                            icon: <Help />,
+                            icon: <Help className={clsx({ [classes.iconFlip]: rtl })} />,
                             onClick: () => {
                                 navigate(6);
                                 if (xsDown) setOpen(false);
