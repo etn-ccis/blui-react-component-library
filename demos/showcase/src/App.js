@@ -278,11 +278,6 @@ export const App = () => {
                         />
                     </List>
                 </Card>
-                {/* <DrawerLayout 
-                    drawer={<NavigationDrawer/>}
-                >
-                    <span>Hello World</span>
-                    </DrawerLayout> */}
                 <Card style={{ marginTop: theme.spacing(1), padding: theme.spacing(3) }}>
                     <EmptyState
                         icon={<DevicesIcon fontSize={'inherit'} />}
