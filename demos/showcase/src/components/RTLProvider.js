@@ -18,7 +18,7 @@ export const RTLThemeProvider = (props) => {
             <ThemeProvider
                 theme={createMuiTheme(
                     Object.assign(store.getState().theme === 'light' ? PXBThemes.blue : PXBThemes.blueDark, {
-                        direction: props.rtl ? 'rtl' : 'lrt',
+                        direction: props.rtl ? 'rtl' : 'ltr',
                     })
                 )}
             >

@@ -260,9 +260,12 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     useEffect(() => {
         const content = document.getElementById('@@pxb-drawerlayout-content');
         if (content) {
-            content.style.paddingLeft = variant === 'temporary' ? '0px' : `${containerWidth}px`;
+            content.style.paddingLeft =
+                theme.direction === 'ltr' ? (variant === 'temporary' ? '0px' : `${containerWidth}px`) : `0px`;
+            content.style.paddingRight =
+                theme.direction === 'rtl' ? (variant === 'temporary' ? '0px' : `${containerWidth}px`) : `0px`;
         }
-    }, [containerWidth, variant]);
+    }, [containerWidth, variant, theme]);
 
     return (
         <Drawer

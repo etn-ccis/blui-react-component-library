@@ -1,4 +1,4 @@
-import { AppBar, Hidden, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/core';
+import { AppBar, Hidden, Toolbar, Typography, IconButton, Tooltip, makeStyles, createStyles } from '@material-ui/core';
 import { Email, Menu, Settings, InvertColors, SwapHoriz } from '@material-ui/icons';
 import Avatar from '@material-ui/core/Avatar';
 import SendIcon from '@material-ui/icons/Send';
@@ -8,15 +8,24 @@ import { store } from '../store';
 
 import { Spacer, UserMenu } from '@pxblue/react-components';
 
+const useStyles = makeStyles((theme) =>
+    createStyles({
+        menuButton: {
+            marginRight: theme.spacing(4),
+        },
+    })
+);
+
 export const SharedAppBar = (props) => {
     const { onClick } = props;
     const theme = useTheme();
+    const classes = useStyles();
 
     return (
         <AppBar position={'sticky'} color={'primary'}>
             <Toolbar style={{ padding: `0 ${theme.spacing(2)}px` }}>
                 <Hidden smUp>
-                    <Menu style={{ marginRight: theme.spacing(4) }} onClick={onClick} />
+                    <Menu className={classes.menuButton} onClick={onClick} />
                 </Hidden>
                 <Typography variant={'h6'}>Showcase</Typography>
                 <Spacer flex={1} />
