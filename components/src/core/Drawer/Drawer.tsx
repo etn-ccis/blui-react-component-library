@@ -118,7 +118,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     let hoverDelay: NodeJS.Timeout;
     const defaultClasses = useStyles(props);
     const theme = useTheme();
-    const {onPaddingChange} = useDrawerLayout();
+    const { onPaddingChange } = useDrawerLayout();
     const [hover, setHover] = useState(false);
     const {
         activeItem,
@@ -264,7 +264,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const contentWidth = width || defaultContentWidth;
 
     useEffect(() => {
-         onPaddingChange(layoutID, variant === 'temporary' ? 0 : containerWidth);
+        onPaddingChange(layoutID, variant === 'temporary' ? 0 : containerWidth);
     }, [containerWidth, variant, theme]);
 
     return (

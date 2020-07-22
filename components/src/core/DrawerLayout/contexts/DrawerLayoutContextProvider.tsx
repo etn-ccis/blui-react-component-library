@@ -1,17 +1,15 @@
-import { Ref, createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 
 type DrawerLayoutContextType = {
-    id?: string | number;
-    padding: number;
     onPaddingChange: (id: number | string, padding: number) => void;
 };
 
-export const DrawerLayoutContext = createContext<DrawerLayoutContextType | null>(null);
+export const DrawerLayoutContext = createContext<DrawerLayoutContextType | null>({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onPaddingChange: (id: number | string, padding: number) => null,
+});
 
 export const useDrawerLayout = (): DrawerLayoutContextType => {
     const context = useContext(DrawerLayoutContext);
-    if (context === null) {
-        throw new Error('useSearch must be used within a DrawerLayoutContextProvider');
-    }
     return context;
 };

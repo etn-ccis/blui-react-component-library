@@ -46,13 +46,14 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                | Type                                             | Required | Default |
-| ------------------------------- | ---------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
-| open                            | Controls the open/closed state of the drawer               | `boolean`                                        | yes      |         |
-| classes                         | Style overrides                                            | `DrawerClasses`                                  | no       |         |
-| variant                         | The variant to use (see below)                             | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
-| width                           | Sets the width of the drawer (in px) when open             | `number`                                         | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                                                | no       |         |
+| Prop Name                       | Description                                                    | Type                                             | Required | Default |
+| ------------------------------- | -------------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
+| open                            | Controls the open/closed state of the drawer                   | `boolean`                                        | yes      |         |
+| classes                         | Style overrides                                                | `DrawerClasses`                                  | no       |         |
+| variant                         | The variant to use (see below)                                 | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
+| width                           | Sets the width of the drawer (in px) when open                 | `number`                                         | no       |         |
+| layoutID                        | Identifies the `<DrawerLayout/>` that this `<Drawer>` controls | `number` \| `string`                             | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy     | -                                                | no       |         |
 
 </div>
 
@@ -365,16 +366,20 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name | Description                     | Type                                 | Required | Default |
-| --------- | ------------------------------- | ------------------------------------ | -------- | ------- |
-| classes   | Style overrides                 | `DrawerLayoutClasses`                | no       |         |
-| drawer    | Drawer component to be embedded | `ReactElement<DrawerComponentProps>` | yes      |         |
+| Prop Name | Description                                               | Type                                 | Required | Default |
+| --------- | --------------------------------------------------------- | ------------------------------------ | -------- | ------- |
+| classes   | Style overrides                                           | `DrawerLayoutClasses`                | no       |         |
+| drawer    | Drawer component to be embedded                           | `ReactElement<DrawerComponentProps>` | yes      |         |
+| layoutID  | ID to link `<DrawerLayout/>` with a particular `<Drawer>` | `number` \| `string`                 | no       |         |
+
 
 </div>
 
 Any other props supplied will be provided to the root element (`div`).
 
 > **Note on Scrolling**: When using client-side routing in your application, you may notice that the window scroll position does not reset when navigating to new routes. To address this issue, you will need to manually update the scroll position when new pages are loaded. If you are using React Router they have [several examples](https://reacttraining.com/react-router/web/guides/scroll-restoration) on how to implement this in your application.
+
+> **Note on using multiple drawers**: If your application uses multiple `<Drawer>`s, each `<DrawerLayout>` will automatically adjust based on the state of the nearest `<Drawer>`. If you are using some `<Drawer>`s with a `<DrawerLayout>` and some without, you will need to use the `layoutID` properties to explicitly indicate which `<Drawer>` should control which `<DrawerLayout>` - otherwise both may inadvertently affect the styles of the `<DrawerLayout>`.
 
 #### Classes
 
