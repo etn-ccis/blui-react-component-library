@@ -1,30 +1,26 @@
-import React, { ReactElement, HTMLAttributes } from 'react';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import React, { ReactElement, HTMLAttributes, useState } from 'react';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { DrawerComponentProps } from '../Drawer/Drawer';
+import { DrawerLayoutContext } from './contexts/DrawerLayoutContextProvider';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            width: '100%',
-        },
-        drawer: {
-            display: 'flex',
-            position: 'fixed',
-            height: '100%',
-            alignItems: 'stretch',
-        },
-        content: {
-            width: '100%',
-            transition: 'padding 175ms cubic-bezier(.4, 0, .2, 1)',
-            [theme.breakpoints.down('xs')]: {
-                paddingLeft: '0!important',
-            },
-        },
-    })
-);
+const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        width: '100%',
+    },
+    drawer: {
+        display: 'flex',
+        position: 'fixed',
+        height: '100%',
+        alignItems: 'stretch',
+    },
+    content: {
+        width: '100%',
+        transition: 'padding 175ms cubic-bezier(.4, 0, .2, 1)',
+    },
+});
 
 export type DrawerLayoutClasses = {
     root?: string;
@@ -40,14 +36,29 @@ export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> & {
 
 export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
     const { children, drawer, classes, ...otherDivProps } = props;
-    const defaultClasses = useStyles(useTheme());
+    const theme = useTheme();
+    const [padding, setPadding] = useState(0);
+    const defaultClasses = useStyles();
+
+    const style = { paddingLeft: 0, paddingRight: 0 };
+    style.paddingLeft = theme.direction === 'ltr' ? padding : 0;
+    style.paddingRight = theme.direction === 'rtl' ? padding : 0;
+
     return (
-        <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
-            <div className={clsx(defaultClasses.drawer, classes.drawer)}>{drawer}</div>
-            <div id={'@@pxb-drawerlayout-content'} className={clsx(defaultClasses.content, classes.content)}>
-                {children}
+        <DrawerLayoutContext.Provider
+            value={{
+                onPaddingChange: (width: number): void => {
+                    setPadding(width);
+                },
+            }}
+        >
+            <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+                <div className={clsx(defaultClasses.drawer, classes.drawer)}>{drawer}</div>
+                <div className={clsx(defaultClasses.content, classes.content)} style={style}>
+                    {children}
+                </div>
             </div>
-        </div>
+        </DrawerLayoutContext.Provider>
     );
 };
 

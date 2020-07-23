@@ -5,6 +5,7 @@ import { DrawerBodyProps } from './DrawerBody';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
+import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 
 const useStyles = makeStyles({
     paper: {
@@ -102,6 +103,10 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
 
 export type DrawerComponentProps = {
     classes?: DrawerClasses;
+
+    // Describes if this Drawer is used outside of a DrawerLayout
+    noLayout?: boolean;
+
     // Controls the open/closed state of the drawer
     open: boolean;
 
@@ -114,6 +119,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     let hoverDelay: NodeJS.Timeout;
     const defaultClasses = useStyles(props);
     const theme = useTheme();
+    const { onPaddingChange } = useDrawerLayout();
     const [hover, setHover] = useState(false);
     const {
         activeItem,
@@ -132,6 +138,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         itemIconColor,
         nestedBackgroundColor,
         nestedDivider,
+        noLayout = false,
         open,
         onItemSelect,
         ripple,
@@ -258,14 +265,8 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const contentWidth = width || defaultContentWidth;
 
     useEffect(() => {
-        const content = document.getElementById('@@pxb-drawerlayout-content');
-        if (content) {
-            content.style.paddingLeft =
-                theme.direction === 'ltr' ? (variant === 'temporary' ? '0px' : `${containerWidth}px`) : `0px`;
-            content.style.paddingRight =
-                theme.direction === 'rtl' ? (variant === 'temporary' ? '0px' : `${containerWidth}px`) : `0px`;
-        }
-    }, [containerWidth, variant, theme]);
+        if (!noLayout) onPaddingChange(variant === 'temporary' ? 0 : containerWidth);
+    }, [containerWidth, variant, noLayout]);
 
     return (
         <Drawer
