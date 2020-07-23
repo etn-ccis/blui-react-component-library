@@ -99,7 +99,13 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (rightComponent) {
             return <div className={combine('rightComponent')}>{rightComponent}</div>;
         } else if (chevron) {
-            return <Chevron color={'inherit'} role={'button'} className={combine('rightComponent')} />;
+            return (
+                <Chevron
+                    color={'inherit'}
+                    role={'button'}
+                    className={clsx(combine('rightComponent'), defaultClasses.flipIcon)}
+                />
+            );
         }
     }, [rightComponent, chevron, combine]);
 

@@ -58,8 +58,8 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         divider: {
             position: 'absolute',
             bottom: 0,
-            right: 0,
-            left: (props) => (props.divider === 'full' ? 0 : 72),
+            right: (props) => (theme.direction === 'rtl' ? (props.divider === 'full' ? 0 : 72) : 0),
+            left: (props) => (theme.direction === 'ltr' ? (props.divider === 'full' ? 0 : 72) : 0),
             zIndex: 0,
         },
         listItemText: {
@@ -105,5 +105,11 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             display: 'block',
             color: (props) => props.fontColor || 'inherit',
         },
+        flipIcon:
+            theme.direction === 'rtl'
+                ? {
+                      transform: 'scaleX(-1)',
+                  }
+                : {},
     })
 );
