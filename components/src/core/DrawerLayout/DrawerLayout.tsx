@@ -32,12 +32,10 @@ export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> & {
     classes?: DrawerLayoutClasses;
     // Drawer component to be embedded
     drawer: ReactElement<DrawerComponentProps>;
-    // ID used to link this DrawerLayout to a Drawer
-    layoutID?: number | string;
 };
 
 export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
-    const { children, drawer, layoutID, classes, ...otherDivProps } = props;
+    const { children, drawer, classes, ...otherDivProps } = props;
     const theme = useTheme();
     const [padding, setPadding] = useState(0);
     const defaultClasses = useStyles();
@@ -49,8 +47,8 @@ export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
     return (
         <DrawerLayoutContext.Provider
             value={{
-                onPaddingChange: (id: number | string, width: number): void => {
-                    if (id === layoutID) setPadding(width);
+                onPaddingChange: (width: number): void => {
+                    setPadding(width);
                 },
             }}
         >

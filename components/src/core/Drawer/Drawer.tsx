@@ -103,11 +103,12 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
 
 export type DrawerComponentProps = {
     classes?: DrawerClasses;
+
+    // Describes if this Drawer is used outside of a DrawerLayout
+    noLayout?: boolean;
+
     // Controls the open/closed state of the drawer
     open: boolean;
-
-    // Refers to the id of the parent DrawerLayout
-    layoutID?: number | string;
 
     // Sets the width of the drawer (in px) when open
     width?: number;
@@ -135,9 +136,9 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         InfoListItemProps,
         itemFontColor,
         itemIconColor,
-        layoutID,
         nestedBackgroundColor,
         nestedDivider,
+        noLayout = false,
         open,
         onItemSelect,
         ripple,
@@ -264,8 +265,8 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const contentWidth = width || defaultContentWidth;
 
     useEffect(() => {
-        onPaddingChange(layoutID, variant === 'temporary' ? 0 : containerWidth);
-    }, [containerWidth, variant, theme]);
+        if (!noLayout) onPaddingChange(variant === 'temporary' ? 0 : containerWidth);
+    }, [containerWidth, variant, noLayout]);
 
     return (
         <Drawer

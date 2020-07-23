@@ -50,9 +50,9 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 | ------------------------------- | -------------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
 | open                            | Controls the open/closed state of the drawer                   | `boolean`                                        | yes      |         |
 | classes                         | Style overrides                                                | `DrawerClasses`                                  | no       |         |
+| noLayout                        | Set to true if used without a `<DrawerLayout>`                 | `boolean`                                        | no       | false   |
 | variant                         | The variant to use (see below)                                 | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
 | width                           | Sets the width of the drawer (in px) when open                 | `number`                                         | no       |         |
-| layoutID                        | Identifies the `<DrawerLayout/>` that this `<Drawer>` controls | `number` \| `string`                             | no       |         |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy     | -                                                | no       |         |
 
 </div>
@@ -64,6 +64,8 @@ The `Drawer` has three `variant`s:
 -   **Permanent**: Always open, even when `open` is set to false.
 -   **Persistent**: When `open` is set to false, the `<Drawer>` collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent `<Drawer>`.
 -   **Temporary**: When `open` is set to false, the `<Drawer>` is hidden; when `open` is set to true, it slides in.
+
+> **Note on using multiple drawers**: If your application uses multiple `<Drawer>`s, each `<DrawerLayout>` will automatically adjust based on the state of the nearest `<Drawer>`. If you are using a `<Drawer>` without a `<DrawerLayout>`, you should set the `noLayout` property to true on the `<Drawer>` to prevent inadvertently affecting the styles of any `<DrawerLayout>`s.
 
 #### Classes
 
@@ -370,16 +372,12 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 | --------- | --------------------------------------------------------- | ------------------------------------ | -------- | ------- |
 | classes   | Style overrides                                           | `DrawerLayoutClasses`                | no       |         |
 | drawer    | Drawer component to be embedded                           | `ReactElement<DrawerComponentProps>` | yes      |         |
-| layoutID  | ID to link `<DrawerLayout/>` with a particular `<Drawer>` | `number` \| `string`                 | no       |         |
-
 
 </div>
 
 Any other props supplied will be provided to the root element (`div`).
 
 > **Note on Scrolling**: When using client-side routing in your application, you may notice that the window scroll position does not reset when navigating to new routes. To address this issue, you will need to manually update the scroll position when new pages are loaded. If you are using React Router they have [several examples](https://reacttraining.com/react-router/web/guides/scroll-restoration) on how to implement this in your application.
-
-> **Note on using multiple drawers**: If your application uses multiple `<Drawer>`s, each `<DrawerLayout>` will automatically adjust based on the state of the nearest `<Drawer>`. If you are using some `<Drawer>`s with a `<DrawerLayout>` and some without, you will need to use the `layoutID` properties to explicitly indicate which `<Drawer>` should control which `<DrawerLayout>` - otherwise both may inadvertently affect the styles of the `<DrawerLayout>`.
 
 #### Classes
 
