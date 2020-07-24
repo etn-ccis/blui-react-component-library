@@ -7,11 +7,15 @@ import { useTheme } from '@material-ui/core/styles';
 import { store } from '../store';
 
 import { Spacer, UserMenu } from '@pxblue/react-components';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) =>
     createStyles({
         menuButton: {
             marginRight: theme.spacing(4),
+        },
+        iconFlip: {
+            transform: 'scaleX(-1)',
         },
     })
 );
@@ -19,13 +23,14 @@ const useStyles = makeStyles((theme) =>
 export const SharedAppBar = (props) => {
     const { onClick } = props;
     const theme = useTheme();
+    const rtl = theme.direction === 'rtl';
     const classes = useStyles();
 
     return (
         <AppBar position={'sticky'} color={'primary'}>
             <Toolbar style={{ padding: `0 ${theme.spacing(2)}px` }}>
                 <Hidden smUp>
-                    <Menu className={classes.menuButton} onClick={onClick} />
+                    <Menu className={clsx({ [classes.iconFlip]: rtl }, classes.menuButton)} onClick={onClick} />
                 </Hidden>
                 <Typography variant={'h6'}>Showcase</Typography>
                 <Spacer flex={1} />
@@ -36,7 +41,7 @@ export const SharedAppBar = (props) => {
                             store.dispatch({ type: 'ToggleTheme' });
                         }}
                     >
-                        <InvertColors />
+                        <InvertColors className={clsx({ [classes.iconFlip]: rtl })} />
                     </IconButton>
                 </Tooltip>
                 <Spacer width={theme.spacing(1)} flex={0} />
@@ -47,7 +52,7 @@ export const SharedAppBar = (props) => {
                             store.dispatch({ type: 'ToggleDirection' });
                         }}
                     >
-                        <SwapHoriz />
+                        <SwapHoriz className={clsx({ [classes.iconFlip]: rtl })} />
                     </IconButton>
                 </Tooltip>
                 <Spacer width={theme.spacing(1)} flex={0} />
@@ -60,12 +65,12 @@ export const SharedAppBar = (props) => {
                             items: [
                                 {
                                     title: 'Log Out',
-                                    icon: <SendIcon />,
+                                    icon: <SendIcon className={clsx({ [classes.iconFlip]: rtl })} />,
                                     onClick: () => {},
                                 },
                                 {
                                     title: 'Account Settings',
-                                    icon: <Settings />,
+                                    icon: <Settings className={clsx({ [classes.iconFlip]: rtl })} />,
                                     divider: true,
                                     onClick: () => {},
                                 },
@@ -76,12 +81,12 @@ export const SharedAppBar = (props) => {
                             items: [
                                 {
                                     title: 'eatonhelp@eaton.com',
-                                    icon: <SendIcon />,
+                                    icon: <SendIcon className={clsx({ [classes.iconFlip]: rtl })} />,
                                     onClick: () => {},
                                 },
                                 {
                                     title: '1-866-905-9988',
-                                    icon: <Email />,
+                                    icon: <Email className={clsx({ [classes.iconFlip]: rtl })} />,
                                     onClick: () => {},
                                 },
                             ],
