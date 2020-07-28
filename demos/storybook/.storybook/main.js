@@ -21,7 +21,6 @@ module.exports = {
         '@storybook/addon-a11y/register',
         '@storybook/addon-google-analytics/register',
         '@pxblue/storybook-rtl-addon/register',
-
     ],
     webpackFinal: async (config) => {
         config.module.rules.push({

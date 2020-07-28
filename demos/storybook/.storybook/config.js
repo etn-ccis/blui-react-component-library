@@ -11,7 +11,7 @@ import { CssBaseline } from '@material-ui/core';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import {useEffect, useState} from "@storybook/addons";
+import { useEffect, useState } from '@storybook/addons';
 import addons from '@storybook/addons';
 import { DIR_CHANGE_EVENT, getDirection } from '@pxblue/storybook-rtl-addon';
 
@@ -75,38 +75,36 @@ addParameters({
     },
 });
 
-
 // Refactor welcome story to just createMuiTheme directly.
 export const appliedTheme = createMuiTheme(ReactTheme);
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
-const appendDirection = (theme) => Object.assign(theme, {'direction': getDirection()});
+const appendDirection = (theme) => Object.assign(theme, { direction: getDirection() });
 
 addDecorator((storyFn) => {
-        const [lightTheme, setLightTheme] = useState(createMuiTheme(appendDirection(ReactTheme)));
-        const [darkTheme, setDarkTheme] = useState(createMuiTheme(appendDirection(ReactThemeDark)));
+    const [lightTheme, setLightTheme] = useState(createMuiTheme(appendDirection(ReactTheme)));
+    const [darkTheme, setDarkTheme] = useState(createMuiTheme(appendDirection(ReactThemeDark)));
 
-        useEffect(() => {
-            channel.on(DIR_CHANGE_EVENT, update);
-            return () => channel.off(DIR_CHANGE_EVENT, update);
-        },  [channel]);
+    useEffect(() => {
+        channel.on(DIR_CHANGE_EVENT, update);
+        return () => channel.off(DIR_CHANGE_EVENT, update);
+    }, [channel]);
 
-        const update = () => {
-            setLightTheme(createMuiTheme(appendDirection(ReactTheme)));
-            setDarkTheme(createMuiTheme(appendDirection(ReactThemeDark)));
-        };
+    const update = () => {
+        setLightTheme(createMuiTheme(appendDirection(ReactTheme)));
+        setDarkTheme(createMuiTheme(appendDirection(ReactThemeDark)));
+    };
 
-        return (
-            <StylesProvider jss={jss}>
-                <MuiThemeProvider theme={useDarkMode() ? darkTheme : lightTheme}>
-                    <CssBaseline/>
-                    <div className={'wrapper'}>{storyFn()}</div>
-                </MuiThemeProvider>
-            </StylesProvider>
-        )
-    }
-);
+    return (
+        <StylesProvider jss={jss}>
+            <MuiThemeProvider theme={useDarkMode() ? darkTheme : lightTheme}>
+                <CssBaseline />
+                <div className={'wrapper'}>{storyFn()}</div>
+            </MuiThemeProvider>
+        </StylesProvider>
+    );
+});
 
 addDecorator(withKnobs({ escapeHTML: false }));
