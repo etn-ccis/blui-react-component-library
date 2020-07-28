@@ -23,6 +23,7 @@
         "@storybook/preset-create-react-app": "^1.5.2",
         "@storybook/react": "^5.3.18",
         "@storybook/theming": "^5.3.18",
+        "jss-rtl": "^0.3.0",
         "react": "^16.11.0",
         "react-dom": "^16.11.0",
         "react-scripts": "3.2.0",
