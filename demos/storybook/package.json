@@ -8,7 +8,7 @@
         "@material-ui/icons": "^4.5.1",
         "@pxblue/colors": "^3.0.0",
         "@pxblue/icons-mui": "^2.1.0",
-        "@pxblue/react-components": "^3.0.2",
+        "@pxblue/react-components": "^4.0.0",
         "@pxblue/react-themes": "^5.0.0",
         "@pxblue/storybook-themes": "^1.1.0",
         "@sambego/storybook-state": "^1.3.6",
