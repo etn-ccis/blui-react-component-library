@@ -88,11 +88,11 @@ addDecorator((storyFn) => {
     const [darkTheme, setDarkTheme] = useState(createMuiTheme(appendDirection(ReactThemeDark)));
 
     useEffect(() => {
-        channel.on(DIR_CHANGE_EVENT, update);
-        return () => channel.off(DIR_CHANGE_EVENT, update);
+        channel.on(DIR_CHANGE_EVENT, updateDirection);
+        return () => channel.off(DIR_CHANGE_EVENT, updateDirection);
     }, [channel]);
 
-    const update = () => {
+    const updateDirection = () => {
         setLightTheme(createMuiTheme(appendDirection(ReactTheme)));
         setDarkTheme(createMuiTheme(appendDirection(ReactThemeDark)));
     };
