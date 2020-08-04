@@ -121,6 +121,7 @@ jobs:
             - run:
                   name: Install Dependencies
                   command: |
+                      git submodule init && git submodule update
                       cd demos/showcase
                       yarn install --frozen-lockfile
             - save_cache:
@@ -130,11 +131,12 @@ jobs:
                   key: v2-dependencies-react-{{ checksum "demos/showcase/yarn.lock" }}
             - attach_workspace:
                   at: .
-            - run:
-                  name: Prettier Check
-                  command: |
-                      cd demos/showcase
-                      yarn prettier:check
+            # This will be prettier checked on the demo repository
+            # - run:
+            #       name: Prettier Check
+            #       command: |
+            #           cd demos/showcase
+            #           yarn prettier:check
             - run:
                   name: Build Showcase
                   command: |
