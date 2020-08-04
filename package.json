@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "description": "React components for PX Blue applications",
     "scripts": {
+        "initialize": "git submodule init && git submodule update && yarn install:dependencies",
         "test": "cd components && yarn test",
         "test:artifacts": "cd scripts && bash ./buildTest.sh && cd ..",
         "build": "bash ./scripts/buildComponents.sh",

@@ -1,0 +1,4 @@
+[submodule "demos/showcase"]
+	path = demos/showcase
+	url = pxb:react-showcase-demo
+	branch = dev
