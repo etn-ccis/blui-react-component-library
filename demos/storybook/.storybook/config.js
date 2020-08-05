@@ -1,19 +1,16 @@
 import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { blue as ReactTheme } from '@pxblue/react-themes';
-import { blueDark as ReactThemeDark } from '@pxblue/react-themes';
+import { createMuiTheme, jssPreset, MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
+import { blue as ReactTheme, blueDark as ReactThemeDark } from '@pxblue/react-themes';
 import 'typeface-open-sans';
 import { pxblueTheme } from '@pxblue/storybook-themes';
-import { useDarkMode } from 'storybook-dark-mode';
 import { CssBaseline } from '@material-ui/core';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { useEffect, useState } from '@storybook/addons';
-import addons from '@storybook/addons';
+import addons, { useEffect, useState } from '@storybook/addons';
 import { DIR_CHANGE_EVENT, getDirection } from '@pxblue/storybook-rtl-addon';
+import { useDarkMode } from 'storybook-dark-mode/dist';
 
 const channel = addons.getChannel();
 
@@ -52,6 +49,7 @@ if (window.top.location.hostname === 'localhost') {
     pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
 }
 
+// Only set theme inside storybook canvas.
 const themeInit = { dark: pxblueTheme, light: pxblueTheme, current: 'light' };
 window.localStorage.setItem('sb-addon-themes-3', JSON.stringify(themeInit));
 
@@ -74,9 +72,6 @@ addParameters({
         dark: { ...pxblueTheme },
     },
 });
-
-// Refactor welcome story to just createMuiTheme directly.
-export const appliedTheme = createMuiTheme(ReactTheme);
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });

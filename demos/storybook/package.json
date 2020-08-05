@@ -71,7 +71,7 @@
         "mini-css-extract-plugin": "^0.7.0",
         "prettier": "^1.19.1",
         "sass-loader": "^8.0.2",
-        "storybook-dark-mode": "^0.4.0",
+        "storybook-dark-mode": "^0.6.1",
         "ts-loader": "^6.2.2",
         "typeface-open-sans": "0.0.75"
     }
