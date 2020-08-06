@@ -24,7 +24,7 @@ To work with this library, first clone down the repository and install dependenc
 ```shell
 git clone https://github.com/pxblue/react-component-library
 cd react-component-library
-yarn install:dependencies
+yarn initialize
 ```
 
 The library can be built by running the following command. The resulting output will be in the /dist folder.
@@ -36,18 +36,18 @@ yarn build
 ## Running the demo projects
 
 This repository comes with two demo projects found within the `/demos` folder.
-The first is a [Storybook](https://storybook.js.org/) application that allows you to see the components in isolation and interact with their properties. The second is a Showcase project that shows a combination of components in the context of a realistic interface.
+The first is a [Storybook](https://storybook.js.org/) application that allows you to see the components in isolation and interact with their properties. The second is a Showcase project (from [react-showcase-demo](https://github.com/pxblue/react-showcase-demo)) that shows a combination of components in the context of a realistic interface.
 
 You can build, link, and start the demo applications in a single step by calling either
 
 ```shell
-yarn start:showcase
+yarn start:storybook
 ```
 
 or
 
 ```shell
-yarn start:storybook
+yarn start:showcase
 ```
 
 from the root directory.
