@@ -57,6 +57,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
         fontColor,
+        iconAlign,
         iconColor,
         statusColor,
         /* eslint-enable @typescript-eslint/no-unused-vars */
