@@ -2,14 +2,15 @@
 
 ## vX.X.X (Version TBD)
 
-- Fixes RTL support issues in the `<DrawerLayout>`/`<Drawer>`
-- Fixes an issue with text wrapping in the `<InfoListItem>` subtitle
-- Fixes an issue with hover color alpha channel in `<InfoListItem>`
+-   Fixes RTL support issues in the `<DrawerLayout>`/`<Drawer>`
+-   Fixes an issue with text wrapping in the `<InfoListItem>` subtitle
+-   Fixes an issue with hover color alpha channel in `<InfoListItem>`
+-   Adds `iconAlign` prop to `<InfoListItem>` to align icon left (default), center or right.
 
 ## V4.0.2
 
-- Updates several prop types to `ReactNode` to support wider range of input values.
-- Adds `info` prop to `<InfoListItem>` to support a third line of text.
+-   Updates several prop types to `ReactNode` to support wider range of input values.
+-   Adds `info` prop to `<InfoListItem>` to support a third line of text.
 
 ## v4.0.1
 
@@ -22,6 +23,7 @@
 -   Changed component font colors to address potential accessibility issues.
 
 **Breaking Changes:**
+
 -   Theme usage updated to Material UI v4+ format (requires v5+ of @pxblue/react-themes)
 
 ## v3.0.3
