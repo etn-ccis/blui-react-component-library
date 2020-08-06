@@ -5,6 +5,7 @@
 - Fixes RTL support issues in the `<DrawerLayout>`/`<Drawer>`
 - Fixes an issue with text wrapping in the `<InfoListItem>` subtitle
 - Fixes an issue with hover color alpha channel in `<InfoListItem>`
+- Adds optional prop to the `<DrawerHeader>` to add a bottom divider
 
 ## V4.0.2
 
