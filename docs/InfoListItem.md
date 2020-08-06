@@ -35,6 +35,7 @@ import * as Colors from '@pxblue/colors';
 | fontColor         | Main text color                                  | `string`                             | no       |                |
 | hidePadding       | Remove left padding if no icon is used           | `boolean`                            | no       | false          |
 | icon              | A component to render for the icon               | `JSX.Element`                        | no       |                |
+| iconAlign         | Icon alignment when `avatar` is set to false     | `'left'` \| `'center'` \| `'right'`  | no       | 'left'         |
 | iconColor         | Color override for the row icon                  | `string`                             | no       |                |
 | info              | The text to show on the third line               | `string` \| `Array<React.ReactNode>` | no       |                |
 | leftComponent     | Component to render on the left side             | `ReactNode`                          | no       |                |
