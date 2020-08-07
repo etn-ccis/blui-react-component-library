@@ -5,8 +5,6 @@ import { InfoListItem } from './InfoListItem';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { ListItemAvatar } from '@material-ui/core';
-
 import Chevron from '@material-ui/icons/ChevronRight';
 import PersonIcon from '@material-ui/icons/Person';
 
@@ -61,12 +59,6 @@ describe('InfoListItem', () => {
     });
  */
 
-    it('renders with avatar', () => {
-        let wrapper = shallow(<InfoListItem avatar icon={<PersonIcon />} title="Test" />);
-        expect(wrapper.find(ListItemAvatar).length).toEqual(1);
-        wrapper = shallow(<InfoListItem title="Test" icon={<PersonIcon />} />);
-        expect(wrapper.find(ListItemAvatar).length).toEqual(0);
-    });
     it('renders rightComponent', () => {
         let wrapper = shallow(<InfoListItem title="Test" chevron />);
         expect(wrapper.find(Chevron).length).toEqual(1);

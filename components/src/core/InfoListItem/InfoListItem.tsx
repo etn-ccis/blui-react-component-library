@@ -1,14 +1,5 @@
 import React, { ReactNode, useCallback } from 'react';
-import {
-    Avatar,
-    Divider,
-    ListItem,
-    ListItemAvatar,
-    ListItemIcon,
-    ListItemText,
-    Typography,
-    ListItemProps,
-} from '@material-ui/core';
+import { Avatar, Divider, ListItem, ListItemAvatar, ListItemText, Typography, ListItemProps } from '@material-ui/core';
 import Chevron from '@material-ui/icons/ChevronRight';
 
 import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
@@ -30,6 +21,7 @@ export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & 
     hidePadding?: boolean;
     icon?: JSX.Element;
     iconColor?: string;
+    iconAlign?: 'left' | 'center' | 'right';
     info?: string | Array<string | JSX.Element>;
     leftComponent?: ReactNode;
     rightComponent?: ReactNode;
@@ -65,6 +57,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
         fontColor,
+        iconAlign,
         iconColor,
         statusColor,
         /* eslint-enable @typescript-eslint/no-unused-vars */
@@ -77,14 +70,12 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (icon && avatar) {
+        if (icon) {
             return (
                 <ListItemAvatar>
-                    <Avatar className={combine('avatar')}>{icon}</Avatar>
+                    <Avatar className={combine(avatar ? 'avatar' : 'icon')}>{icon}</Avatar>
                 </ListItemAvatar>
             );
-        } else if (icon) {
-            return <ListItemIcon className={combine('icon')}>{icon}</ListItemIcon>;
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
@@ -205,6 +196,7 @@ InfoListItem.propTypes = {
     fontColor: PropTypes.string,
     hidePadding: PropTypes.bool,
     icon: PropTypes.element,
+    iconAlign: PropTypes.oneOf(['left', 'right', 'center']),
     iconColor: PropTypes.string,
     info: PropTypes.oneOfType([
         PropTypes.string,
@@ -231,6 +223,7 @@ InfoListItem.defaultProps = {
     dense: false,
     fontColor: 'inherit',
     hidePadding: false,
+    iconAlign: 'left',
     ripple: false,
     subtitleSeparator: '\u00B7',
     wrapSubtitle: false,

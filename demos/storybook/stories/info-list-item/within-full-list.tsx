@@ -20,6 +20,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 statusColor={Colors.green[500]}
                 subtitleSeparator={'/'}
                 icon={<Leaf color={'inherit'} />}
+                iconAlign={'center'}
                 rightComponent={<ChannelValue fontSize={16} value={'Online, ESS+'} />}
             />
             <InfoListItem
@@ -65,6 +66,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                         <ChannelValue fontSize={16} value={15} units={'A'} />
                     </span>
                 }
+                iconAlign={'center'}
             />
             <InfoListItem
                 dense
@@ -74,6 +76,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 rightComponent={
                     <ChannelValue fontSize={16} icon={<Leaf htmlColor={Colors.green[500]} />} value={68} units={'°F'} />
                 }
+                iconAlign={'center'}
             />
         </>
     );

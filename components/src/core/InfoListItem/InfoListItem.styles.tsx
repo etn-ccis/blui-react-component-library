@@ -29,6 +29,18 @@ const getIconColor = (props: InfoListItemProps): string => {
 
 const isWrapEnabled = (props: InfoListItemProps): boolean => props.wrapSubtitle || props.wrapTitle;
 
+const getIconAlignment = (props: InfoListItemProps): 'flex-end' | 'flex-start' | 'center' => {
+    switch (props.iconAlign) {
+        case 'left':
+            return 'flex-start';
+        case 'right':
+            return 'flex-end';
+        case 'center':
+        default:
+            return 'center';
+    }
+};
+
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
     createStyles({
@@ -67,6 +79,8 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         },
         icon: {
             color: (props) => getIconColor(props),
+            justifyContent: (props) => getIconAlignment(props),
+            backgroundColor: 'transparent',
         },
         info: {
             fontWeight: 400,
