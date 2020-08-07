@@ -129,6 +129,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             headerBackgroundImageOptions[
                 select('backgroundImage', ['undefined', 'Pattern', 'Farm'], 'Pattern', headerGroupId)
             ],
+        divider: boolean('divider', false, headerGroupId),
         backgroundOpacity: number('backgroundOpacity', 0.4, { range: true, min: 0, max: 1, step: 0.1 }, headerGroupId),
         fontColor: color('fontColor', Colors.white[50], headerGroupId),
         icon: getIcon(select('icon', ['<Menu />', '<FitnessCenter />', 'undefined'], '<Menu />', headerGroupId)),
@@ -305,6 +306,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                 backgroundColor={headerKnobs.backgroundColor}
                 backgroundImage={headerKnobs.backgroundImage}
                 backgroundOpacity={headerKnobs.backgroundOpacity}
+                divider={headerKnobs.divider}
                 fontColor={headerKnobs.fontColor}
                 icon={headerKnobs.icon}
                 subtitle={headerKnobs.subtitle}

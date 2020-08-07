@@ -5,9 +5,10 @@
 -   Fixes RTL support issues in the `<DrawerLayout>`/`<Drawer>`
 -   Fixes an issue with text wrapping in the `<InfoListItem>` subtitle
 -   Fixes an issue with hover color alpha channel in `<InfoListItem>`
--   Adds `iconAlign` prop to `<InfoListItem>` to align icon left (default), center or right.
+-   Adds `iconAlign` prop to `<InfoListItem>` to align icon left (default), center or right
+-   Adds optional prop to the `<DrawerHeader>` to add a bottom divider
 
-## V4.0.2
+## v4.0.2
 
 -   Updates several prop types to `ReactNode` to support wider range of input values.
 -   Adds `info` prop to `<InfoListItem>` to support a third line of text.

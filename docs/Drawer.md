@@ -95,6 +95,7 @@ The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By defau
 | backgroundImage   | An image to display in the header              | `string`              | no       |                              |
 | backgroundOpacity | The opacity of the background image            | `number`              | no       | `0.3`                        |
 | classes           | Style overrides                                | `DrawerHeaderClasses` | no       |                              |
+| divider           | Optional divider which appears beneath header  | `boolean`             | no       | `false`                      |
 | fontColor         | The color of the text elements                 | `string`              | no       | dynamic based on background  |
 | icon              | A component to render for the icon             | `ReactNode`           | no       |                              |
 | onIconClick       | A function to execute when the icon is clicked | `function`            | no       | `() => {}`                   |

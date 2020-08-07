@@ -22,6 +22,7 @@ export type DrawerHeaderProps = ToolbarProps & {
     backgroundImage?: string;
     backgroundOpacity?: number;
     classes?: DrawerHeaderClasses;
+    divider?: boolean;
     fontColor?: string;
     icon?: ReactNode;
     onIconClick?: () => void;
@@ -99,6 +100,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
     const {
         backgroundImage,
         classes,
+        divider,
         icon,
         onIconClick,
         subtitle,
@@ -172,7 +174,7 @@ export const DrawerHeader: React.FC<DrawerHeaderProps> = (props) => {
                 )}
                 {getHeaderContent()}
             </Toolbar>
-            <Divider />
+            {divider && <Divider />}
         </>
     );
 };
@@ -180,6 +182,7 @@ DrawerHeader.displayName = 'DrawerHeader';
 DrawerHeader.defaultProps = {
     backgroundOpacity: 0.3,
     classes: {},
+    divider: false,
 };
 DrawerHeader.propTypes = {
     backgroundColor: PropTypes.string,
@@ -194,6 +197,7 @@ DrawerHeader.propTypes = {
         subtitle: PropTypes.string,
         title: PropTypes.string,
     }),
+    divider: PropTypes.bool,
     fontColor: PropTypes.string,
     icon: PropTypes.element,
     onIconClick: PropTypes.func,
