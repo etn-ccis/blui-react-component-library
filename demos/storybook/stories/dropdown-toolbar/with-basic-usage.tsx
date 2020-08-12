@@ -4,31 +4,24 @@ import React from 'react';
 import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
 import { text } from '@storybook/addon-knobs';
 import { AppBar } from '@material-ui/core';
+import { HandlerFunction, action } from '@storybook/addon-actions';
 
 export const withBasicUsage = (): StoryFnReactReturnType => {
-    const updateSubtitle = (str: string, state: any): void => {
-        state.selected = str;
-    }
-
-    const state = {
-        selected: undefined,
-    }
-
     const menuItems = [
-        { label: 'English', onClick: () => updateSubtitle("English", state) },
-        { label: 'Arabic', onClick: () => updateSubtitle("Arabic", state) },
-        { label: 'French', onClick: () => updateSubtitle("French", state) }
-    ]
+        { label: 'English', onClick: (): HandlerFunction => action('English selected') },
+        { label: 'Arabic', onClick: (): HandlerFunction => action('Arabic selected') },
+        { label: 'French', onClick: (): HandlerFunction => action('French selected') },
+    ];
 
     return (
         <AppBar color={'primary'}>
             <DropdownToolbar
                 title={text('title', 'Title')}
-                subtitleLabel={state.selected || text('subtitleLabel', 'Subtitle')}
+                subtitleLabel={text('subtitleLabel', 'Subtitle')}
                 menuItems={menuItems}
             ></DropdownToolbar>
         </AppBar>
-    )
+    );
 };
 
 withBasicUsage.story = { name: WITH_MIN_PROPS_STORY_NAME };

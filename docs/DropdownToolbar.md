@@ -12,15 +12,15 @@ import { DropdownToolbar } from '@pxblue/react-components';
 ...
 <DropdownToolbar title={"Title"} subtitleLabel={"Subtitle"} menuItems={[
   {
-    label: "Menu Item 1;
+    label: "Menu Item 1";
     onClick: () => {};
   },
   {
-     label: "Menu Item 2;
+     label: "Menu Item 2";
     onClick: () => {};
   },
   {
-     label: "Menu Item 3;
+     label: "Menu Item 3";
     onClick: () => {};
   }
 ]}/>
@@ -46,7 +46,7 @@ import { DropdownToolbar } from '@pxblue/react-components';
 | Prop Name | Description                                    | Type                   | Required | Default   |
 | --------- | ---------------------------------------------- | ---------------------- | -------- | --------- |
 | label     | Label used for a menu item                     | `string`               | yes      |           |
-| onClick   | Function to call when menu item is clicked     | `function`             | yes      |           |
+| onClick   | Function to call when menu item is clicked     | `Function`             | yes      |           |
 
 #### Classes
 
