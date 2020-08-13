@@ -5,13 +5,13 @@ import { text, select } from '@storybook/addon-knobs';
 import * as Colors from '@pxblue/colors';
 import { AppBar } from '@material-ui/core';
 import { ArrowBack, Menu } from '@material-ui/icons';
-import { HandlerFunction, action } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 
 export const withNavIcon = (): StoryFnReactReturnType => {
     const menuItems = [
-        { label: 'English', onClick: (): HandlerFunction => action('English selected') },
-        { label: 'Arabic', onClick: (): HandlerFunction => action('Arabic selected') },
-        { label: 'French', onClick: (): HandlerFunction => action('French selected') },
+        { label: 'Item 1', onClick: action('Item 1 selected') },
+        { label: 'Item 2', onClick: action('Item 2 selected') },
+        { label: 'Item 3', onClick: action('Item 3 selected') },
     ];
 
     const getIcon = (icon: string): JSX.Element | undefined => {
@@ -20,7 +20,7 @@ export const withNavIcon = (): StoryFnReactReturnType => {
                 return <Menu />;
             case '<ArrowBack />':
                 return <ArrowBack />;
-            case 'undefined':
+            case 'none':
             default:
                 return undefined;
         }
@@ -31,10 +31,8 @@ export const withNavIcon = (): StoryFnReactReturnType => {
             <DropdownToolbar
                 style={{ width: '80%', backgroundColor: Colors.blue[500], color: Colors.white[50] }}
                 title={text('title', 'Title')}
-                subtitleLabel={text('subtitleLabel', 'Subtitle')}
-                navigationIcon={getIcon(
-                    select('navigationIcon', ['undefined', '<Menu />', '<ArrowBack />'], '<Menu />')
-                )}
+                subtitle={text('subtitle', 'Subtitle')}
+                navigationIcon={getIcon(select('navigationIcon', ['none', '<Menu />', '<ArrowBack />'], '<Menu />'))}
                 menuItems={menuItems}
             ></DropdownToolbar>
         </AppBar>

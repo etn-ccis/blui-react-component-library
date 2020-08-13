@@ -11,14 +11,15 @@ export const withCustomMenu = (): StoryFnReactReturnType => (
     <AppBar color={'primary'}>
         <DropdownToolbar
             title={text('title', 'Title')}
-            subtitleLabel={text('subtitleLabel', 'Subtitle')}
+            subtitle={text('subtitle', 'Subtitle')}
             customMenu={
-                <>
+                <div>
                     <InfoListItem
                         title={'Atlanta'}
                         icon={<Business />}
                         iconColor={Colors.blue[500]}
                         onClick={action('Atlanta selected')}
+                        dense
                     ></InfoListItem>
                     <InfoListItem
                         title={'Pittsburgh'}
@@ -26,14 +27,16 @@ export const withCustomMenu = (): StoryFnReactReturnType => (
                         iconColor={Colors.red[500]}
                         statusColor={Colors.red[500]}
                         onClick={action('Pittsburgh selected')}
+                        dense
                     ></InfoListItem>
                     <InfoListItem
                         title={'New York'}
                         icon={<Apartment />}
                         iconColor={Colors.blue[500]}
                         onClick={action('New York selected')}
+                        dense
                     ></InfoListItem>
-                </>
+                </div>
             }
         ></DropdownToolbar>
     </AppBar>
