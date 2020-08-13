@@ -91,42 +91,43 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
     }, [navigationIcon]);
 
     const getMenu = useCallback(() => {
-      if(menuItems && Boolean(anchorEl)) {
-        return(
-        <Menu
-            elevation={0}
-            getContentAnchorEl={null}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={(): void => setAnchorEl(null)}
-            MenuListProps={{ style: { padding: 0 } }}
-            PaperProps={{
-                style: {
-                    maxHeight: MENU_ITEM_HEIGHT * 4.5,
-                },
-            }}
-        >
-            {!customMenu &&
-                menuItems.map((item: ToolbarMenuItem, index: number) => (
-                    <MenuItem
-                        key={`Toolbar-Option-${index}`}
-                        onClick={(): void => {
-                            setAnchorEl(null);
-                            item.onClick();
-                        }}
-                        className={clsx(classes.menuItem)}
-                    >
-                        {item.label}
-                    </MenuItem>
-                ))}
-        </Menu>
-    )}
+        if (menuItems && Boolean(anchorEl)) {
+            return (
+                <Menu
+                    elevation={0}
+                    getContentAnchorEl={null}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={(): void => setAnchorEl(null)}
+                    MenuListProps={{ style: { padding: 0 } }}
+                    PaperProps={{
+                        style: {
+                            maxHeight: MENU_ITEM_HEIGHT * 4.5,
+                        },
+                    }}
+                >
+                    {!customMenu &&
+                        menuItems.map((item: ToolbarMenuItem, index: number) => (
+                            <MenuItem
+                                key={`Toolbar-Option-${index}`}
+                                onClick={(): void => {
+                                    setAnchorEl(null);
+                                    item.onClick();
+                                }}
+                                className={clsx(classes.menuItem)}
+                            >
+                                {item.label}
+                            </MenuItem>
+                        ))}
+                </Menu>
+            );
+        }
 
-    if(customMenu && Boolean(anchorEl)) {
-      return (
-        <Menu
+        if (customMenu && Boolean(anchorEl)) {
+            return (
+                <Menu
                     elevation={0}
                     getContentAnchorEl={null}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
@@ -143,9 +144,9 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
                 >
                     {customMenu}
                 </Menu>
-      )
-    }
-  }, [menuItems, customMenu, anchorEl]);
+            );
+        }
+    }, [menuItems, customMenu, anchorEl]);
 
     return (
         <>
