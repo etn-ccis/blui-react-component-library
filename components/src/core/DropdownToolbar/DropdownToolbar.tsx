@@ -22,8 +22,8 @@ export type ToolbarMenuItem = {
 };
 export type DropdownToolbarProps = ToolbarProps & {
     title: string;
-    subtitleLabel: string | undefined;
-    menuItems?: ToolbarMenuItem[] | undefined;
+    subtitle?: string;
+    menuItems?: ToolbarMenuItem[];
     navigationIcon?: JSX.Element;
     customMenu?: JSX.Element;
     classes?: DropdownToolbarClasses;
@@ -35,147 +35,155 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
         },
-        navigationIconWrapper: {
+        navigation: {
             marginRight: theme.spacing(4),
             cursor: 'pointer',
         },
+        textContent: {
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+        },
         title: {
             lineHeight: 1,
+            textOverflow: 'ellipsis',
+            overflow: 'auto',
+        },
+        subtitleContent: {
+            display: 'flex',
+            flexDirection: 'row',
+            maxWidth: 'fit-content',
+            cursor: 'pointer',
         },
         subtitle: {
-            display: 'inline-flex',
-            cursor: 'pointer',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
         },
         arrowDropdown: {
             marginLeft: 4,
         },
-        menuItem: {
-            height: MENU_ITEM_HEIGHT,
+        rotateArrowDropdown: {
+            transform: 'rotate(180deg)',
         },
     })
 );
 
 export type DropdownToolbarClasses = {
     root?: string;
-    navigationIconWrapper?: string;
+    navigation?: string;
+    textContent?: string;
     title?: string;
+    subtitleContent?: string;
     subtitle?: string;
     arrowDropdown?: string;
     menuItem?: string;
 };
 
 export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
-    const { title, subtitleLabel, menuItems, navigationIcon, customMenu, style, classes } = props;
+    const { title, subtitle, menuItems, navigationIcon, customMenu, classes = {}, ...toolbarProps } = props;
     const [anchorEl, setAnchorEl] = useState(null);
     const anchor = useRef(null);
     const theme = useTheme();
     const defaultClasses = useStyles(theme);
     const getNavigationIcon = useCallback(() => {
         if (navigationIcon) {
-            return (
-                <div className={clsx(defaultClasses.navigationIconWrapper, classes?.navigationIconWrapper)}>
-                    {navigationIcon}
-                </div>
-            );
+            return <div className={clsx(defaultClasses.navigation, classes.navigation)}>{navigationIcon}</div>;
         }
     }, [navigationIcon]);
 
+    const getMenu = useCallback(() => {
+      if(menuItems && Boolean(anchorEl)) {
+        return(
+        <Menu
+            elevation={0}
+            getContentAnchorEl={null}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={(): void => setAnchorEl(null)}
+            MenuListProps={{ style: { padding: 0 } }}
+            PaperProps={{
+                style: {
+                    maxHeight: MENU_ITEM_HEIGHT * 4.5,
+                },
+            }}
+        >
+            {!customMenu &&
+                menuItems.map((item: ToolbarMenuItem, index: number) => (
+                    <MenuItem
+                        key={`Toolbar-Option-${index}`}
+                        onClick={(): void => {
+                            setAnchorEl(null);
+                            item.onClick();
+                        }}
+                        className={clsx(classes.menuItem)}
+                    >
+                        {item.label}
+                    </MenuItem>
+                ))}
+        </Menu>
+    )}
+
+    if(customMenu && Boolean(anchorEl)) {
+      return (
+        <Menu
+                    elevation={0}
+                    getContentAnchorEl={null}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={(): void => setAnchorEl(null)}
+                    MenuListProps={{ style: { padding: 0 } }}
+                    PaperProps={{
+                        style: {
+                            maxHeight: MENU_ITEM_HEIGHT * 4.5,
+                        },
+                    }}
+                >
+                    {customMenu}
+                </Menu>
+      )
+    }
+  }, [menuItems, customMenu, anchorEl]);
+
     return (
         <>
-            <Toolbar data-testid="dropdown-toolbar" className={clsx(defaultClasses.root, classes?.root)} style={style}>
+            <Toolbar className={clsx(defaultClasses.root, classes.root)} style={toolbarProps.style}>
                 {getNavigationIcon()}
                 <ListItemText
-                    data-testid="dropdown-title"
-                    id={'dropdown-toolbar-text'}
+                    className={clsx(defaultClasses.textContent, classes.textContent)}
                     primary={
-                        <Typography variant="h6" className={clsx(defaultClasses.title, classes?.title)}>
+                        <Typography variant="h6" className={clsx(defaultClasses.title, classes.title)}>
                             {title}
                         </Typography>
                     }
                     secondary={
                         <Typography
-                            id={'dropdown-subtitle'}
-                            data-testid={'dropdown-subtitle'}
                             ref={anchor}
                             aria-haspopup="true"
-                            className={clsx(defaultClasses.subtitle, classes?.subtitle)}
                             component={'div'}
                             onClick={(): void => {
                                 setAnchorEl(anchor.current);
                             }}
+                            className={clsx(defaultClasses.subtitleContent, classes.subtitleContent)}
                         >
-                            {subtitleLabel || ''}
-                            {menuItems && menuItems.length > 0 && (
-                                <ArrowDropDown className={clsx(defaultClasses.arrowDropdown, classes?.arrowDropdown)} />
-                            )}
-                            {customMenu && (
-                                <ArrowDropDown className={clsx(defaultClasses.arrowDropdown, classes?.arrowDropdown)} />
+                            <span className={clsx(defaultClasses.subtitle, classes.subtitle)}>{subtitle || ''}</span>
+                            {((menuItems && menuItems.length > 0) || customMenu) && (
+                                <ArrowDropDown
+                                    className={clsx(
+                                        defaultClasses.arrowDropdown,
+                                        classes.arrowDropdown,
+                                        anchorEl ? defaultClasses.rotateArrowDropdown : ''
+                                    )}
+                                />
                             )}
                         </Typography>
                     }
                 />
                 {props.children}
             </Toolbar>
-
-            {menuItems && Boolean(anchorEl) && (
-                <Menu
-                    id="dropdown-toolbar-menu"
-                    data-testid="dropdown-toolbar-menu"
-                    elevation={0}
-                    getContentAnchorEl={null}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                    transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={(): void => setAnchorEl(null)}
-                    MenuListProps={{ style: { padding: 0 } }}
-                    PaperProps={{
-                        style: {
-                            maxHeight: MENU_ITEM_HEIGHT * 4.5,
-                            width: 200,
-                        },
-                    }}
-                >
-                    {!customMenu &&
-                        menuItems.map((item: ToolbarMenuItem, index: number) => (
-                            <MenuItem
-                                key={`Toolbar-Option-${index}`}
-                                id={`menu-item-${index}`}
-                                data-testid={`menu-item-${index}`}
-                                onClick={(): void => {
-                                    setAnchorEl(null);
-                                    item.onClick();
-                                }}
-                                className={clsx(defaultClasses.menuItem, classes?.menuItem)}
-                            >
-                                {item.label}
-                            </MenuItem>
-                        ))}
-                </Menu>
-            )}
-
-            {customMenu && Boolean(anchorEl) && (
-                <Menu
-                    id="dropdown-toolbar-menu"
-                    data-testid="dropdown-toolbar-menu"
-                    elevation={0}
-                    getContentAnchorEl={null}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                    transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={(): void => setAnchorEl(null)}
-                    MenuListProps={{ style: { padding: 0 } }}
-                    PaperProps={{
-                        style: {
-                            maxHeight: MENU_ITEM_HEIGHT * 4.5,
-                            width: 200,
-                        },
-                    }}
-                >
-                    {customMenu}
-                </Menu>
-            )}
+            {getMenu()}
         </>
     );
 };
