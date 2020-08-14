@@ -60,10 +60,10 @@ const useStyles = makeStyles((theme: Theme) =>
             overflow: 'hidden',
             textOverflow: 'ellipsis',
         },
-        arrowDropdown: {
-            marginLeft: 4,
+        dropdownArrow: {
+            marginLeft: theme.spacing(0.5),
         },
-        rotateArrowDropdown: {
+        rotateDropdownArrow: {
             transform: 'rotate(180deg)',
         },
     })
@@ -76,7 +76,7 @@ export type DropdownToolbarClasses = {
     title?: string;
     subtitleContent?: string;
     subtitle?: string;
-    arrowDropdown?: string;
+    dropdownArrow?: string;
     menuItem?: string;
 };
 
@@ -177,9 +177,9 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
                             {((menuItems && menuItems.length > 0) || customMenu) && (
                                 <ArrowDropDown
                                     className={clsx(
-                                        defaultClasses.arrowDropdown,
-                                        classes.arrowDropdown,
-                                        anchorEl ? defaultClasses.rotateArrowDropdown : ''
+                                        defaultClasses.dropdownArrow,
+                                        classes.dropdownArrow,
+                                        anchorEl ? defaultClasses.rotateDropdownArrow : ''
                                     )}
                                 />
                             )}

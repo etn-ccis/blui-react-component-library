@@ -61,6 +61,6 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | menuItem              | Styles applied to the menu item                        |
 | navigation            | Styles applied to the navigationIcon                   |
 | subtitle              | Styles applied to the subtitle text                    |
-| subtitleContent       | Styles applied to subtitle and arrowDropdown container |
+| subtitleContent       | Styles applied to subtitle and dropdownArrow container |
 | textContent           | Styles applied to title and subtitle container         |
 | title                 | Styles applied to the title text                       |
