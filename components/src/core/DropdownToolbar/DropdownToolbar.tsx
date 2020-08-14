@@ -10,6 +10,7 @@ import {
     makeStyles,
     useTheme,
     Theme,
+    MenuProps as standardMenuProps,
 } from '@material-ui/core';
 import { ArrowDropDown } from '@material-ui/icons';
 import clsx from 'clsx';
@@ -27,6 +28,7 @@ export type DropdownToolbarProps = ToolbarProps & {
     navigationIcon?: JSX.Element;
     customMenu?: JSX.Element;
     classes?: DropdownToolbarClasses;
+    menuProps?: Omit<standardMenuProps, 'open'>;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -79,7 +81,7 @@ export type DropdownToolbarClasses = {
 };
 
 export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
-    const { title, subtitle, menuItems, navigationIcon, customMenu, classes = {}, ...toolbarProps } = props;
+    const { title, subtitle, menuItems, navigationIcon, customMenu, menuProps, classes = {}, ...toolbarProps } = props;
     const [anchorEl, setAnchorEl] = useState(null);
     const anchor = useRef(null);
     const theme = useTheme();
@@ -98,6 +100,7 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
                     getContentAnchorEl={null}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                    {...menuProps}
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
                     onClose={(): void => setAnchorEl(null)}
@@ -132,6 +135,7 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
                     getContentAnchorEl={null}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                    {...menuProps}
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
                     onClose={(): void => setAnchorEl(null)}
@@ -146,7 +150,7 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
                 </Menu>
             );
         }
-    }, [menuItems, customMenu, anchorEl]);
+    }, [menuItems, customMenu, anchorEl, menuProps]);
 
     return (
         <>

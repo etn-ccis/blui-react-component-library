@@ -35,6 +35,7 @@ import { DropdownToolbar } from '@pxblue/react-components';
 | classes        | Style Overrides                                | `DropdownToolbarClasses` | no       |           |
 | customMenu     | Custom content to be displayed in the menu     | `JSX.Element`            | no       |           |
 | menuItems      | Items to be displayed in the menu              | `ToolbarMenuItem[]`      | no       |           |
+| menuProps      | Property overrides for the MUI Menu            | `MenuProps`              | no       |           |
 | navigationIcon | Navigation Icon to be displayed                | `JSX.Element`            | no       |           |
 | subtitle       | Subtitle text to be displayed                  | `string`                 | no       |           |
 | title          | Title text to be displayed                     | `string`                 | yes      |           |
