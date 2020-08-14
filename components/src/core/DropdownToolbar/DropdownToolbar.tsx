@@ -93,6 +93,28 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
     }, [navigationIcon]);
 
     const getMenu = useCallback(() => {
+        if (customMenu && Boolean(anchorEl)) {
+            return (
+                <Menu
+                    elevation={0}
+                    getContentAnchorEl={null}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                    {...menuProps}
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={(): void => setAnchorEl(null)}
+                    MenuListProps={{ style: { padding: 0 } }}
+                    PaperProps={{
+                        style: {
+                            maxHeight: MENU_ITEM_HEIGHT * 4.5,
+                        },
+                    }}
+                >
+                    {customMenu}
+                </Menu>
+            );
+        }
         if (menuItems && Boolean(anchorEl)) {
             return (
                 <Menu
@@ -124,29 +146,6 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
                                 {item.label}
                             </MenuItem>
                         ))}
-                </Menu>
-            );
-        }
-
-        if (customMenu && Boolean(anchorEl)) {
-            return (
-                <Menu
-                    elevation={0}
-                    getContentAnchorEl={null}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-                    {...menuProps}
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={(): void => setAnchorEl(null)}
-                    MenuListProps={{ style: { padding: 0 } }}
-                    PaperProps={{
-                        style: {
-                            maxHeight: MENU_ITEM_HEIGHT * 4.5,
-                        },
-                    }}
-                >
-                    {customMenu}
                 </Menu>
             );
         }
