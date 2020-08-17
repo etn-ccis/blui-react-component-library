@@ -27,4 +27,3 @@ describe('DropdownToolbar', () => {
         ReactDOM.unmountComponentAtNode(div);
     });
 });
-
