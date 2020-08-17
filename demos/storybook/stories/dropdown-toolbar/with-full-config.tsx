@@ -7,6 +7,7 @@ import { AppBar, Theme, makeStyles, createStyles, useTheme } from '@material-ui/
 import { Menu, ArrowBack, Home, Work, Settings } from '@material-ui/icons';
 import { action } from '@storybook/addon-actions';
 import clsx from 'clsx';
+// @ts-ignore @TODO remove this once type definitions are completed for storybook-rtl-addon
 import { getDirection } from '@pxblue/storybook-rtl-addon';
 
 const useStyles = makeStyles((theme: Theme) =>
