@@ -2,7 +2,6 @@ import { DropdownToolbar } from '@pxblue/react-components';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { text, select } from '@storybook/addon-knobs';
-import * as Colors from '@pxblue/colors';
 import { AppBar } from '@material-ui/core';
 import { ArrowBack, Menu } from '@material-ui/icons';
 import { action } from '@storybook/addon-actions';
