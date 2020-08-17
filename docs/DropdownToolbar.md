@@ -11,18 +11,21 @@ The `<DropdownToolbar>` component is used to display a toolbar with a dropdown m
 import { DropdownToolbar } from '@pxblue/react-components';
 ...
 <DropdownToolbar title={"Title"} subtitle={"Subtitle"} menuGroups={[
-  items: [{
-    title: "Menu Item 1";
-    onClick: () => {};
-  },
   {
-    title: "Menu Item 2";
-    onClick: () => {};
-  },
-  {
-    title: "Menu Item 3";
-    onClick: () => {};
-  }]
+    items: [{
+        title: "Menu Item 1";
+        onClick: () => {};
+      },
+      {
+        title: "Menu Item 2";
+        onClick: () => {};
+      },
+      {
+        title: "Menu Item 3";
+        onClick: () => {};
+      }
+    ]
+  }
 ]}/>
 ```
 
