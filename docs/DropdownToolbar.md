@@ -10,19 +10,19 @@ The `<DropdownToolbar>` component is used to display a toolbar with a dropdown m
 ```tsx
 import { DropdownToolbar } from '@pxblue/react-components';
 ...
-<DropdownToolbar title={"Title"} subtitle={"Subtitle"} menuItems={[
-  {
-    label: "Menu Item 1";
+<DropdownToolbar title={"Title"} subtitle={"Subtitle"} menuGroups={[
+  items: [{
+    title: "Menu Item 1";
     onClick: () => {};
   },
   {
-    label: "Menu Item 2";
+    title: "Menu Item 2";
     onClick: () => {};
   },
   {
-    label: "Menu Item 3";
+    title: "Menu Item 3";
     onClick: () => {};
-  }
+  }]
 ]}/>
 ```
 
@@ -34,7 +34,7 @@ import { DropdownToolbar } from '@pxblue/react-components';
 | -------------- | ---------------------------------------------- | ------------------------ | -------- | --------- |
 | classes        | Style Overrides                                | `DropdownToolbarClasses` | no       |           |
 | menu           | Custom content to be displayed in the menu     | Material-UI `Menu`       | no       |           |
-| menuItems      | Items to be displayed in the menu              | `ToolbarMenuItem[]`      | no       |           |
+| menuGroups     | Groups of menu items to display                | `ToolbarMenuGroups[]`    | no       |           |
 | MenuProps      | Property overrides for the MUI Menu            | `MenuProps`              | no       |           |
 | navigationIcon | Navigation Icon to be displayed                | `JSX.Element`            | no       |           |
 | onClose        | Function called when the menu is closed        | `Function`               | no       |           |
@@ -45,13 +45,6 @@ import { DropdownToolbar } from '@pxblue/react-components';
 </div>
 
 Any other props supplied will be provided to the root element (`Toolbar`).
-
-### ToolbarMenuItem
-
-| Prop Name | Description                                    | Type                   | Required | Default   |
-| --------- | ---------------------------------------------- | ---------------------- | -------- | --------- |
-| label     | Label used for a menu item                     | `string`               | yes      |           |
-| onClick   | Function to call when menu item is clicked     | `Function`             | yes      |           |
 
 ### Classes
 
@@ -66,3 +59,34 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | subtitleContent       | Styles applied to subtitle and dropdownArrow container |
 | textContent           | Styles applied to title and subtitle container         |
 | title                 | Styles applied to the title text                       |
+
+### Toolbar Menu Groups Object
+
+The `menuGroups` prop of the `<DropdownToolbar>` includes many properties from the `<DrawerNavGroup>` array found within a `<DrawerBody>`.
+
+<div style="overflow: auto;">
+
+| Prop Name | Description                         | Type                | Required | Default |
+| --------- | ----------------------------------- | ------------------- | -------- | ------- |
+| fontColor | The color used for the text         | `string`            | no       |         |
+| iconColor | The color used for icons            | `string`            | no       |         |
+| items     | List of navigation items to render  | `ToolbarMenuItem[]` | yes      |         |
+| title     | Text to display in the group header | `string`            | no       |         |
+
+</div>
+
+### Toolbar Menu Item Object
+
+<div style="overflow: auto;">
+
+| Attribute   | Description                         | Type              | Required | Default |
+| ----------- | ----------------------------------- | ----------------- | -------- | ------- |
+| chevron     | Show chevron icon to the right      | `boolean`         | no       | false   |
+| divider     | Show a divider line below the item  | `boolean`         | no       |         |
+| icon        | A component to render for the icon  | `JSX.Element`     | no       |         |
+| onClick     | A function to execute when clicked  | `function`        | no       |         |
+| statusColor | Status stripe and icon color        | `string`          | no       |         |
+| subtitle    | The text to show on the second line | `string`          | no       |         |
+| title       | The text to show on the first line  | `string`          | yes      |         |
+
+</div>
