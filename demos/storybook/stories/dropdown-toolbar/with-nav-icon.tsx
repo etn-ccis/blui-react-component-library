@@ -35,7 +35,6 @@ export const withNavIcon = (): StoryFnReactReturnType => {
     return (
         <AppBar color={'primary'}>
             <DropdownToolbar
-                style={{ width: '80%', backgroundColor: Colors.blue[500], color: Colors.white[50] }}
                 title={text('title', 'Title')}
                 subtitle={text('subtitle', 'Subtitle')}
                 navigationIcon={getIcon(select('navigationIcon', ['none', '<Menu />', '<ArrowBack />'], '<Menu />'))}
