@@ -1,5 +1,5 @@
 # Dropdown Toolbar
-The `<DropdownToolbar>` component is used to display a toolbar with a dropdown menu for a subtitle. A custom menu can be provided using the `customMenu` prop.
+The `<DropdownToolbar>` component is used to display a toolbar with a dropdown menu for a subtitle. The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `<Menu>` via the `menu` prop.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 600px" alt="Dropdown Toolbar" src="./images/dropdownToolbar.png">
@@ -33,10 +33,12 @@ import { DropdownToolbar } from '@pxblue/react-components';
 | Prop Name      | Description                                    | Type                     | Required | Default   |
 | -------------- | ---------------------------------------------- | ------------------------ | -------- | --------- |
 | classes        | Style Overrides                                | `DropdownToolbarClasses` | no       |           |
-| customMenu     | Custom content to be displayed in the menu     | `JSX.Element`            | no       |           |
+| menu           | Custom content to be displayed in the menu     | Material-UI `Menu`       | no       |           |
 | menuItems      | Items to be displayed in the menu              | `ToolbarMenuItem[]`      | no       |           |
-| menuProps      | Property overrides for the MUI Menu            | `MenuProps`              | no       |           |
+| MenuProps      | Property overrides for the MUI Menu            | `MenuProps`              | no       |           |
 | navigationIcon | Navigation Icon to be displayed                | `JSX.Element`            | no       |           |
+| onClose        | Function called when the menu is closed        | `Function`               | no       |           |
+| onOpen         | unction called when the menu is opened         | `Function`               | no       |           |
 | subtitle       | Subtitle text to be displayed                  | `string`                 | no       |           |
 | title          | Title text to be displayed                     | `string`                 | yes      |           |
 

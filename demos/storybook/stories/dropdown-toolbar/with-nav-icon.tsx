@@ -9,9 +9,15 @@ import { action } from '@storybook/addon-actions';
 
 export const withNavIcon = (): StoryFnReactReturnType => {
     const menuItems = [
-        { label: 'Item 1', onClick: action('Item 1 selected') },
-        { label: 'Item 2', onClick: action('Item 2 selected') },
-        { label: 'Item 3', onClick: action('Item 3 selected') },
+        { title: 'Item 1', onClick: action('Item 1 selected') },
+        { title: 'Item 2', onClick: action('Item 2 selected') },
+        { title: 'Item 3', onClick: action('Item 3 selected') },
+    ];
+
+    const menuGroups = [
+        {
+            items: menuItems,
+        },
     ];
 
     const getIcon = (icon: string): JSX.Element | undefined => {
@@ -33,7 +39,7 @@ export const withNavIcon = (): StoryFnReactReturnType => {
                 title={text('title', 'Title')}
                 subtitle={text('subtitle', 'Subtitle')}
                 navigationIcon={getIcon(select('navigationIcon', ['none', '<Menu />', '<ArrowBack />'], '<Menu />'))}
-                menuItems={menuItems}
+                menuGroups={menuGroups}
             ></DropdownToolbar>
         </AppBar>
     );

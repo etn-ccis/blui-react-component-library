@@ -28,9 +28,15 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const classes = useStyles(theme);
     const direction = getDirection();
     const menuItems = [
-        { label: 'Item 1', onClick: action('Item 1 selected') },
-        { label: 'Item 2', onClick: action('Item 2 selected') },
-        { label: 'Item 3', onClick: action('Item 3 selected') },
+        { title: 'Item 1', onClick: action('Item 1 selected') },
+        { title: 'Item 2', onClick: action('Item 2 selected') },
+        { title: 'Item 3', onClick: action('Item 3 selected') },
+    ];
+
+    const menuGroups = [
+        {
+            items: menuItems,
+        },
     ];
 
     const getIcon = (icon: string): JSX.Element | undefined => {
@@ -69,7 +75,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                 title={text('title', 'Title')}
                 subtitle={text('subtitle', 'Subtitle')}
                 navigationIcon={getIcon(select('navigationIcon', ['none', '<Menu />', '<ArrowBack />'], '<Menu />'))}
-                menuItems={menuItems}
+                menuGroups={menuGroups}
             >
                 <Spacer />
                 {icons.slice(0, number('Number of Icons', 3, { range: true, min: 0, max: 3, step: 1 }))}

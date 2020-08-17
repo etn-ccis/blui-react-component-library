@@ -27,9 +27,15 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
     );
 
     const menuItems = [
-        { label: 'Item 1', onClick: action('Item 1 selected') },
-        { label: 'Item 2', onClick: action('Item 2 selected') },
-        { label: 'Item 3', onClick: action('Item 3 selected') },
+        { title: 'Item 1', onClick: action('Item 1 selected') },
+        { title: 'Item 2', onClick: action('Item 2 selected') },
+        { title: 'Item 3', onClick: action('Item 3 selected') },
+    ];
+
+    const menuGroups = [
+        {
+            items: menuItems,
+        },
     ];
 
     return (
@@ -37,8 +43,8 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
             <DropdownToolbar
                 title={'Title'}
                 subtitle={'Subtitle'}
-                menuItems={menuItems}
-                menuProps={{
+                menuGroups={menuGroups}
+                MenuProps={{
                     anchorOrigin: { horizontal: anchorOriginHorizontal, vertical: anchorOriginVertical },
                     transformOrigin: { horizontal: transformOriginHorizontal, vertical: transformOriginVertical },
                 }}

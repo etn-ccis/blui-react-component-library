@@ -8,9 +8,15 @@ import { action } from '@storybook/addon-actions';
 
 export const withBasicUsage = (): StoryFnReactReturnType => {
     const menuItems = [
-        { label: 'Item 1', onClick: action('Item 1 selected') },
-        { label: 'Item 2', onClick: action('Item 2 selected') },
-        { label: 'Item 3', onClick: action('Item 3 selected') },
+        { title: 'Item 1', onClick: action('Item 1 selected') },
+        { title: 'Item 2', onClick: action('Item 2 selected') },
+        { title: 'Item 3', onClick: action('Item 3 selected') },
+    ];
+
+    const menuGroups = [
+        {
+            items: menuItems,
+        },
     ];
 
     return (
@@ -18,7 +24,7 @@ export const withBasicUsage = (): StoryFnReactReturnType => {
             <DropdownToolbar
                 title={text('title', 'Title')}
                 subtitle={text('subtitle', 'Subtitle')}
-                menuItems={menuItems}
+                menuGroups={menuGroups}
             ></DropdownToolbar>
         </AppBar>
     );

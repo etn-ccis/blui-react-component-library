@@ -4,7 +4,6 @@ import {
     Toolbar,
     ListItemText,
     Menu,
-    MenuItem,
     ToolbarProps,
     createStyles,
     makeStyles,
@@ -14,21 +13,28 @@ import {
 } from '@material-ui/core';
 import { ArrowDropDown } from '@material-ui/icons';
 import clsx from 'clsx';
+import { NavItem, DrawerNavGroup } from '../Drawer';
 
 const MENU_ITEM_HEIGHT = 48;
 
-export type ToolbarMenuItem = {
-    label: string;
-    onClick: () => void;
+export type ToolbarMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
+export type ToolbarMenuGroup = {
+    fontColor?: string;
+    iconColor?: string;
+    items: ToolbarMenuItem[];
+    title?: string;
 };
+
 export type DropdownToolbarProps = ToolbarProps & {
     title: string;
     subtitle?: string;
-    menuItems?: ToolbarMenuItem[];
     navigationIcon?: JSX.Element;
-    customMenu?: JSX.Element;
+    menu?: JSX.Element;
+    menuGroups?: ToolbarMenuGroup[];
     classes?: DropdownToolbarClasses;
-    menuProps?: Omit<standardMenuProps, 'open'>;
+    MenuProps?: Omit<standardMenuProps, 'open'>;
+    onOpen?: () => void;
+    onClose?: () => void;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -40,6 +46,11 @@ const useStyles = makeStyles((theme: Theme) =>
         navigation: {
             marginRight: theme.spacing(4),
             cursor: 'pointer',
+        },
+        navGroups: {
+            '&:active, &:focus': {
+                outline: 'none',
+            },
         },
         textContent: {
             overflow: 'hidden',
@@ -54,6 +65,8 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'row',
             maxWidth: 'fit-content',
+        },
+        cursorPointer: {
             cursor: 'pointer',
         },
         subtitle: {
@@ -81,7 +94,18 @@ export type DropdownToolbarClasses = {
 };
 
 export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
-    const { title, subtitle, menuItems, navigationIcon, customMenu, menuProps, classes = {}, ...toolbarProps } = props;
+    const {
+        title,
+        subtitle,
+        menuGroups,
+        navigationIcon,
+        menu,
+        MenuProps,
+        onClose,
+        onOpen,
+        classes = {},
+        ...toolbarProps
+    } = props;
     const [anchorEl, setAnchorEl] = useState(null);
     const anchor = useRef(null);
     const theme = useTheme();
@@ -92,40 +116,43 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
         }
     }, [navigationIcon]);
 
-    const getMenu = useCallback(() => {
-        if (customMenu && Boolean(anchorEl)) {
-            return (
-                <Menu
-                    elevation={0}
-                    getContentAnchorEl={null}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-                    {...menuProps}
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={(): void => setAnchorEl(null)}
-                    MenuListProps={{ style: { padding: 0 } }}
-                    PaperProps={{
-                        style: {
-                            maxHeight: MENU_ITEM_HEIGHT * 4.5,
-                        },
-                    }}
-                >
-                    {customMenu}
-                </Menu>
-            );
+    const closeMenu = useCallback(() => {
+        if (onClose) {
+            onClose();
         }
-        if (menuItems && Boolean(anchorEl)) {
+        setAnchorEl(null);
+    }, [onClose]);
+
+    const openMenu = useCallback(
+        (event: MouseEvent) => {
+            if (onOpen) {
+                onOpen();
+            }
+            setAnchorEl(event);
+        },
+        [onOpen]
+    );
+
+    const getMenu = useCallback(() => {
+        if (menu && Boolean(anchorEl)) {
+            return React.cloneElement(menu, {
+                anchorEl: anchorEl,
+                open: Boolean(anchorEl),
+                onClose: closeMenu,
+                ...menu.props,
+            });
+        }
+        if (menuGroups && Boolean(anchorEl)) {
             return (
                 <Menu
                     elevation={0}
                     getContentAnchorEl={null}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-                    {...menuProps}
+                    {...MenuProps}
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
-                    onClose={(): void => setAnchorEl(null)}
+                    onClose={(): void => closeMenu()}
                     MenuListProps={{ style: { padding: 0 } }}
                     PaperProps={{
                         style: {
@@ -133,23 +160,27 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
                         },
                     }}
                 >
-                    {!customMenu &&
-                        menuItems.map((item: ToolbarMenuItem, index: number) => (
-                            <MenuItem
-                                key={`Toolbar-Option-${index}`}
-                                onClick={(): void => {
-                                    setAnchorEl(null);
-                                    item.onClick();
-                                }}
-                                className={clsx(classes.menuItem)}
-                            >
-                                {item.label}
-                            </MenuItem>
+                    {!menu &&
+                        menuGroups.map((group: ToolbarMenuGroup, index: number) => (
+                            <div className={defaultClasses.navGroups} key={index}>
+                                <DrawerNavGroup
+                                    divider={false}
+                                    drawerOpen={true}
+                                    hidePadding={true}
+                                    itemIconColor={group.iconColor}
+                                    itemFontColor={group.fontColor}
+                                    title={group.title}
+                                    items={group.items.map(
+                                        (item: ToolbarMenuItem, itemIndex: number): NavItem =>
+                                            Object.assign({ itemID: itemIndex.toString() }, item)
+                                    )}
+                                />
+                            </div>
                         ))}
                 </Menu>
             );
         }
-    }, [menuItems, customMenu, anchorEl, menuProps]);
+    }, [menuGroups, menu, anchorEl, MenuProps, defaultClasses]);
 
     return (
         <>
@@ -168,12 +199,16 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
                             aria-haspopup="true"
                             component={'div'}
                             onClick={(): void => {
-                                setAnchorEl(anchor.current);
+                                openMenu(anchor.current);
                             }}
-                            className={clsx(defaultClasses.subtitleContent, classes.subtitleContent)}
+                            className={clsx(
+                                defaultClasses.subtitleContent,
+                                classes.subtitleContent,
+                                menuGroups || menu ? defaultClasses.cursorPointer : ''
+                            )}
                         >
                             <span className={clsx(defaultClasses.subtitle, classes.subtitle)}>{subtitle || ''}</span>
-                            {((menuItems && menuItems.length > 0) || customMenu) && (
+                            {((menuGroups && menuGroups.length > 0) || menu) && (
                                 <ArrowDropDown
                                     className={clsx(
                                         defaultClasses.dropdownArrow,
