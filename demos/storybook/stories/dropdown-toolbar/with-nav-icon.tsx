@@ -5,8 +5,10 @@ import { text, select } from '@storybook/addon-knobs';
 import { AppBar } from '@material-ui/core';
 import { ArrowBack, Menu } from '@material-ui/icons';
 import { action } from '@storybook/addon-actions';
+import { getDirection } from '@pxblue/storybook-rtl-addon';
 
 export const withNavIcon = (): StoryFnReactReturnType => {
+    const direction = getDirection();
     const menuItems = [
         { title: 'Item 1', onClick: action('Item 1 selected') },
         { title: 'Item 2', onClick: action('Item 2 selected') },
@@ -38,6 +40,10 @@ export const withNavIcon = (): StoryFnReactReturnType => {
                 subtitle={text('subtitle', 'Subtitle')}
                 navigationIcon={getIcon(select('navigationIcon', ['none', '<Menu />', '<ArrowBack />'], '<Menu />'))}
                 menuGroups={menuGroups}
+                MenuProps={{
+                    anchorOrigin: { horizontal: direction === 'rtl' ? 'right' : 'left', vertical: 'bottom' },
+                    transformOrigin: { horizontal: direction === 'rtl' ? 'right' : 'left', vertical: 'top' },
+                }}
             ></DropdownToolbar>
         </AppBar>
     );

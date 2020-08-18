@@ -5,25 +5,13 @@ import { AppBar, Menu } from '@material-ui/core';
 import { Business, House, Apartment } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
 import { action } from '@storybook/addon-actions';
-import { Store, State } from '@sambego/storybook-state';
-
-type DropdownMenuState = {
-    open: boolean;
-};
-const store = new Store<DropdownMenuState>({
-    open: false,
-});
+import { getDirection } from '@pxblue/storybook-rtl-addon';
 
 export const withCustomMenu = (): StoryFnReactReturnType => {
-    const open = (): void => {
-        store.set({ open: true });
-    };
-    const close = (): void => {
-        store.set({ open: false });
-    };
+    const direction = getDirection();
 
-    const menu = (state: any): JSX.Element => (
-        <Menu open={state.open} onClose={close}>
+    const menu = (): JSX.Element => (
+        <Menu open={true} autoFocus={false}>
             <InfoListItem
                 title={'Atlanta'}
                 icon={<Business />}
@@ -50,13 +38,17 @@ export const withCustomMenu = (): StoryFnReactReturnType => {
     );
 
     return (
-        <State store={store}>
-            {(state): JSX.Element => (
-                <AppBar color={'primary'}>
-                    <DropdownToolbar title={'Title'} subtitle={'Subtitle'} onOpen={open} menu={menu(state)} />
-                </AppBar>
-            )}
-        </State>
+        <AppBar color={'primary'}>
+            <DropdownToolbar
+                title={'Title'}
+                subtitle={'Subtitle'}
+                menu={menu()}
+                MenuProps={{
+                    anchorOrigin: { horizontal: direction === 'rtl' ? 'right' : 'left', vertical: 'bottom' },
+                    transformOrigin: { horizontal: direction === 'rtl' ? 'right' : 'left', vertical: 'top' },
+                }}
+            />
+        </AppBar>
     );
 };
 

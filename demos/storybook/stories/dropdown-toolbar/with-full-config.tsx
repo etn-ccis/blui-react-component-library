@@ -7,7 +7,6 @@ import { AppBar, Theme, makeStyles, createStyles, useTheme } from '@material-ui/
 import { Menu, ArrowBack, Home, Work, Settings } from '@material-ui/icons';
 import { action } from '@storybook/addon-actions';
 import clsx from 'clsx';
-// @ts-ignore @TODO remove this once type definitions are completed for storybook-rtl-addon
 import { getDirection } from '@pxblue/storybook-rtl-addon';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -77,6 +76,10 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                 subtitle={text('subtitle', 'Subtitle')}
                 navigationIcon={getIcon(select('navigationIcon', ['none', '<Menu />', '<ArrowBack />'], '<Menu />'))}
                 menuGroups={menuGroups}
+                MenuProps={{
+                    anchorOrigin: { horizontal: direction === 'rtl' ? 'right' : 'left', vertical: 'bottom' },
+                    transformOrigin: { horizontal: direction === 'rtl' ? 'right' : 'left', vertical: 'top' },
+                }}
             >
                 <Spacer />
                 {icons.slice(0, number('Number of Icons', 3, { range: true, min: 0, max: 3, step: 1 }))}

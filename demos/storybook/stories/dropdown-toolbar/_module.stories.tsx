@@ -16,6 +16,7 @@ export { getReadMeStory } from '../../src/utils';
 export * from './with-basic-usage';
 export * from './with-nav-icon';
 export * from './with-custom-menu';
+export * from './with-multiple-menu-groups';
 export * from './with-menu-placement-options';
 export * from './with-full-config';
 

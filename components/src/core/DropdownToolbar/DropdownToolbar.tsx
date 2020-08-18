@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import {
     Typography,
     Toolbar,
@@ -14,8 +14,7 @@ import {
 import { ArrowDropDown } from '@material-ui/icons';
 import clsx from 'clsx';
 import { NavItem, DrawerNavGroup } from '../Drawer';
-
-const MENU_ITEM_HEIGHT = 48;
+import PropTypes from 'prop-types';
 
 export type ToolbarMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
 export type ToolbarMenuGroup = {
@@ -133,6 +132,20 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
         [onOpen]
     );
 
+    useEffect(() => {
+        for (const group of menuGroups) {
+            for (const item of group.items) {
+                const onClick = item.onClick;
+                if (onClick) {
+                    item.onClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
+                        onClick(e);
+                        closeMenu();
+                    };
+                }
+            }
+        }
+    }, [menuGroups]);
+
     const getMenu = useCallback(() => {
         if (menu && Boolean(anchorEl)) {
             return React.cloneElement(menu, {
@@ -145,20 +158,14 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
         if (menuGroups && Boolean(anchorEl)) {
             return (
                 <Menu
-                    elevation={0}
                     getContentAnchorEl={null}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-                    {...MenuProps}
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
                     onClose={(): void => closeMenu()}
+                    {...MenuProps}
                     MenuListProps={{ style: { padding: 0 } }}
-                    PaperProps={{
-                        style: {
-                            maxHeight: MENU_ITEM_HEIGHT * 4.5,
-                        },
-                    }}
                 >
                     {!menu &&
                         menuGroups.map((group: ToolbarMenuGroup, index: number) => (
@@ -208,7 +215,7 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
                             )}
                         >
                             <span className={clsx(defaultClasses.subtitle, classes.subtitle)}>{subtitle || ''}</span>
-                            {((menuGroups && menuGroups.length > 0) || menu) && (
+                            {(menuGroups || menu) && (
                                 <ArrowDropDown
                                     className={clsx(
                                         defaultClasses.dropdownArrow,
@@ -225,4 +232,44 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
             {getMenu()}
         </>
     );
+};
+
+DropdownToolbar.displayName = 'DropdownToolbar';
+
+DropdownToolbar.propTypes = {
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+    }),
+    menu: PropTypes.element,
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    // @ts-ignore
+    menuGroups: PropTypes.arrayOf(
+        PropTypes.shape({
+            title: PropTypes.string,
+            fontColor: PropTypes.string,
+            iconColor: PropTypes.string,
+            items: PropTypes.arrayOf(
+                PropTypes.shape({
+                    icon: PropTypes.element,
+                    onClick: PropTypes.func,
+                    statusColor: PropTypes.string,
+                    subtitle: PropTypes.string,
+                    title: PropTypes.string,
+                    divider: PropTypes.bool,
+                })
+            ),
+        })
+    ),
+    MenuProps: PropTypes.object,
+    onClose: PropTypes.func,
+    onOpen: PropTypes.func,
+};
+
+DropdownToolbar.defaultProps = {
+    classes: {},
+    menuGroups: [],
+    MenuProps: {},
+    onClose: (): void => {},
+    onOpen: (): void => {},
 };

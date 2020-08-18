@@ -9,7 +9,7 @@
         "@pxblue/colors": "^3.0.0",
         "@pxblue/icons-mui": "^2.1.0",
         "@pxblue/react-components": "^4.0.0",
-        "@pxblue/storybook-rtl-addon": "^1.0.0-alpha.0",
+        "@pxblue/storybook-rtl-addon": "^1.0.0-alpha.1",
         "@pxblue/react-themes": "^5.0.0",
         "@pxblue/storybook-themes": "^1.1.0",
         "@sambego/storybook-state": "^1.3.6",
