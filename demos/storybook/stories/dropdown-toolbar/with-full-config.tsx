@@ -28,9 +28,9 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const classes = useStyles(theme);
     const direction = getDirection();
     const menuItems = [
-        { title: 'Item 1', onClick: action('Item 1 selected') },
-        { title: 'Item 2', onClick: action('Item 2 selected') },
-        { title: 'Item 3', onClick: action('Item 3 selected') },
+        { title: 'Item 1', onClick: action('Item 1 selected'), itemID: 'item1' },
+        { title: 'Item 2', onClick: action('Item 2 selected'), itemID: 'item2' },
+        { title: 'Item 3', onClick: action('Item 3 selected'), itemID: 'item3' },
     ];
 
     const menuGroups = [
@@ -76,10 +76,6 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                 subtitle={text('subtitle', 'Subtitle')}
                 navigationIcon={getIcon(select('navigationIcon', ['none', '<Menu />', '<ArrowBack />'], '<Menu />'))}
                 menuGroups={menuGroups}
-                MenuProps={{
-                    anchorOrigin: { horizontal: direction === 'rtl' ? 'right' : 'left', vertical: 'bottom' },
-                    transformOrigin: { horizontal: direction === 'rtl' ? 'right' : 'left', vertical: 'top' },
-                }}
             >
                 <Spacer />
                 {icons.slice(0, number('Number of Icons', 3, { range: true, min: 0, max: 3, step: 1 }))}

@@ -16,7 +16,7 @@ import clsx from 'clsx';
 import { NavItem, DrawerNavGroup } from '../Drawer';
 import PropTypes from 'prop-types';
 
-export type ToolbarMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
+export type ToolbarMenuItem = NavItem;
 export type ToolbarMenuGroup = {
     fontColor?: string;
     iconColor?: string;
@@ -108,6 +108,7 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const anchor = useRef(null);
     const theme = useTheme();
+    const rtl = theme.direction === 'rtl';
     const defaultClasses = useStyles(theme);
     const getNavigationIcon = useCallback(() => {
         if (navigationIcon) {
@@ -159,8 +160,8 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
             return (
                 <Menu
                     getContentAnchorEl={null}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: rtl ? 'right' : 'left' }}
+                    transformOrigin={{ vertical: 'top', horizontal: rtl ? 'right' : 'left' }}
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
                     onClose={(): void => closeMenu()}

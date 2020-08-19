@@ -5,13 +5,10 @@ import { AppBar, Menu } from '@material-ui/core';
 import { Business, House, Apartment } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
 import { action } from '@storybook/addon-actions';
-import { getDirection } from '@pxblue/storybook-rtl-addon';
 
 export const withCustomMenu = (): StoryFnReactReturnType => {
-    const direction = getDirection();
-
     const menu = (): JSX.Element => (
-        <Menu open={true} autoFocus={false}>
+        <Menu open={true}>
             <InfoListItem
                 title={'Atlanta'}
                 icon={<Business />}
@@ -39,15 +36,7 @@ export const withCustomMenu = (): StoryFnReactReturnType => {
 
     return (
         <AppBar color={'primary'}>
-            <DropdownToolbar
-                title={'Title'}
-                subtitle={'Subtitle'}
-                menu={menu()}
-                MenuProps={{
-                    anchorOrigin: { horizontal: direction === 'rtl' ? 'right' : 'left', vertical: 'bottom' },
-                    transformOrigin: { horizontal: direction === 'rtl' ? 'right' : 'left', vertical: 'top' },
-                }}
-            />
+            <DropdownToolbar title={'Title'} subtitle={'Subtitle'} menu={menu()} />
         </AppBar>
     );
 };
