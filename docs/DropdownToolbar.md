@@ -47,7 +47,7 @@ import { DropdownToolbar } from '@pxblue/react-components';
 
 </div>
 
-Any other props supplied will be provided to the root element (`Toolbar`).
+Any other props supplied will be provided to the root element ([`Toolbar`](https://material-ui.com/api/toolbar/)).
 
 ### Classes
 
@@ -65,7 +65,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 
 ### Toolbar Menu Groups Object
 
-The `menuGroups` prop of the `<DropdownToolbar>` includes many properties from the `<DrawerNavGroup>` array found within a `<DrawerBody>`.
+The `menuGroups` prop of the `<DropdownToolbar>` includes many properties from the [`<DrawerNavGroup>`](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) array found within a [`<DrawerBody>`](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story).
 
 <div style="overflow: auto;">
 

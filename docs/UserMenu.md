@@ -80,7 +80,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 
 ### User Menu Groups Object
 
-The `menuGroups` prop of the `<UserMenu>` includes many properties from the `<DrawerNavGroup>` array found within a `<DrawerBody>`.
+The `menuGroups` prop of the `<UserMenu>` includes many properties from the [`<DrawerNavGroup>`](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) array found within a [`<DrawerBody>`](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story).
 
 <div style="overflow: auto;">
 
