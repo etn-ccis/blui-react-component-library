@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
         title: {
             lineHeight: 1,
             textOverflow: 'ellipsis',
-            overflow: 'auto',
+            overflow: 'hidden',
         },
         subtitleContent: {
             display: 'flex',
