@@ -28,9 +28,9 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const classes = useStyles(theme);
     const direction = getDirection();
     const menuItems = [
-        { title: 'Item 1', onClick: action('Item 1 selected'), itemID: 'item1' },
-        { title: 'Item 2', onClick: action('Item 2 selected'), itemID: 'item2' },
-        { title: 'Item 3', onClick: action('Item 3 selected'), itemID: 'item3' },
+        { title: 'Item 1', onClick: action('Item 1 selected') },
+        { title: 'Item 2', onClick: action('Item 2 selected') },
+        { title: 'Item 3', onClick: action('Item 3 selected') },
     ];
 
     const menuGroups = [

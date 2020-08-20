@@ -16,7 +16,7 @@ import clsx from 'clsx';
 import { NavItem, DrawerNavGroup } from '../Drawer';
 import PropTypes from 'prop-types';
 
-export type ToolbarMenuItem = NavItem;
+export type ToolbarMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
 export type ToolbarMenuGroup = {
     fontColor?: string;
     iconColor?: string;
@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
         navigation: {
             marginRight: theme.spacing(4),
             cursor: 'pointer',
+            display: 'flex',
         },
         navGroups: {
             '&:active, &:focus': {
