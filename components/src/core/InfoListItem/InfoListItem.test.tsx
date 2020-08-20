@@ -4,9 +4,13 @@ import { Mount, Shallow } from '../types';
 import { InfoListItem } from './InfoListItem';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
+import * as Colors from '@pxblue/colors';
+import color from 'color';
 
 import Chevron from '@material-ui/icons/ChevronRight';
 import PersonIcon from '@material-ui/icons/Person';
+import { Avatar } from '@material-ui/core';
 
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 
@@ -37,27 +41,49 @@ describe('InfoListItem', () => {
         wrapper = shallow(<InfoListItem hidePadding title="Test" />);
         expect(wrapper.find(PersonIcon).length).toEqual(0);
     });
-    /* No longer using in-line props to modify styling.
-    TODO: Update this test to work.
+
     it('renders correct icon Color', () => {
-        let wrapper = shallow(<InfoListItem icon={<PersonIcon />} title="Test" />);
-        expect(wrapper.find(ListItemIcon)).toEqual('inherit');
-
-        wrapper = shallow(<InfoListItem title="Test" icon={<PersonIcon />} statusColor={'red'} />);
-        expect(wrapper.find(ListItemIcon).props().style.color).toEqual('red');
-
-        wrapper = shallow(<InfoListItem title="Test" icon={<PersonIcon />} statusColor={'red'} iconColor={'green'} />);
-        expect(wrapper.find(ListItemIcon).props().style.color).toEqual('green');
-
-        wrapper = shallow(<InfoListItem title="Test" icon={<PersonIcon />} statusColor={'red'} avatar />);
-        expect(wrapper.find(Avatar).props().style.color).toEqual(Colors.white['50']);
+        let wrapper = shallow(<InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} />);
+        let testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
+        // TODO: make this test work.
+        // The testedStyle outputs "icon-avatar" has background-color: rgb(189, 189, 189), and color
+        // is rgb(250, 250, 250)
+        // expect(testedStyle.color).toEqual(
+        //     color('red')
+        //         .rgb()
+        //         .string()
+        // );
+        testedStyle = getComputedStyleFromHTMLString(findByTestId('status-stripe', wrapper).html());
+        expect(testedStyle.backgroundColor).toEqual('red');
 
         wrapper = shallow(
-            <InfoListItem title="Test" icon={<PersonIcon />} statusColor={'red'} iconColor={'blue'} avatar />
+            <InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} iconColor={'green'} />
         );
-        expect(wrapper.find(Avatar).props().style.color).toEqual('blue');
+        testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
+        expect(testedStyle.color).toEqual('green');
+        testedStyle = getComputedStyleFromHTMLString(findByTestId('status-stripe', wrapper).html());
+        expect(testedStyle.backgroundColor).toEqual('red');
+
+        wrapper = shallow(<InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} avatar />);
+        testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
+        expect(testedStyle.color).toEqual(
+            color(Colors.white['50'])
+                .rgb()
+                .string()
+        );
+        expect(testedStyle.backgroundColor).toEqual('red');
+        testedStyle = getComputedStyleFromHTMLString(findByTestId('status-stripe', wrapper).html());
+        expect(testedStyle.backgroundColor).toEqual('red');
+
+        wrapper = shallow(
+            <InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} iconColor={'blue'} avatar />
+        );
+        testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
+        expect(testedStyle.color).toEqual('blue');
+        expect(testedStyle.backgroundColor).toEqual('red');
+        testedStyle = getComputedStyleFromHTMLString(findByTestId('status-stripe', wrapper).html());
+        expect(testedStyle.backgroundColor).toEqual('red');
     });
- */
 
     it('renders rightComponent', () => {
         let wrapper = shallow(<InfoListItem title="Test" chevron />);
