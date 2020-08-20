@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
         marginLeft24: {
             marginLeft: theme.spacing(3),
         },
+        flipIcon: {
+            transform: 'scaleX(-1)',
+        },
     })
 );
 
@@ -44,7 +47,12 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             case '<Menu />':
                 return <Menu onClick={action('menu icon clicked...')} />;
             case '<ArrowBack />':
-                return <ArrowBack onClick={action('back arrow icon clicked...')} />;
+                return (
+                    <ArrowBack
+                        onClick={action('back arrow icon clicked...')}
+                        className={direction === 'rtl' ? classes.flipIcon : ''}
+                    />
+                );
             case 'none':
             default:
                 return undefined;
