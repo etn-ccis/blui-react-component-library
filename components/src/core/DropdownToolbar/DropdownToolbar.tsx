@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
             whiteSpace: 'nowrap',
         },
         title: {
-            lineHeight: 1,
+            lineHeight: 1.2,
             textOverflow: 'ellipsis',
             overflow: 'hidden',
         },
