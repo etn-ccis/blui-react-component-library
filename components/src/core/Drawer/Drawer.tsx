@@ -115,7 +115,10 @@ export type DrawerComponentProps = {
 } & PXBlueDrawerNavGroupInheritableProperties &
     Omit<DrawerProps, 'translate'>;
 
-export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
+const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentProps> = (
+    props: DrawerComponentProps,
+    ref: any
+) => {
     let hoverDelay: NodeJS.Timeout;
     const defaultClasses = useStyles(props);
     const theme = useTheme();
@@ -270,6 +273,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
 
     return (
         <Drawer
+            ref={ref}
             {...drawerProps}
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
@@ -290,6 +294,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 };
 
+export const DrawerComponent = React.forwardRef(DrawerRenderer);
 DrawerComponent.displayName = 'PXBlueDrawer';
 
 export const PXBlueDrawerInheritablePropertiesPropTypes = {

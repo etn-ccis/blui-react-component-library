@@ -14,11 +14,12 @@ export type SpacerClasses = {
     root?: string;
 };
 
-export const Spacer: React.FC<SpacerProps> = (props) => {
+const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (props: SpacerProps, ref: any) => {
     const { children, classes, flex, height, style, width, ...otherDivProps } = props;
 
     return (
         <div
+            ref={ref}
             data-test={'spacer-root'}
             className={clsx(classes.root)}
             style={Object.assign(
@@ -35,6 +36,8 @@ export const Spacer: React.FC<SpacerProps> = (props) => {
         </div>
     );
 };
+
+export const Spacer = React.forwardRef(SpacerRender);
 
 Spacer.displayName = 'Spacer';
 Spacer.propTypes = {

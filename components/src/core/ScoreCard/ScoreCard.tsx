@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
+const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> = (props: ScoreCardProps, ref: any) => {
     const defaultClasses = useStyles(props);
     const {
         actionLimit,
@@ -209,7 +209,7 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
     }, [actionRow]);
 
     return (
-        <Card className={clsx(defaultClasses.root, classes.root)} data-test={'card'} {...otherCardProps}>
+        <Card ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'card'} {...otherCardProps}>
             <div data-test={'header'} className={clsx(defaultClasses.header, classes.header)}>
                 {getBackgroundImage()}
                 <div className={clsx(defaultClasses.headerContent, classes.headerContent)}>
@@ -227,6 +227,8 @@ export const ScoreCard: React.FC<ScoreCardProps> = (props) => {
         </Card>
     );
 };
+
+export const ScoreCard = React.forwardRef(ScoreCardRender);
 
 ScoreCard.displayName = 'ScoreCard';
 ScoreCard.propTypes = {

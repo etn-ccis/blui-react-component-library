@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const Hero: React.FC<HeroProps> = (props) => {
+const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: HeroProps, ref: any) => {
     const defaultClasses = useStyles(props);
     const {
         classes,
@@ -103,7 +103,7 @@ export const Hero: React.FC<HeroProps> = (props) => {
     } = props;
 
     return (
-        <div className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherDivProps}>
+        <div ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherDivProps}>
             <span className={clsx(defaultClasses.icon, classes.icon)}>{icon}</span>
             <span className={clsx(defaultClasses.values, classes.values)}>
                 {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
@@ -115,6 +115,8 @@ export const Hero: React.FC<HeroProps> = (props) => {
         </div>
     );
 };
+
+export const Hero = React.forwardRef(HeroRender);
 
 Hero.displayName = 'Hero';
 Hero.propTypes = {
