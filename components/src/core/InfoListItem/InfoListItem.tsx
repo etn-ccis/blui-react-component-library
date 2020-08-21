@@ -73,9 +73,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (icon) {
             return (
                 <ListItemAvatar>
-                    <Avatar className={combine(avatar ? 'avatar' : 'icon')} data-test={'icon-avatar'}>
-                        {icon}
-                    </Avatar>
+                    <Avatar className={combine(avatar ? 'avatar' : 'icon')}>{icon}</Avatar>
                 </ListItemAvatar>
             );
         } else if (!hidePadding) {

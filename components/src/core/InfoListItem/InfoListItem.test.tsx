@@ -43,16 +43,13 @@ describe('InfoListItem', () => {
     });
 
     it('renders correct icon Color', () => {
-        let wrapper = shallow(<InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} />);
+        // the following two lines are used to resolve a race condition
+        let wrapper = shallow(<InfoListItem title={'Test'} />);
         let testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
-        // TODO: make this test work.
-        // The testedStyle outputs "icon-avatar" has background-color: rgb(189, 189, 189), and color
-        // is rgb(250, 250, 250)
-        // expect(testedStyle.color).toEqual(
-        //     color('red')
-        //         .rgb()
-        //         .string()
-        // );
+
+        wrapper = shallow(<InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} />);
+        testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
+        expect(testedStyle.color).toEqual('red');
         testedStyle = getComputedStyleFromHTMLString(findByTestId('status-stripe', wrapper).html());
         expect(testedStyle.backgroundColor).toEqual('red');
 
