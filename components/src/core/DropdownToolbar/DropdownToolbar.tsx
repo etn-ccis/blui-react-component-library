@@ -93,7 +93,10 @@ export type DropdownToolbarClasses = {
     menuItem?: string;
 };
 
-export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
+const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToolbarProps> = (
+    props: DropdownToolbarProps,
+    ref: any
+) => {
     const {
         title,
         subtitle,
@@ -193,7 +196,7 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
 
     return (
         <>
-            <Toolbar className={clsx(defaultClasses.root, classes.root)} style={toolbarProps.style}>
+            <Toolbar ref={ref} className={clsx(defaultClasses.root, classes.root)} style={toolbarProps.style}>
                 {getNavigationIcon()}
                 <ListItemText
                     className={clsx(defaultClasses.textContent, classes.textContent)}
@@ -235,6 +238,7 @@ export const DropdownToolbar: React.FC<DropdownToolbarProps> = (props) => {
         </>
     );
 };
+export const DropdownToolbar = React.forwardRef(DropdownToolbarRender);
 
 DropdownToolbar.displayName = 'DropdownToolbar';
 
