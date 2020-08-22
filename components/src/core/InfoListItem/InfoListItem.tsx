@@ -142,7 +142,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     return (
         // @ts-ignore
         <ListItem button={hasRipple} className={combine('root')} {...otherListItemProps}>
-            <div className={combine('statusStripe')} />
+            <div className={combine('statusStripe')} data-test={'status-stripe'} />
             {divider && <Divider className={combine('divider')} />}
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}

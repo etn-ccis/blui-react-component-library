@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Shallow } from '../types';
 import { ListItemTag } from './ListItemTag';
-import { findByTestId } from '../test-utils';
+import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import * as Colors from '@pxblue/colors';
+import color from 'color';
 
 import { createShallow } from '@material-ui/core/test-utils';
 
@@ -33,15 +35,21 @@ describe('ListItemTag', () => {
         expect(wrapper.text()).toEqual('test');
     });
 
-    /*
-    This won't work if we use JSS to style the component
-
     it('renders with correct colors', () => {
-        const wrapper = shallow(
-            <ListItemTag label={'test'} fontColor={Colors.gold['200']} backgroundColor={Colors.green['900']} />
+        const fontColor = Colors.gold[200];
+        const backgroundColor = Colors.green[900];
+        const wrapper = shallow(<ListItemTag label={'test'} fontColor={fontColor} backgroundColor={backgroundColor} />);
+        const computedStyle = getComputedStyleFromHTMLString(wrapper.html());
+
+        expect(computedStyle.color).toEqual(
+            color(fontColor)
+                .rgb()
+                .string()
         );
-        expect(wrapper.props().style.color).toEqual(Colors.gold['200']);
-        expect(wrapper.props().style.backgroundColor).toEqual(Colors.green['900']);
+        expect(computedStyle.backgroundColor).toEqual(
+            color(backgroundColor)
+                .rgb()
+                .string()
+        );
     });
-    */
 });

@@ -2,15 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Divider, List, Typography } from '@material-ui/core';
-
+import * as Colors from '@pxblue/colors';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import { MoreVert } from '@material-ui/icons';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { HeroBanner } from '../HeroBanner';
-import { findByTestId } from '../test-utils';
+import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
 import { Mount, Shallow } from '../types';
 import { ScoreCard } from './ScoreCard';
+import color from 'color';
 
 Enzyme.configure({ adapter: new Adapter() });
 let mount: Mount;
@@ -55,20 +56,21 @@ describe('ScoreCard', () => {
         expect(findByTestId('action-item', wrapper).length).toEqual(2);
         expect(wrapper.find(MoreVert).length).toEqual(2);
     });
-    /* This won't work if we use JSS to style the component
     it('renders correct header text color', () => {
         let wrapper = shallow(<ScoreCard headerTitle={'Test'} />);
-        let title = wrapper.find(Typography);
+        let testedStyle = getComputedStyleFromHTMLString(findByTestId('header', wrapper).html());
+        expect(testedStyle.color).toEqual(
+            color(Colors.white['50'])
+                .rgb()
+                .string()
+        );
 
-        let div = findByTestId('header', wrapper);
-        expect(div.props().style.color).toEqual(Colors.white[50]); 
         wrapper = shallow(<ScoreCard headerTitle={'Test'} headerFontColor={'red'} />);
-        title = wrapper.find(Typography);
-        div = findByTestId('header', wrapper);
-        expect(title.props().style.color).toEqual('red');
-        expect(div.props().style.color).toEqual('red');
+        testedStyle = getComputedStyleFromHTMLString(wrapper.find(Typography).html());
+        expect(testedStyle.color).toEqual('red');
+        testedStyle = getComputedStyleFromHTMLString(findByTestId('header', wrapper).html());
+        expect(testedStyle.color).toEqual('red');
     });
-    */
     it('renders body content', () => {
         let wrapper = shallow(<ScoreCard headerTitle={'Test'} />);
         let content = findByTestId('content', wrapper);
