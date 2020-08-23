@@ -97,6 +97,16 @@ const useStyles = makeStyles((theme: Theme) =>
         nestedTitle: {
             fontWeight: 400,
         },
+        noIconTitle: {
+            '.pxb-drawer-content.pxb-drawer-open &': {
+                opacity: 1,
+                transition: theme.transitions.create('opacity'),
+            },
+            '.pxb-drawer-content:not(.pxb-drawer-open) &': {
+                opacity: 0,
+                transition: theme.transitions.create('opacity'),
+            },
+        },
     })
 );
 
@@ -196,7 +206,11 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     const active = activeItem === itemID;
     const infoListItemClasses = {
         root: defaultClasses.infoListItem,
-        title: depth > 0 ? clsx(defaultClasses.nestedTitle, classes.nestedTitle) : '',
+        title: clsx(
+            depth > 0 && defaultClasses.nestedTitle,
+            depth > 0 && classes.nestedTitle,
+            hidePadding && !icon && defaultClasses.noIconTitle
+        ),
     };
 
     return (

@@ -1,12 +1,18 @@
-# Change Log
+# Changelog
 
 ## vX.X.X (Version TBD)
+
+### Added
+
+-   Adds `iconAlign` prop to `<InfoListItem>` to align icon left (default), center or right
+-   Adds optional prop to the `<DrawerHeader>` to add a bottom divider
+
+### Fixed
 
 -   Fixes RTL support issues in the `<DrawerLayout>`/`<Drawer>`
 -   Fixes an issue with text wrapping in the `<InfoListItem>` subtitle
 -   Fixes an issue with hover color alpha channel in `<InfoListItem>`
--   Adds `iconAlign` prop to `<InfoListItem>` to align icon left (default), center or right
--   Adds optional prop to the `<DrawerHeader>` to add a bottom divider
+-   Hides Drawer Nav Item's title when the `<Drawer>` collapses in the `persistent` variant
 
 ## v4.0.2
 

@@ -283,7 +283,15 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
                 drawerProps.style
             )}
         >
-            <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
+            <div
+                className={clsx(
+                    defaultClasses.content,
+                    classes.content,
+                    'pxb-drawer-content',
+                    isDrawerOpen() && 'pxb-drawer-open'
+                )}
+                style={{ width: contentWidth }}
+            >
                 {getDrawerContents()}
             </div>
         </Drawer>
