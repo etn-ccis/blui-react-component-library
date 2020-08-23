@@ -7,6 +7,7 @@
 -   Fixes an issue with hover color alpha channel in `<InfoListItem>`
 -   Adds `iconAlign` prop to `<InfoListItem>` to align icon left (default), center or right
 -   Adds optional prop to the `<DrawerHeader>` to add a bottom divider
+-   Renders Drawer Nav Item as a [`<Link>`](https://reactrouter.com/web/api/Link) when `InfoListProps.to` is defined
 
 ## v4.0.2
 
