@@ -46,14 +46,14 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                    | Type                                             | Required | Default |
-| ------------------------------- | -------------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
-| open                            | Controls the open/closed state of the drawer                   | `boolean`                                        | yes      |         |
-| classes                         | Style overrides                                                | `DrawerClasses`                                  | no       |         |
-| noLayout                        | Set to true if used without a `<DrawerLayout>`                 | `boolean`                                        | no       | false   |
-| variant                         | The variant to use (see below)                                 | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
-| width                           | Sets the width of the drawer (in px) when open                 | `number`                                         | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy     | -                                                | no       |         |
+| Prop Name                       | Description                                                | Type                                             | Required | Default |
+| ------------------------------- | ---------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
+| open                            | Controls the open/closed state of the drawer               | `boolean`                                        | yes      |         |
+| classes                         | Style overrides                                            | `DrawerClasses`                                  | no       |         |
+| noLayout                        | Set to true if used without a `<DrawerLayout>`             | `boolean`                                        | no       | false   |
+| variant                         | The variant to use (see below)                             | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
+| width                           | Sets the width of the drawer (in px) when open             | `number`                                         | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                                                | no       |         |
 
 </div>
 
@@ -189,14 +189,14 @@ The `items` property supports nested items to generate collapsible sections in t
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                | Type                   | Required | Default |
-| ------------------------------- | ---------------------------------------------------------- | ---------------------- | -------- | ------- |
-| backgroundColor                 | The color used for the background                          | `string`               | no       |         |
-| classes                         | Style overrides                                            | `DrawerNavGroupClasses`| no       |         |
-| items                           | List of NavItems to render                                 | `NestedNavItem[]`      | yes      |         |
-| title                           | Text to display in the group header                        | `string`               | no       |         |
-| titleContent                    | Custom element, substitute for title                       | `ReactNode`            | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy |                        | no       |         |
+| Prop Name                       | Description                                                | Type                    | Required | Default |
+| ------------------------------- | ---------------------------------------------------------- | ----------------------- | -------- | ------- |
+| backgroundColor                 | The color used for the background                          | `string`                | no       |         |
+| classes                         | Style overrides                                            | `DrawerNavGroupClasses` | no       |         |
+| items                           | List of NavItems to render                                 | `NestedNavItem[]`       | yes      |         |
+| title                           | Text to display in the group header                        | `string`                | no       |         |
+| titleContent                    | Custom element, substitute for title                       | `ReactNode`             | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy |                         | no       |         |
 
 </div>
 
@@ -345,6 +345,35 @@ The following props control the NavGroup and thus only apply to `<Drawer>`, and 
 
 </div>
 
+## Tips
+
+You can render the Drawer Nav Item as a link by passing in a `to` attribute in the `InfoListItemProps`. This will automatically set the Nav Item to a [`<Link>`](https://reactrouter.com/web/api/Link) component from `react-router-dom`. Alternatively, you can also render the Nav Item as a native HTML anchor tag `<a>`. Note that the anchor tag approach might refresh the browser.
+
+```tsx
+<Drawer ... >
+    <DrawerBody>
+        <DrawerNavGroup
+            item={[
+                // render as <Link>
+                {
+                    title: 'Overview',
+                    itemID: '0',
+                    // @ts-ignore
+                    InfoListItemProps: { to: '/overview' },
+                },
+                // render as <a>
+                {
+                    title: 'Overview',
+                    itemID: '1',
+                    // @ts-ignore
+                    InfoListItemProps: { component: 'a', href: '/overview' },
+                },
+            ]}
+        />
+    </DrawerBody>
+</Drawer>
+```
+
 # Drawer Layout
 
 The `<DrawerLayout>` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with a PX Blue `<Drawer>`. It accepts a `<Drawer>` as a prop, and the main page content is passed in through child elements.
@@ -369,10 +398,10 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name | Description                                               | Type                                 | Required | Default |
-| --------- | --------------------------------------------------------- | ------------------------------------ | -------- | ------- |
-| classes   | Style overrides                                           | `DrawerLayoutClasses`                | no       |         |
-| drawer    | Drawer component to be embedded                           | `ReactElement<DrawerComponentProps>` | yes      |         |
+| Prop Name | Description                     | Type                                 | Required | Default |
+| --------- | ------------------------------- | ------------------------------------ | -------- | ------- |
+| classes   | Style overrides                 | `DrawerLayoutClasses`                | no       |         |
+| drawer    | Drawer component to be embedded | `ReactElement<DrawerComponentProps>` | yes      |         |
 
 </div>
 
