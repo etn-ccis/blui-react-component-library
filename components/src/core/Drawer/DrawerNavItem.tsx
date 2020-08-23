@@ -211,6 +211,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
             depth > 0 && classes.nestedTitle,
             hidePadding && !icon && defaultClasses.noIconTitle
         ),
+        subtitle: clsx(hidePadding && !icon && defaultClasses.noIconTitle),
     };
 
     return (
