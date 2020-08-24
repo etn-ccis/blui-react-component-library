@@ -5,7 +5,6 @@ import ChevronRight from '@material-ui/icons/ChevronRight';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import { PXBlueDrawerInheritableProperties } from './Drawer';
-import { Link } from 'react-router-dom';
 import { DrawerNavGroupProps } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
 
@@ -240,8 +239,6 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
                 onClick={hasAction ? onClickAction : undefined}
                 hidePadding={hidePadding}
                 ripple={ripple}
-                // @ts-ignore
-                component={InfoListItemProps.to ? Link : undefined}
                 {...InfoListItemProps}
                 classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
             />
