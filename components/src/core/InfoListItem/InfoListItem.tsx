@@ -144,7 +144,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     return (
         // @ts-ignore
         <ListItem button={hasRipple} className={combine('root')} ref={ref} {...otherListItemProps}>
-            <div className={combine('statusStripe')} />
+            <div className={combine('statusStripe')} data-test={'status-stripe'} />
             {divider && <Divider className={combine('divider')} />}
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}
