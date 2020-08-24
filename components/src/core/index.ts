@@ -9,3 +9,4 @@ export * from './DrawerLayout';
 export * from './ScoreCard';
 export * from './Utility';
 export * from './UserMenu';
+export * from './DropdownToolbar';

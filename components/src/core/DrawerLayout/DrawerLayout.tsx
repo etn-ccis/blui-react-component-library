@@ -34,7 +34,10 @@ export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> & {
     drawer: ReactElement<DrawerComponentProps>;
 };
 
-export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
+const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutProps> = (
+    props: DrawerLayoutProps,
+    ref: any
+) => {
     const { children, drawer, classes, ...otherDivProps } = props;
     const theme = useTheme();
     const [padding, setPadding] = useState(0);
@@ -52,7 +55,7 @@ export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
                 },
             }}
         >
-            <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+            <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
                 <div className={clsx(defaultClasses.drawer, classes.drawer)}>{drawer}</div>
                 <div className={clsx(defaultClasses.content, classes.content)} style={style}>
                     {children}
@@ -62,6 +65,7 @@ export const DrawerLayout: React.FC<DrawerLayoutProps> = (props) => {
     );
 };
 
+export const DrawerLayout = React.forwardRef(DrawerLayoutRender);
 DrawerLayout.displayName = 'DrawerLayout';
 DrawerLayout.propTypes = {
     classes: PropTypes.shape({

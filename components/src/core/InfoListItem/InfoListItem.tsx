@@ -34,8 +34,10 @@ export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & 
     wrapSubtitle?: boolean;
     wrapTitle?: boolean;
 };
-
-export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
+const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemProps> = (
+    props: InfoListItemProps,
+    ref: any
+) => {
     const defaultClasses = useStyles(props);
     const {
         avatar,
@@ -142,7 +144,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
 
     return (
         // @ts-ignore
-        <ListItem button={hasRipple} className={combine('root')} {...otherListItemProps}>
+        <ListItem button={hasRipple} className={combine('root')} ref={ref} {...otherListItemProps}>
             <div className={combine('statusStripe')} data-test={'status-stripe'} />
             {divider && <Divider className={combine('divider')} />}
             {(icon || !hidePadding) && getIcon()}
@@ -178,6 +180,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         </ListItem>
     );
 };
+export const InfoListItem = React.forwardRef(InfoListItemRender);
 
 InfoListItem.displayName = 'InfoListItem';
 InfoListItem.propTypes = {

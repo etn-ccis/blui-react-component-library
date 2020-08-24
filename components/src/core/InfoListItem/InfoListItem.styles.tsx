@@ -62,6 +62,9 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
                             : 'rgba(0,0,0,0.08)'
                         : undefined,
             },
+            '&:focus': {
+                outline: 'none',
+            },
         },
         avatar: {
             backgroundColor: (props) => props.statusColor || Colors.black[500],

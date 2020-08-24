@@ -1,12 +1,13 @@
 # Change Log
 
-## vX.X.X (Version TBD)
+## v4.1.0 (beta)
 
 -   Fixes RTL support issues in the `<DrawerLayout>`/`<Drawer>`
 -   Fixes an issue with text wrapping in the `<InfoListItem>` subtitle
 -   Fixes an issue with hover color alpha channel in `<InfoListItem>`
 -   Adds `iconAlign` prop to `<InfoListItem>` to align icon left (default), center or right
 -   Adds optional prop to the `<DrawerHeader>` to add a bottom divider
+-   Adds `<DropdownToolbar>` component
 
 ## v4.0.2
 

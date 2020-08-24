@@ -53,7 +53,10 @@ const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
         style: Object.assign({}, newIcon.props.style, { display: 'block', fontSize: 'inherit' }),
     });
 
-export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
+const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValueProps> = (
+    props: ChannelValueProps,
+    ref: any
+) => {
     const {
         classes,
         icon,
@@ -88,7 +91,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
     );
 
     return (
-        <span className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherSpanProps}>
+        <span ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherSpanProps}>
             {icon && (
                 <span className={clsx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
                     {changeIconDisplay(icon)}
@@ -107,6 +110,7 @@ export const ChannelValue: React.FC<ChannelValueProps> = (props) => {
         </span>
     );
 };
+export const ChannelValue = React.forwardRef(ChannelValueRender);
 
 ChannelValue.displayName = 'ChannelValue';
 ChannelValue.propTypes = {

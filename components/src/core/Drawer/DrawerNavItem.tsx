@@ -100,7 +100,10 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
+const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem> = (
+    props: DrawerNavItem,
+    ref: any
+) => {
     const { depth, expanded, expandHandler, navItem, navGroupProps } = props;
     const { title: itemTitle, subtitle: itemSubtitle, items, itemID, onClick, statusColor } = navItem;
 
@@ -201,6 +204,7 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
 
     return (
         <div
+            ref={ref}
             style={{ position: 'relative' }}
             className={clsx(classes.listItemContainer, active && defaultClasses.listItemNoHover)}
         >
@@ -246,4 +250,5 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     );
 };
 
+export const DrawerNavItem = React.forwardRef(DrawerNavItemRender);
 DrawerNavItem.displayName = 'DrawerNavItem';

@@ -22,13 +22,16 @@ export type HeroBannerProps = HTMLAttributes<HTMLDivElement> & {
     limit?: number;
 };
 
-export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
+const HeroBannerRender: React.ForwardRefRenderFunction<unknown, HeroBannerProps> = (
+    props: HeroBannerProps,
+    ref: any
+) => {
     const { classes, divider, limit, ...otherDivProps } = props;
     const defaultClasses = useStyles(props);
     const isArray = Array.isArray(props.children);
     return (
         <>
-            <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+            <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
                 {props.children &&
                     isArray &&
                     (props.children as React.ReactNodeArray).slice(0, limit).map((child: any) => child)}
@@ -38,6 +41,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = (props) => {
         </>
     );
 };
+
+export const HeroBanner = React.forwardRef(HeroBannerRender);
 
 HeroBanner.displayName = 'HeroBanner';
 HeroBanner.propTypes = {

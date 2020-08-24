@@ -14,7 +14,10 @@ const useStyles = makeStyles({
     },
 });
 
-export const DrawerFooter: React.FC<DrawerFooterProps> = (props) => {
+const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterProps> = (
+    props: DrawerFooterProps,
+    ref: any
+) => {
     const classes = useStyles(props);
     const {
         children,
@@ -26,10 +29,11 @@ export const DrawerFooter: React.FC<DrawerFooterProps> = (props) => {
         ...otherDivProps
     } = props;
     return (
-        <div className={classes.root} {...otherDivProps}>
+        <div ref={ref} className={classes.root} {...otherDivProps}>
             {children}
         </div>
     );
 };
 
+export const DrawerFooter = React.forwardRef(DrawerFooterRender);
 DrawerFooter.displayName = 'DrawerFooter';
