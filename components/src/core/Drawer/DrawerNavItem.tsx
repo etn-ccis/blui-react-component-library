@@ -206,12 +206,14 @@ export const DrawerNavItem: React.FC<DrawerNavItem> = (props) => {
     const active = activeItem === itemID;
     const infoListItemClasses = {
         root: defaultClasses.infoListItem,
-        title: clsx(
-            depth > 0 && defaultClasses.nestedTitle,
-            depth > 0 && classes.nestedTitle,
-            hidePadding && !icon && defaultClasses.noIconTitle
-        ),
-        subtitle: clsx(hidePadding && !icon && defaultClasses.noIconTitle),
+        title: clsx({
+            [defaultClasses.nestedTitle]: depth > 0,
+            [classes.nestedTitle]: depth > 0,
+            [defaultClasses.noIconTitle]: hidePadding && !icon,
+        }),
+        subtitle: clsx({
+            [defaultClasses.noIconTitle]: hidePadding && !icon,
+        }),
     };
 
     return (
