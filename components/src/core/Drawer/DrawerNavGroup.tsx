@@ -93,7 +93,10 @@ const findID = (item: NavItem | NestedNavItem, activeItem: string): boolean => {
     return false;
 };
 
-export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
+const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGroupProps> = (
+    props: DrawerNavGroupProps,
+    ref: any
+) => {
     const defaultClasses = useStyles(props);
     const theme = useTheme();
     const {
@@ -131,6 +134,7 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
 
     return (
         <List
+            ref={ref}
             className={clsx(defaultClasses.listGroup, classes.listGroup)}
             subheader={
                 <ListSubheader
@@ -169,9 +173,8 @@ export const DrawerNavGroup: React.FC<DrawerNavGroupProps> = (props) => {
         </List>
     );
 };
-
+export const DrawerNavGroup = React.forwardRef(DrawerNavGroupRender);
 DrawerNavGroup.displayName = 'DrawerNavGroup';
-
 DrawerNavGroup.propTypes = {
     backgroundColor: PropTypes.string,
     classes: PropTypes.shape({
@@ -199,7 +202,6 @@ DrawerNavGroup.propTypes = {
     ).isRequired,
     ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
-
 DrawerNavGroup.defaultProps = {
     classes: {},
 };

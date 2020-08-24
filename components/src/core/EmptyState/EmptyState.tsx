@@ -41,11 +41,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const EmptyState: React.FC<EmptyStateProps> = (props) => {
+const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps> = (
+    props: EmptyStateProps,
+    ref: any
+) => {
     const { actions, classes, description, icon, title, ...otherDivProps } = props;
     const defaultClasses = useStyles(useTheme());
     return (
-        <div className={clsx(defaultClasses.root, classes.root)} data-test={'frame'} {...otherDivProps}>
+        <div ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'frame'} {...otherDivProps}>
             {icon && <div className={clsx(defaultClasses.icon, classes.icon)}>{icon}</div>}
             <Typography variant="h6" color="inherit" className={classes.title}>
                 {title}
@@ -59,6 +62,9 @@ export const EmptyState: React.FC<EmptyStateProps> = (props) => {
         </div>
     );
 };
+
+export const EmptyState = React.forwardRef(EmptyStateRender);
+
 EmptyState.displayName = 'EmptyState';
 EmptyState.propTypes = {
     actions: PropTypes.node,

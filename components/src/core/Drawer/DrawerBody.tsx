@@ -28,7 +28,10 @@ const useStyles = makeStyles({
     },
 });
 
-export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
+const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps> = (
+    bodyProps: DrawerBodyProps,
+    ref: any
+) => {
     const defaultClasses = useStyles(bodyProps);
     const {
         classes,
@@ -59,7 +62,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
     const children = React.Children.toArray(bodyChildren);
 
     return (
-        <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+        <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
             {children.map((child: any, index: number) => {
                 if (!child) {
                     return null;
@@ -103,6 +106,7 @@ export const DrawerBody: React.FC<DrawerBodyProps> = (bodyProps) => {
     );
 };
 
+export const DrawerBody = React.forwardRef(DrawerBodyRender);
 DrawerBody.displayName = 'DrawerBody';
 
 // @ts-ignore
