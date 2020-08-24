@@ -80,8 +80,8 @@ import { Link } from 'react-router-dom';
 
 <InfoListItem
     ...
-    // @ts-ignore
     component={Link}
+    // @ts-ignore
     to={'/overview'}
     button
 />
@@ -90,9 +90,9 @@ import { Link } from 'react-router-dom';
 ```tsx
 <InfoListItem
     ...
-    // @ts-ignore
     component={'a'}
-    href={'/overview'}
+    // @ts-ignore
+    href={'eaton.com'}
     button
 />
 ```

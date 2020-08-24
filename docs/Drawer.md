@@ -314,21 +314,21 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 
 <div style="overflow: auto;">
 
-| Name                      | Description                                               | Type                    | Required | Default                                                      |
-| ------------------------- | --------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
-| activeItemBackgroundColor | Background color for the 'active' item                    | `string`                | no       | varies for light/dark theme                                  |
-| activeItemBackgroundShape | shape of the active item background                       | `'round'` \| `'square'` | no       | round                                                        |
-| activeItemFontColor       | Font color for the 'active' item                          | `string`                | no       | varies for light/dark theme                                  |
-| activeItemIconColor       | Icon color for the 'active' item                          | `string`                | no       | varies for light/dark theme                                  |
-| chevron                   | Whether to have chevrons for all menu items               | `boolean`               | no       |                                                              |
-| collapseIcon              | Icon used to collapse drawer                              | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                             |
-| divider                   | Whether to show a line between all items                  | `boolean`               | no       | true                                                         |
-| expandIcon                | Icon used to expand drawer                                | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
-| hidePadding               | Whether to hide the paddings reserved for menu item icons | `boolean`               | no       |                                                              |
-| InfoListItemProps         | Used to override InfoListItem props set by the Drawer     | `InfoListItemProps`     | no       |                                                              |
-| itemFontColor             | The color used for the item text                          | `string`                | no       | varies for light/dark theme                                  |
-| itemIconColor             | The color used for the icon                               | `string`                | no       | varies for light/dark theme                                  |
-| ripple                    | Whether to apply material ripple effect to items          | `boolean`               | no       | true                                                         |
+| Name                      | Description                                                                                                                                                 | Type                    | Required | Default                                                      |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
+| activeItemBackgroundColor | Background color for the 'active' item                                                                                                                      | `string`                | no       | varies for light/dark theme                                  |
+| activeItemBackgroundShape | shape of the active item background                                                                                                                         | `'round'` \| `'square'` | no       | round                                                        |
+| activeItemFontColor       | Font color for the 'active' item                                                                                                                            | `string`                | no       | varies for light/dark theme                                  |
+| activeItemIconColor       | Icon color for the 'active' item                                                                                                                            | `string`                | no       | varies for light/dark theme                                  |
+| chevron                   | Whether to have chevrons for all menu items                                                                                                                 | `boolean`               | no       |                                                              |
+| collapseIcon              | Icon used to collapse drawer                                                                                                                                | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                             |
+| divider                   | Whether to show a line between all items                                                                                                                    | `boolean`               | no       | true                                                         |
+| expandIcon                | Icon used to expand drawer                                                                                                                                  | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
+| hidePadding               | Whether to hide the paddings reserved for menu item icons                                                                                                   | `boolean`               | no       |                                                              |
+| InfoListItemProps         | Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) props set by the Drawer | `InfoListItemProps`     | no       |                                                              |
+| itemFontColor             | The color used for the item text                                                                                                                            | `string`                | no       | varies for light/dark theme                                  |
+| itemIconColor             | The color used for the icon                                                                                                                                 | `string`                | no       | varies for light/dark theme                                  |
+| ripple                    | Whether to apply material ripple effect to items                                                                                                            | `boolean`               | no       | true                                                         |
 
 </div>
 
@@ -347,21 +347,24 @@ The following props control the NavGroup and thus only apply to `<Drawer>`, and 
 
 ## Tips
 
-You can render the Drawer Nav Item as a link by passing in a `to` attribute in the `InfoListItemProps`. This will automatically set the Nav Item to a [`<Link>`](https://reactrouter.com/web/api/Link) component from `react-router-dom`. Alternatively, you can also render the Nav Item as a native HTML anchor tag `<a>`. Note that the anchor tag approach might refresh the browser.
+You can render the Drawer Nav Item as a link by setting the `component` prop in the `InfoListItemProps` to [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`.
 
 ```tsx
+
+import { Link } from 'react-router-dom';
+
 <Drawer ... >
     <DrawerBody>
         <DrawerNavGroup
             item={[
-                // render as <Link>
+                // rendered as <Link>
                 {
                     title: 'Overview',
                     itemID: '0',
                     // @ts-ignore
-                    InfoListItemProps: { to: '/overview' },
+                    InfoListItemProps: { component: Link, to: '/overview' },
                 },
-                // render as <a>
+                // rendered as <a>
                 {
                     title: 'Overview',
                     itemID: '1',
