@@ -46,13 +46,14 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                | Type                                             | Required | Default |
-| ------------------------------- | ---------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
-| open                            | Controls the open/closed state of the drawer               | `boolean`                                        | yes      |         |
-| classes                         | Style overrides                                            | `DrawerClasses`                                  | no       |         |
-| variant                         | The variant to use (see below)                             | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
-| width                           | Sets the width of the drawer (in px) when open             | `number`                                         | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                                                | no       |         |
+| Prop Name                       | Description                                                    | Type                                             | Required | Default |
+| ------------------------------- | -------------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
+| open                            | Controls the open/closed state of the drawer                   | `boolean`                                        | yes      |         |
+| classes                         | Style overrides                                                | `DrawerClasses`                                  | no       |         |
+| noLayout                        | Set to true if used without a `<DrawerLayout>`                 | `boolean`                                        | no       | false   |
+| variant                         | The variant to use (see below)                                 | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
+| width                           | Sets the width of the drawer (in px) when open                 | `number`                                         | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy     | -                                                | no       |         |
 
 </div>
 
@@ -63,6 +64,8 @@ The `Drawer` has three `variant`s:
 -   **Permanent**: Always open, even when `open` is set to false.
 -   **Persistent**: When `open` is set to false, the `<Drawer>` collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent `<Drawer>`.
 -   **Temporary**: When `open` is set to false, the `<Drawer>` is hidden; when `open` is set to true, it slides in.
+
+> **Note on using multiple drawers**: If your application uses multiple `<Drawer>`s, each `<DrawerLayout>` will automatically adjust based on the state of the nearest `<Drawer>`. If you are using a `<Drawer>` without a `<DrawerLayout>`, you should set the `noLayout` property to true on the `<Drawer>` to prevent inadvertently affecting the styles of any `<DrawerLayout>`s.
 
 #### Classes
 
@@ -92,6 +95,7 @@ The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By defau
 | backgroundImage   | An image to display in the header              | `string`              | no       |                              |
 | backgroundOpacity | The opacity of the background image            | `number`              | no       | `0.3`                        |
 | classes           | Style overrides                                | `DrawerHeaderClasses` | no       |                              |
+| divider           | Optional divider which appears beneath header  | `boolean`             | no       | `false`                      |
 | fontColor         | The color of the text elements                 | `string`              | no       | dynamic based on background  |
 | icon              | A component to render for the icon             | `ReactNode`           | no       |                              |
 | onIconClick       | A function to execute when the icon is clicked | `function`            | no       | `() => {}`                   |
@@ -365,10 +369,10 @@ import { Drawer, DrawerLayout } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name | Description                     | Type                                 | Required | Default |
-| --------- | ------------------------------- | ------------------------------------ | -------- | ------- |
-| classes   | Style overrides                 | `DrawerLayoutClasses`                | no       |         |
-| drawer    | Drawer component to be embedded | `ReactElement<DrawerComponentProps>` | yes      |         |
+| Prop Name | Description                                               | Type                                 | Required | Default |
+| --------- | --------------------------------------------------------- | ------------------------------------ | -------- | ------- |
+| classes   | Style overrides                                           | `DrawerLayoutClasses`                | no       |         |
+| drawer    | Drawer component to be embedded                           | `ReactElement<DrawerComponentProps>` | yes      |         |
 
 </div>
 

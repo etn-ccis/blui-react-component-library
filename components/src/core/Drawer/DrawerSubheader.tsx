@@ -6,17 +6,21 @@ export type DrawerSubheaderProps = HTMLAttributes<HTMLDivElement> & {
     drawerOpen?: boolean;
 };
 
-export const DrawerSubheader: React.FC<DrawerSubheaderProps> = (props) => {
+const DrawerSubheaderRender: React.ForwardRefRenderFunction<unknown, DrawerSubheaderProps> = (
+    props: DrawerSubheaderProps,
+    ref: any
+) => {
     const { children, drawerOpen, ...otherDivProps } = props;
     return (
         <>
-            <div style={{ visibility: drawerOpen ? 'inherit' : 'hidden' }} {...otherDivProps}>
+            <div ref={ref} style={{ visibility: drawerOpen ? 'inherit' : 'hidden' }} {...otherDivProps}>
                 {children}
             </div>
             <Divider />
         </>
     );
 };
+export const DrawerSubheader = React.forwardRef(DrawerSubheaderRender);
 
 DrawerSubheader.displayName = 'DrawerSubheader';
 

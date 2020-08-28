@@ -32,9 +32,10 @@ import * as Colors from '@pxblue/colors';
 | chevron           | Add a chevron icon on the right                  | `boolean`                            | no       | false          |
 | dense             | Smaller height row with less padding             | `boolean`                            | no       | false          |
 | divider           | Show a row separator below the row               | `'full'` \| `'partial'`              | no       |                |
-| fontColor         | Title text color                                 | `string`                             | no       |                |
+| fontColor         | Main text color                                  | `string`                             | no       |                |
 | hidePadding       | Remove left padding if no icon is used           | `boolean`                            | no       | false          |
 | icon              | A component to render for the icon               | `JSX.Element`                        | no       |                |
+| iconAlign         | Icon alignment when `avatar` is set to false     | `'left'` \| `'center'` \| `'right'`  | no       | 'left'         |
 | iconColor         | Color override for the row icon                  | `string`                             | no       |                |
 | info              | The text to show on the third line               | `string` \| `Array<React.ReactNode>` | no       |                |
 | leftComponent     | Component to render on the left side             | `ReactNode`                          | no       |                |
@@ -62,6 +63,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | avatar         | Styles applied to the Avatar element                |
 | divider        | Styles applied to the divider element               |
 | icon           | Styles applied to the icon element                  |
+| info           | Styles applied to the third line of text element    |
 | listItemText   | Styles applied to the title/subtitle wrapper        |
 | rightComponent | Styles applied to the rightComponent parent element |
 | separator      | Styles applied to subtitle delimiter                |

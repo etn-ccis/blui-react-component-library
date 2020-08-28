@@ -1,14 +1,5 @@
 import React, { ReactNode, useCallback } from 'react';
-import {
-    Avatar,
-    Divider,
-    ListItem,
-    ListItemAvatar,
-    ListItemIcon,
-    ListItemText,
-    Typography,
-    ListItemProps,
-} from '@material-ui/core';
+import { Avatar, Divider, ListItem, ListItemAvatar, ListItemText, Typography, ListItemProps } from '@material-ui/core';
 import Chevron from '@material-ui/icons/ChevronRight';
 
 import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
@@ -30,6 +21,7 @@ export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & 
     hidePadding?: boolean;
     icon?: JSX.Element;
     iconColor?: string;
+    iconAlign?: 'left' | 'center' | 'right';
     info?: string | Array<string | JSX.Element>;
     leftComponent?: ReactNode;
     rightComponent?: ReactNode;
@@ -41,8 +33,10 @@ export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & 
     wrapSubtitle?: boolean;
     wrapTitle?: boolean;
 };
-
-export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
+const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemProps> = (
+    props: InfoListItemProps,
+    ref: any
+) => {
     const defaultClasses = useStyles(props);
     const {
         avatar,
@@ -65,6 +59,7 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
         fontColor,
+        iconAlign,
         iconColor,
         statusColor,
         /* eslint-enable @typescript-eslint/no-unused-vars */
@@ -77,14 +72,12 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
-        if (icon && avatar) {
+        if (icon) {
             return (
                 <ListItemAvatar>
-                    <Avatar className={combine('avatar')}>{icon}</Avatar>
+                    <Avatar className={combine(avatar ? 'avatar' : 'icon')}>{icon}</Avatar>
                 </ListItemAvatar>
             );
-        } else if (icon) {
-            return <ListItemIcon className={combine('icon')}>{icon}</ListItemIcon>;
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
@@ -99,7 +92,13 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
         if (rightComponent) {
             return <div className={combine('rightComponent')}>{rightComponent}</div>;
         } else if (chevron) {
-            return <Chevron color={'inherit'} role={'button'} className={combine('rightComponent')} />;
+            return (
+                <Chevron
+                    color={'inherit'}
+                    role={'button'}
+                    className={clsx(combine('rightComponent'), defaultClasses.flipIcon)}
+                />
+            );
         }
     }, [rightComponent, chevron, combine]);
 
@@ -144,8 +143,8 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
 
     return (
         // @ts-ignore
-        <ListItem button={hasRipple} className={combine('root')} {...otherListItemProps}>
-            <div className={combine('statusStripe')} />
+        <ListItem button={hasRipple} className={combine('root')} ref={ref} {...otherListItemProps}>
+            <div className={combine('statusStripe')} data-test={'status-stripe'} />
             {divider && <Divider className={combine('divider')} />}
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}
@@ -154,8 +153,17 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                 className={combine('listItemText')}
                 secondary={
                     <>
-                        <Typography variant={'body2'}>{getSubtitle()}</Typography>
-                        <Typography variant={'body2'}>{getInfo()}</Typography>
+                        <Typography
+                            variant={'subtitle2'}
+                            component={'p'}
+                            noWrap={!wrapSubtitle}
+                            className={combine('subtitle')}
+                        >
+                            {getSubtitle()}
+                        </Typography>
+                        <Typography variant={'body2'} noWrap={!wrapSubtitle} className={combine('info')}>
+                            {getInfo()}
+                        </Typography>
                     </>
                 }
                 primaryTypographyProps={{
@@ -164,15 +172,14 @@ export const InfoListItem: React.FC<InfoListItemProps> = (props) => {
                     className: combine('title'),
                 }}
                 secondaryTypographyProps={{
-                    noWrap: !wrapSubtitle,
                     variant: 'subtitle2',
-                    className: combine('subtitle'),
                 }}
             />
             {getRightComponent()}
         </ListItem>
     );
 };
+export const InfoListItem = React.forwardRef(InfoListItemRender);
 
 InfoListItem.displayName = 'InfoListItem';
 InfoListItem.propTypes = {
@@ -192,6 +199,7 @@ InfoListItem.propTypes = {
     fontColor: PropTypes.string,
     hidePadding: PropTypes.bool,
     icon: PropTypes.element,
+    iconAlign: PropTypes.oneOf(['left', 'right', 'center']),
     iconColor: PropTypes.string,
     info: PropTypes.oneOfType([
         PropTypes.string,
@@ -218,6 +226,7 @@ InfoListItem.defaultProps = {
     dense: false,
     fontColor: 'inherit',
     hidePadding: false,
+    iconAlign: 'left',
     ripple: false,
     subtitleSeparator: '\u00B7',
     wrapSubtitle: false,

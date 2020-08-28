@@ -5,6 +5,7 @@ import { DrawerBodyProps } from './DrawerBody';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
+import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 
 const useStyles = makeStyles({
     paper: {
@@ -102,6 +103,10 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
 
 export type DrawerComponentProps = {
     classes?: DrawerClasses;
+
+    // Describes if this Drawer is used outside of a DrawerLayout
+    noLayout?: boolean;
+
     // Controls the open/closed state of the drawer
     open: boolean;
 
@@ -110,10 +115,14 @@ export type DrawerComponentProps = {
 } & PXBlueDrawerNavGroupInheritableProperties &
     Omit<DrawerProps, 'translate'>;
 
-export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
+const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentProps> = (
+    props: DrawerComponentProps,
+    ref: any
+) => {
     let hoverDelay: NodeJS.Timeout;
     const defaultClasses = useStyles(props);
     const theme = useTheme();
+    const { onPaddingChange } = useDrawerLayout();
     const [hover, setHover] = useState(false);
     const {
         activeItem,
@@ -132,6 +141,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
         itemIconColor,
         nestedBackgroundColor,
         nestedDivider,
+        noLayout = false,
         open,
         onItemSelect,
         ripple,
@@ -258,23 +268,24 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     const contentWidth = width || defaultContentWidth;
 
     useEffect(() => {
-        const content = document.getElementById('@@pxb-drawerlayout-content');
-        if (content) {
-            content.style.paddingLeft = variant === 'temporary' ? '0px' : `${containerWidth}px`;
-        }
-    }, [containerWidth, variant]);
+        if (!noLayout) onPaddingChange(variant === 'temporary' ? 0 : containerWidth);
+    }, [containerWidth, variant, noLayout]);
 
     return (
         <Drawer
+            ref={ref}
             {...drawerProps}
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
             classes={{ root: clsx(classes.root), paper: clsx(defaultClasses.paper, classes.paper) }}
-            style={{
-                minHeight: '100%',
-                width: containerWidth,
-                transition: 'width 175ms cubic-bezier(.4, 0, .2, 1)',
-            }}
+            style={Object.assign(
+                {
+                    minHeight: '100%',
+                    width: containerWidth,
+                    transition: 'width 175ms cubic-bezier(.4, 0, .2, 1)',
+                },
+                drawerProps.style
+            )}
         >
             <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
                 {getDrawerContents()}
@@ -283,6 +294,7 @@ export const DrawerComponent: React.FC<DrawerComponentProps> = (props) => {
     );
 };
 
+export const DrawerComponent = React.forwardRef(DrawerRenderer);
 DrawerComponent.displayName = 'PXBlueDrawer';
 
 export const PXBlueDrawerInheritablePropertiesPropTypes = {

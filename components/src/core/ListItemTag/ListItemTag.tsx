@@ -33,7 +33,10 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
+const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProps> = (
+    props: ListItemTagProps,
+    ref: any
+) => {
     const {
         classes: userClasses,
         label,
@@ -48,6 +51,7 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
     return (
         <Typography
+            ref={ref}
             classes={{ root: clsx(defaultClasses.root, rootUserClass), ...otherUserClasses }}
             data-test={'list-item-tag'}
             {...otherTypographyProps}
@@ -56,6 +60,8 @@ export const ListItemTag: React.FC<ListItemTagProps> = (props) => {
         </Typography>
     );
 };
+
+export const ListItemTag = React.forwardRef(ListItemTagRender);
 
 ListItemTag.propTypes = {
     label: PropTypes.string.isRequired,

@@ -1,19 +1,23 @@
 import { Button, createStyles, makeStyles, Typography } from '@material-ui/core';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { appliedTheme } from '../.storybook/config';
+import { blue as ReactTheme } from '@pxblue/react-themes';
 import { hideTopBanner, storyWrapper } from '../src/utils';
 import * as Colors from '@pxblue/colors';
+import { createMuiTheme } from '@material-ui/core/styles';
 const backgroundImage = require('../assets/circles-bg.svg');
 const packageJSON = require('@pxblue/react-components/package.json');
 
 export const stories = storiesOf('Intro/Overview', module);
 
+// Refactor welcome story to just createMuiTheme directly.
+export const lightTheme = createMuiTheme(ReactTheme);
+
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            color: appliedTheme.palette.primary.contrastText,
-            backgroundColor: appliedTheme.palette.primary.main,
+            color: lightTheme.palette.primary.contrastText,
+            backgroundColor: lightTheme.palette.primary.main,
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: '200%',
             height: '100%',

@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme: Theme) =>
         noCursor: {
             cursor: 'inherit',
         },
+        margins: {
+            marginLeft: -theme.spacing(1),
+            marginRight: -theme.spacing(1),
+        },
     })
 );
 
@@ -56,7 +60,7 @@ export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     onOpen?: () => void;
 };
 
-export const UserMenu: React.FC<UserMenuProps> = (props) => {
+const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (props: UserMenuProps, ref: any) => {
     const {
         avatar,
         classes,
@@ -139,16 +143,14 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
             return (
                 <div className={defaultClasses.header} key={'header'}>
                     <DrawerHeader
-                        icon={
-                            /* TODO: Replace these inline styles with class overrides when the Drawer component supports it. */
-                            <div style={{ marginLeft: -theme.spacing(1), marginRight: -theme.spacing(1) }}>
-                                {nonClickableAvatar}
-                            </div>
-                        }
+                        icon={nonClickableAvatar}
                         title={menuTitle}
                         subtitle={menuSubtitle}
                         fontColor={'inherit'}
                         backgroundColor={'inherit'}
+                        classes={{
+                            nonClickableIcon: defaultClasses.margins,
+                        }}
                     />
                 </div>
             );
@@ -206,12 +208,14 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     }, [menu, anchorEl, closeMenu, MenuProps, printMenu]);
 
     return (
-        <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+        <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
             {formatAvatar(true)}
             {canDisplayMenu() && formatMenu()}
         </div>
     );
 };
+
+export const UserMenu = React.forwardRef(UserMenuRender);
 
 UserMenu.displayName = 'UserMenu';
 
