@@ -1,6 +1,6 @@
 # Change Log
 
-## v4.1.0 (beta)
+## v4.1.0
 
 -   Fixes RTL support issues in the `<DrawerLayout>`/`<Drawer>`
 -   Fixes an issue with text wrapping in the `<InfoListItem>` subtitle
