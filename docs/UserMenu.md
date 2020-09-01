@@ -50,7 +50,7 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 
 ```
 
-### API
+## API
 
 <div style="overflow: auto;">
 
@@ -70,7 +70,7 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 
 Any other props supplied will be provided to the root element (`div`).
 
-#### Classes
+### Classes
 
 You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
 
@@ -78,9 +78,9 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | ---- | ---------------------------------- |
 | root | Styles applied to the root element |
 
-#### User Menu Groups Object
+### User Menu Groups Object
 
-The `menuGroups` prop of the `<UserMenu>` includes many properties from the `<DrawerNavGroup>` array found within a `<DrawerBody>`.
+The `menuGroups` prop of the `<UserMenu>` includes many properties from the [`<DrawerNavGroup>`](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) array found within a [`<DrawerBody>`](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story).
 
 <div style="overflow: auto;">
 
@@ -93,7 +93,7 @@ The `menuGroups` prop of the `<UserMenu>` includes many properties from the `<Dr
 
 </div>
 
-#### User Menu Item Object
+### User Menu Item Object
 
 <div style="overflow: auto;">
 

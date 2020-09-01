@@ -1,15 +1,18 @@
 # Changelog
 
-## vX.X.X (Version TBD)
+## v4.1.1 (to be published)
+
+### Changed
+
+-   Hides Drawer Nav Item's title when the `<Drawer>` collapses in the `persistent` variant
+
+## v4.1.0
 
 ### Added
 
 -   Adds `iconAlign` prop to `<InfoListItem>` to align icon left (default), center or right
 -   Adds optional prop to the `<DrawerHeader>` to add a bottom divider
-
-### Changed
-
--   Hides Drawer Nav Item's title when the `<Drawer>` collapses in the `persistent` variant
+-   Adds `<DropdownToolbar>` component
 
 ### Fixed
 

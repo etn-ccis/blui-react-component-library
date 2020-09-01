@@ -60,7 +60,7 @@ export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     onOpen?: () => void;
 };
 
-export const UserMenu: React.FC<UserMenuProps> = (props) => {
+const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (props: UserMenuProps, ref: any) => {
     const {
         avatar,
         classes,
@@ -208,12 +208,14 @@ export const UserMenu: React.FC<UserMenuProps> = (props) => {
     }, [menu, anchorEl, closeMenu, MenuProps, printMenu]);
 
     return (
-        <div className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+        <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
             {formatAvatar(true)}
             {canDisplayMenu() && formatMenu()}
         </div>
     );
 };
+
+export const UserMenu = React.forwardRef(UserMenuRender);
 
 UserMenu.displayName = 'UserMenu';
 
