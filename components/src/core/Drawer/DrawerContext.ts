@@ -4,12 +4,6 @@ type DrawerContextType = {
     isOpen: boolean;
 };
 
-export const DrawerContext = createContext<DrawerContextType | null>(null);
+export const DrawerContext = createContext<DrawerContextType>({ isOpen: true });
 
-export const useDrawerContext = (): DrawerContextType => {
-    const context = useContext(DrawerContext);
-    if (context === null) {
-        throw new Error('useDrawerContext must be used within a DrawerContext Provider');
-    }
-    return context;
-};
+export const useDrawerContext = (): DrawerContextType => useContext(DrawerContext);
