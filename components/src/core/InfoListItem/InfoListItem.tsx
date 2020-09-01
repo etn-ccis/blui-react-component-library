@@ -16,7 +16,6 @@ export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & 
     backgroundColor?: string;
     chevron?: boolean;
     classes?: InfoListItemClasses;
-    component?: React.ElementType;
     divider?: DividerType;
     fontColor?: string;
     hidePadding?: boolean;
