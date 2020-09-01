@@ -3,6 +3,7 @@ import { CurrentCircled, GradeA, Leaf, Temp } from '@pxblue/icons-mui';
 import { Hero, HeroBanner } from '@pxblue/react-components';
 import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
+
 import React from 'react';
 
 export const inBanner = (): StoryFnReactReturnType => {
@@ -39,7 +40,11 @@ export const inBanner = (): StoryFnReactReturnType => {
     ];
     const numberDisplayed = number('count', 4, { range: true, min: 0, max: 4, step: 1 });
     const bannerWidth = number('width', 400, { range: true, min: 300, max: 600, step: 50 });
-    return <HeroBanner style={{ width: bannerWidth }}>{heroes.slice(0, numberDisplayed)}</HeroBanner>;
+    return (
+        <HeroBanner style={{ width: bannerWidth, border: `solid 1px ${Colors.gray[500]}`, borderRadius: 4 }}>
+            {heroes.slice(0, numberDisplayed)}
+        </HeroBanner>
+    );
 };
 
 inBanner.story = { name: 'within a Hero Banner' };
