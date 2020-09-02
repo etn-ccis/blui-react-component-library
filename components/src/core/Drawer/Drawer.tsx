@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
+import { DrawerContext } from './DrawerContext';
 
 const useStyles = makeStyles({
     paper: {
@@ -282,14 +283,16 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                 {
                     minHeight: '100%',
                     width: containerWidth,
-                    transition: 'width 175ms cubic-bezier(.4, 0, .2, 1)',
+                    transition: theme.transitions.create('width'),
                 },
                 drawerProps.style
             )}
         >
-            <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
-                {getDrawerContents()}
-            </div>
+            <DrawerContext.Provider value={{ isOpen: isDrawerOpen() }}>
+                <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
+                    {getDrawerContents()}
+                </div>
+            </DrawerContext.Provider>
         </Drawer>
     );
 };
