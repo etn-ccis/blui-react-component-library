@@ -82,7 +82,8 @@ const headerBackgroundImageOptions = {
     undefined: undefined,
 };
 
-const getLeftToRightIconDirection = () => (getDirection() === 'rtl' ? { transform: 'scaleX(-1)' } : undefined);
+const getLeftToRightIconDirection = (): {} | undefined =>
+    getDirection() === 'rtl' ? { transform: 'scaleX(-1)' } : undefined;
 
 export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnType => {
     // storybook tab names
