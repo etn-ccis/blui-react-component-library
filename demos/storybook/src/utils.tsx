@@ -1,6 +1,7 @@
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { COMPONENT_SECTION_NAME, README_STORY_NAME } from './constants';
+import { getDirection } from '@pxblue/storybook-rtl-addon';
 
 let banner: HTMLElement;
 
@@ -95,3 +96,6 @@ export const getReadMe = (name: string): any => {
     });
     return md;
 };
+
+export const getLeftToRightIconTransform = (): any =>
+    getDirection() === 'rtl' ? { transform: 'scaleX(-1)' } : undefined;
