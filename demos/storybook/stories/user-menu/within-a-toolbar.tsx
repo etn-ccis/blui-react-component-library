@@ -3,6 +3,7 @@ import { Spacer, UserMenu, UserMenuItem } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { getDirection } from '@pxblue/storybook-rtl-addon';
+import { getLeftToRightIconTransform } from '../../src/utils';
 import React from 'react';
 import * as Colors from '@pxblue/colors';
 import { Email, ExitToApp, Settings } from '@material-ui/icons';
@@ -38,7 +39,7 @@ export const withinToolbar = (): StoryFnReactReturnType => {
             itemID: '3',
             title: 'Log Out',
             divider: true,
-            icon: <ExitToApp style={{ transform: getDirection() === 'rtl' ? 'scaleX(-1)' : undefined }} />,
+            icon: <ExitToApp style={getLeftToRightIconTransform()} />,
             onClick: action("click 'Log Out'"),
         },
         {

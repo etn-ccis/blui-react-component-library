@@ -5,7 +5,7 @@ import { ChannelValue } from '@pxblue/react-components';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { boolean, color, number, text } from '@storybook/addon-knobs';
-import { getDirection } from '@pxblue/storybook-rtl-addon';
+import { getLeftToRightIconTransform } from '../../src/utils';
 
 export const withFullConfig = (): StoryFnReactReturnType => {
     const value = text('value', '123');
@@ -13,7 +13,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const textColor = color('color', Colors.red[500]);
     const iconColor = color('icon.htmlColor', Colors.black[500]);
     const icon = boolean('Show Icon', true) ? (
-        <Trend htmlColor={iconColor} style={{ transform: getDirection() === 'rtl' ? 'scaleX(-1)' : undefined }} />
+        <Trend htmlColor={iconColor} style={getLeftToRightIconTransform()} />
     ) : (
         undefined
     );

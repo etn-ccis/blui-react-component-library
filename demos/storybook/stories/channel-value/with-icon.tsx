@@ -3,19 +3,14 @@ import * as Colors from '@pxblue/colors';
 import { ChannelValue } from '@pxblue/react-components';
 import { color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { getDirection } from '@pxblue/storybook-rtl-addon';
+import { getLeftToRightIconTransform } from '../../src/utils';
 import React from 'react';
 
 export const withIcon = (): StoryFnReactReturnType => (
     <ChannelValue
         value={'123'}
         units={'hz'}
-        icon={
-            <Trend
-                htmlColor={color('icon.htmlColor', Colors.red[500])}
-                style={{ transform: getDirection() === 'rtl' ? 'scaleX(-1)' : undefined }}
-            />
-        }
+        icon={<Trend htmlColor={color('icon.htmlColor', Colors.red[500])} style={getLeftToRightIconTransform()} />}
     />
 );
 

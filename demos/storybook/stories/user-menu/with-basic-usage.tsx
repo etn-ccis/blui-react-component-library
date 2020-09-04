@@ -1,12 +1,12 @@
+import React from 'react';
 import { Avatar } from '@material-ui/core';
 import { Email, ExitToApp, Settings } from '@material-ui/icons';
 import { UserMenu, UserMenuItem } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { getDirection } from '@pxblue/storybook-rtl-addon';
-import React from 'react';
 import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
+import { getLeftToRightIconTransform } from '../../src/utils';
 
 const menuItems: UserMenuItem[] = [
     {
@@ -21,7 +21,7 @@ const menuItems: UserMenuItem[] = [
     },
     {
         title: 'Log Out',
-        icon: <ExitToApp style={{ transform: getDirection() === 'rtl' ? 'scaleX(-1)' : undefined }} />,
+        icon: <ExitToApp style={getLeftToRightIconTransform()} />,
         onClick: action("click 'Log Out'"),
     },
 ];

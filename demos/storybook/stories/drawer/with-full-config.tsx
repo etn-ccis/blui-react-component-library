@@ -28,11 +28,11 @@ import {
     DrawerNavGroupProps,
     NavItem,
 } from '@pxblue/react-components';
-import { getDirection } from '@pxblue/storybook-rtl-addon';
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
+import { getLeftToRightIconTransform } from '../../src/utils';
 import { DrawerStoryContext } from './util';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
@@ -81,8 +81,6 @@ const headerBackgroundImageOptions = {
     Farm: farmBgImage,
     undefined: undefined,
 };
-
-const getLeftToRightIconDirection = (): any => (getDirection() === 'rtl' ? { transform: 'scaleX(-1)' } : undefined);
 
 export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnType => {
     // storybook tab names
@@ -221,7 +219,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             onClick: (): void => {
                 context.store.set({ selected: schedule });
             },
-            icon: <AirportShuttle style={getLeftToRightIconDirection()} />,
+            icon: <AirportShuttle style={getLeftToRightIconTransform()} />,
         },
     ];
 
@@ -241,7 +239,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             onClick: (): void => {
                 context.store.set({ selected: agreement });
             },
-            icon: <SendIcon style={getLeftToRightIconDirection()} />,
+            icon: <SendIcon style={getLeftToRightIconTransform()} />,
         },
         {
             title: accessibility,
