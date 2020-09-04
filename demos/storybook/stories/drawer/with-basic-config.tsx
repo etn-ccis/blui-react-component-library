@@ -1,4 +1,4 @@
-import { Accessibility, Menu, NotificationsActive, PermIdentity, Today, Dashboard, Toc } from '@material-ui/icons';
+import { Accessibility, Menu, NotificationsActive, Person, Today, Dashboard, LocalLibrary } from '@material-ui/icons';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxblue/react-components';
 import { boolean, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
@@ -10,7 +10,7 @@ export const navGroupItems1: NavItem[] = [
     {
         title: 'Identity Management',
         itemID: '1',
-        icon: <PermIdentity />,
+        icon: <Person />,
     },
     {
         title: 'Calendar',
@@ -36,9 +36,9 @@ export const navGroupItems2: NavItem[] = [
         icon: <Dashboard />,
     },
     {
-        title: 'Timeline',
+        title: 'Manuals',
         itemID: '2-2',
-        icon: <Toc />,
+        icon: <LocalLibrary />,
     },
 ];
 

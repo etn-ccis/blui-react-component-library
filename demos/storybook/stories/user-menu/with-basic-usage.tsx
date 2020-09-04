@@ -4,6 +4,7 @@ import { UserMenu, UserMenuItem } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
+import { getDirection } from '@pxblue/storybook-rtl-addon';
 import React from 'react';
 import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
 
@@ -20,7 +21,7 @@ const menuItems: UserMenuItem[] = [
     },
     {
         title: 'Log Out',
-        icon: <ExitToApp />,
+        icon: <ExitToApp style={{ transform: getDirection() === 'rtl' ? 'scaleX(-1)' : undefined }} />,
         onClick: action("click 'Log Out'"),
     },
 ];

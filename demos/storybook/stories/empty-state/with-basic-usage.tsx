@@ -1,13 +1,19 @@
+import React from 'react';
 import { NotListedLocation } from '@material-ui/icons';
 import { EmptyState } from '@pxblue/react-components';
-import { text } from '@storybook/addon-knobs';
-import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import React from 'react';
 import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
+import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
+import { getDirection } from '@pxblue/storybook-rtl-addon';
+import { text } from '@storybook/addon-knobs';
 
 export const withBasicUsage = (): StoryFnReactReturnType => (
     <EmptyState
-        icon={<NotListedLocation fontSize={'inherit'} style={{ marginBottom: '0' }} />}
+        icon={
+            <NotListedLocation
+                fontSize={'inherit'}
+                style={{ transform: getDirection() === 'rtl' ? 'scaleX(-1)' : undefined }}
+            />
+        }
         title={text('title', 'Location Unknown')}
     />
 );

@@ -28,6 +28,7 @@ import {
     DrawerNavGroupProps,
     NavItem,
 } from '@pxblue/react-components';
+import { getDirection } from '@pxblue/storybook-rtl-addon';
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
@@ -80,6 +81,8 @@ const headerBackgroundImageOptions = {
     Farm: farmBgImage,
     undefined: undefined,
 };
+
+const getLeftToRightIconDirection = () => (getDirection() === 'rtl' ? { transform: 'scaleX(-1)' } : undefined);
 
 export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnType => {
     // storybook tab names
@@ -218,7 +221,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             onClick: (): void => {
                 context.store.set({ selected: schedule });
             },
-            icon: <AirportShuttle />,
+            icon: <AirportShuttle style={getLeftToRightIconDirection()} />,
         },
     ];
 
@@ -238,7 +241,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             onClick: (): void => {
                 context.store.set({ selected: agreement });
             },
-            icon: <SendIcon />,
+            icon: <SendIcon style={getLeftToRightIconDirection()} />,
         },
         {
             title: accessibility,
