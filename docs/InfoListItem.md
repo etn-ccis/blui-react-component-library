@@ -70,3 +70,29 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | statusStripe   | Styles applied to the status stripe element         |
 | subtitle       | Styles applied to the subtitle element              |
 | title          | Styles applied to the title element                 |
+
+## Tips
+
+You can render the `<InfoListItem>` as a link by using the [`<Link>`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native anchor tag `<a>`. This allows you to perform helpful actions such as opening a link in a new browser tab.
+
+```tsx
+import { Link } from 'react-router-dom';
+
+<InfoListItem
+    ...
+    component={Link}
+    // @ts-ignore
+    to={'/overview'}
+    button
+/>
+```
+
+```tsx
+<InfoListItem
+    ...
+    component={'a'}
+    // @ts-ignore
+    href={'eaton.com'}
+    button
+/>
+```
