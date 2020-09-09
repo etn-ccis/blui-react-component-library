@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         marginBottom: theme.spacing(2),
         display: 'flex',
-        fontSize: 100,
+        fontSize: 96,
     },
     actions: {
         marginTop: theme.spacing(1),
