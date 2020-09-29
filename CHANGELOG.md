@@ -1,10 +1,11 @@
 # Changelog
 
-## v4.1.1 (to be published)
+## v4.1.1
 
 ### Changed
 
 -   Hides Drawer Nav Item's title when the `<Drawer>` collapses in the `persistent` variant
+-   Improved some icon flipping logic for RTL
 
 ## v4.1.0
 
