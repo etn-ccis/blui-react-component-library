@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { PXBlueDrawerInheritableProperties } from './Drawer';
 import { DrawerNavGroupProps } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
+import { useDrawerContext } from './DrawerContext';
 
 export type NavItem = {
     // icon on the left
@@ -97,6 +98,15 @@ const useStyles = makeStyles((theme: Theme) =>
         nestedTitle: {
             fontWeight: 400,
         },
+        noIconTitle: {
+            opacity: 0,
+            transition: theme.transitions.create('opacity'),
+            '&$drawerOpen': {
+                opacity: 1,
+                transition: theme.transitions.create('opacity'),
+            },
+        },
+        drawerOpen: {},
     })
 );
 
@@ -112,6 +122,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
 
     const defaultClasses = useStyles(props);
     const theme = useTheme();
+    const { isOpen } = useDrawerContext();
 
     const primary50Color = theme.palette.primary.light;
     const { activeItem, classes, nestedDivider } = navGroupProps;
@@ -199,7 +210,16 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     const active = activeItem === itemID;
     const infoListItemClasses = {
         root: defaultClasses.infoListItem,
-        title: depth > 0 ? clsx(defaultClasses.nestedTitle, classes.nestedTitle) : '',
+        title: clsx({
+            [defaultClasses.nestedTitle]: depth > 0,
+            [classes.nestedTitle]: depth > 0,
+            [defaultClasses.noIconTitle]: hidePadding && !icon,
+            [defaultClasses.drawerOpen]: isOpen,
+        }),
+        subtitle: clsx({
+            [defaultClasses.noIconTitle]: hidePadding && !icon,
+            [defaultClasses.drawerOpen]: isOpen,
+        }),
     };
 
     return (

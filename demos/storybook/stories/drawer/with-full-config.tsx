@@ -32,6 +32,7 @@ import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
+import { getLeftToRightIconTransform } from '../../src/utils';
 import { DrawerStoryContext } from './util';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
@@ -218,7 +219,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             onClick: (): void => {
                 context.store.set({ selected: schedule });
             },
-            icon: <AirportShuttle />,
+            icon: <AirportShuttle style={getLeftToRightIconTransform()} />,
         },
     ];
 
@@ -238,7 +239,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             onClick: (): void => {
                 context.store.set({ selected: agreement });
             },
-            icon: <SendIcon />,
+            icon: <SendIcon style={getLeftToRightIconTransform()} />,
         },
         {
             title: accessibility,

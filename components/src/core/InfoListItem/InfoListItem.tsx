@@ -173,6 +173,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 }}
                 secondaryTypographyProps={{
                     variant: 'subtitle2',
+                    color: 'textPrimary',
                 }}
             />
             {getRightComponent()}
