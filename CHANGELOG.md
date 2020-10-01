@@ -1,5 +1,11 @@
 # Changelog
 
+## TBD
+
+### Added
+
+-   Ability to pass `id`, `style`, and `className` properties to NavItems in the `<Drawer>` and `<UserMenu>`
+
 ## v4.1.1
 
 ### Changed
