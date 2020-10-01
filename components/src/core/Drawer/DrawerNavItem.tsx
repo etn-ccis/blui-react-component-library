@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback } from 'react';
+import React, { ReactNode, useCallback, HTMLAttributes } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -9,7 +9,7 @@ import { DrawerNavGroupProps } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
 import { useDrawerContext } from './DrawerContext';
 
-export type NavItem = {
+export type NavItem = Pick<HTMLAttributes<HTMLDivElement>, 'id' | 'style' | 'className'> & {
     // icon on the left
     icon?: JSX.Element;
 
@@ -22,7 +22,6 @@ export type NavItem = {
 
     // onClick of the entire row
     onClick?: (e?: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
-
     // component to be rendered on the right next to the expandIcon
     rightComponent?: ReactNode;
 
@@ -115,10 +114,22 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     ref: any
 ) => {
     const { depth, expanded, expandHandler, navItem, navGroupProps } = props;
-    const { title: itemTitle, subtitle: itemSubtitle, items, itemID, onClick, statusColor } = navItem;
+    const {
+        title: itemTitle,
+        subtitle: itemSubtitle,
+        items,
+        itemID,
+        onClick,
+        statusColor,
+        icon: itemIcon,
+        rightComponent: itemRightComponent,
+        id: divID,
+        style: divStyle,
+        className: divClassName,
+    } = navItem as NavItem;
 
     // only allow icons for the top level items
-    const icon = !depth ? (navItem as NavItem).icon : undefined;
+    const icon = !depth ? itemIcon : undefined;
 
     const defaultClasses = useStyles(props);
     const theme = useTheme();
@@ -183,7 +194,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
         [onItemSelect, onClick, expandHandler]
     );
 
-    const rightComponent = navItem.rightComponent || (chevron && !items ? <ChevronRight /> : undefined);
+    const rightComponent = itemRightComponent || (chevron && !items ? <ChevronRight /> : undefined);
 
     const getActionComponent = useCallback((): JSX.Element => {
         if (!items) {
@@ -225,8 +236,9 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     return (
         <div
             ref={ref}
-            style={{ position: 'relative' }}
-            className={clsx(classes.listItemContainer, active && defaultClasses.listItemNoHover)}
+            id={divID}
+            style={Object.assign({ position: 'relative' }, divStyle)}
+            className={clsx(classes.listItemContainer, { [defaultClasses.listItemNoHover]: active }, divClassName)}
         >
             {active && (
                 <div

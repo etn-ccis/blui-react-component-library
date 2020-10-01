@@ -269,6 +269,8 @@ The `items` prop of the `<DrawerNavGroup>` takes a list of items with the follow
 
 </div>
 
+Props for `id`, `className`, and `style` will be provided to the root element (`div`).
+
 #### Nested Nav Item Object
 
 The `items` property of the NavItem can be nested to create a tree structure with expand/collapse panels. Nested items take the same properties as `NavItem` with the exception of `icon` (nested items cannot use icons).
