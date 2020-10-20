@@ -1,5 +1,5 @@
 import { Typography, TypographyProps } from '@material-ui/core';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, TypographyVariant } from '@material-ui/core/styles';
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -13,13 +13,14 @@ export type ListItemTagProps = {
 
     /* The string label of the tag. */
     label: string;
-} & TypographyProps;
+
+    /* The typography variant - we override this to allow for undefined (default styles). */
+    variant?: TypographyVariant;
+} & Omit<TypographyProps, 'variant'>;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            fontWeight: 'bold',
-            letterSpacing: 1,
             borderRadius: theme.spacing(0.25),
             padding: 0,
             paddingLeft: theme.spacing(0.5),
@@ -29,6 +30,12 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: (props: ListItemTagProps): string => props.backgroundColor || theme.palette.primary.main,
             color: (props: ListItemTagProps): string => props.fontColor || theme.palette.primary.contrastText,
             cursor: (props: ListItemTagProps): string => (props.onClick ? 'pointer' : 'inherit'),
+        },
+        default: {
+            fontWeight: 'bold',
+            letterSpacing: 1,
+            fontSize: 10,
+            lineHeight: '16px',
         },
     })
 );
@@ -40,6 +47,7 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
     const {
         classes: userClasses,
         label,
+        variant,
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         fontColor,
@@ -52,8 +60,12 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
     return (
         <Typography
             ref={ref}
-            classes={{ root: clsx(defaultClasses.root, rootUserClass), ...otherUserClasses }}
+            classes={{
+                root: clsx(defaultClasses.root, rootUserClass, { [defaultClasses.default]: variant === undefined }),
+                ...otherUserClasses,
+            }}
             data-test={'list-item-tag'}
+            variant={variant || 'overline'}
             {...otherTypographyProps}
         >
             {label}
@@ -70,7 +82,6 @@ ListItemTag.propTypes = {
 };
 ListItemTag.defaultProps = {
     noWrap: true,
-    variant: 'overline',
     display: 'inline',
     classes: {},
 };

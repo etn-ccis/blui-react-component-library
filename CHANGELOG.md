@@ -1,5 +1,10 @@
 # Changelog
 
+## TBD
+
+### Changed
+-   Updated styles for default `<ListItemTag>`
+
 ## v4.1.1
 
 ### Changed
