@@ -1,10 +1,10 @@
 import { Typography, TypographyProps } from '@material-ui/core';
-import { createStyles, makeStyles, Theme, TypographyVariant } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-export type ListItemTagProps = {
+export type ListItemTagProps = TypographyProps & {
     /* Color of the label background. Default is theme.palette.primary.main */
     backgroundColor?: string;
 
@@ -13,10 +13,7 @@ export type ListItemTagProps = {
 
     /* The string label of the tag. */
     label: string;
-
-    /* The typography variant - we override this to allow for undefined (default styles). */
-    variant?: TypographyVariant;
-} & Omit<TypographyProps, 'variant'>;
+};
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,17 +22,18 @@ const useStyles = makeStyles((theme: Theme) =>
             padding: 0,
             paddingLeft: theme.spacing(0.5),
             paddingRight: theme.spacing(0.5),
-            lineHeight: 'inherit',
             overflow: 'hidden',
             backgroundColor: (props: ListItemTagProps): string => props.backgroundColor || theme.palette.primary.main,
             color: (props: ListItemTagProps): string => props.fontColor || theme.palette.primary.contrastText,
             cursor: (props: ListItemTagProps): string => (props.onClick ? 'pointer' : 'inherit'),
+            display: 'inline-block',
         },
-        default: {
+        noVariant: {
             fontWeight: 'bold',
             letterSpacing: 1,
             fontSize: 10,
             lineHeight: '16px',
+            height: 16,
         },
     })
 );
@@ -61,11 +59,11 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
         <Typography
             ref={ref}
             classes={{
-                root: clsx(defaultClasses.root, rootUserClass, { [defaultClasses.default]: variant === undefined }),
+                root: clsx(defaultClasses.root, rootUserClass, { [defaultClasses.noVariant]: !variant }),
                 ...otherUserClasses,
             }}
-            data-test={'list-item-tag'}
             variant={variant || 'overline'}
+            data-test={'list-item-tag'}
             {...otherTypographyProps}
         >
             {label}
