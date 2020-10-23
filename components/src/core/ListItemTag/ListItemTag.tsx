@@ -15,6 +15,18 @@ export type ListItemTagProps = TypographyProps & {
     label: string;
 };
 
+// See https://material-ui.com/guides/right-to-left/#opting-out-of-rtl-transformation
+declare module '@material-ui/core/styles/withStyles' {
+    // Augment the BaseCSSProperties so that we can control jss-rtl
+    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+    interface BaseCSSProperties {
+        /**
+         * Used to control if the rule-set should be affected by rtl transformation
+         */
+        flip?: boolean;
+    }
+}
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -27,6 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
             color: (props: ListItemTagProps): string => props.fontColor || theme.palette.primary.contrastText,
             cursor: (props: ListItemTagProps): string => (props.onClick ? 'pointer' : 'inherit'),
             display: 'inline-block',
+            flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
         },
         noVariant: {
             fontWeight: 700, // bold
