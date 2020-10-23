@@ -17,7 +17,7 @@ export const inInfoListItem = (): StoryFnReactReturnType => {
                 title={'@pxblue/react-themes'}
                 subtitle={'Light and dark themes supported'}
                 rightComponent={
-                    <div>
+                    <div style={{ display: 'flex' }}>
                         <ListItemTag
                             label={'Build Passing'}
                             backgroundColor={Colors.green[300]}
