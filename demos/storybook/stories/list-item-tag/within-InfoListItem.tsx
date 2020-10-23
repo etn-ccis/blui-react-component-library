@@ -23,8 +23,8 @@ export const inInfoListItem = (): StoryFnReactReturnType => {
                             backgroundColor={Colors.green[300]}
                             fontColor={Colors.black[900]}
                             style={{
-                                marginRight: direction === 'rtl' ? 0 : theme.spacing(1),
-                                marginLeft: direction === 'rtl' ? theme.spacing(1) : 0,
+                                marginRight: direction === 'rtl' ? 0 : theme.spacing(2),
+                                marginLeft: direction === 'rtl' ? theme.spacing(2) : 0,
                             }}
                         />
                         <ListItemTag
