@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: theme.spacing(0.25),
             padding: 0,
             paddingLeft: theme.spacing(0.5),
-            paddingRight: theme.spacing(0.5),
+            paddingRight: theme.spacing(0.5) - 1, // to account for extra pixel from letter-spacing
             overflow: 'hidden',
             backgroundColor: (props: ListItemTagProps): string => props.backgroundColor || theme.palette.primary.main,
             color: (props: ListItemTagProps): string => props.fontColor || theme.palette.primary.contrastText,
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'inline-block',
         },
         noVariant: {
-            fontWeight: 'bold',
+            fontWeight: 700, // bold
             letterSpacing: 1,
             fontSize: 10,
             lineHeight: '16px',
