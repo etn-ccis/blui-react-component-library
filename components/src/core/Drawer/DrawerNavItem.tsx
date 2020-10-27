@@ -10,6 +10,9 @@ import { InfoListItem } from '../InfoListItem';
 import { useDrawerContext } from './DrawerContext';
 
 export type NavItem = {
+    // sets whether to hide the nav item
+    hidden?: boolean;
+    
     // icon on the left
     icon?: JSX.Element;
 
@@ -223,50 +226,54 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     };
 
     return (
-        <div
-            ref={ref}
-            style={{ position: 'relative' }}
-            className={clsx(classes.listItemContainer, active && defaultClasses.listItemNoHover)}
-        >
-            {active && (
+        <>
+            {!navItem.hidden && (
                 <div
-                    className={clsx(defaultClasses.active, classes.active, {
-                        [defaultClasses.square]: activeItemBackgroundShape === 'square',
-                    })}
-                    style={{ backgroundColor: activeItemBackgroundColor }}
+                ref={ref}
+                style={{ position: 'relative' }}
+                className={clsx(classes.listItemContainer, active && defaultClasses.listItemNoHover)}
+            >
+                {active && (
+                    <div
+                        className={clsx(defaultClasses.active, classes.active, {
+                            [defaultClasses.square]: activeItemBackgroundShape === 'square',
+                        })}
+                        style={{ backgroundColor: activeItemBackgroundColor }}
+                    />
+                )}
+                <InfoListItem
+                    dense
+                    title={itemTitle}
+                    subtitle={itemSubtitle}
+                    divider={divider ? 'full' : undefined}
+                    statusColor={statusColor}
+                    fontColor={active ? activeItemFontColor : itemFontColor}
+                    icon={icon}
+                    iconColor={active ? activeItemIconColor : itemIconColor}
+                    rightComponent={
+                        (actionComponent || rightComponent) && (
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    color: active ? activeItemIconColor : itemIconColor,
+                                }}
+                            >
+                                {rightComponent}
+                                {actionComponent}
+                            </div>
+                        )
+                    }
+                    backgroundColor={'transparent'}
+                    onClick={hasAction ? onClickAction : undefined}
+                    hidePadding={hidePadding}
+                    ripple={ripple}
+                    {...InfoListItemProps}
+                    classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                 />
+            </div>
             )}
-            <InfoListItem
-                dense
-                title={itemTitle}
-                subtitle={itemSubtitle}
-                divider={divider ? 'full' : undefined}
-                statusColor={statusColor}
-                fontColor={active ? activeItemFontColor : itemFontColor}
-                icon={icon}
-                iconColor={active ? activeItemIconColor : itemIconColor}
-                rightComponent={
-                    (actionComponent || rightComponent) && (
-                        <div
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                color: active ? activeItemIconColor : itemIconColor,
-                            }}
-                        >
-                            {rightComponent}
-                            {actionComponent}
-                        </div>
-                    )
-                }
-                backgroundColor={'transparent'}
-                onClick={hasAction ? onClickAction : undefined}
-                hidePadding={hidePadding}
-                ripple={ripple}
-                {...InfoListItemProps}
-                classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
-            />
-        </div>
+        </>
     );
 };
 

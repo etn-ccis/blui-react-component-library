@@ -5,6 +5,9 @@
 ### Changed
 -   Updated styles for default `<ListItemTag>`
 
+### Added
+-   Adds `hidden` prop to the Drawer `NavItem`.
+
 ## v4.1.1
 
 ### Changed
