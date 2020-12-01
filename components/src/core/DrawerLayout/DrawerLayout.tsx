@@ -1,26 +1,28 @@
 import React, { ReactElement, HTMLAttributes, useState } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { DrawerComponentProps } from '../Drawer/Drawer';
 import { DrawerLayoutContext } from './contexts/DrawerLayoutContextProvider';
 
-const useStyles = makeStyles({
-    root: {
-        display: 'flex',
-        width: '100%',
-    },
-    drawer: {
-        display: 'flex',
-        position: 'fixed',
-        height: '100%',
-        alignItems: 'stretch',
-    },
-    content: {
-        width: '100%',
-        transition: 'padding 175ms cubic-bezier(.4, 0, .2, 1)',
-    },
-});
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: 'flex',
+            width: '100%',
+        },
+        drawer: {
+            display: 'flex',
+            position: 'fixed',
+            height: '100%',
+            alignItems: 'stretch',
+        },
+        content: {
+            width: '100%',
+            transition: theme.transitions.create('padding'),
+        },
+    })
+);
 
 export type DrawerLayoutClasses = {
     root?: string;

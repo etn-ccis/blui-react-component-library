@@ -1,12 +1,15 @@
 # Changelog
 
-## TBD
+## TBD (Not published yet)
 
 ### Changed
 -   Updated styles for default `<ListItemTag>`
 
 ### Added
 -   Adds `hidden` prop to the Drawer `NavItem` to conditionally omit items from the `<Drawer>` or `<UserMenu>`.
+
+### Fixed
+-   Mismatched transition speeds on the `<Drawer>` and `<DrawerLayout>`
 
 ## v4.1.1
 
