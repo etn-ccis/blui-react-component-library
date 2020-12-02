@@ -1,6 +1,6 @@
 # Changelog
 
-## TBD
+## TBD (Not published yet)
 
 ### Changed
 
@@ -9,6 +9,10 @@
 ### Added
 
 -   Adds `hidden` prop to the Drawer `NavItem` to conditionally omit items from the `<Drawer>` or `<UserMenu>`.
+
+### Fixed
+
+-   Use more efficient icon import syntax for smaller bundle
 
 ## v4.1.1
 
