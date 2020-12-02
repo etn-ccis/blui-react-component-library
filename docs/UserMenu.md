@@ -20,8 +20,9 @@ The Menu can be populated via the `menuGroups` prop, or can be entirely customiz
 ```tsx
 import { UserMenu } from '@pxblue/react-components';
 import { Avatar, Menu } from '@material-ui/core';
-import {Email, Settings} from "@material-ui/icons";
-import SendIcon from '@material-ui/icons/Send';
+import Email from '@material-ui/icons/Email';
+import Settings from '@material-ui/icons/Settings';
+import Send from '@material-ui/icons/Send';
 
 const avatar = <Avatar><SendIcon/></Avatar>;
 ...
@@ -31,7 +32,7 @@ const avatar = <Avatar><SendIcon/></Avatar>;
        items: [
            {
                title: 'Log Out',
-               icon: <SendIcon />,
+               icon: <Send />,
            },
            {
                title: 'Account Settings',

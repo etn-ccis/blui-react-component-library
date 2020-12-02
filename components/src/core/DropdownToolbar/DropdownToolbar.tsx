@@ -11,7 +11,7 @@ import {
     Theme,
     MenuProps as standardMenuProps,
 } from '@material-ui/core';
-import { ArrowDropDown } from '@material-ui/icons';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
 import { NavItem, DrawerNavGroup } from '../Drawer';
 import PropTypes from 'prop-types';
