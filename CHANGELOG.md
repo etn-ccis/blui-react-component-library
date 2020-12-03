@@ -12,6 +12,7 @@
 
 ### Fixed
 
+-   Mismatched transition speeds on the `<Drawer>` and `<DrawerLayout>`
 -   Use more efficient icon import syntax for smaller bundle
 
 ## v4.1.1
