@@ -3,13 +3,17 @@
 ## TBD (Not published yet)
 
 ### Changed
--   Updated styles for default `<ListItemTag>`
+
+-   Updated styles for default `<ListItemTag>` and `<Hero>`
 
 ### Added
+
 -   Adds `hidden` prop to the Drawer `NavItem` to conditionally omit items from the `<Drawer>` or `<UserMenu>`.
 
 ### Fixed
+
 -   Mismatched transition speeds on the `<Drawer>` and `<DrawerLayout>`
+-   Use more efficient icon import syntax for smaller bundle
 
 ## v4.1.1
 

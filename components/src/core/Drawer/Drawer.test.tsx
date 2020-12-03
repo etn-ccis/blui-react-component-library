@@ -14,7 +14,7 @@ import { DrawerBody } from './DrawerBody';
 import { DrawerFooter } from './DrawerFooter';
 import { DrawerNavGroup } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
-import { MoreVert } from '@material-ui/icons';
+import MoreVert from '@material-ui/icons/MoreVert';
 
 Enzyme.configure({ adapter: new Adapter() });
 

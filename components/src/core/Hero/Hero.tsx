@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
         icon: {
             lineHeight: 1,
             color: theme.palette.text.secondary,
-            marginBottom: 5,
+            marginBottom: theme.spacing(),
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
