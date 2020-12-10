@@ -1,6 +1,6 @@
 # Changelog
 
-## TBD (Not published yet)
+## 4.2.0
 
 ### Changed
 
