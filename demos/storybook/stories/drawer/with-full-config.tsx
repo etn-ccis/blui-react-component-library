@@ -147,6 +147,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     };
 
     const navItemKnobs: Partial<NavItem> = {
+        hidden: boolean('hidden', false, navItemId),
         icon: getIcon(select('icon', ['<Dashboard />', '<FitnessCenter />', 'undefined'], '<Dashboard />', navItemId)),
         statusColor: color('statusColor', Colors.green[300], navItemId),
         subtitle: text('subtitle', 'Learn more about us', navItemId),
@@ -156,6 +157,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     // DrawerNavGroup.items
     const links1 = [
         {
+            hidden: navItemKnobs.hidden,
             icon: navItemKnobs.icon,
             statusColor: navItemKnobs.statusColor,
             subtitle: navItemKnobs.subtitle,

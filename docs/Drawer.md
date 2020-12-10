@@ -257,6 +257,7 @@ The `items` prop of the `<DrawerNavGroup>` takes a list of items with the follow
 
 | Attribute                       | Description                                                                                     | Type              | Required | Default |
 | ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------- | -------- | ------- |
+| hidden                          | Sets whether to hide the nav item                                                               | `boolean`         | no       |         |
 | icon                            | A component to render for the left icon                                                         | `JSX.Element`     | no       |         |
 | itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`          | yes      |         |
 | items                           | The items nested under this item                                                                | `NestedNavItem[]` | no       |         |
