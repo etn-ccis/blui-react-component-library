@@ -8,6 +8,7 @@ import { PXBlueDrawerInheritableProperties } from './Drawer';
 import { DrawerNavGroupProps } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
 import { useDrawerContext } from './DrawerContext';
+import * as Colors from '@pxblue/colors';
 
 export type NavItem = {
     // sets whether to hide the nav item
@@ -264,7 +265,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                                 </div>
                             )
                         }
-                        backgroundColor={'transparent'}
+                        backgroundColor={theme.palette.type === 'light' ? 'transparent' : Colors.darkBlack[500]}
                         onClick={hasAction ? onClickAction : undefined}
                         hidePadding={hidePadding}
                         ripple={ripple}
