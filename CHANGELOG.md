@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.2.1 (not published)
+
+### Fixed
+
+-   `<Drawer>` nested nav item dark-themed background color. 
+
 ## 4.2.0
 
 ### Changed
