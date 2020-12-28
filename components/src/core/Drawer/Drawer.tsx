@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, ReactNode } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import { Drawer, DrawerProps } from '@material-ui/core';
 import { DrawerBodyProps } from './DrawerBody';
 import clsx from 'clsx';
@@ -8,18 +8,30 @@ import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 import { DrawerContext } from './DrawerContext';
 
-const useStyles = makeStyles({
-    paper: {
-        overflow: 'hidden',
-        position: 'inherit',
-    },
-    content: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        width: '100%',
-    },
-});
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            transition: theme.transitions.create('width', { duration: theme.transitions.duration.leavingScreen }),
+            minHeight: '100%',
+            '&$expanded': {
+                transition: theme.transitions.create('width', {
+                    duration: theme.transitions.duration.enteringScreen,
+                }),
+            },
+        },
+        expanded: {},
+        paper: {
+            overflow: 'hidden',
+            position: 'inherit',
+        },
+        content: {
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+            width: '100%',
+        },
+    })
+);
 
 type DrawerClasses = {
     root?: string;
@@ -278,12 +290,13 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
             {...drawerProps}
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
-            classes={{ root: clsx(classes.root), paper: clsx(defaultClasses.paper, classes.paper) }}
+            classes={{
+                root: clsx(defaultClasses.root, classes.root, isDrawerOpen() && defaultClasses.expanded),
+                paper: clsx(defaultClasses.paper, classes.paper),
+            }}
             style={Object.assign(
                 {
-                    minHeight: '100%',
                     width: containerWidth,
-                    transition: theme.transitions.create('width'),
                 },
                 drawerProps.style
             )}

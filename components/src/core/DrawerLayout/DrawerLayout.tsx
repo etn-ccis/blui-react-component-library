@@ -19,8 +19,14 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         content: {
             width: '100%',
-            transition: theme.transitions.create('padding'),
+            transition: theme.transitions.create('padding', { duration: theme.transitions.duration.leavingScreen }),
+            '&$expanded': {
+                transition: theme.transitions.create('padding', {
+                    duration: theme.transitions.duration.enteringScreen,
+                }),
+            },
         },
+        expanded: {},
     })
 );
 
@@ -59,7 +65,10 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
         >
             <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
                 <div className={clsx(defaultClasses.drawer, classes.drawer)}>{drawer}</div>
-                <div className={clsx(defaultClasses.content, classes.content)} style={style}>
+                <div
+                    className={clsx(defaultClasses.content, classes.content, padding === 0 && defaultClasses.expanded)}
+                    style={style}
+                >
                     {children}
                 </div>
             </div>
