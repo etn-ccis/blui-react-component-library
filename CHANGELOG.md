@@ -4,7 +4,7 @@
 
 ### Changed
 
--   Updated styles for default `<DropdownToolbar>`
+-   Updated styles for `<DropdownToolbar>` to support Icon Button or plain icon for `navigationIcon`.
 
 ### Fixed
 
