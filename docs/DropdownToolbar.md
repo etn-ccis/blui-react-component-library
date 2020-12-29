@@ -1,4 +1,5 @@
 # Dropdown Toolbar
+
 The `<DropdownToolbar>` component is used to display a toolbar with a dropdown menu for a subtitle. The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `<Menu>` via the `menu` prop.
 
 <div style="width: 100%; text-align: center">
@@ -6,6 +7,10 @@ The `<DropdownToolbar>` component is used to display a toolbar with a dropdown m
 </div>
 
 ## Usage
+
+<div style="width: 100%; text-align: center">
+    <img width="100%" style="max-width: 600px" alt="Dropdown Toolbar" src="./images/dropdownToolbarAnatomy.png">
+</div>
 
 ```tsx
 import { DropdownToolbar } from '@pxblue/react-components';
@@ -33,17 +38,17 @@ import { DropdownToolbar } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name      | Description                                    | Type                     | Required | Default   |
-| -------------- | ---------------------------------------------- | ------------------------ | -------- | --------- |
-| classes        | Style Overrides                                | `DropdownToolbarClasses` | no       |           |
-| menu           | Custom content to be displayed in the menu     | Material-UI `Menu`       | no       |           |
-| menuGroups     | Groups of menu items to display                | `ToolbarMenuGroups[]`    | no       |           |
-| MenuProps      | Property overrides for the MUI Menu            | `MenuProps`              | no       |           |
-| navigationIcon | Navigation Icon to be displayed                | `JSX.Element`            | no       |           |
-| onClose        | Function called when the menu is closed        | `Function`               | no       |           |
-| onOpen         | unction called when the menu is opened         | `Function`               | no       |           |
-| subtitle       | Subtitle text to be displayed                  | `string`                 | no       |           |
-| title          | Title text to be displayed                     | `string`                 | yes      |           |
+| Prop Name      | Description                                | Type                     | Required | Default |
+| -------------- | ------------------------------------------ | ------------------------ | -------- | ------- |
+| classes        | Style Overrides                            | `DropdownToolbarClasses` | no       |         |
+| menu           | Custom content to be displayed in the menu | Material-UI `Menu`       | no       |         |
+| menuGroups     | Groups of menu items to display            | `ToolbarMenuGroups[]`    | no       |         |
+| MenuProps      | Property overrides for the MUI Menu        | `MenuProps`              | no       |         |
+| navigationIcon | Navigation Icon to be displayed            | `JSX.Element`            | no       |         |
+| onClose        | Function called when the menu is closed    | `Function`               | no       |         |
+| onOpen         | unction called when the menu is opened     | `Function`               | no       |         |
+| subtitle       | Subtitle text to be displayed              | `string`                 | no       |         |
+| title          | Title text to be displayed                 | `string`                 | yes      |         |
 
 </div>
 
@@ -53,15 +58,15 @@ Any other props supplied will be provided to the root element ([`Toolbar`](https
 
 You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
 
-| Name                  | Description                                            |
-| --------------------- | ------------------------------------------------------ |
-| root                  | Styles applied to the root element                     |
-| menuItem              | Styles applied to the menu item                        |
-| navigation            | Styles applied to the navigationIcon                   |
-| subtitle              | Styles applied to the subtitle text                    |
-| subtitleContent       | Styles applied to subtitle and dropdownArrow container |
-| textContent           | Styles applied to title and subtitle container         |
-| title                 | Styles applied to the title text                       |
+| Name            | Description                                            |
+| --------------- | ------------------------------------------------------ |
+| root            | Styles applied to the root element                     |
+| menuItem        | Styles applied to the menu item                        |
+| navigation      | Styles applied to the navigationIcon                   |
+| subtitle        | Styles applied to the subtitle text                    |
+| subtitleContent | Styles applied to subtitle and dropdownArrow container |
+| textContent     | Styles applied to title and subtitle container         |
+| title           | Styles applied to the title text                       |
 
 ### Toolbar Menu Groups Object
 
@@ -82,14 +87,14 @@ The `menuGroups` prop of the `<DropdownToolbar>` includes many properties from t
 
 <div style="overflow: auto;">
 
-| Attribute   | Description                         | Type              | Required | Default |
-| ----------- | ----------------------------------- | ----------------- | -------- | ------- |
-| chevron     | Show chevron icon to the right      | `boolean`         | no       | false   |
-| divider     | Show a divider line below the item  | `boolean`         | no       |         |
-| icon        | A component to render for the icon  | `JSX.Element`     | no       |         |
-| onClick     | A function to execute when clicked  | `function`        | no       |         |
-| statusColor | Status stripe and icon color        | `string`          | no       |         |
-| subtitle    | The text to show on the second line | `string`          | no       |         |
-| title       | The text to show on the first line  | `string`          | yes      |         |
+| Attribute   | Description                         | Type          | Required | Default |
+| ----------- | ----------------------------------- | ------------- | -------- | ------- |
+| chevron     | Show chevron icon to the right      | `boolean`     | no       | false   |
+| divider     | Show a divider line below the item  | `boolean`     | no       |         |
+| icon        | A component to render for the icon  | `JSX.Element` | no       |         |
+| onClick     | A function to execute when clicked  | `function`    | no       |         |
+| statusColor | Status stripe and icon color        | `string`      | no       |         |
+| subtitle    | The text to show on the second line | `string`      | no       |         |
+| title       | The text to show on the first line  | `string`      | yes      |         |
 
 </div>
