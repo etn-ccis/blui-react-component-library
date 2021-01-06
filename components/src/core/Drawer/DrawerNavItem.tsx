@@ -163,7 +163,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                 ? navItem.divider
                 : navGroupProps.divider !== undefined
                 ? navGroupProps.divider
-                : true;
+                : false; // dividers off by default
     }
     const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropDown /> : <ExpandMore />);
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
