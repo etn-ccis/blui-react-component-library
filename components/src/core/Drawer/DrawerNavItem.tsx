@@ -9,6 +9,7 @@ import { DrawerNavGroupProps } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
 import { useDrawerContext } from './DrawerContext';
 import * as Colors from '@pxblue/colors';
+import color from 'color';
 
 export type NavItem = {
     // sets whether to hide the nav item
@@ -134,16 +135,17 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     const theme = useTheme();
     const { isOpen } = useDrawerContext();
 
-    const primary50Color = theme.palette.primary.light;
+    const fivePercentOpacityPrimary = color(theme.palette.primary.main).fade(0.95).rgb().string();
+    const twentyPercentOpacityPrimary = color(theme.palette.primary.main).fade(0.8).rgb().string();
     const { activeItem, classes, nestedDivider } = navGroupProps;
 
     // handle inheritables
     const activeItemBackgroundColor =
         navItem.activeItemBackgroundColor ||
         navGroupProps.activeItemBackgroundColor ||
-        (theme.palette.type === 'light' ? primary50Color : theme.palette.primary.main);
+        (theme.palette.type === 'light' ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary);
     const activeItemBackgroundShape =
-        navItem.activeItemBackgroundShape || navGroupProps.activeItemBackgroundShape || 'round';
+        navItem.activeItemBackgroundShape || navGroupProps.activeItemBackgroundShape || 'square';
     const activeItemFontColor =
         navItem.activeItemFontColor ||
         navGroupProps.activeItemFontColor ||
@@ -273,7 +275,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                                 </div>
                             )
                         }
-                        backgroundColor={theme.palette.type === 'light' ? 'transparent' : Colors.darkBlack[500]}
+                        backgroundColor={'transparent'}
                         onClick={hasAction ? onClickAction : undefined}
                         hidePadding={hidePadding}
                         ripple={ripple}

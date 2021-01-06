@@ -95,7 +95,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         activeItemBackgroundColor: color('activeItemBackgroundColor', Colors.blue[50], drawerGroupId),
         activeItemFontColor: color('activeItemFontColor', Colors.blue[500], drawerGroupId),
         activeItemIconColor: color('activeItemIconColor', Colors.blue[500], drawerGroupId),
-        activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'round', drawerGroupId),
+        activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'square', drawerGroupId),
         chevron: boolean('chevron', false, drawerGroupId),
         collapseIcon: getIcon(
             select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', drawerGroupId)
