@@ -71,11 +71,12 @@ The `Drawer` has three `variant`s:
 
 You can override the classes used by PX Blue by passing a `classes` prop. The Drawer supports the following keys:
 
-| Name    | Description                                     |
-| ------- | ----------------------------------------------- |
-| content | Styles applied to the drawer content container  |
-| paper   | MUI Drawer style override for desktop viewports |
-| root    | MUI Drawer style override for the root element  |
+| Name       | Description                                     |
+| ---------- | ----------------------------------------------- |
+| content    | Styles applied to the drawer content container  |
+| paper      | MUI Drawer style override for desktop viewports |
+| sideBorder | Styles applied when sideBorder is set to true   |
+| root       | MUI Drawer style override for the root element  |
 
 ## Drawer Header
 

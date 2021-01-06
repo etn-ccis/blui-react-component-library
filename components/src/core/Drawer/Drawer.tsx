@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, ReactNode } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import { Drawer, DrawerProps } from '@material-ui/core';
 import { DrawerBodyProps } from './DrawerBody';
 import clsx from 'clsx';
@@ -8,23 +8,33 @@ import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 import { DrawerContext } from './DrawerContext';
 
-const useStyles = makeStyles({
-    paper: {
-        overflow: 'hidden',
-        position: 'inherit',
-    },
-    content: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        width: '100%',
-    },
-});
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        paper: {
+            overflow: 'hidden',
+            position: 'inherit',
+            boxShadow: theme.shadows[4],
+            borderWidth: 0,
+            '&$sideBorder': {
+                borderWidth: 1,
+                boxShadow: 'none',
+            },
+        },
+        content: {
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+            width: '100%',
+        },
+        sideBorder: {},
+    })
+);
 
 type DrawerClasses = {
     root?: string;
     content?: string;
     paper?: string;
+    sideBorder?: string;
 };
 
 // type shared by Drawer, DrawerBody, DrawerNavGroup, NestedNavItem
@@ -111,6 +121,9 @@ export type DrawerComponentProps = {
     // Controls the open/closed state of the drawer
     open: boolean;
 
+    // Toggles the drawer side border instead of a drop shadow
+    sideBorder?: boolean;
+
     // Sets the width of the drawer (in px) when open
     width?: number;
 } & PXBlueDrawerNavGroupInheritableProperties &
@@ -146,6 +159,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         open,
         onItemSelect,
         ripple,
+        sideBorder = false,
         titleColor,
         width,
         ...drawerProps // for Material-UI's Drawer component
@@ -278,7 +292,13 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
             {...drawerProps}
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
-            classes={{ root: clsx(classes.root), paper: clsx(defaultClasses.paper, classes.paper) }}
+            classes={{
+                root: clsx(classes.root),
+                paper: clsx(defaultClasses.paper, classes.paper, {
+                    [defaultClasses.sideBorder]: sideBorder,
+                    [classes.sideBorder]: sideBorder,
+                }),
+            }}
             style={Object.assign(
                 {
                     minHeight: '100%',
@@ -331,9 +351,11 @@ DrawerComponent.propTypes = {
         paper: PropTypes.string,
     }),
     open: PropTypes.bool.isRequired,
+    sideBorder: PropTypes.bool,
     width: PropTypes.number,
     ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerComponent.defaultProps = {
     classes: {},
+    sideBorder: false,
 };
