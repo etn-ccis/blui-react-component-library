@@ -34,8 +34,16 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type DrawerClasses = {
-    root?: string;
+    /** Styles applied to the drawer content container */
     content?: string;
+
+    /** Styles applied to the root element when the drawer is expanded */
+    expanded?: string;
+
+    /** MUI Drawer style override for the root element */
+    root?: string;
+
+    /** MUI Drawer style override for desktop viewports */
     paper?: string;
 };
 
@@ -291,7 +299,10 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
             classes={{
-                root: clsx(defaultClasses.root, classes.root, isDrawerOpen() && defaultClasses.expanded),
+                root: clsx(defaultClasses.root, classes.root, {
+                    [defaultClasses.expanded]: isDrawerOpen(),
+                    [classes.expanded]: isDrawerOpen(),
+                }),
                 paper: clsx(defaultClasses.paper, classes.paper),
             }}
             style={Object.assign(
