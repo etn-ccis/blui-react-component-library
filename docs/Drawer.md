@@ -50,7 +50,7 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 | ------------------------------- | ---------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
 | open                            | Controls the open/closed state of the drawer               | `boolean`                                        | yes      |         |
 | classes                         | Style overrides                                            | `DrawerClasses`                                  | no       |         |
-| noLayout                        | Set to true if used without a `<DrawerLayout>`             | `boolean`                                        | no       | false   |
+| noLayout                        | Set to true if used without a `<DrawerLayout>`             | `boolean`                                        | no       | `false` |
 | variant                         | The variant to use (see below)                             | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
 | width                           | Sets the width of the drawer (in px) when open             | `number`                                         | no       |         |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                                                | no       |         |
@@ -138,7 +138,15 @@ import DrawerSubheader from '@pxblue/react-components/core/Drawer';
 
 ### Drawer Subheader API
 
-Any props supplied will be provided to the root element (`div`).
+<div style="overflow: auto;">
+
+| Prop Name             | Description                                   | Type                | Required | Default |
+| --------------------- | --------------------------------------------- | ------------------- | -------- | ------- |
+| hideContentOnCollapse | Hide subheader contents when drawer is closed | `boolean`           | no       | `true`  |
+
+</div>
+
+Any other props supplied will be provided to the root element (`div`).
 
 ## Drawer Body
 
@@ -238,11 +246,11 @@ import DrawerFooter from '@pxblue/react-components/core/Drawer';
 
 <div style="overflow: auto;">
 
-| Prop Name       | Description                                  | Type      | Required | Default |
-| --------------- | -------------------------------------------- | --------- | -------- | ------- |
-| backgroundColor | The color used for the background            | `string`  | no       |         |
-| divider         | Optional divider which appears above footer  | `boolean` | no       | `true`  |
-
+| Prop Name             | Description                                  | Type      | Required | Default |
+| --------------------- | -------------------------------------------- | --------- | -------- | ------- |
+| backgroundColor       | The color used for the background            | `string`  | no       |         |
+| divider               | Optional divider which appears above footer  | `boolean` | no       | `true`  |
+| hideContentOnCollapse | Hide footer contents when drawer is closed   | `boolean` | no       | `true`  |
 
 </div>
 

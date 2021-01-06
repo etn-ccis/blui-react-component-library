@@ -1,10 +1,11 @@
 # Changelog
 
-## 4.2.1 (not published)
+## version tbd (not published)
 
 ### Changed
 
 -   Updated styles for `<DropdownToolbar>` to support Icon Button or plain icon for `navigationIcon`.
+-   Updated default styles for `<Drawer>`
 
 ### Fixed
 

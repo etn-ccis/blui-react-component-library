@@ -4,16 +4,21 @@ import PropTypes from 'prop-types';
 
 export type DrawerSubheaderProps = HTMLAttributes<HTMLDivElement> & {
     drawerOpen?: boolean;
+    hideContentOnCollapse?: boolean;
 };
 
 const DrawerSubheaderRender: React.ForwardRefRenderFunction<unknown, DrawerSubheaderProps> = (
     props: DrawerSubheaderProps,
     ref: any
 ) => {
-    const { children, drawerOpen, ...otherDivProps } = props;
+    const { children, drawerOpen, hideContentOnCollapse = true, ...otherDivProps } = props;
     return (
         <>
-            <div ref={ref} style={{ visibility: drawerOpen ? 'inherit' : 'hidden' }} {...otherDivProps}>
+            <div
+                ref={ref}
+                style={{ visibility: drawerOpen || !hideContentOnCollapse ? 'inherit' : 'hidden' }}
+                {...otherDivProps}
+            >
                 {children}
             </div>
             <Divider />
