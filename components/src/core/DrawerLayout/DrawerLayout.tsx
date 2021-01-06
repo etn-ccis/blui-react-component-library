@@ -76,6 +76,7 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
             <div
                 ref={ref}
                 className={clsx(defaultClasses.root, classes.root, {
+                    // @TODO: "padding===0" doesn't necessarily mean collapsed on a persistent drawer
                     [defaultClasses.expanded]: padding === 0,
                     [classes.expanded]: padding === 0,
                 })}
