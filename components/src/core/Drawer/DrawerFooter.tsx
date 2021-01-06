@@ -1,9 +1,11 @@
 import React, { HTMLAttributes } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Divider } from '@material-ui/core';
 
 export type DrawerFooterProps = HTMLAttributes<HTMLDivElement> & {
     backgroundColor?: string;
     drawerOpen?: boolean;
+    divider?: boolean;
 };
 
 const useStyles = makeStyles({
@@ -21,6 +23,7 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
     const classes = useStyles(props);
     const {
         children,
+        divider = true,
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
@@ -29,9 +32,12 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
         ...otherDivProps
     } = props;
     return (
-        <div ref={ref} className={classes.root} {...otherDivProps}>
-            {children}
-        </div>
+        <>
+            {divider && <Divider />}
+            <div ref={ref} className={classes.root} {...otherDivProps}>
+                {children}
+            </div>
+        </>
     );
 };
 

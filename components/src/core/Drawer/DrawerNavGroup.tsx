@@ -148,7 +148,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                     {title && (
                         <Typography
                             noWrap
-                            variant={'subtitle2'}
+                            variant={'overline'}
                             className={clsx(defaultClasses.groupHeader, classes.groupHeader)}
                         >
                             {title}

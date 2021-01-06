@@ -238,9 +238,11 @@ import DrawerFooter from '@pxblue/react-components/core/Drawer';
 
 <div style="overflow: auto;">
 
-| Prop Name       | Description                       | Type     | Required | Default |
-| --------------- | --------------------------------- | -------- | -------- | ------- |
-| backgroundColor | The color used for the background | `string` | no       |         |
+| Prop Name       | Description                                  | Type      | Required | Default |
+| --------------- | -------------------------------------------- | --------- | -------- | ------- |
+| backgroundColor | The color used for the background            | `string`  | no       |         |
+| divider         | Optional divider which appears above footer  | `boolean` | no       | `true`  |
+
 
 </div>
 

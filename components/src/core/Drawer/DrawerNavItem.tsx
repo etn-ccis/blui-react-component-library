@@ -135,8 +135,14 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     const theme = useTheme();
     const { isOpen } = useDrawerContext();
 
-    const fivePercentOpacityPrimary = color(theme.palette.primary.main).fade(0.95).rgb().string();
-    const twentyPercentOpacityPrimary = color(theme.palette.primary.main).fade(0.8).rgb().string();
+    const fivePercentOpacityPrimary = color(theme.palette.primary.main)
+        .fade(0.95)
+        .rgb()
+        .string();
+    const twentyPercentOpacityPrimary = color(theme.palette.primary.main)
+        .fade(0.8)
+        .rgb()
+        .string();
     const { activeItem, classes, nestedDivider } = navGroupProps;
 
     // handle inheritables
