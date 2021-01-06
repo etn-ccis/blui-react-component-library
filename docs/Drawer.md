@@ -207,16 +207,18 @@ Any other props will be provided to the root element [**Material UI List**](http
 
 You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerNavGroup>` supports the following keys:
 
-| Name              | Description                                   |
-| ----------------- | --------------------------------------------- |
-| active            | Styles applied to the active element          |
-| expandIcon        | Styles applied to the expandIcon element      |
-| groupHeader       | Styles applied to the NavGroup header element |
-| listGroup         | Styles applied to the NavGroup list           |
-| listItemContainer | Styles applied to the NavItem container       |
-| nestedListGroup   | Styles applied to nested NavItems             |
-| subheader         | Styles applied to the List subheader element  |
-| nestedTitle       | Styles applied to nested NavItem title        |
+| Name              | Description                                                              |
+| ----------------- | ------------------------------------------------------------------------ |
+| active            | Styles applied to the active element                                     |
+| expandIcon        | Styles applied to the expandIcon element                                 |
+| groupHeader       | Styles applied to the NavGroup header element                            | 
+| listGroup         | Styles applied to the NavGroup list                                      |
+| listItemContainer | Styles applied to the NavItem container                                  |
+| nestedListGroup   | Styles applied to nested NavItems                                        |
+| subheader         | Styles applied to the List subheader element                             |
+| title             | Styles applied to all NavItem titles                                     |
+| titleActive       | Styles applied to title when a NavItem is in the selected item hierarchy |
+| nestedTitle       | Styles applied to nested NavItem titles                                  |
 
 ## Drawer Footer
 

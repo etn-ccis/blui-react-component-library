@@ -37,10 +37,12 @@ type DrawerNavGroupClasses = {
     active?: string;
     expandIcon?: string;
     groupHeader?: string;
+    titleActive?: string;
     listGroup?: string;
     listItemContainer?: string;
     nestedListGroup?: string;
     subheader?: string;
+    title?: string;
     nestedTitle?: string;
 };
 const useStyles = makeStyles((theme: Theme) =>

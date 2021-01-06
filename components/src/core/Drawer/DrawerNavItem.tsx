@@ -56,19 +56,6 @@ const calcNestedPadding = (theme: Theme, depth: number): number =>
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        listItemNoHover: {
-            '&:hover': {
-                /* TODO:
-                 * I don't believe this style is actually doing anything. The original intent was to not show
-                 * the background on hover over the active item, but this hover state is now controlled in the
-                 * InfoListItem component and is based on the presence of a onClick property.
-                 */
-                backgroundColor: 'initial',
-            },
-        },
-        infoListItem: {
-            paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth),
-        },
         active: {
             content: '""',
             zIndex: 0,
@@ -84,7 +71,8 @@ const useStyles = makeStyles((theme: Theme) =>
                 borderRadius: 0,
             },
         },
-        square: {},
+        drawerOpen: {},
+        expanded: {},
         expandIcon: {
             transitionDuration: '300ms',
             cursor: 'inherit',
@@ -98,7 +86,19 @@ const useStyles = makeStyles((theme: Theme) =>
                 transform: 'rotate(180deg)',
             },
         },
-        expanded: {},
+        infoListItem: {
+            paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth),
+        },
+        listItemNoHover: {
+            '&:hover': {
+                /* TODO:
+                 * I don't believe this style is actually doing anything. The original intent was to not show
+                 * the background on hover over the active item, but this hover state is now controlled in the
+                 * InfoListItem component and is based on the presence of a onClick property.
+                 */
+                backgroundColor: 'initial',
+            },
+        },
         nestedTitle: {
             fontWeight: 400,
         },
@@ -110,7 +110,13 @@ const useStyles = makeStyles((theme: Theme) =>
                 transition: theme.transitions.create('opacity'),
             },
         },
-        drawerOpen: {},
+        square: {},
+        title: {
+            fontWeight: 400,
+        },
+        titleActive: {
+            fontWeight: 600,
+        },
     })
 );
 
@@ -214,7 +220,9 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     const active = activeItem === itemID;
     const infoListItemClasses = {
         root: defaultClasses.infoListItem,
-        title: clsx({
+        title: clsx(defaultClasses.title, classes.title, {
+            [defaultClasses.titleActive]: active, // TODO: make this for anywhere in the tree
+            [classes.titleActive]: active, // TODO: make this for anywhere in the tree
             [defaultClasses.nestedTitle]: depth > 0,
             [classes.nestedTitle]: depth > 0,
             [defaultClasses.noIconTitle]: hidePadding && !icon,
