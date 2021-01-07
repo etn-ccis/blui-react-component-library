@@ -10,7 +10,22 @@ import { DrawerContext } from './DrawerContext';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        paper: {
+        root: {
+            transition: theme.transitions.create('width', { duration: theme.transitions.duration.leavingScreen }),
+            minHeight: '100%',
+            '&$expanded': {
+                transition: theme.transitions.create('width', {
+                    duration: theme.transitions.duration.enteringScreen,
+                }),
+            },
+        },
+        content: {
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+            width: '100%',
+        },
+        expanded: {},
             overflow: 'hidden',
             position: 'inherit',
             boxShadow: theme.shadows[4],
@@ -20,19 +35,21 @@ const useStyles = makeStyles((theme: Theme) =>
                 boxShadow: 'none',
             },
         },
-        content: {
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            width: '100%',
-        },
         sideBorder: {},
     })
 );
 
 type DrawerClasses = {
-    root?: string;
+    /** Styles applied to the drawer content container */
     content?: string;
+
+    /** Styles applied to the root element when the drawer is expanded */
+    expanded?: string;
+
+    /** MUI Drawer style override for the root element */
+    root?: string;
+
+    /** MUI Drawer style override for desktop viewports */
     paper?: string;
     sideBorder?: string;
 };
@@ -293,17 +310,19 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
             classes={{
-                root: clsx(classes.root),
+                root: clsx(defaultClasses.root, classes.root, {
+                    [defaultClasses.expanded]: isDrawerOpen(),
+                    [classes.expanded]: isDrawerOpen(),
+                }),
                 paper: clsx(defaultClasses.paper, classes.paper, {
                     [defaultClasses.sideBorder]: sideBorder,
                     [classes.sideBorder]: sideBorder,
                 }),
+                root: clsx(classes.root),
             }}
             style={Object.assign(
                 {
-                    minHeight: '100%',
                     width: containerWidth,
-                    transition: theme.transitions.create('width'),
                 },
                 drawerProps.style
             )}

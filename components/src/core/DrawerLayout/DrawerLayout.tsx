@@ -19,20 +19,36 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         content: {
             width: '100%',
-            transition: theme.transitions.create('padding'),
+            transition: theme.transitions.create('padding', { duration: theme.transitions.duration.leavingScreen }),
+            '$expanded &': {
+                transition: theme.transitions.create('padding', {
+                    duration: theme.transitions.duration.enteringScreen,
+                }),
+            },
         },
+        expanded: {},
     })
 );
 
 export type DrawerLayoutClasses = {
-    root?: string;
+    /** Styles applied to the body content container */
     content?: string;
+
+    /** Styles applied to the drawer container */
     drawer?: string;
+
+    /** Styles applied to the body root element when the drawer is expanded */
+    expanded?: string;
+
+    /** Styles applied to the root element */
+    root?: string;
 };
 
 export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> & {
+    /** Style overrides */
     classes?: DrawerLayoutClasses;
-    // Drawer component to be embedded
+
+    /** Drawer component to be embedded */
     drawer: ReactElement<DrawerComponentProps>;
 };
 
@@ -57,7 +73,15 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
                 },
             }}
         >
-            <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+            <div
+                ref={ref}
+                className={clsx(defaultClasses.root, classes.root, {
+                    // @TODO: "padding===0" doesn't necessarily mean collapsed on a persistent drawer
+                    [defaultClasses.expanded]: padding === 0,
+                    [classes.expanded]: padding === 0,
+                })}
+                {...otherDivProps}
+            >
                 <div className={clsx(defaultClasses.drawer, classes.drawer)}>{drawer}</div>
                 <div className={clsx(defaultClasses.content, classes.content)} style={style}>
                     {children}
