@@ -102,6 +102,9 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
     // itemID for the 'active' item
     activeItem?: string;
 
+    // If true, disable semi-bold title styling for the active item's parents in the drawer hierarchy
+    disableActiveItemParentStyles?: boolean;
+
     // background color for nested menu items
     nestedBackgroundColor?: string;
 
@@ -114,9 +117,6 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
 
 export type DrawerComponentProps = {
     classes?: DrawerClasses;
-
-    // If true, disable semi-bold title styling for the active item's parents in the drawer hierarchy
-    disableActiveItemParentStyles?: boolean;
 
     // Describes if this Drawer is used outside of a DrawerLayout
     noLayout?: boolean;
@@ -150,7 +150,9 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         chevron,
         classes,
         collapseIcon,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
         disableActiveItemParentStyles,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
         divider,
         expandIcon,
         hidePadding,
@@ -205,7 +207,6 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                         activeItemBackgroundShape,
                         chevron,
                         collapseIcon,
-                        disableActiveItemParentStyles,
                         divider,
                         expandIcon,
                         hidePadding,

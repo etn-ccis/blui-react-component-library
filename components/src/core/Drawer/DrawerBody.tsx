@@ -16,7 +16,6 @@ export type DrawerBodyProps = HTMLAttributes<HTMLDivElement> & {
     backgroundColor?: string;
     classes?: DrawerBodyClasses;
     drawerOpen?: boolean;
-    disableActiveItemParentStyles?: boolean;
 } & PXBlueDrawerNavGroupInheritableProperties;
 
 const useStyles = makeStyles({

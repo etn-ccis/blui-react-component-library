@@ -17,9 +17,12 @@ export const withFooter = (context: DrawerStoryContext): StoryFnReactReturnType 
             <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems2} />
         </DrawerBody>
 
-        <DrawerFooter backgroundColor={color('DrawerFooter.backgroundColor', Colors.white[50])}>
+        <DrawerFooter
+            backgroundColor={color('DrawerFooter.backgroundColor', Colors.white[50])}
+            hideContentOnCollapse={boolean('hideContentOnCollapse', true)}
+        >
             <Divider />
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex' }}>
                 <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
             </div>
         </DrawerFooter>

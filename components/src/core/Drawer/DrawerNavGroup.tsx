@@ -20,8 +20,6 @@ export type DrawerNavGroupProps = ListProps & {
 
     classes?: DrawerNavGroupClasses;
 
-    disableActiveItemParentStyles?: boolean;
-
     // internal API
     drawerOpen?: boolean;
 
@@ -39,13 +37,11 @@ type DrawerNavGroupClasses = {
     active?: string;
     expandIcon?: string;
     groupHeader?: string;
-    titleActive?: string;
     listGroup?: string;
     listItemContainer?: string;
     nestedListGroup?: string;
     subheader?: string;
     title?: string;
-    nestedTitle?: string;
 };
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -73,7 +69,6 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingBottom: 0,
             paddingTop: 0,
         },
-        nestedTitle: {},
         listGroup: {
             backgroundColor: (props: DrawerNavGroupProps): string => props.backgroundColor,
             paddingBottom: 0,
@@ -200,11 +195,9 @@ DrawerNavGroup.propTypes = {
         groupHeader: PropTypes.string,
         listGroup: PropTypes.string,
         listItemContainer: PropTypes.string,
-        nestedTitle: PropTypes.string,
         nestedListGroup: PropTypes.string,
         subheader: PropTypes.string,
     }),
-    disableActiveItemParentStyles: PropTypes.bool,
     drawerOpen: PropTypes.bool,
     // @ts-ignore
     items: PropTypes.arrayOf(
@@ -291,13 +284,7 @@ const DrawerItemList: React.FC<DrawerItemListProps> = (props) => {
                     key={`${item.itemID}`}
                     navItem={item}
                     isInActiveTree={activeInTree}
-                    navGroupProps={{
-                        ...groupProps,
-                        classes: {
-                            ...defaultClasses,
-                            nestedTitle: clsx(defaultClasses.nestedTitle, classes.nestedTitle),
-                        },
-                    }}
+                    navGroupProps={groupProps}
                     depth={depth}
                     expanded={expanded}
                     expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
@@ -313,10 +300,7 @@ const DrawerItemList: React.FC<DrawerItemListProps> = (props) => {
             key={`${item.itemID}`}
             navItem={item}
             isInActiveTree={activeInTree}
-            navGroupProps={{
-                ...groupProps,
-                classes: { ...defaultClasses, nestedTitle: clsx(defaultClasses.nestedTitle, classes.nestedTitle) },
-            }}
+            navGroupProps={groupProps}
             depth={depth}
             expanded={expanded}
             notifyActiveParent={(ids: string[] = []): void => notifyActiveParent(ids.concat(item.itemID))}

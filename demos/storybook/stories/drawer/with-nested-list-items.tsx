@@ -92,7 +92,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
     })();
 
     const drawerItemList = (state: DrawerState): JSX.Element => (
-        <DrawerBody>
+        <DrawerBody disableActiveItemParentStyles={boolean('disableActiveItemParentStyles', false, DrawerNavGroupID)}>
             <DrawerNavGroup
                 divider={divider}
                 nestedDivider={nestedDivider}

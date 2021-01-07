@@ -50,7 +50,7 @@ export type DrawerNavItem = {
     depth: number;
     expanded: boolean;
     expandHandler?: () => void;
-    notifyActiveParent: () => void;
+    notifyActiveParent?: () => void;
 };
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
@@ -127,7 +127,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     props: DrawerNavItem,
     ref: any
 ) => {
-    const { depth, expanded, expandHandler, navItem, navGroupProps, notifyActiveParent } = props;
+    const { depth, expanded, expandHandler, navItem, navGroupProps, notifyActiveParent = (): void => {} } = props;
     const { title: itemTitle, subtitle: itemSubtitle, items, itemID, onClick, statusColor } = navItem;
 
     // only allow icons for the top level items
@@ -143,6 +143,12 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
         .string();
     const twentyPercentOpacityPrimary = color(theme.palette.primary.main)
         .fade(0.8)
+        .rgb()
+        .string();
+    // approximating primary[200] but we don't have access to it directly from the theme
+    const lightenedPrimary = color(theme.palette.primary.main)
+        .lighten(0.83)
+        .desaturate(0.39)
         .rgb()
         .string();
     const { activeItem, classes, nestedDivider } = navGroupProps;
@@ -167,11 +173,11 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     const activeItemFontColor =
         navItem.activeItemFontColor ||
         navGroupProps.activeItemFontColor ||
-        (theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText);
+        (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary);
     const activeItemIconColor =
         navItem.activeItemIconColor ||
         navGroupProps.activeItemIconColor ||
-        (theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.contrastText);
+        (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary);
     const chevron = navItem.chevron !== undefined ? navItem.chevron : navGroupProps.chevron;
     const collapseIcon = navItem.collapseIcon || navGroupProps.collapseIcon;
     let divider;
@@ -242,9 +248,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
         root: defaultClasses.infoListItem,
         title: clsx(defaultClasses.title, classes.title, {
             [defaultClasses.titleActive]: active || props.isInActiveTree,
-            [classes.titleActive]: active || props.isInActiveTree,
             [defaultClasses.nestedTitle]: depth > 0,
-            [classes.nestedTitle]: depth > 0,
             [defaultClasses.noIconTitle]: hidePadding && !icon,
             [defaultClasses.drawerOpen]: isOpen,
         }),
