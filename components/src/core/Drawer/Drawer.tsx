@@ -115,6 +115,9 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
 export type DrawerComponentProps = {
     classes?: DrawerClasses;
 
+    // If true, disable semi-bold title styling for the active item's parents in the drawer hierarchy
+    disableActiveItemParentStyles?: boolean;
+
     // Describes if this Drawer is used outside of a DrawerLayout
     noLayout?: boolean;
 
@@ -147,6 +150,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         chevron,
         classes,
         collapseIcon,
+        disableActiveItemParentStyles,
         divider,
         expandIcon,
         hidePadding,
@@ -201,6 +205,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                         activeItemBackgroundShape,
                         chevron,
                         collapseIcon,
+                        disableActiveItemParentStyles,
                         divider,
                         expandIcon,
                         hidePadding,

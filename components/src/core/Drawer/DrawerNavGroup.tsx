@@ -20,6 +20,8 @@ export type DrawerNavGroupProps = ListProps & {
 
     classes?: DrawerNavGroupClasses;
 
+    disableActiveItemParentStyles?: boolean;
+
     // internal API
     drawerOpen?: boolean;
 
@@ -71,6 +73,7 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingBottom: 0,
             paddingTop: 0,
         },
+        nestedTitle: {},
         listGroup: {
             backgroundColor: (props: DrawerNavGroupProps): string => props.backgroundColor,
             paddingBottom: 0,
@@ -104,6 +107,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     const {
         classes,
         drawerOpen,
+        disableActiveItemParentStyles,
         items,
         title,
         titleColor = theme.palette.text.primary,
@@ -131,6 +135,9 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherListProps
     } = props;
+
+    /* Keeps track of which group of IDs are in the 'active hierarchy' */
+    const [activeHierarchyItems, setActiveHierarchyItems] = useState<string[]>([]);
 
     const open = drawerOpen !== undefined ? drawerOpen : true; // so that DrawerNavGroup can be placed in a <Card />
 
@@ -167,9 +174,17 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                     depth={0}
                     drawerOpen={open}
                     defaultClasses={defaultClasses}
+                    disableActiveItemParentStyles={disableActiveItemParentStyles}
                     classes={classes}
                     groupProps={props}
                     activeItem={activeItem}
+                    notifyActiveParent={(ids: string[]): void => {
+                        if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
+                            // Sets the list of active IDs when we get a callback from an active child
+                            setActiveHierarchyItems(ids);
+                        }
+                    }}
+                    activeIDs={activeHierarchyItems}
                 />
             ))}
         </List>
@@ -185,10 +200,11 @@ DrawerNavGroup.propTypes = {
         groupHeader: PropTypes.string,
         listGroup: PropTypes.string,
         listItemContainer: PropTypes.string,
+        nestedTitle: PropTypes.string,
         nestedListGroup: PropTypes.string,
         subheader: PropTypes.string,
-        nestedTitle: PropTypes.string,
     }),
+    disableActiveItemParentStyles: PropTypes.bool,
     drawerOpen: PropTypes.bool,
     // @ts-ignore
     items: PropTypes.arrayOf(
@@ -216,15 +232,32 @@ export type DrawerItemListProps = {
     depth: number;
     drawerOpen: boolean;
     activeItem: string;
-    defaultClasses: Record<'groupHeader' | 'subheader' | 'nestedListGroup' | 'listGroup', string>;
+    defaultClasses: DrawerNavGroupClasses;
+    disableActiveItemParentStyles?: boolean;
     classes: DrawerNavGroupClasses;
     groupProps: DrawerNavGroupProps;
+    notifyActiveParent: (ids: string[]) => void;
+    activeIDs: string[];
 };
 
 // recursively loop through item list and the subItems
 const DrawerItemList: React.FC<DrawerItemListProps> = (props) => {
-    const { item, depth, drawerOpen, activeItem, defaultClasses, classes, groupProps } = props;
+    const {
+        item,
+        depth,
+        disableActiveItemParentStyles,
+        drawerOpen,
+        activeItem,
+        defaultClasses,
+        notifyActiveParent,
+        activeIDs,
+        classes,
+        groupProps,
+    } = props;
     const [expanded, setExpanded] = useState(findID(item, activeItem));
+
+    // Is this item ID in the list of items in the active selection hierarchy?
+    const activeInTree = !disableActiveItemParentStyles && activeIDs.includes(item.itemID);
 
     if (item.items) {
         // if there are more sub pages, add the bucket header and recurse on this function
@@ -238,9 +271,14 @@ const DrawerItemList: React.FC<DrawerItemListProps> = (props) => {
                             depth={depth + 1}
                             drawerOpen={drawerOpen}
                             defaultClasses={defaultClasses}
+                            disableActiveItemParentStyles={disableActiveItemParentStyles}
                             classes={classes}
                             groupProps={groupProps}
                             activeItem={activeItem}
+                            notifyActiveParent={(ids: string[] = []): void =>
+                                notifyActiveParent(ids.concat(item.itemID))
+                            }
+                            activeIDs={activeIDs}
                         />
                     ))}
                 </List>
@@ -252,10 +290,18 @@ const DrawerItemList: React.FC<DrawerItemListProps> = (props) => {
                 <DrawerNavItem
                     key={`${item.itemID}`}
                     navItem={item}
-                    navGroupProps={groupProps}
+                    isInActiveTree={activeInTree}
+                    navGroupProps={{
+                        ...groupProps,
+                        classes: {
+                            ...defaultClasses,
+                            nestedTitle: clsx(defaultClasses.nestedTitle, classes.nestedTitle),
+                        },
+                    }}
                     depth={depth}
                     expanded={expanded}
                     expandHandler={item.items ? (): void => setExpanded(!expanded) : undefined}
+                    notifyActiveParent={(ids: string[] = []): void => notifyActiveParent(ids.concat(item.itemID))}
                 />
                 {collapsibleComponent}
             </React.Fragment>
@@ -266,9 +312,14 @@ const DrawerItemList: React.FC<DrawerItemListProps> = (props) => {
         <DrawerNavItem
             key={`${item.itemID}`}
             navItem={item}
-            navGroupProps={groupProps}
+            isInActiveTree={activeInTree}
+            navGroupProps={{
+                ...groupProps,
+                classes: { ...defaultClasses, nestedTitle: clsx(defaultClasses.nestedTitle, classes.nestedTitle) },
+            }}
             depth={depth}
             expanded={expanded}
+            notifyActiveParent={(ids: string[] = []): void => notifyActiveParent(ids.concat(item.itemID))}
         />
     );
 };

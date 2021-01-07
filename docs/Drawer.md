@@ -46,14 +46,15 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                | Type                                             | Required | Default |
-| ------------------------------- | ---------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
-| open                            | Controls the open/closed state of the drawer               | `boolean`                                        | yes      |         |
-| classes                         | Style overrides                                            | `DrawerClasses`                                  | no       |         |
-| noLayout                        | Set to true if used without a `<DrawerLayout>`             | `boolean`                                        | no       | `false` |
-| variant                         | The variant to use (see below)                             | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
-| width                           | Sets the width of the drawer (in px) when open             | `number`                                         | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                                                | no       |         |
+| Prop Name                       | Description                                                                     | Type                                             | Required | Default |
+| ------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
+| open                            | Controls the open/closed state of the drawer                                    | `boolean`                                        | yes      |         |
+| classes                         | Style overrides                                                                 | `DrawerClasses`                                  | no       |         |
+| disableActiveItemParentStyles   | If true, NavItems will not have a bold title when a child NavItem is selected   | `boolean`                                        | no       | `false` |
+| noLayout                        | Set to true if used without a `<DrawerLayout>`                                  | `boolean`                                        | no       | `false` |
+| variant                         | The variant to use (see below)                                                  | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
+| width                           | Sets the width of the drawer (in px) when open                                  | `number`                                         | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                      | -                                                | no       |         |
 
 </div>
 

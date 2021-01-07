@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback } from 'react';
+import React, { ReactNode, useCallback, useEffect } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -8,8 +8,8 @@ import { PXBlueDrawerInheritableProperties } from './Drawer';
 import { DrawerNavGroupProps } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
 import { useDrawerContext } from './DrawerContext';
-import * as Colors from '@pxblue/colors';
 import color from 'color';
+import { usePrevious } from '../hooks/usePrevious';
 
 export type NavItem = {
     // sets whether to hide the nav item
@@ -44,11 +44,13 @@ export type NavItem = {
 export type NestedNavItem = Omit<NavItem, 'icon'>;
 
 export type DrawerNavItem = {
+    isInActiveTree?: boolean;
     navItem: NavItem | NestedNavItem;
     navGroupProps: DrawerNavGroupProps;
     depth: number;
     expanded: boolean;
     expandHandler?: () => void;
+    notifyActiveParent: () => void;
 };
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
@@ -125,7 +127,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     props: DrawerNavItem,
     ref: any
 ) => {
-    const { depth, expanded, expandHandler, navItem, navGroupProps } = props;
+    const { depth, expanded, expandHandler, navItem, navGroupProps, notifyActiveParent } = props;
     const { title: itemTitle, subtitle: itemSubtitle, items, itemID, onClick, statusColor } = navItem;
 
     // only allow icons for the top level items
@@ -144,6 +146,16 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
         .rgb()
         .string();
     const { activeItem, classes, nestedDivider } = navGroupProps;
+
+    const previousActive = usePrevious(activeItem);
+
+    // If the active item changes
+    useEffect(() => {
+        if (activeItem === itemID && previousActive !== itemID) {
+            // notify the parent that it should now be in the active tree
+            notifyActiveParent();
+        }
+    }, [activeItem, notifyActiveParent]);
 
     // handle inheritables
     const activeItemBackgroundColor =
@@ -229,8 +241,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     const infoListItemClasses = {
         root: defaultClasses.infoListItem,
         title: clsx(defaultClasses.title, classes.title, {
-            [defaultClasses.titleActive]: active, // TODO: make this for anywhere in the tree
-            [classes.titleActive]: active, // TODO: make this for anywhere in the tree
+            [defaultClasses.titleActive]: active || props.isInActiveTree,
+            [classes.titleActive]: active || props.isInActiveTree,
             [defaultClasses.nestedTitle]: depth > 0,
             [classes.nestedTitle]: depth > 0,
             [defaultClasses.noIconTitle]: hidePadding && !icon,
