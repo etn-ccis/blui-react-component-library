@@ -71,12 +71,14 @@ The `Drawer` has three `variant`s:
 
 You can override the classes used by PX Blue by passing a `classes` prop. The Drawer supports the following keys:
 
-| Name     | Description                                                    |
-| -------- | -------------------------------------------------------------- |
-| content  | Styles applied to the drawer content container                 |
-| expanded | Styles applied to the root element when the drawer is expanded |
-| paper    | MUI Drawer style override for desktop viewports                |
-| root     | MUI Drawer style override for the root element                 |
+| Name       | Description                                                    |
+| ---------- | -------------------------------------------------------------- |
+| content    | Styles applied to the drawer content container                 |
+| expanded   | Styles applied to the root element when the drawer is expanded |
+| paper      | MUI Drawer style override for desktop viewports                |
+| sideBorder | Styles applied when sideBorder is set to true                  |
+| root       | MUI Drawer style override for the root element                 |
+
 
 ## Drawer Header
 
@@ -207,16 +209,18 @@ Any other props will be provided to the root element [**Material UI List**](http
 
 You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerNavGroup>` supports the following keys:
 
-| Name              | Description                                   |
-| ----------------- | --------------------------------------------- |
-| active            | Styles applied to the active element          |
-| expandIcon        | Styles applied to the expandIcon element      |
-| groupHeader       | Styles applied to the NavGroup header element |
-| listGroup         | Styles applied to the NavGroup list           |
-| listItemContainer | Styles applied to the NavItem container       |
-| nestedListGroup   | Styles applied to nested NavItems             |
-| subheader         | Styles applied to the List subheader element  |
-| nestedTitle       | Styles applied to nested NavItem title        |
+| Name              | Description                                                              |
+| ----------------- | ------------------------------------------------------------------------ |
+| active            | Styles applied to the active element                                     |
+| expandIcon        | Styles applied to the expandIcon element                                 |
+| groupHeader       | Styles applied to the NavGroup header element                            | 
+| listGroup         | Styles applied to the NavGroup list                                      |
+| listItemContainer | Styles applied to the NavItem container                                  |
+| nestedListGroup   | Styles applied to nested NavItems                                        |
+| subheader         | Styles applied to the List subheader element                             |
+| title             | Styles applied to all NavItem titles                                     |
+| titleActive       | Styles applied to title when a NavItem is in the selected item hierarchy |
+| nestedTitle       | Styles applied to nested NavItem titles                                  |
 
 ## Drawer Footer
 
@@ -236,9 +240,11 @@ import DrawerFooter from '@pxblue/react-components/core/Drawer';
 
 <div style="overflow: auto;">
 
-| Prop Name       | Description                       | Type     | Required | Default |
-| --------------- | --------------------------------- | -------- | -------- | ------- |
-| backgroundColor | The color used for the background | `string` | no       |         |
+| Prop Name       | Description                                  | Type      | Required | Default |
+| --------------- | -------------------------------------------- | --------- | -------- | ------- |
+| backgroundColor | The color used for the background            | `string`  | no       |         |
+| divider         | Optional divider which appears above footer  | `boolean` | no       | `true`  |
+
 
 </div>
 
@@ -316,21 +322,21 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 
 <div style="overflow: auto;">
 
-| Name                      | Description                                                                                                                                                 | Type                    | Required | Default                                                      |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
-| activeItemBackgroundColor | Background color for the 'active' item                                                                                                                      | `string`                | no       | varies for light/dark theme                                  |
-| activeItemBackgroundShape | shape of the active item background                                                                                                                         | `'round'` \| `'square'` | no       | round                                                        |
-| activeItemFontColor       | Font color for the 'active' item                                                                                                                            | `string`                | no       | varies for light/dark theme                                  |
-| activeItemIconColor       | Icon color for the 'active' item                                                                                                                            | `string`                | no       | varies for light/dark theme                                  |
-| chevron                   | Whether to have chevrons for all menu items                                                                                                                 | `boolean`               | no       |                                                              |
-| collapseIcon              | Icon used to collapse drawer                                                                                                                                | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                             |
-| divider                   | Whether to show a line between all items                                                                                                                    | `boolean`               | no       | true                                                         |
-| expandIcon                | Icon used to expand drawer                                                                                                                                  | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
-| hidePadding               | Whether to hide the paddings reserved for menu item icons                                                                                                   | `boolean`               | no       |                                                              |
-| InfoListItemProps         | Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) props set by the Drawer | `InfoListItemProps`     | no       |                                                              |
-| itemFontColor             | The color used for the item text                                                                                                                            | `string`                | no       | varies for light/dark theme                                  |
-| itemIconColor             | The color used for the icon                                                                                                                                 | `string`                | no       | varies for light/dark theme                                  |
-| ripple                    | Whether to apply material ripple effect to items                                                                                                            | `boolean`               | no       | true                                                         |
+| Name                      | Description                                                                                                                                                 | Type                    | Required | Default                                                       |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------- |
+| activeItemBackgroundColor | Background color for the 'active' item                                                                                                                      | `string`                | no       | varies for light/dark theme                                   |
+| activeItemBackgroundShape | shape of the active item background                                                                                                                         | `'round'` \| `'square'` | no       | square                                                        |
+| activeItemFontColor       | Font color for the 'active' item                                                                                                                            | `string`                | no       | varies for light/dark theme                                   |
+| activeItemIconColor       | Icon color for the 'active' item                                                                                                                            | `string`                | no       | varies for light/dark theme                                   |
+| chevron                   | Whether to have chevrons for all menu items                                                                                                                 | `boolean`               | no       |                                                               |
+| collapseIcon              | Icon used to collapse drawer                                                                                                                                | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                              |
+| divider                   | Whether to show a line between all items                                                                                                                    | `boolean`               | no       | false                                                         |
+| expandIcon                | Icon used to expand drawer                                                                                                                                  | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise  |
+| hidePadding               | Whether to hide the paddings reserved for menu item icons                                                                                                   | `boolean`               | no       |                                                               |
+| InfoListItemProps         | Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) props set by the Drawer | `InfoListItemProps`     | no       |                                                               |
+| itemFontColor             | The color used for the item text                                                                                                                            | `string`                | no       | varies for light/dark theme                                   |
+| itemIconColor             | The color used for the icon                                                                                                                                 | `string`                | no       | varies for light/dark theme                                   |
+| ripple                    | Whether to apply material ripple effect to items                                                                                                            | `boolean`               | no       | true                                                          |
 
 </div>
 

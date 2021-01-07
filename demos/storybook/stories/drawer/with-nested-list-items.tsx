@@ -47,7 +47,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
     const divider = boolean('divider', true, DrawerNavGroupID);
     const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
     const chevron = boolean('chevron', false, DrawerNavGroupID);
-    const nestedBackgroundColor = color('nestedBackgroundColor', Colors.white[200], DrawerNavGroupID);
+    const nestedBackgroundColor = color('nestedBackgroundColor', '', DrawerNavGroupID);
     const groupUseExpandIcon = select(
         'expandIcon',
         ['undefined', '<Add />', '<PinDrop />'],

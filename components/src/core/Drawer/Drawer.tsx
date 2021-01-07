@@ -19,17 +19,23 @@ const useStyles = makeStyles((theme: Theme) =>
                 }),
             },
         },
-        expanded: {},
-        paper: {
-            overflow: 'hidden',
-            position: 'inherit',
-        },
         content: {
             display: 'flex',
             flexDirection: 'column',
             height: '100%',
             width: '100%',
         },
+        expanded: {},
+            overflow: 'hidden',
+            position: 'inherit',
+            boxShadow: theme.shadows[4],
+            borderWidth: 0,
+            '&$sideBorder': {
+                borderWidth: 1,
+                boxShadow: 'none',
+            },
+        },
+        sideBorder: {},
     })
 );
 
@@ -45,6 +51,7 @@ type DrawerClasses = {
 
     /** MUI Drawer style override for desktop viewports */
     paper?: string;
+    sideBorder?: string;
 };
 
 // type shared by Drawer, DrawerBody, DrawerNavGroup, NestedNavItem
@@ -131,6 +138,9 @@ export type DrawerComponentProps = {
     // Controls the open/closed state of the drawer
     open: boolean;
 
+    // Toggles the drawer side border instead of a drop shadow
+    sideBorder?: boolean;
+
     // Sets the width of the drawer (in px) when open
     width?: number;
 } & PXBlueDrawerNavGroupInheritableProperties &
@@ -166,6 +176,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         open,
         onItemSelect,
         ripple,
+        sideBorder = false,
         titleColor,
         width,
         ...drawerProps // for Material-UI's Drawer component
@@ -303,7 +314,11 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                     [defaultClasses.expanded]: isDrawerOpen(),
                     [classes.expanded]: isDrawerOpen(),
                 }),
-                paper: clsx(defaultClasses.paper, classes.paper),
+                paper: clsx(defaultClasses.paper, classes.paper, {
+                    [defaultClasses.sideBorder]: sideBorder,
+                    [classes.sideBorder]: sideBorder,
+                }),
+                root: clsx(classes.root),
             }}
             style={Object.assign(
                 {
@@ -355,9 +370,11 @@ DrawerComponent.propTypes = {
         paper: PropTypes.string,
     }),
     open: PropTypes.bool.isRequired,
+    sideBorder: PropTypes.bool,
     width: PropTypes.number,
     ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerComponent.defaultProps = {
     classes: {},
+    sideBorder: false,
 };

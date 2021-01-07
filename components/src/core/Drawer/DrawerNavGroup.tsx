@@ -37,10 +37,12 @@ type DrawerNavGroupClasses = {
     active?: string;
     expandIcon?: string;
     groupHeader?: string;
+    titleActive?: string;
     listGroup?: string;
     listItemContainer?: string;
     nestedListGroup?: string;
     subheader?: string;
+    title?: string;
     nestedTitle?: string;
 };
 const useStyles = makeStyles((theme: Theme) =>
@@ -146,7 +148,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                     {title && (
                         <Typography
                             noWrap
-                            variant={'subtitle2'}
+                            variant={'overline'}
                             className={clsx(defaultClasses.groupHeader, classes.groupHeader)}
                         >
                             {title}

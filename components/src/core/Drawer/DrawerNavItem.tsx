@@ -9,6 +9,7 @@ import { DrawerNavGroupProps } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
 import { useDrawerContext } from './DrawerContext';
 import * as Colors from '@pxblue/colors';
+import color from 'color';
 
 export type NavItem = {
     // sets whether to hide the nav item
@@ -56,19 +57,6 @@ const calcNestedPadding = (theme: Theme, depth: number): number =>
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        listItemNoHover: {
-            '&:hover': {
-                /* TODO:
-                 * I don't believe this style is actually doing anything. The original intent was to not show
-                 * the background on hover over the active item, but this hover state is now controlled in the
-                 * InfoListItem component and is based on the presence of a onClick property.
-                 */
-                backgroundColor: 'initial',
-            },
-        },
-        infoListItem: {
-            paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth),
-        },
         active: {
             content: '""',
             zIndex: 0,
@@ -84,7 +72,8 @@ const useStyles = makeStyles((theme: Theme) =>
                 borderRadius: 0,
             },
         },
-        square: {},
+        drawerOpen: {},
+        expanded: {},
         expandIcon: {
             transitionDuration: `${theme.transitions.duration.standard}ms`,
             cursor: 'inherit',
@@ -98,7 +87,19 @@ const useStyles = makeStyles((theme: Theme) =>
                 transform: 'rotate(180deg)',
             },
         },
-        expanded: {},
+        infoListItem: {
+            paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth),
+        },
+        listItemNoHover: {
+            '&:hover': {
+                /* TODO:
+                 * I don't believe this style is actually doing anything. The original intent was to not show
+                 * the background on hover over the active item, but this hover state is now controlled in the
+                 * InfoListItem component and is based on the presence of a onClick property.
+                 */
+                backgroundColor: 'initial',
+            },
+        },
         nestedTitle: {
             fontWeight: 400,
         },
@@ -110,7 +111,13 @@ const useStyles = makeStyles((theme: Theme) =>
                 transition: theme.transitions.create('opacity'),
             },
         },
-        drawerOpen: {},
+        square: {},
+        title: {
+            fontWeight: 400,
+        },
+        titleActive: {
+            fontWeight: 600,
+        },
     })
 );
 
@@ -128,16 +135,23 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     const theme = useTheme();
     const { isOpen } = useDrawerContext();
 
-    const primary50Color = theme.palette.primary.light;
+    const fivePercentOpacityPrimary = color(theme.palette.primary.main)
+        .fade(0.95)
+        .rgb()
+        .string();
+    const twentyPercentOpacityPrimary = color(theme.palette.primary.main)
+        .fade(0.8)
+        .rgb()
+        .string();
     const { activeItem, classes, nestedDivider } = navGroupProps;
 
     // handle inheritables
     const activeItemBackgroundColor =
         navItem.activeItemBackgroundColor ||
         navGroupProps.activeItemBackgroundColor ||
-        (theme.palette.type === 'light' ? primary50Color : theme.palette.primary.main);
+        (theme.palette.type === 'light' ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary);
     const activeItemBackgroundShape =
-        navItem.activeItemBackgroundShape || navGroupProps.activeItemBackgroundShape || 'round';
+        navItem.activeItemBackgroundShape || navGroupProps.activeItemBackgroundShape || 'square';
     const activeItemFontColor =
         navItem.activeItemFontColor ||
         navGroupProps.activeItemFontColor ||
@@ -157,7 +171,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                 ? navItem.divider
                 : navGroupProps.divider !== undefined
                 ? navGroupProps.divider
-                : true;
+                : false; // dividers off by default
     }
     const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropDown /> : <ExpandMore />);
     const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
@@ -214,7 +228,9 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     const active = activeItem === itemID;
     const infoListItemClasses = {
         root: defaultClasses.infoListItem,
-        title: clsx({
+        title: clsx(defaultClasses.title, classes.title, {
+            [defaultClasses.titleActive]: active, // TODO: make this for anywhere in the tree
+            [classes.titleActive]: active, // TODO: make this for anywhere in the tree
             [defaultClasses.nestedTitle]: depth > 0,
             [classes.nestedTitle]: depth > 0,
             [defaultClasses.noIconTitle]: hidePadding && !icon,
@@ -265,7 +281,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                                 </div>
                             )
                         }
-                        backgroundColor={theme.palette.type === 'light' ? 'transparent' : Colors.darkBlack[500]}
+                        backgroundColor={'transparent'}
                         onClick={hasAction ? onClickAction : undefined}
                         hidePadding={hidePadding}
                         ripple={ripple}
