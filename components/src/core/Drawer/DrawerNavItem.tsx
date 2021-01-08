@@ -205,6 +205,19 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
             : true;
 
     const hasAction = Boolean(onItemSelect || onClick || expandHandler);
+
+    // Customize the color of the Touch Ripple
+    const RippleProps =
+        ripple && hasAction
+            ? {
+                  TouchRippleProps: {
+                      classes: {
+                          child: defaultClasses.ripple,
+                      },
+                  },
+              }
+            : {};
+
     const onClickAction = useCallback(
         (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
             if (onItemSelect) {
@@ -301,12 +314,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                         onClick={hasAction ? onClickAction : undefined}
                         hidePadding={hidePadding}
                         ripple={ripple}
-                        // @ts-ignore typescript can't tell that ILI is a button here
-                        TouchRippleProps={{
-                            classes: {
-                                child: defaultClasses.ripple,
-                            },
-                        }}
+                        {...RippleProps}
                         {...InfoListItemProps}
                         classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                     />
