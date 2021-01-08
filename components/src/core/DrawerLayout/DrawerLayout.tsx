@@ -16,10 +16,12 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'fixed',
             height: '100%',
             alignItems: 'stretch',
+            zIndex: 1000,
         },
         content: {
             width: '100%',
             transition: theme.transitions.create('padding'),
+            zIndex: 0,
         },
     })
 );
