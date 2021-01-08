@@ -256,6 +256,10 @@ const DrawerItemList: React.FC<DrawerItemListProps> = (props) => {
 
     // Is this item ID in the list of items in the active selection hierarchy?
     const activeInTree = !disableActiveItemParentStyles && activeIDs.includes(item.itemID);
+    // When the activeItem changes, update our expanded state
+    useEffect(() => {
+        if (activeInTree && !expanded) setExpanded(true);
+    }, [activeInTree]);
 
     if (item.items) {
         // if there are more sub pages, add the bucket header and recurse on this function
