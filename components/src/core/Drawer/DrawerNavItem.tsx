@@ -139,17 +139,14 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
 
     const fivePercentOpacityPrimary = color(theme.palette.primary.main)
         .fade(0.95)
-        .rgb()
         .string();
     const twentyPercentOpacityPrimary = color(theme.palette.primary.main)
         .fade(0.8)
-        .rgb()
         .string();
     // approximating primary[200] but we don't have access to it directly from the theme
     const lightenedPrimary = color(theme.palette.primary.main)
         .lighten(0.83)
         .desaturate(0.39)
-        .rgb()
         .string();
     const { activeItem, classes, nestedDivider } = navGroupProps;
 
