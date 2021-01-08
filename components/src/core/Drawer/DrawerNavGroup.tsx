@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import List, { ListProps } from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -133,6 +133,11 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
 
     /* Keeps track of which group of IDs are in the 'active hierarchy' */
     const [activeHierarchyItems, setActiveHierarchyItems] = useState<string[]>([]);
+
+    /* Clear the active hierarchy array if the new active Item cannot be found in the tree */
+    useEffect(() => {
+        if (!findID({ items: props.items } as NavItem, activeItem)) setActiveHierarchyItems([]);
+    }, [activeItem]);
 
     const open = drawerOpen !== undefined ? drawerOpen : true; // so that DrawerNavGroup can be placed in a <Card />
 
