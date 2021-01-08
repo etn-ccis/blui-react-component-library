@@ -120,6 +120,9 @@ const useStyles = makeStyles((theme: Theme) =>
         titleActive: {
             fontWeight: 600,
         },
+        ripple: {
+            backgroundColor: theme.palette.primary.main,
+        },
     })
 );
 
@@ -298,6 +301,12 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                         onClick={hasAction ? onClickAction : undefined}
                         hidePadding={hidePadding}
                         ripple={ripple}
+                        // @ts-ignore typescript can't tell that ILI is a button here
+                        TouchRippleProps={{
+                            classes: {
+                                child: defaultClasses.ripple,
+                            },
+                        }}
                         {...InfoListItemProps}
                         classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                     />
