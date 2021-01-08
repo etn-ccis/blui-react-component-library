@@ -68,7 +68,10 @@ export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnTy
     return (
         <Drawer open={boolean('Drawer.open', true)}>
             <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
-            <DrawerSubheader hideContentOnCollapse={boolean('hideContentOnCollapse', true)}>
+            <DrawerSubheader
+                hideContentOnCollapse={boolean('hideContentOnCollapse', true)}
+                divider={boolean('divider', true)}
+            >
                 <div
                     style={{
                         display: 'flex',

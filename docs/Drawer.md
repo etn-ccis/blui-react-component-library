@@ -144,6 +144,7 @@ import DrawerSubheader from '@pxblue/react-components/core/Drawer';
 
 | Prop Name             | Description                                   | Type                | Required | Default |
 | --------------------- | --------------------------------------------- | ------------------- | -------- | ------- |
+| divider               | Optional divider which appears above footer   | `boolean`           | no       | `true`  |
 | hideContentOnCollapse | Hide subheader contents when drawer is closed | `boolean`           | no       | `true`  |
 
 </div>

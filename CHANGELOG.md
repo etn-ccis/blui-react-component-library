@@ -13,6 +13,7 @@
     -   `disableActiveItemParentStyle` disables the bold text style for active item's parent elements
 -   Additional configuration options for `<DrawerHeader>` and `<DrawerFooter>`
     -   `hideContentOnCollapse` configures if content in these areas should be hidden or remain visible when the drawer is collapsed
+    -   `divider` configures whether to show a dividing line separating the component from other content
 
 ## 4.2.0
 

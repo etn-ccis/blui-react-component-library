@@ -1,4 +1,3 @@
-import { Divider } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
 import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
@@ -20,8 +19,8 @@ export const withFooter = (context: DrawerStoryContext): StoryFnReactReturnType 
         <DrawerFooter
             backgroundColor={color('DrawerFooter.backgroundColor', Colors.white[50])}
             hideContentOnCollapse={boolean('hideContentOnCollapse', true)}
+            divider={boolean('divider', true)}
         >
-            <Divider />
             <div style={{ display: 'flex' }}>
                 <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
             </div>
