@@ -10,6 +10,22 @@ import { DrawerContext } from './DrawerContext';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        root: {
+            transition: theme.transitions.create('width', { duration: theme.transitions.duration.leavingScreen }),
+            minHeight: '100%',
+            '&$expanded': {
+                transition: theme.transitions.create('width', {
+                    duration: theme.transitions.duration.enteringScreen,
+                }),
+            },
+        },
+        content: {
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+            width: '100%',
+        },
+        expanded: {},
         paper: {
             overflow: 'hidden',
             position: 'inherit',
@@ -20,19 +36,21 @@ const useStyles = makeStyles((theme: Theme) =>
                 boxShadow: 'none',
             },
         },
-        content: {
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            width: '100%',
-        },
         sideBorder: {},
     })
 );
 
 type DrawerClasses = {
-    root?: string;
+    /** Styles applied to the drawer content container */
     content?: string;
+
+    /** Styles applied to the root element when the drawer is expanded */
+    expanded?: string;
+
+    /** MUI Drawer style override for the root element */
+    root?: string;
+
+    /** MUI Drawer style override for desktop viewports */
     paper?: string;
     sideBorder?: string;
 };
@@ -139,7 +157,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
     let hoverDelay: NodeJS.Timeout;
     const defaultClasses = useStyles(props);
     const theme = useTheme();
-    const { onPaddingChange } = useDrawerLayout();
+    const { setPadding, setDrawerOpen } = useDrawerLayout();
     const [hover, setHover] = useState(false);
     const {
         activeItem,
@@ -289,8 +307,11 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
     const contentWidth = width || defaultContentWidth;
 
     useEffect(() => {
-        if (!noLayout) onPaddingChange(variant === 'temporary' ? 0 : containerWidth);
-    }, [containerWidth, variant, noLayout]);
+        if (!noLayout) {
+            setPadding(variant === 'temporary' ? 0 : containerWidth);
+            setDrawerOpen(isDrawerOpen());
+        }
+    }, [containerWidth, variant, noLayout, isDrawerOpen]);
 
     return (
         <Drawer
@@ -299,7 +320,10 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
             classes={{
-                root: clsx(classes.root),
+                root: clsx(defaultClasses.root, classes.root, {
+                    [defaultClasses.expanded]: isDrawerOpen(),
+                    [classes.expanded]: isDrawerOpen(),
+                }),
                 paper: clsx(defaultClasses.paper, classes.paper, {
                     [defaultClasses.sideBorder]: sideBorder,
                     [classes.sideBorder]: sideBorder,
@@ -307,9 +331,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
             }}
             style={Object.assign(
                 {
-                    minHeight: '100%',
                     width: containerWidth,
-                    transition: theme.transitions.create('width'),
                 },
                 drawerProps.style
             )}

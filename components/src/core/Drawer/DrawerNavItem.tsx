@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme: Theme) =>
         drawerOpen: {},
         expanded: {},
         expandIcon: {
-            transitionDuration: '300ms',
+            transitionDuration: `${theme.transitions.duration.standard}ms`,
             cursor: 'inherit',
             display: 'flex',
             height: theme.spacing(6),

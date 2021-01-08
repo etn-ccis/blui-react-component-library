@@ -10,6 +10,16 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             display: 'flex',
             width: '100%',
+            '&$expanded $content': {
+                transition: theme.transitions.create('padding', {
+                    duration: theme.transitions.duration.enteringScreen,
+                }),
+            },
+        },
+        content: {
+            width: '100%',
+            transition: theme.transitions.create('padding', { duration: theme.transitions.duration.leavingScreen }),
+            zIndex: 0,
         },
         drawer: {
             display: 'flex',
@@ -18,23 +28,29 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'stretch',
             zIndex: 1000,
         },
-        content: {
-            width: '100%',
-            transition: theme.transitions.create('padding'),
-            zIndex: 0,
-        },
+        expanded: {},
     })
 );
 
 export type DrawerLayoutClasses = {
-    root?: string;
+    /** Styles applied to the body content container */
     content?: string;
+
+    /** Styles applied to the drawer container */
     drawer?: string;
+
+    /** Styles applied to the body root element when the drawer is expanded */
+    expanded?: string;
+
+    /** Styles applied to the root element */
+    root?: string;
 };
 
 export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> & {
+    /** Style overrides */
     classes?: DrawerLayoutClasses;
-    // Drawer component to be embedded
+
+    /** Drawer component to be embedded */
     drawer: ReactElement<DrawerComponentProps>;
 };
 
@@ -45,6 +61,7 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
     const { children, drawer, classes, ...otherDivProps } = props;
     const theme = useTheme();
     const [padding, setPadding] = useState(0);
+    const [drawerOpen, setDrawerOpen] = useState(false);
     const defaultClasses = useStyles();
 
     const style = { paddingLeft: 0, paddingRight: 0 };
@@ -54,12 +71,18 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
     return (
         <DrawerLayoutContext.Provider
             value={{
-                onPaddingChange: (width: number): void => {
-                    setPadding(width);
-                },
+                setPadding,
+                setDrawerOpen,
             }}
         >
-            <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+            <div
+                ref={ref}
+                className={clsx(defaultClasses.root, classes.root, {
+                    [defaultClasses.expanded]: !drawerOpen,
+                    [classes.expanded]: !drawerOpen,
+                })}
+                {...otherDivProps}
+            >
                 <div className={clsx(defaultClasses.drawer, classes.drawer)}>{drawer}</div>
                 <div className={clsx(defaultClasses.content, classes.content)} style={style}>
                     {children}
