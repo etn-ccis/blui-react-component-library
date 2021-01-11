@@ -5,21 +5,21 @@
 ### Changed
 
 -   Updated styles for `<DropdownToolbar>` to support Icon Button or plain icon for `navigationIcon`.
--   Updated default styles for `<Drawer>`
+-   Updated default styles for `<Drawer>`.
 
 ### Added
--   Additional configuration properties for `<Drawer>`
-    -   `sideBorder` gives the `<Drawer>` a slight border instead of a drop shadow
-    -   `disableActiveItemParentStyle` disables the bold text style for active item's parent elements
--   Additional configuration options for `<DrawerSubheader>` and `<DrawerFooter>`
-    -   `hideContentOnCollapse` configures if content in these areas should be hidden or remain visible when the drawer is collapsed
-    -   `divider` configures whether to show a dividing line separating the component from other content
+-   Additional configuration properties for `<Drawer>`:
+    -   `sideBorder` gives the `<Drawer>` a slight border instead of a drop shadow.
+    -   `disableActiveItemParentStyle` disables the bold text style for active item's parent elements.
+-   Additional configuration options for `<DrawerSubheader>` and `<DrawerFooter>`:
+    -   `hideContentOnCollapse` configures if content in these areas should be hidden or remain visible when the drawer is collapsed.
+    -   `divider` configures whether to show a dividing line separating the component from other content.
 
 ## 4.2.0
 
 ### Changed
 
--   Updated styles for default `<ListItemTag>` and `<Hero>`
+-   Updated styles for default `<ListItemTag>` and `<Hero>`.
 
 ### Added
 
@@ -34,16 +34,16 @@
 
 ### Changed
 
--   Hides Drawer Nav Item's title when the `<Drawer>` collapses in the `persistent` variant
--   Improved some icon flipping logic for RTL
+-   Hides Drawer Nav Item's title when the `<Drawer>` collapses in the `persistent` variant.
+-   Improved some icon flipping logic for RTL.
 
 ## v4.1.0
 
 ### Added
 
--   Adds `iconAlign` prop to `<InfoListItem>` to align icon left (default), center or right
--   Adds optional prop to the `<DrawerHeader>` to add a bottom divider
--   Adds `<DropdownToolbar>` component
+-   Adds `iconAlign` prop to `<InfoListItem>` to align icon left (default), center or right.
+-   Adds optional prop to the `<DrawerHeader>` to add a bottom divider.
+-   Adds `<DropdownToolbar>` component.
 
 ### Fixed
 
@@ -53,8 +53,11 @@
 
 ## v4.0.2
 
--   Updates several prop types to `ReactNode` to support wider range of input values.
+### Added 
 -   Adds `info` prop to `<InfoListItem>` to support a third line of text.
+
+### Changed
+-   Updates several prop types to `ReactNode` to support wider range of input values.
 
 ## v4.0.1
 
@@ -62,24 +65,30 @@
 
 ## v4.0.0
 
+### Added  
 -   Style-related properties are now overridable by the `classes` prop in each component.
+
+### Changed
 -   Supplemental properties are now spread to the root component for each PX Blue component.
 -   Changed component font colors to address potential accessibility issues.
 
 **Breaking Changes:**
 
--   Theme usage updated to Material UI v4+ format (requires v5+ of @pxblue/react-themes)
+-   Theme usage updated to Material UI v4+ format (requires v5+ of @pxblue/react-themes).
 
 ## v3.0.3
 
+### Fixed
 -   Fixes IE 11 issue where persistent `<Drawer>` will not close.
 -   Fixes some spacing issues when using the `<DrawerLayout>`.
 
 ## v3.0.0
 
+### Added 
 -   Adds support for nested items in the `<Drawer>` component.
 -   Additional styling props added to `<Drawer>`.
 
+### Changed 
 **Breaking Changes:**
 
 -   A few props got renamed to avoid further ambiguities:
@@ -122,15 +131,18 @@
 
 ## v2.1.0
 
+### Added 
 -   Adds `<InfoListTag>` Component
     -   Displays additional information inside an InfoListItem.
 -   Adds `<UserMenu>` Component
     -   Avatar which opens a Menu when clicked.
--   Misc bug fixes
+    
+### Fixed 
+-   Misc bug fixes.
 
 ## v2.0.0
 
--   Library converted to TypeScript to provide strong typings for TS projects.
+### Added
 -   Adds new components for:
     -   `<Drawer>`
     -   `<DrawerHeader>`
@@ -139,6 +151,9 @@
     -   `<DrawerNavGroup>`
     -   `<DrawerFooter>`
     -   `<DrawerLayout>`
+
+### Changed
+-   Library converted to TypeScript to provide strong typings for TS projects.
 -   **Breaking Change:** Simpler import syntax - _default_ imports will no longer work.
 
     ```typescript
@@ -151,11 +166,13 @@
 
 ## v1.1.0
 
-Adds a new component for `<EmptyState>`
+### Added 
+Adds a new component for `<EmptyState>`.
 
 ## v1.0.0
 
-Fixes a bug in icon size for inline `<ChannelValue>` components
+### Fixed 
+Fixes a bug in icon size for inline `<ChannelValue>` components.
 
 ## v0.0.1
 
