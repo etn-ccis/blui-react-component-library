@@ -45,6 +45,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         chevron,
         children: bodyChildren,
         collapseIcon,
+        disableActiveItemParentStyles,
         divider,
         expandIcon,
         hidePadding,
@@ -85,6 +86,9 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
                         backgroundColor={backgroundColor}
                         chevron={groupProps.chevron === undefined ? chevron : groupProps.chevron}
                         collapseIcon={groupProps.collapseIcon || collapseIcon}
+                        disableActiveItemParentStyles={
+                            groupProps.disableActiveItemParentStyles || disableActiveItemParentStyles
+                        }
                         divider={groupProps.divider === undefined ? divider : groupProps.divider}
                         expandIcon={groupProps.expandIcon || expandIcon}
                         hidePadding={groupProps.hidePadding === undefined ? hidePadding : groupProps.hidePadding}

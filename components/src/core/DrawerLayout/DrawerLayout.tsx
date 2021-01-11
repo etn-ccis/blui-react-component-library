@@ -10,21 +10,23 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             display: 'flex',
             width: '100%',
+            '&$expanded $content': {
+                transition: theme.transitions.create('padding', {
+                    duration: theme.transitions.duration.enteringScreen,
+                }),
+            },
+        },
+        content: {
+            width: '100%',
+            transition: theme.transitions.create('padding', { duration: theme.transitions.duration.leavingScreen }),
+            zIndex: 0,
         },
         drawer: {
             display: 'flex',
             position: 'fixed',
             height: '100%',
             alignItems: 'stretch',
-        },
-        content: {
-            width: '100%',
-            transition: theme.transitions.create('padding', { duration: theme.transitions.duration.leavingScreen }),
-            '$expanded &': {
-                transition: theme.transitions.create('padding', {
-                    duration: theme.transitions.duration.enteringScreen,
-                }),
-            },
+            zIndex: 1000,
         },
         expanded: {},
     })
@@ -59,6 +61,7 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
     const { children, drawer, classes, ...otherDivProps } = props;
     const theme = useTheme();
     const [padding, setPadding] = useState(0);
+    const [drawerOpen, setDrawerOpen] = useState(false);
     const defaultClasses = useStyles();
 
     const style = { paddingLeft: 0, paddingRight: 0 };
@@ -68,17 +71,15 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
     return (
         <DrawerLayoutContext.Provider
             value={{
-                onPaddingChange: (width: number): void => {
-                    setPadding(width);
-                },
+                setPadding,
+                setDrawerOpen,
             }}
         >
             <div
                 ref={ref}
                 className={clsx(defaultClasses.root, classes.root, {
-                    // @TODO: "padding===0" doesn't necessarily mean collapsed on a persistent drawer
-                    [defaultClasses.expanded]: padding === 0,
-                    [classes.expanded]: padding === 0,
+                    [defaultClasses.expanded]: !drawerOpen,
+                    [classes.expanded]: !drawerOpen,
                 })}
                 {...otherDivProps}
             >

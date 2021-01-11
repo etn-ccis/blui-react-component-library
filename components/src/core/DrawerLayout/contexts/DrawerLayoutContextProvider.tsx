@@ -1,12 +1,15 @@
 import { createContext, useContext } from 'react';
 
 type DrawerLayoutContextType = {
-    onPaddingChange: (padding: number) => void;
+    setPadding: (padding: number) => void;
+    setDrawerOpen: (open: boolean) => void;
 };
 
 export const DrawerLayoutContext = createContext<DrawerLayoutContextType | null>({
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    onPaddingChange: (padding: number) => null,
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    setPadding: (padding: number) => null,
+    setDrawerOpen: (open: boolean) => false,
+    /* eslint-enable @typescript-eslint/no-unused-vars */
 });
 
 export const useDrawerLayout = (): DrawerLayoutContextType => {

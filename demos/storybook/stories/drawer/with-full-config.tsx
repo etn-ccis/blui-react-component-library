@@ -100,6 +100,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         collapseIcon: getIcon(
             select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', drawerGroupId)
         ),
+        disableActiveItemParentStyles: boolean('disableActiveItemParentStyles', true, drawerGroupId),
         divider: boolean('divider', true, drawerGroupId),
         expandIcon: getIcon(select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', drawerGroupId)),
         hidePadding: boolean('hidePadding', false, drawerGroupId),
@@ -109,6 +110,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         nestedDivider: boolean('nestedDivider', false, drawerGroupId),
         open: boolean('open', true, drawerGroupId),
         ripple: boolean('ripple', true, drawerGroupId),
+        sideBorder: boolean('sideBorder', true, drawerGroupId),
         titleColor: color('titleColor', Colors.black[500], drawerGroupId),
         variant: select('variant', ['permanent', 'persistent', 'temporary'], 'persistent', drawerGroupId),
         width: number(
@@ -277,6 +279,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     // Footer props
     const showFooter = boolean('Show footer', true, footerGroupId);
     const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
+    const footerHideContent = boolean('hideContentOnCollapse', false, headerGroupId);
 
     // You can replace the knob props with your own values
     return (
@@ -298,6 +301,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             nestedDivider={drawerKnobs.nestedDivider}
             open={drawerKnobs.open}
             ripple={drawerKnobs.ripple}
+            sideBorder={drawerKnobs.sideBorder}
             titleColor={drawerKnobs.titleColor}
             variant={drawerKnobs.variant}
             width={drawerKnobs.width}
@@ -335,7 +339,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             </DrawerBody>
 
             {showFooter && (
-                <DrawerFooter backgroundColor={footerBackgroundColor}>
+                <DrawerFooter backgroundColor={footerBackgroundColor} hideContentOnCollapse={footerHideContent}>
                     <Divider />
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />

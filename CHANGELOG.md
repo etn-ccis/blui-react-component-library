@@ -1,14 +1,19 @@
 # Changelog
 
-## 4.2.1 (not published)
+## version tbd (not published)
 
 ### Changed
 
 -   Updated styles for `<DropdownToolbar>` to support Icon Button or plain icon for `navigationIcon`.
+-   Updated default styles for `<Drawer>`
 
-### Fixed
-
--   `<Drawer>` nested nav item dark-themed background color.
+### Added
+-   Additional configuration properties for `<Drawer>`
+    -   `sideBorder` gives the `<Drawer>` a slight border instead of a drop shadow
+    -   `disableActiveItemParentStyle` disables the bold text style for active item's parent elements
+-   Additional configuration options for `<DrawerSubheader>` and `<DrawerFooter>`
+    -   `hideContentOnCollapse` configures if content in these areas should be hidden or remain visible when the drawer is collapsed
+    -   `divider` configures whether to show a dividing line separating the component from other content
 
 ## 4.2.0
 

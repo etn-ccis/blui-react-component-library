@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '100%',
         },
         expanded: {},
+        paper: {
             overflow: 'hidden',
             position: 'inherit',
             boxShadow: theme.shadows[4],
@@ -119,6 +120,9 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
     // itemID for the 'active' item
     activeItem?: string;
 
+    // If true, disable semi-bold title styling for the active item's parents in the drawer hierarchy
+    disableActiveItemParentStyles?: boolean;
+
     // background color for nested menu items
     nestedBackgroundColor?: string;
 
@@ -153,7 +157,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
     let hoverDelay: NodeJS.Timeout;
     const defaultClasses = useStyles(props);
     const theme = useTheme();
-    const { onPaddingChange } = useDrawerLayout();
+    const { setPadding, setDrawerOpen } = useDrawerLayout();
     const [hover, setHover] = useState(false);
     const {
         activeItem,
@@ -164,6 +168,9 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         chevron,
         classes,
         collapseIcon,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        disableActiveItemParentStyles,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
         divider,
         expandIcon,
         hidePadding,
@@ -300,8 +307,11 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
     const contentWidth = width || defaultContentWidth;
 
     useEffect(() => {
-        if (!noLayout) onPaddingChange(variant === 'temporary' ? 0 : containerWidth);
-    }, [containerWidth, variant, noLayout]);
+        if (!noLayout) {
+            setPadding(variant === 'temporary' ? 0 : containerWidth);
+            setDrawerOpen(isDrawerOpen());
+        }
+    }, [containerWidth, variant, noLayout, isDrawerOpen]);
 
     return (
         <Drawer
@@ -318,7 +328,6 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                     [defaultClasses.sideBorder]: sideBorder,
                     [classes.sideBorder]: sideBorder,
                 }),
-                root: clsx(classes.root),
             }}
             style={Object.assign(
                 {
