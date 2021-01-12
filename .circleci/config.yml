@@ -195,6 +195,28 @@ jobs:
                       git add -A
                       git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
                       git push
+    publish:
+      docker:
+        - image: circleci/node:12.9.1-browsers
+      steps:
+        - checkout
+        - attach_workspace:
+            at: .
+        - run:
+            name: Authenticate with registry
+            command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+        - run:
+            name: Publish @pxblue/react-components
+            command:  |
+              cd dist
+              MASTER_VERSION=`node -p "require('./package.json').version"`
+              NPM_LATEST_VERSION=`npm show @pxblue/react-components version`
+              if ! [ $MASTER_VERSION == $NPM_LATEST_VERSION ];
+              then
+                  npm publish
+              else
+                  echo "Latest version is already published."
+              fi
 
 workflows:
     version: 2
@@ -215,3 +237,10 @@ workflows:
                           only:
                               - master
                               - dev
+            - publish:
+                  requires:
+                      - build_storybook
+                  filters:
+                       branches:
+                          only:
+                              - master
