@@ -59,6 +59,8 @@ jobs:
             - DEV_BRANCH: dev
         steps:
             - checkout
+            - attach_workspace:
+                at: .
             - restore_cache:
                   keys:
                       - v2-dependencies-react-{{ checksum "demos/storybook/yarn.lock" }}
@@ -76,8 +78,6 @@ jobs:
                   paths:
                       - demos/storybook/node_modules
                   key: v2-dependencies-react-{{ checksum "demos/storybook/yarn.lock" }}
-            - attach_workspace:
-                  at: .
             - run:
                   name: Prettier Check
                   command: |
@@ -117,6 +117,8 @@ jobs:
             - MASTER_BRANCH: master
         steps:
             - checkout
+            - attach_workspace:
+                at: .
             - run:
                   name: Initialize Submodule
                   command: |
@@ -138,8 +140,6 @@ jobs:
                   paths:
                       - demos/showcase/node_modules
                   key: v2-dependencies-react-{{ checksum "demos/showcase/yarn.lock" }}
-            - attach_workspace:
-                  at: .
             # This will be prettier checked on the demo repository
             # - run:
             #       name: Prettier Check
