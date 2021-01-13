@@ -67,6 +67,10 @@ jobs:
                   command: |
                       cd demos/storybook
                       yarn install --frozen-lockfile
+
+                      # Install the packed version of @pxblue/react-components
+                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
+                      yarn add ../../dist/pxblue-react-components-$PACKAGED_VERSION.tgz
             - save_cache:
                   name: Save Cache
                   paths:
@@ -88,10 +92,6 @@ jobs:
                   name: Build Storybook
                   command: |
                       cd demos/storybook
-
-                      # Install the packed version of @pxblue/react-components
-                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
-                      yarn add ../../dist/pxblue-react-components-$PACKAGED_VERSION.tgz --production
 
                       # master and dev branches should configure Google Analytics IDs before the build.
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
@@ -129,6 +129,10 @@ jobs:
                   command: |
                       cd demos/showcase
                       yarn install --frozen-lockfile
+
+                      # Install the packed version of @pxblue/react-components
+                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
+                      yarn add ../../dist/pxblue-react-components-$PACKAGED_VERSION.tgz
             - save_cache:
                   name: Save Cache
                   paths:
@@ -146,11 +150,6 @@ jobs:
                   name: Build Showcase
                   command: |
                       cd demos/showcase
-
-                      # Install the packed version of @pxblue/react-components
-                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
-                      yarn add ../../dist/pxblue-react-components-$PACKAGED_VERSION.tgz --production
-
                       yarn build
 
     deploy_storybook:
