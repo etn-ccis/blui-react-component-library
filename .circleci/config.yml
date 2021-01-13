@@ -88,7 +88,11 @@ jobs:
 
                       # If we are building the master branch, use the published component library.
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                        yarn add @pxblue/react-components
+                        cd ../../dist
+                        MASTER_VERSION=`node -p "require('./package.json').version"`
+                        npm pack
+                        cd ../demos/storybook
+                        npm install ../../dist/pxblue-react-components-$MASTER_VERSION.tgz --production
                       fi
 
                       # master and dev branches should configure Google Analytics IDs before the build.
