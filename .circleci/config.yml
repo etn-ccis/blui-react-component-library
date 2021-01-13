@@ -91,8 +91,8 @@ jobs:
                       cd demos/storybook
 
                       # Install the packed version of @pxblue/react-components
-                      PACK_VERSION=`node -p "require('../../dist/package.json').version"`
-                      npm install ../../dist/pxblue-react-components-PACK_VERSION.tgz --production
+                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
+                      npm install ../../dist/pxblue-react-components-$PACKAGED_VERSION.tgz --production
 
                       # master and dev branches should configure Google Analytics IDs before the build.
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
@@ -150,8 +150,8 @@ jobs:
                       cd demos/showcase
 
                       # Install the packed version of @pxblue/react-components
-                      PACK_VERSION=`node -p "require('../../dist/package.json').version"`
-                      npm install ../../dist/pxblue-react-components-PACK_VERSION.tgz --production
+                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
+                      npm install ../../dist/pxblue-react-components-$PACKAGED_VERSION.tgz --production
 
                       yarn build
 
