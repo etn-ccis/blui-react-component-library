@@ -40,6 +40,10 @@ jobs:
                   name: Test Artifacts
                   command: |
                       yarn test:artifacts
+            - run:
+                  name: NPM Package
+                  command: |
+                       cd dist && npm pack
             # Save the dist folder for use in future jobs.
             - persist_to_workspace:
                   root: .
@@ -86,14 +90,9 @@ jobs:
                       cp -r ./dist/. ./demos/storybook/node_modules/@pxblue/react-components
                       cd demos/storybook
 
-                      # If we are building the master branch, use the published component library.
-                      if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                        cd ../../dist
-                        MASTER_VERSION=`node -p "require('./package.json').version"`
-                        npm pack
-                        cd ../demos/storybook
-                        npm install ../../dist/pxblue-react-components-$MASTER_VERSION.tgz --production
-                      fi
+                      # Install the packed version of @pxblue/react-components
+                      PACK_VERSION=`node -p "require('../../dist/package.json').version"`
+                      npm install ../../dist/pxblue-react-components-PACK_VERSION.tgz --production
 
                       # master and dev branches should configure Google Analytics IDs before the build.
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
@@ -150,10 +149,9 @@ jobs:
                       cp -r ./dist/. ./demos/showcase/node_modules/@pxblue/react-components
                       cd demos/showcase
 
-                      # If we are building the master branch, use the published component library.
-                      if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                        yarn add @pxblue/react-components
-                      fi
+                      # Install the packed version of @pxblue/react-components
+                      PACK_VERSION=`node -p "require('../../dist/package.json').version"`
+                      npm install ../../dist/pxblue-react-components-PACK_VERSION.tgz --production
 
                       yarn build
 
