@@ -14,6 +14,7 @@
 -   Additional configuration options for `<DrawerSubheader>` and `<DrawerFooter>`:
     -   `hideContentOnCollapse` configures if content in these areas should be hidden or remain visible when the drawer is collapsed.
     -   `divider` configures whether to show a dividing line separating the component from other content.
+-   Added new property `openOnHover` to `<Drawer>`.
 
 ## 4.2.0
 
