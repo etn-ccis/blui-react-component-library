@@ -87,12 +87,11 @@ jobs:
             - run:
                   name: Build Storybook
                   command: |
-                      cp -r ./dist/. ./demos/storybook/node_modules/@pxblue/react-components
                       cd demos/storybook
 
                       # Install the packed version of @pxblue/react-components
                       PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
-                      npm install ../../dist/pxblue-react-components-$PACKAGED_VERSION.tgz --production
+                      yarn add ../../dist/pxblue-react-components-$PACKAGED_VERSION.tgz --production
 
                       # master and dev branches should configure Google Analytics IDs before the build.
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
@@ -146,12 +145,11 @@ jobs:
             - run:
                   name: Build Showcase
                   command: |
-                      cp -r ./dist/. ./demos/showcase/node_modules/@pxblue/react-components
                       cd demos/showcase
 
                       # Install the packed version of @pxblue/react-components
                       PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
-                      npm install ../../dist/pxblue-react-components-$PACKAGED_VERSION.tgz --production
+                      yarn add ../../dist/pxblue-react-components-$PACKAGED_VERSION.tgz --production
 
                       yarn build
 
