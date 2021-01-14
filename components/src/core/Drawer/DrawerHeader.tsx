@@ -1,11 +1,12 @@
 import React, { ReactNode, useCallback } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import { Typography, ToolbarProps } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useDrawerContext } from './DrawerContext';
 
 type DrawerHeaderClasses = {
     root?: string;
@@ -118,6 +119,9 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         ...otherToolbarProps
     } = props;
 
+    const theme = useTheme();
+    const { variant, condensed } = useDrawerContext();
+
     const getHeaderContent = useCallback(
         (): ReactNode =>
             titleContent || (
@@ -157,7 +161,10 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
             <Toolbar ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherToolbarProps}>
                 {getBackgroundImage()}
                 {icon && (
-                    <div className={clsx(defaultClasses.navigation, classes.navigation)}>
+                    <div
+                        className={clsx(defaultClasses.navigation, classes.navigation)}
+                        style={variant === 'rail' && !condensed ? { marginLeft: theme.spacing(1) } : undefined}
+                    >
                         {onIconClick && (
                             <IconButton
                                 color={'inherit'}

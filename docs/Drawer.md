@@ -50,6 +50,7 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 | ------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
 | open                            | Controls the open/closed state of the drawer                                    | `boolean`                                        | yes      |         |
 | classes                         | Style overrides                                                                 | `DrawerClasses`                                  | no       |         |
+| condensed                       | Use the smaller width drawer without text labels (rail variant only)            | `boolean`                                        | no       | `false` |
 | noLayout                        | Set to true if used without a `<DrawerLayout>`                                  | `boolean`                                        | no       | `false` |
 | variant                         | The variant to use (see below)                                                  | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
 | width                           | Sets the width of the drawer (in px) when open                                  | `number`                                         | no       |         |
@@ -59,11 +60,12 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 Any other props will be provided to the root element [**Material UI Drawer**](https://material-ui.com/api/drawer/).
 
-The `Drawer` has three `variant`s:
+The `Drawer` has four `variant`s:
 
 -   **Permanent**: Always open, even when `open` is set to false.
 -   **Persistent**: When `open` is set to false, the `<Drawer>` collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent `<Drawer>`.
 -   **Temporary**: When `open` is set to false, the `<Drawer>` is hidden; when `open` is set to true, it slides in.
+-   **Rail**: An always collapsed version of the `<Drawer>` that only displays an icons and titles.
 
 > **Note on using multiple drawers**: If your application uses multiple `<Drawer>`s, each `<DrawerLayout>` will automatically adjust based on the state of the nearest `<Drawer>`. If you are using a `<Drawer>` without a `<DrawerLayout>`, you should set the `noLayout` property to true on the `<Drawer>` to prevent inadvertently affecting the styles of any `<DrawerLayout>`s.
 
@@ -323,6 +325,16 @@ The `items` property of the NavItem can be nested to create a tree structure wit
     ]}
 />
 ```
+
+## Drawer Rail Item
+
+When using the `rail` variant of the `<Drawer>`, the `items` prop of the `<DrawerNavGroup>` will be rendered as `<DrawerRailItem>`s instead of `<DrawerNavItem>`s. These are a simplified version of the `<DrawerNavItem>` that render the `icon` and `title` only. When using the `condensed` version of the `<Drawer>`, the `title` will also be hidden.
+
+<div style="width: 100%; text-align: center">
+    <img width="100%" style="max-width: 72px" alt="Nav Item Anatomy" src="./images/drawerRailItem.png" style="margin-right: 15px">
+    <img width="100%" style="max-width: 56px" alt="Nav Item Anatomy" src="./images/drawerRailItemCondensed.png">
+</div>
+
 
 ## Shared Props
 

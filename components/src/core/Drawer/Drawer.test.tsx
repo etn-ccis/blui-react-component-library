@@ -5,7 +5,7 @@ import * as Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import { findByTestId } from '../test-utils';
-import { Avatar } from '@material-ui/core';
+import { Avatar, Typography } from '@material-ui/core';
 
 import { DrawerComponent as Drawer } from './Drawer';
 import { DrawerHeader } from './DrawerHeader';
@@ -15,6 +15,7 @@ import { DrawerFooter } from './DrawerFooter';
 import { DrawerNavGroup } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
 import MoreVert from '@material-ui/icons/MoreVert';
+import { DrawerRailItem } from './DrawerRailItem';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -189,5 +190,26 @@ describe('DrawerNavGroup', () => {
         const secondDrawerNavGroup = wrapper.find(DrawerNavGroup).get(1);
         expect(secondDrawerNavGroup.props.activeItemBackgroundColor).toEqual('black');
         expect(secondDrawerNavGroup.props.divider).toBeFalsy();
+    });
+});
+
+describe('DrawerRailItem', () => {
+    beforeEach(() => {
+        shallow = createShallow({});
+        mount = createMount({ strict: true });
+    });
+
+    afterEach(() => {
+        mount.cleanUp();
+    });
+
+    it('renders text at full size', () => {
+        const wrapper = mount(<DrawerRailItem title={'Test'} itemID={'test'} />);
+        expect(wrapper.find(Typography).length).toEqual(1);
+    });
+
+    it('renders no text for condensed', () => {
+        const wrapper = mount(<DrawerRailItem condensed title={'Test'} itemID={'test'} />);
+        expect(wrapper.find(Typography).length).toEqual(0);
     });
 });
