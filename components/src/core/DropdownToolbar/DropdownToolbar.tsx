@@ -152,7 +152,7 @@ const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToo
             for (const item of group.items) {
                 const onClick = item.onClick;
                 if (onClick) {
-                    item.onClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
+                    item.onClick = (e: React.MouseEvent<HTMLLIElement | HTMLButtonElement, MouseEvent>): void => {
                         onClick(e);
                         closeMenu();
                     };
