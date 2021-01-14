@@ -49,6 +49,7 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 | Prop Name                       | Description                                                                     | Type                                             | Required | Default |
 | ------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
 | open                            | Controls the open/closed state of the drawer                                    | `boolean`                                        | yes      |         |
+| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only)    | `boolean`                                        | no       | true    |
 | classes                         | Style overrides                                                                 | `DrawerClasses`                                  | no       |         |
 | noLayout                        | Set to true if used without a `<DrawerLayout>`                                  | `boolean`                                        | no       | `false` |
 | variant                         | The variant to use (see below)                                                  | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |

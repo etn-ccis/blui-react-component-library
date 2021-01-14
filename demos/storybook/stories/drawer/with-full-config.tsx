@@ -109,6 +109,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         nestedBackgroundColor: color('nestedBackgroundColor', Colors.white[200], drawerGroupId),
         nestedDivider: boolean('nestedDivider', false, drawerGroupId),
         open: boolean('open', true, drawerGroupId),
+        openOnHover: boolean('openOnHover', true, drawerGroupId),
         ripple: boolean('ripple', true, drawerGroupId),
         sideBorder: boolean('sideBorder', true, drawerGroupId),
         titleColor: color('titleColor', Colors.black[500], drawerGroupId),
@@ -300,6 +301,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             nestedBackgroundColor={drawerKnobs.nestedBackgroundColor}
             nestedDivider={drawerKnobs.nestedDivider}
             open={drawerKnobs.open}
+            openOnHover={drawerKnobs.openOnHover}
             ripple={drawerKnobs.ripple}
             sideBorder={drawerKnobs.sideBorder}
             titleColor={drawerKnobs.titleColor}

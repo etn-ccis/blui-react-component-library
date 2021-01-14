@@ -142,6 +142,9 @@ export type DrawerComponentProps = {
     // Controls the open/closed state of the drawer
     open: boolean;
 
+    // Enables Drawer to automatically open on hover for persistent variants.
+    openOnHover?: boolean;
+
     // Toggles the drawer side border instead of a drop shadow
     sideBorder?: boolean;
 
@@ -181,6 +184,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         nestedDivider,
         noLayout = false,
         open,
+        openOnHover,
         onItemSelect,
         ripple,
         sideBorder = false,
@@ -283,13 +287,21 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                 {getHeader()}
                 <div
                     style={{ flexDirection: 'column', flex: '1 1 0px', display: 'flex' }}
-                    onMouseEnter={(): void => {
-                        hoverDelay = setTimeout(() => setHover(true), 500);
-                    }}
-                    onMouseLeave={(): void => {
-                        clearTimeout(hoverDelay);
-                        setHover(false);
-                    }}
+                    onMouseEnter={
+                        openOnHover
+                            ? (): void => {
+                                  hoverDelay = setTimeout(() => setHover(true), 500);
+                              }
+                            : undefined
+                    }
+                    onMouseLeave={
+                        openOnHover
+                            ? (): void => {
+                                  clearTimeout(hoverDelay);
+                                  setHover(false);
+                              }
+                            : undefined
+                    }
                 >
                     {getSubHeader()}
                     {getBody()}
@@ -379,11 +391,13 @@ DrawerComponent.propTypes = {
         paper: PropTypes.string,
     }),
     open: PropTypes.bool.isRequired,
+    openOnHover: PropTypes.bool,
     sideBorder: PropTypes.bool,
     width: PropTypes.number,
     ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerComponent.defaultProps = {
     classes: {},
+    openOnHover: true,
     sideBorder: false,
 };
