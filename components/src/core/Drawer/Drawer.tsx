@@ -287,17 +287,21 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                 {getHeader()}
                 <div
                     style={{ flexDirection: 'column', flex: '1 1 0px', display: 'flex' }}
-                    onMouseEnter={(): void => {
-                        if (openOnHover) {
-                            hoverDelay = setTimeout(() => setHover(true), 500);
-                        }
-                    }}
-                    onMouseLeave={(): void => {
-                        if (openOnHover) {
-                            clearTimeout(hoverDelay);
-                            setHover(false);
-                        }
-                    }}
+                    onMouseEnter={
+                        openOnHover
+                            ? (): void => {
+                                  hoverDelay = setTimeout(() => setHover(true), 500);
+                              }
+                            : undefined
+                    }
+                    onMouseLeave={
+                        openOnHover
+                            ? (): void => {
+                                  clearTimeout(hoverDelay);
+                                  setHover(false);
+                              }
+                            : undefined
+                    }
                 >
                     {getSubHeader()}
                     {getBody()}
