@@ -157,7 +157,7 @@ export type DrawerComponentProps = {
     // Sets the width of the drawer (in px) when open
     width?: number;
 } & PXBlueDrawerNavGroupInheritableProperties &
-    Omit<Omit<DrawerProps, 'translate'>, 'variant'>;
+    Omit<DrawerProps, 'translate' | 'variant'>;
 
 const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentProps> = (
     props: DrawerComponentProps,

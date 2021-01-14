@@ -1,5 +1,5 @@
 import React, { ReactNode, useCallback } from 'react';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
@@ -93,6 +93,9 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingLeft: theme.spacing(1.5),
             paddingRight: theme.spacing(1.5),
         },
+        railIcon: {
+            marginLeft: theme.spacing(1),
+        },
     })
 );
 
@@ -119,7 +122,6 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         ...otherToolbarProps
     } = props;
 
-    const theme = useTheme();
     const { variant, condensed } = useDrawerContext();
 
     const getHeaderContent = useCallback(
@@ -162,8 +164,9 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                 {getBackgroundImage()}
                 {icon && (
                     <div
-                        className={clsx(defaultClasses.navigation, classes.navigation)}
-                        style={variant === 'rail' && !condensed ? { marginLeft: theme.spacing(1) } : undefined}
+                        className={clsx(defaultClasses.navigation, classes.navigation, {
+                            [defaultClasses.railIcon]: variant === 'rail' && !condensed,
+                        })}
                     >
                         {onIconClick && (
                             <IconButton

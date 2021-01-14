@@ -11,6 +11,7 @@ export const withDifferentVariants = (context: DrawerStoryContext): StoryFnReact
         open={boolean('open', true)}
         variant={select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'permanent')}
         condensed={boolean('condensed (rail only)', false)}
+        divider={boolean('divider', false)}
         ModalProps={{
             disableEnforceFocus: true,
         }}

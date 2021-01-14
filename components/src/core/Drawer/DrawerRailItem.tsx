@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Avatar, ButtonBase, Divider, Typography } from '@material-ui/core';
+import { Avatar, ButtonBase, Divider, Tooltip, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { PXBlueDrawerInheritableProperties, RAIL_WIDTH, RAIL_WIDTH_CONDENSED } from './Drawer';
 import color from 'color';
@@ -156,7 +156,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         itemID,
         onClick,
         onItemSelect,
-        ripple,
+        ripple = true,
         title,
         /* eslint-disable @typescript-eslint/no-unused-vars */
         activeItemBackgroundColor,
@@ -197,7 +197,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         if (icon) {
             return <Avatar className={combine('icon')}>{icon}</Avatar>;
         }
-    }, [icon]);
+    }, [icon, combine]);
 
     const onClickAction = useCallback(
         (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
@@ -211,7 +211,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         [onItemSelect, onClick]
     );
 
-    return hidden ? null : (
+    const innerContent = (
         <ButtonBase
             ref={ref}
             {...buttonBaseProps}
@@ -244,6 +244,14 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {/* Divider */}
             {props.divider && <Divider className={combine('divider')} />}
         </ButtonBase>
+    );
+
+    return hidden ? null : condensed ? (
+        <Tooltip title="Add" placement="right">
+            {innerContent}
+        </Tooltip>
+    ) : (
+        innerContent
     );
 };
 
