@@ -204,12 +204,12 @@ describe('DrawerRailItem', () => {
     });
 
     it('renders text at full size', () => {
-        const wrapper = mount(<DrawerRailItem title={'Test'} itemID={'test'} />);
+        const wrapper = mount(<DrawerRailItem title={'Test'} itemID={'test'} icon={<></>} />);
         expect(wrapper.find(Typography).length).toEqual(1);
     });
 
     it('renders no text for condensed', () => {
-        const wrapper = mount(<DrawerRailItem condensed title={'Test'} itemID={'test'} />);
+        const wrapper = mount(<DrawerRailItem condensed title={'Test'} itemID={'test'} icon={<></>} />);
         expect(wrapper.find(Typography).length).toEqual(0);
     });
 });
