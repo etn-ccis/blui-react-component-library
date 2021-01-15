@@ -83,6 +83,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             color: (props) => getIconColor(props),
             justifyContent: (props) => getIconAlignment(props),
             backgroundColor: 'transparent',
+            overflow: 'visible',
         },
         info: {
             fontWeight: 400,

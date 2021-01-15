@@ -272,7 +272,7 @@ The `items` prop of the `<DrawerNavGroup>` takes a list of items with the follow
 
 <div style="overflow: auto;">
 
-| Attribute                       | Description                                                                                     | Type              | Required | Default |
+| Prop Name                       | Description                                                                                     | Type              | Required | Default |
 | ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------- | -------- | ------- |
 | hidden                          | Sets whether to hide the nav item                                                               | `boolean`         | no       |         |
 | icon                            | A component to render for the left icon                                                         | `JSX.Element`     | no       |         |
@@ -331,9 +331,33 @@ The `items` property of the NavItem can be nested to create a tree structure wit
 When using the `rail` variant of the `<Drawer>`, the `items` prop of the `<DrawerNavGroup>` will be rendered as `<DrawerRailItem>`s instead of `<DrawerNavItem>`s. These are a simplified version of the `<DrawerNavItem>` that render the `icon` and `title` only. When using the `condensed` version of the `<Drawer>`, the `title` will also be hidden.
 
 <div style="width: 100%; text-align: center">
-    <img width="100%" style="max-width: 72px" alt="Nav Item Anatomy" src="./images/drawerRailItem.png" style="margin-right: 15px">
+    <img width="100%" style="max-width: 72px" alt="Nav Item Anatomy" src="./images/drawerRailItem.png">
     <img width="100%" style="max-width: 56px" alt="Nav Item Anatomy" src="./images/drawerRailItemCondensed.png">
 </div>
+
+The `<DrawerRailItem>` supports the following subset of properties from the `<DrawerNavItem>` and [sharedProps](#shared-props).
+
+<div style="overflow: auto;">
+
+| Prop Name                       | Description                                                                                     | Type              | Required | Default                     |
+| ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------- | -------- | --------------------------- |
+| activeItemBackgroundColor       | Background color for the 'active' item                                                          | `string`          | no       | varies for light/dark theme |
+| activeItemFontColor             | Font color for the 'active' item                                                                | `string`          | no       | varies for light/dark theme |
+| activeItemIconColor             | Icon color for the 'active' item                                                                | `string`          | no       | varies for light/dark theme |
+| divider                         | Whether to show a line between all items                                                        | `boolean`         | no       | false                       |
+| itemFontColor                   | The color used for the item text                                                                | `string`          | no       | varies for light/dark theme |
+| itemIconColor                   | The color used for the icon                                                                     | `string`          | no       | varies for light/dark theme |
+| ripple                          | Whether to apply material ripple effect to items                                                | `boolean`         | no       | true                        |
+| hidden                          | Sets whether to hide the nav item                                                               | `boolean`         | no       |                             |
+| icon                            | A component to render for the left icon                                                         | `JSX.Element`     | no       |                             |
+| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`          | yes      |                             |
+| onClick                         | A function to execute when clicked                                                              | `function`        | no       |                             |
+| statusColor                     | Status stripe and icon color                                                                    | `string`          | no       |                             |
+| title                           | The text to show on the first line                                                              | `string`          | yes      |                             |
+
+</div>
+
+Any other props will be provided to the root element [**Material UI ButtonBase**](https://material-ui.com/api/button-base/).
 
 
 ## Shared Props
@@ -364,7 +388,7 @@ The following props control the NavGroup and thus only apply to `<Drawer>`, and 
 
 <div style="overflow: auto;">
 
-| Name                            | Description                                                                     | Type      | Required | Default                                                      |
+| Prop Name                       | Description                                                                     | Type      | Required | Default                                                      |
 | ------------------------------- | ------------------------------------------------------------------------------- | --------- | -------- | ------------------------------------------------------------ |
 | activeItem                      | itemID for the 'active' item                                                    | `string`  | no       |                                                              |
 | disableActiveItemParentStyles   | If true, NavItems will not have a bold title when a child NavItem is selected   | `boolean` | no       | `false`                                                      |

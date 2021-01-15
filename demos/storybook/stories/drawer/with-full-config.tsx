@@ -27,6 +27,7 @@ import {
     DrawerBodyProps,
     DrawerNavGroupProps,
     NavItem,
+    DrawerFooterProps,
 } from '@pxblue/react-components';
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
@@ -157,6 +158,11 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         title: text('title', overview, navItemId),
     };
 
+    const footerKnobs: Partial<DrawerFooterProps> = {
+        hideContentOnCollapse: boolean('hideContentOnCollapse', true, footerGroupId),
+        divider: boolean('divider', true, footerGroupId),
+    };
+
     // DrawerNavGroup.items
     const links1 = [
         {
@@ -280,7 +286,6 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     // Footer props
     const showFooter = boolean('Show footer', true, footerGroupId);
     const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
-    const footerHideContent = boolean('hideContentOnCollapse', false, headerGroupId);
 
     // You can replace the knob props with your own values
     return (
@@ -341,7 +346,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             </DrawerBody>
 
             {showFooter && (
-                <DrawerFooter backgroundColor={footerBackgroundColor} hideContentOnCollapse={footerHideContent}>
+                <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
                     <Divider />
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
