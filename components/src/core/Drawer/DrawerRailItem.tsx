@@ -1,5 +1,12 @@
 import React, { useCallback } from 'react';
-import { Avatar, ButtonBase, Divider, Tooltip, Typography } from '@material-ui/core';
+import {
+    Avatar,
+    ButtonBase,
+    ButtonBaseProps as MuiButtonBaseProps,
+    Divider,
+    Tooltip,
+    Typography,
+} from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { PXBlueDrawerInheritableProperties, RAIL_WIDTH, RAIL_WIDTH_CONDENSED } from './Drawer';
 import color from 'color';
@@ -17,44 +24,48 @@ export type DrawerRailItemClasses = {
     ripple?: string;
 };
 
-export type DrawerRailItemProps = Pick<
-    PXBlueDrawerInheritableProperties,
-    | 'activeItemBackgroundColor'
-    | 'activeItemFontColor'
-    | 'activeItemIconColor'
-    | 'divider'
-    | 'itemFontColor'
-    | 'itemIconColor'
-    | 'onItemSelect'
-    | 'ripple'
-> & {
-    activeItem?: string;
+export type DrawerRailItemProps = MuiButtonBaseProps &
+    Pick<
+        PXBlueDrawerInheritableProperties,
+        | 'activeItemBackgroundColor'
+        | 'activeItemFontColor'
+        | 'activeItemIconColor'
+        | 'divider'
+        | 'itemFontColor'
+        | 'itemIconColor'
+        | 'onItemSelect'
+        | 'ripple'
+    > & {
+        activeItem?: string;
 
-    // toggles the condensed style
-    condensed?: boolean;
+        // toggles the condensed style
+        condensed?: boolean;
 
-    // sets whether to hide the nav item
-    hidden?: boolean;
+        // sets whether to hide the nav item
+        hidden?: boolean;
 
-    // icon on the left
-    icon?: JSX.Element;
+        // icon on the left
+        icon: JSX.Element;
 
-    // item id to match for the active state.
-    // Should be unique within the entire list. Will be used as the list key too.
-    itemID: string;
+        // item id to match for the active state.
+        // Should be unique within the entire list. Will be used as the list key too.
+        itemID: string;
 
-    // onClick of the entire row
-    onClick?: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+        // onClick of the entire row
+        onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 
-    // Status stripe color
-    statusColor?: string;
+        // Status stripe color
+        statusColor?: string;
 
-    // text to be displayed
-    title: string;
+        // text to be displayed
+        title: string;
 
-    // classes for style overrides
-    classes?: DrawerRailItemClasses;
-};
+        // classes for style overrides
+        classes?: DrawerRailItemClasses;
+
+        // props for the ButtonBase
+        ButtonBaseProps?: Partial<MuiButtonBaseProps>;
+    };
 
 const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
     // approximates the [200] color but not perfectly because the theme does not have that explicit color
@@ -113,6 +124,7 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             backgroundColor: 'transparent',
             height: 'auto',
             width: 'auto',
+            overflow: 'visible',
         },
         statusStripe: {
             position: 'absolute',
@@ -151,6 +163,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         activeItem,
         classes = {},
         condensed = false,
+        divider,
         hidden,
         icon,
         itemID,
@@ -158,17 +171,16 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         onItemSelect,
         ripple = true,
         title,
+        ButtonBaseProps,
         /* eslint-disable @typescript-eslint/no-unused-vars */
         activeItemBackgroundColor,
         activeItemFontColor,
         activeItemIconColor,
-        divider,
         itemFontColor,
         itemIconColor,
         statusColor,
         /* eslint-disable @typescript-eslint/no-unused-vars */
-
-        ...buttonBaseProps
+        ...directButtonBaseProps
     } = props;
 
     const defaultClasses = useStyles(props);
@@ -200,7 +212,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     }, [icon, combine]);
 
     const onClickAction = useCallback(
-        (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+        (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
             if (onItemSelect) {
                 onItemSelect();
             }
@@ -214,10 +226,11 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     const innerContent = (
         <ButtonBase
             ref={ref}
-            {...buttonBaseProps}
+            {...ButtonBaseProps}
+            {...directButtonBaseProps}
             className={clsx(defaultClasses.root, classes.root, {
                 [defaultClasses.condensed]: condensed,
-                [classes.condensed]: condensed,
+                [classes.condensed]: condensed && classes.condensed,
             })}
             disableRipple={!ripple || !hasAction}
             onClick={onClickAction}
@@ -235,19 +248,19 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                     variant={'caption'}
                     className={clsx(defaultClasses.title, classes.title, {
                         [defaultClasses.titleActive]: active,
-                        [classes.titleActive]: active,
+                        [classes.titleActive]: active && classes.titleActive,
                     })}
                 >
                     {title}
                 </Typography>
             )}
             {/* Divider */}
-            {props.divider && <Divider className={combine('divider')} />}
+            {divider && <Divider className={combine('divider')} />}
         </ButtonBase>
     );
 
     return hidden ? null : condensed ? (
-        <Tooltip title="Add" placement="right">
+        <Tooltip title={title} placement="right">
             {innerContent}
         </Tooltip>
     ) : (

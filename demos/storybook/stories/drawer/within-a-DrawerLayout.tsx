@@ -21,7 +21,8 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                     max: 700,
                     step: 50,
                 })}
-                variant={select('variant', ['permanent', 'persistent', 'temporary'], 'permanent')}
+                variant={select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent')}
+                condensed={boolean('condensed (rail only)', false)}
                 ModalProps={{
                     disableEnforceFocus: true,
                 }}

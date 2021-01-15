@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, ReactNode } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import { Drawer, DrawerProps } from '@material-ui/core';
+import { ButtonBaseProps as MuiButtonBaseProps, Drawer, DrawerProps } from '@material-ui/core';
 import { DrawerBodyProps } from './DrawerBody';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -92,6 +92,9 @@ export type PXBlueDrawerInheritableProperties = {
 
     // InfoListItem overrides for NavItem
     InfoListItemProps?: Partial<BaseInfoListItemProps>;
+
+    // InfoListItem overrides for DrawerRailItem
+    ButtonBaseProps?: Partial<MuiButtonBaseProps>;
 
     // The color used for the item text
     itemFontColor?: string;
@@ -185,6 +188,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         expandIcon,
         hidePadding,
         InfoListItemProps,
+        ButtonBaseProps,
         itemFontColor,
         itemIconColor,
         nestedBackgroundColor,
@@ -242,6 +246,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                         expandIcon,
                         hidePadding,
                         InfoListItemProps,
+                        ButtonBaseProps,
                         itemFontColor,
                         itemIconColor,
                         nestedBackgroundColor,
@@ -269,6 +274,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
             expandIcon,
             hidePadding,
             InfoListItemProps,
+            ButtonBaseProps,
             itemFontColor,
             itemIconColor,
             nestedBackgroundColor,
@@ -384,6 +390,7 @@ export const PXBlueDrawerInheritablePropertiesPropTypes = {
     expandIcon: PropTypes.element,
     hidePadding: PropTypes.bool,
     InfoListItemProps: PropTypes.object,
+    ButtonBaseProps: PropTypes.object,
     itemFontColor: PropTypes.string,
     itemIconColor: PropTypes.string,
     ripple: PropTypes.bool,

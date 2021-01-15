@@ -26,7 +26,7 @@ export type NavItem = {
     items?: NestedNavItem[];
 
     // onClick of the entire row
-    onClick?: (e?: React.MouseEvent<HTMLLIElement | HTMLButtonElement, MouseEvent>) => void;
+    onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 
     // component to be rendered on the right next to the expandIcon
     rightComponent?: ReactNode;
@@ -219,7 +219,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
             : {};
 
     const onClickAction = useCallback(
-        (e: React.MouseEvent<HTMLLIElement | HTMLButtonElement, MouseEvent>): void => {
+        (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
             if (onItemSelect) {
                 onItemSelect();
             }

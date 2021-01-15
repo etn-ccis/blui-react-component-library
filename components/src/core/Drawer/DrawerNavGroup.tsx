@@ -124,6 +124,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         expandIcon,
         hidePadding,
         InfoListItemProps,
+        ButtonBaseProps,
         itemFontColor,
         itemIconColor,
         nestedBackgroundColor,
@@ -187,6 +188,9 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                         itemIconColor={item.itemIconColor || props.itemIconColor}
                         onItemSelect={item.onItemSelect ? item.onItemSelect : props.onItemSelect}
                         ripple={item.ripple !== undefined ? item.ripple : props.ripple}
+                        ButtonBaseProps={
+                            item.ButtonBaseProps !== undefined ? item.ButtonBaseProps : props.ButtonBaseProps
+                        }
                         // rail item props
                         activeItem={activeItem}
                         condensed={condensed}

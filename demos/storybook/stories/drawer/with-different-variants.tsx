@@ -9,9 +9,8 @@ import { Menu } from '@material-ui/icons';
 export const withDifferentVariants = (context: DrawerStoryContext): StoryFnReactReturnType => (
     <Drawer
         open={boolean('open', true)}
-        variant={select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'permanent')}
+        variant={select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent')}
         condensed={boolean('condensed (rail only)', false)}
-        divider={boolean('divider', false)}
         ModalProps={{
             disableEnforceFocus: true,
         }}

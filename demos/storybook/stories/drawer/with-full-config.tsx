@@ -112,7 +112,8 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         ripple: boolean('ripple', true, drawerGroupId),
         sideBorder: boolean('sideBorder', true, drawerGroupId),
         titleColor: color('titleColor', Colors.black[500], drawerGroupId),
-        variant: select('variant', ['permanent', 'persistent', 'temporary'], 'persistent', drawerGroupId),
+        variant: select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent', drawerGroupId),
+        condensed: boolean('condensed (rail only)', false, drawerGroupId),
         width: number(
             'width',
             350,
@@ -292,6 +293,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             activeItemBackgroundShape={drawerKnobs.activeItemBackgroundShape}
             chevron={drawerKnobs.chevron}
             collapseIcon={drawerKnobs.collapseIcon}
+            condensed={drawerKnobs.condensed}
             divider={drawerKnobs.divider}
             expandIcon={drawerKnobs.expandIcon}
             hidePadding={drawerKnobs.hidePadding}

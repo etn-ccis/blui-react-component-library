@@ -376,7 +376,7 @@ The following props control the NavGroup and thus only apply to `<Drawer>`, and 
 
 ## Tips
 
-You can render the Drawer Nav Item as a link by setting the `component` prop in the `InfoListItemProps` to [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`. This allows you to perform helpful actions such as opening a link in a new browser tab.
+You can render the Drawer Nav Item as a link by setting the `component` prop in the `InfoListItemProps` to [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`. This allows you to perform helpful actions such as opening a link in a new browser tab. If you are using the rail variant, you can do the same thing using the `ButtonBaseProps`.
 
 ```tsx
 
@@ -392,6 +392,8 @@ import { Link } from 'react-router-dom';
                     itemID: '0',
                     // @ts-ignore
                     InfoListItemProps: { component: Link, to: '/overview' },
+                    // @ts-ignore
+                    ButtonBaseProps: { component: Link, to: '/overview' },
                 },
                 // rendered as <a>
                 {
@@ -399,11 +401,19 @@ import { Link } from 'react-router-dom';
                     itemID: '1',
                     // @ts-ignore
                     InfoListItemProps: { component: 'a', href: '/overview' },
+                    // @ts-ignore
+                    ButtonBaseProps: { component: 'a', href: '/overview' },
                 },
             ]}
         />
     </DrawerBody>
 </Drawer>
+```
+
+: 
+
+```
+
 ```
 
 # Drawer Layout
