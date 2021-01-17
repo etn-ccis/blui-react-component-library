@@ -89,7 +89,7 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
+            padding: `${theme.spacing(2)}px ${theme.spacing(0.5)}px`,
             textAlign: 'center',
             cursor: (props): string => (props.onClick || props.onItemSelect ? 'pointer' : 'default'),
         },
@@ -239,7 +239,9 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {/* Active Item Highlight */}
             {active && <div className={combine('active')} />}
             {/* Status Color Stripe */}
-            <div className={combine('statusStripe')} data-test={'status-stripe'} />
+            {statusColor !== undefined && statusColor !== '' && (
+                <div className={combine('statusStripe')} data-test={'status-stripe'} />
+            )}
             {/* Icon */}
             {getIcon()}
             {/* Title */}
