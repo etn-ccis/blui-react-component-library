@@ -6,7 +6,6 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { DrawerStoryContext } from './util';
 import { navGroupItems2 } from './with-basic-config';
-import { Divider } from '@material-ui/core';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
 
