@@ -6,6 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import { Typography, ToolbarProps } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useDrawerContext } from './DrawerContext';
 
 type DrawerHeaderClasses = {
     root?: string;
@@ -92,6 +93,9 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingLeft: theme.spacing(1.5),
             paddingRight: theme.spacing(1.5),
         },
+        railIcon: {
+            marginLeft: theme.spacing(1),
+        },
     })
 );
 
@@ -117,6 +121,8 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherToolbarProps
     } = props;
+
+    const { variant, condensed } = useDrawerContext();
 
     const getHeaderContent = useCallback(
         (): ReactNode =>
@@ -157,7 +163,11 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
             <Toolbar ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherToolbarProps}>
                 {getBackgroundImage()}
                 {icon && (
-                    <div className={clsx(defaultClasses.navigation, classes.navigation)}>
+                    <div
+                        className={clsx(defaultClasses.navigation, classes.navigation, {
+                            [defaultClasses.railIcon]: variant === 'rail' && !condensed,
+                        })}
+                    >
                         {onIconClick && (
                             <IconButton
                                 color={'inherit'}

@@ -50,6 +50,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         expandIcon,
         hidePadding,
         InfoListItemProps,
+        ButtonBaseProps,
         itemFontColor,
         itemIconColor,
         nestedBackgroundColor,
@@ -95,6 +96,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
                         itemFontColor={groupProps.itemFontColor || itemFontColor}
                         itemIconColor={groupProps.itemIconColor || itemIconColor}
                         InfoListItemProps={groupProps.InfoListItemProps || InfoListItemProps}
+                        ButtonBaseProps={groupProps.ButtonBaseProps || ButtonBaseProps}
                         nestedDivider={
                             groupProps.nestedDivider === undefined ? nestedDivider : groupProps.nestedDivider
                         }

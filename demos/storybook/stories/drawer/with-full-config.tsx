@@ -27,6 +27,7 @@ import {
     DrawerBodyProps,
     DrawerNavGroupProps,
     NavItem,
+    DrawerFooterProps,
 } from '@pxblue/react-components';
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
@@ -113,7 +114,8 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         ripple: boolean('ripple', true, drawerGroupId),
         sideBorder: boolean('sideBorder', true, drawerGroupId),
         titleColor: color('titleColor', Colors.black[500], drawerGroupId),
-        variant: select('variant', ['permanent', 'persistent', 'temporary'], 'persistent', drawerGroupId),
+        variant: select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent', drawerGroupId),
+        condensed: boolean('condensed (rail only)', false, drawerGroupId),
         width: number(
             'width',
             350,
@@ -155,6 +157,11 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         statusColor: color('statusColor', Colors.green[300], navItemId),
         subtitle: text('subtitle', 'Learn more about us', navItemId),
         title: text('title', overview, navItemId),
+    };
+
+    const footerKnobs: Partial<DrawerFooterProps> = {
+        hideContentOnCollapse: boolean('hideContentOnCollapse', true, footerGroupId),
+        divider: boolean('divider', true, footerGroupId),
     };
 
     // DrawerNavGroup.items
@@ -280,7 +287,6 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     // Footer props
     const showFooter = boolean('Show footer', true, footerGroupId);
     const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
-    const footerHideContent = boolean('hideContentOnCollapse', false, headerGroupId);
 
     // You can replace the knob props with your own values
     return (
@@ -293,6 +299,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             activeItemBackgroundShape={drawerKnobs.activeItemBackgroundShape}
             chevron={drawerKnobs.chevron}
             collapseIcon={drawerKnobs.collapseIcon}
+            condensed={drawerKnobs.condensed}
             divider={drawerKnobs.divider}
             expandIcon={drawerKnobs.expandIcon}
             hidePadding={drawerKnobs.hidePadding}
@@ -341,7 +348,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             </DrawerBody>
 
             {showFooter && (
-                <DrawerFooter backgroundColor={footerBackgroundColor} hideContentOnCollapse={footerHideContent}>
+                <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
                     <Divider />
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />

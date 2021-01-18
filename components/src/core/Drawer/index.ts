@@ -5,3 +5,4 @@ export * from './DrawerBody';
 export * from './DrawerFooter';
 export * from './DrawerNavGroup';
 export * from './DrawerNavItem';
+export * from './DrawerRailItem';

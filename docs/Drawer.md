@@ -51,6 +51,7 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 | open                            | Controls the open/closed state of the drawer                                    | `boolean`                                        | yes      |         |
 | openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only)    | `boolean`                                        | no       | true    |
 | classes                         | Style overrides                                                                 | `DrawerClasses`                                  | no       |         |
+| condensed                       | Use the smaller width drawer without text labels (rail variant only)            | `boolean`                                        | no       | `false` |
 | noLayout                        | Set to true if used without a `<DrawerLayout>`                                  | `boolean`                                        | no       | `false` |
 | variant                         | The variant to use (see below)                                                  | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
 | width                           | Sets the width of the drawer (in px) when open                                  | `number`                                         | no       |         |
@@ -60,11 +61,12 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 Any other props will be provided to the root element [**Material UI Drawer**](https://material-ui.com/api/drawer/).
 
-The `Drawer` has three `variant`s:
+The `Drawer` has four `variant`s:
 
 -   **Permanent**: Always open, even when `open` is set to false.
 -   **Persistent**: When `open` is set to false, the `<Drawer>` collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent `<Drawer>`.
 -   **Temporary**: When `open` is set to false, the `<Drawer>` is hidden; when `open` is set to true, it slides in.
+-   **Rail**: An always collapsed version of the `<Drawer>` that only displays an icons and titles.
 
 > **Note on using multiple drawers**: If your application uses multiple `<Drawer>`s, each `<DrawerLayout>` will automatically adjust based on the state of the nearest `<Drawer>`. If you are using a `<Drawer>` without a `<DrawerLayout>`, you should set the `noLayout` property to true on the `<Drawer>` to prevent inadvertently affecting the styles of any `<DrawerLayout>`s.
 
@@ -271,7 +273,7 @@ The `items` prop of the `<DrawerNavGroup>` takes a list of items with the follow
 
 <div style="overflow: auto;">
 
-| Attribute                       | Description                                                                                     | Type              | Required | Default |
+| Prop Name                       | Description                                                                                     | Type              | Required | Default |
 | ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------- | -------- | ------- |
 | hidden                          | Sets whether to hide the nav item                                                               | `boolean`         | no       |         |
 | icon                            | A component to render for the left icon                                                         | `JSX.Element`     | no       |         |
@@ -325,6 +327,39 @@ The `items` property of the NavItem can be nested to create a tree structure wit
 />
 ```
 
+## Drawer Rail Item
+
+When using the `rail` variant of the `<Drawer>`, the `items` prop of the `<DrawerNavGroup>` will be rendered as `<DrawerRailItem>`s instead of `<DrawerNavItem>`s. These are a simplified version of the `<DrawerNavItem>` that render the `icon` and `title` only. When using the `condensed` version of the `<Drawer>`, the `title` will also be hidden.
+
+<div style="width: 100%; text-align: center">
+    <img width="100%" alt="Rail Anatomy" src="./images/railAnatomy.png">
+</div>
+
+The `<DrawerRailItem>` supports the following subset of properties from the `<DrawerNavItem>` and [sharedProps](#shared-props).
+
+<div style="overflow: auto;">
+
+| Prop Name                       | Description                                                                                     | Type              | Required | Default                     |
+| ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------- | -------- | --------------------------- |
+| activeItemBackgroundColor       | Background color for the 'active' item                                                          | `string`          | no       | varies for light/dark theme |
+| activeItemFontColor             | Font color for the 'active' item                                                                | `string`          | no       | varies for light/dark theme |
+| activeItemIconColor             | Icon color for the 'active' item                                                                | `string`          | no       | varies for light/dark theme |
+| divider                         | Whether to show a line between all items                                                        | `boolean`         | no       | false                       |
+| itemFontColor                   | The color used for the item text                                                                | `string`          | no       | varies for light/dark theme |
+| itemIconColor                   | The color used for the icon                                                                     | `string`          | no       | varies for light/dark theme |
+| ripple                          | Whether to apply material ripple effect on click                                                | `boolean`         | no       | true                        |
+| hidden                          | Sets whether to hide the nav item                                                               | `boolean`         | no       |                             |
+| icon                            | A component to render for the icon                                                              | `JSX.Element`     | yes      |                             |
+| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`          | yes      |                             |
+| onClick                         | A function to execute when clicked                                                              | `function`        | no       |                             |
+| statusColor                     | Status stripe color                                                                             | `string`          | no       |                             |
+| title                           | The text to show on the first line                                                              | `string`          | yes      |                             |
+
+</div>
+
+Any other props will be provided to the root element [**Material UI ButtonBase**](https://material-ui.com/api/button-base/).
+
+
 ## Shared Props
 
 The following props can be set at any level in the drawer hierarchy (`<Drawer>`, `<DrawerNavGroup>`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
@@ -353,7 +388,7 @@ The following props control the NavGroup and thus only apply to `<Drawer>`, and 
 
 <div style="overflow: auto;">
 
-| Name                            | Description                                                                     | Type      | Required | Default                                                      |
+| Prop Name                       | Description                                                                     | Type      | Required | Default                                                      |
 | ------------------------------- | ------------------------------------------------------------------------------- | --------- | -------- | ------------------------------------------------------------ |
 | activeItem                      | itemID for the 'active' item                                                    | `string`  | no       |                                                              |
 | disableActiveItemParentStyles   | If true, NavItems will not have a bold title when a child NavItem is selected   | `boolean` | no       | `false`                                                      |
@@ -365,7 +400,7 @@ The following props control the NavGroup and thus only apply to `<Drawer>`, and 
 
 ## Tips
 
-You can render the Drawer Nav Item as a link by setting the `component` prop in the `InfoListItemProps` to [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`. This allows you to perform helpful actions such as opening a link in a new browser tab.
+You can render the Drawer Nav Item as a link by setting the `component` prop in the `InfoListItemProps` to [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`. This allows you to perform helpful actions such as opening a link in a new browser tab. If you are using the rail variant, you can do the same thing using the `ButtonBaseProps`.
 
 ```tsx
 
@@ -381,6 +416,8 @@ import { Link } from 'react-router-dom';
                     itemID: '0',
                     // @ts-ignore
                     InfoListItemProps: { component: Link, to: '/overview' },
+                    // @ts-ignore
+                    ButtonBaseProps: { component: Link, to: '/overview' },
                 },
                 // rendered as <a>
                 {
@@ -388,6 +425,8 @@ import { Link } from 'react-router-dom';
                     itemID: '1',
                     // @ts-ignore
                     InfoListItemProps: { component: 'a', href: '/overview' },
+                    // @ts-ignore
+                    ButtonBaseProps: { component: 'a', href: '/overview' },
                 },
             ]}
         />

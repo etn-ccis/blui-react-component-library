@@ -13,6 +13,8 @@ import {
 } from './Drawer';
 import { white, darkBlack } from '@pxblue/colors';
 import { DrawerNavItem, NavItem, NestedNavItem } from './DrawerNavItem';
+import { useDrawerContext } from './DrawerContext';
+import { DrawerRailItem } from './DrawerRailItem';
 
 export type DrawerNavGroupProps = ListProps & {
     // internal API
@@ -72,6 +74,7 @@ const useStyles = makeStyles((theme: Theme) =>
         listGroup: {
             backgroundColor: (props: DrawerNavGroupProps): string => props.backgroundColor,
             paddingBottom: 0,
+            paddingTop: 0,
         },
     })
 );
@@ -121,6 +124,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         expandIcon,
         hidePadding,
         InfoListItemProps,
+        ButtonBaseProps,
         itemFontColor,
         itemIconColor,
         nestedBackgroundColor,
@@ -130,6 +134,8 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherListProps
     } = props;
+
+    const { variant, condensed } = useDrawerContext();
 
     /* Keeps track of which group of IDs are in the 'active hierarchy' */
     const [activeHierarchyItems, setActiveHierarchyItems] = useState<string[]>([]);
@@ -146,47 +152,77 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
             ref={ref}
             className={clsx(defaultClasses.listGroup, classes.listGroup)}
             subheader={
-                <ListSubheader
-                    className={clsx(defaultClasses.subheader, classes.subheader)}
-                    style={{
-                        color: open ? titleColor : 'transparent',
-                    }}
-                >
-                    {title && (
-                        <Typography
-                            noWrap
-                            variant={'overline'}
-                            className={clsx(defaultClasses.groupHeader, classes.groupHeader)}
-                        >
-                            {title}
-                        </Typography>
-                    )}
-                    {titleContent}
-                </ListSubheader>
+                variant !== 'rail' && (
+                    <ListSubheader
+                        className={clsx(defaultClasses.subheader, classes.subheader)}
+                        style={{
+                            color: open ? titleColor : 'transparent',
+                        }}
+                    >
+                        {title && (
+                            <Typography
+                                noWrap
+                                variant={'overline'}
+                                className={clsx(defaultClasses.groupHeader, classes.groupHeader)}
+                            >
+                                {title}
+                            </Typography>
+                        )}
+                        {titleContent}
+                    </ListSubheader>
+                )
             }
             {...otherListProps}
         >
-            <div key={`${title}_title`}>{(title || titleContent) && <Divider />}</div>
-            {items.map((item: NavItem, index: number) => (
-                <DrawerItemList
-                    key={`itemList_${index}`}
-                    item={item}
-                    depth={0}
-                    drawerOpen={open}
-                    defaultClasses={defaultClasses}
-                    disableActiveItemParentStyles={disableActiveItemParentStyles}
-                    classes={classes}
-                    groupProps={props}
-                    activeItem={activeItem}
-                    notifyActiveParent={(ids: string[]): void => {
-                        if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
-                            // Sets the list of active IDs when we get a callback from an active child
-                            setActiveHierarchyItems(ids);
+            {variant !== 'rail' && <div key={`${title}_title`}>{(title || titleContent) && <Divider />}</div>}
+            {items.map((item: NavItem, index: number) =>
+                variant === 'rail' ? (
+                    <DrawerRailItem
+                        key={`itemList_${index}`}
+                        // inherited props
+                        activeItemBackgroundColor={item.activeItemBackgroundColor || props.activeItemBackgroundColor}
+                        activeItemFontColor={item.activeItemFontColor || props.activeItemFontColor}
+                        activeItemIconColor={item.activeItemIconColor || props.activeItemIconColor}
+                        divider={item.divider !== undefined ? item.divider : props.divider}
+                        itemFontColor={item.itemFontColor || props.itemFontColor}
+                        itemIconColor={item.itemIconColor || props.itemIconColor}
+                        onItemSelect={item.onItemSelect ? item.onItemSelect : props.onItemSelect}
+                        ripple={item.ripple !== undefined ? item.ripple : props.ripple}
+                        ButtonBaseProps={
+                            item.ButtonBaseProps !== undefined ? item.ButtonBaseProps : props.ButtonBaseProps
                         }
-                    }}
-                    activeIDs={activeHierarchyItems}
-                />
-            ))}
+                        // rail item props
+                        activeItem={activeItem}
+                        condensed={condensed}
+                        hidden={item.hidden}
+                        icon={item.icon}
+                        itemID={item.itemID}
+                        onClick={item.onClick}
+                        statusColor={item.statusColor}
+                        title={item.title}
+                        classes={classes}
+                    />
+                ) : (
+                    <DrawerItemList
+                        key={`itemList_${index}`}
+                        item={item}
+                        depth={0}
+                        drawerOpen={open}
+                        defaultClasses={defaultClasses}
+                        disableActiveItemParentStyles={disableActiveItemParentStyles}
+                        classes={classes}
+                        groupProps={props}
+                        activeItem={activeItem}
+                        notifyActiveParent={(ids: string[]): void => {
+                            if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
+                                // Sets the list of active IDs when we get a callback from an active child
+                                setActiveHierarchyItems(ids);
+                            }
+                        }}
+                        activeIDs={activeHierarchyItems}
+                    />
+                )
+            )}
         </List>
     );
 };

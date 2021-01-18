@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useCallback, ReactNode } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import { Drawer, DrawerProps } from '@material-ui/core';
+import { ButtonBaseProps as MuiButtonBaseProps, Drawer, DrawerProps } from '@material-ui/core';
 import { DrawerBodyProps } from './DrawerBody';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 import { DrawerContext } from './DrawerContext';
+
+export const RAIL_WIDTH = 72;
+export const RAIL_WIDTH_CONDENSED = 56;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -90,6 +93,9 @@ export type PXBlueDrawerInheritableProperties = {
     // InfoListItem overrides for NavItem
     InfoListItemProps?: Partial<BaseInfoListItemProps>;
 
+    // InfoListItem overrides for DrawerRailItem
+    ButtonBaseProps?: Partial<MuiButtonBaseProps>;
+
     // The color used for the item text
     itemFontColor?: string;
 
@@ -136,6 +142,9 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
 export type DrawerComponentProps = {
     classes?: DrawerClasses;
 
+    // Sets a smaller width when the drawer is using the rail variant
+    condensed?: boolean;
+
     // Describes if this Drawer is used outside of a DrawerLayout
     noLayout?: boolean;
 
@@ -148,10 +157,13 @@ export type DrawerComponentProps = {
     // Toggles the drawer side border instead of a drop shadow
     sideBorder?: boolean;
 
+    // Drawer variant type
+    variant?: 'persistent' | 'permanent' | 'temporary' | 'rail';
+
     // Sets the width of the drawer (in px) when open
     width?: number;
 } & PXBlueDrawerNavGroupInheritableProperties &
-    Omit<DrawerProps, 'translate'>;
+    Omit<DrawerProps, 'translate' | 'variant'>;
 
 const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentProps> = (
     props: DrawerComponentProps,
@@ -172,12 +184,14 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         classes,
         collapseIcon,
         /* eslint-disable @typescript-eslint/no-unused-vars */
+        condensed,
         disableActiveItemParentStyles,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         divider,
         expandIcon,
         hidePadding,
         InfoListItemProps,
+        ButtonBaseProps,
         itemFontColor,
         itemIconColor,
         nestedBackgroundColor,
@@ -189,14 +203,17 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         ripple,
         sideBorder = false,
         titleColor,
+        variant: variantProp,
         width,
         ...drawerProps // for Material-UI's Drawer component
     } = props;
 
-    const variant = props.variant || 'persistent'; // to allow drawerLayout to override this
+    const variant = variantProp || 'persistent'; // to allow drawerLayout to override this
+    const isRail = variant === 'rail';
+
     const isDrawerOpen = useCallback((): boolean => {
         if (variant === 'persistent') return hover || open;
-        if (variant === 'permanent') return true;
+        if (variant === 'permanent' || variant === 'rail') return true;
         return open;
     }, [variant, hover, open]);
 
@@ -233,6 +250,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                         expandIcon,
                         hidePadding,
                         InfoListItemProps,
+                        ButtonBaseProps,
                         itemFontColor,
                         itemIconColor,
                         nestedBackgroundColor,
@@ -260,6 +278,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
             expandIcon,
             hidePadding,
             InfoListItemProps,
+            ButtonBaseProps,
             itemFontColor,
             itemIconColor,
             nestedBackgroundColor,
@@ -312,18 +331,30 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         [setHover, hoverDelay, getSubHeader, getBody, getFooter]
     );
 
-    const defaultContentWidth = theme.spacing(45);
-    const defaultNavigationRailWidth = theme.spacing(7);
+    /* Default Drawer Sizes */
+    const EXPANDED_DRAWER_WIDTH_DEFAULT = theme.spacing(45);
+    const COLLAPSED_DRAWER_WIDTH_DEFAULT = theme.spacing(7);
 
-    const containerWidth = isDrawerOpen() ? width || defaultContentWidth : defaultNavigationRailWidth;
-    const contentWidth = width || defaultContentWidth;
+    // Determine the visible width of the drawer
+    const getDrawerWidth = useCallback((): number => {
+        if (isRail) return condensed ? RAIL_WIDTH_CONDENSED : RAIL_WIDTH;
+        if (isDrawerOpen()) return width || EXPANDED_DRAWER_WIDTH_DEFAULT;
+        return COLLAPSED_DRAWER_WIDTH_DEFAULT;
+    }, [isRail, condensed, theme, isDrawerOpen, width]);
 
+    // Get the width of the content inside the drawer - if the drawer is collapsed, content maintains its size in order to clip
+    const getContentWidth = useCallback((): number => {
+        if (isRail) return condensed ? RAIL_WIDTH_CONDENSED : RAIL_WIDTH;
+        return width || EXPANDED_DRAWER_WIDTH_DEFAULT;
+    }, [isRail, condensed, width, theme]);
+
+    // Update the drawer layout padding when the drawer changes
     useEffect(() => {
         if (!noLayout) {
-            setPadding(variant === 'temporary' ? 0 : containerWidth);
+            setPadding(variant === 'temporary' ? 0 : getDrawerWidth());
             setDrawerOpen(isDrawerOpen());
         }
-    }, [containerWidth, variant, noLayout, isDrawerOpen]);
+    }, [variant, noLayout, isDrawerOpen, getDrawerWidth]);
 
     return (
         <Drawer
@@ -343,13 +374,13 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
             }}
             style={Object.assign(
                 {
-                    width: containerWidth,
+                    width: getDrawerWidth(),
                 },
                 drawerProps.style
             )}
         >
-            <DrawerContext.Provider value={{ isOpen: isDrawerOpen() }}>
-                <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
+            <DrawerContext.Provider value={{ isOpen: isDrawerOpen(), variant: variant, condensed: condensed }}>
+                <div className={clsx(defaultClasses.content, classes.content)} style={{ width: getContentWidth() }}>
                     {getDrawerContents()}
                 </div>
             </DrawerContext.Provider>
@@ -371,6 +402,7 @@ export const PXBlueDrawerInheritablePropertiesPropTypes = {
     expandIcon: PropTypes.element,
     hidePadding: PropTypes.bool,
     InfoListItemProps: PropTypes.object,
+    ButtonBaseProps: PropTypes.object,
     itemFontColor: PropTypes.string,
     itemIconColor: PropTypes.string,
     ripple: PropTypes.bool,
@@ -390,9 +422,11 @@ DrawerComponent.propTypes = {
         content: PropTypes.string,
         paper: PropTypes.string,
     }),
+    condensed: PropTypes.bool,
     open: PropTypes.bool.isRequired,
     openOnHover: PropTypes.bool,
     sideBorder: PropTypes.bool,
+    variant: PropTypes.oneOf(['persistent', 'permanent', 'temporary', 'rail']),
     width: PropTypes.number,
     ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
@@ -400,4 +434,6 @@ DrawerComponent.defaultProps = {
     classes: {},
     openOnHover: true,
     sideBorder: false,
+    variant: 'persistent',
+    condensed: false,
 };
