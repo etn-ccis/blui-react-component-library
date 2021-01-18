@@ -92,7 +92,10 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             padding: (props): string =>
                 `${theme.spacing(2)}px ${props.statusColor ? theme.spacing(1) : theme.spacing(0.5)}px`,
             textAlign: 'center',
-            cursor: (props): string => (props.onClick || props.onItemSelect ? 'pointer' : 'default'),
+            cursor: (props): string => (props.onClick ? 'pointer' : 'default'),
+            '&:hover': {
+                backgroundColor: (props): string => (props.onClick ? 'rgba(0,0,0,0.08)' : undefined),
+            },
         },
         condensed: {
             width: RAIL_WIDTH_CONDENSED,
@@ -187,7 +190,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     const defaultClasses = useStyles(props);
 
     const active = activeItem === itemID;
-    const hasAction = Boolean(onItemSelect || onClick);
+    const hasAction = Boolean(onClick);
 
     // Customize the color of the Touch Ripple
     const RippleProps =
