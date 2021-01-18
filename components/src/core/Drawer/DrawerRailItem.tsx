@@ -89,7 +89,8 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: `${theme.spacing(2)}px ${theme.spacing(0.5)}px`,
+            padding: (props): string =>
+                `${theme.spacing(2)}px ${props.statusColor ? theme.spacing(1) : theme.spacing(0.5)}px`,
             textAlign: 'center',
             cursor: (props): string => (props.onClick || props.onItemSelect ? 'pointer' : 'default'),
         },

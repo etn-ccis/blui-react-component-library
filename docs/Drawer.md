@@ -331,8 +331,7 @@ The `items` property of the NavItem can be nested to create a tree structure wit
 When using the `rail` variant of the `<Drawer>`, the `items` prop of the `<DrawerNavGroup>` will be rendered as `<DrawerRailItem>`s instead of `<DrawerNavItem>`s. These are a simplified version of the `<DrawerNavItem>` that render the `icon` and `title` only. When using the `condensed` version of the `<Drawer>`, the `title` will also be hidden.
 
 <div style="width: 100%; text-align: center">
-    <img width="100%" style="max-width: 72px" alt="Nav Item Anatomy" src="./images/drawerRailItem.png">
-    <img width="100%" style="max-width: 56px" alt="Nav Item Anatomy" src="./images/drawerRailItemCondensed.png">
+    <img width="100%" alt="Rail Anatomy" src="./images/railAnatomy.png">
 </div>
 
 The `<DrawerRailItem>` supports the following subset of properties from the `<DrawerNavItem>` and [sharedProps](#shared-props).
@@ -347,12 +346,12 @@ The `<DrawerRailItem>` supports the following subset of properties from the `<Dr
 | divider                         | Whether to show a line between all items                                                        | `boolean`         | no       | false                       |
 | itemFontColor                   | The color used for the item text                                                                | `string`          | no       | varies for light/dark theme |
 | itemIconColor                   | The color used for the icon                                                                     | `string`          | no       | varies for light/dark theme |
-| ripple                          | Whether to apply material ripple effect to items                                                | `boolean`         | no       | true                        |
+| ripple                          | Whether to apply material ripple effect on click                                                | `boolean`         | no       | true                        |
 | hidden                          | Sets whether to hide the nav item                                                               | `boolean`         | no       |                             |
-| icon                            | A component to render for the left icon                                                         | `JSX.Element`     | no       |                             |
+| icon                            | A component to render for the icon                                                              | `JSX.Element`     | yes      |                             |
 | itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`          | yes      |                             |
 | onClick                         | A function to execute when clicked                                                              | `function`        | no       |                             |
-| statusColor                     | Status stripe and icon color                                                                    | `string`          | no       |                             |
+| statusColor                     | Status stripe color                                                                             | `string`          | no       |                             |
 | title                           | The text to show on the first line                                                              | `string`          | yes      |                             |
 
 </div>
