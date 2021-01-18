@@ -30,11 +30,19 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                 <DrawerHeader
                     icon={<MenuIcon />}
                     titleContent={
-                        <div style={{ paddingLeft: '20px', paddingTop: '15px' }}>
-                            <Typography variant="subtitle2" style={{ fontWeight: 100 }}>
+                        <div
+                            style={{
+                                paddingLeft: 16,
+                                display: 'flex',
+                                height: '100%',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <Typography variant={'subtitle2'} style={{ fontWeight: 100 }}>
                                 PX Blue
                             </Typography>
-                            <Typography variant="h6" style={{ marginTop: '-10px' }}>
+                            <Typography variant={'h6'} style={{ marginTop: -8 }}>
                                 DrawerLayout
                             </Typography>
                         </div>
@@ -45,7 +53,7 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                 </DrawerBody>
                 <DrawerFooter>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
+                        <img src={EatonLogo} style={{ margin: '10px' }} alt={'Eaton Logo'} height={50} width={'auto'} />
                     </div>
                 </DrawerFooter>
             </Drawer>
