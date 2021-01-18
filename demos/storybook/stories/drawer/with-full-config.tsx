@@ -130,7 +130,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     };
 
     const headerKnobs: DrawerHeaderProps = {
-        backgroundColor: color('backgroundColor', Colors.gold[800], headerGroupId),
+        backgroundColor: color('backgroundColor', Colors.blue[500], headerGroupId),
         backgroundImage:
             headerBackgroundImageOptions[
                 select('backgroundImage', ['undefined', 'Pattern', 'Farm'], 'Pattern', headerGroupId)

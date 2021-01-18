@@ -6,22 +6,23 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { DrawerStoryContext } from './util';
 import { navGroupItems2 } from './with-basic-config';
+import { Divider } from '@material-ui/core';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
 
 export const withFooter = (context: DrawerStoryContext): StoryFnReactReturnType => (
-    <Drawer open={boolean('Drawer.open', true)}>
+    <Drawer open={boolean('open', true)}>
         <DrawerHeader icon={<Menu />} title={'Footer Example'} />
         <DrawerBody>
             <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems2} />
         </DrawerBody>
 
         <DrawerFooter
-            backgroundColor={color('DrawerFooter.backgroundColor', Colors.white[50])}
+            backgroundColor={color('backgroundColor', Colors.white[50])}
             hideContentOnCollapse={boolean('hideContentOnCollapse', true)}
             divider={boolean('divider', true)}
         >
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
             </div>
         </DrawerFooter>

@@ -21,8 +21,8 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             hidePadding={boolean('hidePadding', false)}
             statusColor={color('statusColor', Colors.yellow[500])}
             iconAlign={select('iconAlign', ['left', 'center', 'right'], 'left')}
-            iconColor={color('iconColor', Colors.blue[500])}
-            fontColor={color('fontColor', Colors.blue[500])}
+            iconColor={color('iconColor', Colors.black[500])}
+            fontColor={color('fontColor', Colors.black[500])}
             backgroundColor={color('backgroundColor', Colors.white[50])}
             avatar={boolean('avatar', false)}
             chevron={boolean('chevron', true)}

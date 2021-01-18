@@ -18,7 +18,7 @@ export const withFullConfig = (): StoryFnReactReturnType => (
         headerTitle={text('headerTitle', 'Substation 3')}
         headerSubtitle={text('headerSubtitle', 'High Humidity Alarm')}
         headerInfo={text('headerInfo', '4 Devices')}
-        headerColor={color('headerColor', Colors.red[500])}
+        headerColor={color('headerColor', Colors.blue[500])}
         headerFontColor={color('headerFontColor', Colors.white[50])}
         headerBackgroundImage={boolean('headerBackgroundImage', true) ? backgroundImage : undefined}
         actionLimit={number('actionLimit', 3, { range: true, min: 1, max: 6, step: 1 })}

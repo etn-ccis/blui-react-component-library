@@ -14,7 +14,7 @@ export const withActions = (): StoryFnReactReturnType => (
         title={'No Devices'}
         description={'Not a single one'}
         actions={
-            <Button variant="contained" color="primary" style={{ margin: '10px' }} onClick={action('Button Clicked')}>
+            <Button variant="outlined" color="primary" style={{ margin: '10px' }} onClick={action('Button Clicked')}>
                 <AddIcon style={{ marginRight: '5px' }} />
                 {text('Action Text', 'Add Device')}
             </Button>
