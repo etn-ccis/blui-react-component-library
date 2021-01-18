@@ -94,7 +94,7 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             textAlign: 'center',
             cursor: (props): string => (props.onClick ? 'pointer' : 'default'),
             '&:hover': {
-                backgroundColor: (props): string => (props.onClick ? 'rgba(0,0,0,0.08)' : undefined),
+                backgroundColor: (props): string => (props.onClick ? theme.palette.action.hover : undefined),
             },
         },
         condensed: {

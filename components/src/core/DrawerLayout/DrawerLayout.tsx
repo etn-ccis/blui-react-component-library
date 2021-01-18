@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'fixed',
             height: '100%',
             alignItems: 'stretch',
-            zIndex: 1000,
+            zIndex: theme.zIndex.drawer,
         },
         expanded: {},
     })
