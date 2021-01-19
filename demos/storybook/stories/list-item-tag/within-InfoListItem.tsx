@@ -27,11 +27,7 @@ export const inInfoListItem = (): StoryFnReactReturnType => {
                                 marginLeft: direction === 'rtl' ? theme.spacing(2) : 0,
                             }}
                         />
-                        <ListItemTag
-                            label={'5 Bugs'}
-                            backgroundColor={Colors.red[300]}
-                            fontColor={Colors.black[900]}
-                        />
+                        <ListItemTag label={'5 Bugs'} backgroundColor={Colors.red[300]} fontColor={Colors.black[900]} />
                     </div>
                 }
             />
