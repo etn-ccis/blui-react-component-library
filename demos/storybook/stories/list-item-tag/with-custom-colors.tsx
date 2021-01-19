@@ -7,8 +7,8 @@ import React from 'react';
 export const withCustomColors = (): StoryFnReactReturnType => (
     <ListItemTag
         label={text('label', 'active')}
-        backgroundColor={color('backgroundColor', Colors.yellow['500'])}
-        fontColor={color('fontColor', Colors.black['500'])}
+        backgroundColor={color('backgroundColor', Colors.red['500'])}
+        fontColor={color('fontColor', Colors.white['50'])}
     />
 );
 

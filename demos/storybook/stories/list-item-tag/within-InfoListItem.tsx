@@ -29,7 +29,7 @@ export const inInfoListItem = (): StoryFnReactReturnType => {
                         />
                         <ListItemTag
                             label={'5 Bugs'}
-                            backgroundColor={Colors.yellow[500]}
+                            backgroundColor={Colors.red[300]}
                             fontColor={Colors.black[900]}
                         />
                     </div>
