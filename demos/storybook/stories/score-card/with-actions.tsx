@@ -16,12 +16,12 @@ export const actionRow = (
 );
 
 export const actionItems = [
-    <MoreVert onClick={action('clicked more')} key={'morevert'} />,
     <Search onClick={action('clicked search')} key={'search'} />,
     <Mail onClick={action('clicked mail')} key={'mail'} />,
     <Notifications onClick={action('clicked alarms')} key={'notifications'} />,
     <ListAlt onClick={action('clicked list')} key={'listalt'} />,
     <Cloud onClick={action('clicked cloud')} key={'cloud'} />,
+    <MoreVert onClick={action('clicked more')} key={'morevert'} />,
 ];
 
 export const withActions = (): StoryFnReactReturnType => (
