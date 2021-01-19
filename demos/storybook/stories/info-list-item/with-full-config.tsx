@@ -19,7 +19,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             info={text('info', 'more info...')}
             icon={boolean('Show Icon', true) ? <Device /> : undefined}
             hidePadding={boolean('hidePadding', false)}
-            statusColor={color('statusColor', Colors.yellow[500])}
+            statusColor={color('statusColor', Colors.blue[500])}
             iconAlign={select('iconAlign', ['left', 'center', 'right'], 'left')}
             iconColor={color('iconColor', Colors.black[500])}
             fontColor={color('fontColor', Colors.black[500])}
