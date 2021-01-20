@@ -8,7 +8,7 @@ import React from 'react';
 export const withIconColors = (): StoryFnReactReturnType => (
     <Hero
         iconBackgroundColor={color('iconBackgroundColor', Colors.red[500])}
-        icon={<Temp fontSize={'inherit'} htmlColor={color('icon.htmlColor', Colors.white[500])} />}
+        icon={<Temp fontSize={'inherit'} htmlColor={color('icon.htmlColor', Colors.white[50])} />}
         label={'Temperature'}
         value={'38'}
         units={'°C'}
