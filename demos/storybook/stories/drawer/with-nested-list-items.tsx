@@ -1,4 +1,13 @@
-import { Accessibility, Add, AddAPhoto, FitnessCenter, NotificationsActive, PinDrop, Remove } from '@material-ui/icons';
+import {
+    Accessibility,
+    Add,
+    AddAPhoto,
+    NotificationsActive,
+    Group,
+    MenuBook,
+    PinDrop,
+    Remove,
+} from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@pxblue/react-components';
@@ -56,7 +65,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
     );
     const groupUseCollapseIcon = select(
         'collapseIcon',
-        ['undefined', '<Remove />', '<AddAPhoto />'],
+        ['undefined', '<Remove />', '<Groups />'],
         'undefined',
         DrawerNavGroupID
     );
@@ -105,7 +114,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                 items={[
                     {
                         title: userGuide,
-                        icon: showIcon ? <AddAPhoto /> : undefined,
+                        icon: showIcon ? <MenuBook /> : undefined,
                         itemID: userGuide,
                         rightComponent: rightComponent,
                         expandIcon: getIcon(itemUseExpandIcon),
@@ -171,7 +180,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                     {
                         title: community,
                         itemID: community,
-                        icon: showIcon ? <FitnessCenter /> : undefined,
+                        icon: showIcon ? <Group /> : undefined,
                         onClick: (): void => {
                             context.store.set({ selected: community });
                         },
