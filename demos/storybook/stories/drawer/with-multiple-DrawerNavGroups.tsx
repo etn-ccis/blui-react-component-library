@@ -16,7 +16,7 @@ export const withMultipleNavGroups = (context: DrawerStoryContext): StoryFnReact
                 activeItem={context.state.selected}
                 items={navGroupItems1}
             />
-            {boolean('Add Spacer', false) && <Spacer />}
+            {boolean('Add Spacer', true) && <Spacer />}
             <DrawerNavGroup
                 title={text('navGroup[1].title', 'Second DrawerNavGroup')}
                 activeItem={context.state.selected}
