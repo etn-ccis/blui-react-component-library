@@ -36,6 +36,7 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                             <div
                                 style={{
                                     paddingLeft: 16,
+                                   paddingRight: 16,
                                     display: 'flex',
                                     height: '100%',
                                     flexDirection: 'column',
