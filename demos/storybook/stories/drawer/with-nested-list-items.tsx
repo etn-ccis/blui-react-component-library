@@ -96,7 +96,6 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
             <DrawerNavGroup
                 divider={divider}
                 nestedDivider={nestedDivider}
-                title={'Multi-Level Navigation Group'}
                 hidePadding={hidePadding}
                 activeItem={state.selected}
                 chevron={chevron}
