@@ -12,7 +12,7 @@ export const withActions = (): StoryFnReactReturnType => (
     <EmptyState
         icon={<DevicesIcon fontSize={'inherit'} />}
         title={'No Devices'}
-        description={'Not a single one'}
+        description={'Check your network connection or add a new device'}
         actions={
             <Button
                 variant="outlined"
