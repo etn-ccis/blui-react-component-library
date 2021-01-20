@@ -17,7 +17,7 @@ export const withCustomHeader = (context: DrawerStoryContext): StoryFnReactRetur
             backgroundOpacity={0.5}
             icon={<MenuIcon />}
             titleContent={
-                <div style={{ display: 'flex', zIndex: 1, paddingLeft: '20px', paddingTop: '15px' }}>
+                <div style={{ display: 'flex', zIndex: 1, paddingLeft: 16, alignItems: 'center', height: '100%' }}>
                     <div>
                         <Typography variant="subtitle2">Customizable</Typography>
                         <Typography variant="h6" style={{ marginTop: '-10px' }}>
