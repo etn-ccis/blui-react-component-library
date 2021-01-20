@@ -19,7 +19,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 divider={appliedDivider}
                 statusColor={Colors.green[500]}
                 subtitleSeparator={'/'}
-                icon={<DeviceActivating color={'inherit'}/>}
+                icon={<DeviceActivating color={'inherit'} />}
                 iconAlign={'center'}
                 rightComponent={<ChannelValue fontSize={16} value={'Online, ESS+'} />}
             />

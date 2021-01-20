@@ -44,7 +44,7 @@ const getIcon = (icon: string): JSX.Element | undefined => {
 export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactReturnType => {
     const DrawerNavGroupID = 'DrawerNavGroup';
     const open = boolean('open', true, DrawerNavGroupID);
-    const divider = boolean('divider', false, DrawerNavGroupID);
+    const divider = boolean('divider', true, DrawerNavGroupID);
     const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
     const chevron = boolean('chevron', false, DrawerNavGroupID);
     const nestedBackgroundColor = color('nestedBackgroundColor', '', DrawerNavGroupID);

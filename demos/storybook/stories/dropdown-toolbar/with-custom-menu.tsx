@@ -26,7 +26,7 @@ export const withCustomMenu = (): StoryFnReactReturnType => {
             />
             <InfoListItem
                 title={'New York'}
-                icon={<Apartment/>}
+                icon={<Apartment />}
                 iconColor={Colors.blue[500]}
                 onClick={action('New York selected')}
                 dense
