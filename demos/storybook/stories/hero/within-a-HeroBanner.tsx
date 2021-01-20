@@ -1,5 +1,5 @@
 import * as Colors from '@pxblue/colors';
-import { CurrentCircled, GradeA, Leaf, Temp } from '@pxblue/icons-mui';
+import { CurrentCircled, GradeA, Battery, Temp } from '@pxblue/icons-mui';
 import { Hero, HeroBanner } from '@pxblue/react-components';
 import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
@@ -31,7 +31,7 @@ export const inBanner = (): StoryFnReactReturnType => {
         />,
         <Hero
             key={'hero4'}
-            icon={<Leaf fontSize={'inherit'} htmlColor={Colors.green[500]} />}
+            icon={<Battery fontSize={'inherit'} htmlColor={Colors.green[500]} />}
             label={'Battery'}
             value={96}
             units={'/100'}
