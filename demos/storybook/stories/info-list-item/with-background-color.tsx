@@ -12,7 +12,7 @@ export const withBackgroundColor = (): StoryFnReactReturnType => (
         fontColor={Colors.black[500]}
         iconColor={Colors.black[500]}
         icon={<Leaf />}
-        backgroundColor={color('backgroundColor', Colors.blue[50])}
+        backgroundColor={color('backgroundColor', Colors.white[50])}
     />
 );
 
