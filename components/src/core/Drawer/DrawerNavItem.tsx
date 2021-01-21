@@ -138,7 +138,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
 
     const defaultClasses = useStyles(props);
     const theme = useTheme();
-    const { isOpen } = useDrawerContext();
+    const { open: isOpen } = useDrawerContext();
 
     const fivePercentOpacityPrimary = color(theme.palette.primary.main)
         .fade(0.95)

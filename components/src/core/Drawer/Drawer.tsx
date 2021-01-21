@@ -379,7 +379,14 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                 drawerProps.style
             )}
         >
-            <DrawerContext.Provider value={{ isOpen: isDrawerOpen(), variant: variant, condensed: condensed }}>
+            <DrawerContext.Provider
+                value={{
+                    open: isDrawerOpen(),
+                    variant: variant,
+                    condensed: condensed,
+                    activeItem: activeItem,
+                }}
+            >
                 <div className={clsx(defaultClasses.content, classes.content)} style={{ width: getContentWidth() }}>
                     {getDrawerContents()}
                 </div>
@@ -391,6 +398,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
 export const DrawerComponent = React.forwardRef(DrawerRenderer);
 DrawerComponent.displayName = 'PXBlueDrawer';
 
+// TODO FIX ME
 export const PXBlueDrawerInheritablePropertiesPropTypes = {
     activeItemBackgroundColor: PropTypes.string,
     activeItemFontColor: PropTypes.string,

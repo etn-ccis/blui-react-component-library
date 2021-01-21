@@ -1,13 +1,17 @@
 import { createContext, useContext } from 'react';
+import { DrawerVariant } from './types';
 
 type DrawerContextType = {
-    isOpen: boolean;
-    variant: 'temporary' | 'persistent' | 'permanent' | 'rail';
+    open: boolean;
+    variant: DrawerVariant;
     condensed: boolean;
+    activeItem?: string;
+    onItemSelect?: (id: string) => void;
+    width?: number;
 };
 
 export const DrawerContext = createContext<DrawerContextType>({
-    isOpen: true,
+    open: true,
     variant: 'persistent',
     condensed: false,
 });
