@@ -73,9 +73,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 title={'Temperature'}
                 divider={appliedDivider}
                 icon={<Temp />}
-                rightComponent={
-                    <ChannelValue fontSize={16} value={68} units={'°F'} />
-                }
+                rightComponent={<ChannelValue fontSize={16} value={68} units={'°F'} />}
                 iconAlign={'center'}
             />
         </>
