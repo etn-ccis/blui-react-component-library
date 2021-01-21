@@ -19,6 +19,7 @@ type DrawerHeaderClasses = {
     content?: string;
     navigation?: string;
     nonClickableIcon?: string;
+    railIcon?: string;
     subtitle?: string;
     title?: string;
 };
@@ -171,6 +172,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                     <div
                         className={clsx(defaultClasses.navigation, classes.navigation, {
                             [defaultClasses.railIcon]: variant === 'rail' && !condensed,
+                            [classes.railIcon]: variant === 'rail' && !condensed && classes.railIcon,
                         })}
                     >
                         {onIconClick && (
@@ -214,6 +216,7 @@ DrawerHeader.propTypes = {
         content: PropTypes.string,
         navigation: PropTypes.string,
         nonClickableIcon: PropTypes.string,
+        railIcon: PropTypes.string,
         subtitle: PropTypes.string,
         title: PropTypes.string,
     }),

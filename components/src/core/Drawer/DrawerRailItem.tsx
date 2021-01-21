@@ -199,7 +199,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: defaultClasses.ripple,
+                          child: clsx(defaultClasses.ripple, classes.ripple),
                       },
                   },
               }

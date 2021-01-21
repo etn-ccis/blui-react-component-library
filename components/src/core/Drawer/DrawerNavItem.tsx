@@ -15,11 +15,15 @@ import { mergeStyleProp } from './utilities';
 import { white, darkBlack } from '@pxblue/colors';
 
 export type DrawerNavItemClasses = {
-    title?: string;
+    root?: string;
     active?: string;
+    expandIcon?: string;
     listItemContainer?: string;
     nestedListGroup?: string;
-    expandIcon?: string;
+    nestedTitle?: string;
+    title?: string;
+    titleActive?: string;
+    ripple?: string;
 };
 export type DrawerNavItem = SharedStyleProps &
     NavItemSharedStyleProps & {
@@ -80,19 +84,10 @@ const useStyles = makeStyles((theme: Theme) =>
                 transform: 'rotate(180deg)',
             },
         },
-        infoListItem: {
+        root: {
             paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth),
         },
-        listItemNoHover: {
-            '&:hover': {
-                /* TODO:
-                 * I don't believe this style is actually doing anything. The original intent was to not show
-                 * the background on hover over the active item, but this hover state is now controlled in the
-                 * InfoListItem component and is based on the presence of a onClick property.
-                 */
-                backgroundColor: 'initial',
-            },
-        },
+        listItemContainer: {},
         nestedTitle: {
             fontWeight: 400,
         },
@@ -210,7 +205,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: defaultClasses.ripple,
+                          child: clsx(defaultClasses.ripple, classes.ripple),
                       },
                   },
               }
@@ -255,10 +250,13 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
 
     // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
-        root: defaultClasses.infoListItem,
+        root: clsx(defaultClasses.root, classes.root),
         title: clsx(defaultClasses.title, classes.title, {
             [defaultClasses.titleActive]: active || (!disableActiveItemParentStyles && isInActiveTree),
+            [classes.titleActive]:
+                (active || (!disableActiveItemParentStyles && isInActiveTree)) && classes.titleActive,
             [defaultClasses.nestedTitle]: depth > 0,
+            [classes.nestedTitle]: depth > 0 && classes.nestedTitle,
             [defaultClasses.noIconTitle]: hidePadding && !icon,
             [defaultClasses.drawerOpen]: drawerOpen,
         }),
@@ -274,7 +272,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                 <div
                     ref={ref}
                     style={{ position: 'relative' }}
-                    className={clsx(classes.listItemContainer, active && defaultClasses.listItemNoHover)}
+                    className={clsx(defaultClasses.listItemContainer, classes.listItemContainer)}
                 >
                     {active && (
                         <div
@@ -374,11 +372,15 @@ DrawerNavItem.propTypes = {
     ...SharedStylePropTypes,
     ...NavItemSharedStylePropTypes,
     classes: PropTypes.shape({
-        title: PropTypes.string,
+        root: PropTypes.string,
         active: PropTypes.string,
+        expandIcon: PropTypes.string,
         listItemContainer: PropTypes.string,
         nestedListGroup: PropTypes.string,
-        expandIcon: PropTypes.string,
+        nestedTitle: PropTypes.string,
+        ripple: PropTypes.string,
+        title: PropTypes.string,
+        titleActive: PropTypes.string,
     }),
     depth: PropTypes.number,
     hidden: PropTypes.bool,

@@ -18,7 +18,6 @@ import { NestedDrawerNavItem, DrawerNavItem } from './DrawerNavItem';
 import { DrawerRailItem, ExtendedNavItem } from './DrawerRailItem';
 import { mergeStyleProp } from './utilities';
 import clsx from 'clsx';
-import { white, darkBlack } from '@pxblue/colors';
 
 export type DrawerNavGroupProps = SharedStyleProps &
     NavItemSharedStyleProps &
@@ -40,14 +39,9 @@ export type DrawerNavGroupProps = SharedStyleProps &
     };
 
 type DrawerNavGroupClasses = {
-    active?: string;
-    expandIcon?: string;
     groupHeader?: string;
     listGroup?: string;
-    listItemContainer?: string;
-    nestedListGroup?: string;
     subheader?: string;
-    title?: string;
 };
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -64,12 +58,6 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingRight: theme.spacing(2),
             position: 'inherit',
             cursor: 'text',
-        },
-        nestedListGroup: {
-            backgroundColor: (props: DrawerNavGroupProps): string =>
-                props.nestedBackgroundColor || (theme.palette.type === 'light' ? white[200] : darkBlack[100]),
-            paddingBottom: 0,
-            paddingTop: 0,
         },
         listGroup: {
             backgroundColor: (props: DrawerNavGroupProps): string => props.backgroundColor,
@@ -244,14 +232,9 @@ DrawerNavGroup.propTypes = {
     ...SharedStylePropTypes,
     ...NavItemSharedStylePropTypes,
     classes: PropTypes.shape({
-        active: PropTypes.string,
-        expandIcon: PropTypes.string,
         groupHeader: PropTypes.string,
         listGroup: PropTypes.string,
-        listItemContainer: PropTypes.string,
-        nestedListGroup: PropTypes.string,
         subheader: PropTypes.string,
-        title: PropTypes.string,
     }),
     // @ts-ignore
     items: PropTypes.arrayOf(
