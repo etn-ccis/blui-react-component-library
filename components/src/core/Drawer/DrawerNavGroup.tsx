@@ -1,25 +1,28 @@
-import clsx from 'clsx';
 import React, { ReactNode, useEffect, useState } from 'react';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import List, { ListProps } from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import { Typography } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
 import PropTypes from 'prop-types';
-import { white, darkBlack } from '@pxblue/colors';
 import { useDrawerContext } from './DrawerContext';
-import { NestedDrawerNavItem, DrawerNavItem } from './DrawerNavItem';
-import { NavItemSharedStyleProps, SharedStyleProps } from './types';
-import { DrawerRailItem, ExtendedNavItem } from './DrawerRailItem';
 import { NavGroupContext } from './NavGroupContext';
+import {
+    createStyles,
+    makeStyles,
+    Theme,
+    useTheme,
+    List,
+    ListProps,
+    Typography,
+    ListSubheader,
+    Divider,
+} from '@material-ui/core';
+import { NavItemSharedStyleProps, SharedStyleProps } from './types';
+import { NestedDrawerNavItem, DrawerNavItem } from './DrawerNavItem';
+import { DrawerRailItem, ExtendedNavItem } from './DrawerRailItem';
 import { mergeStyleProp } from './utilities';
+import clsx from 'clsx';
+import { white, darkBlack } from '@pxblue/colors';
 
 export type DrawerNavGroupProps = SharedStyleProps &
     NavItemSharedStyleProps &
     ListProps & {
-        // color to use for the background
-        backgroundColor?: string;
-
         // Custom classes to override default styles
         classes?: DrawerNavGroupClasses;
 
@@ -177,6 +180,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                             )}
                             activeItemFontColor={mergeStyleProp(activeItemFontColor, item.activeItemFontColor)}
                             activeItemIconColor={mergeStyleProp(activeItemIconColor, item.activeItemIconColor)}
+                            backgroundColor={mergeStyleProp(backgroundColor, item.backgroundColor)}
                             divider={mergeStyleProp(divider, item.divider)}
                             itemFontColor={mergeStyleProp(itemFontColor, item.itemFontColor)}
                             itemIconColor={mergeStyleProp(itemIconColor, item.itemIconColor)}
@@ -204,6 +208,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                             )}
                             activeItemFontColor={mergeStyleProp(activeItemFontColor, item.activeItemFontColor)}
                             activeItemIconColor={mergeStyleProp(activeItemIconColor, item.activeItemIconColor)}
+                            backgroundColor={mergeStyleProp(backgroundColor, item.backgroundColor)}
                             chevron={mergeStyleProp(chevron, item.chevron)}
                             collapseIcon={mergeStyleProp(collapseIcon, item.collapseIcon)}
                             disableActiveItemParentStyles={mergeStyleProp(
@@ -237,7 +242,6 @@ export const DrawerNavGroup = React.forwardRef(DrawerNavGroupRender);
 DrawerNavGroup.displayName = 'DrawerNavGroup';
 // TODO FIX ME
 DrawerNavGroup.propTypes = {
-    backgroundColor: PropTypes.string,
     classes: PropTypes.shape({
         active: PropTypes.string,
         expandIcon: PropTypes.string,

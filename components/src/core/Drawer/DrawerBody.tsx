@@ -1,10 +1,10 @@
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import React, { HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
 import { NavItemSharedStyleProps, SharedStyleProps } from './types';
 import { mergeStyleProp } from './utilities';
+import clsx from 'clsx';
 
 type DrawerBodyClasses = {
     root?: string;
@@ -13,7 +13,6 @@ type DrawerBodyClasses = {
 export type DrawerBodyProps = HTMLAttributes<HTMLDivElement> &
     SharedStyleProps &
     NavItemSharedStyleProps & {
-        backgroundColor?: string;
         classes?: DrawerBodyClasses;
     };
 
@@ -38,6 +37,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
+        backgroundColor, // eslint-disable-line @typescript-eslint/no-unused-vars
         chevron,
         collapseIcon,
         disableActiveItemParentStyles,
@@ -51,7 +51,6 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         ripple,
         // DrawerBody-specific props
         classes,
-        backgroundColor, // eslint-disable-line @typescript-eslint/no-unused-vars
         children: bodyChildren,
         // Other div props
         ...otherDivProps
@@ -84,6 +83,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
                         )}
                         activeItemFontColor={mergeStyleProp(activeItemFontColor, groupProps.activeItemFontColor)}
                         activeItemIconColor={mergeStyleProp(activeItemIconColor, groupProps.activeItemIconColor)}
+                        backgroundColor={mergeStyleProp(backgroundColor, groupProps.backgroundColor)}
                         chevron={mergeStyleProp(chevron, groupProps.chevron)}
                         collapseIcon={mergeStyleProp(collapseIcon, groupProps.collapseIcon)}
                         disableActiveItemParentStyles={mergeStyleProp(
@@ -110,7 +110,6 @@ DrawerBody.displayName = 'DrawerBody';
 // TODO FIX ME
 // @ts-ignore
 DrawerBody.propTypes = {
-    backgroundColor: PropTypes.string,
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),

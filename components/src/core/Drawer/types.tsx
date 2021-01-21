@@ -21,6 +21,9 @@ export type SharedStyleProps = {
     // Icon color for the 'active' item
     activeItemIconColor?: string;
 
+    // Background color for the item(s)
+    backgroundColor?: string;
+
     // Whether to show a line between all items
     divider?: boolean;
 

@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useDrawerContext } from './DrawerContext';
 import {
     Avatar,
     ButtonBase,
@@ -6,14 +7,15 @@ import {
     Divider,
     Tooltip,
     Typography,
+    createStyles,
+    makeStyles,
+    Theme,
 } from '@material-ui/core';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { RAIL_WIDTH, RAIL_WIDTH_CONDENSED } from './Drawer';
+import { SharedStyleProps } from './types';
+import { DrawerNavItem } from './DrawerNavItem';
 import color from 'color';
 import clsx from 'clsx';
-import { SharedStyleProps } from './types';
-import { useDrawerContext } from './DrawerContext';
-import { DrawerNavItem } from './DrawerNavItem';
 
 export type DrawerRailItemClasses = {
     root?: string;
@@ -84,6 +86,7 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             padding: (props): string =>
                 `${theme.spacing(2)}px ${props.statusColor ? theme.spacing(1) : theme.spacing(0.5)}px`,
             textAlign: 'center',
+            backgroundColor: (props): string => props.backgroundColor || 'transparent',
             '&:hover': {
                 backgroundColor: (props): string => (props.onClick ? theme.palette.action.hover : undefined),
             },
@@ -164,6 +167,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         activeItemBackgroundColor,
         activeItemFontColor,
         activeItemIconColor,
+        backgroundColor,
         itemFontColor,
         itemIconColor,
         /* eslint-enable @typescript-eslint/no-unused-vars */

@@ -1,18 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { useDrawerContext } from './DrawerContext';
+import { useNavGroupContext } from './NavGroupContext';
+import { usePrevious } from '../hooks/usePrevious';
+import { createStyles, makeStyles, Theme, useTheme, Collapse, List } from '@material-ui/core';
+import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../InfoListItem';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import clsx from 'clsx';
-import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../InfoListItem';
-import { useDrawerContext } from './DrawerContext';
-import color from 'color';
-import { usePrevious } from '../hooks/usePrevious';
 import { NavItemSharedStyleProps, SharedStyleProps } from './types';
-import { Collapse, List } from '@material-ui/core';
-import { white, darkBlack } from '@pxblue/colors';
-import { useNavGroupContext } from './NavGroupContext';
+import clsx from 'clsx';
+import color from 'color';
 import { mergeStyleProp } from './utilities';
+import { white, darkBlack } from '@pxblue/colors';
 
 export type DrawerNavItemClasses = {
     title?: string;
@@ -40,6 +39,9 @@ export type DrawerNavItem = SharedStyleProps &
         InfoListItemProps?: PXBInfoListItemProps;
     };
 export type NestedDrawerNavItem = Omit<DrawerNavItem, 'icon'>;
+// aliases
+export type NavItem = DrawerNavItem;
+export type NestedNavItem = NestedDrawerNavItem;
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
 const calcNestedPadding = (theme: Theme, depth: number): number =>
@@ -151,6 +153,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
         activeItemBackgroundShape = 'square',
         activeItemFontColor = theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary,
         activeItemIconColor = theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary,
+        backgroundColor,
         chevron,
         classes = {},
         collapseIcon,
@@ -303,7 +306,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                                 </div>
                             )
                         }
-                        backgroundColor={'transparent'}
+                        backgroundColor={depth > 0 ? nestedBackgroundColor : backgroundColor || 'transparent'}
                         onClick={hasAction ? onClickAction : undefined}
                         hidePadding={hidePadding}
                         ripple={ripple}
@@ -331,6 +334,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                                 )}
                                 activeItemFontColor={mergeStyleProp(activeItemFontColor, subItem.activeItemFontColor)}
                                 activeItemIconColor={mergeStyleProp(activeItemIconColor, subItem.activeItemIconColor)}
+                                backgroundColor={mergeStyleProp(backgroundColor, subItem.backgroundColor)}
                                 chevron={mergeStyleProp(chevron, subItem.chevron)}
                                 collapseIcon={mergeStyleProp(collapseIcon, subItem.collapseIcon)}
                                 disableActiveItemParentStyles={mergeStyleProp(

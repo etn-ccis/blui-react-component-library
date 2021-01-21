@@ -7,7 +7,7 @@ import { createMount, createShallow } from '@material-ui/core/test-utils';
 import { findByTestId } from '../test-utils';
 import { Avatar, Typography } from '@material-ui/core';
 
-import { DrawerComponent as Drawer } from './Drawer';
+import { Drawer } from './Drawer';
 import { DrawerHeader } from './DrawerHeader';
 import { DrawerSubheader } from './DrawerSubheader';
 import { DrawerBody } from './DrawerBody';

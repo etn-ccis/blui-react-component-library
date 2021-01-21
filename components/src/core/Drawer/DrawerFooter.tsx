@@ -1,7 +1,6 @@
 import React, { HTMLAttributes } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Divider } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { Divider, makeStyles } from '@material-ui/core';
 import { useDrawerContext } from './DrawerContext';
 import clsx from 'clsx';
 

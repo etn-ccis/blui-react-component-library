@@ -1,22 +1,29 @@
 import React, { useEffect, useState, useCallback, ReactNode } from 'react';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import { Drawer, DrawerProps } from '@material-ui/core';
-import { DrawerBodyProps } from './DrawerBody';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import {
+    Drawer as MUIDrawer,
+    DrawerProps as MUIDrawerProps,
+    createStyles,
+    makeStyles,
+    Theme,
+    useTheme,
+} from '@material-ui/core';
+import { DrawerBodyProps } from './DrawerBody';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 import { DrawerContext } from './DrawerContext';
 import { NavItemSharedStyleProps, SharedStyleProps } from './types';
 import { mergeStyleProp } from './utilities';
+import clsx from 'clsx';
 
 export const RAIL_WIDTH = 72;
 export const RAIL_WIDTH_CONDENSED = 56;
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles<Theme, DrawerProps>((theme: Theme) =>
     createStyles({
         root: {
             transition: theme.transitions.create('width', { duration: theme.transitions.duration.leavingScreen }),
             minHeight: '100%',
+            backgroundColor: (props): string => props.backgroundColor || 'transparent',
             '&$expanded': {
                 transition: theme.transitions.create('width', {
                     duration: theme.transitions.duration.enteringScreen,
@@ -69,7 +76,7 @@ const findChildByType = (children: ReactNode, type: string): JSX.Element[] =>
         }
     }) || [];
 
-export type DrawerComponentProps = Omit<DrawerProps, 'translate' | 'variant'> &
+export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
     SharedStyleProps &
     NavItemSharedStyleProps & {
         // the id for the currently active item
@@ -102,11 +109,9 @@ export type DrawerComponentProps = Omit<DrawerProps, 'translate' | 'variant'> &
         // Sets the width of the drawer (in px) when open
         width?: number;
     };
+export type DrawerComponentProps = DrawerProps; // alias
 
-const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentProps> = (
-    props: DrawerComponentProps,
-    ref: any
-) => {
+const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (props: DrawerProps, ref: any) => {
     let hoverDelay: NodeJS.Timeout;
     const defaultClasses = useStyles(props);
     const theme = useTheme();
@@ -118,6 +123,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
+        backgroundColor,
         chevron,
         collapseIcon,
         disableActiveItemParentStyles,
@@ -186,6 +192,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                         ),
                         activeItemFontColor: mergeStyleProp(activeItemFontColor, child.props.activeItemFontColor),
                         activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
+                        backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
                         chevron: mergeStyleProp(chevron, child.props.chevron),
                         collapseIcon: mergeStyleProp(collapseIcon, child.props.collapseIcon),
                         disableActiveItemParentStyles: mergeStyleProp(
@@ -288,7 +295,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
     }, [variant, noLayout, isDrawerOpen, getDrawerWidth]);
 
     return (
-        <Drawer
+        <MUIDrawer
             ref={ref}
             {...drawerProps}
             variant={variant === 'temporary' ? variant : 'permanent'}
@@ -322,39 +329,16 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                     {getDrawerContents()}
                 </div>
             </DrawerContext.Provider>
-        </Drawer>
+        </MUIDrawer>
     );
 };
 
-export const DrawerComponent = React.forwardRef(DrawerRenderer);
-DrawerComponent.displayName = 'PXBlueDrawer';
+export const Drawer = React.forwardRef(DrawerRenderer);
+Drawer.displayName = 'PXBlueDrawer';
 
 // TODO FIX ME
-export const PXBlueDrawerInheritablePropertiesPropTypes = {
-    activeItemBackgroundColor: PropTypes.string,
-    activeItemFontColor: PropTypes.string,
-    activeItemIconColor: PropTypes.string,
-    activeItemBackgroundShape: PropTypes.oneOf(['round', 'square']),
-    chevron: PropTypes.bool,
-    collapseIcon: PropTypes.element,
-    divider: PropTypes.bool,
-    expandIcon: PropTypes.element,
-    hidePadding: PropTypes.bool,
-    InfoListItemProps: PropTypes.object,
-    ButtonBaseProps: PropTypes.object,
-    itemFontColor: PropTypes.string,
-    itemIconColor: PropTypes.string,
-    ripple: PropTypes.bool,
-};
-export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
-    activeItem: PropTypes.string,
-    nestedDivider: PropTypes.bool,
-    onItemSelect: PropTypes.func,
-    titleColor: PropTypes.string,
-};
-
 // @ts-ignore
-DrawerComponent.propTypes = {
+Drawer.propTypes = {
     classes: PropTypes.shape({
         root: PropTypes.string,
         content: PropTypes.string,
@@ -367,7 +351,7 @@ DrawerComponent.propTypes = {
     variant: PropTypes.oneOf(['persistent', 'permanent', 'temporary', 'rail']),
     width: PropTypes.number,
 };
-DrawerComponent.defaultProps = {
+Drawer.defaultProps = {
     classes: {},
     openOnHover: true,
     sideBorder: false,

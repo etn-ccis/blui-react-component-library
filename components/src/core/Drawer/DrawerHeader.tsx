@@ -1,12 +1,17 @@
 import React, { ReactNode, useCallback } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Divider from '@material-ui/core/Divider';
-import { Typography, ToolbarProps } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import {
+    createStyles,
+    makeStyles,
+    Theme,
+    Toolbar,
+    Typography,
+    ToolbarProps,
+    Divider,
+    IconButton,
+} from '@material-ui/core';
 import { useDrawerContext } from './DrawerContext';
+import clsx from 'clsx';
 
 type DrawerHeaderClasses = {
     root?: string;

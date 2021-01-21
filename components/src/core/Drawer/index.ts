@@ -1,4 +1,4 @@
-export { DrawerComponent as Drawer, DrawerComponentProps } from './Drawer';
+export * from './Drawer';
 export * from './DrawerContext';
 export * from './DrawerHeader';
 export * from './DrawerSubheader';

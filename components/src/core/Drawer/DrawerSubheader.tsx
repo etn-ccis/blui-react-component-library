@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from 'react';
+import { useDrawerContext } from './DrawerContext';
 import { Divider } from '@material-ui/core';
 // import PropTypes from 'prop-types';
-import { useDrawerContext } from './DrawerContext';
 
 export type DrawerSubheaderProps = HTMLAttributes<HTMLDivElement> & {
     divider?: boolean;
