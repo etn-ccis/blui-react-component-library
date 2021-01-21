@@ -10,8 +10,8 @@ import { getLeftToRightIconTransform } from '../../src/utils';
 export const withFullConfig = (): StoryFnReactReturnType => {
     const value = text('value', '123');
     const units = text('units', 'hz');
-    const textColor = color('color', Colors.red[500]);
-    const iconColor = color('icon.htmlColor', Colors.black[500]);
+    const textColor = color('color', Colors.black[500]);
+    const iconColor = color('icon.htmlColor', Colors.red[500]);
     const icon = boolean('Show Icon', true) ? (
         <Trend htmlColor={iconColor} style={getLeftToRightIconTransform()} />
     ) : (

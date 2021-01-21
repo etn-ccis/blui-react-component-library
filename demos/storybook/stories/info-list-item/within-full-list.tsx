@@ -1,5 +1,5 @@
 import * as Colors from '@pxblue/colors';
-import { Device, GradeA, Leaf, Temp } from '@pxblue/icons-mui';
+import { Device, GradeA, DeviceActivating, Temp } from '@pxblue/icons-mui';
 import { ChannelValue, InfoListItem } from '@pxblue/react-components';
 import { select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
@@ -19,7 +19,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 divider={appliedDivider}
                 statusColor={Colors.green[500]}
                 subtitleSeparator={'/'}
-                icon={<Leaf color={'inherit'} />}
+                icon={<DeviceActivating color={'inherit'} />}
                 iconAlign={'center'}
                 rightComponent={<ChannelValue fontSize={16} value={'Online, ESS+'} />}
             />
@@ -73,9 +73,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 title={'Temperature'}
                 divider={appliedDivider}
                 icon={<Temp />}
-                rightComponent={
-                    <ChannelValue fontSize={16} icon={<Leaf htmlColor={Colors.green[500]} />} value={68} units={'°F'} />
-                }
+                rightComponent={<ChannelValue fontSize={16} value={68} units={'°F'} />}
                 iconAlign={'center'}
             />
         </>

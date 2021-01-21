@@ -9,8 +9,8 @@ import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 export const withFullConfig = (): StoryFnReactReturnType => (
     <ListItemTag
         label={text('label', 'clickable')}
-        backgroundColor={color('backgroundColor', Colors.green[500])}
-        fontColor={color('fontColor', Colors.black[900])}
+        backgroundColor={color('backgroundColor', Colors.blue[500])}
+        fontColor={color('fontColor', Colors.white[50])}
         onClick={action('ListItemTag: onClick')}
         style={{
             padding: text('style.padding', '0 4px'),

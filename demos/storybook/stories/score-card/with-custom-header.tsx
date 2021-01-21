@@ -13,7 +13,7 @@ export const withCustomHeader = (): StoryFnReactReturnType => (
         headerTitle={text('headerTitle', 'Card Title')}
         headerSubtitle={text('headerSubtitle', 'Card Subtitle')}
         headerInfo={text('headerInfo', '4 Devices')}
-        headerColor={color('headerColor', Colors.red[500])}
+        headerColor={color('headerColor', Colors.blue[500])}
         headerFontColor={color('headerFontColor', Colors.white[50])}
         headerBackgroundImage={backgroundImage}
     >

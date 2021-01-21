@@ -1,5 +1,5 @@
 import * as Colors from '@pxblue/colors';
-import { Leaf } from '@pxblue/icons-mui';
+import { Alarm } from '@material-ui/icons';
 import { InfoListItem } from '@pxblue/react-components';
 import { color, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
@@ -9,9 +9,9 @@ export const withIcon = (): StoryFnReactReturnType => (
     <InfoListItem
         title={'Info List Item'}
         subtitle={'with an icon'}
-        icon={<Leaf />}
+        icon={<Alarm />}
         iconAlign={select('iconAlign', ['left', 'center', 'right'], 'left')}
-        iconColor={color('iconColor', Colors.green[700])}
+        iconColor={color('iconColor', Colors.black[500])}
     />
 );
 
