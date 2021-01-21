@@ -3,15 +3,17 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import List, { ListProps } from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import { Typography } from '@material-ui/core';
+import { Typography, ButtonBaseProps as MuiButtonBaseProps } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import PropTypes from 'prop-types';
 import { white, darkBlack } from '@pxblue/colors';
 import { useDrawerContext } from './DrawerContext';
 import { NewNestedDrawerNavItem, NewDrawerNavItem } from './NewDrawerNavItem';
-import { DrawerNavGroupContext } from './DrawerNavGroupContext';
 import { NavItemSharedStyleProps, SharedStyleProps } from './types';
+import { DrawerRailItem } from './DrawerRailItem';
+import { NavGroupContext } from './NavGroupContext';
 
+type ExtendedNavItem = NewDrawerNavItem & { ButtonBaseProps?: Partial<MuiButtonBaseProps> };
 export type NewDrawerNavGroupProps = SharedStyleProps &
     NavItemSharedStyleProps &
     ListProps & {
@@ -22,7 +24,7 @@ export type NewDrawerNavGroupProps = SharedStyleProps &
         classes?: NewDrawerNavGroupClasses;
 
         // List of navigation items to render
-        items: NewDrawerNavItem[];
+        items: ExtendedNavItem[];
 
         // Text to display in the group header
         title?: string;
@@ -95,7 +97,6 @@ const findID = (item: NewDrawerNavItem | NewNestedDrawerNavItem, activeItem: str
 export const mergeStyleProp = <T extends unknown>(parentValue: T, childValue: T): T | undefined =>
     childValue !== undefined ? childValue : parentValue;
 
-    
 const NewDrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, NewDrawerNavGroupProps> = (
     props: NewDrawerNavGroupProps,
     ref: any
@@ -140,7 +141,7 @@ const NewDrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, NewDrawer
     }, [activeItem]);
 
     return (
-        <DrawerNavGroupContext.Provider value={{ activeHierarchy: activeHierarchyItems }}>
+        <NavGroupContext.Provider value={{ activeHierarchy: activeHierarchyItems }}>
             <List
                 ref={ref}
                 className={clsx(defaultClasses.listGroup, classes.listGroup)}
@@ -168,34 +169,31 @@ const NewDrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, NewDrawer
                 {...otherListProps}
             >
                 {variant !== 'rail' && <div key={`${title}_title`}>{(title || titleContent) && <Divider />}</div>}
-                {items.map((item: NewDrawerNavItem, index: number) =>
+                {items.map((item: ExtendedNavItem, index: number) =>
                     variant === 'rail' ? (
-                        // <NewDrawerRailItem
-                        //     key={`itemList_${index}`}
-                        //     // inherited props
-                        //     activeItemBackgroundColor={item.activeItemBackgroundColor || props.activeItemBackgroundColor}
-                        //     activeItemFontColor={item.activeItemFontColor || props.activeItemFontColor}
-                        //     activeItemIconColor={item.activeItemIconColor || props.activeItemIconColor}
-                        //     divider={item.divider !== undefined ? item.divider : props.divider}
-                        //     itemFontColor={item.itemFontColor || props.itemFontColor}
-                        //     itemIconColor={item.itemIconColor || props.itemIconColor}
-                        //     onItemSelect={item.onItemSelect ? item.onItemSelect : props.onItemSelect}
-                        //     ripple={item.ripple !== undefined ? item.ripple : props.ripple}
-                        //     ButtonBaseProps={
-                        //         item.ButtonBaseProps !== undefined ? item.ButtonBaseProps : props.ButtonBaseProps
-                        //     }
-                        //     // rail item props
-                        //     activeItem={activeItem}
-                        //     condensed={condensed}
-                        //     hidden={item.hidden}
-                        //     icon={item.icon}
-                        //     itemID={item.itemID}
-                        //     onClick={item.onClick}
-                        //     statusColor={item.statusColor}
-                        //     title={item.title}
-                        //     classes={classes}
-                        // />
-                        <Typography>TODO</Typography>
+                        <DrawerRailItem
+                            key={`itemList_${index}`}
+                            // {...item}
+                            // inherited props
+                            activeItemBackgroundColor={mergeStyleProp(
+                                activeItemBackgroundColor,
+                                item.activeItemBackgroundColor
+                            )}
+                            activeItemFontColor={mergeStyleProp(activeItemFontColor, item.activeItemFontColor)}
+                            activeItemIconColor={mergeStyleProp(activeItemIconColor, item.activeItemIconColor)}
+                            divider={mergeStyleProp(divider, item.divider)}
+                            itemFontColor={mergeStyleProp(itemFontColor, item.itemFontColor)}
+                            itemIconColor={mergeStyleProp(itemIconColor, item.itemIconColor)}
+                            ripple={mergeStyleProp(ripple, item.ripple)}
+                            ButtonBaseProps={item.ButtonBaseProps}
+                            // rail item props
+                            hidden={item.hidden}
+                            icon={item.icon}
+                            itemID={item.itemID}
+                            onClick={item.onClick}
+                            statusColor={item.statusColor}
+                            title={item.title}
+                        />
                     ) : (
                         <NewDrawerNavItem
                             key={`itemList_${index}`}
@@ -236,7 +234,7 @@ const NewDrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, NewDrawer
                     )
                 )}
             </List>
-        </DrawerNavGroupContext.Provider>
+        </NavGroupContext.Provider>
     );
 };
 export const NewDrawerNavGroup = React.forwardRef(NewDrawerNavGroupRender);

@@ -8,9 +8,11 @@ import {
     Typography,
 } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { PXBlueDrawerInheritableProperties, RAIL_WIDTH, RAIL_WIDTH_CONDENSED } from './Drawer';
+import { RAIL_WIDTH, RAIL_WIDTH_CONDENSED } from './Drawer';
 import color from 'color';
 import clsx from 'clsx';
+import { SharedStyleProps } from './types';
+import { useDrawerContext } from './DrawerContext';
 
 export type DrawerRailItemClasses = {
     root?: string;
@@ -25,21 +27,12 @@ export type DrawerRailItemClasses = {
 };
 
 export type DrawerRailItemProps = MuiButtonBaseProps &
-    Pick<
-        PXBlueDrawerInheritableProperties,
-        | 'activeItemBackgroundColor'
-        | 'activeItemFontColor'
-        | 'activeItemIconColor'
-        | 'divider'
-        | 'itemFontColor'
-        | 'itemIconColor'
-        | 'onItemSelect'
-        | 'ripple'
-    > & {
-        activeItem?: string;
-
+    SharedStyleProps & {
         // toggles the condensed style
         condensed?: boolean;
+
+        // classes for style overrides
+        classes?: DrawerRailItemClasses;
 
         // sets whether to hide the nav item
         hidden?: boolean;
@@ -59,9 +52,6 @@ export type DrawerRailItemProps = MuiButtonBaseProps &
 
         // text to be displayed
         title: string;
-
-        // classes for style overrides
-        classes?: DrawerRailItemClasses;
 
         // props for the ButtonBase
         ButtonBaseProps?: Partial<MuiButtonBaseProps>;
@@ -92,7 +82,6 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             padding: (props): string =>
                 `${theme.spacing(2)}px ${props.statusColor ? theme.spacing(1) : theme.spacing(0.5)}px`,
             textAlign: 'center',
-            cursor: (props): string => (props.onClick ? 'pointer' : 'default'),
             '&:hover': {
                 backgroundColor: (props): string => (props.onClick ? theme.palette.action.hover : undefined),
             },
@@ -108,10 +97,11 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             right: 0,
             bottom: 0,
             backgroundColor: (props): string =>
-                props.itemID !== props.activeItem
-                    ? 'transparent'
-                    : props.activeItemBackgroundColor ||
-                      (theme.palette.type === 'light' ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary),
+                props.activeItemBackgroundColor ||
+                (theme.palette.type === 'light' ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary),
+        },
+        cursorPointer: {
+            cursor: 'pointer',
         },
         divider: {
             position: 'absolute',
@@ -120,15 +110,23 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             width: '100%',
         },
         icon: {
-            color: (props): string =>
-                props.itemID !== props.activeItem
-                    ? props.itemIconColor || theme.palette.text.primary
-                    : props.activeItemIconColor ||
-                      (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary),
+            color: (props): string => props.itemIconColor || theme.palette.text.primary,
             backgroundColor: 'transparent',
             height: 'auto',
             width: 'auto',
             overflow: 'visible',
+        },
+        itemActive: {
+            '& $icon': {
+                color: (props): string =>
+                    props.activeItemIconColor ||
+                    (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary),
+            },
+            '& $title': {
+                color: (props): string =>
+                    props.activeItemFontColor ||
+                    (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary),
+            },
         },
         statusStripe: {
             position: 'absolute',
@@ -144,11 +142,7 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             wordBreak: 'break-word',
             hyphens: 'auto',
             zIndex: 200,
-            color: (props): string =>
-                props.itemID !== props.activeItem
-                    ? props.itemFontColor || theme.palette.text.primary
-                    : props.activeItemFontColor ||
-                      (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary),
+            color: (props): string => props.itemFontColor || theme.palette.text.primary,
         },
         titleActive: {
             fontWeight: 600,
@@ -164,33 +158,33 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     ref: any
 ) => {
     const {
-        activeItem,
-        classes = {},
-        condensed = false,
-        divider,
-        hidden,
-        icon,
-        itemID,
-        onClick,
-        onItemSelect,
-        ripple = true,
-        title,
-        ButtonBaseProps,
         /* eslint-disable @typescript-eslint/no-unused-vars */
         activeItemBackgroundColor,
         activeItemFontColor,
         activeItemIconColor,
         itemFontColor,
         itemIconColor,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
+        divider,
+        ripple = true,
+        classes = {},
+        condensed: itemCondensed = false,
+        hidden,
+        icon,
+        itemID,
+        onClick,
+        // onItemSelect,
+        title,
+        ButtonBaseProps,
         statusColor,
-        /* eslint-disable @typescript-eslint/no-unused-vars */
         ...directButtonBaseProps
     } = props;
 
-    const defaultClasses = useStyles(props);
-
+    const { activeItem, onItemSelect, condensed: drawerCondensed } = useDrawerContext();
     const active = activeItem === itemID;
-    const hasAction = Boolean(onClick);
+    const condensed = itemCondensed !== undefined ? itemCondensed : drawerCondensed;
+    const defaultClasses = useStyles(props);
+    const hasAction = Boolean(onClick || onItemSelect);
 
     // Customize the color of the Touch Ripple
     const RippleProps =
@@ -218,13 +212,13 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     const onClickAction = useCallback(
         (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
             if (onItemSelect) {
-                onItemSelect();
+                onItemSelect(itemID);
             }
             if (onClick) {
                 onClick(e);
             }
         },
-        [onItemSelect, onClick]
+        [onItemSelect, onClick, itemID]
     );
 
     const innerContent = (
@@ -233,6 +227,8 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {...ButtonBaseProps}
             {...directButtonBaseProps}
             className={clsx(defaultClasses.root, classes.root, {
+                [defaultClasses.cursorPointer]: hasAction,
+                [defaultClasses.itemActive]: active,
                 [defaultClasses.condensed]: condensed,
                 [classes.condensed]: condensed && classes.condensed,
             })}

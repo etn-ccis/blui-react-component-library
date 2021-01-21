@@ -11,7 +11,7 @@ import { usePrevious } from '../hooks/usePrevious';
 import { NavItemSharedStyleProps, SharedStyleProps } from './types';
 import { Collapse, List } from '@material-ui/core';
 import { white, darkBlack } from '@pxblue/colors';
-import { useDrawerNavGroupContext } from './DrawerNavGroupContext';
+import { useNavGroupContext } from './NavGroupContext';
 import { mergeStyleProp } from './NewDrawerNavGroup';
 
 export type NewDrawerNavItemClasses = {
@@ -127,7 +127,7 @@ const NewDrawerNavItemRender: React.ForwardRefRenderFunction<unknown, NewDrawerN
     const theme = useTheme();
     const defaultClasses = useStyles(props);
     const { open: drawerOpen, activeItem, onItemSelect } = useDrawerContext();
-    const { activeHierarchy } = useDrawerNavGroupContext();
+    const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem);
 
     // Primary color manipulation

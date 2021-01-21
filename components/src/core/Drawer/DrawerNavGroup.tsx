@@ -135,7 +135,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         ...otherListProps
     } = props;
 
-    const { variant, condensed } = useDrawerContext();
+    const { variant } = useDrawerContext();
 
     /* Keeps track of which group of IDs are in the 'active hierarchy' */
     const [activeHierarchyItems, setActiveHierarchyItems] = useState<string[]>([]);
@@ -186,14 +186,14 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                         divider={item.divider !== undefined ? item.divider : props.divider}
                         itemFontColor={item.itemFontColor || props.itemFontColor}
                         itemIconColor={item.itemIconColor || props.itemIconColor}
-                        onItemSelect={item.onItemSelect ? item.onItemSelect : props.onItemSelect}
+                        // onItemSelect={item.onItemSelect ? item.onItemSelect : props.onItemSelect}
                         ripple={item.ripple !== undefined ? item.ripple : props.ripple}
                         ButtonBaseProps={
                             item.ButtonBaseProps !== undefined ? item.ButtonBaseProps : props.ButtonBaseProps
                         }
                         // rail item props
-                        activeItem={activeItem}
-                        condensed={condensed}
+                        // activeItem={activeItem}
+                        // condensed={condensed}
                         hidden={item.hidden}
                         icon={item.icon}
                         itemID={item.itemID}
