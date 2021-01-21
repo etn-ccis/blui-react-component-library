@@ -11,7 +11,7 @@ export const withArrayForSubtitles = (): StoryFnReactReturnType => (
             <ChannelValue value={'50'} units={'°C'} key="cv1" />,
             <ChannelValue value={'55'} units={'°C'} key="cv2" />,
         ]}
-        subtitleSeparator={text('subtitleSeparator', '-')}
+        subtitleSeparator={text('subtitleSeparator', '·')}
         icon={<Temp />}
     />
 );

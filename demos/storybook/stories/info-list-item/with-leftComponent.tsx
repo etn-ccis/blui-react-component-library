@@ -8,7 +8,14 @@ export const withLeftComponent = (): StoryFnReactReturnType => (
         title={'Info List Item'}
         subtitle={'with a ChannelValue component to the left'}
         icon={<Device />}
-        leftComponent={new Date().toLocaleTimeString()}
+        leftComponent={
+            <div style={{ display: 'flex', flexDirection: 'column', marginRight: 16 }}>
+                <div>
+                    8:32 <strong>AM</strong>
+                </div>
+                <div>11/21/21</div>
+            </div>
+        }
     />
 );
 
