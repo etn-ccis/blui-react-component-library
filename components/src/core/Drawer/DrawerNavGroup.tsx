@@ -13,7 +13,7 @@ import {
     ListSubheader,
     Divider,
 } from '@material-ui/core';
-import { NavItemSharedStyleProps, SharedStyleProps } from './types';
+import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import { NestedDrawerNavItem, DrawerNavItem } from './DrawerNavItem';
 import { DrawerRailItem, ExtendedNavItem } from './DrawerRailItem';
 import { mergeStyleProp } from './utilities';
@@ -104,7 +104,6 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     const theme = useTheme();
     const {
         // Nav Group Props
-        backgroundColor, // eslint-disable-line @typescript-eslint/no-unused-vars
         classes,
         items,
         title,
@@ -115,6 +114,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
+        backgroundColor, // eslint-disable-line @typescript-eslint/no-unused-vars
         chevron,
         collapseIcon,
         disableActiveItemParentStyles,
@@ -240,8 +240,9 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
 };
 export const DrawerNavGroup = React.forwardRef(DrawerNavGroupRender);
 DrawerNavGroup.displayName = 'DrawerNavGroup';
-// TODO FIX ME
 DrawerNavGroup.propTypes = {
+    ...SharedStylePropTypes,
+    ...NavItemSharedStylePropTypes,
     classes: PropTypes.shape({
         active: PropTypes.string,
         expandIcon: PropTypes.string,
@@ -250,10 +251,13 @@ DrawerNavGroup.propTypes = {
         listItemContainer: PropTypes.string,
         nestedListGroup: PropTypes.string,
         subheader: PropTypes.string,
+        title: PropTypes.string,
     }),
     // @ts-ignore
     items: PropTypes.arrayOf(
         PropTypes.shape({
+            ...SharedStylePropTypes,
+            ...NavItemSharedStylePropTypes,
             icon: PropTypes.element,
             itemID: PropTypes.string.isRequired,
             subtitle: PropTypes.string,
@@ -263,6 +267,9 @@ DrawerNavGroup.propTypes = {
             statusColor: PropTypes.string,
         })
     ).isRequired,
+    title: PropTypes.string,
+    titleColor: PropTypes.string,
+    titleContent: PropTypes.element,
 };
 DrawerNavGroup.defaultProps = {
     classes: {},

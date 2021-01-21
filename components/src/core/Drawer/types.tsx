@@ -1,4 +1,5 @@
 import { DrawerProps } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 export type DrawerVariant = DrawerProps['variant'] | 'rail';
 
@@ -62,4 +63,26 @@ export type NavItemSharedStyleProps = {
 
     // Whether to apply a dividing line under nested navigation items
     nestedDivider?: boolean;
+};
+
+export const SharedStylePropTypes = {
+    activeItemBackgroundColor: PropTypes.string,
+    activeItemFontColor: PropTypes.string,
+    activeItemIconColor: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    divider: PropTypes.bool,
+    itemFontColor: PropTypes.string,
+    itemIconColor: PropTypes.string,
+    ripple: PropTypes.bool,
+};
+
+export const NavItemSharedStylePropTypes = {
+    activeItemBackgroundShape: PropTypes.oneOf(['round', 'square']),
+    chevron: PropTypes.bool,
+    collapseIcon: PropTypes.element,
+    expandIcon: PropTypes.element,
+    hidePadding: PropTypes.bool,
+    disableActiveItemParentStyles: PropTypes.bool,
+    nestedBackgroundColor: PropTypes.string,
+    nestedDivider: PropTypes.bool,
 };

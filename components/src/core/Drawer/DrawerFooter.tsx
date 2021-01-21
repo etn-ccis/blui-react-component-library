@@ -50,7 +50,6 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
     );
 };
 
-// TODO FIX ME
 export const DrawerFooter = React.forwardRef(DrawerFooterRender);
 DrawerFooter.displayName = 'DrawerFooter';
 DrawerFooter.propTypes = {

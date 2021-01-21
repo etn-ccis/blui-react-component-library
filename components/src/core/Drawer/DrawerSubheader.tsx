@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from 'react';
+import PropTypes from 'prop-types';
 import { useDrawerContext } from './DrawerContext';
 import { Divider } from '@material-ui/core';
-// import PropTypes from 'prop-types';
 
 export type DrawerSubheaderProps = HTMLAttributes<HTMLDivElement> & {
     divider?: boolean;
@@ -30,6 +30,7 @@ const DrawerSubheaderRender: React.ForwardRefRenderFunction<unknown, DrawerSubhe
 export const DrawerSubheader = React.forwardRef(DrawerSubheaderRender);
 
 DrawerSubheader.displayName = 'DrawerSubheader';
-
-// TODO FIX ME
-DrawerSubheader.propTypes = {};
+DrawerSubheader.propTypes = {
+    divider: PropTypes.bool,
+    hideContentOnCollapse: PropTypes.bool,
+};

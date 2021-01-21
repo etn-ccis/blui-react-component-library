@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDrawerContext } from './DrawerContext';
 import { useNavGroupContext } from './NavGroupContext';
 import { usePrevious } from '../hooks/usePrevious';
@@ -7,7 +8,7 @@ import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../Info
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { NavItemSharedStyleProps, SharedStyleProps } from './types';
+import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import clsx from 'clsx';
 import color from 'color';
 import { mergeStyleProp } from './utilities';
@@ -368,3 +369,42 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
 
 export const DrawerNavItem = React.forwardRef(DrawerNavItemRender);
 DrawerNavItem.displayName = 'DrawerNavItem';
+// @ts-ignore
+DrawerNavItem.propTypes = {
+    ...SharedStylePropTypes,
+    ...NavItemSharedStylePropTypes,
+    classes: PropTypes.shape({
+        title: PropTypes.string,
+        active: PropTypes.string,
+        listItemContainer: PropTypes.string,
+        nestedListGroup: PropTypes.string,
+        expandIcon: PropTypes.string,
+    }),
+    depth: PropTypes.number,
+    hidden: PropTypes.bool,
+    hidePadding: PropTypes.bool,
+    icon: PropTypes.element,
+    isInActiveTree: PropTypes.bool,
+    itemID: PropTypes.string.isRequired,
+    // @ts-ignore
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            ...SharedStylePropTypes,
+            ...NavItemSharedStylePropTypes,
+            itemID: PropTypes.string.isRequired,
+            subtitle: PropTypes.string,
+            title: PropTypes.string.isRequired,
+            onClick: PropTypes.func,
+            rightComponent: PropTypes.element,
+            statusColor: PropTypes.string,
+        })
+    ),
+    notifyActiveParent: PropTypes.func,
+    onClick: PropTypes.func,
+    rightComponent: PropTypes.element,
+    statusColor: PropTypes.string,
+    subtitle: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    // @ts-ignore
+    InfoListItemProps: PropTypes.object,
+};

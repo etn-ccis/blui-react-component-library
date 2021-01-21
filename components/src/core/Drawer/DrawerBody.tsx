@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
-import { NavItemSharedStyleProps, SharedStyleProps } from './types';
+import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import { mergeStyleProp } from './utilities';
 import clsx from 'clsx';
 
@@ -107,9 +107,10 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
 
 export const DrawerBody = React.forwardRef(DrawerBodyRender);
 DrawerBody.displayName = 'DrawerBody';
-// TODO FIX ME
 // @ts-ignore
 DrawerBody.propTypes = {
+    ...SharedStylePropTypes,
+    ...NavItemSharedStylePropTypes,
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),

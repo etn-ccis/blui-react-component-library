@@ -11,7 +11,7 @@ import {
 import { DrawerBodyProps } from './DrawerBody';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 import { DrawerContext } from './DrawerContext';
-import { NavItemSharedStyleProps, SharedStyleProps } from './types';
+import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import { mergeStyleProp } from './utilities';
 import clsx from 'clsx';
 
@@ -63,6 +63,8 @@ type DrawerClasses = {
 
     /** MUI Drawer style override for desktop viewports */
     paper?: string;
+
+    /** Styles to apply to the root element when using side border */
     sideBorder?: string;
 };
 
@@ -303,11 +305,11 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             classes={{
                 root: clsx(defaultClasses.root, classes.root, {
                     [defaultClasses.expanded]: isDrawerOpen(),
-                    [classes.expanded]: isDrawerOpen(),
+                    [classes.expanded]: isDrawerOpen() && classes.expanded,
                 }),
                 paper: clsx(defaultClasses.paper, classes.paper, {
                     [defaultClasses.sideBorder]: sideBorder,
-                    [classes.sideBorder]: sideBorder,
+                    [classes.sideBorder]: sideBorder && classes.sideBorder,
                 }),
             }}
             style={Object.assign(
@@ -335,16 +337,21 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
 
 export const Drawer = React.forwardRef(DrawerRenderer);
 Drawer.displayName = 'PXBlueDrawer';
-
-// TODO FIX ME
 // @ts-ignore
 Drawer.propTypes = {
+    ...SharedStylePropTypes,
+    ...NavItemSharedStylePropTypes,
+    activeItem: PropTypes.string,
     classes: PropTypes.shape({
         root: PropTypes.string,
         content: PropTypes.string,
+        expanded: PropTypes.string,
         paper: PropTypes.string,
+        sideBorder: PropTypes.string,
     }),
     condensed: PropTypes.bool,
+    noLayout: PropTypes.bool,
+    onItemSelect: PropTypes.func,
     open: PropTypes.bool.isRequired,
     openOnHover: PropTypes.bool,
     sideBorder: PropTypes.bool,
