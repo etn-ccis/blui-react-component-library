@@ -10,6 +10,7 @@ import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 import { actionItems, actionRow } from './with-actions';
 import { useDarkMode } from 'storybook-dark-mode';
 import { heroes } from './with-heroes';
+import { getLeftToRightIconTransform } from '../../src/utils';
 
 const backgroundImage = require('../../assets/topology_40.png');
 

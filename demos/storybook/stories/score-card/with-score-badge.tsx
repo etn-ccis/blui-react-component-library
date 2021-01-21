@@ -10,6 +10,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import { actionRow } from './with-actions';
 import React from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
+import { getLeftToRightIconTransform } from '../../src/utils';
 
 const backgroundImage = require('../../assets/topology_40.png');
 
