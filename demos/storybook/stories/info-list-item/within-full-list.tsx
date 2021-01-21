@@ -1,5 +1,5 @@
 import * as Colors from '@pxblue/colors';
-import { Device, GradeA, DeviceActivating, Leaf, Temp } from '@pxblue/icons-mui';
+import { Device, GradeA, DeviceActivating, Temp } from '@pxblue/icons-mui';
 import { ChannelValue, InfoListItem } from '@pxblue/react-components';
 import { select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
