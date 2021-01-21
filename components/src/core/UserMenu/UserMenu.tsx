@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
-import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
+import { DrawerHeader, DrawerNavGroup, DrawerNavItem as NavItem } from '../Drawer';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -164,7 +164,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 <div className={defaultClasses.navGroups} key={index}>
                     <DrawerNavGroup
                         divider={false}
-                        drawerOpen={true}
+                        // drawerOpen={true}
                         itemIconColor={group.iconColor}
                         itemFontColor={group.fontColor}
                         title={group.title}

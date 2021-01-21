@@ -2,10 +2,11 @@ import React, { HTMLAttributes } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Divider } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { useDrawerContext } from './DrawerContext';
+import clsx from 'clsx';
 
 export type DrawerFooterProps = HTMLAttributes<HTMLDivElement> & {
     backgroundColor?: string;
-    drawerOpen?: boolean;
     divider?: boolean;
     hideContentOnCollapse?: boolean;
 };
@@ -14,8 +15,9 @@ const useStyles = makeStyles({
     root: {
         width: '100%',
         backgroundColor: (props: DrawerFooterProps): string => props.backgroundColor,
-        visibility: (props: DrawerFooterProps): 'inherit' | 'hidden' =>
-            props.drawerOpen || !props.hideContentOnCollapse ? 'inherit' : 'hidden',
+    },
+    hidden: {
+        visibility: 'hidden',
     },
 });
 
@@ -30,26 +32,30 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
-        drawerOpen,
         hideContentOnCollapse,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherDivProps
     } = props;
+    const { open: drawerOpen } = useDrawerContext();
     return (
         <>
             {divider && <Divider />}
-            <div ref={ref} className={classes.root} {...otherDivProps}>
+            <div
+                ref={ref}
+                className={clsx(classes.root, { [classes.hidden]: !drawerOpen && hideContentOnCollapse })}
+                {...otherDivProps}
+            >
                 {children}
             </div>
         </>
     );
 };
 
+// TODO FIX ME
 export const DrawerFooter = React.forwardRef(DrawerFooterRender);
 DrawerFooter.displayName = 'DrawerFooter';
 DrawerFooter.propTypes = {
     backgroundColor: PropTypes.string,
-    drawerOpen: PropTypes.bool,
     divider: PropTypes.bool,
     hideContentOnCollapse: PropTypes.bool,
 };

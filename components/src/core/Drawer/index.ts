@@ -7,6 +7,4 @@ export * from './DrawerFooter';
 export * from './DrawerNavGroup';
 export * from './DrawerNavItem';
 export * from './DrawerRailItem';
-export * from './NewDrawerNavItem';
-export * from './NewDrawerNavGroup';
 export * from './types';

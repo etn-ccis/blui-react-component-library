@@ -13,6 +13,7 @@ import color from 'color';
 import clsx from 'clsx';
 import { SharedStyleProps } from './types';
 import { useDrawerContext } from './DrawerContext';
+import { DrawerNavItem } from './DrawerNavItem';
 
 export type DrawerRailItemClasses = {
     root?: string;
@@ -26,6 +27,7 @@ export type DrawerRailItemClasses = {
     ripple?: string;
 };
 
+export type ExtendedNavItem = DrawerNavItem & { ButtonBaseProps?: Partial<MuiButtonBaseProps> };
 export type DrawerRailItemProps = MuiButtonBaseProps &
     SharedStyleProps & {
         // toggles the condensed style

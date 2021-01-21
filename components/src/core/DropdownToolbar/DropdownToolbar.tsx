@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
-import { NavItem, DrawerNavGroup } from '../Drawer';
+import { DrawerNavItem as NavItem, DrawerNavGroup } from '../Drawer';
 import PropTypes from 'prop-types';
 
 export type ToolbarMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
@@ -187,7 +187,6 @@ const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToo
                             <div className={defaultClasses.navGroups} key={index}>
                                 <DrawerNavGroup
                                     divider={false}
-                                    drawerOpen={true}
                                     hidePadding={true}
                                     itemIconColor={group.iconColor}
                                     itemFontColor={group.fontColor}

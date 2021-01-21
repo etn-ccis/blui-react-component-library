@@ -1,57 +1,45 @@
-import React, { ReactNode, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
-import { PXBlueDrawerInheritableProperties } from './Drawer';
-import { DrawerNavGroupProps } from './DrawerNavGroup';
-import { InfoListItem } from '../InfoListItem';
+import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../InfoListItem';
 import { useDrawerContext } from './DrawerContext';
 import color from 'color';
 import { usePrevious } from '../hooks/usePrevious';
+import { NavItemSharedStyleProps, SharedStyleProps } from './types';
+import { Collapse, List } from '@material-ui/core';
+import { white, darkBlack } from '@pxblue/colors';
+import { useNavGroupContext } from './NavGroupContext';
+import { mergeStyleProp } from './utilities';
 
-export type NavItem = {
-    // sets whether to hide the nav item
-    hidden?: boolean;
-
-    // icon on the left
-    icon?: JSX.Element;
-
-    // item id to match for the active state.
-    // Should be unique within the entire list. Will be used as the list key too.
-    itemID: string;
-
-    // any items listed inside this
-    items?: NestedNavItem[];
-
-    // onClick of the entire row
-    onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-
-    // component to be rendered on the right next to the expandIcon
-    rightComponent?: ReactNode;
-
-    // Status stripe color
-    statusColor?: string;
-
-    // secondary text as a hint text
-    subtitle?: string;
-
-    // text to be displayed
-    title: string;
-} & PXBlueDrawerInheritableProperties;
-
-export type NestedNavItem = Omit<NavItem, 'icon'>;
-
-export type DrawerNavItem = {
-    isInActiveTree?: boolean;
-    navItem: NavItem | NestedNavItem;
-    navGroupProps: DrawerNavGroupProps;
-    depth: number;
-    expanded: boolean;
-    expandHandler?: () => void;
-    notifyActiveParent?: () => void;
+export type DrawerNavItemClasses = {
+    title?: string;
+    active?: string;
+    listItemContainer?: string;
+    nestedListGroup?: string;
+    expandIcon?: string;
 };
+export type DrawerNavItem = SharedStyleProps &
+    NavItemSharedStyleProps & {
+        classes?: DrawerNavItemClasses;
+        depth?: number;
+        hidden?: boolean;
+        hidePadding?: boolean;
+        icon?: JSX.Element;
+        isInActiveTree?: boolean;
+        itemID: string;
+        items?: NestedDrawerNavItem[];
+        notifyActiveParent?: (ids?: string[]) => void;
+        onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+        rightComponent?: JSX.Element;
+        statusColor?: string;
+        subtitle?: string;
+        title: string;
+        InfoListItemProps?: PXBInfoListItemProps;
+    };
+export type NestedDrawerNavItem = Omit<DrawerNavItem, 'icon'>;
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
 const calcNestedPadding = (theme: Theme, depth: number): number =>
@@ -105,6 +93,12 @@ const useStyles = makeStyles((theme: Theme) =>
         nestedTitle: {
             fontWeight: 400,
         },
+        nestedListGroup: {
+            backgroundColor: (props: DrawerNavItem): string =>
+                props.nestedBackgroundColor || (theme.palette.type === 'light' ? white[200] : darkBlack[100]),
+            paddingBottom: 0,
+            paddingTop: 0,
+        },
         noIconTitle: {
             opacity: 0,
             transition: theme.transitions.create('opacity'),
@@ -130,16 +124,13 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     props: DrawerNavItem,
     ref: any
 ) => {
-    const { depth, expanded, expandHandler, navItem, navGroupProps, notifyActiveParent = (): void => {} } = props;
-    const { title: itemTitle, subtitle: itemSubtitle, items, itemID, onClick, statusColor } = navItem;
-
-    // only allow icons for the top level items
-    const icon = !depth ? (navItem as NavItem).icon : undefined;
-
-    const defaultClasses = useStyles(props);
     const theme = useTheme();
-    const { open: isOpen } = useDrawerContext();
+    const defaultClasses = useStyles(props);
+    const { open: drawerOpen, activeItem, onItemSelect } = useDrawerContext();
+    const { activeHierarchy } = useNavGroupContext();
+    const previousActive = usePrevious(activeItem);
 
+    // Primary color manipulation
     const fivePercentOpacityPrimary = color(theme.palette.primary.main)
         .fade(0.95)
         .string();
@@ -151,60 +142,63 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
         .lighten(0.83)
         .desaturate(0.39)
         .string();
-    const { activeItem, classes, nestedDivider } = navGroupProps;
 
-    const previousActive = usePrevious(activeItem);
+    // Destructure the props
+    const {
+        activeItemBackgroundColor = theme.palette.type === 'light'
+            ? fivePercentOpacityPrimary
+            : twentyPercentOpacityPrimary,
+        activeItemBackgroundShape = 'square',
+        activeItemFontColor = theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary,
+        activeItemIconColor = theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary,
+        chevron,
+        classes = {},
+        collapseIcon,
+        depth = 0,
+        disableActiveItemParentStyles = false,
+        divider,
+        expandIcon = props.depth ? <ArrowDropDown /> : <ExpandMore />,
+        hidePadding,
+        icon: itemIcon,
+        InfoListItemProps = {} as PXBInfoListItemProps,
+        isInActiveTree,
+        itemID,
+        itemFontColor = theme.palette.text.primary,
+        itemIconColor = theme.palette.text.primary,
+        items,
+        nestedBackgroundColor,
+        nestedDivider,
+        notifyActiveParent = (): void => {},
+        onClick,
+        rightComponent = props.chevron && !props.items ? <ChevronRight /> : undefined,
+        ripple = true,
+        statusColor,
+        subtitle: itemSubtitle,
+        title: itemTitle,
+    } = props;
+
+    const [expanded, setExpanded] = useState(isInActiveTree);
+    const active = activeItem === itemID;
+    const hasAction = Boolean(onItemSelect || onClick || (items && items.length > 0));
+    // only allow icons for the top level items
+    const icon = !depth ? itemIcon : undefined;
+    const showDivider =
+        divider !== undefined ? divider : depth ? (nestedDivider !== undefined ? nestedDivider : false) : false;
+
+    // When the activeItem changes, update our expanded state
+    useEffect(() => {
+        if (isInActiveTree && !expanded) {
+            setExpanded(true);
+        }
+    }, [isInActiveTree]); // Only update if the active tree changes (not after manual expand/collapse action)
 
     // If the active item changes
     useEffect(() => {
         if (activeItem === itemID && previousActive !== itemID) {
             // notify the parent that it should now be in the active tree
-            notifyActiveParent();
+            notifyActiveParent([itemID]);
         }
     }, [activeItem, notifyActiveParent]);
-
-    // handle inheritables
-    const activeItemBackgroundColor =
-        navItem.activeItemBackgroundColor ||
-        navGroupProps.activeItemBackgroundColor ||
-        (theme.palette.type === 'light' ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary);
-    const activeItemBackgroundShape =
-        navItem.activeItemBackgroundShape || navGroupProps.activeItemBackgroundShape || 'square';
-    const activeItemFontColor =
-        navItem.activeItemFontColor ||
-        navGroupProps.activeItemFontColor ||
-        (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary);
-    const activeItemIconColor =
-        navItem.activeItemIconColor ||
-        navGroupProps.activeItemIconColor ||
-        (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary);
-    const chevron = navItem.chevron !== undefined ? navItem.chevron : navGroupProps.chevron;
-    const collapseIcon = navItem.collapseIcon || navGroupProps.collapseIcon;
-    let divider;
-    if (depth) {
-        divider = navItem.divider !== undefined ? navItem.divider : nestedDivider !== undefined ? nestedDivider : false;
-    } else {
-        divider =
-            navItem.divider !== undefined
-                ? navItem.divider
-                : navGroupProps.divider !== undefined
-                ? navGroupProps.divider
-                : false; // dividers off by default
-    }
-    const expandIcon = navItem.expandIcon || navGroupProps.expandIcon || (depth ? <ArrowDropDown /> : <ExpandMore />);
-    const hidePadding = navItem.hidePadding !== undefined ? navItem.hidePadding : navGroupProps.hidePadding;
-    const InfoListItemProps = navItem.InfoListItemProps || navGroupProps.InfoListItemProps || {};
-    const itemFontColor = navItem.itemFontColor || navGroupProps.itemFontColor || theme.palette.text.primary;
-    const itemIconColor = navItem.itemIconColor || navGroupProps.itemIconColor || theme.palette.text.primary;
-    const onItemSelect = navItem.onItemSelect || navGroupProps.onItemSelect;
-    const ripple =
-        navItem.ripple !== undefined
-            ? navItem.ripple
-            : navGroupProps.ripple !== undefined
-            ? navGroupProps.ripple
-            : true;
-
-    const hasAction = Boolean(onItemSelect || onClick || expandHandler);
 
     // Customize the color of the Touch Ripple
     const RippleProps =
@@ -218,21 +212,20 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
               }
             : {};
 
+    // Handle click callbacks
     const onClickAction = useCallback(
         (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
             if (onItemSelect) {
-                onItemSelect();
+                onItemSelect(itemID);
             }
             if (onClick) {
                 onClick(e);
-            } else if (expandHandler) {
-                expandHandler();
+            } else if (items && items.length > 0) {
+                setExpanded(!expanded);
             }
         },
-        [onItemSelect, onClick, expandHandler]
+        [onItemSelect, onClick, itemID, items, expanded, setExpanded]
     );
-
-    const rightComponent = navItem.rightComponent || (chevron && !items ? <ChevronRight /> : undefined);
 
     const getActionComponent = useCallback((): JSX.Element => {
         if (!items) {
@@ -242,7 +235,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
             <div
                 onClick={(e): void => {
                     if (e) {
-                        expandHandler();
+                        setExpanded(!expanded);
                         e.stopPropagation();
                     }
                 }}
@@ -253,27 +246,27 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                 {collapseIcon && expanded ? collapseIcon : expandIcon}
             </div>
         );
-    }, [items, expandHandler, classes, defaultClasses, collapseIcon, expanded, expandIcon]);
-
+    }, [items, classes, defaultClasses, collapseIcon, expanded, expandIcon]);
     const actionComponent = getActionComponent();
-    const active = activeItem === itemID;
+
+    // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
         root: defaultClasses.infoListItem,
         title: clsx(defaultClasses.title, classes.title, {
-            [defaultClasses.titleActive]: active || props.isInActiveTree,
+            [defaultClasses.titleActive]: active || (!disableActiveItemParentStyles && isInActiveTree),
             [defaultClasses.nestedTitle]: depth > 0,
             [defaultClasses.noIconTitle]: hidePadding && !icon,
-            [defaultClasses.drawerOpen]: isOpen,
+            [defaultClasses.drawerOpen]: drawerOpen,
         }),
         subtitle: clsx({
             [defaultClasses.noIconTitle]: hidePadding && !icon,
-            [defaultClasses.drawerOpen]: isOpen,
+            [defaultClasses.drawerOpen]: drawerOpen,
         }),
     };
 
     return (
         <>
-            {!navItem.hidden && (
+            {!props.hidden && (
                 <div
                     ref={ref}
                     style={{ position: 'relative' }}
@@ -291,7 +284,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                         dense
                         title={itemTitle}
                         subtitle={itemSubtitle}
-                        divider={divider ? 'full' : undefined}
+                        divider={showDivider ? 'full' : undefined}
                         statusColor={statusColor}
                         fontColor={active ? activeItemFontColor : itemFontColor}
                         icon={icon}
@@ -319,6 +312,51 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                         classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                     />
                 </div>
+            )}
+            {/* If the NavItem has child items defined, render them in a collapse panel */}
+            {items && items.length > 0 && (
+                <Collapse in={expanded && drawerOpen !== false} key={`${itemTitle}_group_${depth}`}>
+                    <List className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)}>
+                        {items.map((subItem: DrawerNavItem, index: number) => (
+                            <DrawerNavItem
+                                key={`itemList_${index}`}
+                                {...subItem}
+                                activeItemBackgroundColor={mergeStyleProp(
+                                    activeItemBackgroundColor,
+                                    subItem.activeItemBackgroundColor
+                                )}
+                                activeItemBackgroundShape={mergeStyleProp(
+                                    activeItemBackgroundShape,
+                                    subItem.activeItemBackgroundShape
+                                )}
+                                activeItemFontColor={mergeStyleProp(activeItemFontColor, subItem.activeItemFontColor)}
+                                activeItemIconColor={mergeStyleProp(activeItemIconColor, subItem.activeItemIconColor)}
+                                chevron={mergeStyleProp(chevron, subItem.chevron)}
+                                collapseIcon={mergeStyleProp(collapseIcon, subItem.collapseIcon)}
+                                disableActiveItemParentStyles={mergeStyleProp(
+                                    disableActiveItemParentStyles,
+                                    subItem.disableActiveItemParentStyles
+                                )}
+                                divider={mergeStyleProp(divider, subItem.divider)}
+                                expandIcon={mergeStyleProp(expandIcon, subItem.expandIcon)}
+                                hidePadding={mergeStyleProp(hidePadding, subItem.hidePadding)}
+                                itemFontColor={mergeStyleProp(itemFontColor, subItem.itemFontColor)}
+                                itemIconColor={mergeStyleProp(itemIconColor, subItem.itemIconColor)}
+                                nestedBackgroundColor={mergeStyleProp(
+                                    nestedBackgroundColor,
+                                    subItem.nestedBackgroundColor
+                                )}
+                                nestedDivider={mergeStyleProp(nestedDivider, subItem.nestedDivider)}
+                                ripple={mergeStyleProp(ripple, subItem.ripple)}
+                                depth={depth + 1}
+                                isInActiveTree={activeHierarchy.includes(subItem.itemID)}
+                                notifyActiveParent={(ids: string[] = []): void =>
+                                    notifyActiveParent(ids.concat(itemID))
+                                }
+                            />
+                        ))}
+                    </List>
+                </Collapse>
             )}
         </>
     );
