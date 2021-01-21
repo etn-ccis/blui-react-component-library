@@ -9,6 +9,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import { actionRow } from './with-actions';
 import React from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
+import {getLeftToRightIconTransform} from "../../src/utils";
 
 const backgroundImage = require('../../assets/topology_40.png');
 
@@ -45,7 +46,7 @@ export const withScoreBadge = (): StoryFnReactReturnType => (
                 fontColor={useDarkMode() ? Colors.blue[300] : Colors.blue[500]}
                 iconColor={useDarkMode() ? Colors.blue[300] : Colors.blue[500]}
                 title={'1 Event'}
-                icon={<ListAlt color={'inherit'} />}
+                icon={<ListAlt color={'inherit'} style={getLeftToRightIconTransform()}/>}
             />
             <InfoListItem dense style={{ height: 36 }} title={'Online'} icon={<Cloud color={'inherit'} />} />
         </List>
