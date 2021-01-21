@@ -60,7 +60,7 @@ export const withScoreBadge = (): StoryFnReactReturnType => {
                     fontColor={useDarkMode() ? Colors.blue[300] : Colors.blue[500]}
                     iconColor={useDarkMode() ? Colors.blue[300] : Colors.blue[500]}
                     title={'1 Event'}
-                    icon={<ListAlt color={'inherit'} />}
+                    icon={<ListAlt color={'inherit'} style={getLeftToRightIconTransform()} />}
                 />
                 <InfoListItem
                     dense
