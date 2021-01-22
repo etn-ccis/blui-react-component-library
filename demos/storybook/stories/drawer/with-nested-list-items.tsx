@@ -6,7 +6,7 @@ import { Drawer, DrawerHeader } from '@pxblue/react-components/core/Drawer';
 import { boolean, select, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { DrawerState, DrawerStoryContext } from './util';
+import { DrawerStoryContext } from './util';
 
 const userGuide = 'User Guide';
 const license = 'License';
@@ -91,14 +91,13 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
         }
     })();
 
-    const drawerItemList = (state: DrawerState): JSX.Element => (
+    const drawerItemList = (): JSX.Element => (
         <DrawerBody disableActiveItemParentStyles={boolean('disableActiveItemParentStyles', false, DrawerNavGroupID)}>
             <DrawerNavGroup
                 divider={divider}
                 nestedDivider={nestedDivider}
                 title={'Multi-Level Navigation Group'}
                 hidePadding={hidePadding}
-                activeItem={state.selected}
                 chevron={chevron}
                 nestedBackgroundColor={nestedBackgroundColor}
                 expandIcon={getIcon(groupUseExpandIcon)}
@@ -228,9 +227,9 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
     );
 
     return (
-        <Drawer open={open} key={'drawer'}>
+        <Drawer open={open} key={'drawer'} activeItem={context.state.selected}>
             <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
-            {drawerItemList(context.state)}
+            {drawerItemList()}
         </Drawer>
     );
 };

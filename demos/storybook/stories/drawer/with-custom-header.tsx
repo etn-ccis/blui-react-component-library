@@ -10,7 +10,7 @@ import { navGroupItems1 } from './with-basic-config';
 const farmBgImage = require('../../assets/farm.jpg');
 
 export const withCustomHeader = (context: DrawerStoryContext): StoryFnReactReturnType => (
-    <Drawer open={boolean('open', true)}>
+    <Drawer open={boolean('open', true)} activeItem={context.state.selected}>
         <DrawerHeader
             backgroundImage={farmBgImage}
             backgroundOpacity={0.5}
@@ -25,7 +25,7 @@ export const withCustomHeader = (context: DrawerStoryContext): StoryFnReactRetur
             }
         />
         <DrawerBody>
-            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
+            <DrawerNavGroup items={navGroupItems1} />
         </DrawerBody>
     </Drawer>
 );

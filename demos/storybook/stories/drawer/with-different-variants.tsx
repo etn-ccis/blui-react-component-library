@@ -14,10 +14,11 @@ export const withDifferentVariants = (context: DrawerStoryContext): StoryFnReact
         ModalProps={{
             disableEnforceFocus: true,
         }}
+        activeItem={context.state.selected}
     >
         <DrawerHeader icon={<Menu />} title={'Drawer with variants'} />
         <DrawerBody>
-            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
+            <DrawerNavGroup items={navGroupItems1} />
         </DrawerBody>
     </Drawer>
 );

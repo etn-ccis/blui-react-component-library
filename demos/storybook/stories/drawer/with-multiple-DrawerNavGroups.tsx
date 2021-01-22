@@ -8,20 +8,12 @@ import { DrawerStoryContext } from './util';
 import { navGroupItems1, navGroupItems2 } from './with-basic-config';
 
 export const withMultipleNavGroups = (context: DrawerStoryContext): StoryFnReactReturnType => (
-    <Drawer open={boolean('open', true)}>
+    <Drawer open={boolean('open', true)} activeItem={context.state.selected}>
         <DrawerHeader icon={<Menu />} title={'PX Blue Drawer'} subtitle={'with multiple navigation groups'} />
         <DrawerBody>
-            <DrawerNavGroup
-                title={text('navGroup[0].title', 'First DrawerNavGroup')}
-                activeItem={context.state.selected}
-                items={navGroupItems1}
-            />
+            <DrawerNavGroup title={text('navGroup[0].title', 'First DrawerNavGroup')} items={navGroupItems1} />
             {boolean('Add Spacer', false) && <Spacer />}
-            <DrawerNavGroup
-                title={text('navGroup[1].title', 'Second DrawerNavGroup')}
-                activeItem={context.state.selected}
-                items={navGroupItems2}
-            />
+            <DrawerNavGroup title={text('navGroup[1].title', 'Second DrawerNavGroup')} items={navGroupItems2} />
         </DrawerBody>
     </Drawer>
 );

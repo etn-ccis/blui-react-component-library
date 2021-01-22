@@ -42,7 +42,7 @@ export type DrawerNavItemProps = SharedStyleProps &
         statusColor?: string;
         subtitle?: string;
         title: string;
-        InfoListItemProps?: PXBInfoListItemProps;
+        InfoListItemProps?: Partial<PXBInfoListItemProps>;
     } & Pick<HTMLAttributes<HTMLDivElement>, 'children'>;
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
