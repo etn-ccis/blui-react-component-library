@@ -286,6 +286,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                               ),
                               nestedDivider: mergeStyleProp(nestedDivider, child.props.nestedDivider),
                               ripple: mergeStyleProp(ripple, child.props.ripple),
+                              depth: depth + 1,
                           } as DrawerNavItemProps)
                         : React.cloneElement(child, {
                               // Inherited Props
