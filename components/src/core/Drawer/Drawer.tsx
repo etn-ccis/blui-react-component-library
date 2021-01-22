@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, ReactNode } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {
     Drawer as MUIDrawer,
@@ -12,7 +12,7 @@ import { DrawerBodyProps } from './DrawerBody';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 import { DrawerContext } from './DrawerContext';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
-import { mergeStyleProp } from './utilities';
+import { findChildByType, mergeStyleProp } from './utilities';
 import clsx from 'clsx';
 
 export const RAIL_WIDTH = 72;
@@ -67,16 +67,6 @@ type DrawerClasses = {
     /** Styles to apply to the root element when using side border */
     sideBorder?: string;
 };
-
-const findChildByType = (children: ReactNode, type: string): JSX.Element[] =>
-    React.Children.map(children, (child: any) => {
-        if (child && child.type) {
-            const name = child.type.displayName;
-            if (name && name.includes(type)) {
-                return child;
-            }
-        }
-    }) || [];
 
 export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
     SharedStyleProps &
@@ -163,7 +153,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
 
     const getHeader = useCallback(
         (): JSX.Element[] =>
-            findChildByType(props.children, 'DrawerHeader')
+            findChildByType(props.children, ['DrawerHeader'])
                 .slice(0, 1)
                 .map((child) => React.cloneElement(child)),
         [props.children]
@@ -171,7 +161,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
 
     const getSubHeader = useCallback(
         (): JSX.Element[] =>
-            findChildByType(props.children, 'DrawerSubheader')
+            findChildByType(props.children, ['DrawerSubheader'])
                 .slice(0, 1)
                 .map((child) => React.cloneElement(child)),
         [props.children]
@@ -179,7 +169,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
 
     const getBody = useCallback(
         (): JSX.Element[] =>
-            findChildByType(props.children, 'DrawerBody')
+            findChildByType(props.children, ['DrawerBody'])
                 .slice(0, 1)
                 .map((child) =>
                     React.cloneElement(child, {
@@ -234,7 +224,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
 
     const getFooter = useCallback(
         (): JSX.Element[] =>
-            findChildByType(props.children, 'DrawerFooter')
+            findChildByType(props.children, ['DrawerFooter'])
                 .slice(0, 1)
                 .map((child) => React.cloneElement(child)),
         [props.children]

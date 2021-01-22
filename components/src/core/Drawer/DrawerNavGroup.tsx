@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDrawerContext } from './DrawerContext';
 import { NavGroupContext } from './NavGroupContext';
@@ -14,9 +14,9 @@ import {
     Divider,
 } from '@material-ui/core';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
-import { NestedDrawerNavItem, DrawerNavItem } from './DrawerNavItem';
-import { DrawerRailItem, ExtendedNavItem } from './DrawerRailItem';
-import { mergeStyleProp } from './utilities';
+import { DrawerNavItem, DrawerNavItemProps, NestedDrawerNavItemProps } from './DrawerNavItem';
+import { DrawerRailItem, DrawerRailItemProps, ExtendedNavItem } from './DrawerRailItem';
+import { findChildByType, mergeStyleProp } from './utilities';
 import clsx from 'clsx';
 
 export type DrawerNavGroupProps = SharedStyleProps &
@@ -26,7 +26,7 @@ export type DrawerNavGroupProps = SharedStyleProps &
         classes?: DrawerNavGroupClasses;
 
         // List of navigation items to render
-        items: ExtendedNavItem[];
+        items?: ExtendedNavItem[];
 
         // Text to display in the group header
         title?: string;
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const findID = (item: DrawerNavItem | NestedDrawerNavItem, activeItem: string): boolean => {
+const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem: string): boolean => {
     // if leaf node, return
     if (!item.items) {
         return item.itemID === activeItem;
@@ -92,8 +92,9 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     const theme = useTheme();
     const {
         // Nav Group Props
+        children,
         classes,
-        items,
+        items = [],
         title,
         titleColor = theme.palette.text.primary,
         titleContent,
@@ -124,8 +125,81 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
 
     /* Clear the active hierarchy array if the new active Item cannot be found in the tree */
     useEffect(() => {
-        if (!findID({ items: props.items } as DrawerNavItem, activeItem)) setActiveHierarchyItems([]);
+        if (!findID({ items: props.items } as DrawerNavItemProps, activeItem)) setActiveHierarchyItems([]);
     }, [activeItem]);
+
+    const getChildren = useCallback(
+        (): JSX.Element[] =>
+            findChildByType(children, ['DrawerNavItem', 'DrawerRailItem'])
+                // .slice(0, 1)
+                .map((child) =>
+                    child.type.displayName === 'DrawerNavItem'
+                        ? React.cloneElement(child, {
+                              // Inherited Props
+                              activeItemBackgroundColor: mergeStyleProp(
+                                  activeItemBackgroundColor,
+                                  child.props.activeItemBackgroundColor
+                              ),
+                              activeItemBackgroundShape: mergeStyleProp(
+                                  activeItemBackgroundShape,
+                                  child.props.activeItemBackgroundShape
+                              ),
+                              activeItemFontColor: mergeStyleProp(activeItemFontColor, child.props.activeItemFontColor),
+                              activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
+                              backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
+                              chevron: mergeStyleProp(chevron, child.props.chevron),
+                              collapseIcon: mergeStyleProp(collapseIcon, child.props.collapseIcon),
+                              disableActiveItemParentStyles: mergeStyleProp(
+                                  disableActiveItemParentStyles,
+                                  child.props.disableActiveItemParentStyles
+                              ),
+                              divider: mergeStyleProp(divider, child.props.divider),
+                              expandIcon: mergeStyleProp(expandIcon, child.props.expandIcon),
+                              hidePadding: mergeStyleProp(hidePadding, child.props.hidePadding),
+                              itemFontColor: mergeStyleProp(itemFontColor, child.props.itemFontColor),
+                              itemIconColor: mergeStyleProp(itemIconColor, child.props.itemIconColor),
+                              nestedBackgroundColor: mergeStyleProp(
+                                  nestedBackgroundColor,
+                                  child.props.nestedBackgroundColor
+                              ),
+                              nestedDivider: mergeStyleProp(nestedDivider, child.props.nestedDivider),
+                              ripple: mergeStyleProp(ripple, child.props.ripple),
+                          } as DrawerNavItemProps)
+                        : React.cloneElement(child, {
+                              // Inherited Props
+                              activeItemBackgroundColor: mergeStyleProp(
+                                  activeItemBackgroundColor,
+                                  child.props.activeItemBackgroundColor
+                              ),
+                              activeItemFontColor: mergeStyleProp(activeItemFontColor, child.props.activeItemFontColor),
+                              activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
+                              backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
+                              divider: mergeStyleProp(divider, child.props.divider),
+                              itemFontColor: mergeStyleProp(itemFontColor, child.props.itemFontColor),
+                              itemIconColor: mergeStyleProp(itemIconColor, child.props.itemIconColor),
+                              ripple: mergeStyleProp(ripple, child.props.ripple),
+                          } as DrawerRailItemProps)
+                ),
+        [
+            activeItemBackgroundColor,
+            activeItemBackgroundShape,
+            activeItemFontColor,
+            activeItemIconColor,
+            backgroundColor,
+            chevron,
+            collapseIcon,
+            disableActiveItemParentStyles,
+            divider,
+            expandIcon,
+            hidePadding,
+            itemFontColor,
+            itemIconColor,
+            nestedBackgroundColor,
+            nestedDivider,
+            ripple,
+            children,
+        ]
+    );
 
     return (
         <NavGroupContext.Provider value={{ activeHierarchy: activeHierarchyItems }}>
@@ -222,12 +296,14 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                         />
                     )
                 )}
+                {getChildren()}
             </List>
         </NavGroupContext.Provider>
     );
 };
 export const DrawerNavGroup = React.forwardRef(DrawerNavGroupRender);
 DrawerNavGroup.displayName = 'DrawerNavGroup';
+// @ts-ignore
 DrawerNavGroup.propTypes = {
     ...SharedStylePropTypes,
     ...NavItemSharedStylePropTypes,
@@ -249,11 +325,12 @@ DrawerNavGroup.propTypes = {
             rightComponent: PropTypes.element,
             statusColor: PropTypes.string,
         })
-    ).isRequired,
+    ),
     title: PropTypes.string,
     titleColor: PropTypes.string,
     titleContent: PropTypes.element,
 };
 DrawerNavGroup.defaultProps = {
     classes: {},
+    items: [],
 };

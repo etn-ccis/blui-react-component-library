@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { HTMLAttributes, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDrawerContext } from './DrawerContext';
 import { useNavGroupContext } from './NavGroupContext';
@@ -11,8 +11,9 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import clsx from 'clsx';
 import color from 'color';
-import { mergeStyleProp } from './utilities';
+import { findChildByType, mergeStyleProp } from './utilities';
 import { white, darkBlack } from '@pxblue/colors';
+import { DrawerRailItemProps } from './DrawerRailItem';
 
 export type DrawerNavItemClasses = {
     root?: string;
@@ -25,7 +26,7 @@ export type DrawerNavItemClasses = {
     titleActive?: string;
     ripple?: string;
 };
-export type DrawerNavItem = SharedStyleProps &
+export type DrawerNavItemProps = SharedStyleProps &
     NavItemSharedStyleProps & {
         classes?: DrawerNavItemClasses;
         depth?: number;
@@ -34,7 +35,7 @@ export type DrawerNavItem = SharedStyleProps &
         icon?: JSX.Element;
         isInActiveTree?: boolean;
         itemID: string;
-        items?: NestedDrawerNavItem[];
+        items?: NestedDrawerNavItemProps[];
         notifyActiveParent?: (ids?: string[]) => void;
         onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
         rightComponent?: JSX.Element;
@@ -42,11 +43,11 @@ export type DrawerNavItem = SharedStyleProps &
         subtitle?: string;
         title: string;
         InfoListItemProps?: PXBInfoListItemProps;
-    };
-export type NestedDrawerNavItem = Omit<DrawerNavItem, 'icon'>;
+    } & Pick<HTMLAttributes<HTMLDivElement>, 'children'>;
+export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
-export type NavItem = DrawerNavItem;
-export type NestedNavItem = NestedDrawerNavItem;
+export type NavItem = DrawerNavItemProps;
+export type NestedNavItem = NestedDrawerNavItemProps;
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
 const calcNestedPadding = (theme: Theme, depth: number): number =>
@@ -55,7 +56,7 @@ const calcNestedPadding = (theme: Theme, depth: number): number =>
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth),
+            paddingLeft: (props: DrawerNavItemProps): number => calcNestedPadding(theme, props.depth),
         },
         active: {
             content: '""',
@@ -92,7 +93,7 @@ const useStyles = makeStyles((theme: Theme) =>
             fontWeight: 400,
         },
         nestedListGroup: {
-            backgroundColor: (props: DrawerNavItem): string =>
+            backgroundColor: (props: DrawerNavItemProps): string =>
                 props.nestedBackgroundColor || (theme.palette.type === 'light' ? white[200] : darkBlack[100]),
             paddingBottom: 0,
             paddingTop: 0,
@@ -118,8 +119,8 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem> = (
-    props: DrawerNavItem,
+const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNavItemProps> = (
+    props: DrawerNavItemProps,
     ref: any
 ) => {
     const theme = useTheme();
@@ -151,6 +152,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
         activeItemIconColor = theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary,
         backgroundColor,
         chevron,
+        children,
         classes = {},
         collapseIcon,
         depth = 0,
@@ -248,6 +250,79 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
     }, [items, classes, defaultClasses, collapseIcon, expanded, expandIcon]);
     const actionComponent = getActionComponent();
 
+    const getChildren = useCallback(
+        (): JSX.Element[] =>
+            findChildByType(children, ['DrawerNavItem', 'DrawerRailItem'])
+                // .slice(0, 1)
+                .map((child) =>
+                    child.type.displayName === 'DrawerNavItem'
+                        ? React.cloneElement(child, {
+                              // Inherited Props
+                              activeItemBackgroundColor: mergeStyleProp(
+                                  activeItemBackgroundColor,
+                                  child.props.activeItemBackgroundColor
+                              ),
+                              activeItemBackgroundShape: mergeStyleProp(
+                                  activeItemBackgroundShape,
+                                  child.props.activeItemBackgroundShape
+                              ),
+                              activeItemFontColor: mergeStyleProp(activeItemFontColor, child.props.activeItemFontColor),
+                              activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
+                              backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
+                              chevron: mergeStyleProp(chevron, child.props.chevron),
+                              collapseIcon: mergeStyleProp(collapseIcon, child.props.collapseIcon),
+                              disableActiveItemParentStyles: mergeStyleProp(
+                                  disableActiveItemParentStyles,
+                                  child.props.disableActiveItemParentStyles
+                              ),
+                              divider: mergeStyleProp(divider, child.props.divider),
+                              expandIcon: mergeStyleProp(expandIcon, child.props.expandIcon),
+                              hidePadding: mergeStyleProp(hidePadding, child.props.hidePadding),
+                              itemFontColor: mergeStyleProp(itemFontColor, child.props.itemFontColor),
+                              itemIconColor: mergeStyleProp(itemIconColor, child.props.itemIconColor),
+                              nestedBackgroundColor: mergeStyleProp(
+                                  nestedBackgroundColor,
+                                  child.props.nestedBackgroundColor
+                              ),
+                              nestedDivider: mergeStyleProp(nestedDivider, child.props.nestedDivider),
+                              ripple: mergeStyleProp(ripple, child.props.ripple),
+                          } as DrawerNavItemProps)
+                        : React.cloneElement(child, {
+                              // Inherited Props
+                              activeItemBackgroundColor: mergeStyleProp(
+                                  activeItemBackgroundColor,
+                                  child.props.activeItemBackgroundColor
+                              ),
+                              activeItemFontColor: mergeStyleProp(activeItemFontColor, child.props.activeItemFontColor),
+                              activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
+                              backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
+                              divider: mergeStyleProp(divider, child.props.divider),
+                              itemFontColor: mergeStyleProp(itemFontColor, child.props.itemFontColor),
+                              itemIconColor: mergeStyleProp(itemIconColor, child.props.itemIconColor),
+                              ripple: mergeStyleProp(ripple, child.props.ripple),
+                          } as DrawerRailItemProps)
+                ),
+        [
+            activeItemBackgroundColor,
+            activeItemBackgroundShape,
+            activeItemFontColor,
+            activeItemIconColor,
+            backgroundColor,
+            chevron,
+            collapseIcon,
+            disableActiveItemParentStyles,
+            divider,
+            expandIcon,
+            hidePadding,
+            itemFontColor,
+            itemIconColor,
+            nestedBackgroundColor,
+            nestedDivider,
+            ripple,
+            children,
+        ]
+    );
+
     // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
         root: clsx(defaultClasses.root, classes.root),
@@ -313,13 +388,14 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
                         {...InfoListItemProps}
                         classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                     />
+                    {getChildren()}
                 </div>
             )}
             {/* If the NavItem has child items defined, render them in a collapse panel */}
             {items && items.length > 0 && (
                 <Collapse in={expanded && drawerOpen !== false} key={`${itemTitle}_group_${depth}`}>
                     <List className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)}>
-                        {items.map((subItem: DrawerNavItem, index: number) => (
+                        {items.map((subItem: DrawerNavItemProps, index: number) => (
                             <DrawerNavItem
                                 key={`itemList_${index}`}
                                 {...subItem}
