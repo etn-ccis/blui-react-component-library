@@ -5,6 +5,7 @@ import { text, select } from '@storybook/addon-knobs';
 import { AppBar } from '@material-ui/core';
 import { ArrowBack, Menu } from '@material-ui/icons';
 import { action } from '@storybook/addon-actions';
+import { getLeftToRightIconTransform } from '../../src/utils';
 
 export const withNavIcon = (): StoryFnReactReturnType => {
     const menuItems = [
@@ -24,7 +25,7 @@ export const withNavIcon = (): StoryFnReactReturnType => {
             case '<Menu />':
                 return <Menu />;
             case '<ArrowBack />':
-                return <ArrowBack />;
+                return <ArrowBack style={getLeftToRightIconTransform()} />;
             case 'none':
             default:
                 return undefined;
