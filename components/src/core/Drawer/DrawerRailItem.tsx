@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import { RAIL_WIDTH, RAIL_WIDTH_CONDENSED } from './Drawer';
 import { SharedStyleProps, SharedStylePropTypes } from './types';
-import { DrawerNavItem } from './DrawerNavItem';
+import { NavItem } from './DrawerNavItem';
 import color from 'color';
 import clsx from 'clsx';
 
@@ -30,7 +30,7 @@ export type DrawerRailItemClasses = {
     ripple?: string;
 };
 
-export type ExtendedNavItem = DrawerNavItem & { ButtonBaseProps?: Partial<MuiButtonBaseProps> };
+export type ExtendedNavItem = NavItem & { ButtonBaseProps?: Partial<MuiButtonBaseProps> };
 export type DrawerRailItemProps = MuiButtonBaseProps &
     SharedStyleProps & {
         // toggles the condensed style

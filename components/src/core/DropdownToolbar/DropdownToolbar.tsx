@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
-import { DrawerNavItem as NavItem, DrawerNavGroup } from '../Drawer';
+import { NavItem, DrawerNavGroup } from '../Drawer';
 import PropTypes from 'prop-types';
 
 export type ToolbarMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
