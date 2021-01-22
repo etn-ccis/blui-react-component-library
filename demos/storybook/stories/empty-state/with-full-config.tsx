@@ -20,9 +20,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             actions={
                 <Button
                     variant="outlined"
-                    size="small"
                     color="primary"
-                    style={{ margin: '10px' }}
                     onClick={action('Button Clicked')}
                 >
                     {actionText}
