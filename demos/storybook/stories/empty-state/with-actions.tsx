@@ -14,12 +14,7 @@ export const withActions = (): StoryFnReactReturnType => (
         title={'No Devices'}
         description={'Check your network connection or add a new device'}
         actions={
-            <Button
-                variant={'outlined'}
-                color={'primary'}
-                onClick={action('Button Clicked')}
-                startIcon={<AddIcon />}
-            >
+            <Button variant={'outlined'} color={'primary'} onClick={action('Button Clicked')} startIcon={<AddIcon />}>
                 {text('Action Text', 'Add Device')}
             </Button>
         }
