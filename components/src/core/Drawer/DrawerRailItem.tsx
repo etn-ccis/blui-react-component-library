@@ -84,6 +84,7 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
+            cursor: 'default',
             padding: (props): string =>
                 `${theme.spacing(2)}px ${props.statusColor ? theme.spacing(1) : theme.spacing(0.5)}px`,
             textAlign: 'center',
@@ -91,10 +92,6 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             '&:hover': {
                 backgroundColor: (props): string => (props.onClick ? theme.palette.action.hover : undefined),
             },
-        },
-        condensed: {
-            width: RAIL_WIDTH_CONDENSED,
-            minHeight: RAIL_WIDTH_CONDENSED,
         },
         active: {
             position: 'absolute',
@@ -105,6 +102,10 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             backgroundColor: (props): string =>
                 props.activeItemBackgroundColor ||
                 (theme.palette.type === 'light' ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary),
+        },
+        condensed: {
+            width: RAIL_WIDTH_CONDENSED,
+            minHeight: RAIL_WIDTH_CONDENSED,
         },
         cursorPointer: {
             cursor: 'pointer',
@@ -134,6 +135,9 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
                     (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary),
             },
         },
+        ripple: {
+            backgroundColor: theme.palette.primary.main,
+        },
         statusStripe: {
             position: 'absolute',
             top: 0,
@@ -152,9 +156,6 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
         },
         titleActive: {
             fontWeight: 600,
-        },
-        ripple: {
-            backgroundColor: theme.palette.primary.main,
         },
     });
 });
@@ -187,7 +188,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         ...directButtonBaseProps
     } = props;
 
-    const { activeItem, onItemSelect, condensed: drawerCondensed } = useDrawerContext();
+    const { activeItem, onItemSelect, condensed: drawerCondensed = false } = useDrawerContext();
     const active = activeItem === itemID;
     const condensed = itemCondensed !== undefined ? itemCondensed : drawerCondensed;
     const defaultClasses = useStyles(props);

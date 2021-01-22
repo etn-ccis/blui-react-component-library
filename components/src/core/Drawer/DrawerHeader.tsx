@@ -50,6 +50,16 @@ const useStyles = makeStyles((theme: Theme) =>
             color: (props: DrawerHeaderProps): string =>
                 props.fontColor || theme.palette.getContrastText(props.backgroundColor || theme.palette.primary.main),
         },
+        background: {
+            position: 'absolute',
+            zIndex: 0,
+            width: '100%',
+            backgroundSize: 'cover',
+            height: '100%',
+            backgroundPosition: 'center',
+            backgroundImage: (props: DrawerHeaderProps): string => `url(${props.backgroundImage})`,
+            opacity: (props: DrawerHeaderProps): number => props.backgroundOpacity,
+        },
         content: {
             [theme.breakpoints.down('xs')]: {
                 minHeight: theme.spacing(7),
@@ -75,25 +85,6 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
             zIndex: 1,
         },
-        title: {
-            fontWeight: 600,
-            lineHeight: '1.6rem', // Anything lower than 1.6rem cuts off bottom text of 'g' or 'y'.
-        },
-        subtitle: {
-            fontWeight: 300,
-            lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
-            marginTop: '-2px',
-        },
-        background: {
-            position: 'absolute',
-            zIndex: 0,
-            width: '100%',
-            backgroundSize: 'cover',
-            height: '100%',
-            backgroundPosition: 'center',
-            backgroundImage: (props: DrawerHeaderProps): string => `url(${props.backgroundImage})`,
-            opacity: (props: DrawerHeaderProps): number => props.backgroundOpacity,
-        },
         nonClickableIcon: {
             display: 'flex',
             paddingLeft: theme.spacing(1.5),
@@ -101,6 +92,15 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         railIcon: {
             marginLeft: theme.spacing(1),
+        },
+        subtitle: {
+            fontWeight: 300,
+            lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
+            marginTop: '-2px',
+        },
+        title: {
+            fontWeight: 600,
+            lineHeight: '1.6rem', // Anything lower than 1.6rem cuts off bottom text of 'g' or 'y'.
         },
     })
 );
@@ -128,7 +128,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         ...otherToolbarProps
     } = props;
 
-    const { variant, condensed } = useDrawerContext();
+    const { variant = 'persistent', condensed = false } = useDrawerContext();
 
     const getHeaderContent = useCallback(
         (): ReactNode =>

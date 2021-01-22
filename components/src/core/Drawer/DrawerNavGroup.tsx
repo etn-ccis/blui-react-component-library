@@ -40,11 +40,16 @@ export type DrawerNavGroupProps = SharedStyleProps &
 
 type DrawerNavGroupClasses = {
     groupHeader?: string;
-    listGroup?: string;
+    root?: string;
     subheader?: string;
 };
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        root: {
+            backgroundColor: (props: DrawerNavGroupProps): string => props.backgroundColor,
+            paddingBottom: 0,
+            paddingTop: 0,
+        },
         groupHeader: {
             display: 'block',
             alignItems: 'center',
@@ -58,11 +63,6 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingRight: theme.spacing(2),
             position: 'inherit',
             cursor: 'text',
-        },
-        listGroup: {
-            backgroundColor: (props: DrawerNavGroupProps): string => props.backgroundColor,
-            paddingBottom: 0,
-            paddingTop: 0,
         },
     })
 );
@@ -131,7 +131,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         <NavGroupContext.Provider value={{ activeHierarchy: activeHierarchyItems }}>
             <List
                 ref={ref}
-                className={clsx(defaultClasses.listGroup, classes.listGroup)}
+                className={clsx(defaultClasses.root, classes.root)}
                 subheader={
                     variant !== 'rail' && (
                         <ListSubheader
@@ -233,7 +233,7 @@ DrawerNavGroup.propTypes = {
     ...NavItemSharedStylePropTypes,
     classes: PropTypes.shape({
         groupHeader: PropTypes.string,
-        listGroup: PropTypes.string,
+        root: PropTypes.string,
         subheader: PropTypes.string,
     }),
     // @ts-ignore

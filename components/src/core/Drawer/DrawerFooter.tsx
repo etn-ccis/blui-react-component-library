@@ -35,7 +35,7 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherDivProps
     } = props;
-    const { open: drawerOpen } = useDrawerContext();
+    const { open: drawerOpen = true } = useDrawerContext();
     return (
         <>
             {divider && <Divider />}

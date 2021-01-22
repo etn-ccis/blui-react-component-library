@@ -56,7 +56,6 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         ...otherDivProps
     } = bodyProps;
 
-    // const { open: drawerOpen, activeItem} = useDrawerContext();
     const children = React.Children.toArray(bodyChildren);
 
     return (

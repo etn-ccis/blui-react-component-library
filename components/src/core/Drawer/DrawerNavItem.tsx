@@ -54,6 +54,9 @@ const calcNestedPadding = (theme: Theme, depth: number): number =>
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        root: {
+            paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth),
+        },
         active: {
             content: '""',
             zIndex: 0,
@@ -84,9 +87,6 @@ const useStyles = makeStyles((theme: Theme) =>
                 transform: 'rotate(180deg)',
             },
         },
-        root: {
-            paddingLeft: (props: DrawerNavItem): number => calcNestedPadding(theme, props.depth),
-        },
         listItemContainer: {},
         nestedTitle: {
             fontWeight: 400,
@@ -105,15 +105,15 @@ const useStyles = makeStyles((theme: Theme) =>
                 transition: theme.transitions.create('opacity'),
             },
         },
+        ripple: {
+            backgroundColor: theme.palette.primary.main,
+        },
         square: {},
         title: {
             fontWeight: 400,
         },
         titleActive: {
             fontWeight: 600,
-        },
-        ripple: {
-            backgroundColor: theme.palette.primary.main,
         },
     })
 );
@@ -124,7 +124,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<unknown, DrawerNavItem
 ) => {
     const theme = useTheme();
     const defaultClasses = useStyles(props);
-    const { open: drawerOpen, activeItem, onItemSelect } = useDrawerContext();
+    const { open: drawerOpen = true, activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem);
 

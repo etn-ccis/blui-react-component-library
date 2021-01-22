@@ -13,7 +13,7 @@ const DrawerSubheaderRender: React.ForwardRefRenderFunction<unknown, DrawerSubhe
     ref: any
 ) => {
     const { children, divider = true, hideContentOnCollapse = true, ...otherDivProps } = props;
-    const { open: drawerOpen } = useDrawerContext();
+    const { open: drawerOpen = true } = useDrawerContext();
     return (
         <>
             <div
