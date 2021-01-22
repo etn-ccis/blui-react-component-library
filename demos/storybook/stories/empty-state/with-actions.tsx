@@ -15,11 +15,10 @@ export const withActions = (): StoryFnReactReturnType => (
         description={'Check your network connection or add a new device'}
         actions={
             <Button
-                variant="outlined"
-                color="primary"
-                style={{ margin: '10px' }}
+                variant={'outlined'}
+                color={'primary'}
                 onClick={action('Button Clicked')}
-                startIcon={<AddIcon style={{ marginRight: '5px' }} />}
+                startIcon={<AddIcon />}
             >
                 {text('Action Text', 'Add Device')}
             </Button>
