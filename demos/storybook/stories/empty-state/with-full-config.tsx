@@ -18,11 +18,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             title={title}
             description={description}
             actions={
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    onClick={action('Button Clicked')}
-                >
+                <Button variant="outlined" color="primary" onClick={action('Button Clicked')}>
                     {actionText}
                 </Button>
             }
