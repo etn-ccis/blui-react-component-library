@@ -66,7 +66,7 @@ export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnTy
     const subheaderContent = optionsKnob('Subheader Content', valuesObj, 'Filter', optionsObj);
 
     return (
-        <Drawer open={boolean('Drawer.open', true)} activeItem={context.state.selected}>
+        <Drawer open={boolean('open', true)} activeItem={context.state.selected}>
             <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
             <DrawerSubheader
                 hideContentOnCollapse={boolean('hideContentOnCollapse', true)}

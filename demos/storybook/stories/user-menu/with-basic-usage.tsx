@@ -10,9 +10,9 @@ import { getLeftToRightIconTransform } from '../../src/utils';
 
 const menuItems: UserMenuItem[] = [
     {
-        title: 'Account',
+        title: 'Settings',
         icon: <Settings />,
-        onClick: action("click 'Account'"),
+        onClick: action("click 'Settings'"),
     },
     {
         title: 'Contact Us',

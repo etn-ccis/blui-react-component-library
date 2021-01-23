@@ -1,6 +1,5 @@
 import { Device } from '@pxblue/icons-mui';
-import { ChannelValue, InfoListItem } from '@pxblue/react-components';
-import { text } from '@storybook/addon-knobs';
+import { InfoListItem } from '@pxblue/react-components';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 
@@ -10,10 +9,12 @@ export const withLeftComponent = (): StoryFnReactReturnType => (
         subtitle={'with a ChannelValue component to the left'}
         icon={<Device />}
         leftComponent={
-            <ChannelValue
-                value={text('leftComponent.ChannelValue.value', '15')}
-                units={text('leftComponent.ChannelValue.units', 'A')}
-            />
+            <div style={{ display: 'flex', flexDirection: 'column', marginRight: 16 }}>
+                <div>
+                    8:32 <strong>AM</strong>
+                </div>
+                <div>11/21/21</div>
+            </div>
         }
     />
 );

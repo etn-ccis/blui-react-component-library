@@ -8,6 +8,7 @@ import { Menu, ArrowBack, Home, Work, Settings } from '@material-ui/icons';
 import { action } from '@storybook/addon-actions';
 import clsx from 'clsx';
 import { getDirection } from '@pxblue/storybook-rtl-addon';
+import { getLeftToRightIconTransform } from '../../src/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -19,9 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         marginLeft24: {
             marginLeft: theme.spacing(3),
-        },
-        flipIcon: {
-            transform: 'scaleX(-1)',
         },
     })
 );
@@ -48,10 +46,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                 return <Menu onClick={action('menu icon clicked...')} />;
             case '<ArrowBack />':
                 return (
-                    <ArrowBack
-                        onClick={action('back arrow icon clicked...')}
-                        className={direction === 'rtl' ? classes.flipIcon : ''}
-                    />
+                    <ArrowBack onClick={action('back arrow icon clicked...')} style={getLeftToRightIconTransform()} />
                 );
             case 'none':
             default:

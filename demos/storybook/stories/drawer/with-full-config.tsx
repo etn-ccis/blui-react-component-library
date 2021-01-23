@@ -1,4 +1,4 @@
-import { Divider } from '@material-ui/core';
+import { Divider, Typography } from '@material-ui/core';
 import {
     Accessibility,
     Add,
@@ -129,7 +129,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     };
 
     const headerKnobs: DrawerHeaderProps = {
-        backgroundColor: color('backgroundColor', Colors.gold[800], headerGroupId),
+        backgroundColor: color('backgroundColor', Colors.blue[500], headerGroupId),
         backgroundImage:
             headerBackgroundImageOptions[
                 select('backgroundImage', ['undefined', 'Pattern', 'Farm'], 'Pattern', headerGroupId)
@@ -339,7 +339,9 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                                 fontWeight: 600,
                             }}
                         >
-                            <div>NavGroup 2</div>
+                            <Typography variant={'overline'} style={{ lineHeight: 'unset' }}>
+                                NavGroup 2
+                            </Typography>
                             <div>Software Version v1.0.3</div>
                         </div>
                     }

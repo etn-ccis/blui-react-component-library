@@ -6,6 +6,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { DrawerStoryContext } from './util';
 import { navGroupItems1 } from './with-basic-config';
+import { ListItemTag } from '@pxblue/react-components';
 
 const farmBgImage = require('../../assets/farm.jpg');
 
@@ -16,11 +17,24 @@ export const withCustomHeader = (context: DrawerStoryContext): StoryFnReactRetur
             backgroundOpacity={0.5}
             icon={<MenuIcon />}
             titleContent={
-                <div style={{ zIndex: 1, paddingLeft: '20px', paddingTop: '15px' }}>
-                    <Typography variant="subtitle2">Customizable</Typography>
-                    <Typography variant="h6" style={{ marginTop: '-10px' }}>
-                        Header Content Goes Here
-                    </Typography>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        zIndex: 1,
+                        padding: '0 16px',
+                        alignItems: 'center',
+                        width: '100%',
+                        height: '100%',
+                    }}
+                >
+                    <div>
+                        <Typography variant="subtitle2">Customizable</Typography>
+                        <Typography variant="h6" style={{ marginTop: '-10px' }}>
+                            Header Content
+                        </Typography>
+                    </div>
+                    <ListItemTag style={{ marginBottom: 16 }} label={'v1.0.3'} />
                 </div>
             }
         />

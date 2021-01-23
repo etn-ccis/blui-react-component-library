@@ -12,7 +12,7 @@ export const withMultipleNavGroups = (context: DrawerStoryContext): StoryFnReact
         <DrawerHeader icon={<Menu />} title={'PX Blue Drawer'} subtitle={'with multiple navigation groups'} />
         <DrawerBody>
             <DrawerNavGroup title={text('navGroup[0].title', 'First DrawerNavGroup')} items={navGroupItems1} />
-            {boolean('Add Spacer', false) && <Spacer />}
+            {boolean('Add Spacer', true) && <Spacer />}
             <DrawerNavGroup title={text('navGroup[1].title', 'Second DrawerNavGroup')} items={navGroupItems2} />
         </DrawerBody>
     </Drawer>
