@@ -126,6 +126,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     /* Clear the active hierarchy array if the new active Item cannot be found in the tree */
     useEffect(() => {
         if (!findID({ items: props.items } as DrawerNavItemProps, activeItem)) setActiveHierarchyItems([]);
+        // TODO: this doesn't work when children are specified declaratively
     }, [activeItem]);
 
     const getChildren = useCallback(
@@ -164,6 +165,14 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                               ),
                               nestedDivider: mergeStyleProp(nestedDivider, child.props.nestedDivider),
                               ripple: mergeStyleProp(ripple, child.props.ripple),
+                              depth: 0,
+                              isInActiveTree: activeHierarchyItems.includes(child.props.itemID),
+                              notifyActiveParent: (ids: string[]): void => {
+                                  if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
+                                      // Sets the list of active IDs when we get a callback from an active child
+                                      setActiveHierarchyItems(ids.concat(child.props.itemID));
+                                  }
+                              },
                           } as DrawerNavItemProps)
                         : React.cloneElement(child, {
                               // Inherited Props
@@ -181,6 +190,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                           } as DrawerRailItemProps)
                 ),
         [
+            activeHierarchyItems,
             activeItemBackgroundColor,
             activeItemBackgroundShape,
             activeItemFontColor,
@@ -197,6 +207,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
             nestedBackgroundColor,
             nestedDivider,
             ripple,
+            setActiveHierarchyItems,
             children,
         ]
     );

@@ -180,7 +180,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     const [expanded, setExpanded] = useState(isInActiveTree);
     const active = activeItem === itemID;
-    const hasAction = Boolean(onItemSelect || onClick || (items && items.length > 0));
+    const hasAction = Boolean(onItemSelect || onClick || (items && items.length > 0) || Boolean(children));
     // only allow icons for the top level items
     const icon = !depth ? itemIcon : undefined;
     const showDivider =
@@ -221,7 +221,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             }
             if (onClick) {
                 onClick(e);
-            } else if (items && items.length > 0) {
+            } else if ((items && items.length > 0) || Boolean(children)) {
                 setExpanded(!expanded);
             }
         },
@@ -229,7 +229,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     );
 
     const getActionComponent = useCallback((): JSX.Element => {
-        if (!items) {
+        if (!items && !children) {
             return null;
         }
         return (
@@ -247,7 +247,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 {collapseIcon && expanded ? collapseIcon : expandIcon}
             </div>
         );
-    }, [items, classes, defaultClasses, collapseIcon, expanded, expandIcon]);
+    }, [items, children, classes, defaultClasses, collapseIcon, expanded, expandIcon]);
     const actionComponent = getActionComponent();
 
     const getChildren = useCallback(
@@ -270,13 +270,15 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                               activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
                               backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
                               chevron: mergeStyleProp(chevron, child.props.chevron),
-                              collapseIcon: mergeStyleProp(collapseIcon, child.props.collapseIcon),
+                              // we use props. because we don't want to pass the destructured default as the value to children
+                              collapseIcon: mergeStyleProp(props.collapseIcon, child.props.collapseIcon),
                               disableActiveItemParentStyles: mergeStyleProp(
                                   disableActiveItemParentStyles,
                                   child.props.disableActiveItemParentStyles
                               ),
                               divider: mergeStyleProp(divider, child.props.divider),
-                              expandIcon: mergeStyleProp(expandIcon, child.props.expandIcon),
+                              // we use props. because we don't want to pass the destructured default as the value to children
+                              expandIcon: mergeStyleProp(props.expandIcon, child.props.expandIcon),
                               hidePadding: mergeStyleProp(hidePadding, child.props.hidePadding),
                               itemFontColor: mergeStyleProp(itemFontColor, child.props.itemFontColor),
                               itemIconColor: mergeStyleProp(itemIconColor, child.props.itemIconColor),
@@ -287,6 +289,10 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                               nestedDivider: mergeStyleProp(nestedDivider, child.props.nestedDivider),
                               ripple: mergeStyleProp(ripple, child.props.ripple),
                               depth: depth + 1,
+                              isInActiveTree: activeHierarchy.includes(child.props.itemID),
+                              notifyActiveParent: (ids: string[] = []): void => {
+                                  notifyActiveParent(ids.concat(itemID));
+                              },
                           } as DrawerNavItemProps)
                         : React.cloneElement(child, {
                               // Inherited Props
@@ -308,6 +314,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             activeItemBackgroundShape,
             activeItemFontColor,
             activeItemIconColor,
+            activeHierarchy,
             backgroundColor,
             chevron,
             collapseIcon,
@@ -319,6 +326,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             itemIconColor,
             nestedBackgroundColor,
             nestedDivider,
+            notifyActiveParent,
             ripple,
             children,
         ]
@@ -389,52 +397,61 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         {...InfoListItemProps}
                         classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                     />
-                    {getChildren()}
                 </div>
             )}
             {/* If the NavItem has child items defined, render them in a collapse panel */}
-            {items && items.length > 0 && (
+            {((items && items.length > 0) || Boolean(children)) && (
                 <Collapse in={expanded && drawerOpen !== false} key={`${itemTitle}_group_${depth}`}>
                     <List className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)}>
-                        {items.map((subItem: DrawerNavItemProps, index: number) => (
-                            <DrawerNavItem
-                                key={`itemList_${index}`}
-                                {...subItem}
-                                activeItemBackgroundColor={mergeStyleProp(
-                                    activeItemBackgroundColor,
-                                    subItem.activeItemBackgroundColor
-                                )}
-                                activeItemBackgroundShape={mergeStyleProp(
-                                    activeItemBackgroundShape,
-                                    subItem.activeItemBackgroundShape
-                                )}
-                                activeItemFontColor={mergeStyleProp(activeItemFontColor, subItem.activeItemFontColor)}
-                                activeItemIconColor={mergeStyleProp(activeItemIconColor, subItem.activeItemIconColor)}
-                                backgroundColor={mergeStyleProp(backgroundColor, subItem.backgroundColor)}
-                                chevron={mergeStyleProp(chevron, subItem.chevron)}
-                                collapseIcon={mergeStyleProp(collapseIcon, subItem.collapseIcon)}
-                                disableActiveItemParentStyles={mergeStyleProp(
-                                    disableActiveItemParentStyles,
-                                    subItem.disableActiveItemParentStyles
-                                )}
-                                divider={mergeStyleProp(divider, subItem.divider)}
-                                expandIcon={mergeStyleProp(expandIcon, subItem.expandIcon)}
-                                hidePadding={mergeStyleProp(hidePadding, subItem.hidePadding)}
-                                itemFontColor={mergeStyleProp(itemFontColor, subItem.itemFontColor)}
-                                itemIconColor={mergeStyleProp(itemIconColor, subItem.itemIconColor)}
-                                nestedBackgroundColor={mergeStyleProp(
-                                    nestedBackgroundColor,
-                                    subItem.nestedBackgroundColor
-                                )}
-                                nestedDivider={mergeStyleProp(nestedDivider, subItem.nestedDivider)}
-                                ripple={mergeStyleProp(ripple, subItem.ripple)}
-                                depth={depth + 1}
-                                isInActiveTree={activeHierarchy.includes(subItem.itemID)}
-                                notifyActiveParent={(ids: string[] = []): void =>
-                                    notifyActiveParent(ids.concat(itemID))
-                                }
-                            />
-                        ))}
+                        {items &&
+                            items.map((subItem: DrawerNavItemProps, index: number) => (
+                                <DrawerNavItem
+                                    key={`itemList_${index}`}
+                                    {...subItem}
+                                    activeItemBackgroundColor={mergeStyleProp(
+                                        activeItemBackgroundColor,
+                                        subItem.activeItemBackgroundColor
+                                    )}
+                                    activeItemBackgroundShape={mergeStyleProp(
+                                        activeItemBackgroundShape,
+                                        subItem.activeItemBackgroundShape
+                                    )}
+                                    activeItemFontColor={mergeStyleProp(
+                                        activeItemFontColor,
+                                        subItem.activeItemFontColor
+                                    )}
+                                    activeItemIconColor={mergeStyleProp(
+                                        activeItemIconColor,
+                                        subItem.activeItemIconColor
+                                    )}
+                                    backgroundColor={mergeStyleProp(backgroundColor, subItem.backgroundColor)}
+                                    chevron={mergeStyleProp(chevron, subItem.chevron)}
+                                    // we use props. because we don't want to pass the destructured default as the value to the children
+                                    collapseIcon={mergeStyleProp(props.collapseIcon, subItem.collapseIcon)}
+                                    disableActiveItemParentStyles={mergeStyleProp(
+                                        disableActiveItemParentStyles,
+                                        subItem.disableActiveItemParentStyles
+                                    )}
+                                    divider={mergeStyleProp(divider, subItem.divider)}
+                                    // we use props. because we don't want to pass the destructured default as the value to the children
+                                    expandIcon={mergeStyleProp(props.expandIcon, subItem.expandIcon)}
+                                    hidePadding={mergeStyleProp(hidePadding, subItem.hidePadding)}
+                                    itemFontColor={mergeStyleProp(itemFontColor, subItem.itemFontColor)}
+                                    itemIconColor={mergeStyleProp(itemIconColor, subItem.itemIconColor)}
+                                    nestedBackgroundColor={mergeStyleProp(
+                                        nestedBackgroundColor,
+                                        subItem.nestedBackgroundColor
+                                    )}
+                                    nestedDivider={mergeStyleProp(nestedDivider, subItem.nestedDivider)}
+                                    ripple={mergeStyleProp(ripple, subItem.ripple)}
+                                    depth={depth + 1}
+                                    isInActiveTree={activeHierarchy.includes(subItem.itemID)}
+                                    notifyActiveParent={(ids: string[] = []): void => {
+                                        notifyActiveParent(ids.concat(itemID));
+                                    }}
+                                />
+                            ))}
+                        {getChildren()}
                     </List>
                 </Collapse>
             )}
