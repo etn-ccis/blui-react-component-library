@@ -69,14 +69,25 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem: string): boolean => {
     // if leaf node, return
-    if (!item.items) {
+    if (!item.items && !item.children) {
         return item.itemID === activeItem;
     }
 
-    // else, loop through the branches
-    for (let i = 0; i < item.items.length; i++) {
-        if (findID(item.items[i], activeItem)) {
-            return true;
+    // else, loop through the branches by items
+    if (item.items) {
+        for (let i = 0; i < item.items.length; i++) {
+            if (findID(item.items[i], activeItem)) {
+                return true;
+            }
+        }
+    }
+    // and by children
+    if (item.children) {
+        const childItems = findChildByType(item.children, ['DrawerNavItem']);
+        for (let i = 0; i < childItems.length; i++) {
+            if (findID(childItems[i].props, activeItem)) {
+                return true;
+            }
         }
     }
 
@@ -125,8 +136,8 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
 
     /* Clear the active hierarchy array if the new active Item cannot be found in the tree */
     useEffect(() => {
-        if (!findID({ items: props.items } as DrawerNavItemProps, activeItem)) setActiveHierarchyItems([]);
-        // TODO: this doesn't work when children are specified declaratively
+        if (!findID({ items: props.items, children: props.children } as DrawerNavItemProps, activeItem))
+            setActiveHierarchyItems([]);
     }, [activeItem]);
 
     const getChildren = useCallback(
