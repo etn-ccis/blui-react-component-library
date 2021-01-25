@@ -37,7 +37,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
-        backgroundColor, // eslint-disable-line @typescript-eslint/no-unused-vars
+        backgroundColor,
         chevron,
         collapseIcon,
         disableActiveItemParentStyles,

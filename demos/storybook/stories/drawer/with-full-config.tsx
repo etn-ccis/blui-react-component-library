@@ -1,4 +1,4 @@
-import { Divider, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import {
     Accessibility,
     Add,
@@ -350,7 +350,6 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
 
             {showFooter && (
                 <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
-                    <Divider />
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
                     </div>

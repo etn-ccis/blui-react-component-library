@@ -31,8 +31,8 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
-        hideContentOnCollapse,
         /* eslint-enable @typescript-eslint/no-unused-vars */
+        hideContentOnCollapse,
         ...otherDivProps
     } = props;
     const { open: drawerOpen = true } = useDrawerContext();

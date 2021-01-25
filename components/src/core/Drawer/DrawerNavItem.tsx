@@ -457,7 +457,6 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
 export const DrawerNavItem = React.forwardRef(DrawerNavItemRender);
 DrawerNavItem.displayName = 'DrawerNavItem';
-// @ts-ignore
 DrawerNavItem.propTypes = {
     ...SharedStylePropTypes,
     ...NavItemSharedStylePropTypes,
@@ -497,6 +496,5 @@ DrawerNavItem.propTypes = {
     statusColor: PropTypes.string,
     subtitle: PropTypes.string,
     title: PropTypes.string.isRequired,
-    // @ts-ignore
     InfoListItemProps: PropTypes.object,
 };

@@ -114,7 +114,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
-        backgroundColor, // eslint-disable-line @typescript-eslint/no-unused-vars
+        backgroundColor,
         chevron,
         collapseIcon,
         disableActiveItemParentStyles,
