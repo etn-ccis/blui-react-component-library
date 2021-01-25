@@ -31,36 +31,35 @@ export type DrawerRailItemClasses = {
 };
 
 export type ExtendedNavItem = NavItem & { ButtonBaseProps?: Partial<MuiButtonBaseProps> };
-export type DrawerRailItemProps = MuiButtonBaseProps &
-    SharedStyleProps & {
-        // classes for style overrides
-        classes?: DrawerRailItemClasses;
+export type DrawerRailItemProps = SharedStyleProps & {
+    // classes for style overrides
+    classes?: DrawerRailItemClasses;
 
-        // toggles the condensed style
-        condensed?: boolean;
+    // toggles the condensed style
+    condensed?: boolean;
 
-        // sets whether to hide the nav item
-        hidden?: boolean;
+    // sets whether to hide the nav item
+    hidden?: boolean;
 
-        // icon on the left
-        icon: JSX.Element;
+    // icon on the left
+    icon: JSX.Element;
 
-        // item id to match for the active state.
-        // Should be unique within the entire list. Will be used as the list key too.
-        itemID: string;
+    // item id to match for the active state.
+    // Should be unique within the entire list. Will be used as the list key too.
+    itemID: string;
 
-        // onClick of the entire row
-        onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+    // onClick of the entire row
+    onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 
-        // Status stripe color
-        statusColor?: string;
+    // Status stripe color
+    statusColor?: string;
 
-        // text to be displayed
-        title: string;
+    // text to be displayed
+    title: string;
 
-        // props for the ButtonBase
-        ButtonBaseProps?: Partial<MuiButtonBaseProps>;
-    };
+    // props for the ButtonBase
+    ButtonBaseProps?: Partial<MuiButtonBaseProps>;
+};
 
 const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
     // approximates the [200] color but not perfectly because the theme does not have that explicit color
