@@ -19,7 +19,7 @@ export type DrawerNavItemClasses = {
     root?: string;
     active?: string;
     expandIcon?: string;
-    listItemContainer?: string;
+    infoListItemRoot?: string;
     nestedListGroup?: string;
     nestedTitle?: string;
     title?: string;
@@ -55,9 +55,6 @@ const calcNestedPadding = (theme: Theme, depth: number): number =>
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            paddingLeft: (props: DrawerNavItemProps): number => calcNestedPadding(theme, props.depth),
-        },
         active: {
             content: '""',
             zIndex: 0,
@@ -88,7 +85,9 @@ const useStyles = makeStyles((theme: Theme) =>
                 transform: 'rotate(180deg)',
             },
         },
-        listItemContainer: {},
+        infoListItemRoot: {
+            paddingLeft: (props: DrawerNavItemProps): number => calcNestedPadding(theme, props.depth),
+        },
         nestedTitle: {
             fontWeight: 400,
         },
@@ -109,6 +108,7 @@ const useStyles = makeStyles((theme: Theme) =>
         ripple: {
             backgroundColor: theme.palette.primary.main,
         },
+        root: {},
         square: {},
         title: {
             fontWeight: 400,
@@ -334,7 +334,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
-        root: clsx(defaultClasses.root, classes.root),
+        root: clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
         title: clsx(defaultClasses.title, classes.title, {
             [defaultClasses.titleActive]: active || (!disableActiveItemParentStyles && isInActiveTree),
             [classes.titleActive]:
@@ -353,11 +353,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     return (
         <>
             {!props.hidden && (
-                <div
-                    ref={ref}
-                    style={{ position: 'relative' }}
-                    className={clsx(defaultClasses.listItemContainer, classes.listItemContainer)}
-                >
+                <div ref={ref} style={{ position: 'relative' }} className={clsx(defaultClasses.root, classes.root)}>
                     {active && (
                         <div
                             className={clsx(defaultClasses.active, classes.active, {
@@ -466,13 +462,13 @@ DrawerNavItem.propTypes = {
     ...SharedStylePropTypes,
     ...NavItemSharedStylePropTypes,
     classes: PropTypes.shape({
-        root: PropTypes.string,
         active: PropTypes.string,
         expandIcon: PropTypes.string,
-        listItemContainer: PropTypes.string,
+        infoListItemRoot: PropTypes.string,
         nestedListGroup: PropTypes.string,
         nestedTitle: PropTypes.string,
         ripple: PropTypes.string,
+        root: PropTypes.string,
         title: PropTypes.string,
         titleActive: PropTypes.string,
     }),

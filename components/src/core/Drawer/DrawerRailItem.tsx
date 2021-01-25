@@ -33,11 +33,11 @@ export type DrawerRailItemClasses = {
 export type ExtendedNavItem = NavItem & { ButtonBaseProps?: Partial<MuiButtonBaseProps> };
 export type DrawerRailItemProps = MuiButtonBaseProps &
     SharedStyleProps & {
-        // toggles the condensed style
-        condensed?: boolean;
-
         // classes for style overrides
         classes?: DrawerRailItemClasses;
+
+        // toggles the condensed style
+        condensed?: boolean;
 
         // sets whether to hide the nav item
         hidden?: boolean;

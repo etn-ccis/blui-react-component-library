@@ -1,6 +1,6 @@
 # Drawer
 
-The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
+The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `DrawerNavItem`, `DrawerRailItem`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 200px" alt="Nested Drawer" src="./images/drawer.png">
@@ -18,25 +18,41 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 
 ```tsx
 import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, DrawerFooter } from '@pxblue/react-components';
-...
-<Drawer open={true}>
+
+// Constructing the drawer using the items object
+<Drawer>
     <DrawerHeader />
     <DrawerSubheader />
     <DrawerBody>
-        <DrawerNavGroup/>
-        <DrawerNavGroup/>
-        <DrawerNavGroup/>
+        <DrawerNavGroup items={[]}/>
+        <DrawerNavGroup items={[]}/>
     </DrawerBody>
     <DrawerFooter />
 </Drawer>
 
-// a responsive Drawer using Drawer variant
+// Constructing the drawer declaratively
+<Drawer>
+    <DrawerHeader />
+    <DrawerSubheader />
+    <DrawerBody>
+        <DrawerNavGroup>
+            <DrawerNavItem />
+            <DrawerNavItem>
+                <DrawerNavItem />
+                <DrawerNavItem />
+            </DrawerNavItem>
+        </DrawerNavGroup>
+    </DrawerBody>
+    <DrawerFooter />
+</Drawer>
+
+// a responsive Drawer using the variant prop
 import { useMediaQuery } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 const theme = useTheme();
 const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
+
 <Drawer
-    open={true}
     variant={xsDown ? 'temporary' : 'persistent'}
 >
 </Drawer>
@@ -46,16 +62,21 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                     | Type                                             | Required | Default |
-| ------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------ | -------- | ------- |
-| open                            | Controls the open/closed state of the drawer                                    | `boolean`                                        | yes      |         |
-| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only)    | `boolean`                                        | no       | true    |
-| classes                         | Style overrides                                                                 | `DrawerClasses`                                  | no       |         |
-| condensed                       | Use the smaller width drawer without text labels (rail variant only)            | `boolean`                                        | no       | `false` |
-| noLayout                        | Set to true if used without a `<DrawerLayout>`                                  | `boolean`                                        | no       | `false` |
-| variant                         | The variant to use (see below)                                                  | `'permanent'` \| `'persistent'` \| `'temporary'` | no       |         |
-| width                           | Sets the width of the drawer (in px) when open                                  | `number`                                         | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                      | -                                                | no       |         |
+| Prop Name                       | Description                                                                     | Type                                                         | Required | Default |
+| ------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------ | -------- | ------- |
+| activeItem                      | itemID for the 'active' item                                                    | `string`                                                     | no       |         |
+| classes                         | Style overrides                                                                 | `DrawerClasses`                                              | no       |         |
+| condensed                       | Use the smaller width drawer without text labels (rail variant only)            | `boolean`                                                    | no       | `false` |
+| noLayout                        | Set to true if used without a `<DrawerLayout>`                                  | `boolean`                                                    | no       | `false` |
+| onItemSelect                    | A callback function to execute whenever an item is clicked                      | `(id: string) => void`                                       | no       |         |
+| open                            | Controls the open/closed state of the drawer                                    | `boolean`                                                    | yes      |         |
+| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only)    | `boolean`                                                    | no       | `true`  |
+| sideBorder                      | Whether to use a side border for the drawer instead of a shadow                 | `boolean`                                                    | no       | `false` |
+| variant                         | The variant to use (see below)                                                  | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       |         |
+| width                           | Sets the width of the drawer (in px) when open                                  | `number`                                                     | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                      | -                                                            | -        |         |
+
+
 
 </div>
 
@@ -76,12 +97,11 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 
 | Name       | Description                                                    |
 | ---------- | -------------------------------------------------------------- |
+| root       | MUI Drawer style override for the root element                 |
 | content    | Styles applied to the drawer content container                 |
 | expanded   | Styles applied to the root element when the drawer is expanded |
-| paper      | MUI Drawer style override for desktop viewports                |
+| paper      | MUI Drawer style override for the underlying paper element     |
 | sideBorder | Styles applied when sideBorder is set to true                  |
-| root       | MUI Drawer style override for the root element                 |
-
 
 ## Drawer Header
 
@@ -124,6 +144,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. The `<
 | content                       | Styles applied to the content container          |
 | navigation                    | Styles applied to the icon element               |
 | nonClickableIcon              | Styles applied to the non-clickable icon element |
+| railIcon                      | Styles applied to the icon when using rail style |
 | subtitle                      | Styles applied to the subtitle element           |
 | title                         | Styles applied to the title element              |
 
@@ -173,10 +194,10 @@ import DrawerBody from '@pxblue/react-components/core/Drawer';
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                | Type                | Required | Default |
-| ------------------------------- | ------------------------------------------ | ------------------- | -------- | ------- |
-| backgroundColor                 | The color used for the background          | `string`            | no       |         |
-| classes                         | Style overrides                            | `DrawerBodyClasses` | no       |         |
+| Prop Name                       | Description                                                | Type                | Required | Default |
+| ------------------------------- | ---------------------------------------------------------- | ------------------- | -------- | ------- |
+| classes                         | Style overrides                                            | `DrawerBodyClasses` | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                   | -        |         |
 
 
 </div>
@@ -191,11 +212,12 @@ You can override the classes used by PX Blue by passing a `classes` prop. The `<
 | ---- | ---------------------------------- |
 | root | Styles applied to the root element |
 
+
 ## Drawer Nav Group
 
-A `<DrawerNavGroup>` is used inside of the `<DrawerBody>` to organize links/content. Each group consists of an (optional) group title and a series of NavItems. Most visual props are inherited from the `<DrawerBody>` but can be overridden at the NavGroup level if desired.
+A `<DrawerNavGroup>` is used inside of the `<DrawerBody>` to organize links/content. Each group consists of an (optional) group title and a series of navigation items. Most visual props are inherited from the `<DrawerBody>` but can be overridden at the NavGroup level if desired.
 
-The `items` property supports nested items to generate collapsible sections in the menu. This can be used to create an arbitrary tree depth, but we do not recommend going more than two levels deep in a navigation Drawer.
+The `items` property supports nested items to generate collapsible sections in the menu. This can be used to create an arbitrary tree depth, but we do not recommend going more than two levels deep in a navigation Drawer. You can also build the navigation links declaratively by passing either `<DrawerNavItem>` or `<DrawerRailItem>` children to the `<DrawerNavGroup>`.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 600px" alt="Drawer Nav Group Anatomy" src="./images/drawerNavGroupAnatomy.png">
@@ -205,14 +227,14 @@ The `items` property supports nested items to generate collapsible sections in t
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                | Type                    | Required | Default |
-| ------------------------------- | ---------------------------------------------------------- | ----------------------- | -------- | ------- |
-| backgroundColor                 | The color used for the background                          | `string`                | no       |         |
-| classes                         | Style overrides                                            | `DrawerNavGroupClasses` | no       |         |
-| items                           | List of NavItems to render                                 | `NestedNavItem[]`       | yes      |         |
-| title                           | Text to display in the group header                        | `string`                | no       |         |
-| titleContent                    | Custom element, substitute for title                       | `ReactNode`             | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy |                         | no       |         |
+| Prop Name                       | Description                                                | Type                    | Required | Default                     |
+| ------------------------------- | ---------------------------------------------------------- | ----------------------- | -------- | --------------------------- |
+| classes                         | Style overrides                                            | `DrawerNavGroupClasses` | no       |                             |
+| items                           | List of items to render                                    | `NavItem[]`             | yes      |                             |
+| title                           | Text to display in the group header                        | `string`                | no       |                             |
+| titleColor                      | Color used for the title text                              | `string`                | no       | varies for light/dark theme |
+| titleContent                    | Custom element, substitute for title                       | `ReactNode`             | no       |                             |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                       | -        |                             |
 
 </div>
 
@@ -224,14 +246,9 @@ You can override the classes used by PX Blue by passing a `classes` prop. The `<
 
 | Name              | Description                                                              |
 | ----------------- | ------------------------------------------------------------------------ |
-| active            | Styles applied to the active element                                     |
-| expandIcon        | Styles applied to the expandIcon element                                 |
-| groupHeader       | Styles applied to the NavGroup header element                            | 
-| listGroup         | Styles applied to the NavGroup list                                      |
-| listItemContainer | Styles applied to the NavItem container                                  |
-| nestedListGroup   | Styles applied to nested NavItems                                        |
+| root              | Styles applied to the root element                                       |
+| title             | Styles applied to the title text element                                 | 
 | subheader         | Styles applied to the List subheader element                             |
-| title             | Styles applied to all NavItem titles                                     |
 
 ## Drawer Footer
 
@@ -263,176 +280,185 @@ Any other props supplied will be provided to the root element (`div`).
 
 ## Drawer Nav Item
 
-#### Nav Item Object
-
-The `items` prop of the `<DrawerNavGroup>` takes a list of items with the following structure (most of these properties are inherited from `<InfoListItem/>`). A `NavItem` can also include a list of `NestedNavItem` to create a tree structure (see below).
+The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be generated for you by using the `items` prop of the `<DrawerNavGroup>` and passing in an array of objects with the following API. You can also create these line items by directly passing them as children to the `<DrawerNavGroup>`. Each `<DrawerNavItem>` also supports the ability to nest items (using its own `items` prop or children). When using the rail variant of the `<Drawer>`, you should use `<DrawerRailItem>` instead (see below).
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 600px" alt="Nav Item Anatomy" src="./images/navItemAnatomy.png">
 </div>
 
+### Drawer Nav Item API
+
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                                     | Type              | Required | Default |
-| ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------- | -------- | ------- |
-| hidden                          | Sets whether to hide the nav item                                                               | `boolean`         | no       |         |
-| icon                            | A component to render for the left icon                                                         | `JSX.Element`     | no       |         |
-| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`          | yes      |         |
-| items                           | The items nested under this item                                                                | `NestedNavItem[]` | no       |         |
-| onClick                         | A function to execute when clicked                                                              | `function`        | no       |         |
-| rightComponent                  | An icon/component to display to the right                                                       | `ReactNode`       | no       |         |
-| statusColor                     | Status stripe and icon color                                                                    | `string`          | no       |         |
-| subtitle                        | The text to show on the second line                                                             | `string`          | no       |         |
-| title                           | The text to show on the first line                                                              | `string`          | yes      |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                      | -                 | no       |         |
+| Prop Name                       | Description                                                                                                                                                 | Type                    | Required | Default |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------- |
+| classes                         | Style overrides                                                                                                                                             | `DrawerNavItemClasses`  | no       |         |
+| depth*                          | The nested depth of the item                                                                                                                                | `number`                | no       | 0       |
+| hidden                          | Sets whether to hide the nav item                                                                                                                           | `boolean`               | no       |         |
+| hidePadding                     | Sets whether to collapse the left padding when no icon is used                                                                                              | `boolean`               | no       |         |
+| icon                            | A component to render for the left icon                                                                                                                     | `JSX.Element`           | no       |         |
+| isInActiveTree*                 | Sets whether the item is a parent of the currently active item (managed automatically)                                                                      | `boolean`               | no       |         |
+| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem                                                             | `string`                | yes      |         |
+| items                           | The items nested under this item                                                                                                                            | `NestedNavItem[]`       | no       |         |
+| notifyActiveParent*             | Callback function to the parent element to update active hierarchy styles                                                                                   | `(ids: string[]) => void` | no     |         |
+| onClick                         | A function to execute when clicked                                                                                                                          | `function`              | no       |         |
+| rightComponent                  | An icon/component to display to the right                                                                                                                   | `ReactNode`             | no       |         |
+| statusColor                     | Status stripe and icon color                                                                                                                                | `string`                | no       |         |
+| subtitle                        | The text to show on the second line                                                                                                                         | `string`                | no       |         |
+| title                           | The text to show on the first line                                                                                                                          | `string`                | yes      |         |
+| InfoListItemProps               | Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props           | `InfoListItemProps`     | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                                                                                  | -                       | -        |         |
 
 </div>
 
-#### Nested Nav Item Object
+> *These props are managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`.
 
-The `items` property of the NavItem can be nested to create a tree structure with expand/collapse panels. Nested items take the same properties as `NavItem` with the exception of `icon` (nested items cannot use icons).
+#### Classes
+
+You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerNavItem>` supports the following keys:
+
+| Name              | Description                                                              |
+| ----------------- | ------------------------------------------------------------------------ |
+| root              | Styles applied to the root element wrapping the InfoListItem             | 
+| active            | Styles applied to the active item highlight element                      | 
+| expandIcon        | Styles applied to the expand/collapse icon wrapper                       | 
+| infoListItemRoot  | Styles applied to the InfoListItem root element                          |
+| nestedListGroup   | Styles applied to wrapper surrounded nested children                     | 
+| nestedTitle       | Styles applied to the title text if the item is a nested item            | 
+| title             | Styles applied to the title text                                         | 
+| titleActive       | Styles applied to the title text if the item is the active item          | 
+| ripple            | Styles applied to the ripple                                             |
+
+### Tips
+
+You can render the `<DrawerNavItem>` as a link by setting the `component` prop in the `InfoListItemProps` to a [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`. This allows you to perform helpful actions such as opening a link in a new browser tab via right-click.
 
 ```tsx
-<DrawerNavGroup
-    items={[
-        {
-            title: 'a',
-            itemID: 'a',
-            items: [
-                {
-                    title: 'a-1',
-                    itemID: 'a-1',
-                },
-                {
-                    title: 'a-2',
-                    itemID: 'a-2',
-                    items: [
-                        {
-                            title: 'a-2-1',
-                            itemID: 'a-2-1',
-                        },
-                        {
-                            title: 'a-2-2',
-                            itemID: 'a-2-2',
-                        },
-                    ],
-                },
-                {
-                    title: 'a-3',
-                    itemID: 'a-3',
-                },
-            ],
-        },
-    ]}
+
+import { Link } from 'react-router-dom';
+// Using items prop
+<DrawerNavGroup items={[
+    itemID: 'overview',
+    title: 'Overview',
+    // @ts-ignore
+    InfoListItemProps: { component: Link, to: '/overview' },
+]}/>
+
+// Declaratively
+<DrawerNavItem
+    itemID={'overview'} 
+    title={'Overview'} 
+    // @ts-ignore
+    InfoListItemProps={{ component: Link, to: '/overview' }}
 />
 ```
 
 ## Drawer Rail Item
 
-When using the `rail` variant of the `<Drawer>`, the `items` prop of the `<DrawerNavGroup>` will be rendered as `<DrawerRailItem>`s instead of `<DrawerNavItem>`s. These are a simplified version of the `<DrawerNavItem>` that render the `icon` and `title` only. When using the `condensed` version of the `<Drawer>`, the `title` will also be hidden.
+When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem>` instead of `<DrawerNavItem>`. The `<DrawerRailItem>` is a simplified version of the `<DrawerNavItem>` that renders the `icon` and `title` only. When using the `condensed` version of the `<Drawer>`, the `title` will also be hidden. The `<DrawerRailItem>` cannot be nested.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" alt="Rail Anatomy" src="./images/railAnatomy.png">
 </div>
 
-The `<DrawerRailItem>` supports the following subset of properties from the `<DrawerNavItem>` and [sharedProps](#shared-props).
+### Drawer Rail Item API
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                                     | Type              | Required | Default                     |
-| ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------- | -------- | --------------------------- |
-| activeItemBackgroundColor       | Background color for the 'active' item                                                          | `string`          | no       | varies for light/dark theme |
-| activeItemFontColor             | Font color for the 'active' item                                                                | `string`          | no       | varies for light/dark theme |
-| activeItemIconColor             | Icon color for the 'active' item                                                                | `string`          | no       | varies for light/dark theme |
-| divider                         | Whether to show a line between all items                                                        | `boolean`         | no       | false                       |
-| itemFontColor                   | The color used for the item text                                                                | `string`          | no       | varies for light/dark theme |
-| itemIconColor                   | The color used for the icon                                                                     | `string`          | no       | varies for light/dark theme |
-| ripple                          | Whether to apply material ripple effect on click                                                | `boolean`         | no       | true                        |
-| hidden                          | Sets whether to hide the nav item                                                               | `boolean`         | no       |                             |
-| icon                            | A component to render for the icon                                                              | `JSX.Element`     | yes      |                             |
-| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`          | yes      |                             |
-| onClick                         | A function to execute when clicked                                                              | `function`        | no       |                             |
-| statusColor                     | Status stripe color                                                                             | `string`          | no       |                             |
-| title                           | The text to show on the first line                                                              | `string`          | yes      |                             |
+| Prop Name                       | Description                                                                                     | Type                    | Required | Default |
+| ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------- |
+| classes                         | Style overrides                                                                                 | `DrawerRailItemClasses` | no       |         |
+| condensed*                      | Sets whether to show the condensed variant without a title                                      | `boolean`               | no       | `false` |
+| hidden                          | Sets whether to hide the rail item                                                              | `boolean`               | no       |         |
+| icon                            | A component to render for the left icon                                                         | `JSX.Element`           | no       |         |
+| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`                | yes      |         |
+| onClick                         | A function to execute when clicked                                                              | `function`              | no       |         |
+| statusColor                     | Status stripe and icon color                                                                    | `string`                | no       |         |
+| title                           | The text to show on the first line                                                              | `string`                | yes      |         |
+| ButtonBaseProps                 | Used to override [ButtonBase](https://material-ui.com/api/button-base/) default props           | `InfoListItemProps`     | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                      | -                       | -        |         |
 
 </div>
 
-Any other props will be provided to the root element [**Material UI ButtonBase**](https://material-ui.com/api/button-base/).
+> *These props are managed automatically when using the `<DrawerRailItem>` inside of a `<Drawer>`.
 
+#### Classes
+
+You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerRailItem>` supports the following keys:
+
+| Name              | Description                                                              |
+| ----------------- | ------------------------------------------------------------------------ |
+| root              | Styles applied to the root element wrapping the InfoListItem             | 
+| active            | Styles applied to the active item highlight element                      | 
+| condensed         | Styles applied to the root element when condensed is true                | 
+| divider           | Styles applied to the divider element                                    |
+| icon              | Styles applied to the icon wrapper                                       |
+| statusStripe      | Styles applied to the status stripe                                      | 
+| title             | Styles applied to the title text                                         | 
+| titleActive       | Styles applied to the title text if the item is the active item          | 
+| ripple            | Styles applied to the ripple                                             |
+
+### Tips
+
+You can render the `<DrawerRailItem>` as a link by setting the `component` prop in the `ButtonBaseProps` to a [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`. This allows you to perform helpful actions such as opening a link in a new browser tab via right-click.
+
+```tsx
+
+import { Link } from 'react-router-dom';
+// Using items prop
+<DrawerNavGroup items={[
+    itemID: 'overview',
+    title: 'Overview',
+    // @ts-ignore
+    ButtonBaseProps: { component: Link, to: '/overview' },
+]}/>
+
+// Declaratively
+<DrawerRailItem
+    itemID={'overview'} 
+    title={'Overview'} 
+    // @ts-ignore
+    ButtonBaseProps={{ component: Link, to: '/overview' }}
+/>
+```
 
 ## Shared Props
 
-The following props can be set at any level in the drawer hierarchy (`<Drawer>`, `<DrawerNavGroup>`, `NavItem`, or `NestedNavItem`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
+The following props can be set at any level in the drawer hierarchy (`<Drawer>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerNavItem>`, or `<DrawerRailItem>`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
 
 <div style="overflow: auto;">
 
 | Name                      | Description                                                                                                                                                 | Type                    | Required | Default                                                       |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------- |
 | activeItemBackgroundColor | Background color for the 'active' item                                                                                                                      | `string`                | no       | varies for light/dark theme                                   |
-| activeItemBackgroundShape | shape of the active item background                                                                                                                         | `'round'` \| `'square'` | no       | square                                                        |
 | activeItemFontColor       | Font color for the 'active' item                                                                                                                            | `string`                | no       | varies for light/dark theme                                   |
 | activeItemIconColor       | Icon color for the 'active' item                                                                                                                            | `string`                | no       | varies for light/dark theme                                   |
-| chevron                   | Whether to have chevrons for all menu items                                                                                                                 | `boolean`               | no       |                                                               |
-| collapseIcon              | Icon used to collapse drawer                                                                                                                                | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                              |
+| backgroundColor           | Color used for the background of the element                                                                                                                | `string`                | no       |                                                               |
 | divider                   | Whether to show a line between all items                                                                                                                    | `boolean`               | no       | false                                                         |
-| expandIcon                | Icon used to expand drawer                                                                                                                                  | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise  |
-| hidePadding               | Whether to hide the paddings reserved for menu item icons                                                                                                   | `boolean`               | no       |                                                               |
-| InfoListItemProps         | Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) props set by the Drawer | `InfoListItemProps`     | no       |                                                               |
 | itemFontColor             | The color used for the item text                                                                                                                            | `string`                | no       | varies for light/dark theme                                   |
 | itemIconColor             | The color used for the icon                                                                                                                                 | `string`                | no       | varies for light/dark theme                                   |
-| ripple                    | Whether to apply material ripple effect to items                                                                                                            | `boolean`               | no       | true                                                          |
+| ripple                    | Whether to apply material ripple effect to items on click                                                                                                   | `boolean`               | no       | true                                                          |
 
 </div>
 
-The following props control the NavGroup and thus only apply to `<Drawer>`, and `DrawerNavGroupProps` (so not `NavItem` or `NestedNavItem`):
+The following are additional shared props that will apply when using a non-rail variant of the `<Drawer>`. They will have no effect on `<DrawerRailItem>`s.
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                     | Type      | Required | Default                                                      |
-| ------------------------------- | ------------------------------------------------------------------------------- | --------- | -------- | ------------------------------------------------------------ |
-| activeItem                      | itemID for the 'active' item                                                    | `string`  | no       |                                                              |
-| disableActiveItemParentStyles   | If true, NavItems will not have a bold title when a child NavItem is selected   | `boolean` | no       | `false`                                                      |
-| nestedBackgroundColor           | background color for nested menu items                                          | `string`  | no       | theme.palette.type === 'light' ? white[200] : darkBlack[100] |
-| nestedDivider                   | Whether to show a line between nested menu items                                | `boolean` | no       | false                                                        |
-| titleColor                      | Font color for group header                                                     | `string`  | no       | theme.palette.text.primary                                   |
+| Prop Name                       | Description                                                                     | Type                    | Required | Default                                                      |
+| ------------------------------- | ------------------------------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
+| activeItemBackgroundShape       | shape of the active item background highlight                                   | `'round'` \| `'square'` | no       | square                                                       |
+| chevron                         | Whether to have chevrons for all menu items                                     | `boolean`               | no       |                                                              |
+| collapseIcon                    | Icon used to collapse drawer                                                    | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                             |
+| expandIcon                      | Icon used to expand drawer                                                      | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
+| hidePadding                     | Whether to hide the paddings reserved for menu item icons                       | `boolean`               | no       |                                                              |
+| disableActiveItemParentStyles   | If true, NavItems will not have a bold title when a child NavItem is selected   | `boolean`               | no       | `false`                                                      |
+| nestedBackgroundColor           | background color for nested menu items                                          | `string`                | no       | theme.palette.type === 'light' ? white[200] : darkBlack[100] |
+| nestedDivider                   | Whether to show a line between nested menu items                                | `boolean`               | no       | false                                                        |
 
 </div>
 
-## Tips
 
-You can render the Drawer Nav Item as a link by setting the `component` prop in the `InfoListItemProps` to [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`. This allows you to perform helpful actions such as opening a link in a new browser tab. If you are using the rail variant, you can do the same thing using the `ButtonBaseProps`.
-
-```tsx
-
-import { Link } from 'react-router-dom';
-
-<Drawer ... >
-    <DrawerBody>
-        <DrawerNavGroup
-            item={[
-                // rendered as <Link>
-                {
-                    title: 'Overview',
-                    itemID: '0',
-                    // @ts-ignore
-                    InfoListItemProps: { component: Link, to: '/overview' },
-                    // @ts-ignore
-                    ButtonBaseProps: { component: Link, to: '/overview' },
-                },
-                // rendered as <a>
-                {
-                    title: 'Overview',
-                    itemID: '1',
-                    // @ts-ignore
-                    InfoListItemProps: { component: 'a', href: '/overview' },
-                    // @ts-ignore
-                    ButtonBaseProps: { component: 'a', href: '/overview' },
-                },
-            ]}
-        />
-    </DrawerBody>
-</Drawer>
-```
 
 # Drawer Layout
 
@@ -475,7 +501,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. The `<
 
 | Name     | Description                                                    |
 | -------- | -------------------------------------------------------------- |
+| root     | Styles applied to the root element                             |
 | content  | Styles applied to the body content container                   |
 | drawer   | Styles applied to the drawer container                         |
 | expanded | Styles applied to the root element when the drawer is expanded |
-| root     | Styles applied to the root element                             |

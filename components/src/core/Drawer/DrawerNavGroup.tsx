@@ -39,9 +39,9 @@ export type DrawerNavGroupProps = SharedStyleProps &
     };
 
 type DrawerNavGroupClasses = {
-    groupHeader?: string;
     root?: string;
     subheader?: string;
+    title?: string;
 };
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingBottom: 0,
             paddingTop: 0,
         },
-        groupHeader: {
+        title: {
             display: 'block',
             alignItems: 'center',
             lineHeight: '3rem',
@@ -240,7 +240,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                                 <Typography
                                     noWrap
                                     variant={'overline'}
-                                    className={clsx(defaultClasses.groupHeader, classes.groupHeader)}
+                                    className={clsx(defaultClasses.title, classes.title)}
                                 >
                                     {title}
                                 </Typography>
@@ -330,7 +330,7 @@ DrawerNavGroup.propTypes = {
     ...SharedStylePropTypes,
     ...NavItemSharedStylePropTypes,
     classes: PropTypes.shape({
-        groupHeader: PropTypes.string,
+        title: PropTypes.string,
         root: PropTypes.string,
         subheader: PropTypes.string,
     }),
