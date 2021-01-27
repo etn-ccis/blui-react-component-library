@@ -5,6 +5,7 @@ import { InfoListItemProps } from './InfoListItem';
 
 export type InfoListItemClasses = {
     root?: string;
+    active?: string;
     avatar?: string;
     divider?: string;
     icon?: string;
@@ -63,6 +64,21 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             },
             '&:focus': {
                 outline: 'none',
+            },
+        },
+        active: {
+            content: '""',
+            zIndex: 0,
+            position: 'absolute',
+            height: '100%',
+            width: `calc(100% - ${theme.spacing(1)}px)`,
+            left: 0,
+            top: 0,
+            borderRadius: `0px ${theme.spacing(3)}px ${theme.spacing(3)}px 0px`,
+            opacity: 0.9,
+            '&$square': {
+                width: '100%',
+                borderRadius: 0,
             },
         },
         avatar: {
