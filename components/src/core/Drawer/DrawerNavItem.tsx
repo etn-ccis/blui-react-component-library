@@ -86,7 +86,11 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         infoListItemRoot: {
-            paddingLeft: (props: DrawerNavItemProps): number => calcNestedPadding(theme, props.depth),
+            // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
+            paddingLeft: (props: DrawerNavItemProps): number =>
+                theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, props.depth),
+            paddingRight: (props: DrawerNavItemProps): number =>
+                theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, props.depth),
         },
         nestedTitle: {
             fontWeight: 400,
@@ -184,7 +188,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     // only allow icons for the top level items
     const icon = !depth ? itemIcon : undefined;
     const showDivider =
-        divider !== undefined ? divider : depth ? (nestedDivider !== undefined ? nestedDivider : false) : false;
+        depth > 0 ? (nestedDivider !== undefined ? nestedDivider : false) : divider !== undefined ? divider : false;
 
     // When the activeItem changes, update our expanded state
     useEffect(() => {

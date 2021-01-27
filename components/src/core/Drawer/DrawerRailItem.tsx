@@ -55,7 +55,7 @@ export type DrawerRailItemProps = SharedStyleProps & {
     statusColor?: string;
 
     // text to be displayed
-    title: string;
+    title?: string;
 
     // props for the ButtonBase
     ButtonBaseProps?: Partial<MuiButtonBaseProps>;
@@ -175,13 +175,13 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         divider,
         ripple = true,
         classes = {},
-        condensed: itemCondensed = false,
+        condensed: itemCondensed,
         hidden,
         icon,
         itemID,
         onClick,
         // onItemSelect,
-        title,
+        title = '',
         ButtonBaseProps,
         statusColor,
         ...directButtonBaseProps

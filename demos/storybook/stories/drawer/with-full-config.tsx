@@ -110,7 +110,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         nestedBackgroundColor: color('nestedBackgroundColor', Colors.white[200], drawerGroupId),
         nestedDivider: boolean('nestedDivider', false, drawerGroupId),
         open: boolean('open', true, drawerGroupId),
-        openOnHover: boolean('openOnHover', true, drawerGroupId),
+        openOnHover: boolean('openOnHover (persistent only)', true, drawerGroupId),
         ripple: boolean('ripple', true, drawerGroupId),
         sideBorder: boolean('sideBorder', true, drawerGroupId),
         variant: select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent', drawerGroupId),
