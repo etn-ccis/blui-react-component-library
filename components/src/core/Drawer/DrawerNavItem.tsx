@@ -98,7 +98,6 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: theme.palette.primary.main,
         },
         root: {},
-        square: {},
         title: {
             fontWeight: 400,
         },
@@ -343,14 +342,6 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         <>
             {!props.hidden && (
                 <div ref={ref} style={{ position: 'relative' }} className={clsx(defaultClasses.root, classes.root)}>
-                    {/* {active && (
-                        <div
-                            className={clsx(defaultClasses.active, classes.active, {
-                                [defaultClasses.square]: activeItemBackgroundShape === 'square',
-                            })}
-                            style={{ backgroundColor: activeItemBackgroundColor }}
-                        />
-                    )} */}
                     <InfoListItem
                         dense
                         title={itemTitle}

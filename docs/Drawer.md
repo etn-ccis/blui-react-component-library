@@ -320,7 +320,6 @@ You can override the classes used by PX Blue by passing a `classes` prop. The `<
 | Name              | Description                                                              |
 | ----------------- | ------------------------------------------------------------------------ |
 | root              | Styles applied to the root element wrapping the InfoListItem             | 
-| active            | Styles applied to the active item highlight element                      | 
 | expandIcon        | Styles applied to the expand/collapse icon wrapper                       | 
 | infoListItemRoot  | Styles applied to the InfoListItem root element                          |
 | nestedListGroup   | Styles applied to wrapper surrounded nested children                     | 

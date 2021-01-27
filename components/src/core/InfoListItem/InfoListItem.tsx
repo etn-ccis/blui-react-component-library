@@ -151,7 +151,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         <ListItem button={hasRipple} className={combine('root')} ref={ref} {...otherListItemProps}>
             {selected && (
                 <div
-                    className={clsx(defaultClasses.active, classes.active, {
+                    className={clsx(defaultClasses.selected, classes.selected, {
                         [defaultClasses.square]: selectedBackgroundShape === 'square',
                     })}
                     style={{ backgroundColor: selectedBackgroundColor }}
@@ -205,6 +205,7 @@ InfoListItem.propTypes = {
         avatar: PropTypes.string,
         icon: PropTypes.string,
         rightComponent: PropTypes.string,
+        selected: PropTypes.string,
         separator: PropTypes.string,
         subtitle: PropTypes.string,
         title: PropTypes.string,
