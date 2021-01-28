@@ -255,6 +255,11 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                 {items.map((drawerItem: DrawerNavItemProps | DrawerRailItemProps, index: number) => {
                     if (variant === 'rail') {
                         const railItem = drawerItem as DrawerRailItemProps;
+                        if (railItem.icon === undefined) {
+                            // eslint-disable-next-line no-console
+                            console.warn(`Missing required prop 'icon' in DrawerRailItem.`);
+                        }
+
                         return (
                             <DrawerRailItem
                                 key={`itemList_${index}`}
@@ -284,6 +289,11 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                     }
                     // else it's a regular nav item
                     const navItem = drawerItem as DrawerNavItemProps;
+                    if (navItem.title === undefined) {
+                        // eslint-disable-next-line no-console
+                        console.warn(`Missing required prop 'title' in DrawerNavItem.`);
+                    }
+
                     return (
                         <DrawerNavItem
                             key={`itemList_${index}`}
