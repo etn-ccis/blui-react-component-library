@@ -1,22 +1,20 @@
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import React, { HTMLAttributes } from 'react';
-import {
-    PXBlueDrawerNavGroupInheritableProperties,
-    PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
-} from './Drawer';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
+import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
+import { mergeStyleProp } from './utilities';
+import clsx from 'clsx';
 
 type DrawerBodyClasses = {
     root?: string;
 };
 
-export type DrawerBodyProps = HTMLAttributes<HTMLDivElement> & {
-    backgroundColor?: string;
-    classes?: DrawerBodyClasses;
-    drawerOpen?: boolean;
-} & PXBlueDrawerNavGroupInheritableProperties;
+export type DrawerBodyProps = HTMLAttributes<HTMLDivElement> &
+    SharedStyleProps &
+    NavItemSharedStyleProps & {
+        classes?: DrawerBodyClasses;
+    };
 
 const useStyles = makeStyles({
     root: {
@@ -34,30 +32,27 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
 ) => {
     const defaultClasses = useStyles(bodyProps);
     const {
-        classes,
-        drawerOpen,
-        backgroundColor,
-        activeItem,
+        // Inheritable Props
         activeItemBackgroundColor,
         activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
+        backgroundColor,
         chevron,
-        children: bodyChildren,
         collapseIcon,
         disableActiveItemParentStyles,
         divider,
         expandIcon,
         hidePadding,
-        InfoListItemProps,
-        ButtonBaseProps,
         itemFontColor,
         itemIconColor,
         nestedBackgroundColor,
         nestedDivider,
-        onItemSelect,
         ripple,
-        titleColor,
+        // DrawerBody-specific props
+        classes,
+        children: bodyChildren,
+        // Other div props
         ...otherDivProps
     } = bodyProps;
 
@@ -73,38 +68,35 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
                 if (child.type && child.type.displayName !== 'DrawerNavGroup') return child;
                 const groupProps: DrawerNavGroupProps = child.props;
 
-                // for any DrawerNavGroup, if a prop is not set (undefined), inherit from the DrawerBody
-                // open and onItemSelect is always determined by DrawerBody
                 return (
                     <DrawerNavGroup
-                        {...groupProps}
                         key={`NavGroup_${index}`}
-                        activeItem={groupProps.activeItem || activeItem}
-                        activeItemBackgroundColor={groupProps.activeItemBackgroundColor || activeItemBackgroundColor}
-                        activeItemFontColor={groupProps.activeItemFontColor || activeItemFontColor}
-                        activeItemIconColor={groupProps.activeItemIconColor || activeItemIconColor}
-                        activeItemBackgroundShape={groupProps.activeItemBackgroundShape || activeItemBackgroundShape}
-                        backgroundColor={backgroundColor}
-                        chevron={groupProps.chevron === undefined ? chevron : groupProps.chevron}
-                        collapseIcon={groupProps.collapseIcon || collapseIcon}
-                        disableActiveItemParentStyles={
-                            groupProps.disableActiveItemParentStyles || disableActiveItemParentStyles
-                        }
-                        divider={groupProps.divider === undefined ? divider : groupProps.divider}
-                        expandIcon={groupProps.expandIcon || expandIcon}
-                        hidePadding={groupProps.hidePadding === undefined ? hidePadding : groupProps.hidePadding}
-                        itemFontColor={groupProps.itemFontColor || itemFontColor}
-                        itemIconColor={groupProps.itemIconColor || itemIconColor}
-                        InfoListItemProps={groupProps.InfoListItemProps || InfoListItemProps}
-                        ButtonBaseProps={groupProps.ButtonBaseProps || ButtonBaseProps}
-                        nestedDivider={
-                            groupProps.nestedDivider === undefined ? nestedDivider : groupProps.nestedDivider
-                        }
-                        nestedBackgroundColor={groupProps.nestedBackgroundColor || nestedBackgroundColor}
-                        ripple={groupProps.ripple === undefined ? ripple : groupProps.ripple}
-                        onItemSelect={onItemSelect}
-                        drawerOpen={drawerOpen}
-                        titleColor={groupProps.titleColor || titleColor}
+                        {...groupProps}
+                        activeItemBackgroundColor={mergeStyleProp(
+                            activeItemBackgroundColor,
+                            groupProps.activeItemBackgroundColor
+                        )}
+                        activeItemBackgroundShape={mergeStyleProp(
+                            activeItemBackgroundShape,
+                            groupProps.activeItemBackgroundShape
+                        )}
+                        activeItemFontColor={mergeStyleProp(activeItemFontColor, groupProps.activeItemFontColor)}
+                        activeItemIconColor={mergeStyleProp(activeItemIconColor, groupProps.activeItemIconColor)}
+                        backgroundColor={mergeStyleProp(backgroundColor, groupProps.backgroundColor)}
+                        chevron={mergeStyleProp(chevron, groupProps.chevron)}
+                        collapseIcon={mergeStyleProp(collapseIcon, groupProps.collapseIcon)}
+                        disableActiveItemParentStyles={mergeStyleProp(
+                            disableActiveItemParentStyles,
+                            groupProps.disableActiveItemParentStyles
+                        )}
+                        divider={mergeStyleProp(divider, groupProps.divider)}
+                        expandIcon={mergeStyleProp(expandIcon, groupProps.expandIcon)}
+                        hidePadding={mergeStyleProp(hidePadding, groupProps.hidePadding)}
+                        itemFontColor={mergeStyleProp(itemFontColor, groupProps.itemFontColor)}
+                        itemIconColor={mergeStyleProp(itemIconColor, groupProps.itemIconColor)}
+                        nestedBackgroundColor={mergeStyleProp(nestedBackgroundColor, groupProps.nestedBackgroundColor)}
+                        nestedDivider={mergeStyleProp(nestedDivider, groupProps.nestedDivider)}
+                        ripple={mergeStyleProp(ripple, groupProps.ripple)}
                     />
                 );
             })}
@@ -114,15 +106,13 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
 
 export const DrawerBody = React.forwardRef(DrawerBodyRender);
 DrawerBody.displayName = 'DrawerBody';
-
 // @ts-ignore
 DrawerBody.propTypes = {
-    backgroundColor: PropTypes.string,
+    ...SharedStylePropTypes,
+    ...NavItemSharedStylePropTypes,
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),
-    drawerOpen: PropTypes.bool,
-    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerBody.defaultProps = {
     classes: {},

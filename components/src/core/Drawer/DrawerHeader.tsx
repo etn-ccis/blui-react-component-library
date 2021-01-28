@@ -1,12 +1,17 @@
 import React, { ReactNode, useCallback } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Divider from '@material-ui/core/Divider';
-import { Typography, ToolbarProps } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import {
+    createStyles,
+    makeStyles,
+    Theme,
+    Toolbar,
+    Typography,
+    ToolbarProps,
+    Divider,
+    IconButton,
+} from '@material-ui/core';
 import { useDrawerContext } from './DrawerContext';
+import clsx from 'clsx';
 
 type DrawerHeaderClasses = {
     root?: string;
@@ -14,6 +19,7 @@ type DrawerHeaderClasses = {
     content?: string;
     navigation?: string;
     nonClickableIcon?: string;
+    railIcon?: string;
     subtitle?: string;
     title?: string;
 };
@@ -44,6 +50,16 @@ const useStyles = makeStyles((theme: Theme) =>
             color: (props: DrawerHeaderProps): string =>
                 props.fontColor || theme.palette.getContrastText(props.backgroundColor || theme.palette.primary.main),
         },
+        background: {
+            position: 'absolute',
+            zIndex: 0,
+            width: '100%',
+            backgroundSize: 'cover',
+            height: '100%',
+            backgroundPosition: 'center',
+            backgroundImage: (props: DrawerHeaderProps): string => `url(${props.backgroundImage})`,
+            opacity: (props: DrawerHeaderProps): number => props.backgroundOpacity,
+        },
         content: {
             [theme.breakpoints.down('xs')]: {
                 minHeight: theme.spacing(7),
@@ -69,25 +85,6 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
             zIndex: 1,
         },
-        title: {
-            fontWeight: 600,
-            lineHeight: '1.6rem', // Anything lower than 1.6rem cuts off bottom text of 'g' or 'y'.
-        },
-        subtitle: {
-            fontWeight: 300,
-            lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
-            marginTop: '-2px',
-        },
-        background: {
-            position: 'absolute',
-            zIndex: 0,
-            width: '100%',
-            backgroundSize: 'cover',
-            height: '100%',
-            backgroundPosition: 'center',
-            backgroundImage: (props: DrawerHeaderProps): string => `url(${props.backgroundImage})`,
-            opacity: (props: DrawerHeaderProps): number => props.backgroundOpacity,
-        },
         nonClickableIcon: {
             display: 'flex',
             paddingLeft: theme.spacing(1.5),
@@ -95,6 +92,15 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         railIcon: {
             marginLeft: theme.spacing(1),
+        },
+        subtitle: {
+            fontWeight: 300,
+            lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
+            marginTop: '-2px',
+        },
+        title: {
+            fontWeight: 600,
+            lineHeight: '1.6rem', // Anything lower than 1.6rem cuts off bottom text of 'g' or 'y'.
         },
     })
 );
@@ -122,7 +128,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         ...otherToolbarProps
     } = props;
 
-    const { variant, condensed } = useDrawerContext();
+    const { variant = 'persistent', condensed = false } = useDrawerContext();
 
     const getHeaderContent = useCallback(
         (): ReactNode =>
@@ -166,6 +172,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                     <div
                         className={clsx(defaultClasses.navigation, classes.navigation, {
                             [defaultClasses.railIcon]: variant === 'rail' && !condensed,
+                            [classes.railIcon]: variant === 'rail' && !condensed && classes.railIcon,
                         })}
                     >
                         {onIconClick && (
@@ -209,6 +216,7 @@ DrawerHeader.propTypes = {
         content: PropTypes.string,
         navigation: PropTypes.string,
         nonClickableIcon: PropTypes.string,
+        railIcon: PropTypes.string,
         subtitle: PropTypes.string,
         title: PropTypes.string,
     }),

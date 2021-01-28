@@ -1,11 +1,4 @@
-import {
-    ExpansionPanel,
-    ExpansionPanelDetails,
-    ExpansionPanelSummary,
-    IconButton,
-    TextField,
-    Typography,
-} from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, IconButton, TextField, Typography } from '@material-ui/core';
 
 import InputAdornment from '@material-ui/core/InputAdornment';
 import ExpandMoreIcon from '@material-ui/core/SvgIcon/SvgIcon';
@@ -42,17 +35,17 @@ const filter = (
     />
 );
 const accordion = (
-    <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+    <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
             <Typography>Expansion Panel 1</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        </AccordionSummary>
+        <AccordionDetails>
             <Typography>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet
                 blandit leo lobortis eget.
             </Typography>
-        </ExpansionPanelDetails>
-    </ExpansionPanel>
+        </AccordionDetails>
+    </Accordion>
 );
 
 export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnType => {
@@ -66,7 +59,7 @@ export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnTy
     const subheaderContent = optionsKnob('Subheader Content', valuesObj, 'Filter', optionsObj);
 
     return (
-        <Drawer open={boolean('open', true)}>
+        <Drawer open={boolean('open', true)} activeItem={context.state.selected}>
             <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
             <DrawerSubheader
                 hideContentOnCollapse={boolean('hideContentOnCollapse', true)}
@@ -83,7 +76,7 @@ export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnTy
                 </div>
             </DrawerSubheader>
             <DrawerBody>
-                <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
+                <DrawerNavGroup items={navGroupItems1} />
             </DrawerBody>
         </Drawer>
     );

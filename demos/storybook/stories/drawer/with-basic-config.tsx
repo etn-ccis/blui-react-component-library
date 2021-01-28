@@ -43,10 +43,10 @@ export const navGroupItems2: NavItem[] = [
 ];
 
 export const withBasicConfig = (context: DrawerStoryContext): StoryFnReactReturnType => (
-    <Drawer open={boolean('open', true)}>
+    <Drawer open={boolean('open', true)} activeItem={context.state.selected}>
         <DrawerHeader icon={<Menu />} title={text('title', 'Simple Drawer')} />
         <DrawerBody>
-            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
+            <DrawerNavGroup items={navGroupItems1} />
         </DrawerBody>
     </Drawer>
 );

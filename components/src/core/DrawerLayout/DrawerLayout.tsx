@@ -2,7 +2,7 @@ import React, { ReactElement, HTMLAttributes, useState } from 'react';
 import { makeStyles, createStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { DrawerComponentProps } from '../Drawer/Drawer';
+import { DrawerProps as DrawerComponentProps } from '../Drawer/Drawer';
 import { DrawerLayoutContext } from './contexts/DrawerLayoutContextProvider';
 
 const useStyles = makeStyles((theme: Theme) =>

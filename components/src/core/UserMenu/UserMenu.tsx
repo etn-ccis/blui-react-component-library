@@ -164,7 +164,6 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 <div className={defaultClasses.navGroups} key={index}>
                     <DrawerNavGroup
                         divider={false}
-                        drawerOpen={true}
                         itemIconColor={group.iconColor}
                         itemFontColor={group.fontColor}
                         title={group.title}

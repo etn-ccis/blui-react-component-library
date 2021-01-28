@@ -1,11 +1,14 @@
 # Changelog
 
-## version tbd (not published)
+## 5.0.0 (not published yet)
 
 ### Changed
 
 -   Updated styles for `<DropdownToolbar>` to support Icon Button or plain icon for `navigationIcon`.
 -   Updated default styles for `<Drawer>`.
+-   `activeItem` must now specified on the `<Drawer>` component instead of `<DrawerNavGroup>`.
+-   Moved `titleColor` prop from shared props to the local props for `<DrawerNavGroup>`.
+-   Some of the class names for style overrides have changed
 
 ### Added
 -   Additional configuration properties for `<Drawer>`:
@@ -15,6 +18,7 @@
     -   `hideContentOnCollapse` configures if content in these areas should be hidden or remain visible when the drawer is collapsed.
     -   `divider` configures whether to show a dividing line separating the component from other content.
 -   Added new property `openOnHover` to `<Drawer>`.
+-   Ability to build `<Drawer>` contents declaratively instead of using `items` prop.
 
 ## 4.2.0
 

@@ -1,4 +1,4 @@
-import { Divider, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import {
     Accessibility,
     Add,
@@ -110,10 +110,9 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         nestedBackgroundColor: color('nestedBackgroundColor', Colors.white[200], drawerGroupId),
         nestedDivider: boolean('nestedDivider', false, drawerGroupId),
         open: boolean('open', true, drawerGroupId),
-        openOnHover: boolean('openOnHover', true, drawerGroupId),
+        openOnHover: boolean('openOnHover (persistent only)', true, drawerGroupId),
         ripple: boolean('ripple', true, drawerGroupId),
         sideBorder: boolean('sideBorder', true, drawerGroupId),
-        titleColor: color('titleColor', Colors.black[500], drawerGroupId),
         variant: select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent', drawerGroupId),
         condensed: boolean('condensed (rail only)', false, drawerGroupId),
         width: number(
@@ -144,11 +143,12 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     };
 
     const bodyKnobs: DrawerBodyProps = {
-        backgroundColor: color('backgroundColor', Colors.white[50], bodyGroupId),
+        backgroundColor: color('backgroundColor', 'transparent', bodyGroupId),
     };
 
     const navGroupKnobs: Partial<DrawerNavGroupProps> = {
         title: text('drawerNavGroup[0].title', 'NavGroup 1', navGroupId),
+        titleColor: color('drawerNavGroup[0].titleColor', Colors.black[500], navGroupId),
     };
 
     const navItemKnobs: Partial<NavItem> = {
@@ -311,7 +311,6 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             openOnHover={drawerKnobs.openOnHover}
             ripple={drawerKnobs.ripple}
             sideBorder={drawerKnobs.sideBorder}
-            titleColor={drawerKnobs.titleColor}
             variant={drawerKnobs.variant}
             width={drawerKnobs.width}
             ModalProps={{
@@ -329,7 +328,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                 title={headerKnobs.title}
             />
             <DrawerBody backgroundColor={bodyKnobs.backgroundColor}>
-                <DrawerNavGroup items={links1} title={navGroupKnobs.title} />
+                <DrawerNavGroup items={links1} title={navGroupKnobs.title} titleColor={navGroupKnobs.titleColor} />
                 <DrawerNavGroup
                     items={links2}
                     titleContent={
@@ -351,7 +350,6 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
 
             {showFooter && (
                 <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
-                    <Divider />
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
                     </div>

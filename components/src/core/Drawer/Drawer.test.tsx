@@ -7,7 +7,7 @@ import { createMount, createShallow } from '@material-ui/core/test-utils';
 import { findByTestId } from '../test-utils';
 import { Avatar, Typography } from '@material-ui/core';
 
-import { DrawerComponent as Drawer } from './Drawer';
+import { Drawer } from './Drawer';
 import { DrawerHeader } from './DrawerHeader';
 import { DrawerSubheader } from './DrawerSubheader';
 import { DrawerBody } from './DrawerBody';
@@ -16,6 +16,7 @@ import { DrawerNavGroup } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
 import MoreVert from '@material-ui/icons/MoreVert';
 import { DrawerRailItem } from './DrawerRailItem';
+import { DrawerNavItem } from './DrawerNavItem';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -145,6 +146,57 @@ describe('DrawerNavGroup', () => {
                     },
                 ]}
             />
+        );
+
+        const expectedNavItemTitleList = [
+            'a',
+            'b',
+            'b_0',
+            'b_0_0',
+            'b_0_1',
+            'b_1',
+            'b_1_0',
+            'c',
+            'c_0',
+            'c_0_0',
+            'c_0_1',
+        ];
+
+        const navItemList = wrapper.find(InfoListItem);
+        expect(navItemList.length).toEqual(expectedNavItemTitleList.length);
+        navItemList.forEach((item, index) => {
+            expect(item.prop('title')).toEqual(expectedNavItemTitleList[index]);
+        });
+    });
+
+    it('renders its menu items declaratively in the correct order', () => {
+        const wrapper = mount(
+            <DrawerNavGroup>
+                <DrawerNavItem title={'a'} itemID={'a'} />
+                <DrawerNavItem title={'b'} itemID={'b'}>
+                    <DrawerNavItem title={'b_0'} itemID={'b_0'}>
+                        <DrawerNavItem title={'b_0_0'} itemID={'b_0_0'} />
+                        <DrawerNavItem title={'b_0_1'} itemID={'b_0_1'} />
+                    </DrawerNavItem>
+                    <DrawerNavItem title={'b_1'} itemID={'b_1'}>
+                        <DrawerNavItem title={'b_1_0'} itemID={'b_1_0'} />
+                    </DrawerNavItem>
+                </DrawerNavItem>
+                <DrawerNavItem
+                    title={'c'}
+                    itemID={'c'}
+                    items={[
+                        {
+                            title: 'c_0',
+                            itemID: 'c_0',
+                            items: [
+                                { title: 'c_0_0', itemID: 'c_0_0' },
+                                { title: 'c_0_1', itemID: 'c_0_1' },
+                            ],
+                        },
+                    ]}
+                />
+            </DrawerNavGroup>
         );
 
         const expectedNavItemTitleList = [

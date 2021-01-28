@@ -10,10 +10,10 @@ import { navGroupItems2 } from './with-basic-config';
 const EatonLogo = require('../../assets/EatonLogo.svg');
 
 export const withFooter = (context: DrawerStoryContext): StoryFnReactReturnType => (
-    <Drawer open={boolean('open', true)}>
+    <Drawer open={boolean('open', true)} activeItem={context.state.selected}>
         <DrawerHeader icon={<Menu />} title={'Footer Example'} />
         <DrawerBody>
-            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems2} />
+            <DrawerNavGroup items={navGroupItems2} />
         </DrawerBody>
 
         <DrawerFooter

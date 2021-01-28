@@ -29,6 +29,7 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                     ModalProps={{
                         disableEnforceFocus: true,
                     }}
+                    activeItem={context.state.selected}
                 >
                     <DrawerHeader
                         icon={<MenuIcon />}
@@ -53,7 +54,7 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                         }
                     />
                     <DrawerBody>
-                        <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
+                        <DrawerNavGroup items={navGroupItems1} />
                     </DrawerBody>
                     {variant !== 'rail' && (
                         <DrawerFooter>

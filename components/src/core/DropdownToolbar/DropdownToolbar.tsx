@@ -187,7 +187,6 @@ const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToo
                             <div className={defaultClasses.navGroups} key={index}>
                                 <DrawerNavGroup
                                     divider={false}
-                                    drawerOpen={true}
                                     hidePadding={true}
                                     itemIconColor={group.iconColor}
                                     itemFontColor={group.fontColor}
