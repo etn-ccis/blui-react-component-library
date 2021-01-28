@@ -295,11 +295,11 @@ DrawerRailItem.propTypes = {
         ripple: PropTypes.string,
     }),
     hidden: PropTypes.bool,
-    icon: PropTypes.element,
+    icon: PropTypes.element.isRequired,
     itemID: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     statusColor: PropTypes.string,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     // @ts-ignore
     ButtonBaseProps: PropTypes.object,
 };

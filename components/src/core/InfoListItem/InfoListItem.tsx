@@ -26,8 +26,6 @@ export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
     leftComponent?: ReactNode;
     rightComponent?: ReactNode;
     ripple?: boolean;
-    selectedBackgroundColor?: string;
-    selectedBackgroundShape?: 'round' | 'square';
     statusColor?: string;
     subtitle?: string | Array<string | JSX.Element>;
     subtitleSeparator?: string;
@@ -51,9 +49,6 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         leftComponent,
         rightComponent,
         ripple,
-        selected,
-        selectedBackgroundColor,
-        selectedBackgroundShape = 'square',
         subtitle,
         subtitleSeparator,
         info,
@@ -149,14 +144,6 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     return (
         // @ts-ignore
         <ListItem button={hasRipple} className={combine('root')} ref={ref} {...otherListItemProps}>
-            {selected && (
-                <div
-                    className={clsx(defaultClasses.selected, classes.selected, {
-                        [defaultClasses.square]: selectedBackgroundShape === 'square',
-                    })}
-                    style={{ backgroundColor: selectedBackgroundColor }}
-                />
-            )}
             <div className={combine('statusStripe')} data-test={'status-stripe'} />
             {divider && <Divider className={combine('divider')} />}
             {(icon || !hidePadding) && getIcon()}
@@ -205,7 +192,6 @@ InfoListItem.propTypes = {
         avatar: PropTypes.string,
         icon: PropTypes.string,
         rightComponent: PropTypes.string,
-        selected: PropTypes.string,
         separator: PropTypes.string,
         subtitle: PropTypes.string,
         title: PropTypes.string,

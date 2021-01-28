@@ -9,7 +9,6 @@
 -   `activeItem` must now specified on the `<Drawer>` component instead of `<DrawerNavGroup>`.
 -   Moved `titleColor` prop from shared props to the local props for `<DrawerNavGroup>`.
 -   Some of the class names for style overrides have changed
--   The active highlight element for `<DrawerNavItem>` has been moved into the `<InfoListItem>` component.
 
 ### Added
 -   Additional configuration properties for `<Drawer>`:

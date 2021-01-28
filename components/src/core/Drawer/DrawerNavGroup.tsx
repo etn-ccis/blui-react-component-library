@@ -15,7 +15,7 @@ import {
 } from '@material-ui/core';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import { DrawerNavItem, DrawerNavItemProps, NestedDrawerNavItemProps } from './DrawerNavItem';
-import { DrawerRailItem, DrawerRailItemProps, ExtendedNavItem } from './DrawerRailItem';
+import { DrawerRailItem, DrawerRailItemProps } from './DrawerRailItem';
 import { findChildByType, mergeStyleProp } from './utilities';
 import clsx from 'clsx';
 
@@ -26,7 +26,7 @@ export type DrawerNavGroupProps = SharedStyleProps &
         classes?: DrawerNavGroupClasses;
 
         // List of navigation items to render
-        items?: ExtendedNavItem[];
+        items?: Array<DrawerNavItemProps | DrawerRailItemProps>;
 
         // Text to display in the group header
         title?: string;
@@ -252,72 +252,78 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                 {...otherListProps}
             >
                 {variant !== 'rail' && <div key={`${title}_title`}>{(title || titleContent) && <Divider />}</div>}
-                {items.map((item: ExtendedNavItem, index: number) =>
-                    variant === 'rail' ? (
-                        <DrawerRailItem
-                            key={`itemList_${index}`}
-                            // {...item}
-                            // inherited props
-                            activeItemBackgroundColor={mergeStyleProp(
-                                activeItemBackgroundColor,
-                                item.activeItemBackgroundColor
-                            )}
-                            activeItemFontColor={mergeStyleProp(activeItemFontColor, item.activeItemFontColor)}
-                            activeItemIconColor={mergeStyleProp(activeItemIconColor, item.activeItemIconColor)}
-                            backgroundColor={mergeStyleProp(backgroundColor, item.backgroundColor)}
-                            divider={mergeStyleProp(divider, item.divider)}
-                            itemFontColor={mergeStyleProp(itemFontColor, item.itemFontColor)}
-                            itemIconColor={mergeStyleProp(itemIconColor, item.itemIconColor)}
-                            ripple={mergeStyleProp(ripple, item.ripple)}
-                            ButtonBaseProps={item.ButtonBaseProps}
-                            // rail item props
-                            hidden={item.hidden}
-                            icon={item.icon}
-                            itemID={item.itemID}
-                            onClick={item.onClick}
-                            statusColor={item.statusColor}
-                            title={item.title}
-                        />
-                    ) : (
+                {items.map((drawerItem: DrawerNavItemProps | DrawerRailItemProps, index: number) => {
+                    if (variant === 'rail') {
+                        const railItem = drawerItem as DrawerRailItemProps;
+                        return (
+                            <DrawerRailItem
+                                key={`itemList_${index}`}
+                                // {...railItem}
+                                // inherited props
+                                activeItemBackgroundColor={mergeStyleProp(
+                                    activeItemBackgroundColor,
+                                    railItem.activeItemBackgroundColor
+                                )}
+                                activeItemFontColor={mergeStyleProp(activeItemFontColor, railItem.activeItemFontColor)}
+                                activeItemIconColor={mergeStyleProp(activeItemIconColor, railItem.activeItemIconColor)}
+                                backgroundColor={mergeStyleProp(backgroundColor, railItem.backgroundColor)}
+                                divider={mergeStyleProp(divider, railItem.divider)}
+                                itemFontColor={mergeStyleProp(itemFontColor, railItem.itemFontColor)}
+                                itemIconColor={mergeStyleProp(itemIconColor, railItem.itemIconColor)}
+                                ripple={mergeStyleProp(ripple, railItem.ripple)}
+                                ButtonBaseProps={railItem.ButtonBaseProps}
+                                // rail item props
+                                hidden={railItem.hidden}
+                                icon={railItem.icon}
+                                itemID={railItem.itemID}
+                                onClick={railItem.onClick}
+                                statusColor={railItem.statusColor}
+                                title={railItem.title}
+                            />
+                        );
+                    }
+                    // else it's a regular nav item
+                    const navItem = drawerItem as DrawerNavItemProps;
+                    return (
                         <DrawerNavItem
                             key={`itemList_${index}`}
-                            {...item}
+                            {...navItem}
                             activeItemBackgroundColor={mergeStyleProp(
                                 activeItemBackgroundColor,
-                                item.activeItemBackgroundColor
+                                navItem.activeItemBackgroundColor
                             )}
                             activeItemBackgroundShape={mergeStyleProp(
                                 activeItemBackgroundShape,
-                                item.activeItemBackgroundShape
+                                navItem.activeItemBackgroundShape
                             )}
-                            activeItemFontColor={mergeStyleProp(activeItemFontColor, item.activeItemFontColor)}
-                            activeItemIconColor={mergeStyleProp(activeItemIconColor, item.activeItemIconColor)}
-                            backgroundColor={mergeStyleProp(backgroundColor, item.backgroundColor)}
-                            chevron={mergeStyleProp(chevron, item.chevron)}
-                            collapseIcon={mergeStyleProp(collapseIcon, item.collapseIcon)}
+                            activeItemFontColor={mergeStyleProp(activeItemFontColor, navItem.activeItemFontColor)}
+                            activeItemIconColor={mergeStyleProp(activeItemIconColor, navItem.activeItemIconColor)}
+                            backgroundColor={mergeStyleProp(backgroundColor, navItem.backgroundColor)}
+                            chevron={mergeStyleProp(chevron, navItem.chevron)}
+                            collapseIcon={mergeStyleProp(collapseIcon, navItem.collapseIcon)}
                             disableActiveItemParentStyles={mergeStyleProp(
                                 disableActiveItemParentStyles,
-                                item.disableActiveItemParentStyles
+                                navItem.disableActiveItemParentStyles
                             )}
-                            divider={mergeStyleProp(divider, item.divider)}
-                            expandIcon={mergeStyleProp(expandIcon, item.expandIcon)}
-                            hidePadding={mergeStyleProp(hidePadding, item.hidePadding)}
-                            itemFontColor={mergeStyleProp(itemFontColor, item.itemFontColor)}
-                            itemIconColor={mergeStyleProp(itemIconColor, item.itemIconColor)}
-                            nestedBackgroundColor={mergeStyleProp(nestedBackgroundColor, item.nestedBackgroundColor)}
-                            nestedDivider={mergeStyleProp(nestedDivider, item.nestedDivider)}
-                            ripple={mergeStyleProp(ripple, item.ripple)}
+                            divider={mergeStyleProp(divider, navItem.divider)}
+                            expandIcon={mergeStyleProp(expandIcon, navItem.expandIcon)}
+                            hidePadding={mergeStyleProp(hidePadding, navItem.hidePadding)}
+                            itemFontColor={mergeStyleProp(itemFontColor, navItem.itemFontColor)}
+                            itemIconColor={mergeStyleProp(itemIconColor, navItem.itemIconColor)}
+                            nestedBackgroundColor={mergeStyleProp(nestedBackgroundColor, navItem.nestedBackgroundColor)}
+                            nestedDivider={mergeStyleProp(nestedDivider, navItem.nestedDivider)}
+                            ripple={mergeStyleProp(ripple, navItem.ripple)}
                             depth={0}
-                            isInActiveTree={activeHierarchyItems.includes(item.itemID)}
+                            isInActiveTree={activeHierarchyItems.includes(navItem.itemID)}
                             notifyActiveParent={(ids: string[]): void => {
                                 if (JSON.stringify(activeHierarchyItems) !== JSON.stringify(ids)) {
                                     // Sets the list of active IDs when we get a callback from an active child
-                                    setActiveHierarchyItems(ids.concat(item.itemID));
+                                    setActiveHierarchyItems(ids.concat(navItem.itemID));
                                 }
                             }}
                         />
-                    )
-                )}
+                    );
+                })}
                 {getChildren()}
             </List>
         </NavGroupContext.Provider>

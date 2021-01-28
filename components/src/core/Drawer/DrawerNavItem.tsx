@@ -55,6 +55,21 @@ const calcNestedPadding = (theme: Theme, depth: number): number =>
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        active: {
+            content: '""',
+            zIndex: 0,
+            position: 'absolute',
+            height: '100%',
+            width: `calc(100% - ${theme.spacing(1)}px)`,
+            left: 0,
+            top: 0,
+            borderRadius: `0px ${theme.spacing(3)}px ${theme.spacing(3)}px 0px`,
+            opacity: 0.9,
+            '&$square': {
+                width: '100%',
+                borderRadius: 0,
+            },
+        },
         drawerOpen: {},
         expanded: {},
         expandIcon: {
@@ -97,7 +112,11 @@ const useStyles = makeStyles((theme: Theme) =>
         ripple: {
             backgroundColor: theme.palette.primary.main,
         },
-        root: {},
+        root: {
+            backgroundColor: (props: DrawerNavItemProps): string =>
+                (props.depth > 0 ? props.nestedBackgroundColor : props.backgroundColor) || 'transparent',
+        },
+        square: {},
         title: {
             fontWeight: 400,
         },
@@ -342,6 +361,14 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         <>
             {!props.hidden && (
                 <div ref={ref} style={{ position: 'relative' }} className={clsx(defaultClasses.root, classes.root)}>
+                    {active && (
+                        <div
+                            className={clsx(defaultClasses.active, classes.active, {
+                                [defaultClasses.square]: activeItemBackgroundShape === 'square',
+                            })}
+                            style={{ backgroundColor: activeItemBackgroundColor }}
+                        />
+                    )}
                     <InfoListItem
                         dense
                         title={itemTitle}
@@ -365,10 +392,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                                 </div>
                             )
                         }
-                        selected={active}
-                        selectedBackgroundColor={activeItemBackgroundColor}
-                        selectedBackgroundShape={activeItemBackgroundShape}
-                        backgroundColor={depth > 0 ? nestedBackgroundColor : backgroundColor || 'transparent'}
+                        backgroundColor={'transparent'}
                         onClick={hasAction ? onClickAction : undefined}
                         hidePadding={hidePadding}
                         ripple={ripple}

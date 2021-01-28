@@ -97,7 +97,6 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         activeItemFontColor: color('activeItemFontColor', Colors.blue[500], drawerGroupId),
         activeItemIconColor: color('activeItemIconColor', Colors.blue[500], drawerGroupId),
         activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'square', drawerGroupId),
-        backgroundColor: color('backgroundColor', 'transparent', drawerGroupId),
         chevron: boolean('chevron', false, drawerGroupId),
         collapseIcon: getIcon(
             select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', drawerGroupId)
@@ -144,7 +143,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     };
 
     const bodyKnobs: DrawerBodyProps = {
-        backgroundColor: color('backgroundColor', Colors.white[50], bodyGroupId),
+        backgroundColor: color('backgroundColor', 'transparent', bodyGroupId),
     };
 
     const navGroupKnobs: Partial<DrawerNavGroupProps> = {

@@ -11,7 +11,6 @@ export type InfoListItemClasses = {
     info?: string;
     listItemText?: string;
     rightComponent?: string;
-    selected?: string;
     separator?: string;
     statusStripe?: string;
     subtitle?: string;
@@ -79,7 +78,6 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         },
         listItemText: {
             marginLeft: (props) => (props.leftComponent ? theme.spacing(2) : 0),
-            zIndex: 100,
         },
         icon: {
             color: (props) => getIconColor(props),
@@ -97,22 +95,6 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             marginLeft: theme.spacing(2),
             display: 'flex',
             alignItems: 'center',
-            zIndex: 100,
-        },
-        selected: {
-            content: '""',
-            zIndex: 0,
-            position: 'absolute',
-            height: '100%',
-            width: `calc(100% - ${theme.spacing(1)}px)`,
-            left: 0,
-            top: 0,
-            borderRadius: `0px ${theme.spacing(3)}px ${theme.spacing(3)}px 0px`,
-            opacity: 0.9,
-            '&$square': {
-                width: '100%',
-                borderRadius: 0,
-            },
         },
         separator: {
             display: 'inline-block',
@@ -120,7 +102,6 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             color: 'inherit',
             margin: `0 ${theme.spacing(0.5)}px`,
         },
-        square: {},
         statusStripe: {
             position: 'absolute',
             top: 0,

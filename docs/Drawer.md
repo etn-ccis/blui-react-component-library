@@ -320,6 +320,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. The `<
 | Name              | Description                                                              |
 | ----------------- | ------------------------------------------------------------------------ |
 | root              | Styles applied to the root element wrapping the InfoListItem             | 
+| active            | Styles applied to the active item highlight element                      |
 | expandIcon        | Styles applied to the expand/collapse icon wrapper                       | 
 | infoListItemRoot  | Styles applied to the InfoListItem root element                          |
 | nestedListGroup   | Styles applied to wrapper surrounded nested children                     | 
@@ -369,11 +370,11 @@ When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem
 | classes                         | Style overrides                                                                                 | `DrawerRailItemClasses` | no       |         |
 | condensed*                      | Sets whether to show the condensed variant without a title                                      | `boolean`               | no       | `false` |
 | hidden                          | Sets whether to hide the rail item                                                              | `boolean`               | no       |         |
-| icon                            | A component to render for the left icon                                                         | `JSX.Element`           | no       |         |
+| icon                            | A component to render for the left icon                                                         | `JSX.Element`           | yes      |         |
 | itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`                | yes      |         |
 | onClick                         | A function to execute when clicked                                                              | `function`              | no       |         |
 | statusColor                     | Status stripe and icon color                                                                    | `string`                | no       |         |
-| title                           | The text to show on the first line                                                              | `string`                | yes      |         |
+| title                           | The text to show on the first line                                                              | `string`                | no       |         |
 | ButtonBaseProps                 | Used to override [ButtonBase](https://material-ui.com/api/button-base/) default props           | `InfoListItemProps`     | no       |         |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                      | -                       | -        |         |
 

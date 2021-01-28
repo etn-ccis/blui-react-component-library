@@ -42,8 +42,6 @@ import * as Colors from '@pxblue/colors';
 | onClick                 | A function to execute when clicked               | `function`                           | no       |                |
 | rightComponent          | Component to render on the right side            | `ReactNode`                          | no       |                |
 | ripple                  | Whether to apply material ripple effect on click | `boolean`                            | no       | false          |
-| selectedBackgroundColor | Color for the selected background highlight      | `string`                             | no       |                |
-| selectedBackgroundShape | Shape of the selected background highlight       | `'round'` \| `'square'`              | no       | 'square'       |
 | statusColor             | Status stripe and icon color                     | `string`                             | no       |                |
 | subtitle                | The text to show on the second line              | `string` \| `Array<React.ReactNode>` | no       |                |
 | subtitleSeparator       | Separator character for subtitle and info        | `string`                             | no       | '·' ('\u00B7') |
@@ -68,7 +66,6 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | info           | Styles applied to the third line of text element    |
 | listItemText   | Styles applied to the title/subtitle wrapper        |
 | rightComponent | Styles applied to the rightComponent parent element |
-| selected       | Styles applied to the selected highlight element    | 
 | separator      | Styles applied to subtitle delimiter                |
 | statusStripe   | Styles applied to the status stripe element         |
 | subtitle       | Styles applied to the subtitle element              |
