@@ -342,17 +342,26 @@ DrawerNavGroup.propTypes = {
     }),
     // @ts-ignore
     items: PropTypes.arrayOf(
-        PropTypes.shape({
-            ...SharedStylePropTypes,
-            ...NavItemSharedStylePropTypes,
-            icon: PropTypes.element,
-            itemID: PropTypes.string.isRequired,
-            subtitle: PropTypes.string,
-            title: PropTypes.string.isRequired,
-            onClick: PropTypes.func,
-            rightComponent: PropTypes.element,
-            statusColor: PropTypes.string,
-        })
+        PropTypes.oneOfType([
+            PropTypes.shape({
+                ...SharedStylePropTypes,
+                ...NavItemSharedStylePropTypes,
+                icon: PropTypes.element,
+                itemID: PropTypes.string.isRequired,
+                subtitle: PropTypes.string,
+                title: PropTypes.string.isRequired,
+                onClick: PropTypes.func,
+                rightComponent: PropTypes.element,
+                statusColor: PropTypes.string,
+            }),
+            PropTypes.shape({
+                ...SharedStylePropTypes,
+                icon: PropTypes.element,
+                itemID: PropTypes.string.isRequired,
+                title: PropTypes.string,
+                onClick: PropTypes.func,
+            }),
+        ])
     ),
     title: PropTypes.string,
     titleColor: PropTypes.string,
