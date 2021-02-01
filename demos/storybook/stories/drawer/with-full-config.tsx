@@ -3,9 +3,9 @@ import {
     Accessibility,
     Add,
     AddAPhoto,
-    AirportShuttle,
     Dashboard,
     Devices,
+    Event,
     FitnessCenter,
     NotificationsActive,
     Remove,
@@ -231,7 +231,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             onClick: (): void => {
                 context.store.set({ selected: schedule });
             },
-            icon: <AirportShuttle style={getLeftToRightIconTransform()} />,
+            icon: <Event style={getLeftToRightIconTransform()} />,
         },
     ];
 
