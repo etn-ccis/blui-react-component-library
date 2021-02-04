@@ -3,7 +3,7 @@ import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { createMuiTheme, jssPreset, MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
 import { blue as ReactTheme, blueDark as ReactThemeDark } from '@pxblue/react-themes';
-import 'typeface-open-sans';
+import '@pxblue/react-themes/open-sans';
 import { pxblueTheme } from '@pxblue/storybook-themes';
 import { CssBaseline } from '@material-ui/core';
 import { create } from 'jss';
