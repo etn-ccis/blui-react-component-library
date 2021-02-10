@@ -123,6 +123,12 @@ const useStyles = makeStyles((theme: Theme) =>
         titleActive: {
             fontWeight: 600,
         },
+        flipIcon:
+            theme.direction === 'rtl'
+                ? {
+                      transform: 'scaleX(-1)',
+                  }
+                : {},
     })
 );
 
@@ -178,7 +184,11 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         nestedDivider,
         notifyActiveParent = (): void => {},
         onClick,
-        rightComponent = props.chevron && !props.items ? <ChevronRight /> : undefined,
+        rightComponent = props.chevron && !props.items && !props.children ? (
+            <ChevronRight className={defaultClasses.flipIcon} />
+        ) : (
+            undefined
+        ),
         ripple = true,
         statusColor,
         subtitle: itemSubtitle,
