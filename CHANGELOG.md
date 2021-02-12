@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.0.0 (not published yet)
+## 5.0.0
 
 ### Changed
 
@@ -14,6 +14,7 @@
 -   Additional configuration properties for `<Drawer>`:
     -   `sideBorder` gives the `<Drawer>` a slight border instead of a drop shadow.
     -   `disableActiveItemParentStyle` disables the bold text style for active item's parent elements.
+    -   `variant` now supports 'rail' option.
 -   Additional configuration options for `<DrawerSubheader>` and `<DrawerFooter>`:
     -   `hideContentOnCollapse` configures if content in these areas should be hidden or remain visible when the drawer is collapsed.
     -   `divider` configures whether to show a dividing line separating the component from other content.
