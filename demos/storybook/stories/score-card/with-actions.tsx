@@ -1,5 +1,5 @@
 import { List, ListItem, ListItemText } from '@material-ui/core';
-import { Cloud, ListAlt, Mail, MoreVert, Notifications, Search } from '@material-ui/icons';
+import { Cloud, Favorite, Mail, MoreVert, Notifications, Search } from '@material-ui/icons';
 import * as Colors from '@pxblue/colors';
 import { ScoreCard, InfoListItem } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
@@ -16,12 +16,12 @@ export const actionRow = (
 );
 
 export const actionItems = [
-    <MoreVert onClick={action('clicked more')} key={'morevert'} />,
     <Search onClick={action('clicked search')} key={'search'} />,
     <Mail onClick={action('clicked mail')} key={'mail'} />,
     <Notifications onClick={action('clicked alarms')} key={'notifications'} />,
-    <ListAlt onClick={action('clicked list')} key={'listalt'} />,
+    <Favorite onClick={action('clicked favorite')} key={'favorite'} />,
     <Cloud onClick={action('clicked cloud')} key={'cloud'} />,
+    <MoreVert onClick={action('clicked more')} key={'morevert'} />,
 ];
 
 export const withActions = (): StoryFnReactReturnType => (
@@ -30,7 +30,7 @@ export const withActions = (): StoryFnReactReturnType => (
         headerTitle={'Substation 3'}
         headerSubtitle={'High Humidity Alarm'}
         headerInfo={'4 Devices'}
-        headerColor={Colors.red[500]}
+        headerColor={Colors.blue[500]}
         headerFontColor={Colors.white[50]}
         headerBackgroundImage={backgroundImage}
         actionItems={actionItems}

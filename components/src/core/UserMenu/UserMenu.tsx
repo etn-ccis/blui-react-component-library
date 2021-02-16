@@ -88,7 +88,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
             for (const item of group.items) {
                 const onClick = item.onClick;
                 if (onClick) {
-                    item.onClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
+                    item.onClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
                         onClick(e);
                         closeMenu();
                     };
@@ -164,7 +164,6 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 <div className={defaultClasses.navGroups} key={index}>
                     <DrawerNavGroup
                         divider={false}
-                        drawerOpen={true}
                         itemIconColor={group.iconColor}
                         itemFontColor={group.fontColor}
                         title={group.title}

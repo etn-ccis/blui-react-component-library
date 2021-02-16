@@ -25,9 +25,9 @@ export const withinToolbar = (): StoryFnReactReturnType => {
     const menuItems: UserMenuItem[] = [
         {
             itemID: '1',
-            title: 'Account',
+            title: 'Settings',
             icon: <Settings />,
-            onClick: action("click 'Account'"),
+            onClick: action("click 'Settings'"),
         },
         {
             itemID: '2',

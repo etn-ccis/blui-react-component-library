@@ -1,166 +1,159 @@
-import React, { useEffect, useState, useCallback, ReactNode } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Drawer, DrawerProps } from '@material-ui/core';
-import { DrawerBodyProps } from './DrawerBody';
-import clsx from 'clsx';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { InfoListItemProps as BaseInfoListItemProps } from '../InfoListItem';
+import {
+    Drawer as MUIDrawer,
+    DrawerProps as MUIDrawerProps,
+    createStyles,
+    makeStyles,
+    Theme,
+    useTheme,
+} from '@material-ui/core';
+import { DrawerBodyProps } from './DrawerBody';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 import { DrawerContext } from './DrawerContext';
+import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
+import { findChildByType, mergeStyleProp } from './utilities';
+import clsx from 'clsx';
 
-const useStyles = makeStyles({
-    paper: {
-        overflow: 'hidden',
-        position: 'inherit',
-    },
-    content: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        width: '100%',
-    },
-});
+export const RAIL_WIDTH = 72;
+export const RAIL_WIDTH_CONDENSED = 56;
+
+const useStyles = makeStyles<Theme, DrawerProps>((theme: Theme) =>
+    createStyles({
+        root: {
+            transition: theme.transitions.create('width', { duration: theme.transitions.duration.leavingScreen }),
+            minHeight: '100%',
+            backgroundColor: (props): string => props.backgroundColor || 'transparent',
+            '&$expanded': {
+                transition: theme.transitions.create('width', {
+                    duration: theme.transitions.duration.enteringScreen,
+                }),
+            },
+        },
+        content: {
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+            width: '100%',
+        },
+        expanded: {},
+        paper: {
+            overflow: 'hidden',
+            position: 'inherit',
+            boxShadow: theme.shadows[4],
+            borderWidth: 0,
+            '&$sideBorder': {
+                borderWidth: 1,
+                boxShadow: 'none',
+            },
+        },
+        sideBorder: {},
+    })
+);
 
 type DrawerClasses = {
-    root?: string;
+    /** Styles applied to the drawer content container */
     content?: string;
+
+    /** Styles applied to the root element when the drawer is expanded */
+    expanded?: string;
+
+    /** MUI Drawer style override for the root element */
+    root?: string;
+
+    /** MUI Drawer style override for desktop viewports */
     paper?: string;
+
+    /** Styles to apply to the root element when using side border */
+    sideBorder?: string;
 };
 
-// type shared by Drawer, DrawerBody, DrawerNavGroup, NestedNavItem
-// these types are inherited from the Drawer level to the NestedNavItem
-// parent props will be overriden by the child props if defined
-export type PXBlueDrawerInheritableProperties = {
-    // Background color for the 'active' item
-    activeItemBackgroundColor?: string;
+export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
+    SharedStyleProps &
+    NavItemSharedStyleProps & {
+        // the id for the currently active item
+        activeItem?: string;
 
-    // shape of the active item background
-    activeItemBackgroundShape?: 'round' | 'square';
+        // custom classes for default style overrides
+        classes?: DrawerClasses;
 
-    // Font color for the 'active' item
-    activeItemFontColor?: string;
+        // Sets a smaller width when the drawer is using the rail variant
+        condensed?: boolean;
 
-    // Icon color for the 'active' item
-    activeItemIconColor?: string;
+        // Describes if this Drawer is used outside of a DrawerLayout
+        noLayout?: boolean;
 
-    // Whether to have chevrons for all menu items
-    chevron?: boolean;
+        // Function called whenever a navigation item or rail item is clicked
+        onItemSelect?: (id: string) => void;
 
-    // Icon used to collapse drawer
-    // default is expandIcon rotated 180 degrees
-    collapseIcon?: JSX.Element;
+        // Controls the open/closed state of the drawer
+        open: boolean;
 
-    // Whether to show a line between all items
-    divider?: boolean;
+        // Enables Drawer to automatically open on hover for persistent variants.
+        openOnHover?: boolean;
 
-    // Icon used to expand drawer
-    expandIcon?: JSX.Element;
+        // Toggles the drawer side border instead of a drop shadow
+        sideBorder?: boolean;
 
-    // Whether to hide the paddings reserved for menu item icons
-    hidePadding?: boolean;
+        // Drawer variant type
+        variant?: 'persistent' | 'permanent' | 'temporary' | 'rail';
 
-    // InfoListItem overrides for NavItem
-    InfoListItemProps?: Partial<BaseInfoListItemProps>;
+        // Sets the width of the drawer (in px) when open
+        width?: number;
+    };
+export type DrawerComponentProps = DrawerProps; // alias
 
-    // The color used for the item text
-    itemFontColor?: string;
-
-    // The color used for the icon
-    itemIconColor?: string;
-
-    // internal API
-    // will apply to all menu items when onClick
-    onItemSelect?: () => void;
-
-    // Whether to apply material ripple effect to items
-    ripple?: boolean;
-};
-
-const findChildByType = (children: ReactNode, type: string): JSX.Element[] =>
-    React.Children.map(children, (child: any) => {
-        if (child && child.type) {
-            const name = child.type.displayName;
-            if (name && name.includes(type)) {
-                return child;
-            }
-        }
-    }) || [];
-
-// type shared by Drawer, DrawerBody, DrawerNavGroup
-// inheritable props but not for NestedNavItem
-export type PXBlueDrawerNavGroupInheritableProperties = {
-    // itemID for the 'active' item
-    activeItem?: string;
-
-    // background color for nested menu items
-    nestedBackgroundColor?: string;
-
-    // Whether to show a line between nested menu items
-    nestedDivider?: boolean;
-
-    // Font color for group header
-    titleColor?: string;
-} & PXBlueDrawerInheritableProperties;
-
-export type DrawerComponentProps = {
-    classes?: DrawerClasses;
-
-    // Describes if this Drawer is used outside of a DrawerLayout
-    noLayout?: boolean;
-
-    // Controls the open/closed state of the drawer
-    open: boolean;
-
-    // Sets the width of the drawer (in px) when open
-    width?: number;
-} & PXBlueDrawerNavGroupInheritableProperties &
-    Omit<DrawerProps, 'translate'>;
-
-const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentProps> = (
-    props: DrawerComponentProps,
-    ref: any
-) => {
+const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (props: DrawerProps, ref: any) => {
     let hoverDelay: NodeJS.Timeout;
     const defaultClasses = useStyles(props);
     const theme = useTheme();
-    const { onPaddingChange } = useDrawerLayout();
+    const { setPadding, setDrawerOpen } = useDrawerLayout();
     const [hover, setHover] = useState(false);
     const {
-        activeItem,
+        // Inheritable Props
         activeItemBackgroundColor,
         activeItemBackgroundShape,
         activeItemFontColor,
         activeItemIconColor,
+        backgroundColor,
         chevron,
-        classes,
         collapseIcon,
+        disableActiveItemParentStyles,
         divider,
         expandIcon,
         hidePadding,
-        InfoListItemProps,
         itemFontColor,
         itemIconColor,
         nestedBackgroundColor,
         nestedDivider,
+        ripple,
+        // Drawer-specific props
+        activeItem,
+        classes,
+        condensed,
         noLayout = false,
         open,
+        openOnHover,
         onItemSelect,
-        ripple,
-        titleColor,
+        sideBorder = false,
+        variant: variantProp,
         width,
-        ...drawerProps // for Material-UI's Drawer component
+        // Other MUI Drawer Props
+        ...drawerProps
     } = props;
 
-    const variant = props.variant || 'persistent'; // to allow drawerLayout to override this
+    const variant = variantProp || 'persistent'; // to allow drawerLayout to override this
+    const isRail = variant === 'rail';
+
     const isDrawerOpen = useCallback((): boolean => {
         if (variant === 'persistent') return hover || open;
-        if (variant === 'permanent') return true;
+        if (variant === 'permanent' || variant === 'rail') return true;
         return open;
     }, [variant, hover, open]);
 
     const getHeader = useCallback(
         (): JSX.Element[] =>
-            findChildByType(props.children, 'DrawerHeader')
+            findChildByType(props.children, ['DrawerHeader'])
                 .slice(0, 1)
                 .map((child) => React.cloneElement(child)),
         [props.children]
@@ -168,75 +161,73 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
 
     const getSubHeader = useCallback(
         (): JSX.Element[] =>
-            findChildByType(props.children, 'DrawerSubheader')
+            findChildByType(props.children, ['DrawerSubheader'])
                 .slice(0, 1)
-                .map((child) => React.cloneElement(child, { drawerOpen: isDrawerOpen() })),
-        [isDrawerOpen, props.children]
+                .map((child) => React.cloneElement(child)),
+        [props.children]
     );
 
     const getBody = useCallback(
         (): JSX.Element[] =>
-            findChildByType(props.children, 'DrawerBody')
+            findChildByType(props.children, ['DrawerBody'])
                 .slice(0, 1)
                 .map((child) =>
                     React.cloneElement(child, {
-                        activeItem,
-                        activeItemBackgroundColor,
-                        activeItemFontColor,
-                        activeItemIconColor,
-                        activeItemBackgroundShape,
-                        chevron,
-                        collapseIcon,
-                        divider,
-                        expandIcon,
-                        hidePadding,
-                        InfoListItemProps,
-                        itemFontColor,
-                        itemIconColor,
-                        nestedBackgroundColor,
-                        nestedDivider,
-                        ripple,
-                        titleColor,
-                        drawerOpen: isDrawerOpen(),
-                        onItemSelect: () => {
-                            if (onItemSelect) {
-                                onItemSelect();
-                            }
-                            setHover(false);
-                        },
+                        // Inherited Props
+                        activeItemBackgroundColor: mergeStyleProp(
+                            activeItemBackgroundColor,
+                            child.props.activeItemBackgroundColor
+                        ),
+                        activeItemBackgroundShape: mergeStyleProp(
+                            activeItemBackgroundShape,
+                            child.props.activeItemBackgroundShape
+                        ),
+                        activeItemFontColor: mergeStyleProp(activeItemFontColor, child.props.activeItemFontColor),
+                        activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
+                        backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
+                        chevron: mergeStyleProp(chevron, child.props.chevron),
+                        collapseIcon: mergeStyleProp(collapseIcon, child.props.collapseIcon),
+                        disableActiveItemParentStyles: mergeStyleProp(
+                            disableActiveItemParentStyles,
+                            child.props.disableActiveItemParentStyles
+                        ),
+                        divider: mergeStyleProp(divider, child.props.divider),
+                        expandIcon: mergeStyleProp(expandIcon, child.props.expandIcon),
+                        hidePadding: mergeStyleProp(hidePadding, child.props.hidePadding),
+                        itemFontColor: mergeStyleProp(itemFontColor, child.props.itemFontColor),
+                        itemIconColor: mergeStyleProp(itemIconColor, child.props.itemIconColor),
+                        nestedBackgroundColor: mergeStyleProp(nestedBackgroundColor, child.props.nestedBackgroundColor),
+                        nestedDivider: mergeStyleProp(nestedDivider, child.props.nestedDivider),
+                        ripple: mergeStyleProp(ripple, child.props.ripple),
                     } as DrawerBodyProps)
                 ),
         [
-            activeItem,
             activeItemBackgroundColor,
+            activeItemBackgroundShape,
             activeItemFontColor,
             activeItemIconColor,
-            activeItemBackgroundShape,
             chevron,
             collapseIcon,
+            disableActiveItemParentStyles,
             divider,
             expandIcon,
             hidePadding,
-            InfoListItemProps,
             itemFontColor,
             itemIconColor,
             nestedBackgroundColor,
             nestedDivider,
             ripple,
-            titleColor,
-            isDrawerOpen,
             onItemSelect,
-            setHover,
             props.children,
         ]
     );
 
     const getFooter = useCallback(
         (): JSX.Element[] =>
-            findChildByType(props.children, 'DrawerFooter')
+            findChildByType(props.children, ['DrawerFooter'])
                 .slice(0, 1)
-                .map((child) => React.cloneElement(child, { drawerOpen: isDrawerOpen() })),
-        [isDrawerOpen, props.children]
+                .map((child) => React.cloneElement(child)),
+        [props.children]
     );
 
     const getDrawerContents = useCallback(
@@ -245,13 +236,21 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
                 {getHeader()}
                 <div
                     style={{ flexDirection: 'column', flex: '1 1 0px', display: 'flex' }}
-                    onMouseEnter={(): void => {
-                        hoverDelay = setTimeout(() => setHover(true), 500);
-                    }}
-                    onMouseLeave={(): void => {
-                        clearTimeout(hoverDelay);
-                        setHover(false);
-                    }}
+                    onMouseEnter={
+                        openOnHover
+                            ? (): void => {
+                                  hoverDelay = setTimeout(() => setHover(true), 500);
+                              }
+                            : undefined
+                    }
+                    onMouseLeave={
+                        openOnHover
+                            ? (): void => {
+                                  clearTimeout(hoverDelay);
+                                  setHover(false);
+                              }
+                            : undefined
+                    }
                 >
                     {getSubHeader()}
                     {getBody()}
@@ -262,78 +261,97 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
         [setHover, hoverDelay, getSubHeader, getBody, getFooter]
     );
 
-    const defaultContentWidth = theme.spacing(45);
-    const defaultNavigationRailWidth = theme.spacing(7);
+    /* Default Drawer Sizes */
+    const EXPANDED_DRAWER_WIDTH_DEFAULT = theme.spacing(45);
+    const COLLAPSED_DRAWER_WIDTH_DEFAULT = theme.spacing(7);
 
-    const containerWidth = isDrawerOpen() ? width || defaultContentWidth : defaultNavigationRailWidth;
-    const contentWidth = width || defaultContentWidth;
+    // Determine the visible width of the drawer
+    const getDrawerWidth = useCallback((): number => {
+        if (isRail) return condensed ? RAIL_WIDTH_CONDENSED : RAIL_WIDTH;
+        if (isDrawerOpen()) return width || EXPANDED_DRAWER_WIDTH_DEFAULT;
+        return COLLAPSED_DRAWER_WIDTH_DEFAULT;
+    }, [isRail, condensed, theme, isDrawerOpen, width]);
 
+    // Get the width of the content inside the drawer - if the drawer is collapsed, content maintains its size in order to clip
+    const getContentWidth = useCallback((): number => {
+        if (isRail) return condensed ? RAIL_WIDTH_CONDENSED : RAIL_WIDTH;
+        return width || EXPANDED_DRAWER_WIDTH_DEFAULT;
+    }, [isRail, condensed, width, theme]);
+
+    // Update the drawer layout padding when the drawer changes
     useEffect(() => {
-        if (!noLayout) onPaddingChange(variant === 'temporary' ? 0 : containerWidth);
-    }, [containerWidth, variant, noLayout]);
+        if (!noLayout) {
+            setPadding(variant === 'temporary' ? 0 : getDrawerWidth());
+            setDrawerOpen(isDrawerOpen());
+        }
+    }, [variant, noLayout, isDrawerOpen, getDrawerWidth]);
 
     return (
-        <Drawer
+        <MUIDrawer
             ref={ref}
             {...drawerProps}
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
-            classes={{ root: clsx(classes.root), paper: clsx(defaultClasses.paper, classes.paper) }}
+            classes={{
+                root: clsx(defaultClasses.root, classes.root, {
+                    [defaultClasses.expanded]: isDrawerOpen(),
+                    [classes.expanded]: isDrawerOpen() && classes.expanded,
+                }),
+                paper: clsx(defaultClasses.paper, classes.paper, {
+                    [defaultClasses.sideBorder]: sideBorder,
+                    [classes.sideBorder]: sideBorder && classes.sideBorder,
+                }),
+            }}
             style={Object.assign(
                 {
-                    minHeight: '100%',
-                    width: containerWidth,
-                    transition: theme.transitions.create('width'),
+                    width: getDrawerWidth(),
                 },
                 drawerProps.style
             )}
         >
-            <DrawerContext.Provider value={{ isOpen: isDrawerOpen() }}>
-                <div className={clsx(defaultClasses.content, classes.content)} style={{ width: contentWidth }}>
+            <DrawerContext.Provider
+                value={{
+                    open: isDrawerOpen(),
+                    variant: variant,
+                    condensed: condensed,
+                    activeItem: activeItem,
+                }}
+            >
+                <div className={clsx(defaultClasses.content, classes.content)} style={{ width: getContentWidth() }}>
                     {getDrawerContents()}
                 </div>
             </DrawerContext.Provider>
-        </Drawer>
+        </MUIDrawer>
     );
 };
 
-export const DrawerComponent = React.forwardRef(DrawerRenderer);
-DrawerComponent.displayName = 'PXBlueDrawer';
-
-export const PXBlueDrawerInheritablePropertiesPropTypes = {
-    activeItemBackgroundColor: PropTypes.string,
-    activeItemFontColor: PropTypes.string,
-    activeItemIconColor: PropTypes.string,
-    activeItemBackgroundShape: PropTypes.oneOf(['round', 'square']),
-    chevron: PropTypes.bool,
-    collapseIcon: PropTypes.element,
-    divider: PropTypes.bool,
-    expandIcon: PropTypes.element,
-    hidePadding: PropTypes.bool,
-    InfoListItemProps: PropTypes.object,
-    itemFontColor: PropTypes.string,
-    itemIconColor: PropTypes.string,
-    ripple: PropTypes.bool,
-};
-export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
-    activeItem: PropTypes.string,
-    nestedDivider: PropTypes.bool,
-    onItemSelect: PropTypes.func,
-    titleColor: PropTypes.string,
-    ...PXBlueDrawerInheritablePropertiesPropTypes,
-};
-
+export const Drawer = React.forwardRef(DrawerRenderer);
+Drawer.displayName = 'PXBlueDrawer';
 // @ts-ignore
-DrawerComponent.propTypes = {
+Drawer.propTypes = {
+    ...SharedStylePropTypes,
+    ...NavItemSharedStylePropTypes,
+    activeItem: PropTypes.string,
     classes: PropTypes.shape({
         root: PropTypes.string,
         content: PropTypes.string,
+        expanded: PropTypes.string,
         paper: PropTypes.string,
+        sideBorder: PropTypes.string,
     }),
+    condensed: PropTypes.bool,
+    noLayout: PropTypes.bool,
+    onItemSelect: PropTypes.func,
     open: PropTypes.bool.isRequired,
+    openOnHover: PropTypes.bool,
+    sideBorder: PropTypes.bool,
+    variant: PropTypes.oneOf(['persistent', 'permanent', 'temporary', 'rail']),
     width: PropTypes.number,
-    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 };
-DrawerComponent.defaultProps = {
+Drawer.defaultProps = {
     classes: {},
+    openOnHover: true,
+    sideBorder: false,
+    variant: 'persistent',
+    condensed: false,
 };

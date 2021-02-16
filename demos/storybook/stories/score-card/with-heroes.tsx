@@ -40,7 +40,7 @@ export const withHeroes = (): StoryFnReactReturnType => (
         headerTitle={'Substation 3'}
         headerSubtitle={'High Humidity Alarm'}
         headerInfo={'4 Devices'}
-        headerColor={Colors.red[500]}
+        headerColor={Colors.blue[500]}
         headerFontColor={Colors.white[50]}
         headerBackgroundImage={backgroundImage}
         actionItems={[<MoreVert onClick={action('clicked more')} key={'morevert'} />]}

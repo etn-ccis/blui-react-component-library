@@ -9,14 +9,16 @@ import { Menu } from '@material-ui/icons';
 export const withDifferentVariants = (context: DrawerStoryContext): StoryFnReactReturnType => (
     <Drawer
         open={boolean('open', true)}
-        variant={select('variant', ['permanent', 'persistent', 'temporary'], 'permanent')}
+        variant={select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent')}
+        condensed={boolean('condensed (rail only)', false)}
         ModalProps={{
             disableEnforceFocus: true,
         }}
+        activeItem={context.state.selected}
     >
         <DrawerHeader icon={<Menu />} title={'Drawer with variants'} />
         <DrawerBody>
-            <DrawerNavGroup activeItem={context.state.selected} items={navGroupItems1} />
+            <DrawerNavGroup items={navGroupItems1} />
         </DrawerBody>
     </Drawer>
 );

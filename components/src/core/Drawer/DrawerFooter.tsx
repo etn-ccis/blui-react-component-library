@@ -1,16 +1,22 @@
 import React, { HTMLAttributes } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { Divider, makeStyles } from '@material-ui/core';
+import { useDrawerContext } from './DrawerContext';
+import clsx from 'clsx';
 
 export type DrawerFooterProps = HTMLAttributes<HTMLDivElement> & {
     backgroundColor?: string;
-    drawerOpen?: boolean;
+    divider?: boolean;
+    hideContentOnCollapse?: boolean;
 };
 
 const useStyles = makeStyles({
     root: {
         width: '100%',
         backgroundColor: (props: DrawerFooterProps): string => props.backgroundColor,
-        visibility: (props: DrawerFooterProps): 'inherit' | 'hidden' => (props.drawerOpen ? 'inherit' : 'hidden'),
+    },
+    hidden: {
+        visibility: 'hidden',
     },
 });
 
@@ -21,19 +27,37 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
     const classes = useStyles(props);
     const {
         children,
+        divider = true,
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
-        drawerOpen,
         /* eslint-enable @typescript-eslint/no-unused-vars */
+        hideContentOnCollapse,
         ...otherDivProps
     } = props;
+    const { open: drawerOpen = true } = useDrawerContext();
     return (
-        <div ref={ref} className={classes.root} {...otherDivProps}>
-            {children}
-        </div>
+        <>
+            {divider && <Divider />}
+            <div
+                ref={ref}
+                className={clsx(classes.root, { [classes.hidden]: !drawerOpen && hideContentOnCollapse })}
+                {...otherDivProps}
+            >
+                {children}
+            </div>
+        </>
     );
 };
 
 export const DrawerFooter = React.forwardRef(DrawerFooterRender);
 DrawerFooter.displayName = 'DrawerFooter';
+DrawerFooter.propTypes = {
+    backgroundColor: PropTypes.string,
+    divider: PropTypes.bool,
+    hideContentOnCollapse: PropTypes.bool,
+};
+DrawerFooter.defaultProps = {
+    divider: true,
+    hideContentOnCollapse: true,
+};

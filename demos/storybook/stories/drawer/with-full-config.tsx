@@ -1,11 +1,11 @@
-import { Divider } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import {
     Accessibility,
     Add,
     AddAPhoto,
-    AirportShuttle,
     Dashboard,
     Devices,
+    Event,
     FitnessCenter,
     NotificationsActive,
     Remove,
@@ -27,6 +27,7 @@ import {
     DrawerBodyProps,
     DrawerNavGroupProps,
     NavItem,
+    DrawerFooterProps,
 } from '@pxblue/react-components';
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
@@ -95,11 +96,12 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         activeItemBackgroundColor: color('activeItemBackgroundColor', Colors.blue[50], drawerGroupId),
         activeItemFontColor: color('activeItemFontColor', Colors.blue[500], drawerGroupId),
         activeItemIconColor: color('activeItemIconColor', Colors.blue[500], drawerGroupId),
-        activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'round', drawerGroupId),
+        activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'square', drawerGroupId),
         chevron: boolean('chevron', false, drawerGroupId),
         collapseIcon: getIcon(
             select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', drawerGroupId)
         ),
+        disableActiveItemParentStyles: boolean('disableActiveItemParentStyles', true, drawerGroupId),
         divider: boolean('divider', true, drawerGroupId),
         expandIcon: getIcon(select('expandIcon', ['undefined', '<Add />', '<PinDrop />'], 'undefined', drawerGroupId)),
         hidePadding: boolean('hidePadding', false, drawerGroupId),
@@ -108,9 +110,11 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         nestedBackgroundColor: color('nestedBackgroundColor', Colors.white[200], drawerGroupId),
         nestedDivider: boolean('nestedDivider', false, drawerGroupId),
         open: boolean('open', true, drawerGroupId),
+        openOnHover: boolean('openOnHover (persistent only)', true, drawerGroupId),
         ripple: boolean('ripple', true, drawerGroupId),
-        titleColor: color('titleColor', Colors.black[500], drawerGroupId),
-        variant: select('variant', ['permanent', 'persistent', 'temporary'], 'persistent', drawerGroupId),
+        sideBorder: boolean('sideBorder', true, drawerGroupId),
+        variant: select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent', drawerGroupId),
+        condensed: boolean('condensed (rail only)', false, drawerGroupId),
         width: number(
             'width',
             350,
@@ -125,7 +129,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     };
 
     const headerKnobs: DrawerHeaderProps = {
-        backgroundColor: color('backgroundColor', Colors.gold[800], headerGroupId),
+        backgroundColor: color('backgroundColor', Colors.blue[500], headerGroupId),
         backgroundImage:
             headerBackgroundImageOptions[
                 select('backgroundImage', ['undefined', 'Pattern', 'Farm'], 'Pattern', headerGroupId)
@@ -139,11 +143,12 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     };
 
     const bodyKnobs: DrawerBodyProps = {
-        backgroundColor: color('backgroundColor', Colors.white[50], bodyGroupId),
+        backgroundColor: color('backgroundColor', 'transparent', bodyGroupId),
     };
 
     const navGroupKnobs: Partial<DrawerNavGroupProps> = {
         title: text('drawerNavGroup[0].title', 'NavGroup 1', navGroupId),
+        titleColor: color('drawerNavGroup[0].titleColor', Colors.black[500], navGroupId),
     };
 
     const navItemKnobs: Partial<NavItem> = {
@@ -152,6 +157,11 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         statusColor: color('statusColor', Colors.green[300], navItemId),
         subtitle: text('subtitle', 'Learn more about us', navItemId),
         title: text('title', overview, navItemId),
+    };
+
+    const footerKnobs: Partial<DrawerFooterProps> = {
+        hideContentOnCollapse: boolean('hideContentOnCollapse', true, footerGroupId),
+        divider: boolean('divider', true, footerGroupId),
     };
 
     // DrawerNavGroup.items
@@ -221,7 +231,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             onClick: (): void => {
                 context.store.set({ selected: schedule });
             },
-            icon: <AirportShuttle style={getLeftToRightIconTransform()} />,
+            icon: <Event style={getLeftToRightIconTransform()} />,
         },
     ];
 
@@ -289,6 +299,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             activeItemBackgroundShape={drawerKnobs.activeItemBackgroundShape}
             chevron={drawerKnobs.chevron}
             collapseIcon={drawerKnobs.collapseIcon}
+            condensed={drawerKnobs.condensed}
             divider={drawerKnobs.divider}
             expandIcon={drawerKnobs.expandIcon}
             hidePadding={drawerKnobs.hidePadding}
@@ -297,8 +308,9 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             nestedBackgroundColor={drawerKnobs.nestedBackgroundColor}
             nestedDivider={drawerKnobs.nestedDivider}
             open={drawerKnobs.open}
+            openOnHover={drawerKnobs.openOnHover}
             ripple={drawerKnobs.ripple}
-            titleColor={drawerKnobs.titleColor}
+            sideBorder={drawerKnobs.sideBorder}
             variant={drawerKnobs.variant}
             width={drawerKnobs.width}
             ModalProps={{
@@ -316,7 +328,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                 title={headerKnobs.title}
             />
             <DrawerBody backgroundColor={bodyKnobs.backgroundColor}>
-                <DrawerNavGroup items={links1} title={navGroupKnobs.title} />
+                <DrawerNavGroup items={links1} title={navGroupKnobs.title} titleColor={navGroupKnobs.titleColor} />
                 <DrawerNavGroup
                     items={links2}
                     titleContent={
@@ -327,7 +339,9 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                                 fontWeight: 600,
                             }}
                         >
-                            <div>NavGroup 2</div>
+                            <Typography variant={'overline'} style={{ lineHeight: 'unset' }}>
+                                NavGroup 2
+                            </Typography>
                             <div>Software Version v1.0.3</div>
                         </div>
                     }
@@ -335,8 +349,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             </DrawerBody>
 
             {showFooter && (
-                <DrawerFooter backgroundColor={footerBackgroundColor}>
-                    <Divider />
+                <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
                     </div>

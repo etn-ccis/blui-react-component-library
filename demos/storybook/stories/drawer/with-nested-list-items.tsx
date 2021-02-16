@@ -1,4 +1,13 @@
-import { Accessibility, Add, AddAPhoto, FitnessCenter, NotificationsActive, PinDrop, Remove } from '@material-ui/icons';
+import {
+    Accessibility,
+    Add,
+    AddAPhoto,
+    NotificationsActive,
+    Group,
+    MenuBook,
+    PinDrop,
+    Remove,
+} from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import * as Colors from '@pxblue/colors';
 import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@pxblue/react-components';
@@ -6,7 +15,7 @@ import { Drawer, DrawerHeader } from '@pxblue/react-components/core/Drawer';
 import { boolean, select, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { DrawerState, DrawerStoryContext } from './util';
+import { DrawerStoryContext } from './util';
 
 const userGuide = 'User Guide';
 const license = 'License';
@@ -47,7 +56,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
     const divider = boolean('divider', true, DrawerNavGroupID);
     const nestedDivider = boolean('nestedDivider', false, DrawerNavGroupID);
     const chevron = boolean('chevron', false, DrawerNavGroupID);
-    const nestedBackgroundColor = color('nestedBackgroundColor', Colors.white[200], DrawerNavGroupID);
+    const nestedBackgroundColor = color('nestedBackgroundColor', '', DrawerNavGroupID);
     const groupUseExpandIcon = select(
         'expandIcon',
         ['undefined', '<Add />', '<PinDrop />'],
@@ -56,7 +65,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
     );
     const groupUseCollapseIcon = select(
         'collapseIcon',
-        ['undefined', '<Remove />', '<AddAPhoto />'],
+        ['undefined', '<Remove />', '<Groups />'],
         'undefined',
         DrawerNavGroupID
     );
@@ -91,14 +100,12 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
         }
     })();
 
-    const drawerItemList = (state: DrawerState): JSX.Element => (
-        <DrawerBody>
+    const drawerItemList = (): JSX.Element => (
+        <DrawerBody disableActiveItemParentStyles={boolean('disableActiveItemParentStyles', false, DrawerNavGroupID)}>
             <DrawerNavGroup
                 divider={divider}
                 nestedDivider={nestedDivider}
-                title={'Multi-Level Navigation Group'}
                 hidePadding={hidePadding}
-                activeItem={state.selected}
                 chevron={chevron}
                 nestedBackgroundColor={nestedBackgroundColor}
                 expandIcon={getIcon(groupUseExpandIcon)}
@@ -106,7 +113,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                 items={[
                     {
                         title: userGuide,
-                        icon: showIcon ? <AddAPhoto /> : undefined,
+                        icon: showIcon ? <MenuBook /> : undefined,
                         itemID: userGuide,
                         rightComponent: rightComponent,
                         expandIcon: getIcon(itemUseExpandIcon),
@@ -172,7 +179,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                     {
                         title: community,
                         itemID: community,
-                        icon: showIcon ? <FitnessCenter /> : undefined,
+                        icon: showIcon ? <Group /> : undefined,
                         onClick: (): void => {
                             context.store.set({ selected: community });
                         },
@@ -228,9 +235,9 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
     );
 
     return (
-        <Drawer open={open} key={'drawer'}>
+        <Drawer open={open} key={'drawer'} activeItem={context.state.selected}>
             <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
-            {drawerItemList(context.state)}
+            {drawerItemList()}
         </Drawer>
     );
 };

@@ -9,7 +9,7 @@
         "@pxblue/colors": "^3.0.0",
         "@pxblue/icons-mui": "^2.1.0",
         "@pxblue/react-components": "^4.0.0",
-        "@pxblue/react-themes": "^5.0.0",
+        "@pxblue/react-themes": "^6.0.0-beta.0",
         "@pxblue/storybook-rtl-addon": "^1.0.0-alpha.1",
         "@pxblue/storybook-themes": "^1.1.0",
         "@sambego/storybook-state": "^1.3.6",
@@ -33,8 +33,8 @@
     "scripts": {
         "start": "yarn storybook",
         "build": "react-scripts build",
-        "storybook": "start-storybook -p 6006 -s ../../docs/,./assets,./node_modules/typeface-open-sans/files",
-        "build-storybook": "build-storybook -s ../../docs/,./assets,./node_modules/typeface-open-sans/files",
+        "storybook": "start-storybook -p 6006 -s ../../docs/,./assets,./node_modules/@fontsource/open-sans/files",
+        "build-storybook": "build-storybook -s ../../docs/,./assets,./node_modules/@fontsource/open-sans/files",
         "lint": "eslint \"stories/**\"",
         "lint:fix": "eslint \"stories/**\" --fix",
         "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
@@ -72,7 +72,6 @@
         "prettier": "^1.19.1",
         "sass-loader": "^8.0.2",
         "storybook-dark-mode": "^0.6.1",
-        "ts-loader": "^6.2.2",
-        "typeface-open-sans": "0.0.75"
+        "ts-loader": "^6.2.2"
     }
 }

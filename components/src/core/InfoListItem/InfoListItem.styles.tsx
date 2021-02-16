@@ -57,9 +57,8 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
                           props.backgroundColor !== 'transparent'
                             ? color(props.backgroundColor)
                                   .darken(0.08)
-                                  .rgb()
                                   .string()
-                            : 'rgba(0,0,0,0.08)'
+                            : theme.palette.action.hover
                         : undefined,
             },
             '&:focus': {
@@ -84,6 +83,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             color: (props) => getIconColor(props),
             justifyContent: (props) => getIconAlignment(props),
             backgroundColor: 'transparent',
+            overflow: 'visible',
         },
         info: {
             fontWeight: 400,

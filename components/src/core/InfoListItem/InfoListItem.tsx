@@ -11,7 +11,7 @@ import clsx from 'clsx';
 const MAX_SUBTITLE_ELEMENTS = 6;
 
 export type DividerType = 'full' | 'partial';
-export type InfoListItemProps = Omit<Omit<ListItemProps, 'title'>, 'divider'> & {
+export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
     avatar?: boolean;
     backgroundColor?: string;
     chevron?: boolean;
