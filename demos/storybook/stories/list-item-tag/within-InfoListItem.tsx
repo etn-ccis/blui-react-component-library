@@ -11,7 +11,7 @@ export const inInfoListItem = (): StoryFnReactReturnType => {
     const direction = getDirection();
     const theme = useTheme();
     return (
-        <List style={{ width: '80%', background: Colors.white[50], padding: 0 }}>
+        <List style={{ width: '80%', background: theme.palette.background.paper, padding: 0 }}>
             <InfoListItem
                 icon={<BrightnessMedium />}
                 title={'@pxblue/react-themes'}

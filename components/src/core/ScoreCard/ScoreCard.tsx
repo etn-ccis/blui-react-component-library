@@ -49,7 +49,9 @@ const useStyles = makeStyles((theme: Theme) =>
             height: 100,
             overflow: 'hidden',
             position: 'relative',
-            backgroundColor: (props: ScoreCardProps): string => props.headerColor || theme.palette.primary.main,
+            backgroundColor: (props: ScoreCardProps): string =>
+                props.headerColor ||
+                (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
             color: fontColor,
         },
         headerContent: {

@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         nestedListGroup: {
             backgroundColor: (props: DrawerNavItemProps): string =>
-                props.nestedBackgroundColor || (theme.palette.type === 'light' ? white[200] : darkBlack[100]),
+                props.nestedBackgroundColor || (theme.palette.type === 'light' ? white[200] : darkBlack[500]),
             paddingBottom: 0,
             paddingTop: 0,
         },
@@ -143,14 +143,20 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     const previousActive = usePrevious(activeItem);
 
     // Primary color manipulation
-    const fivePercentOpacityPrimary = color(theme.palette.primary.main)
+    const fivePercentOpacityPrimary = color(
+        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+    )
         .fade(0.95)
         .string();
-    const twentyPercentOpacityPrimary = color(theme.palette.primary.main)
+    const twentyPercentOpacityPrimary = color(
+        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+    )
         .fade(0.8)
         .string();
     // approximating primary[200] but we don't have access to it directly from the theme
-    const lightenedPrimary = color(theme.palette.primary.main)
+    const lightenedPrimary = color(
+        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+    )
         .lighten(0.83)
         .desaturate(0.39)
         .string();

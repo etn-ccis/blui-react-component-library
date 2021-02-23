@@ -63,14 +63,20 @@ export type DrawerRailItemProps = SharedStyleProps & {
 
 const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
     // approximates the [200] color but not perfectly because the theme does not have that explicit color
-    const lightenedPrimary = color(theme.palette.primary.main)
+    const lightenedPrimary = color(
+        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+    )
         .lighten(0.83)
         .desaturate(0.39)
         .string();
-    const fivePercentOpacityPrimary = color(theme.palette.primary.main)
+    const fivePercentOpacityPrimary = color(
+        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+    )
         .fade(0.95)
         .string();
-    const twentyPercentOpacityPrimary = color(theme.palette.primary.main)
+    const twentyPercentOpacityPrimary = color(
+        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+    )
         .fade(0.8)
         .string();
 

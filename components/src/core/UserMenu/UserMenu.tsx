@@ -20,8 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         avatarRoot: {
             cursor: 'pointer',
-            backgroundColor: theme.palette.primary.light,
-            color: theme.palette.primary.main,
             height: theme.spacing(5),
             width: theme.spacing(5),
         },

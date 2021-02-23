@@ -46,9 +46,15 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '100%',
             alignItems: 'flex-start',
             boxSizing: 'border-box',
-            backgroundColor: (props: DrawerHeaderProps): string => props.backgroundColor || theme.palette.primary.main,
+            backgroundColor: (props: DrawerHeaderProps): string =>
+                props.backgroundColor ||
+                (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
             color: (props: DrawerHeaderProps): string =>
-                props.fontColor || theme.palette.getContrastText(props.backgroundColor || theme.palette.primary.main),
+                props.fontColor ||
+                theme.palette.getContrastText(
+                    props.backgroundColor ||
+                        (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
+                ),
         },
         background: {
             position: 'absolute',

@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.1 (Not published yet)
+
+### Changed
+
+-   Some default colors in `<Drawer>` and `<ScoreCard>` headers to work with @pxblue/react-themes version 6+.
+
 ## 5.0.0
 
 ### Changed
