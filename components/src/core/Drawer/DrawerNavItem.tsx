@@ -117,6 +117,9 @@ const useStyles = makeStyles((theme: Theme) =>
                 (props.depth > 0 ? props.nestedBackgroundColor : props.backgroundColor) || 'transparent',
         },
         square: {},
+        textSecondary: {
+            color: theme.palette.type === 'dark' ? theme.palette.text.secondary : undefined,
+        },
         title: {
             fontWeight: 400,
         },
@@ -367,10 +370,11 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             [defaultClasses.noIconTitle]: hidePadding && !icon,
             [defaultClasses.drawerOpen]: drawerOpen,
         }),
-        subtitle: clsx({
+        subtitle: clsx(defaultClasses.textSecondary, {
             [defaultClasses.noIconTitle]: hidePadding && !icon,
             [defaultClasses.drawerOpen]: drawerOpen,
         }),
+        info: defaultClasses.textSecondary,
     };
 
     return (

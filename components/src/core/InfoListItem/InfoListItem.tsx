@@ -225,7 +225,6 @@ InfoListItem.defaultProps = {
     chevron: false,
     classes: {},
     dense: false,
-    fontColor: 'inherit',
     hidePadding: false,
     iconAlign: 'left',
     ripple: false,

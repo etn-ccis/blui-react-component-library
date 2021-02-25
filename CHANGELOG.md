@@ -4,7 +4,7 @@
 
 ### Changed
 
--   Some default colors in `<Drawer>` and `<ScoreCard>` headers to work with @pxblue/react-themes version 6+.
+-   Some default colors in `<InfoListItem>`, `<Drawer>` and `<ScoreCard>` headers to work with @pxblue/react-themes version 6+.
 
 ## 5.0.0
 
@@ -17,6 +17,7 @@
 -   Some of the class names for style overrides have changed
 
 ### Added
+
 -   Additional configuration properties for `<Drawer>`:
     -   `sideBorder` gives the `<Drawer>` a slight border instead of a drop shadow.
     -   `disableActiveItemParentStyle` disables the bold text style for active item's parent elements.
@@ -65,10 +66,12 @@
 
 ## v4.0.2
 
-### Added 
+### Added
+
 -   Adds `info` prop to `<InfoListItem>` to support a third line of text.
 
 ### Changed
+
 -   Updates several prop types to `ReactNode` to support wider range of input values.
 
 ## v4.0.1
@@ -77,10 +80,12 @@
 
 ## v4.0.0
 
-### Added  
+### Added
+
 -   Style-related properties are now overridable by the `classes` prop in each component.
 
 ### Changed
+
 -   Supplemental properties are now spread to the root component for each PX Blue component.
 -   Changed component font colors to address potential accessibility issues.
 
@@ -91,16 +96,19 @@
 ## v3.0.3
 
 ### Fixed
+
 -   Fixes IE 11 issue where persistent `<Drawer>` will not close.
 -   Fixes some spacing issues when using the `<DrawerLayout>`.
 
 ## v3.0.0
 
-### Added 
+### Added
+
 -   Adds support for nested items in the `<Drawer>` component.
 -   Additional styling props added to `<Drawer>`.
 
-### Changed 
+### Changed
+
 **Breaking Changes:**
 
 -   A few props got renamed to avoid further ambiguities:
@@ -143,18 +151,21 @@
 
 ## v2.1.0
 
-### Added 
+### Added
+
 -   Adds `<InfoListTag>` Component
     -   Displays additional information inside an InfoListItem.
 -   Adds `<UserMenu>` Component
     -   Avatar which opens a Menu when clicked.
-    
-### Fixed 
+
+### Fixed
+
 -   Misc bug fixes.
 
 ## v2.0.0
 
 ### Added
+
 -   Adds new components for:
     -   `<Drawer>`
     -   `<DrawerHeader>`
@@ -165,6 +176,7 @@
     -   `<DrawerLayout>`
 
 ### Changed
+
 -   Library converted to TypeScript to provide strong typings for TS projects.
 -   **Breaking Change:** Simpler import syntax - _default_ imports will no longer work.
 
@@ -178,12 +190,14 @@
 
 ## v1.1.0
 
-### Added 
+### Added
+
 Adds a new component for `<EmptyState>`.
 
 ## v1.0.0
 
-### Fixed 
+### Fixed
+
 Fixes a bug in icon size for inline `<ChannelValue>` components.
 
 ## v0.0.1
