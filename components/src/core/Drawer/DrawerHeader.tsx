@@ -100,7 +100,6 @@ const useStyles = makeStyles((theme: Theme) =>
             marginLeft: theme.spacing(1),
         },
         subtitle: {
-            fontWeight: 300,
             lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
             marginTop: '-2px',
         },
@@ -152,7 +151,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                     {subtitle && (
                         <Typography
                             noWrap
-                            variant={'subtitle1'}
+                            variant={'body2'}
                             className={clsx(defaultClasses.subtitle, classes.subtitle)}
                             data-test={'drawer-header-subtitle'}
                         >
