@@ -109,7 +109,7 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
                 {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
                 {props.children}
             </span>
-            <Typography variant={'subtitle1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
+            <Typography variant={'body1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
                 {label}
             </Typography>
         </div>
