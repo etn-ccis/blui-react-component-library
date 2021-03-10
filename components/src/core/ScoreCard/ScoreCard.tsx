@@ -63,8 +63,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         headerTitle: {
             color: fontColor,
-            fontWeight: 600,
-            fontSize: '1.125rem',
+            lineHeight: 1.4,
         },
         headerSubtitle: {
             color: fontColor,
