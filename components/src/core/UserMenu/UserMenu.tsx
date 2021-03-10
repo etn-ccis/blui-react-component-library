@@ -8,27 +8,31 @@ import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {},
-        navGroups: {
-            '&:active, &:focus': {
-                outline: 'none',
-            },
+        avatarRoot: {
+            cursor: 'pointer',
+            height: theme.spacing(5),
+            width: theme.spacing(5),
         },
         header: {
             '&:active, &:focus': {
                 outline: 'none',
             },
         },
-        avatarRoot: {
-            cursor: 'pointer',
-            height: theme.spacing(5),
-            width: theme.spacing(5),
-        },
-        noCursor: {
-            cursor: 'inherit',
-        },
         margins: {
             marginLeft: -theme.spacing(1),
             marginRight: -theme.spacing(1),
+        },
+        menuTitle: {
+            fontSize: '1rem',
+            lineHeight: 1.4,
+        },
+        navGroups: {
+            '&:active, &:focus': {
+                outline: 'none',
+            },
+        },
+        noCursor: {
+            cursor: 'inherit',
         },
     })
 );
@@ -146,8 +150,10 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                         subtitle={menuSubtitle}
                         fontColor={'inherit'}
                         backgroundColor={'inherit'}
+                        divider
                         classes={{
                             nonClickableIcon: defaultClasses.margins,
+                            title: defaultClasses.menuTitle,
                         }}
                     />
                 </div>
@@ -167,7 +173,14 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                         title={group.title}
                         items={group.items.map(
                             (item: UserMenuItem, itemIndex: number): NavItem =>
-                                Object.assign({ itemID: itemIndex.toString() }, item)
+                                Object.assign({ itemID: itemIndex.toString() }, item, {
+                                    InfoListItemProps: Object.assign(
+                                        theme.palette.type === 'dark'
+                                            ? {}
+                                            : { iconColor: theme.palette.text.secondary },
+                                        item.InfoListItemProps
+                                    ),
+                                })
                         )}
                     />
                 </div>
