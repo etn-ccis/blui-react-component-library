@@ -35,8 +35,15 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingLeft: theme.spacing(0.5),
             paddingRight: theme.spacing(0.5) - 1, // to account for extra pixel from letter-spacing
             overflow: 'hidden',
-            backgroundColor: (props: ListItemTagProps): string => props.backgroundColor || theme.palette.primary.main,
-            color: (props: ListItemTagProps): string => props.fontColor || theme.palette.primary.contrastText,
+            backgroundColor: (props: ListItemTagProps): string =>
+                props.backgroundColor ||
+                (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
+            color: (props: ListItemTagProps): string =>
+                props.fontColor ||
+                theme.palette.getContrastText(
+                    props.backgroundColor ||
+                        (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
+                ),
             cursor: (props: ListItemTagProps): string => (props.onClick ? 'pointer' : 'inherit'),
             display: 'inline-block',
             flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
