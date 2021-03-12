@@ -175,9 +175,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                             (item: UserMenuItem, itemIndex: number): NavItem =>
                                 Object.assign({ itemID: itemIndex.toString() }, item, {
                                     InfoListItemProps: Object.assign(
-                                        theme.palette.type === 'dark'
-                                            ? {}
-                                            : { iconColor: theme.palette.text.secondary },
+                                        { iconColor: theme.palette.text.secondary },
                                         item.InfoListItemProps
                                     ),
                                 })
