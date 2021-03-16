@@ -124,11 +124,12 @@ const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToo
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
     const defaultClasses = useStyles(theme);
+
     const getNavigationIcon = useCallback(() => {
         if (navigationIcon) {
             return <div className={clsx(defaultClasses.navigation, classes.navigation)}>{navigationIcon}</div>;
         }
-    }, [navigationIcon]);
+    }, [navigationIcon, defaultClasses, classes]);
 
     const closeMenu = useCallback(() => {
         if (onClose) {
