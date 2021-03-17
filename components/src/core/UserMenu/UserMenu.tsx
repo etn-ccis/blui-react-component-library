@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {},
         avatarRoot: {
             cursor: 'pointer',
-            height: theme.spacing(5),
-            width: theme.spacing(5),
+            height: `2.5rem`,
+            width: `2.5rem`
         },
         header: {
             '&:active, &:focus': {
