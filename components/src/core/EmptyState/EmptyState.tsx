@@ -32,12 +32,12 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     icon: {
-        marginBottom: theme.spacing(2),
+        marginBottom: '1rem',
         display: 'flex',
         fontSize: 96,
     },
     actions: {
-        marginTop: theme.spacing(1),
+        marginTop: '.5rem'
     },
 }));
 
