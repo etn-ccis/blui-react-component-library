@@ -51,9 +51,9 @@ const useStyles = makeStyles((theme: Theme) =>
         noVariant: {
             fontWeight: 700, // bold
             letterSpacing: 1,
-            fontSize: 10,
-            lineHeight: '16px',
-            height: 16,
+            fontSize: `0.625rem`,
+            lineHeight: `1rem`,
+            height: `1rem`,
         },
     })
 );
