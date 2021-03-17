@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'stretch',
         },
         header: {
-            height: 100,
+            height: `6rem`,
             overflow: 'hidden',
             position: 'relative',
             backgroundColor: (props: ScoreCardProps): string =>
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'relative',
             zIndex: 1,
             alignItems: 'flex-start',
-            padding: theme.spacing(2),
+            padding: `1rem ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`
         },
         headerTitle: {
             color: fontColor,
