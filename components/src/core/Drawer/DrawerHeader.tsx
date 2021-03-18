@@ -46,6 +46,10 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '100%',
             alignItems: 'flex-start',
             boxSizing: 'border-box',
+            minHeight: `4rem`,
+            [theme.breakpoints.down('xs')]: {
+                minHeight: `3.5rem`,
+            },
             backgroundColor: (props: DrawerHeaderProps): string =>
                 props.backgroundColor ||
                 (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
@@ -82,11 +86,8 @@ const useStyles = makeStyles((theme: Theme) =>
             zIndex: 1,
         },
         navigation: {
-            [theme.breakpoints.down('xs')]: {
-                height: theme.spacing(7),
-            },
             padding: theme.spacing(0.5),
-            height: theme.spacing(8),
+            height: '100%',
             display: 'flex',
             alignItems: 'center',
             zIndex: 1,
