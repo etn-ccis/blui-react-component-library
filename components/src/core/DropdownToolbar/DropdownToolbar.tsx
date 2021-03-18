@@ -41,6 +41,10 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
+            minHeight: `4rem`,
+            [theme.breakpoints.down('xs')]: {
+                minHeight: `3.5rem`,
+            },
         },
         navigation: {
             marginRight: theme.spacing(4),
