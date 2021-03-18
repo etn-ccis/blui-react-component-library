@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
         avatarRoot: {
             cursor: 'pointer',
             height: `2.5rem`,
-            width: `2.5rem`
+            width: `2.5rem`,
         },
         header: {
             '&:active, &:focus': {

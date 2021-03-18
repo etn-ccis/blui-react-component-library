@@ -17,7 +17,7 @@ export type InfoListItemClasses = {
     title?: string;
 };
 
-const getHeight = (props: InfoListItemProps): string => (props.dense ? `3.25rem`: `4.5rem`);
+const getHeight = (props: InfoListItemProps): string => (props.dense ? `3.25rem` : `4.5rem`);
 const getIconColor = (props: InfoListItemProps, theme: Theme): string => {
     const { avatar, iconColor, statusColor } = props;
     if (iconColor) return iconColor;
@@ -71,7 +71,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             width: `2.5rem`,
             height: `2.5rem`,
             padding: `.5rem`,
-            marginRight: theme.spacing(2)
+            marginRight: theme.spacing(2),
         },
         divider: {
             position: 'absolute',
@@ -89,7 +89,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             backgroundColor: 'transparent',
             overflow: 'visible',
             minWidth: '2.5rem',
-            marginRight: theme.spacing(2)
+            marginRight: theme.spacing(2),
         },
         info: {
             fontWeight: 400,

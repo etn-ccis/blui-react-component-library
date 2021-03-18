@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'relative',
             zIndex: 1,
             alignItems: 'flex-start',
-            padding: `1rem ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`
+            padding: `1rem ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
         },
         headerTitle: {
             color: fontColor,

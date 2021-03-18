@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 96,
     },
     actions: {
-        marginTop: '.5rem'
+        marginTop: '.5rem',
     },
 }));
 
