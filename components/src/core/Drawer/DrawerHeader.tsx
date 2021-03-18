@@ -86,6 +86,7 @@ const useStyles = makeStyles((theme: Theme) =>
             zIndex: 1,
         },
         navigation: {
+            marginRight: `calc((1rem - 16px) / 2)`,
             padding: theme.spacing(0.5),
             height: '100%',
             display: 'flex',
