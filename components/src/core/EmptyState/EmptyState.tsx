@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     icon: {
+        color: theme.palette.text.secondary,
         marginBottom: theme.spacing(2),
         display: 'flex',
         fontSize: 96,
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.type === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
     },
     actions: {
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(2),
     },
 }));
 
