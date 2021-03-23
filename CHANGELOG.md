@@ -7,6 +7,10 @@
 -   Some default colors in `<InfoListItem>`, `<Drawer>` and `<ScoreCard>` headers to work with @pxblue/react-themes version 6+.
 -   Some default styles on `<ScoreCard>`, `<UserMenu>`, and `<EmptyState>` text elements.
 
+### Added
+
+-   `openOnHoverDelay` to `<Drawer>` to alter open-on-hover delay for closed persistent drawers. 
+
 ## 5.0.0
 
 ### Changed

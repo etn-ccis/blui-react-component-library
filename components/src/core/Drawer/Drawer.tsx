@@ -92,6 +92,9 @@ export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
         // Enables Drawer to automatically open on hover for persistent variants.
         openOnHover?: boolean;
 
+        // Delay (ms) to use for open on hover.
+        openOnHoverDelay?: number;
+
         // Toggles the drawer side border instead of a drop shadow
         sideBorder?: boolean;
 
@@ -134,6 +137,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
         noLayout = false,
         open,
         openOnHover,
+        openOnHoverDelay,
         onItemSelect,
         sideBorder = false,
         variant: variantProp,
@@ -239,7 +243,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                     onMouseEnter={
                         openOnHover
                             ? (): void => {
-                                  hoverDelay = setTimeout(() => setHover(true), 500);
+                                  hoverDelay = setTimeout(() => setHover(true), openOnHoverDelay);
                               }
                             : undefined
                     }
@@ -258,7 +262,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                 </div>
             </>
         ),
-        [setHover, hoverDelay, getSubHeader, getBody, getFooter]
+        [setHover, openOnHover, openOnHoverDelay, getSubHeader, getBody, getFooter]
     );
 
     /* Default Drawer Sizes */
@@ -344,6 +348,7 @@ Drawer.propTypes = {
     onItemSelect: PropTypes.func,
     open: PropTypes.bool.isRequired,
     openOnHover: PropTypes.bool,
+    openOnHoverDelay: PropTypes.number,
     sideBorder: PropTypes.bool,
     variant: PropTypes.oneOf(['persistent', 'permanent', 'temporary', 'rail']),
     width: PropTypes.number,
@@ -354,4 +359,5 @@ Drawer.defaultProps = {
     sideBorder: false,
     variant: 'persistent',
     condensed: false,
+    openOnHoverDelay: 500,
 };
