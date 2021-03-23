@@ -262,7 +262,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                 </div>
             </>
         ),
-        [setHover, hoverDelay, getSubHeader, getBody, getFooter]
+        [setHover, openOnHover, openOnHoverDelay, getSubHeader, getBody, getFooter]
     );
 
     /* Default Drawer Sizes */
@@ -348,6 +348,7 @@ Drawer.propTypes = {
     onItemSelect: PropTypes.func,
     open: PropTypes.bool.isRequired,
     openOnHover: PropTypes.bool,
+    openOnHoverDelay: PropTypes.number,
     sideBorder: PropTypes.bool,
     variant: PropTypes.oneOf(['persistent', 'permanent', 'temporary', 'rail']),
     width: PropTypes.number,
