@@ -24,7 +24,7 @@ const getIconColor = (props: InfoListItemProps, theme: Theme): string => {
     if (avatar) {
         return statusColor ? (color(statusColor).isDark() ? Colors.white[50] : Colors.black[500]) : Colors.white[50]; // default avatar is dark gray -> white text
     }
-    return statusColor ? statusColor : theme.palette.type === 'dark' ? theme.palette.text.secondary : 'inherit';
+    return statusColor ? statusColor : theme.palette.text.secondary;
 };
 
 const isWrapEnabled = (props: InfoListItemProps): boolean => props.wrapSubtitle || props.wrapTitle;
