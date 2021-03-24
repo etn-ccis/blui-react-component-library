@@ -98,8 +98,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         nonClickableIcon: {
             display: 'flex',
-            paddingLeft: theme.spacing(1.5),
-            paddingRight: theme.spacing(1.5),
+            padding: 0,
         },
         railIcon: {
             marginLeft: theme.spacing(0.5),
