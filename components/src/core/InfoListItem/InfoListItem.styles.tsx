@@ -73,6 +73,9 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             padding: `.5rem`,
             marginRight: theme.spacing(2),
         },
+        invisible: {
+            opacity: 0,
+        },
         divider: {
             position: 'absolute',
             bottom: 0,
@@ -88,7 +91,8 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             justifyContent: (props) => getIconAlignment(props),
             backgroundColor: 'transparent',
             overflow: 'visible',
-            minWidth: '2.5rem',
+            width: `2.5rem`,
+            height: `2.5rem`,
             marginRight: theme.spacing(2),
         },
         info: {
