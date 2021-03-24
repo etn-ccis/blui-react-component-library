@@ -47,11 +47,11 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         navigation: {
-            marginRight: theme.spacing(4),
-            width: theme.spacing(3),
-            height: theme.spacing(3),
+            marginRight: theme.spacing(2),
+            width: '2.5rem', //theme.spacing(3),
+            height: '2.5rem', //theme.spacing(3),
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             cursor: 'pointer',
             display: 'flex',
         },
@@ -128,11 +128,12 @@ const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToo
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
     const defaultClasses = useStyles(theme);
+
     const getNavigationIcon = useCallback(() => {
         if (navigationIcon) {
             return <div className={clsx(defaultClasses.navigation, classes.navigation)}>{navigationIcon}</div>;
         }
-    }, [navigationIcon]);
+    }, [navigationIcon, defaultClasses, classes]);
 
     const closeMenu = useCallback(() => {
         if (onClose) {

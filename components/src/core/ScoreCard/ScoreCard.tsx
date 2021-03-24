@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'stretch',
         },
         header: {
-            height: `6rem`,
+            height: `6.25rem`,
             overflow: 'hidden',
             position: 'relative',
             backgroundColor: (props: ScoreCardProps): string =>

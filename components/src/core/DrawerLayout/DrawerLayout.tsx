@@ -1,4 +1,4 @@
-import React, { ReactElement, HTMLAttributes, useState } from 'react';
+import React, { ReactElement, HTMLAttributes, useState, CSSProperties } from 'react';
 import { makeStyles, createStyles, Theme, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -60,11 +60,11 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
 ) => {
     const { children, drawer, classes, ...otherDivProps } = props;
     const theme = useTheme();
-    const [padding, setPadding] = useState(0);
+    const [padding, setPadding] = useState<number | string>(0);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const defaultClasses = useStyles();
 
-    const style = { paddingLeft: 0, paddingRight: 0 };
+    const style: CSSProperties = { paddingLeft: 0, paddingRight: 0 };
     style.paddingLeft = theme.direction === 'ltr' ? padding : 0;
     style.paddingRight = theme.direction === 'rtl' ? padding : 0;
 

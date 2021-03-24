@@ -15,8 +15,8 @@ import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps,
 import { findChildByType, mergeStyleProp } from './utilities';
 import clsx from 'clsx';
 
-export const RAIL_WIDTH = 72;
-export const RAIL_WIDTH_CONDENSED = 56;
+export const RAIL_WIDTH = 'calc(3.5rem + 16px)'; // 72;
+export const RAIL_WIDTH_CONDENSED = 'calc(1.5rem + 32px)'; //56;
 
 const useStyles = makeStyles<Theme, DrawerProps>((theme: Theme) =>
     createStyles({
@@ -92,6 +92,9 @@ export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
         // Enables Drawer to automatically open on hover for persistent variants.
         openOnHover?: boolean;
 
+        // Delay (ms) to use for open on hover.
+        openOnHoverDelay?: number;
+
         // Toggles the drawer side border instead of a drop shadow
         sideBorder?: boolean;
 
@@ -99,7 +102,7 @@ export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
         variant?: 'persistent' | 'permanent' | 'temporary' | 'rail';
 
         // Sets the width of the drawer (in px) when open
-        width?: number;
+        width?: number | string;
     };
 export type DrawerComponentProps = DrawerProps; // alias
 
@@ -134,6 +137,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
         noLayout = false,
         open,
         openOnHover,
+        openOnHoverDelay,
         onItemSelect,
         sideBorder = false,
         variant: variantProp,
@@ -239,7 +243,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                     onMouseEnter={
                         openOnHover
                             ? (): void => {
-                                  hoverDelay = setTimeout(() => setHover(true), 500);
+                                  hoverDelay = setTimeout(() => setHover(true), openOnHoverDelay);
                               }
                             : undefined
                     }
@@ -258,22 +262,22 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                 </div>
             </>
         ),
-        [setHover, hoverDelay, getSubHeader, getBody, getFooter]
+        [setHover, openOnHover, openOnHoverDelay, getSubHeader, getBody, getFooter]
     );
 
     /* Default Drawer Sizes */
-    const EXPANDED_DRAWER_WIDTH_DEFAULT = theme.spacing(45);
-    const COLLAPSED_DRAWER_WIDTH_DEFAULT = theme.spacing(7);
+    const EXPANDED_DRAWER_WIDTH_DEFAULT = '22.5rem'; // theme.spacing(45);
+    const COLLAPSED_DRAWER_WIDTH_DEFAULT = 'calc(1.5rem + 32px)'; //theme.spacing(7);
 
     // Determine the visible width of the drawer
-    const getDrawerWidth = useCallback((): number => {
+    const getDrawerWidth = useCallback((): number | string => {
         if (isRail) return condensed ? RAIL_WIDTH_CONDENSED : RAIL_WIDTH;
         if (isDrawerOpen()) return width || EXPANDED_DRAWER_WIDTH_DEFAULT;
         return COLLAPSED_DRAWER_WIDTH_DEFAULT;
     }, [isRail, condensed, theme, isDrawerOpen, width]);
 
     // Get the width of the content inside the drawer - if the drawer is collapsed, content maintains its size in order to clip
-    const getContentWidth = useCallback((): number => {
+    const getContentWidth = useCallback((): number | string => {
         if (isRail) return condensed ? RAIL_WIDTH_CONDENSED : RAIL_WIDTH;
         return width || EXPANDED_DRAWER_WIDTH_DEFAULT;
     }, [isRail, condensed, width, theme]);
@@ -344,9 +348,10 @@ Drawer.propTypes = {
     onItemSelect: PropTypes.func,
     open: PropTypes.bool.isRequired,
     openOnHover: PropTypes.bool,
+    openOnHoverDelay: PropTypes.number,
     sideBorder: PropTypes.bool,
     variant: PropTypes.oneOf(['persistent', 'permanent', 'temporary', 'rail']),
-    width: PropTypes.number,
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 Drawer.defaultProps = {
     classes: {},
@@ -354,4 +359,5 @@ Drawer.defaultProps = {
     sideBorder: false,
     variant: 'persistent',
     condensed: false,
+    openOnHoverDelay: 500,
 };

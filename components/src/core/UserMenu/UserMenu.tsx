@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme: Theme) =>
             fontSize: '1rem',
             lineHeight: 1.4,
         },
+        navigation: {
+            alignSelf: 'center',
+        },
         navGroups: {
             '&:active, &:focus': {
                 outline: 'none',
@@ -154,6 +157,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                         classes={{
                             nonClickableIcon: defaultClasses.margins,
                             title: defaultClasses.menuTitle,
+                            navigation: defaultClasses.navigation,
                         }}
                     />
                 </div>

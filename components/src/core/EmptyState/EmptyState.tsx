@@ -32,12 +32,16 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     icon: {
-        marginBottom: '1rem',
+        color: theme.palette.text.secondary,
+        marginBottom: '1rem', //theme.spacing(2),
         display: 'flex',
         fontSize: 96,
     },
+    description: {
+        color: theme.palette.type === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
+    },
     actions: {
-        marginTop: '.5rem',
+        marginTop: '1rem', // theme.spacing(2)
     },
 }));
 
@@ -54,7 +58,11 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
                 {title}
             </Typography>
             {description && (
-                <Typography variant="subtitle2" color="primary" className={classes.description}>
+                <Typography
+                    variant="subtitle2"
+                    color={'textSecondary'}
+                    className={clsx(defaultClasses.description, classes.description)}
+                >
                     {description}
                 </Typography>
             )}

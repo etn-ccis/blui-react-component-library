@@ -76,18 +76,21 @@ const useStyles = makeStyles((theme: Theme) =>
             },
             marginLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
-            minHeight: theme.spacing(8),
+            minHeight: '4rem',
             display: 'flex',
             justifyContent: 'center',
             alignSelf: 'stretch',
             flexDirection: 'column',
-            width: 'calc(100% - 56px)',
+            width: 'calc(100% - 2.5rem - 32px)',
             boxSizing: 'border-box',
             zIndex: 1,
+            [theme.breakpoints.down('xs')]: {
+                minHeight: `3.5rem`,
+            },
         },
         navigation: {
-            marginRight: `calc((1rem - 16px) / 2)`,
-            padding: theme.spacing(0.5),
+            marginLeft: theme.spacing(2),
+            minWidth: '2.5rem',
             height: '100%',
             display: 'flex',
             alignItems: 'center',
@@ -99,7 +102,9 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingRight: theme.spacing(1.5),
         },
         railIcon: {
-            marginLeft: theme.spacing(1),
+            marginLeft: theme.spacing(0.5),
+            minWidth: 'calc(3.5rem + 16px)',
+            justifyContent: 'center',
         },
         subtitle: {
             lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
@@ -188,6 +193,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                                 onClick={(): void => {
                                     onIconClick();
                                 }}
+                                edge={'start'}
                             >
                                 {icon}
                             </IconButton>

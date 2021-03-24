@@ -111,6 +111,17 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         nestedDivider: boolean('nestedDivider', false, drawerGroupId),
         open: boolean('open', true, drawerGroupId),
         openOnHover: boolean('openOnHover (persistent only)', true, drawerGroupId),
+        openOnHoverDelay: number(
+            'openOnHoverDelay (persistent only)',
+            500,
+            {
+                range: true,
+                min: 100,
+                max: 1000,
+                step: 100,
+            },
+            drawerGroupId
+        ),
         ripple: boolean('ripple', true, drawerGroupId),
         sideBorder: boolean('sideBorder', true, drawerGroupId),
         variant: select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent', drawerGroupId),
@@ -309,6 +320,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             nestedDivider={drawerKnobs.nestedDivider}
             open={drawerKnobs.open}
             openOnHover={drawerKnobs.openOnHover}
+            openOnHoverDelay={drawerKnobs.openOnHoverDelay}
             ripple={drawerKnobs.ripple}
             sideBorder={drawerKnobs.sideBorder}
             variant={drawerKnobs.variant}
