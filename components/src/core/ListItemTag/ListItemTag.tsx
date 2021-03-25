@@ -30,7 +30,7 @@ declare module '@material-ui/core/styles/withStyles' {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            borderRadius: theme.spacing(0.25),
+            borderRadius: '0.125rem',
             padding: 0,
             paddingLeft: theme.spacing(0.5),
             paddingRight: theme.spacing(0.5) - 1, // to account for extra pixel from letter-spacing
