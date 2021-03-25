@@ -1649,13 +1649,14 @@
     "@pxblue/colors" "^3.0.0"
     color "^3.1.2"
 
-"@pxblue/react-themes@^6.0.0-beta.0":
-  version "6.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-themes/-/react-themes-6.0.0-beta.0.tgz#885e861769c9ffebef87fae0546d0bacddaadfe6"
-  integrity sha512-dTYJnt6YJbWgo253sqcpz0sGjyy0+NSEEili45dscszb9iq+9zWpQUtSXIGrLQHHRexJoGxuuiQ7F8Wa22G7Rg==
+"@pxblue/react-themes@^6.0.0-beta.2":
+  version "6.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-themes/-/react-themes-6.0.0-beta.2.tgz#38926da93816bc503e2df73d4084dc192fe0f2cb"
+  integrity sha512-VcVrbWMq/78TtmjOTQI0pE6tpP02gIOGLURzdB4YxmENgWtRS1QH9xNFRxr3YBFQxDaqRMWP1P0Le1vysYjRdA==
   dependencies:
     "@fontsource/open-sans" "^4.1.0"
     "@pxblue/colors" "^3.0.0"
+    color "^3.1.3"
 
 "@pxblue/storybook-rtl-addon@^1.0.0-alpha.1":
   version "1.0.0"
@@ -4582,7 +4583,7 @@ color-string@^1.5.4:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
-color@^3.0.0, color@^3.1.2:
+color@^3.0.0, color@^3.1.2, color@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/color/-/color-3.1.3.tgz#ca67fb4e7b97d611dcde39eceed422067d91596e"
   integrity sha512-xgXAcTHa2HeFCGLE9Xs/R82hujGtu9Jd9x4NW3T34+OMs7VoPsjwzRczKHvTAHeJwWFwX5j15+MgAppE8ztObQ==

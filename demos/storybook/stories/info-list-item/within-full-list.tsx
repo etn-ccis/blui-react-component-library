@@ -41,7 +41,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 title={'Output Voltage'}
                 divider={appliedDivider}
                 avatar
-                statusColor={alertColor}
+                statusColor={Colors.red[500]}
                 fontColor={alertColor}
                 iconColor={Colors.white[50]}
                 subtitle={['Phase A', 'Phase B', 'Phase C']}

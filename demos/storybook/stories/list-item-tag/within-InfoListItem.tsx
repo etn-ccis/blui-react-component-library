@@ -4,18 +4,21 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { BrightnessMedium } from '@material-ui/icons';
 import List from '@material-ui/core/List';
+import { useDarkMode } from 'storybook-dark-mode';
 import { getDirection } from '@pxblue/storybook-rtl-addon';
 import { useTheme } from '@material-ui/core';
 
 export const inInfoListItem = (): StoryFnReactReturnType => {
     const direction = getDirection();
     const theme = useTheme();
+
     return (
-        <List style={{ width: '80%', background: theme.palette.background.paper, padding: 0 }}>
+        <List style={{ width: '80%', padding: 0 }}>
             <InfoListItem
                 icon={<BrightnessMedium />}
                 title={'@pxblue/react-themes'}
                 subtitle={'Light and dark themes supported'}
+                backgroundColor={useDarkMode() ? Colors.black[500] : 'white'}
                 rightComponent={
                     <div style={{ display: 'flex' }}>
                         <ListItemTag

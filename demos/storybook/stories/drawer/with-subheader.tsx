@@ -26,7 +26,7 @@ const filter = (
         InputProps={{
             endAdornment: (
                 <InputAdornment position="end">
-                    <IconButton aria-label="filter button">
+                    <IconButton aria-label="filter button" edge={'end'}>
                         <Search />
                     </IconButton>
                 </InputAdornment>
@@ -69,7 +69,7 @@ export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnTy
                     style={{
                         display: 'flex',
                         justifyContent: 'center',
-                        padding: '20px',
+                        padding: '1rem 16px',
                     }}
                 >
                     {subheaderContent === 'Filter' ? filter : accordion}
