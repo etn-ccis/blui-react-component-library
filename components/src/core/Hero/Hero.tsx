@@ -22,7 +22,7 @@ export type HeroProps = HTMLAttributes<HTMLDivElement> & {
     fontSize?: FontSize;
     icon: ReactNode;
     iconBackgroundColor?: string;
-    iconSize?: number;
+    iconSize?: number | string;
     label: string;
     value?: string | number;
     valueIcon?: JSX.Element;
@@ -54,11 +54,14 @@ const useStyles = makeStyles((theme: Theme) =>
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
-            padding: `.25rem theme.spacing(0.5)`,
+            padding: `.25rem ${theme.spacing(0.5)}`,
             borderRadius: '50%',
-            fontSize: (props: HeroProps): number => normalizeIconSize(props.iconSize),
-            height: (props: HeroProps): number => Math.max(44, props.iconSize),
-            width: (props: HeroProps): number => Math.max(44, props.iconSize),
+            fontSize: (props: HeroProps): number | string =>
+                typeof props.iconSize === 'number' ? normalizeIconSize(props.iconSize) : props.iconSize,
+            height: (props: HeroProps): number | string =>
+                typeof props.iconSize === 'number' ? Math.max(44, props.iconSize) : props.iconSize,
+            width: (props: HeroProps): number | string =>
+                typeof props.iconSize === 'number' ? Math.max(44, props.iconSize) : props.iconSize,
             backgroundColor: (props: HeroProps): string => props.iconBackgroundColor,
         },
         values: {
@@ -129,7 +132,7 @@ Hero.propTypes = {
     fontSize: PropTypes.oneOf(['normal', 'small']),
     icon: PropTypes.node.isRequired,
     iconBackgroundColor: PropTypes.string,
-    iconSize: PropTypes.number,
+    iconSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     label: PropTypes.string.isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     valueIcon: PropTypes.element,

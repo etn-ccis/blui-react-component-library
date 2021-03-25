@@ -7,7 +7,7 @@ type DrawerContextType = {
     condensed?: boolean;
     activeItem?: string;
     onItemSelect?: (id: string) => void;
-    width?: number;
+    width?: number | string;
 };
 
 export const DrawerContext = createContext<DrawerContextType>({

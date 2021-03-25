@@ -93,8 +93,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         badgeWrapper: {
             flex: '0 0 auto',
-            marginRight: 16,
-            marginLeft: 16,
+            marginRight: theme.spacing(2),
+            marginLeft: theme.spacing(2),
             alignSelf: (props: ScoreCardProps): string => (props.badgeOffset !== 0 ? 'flex-start' : 'center'),
             marginTop: (props: ScoreCardProps): number => props.badgeOffset,
         },

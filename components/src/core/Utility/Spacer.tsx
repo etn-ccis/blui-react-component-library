@@ -5,8 +5,8 @@ import clsx from 'clsx';
 
 export type SpacerProps = HTMLAttributes<HTMLDivElement> & {
     flex?: number;
-    height?: number;
-    width?: number;
+    height?: number | string;
+    width?: number | string;
     classes?: SpacerClasses;
     style?: CSSProperties;
 };

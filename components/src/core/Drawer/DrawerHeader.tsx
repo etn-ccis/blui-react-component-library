@@ -18,6 +18,7 @@ type DrawerHeaderClasses = {
     background?: string;
     content?: string;
     navigation?: string;
+    nonCLickable?: string;
     nonClickableIcon?: string;
     railIcon?: string;
     subtitle?: string;
@@ -71,9 +72,6 @@ const useStyles = makeStyles((theme: Theme) =>
             opacity: (props: DrawerHeaderProps): number => props.backgroundOpacity,
         },
         content: {
-            [theme.breakpoints.down('xs')]: {
-                minHeight: theme.spacing(7),
-            },
             marginLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
             minHeight: '4rem',
@@ -96,6 +94,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
             zIndex: 1,
         },
+        nonClickable: {},
         nonClickableIcon: {
             display: 'flex',
             padding: 0,
@@ -104,10 +103,13 @@ const useStyles = makeStyles((theme: Theme) =>
             marginLeft: theme.spacing(0.5),
             minWidth: 'calc(3.5rem + 16px)',
             justifyContent: 'center',
+            '&$nonClickable': {
+                marginLeft: 0,
+            },
         },
         subtitle: {
             lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
-            marginTop: '-2px',
+            marginTop: '-0.125rem',
         },
         title: {
             fontWeight: 600,
@@ -184,6 +186,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                         className={clsx(defaultClasses.navigation, classes.navigation, {
                             [defaultClasses.railIcon]: variant === 'rail' && !condensed,
                             [classes.railIcon]: variant === 'rail' && !condensed && classes.railIcon,
+                            [defaultClasses.nonClickable]: variant === 'rail' && !condensed && !onIconClick,
                         })}
                     >
                         {onIconClick && (

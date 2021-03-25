@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: `calc(100% - ${theme.spacing(1)}px)`,
             left: 0,
             top: 0,
-            borderRadius: `0px ${theme.spacing(3)}px ${theme.spacing(3)}px 0px`,
+            borderRadius: `0px 1.625rem 1.625rem 0px`,
             opacity: 0.9,
             '&$square': {
                 width: '100%',
@@ -369,11 +369,14 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             [defaultClasses.noIconTitle]: hidePadding && !icon,
             [defaultClasses.drawerOpen]: drawerOpen,
         }),
-        subtitle: clsx(defaultClasses.textSecondary, {
+        subtitle: clsx({
+            [defaultClasses.textSecondary]: !active,
             [defaultClasses.noIconTitle]: hidePadding && !icon,
             [defaultClasses.drawerOpen]: drawerOpen,
         }),
-        info: defaultClasses.textSecondary,
+        info: clsx({
+            [defaultClasses.textSecondary]: !active,
+        }),
     };
 
     return (
