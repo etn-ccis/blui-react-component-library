@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'stretch',
         },
         header: {
-            height: 100,
+            height: `6.25rem`,
             overflow: 'hidden',
             position: 'relative',
             backgroundColor: (props: ScoreCardProps): string =>
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'relative',
             zIndex: 1,
             alignItems: 'flex-start',
-            padding: theme.spacing(2),
+            padding: `1rem ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
         },
         headerTitle: {
             color: fontColor,
@@ -93,8 +93,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         badgeWrapper: {
             flex: '0 0 auto',
-            marginRight: 16,
-            marginLeft: 16,
+            marginRight: theme.spacing(2),
+            marginLeft: theme.spacing(2),
             alignSelf: (props: ScoreCardProps): string => (props.badgeOffset !== 0 ? 'flex-start' : 'center'),
             marginTop: (props: ScoreCardProps): number => props.badgeOffset,
         },

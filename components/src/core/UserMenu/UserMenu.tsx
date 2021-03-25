@@ -1,30 +1,29 @@
 import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         root: {},
         avatarRoot: {
             cursor: 'pointer',
-            height: theme.spacing(5),
-            width: theme.spacing(5),
+            height: `2.5rem`,
+            width: `2.5rem`,
         },
         header: {
             '&:active, &:focus': {
                 outline: 'none',
             },
         },
-        margins: {
-            marginLeft: -theme.spacing(1),
-            marginRight: -theme.spacing(1),
-        },
         menuTitle: {
             fontSize: '1rem',
             lineHeight: 1.4,
+        },
+        navigation: {
+            alignSelf: 'center',
         },
         navGroups: {
             '&:active, &:focus': {
@@ -152,8 +151,8 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                         backgroundColor={'inherit'}
                         divider
                         classes={{
-                            nonClickableIcon: defaultClasses.margins,
                             title: defaultClasses.menuTitle,
+                            navigation: defaultClasses.navigation,
                         }}
                     />
                 </div>

@@ -90,8 +90,7 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'default',
-            padding: (props): string =>
-                `${theme.spacing(2)}px ${props.statusColor ? theme.spacing(1) : theme.spacing(0.5)}px`,
+            padding: (props): string => `1rem ${props.statusColor ? theme.spacing(1) : theme.spacing(0.5)}px`,
             textAlign: 'center',
             backgroundColor: (props): string => props.backgroundColor || 'transparent',
             '&:hover': {
@@ -153,7 +152,7 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             backgroundColor: (props): string => props.statusColor,
         },
         title: {
-            lineHeight: `16px`,
+            lineHeight: '1rem',
             wordBreak: 'break-word',
             hyphens: 'auto',
             zIndex: 200,

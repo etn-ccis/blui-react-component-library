@@ -41,14 +41,17 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
+            minHeight: `4rem`,
+            [theme.breakpoints.down('xs')]: {
+                minHeight: `3.5rem`,
+            },
         },
         navigation: {
-            marginRight: theme.spacing(4),
-            width: theme.spacing(3),
-            height: theme.spacing(3),
+            marginRight: theme.spacing(2),
+            width: '2.5rem',
+            height: '2.5rem',
             alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
+            justifyContent: 'flex-start',
             display: 'flex',
         },
         navGroups: {
@@ -61,8 +64,8 @@ const useStyles = makeStyles((theme: Theme) =>
             whiteSpace: 'nowrap',
             // set margins to default to avoid the height of the app bar exceeding 56px on mobile
             '&.MuiListItemText-multiline': {
-                marginTop: theme.spacing(0.5),
-                marginBottom: theme.spacing(0.5),
+                marginTop: '0.25rem',
+                marginBottom: '0.25rem',
             },
         },
         title: {
@@ -74,7 +77,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'row',
             maxWidth: 'fit-content',
-            marginTop: -2,
+            marginTop: '-0.125rem',
         },
         cursorPointer: {
             cursor: 'pointer',

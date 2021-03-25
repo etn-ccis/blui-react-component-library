@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
     icon: {
         color: theme.palette.text.secondary,
-        marginBottom: theme.spacing(2),
+        marginBottom: '1rem',
         display: 'flex',
         fontSize: 96,
     },
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.type === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
     },
     actions: {
-        marginTop: theme.spacing(2),
+        marginTop: '1rem',
     },
 }));
 

@@ -17,7 +17,7 @@ export type InfoListItemClasses = {
     title?: string;
 };
 
-const getHeight = (props: InfoListItemProps): number => (props.dense ? 52 : 72);
+const getHeight = (props: InfoListItemProps): string => (props.dense ? `3.25rem` : `4.5rem`);
 const getIconColor = (props: InfoListItemProps, theme: Theme): string => {
     const { avatar, iconColor, statusColor } = props;
     if (iconColor) return iconColor;
@@ -68,12 +68,19 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         avatar: {
             backgroundColor: (props) => props.statusColor || Colors.black[500],
             color: (props) => getIconColor(props, theme),
+            width: `2.5rem`,
+            height: `2.5rem`,
+            padding: `.5rem`,
+            marginRight: theme.spacing(2),
+        },
+        invisible: {
+            opacity: 0,
         },
         divider: {
             position: 'absolute',
             bottom: 0,
-            right: (props) => (theme.direction === 'rtl' ? (props.divider === 'full' ? 0 : 72) : 0),
-            left: (props) => (theme.direction === 'ltr' ? (props.divider === 'full' ? 0 : 72) : 0),
+            right: (props) => (theme.direction === 'rtl' ? (props.divider === 'full' ? 0 : `4.5rem`) : 0),
+            left: (props) => (theme.direction === 'ltr' ? (props.divider === 'full' ? 0 : `4.5rem`) : 0),
             zIndex: 0,
         },
         listItemText: {
@@ -84,6 +91,9 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             justifyContent: (props) => getIconAlignment(props),
             backgroundColor: 'transparent',
             overflow: 'visible',
+            width: `2.5rem`,
+            height: `2.5rem`,
+            marginRight: theme.spacing(2),
         },
         info: {
             fontWeight: 400,

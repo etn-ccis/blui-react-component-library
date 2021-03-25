@@ -60,7 +60,7 @@ export const withinToolbar = (): StoryFnReactReturnType => {
     return (
         <div style={{ width: '80%', height: 150 }}>
             <AppBar position={'relative'} color={'primary'} style={{ marginTop: -32 }}>
-                <Toolbar style={{ padding: '0 16px' }}>
+                <Toolbar style={{ padding: '0 16px', minHeight: 'unset', height: '4rem' }}>
                     <Typography variant={'h6'}>Toolbar Title</Typography>
                     <Spacer flex={1} />
                     <UserMenu

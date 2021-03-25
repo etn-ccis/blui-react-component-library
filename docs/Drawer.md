@@ -74,7 +74,7 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 | openOnHoverDelay                     | Delay (ms) before triggering open on hover (persistent variant only)    | `number`                                                    | no       | `500`  |
 | sideBorder                      | Whether to use a side border for the drawer instead of a shadow                 | `boolean`                                                    | no       | `false` |
 | variant                         | The variant to use (see below)                                                  | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       |         |
-| width                           | Sets the width of the drawer (in px) when open                                  | `number`                                                     | no       |         |
+| width                           | Sets the width of the drawer (in px) when open                                  | `number` \| `string`                                         | no       |         |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                      | -                                                            | -        |         |
 
 
