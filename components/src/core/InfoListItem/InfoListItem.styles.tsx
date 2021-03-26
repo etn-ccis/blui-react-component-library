@@ -84,7 +84,9 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             zIndex: 0,
         },
         listItemText: {
-            marginLeft: (props) => (props.leftComponent ? theme.spacing(2) : 0),
+            // we have to specify both here because the auto-swap from JSS isn't smart enough to do it when we use a function
+            marginLeft: (props) => (props.leftComponent ? (theme.direction === 'rtl' ? 0 : theme.spacing(2)) : 0),
+            marginRight: (props) => (props.leftComponent ? (theme.direction === 'rtl' ? theme.spacing(2) : 0) : 0),
         },
         icon: {
             color: (props) => getIconColor(props, theme),
