@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Mount, Shallow } from '../types';
 import { InfoListItem } from './InfoListItem';
 import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+// import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
@@ -63,11 +64,7 @@ describe('InfoListItem', () => {
 
         wrapper = shallow(<InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} avatar />);
         testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
-        expect(testedStyle.color).toEqual(
-            color(Colors.white['50'])
-                .rgb()
-                .string()
-        );
+        expect(testedStyle.color).toEqual(color(Colors.white['50']).rgb().string());
         expect(testedStyle.backgroundColor).toEqual('red');
         testedStyle = getComputedStyleFromHTMLString(findByTestId('status-stripe', wrapper).html());
         expect(testedStyle.backgroundColor).toEqual('red');

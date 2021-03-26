@@ -4,7 +4,8 @@ import { findByTestId } from '../test-utils';
 import { Mount, Shallow } from '../types';
 import { ChannelValue } from './ChannelValue';
 import * as Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+// import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Menu from '@material-ui/icons/Menu';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 
