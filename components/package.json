@@ -1,6 +1,6 @@
 {
     "name": "@pxblue/react-components",
-    "version": "5.0.1-beta.0",
+    "version": "5.0.1-beta.2",
     "description": "React components for PX Blue applications",
     "scripts": {
         "test": "jest src",
