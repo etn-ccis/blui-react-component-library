@@ -55,9 +55,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
                         ? props.backgroundColor &&
                           props.backgroundColor !== 'inherit' &&
                           props.backgroundColor !== 'transparent'
-                            ? color(props.backgroundColor)
-                                  .darken(0.08)
-                                  .string()
+                            ? color(props.backgroundColor).darken(0.08).string()
                             : theme.palette.action.hover
                         : undefined,
             },

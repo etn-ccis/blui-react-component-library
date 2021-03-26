@@ -194,9 +194,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         onClick,
         rightComponent = props.chevron && !props.items && !props.children ? (
             <ChevronRight className={defaultClasses.flipIcon} />
-        ) : (
-            undefined
-        ),
+        ) : undefined,
         ripple = true,
         statusColor,
         subtitle: itemSubtitle,
@@ -430,6 +428,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                     <List className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)}>
                         {items &&
                             items.map((subItem: DrawerNavItemProps, index: number) => (
+                                // eslint-disable-next-line @typescript-eslint/no-use-before-define
                                 <DrawerNavItem
                                     key={`itemList_${index}`}
                                     {...subItem}
