@@ -10,6 +10,7 @@
 ### Added
 
 -   `openOnHoverDelay` to `<Drawer>` to alter open-on-hover delay for closed persistent drawers. 
+-   peerDependency support for using with React 17
 
 ## 5.0.0
 
