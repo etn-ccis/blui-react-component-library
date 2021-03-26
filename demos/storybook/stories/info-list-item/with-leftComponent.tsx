@@ -11,7 +11,7 @@ export const withLeftComponent = (): StoryFnReactReturnType => {
     return (
         <InfoListItem
             title={'Info List Item'}
-            subtitle={'with a ChannelValue component to the left'}
+            subtitle={'with a timestamp as a left component'}
             icon={<Device />}
             leftComponent={
                 <div
