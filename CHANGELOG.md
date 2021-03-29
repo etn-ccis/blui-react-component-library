@@ -6,6 +6,7 @@
 
 -   Some default colors in `<InfoListItem>`, `<Drawer>` and `<ScoreCard>` headers to work with @pxblue/react-themes version 6+.
 -   Some default styles on `<ScoreCard>`, `<UserMenu>`, and `<EmptyState>` text elements.
+-   Component sizing updated to use rems to better respond to system font size changes.
 
 ### Added
 
