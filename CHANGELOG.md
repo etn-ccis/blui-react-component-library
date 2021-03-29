@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.0.1 (Not published yet)
+## 5.1.0
 
 ### Changed
 
