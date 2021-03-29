@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'block',
             alignItems: 'center',
             lineHeight: '3rem',
-            height: theme.spacing(6),
+            height: `3rem`,
             fontWeight: 600,
         },
         subheader: {

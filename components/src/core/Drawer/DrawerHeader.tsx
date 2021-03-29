@@ -18,6 +18,7 @@ type DrawerHeaderClasses = {
     background?: string;
     content?: string;
     navigation?: string;
+    nonCLickable?: string;
     nonClickableIcon?: string;
     railIcon?: string;
     subtitle?: string;
@@ -46,9 +47,19 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '100%',
             alignItems: 'flex-start',
             boxSizing: 'border-box',
-            backgroundColor: (props: DrawerHeaderProps): string => props.backgroundColor || theme.palette.primary.main,
+            minHeight: `4rem`,
+            [theme.breakpoints.down('xs')]: {
+                minHeight: `3.5rem`,
+            },
+            backgroundColor: (props: DrawerHeaderProps): string =>
+                props.backgroundColor ||
+                (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
             color: (props: DrawerHeaderProps): string =>
-                props.fontColor || theme.palette.getContrastText(props.backgroundColor || theme.palette.primary.main),
+                props.fontColor ||
+                theme.palette.getContrastText(
+                    props.backgroundColor ||
+                        (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
+                ),
         },
         background: {
             position: 'absolute',
@@ -61,42 +72,44 @@ const useStyles = makeStyles((theme: Theme) =>
             opacity: (props: DrawerHeaderProps): number => props.backgroundOpacity,
         },
         content: {
-            [theme.breakpoints.down('xs')]: {
-                minHeight: theme.spacing(7),
-            },
             marginLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
-            minHeight: theme.spacing(8),
+            minHeight: '4rem',
             display: 'flex',
             justifyContent: 'center',
             alignSelf: 'stretch',
             flexDirection: 'column',
-            width: 'calc(100% - 56px)',
+            width: 'calc(100% - 2.5rem - 32px)',
             boxSizing: 'border-box',
             zIndex: 1,
+            [theme.breakpoints.down('xs')]: {
+                minHeight: `3.5rem`,
+            },
         },
         navigation: {
-            [theme.breakpoints.down('xs')]: {
-                height: theme.spacing(7),
-            },
-            padding: theme.spacing(0.5),
-            height: theme.spacing(8),
+            marginLeft: theme.spacing(2),
+            minWidth: '2.5rem',
+            height: '100%',
             display: 'flex',
             alignItems: 'center',
             zIndex: 1,
         },
+        nonClickable: {},
         nonClickableIcon: {
             display: 'flex',
-            paddingLeft: theme.spacing(1.5),
-            paddingRight: theme.spacing(1.5),
+            padding: 0,
         },
         railIcon: {
-            marginLeft: theme.spacing(1),
+            marginLeft: theme.spacing(0.5),
+            minWidth: 'calc(3.5rem + 16px)',
+            justifyContent: 'center',
+            '&$nonClickable': {
+                marginLeft: 0,
+            },
         },
         subtitle: {
-            fontWeight: 300,
             lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
-            marginTop: '-2px',
+            marginTop: '-0.125rem',
         },
         title: {
             fontWeight: 600,
@@ -146,7 +159,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                     {subtitle && (
                         <Typography
                             noWrap
-                            variant={'subtitle1'}
+                            variant={'body2'}
                             className={clsx(defaultClasses.subtitle, classes.subtitle)}
                             data-test={'drawer-header-subtitle'}
                         >
@@ -173,6 +186,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                         className={clsx(defaultClasses.navigation, classes.navigation, {
                             [defaultClasses.railIcon]: variant === 'rail' && !condensed,
                             [classes.railIcon]: variant === 'rail' && !condensed && classes.railIcon,
+                            [defaultClasses.nonClickable]: variant === 'rail' && !condensed && !onIconClick,
                         })}
                     >
                         {onIconClick && (
@@ -181,6 +195,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                                 onClick={(): void => {
                                     onIconClick();
                                 }}
+                                edge={'start'}
                             >
                                 {icon}
                             </IconButton>

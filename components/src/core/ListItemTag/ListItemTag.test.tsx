@@ -4,7 +4,8 @@ import { Shallow } from '../types';
 import { ListItemTag } from './ListItemTag';
 import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
 import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+// import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
 
@@ -41,15 +42,7 @@ describe('ListItemTag', () => {
         const wrapper = shallow(<ListItemTag label={'test'} fontColor={fontColor} backgroundColor={backgroundColor} />);
         const computedStyle = getComputedStyleFromHTMLString(wrapper.html());
 
-        expect(computedStyle.color).toEqual(
-            color(fontColor)
-                .rgb()
-                .string()
-        );
-        expect(computedStyle.backgroundColor).toEqual(
-            color(backgroundColor)
-                .rgb()
-                .string()
-        );
+        expect(computedStyle.color).toEqual(color(fontColor).rgb().string());
+        expect(computedStyle.backgroundColor).toEqual(color(backgroundColor).rgb().string());
     });
 });

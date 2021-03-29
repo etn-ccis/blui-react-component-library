@@ -22,12 +22,12 @@ import { Spacer } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name | Description                             | Type            | Required | Default | Examples                  |
-| --------- | --------------------------------------- | --------------- | -------- | ------- | ------------------------- |
-| classes   | Classes object to override styles       | `SpacerClasses` | no       |         | {root: 'customRootClass'} |
-| flex      | Flex grow/shrink value for flex layouts | `number`        | no       | 1       |                           |
-| height    | Height (in px) for static layouts       | `number`        | no       |         |                           |
-| width     | Width (in px) for static layouts        | `number`        | no       |         |                           |
+| Prop Name | Description                             | Type                 | Required | Default | Examples                  |
+| --------- | --------------------------------------- | -------------------- | -------- | ------- | ------------------------- |
+| classes   | Classes object to override styles       | `SpacerClasses`      | no       |         | {root: 'customRootClass'} |
+| flex      | Flex grow/shrink value for flex layouts | `number`             | no       | 1       |                           |
+| height    | Height (in px) for static layouts       | `number` \| `string` | no       |         |                           |
+| width     | Width (in px) for static layouts        | `number` \| `string` | no       |         |                           |
 
 </div>
 

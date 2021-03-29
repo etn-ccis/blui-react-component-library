@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: `calc(100% - ${theme.spacing(1)}px)`,
             left: 0,
             top: 0,
-            borderRadius: `0px ${theme.spacing(3)}px ${theme.spacing(3)}px 0px`,
+            borderRadius: `0px 1.625rem 1.625rem 0px`,
             opacity: 0.9,
             '&$square': {
                 width: '100%',
@@ -76,11 +76,10 @@ const useStyles = makeStyles((theme: Theme) =>
             transitionDuration: `${theme.transitions.duration.standard}ms`,
             cursor: 'inherit',
             display: 'flex',
-            height: theme.spacing(6),
-            width: theme.spacing(6),
-            marginRight: -12,
+            padding: '1rem',
+            marginRight: '-1rem',
             alignItems: 'center',
-            justifyContent: 'space-around',
+            justifyContent: 'center',
             '&$expanded': {
                 transform: 'rotate(180deg)',
             },
@@ -97,7 +96,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         nestedListGroup: {
             backgroundColor: (props: DrawerNavItemProps): string =>
-                props.nestedBackgroundColor || (theme.palette.type === 'light' ? white[200] : darkBlack[100]),
+                props.nestedBackgroundColor || (theme.palette.type === 'light' ? white[200] : darkBlack[500]),
             paddingBottom: 0,
             paddingTop: 0,
         },
@@ -117,6 +116,9 @@ const useStyles = makeStyles((theme: Theme) =>
                 (props.depth > 0 ? props.nestedBackgroundColor : props.backgroundColor) || 'transparent',
         },
         square: {},
+        textSecondary: {
+            color: theme.palette.type === 'dark' ? theme.palette.text.secondary : undefined,
+        },
         title: {
             fontWeight: 400,
         },
@@ -143,14 +145,20 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     const previousActive = usePrevious(activeItem);
 
     // Primary color manipulation
-    const fivePercentOpacityPrimary = color(theme.palette.primary.main)
+    const fivePercentOpacityPrimary = color(
+        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+    )
         .fade(0.95)
         .string();
-    const twentyPercentOpacityPrimary = color(theme.palette.primary.main)
+    const twentyPercentOpacityPrimary = color(
+        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+    )
         .fade(0.8)
         .string();
     // approximating primary[200] but we don't have access to it directly from the theme
-    const lightenedPrimary = color(theme.palette.primary.main)
+    const lightenedPrimary = color(
+        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+    )
         .lighten(0.83)
         .desaturate(0.39)
         .string();
@@ -186,9 +194,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         onClick,
         rightComponent = props.chevron && !props.items && !props.children ? (
             <ChevronRight className={defaultClasses.flipIcon} />
-        ) : (
-            undefined
-        ),
+        ) : undefined,
         ripple = true,
         statusColor,
         subtitle: itemSubtitle,
@@ -362,8 +368,12 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             [defaultClasses.drawerOpen]: drawerOpen,
         }),
         subtitle: clsx({
+            [defaultClasses.textSecondary]: !active,
             [defaultClasses.noIconTitle]: hidePadding && !icon,
             [defaultClasses.drawerOpen]: drawerOpen,
+        }),
+        info: clsx({
+            [defaultClasses.textSecondary]: !active,
         }),
     };
 
@@ -418,6 +428,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                     <List className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)}>
                         {items &&
                             items.map((subItem: DrawerNavItemProps, index: number) => (
+                                // eslint-disable-next-line @typescript-eslint/no-use-before-define
                                 <DrawerNavItem
                                     key={`itemList_${index}`}
                                     {...subItem}

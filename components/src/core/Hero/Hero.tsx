@@ -22,7 +22,7 @@ export type HeroProps = HTMLAttributes<HTMLDivElement> & {
     fontSize?: FontSize;
     icon: ReactNode;
     iconBackgroundColor?: string;
-    iconSize?: number;
+    iconSize?: number | string;
     label: string;
     value?: string | number;
     valueIcon?: JSX.Element;
@@ -40,13 +40,13 @@ const useStyles = makeStyles((theme: Theme) =>
             flex: '1 1 0px',
             overflow: 'hidden',
             color: theme.palette.text.primary,
-            padding: `${theme.spacing(2)}px ${theme.spacing()}px`,
+            padding: `1rem ${theme.spacing()}px`,
             cursor: (props: HeroProps): 'pointer' | 'inherit' => (props.onClick ? 'pointer' : 'inherit'),
         },
         icon: {
             lineHeight: 1,
             color: theme.palette.text.secondary,
-            marginBottom: theme.spacing(),
+            marginBottom: '.5rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -54,11 +54,14 @@ const useStyles = makeStyles((theme: Theme) =>
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
-            padding: theme.spacing(0.5),
+            padding: `.25rem ${theme.spacing(0.5)}`,
             borderRadius: '50%',
-            fontSize: (props: HeroProps): number => normalizeIconSize(props.iconSize),
-            height: (props: HeroProps): number => Math.max(44, props.iconSize),
-            width: (props: HeroProps): number => Math.max(44, props.iconSize),
+            fontSize: (props: HeroProps): number | string =>
+                typeof props.iconSize === 'number' ? normalizeIconSize(props.iconSize) : props.iconSize,
+            height: (props: HeroProps): number | string =>
+                typeof props.iconSize === 'number' ? Math.max(44, props.iconSize) : props.iconSize,
+            width: (props: HeroProps): number | string =>
+                typeof props.iconSize === 'number' ? Math.max(44, props.iconSize) : props.iconSize,
             backgroundColor: (props: HeroProps): string => props.iconBackgroundColor,
         },
         values: {
@@ -109,7 +112,7 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
                 {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
                 {props.children}
             </span>
-            <Typography variant={'subtitle1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
+            <Typography variant={'body1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
                 {label}
             </Typography>
         </div>
@@ -129,7 +132,7 @@ Hero.propTypes = {
     fontSize: PropTypes.oneOf(['normal', 'small']),
     icon: PropTypes.node.isRequired,
     iconBackgroundColor: PropTypes.string,
-    iconSize: PropTypes.number,
+    iconSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     label: PropTypes.string.isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     valueIcon: PropTypes.element,

@@ -6,7 +6,8 @@ import * as Colors from '@pxblue/colors';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import { MoreVert } from '@material-ui/icons';
 import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+// import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { HeroBanner } from '../HeroBanner';
 import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
 import { Mount, Shallow } from '../types';
@@ -59,11 +60,7 @@ describe('ScoreCard', () => {
     it('renders correct header text color', () => {
         let wrapper = shallow(<ScoreCard headerTitle={'Test'} />);
         let testedStyle = getComputedStyleFromHTMLString(findByTestId('header', wrapper).html());
-        expect(testedStyle.color).toEqual(
-            color(Colors.white['50'])
-                .rgb()
-                .string()
-        );
+        expect(testedStyle.color).toEqual(color(Colors.white['50']).rgb().string());
 
         wrapper = shallow(<ScoreCard headerTitle={'Test'} headerFontColor={'red'} />);
         testedStyle = getComputedStyleFromHTMLString(wrapper.find(Typography).html());

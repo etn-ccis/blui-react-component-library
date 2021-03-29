@@ -33,6 +33,10 @@ The library can be built by running the following command. The resulting output 
 yarn build
 ```
 
+## Using with @pxblue/react-themes
+
+We recommend using this library in conjunction with [@pxblue/react-themes](https://www.npmjs.com/package/@pxblue/react-themes). If you are using version 6.0.0+ of the PX Blue themes, you must upgrade to at least version 5.1.0 of @pxblue/react-components or you may see some unintended default styles on some components.
+
 ## Running the demo projects
 
 This repository comes with two demo projects found within the `/demos` folder.

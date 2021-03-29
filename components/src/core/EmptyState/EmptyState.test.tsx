@@ -4,7 +4,8 @@ import { findByTestId } from '../test-utils';
 import { Mount, Shallow } from '../types';
 import { EmptyState } from './EmptyState';
 import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+// import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 import Button from '@material-ui/core/Button';
 import PersonIcon from '@material-ui/icons/Person';

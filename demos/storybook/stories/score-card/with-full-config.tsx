@@ -41,17 +41,17 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             }
             badgeOffset={number('badgeOffset', -40)}
         >
-            <List style={{ padding: '16px 0' }}>
+            <List style={{ padding: '.5rem 0' }}>
                 <InfoListItem
                     dense
-                    style={{ height: 36 }}
+                    style={{ height: '2.25rem' }}
                     title={'0 Alarms'}
                     icon={<Notifications color={'inherit'} />}
                     classes={{ title: classes.title }}
                 />
                 <InfoListItem
                     dense
-                    style={{ height: 36 }}
+                    style={{ height: '2.25rem' }}
                     fontColor={useDarkMode() ? Colors.blue[300] : Colors.blue[500]}
                     iconColor={useDarkMode() ? Colors.blue[300] : Colors.blue[500]}
                     title={'1 Event'}
@@ -59,7 +59,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                 />
                 <InfoListItem
                     dense
-                    style={{ height: 36 }}
+                    style={{ height: '2.25rem' }}
                     title={'Online'}
                     icon={<Cloud color={'inherit'} />}
                     classes={{ title: classes.title }}

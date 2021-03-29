@@ -17,14 +17,14 @@ export type InfoListItemClasses = {
     title?: string;
 };
 
-const getHeight = (props: InfoListItemProps): number => (props.dense ? 52 : 72);
-const getIconColor = (props: InfoListItemProps): string => {
+const getHeight = (props: InfoListItemProps): string => (props.dense ? `3.25rem` : `4.5rem`);
+const getIconColor = (props: InfoListItemProps, theme: Theme): string => {
     const { avatar, iconColor, statusColor } = props;
     if (iconColor) return iconColor;
     if (avatar) {
         return statusColor ? (color(statusColor).isDark() ? Colors.white[50] : Colors.black[500]) : Colors.white[50]; // default avatar is dark gray -> white text
     }
-    return statusColor ? statusColor : 'inherit';
+    return statusColor ? statusColor : theme.palette.text.secondary;
 };
 
 const isWrapEnabled = (props: InfoListItemProps): boolean => props.wrapSubtitle || props.wrapTitle;
@@ -55,9 +55,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
                         ? props.backgroundColor &&
                           props.backgroundColor !== 'inherit' &&
                           props.backgroundColor !== 'transparent'
-                            ? color(props.backgroundColor)
-                                  .darken(0.08)
-                                  .string()
+                            ? color(props.backgroundColor).darken(0.08).string()
                             : theme.palette.action.hover
                         : undefined,
             },
@@ -67,28 +65,41 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         },
         avatar: {
             backgroundColor: (props) => props.statusColor || Colors.black[500],
-            color: (props) => getIconColor(props),
+            color: (props) => getIconColor(props, theme),
+            width: `2.5rem`,
+            height: `2.5rem`,
+            padding: `.5rem`,
+            marginRight: theme.spacing(2),
+        },
+        invisible: {
+            opacity: 0,
         },
         divider: {
             position: 'absolute',
             bottom: 0,
-            right: (props) => (theme.direction === 'rtl' ? (props.divider === 'full' ? 0 : 72) : 0),
-            left: (props) => (theme.direction === 'ltr' ? (props.divider === 'full' ? 0 : 72) : 0),
+            right: (props) => (theme.direction === 'rtl' ? (props.divider === 'full' ? 0 : `4.5rem`) : 0),
+            left: (props) => (theme.direction === 'ltr' ? (props.divider === 'full' ? 0 : `4.5rem`) : 0),
             zIndex: 0,
         },
         listItemText: {
-            marginLeft: (props) => (props.leftComponent ? theme.spacing(2) : 0),
+            // we have to specify both here because the auto-swap from JSS isn't smart enough to do it when we use a function
+            marginLeft: (props) => (props.leftComponent ? (theme.direction === 'rtl' ? 0 : theme.spacing(2)) : 0),
+            marginRight: (props) => (props.leftComponent ? (theme.direction === 'rtl' ? theme.spacing(2) : 0) : 0),
         },
         icon: {
-            color: (props) => getIconColor(props),
+            color: (props) => getIconColor(props, theme),
             justifyContent: (props) => getIconAlignment(props),
             backgroundColor: 'transparent',
             overflow: 'visible',
+            width: `2.5rem`,
+            height: `2.5rem`,
+            marginRight: theme.spacing(2),
         },
         info: {
             fontWeight: 400,
             lineHeight: 1.3,
-            color: (props) => props.fontColor || 'inherit',
+            color: (props) =>
+                props.fontColor || (theme.palette.type === 'dark' ? theme.palette.text.secondary : 'inherit'),
         },
         rightComponent: {
             flex: '0 0 auto',
@@ -114,7 +125,8 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         subtitle: {
             fontWeight: 400,
             lineHeight: 1.3,
-            color: (props) => props.fontColor || 'inherit',
+            color: (props) =>
+                props.fontColor || (theme.palette.type === 'dark' ? theme.palette.text.secondary : 'inherit'),
         },
         title: {
             fontWeight: 600,

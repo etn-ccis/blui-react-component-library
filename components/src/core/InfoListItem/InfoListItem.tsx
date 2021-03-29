@@ -74,15 +74,15 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
             return (
-                <ListItemAvatar>
+                <ListItemAvatar style={{ minWidth: 'unset' }}>
                     <Avatar className={combine(avatar ? 'avatar' : 'icon')}>{icon}</Avatar>
                 </ListItemAvatar>
             );
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
-                <ListItemAvatar>
-                    <Avatar style={{ opacity: 0 }} />
+                <ListItemAvatar style={{ minWidth: 'unset' }}>
+                    <Avatar className={clsx(defaultClasses.avatar, defaultClasses.invisible)} />
                 </ListItemAvatar>
             );
         }
@@ -225,7 +225,6 @@ InfoListItem.defaultProps = {
     chevron: false,
     classes: {},
     dense: false,
-    fontColor: 'inherit',
     hidePadding: false,
     iconAlign: 'left',
     ripple: false,
