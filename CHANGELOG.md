@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.1.1
+
+### Fixed
+
+-   Fixed misaligned menu icon in `<DrawerHeader>`.
+
 ## 5.1.0
 
 ### Changed
