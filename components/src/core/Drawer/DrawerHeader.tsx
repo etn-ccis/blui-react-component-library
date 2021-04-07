@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingRight: 0,
             paddingLeft: 0,
             width: '100%',
-            alignItems: 'flex-start',
+            alignItems: 'center',
             boxSizing: 'border-box',
             minHeight: `4rem`,
             [theme.breakpoints.down('xs')]: {
