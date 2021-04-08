@@ -1,7 +1,7 @@
 import * as Colors from '@pxblue/colors';
 import { Device, GradeA, DeviceActivating, Temp } from '@pxblue/icons-mui';
 import { ChannelValue, InfoListItem } from '@pxblue/react-components';
-import { select } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
@@ -46,6 +46,7 @@ export const withinFullList = (): StoryFnReactReturnType => {
                 iconColor={Colors.white[50]}
                 subtitle={['Phase A', 'Phase B', 'Phase C']}
                 icon={<GradeA color={'inherit'} />}
+                disabled={boolean('Disable item', false)}
                 rightComponent={
                     <span style={{ color: alertColor }}>
                         <ChannelValue fontSize={'1rem'} value={480} units={'V'} />,{' '}
