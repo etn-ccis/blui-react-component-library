@@ -1,12 +1,12 @@
 # Changelog
 
-## 5.1.1
+## 5.1.1 (April 7, 2021)
 
 ### Fixed
 
 -   Fixed misaligned menu icon in `<DrawerHeader>`.
 
-## 5.1.0
+## 5.1.0 (March 29, 2021)
 
 ### Changed
 
@@ -19,7 +19,7 @@
 -   `openOnHoverDelay` to `<Drawer>` to alter open-on-hover delay for closed persistent drawers. 
 -   peerDependency support for using with React 17
 
-## 5.0.0
+## 5.0.0 (February 16, 2021)
 
 ### Changed
 
@@ -41,7 +41,7 @@
 -   Added new property `openOnHover` to `<Drawer>`.
 -   Ability to build `<Drawer>` contents declaratively instead of using `items` prop.
 
-## 4.2.0
+## 4.2.0 (December 10, 2020)
 
 ### Changed
 
@@ -56,14 +56,14 @@
 -   Mismatched transition speeds on the `<Drawer>` and `<DrawerLayout>`
 -   Use more efficient icon import syntax for smaller bundle
 
-## v4.1.1
+## v4.1.1 (September 29, 2020)
 
 ### Changed
 
 -   Hides Drawer Nav Item's title when the `<Drawer>` collapses in the `persistent` variant.
 -   Improved some icon flipping logic for RTL.
 
-## v4.1.0
+## v4.1.0 (August 28, 2020)
 
 ### Added
 
@@ -77,7 +77,7 @@
 -   Fixes an issue with text wrapping in the `<InfoListItem>` subtitle
 -   Fixes an issue with hover color alpha channel in `<InfoListItem>`
 
-## v4.0.2
+## v4.0.2 (June 30, 2020)
 
 ### Added
 
@@ -87,11 +87,11 @@
 
 -   Updates several prop types to `ReactNode` to support wider range of input values.
 
-## v4.0.1
+## v4.0.1 (May 20, 2020)
 
 -   Themes updated to use [@pxblue/colors](https://www.npmjs.com/package/@pxblue/colors) version 3.0.0.
 
-## v4.0.0
+## v4.0.0 (May 8, 2020)
 
 ### Added
 
@@ -106,14 +106,14 @@
 
 -   Theme usage updated to Material UI v4+ format (requires v5+ of @pxblue/react-themes).
 
-## v3.0.3
+## v3.0.3 (April 17, 2020)
 
 ### Fixed
 
 -   Fixes IE 11 issue where persistent `<Drawer>` will not close.
 -   Fixes some spacing issues when using the `<DrawerLayout>`.
 
-## v3.0.0
+## v3.0.0 (March 26, 2020)
 
 ### Added
 
@@ -162,7 +162,7 @@
     />
     ```
 
-## v2.1.0
+## v2.1.0 (February 12, 2020)
 
 ### Added
 
@@ -175,7 +175,7 @@
 
 -   Misc bug fixes.
 
-## v2.0.0
+## v2.0.0 (February 3, 2020)
 
 ### Added
 
@@ -201,18 +201,18 @@
     import { ComponentName } from '@pxblue/react-components';
     ```
 
-## v1.1.0
+## v1.1.0 (October 29, 2019)
 
 ### Added
 
 Adds a new component for `<EmptyState>`.
 
-## v1.0.0
+## v1.0.0 (June 17, 2019)
 
 ### Fixed
 
 Fixes a bug in icon size for inline `<ChannelValue>` components.
 
-## v0.0.1
+## v0.0.1 (May 24, 2019)
 
 Initial beta release
