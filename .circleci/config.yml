@@ -53,7 +53,7 @@ jobs:
                       - dist
                       - components/coverage
     coverage_report:
-        working_directory: ~/react-component-library/components
+        working_directory: ~/react-component-library
         docker:
             - image: circleci/node:12.9.1-browsers
         steps:
