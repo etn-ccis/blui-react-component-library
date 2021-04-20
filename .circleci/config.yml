@@ -39,7 +39,7 @@ jobs:
                   command: |
                       yarn build
             - persist_to_workspace:
-                  root: ./components/coverage
+                  root: /react-component-library/components/coverage
                   paths:
                       - coverage
             - run:
@@ -62,9 +62,9 @@ jobs:
         steps:
             - checkout
             - attach_workspace:
-                at: ./components/coverage
+                at: /react-component-library/components/coverage
             - codecov/upload:
-                file: './components/coverage/clover.xml'
+                file: '/react-component-library/components/coverage/clover.xml'
                 token: 5e6faafe-eaf0-4d71-a931-22f279d3e446
 
     # Builds the Storybook app using @pxblue/react-components persisted in /dist folder.
