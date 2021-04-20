@@ -38,10 +38,6 @@ jobs:
                   name: Build Library
                   command: |
                       yarn build
-            - persist_to_workspace:
-                  root: .
-                  paths:
-                      - coverage
             - run:
                   name: Test Artifacts
                   command: |
@@ -55,6 +51,7 @@ jobs:
                   root: .
                   paths:
                       - dist
+                      - coverage
     coverage_report:
         working_directory: ~/react-component-library/components
         docker:
