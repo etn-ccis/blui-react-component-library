@@ -38,6 +38,10 @@ jobs:
                   name: Build Library
                   command: |
                       yarn build
+            - persist_to_workspace:
+                  root: ./components/coverage
+                  paths:
+                      - coverage
             - run:
                   name: Test Artifacts
                   command: |
@@ -51,7 +55,6 @@ jobs:
                   root: .
                   paths:
                       - dist
-                      - coverage
     coverage_report:
         working_directory: ~/react-component-library/components
         docker:
@@ -59,7 +62,7 @@ jobs:
         steps:
             - checkout
             - attach_workspace:
-                at: .
+                at: ./components/coverage
             - codecov/upload:
                 file: './components/coverage/clover.xml'
                 token: 5e6faafe-eaf0-4d71-a931-22f279d3e446
