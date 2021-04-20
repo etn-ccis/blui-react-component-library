@@ -51,7 +51,7 @@ jobs:
                   root: .
                   paths:
                       - dist
-                      - coverage
+                      - components/coverage
     coverage_report:
         working_directory: ~/react-component-library/components
         docker:
@@ -61,7 +61,7 @@ jobs:
             - attach_workspace:
                 at: .
             - codecov/upload:
-                file: './coverage/clover.xml'
+                file: './components/coverage/clover.xml'
                 token: 5e6faafe-eaf0-4d71-a931-22f279d3e446
 
     # Builds the Storybook app using @pxblue/react-components persisted in /dist folder.
