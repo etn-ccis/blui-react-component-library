@@ -4,7 +4,7 @@ module.exports = {
   transform: {
     ...tsjPreset.transform,
   },
-  coverageReporters: [['lcov', { reportPath: '../../' }]],
+  coverageReporters: [['lcov', { reportPath: '' }]],
   globals: {
     'ts-jest': {
       tsConfig: 'tsconfig.test.json'
