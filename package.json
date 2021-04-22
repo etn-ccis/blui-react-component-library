@@ -17,7 +17,9 @@
         "prettier": "cd components && yarn prettier && cd ../demos/showcase && yarn prettier && cd ../storybook && yarn prettier",
         "prettier:check": "cd components && yarn prettier:check && cd ../demos/showcase && yarn prettier:check && cd ../storybook && yarn prettier:check",
         "update:submodule": "git submodule update --remote",
-        "precommit": "yarn initialize && yarn install:dependencies && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts"
+        "precommit": "yarn initialize && yarn install:dependencies && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts",
+        "coverage": "yarn test --coverage --watchAll=false",
+        "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json"
     },
     "repository": {
         "type": "git",
@@ -36,5 +38,8 @@
         "doc": "docs"
     },
     "author": "pxblue <pxblue@eaton.com>",
-    "license": "BSD-3-Clause"
+    "license": "BSD-3-Clause",
+    "devDependencies": {
+        "codecov": "^3.8.1"
+    }
 }
