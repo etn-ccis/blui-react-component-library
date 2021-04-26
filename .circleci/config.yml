@@ -223,7 +223,7 @@ jobs:
         - run:
             name: Publish @pxblue/react-components
             command:  |
-              cd dist && yarn publish:package -b $CIRCLE_BRANCH
+              yarn publish:package -b $CIRCLE_BRANCH
 
 workflows:
     version: 2
