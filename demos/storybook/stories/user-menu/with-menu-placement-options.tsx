@@ -4,7 +4,8 @@ import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { menuGroups } from './with-basic-usage';
+import { Email, ExitToApp, Settings } from '@material-ui/icons';
+import { getLeftToRightIconTransform } from '../../src/utils';
 
 export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
     const anchorOriginHorizontal = select(
@@ -30,7 +31,27 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
     return (
         <UserMenu
             avatar={<Avatar>CD</Avatar>}
-            menuGroups={menuGroups}
+            menuGroups={[
+                {
+                    items: [
+                        {
+                            title: 'Settings',
+                            icon: <Settings />,
+                            onClick: action("click 'Settings'"),
+                        },
+                        {
+                            title: 'Contact Us',
+                            icon: <Email />,
+                            onClick: action("click 'Contact Us'"),
+                        },
+                        {
+                            title: 'Log Out',
+                            icon: <ExitToApp style={getLeftToRightIconTransform()} />,
+                            onClick: action("click 'Log Out'"),
+                        },
+                    ],
+                },
+            ]}
             MenuProps={{
                 anchorOrigin: { horizontal: anchorOriginHorizontal, vertical: anchorOriginVertical },
                 transformOrigin: { horizontal: transformOriginHorizontal, vertical: transformOriginVertical },
