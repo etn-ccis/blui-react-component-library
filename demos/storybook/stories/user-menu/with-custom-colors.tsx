@@ -1,11 +1,12 @@
 import { Avatar, makeStyles } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
-import { UserMenu, UserMenuGroup } from '@pxblue/react-components';
+import { UserMenu } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
 import { color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { menuGroups } from './with-basic-usage';
+import { Email, ExitToApp, Settings } from '@material-ui/icons';
+import { getLeftToRightIconTransform } from '../../src/utils';
 
 export const withCustomColors = (): StoryFnReactReturnType => {
     const useStyles = makeStyles({
@@ -20,14 +21,33 @@ export const withCustomColors = (): StoryFnReactReturnType => {
 
     const classes = useStyles();
     const avatar = <Avatar classes={{ root: classes.root }}>CD</Avatar>;
-    const group: UserMenuGroup = Object.assign({}, menuGroups[0]);
-    group.fontColor = color('menuGroups.fontColor', Colors.black[500], 'Menu');
-    group.iconColor = color('menuGroups.iconColor', Colors.black[500], 'Menu');
 
     return (
         <UserMenu
             avatar={avatar}
-            menuGroups={[group]}
+            menuGroups={[
+                {
+                    items: [
+                        {
+                            title: 'Settings',
+                            icon: <Settings />,
+                            onClick: action("click 'Settings'"),
+                        },
+                        {
+                            title: 'Contact Us',
+                            icon: <Email />,
+                            onClick: action("click 'Contact Us'"),
+                        },
+                        {
+                            title: 'Log Out',
+                            icon: <ExitToApp style={getLeftToRightIconTransform()} />,
+                            onClick: action("click 'Log Out'"),
+                        },
+                    ],
+                    fontColor: color('menuGroups.fontColor', Colors.black[500], 'Menu'),
+                    iconColor: color('menuGroups.iconColor', Colors.black[500], 'Menu'),
+                },
+            ]}
             MenuProps={{ classes: { paper: classes.paper } }}
             onOpen={action('open')}
             onClose={action('close')}
