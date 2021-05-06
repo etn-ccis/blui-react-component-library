@@ -35,6 +35,9 @@ import React from 'react';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 import { getLeftToRightIconTransform } from '../../src/utils';
 import { DrawerStoryContext } from './util';
+import { useDarkMode } from 'storybook-dark-mode';
+import EatonFooterLogoLight from '../../assets/EatonLogoLight.png';
+import EatonFooterLogoDark from '../../assets/EatonLogoDark.png';
 
 const EatonLogo = require('../../assets/EatonLogo.svg');
 const topologyBgImage = require('../../assets/topology_40.png');
@@ -362,8 +365,24 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
 
             {showFooter && (
                 <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
+                    <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
+                        <img
+                            src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
+                            style={{
+                                margin: 16,
+                                marginRight: 30,
+                                marginLeft: 8,
+                            }}
+                            alt="Eaton Logo"
+                            height={28}
+                            width={'auto'}
+                        />
+                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <Typography
+                                variant={'caption'}
+                            >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
+                            <Typography variant={'caption'}>All Rights Reserved</Typography>
+                        </div>
                     </div>
                 </DrawerFooter>
             )}

@@ -9,6 +9,9 @@ import React from 'react';
 import EatonLogo from '../../assets/EatonLogo.svg';
 import { DrawerStoryContext } from './util';
 import { navGroupItems1 } from './with-basic-config';
+import { useDarkMode } from 'storybook-dark-mode';
+import EatonFooterLogoLight from '../../assets/EatonLogoLight.png';
+import EatonFooterLogoDark from '../../assets/EatonLogoDark.png';
 
 export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnType => {
     const variant = select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent');
@@ -58,14 +61,24 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                     </DrawerBody>
                     {variant !== 'rail' && (
                         <DrawerFooter>
-                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
                                 <img
-                                    src={EatonLogo}
-                                    style={{ margin: '10px' }}
-                                    alt={'Eaton Logo'}
-                                    height={50}
+                                    src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
+                                    style={{
+                                        margin: 16,
+                                        marginRight: 30,
+                                        marginLeft: 8,
+                                    }}
+                                    alt="Eaton Logo"
+                                    height={28}
                                     width={'auto'}
                                 />
+                                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                    <Typography
+                                        variant={'caption'}
+                                    >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
+                                    <Typography variant={'caption'}>All Rights Reserved</Typography>
+                                </div>
                             </div>
                         </DrawerFooter>
                     )}
