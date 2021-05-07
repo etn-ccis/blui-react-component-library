@@ -1,26 +1,52 @@
-import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components';
+import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxblue/react-components';
 import { boolean, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { DrawerStoryContext } from './util';
-import { navGroupItems1 } from './with-basic-config';
-import { Menu } from '@material-ui/icons';
+import { Menu, Gavel, Settings } from '@material-ui/icons';
+import { useState } from '@storybook/addons';
+import { State, Store } from '@sambego/storybook-state';
+import { DrawerState } from './util';
 
-export const withDifferentVariants = (context: DrawerStoryContext): StoryFnReactReturnType => (
-    <Drawer
-        open={boolean('open', true)}
-        variant={select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent')}
-        condensed={boolean('condensed (rail only)', false)}
-        ModalProps={{
-            disableEnforceFocus: true,
-        }}
-        activeItem={context.state.selected}
-    >
-        <DrawerHeader icon={<Menu />} title={'Drawer with variants'} />
-        <DrawerBody>
-            <DrawerNavGroup items={navGroupItems1} />
-        </DrawerBody>
-    </Drawer>
-);
+const store: Store<DrawerState> = new Store<DrawerState>({
+    selected: '',
+});
+
+export const withDifferentVariants = (): StoryFnReactReturnType => {
+    const [selected, setSelected] = useState('');
+
+    const navGroupItems: NavItem[] = [
+        {
+            title: 'Settings',
+            itemID: '1',
+            icon: <Settings />,
+            onClick: () => setSelected('1'),
+        },
+        {
+            title: 'Legal',
+            itemID: '2',
+            icon: <Gavel />,
+            onClick: () => setSelected('2'),
+        },
+    ];
+
+    return (
+        <State store={store}>
+            <Drawer
+                open={boolean('open', true)}
+                variant={select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent')}
+                condensed={boolean('condensed (rail only)', false)}
+                ModalProps={{
+                    disableEnforceFocus: true,
+                }}
+                activeItem={selected}
+            >
+                <DrawerHeader icon={<Menu />} title={'Drawer with variants'} />
+                <DrawerBody>
+                    <DrawerNavGroup items={navGroupItems} />
+                </DrawerBody>
+            </Drawer>
+        </State>
+    );
+};
 
 withDifferentVariants.story = { name: 'with different variants' };

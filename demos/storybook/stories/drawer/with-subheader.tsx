@@ -1,21 +1,22 @@
 import { Accordion, AccordionDetails, AccordionSummary, IconButton, TextField, Typography } from '@material-ui/core';
-
 import InputAdornment from '@material-ui/core/InputAdornment';
 import ExpandMoreIcon from '@material-ui/core/SvgIcon/SvgIcon';
-import { Menu, Search } from '@material-ui/icons';
 import {
     Drawer,
     DrawerBody,
     DrawerHeader,
     DrawerNavGroup,
     DrawerSubheader,
+    NavItem,
 } from '@pxblue/react-components/core/Drawer';
 import { boolean, optionsKnob } from '@storybook/addon-knobs';
 import { OptionsKnobOptionsDisplay } from '@storybook/addon-knobs/dist/components/types/Options';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { DrawerStoryContext } from './util';
-import { navGroupItems1 } from './with-basic-config';
+import { useState } from '@storybook/addons';
+import { State, Store } from '@sambego/storybook-state';
+import { DrawerState } from './util';
+import { Accessibility, NotificationsActive, Person, Today, Menu, Search } from '@material-ui/icons';
 
 const filter = (
     <TextField
@@ -48,7 +49,13 @@ const accordion = (
     </Accordion>
 );
 
-export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnType => {
+const store: Store<DrawerState> = new Store<DrawerState>({
+    selected: '',
+});
+
+export const withSubheader = (): StoryFnReactReturnType => {
+    const [selected, setSelected] = useState('');
+
     const valuesObj = {
         filter: 'Filter',
         accordion: 'Accordion',
@@ -58,27 +65,56 @@ export const withSubheader = (context: DrawerStoryContext): StoryFnReactReturnTy
     };
     const subheaderContent = optionsKnob('Subheader Content', valuesObj, 'Filter', optionsObj);
 
+    const navGroupItems: NavItem[] = [
+        {
+            title: 'Identity Management',
+            itemID: '1',
+            icon: <Person />,
+            onClick: () => setSelected('1'),
+        },
+        {
+            title: 'Calendar',
+            itemID: '2',
+            icon: <Today />,
+            onClick: () => setSelected('2'),
+        },
+        {
+            title: 'Accessibility',
+            itemID: '3',
+            icon: <Accessibility />,
+            onClick: () => setSelected('3'),
+        },
+        {
+            title: 'Notifications',
+            itemID: '4',
+            icon: <NotificationsActive />,
+            onClick: () => setSelected('4'),
+        },
+    ];
+
     return (
-        <Drawer open={boolean('open', true)} activeItem={context.state.selected}>
-            <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
-            <DrawerSubheader
-                hideContentOnCollapse={boolean('hideContentOnCollapse', true)}
-                divider={boolean('divider', true)}
-            >
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        padding: '1rem 16px',
-                    }}
+        <State store={store}>
+            <Drawer open={boolean('open', true)} activeItem={selected}>
+                <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
+                <DrawerSubheader
+                    hideContentOnCollapse={boolean('hideContentOnCollapse', true)}
+                    divider={boolean('divider', true)}
                 >
-                    {subheaderContent === 'Filter' ? filter : accordion}
-                </div>
-            </DrawerSubheader>
-            <DrawerBody>
-                <DrawerNavGroup items={navGroupItems1} />
-            </DrawerBody>
-        </Drawer>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            padding: '1rem 16px',
+                        }}
+                    >
+                        {subheaderContent === 'Filter' ? filter : accordion}
+                    </div>
+                </DrawerSubheader>
+                <DrawerBody>
+                    <DrawerNavGroup items={navGroupItems} />
+                </DrawerBody>
+            </Drawer>
+        </State>
     );
 };
 

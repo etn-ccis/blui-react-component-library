@@ -1,54 +1,57 @@
-import { Accessibility, Menu, NotificationsActive, Person, Today, Gavel, Settings } from '@material-ui/icons';
+import { Accessibility, Menu, NotificationsActive, Person, Today } from '@material-ui/icons';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxblue/react-components';
 import { boolean, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
-import { DrawerStoryContext } from './util';
+import { useState } from '@storybook/addons';
+import { State, Store } from '@sambego/storybook-state';
+import { DrawerState } from './util';
 
-export const navGroupItems1: NavItem[] = [
-    {
-        title: 'Identity Management',
-        itemID: '1',
-        icon: <Person />,
-    },
-    {
-        title: 'Calendar',
-        itemID: '2',
-        icon: <Today />,
-    },
-    {
-        title: 'Accessibility',
-        itemID: '3',
-        icon: <Accessibility />,
-    },
-    {
-        title: 'Notifications',
-        itemID: '4',
-        icon: <NotificationsActive />,
-    },
-];
+const store: Store<DrawerState> = new Store<DrawerState>({
+    selected: '',
+});
 
-export const navGroupItems2: NavItem[] = [
-    {
-        title: 'Settings',
-        itemID: '2-1',
-        icon: <Settings />,
-    },
-    {
-        title: 'Legal',
-        itemID: '2-2',
-        icon: <Gavel />,
-    },
-];
+export const withBasicConfig = (): StoryFnReactReturnType => {
+    const [selected, setSelected] = useState('');
 
-export const withBasicConfig = (context: DrawerStoryContext): StoryFnReactReturnType => (
-    <Drawer open={boolean('open', true)} activeItem={context.state.selected}>
-        <DrawerHeader icon={<Menu />} title={text('title', 'Simple Drawer')} />
-        <DrawerBody>
-            <DrawerNavGroup items={navGroupItems1} />
-        </DrawerBody>
-    </Drawer>
-);
+    const navGroupItems: NavItem[] = [
+        {
+            title: 'Identity Management',
+            itemID: '1',
+            icon: <Person />,
+            onClick: () => setSelected('1'),
+        },
+        {
+            title: 'Calendar',
+            itemID: '2',
+            icon: <Today />,
+            onClick: () => setSelected('2'),
+        },
+        {
+            title: 'Accessibility',
+            itemID: '3',
+            icon: <Accessibility />,
+            onClick: () => setSelected('3'),
+        },
+        {
+            title: 'Notifications',
+            itemID: '4',
+            icon: <NotificationsActive />,
+            onClick: () => setSelected('4'),
+        },
+    ];
+
+    return (
+        <State store={store}>
+            <Drawer open={boolean('open', true)} activeItem={selected}>
+                <DrawerHeader icon={<Menu />} title={text('title', 'Simple Drawer')} />
+                <DrawerBody>
+                    <DrawerNavGroup items={navGroupItems} />
+                </DrawerBody>
+            </Drawer>
+        </State>
+    );
+};
 
 withBasicConfig.story = { name: WITH_MIN_PROPS_STORY_NAME };

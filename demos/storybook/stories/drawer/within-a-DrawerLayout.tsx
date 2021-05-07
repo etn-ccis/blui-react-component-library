@@ -1,88 +1,129 @@
 import { Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { DrawerLayout } from '@pxblue/react-components';
-import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
+import {
+    Drawer,
+    DrawerBody,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerNavGroup,
+    NavItem,
+} from '@pxblue/react-components/core/Drawer';
 import { boolean, number, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-// @ts-ignore
-import EatonLogo from '../../assets/EatonLogo.svg';
-import { DrawerStoryContext } from './util';
-import { navGroupItems1 } from './with-basic-config';
 import { useDarkMode } from 'storybook-dark-mode';
 import EatonFooterLogoLight from '../../assets/EatonLogoLight.png';
 import EatonFooterLogoDark from '../../assets/EatonLogoDark.png';
+import { useState } from '@storybook/addons';
+import { Person, Today, Accessibility, NotificationsActive } from '@material-ui/icons';
+import { State, Store } from '@sambego/storybook-state';
+import { DrawerState } from './util';
 
-export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnType => {
+const store: Store<DrawerState> = new Store<DrawerState>({
+    selected: '',
+});
+
+export const inDrawerLayout = (): StoryFnReactReturnType => {
     const variant = select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent');
+    const [selected, setSelected] = useState('');
+
+    const navGroupItems: NavItem[] = [
+        {
+            title: 'Identity Management',
+            itemID: '1',
+            icon: <Person />,
+            onClick: () => setSelected('1'),
+        },
+        {
+            title: 'Calendar',
+            itemID: '2',
+            icon: <Today />,
+            onClick: () => setSelected('2'),
+        },
+        {
+            title: 'Accessibility',
+            itemID: '3',
+            icon: <Accessibility />,
+            onClick: () => setSelected('3'),
+        },
+        {
+            title: 'Notifications',
+            itemID: '4',
+            icon: <NotificationsActive />,
+            onClick: () => setSelected('4'),
+        },
+    ];
 
     return (
         <DrawerLayout
             drawer={
-                <Drawer
-                    open={boolean('open', true)}
-                    width={number('width', 350, {
-                        range: true,
-                        min: 200,
-                        max: 700,
-                        step: 50,
-                    })}
-                    variant={variant}
-                    condensed={boolean('condensed (rail only)', false)}
-                    ModalProps={{
-                        disableEnforceFocus: true,
-                    }}
-                    activeItem={context.state.selected}
-                >
-                    <DrawerHeader
-                        icon={<MenuIcon />}
-                        titleContent={
-                            <div
-                                style={{
-                                    paddingLeft: 16,
-                                    paddingRight: 16,
-                                    display: 'flex',
-                                    height: '100%',
-                                    flexDirection: 'column',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <Typography variant={'subtitle2'} style={{ fontWeight: 100 }}>
-                                    PX Blue
-                                </Typography>
-                                <Typography variant={'h6'} style={{ marginTop: -8 }}>
-                                    DrawerLayout
-                                </Typography>
-                            </div>
-                        }
-                    />
-                    <DrawerBody>
-                        <DrawerNavGroup items={navGroupItems1} />
-                    </DrawerBody>
-                    {variant !== 'rail' && (
-                        <DrawerFooter>
-                            <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
-                                <img
-                                    src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
+                <State store={store}>
+                    <Drawer
+                        open={boolean('open', true)}
+                        width={number('width', 350, {
+                            range: true,
+                            min: 200,
+                            max: 700,
+                            step: 50,
+                        })}
+                        variant={variant}
+                        condensed={boolean('condensed (rail only)', false)}
+                        ModalProps={{
+                            disableEnforceFocus: true,
+                        }}
+                        activeItem={selected}
+                    >
+                        <DrawerHeader
+                            icon={<MenuIcon />}
+                            titleContent={
+                                <div
                                     style={{
-                                        margin: 16,
-                                        marginRight: 30,
-                                        marginLeft: 8,
+                                        paddingLeft: 16,
+                                        paddingRight: 16,
+                                        display: 'flex',
+                                        height: '100%',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
                                     }}
-                                    alt="Eaton Logo"
-                                    height={28}
-                                    width={'auto'}
-                                />
-                                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                                    <Typography
-                                        variant={'caption'}
-                                    >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
-                                    <Typography variant={'caption'}>All Rights Reserved</Typography>
+                                >
+                                    <Typography variant={'subtitle2'} style={{ fontWeight: 100 }}>
+                                        PX Blue
+                                    </Typography>
+                                    <Typography variant={'h6'} style={{ marginTop: -8 }}>
+                                        DrawerLayout
+                                    </Typography>
                                 </div>
-                            </div>
-                        </DrawerFooter>
-                    )}
-                </Drawer>
+                            }
+                        />
+                        <DrawerBody>
+                            <DrawerNavGroup items={navGroupItems} />
+                        </DrawerBody>
+                        {variant !== 'rail' && (
+                            <DrawerFooter>
+                                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
+                                    <img
+                                        src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
+                                        style={{
+                                            margin: 16,
+                                            marginRight: 30,
+                                            marginLeft: 8,
+                                        }}
+                                        alt="Eaton Logo"
+                                        height={28}
+                                        width={'auto'}
+                                    />
+                                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                        <Typography
+                                            variant={'caption'}
+                                        >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
+                                        <Typography variant={'caption'}>All Rights Reserved</Typography>
+                                    </div>
+                                </div>
+                            </DrawerFooter>
+                        )}
+                    </Drawer>
+                </State>
             }
         >
             <div

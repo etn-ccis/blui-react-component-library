@@ -34,12 +34,13 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 import { getLeftToRightIconTransform } from '../../src/utils';
-import { DrawerStoryContext } from './util';
 import { useDarkMode } from 'storybook-dark-mode';
 import EatonFooterLogoLight from '../../assets/EatonLogoLight.png';
 import EatonFooterLogoDark from '../../assets/EatonLogoDark.png';
+import { useState } from '@storybook/addons';
+import { State, Store } from '@sambego/storybook-state';
+import { DrawerState } from './util';
 
-const EatonLogo = require('../../assets/EatonLogo.svg');
 const topologyBgImage = require('../../assets/topology_40.png');
 const farmBgImage = require('../../assets/farm.jpg');
 
@@ -86,7 +87,13 @@ const headerBackgroundImageOptions = {
     undefined: undefined,
 };
 
-export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnType => {
+const store: Store<DrawerState> = new Store<DrawerState>({
+    selected: '',
+});
+
+export const withFullConfig = (): StoryFnReactReturnType => {
+    const [selected, setSelected] = useState('');
+
     // storybook tab names
     const drawerGroupId = 'Drawer';
     const headerGroupId = 'Header';
@@ -193,14 +200,14 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                     title: monthlyReport,
                     itemID: monthlyReport,
                     onClick: (): void => {
-                        context.store.set({ selected: monthlyReport });
+                        setSelected(monthlyReport);
                     },
                 },
                 {
                     title: annualReport,
                     itemID: annualReport,
                     onClick: (): void => {
-                        context.store.set({ selected: annualReport });
+                        setSelected(annualReport);
                     },
                 },
             ],
@@ -209,7 +216,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: timeline,
             itemID: timeline,
             onClick: (): void => {
-                context.store.set({ selected: timeline });
+                setSelected(timeline);
             },
             icon: <Toc />,
         },
@@ -217,7 +224,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: locations,
             itemID: locations,
             onClick: (): void => {
-                context.store.set({ selected: locations });
+                setSelected(locations);
             },
             icon: <PinDrop />,
         },
@@ -227,7 +234,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             subtitle: '5 new warnings',
             statusColor: Colors.yellow[500],
             onClick: (): void => {
-                context.store.set({ selected: devices });
+                setSelected(devices);
             },
             icon: <Devices />,
         },
@@ -235,7 +242,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: photos,
             itemID: photos,
             onClick: (): void => {
-                context.store.set({ selected: photos });
+                setSelected(photos);
             },
             icon: <AddAPhoto />,
         },
@@ -243,7 +250,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: schedule,
             itemID: schedule,
             onClick: (): void => {
-                context.store.set({ selected: schedule });
+                setSelected(schedule);
             },
             icon: <Event style={getLeftToRightIconTransform()} />,
         },
@@ -254,7 +261,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: userGuide,
             itemID: userGuide,
             onClick: (): void => {
-                context.store.set({ selected: userGuide });
+                setSelected(userGuide);
             },
             icon: <MoveToInboxIcon />,
         },
@@ -263,7 +270,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             itemID: agreement,
             subtitle: 'For Eaton employees only',
             onClick: (): void => {
-                context.store.set({ selected: agreement });
+                setSelected(agreement);
             },
             icon: <SendIcon style={getLeftToRightIconTransform()} />,
         },
@@ -276,14 +283,14 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                     title: colorContrastGuide,
                     itemID: colorContrastGuide,
                     onClick: (): void => {
-                        context.store.set({ selected: colorContrastGuide });
+                        setSelected(colorContrastGuide);
                     },
                 },
                 {
                     title: screenReader,
                     itemID: screenReader,
                     onClick: (): void => {
-                        context.store.set({ selected: screenReader });
+                        setSelected(screenReader);
                     },
                 },
             ],
@@ -292,7 +299,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: notifications,
             itemID: notifications,
             onClick: (): void => {
-                context.store.set({ selected: notifications });
+                setSelected(notifications);
             },
             icon: <NotificationsActive />,
         },
@@ -304,89 +311,91 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
 
     // You can replace the knob props with your own values
     return (
-        <Drawer
-            key={'drawer'}
-            activeItem={context.state.selected}
-            activeItemBackgroundColor={drawerKnobs.activeItemBackgroundColor}
-            activeItemFontColor={drawerKnobs.activeItemFontColor}
-            activeItemIconColor={drawerKnobs.activeItemIconColor}
-            activeItemBackgroundShape={drawerKnobs.activeItemBackgroundShape}
-            chevron={drawerKnobs.chevron}
-            collapseIcon={drawerKnobs.collapseIcon}
-            condensed={drawerKnobs.condensed}
-            divider={drawerKnobs.divider}
-            expandIcon={drawerKnobs.expandIcon}
-            hidePadding={drawerKnobs.hidePadding}
-            itemFontColor={drawerKnobs.itemFontColor}
-            itemIconColor={drawerKnobs.itemIconColor}
-            nestedBackgroundColor={drawerKnobs.nestedBackgroundColor}
-            nestedDivider={drawerKnobs.nestedDivider}
-            open={drawerKnobs.open}
-            openOnHover={drawerKnobs.openOnHover}
-            openOnHoverDelay={drawerKnobs.openOnHoverDelay}
-            ripple={drawerKnobs.ripple}
-            sideBorder={drawerKnobs.sideBorder}
-            variant={drawerKnobs.variant}
-            width={drawerKnobs.width}
-            ModalProps={{
-                disableEnforceFocus: true,
-            }}
-        >
-            <DrawerHeader
-                backgroundColor={headerKnobs.backgroundColor}
-                backgroundImage={headerKnobs.backgroundImage}
-                backgroundOpacity={headerKnobs.backgroundOpacity}
-                divider={headerKnobs.divider}
-                fontColor={headerKnobs.fontColor}
-                icon={headerKnobs.icon}
-                subtitle={headerKnobs.subtitle}
-                title={headerKnobs.title}
-            />
-            <DrawerBody backgroundColor={bodyKnobs.backgroundColor}>
-                <DrawerNavGroup items={links1} title={navGroupKnobs.title} titleColor={navGroupKnobs.titleColor} />
-                <DrawerNavGroup
-                    items={links2}
-                    titleContent={
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                fontWeight: 600,
-                            }}
-                        >
-                            <Typography variant={'overline'} style={{ lineHeight: 'unset' }}>
-                                NavGroup 2
-                            </Typography>
-                            <div>Software Version v1.0.3</div>
-                        </div>
-                    }
+        <State store={store}>
+            <Drawer
+                key={'drawer'}
+                activeItem={selected}
+                activeItemBackgroundColor={drawerKnobs.activeItemBackgroundColor}
+                activeItemFontColor={drawerKnobs.activeItemFontColor}
+                activeItemIconColor={drawerKnobs.activeItemIconColor}
+                activeItemBackgroundShape={drawerKnobs.activeItemBackgroundShape}
+                chevron={drawerKnobs.chevron}
+                collapseIcon={drawerKnobs.collapseIcon}
+                condensed={drawerKnobs.condensed}
+                divider={drawerKnobs.divider}
+                expandIcon={drawerKnobs.expandIcon}
+                hidePadding={drawerKnobs.hidePadding}
+                itemFontColor={drawerKnobs.itemFontColor}
+                itemIconColor={drawerKnobs.itemIconColor}
+                nestedBackgroundColor={drawerKnobs.nestedBackgroundColor}
+                nestedDivider={drawerKnobs.nestedDivider}
+                open={drawerKnobs.open}
+                openOnHover={drawerKnobs.openOnHover}
+                openOnHoverDelay={drawerKnobs.openOnHoverDelay}
+                ripple={drawerKnobs.ripple}
+                sideBorder={drawerKnobs.sideBorder}
+                variant={drawerKnobs.variant}
+                width={drawerKnobs.width}
+                ModalProps={{
+                    disableEnforceFocus: true,
+                }}
+            >
+                <DrawerHeader
+                    backgroundColor={headerKnobs.backgroundColor}
+                    backgroundImage={headerKnobs.backgroundImage}
+                    backgroundOpacity={headerKnobs.backgroundOpacity}
+                    divider={headerKnobs.divider}
+                    fontColor={headerKnobs.fontColor}
+                    icon={headerKnobs.icon}
+                    subtitle={headerKnobs.subtitle}
+                    title={headerKnobs.title}
                 />
-            </DrawerBody>
+                <DrawerBody backgroundColor={bodyKnobs.backgroundColor}>
+                    <DrawerNavGroup items={links1} title={navGroupKnobs.title} titleColor={navGroupKnobs.titleColor} />
+                    <DrawerNavGroup
+                        items={links2}
+                        titleContent={
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    fontWeight: 600,
+                                }}
+                            >
+                                <Typography variant={'overline'} style={{ lineHeight: 'unset' }}>
+                                    NavGroup 2
+                                </Typography>
+                                <div>Software Version v1.0.3</div>
+                            </div>
+                        }
+                    />
+                </DrawerBody>
 
-            {showFooter && (
-                <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
-                    <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
-                        <img
-                            src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
-                            style={{
-                                margin: 16,
-                                marginRight: 30,
-                                marginLeft: 8,
-                            }}
-                            alt="Eaton Logo"
-                            height={28}
-                            width={'auto'}
-                        />
-                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                            <Typography
-                                variant={'caption'}
-                            >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
-                            <Typography variant={'caption'}>All Rights Reserved</Typography>
+                {showFooter && (
+                    <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
+                        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
+                            <img
+                                src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
+                                style={{
+                                    margin: 16,
+                                    marginRight: 30,
+                                    marginLeft: 8,
+                                }}
+                                alt="Eaton Logo"
+                                height={28}
+                                width={'auto'}
+                            />
+                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                <Typography
+                                    variant={'caption'}
+                                >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
+                                <Typography variant={'caption'}>All Rights Reserved</Typography>
+                            </div>
                         </div>
-                    </div>
-                </DrawerFooter>
-            )}
-        </Drawer>
+                    </DrawerFooter>
+                )}
+            </Drawer>
+        </State>
     );
 };
 
