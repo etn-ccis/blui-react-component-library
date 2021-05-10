@@ -1,4 +1,4 @@
-import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
+import { Drawer, Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
@@ -33,6 +33,13 @@ const useStyles = makeStyles(() =>
         noCursor: {
             cursor: 'inherit',
         },
+        paper: {
+            width: '100%',
+            maxWidth: 600,
+            margin: 'auto',
+            userSelect: 'none',
+            cursor: 'pointer',
+        },
     })
 );
 
@@ -57,6 +64,7 @@ export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     MenuProps?: Omit<standardMenuProps, 'open'>;
     menuSubtitle?: string;
     menuTitle?: string;
+    useBottomSheet?: boolean;
     onClose?: () => void;
     onOpen?: () => void;
 };
@@ -65,6 +73,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     const {
         avatar,
         classes,
+        useBottomSheet,
         menu,
         menuGroups,
         MenuProps,
@@ -200,7 +209,18 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 ...menu.props,
             });
         }
-        return (
+        return useBottomSheet ? (
+            <Drawer
+                data-cy="bottom-sheet"
+                anchor={'bottom'}
+                transitionDuration={250}
+                open={Boolean(anchorEl)}
+                onClose={closeMenu}
+                classes={{ paper: defaultClasses.paper }}
+            >
+                {printMenu()}
+            </Drawer>
+        ) : (
             <Menu
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
