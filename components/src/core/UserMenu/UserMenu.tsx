@@ -1,4 +1,4 @@
-import { Drawer, Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
+import { Drawer, Menu, MenuProps as standardMenuProps, useMediaQuery, useTheme } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
@@ -33,7 +33,7 @@ const useStyles = makeStyles(() =>
         noCursor: {
             cursor: 'inherit',
         },
-        paper: {
+        bottomSheet: {
             width: '100%',
             maxWidth: 600,
             margin: 'auto',
@@ -45,6 +45,7 @@ const useStyles = makeStyles(() =>
 
 export type UserMenuClasses = {
     root?: string;
+    bottomSheet?: string;
 };
 
 // make itemID optional so that no legacy code is broken
@@ -64,7 +65,8 @@ export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     MenuProps?: Omit<standardMenuProps, 'open'>;
     menuSubtitle?: string;
     menuTitle?: string;
-    useBottomSheet?: boolean;
+    useBottomSheetAt?: number;
+    disableBottomSheet?: boolean;
     onClose?: () => void;
     onOpen?: () => void;
 };
@@ -73,12 +75,13 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     const {
         avatar,
         classes,
-        useBottomSheet,
         menu,
         menuGroups,
         MenuProps,
         menuSubtitle,
         menuTitle,
+        disableBottomSheet,
+        useBottomSheetAt = 600,
         onClose,
         onOpen,
         ...otherDivProps
@@ -209,14 +212,14 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 ...menu.props,
             });
         }
-        return useBottomSheet ? (
+        return useMediaQuery(`(max-width:${useBottomSheetAt}px)`) && !disableBottomSheet ? (
             <Drawer
                 data-cy="bottom-sheet"
                 anchor={'bottom'}
                 transitionDuration={250}
                 open={Boolean(anchorEl)}
                 onClose={closeMenu}
-                classes={{ paper: defaultClasses.paper }}
+                classes={{ paper: clsx(defaultClasses.bottomSheet, classes.bottomSheet) }}
             >
                 {printMenu()}
             </Drawer>
@@ -232,7 +235,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 {printMenu()}
             </Menu>
         );
-    }, [menu, anchorEl, closeMenu, MenuProps, printMenu]);
+    }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt, disableBottomSheet]);
 
     return (
         <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
@@ -250,6 +253,7 @@ UserMenu.propTypes = {
     avatar: PropTypes.element.isRequired,
     classes: PropTypes.shape({
         root: PropTypes.string,
+        bottomSheet: PropTypes.string,
     }),
     menu: PropTypes.element,
     menuTitle: PropTypes.string,
@@ -273,6 +277,8 @@ UserMenu.propTypes = {
         })
     ),
     MenuProps: PropTypes.object,
+    useBottomSheetAt: PropTypes.number,
+    disableBottomSheet: PropTypes.bool,
     onClose: PropTypes.func,
     onOpen: PropTypes.func,
 };

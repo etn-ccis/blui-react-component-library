@@ -41,6 +41,9 @@
     "author": "pxblue <pxblue@eaton.com>",
     "license": "BSD-3-Clause",
     "devDependencies": {
-        "codecov": "^3.8.1"
-    }
+        "@pxblue/prettier-config": "^1.0.3",
+        "codecov": "^3.8.1",
+        "prettier": "^2.3.0"
+    },
+    "prettier": "@pxblue/prettier-config"
 }
