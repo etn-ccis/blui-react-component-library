@@ -24,15 +24,15 @@ import { ChannelValue } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name | Description                                    | Type                   | Required | Default   |
-| --------- | ---------------------------------------------- | ---------------------- | -------- | --------- |
-| color     | The color of the font                          | `string`               | no       | 'inherit' |
-| classes   | Style overrides                                | `ChannelValueClasses`  | no       |           |
-| fontSize  | The size of the font                           | `string` \| `number`   | no       | 'inherit' |
-| icon      | The inline icon to display                     | `JSX.Element`          | no       |           |
-| prefix    | Show units before the value                    | `boolean`              | no       | false     |
-| units     | The text to display for the units (light text) | `string`               | no       |           |
-| value     | The value (bold text) to display               | `string` \| `number`   | yes      |           |
+| Prop Name | Description                                    | Type                  | Required | Default   |
+| --------- | ---------------------------------------------- | --------------------- | -------- | --------- |
+| color     | The color of the font                          | `string`              | no       | 'inherit' |
+| classes   | Style overrides                                | `ChannelValueClasses` | no       |           |
+| fontSize  | The size of the font                           | `string` \| `number`  | no       | 'inherit' |
+| icon      | The inline icon to display                     | `JSX.Element`         | no       |           |
+| prefix    | Show units before the value                    | `boolean`             | no       | false     |
+| units     | The text to display for the units (light text) | `string`              | no       |           |
+| value     | The value (bold text) to display               | `string` \| `number`  | yes      |           |
 
 </div>
 

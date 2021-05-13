@@ -4,7 +4,5 @@
         "types": ["node", "jest", "enzyme"],
         "declaration": false
     },
-    "include": [
-        "src"
-    ]
+    "include": ["src"]
 }
