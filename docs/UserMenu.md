@@ -55,19 +55,18 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 
 <div style="overflow: auto;">
 
-| Prop Name          | Description                                                               | Type               | Required | Default |
-| ------------------ | ------------------------------------------------------------------------- | ------------------ | -------- | ------- |
-| avatar             | MUI Avatar that displays                                                  | `Avatar`           | yes      |         |
-| classes            | Style overrides                                                           | `UserMenuClasses`  | no       |         |
-| disableBottomSheet | Disable responsive bottom sheet menu                                      | `boolean`          | no       | false   |
-| menu               | Custom MUI Menu displayed when Avatar is clicked                          | Material-UI `Menu` | no       |         |
-| menuGroups         | Groups of menu items that display                                         | `UserMenuGroups[]` | no       |         |
-| menuSubtitle       | Subtitle shown when menu is open                                          | `string`           | no       |         |
-| menuTitle          | Title shown when menu is open                                             | `string`           | no       |         |
-| MenuProps          | Property overrides for the MUI Menu                                       | `MenuProps`        | no       |         |
-| onClose            | Function called when the menu is closed                                   | `Function`         | no       |         |
-| onOpen             | Function called when the menu is opened                                   | `Function`         | no       |         |
-| useBottomSheetAt   | Window pixel width at which the responsive bottom sheet menu is triggered | `number`           | no       | 600     |
+| Prop Name        | Description                                                                                                         | Type               | Required | Default |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------ | -------- | ------- |
+| avatar           | MUI Avatar that displays                                                                                            | `Avatar`           | yes      |         |
+| classes          | Style overrides                                                                                                     | `UserMenuClasses`  | no       |         |
+| menu             | Custom MUI Menu displayed when Avatar is clicked                                                                    | Material-UI `Menu` | no       |         |
+| menuGroups       | Groups of menu items that display                                                                                   | `UserMenuGroups[]` | no       |         |
+| menuSubtitle     | Subtitle shown when menu is open                                                                                    | `string`           | no       |         |
+| menuTitle        | Title shown when menu is open                                                                                       | `string`           | no       |         |
+| MenuProps        | Property overrides for the MUI Menu                                                                                 | `MenuProps`        | no       |         |
+| onClose          | Function called when the menu is closed                                                                             | `Function`         | no       |         |
+| onOpen           | Function called when the menu is opened                                                                             | `Function`         | no       |         |
+| useBottomSheetAt | Window pixel width at which the responsive bottom sheet menu is triggered (set to 0 to disable responsive behavior) | `number`           | no       | 600     |
 
 </div>
 

@@ -38,7 +38,6 @@ const useStyles = makeStyles(() =>
             maxWidth: 600,
             margin: 'auto',
             userSelect: 'none',
-            cursor: 'pointer',
         },
     })
 );
@@ -66,7 +65,6 @@ export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     menuSubtitle?: string;
     menuTitle?: string;
     useBottomSheetAt?: number;
-    disableBottomSheet?: boolean;
     onClose?: () => void;
     onOpen?: () => void;
 };
@@ -80,7 +78,6 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         MenuProps,
         menuSubtitle,
         menuTitle,
-        disableBottomSheet,
         useBottomSheetAt = 600,
         onClose,
         onOpen,
@@ -203,6 +200,8 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     ]);
 
     const formatMenu = useCallback((): JSX.Element => {
+        const showBottomSheet = useMediaQuery(`(max-width:${useBottomSheetAt}px)`);
+
         /* If the user provides a menu, provide default props. */
         if (menu) {
             return React.cloneElement(menu, {
@@ -212,11 +211,11 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 ...menu.props,
             });
         }
-        return useMediaQuery(`(max-width:${useBottomSheetAt}px)`) && !disableBottomSheet ? (
+        return showBottomSheet ? (
             <Drawer
                 data-cy="bottom-sheet"
                 anchor={'bottom'}
-                transitionDuration={250}
+                transitionDuration={theme.transitions.duration.short}
                 open={Boolean(anchorEl)}
                 onClose={closeMenu}
                 classes={{ paper: clsx(defaultClasses.bottomSheet, classes.bottomSheet) }}
@@ -235,7 +234,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 {printMenu()}
             </Menu>
         );
-    }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt, disableBottomSheet]);
+    }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt]);
 
     return (
         <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
@@ -278,7 +277,6 @@ UserMenu.propTypes = {
     ),
     MenuProps: PropTypes.object,
     useBottomSheetAt: PropTypes.number,
-    disableBottomSheet: PropTypes.bool,
     onClose: PropTypes.func,
     onOpen: PropTypes.func,
 };
