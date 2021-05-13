@@ -16,8 +16,6 @@ import { boolean, select, color } from '@storybook/addon-knobs';
 import { useState } from '@storybook/addons';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { State, Store } from '@sambego/storybook-state';
-import { DrawerState } from './util';
 
 const userGuide = 'User Guide';
 const license = 'License';
@@ -51,10 +49,6 @@ const getIcon = (icon: string): JSX.Element | undefined => {
             return undefined;
     }
 };
-
-const store: Store<DrawerState> = new Store<DrawerState>({
-    selected: '',
-});
 
 export const withNestedListItems = (): StoryFnReactReturnType => {
     const [selected, setSelected] = useState('');
@@ -242,12 +236,10 @@ export const withNestedListItems = (): StoryFnReactReturnType => {
     );
 
     return (
-        <State store={store}>
-            <Drawer open={open} key={'drawer'} activeItem={selected}>
-                <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
-                {drawerItemList()}
-            </Drawer>
-        </State>
+        <Drawer open={open} key={'drawer'} activeItem={selected}>
+            <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
+            {drawerItemList()}
+        </Drawer>
     );
 };
 

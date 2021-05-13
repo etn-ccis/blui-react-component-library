@@ -38,8 +38,6 @@ import { useDarkMode } from 'storybook-dark-mode';
 import EatonFooterLogoLight from '../../assets/EatonLogoLight.png';
 import EatonFooterLogoDark from '../../assets/EatonLogoDark.png';
 import { useState } from '@storybook/addons';
-import { State, Store } from '@sambego/storybook-state';
-import { DrawerState } from './util';
 
 const topologyBgImage = require('../../assets/topology_40.png');
 const farmBgImage = require('../../assets/farm.jpg');
@@ -86,10 +84,6 @@ const headerBackgroundImageOptions = {
     Farm: farmBgImage,
     undefined: undefined,
 };
-
-const store: Store<DrawerState> = new Store<DrawerState>({
-    selected: '',
-});
 
 export const withFullConfig = (): StoryFnReactReturnType => {
     const [selected, setSelected] = useState('');
@@ -311,91 +305,92 @@ export const withFullConfig = (): StoryFnReactReturnType => {
 
     // You can replace the knob props with your own values
     return (
-        <State store={store}>
-            <Drawer
-                key={'drawer'}
-                activeItem={selected}
-                activeItemBackgroundColor={drawerKnobs.activeItemBackgroundColor}
-                activeItemFontColor={drawerKnobs.activeItemFontColor}
-                activeItemIconColor={drawerKnobs.activeItemIconColor}
-                activeItemBackgroundShape={drawerKnobs.activeItemBackgroundShape}
-                chevron={drawerKnobs.chevron}
-                collapseIcon={drawerKnobs.collapseIcon}
-                condensed={drawerKnobs.condensed}
-                divider={drawerKnobs.divider}
-                expandIcon={drawerKnobs.expandIcon}
-                hidePadding={drawerKnobs.hidePadding}
-                itemFontColor={drawerKnobs.itemFontColor}
-                itemIconColor={drawerKnobs.itemIconColor}
-                nestedBackgroundColor={drawerKnobs.nestedBackgroundColor}
-                nestedDivider={drawerKnobs.nestedDivider}
-                open={drawerKnobs.open}
-                openOnHover={drawerKnobs.openOnHover}
-                openOnHoverDelay={drawerKnobs.openOnHoverDelay}
-                ripple={drawerKnobs.ripple}
-                sideBorder={drawerKnobs.sideBorder}
-                variant={drawerKnobs.variant}
-                width={drawerKnobs.width}
-                ModalProps={{
-                    disableEnforceFocus: true,
-                }}
-            >
-                <DrawerHeader
-                    backgroundColor={headerKnobs.backgroundColor}
-                    backgroundImage={headerKnobs.backgroundImage}
-                    backgroundOpacity={headerKnobs.backgroundOpacity}
-                    divider={headerKnobs.divider}
-                    fontColor={headerKnobs.fontColor}
-                    icon={headerKnobs.icon}
-                    subtitle={headerKnobs.subtitle}
-                    title={headerKnobs.title}
-                />
-                <DrawerBody backgroundColor={bodyKnobs.backgroundColor}>
-                    <DrawerNavGroup items={links1} title={navGroupKnobs.title} titleColor={navGroupKnobs.titleColor} />
-                    <DrawerNavGroup
-                        items={links2}
-                        titleContent={
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    fontWeight: 600,
-                                }}
-                            >
-                                <Typography variant={'overline'} style={{ lineHeight: 'unset' }}>
-                                    NavGroup 2
-                                </Typography>
-                                <div>Software Version v1.0.3</div>
-                            </div>
-                        }
-                    />
-                </DrawerBody>
-
-                {showFooter && (
-                    <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
-                        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
-                            <img
-                                src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
-                                style={{
-                                    margin: 16,
-                                    marginRight: 30,
-                                    marginLeft: 8,
-                                }}
-                                alt="Eaton Logo"
-                                height={28}
-                                width={'auto'}
-                            />
-                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                                <Typography
-                                    variant={'caption'}
-                                >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
-                                <Typography variant={'caption'}>All Rights Reserved</Typography>
-                            </div>
+        <Drawer
+            key={'drawer'}
+            activeItem={selected}
+            activeItemBackgroundColor={drawerKnobs.activeItemBackgroundColor}
+            activeItemFontColor={drawerKnobs.activeItemFontColor}
+            activeItemIconColor={drawerKnobs.activeItemIconColor}
+            activeItemBackgroundShape={drawerKnobs.activeItemBackgroundShape}
+            chevron={drawerKnobs.chevron}
+            collapseIcon={drawerKnobs.collapseIcon}
+            condensed={drawerKnobs.condensed}
+            divider={drawerKnobs.divider}
+            expandIcon={drawerKnobs.expandIcon}
+            hidePadding={drawerKnobs.hidePadding}
+            itemFontColor={drawerKnobs.itemFontColor}
+            itemIconColor={drawerKnobs.itemIconColor}
+            nestedBackgroundColor={drawerKnobs.nestedBackgroundColor}
+            nestedDivider={drawerKnobs.nestedDivider}
+            open={drawerKnobs.open}
+            openOnHover={drawerKnobs.openOnHover}
+            openOnHoverDelay={drawerKnobs.openOnHoverDelay}
+            ripple={drawerKnobs.ripple}
+            sideBorder={drawerKnobs.sideBorder}
+            variant={drawerKnobs.variant}
+            width={drawerKnobs.width}
+            ModalProps={{
+                disableEnforceFocus: true,
+            }}
+        >
+            <DrawerHeader
+                backgroundColor={headerKnobs.backgroundColor}
+                backgroundImage={headerKnobs.backgroundImage}
+                backgroundOpacity={headerKnobs.backgroundOpacity}
+                divider={headerKnobs.divider}
+                fontColor={headerKnobs.fontColor}
+                icon={headerKnobs.icon}
+                subtitle={headerKnobs.subtitle}
+                title={headerKnobs.title}
+            />
+            <DrawerBody backgroundColor={bodyKnobs.backgroundColor}>
+                <DrawerNavGroup items={links1} title={navGroupKnobs.title} titleColor={navGroupKnobs.titleColor} />
+                <DrawerNavGroup
+                    items={links2}
+                    titleContent={
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                fontWeight: 600,
+                            }}
+                        >
+                            <Typography variant={'overline'} style={{ lineHeight: 'unset' }}>
+                                NavGroup 2
+                            </Typography>
+                            <div>Software Version v1.0.3</div>
                         </div>
-                    </DrawerFooter>
-                )}
-            </Drawer>
-        </State>
+                    }
+                />
+            </DrawerBody>
+
+            {showFooter && (
+                <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                            padding: 16,
+                        }}
+                    >
+                        <img
+                            src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
+                            alt="Eaton Logo"
+                            height={28}
+                            width={'auto'}
+                        />
+                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <Typography
+                                variant={'caption'}
+                            >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
+                            <Typography variant={'caption'}>All Rights Reserved</Typography>
+                        </div>
+                    </div>
+                </DrawerFooter>
+            )}
+        </Drawer>
     );
 };
 

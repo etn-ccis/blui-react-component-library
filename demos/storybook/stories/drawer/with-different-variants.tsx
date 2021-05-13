@@ -4,12 +4,6 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { Menu, Gavel, Settings } from '@material-ui/icons';
 import { useState } from '@storybook/addons';
-import { State, Store } from '@sambego/storybook-state';
-import { DrawerState } from './util';
-
-const store: Store<DrawerState> = new Store<DrawerState>({
-    selected: '',
-});
 
 export const withDifferentVariants = (): StoryFnReactReturnType => {
     const [selected, setSelected] = useState('');
@@ -30,22 +24,20 @@ export const withDifferentVariants = (): StoryFnReactReturnType => {
     ];
 
     return (
-        <State store={store}>
-            <Drawer
-                open={boolean('open', true)}
-                variant={select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent')}
-                condensed={boolean('condensed (rail only)', false)}
-                ModalProps={{
-                    disableEnforceFocus: true,
-                }}
-                activeItem={selected}
-            >
-                <DrawerHeader icon={<Menu />} title={'Drawer with variants'} />
-                <DrawerBody>
-                    <DrawerNavGroup items={navGroupItems} />
-                </DrawerBody>
-            </Drawer>
-        </State>
+        <Drawer
+            open={boolean('open', true)}
+            variant={select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent')}
+            condensed={boolean('condensed (rail only)', false)}
+            ModalProps={{
+                disableEnforceFocus: true,
+            }}
+            activeItem={selected}
+        >
+            <DrawerHeader icon={<Menu />} title={'Drawer with variants'} />
+            <DrawerBody>
+                <DrawerNavGroup items={navGroupItems} />
+            </DrawerBody>
+        </Drawer>
     );
 };
 

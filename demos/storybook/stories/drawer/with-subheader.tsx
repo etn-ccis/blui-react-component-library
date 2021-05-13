@@ -14,8 +14,6 @@ import { OptionsKnobOptionsDisplay } from '@storybook/addon-knobs/dist/component
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { useState } from '@storybook/addons';
-import { State, Store } from '@sambego/storybook-state';
-import { DrawerState } from './util';
 import { Accessibility, NotificationsActive, Person, Today, Menu, Search } from '@material-ui/icons';
 
 const filter = (
@@ -48,10 +46,6 @@ const accordion = (
         </AccordionDetails>
     </Accordion>
 );
-
-const store: Store<DrawerState> = new Store<DrawerState>({
-    selected: '',
-});
 
 export const withSubheader = (): StoryFnReactReturnType => {
     const [selected, setSelected] = useState('');
@@ -93,28 +87,26 @@ export const withSubheader = (): StoryFnReactReturnType => {
     ];
 
     return (
-        <State store={store}>
-            <Drawer open={boolean('open', true)} activeItem={selected}>
-                <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
-                <DrawerSubheader
-                    hideContentOnCollapse={boolean('hideContentOnCollapse', true)}
-                    divider={boolean('divider', true)}
+        <Drawer open={boolean('open', true)} activeItem={selected}>
+            <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
+            <DrawerSubheader
+                hideContentOnCollapse={boolean('hideContentOnCollapse', true)}
+                divider={boolean('divider', true)}
+            >
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        padding: '1rem 16px',
+                    }}
                 >
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            padding: '1rem 16px',
-                        }}
-                    >
-                        {subheaderContent === 'Filter' ? filter : accordion}
-                    </div>
-                </DrawerSubheader>
-                <DrawerBody>
-                    <DrawerNavGroup items={navGroupItems} />
-                </DrawerBody>
-            </Drawer>
-        </State>
+                    {subheaderContent === 'Filter' ? filter : accordion}
+                </div>
+            </DrawerSubheader>
+            <DrawerBody>
+                <DrawerNavGroup items={navGroupItems} />
+            </DrawerBody>
+        </Drawer>
     );
 };
 

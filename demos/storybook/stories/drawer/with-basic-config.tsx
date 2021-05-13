@@ -5,12 +5,6 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import React from 'react';
 import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
 import { useState } from '@storybook/addons';
-import { State, Store } from '@sambego/storybook-state';
-import { DrawerState } from './util';
-
-const store: Store<DrawerState> = new Store<DrawerState>({
-    selected: '',
-});
 
 export const withBasicConfig = (): StoryFnReactReturnType => {
     const [selected, setSelected] = useState('');
@@ -43,14 +37,12 @@ export const withBasicConfig = (): StoryFnReactReturnType => {
     ];
 
     return (
-        <State store={store}>
-            <Drawer open={boolean('open', true)} activeItem={selected}>
-                <DrawerHeader icon={<Menu />} title={text('title', 'Simple Drawer')} />
-                <DrawerBody>
-                    <DrawerNavGroup items={navGroupItems} />
-                </DrawerBody>
-            </Drawer>
-        </State>
+        <Drawer open={boolean('open', true)} activeItem={selected}>
+            <DrawerHeader icon={<Menu />} title={text('title', 'Simple Drawer')} />
+            <DrawerBody>
+                <DrawerNavGroup items={navGroupItems} />
+            </DrawerBody>
+        </Drawer>
     );
 };
 
