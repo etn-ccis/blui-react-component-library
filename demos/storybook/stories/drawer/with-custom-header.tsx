@@ -2,9 +2,8 @@ import { Typography } from '@material-ui/core';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxblue/react-components/core/Drawer';
 import { boolean } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import React from 'react';
+import React, { useState } from 'react';
 import { ListItemTag } from '@pxblue/react-components';
-import { useState } from '@storybook/addons';
 import { Accessibility, NotificationsActive, Person, Today, Menu } from '@material-ui/icons';
 
 const farmBgImage = require('../../assets/farm.jpg');

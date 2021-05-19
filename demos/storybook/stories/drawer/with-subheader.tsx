@@ -12,8 +12,7 @@ import {
 import { boolean, optionsKnob } from '@storybook/addon-knobs';
 import { OptionsKnobOptionsDisplay } from '@storybook/addon-knobs/dist/components/types/Options';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import React from 'react';
-import { useState } from '@storybook/addons';
+import React, { useState } from 'react';
 import { Accessibility, NotificationsActive, Person, Today, Menu, Search } from '@material-ui/icons';
 
 const filter = (
@@ -64,25 +63,25 @@ export const withSubheader = (): StoryFnReactReturnType => {
             title: 'Identity Management',
             itemID: '1',
             icon: <Person />,
-            onClick: () => setSelected('1'),
+            onClick: (): void => setSelected('1'),
         },
         {
             title: 'Calendar',
             itemID: '2',
             icon: <Today />,
-            onClick: () => setSelected('2'),
+            onClick: (): void => setSelected('2'),
         },
         {
             title: 'Accessibility',
             itemID: '3',
             icon: <Accessibility />,
-            onClick: () => setSelected('3'),
+            onClick: (): void => setSelected('3'),
         },
         {
             title: 'Notifications',
             itemID: '4',
             icon: <NotificationsActive />,
-            onClick: () => setSelected('4'),
+            onClick: (): void => setSelected('4'),
         },
     ];
 

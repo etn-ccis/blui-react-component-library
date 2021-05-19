@@ -10,12 +10,11 @@ import {
 } from '@pxblue/react-components/core/Drawer';
 import { boolean, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
 import { Typography } from '@material-ui/core';
 import EatonFooterLogoLight from '../../assets/EatonLogoLight.png';
 import EatonFooterLogoDark from '../../assets/EatonLogoDark.png';
-import { useState } from '@storybook/addons';
 
 export const withFooter = (): StoryFnReactReturnType => {
     const [selected, setSelected] = useState('');

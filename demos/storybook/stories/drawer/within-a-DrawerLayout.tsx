@@ -11,11 +11,10 @@ import {
 } from '@pxblue/react-components/core/Drawer';
 import { boolean, number, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
 import EatonFooterLogoLight from '../../assets/EatonLogoLight.png';
 import EatonFooterLogoDark from '../../assets/EatonLogoDark.png';
-import { useState } from '@storybook/addons';
 import { Person, Today, Accessibility, NotificationsActive } from '@material-ui/icons';
 
 export const inDrawerLayout = (): StoryFnReactReturnType => {
@@ -27,25 +26,25 @@ export const inDrawerLayout = (): StoryFnReactReturnType => {
             title: 'Identity Management',
             itemID: '1',
             icon: <Person />,
-            onClick: () => setSelected('1'),
+            onClick: (): void => setSelected('1'),
         },
         {
             title: 'Calendar',
             itemID: '2',
             icon: <Today />,
-            onClick: () => setSelected('2'),
+            onClick: (): void => setSelected('2'),
         },
         {
             title: 'Accessibility',
             itemID: '3',
             icon: <Accessibility />,
-            onClick: () => setSelected('3'),
+            onClick: (): void => setSelected('3'),
         },
         {
             title: 'Notifications',
             itemID: '4',
             icon: <NotificationsActive />,
-            onClick: () => setSelected('4'),
+            onClick: (): void => setSelected('4'),
         },
     ];
 

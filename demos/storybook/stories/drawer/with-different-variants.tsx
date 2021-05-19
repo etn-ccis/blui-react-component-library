@@ -1,9 +1,8 @@
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxblue/react-components';
 import { boolean, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu, Gavel, Settings } from '@material-ui/icons';
-import { useState } from '@storybook/addons';
 
 export const withDifferentVariants = (): StoryFnReactReturnType => {
     const [selected, setSelected] = useState('');

@@ -13,9 +13,8 @@ import * as Colors from '@pxblue/colors';
 import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@pxblue/react-components';
 import { Drawer, DrawerHeader } from '@pxblue/react-components/core/Drawer';
 import { boolean, select, color } from '@storybook/addon-knobs';
-import { useState } from '@storybook/addons';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import React from 'react';
+import React, { useState } from 'react';
 
 const userGuide = 'User Guide';
 const license = 'License';
