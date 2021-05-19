@@ -1,4 +1,4 @@
-import { Drawer, Menu, MenuProps as standardMenuProps, useMediaQuery, useTheme } from '@material-ui/core';
+import { Drawer, DrawerProps, Menu, MenuProps as standardMenuProps, useMediaQuery, useTheme } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
@@ -65,11 +65,13 @@ export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     menuSubtitle?: string;
     menuTitle?: string;
     useBottomSheetAt?: number;
+    BottomSheetProps?: DrawerProps;
     onClose?: () => void;
     onOpen?: () => void;
 };
 
 const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (props: UserMenuProps, ref: any) => {
+    const theme = useTheme();
     const {
         avatar,
         classes,
@@ -78,12 +80,12 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         MenuProps,
         menuSubtitle,
         menuTitle,
-        useBottomSheetAt = 600,
+        useBottomSheetAt = theme.breakpoints.values.sm,
+        BottomSheetProps,
         onClose,
         onOpen,
         ...otherDivProps
     } = props;
-    const theme = useTheme();
     const defaultClasses = useStyles(theme);
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -219,6 +221,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 open={Boolean(anchorEl)}
                 onClose={closeMenu}
                 classes={{ paper: clsx(defaultClasses.bottomSheet, classes.bottomSheet) }}
+                {...BottomSheetProps}
             >
                 {printMenu()}
             </Drawer>
@@ -234,7 +237,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 {printMenu()}
             </Menu>
         );
-    }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt]);
+    }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt, BottomSheetProps]);
 
     return (
         <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
