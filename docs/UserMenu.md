@@ -3,11 +3,13 @@
 The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically used in the top-right corner of an application and indicates who is logged in. By default, the Menu will responsively transition to a bottomsheet for mobile views.
 Passing in a custom menu using the `menu` prop or setting the `useBottomSheetAt` prop to zero will disable the responsiveness.
 
-<div style="align-items: center; display:flex; justify-content: space-around">
-
+<div style="width: 100%; text-align: center; margin-bottom: 16px">
 <img width="30%" alt="UserMenu Avatar" src="./images/userMenuAvatar.png">
-<img width="35%" alt="UserMenu Opened" src="./images/userMenuOpened.png">
+</div>
 
+<div style="align-items: center; display:flex; justify-content: space-around; margin-bottom: 16px">
+<img width="30%" alt="UserMenu Opened" src="./images/userMenuOpened.png">
+<img width="35%" alt="UserMenu Opened Mobile" src="./images/userMenuOpenedMobile.png">
 </div>
 
 The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `<Menu>`.
