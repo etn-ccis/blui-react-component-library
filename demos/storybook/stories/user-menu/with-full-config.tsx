@@ -2,7 +2,7 @@ import { Avatar, makeStyles } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
 import { UserMenu } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
-import { color, select, text } from '@storybook/addon-knobs';
+import { color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
@@ -46,6 +46,18 @@ export const withFullConfig = (): StoryFnReactReturnType => {
         'Menu'
     );
 
+    const useBottomSheetAt = number(
+        'useBottomSheetAt',
+        600,
+        {
+            range: true,
+            min: 0,
+            max: 1000,
+            step: 50,
+        },
+        'Menu'
+    );
+
     return (
         <UserMenu
             avatar={avatar}
@@ -82,6 +94,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             }}
             onOpen={action('open')}
             onClose={action('close')}
+            useBottomSheetAt={useBottomSheetAt}
         />
     );
 };
