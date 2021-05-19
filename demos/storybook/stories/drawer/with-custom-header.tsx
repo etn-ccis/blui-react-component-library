@@ -17,25 +17,25 @@ export const withCustomHeader = (): StoryFnReactReturnType => {
             title: 'Identity Management',
             itemID: '1',
             icon: <Person />,
-            onClick: () => setSelected('1'),
+            onClick: (): void => setSelected('1'),
         },
         {
             title: 'Calendar',
             itemID: '2',
             icon: <Today />,
-            onClick: () => setSelected('2'),
+            onClick: (): void => setSelected('2'),
         },
         {
             title: 'Accessibility',
             itemID: '3',
             icon: <Accessibility />,
-            onClick: () => setSelected('3'),
+            onClick: (): void => setSelected('3'),
         },
         {
             title: 'Notifications',
             itemID: '4',
             icon: <NotificationsActive />,
-            onClick: () => setSelected('4'),
+            onClick: (): void => setSelected('4'),
         },
     ];
 

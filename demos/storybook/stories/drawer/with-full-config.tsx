@@ -37,7 +37,7 @@ import { getLeftToRightIconTransform } from '../../src/utils';
 import { useDarkMode } from 'storybook-dark-mode';
 import EatonFooterLogoLight from '../../assets/EatonLogoLight.png';
 import EatonFooterLogoDark from '../../assets/EatonLogoDark.png';
-import { useState } from '@storybook/addons';
+import { useEffect, useState } from '@storybook/addons';
 
 const topologyBgImage = require('../../assets/topology_40.png');
 const farmBgImage = require('../../assets/farm.jpg');
@@ -301,7 +301,15 @@ export const withFullConfig = (): StoryFnReactReturnType => {
 
     // Footer props
     const showFooter = boolean('Show footer', true, footerGroupId);
-    const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
+    const darkMode = useDarkMode();
+    let bgKnob = color('backgroundColor', Colors.white[50]);
+    //  const footerBackgroundColor = color('backgroundColor', Colors.white[50], footerGroupId);
+
+    useEffect((): void => {
+        if (darkMode) {
+            bgKnob = color('backgroundColor', Colors.black[900]);
+        }
+    }, [darkMode]);
 
     // You can replace the knob props with your own values
     return (
@@ -365,7 +373,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             </DrawerBody>
 
             {showFooter && (
-                <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
+                <DrawerFooter backgroundColor={bgKnob} {...footerKnobs}>
                     <div
                         style={{
                             display: 'flex',

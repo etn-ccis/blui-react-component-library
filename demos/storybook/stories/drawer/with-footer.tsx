@@ -25,13 +25,13 @@ export const withFooter = (): StoryFnReactReturnType => {
             title: 'Settings',
             itemID: '1',
             icon: <Settings />,
-            onClick: () => setSelected('1'),
+            onClick: (): void => setSelected('1'),
         },
         {
             title: 'Legal',
             itemID: '2',
             icon: <Gavel />,
-            onClick: () => setSelected('2'),
+            onClick: (): void => setSelected('2'),
         },
     ];
 
