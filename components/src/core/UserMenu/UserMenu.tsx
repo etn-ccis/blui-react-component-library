@@ -5,7 +5,7 @@ import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme) =>
     createStyles({
         root: {},
         avatarRoot: {
@@ -35,7 +35,7 @@ const useStyles = makeStyles(() =>
         },
         bottomSheet: {
             width: '100%',
-            maxWidth: 600,
+            maxWidth: theme.breakpoints.values.sm,
             margin: 'auto',
             userSelect: 'none',
         },
