@@ -302,13 +302,13 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 | statusColor                     | Status stripe and icon color                                                                                                                                | `string`                | no       |         |
 | subtitle                        | The text to show on the second line                                                                                                                         | `string`                | no       |         |
 | title                           | The text to show on the first line                                                                                                                          | `string`                | yes      |         |
-| disableRailTooltip              | Sets whether to disable the tooltip on hover for the condensed `rail` variant                                                                               | `boolean`               | no       |         |
+| disableRailTooltip              | Sets whether to disable the tooltip on hover for the condensed `rail` variant                                                                                  | `boolean`               | no       |         |
 | InfoListItemProps               | Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props           | `InfoListItemProps`     | no       |         |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                                                                                  | -                       | -        |         |
 
 </div>
 
-> \*These props are managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`.
+> *These props are managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`.
 
 #### Classes
 
