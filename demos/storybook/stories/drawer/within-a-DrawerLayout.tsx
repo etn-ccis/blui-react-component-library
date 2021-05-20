@@ -20,6 +20,7 @@ import { Person, Today, Accessibility, NotificationsActive } from '@material-ui/
 export const inDrawerLayout = (): StoryFnReactReturnType => {
     const variant = select('variant', ['permanent', 'persistent', 'temporary', 'rail'], 'persistent');
     const [selected, setSelected] = useState('');
+    const isDarkMode = useDarkMode();
 
     const navGroupItems: NavItem[] = [
         {
@@ -103,7 +104,7 @@ export const inDrawerLayout = (): StoryFnReactReturnType => {
                                 }}
                             >
                                 <img
-                                    src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
+                                    src={isDarkMode ? EatonFooterLogoDark : EatonFooterLogoLight}
                                     alt="Eaton Logo"
                                     height={28}
                                     width={'auto'}
