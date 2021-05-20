@@ -168,6 +168,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         statusColor: color('statusColor', Colors.green[300], navItemId),
         subtitle: text('subtitle', 'Learn more about us', navItemId),
         title: text('title', overview, navItemId),
+        disableRailTooltip: boolean('disableRailTooltip', false, navItemId),
     };
 
     const footerKnobs: Partial<DrawerFooterProps> = {
@@ -184,6 +185,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             subtitle: navItemKnobs.subtitle,
             // title is a required prop, using a placeholder in case the knob is empty
             title: navItemKnobs.title || 'title',
+            disableRailTooltip: navItemKnobs.disableRailTooltip,
             itemID: '0',
             items: [
                 {
