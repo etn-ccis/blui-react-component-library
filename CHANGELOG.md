@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.2.0 (Unreleased)
+
+### Added
+
+-   Added `disableRailTooltip` to `<DrawerRailItem>`.
+
 ## 5.1.1 (April 7, 2021)
 
 ### Fixed

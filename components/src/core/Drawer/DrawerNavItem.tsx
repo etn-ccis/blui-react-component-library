@@ -42,6 +42,7 @@ export type DrawerNavItemProps = SharedStyleProps &
         statusColor?: string;
         subtitle?: string;
         title: string;
+        disableRailTooltip?: boolean;
         InfoListItemProps?: Partial<PXBInfoListItemProps>;
     } & Pick<HTMLAttributes<HTMLDivElement>, 'children'>;
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
