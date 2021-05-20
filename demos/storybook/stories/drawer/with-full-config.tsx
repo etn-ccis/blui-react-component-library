@@ -31,12 +31,13 @@ import {
 } from '@pxblue/react-components';
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import React from 'react';
+import React, { useState } from 'react';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 import { getLeftToRightIconTransform } from '../../src/utils';
-import { DrawerStoryContext } from './util';
+import { useDarkMode } from 'storybook-dark-mode';
+import EatonFooterLogoLight from '../../assets/EatonLogoLight.png';
+import EatonFooterLogoDark from '../../assets/EatonLogoDark.png';
 
-const EatonLogo = require('../../assets/EatonLogo.svg');
 const topologyBgImage = require('../../assets/topology_40.png');
 const farmBgImage = require('../../assets/farm.jpg');
 
@@ -83,7 +84,9 @@ const headerBackgroundImageOptions = {
     undefined: undefined,
 };
 
-export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnType => {
+export const withFullConfig = (): StoryFnReactReturnType => {
+    const [selected, setSelected] = useState('');
+
     // storybook tab names
     const drawerGroupId = 'Drawer';
     const headerGroupId = 'Header';
@@ -192,14 +195,14 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                     title: monthlyReport,
                     itemID: monthlyReport,
                     onClick: (): void => {
-                        context.store.set({ selected: monthlyReport });
+                        setSelected(monthlyReport);
                     },
                 },
                 {
                     title: annualReport,
                     itemID: annualReport,
                     onClick: (): void => {
-                        context.store.set({ selected: annualReport });
+                        setSelected(annualReport);
                     },
                 },
             ],
@@ -208,7 +211,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: timeline,
             itemID: timeline,
             onClick: (): void => {
-                context.store.set({ selected: timeline });
+                setSelected(timeline);
             },
             icon: <Toc />,
         },
@@ -216,7 +219,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: locations,
             itemID: locations,
             onClick: (): void => {
-                context.store.set({ selected: locations });
+                setSelected(locations);
             },
             icon: <PinDrop />,
         },
@@ -226,7 +229,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             subtitle: '5 new warnings',
             statusColor: Colors.yellow[500],
             onClick: (): void => {
-                context.store.set({ selected: devices });
+                setSelected(devices);
             },
             icon: <Devices />,
         },
@@ -234,7 +237,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: photos,
             itemID: photos,
             onClick: (): void => {
-                context.store.set({ selected: photos });
+                setSelected(photos);
             },
             icon: <AddAPhoto />,
         },
@@ -242,7 +245,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: schedule,
             itemID: schedule,
             onClick: (): void => {
-                context.store.set({ selected: schedule });
+                setSelected(schedule);
             },
             icon: <Event style={getLeftToRightIconTransform()} />,
         },
@@ -253,7 +256,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: userGuide,
             itemID: userGuide,
             onClick: (): void => {
-                context.store.set({ selected: userGuide });
+                setSelected(userGuide);
             },
             icon: <MoveToInboxIcon />,
         },
@@ -262,7 +265,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             itemID: agreement,
             subtitle: 'For Eaton employees only',
             onClick: (): void => {
-                context.store.set({ selected: agreement });
+                setSelected(agreement);
             },
             icon: <SendIcon style={getLeftToRightIconTransform()} />,
         },
@@ -275,14 +278,14 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
                     title: colorContrastGuide,
                     itemID: colorContrastGuide,
                     onClick: (): void => {
-                        context.store.set({ selected: colorContrastGuide });
+                        setSelected(colorContrastGuide);
                     },
                 },
                 {
                     title: screenReader,
                     itemID: screenReader,
                     onClick: (): void => {
-                        context.store.set({ selected: screenReader });
+                        setSelected(screenReader);
                     },
                 },
             ],
@@ -291,7 +294,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
             title: notifications,
             itemID: notifications,
             onClick: (): void => {
-                context.store.set({ selected: notifications });
+                setSelected(notifications);
             },
             icon: <NotificationsActive />,
         },
@@ -305,7 +308,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
     return (
         <Drawer
             key={'drawer'}
-            activeItem={context.state.selected}
+            activeItem={selected}
             activeItemBackgroundColor={drawerKnobs.activeItemBackgroundColor}
             activeItemFontColor={drawerKnobs.activeItemFontColor}
             activeItemIconColor={drawerKnobs.activeItemIconColor}
@@ -364,8 +367,27 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
 
             {showFooter && (
                 <DrawerFooter backgroundColor={footerBackgroundColor} {...footerKnobs}>
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <img src={EatonLogo} style={{ margin: '10px' }} alt="Eaton Logo" height={50} width={'auto'} />
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                            padding: 16,
+                        }}
+                    >
+                        <img
+                            src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
+                            alt="Eaton Logo"
+                            height={28}
+                            width={'auto'}
+                        />
+                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <Typography
+                                variant={'caption'}
+                            >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
+                            <Typography variant={'caption'}>All Rights Reserved</Typography>
+                        </div>
                     </div>
                 </DrawerFooter>
             )}

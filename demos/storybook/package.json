@@ -12,7 +12,7 @@
         "@pxblue/react-themes": "^6.0.0",
         "@pxblue/storybook-rtl-addon": "^1.0.0",
         "@pxblue/storybook-themes": "^1.1.0",
-        "@sambego/storybook-state": "^1.3.6",
+        "@sambego/storybook-state": "^2.0.0",
         "@storybook/addon-actions": "^5.3.18",
         "@storybook/addon-info": "^5.3.18",
         "@storybook/addon-knobs": "^5.3.18",
