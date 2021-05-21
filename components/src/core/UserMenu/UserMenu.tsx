@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) =>
                 outline: 'none',
             },
         },
+        headerRoot: {
+            minHeight: '4rem',
+        },
         menuTitle: {
             fontSize: '1rem',
             lineHeight: 1.4,
@@ -162,6 +165,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                         backgroundColor={'inherit'}
                         divider
                         classes={{
+                            root: defaultClasses.headerRoot,
                             title: defaultClasses.menuTitle,
                             navigation: defaultClasses.navigation,
                         }}
