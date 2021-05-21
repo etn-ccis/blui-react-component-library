@@ -86,6 +86,7 @@ const headerBackgroundImageOptions = {
 
 export const withFullConfig = (): StoryFnReactReturnType => {
     const [selected, setSelected] = useState('');
+    const isDarkMode = useDarkMode();
 
     // storybook tab names
     const drawerGroupId = 'Drawer';
@@ -377,7 +378,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                         }}
                     >
                         <img
-                            src={useDarkMode() ? EatonFooterLogoDark : EatonFooterLogoLight}
+                            src={isDarkMode ? EatonFooterLogoDark : EatonFooterLogoLight}
                             alt="Eaton Logo"
                             height={28}
                             width={'auto'}
