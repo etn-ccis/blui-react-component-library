@@ -2,6 +2,9 @@
 
 ## 5.2.0 (Unreleased)
 
+### Changed
+
+-   Update `<UserMenu>` to responsively display a bottom sheet in place of an overlay menu.
 ### Added
 
 -   Added `disableRailTooltip` to `<DrawerRailItem>`.
@@ -22,7 +25,7 @@
 
 ### Added
 
--   `openOnHoverDelay` to `<Drawer>` to alter open-on-hover delay for closed persistent drawers. 
+-   `openOnHoverDelay` to `<Drawer>` to alter open-on-hover delay for closed persistent drawers.
 -   peerDependency support for using with React 17
 
 ## 5.0.0 (February 16, 2021)

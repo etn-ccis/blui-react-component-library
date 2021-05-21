@@ -1,11 +1,11 @@
-import { Menu, MenuProps as standardMenuProps, useTheme } from '@material-ui/core';
+import { Drawer, DrawerProps, Menu, MenuProps as standardMenuProps, useMediaQuery, useTheme } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme) =>
     createStyles({
         root: {},
         avatarRoot: {
@@ -33,11 +33,18 @@ const useStyles = makeStyles(() =>
         noCursor: {
             cursor: 'inherit',
         },
+        bottomSheet: {
+            width: '100%',
+            maxWidth: theme.breakpoints.values.sm,
+            margin: 'auto',
+            userSelect: 'none',
+        },
     })
 );
 
 export type UserMenuClasses = {
     root?: string;
+    bottomSheet?: string;
 };
 
 // make itemID optional so that no legacy code is broken
@@ -57,11 +64,14 @@ export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     MenuProps?: Omit<standardMenuProps, 'open'>;
     menuSubtitle?: string;
     menuTitle?: string;
+    useBottomSheetAt?: number;
+    BottomSheetProps?: DrawerProps;
     onClose?: () => void;
     onOpen?: () => void;
 };
 
 const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (props: UserMenuProps, ref: any) => {
+    const theme = useTheme();
     const {
         avatar,
         classes,
@@ -70,11 +80,12 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         MenuProps,
         menuSubtitle,
         menuTitle,
+        useBottomSheetAt = theme.breakpoints.values.sm,
+        BottomSheetProps,
         onClose,
         onOpen,
         ...otherDivProps
     } = props;
-    const theme = useTheme();
     const defaultClasses = useStyles(theme);
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -191,6 +202,8 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     ]);
 
     const formatMenu = useCallback((): JSX.Element => {
+        const showBottomSheet = useMediaQuery(`(max-width:${useBottomSheetAt}px)`);
+
         /* If the user provides a menu, provide default props. */
         if (menu) {
             return React.cloneElement(menu, {
@@ -200,7 +213,19 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 ...menu.props,
             });
         }
-        return (
+        return showBottomSheet ? (
+            <Drawer
+                data-cy="bottom-sheet"
+                anchor={'bottom'}
+                transitionDuration={theme.transitions.duration.short}
+                open={Boolean(anchorEl)}
+                onClose={closeMenu}
+                classes={{ paper: clsx(defaultClasses.bottomSheet, classes.bottomSheet) }}
+                {...BottomSheetProps}
+            >
+                {printMenu()}
+            </Drawer>
+        ) : (
             <Menu
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
@@ -212,7 +237,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 {printMenu()}
             </Menu>
         );
-    }, [menu, anchorEl, closeMenu, MenuProps, printMenu]);
+    }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt, BottomSheetProps]);
 
     return (
         <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
@@ -230,6 +255,7 @@ UserMenu.propTypes = {
     avatar: PropTypes.element.isRequired,
     classes: PropTypes.shape({
         root: PropTypes.string,
+        bottomSheet: PropTypes.string,
     }),
     menu: PropTypes.element,
     menuTitle: PropTypes.string,
@@ -253,6 +279,7 @@ UserMenu.propTypes = {
         })
     ),
     MenuProps: PropTypes.object,
+    useBottomSheetAt: PropTypes.number,
     onClose: PropTypes.func,
     onOpen: PropTypes.func,
 };

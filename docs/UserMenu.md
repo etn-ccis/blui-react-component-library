@@ -1,12 +1,14 @@
 # User Menu
 
-The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically used in the top-right corner of an application and indicates who is logged in.
+The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically used in the top-right corner of an application and indicates who is logged in. By default, the Menu will responsively transition to a bottom sheet for mobile views (if passing in a custom menu, you will be responsible for handling any responsiveness on your content). Setting the `useBottomSheetAt` prop to zero will disable the responsiveness.
 
-<div style="align-items: center; display:flex; justify-content: space-around">
-
+<div style="width: 100%; text-align: center; margin-bottom: 16px">
 <img width="30%" alt="UserMenu Avatar" src="./images/userMenuAvatar.png">
-<img width="35%" alt="UserMenu Opened" src="./images/userMenuOpened.png">
+</div>
 
+<div style="align-items: center; display:flex; justify-content: space-around; margin-bottom: 16px">
+<img width="30%" alt="UserMenu Opened" src="./images/userMenuOpened.png">
+<img width="35%" alt="UserMenu Opened Mobile" src="./images/userMenuOpenedMobile.png">
 </div>
 
 The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `<Menu>`.
@@ -55,17 +57,18 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 
 <div style="overflow: auto;">
 
-| Prop Name    | Description                                      | Type               | Required | Default |
-| ------------ | ------------------------------------------------ | ------------------ | -------- | ------- |
-| avatar       | MUI Avatar that displays                         | `Avatar`           | yes      |         |
-| classes      | Style overrides                                  | `UserMenuClasses`  | no       |         |
-| menu         | Custom MUI Menu displayed when Avatar is clicked | Material-UI `Menu` | no       |         |
-| menuGroups   | Groups of menu items that display                | `UserMenuGroups[]` | no       |         |
-| menuSubtitle | Subtitle shown when menu is open                 | `string`           | no       |         |
-| menuTitle    | Title shown when menu is open                    | `string`           | no       |         |
-| MenuProps    | Property overrides for the MUI Menu              | `MenuProps`        | no       |         |
-| onClose      | Function called when the menu is closed          | `Function`         | no       |         |
-| onOpen       | Function called when the menu is opened          | `Function`         | no       |         |
+| Prop Name        | Description                                                                                                         | Type               | Required | Default                       |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------ | -------- | ----------------------------- |
+| avatar           | MUI Avatar that displays                                                                                            | `Avatar`           | yes      |                               |
+| classes          | Style overrides                                                                                                     | `UserMenuClasses`  | no       |                               |
+| menu             | Custom MUI Menu displayed when Avatar is clicked                                                                    | Material-UI `Menu` | no       |                               |
+| menuGroups       | Groups of menu items that display                                                                                   | `UserMenuGroups[]` | no       |                               |
+| menuSubtitle     | Subtitle shown when menu is open                                                                                    | `string`           | no       |                               |
+| menuTitle        | Title shown when menu is open                                                                                       | `string`           | no       |                               |
+| MenuProps        | Property overrides for the MUI Menu                                                                                 | `MenuProps`        | no       |                               |
+| onClose          | Function called when the menu is closed                                                                             | `Function`         | no       |                               |
+| onOpen           | Function called when the menu is opened                                                                             | `Function`         | no       |                               |
+| useBottomSheetAt | Window pixel width at which the responsive bottom sheet menu is triggered (set to 0 to disable responsive behavior) | `number`           | no       | `theme.breakpoints.values.sm` |
 
 </div>
 
@@ -75,9 +78,10 @@ Any other props supplied will be provided to the root element (`div`).
 
 You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
 
-| Name | Description                        |
-| ---- | ---------------------------------- |
-| root | Styles applied to the root element |
+| Name        | Description                               |
+| ----------- | ----------------------------------------- |
+| root        | Styles applied to the root element        |
+| bottomSheet | Styles applied to responsive bottom sheet |
 
 ### User Menu Groups Object
 
@@ -98,14 +102,14 @@ The `menuGroups` prop of the `<UserMenu>` includes many properties from the [`<D
 
 <div style="overflow: auto;">
 
-| Attribute   | Description                         | Type              | Required | Default |
-| ----------- | ----------------------------------- | ----------------- | -------- | ------- |
-| chevron     | Show chevron icon to the right      | `boolean`         | no       | false   |
-| divider     | Show a divider line below the item  | `boolean`         | no       | true    |
-| icon        | A component to render for the icon  | `JSX.Element`     | no       |         |
-| onClick     | A function to execute when clicked  | `function`        | no       |         |
-| statusColor | Status stripe and icon color        | `string`          | no       |         |
-| subtitle    | The text to show on the second line | `string`          | no       |         |
-| title       | The text to show on the first line  | `string`          | yes      |         |
+| Attribute   | Description                         | Type          | Required | Default |
+| ----------- | ----------------------------------- | ------------- | -------- | ------- |
+| chevron     | Show chevron icon to the right      | `boolean`     | no       | false   |
+| divider     | Show a divider line below the item  | `boolean`     | no       | true    |
+| icon        | A component to render for the icon  | `JSX.Element` | no       |         |
+| onClick     | A function to execute when clicked  | `function`    | no       |         |
+| statusColor | Status stripe and icon color        | `string`      | no       |         |
+| subtitle    | The text to show on the second line | `string`      | no       |         |
+| title       | The text to show on the first line  | `string`      | yes      |         |
 
 </div>
