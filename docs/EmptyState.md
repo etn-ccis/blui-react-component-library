@@ -15,7 +15,7 @@ The `<EmptyState>` component is an element that can be used as a placeholder whe
 ```tsx
 import { EmptyState } from '@pxblue/react-components';
 
-<EmptyState icon={<AlertIcon fontSize: 'inherit' />} title={'No Alarms Found'} />;
+<EmptyState icon={<AlertIcon fontSize={'inherit'} />} title={'No Alarms Found'} />;
 ```
 
 ## API
