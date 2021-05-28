@@ -1,10 +1,11 @@
 # Changelog
 
-## 5.2.0 (Unreleased)
+## 5.2.0 (May 28, 2021)
 
 ### Changed
 
 -   Update `<UserMenu>` to responsively display a bottom sheet in place of an overlay menu.
+
 ### Added
 
 -   Added `disableRailTooltip` to `<DrawerRailItem>`.
