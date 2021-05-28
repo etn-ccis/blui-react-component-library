@@ -5,6 +5,7 @@
 ### Changed
 
 -   Update `<UserMenu>` to responsively display a bottom sheet in place of an overlay menu.
+
 ### Added
 
 -   Added `disableRailTooltip` to `<DrawerRailItem>`.
