@@ -14,10 +14,13 @@
         "start": "yarn start:showcase",
         "lint": "cd components && yarn lint && cd ../demos/storybook && yarn lint",
         "lint:fix": "cd components && yarn lint:fix && cd ../demos/storybook && yarn lint:fix",
-        "prettier": "cd components && yarn prettier && cd ../demos/showcase && yarn prettier && cd ../storybook && yarn prettier",
-        "prettier:check": "cd components && yarn prettier:check && cd ../demos/showcase && yarn prettier:check && cd ../storybook && yarn prettier:check",
+        "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html,md}\" --write && cd components && yarn prettier && cd ../demos/showcase && yarn prettier && cd ../storybook && yarn prettier",
+        "prettier:check": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html,md}\" --check && cd components && yarn prettier:check && cd ../demos/showcase && yarn prettier:check && cd ../storybook && yarn prettier:check",
         "update:submodule": "git submodule update --remote",
-        "precommit": "yarn initialize && yarn install:dependencies && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts"
+        "precommit": "yarn initialize && yarn install:dependencies && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts",
+        "coverage": "yarn test --coverage --watchAll=false",
+        "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json",
+        "publish:package": "cd dist && set npm_config_yes=true && npx -p @pxblue/publish pxb-publish"
     },
     "repository": {
         "type": "git",
@@ -36,5 +39,11 @@
         "doc": "docs"
     },
     "author": "pxblue <pxblue@eaton.com>",
-    "license": "BSD-3-Clause"
+    "license": "BSD-3-Clause",
+    "devDependencies": {
+        "@pxblue/prettier-config": "^1.0.3",
+        "codecov": "^3.8.1",
+        "prettier": "^2.3.0"
+    },
+    "prettier": "@pxblue/prettier-config"
 }

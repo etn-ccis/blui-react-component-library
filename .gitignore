@@ -8,6 +8,9 @@ package-lock.json
 dist
 storybook-static
 
+# testing
+/components/coverage
+
 # misc
 .vscode/
 .idea/

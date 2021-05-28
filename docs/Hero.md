@@ -40,17 +40,17 @@ import { Hero } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name           | Description                             | Type                          | Required | Default       |
-| ------------------- | --------------------------------------- | ----------------------------- | -------- | ------------- |
-| classes             | Style overrides                         | `HeroClasses`                 | no       |               |
-| fontSize            | The text size for the value line        | `'normal'` \| `'small'`       | no       | 'normal'      |
-| icon                | The primary icon                        | `ReactNode`                   | yes      |               |
-| iconBackgroundColor | The color used behind the primary icon  | `string`                      | no       | 'transparent' |
-| iconSize            | The size of the primary icon (min 10px) | `number` \| `string`          | no       | 36            |
-| label               | The text shown below the `ChannelValue` | `string`                      | yes      |               |
-| units               | Text to show after the value            | `string`                      | no       |               |
-| value               | The value for the channel               | `string` \| `number`          | no       |               |
-| valueIcon           | The inline icon with the value          | `JSX.Element`                 | no       |               |
+| Prop Name           | Description                             | Type                    | Required | Default       |
+| ------------------- | --------------------------------------- | ----------------------- | -------- | ------------- |
+| classes             | Style overrides                         | `HeroClasses`           | no       |               |
+| fontSize            | The text size for the value line        | `'normal'` \| `'small'` | no       | 'normal'      |
+| icon                | The primary icon                        | `ReactNode`             | yes      |               |
+| iconBackgroundColor | The color used behind the primary icon  | `string`                | no       | 'transparent' |
+| iconSize            | The size of the primary icon (min 10px) | `number` \| `string`    | no       | 36            |
+| label               | The text shown below the `ChannelValue` | `string`                | yes      |               |
+| units               | Text to show after the value            | `string`                | no       |               |
+| value               | The value for the channel               | `string` \| `number`    | no       |               |
+| valueIcon           | The inline icon with the value          | `JSX.Element`           | no       |               |
 
 </div>
 

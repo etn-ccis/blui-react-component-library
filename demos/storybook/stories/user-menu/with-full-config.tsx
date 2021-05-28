@@ -1,12 +1,13 @@
 import { Avatar, makeStyles } from '@material-ui/core';
 import * as Colors from '@pxblue/colors';
-import { UserMenu, UserMenuGroup } from '@pxblue/react-components';
+import { UserMenu } from '@pxblue/react-components';
 import { action } from '@storybook/addon-actions';
-import { color, select, text } from '@storybook/addon-knobs';
+import { color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
-import { menuGroups } from './with-basic-usage';
+import { Email, ExitToApp, Settings } from '@material-ui/icons';
+import { getLeftToRightIconTransform } from '../../src/utils';
 
 export const withFullConfig = (): StoryFnReactReturnType => {
     const useStyles = makeStyles({
@@ -24,11 +25,6 @@ export const withFullConfig = (): StoryFnReactReturnType => {
 
     const menuTitle = text('menuTitle', 'Menu Title', 'Menu');
     const menuSubtitle = text('menuSubtitle', 'Menu Subtitle', 'Menu');
-
-    const group: UserMenuGroup = Object.assign({}, menuGroups[0]);
-    group.fontColor = color('menuGroups.fontColor', Colors.black[500], 'Menu');
-    group.iconColor = color('menuGroups.iconColor', Colors.blue[800], 'Menu');
-    group.title = text('menuGroups[0].title', 'Account Management', 'Menu');
 
     const anchorOriginHorizontal = select(
         'MenuProps.anchorOrigin.horizontal',
@@ -50,10 +46,45 @@ export const withFullConfig = (): StoryFnReactReturnType => {
         'Menu'
     );
 
+    const useBottomSheetAt = number(
+        'useBottomSheetAt',
+        600,
+        {
+            range: true,
+            min: 0,
+            max: 1000,
+            step: 50,
+        },
+        'Menu'
+    );
+
     return (
         <UserMenu
             avatar={avatar}
-            menuGroups={[group]}
+            menuGroups={[
+                {
+                    items: [
+                        {
+                            title: 'Settings',
+                            icon: <Settings />,
+                            onClick: action("click 'Settings'"),
+                        },
+                        {
+                            title: 'Contact Us',
+                            icon: <Email />,
+                            onClick: action("click 'Contact Us'"),
+                        },
+                        {
+                            title: 'Log Out',
+                            icon: <ExitToApp style={getLeftToRightIconTransform()} />,
+                            onClick: action("click 'Log Out'"),
+                        },
+                    ],
+                    fontColor: color('menuGroups.fontColor', Colors.black[500], 'Menu'),
+                    iconColor: color('menuGroups.iconColor', Colors.blue[800], 'Menu'),
+                    title: text('menuGroups[0].title', 'Account Management', 'Menu'),
+                },
+            ]}
             menuTitle={menuTitle}
             menuSubtitle={menuSubtitle}
             MenuProps={{
@@ -63,6 +94,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             }}
             onOpen={action('open')}
             onClose={action('close')}
+            useBottomSheetAt={useBottomSheetAt}
         />
     );
 };

@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+    codecov: codecov/codecov@1.1.3
 jobs:
     build_library:
         docker:
@@ -31,7 +33,7 @@ jobs:
             - run:
                   name: Test
                   command: |
-                      yarn test
+                      yarn test --coverage --watchAll=false
             - run:
                   name: Build Library
                   command: |
@@ -49,6 +51,18 @@ jobs:
                   root: .
                   paths:
                       - dist
+                      - components/coverage
+    coverage_report:
+        working_directory: ~/react-component-library
+        docker:
+            - image: circleci/node:12.9.1-browsers
+        steps:
+            - checkout
+            - attach_workspace:
+                at: .
+            - codecov/upload:
+                file: './components/coverage/clover.xml'
+                token: 5e6faafe-eaf0-4d71-a931-22f279d3e446
 
     # Builds the Storybook app using @pxblue/react-components persisted in /dist folder.
     build_storybook:
@@ -203,19 +217,13 @@ jobs:
             at: .
         - run:
             name: Authenticate with registry
-            command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+            command: |
+              echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+              echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
         - run:
             name: Publish @pxblue/react-components
             command:  |
-              cd dist
-              MASTER_VERSION=`node -p "require('./package.json').version"`
-              NPM_LATEST_VERSION=`npm show @pxblue/react-components version`
-              if ! [ $MASTER_VERSION == $NPM_LATEST_VERSION ];
-              then
-                  npm publish
-              else
-                  echo "Latest version is already published."
-              fi
+              yarn publish:package -b $CIRCLE_BRANCH
 
 workflows:
     version: 2
@@ -244,3 +252,11 @@ workflows:
                        branches:
                           only:
                               - master
+                              - dev
+            - coverage_report:
+                   requires:
+                        - build_library
+                   filters:
+                        branches:
+                            only:
+                                - master

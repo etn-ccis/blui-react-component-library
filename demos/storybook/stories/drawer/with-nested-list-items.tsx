@@ -14,8 +14,7 @@ import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@pxblue/r
 import { Drawer, DrawerHeader } from '@pxblue/react-components/core/Drawer';
 import { boolean, select, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import React from 'react';
-import { DrawerStoryContext } from './util';
+import React, { useState } from 'react';
 
 const userGuide = 'User Guide';
 const license = 'License';
@@ -50,7 +49,8 @@ const getIcon = (icon: string): JSX.Element | undefined => {
     }
 };
 
-export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactReturnType => {
+export const withNestedListItems = (): StoryFnReactReturnType => {
+    const [selected, setSelected] = useState('');
     const DrawerNavGroupID = 'DrawerNavGroup';
     const open = boolean('open', true, DrawerNavGroupID);
     const divider = boolean('divider', true, DrawerNavGroupID);
@@ -124,7 +124,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                                 itemID: gettingStarted,
                                 subtitle: 'Introduction to Eaton',
                                 onClick: (): void => {
-                                    context.store.set({ selected: gettingStarted });
+                                    setSelected(gettingStarted);
                                 },
                             },
                             {
@@ -135,7 +135,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                                         title: forDevelopers,
                                         itemID: forDevelopers,
                                         onClick: (): void => {
-                                            context.store.set({ selected: forDevelopers });
+                                            setSelected(forDevelopers);
                                         },
                                     },
                                     {
@@ -146,21 +146,21 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                                                 title: componentLibrary,
                                                 itemID: componentLibrary,
                                                 onClick: (): void => {
-                                                    context.store.set({ selected: componentLibrary });
+                                                    setSelected(componentLibrary);
                                                 },
                                             },
                                             {
                                                 title: typographyRules,
                                                 itemID: typographyRules,
                                                 onClick: (): void => {
-                                                    context.store.set({ selected: typographyRules });
+                                                    setSelected(typographyRules);
                                                 },
                                             },
                                             {
                                                 title: themeRules,
                                                 itemID: themeRules,
                                                 onClick: (): void => {
-                                                    context.store.set({ selected: themeRules });
+                                                    setSelected(themeRules);
                                                 },
                                             },
                                         ],
@@ -171,7 +171,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                                 title: environmentSetup,
                                 itemID: environmentSetup,
                                 onClick: (): void => {
-                                    context.store.set({ selected: environmentSetup });
+                                    setSelected(environmentSetup);
                                 },
                             },
                         ],
@@ -181,14 +181,14 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                         itemID: community,
                         icon: showIcon ? <Group /> : undefined,
                         onClick: (): void => {
-                            context.store.set({ selected: community });
+                            setSelected(community);
                         },
                         items: [
                             {
                                 title: license,
                                 itemID: license,
                                 onClick: (): void => {
-                                    context.store.set({ selected: license });
+                                    setSelected(license);
                                 },
                             },
                             {
@@ -199,14 +199,14 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                                         title: hallOfFame,
                                         itemID: hallOfFame,
                                         onClick: (): void => {
-                                            context.store.set({ selected: hallOfFame });
+                                            setSelected(hallOfFame);
                                         },
                                     },
                                     {
                                         title: contributingGuide,
                                         itemID: contributingGuide,
                                         onClick: (): void => {
-                                            context.store.set({ selected: contributingGuide });
+                                            setSelected(contributingGuide);
                                         },
                                     },
                                 ],
@@ -218,7 +218,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                         itemID: accessibility,
                         icon: showIcon ? <Accessibility /> : undefined,
                         onClick: (): void => {
-                            context.store.set({ selected: accessibility });
+                            setSelected(accessibility);
                         },
                     },
                     {
@@ -226,7 +226,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
                         itemID: notifications,
                         icon: showIcon ? <NotificationsActive /> : undefined,
                         onClick: (): void => {
-                            context.store.set({ selected: notifications });
+                            setSelected(notifications);
                         },
                     },
                 ]}
@@ -235,7 +235,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
     );
 
     return (
-        <Drawer open={open} key={'drawer'} activeItem={context.state.selected}>
+        <Drawer open={open} key={'drawer'} activeItem={selected}>
             <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
             {drawerItemList()}
         </Drawer>

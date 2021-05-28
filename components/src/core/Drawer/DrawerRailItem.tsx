@@ -59,6 +59,9 @@ export type DrawerRailItemProps = SharedStyleProps & {
 
     // props for the ButtonBase
     ButtonBaseProps?: Partial<MuiButtonBaseProps>;
+
+    // sets whether to disable the tooltip
+    disableRailTooltip?: boolean;
 };
 
 const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
@@ -189,6 +192,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         title = '',
         ButtonBaseProps,
         statusColor,
+        disableRailTooltip,
         ...directButtonBaseProps
     } = props;
 
@@ -273,7 +277,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         </ButtonBase>
     );
 
-    return hidden ? null : condensed ? (
+    return hidden ? null : condensed && !disableRailTooltip ? (
         <Tooltip title={title} placement="right">
             {innerContent}
         </Tooltip>
@@ -305,6 +309,7 @@ DrawerRailItem.propTypes = {
     onClick: PropTypes.func,
     statusColor: PropTypes.string,
     title: PropTypes.string,
+    disableRailTooltip: PropTypes.bool,
     // @ts-ignore
     ButtonBaseProps: PropTypes.object,
 };

@@ -4,7 +4,8 @@ import { action } from '@storybook/addon-actions';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { menuGroups } from './with-basic-usage';
+import { Email, ExitToApp, Settings } from '@material-ui/icons';
+import { getLeftToRightIconTransform } from '../../src/utils';
 
 export const withMenuHeader = (): StoryFnReactReturnType => {
     const avatar = <Avatar>EM</Avatar>;
@@ -13,7 +14,27 @@ export const withMenuHeader = (): StoryFnReactReturnType => {
     return (
         <UserMenu
             avatar={avatar}
-            menuGroups={menuGroups}
+            menuGroups={[
+                {
+                    items: [
+                        {
+                            title: 'Settings',
+                            icon: <Settings />,
+                            onClick: action("click 'Settings'"),
+                        },
+                        {
+                            title: 'Contact Us',
+                            icon: <Email />,
+                            onClick: action("click 'Contact Us'"),
+                        },
+                        {
+                            title: 'Log Out',
+                            icon: <ExitToApp style={getLeftToRightIconTransform()} />,
+                            onClick: action("click 'Log Out'"),
+                        },
+                    ],
+                },
+            ]}
             menuTitle={menuTitle}
             menuSubtitle={menuSubtitle}
             onOpen={action('open')}
