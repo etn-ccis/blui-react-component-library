@@ -1,13 +1,55 @@
-import React, { /*useEffect,*/ useState } from 'react';
-import { AppBar as MuiAppBar, AppBarProps as MuiAppBarProps, useMediaQuery, useTheme } from '@material-ui/core';
+import React, { /*useEffect,*/ useCallback, useState } from 'react';
+import {
+    AppBar as MuiAppBar,
+    AppBarProps as MuiAppBarProps,
+    createStyles,
+    makeStyles,
+    useMediaQuery,
+    useTheme,
+} from '@material-ui/core';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
+import clsx from 'clsx';
+
+export type AppBarClasses = {
+    root?: string;
+    background?: string;
+};
+const useStyles = makeStyles(() =>
+    createStyles({
+        root: {
+            overflow: 'hidden',
+        },
+        background: {
+            position: 'absolute',
+            zIndex: -1,
+            width: '100%',
+            backgroundSize: 'cover',
+            height: '100%',
+            opacity: (props: AppBarProps): number => props.backgroundImageOpacity || 0.3,
+            backgroundPosition: 'center bottom',
+            backgroundImage: (props: AppBarProps): string => `url(${props.backgroundImage})`,
+        },
+    })
+);
 
 export type AppBarProps = MuiAppBarProps & {
     /**
-     * Height of the App Bar when fully expanded
-     * Default: 200
+     * Image to use as the background for the header
+     * Default: none
      */
-    expandedHeight?: number;
+    backgroundImage?: string;
+
+    /**
+     * Opacity to use for the header background image
+     * Default: 0.3
+     */
+    backgroundImageOpacity?: number;
+
+    /**
+     * Custom classes to add to app bar elements
+     * Default: none
+     */
+    classes?: Partial<AppBarClasses>;
 
     /**
      * Height of the App Bar when fully collapsed
@@ -16,11 +58,10 @@ export type AppBarProps = MuiAppBarProps & {
     collapsedHeight?: number;
 
     /**
-     * A ref to the scrollable container that controls the app bar height
-     * Default: window
-     * TODO: NOT IMPLEMENTED YET
+     * Height of the App Bar when fully expanded
+     * Default: 200
      */
-    // scrollRef?: MutableRefObject<any>;
+    expandedHeight?: number;
 
     /**
      * Current mode of the app bar:
@@ -30,6 +71,13 @@ export type AppBarProps = MuiAppBarProps & {
      * Default: dynamic
      */
     mode?: 'expanded' | 'collapsed' | 'dynamic';
+
+    /**
+     * A ref to the scrollable container that controls the app bar height
+     * Default: window
+     * TODO: NOT IMPLEMENTED YET
+     */
+    // scrollRef?: MutableRefObject<any>;
 
     /**
      * NOT EXPOSED YET
@@ -51,12 +99,17 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         style = {},
         mode = 'dynamic',
         expandedHeight = 200,
+        backgroundImage,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        backgroundImageOpacity,
+        classes = {},
         collapsedHeight: collapsedHeightProp,
         // onExpandedHeightReached,
         // onCollapsedHeightReached,
         ...muiAppBarProps
     } = props;
     const theme = useTheme();
+    const defaultClasses = useStyles(props);
     const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
     const [offset, setOffset] = useState(0);
 
@@ -68,11 +121,14 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             ? collapsedHeight
             : mode === 'expanded'
             ? expandedHeight
-            : Math.max(expandedHeight - offset, collapsedHeight);
+            : Math.round(Math.max(expandedHeight - offset, collapsedHeight));
     const calculatedMargin = mode === 'dynamic' ? expandedHeight - calculatedHeight : 0;
     const calculatedPosition =
-        mode === 'dynamic' ? (calculatedHeight <= collapsedHeight ? 'sticky' : 'static') : props.position;
+        mode === 'dynamic' ? (calculatedHeight <= collapsedHeight ? 'sticky' : 'relative') : props.position;
 
+    // TODO: This is inefficient...we listen for scroll events even if we are in a mode that doesn't react
+    // We may need to break this into two sub-components, one with scroll and one without since we can't
+    // conditionally execute React hooks.
     // Update the height based on scroll position of WINDOW
     useScrollPosition(
         ({ currPos }) => {
@@ -82,6 +138,12 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         undefined,
         true
     );
+
+    const getBackgroundImage = useCallback((): JSX.Element | undefined => {
+        if (backgroundImage) {
+            return <div className={clsx(defaultClasses.background, classes.background)} />;
+        }
+    }, [backgroundImage, defaultClasses, classes]);
 
     // Handle callback functions when reaching the extremes of dynamic app bar
     // useEffect(() => {
@@ -114,9 +176,14 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             <MuiAppBar
                 ref={ref}
                 {...muiAppBarProps}
-                style={Object.assign(style, { height: calculatedHeight, marginTop: calculatedMargin })}
+                style={Object.assign({}, style, {
+                    height: calculatedHeight,
+                    marginTop: calculatedMargin,
+                    overflow: 'hidden',
+                })}
                 position={calculatedPosition}
             >
+                {getBackgroundImage()}
                 {props.children}
             </MuiAppBar>
         </>
