@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.3.0 (Unreleased)
+
+### Added
+
+-   `<AppBar>` component which will expand and collapse based on scroll position.
+
 ## 5.2.0 (May 28, 2021)
 
 ### Changed

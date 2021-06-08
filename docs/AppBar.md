@@ -1,4 +1,4 @@
-# Dropdown Toolbar
+# App Bar
 
 The `<AppBar>` component is an extension of the default AppBar from Material UI that can be resized / collapsed as the page is scrolled. It supports three modes:
 
