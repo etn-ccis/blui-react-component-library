@@ -13,7 +13,6 @@
     },
     "prettier": "@pxblue/prettier-config",
     "dependencies": {
-        "@n8tb1t/use-scroll-position": "^2.0.3",
         "@pxblue/colors": "^3.0.0",
         "color": "^3.1.2"
     },

@@ -1,6 +1,6 @@
 # Dropdown Toolbar
 
-The `<AppBar>` component is an extension of the default AppBar from Material UI that can be resized as the page is scrolled. It supports three modes:
+The `<AppBar>` component is an extension of the default AppBar from Material UI that can be resized / collapsed as the page is scrolled. It supports three modes:
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 600px" alt="Dropdown Toolbar" src="./images/appBar.png">
@@ -32,14 +32,16 @@ import { AppBar } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name              | Description                                  | Type                                         | Required | Default       |
-| ---------------------- | -------------------------------------------- | -------------------------------------------- | -------- | ------------- |
-| backgroundImage        | Image to use as the app bar background       | `string`                                     | no       |               |
-| backgroundImageOpacity | Opacity to use to blend the background image | `number`                                     | no       | 0.3           |
-| classes                | Style Overrides                              | `AppBarClasses`                              | no       |               |
-| collapsedHeight        | Height of the AppBar when collapsed          | `number`                                     | no       | theme default |
-| expandedHeight         | Height of the AppBar when expanded           | `number`                                     | no       | 200           |
-| mode                   | Behavior mode of the App Bar                 | `'expanded'` \| `'collapsed'` \| `'dynamic'` | no       | 'dynamic'     |
+| Prop Name              | Description                                      | Type                                         | Required | Default       |
+| ---------------------- | ------------------------------------------------ | -------------------------------------------- | -------- | ------------- |
+| animationDuration      | Length of the collapse / expand animation (ms)   | `number`                                     | no       | theme default |
+| backgroundImage        | Image to use as the app bar background           | `string`                                     | no       |               |
+| backgroundImageOpacity | Opacity to use to blend the background image     | `number`                                     | no       | 0.3           |
+| classes                | Style Overrides                                  | `AppBarClasses`                              | no       |               |
+| collapsedHeight        | Height of the AppBar when collapsed              | `number`                                     | no       | theme default |
+| expandedHeight         | Height of the AppBar when expanded               | `number`                                     | no       | 200           |
+| mode                   | Behavior mode of the App Bar                     | `'expanded'` \| `'collapsed'` \| `'dynamic'` | no       | 'dynamic'     |
+| scrollThreshold        | Distance to scroll before collapsing the app bar | `number`                                     | no       | 100           |
 
 </div>
 
