@@ -32,16 +32,15 @@ import { AppBar } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name              | Description                                      | Type                                         | Required | Default       |
-| ---------------------- | ------------------------------------------------ | -------------------------------------------- | -------- | ------------- |
-| animationDuration      | Length of the collapse / expand animation (ms)   | `number`                                     | no       | theme default |
-| backgroundImage        | Image to use as the app bar background           | `string`                                     | no       |               |
-| backgroundImageOpacity | Opacity to use to blend the background image     | `number`                                     | no       | 0.3           |
-| classes                | Style Overrides                                  | `AppBarClasses`                              | no       |               |
-| collapsedHeight        | Height of the AppBar when collapsed              | `number`                                     | no       | theme default |
-| expandedHeight         | Height of the AppBar when expanded               | `number`                                     | no       | 200           |
-| mode                   | Behavior mode of the App Bar                     | `'expanded'` \| `'collapsed'` \| `'dynamic'` | no       | 'dynamic'     |
-| scrollThreshold        | Distance to scroll before collapsing the app bar | `number`                                     | no       | 100           |
+| Prop Name         | Description                                      | Type                                         | Required | Default       |
+| ----------------- | ------------------------------------------------ | -------------------------------------------- | -------- | ------------- |
+| animationDuration | Length of the collapse / expand animation (ms)   | `number`                                     | no       | theme default |
+| backgroundImage   | Image to use as the app bar background           | `string`                                     | no       |               |
+| classes           | Style Overrides                                  | `AppBarClasses`                              | no       |               |
+| collapsedHeight   | Height of the AppBar when collapsed              | `number`                                     | no       | theme default |
+| expandedHeight    | Height of the AppBar when expanded               | `number`                                     | no       | 200           |
+| mode              | Behavior mode of the App Bar                     | `'expanded'` \| `'collapsed'` \| `'dynamic'` | no       | 'dynamic'     |
+| scrollThreshold   | Distance to scroll before collapsing the app bar | `number`                                     | no       | 100           |
 
 </div>
 
@@ -51,7 +50,9 @@ Any other props supplied will be provided to the root element ([`AppBar`](https:
 
 You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
 
-| Name       | Description                            |
-| ---------- | -------------------------------------- |
-| root       | Styles applied to the root element     |
-| background | Styles applied to the background image |
+| Name       | Description                                          |
+| ---------- | ---------------------------------------------------- |
+| root       | Styles applied to the root element                   |
+| background | Styles applied to the background image               |
+| expanded   | Styles applied to the root element when expanded     |
+| background | Styles applied to the background image when expanded |

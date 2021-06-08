@@ -15,6 +15,8 @@ import { usePrevious } from '../hooks/usePrevious';
 export type AppBarClasses = {
     root?: string;
     background?: string;
+    expanded?: string;
+    expandedBackground?: string;
 };
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -32,10 +34,17 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '100%',
             backgroundSize: 'cover',
             height: '100%',
-            opacity: (props: AppBarProps): number => props.backgroundImageOpacity || 0.3,
+            opacity: 0.3,
             backgroundPosition: 'center bottom',
             backgroundImage: (props: AppBarProps): string => `url(${props.backgroundImage})`,
+            transition: (props: AppBarProps): string =>
+                theme.transitions.create(['all'], {
+                    duration: props.animationDuration || theme.transitions.duration.standard,
+                    easing: theme.transitions.easing.easeInOut,
+                }),
         },
+        expanded: {},
+        expandedBackground: {},
     })
 );
 
@@ -56,7 +65,7 @@ export type AppBarProps = MuiAppBarProps & {
      * Opacity to use for the header background image
      * Default: 0.3
      */
-    backgroundImageOpacity?: number;
+    // backgroundImageOpacity?: number;
 
     /**
      * Custom classes to add to app bar elements
@@ -120,8 +129,6 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         animationDuration: durationProp,
         expandedHeight = 200,
         backgroundImage,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        backgroundImageOpacity,
         classes = {},
         collapsedHeight: collapsedHeightProp,
         // onExpandedHeightReached,
@@ -149,7 +156,9 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             ? collapsedHeight
             : expandedHeight
     );
+    const isExpanded = height === expandedHeight;
 
+    // Adjust the height of the app bar when we cross the scroll thresholds
     useEffect(() => {
         if (animating || mode !== 'dynamic') return;
 
@@ -175,12 +184,22 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         }
     }, [animationDuration, animating, previousOffset, collapsedHeight, expandedHeight, offset, scrollThreshold]);
 
+    // Returns the background image to apply on the app bar
     const getBackgroundImage = useCallback((): JSX.Element | undefined => {
         if (backgroundImage) {
-            return <div className={clsx(defaultClasses.background, classes.background)} />;
+            return (
+                <div
+                    className={clsx(defaultClasses.background, classes.background, {
+                        [defaultClasses.expandedBackground]: isExpanded,
+                        [classes.expandedBackground]: isExpanded,
+                    })}
+                />
+            );
         }
-    }, [backgroundImage, defaultClasses, classes]);
+    }, [backgroundImage, defaultClasses, classes, isExpanded]);
 
+    // This handler checks if the scrolling variable is true and adjusts the offset accordingly
+    // We do not do this directly in the scroll event callback for performance reasons
     const handleScroll = useCallback(() => {
         if (scrolling && !animating) {
             setScrolling(false);
@@ -190,6 +209,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         }
     }, [scrolling, animating, offset]);
 
+    // This function listens for scroll events on the window and sets the scrolling variable to true
     useEffect(() => {
         window.addEventListener('scroll', () => {
             setScrolling(true);
@@ -206,7 +226,10 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             <MuiAppBar
                 ref={ref}
                 {...muiAppBarProps}
-                className={clsx(defaultClasses.root, classes.root)}
+                className={clsx(defaultClasses.root, classes.root, {
+                    [defaultClasses.expanded]: isExpanded,
+                    [classes.expanded]: isExpanded,
+                })}
                 style={Object.assign({}, style, {
                     height: height,
                     overflow: 'hidden',
