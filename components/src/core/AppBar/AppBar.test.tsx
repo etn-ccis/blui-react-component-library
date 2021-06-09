@@ -25,7 +25,7 @@ describe('AppBar', () => {
         appbar = Enzyme.mount(<AppBar mode={'collapsed'} />);
         muiAppbar = appbar.find(MuiAppBar);
         height = muiAppbar.props().style.height;
-        expect(height).toEqual(64);
+        expect(height).toEqual('4rem');
 
         // Expanded
         appbar = Enzyme.mount(<AppBar mode={'expanded'} />);

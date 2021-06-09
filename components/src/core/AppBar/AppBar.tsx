@@ -77,13 +77,13 @@ export type AppBarProps = MuiAppBarProps & {
      * Height of the App Bar when fully collapsed
      * Default: 64 desktop, 56 mobile
      */
-    collapsedHeight?: number;
+    collapsedHeight?: number | string;
 
     /**
      * Height of the App Bar when fully expanded
      * Default: 200
      */
-    expandedHeight?: number;
+    expandedHeight?: number | string;
 
     /**
      * Current mode of the app bar:
@@ -96,7 +96,7 @@ export type AppBarProps = MuiAppBarProps & {
 
     /**
      * How far to scroll before collapsing the app bar
-     * Default: 50
+     * Default: 100
      */
     scrollThreshold?: number;
 
@@ -123,6 +123,9 @@ export type AppBarProps = MuiAppBarProps & {
 };
 
 const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (props: AppBarProps, ref: any) => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+    const defaultAppBarHeight = isMobile ? '3.5rem' : '4rem';
     const {
         style = {},
         mode = 'dynamic',
@@ -130,18 +133,14 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         expandedHeight = 200,
         backgroundImage,
         classes = {},
-        collapsedHeight: collapsedHeightProp,
+        collapsedHeight = defaultAppBarHeight,
         // onExpandedHeightReached,
         // onCollapsedHeightReached,
         scrollThreshold = 100,
         ...muiAppBarProps
     } = props;
-    const theme = useTheme();
     const defaultClasses = useStyles(props);
     const animationDuration = durationProp || theme.transitions.duration.standard;
-    const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-    const defaultAppBarHeight = isMobile ? theme.spacing(7) : theme.spacing(8);
-    const collapsedHeight = collapsedHeightProp || defaultAppBarHeight;
 
     const [offset, setOffset] = useState(0);
     const previousOffset = usePrevious(offset);
