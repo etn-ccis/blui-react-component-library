@@ -22,13 +22,13 @@ describe('AppBar', () => {
         expect(height).toEqual(200);
 
         // Collapsed
-        appbar = Enzyme.mount(<AppBar mode={'collapsed'} />);
+        appbar = Enzyme.mount(<AppBar variant={'collapsed'} />);
         muiAppbar = appbar.find(MuiAppBar);
         height = muiAppbar.props().style.height;
         expect(height).toEqual('4rem');
 
         // Expanded
-        appbar = Enzyme.mount(<AppBar mode={'expanded'} />);
+        appbar = Enzyme.mount(<AppBar variant={'expanded'} />);
         muiAppbar = appbar.find(MuiAppBar);
         height = muiAppbar.props().style.height;
         expect(height).toEqual(200);
@@ -42,13 +42,13 @@ describe('AppBar', () => {
         expect(height).toEqual(300);
 
         // Collapsed
-        appbar = Enzyme.mount(<AppBar mode={'collapsed'} expandedHeight={300} collapsedHeight={100} />);
+        appbar = Enzyme.mount(<AppBar variant={'collapsed'} expandedHeight={300} collapsedHeight={100} />);
         muiAppbar = appbar.find(MuiAppBar);
         height = muiAppbar.props().style.height;
         expect(height).toEqual(100);
 
         // Expanded
-        appbar = Enzyme.mount(<AppBar mode={'expanded'} expandedHeight={300} collapsedHeight={100} />);
+        appbar = Enzyme.mount(<AppBar variant={'expanded'} expandedHeight={300} collapsedHeight={100} />);
         muiAppbar = appbar.find(MuiAppBar);
         height = muiAppbar.props().style.height;
         expect(height).toEqual(300);

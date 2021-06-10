@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export type AppBarProps = MuiAppBarProps & {
+export type AppBarProps = Omit<MuiAppBarProps, 'variant'> & {
     /**
      * Length of the collapse / expand animation (in ms)
      * Default: 300
@@ -86,17 +86,17 @@ export type AppBarProps = MuiAppBarProps & {
     expandedHeight?: number | string;
 
     /**
-     * Current mode of the app bar:
+     * Current variant of the app bar:
      * - 'expanded' locks the app bar at the expandedHeight,
      * - 'collapsed' locks it at the collapsedHeight,
-     * - 'dynamic' resizes the toolbar based on the window scroll position.
-     * Default: dynamic
+     * - 'snap' resizes the toolbar after the window passes a scrollThreshold.
+     * Default: snap
      */
-    mode?: 'expanded' | 'collapsed' | 'dynamic';
+    variant?: 'expanded' | 'collapsed' | 'snap';
 
     /**
      * How far to scroll before collapsing the app bar
-     * Default: 100
+     * Default: 136
      */
     scrollThreshold?: number;
 
@@ -128,7 +128,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     const defaultAppBarHeight = isMobile ? '3.5rem' : '4rem';
     const {
         style = {},
-        mode = 'dynamic',
+        variant = 'snap',
         animationDuration: durationProp,
         expandedHeight = 200,
         backgroundImage,
@@ -136,7 +136,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         collapsedHeight = defaultAppBarHeight,
         // onExpandedHeightReached,
         // onCollapsedHeightReached,
-        scrollThreshold = 100,
+        scrollThreshold = 136,
         ...muiAppBarProps
     } = props;
     const defaultClasses = useStyles(props);
@@ -147,9 +147,9 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     const [scrolling, setScrolling] = useState(false);
     const [animating, setAnimating] = useState(false);
     const [height, setHeight] = useState(
-        mode === 'collapsed'
+        variant === 'collapsed'
             ? collapsedHeight
-            : mode === 'expanded'
+            : variant === 'expanded'
             ? expandedHeight
             : window.scrollY > scrollThreshold
             ? collapsedHeight
@@ -159,7 +159,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
 
     // Adjust the height of the app bar when we cross the scroll thresholds
     useEffect(() => {
-        if (animating || mode !== 'dynamic') return;
+        if (animating || variant !== 'snap') return;
 
         if (previousOffset < scrollThreshold && offset >= scrollThreshold) {
             setAnimating(true);

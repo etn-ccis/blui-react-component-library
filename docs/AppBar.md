@@ -9,7 +9,7 @@ The `<AppBar>` component is an extension of the default AppBar from Material UI 
 
 It supports three modes:
 
--   Dynamic: Automatically switches between the `expandedHeight` and the `collapsedHeight` as the page is scrolled.
+-   Snap: Automatically switches between the `expandedHeight` and the `collapsedHeight` once the window is scrolled past the `scrollThreshold`.
 -   Collapsed: Stays permanently fixed at the `collapsedHeight` (like a standard AppBar).
 -   Expanded: Stays permanently fixed at the `expandedHeight`.
 
@@ -18,8 +18,8 @@ It supports three modes:
 ```tsx
 import { AppBar } from '@pxblue/react-components';
 ...
-// Default: AppBar will resize between collapsedHeight and expandedHeight as the window is scrolled
-<AppBar mode={'dynamic'}>
+// Default: AppBar will resize between expandedHeight and collapsed height when the window is scrolled past the scrollThreshold
+<AppBar mode={'snap'}>
   {/* Contents */}
 </AppBar>
 
@@ -38,15 +38,15 @@ import { AppBar } from '@pxblue/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name         | Description                                      | Type                                         | Required | Default       |
-| ----------------- | ------------------------------------------------ | -------------------------------------------- | -------- | ------------- |
-| animationDuration | Length of the collapse / expand animation (ms)   | `number`                                     | no       | theme default |
-| backgroundImage   | Image to use as the app bar background           | `string`                                     | no       |               |
-| classes           | Style Overrides                                  | `AppBarClasses`                              | no       |               |
-| collapsedHeight   | Height of the AppBar when collapsed              | `number` \| `string`                         | no       | theme default |
-| expandedHeight    | Height of the AppBar when expanded               | `number` \| `string`                         | no       | 200           |
-| mode              | Behavior mode of the App Bar                     | `'expanded'` \| `'collapsed'` \| `'dynamic'` | no       | 'dynamic'     |
-| scrollThreshold   | Distance to scroll before collapsing the app bar | `number`                                     | no       | 100           |
+| Prop Name         | Description                                      | Type                                      | Required | Default       |
+| ----------------- | ------------------------------------------------ | ----------------------------------------- | -------- | ------------- |
+| animationDuration | Length of the collapse / expand animation (ms)   | `number`                                  | no       | theme default |
+| backgroundImage   | Image to use as the app bar background           | `string`                                  | no       |               |
+| classes           | Style Overrides                                  | `AppBarClasses`                           | no       |               |
+| collapsedHeight   | Height of the AppBar when collapsed              | `number` \| `string`                      | no       | theme default |
+| expandedHeight    | Height of the AppBar when expanded               | `number` \| `string`                      | no       | 200           |
+| scrollThreshold   | Distance to scroll before collapsing the app bar | `number`                                  | no       | 136           |
+| variant           | Behavior of the App Bar                          | `'expanded'` \| `'collapsed'` \| `'snap'` | no       | 'snap'        |
 
 </div>
 
