@@ -287,28 +287,28 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                                                                                                 | Type                    | Required | Default |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------- |
-| classes                         | Style overrides                                                                                                                                             | `DrawerNavItemClasses`  | no       |         |
-| depth*                          | The nested depth of the item                                                                                                                                | `number`                | no       | 0       |
-| hidden                          | Sets whether to hide the nav item                                                                                                                           | `boolean`               | no       |         |
-| icon                            | A component to render for the left icon                                                                                                                     | `JSX.Element`           | no       |         |
-| isInActiveTree*                 | Sets whether the item is a parent of the currently active item (managed automatically)                                                                      | `boolean`               | no       |         |
-| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem                                                             | `string`                | yes      |         |
-| items                           | The items nested under this item                                                                                                                            | `NestedNavItem[]`       | no       |         |
-| notifyActiveParent*             | Callback function to the parent element to update active hierarchy styles                                                                                   | `(ids: string[]) => void` | no     |         |
-| onClick                         | A function to execute when clicked                                                                                                                          | `function`              | no       |         |
-| rightComponent                  | An icon/component to display to the right                                                                                                                   | `ReactNode`             | no       |         |
-| statusColor                     | Status stripe and icon color                                                                                                                                | `string`                | no       |         |
-| subtitle                        | The text to show on the second line                                                                                                                         | `string`                | no       |         |
-| title                           | The text to show on the first line                                                                                                                          | `string`                | yes      |         |
-| disableRailTooltip              | Sets whether to disable the tooltip on hover for the condensed `rail` variant                                                                                  | `boolean`               | no       |         |
-| InfoListItemProps               | Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props           | `InfoListItemProps`     | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                                                                                  | -                       | -        |         |
+| Prop Name                       | Description                                                                                                                                       | Type                      | Required | Default |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------- |
+| classes                         | Style overrides                                                                                                                                   | `DrawerNavItemClasses`    | no       |         |
+| depth\*                         | The nested depth of the item                                                                                                                      | `number`                  | no       | 0       |
+| hidden                          | Sets whether to hide the nav item                                                                                                                 | `boolean`                 | no       |         |
+| icon                            | A component to render for the left icon                                                                                                           | `JSX.Element`             | no       |         |
+| isInActiveTree\*                | Sets whether the item is a parent of the currently active item (managed automatically)                                                            | `boolean`                 | no       |         |
+| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem                                                   | `string`                  | yes      |         |
+| items                           | The items nested under this item                                                                                                                  | `NestedNavItem[]`         | no       |         |
+| notifyActiveParent\*            | Callback function to the parent element to update active hierarchy styles                                                                         | `(ids: string[]) => void` | no       |         |
+| onClick                         | A function to execute when clicked                                                                                                                | `function`                | no       |         |
+| rightComponent                  | An icon/component to display to the right                                                                                                         | `ReactNode`               | no       |         |
+| statusColor                     | Status stripe and icon color                                                                                                                      | `string`                  | no       |         |
+| subtitle                        | The text to show on the second line                                                                                                               | `string`                  | no       |         |
+| title                           | The text to show on the first line                                                                                                                | `string`                  | yes      |         |
+| disableRailTooltip              | Sets whether to disable the tooltip on hover for the condensed `rail` variant                                                                     | `boolean`                 | no       |         |
+| InfoListItemProps               | Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props | `InfoListItemProps`       | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                                                                        | -                         | -        |         |
 
 </div>
 
-> *These props are managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`.
+> \*These props are managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`.
 
 #### Classes
 
