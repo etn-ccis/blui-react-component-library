@@ -11,7 +11,6 @@ import {
 // import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import clsx from 'clsx';
 import { usePrevious } from '../hooks/usePrevious';
-import {findChildByType} from "../Drawer/utilities";
 
 export type AppBarClasses = {
     root?: string;
@@ -232,7 +231,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
                     [defaultClasses.expanded]: isExpanded,
                     [classes.expanded]: isExpanded,
                     [defaultClasses.collapsed]: !isExpanded,
-                    [classes.collapsed]: !isExpanded
+                    [classes.collapsed]: !isExpanded,
                 })}
                 style={Object.assign({}, style, {
                     height: height,

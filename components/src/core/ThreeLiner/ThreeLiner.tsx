@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-import {createStyles, makeStyles, Theme,} from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import clsx from 'clsx';
 
 export type ThreeLinerClasses = {
@@ -45,12 +45,12 @@ const useStyles = makeStyles((theme: Theme) =>
                     duration: props.animationDuration || theme.transitions.duration.standard,
                     easing: theme.transitions.easing.easeInOut,
                 }),
-            fontWeight: 300
-        }
+            fontWeight: 300,
+        },
     })
 );
 
-export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> &  {
+export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> & {
     /**
      * First Line Content
      */
@@ -71,7 +71,6 @@ export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> &  {
      */
     animationDuration?: number;
 
-
     /**
      * Custom classes to add to app bar elements
      * Default: none
@@ -80,11 +79,11 @@ export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> &  {
 };
 
 const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProps> = (props: ThreeLinerProps) => {
-    const {title, subtitle, info, classes = {}, className, ...otherDivProps  } = props;
+    const { title, subtitle, info, classes = {}, className, ...otherDivProps } = props;
     const defaultClasses = useStyles(props);
     //const animationDuration = durationProp || theme.transitions.duration.standard;
     return (
-        <div {...otherDivProps} className={clsx(defaultClasses.root, classes.root, className)} >
+        <div {...otherDivProps} className={clsx(defaultClasses.root, classes.root, className)}>
             <div className={clsx(defaultClasses.title, classes.title)}>{title}</div>
             <div className={clsx(defaultClasses.subtitle, classes.subtitle)}>{subtitle}</div>
             <div className={clsx(defaultClasses.info, classes.info)}>{info}</div>
