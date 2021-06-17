@@ -11,6 +11,7 @@ import {
 // import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import clsx from 'clsx';
 import { usePrevious } from '../hooks/usePrevious';
+import {findChildByType} from "../Drawer/utilities";
 
 export type AppBarClasses = {
     root?: string;
@@ -219,6 +220,18 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             window.removeEventListener('scroll', () => setScrolling(true));
         };
     }, [handleScroll]);
+
+
+
+    const getThreeLiner = useCallback(
+        (): JSX.Element[] =>
+            findChildByType(props.children, ['ThreeLiner'])
+                .slice(0, 1)
+                .map((child) => React.cloneElement(child, {
+
+                })),
+        [props.children]
+    );
 
     return (
         <>
