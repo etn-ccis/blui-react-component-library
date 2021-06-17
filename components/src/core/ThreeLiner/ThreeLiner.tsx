@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import {createStyles, makeStyles, Theme,} from '@material-ui/core';
 import clsx from 'clsx';
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export type ThreeLinerProps = {
+export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> &  {
     /**
      * First Line Content
      */
@@ -61,11 +61,11 @@ export type ThreeLinerProps = {
 };
 
 const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProps> = (props: ThreeLinerProps) => {
-    const {title, subtitle, info, classes = {}  } = props;
+    const {title, subtitle, info, classes = {}, className, ...otherDivProps  } = props;
     const defaultClasses = useStyles(props);
     //const animationDuration = durationProp || theme.transitions.duration.standard;
     return (
-        <div className={clsx(defaultClasses.root, classes.root)}>
+        <div {...otherDivProps} className={clsx(defaultClasses.root, classes.root, className)} >
             <div className={clsx(defaultClasses.title, classes.title)}>{title}</div>
             <div className={clsx(defaultClasses.subtitle, classes.subtitle)}>{subtitle}</div>
             <div className={clsx(defaultClasses.info, classes.info)}>{info}</div>
