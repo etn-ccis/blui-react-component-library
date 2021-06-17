@@ -12,6 +12,10 @@ export type ThreeLinerClasses = {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
+            display: 'flex',
+            height: '100%',
+            flexDirection: 'column',
+            justifyContent: 'center',
             transition: (props: ThreeLinerProps): string =>
                 theme.transitions.create(['all'], {
                     duration: props.animationDuration || theme.transitions.duration.standard,
@@ -19,13 +23,28 @@ const useStyles = makeStyles((theme: Theme) =>
                 }),
         },
         title: {
-            fontSize: 30
+            fontSize: '1.875rem',
+            transition: (props: ThreeLinerProps): string =>
+                theme.transitions.create(['all'], {
+                    duration: props.animationDuration || theme.transitions.duration.standard,
+                    easing: theme.transitions.easing.easeInOut,
+                }),
         },
         subtitle: {
-            fontSize: 16
+            fontSize: '1rem',
+            transition: (props: ThreeLinerProps): string =>
+                theme.transitions.create(['all'], {
+                    duration: props.animationDuration || theme.transitions.duration.standard,
+                    easing: theme.transitions.easing.easeInOut,
+                }),
         },
         info: {
-            fontSize: 14,
+            fontSize: '0.875rem',
+            transition: (props: ThreeLinerProps): string =>
+                theme.transitions.create(['all'], {
+                    duration: props.animationDuration || theme.transitions.duration.standard,
+                    easing: theme.transitions.easing.easeInOut,
+                }),
             fontWeight: 300
         }
     })

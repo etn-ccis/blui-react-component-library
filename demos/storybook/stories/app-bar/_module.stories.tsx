@@ -2,7 +2,7 @@ import { AppBar } from '@pxblue/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { storyParams, storyWrapper } from '../../src/utils';
 import { withA11y } from '@storybook/addon-a11y';
-import './style-overrides.scss';
+require('./style-overrides.css');
 
 const appBarModule = {
     title: `${COMPONENT_SECTION_NAME}/App Bar`,
