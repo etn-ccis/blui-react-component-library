@@ -1,12 +1,11 @@
 import React from 'react';
-import {number, text} from '@storybook/addon-knobs';
-import {StoryFnReactReturnType} from '@storybook/react/dist/client/preview/types';
-import {AppBar, ThreeLiner} from '@pxblue/react-components';
-import {bodyFiller} from "./filler";
-import {makeStyles} from "@material-ui/core";
+import { number, text } from '@storybook/addon-knobs';
+import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
+import { AppBar, ThreeLiner } from '@pxblue/react-components';
+import { bodyFiller } from './filler';
+import { makeStyles } from '@material-ui/core';
 
 export const withDynamicContent = (): StoryFnReactReturnType => {
-
     const useStyles = makeStyles({
         title: {},
         subtitle: {},
@@ -17,18 +16,18 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
             position: 'relative',
         },
         expanded: {
-            '& $liner':{
+            '& $liner': {
                 top: 20,
-            }
+            },
         },
         collapsed: {
-            '& $title':{
+            '& $title': {
                 fontSize: '1.25rem',
             },
-            '& $subtitle':{
+            '& $subtitle': {
                 fontSize: 0,
             },
-            '& $info':{
+            '& $info': {
                 fontSize: '1rem',
                 fontWeight: 400,
                 marginTop: '-0.5rem',
@@ -43,13 +42,20 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
     const subtitle = text('subtitle', 'subtitle');
     const info = text('info', 'info');
     return (
-        <div style={{display: 'block'}}>
-            <AppBar expandedHeight={expandedHeight} collapsedHeight={collapsedHeight}
-                    classes={{collapsed: classes.collapsed, expanded: classes.expanded}}>
-                <ThreeLiner title={title} subtitle={subtitle} info={info}
-                            animationDuration={300}
-                            classes={{title: classes.title, subtitle: classes.subtitle, info: classes.info}}
-                            className={classes.liner}></ThreeLiner>
+        <div style={{ display: 'block' }}>
+            <AppBar
+                expandedHeight={expandedHeight}
+                collapsedHeight={collapsedHeight}
+                classes={{ collapsed: classes.collapsed, expanded: classes.expanded }}
+            >
+                <ThreeLiner
+                    title={title}
+                    subtitle={subtitle}
+                    info={info}
+                    animationDuration={300}
+                    classes={{ title: classes.title, subtitle: classes.subtitle, info: classes.info }}
+                    className={classes.liner}
+                ></ThreeLiner>
             </AppBar>
             {bodyFiller()}
         </div>

@@ -2,7 +2,7 @@ import { AppBar } from '@pxblue/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { storyParams, storyWrapper } from '../../src/utils';
 import { withA11y } from '@storybook/addon-a11y';
-require('./style-overrides.css');
+// require('./style-overrides.css'); // This is impacting all other stories' styles right now.
 
 const appBarModule = {
     title: `${COMPONENT_SECTION_NAME}/App Bar`,
@@ -12,7 +12,7 @@ const appBarModule = {
 
     parameters: {
         ...storyParams,
-        notes: { markdown: require('./../../../../docs/AppBar.md') }
+        notes: { markdown: require('./../../../../docs/AppBar.md') },
     },
 };
 

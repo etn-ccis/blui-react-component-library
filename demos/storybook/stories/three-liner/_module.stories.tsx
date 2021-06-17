@@ -11,8 +11,9 @@ const threeLinerModule = {
     parameters: { ...storyParams, notes: { markdown: require('./../../../../docs/ThreeLiner.md') } },
 };
 
-/* Display order goes here */
+/* Display order goe6s here */
 export { getReadMeStory } from '../../src/utils';
 export { withBasicUsage } from './with-basic-usage';
+export { withCustomContent } from './with-custom-content';
 
 export default threeLinerModule;
