@@ -1,6 +1,6 @@
 # Three Liner
 
-The `ThreeLiner` can display up to three lines of stylized text or other ng-content. It is most commonly used within the context of a [`AppBar`](./AppBar.md) component where the text can grow / shrink as the App Bar is expanded and collapsed.
+The `ThreeLiner` can display up to three lines of stylized text or other custom content. It is most commonly used within the context of a [`AppBar`](./AppBar.md) component where the text can grow / shrink as the App Bar is expanded and collapsed.
 
 ## API
 
@@ -10,9 +10,9 @@ The `ThreeLiner` can display up to three lines of stylized text or other ng-cont
 | ----------------- | ------------------------------------------------------ | ------------------- | -------- | ------------------------------------- |
 | animationDuration | Time in milliseconds to transition between states      | `number`            | no       | `theme.transitions.duration.standard` |
 | classes           | Style overrides                                        | `ThreeLinerClasses` | no       |                                       |
-| info              | Third line content                                     | `JSX.Element`       | no       |                                       |
-| title             | First line content                                     | `JSX.Element`       | no       |                                       |
-| subtitle          | Second line content                                    | `JSX.Element`       | no       |                                       |
+| info              | Third line content                                     | `ReactNode`         | no       |                                       |
+| title             | First line content                                     | `ReactNode`         | no       |                                       |
+| subtitle          | Second line content                                    | `ReactNode`         | no       |                                       |
 
 </div>
 ### Classes

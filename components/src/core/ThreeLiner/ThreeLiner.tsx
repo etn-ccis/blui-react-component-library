@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, {HTMLAttributes, ReactNode} from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import clsx from 'clsx';
 
@@ -54,17 +54,17 @@ export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> & {
     /**
      * First Line Content
      */
-    title?: string | JSX.Element;
+    title?: ReactNode;
 
     /**
      * Second Line Content
      */
-    subtitle?: string | JSX.Element;
+    subtitle?: ReactNode;
 
     /**
      * Third Line Content
      */
-    info?: string | JSX.Element;
+    info?: ReactNode;
 
     /**
      * Animation Duration
