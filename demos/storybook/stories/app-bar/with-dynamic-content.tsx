@@ -23,6 +23,7 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
         collapsed: {
             '& $title': {
                 fontSize: '1.25rem',
+                fontWeight: 600,
             },
             '& $subtitle': {
                 fontSize: 0,
@@ -30,7 +31,7 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
             '& $info': {
                 fontSize: '1rem',
                 fontWeight: 400,
-                marginTop: '-0.5rem',
+                marginTop: '-0.25rem',
             },
         },
     });
