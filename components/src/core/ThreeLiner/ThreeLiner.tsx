@@ -1,4 +1,4 @@
-import React, {HTMLAttributes, ReactNode} from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import clsx from 'clsx';
 
@@ -79,7 +79,17 @@ export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProps> = (props: ThreeLinerProps) => {
-    const { title, subtitle, info, classes = {}, className, ...otherDivProps } = props;
+    const {
+        title,
+        subtitle,
+        info,
+        classes = {},
+        className,
+        // ignore unused vars so that we can do prop transferring to the root element
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        animationDuration,
+        ...otherDivProps
+    } = props;
     const defaultClasses = useStyles(props);
     //const animationDuration = durationProp || theme.transitions.duration.standard;
     return (
