@@ -30,6 +30,7 @@ export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
     subtitle?: string | Array<string | JSX.Element>;
     subtitleSeparator?: string;
     title: ReactNode;
+    wrapInfo?: boolean;
     wrapSubtitle?: boolean;
     wrapTitle?: boolean;
 };
@@ -53,6 +54,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         subtitleSeparator,
         info,
         title,
+        wrapInfo,
         wrapSubtitle,
         wrapTitle,
         // ignore unused vars so that we can do prop transferring to the root element
@@ -161,7 +163,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                         >
                             {getSubtitle()}
                         </Typography>
-                        <Typography variant={'body2'} noWrap={!wrapSubtitle} className={combine('info')}>
+                        <Typography variant={'body2'} noWrap={!wrapInfo} className={combine('info')}>
                             {getInfo()}
                         </Typography>
                     </>
@@ -216,6 +218,7 @@ InfoListItem.propTypes = {
     ]),
     subtitleSeparator: PropTypes.string,
     title: PropTypes.node.isRequired,
+    wrapInfo: PropTypes.bool,
     wrapSubtitle: PropTypes.bool,
     wrapTitle: PropTypes.bool,
 };
@@ -229,6 +232,7 @@ InfoListItem.defaultProps = {
     iconAlign: 'left',
     ripple: false,
     subtitleSeparator: '\u00B7',
+    wrapInfo: false,
     wrapSubtitle: false,
     wrapTitle: false,
 };

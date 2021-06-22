@@ -46,6 +46,7 @@ import * as Colors from '@pxblue/colors';
 | subtitle          | The text to show on the second line              | `string` \| `Array<React.ReactNode>` | no       |                |
 | subtitleSeparator | Separator character for subtitle and info        | `string`                             | no       | '·' ('\u00B7') |
 | title             | The text to show on the first line               | `ReactNode`                          | yes      |                |
+| wrapInfo          | Whether to wrap info on overflow                 | `boolean`                            | no       | false          |
 | wrapSubtitle      | Whether to wrap subtitle on overflow             | `boolean`                            | no       | false          |
 | wrapTitle         | Whether to wrap title on overflow                | `boolean`                            | no       | false          |
 
