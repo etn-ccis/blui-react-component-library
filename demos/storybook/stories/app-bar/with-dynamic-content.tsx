@@ -12,7 +12,7 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
         info: {},
         liner: {
             top: 0,
-            marginLeft: 24,
+            marginLeft: 32,
             position: 'relative',
         },
         expanded: {
