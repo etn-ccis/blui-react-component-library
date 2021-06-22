@@ -10,7 +10,7 @@ export const withCustomContent = (): StoryFnReactReturnType => {
     const title = text('title', 'title');
     const subtitle = text('subtitle', 'subtitle');
     const info = text('info', 'info');
-    const infoContent = select('infoContent', ['text', 'channelValue'], 'channelValue');
+    const infoContent = select('infoContent', ['text', '<ChannelValue />'], '<ChannelValue />');
     return (
         <ThreeLiner
             title={title}
