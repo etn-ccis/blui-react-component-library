@@ -16,7 +16,7 @@ export const withCustomContent = (): StoryFnReactReturnType => {
             title={title}
             subtitle={subtitle}
             info={
-                infoContent === 'channelValue' ? (
+                infoContent === '<ChannelValue />' ? (
                     <ChannelValue
                         value={'123'}
                         units={'hz'}
