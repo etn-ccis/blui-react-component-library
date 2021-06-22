@@ -4,7 +4,8 @@
 
 ### Added
 
--   `<AppBar>` component which will expand and collapse based on scroll position.
+-   Added `<AppBar>` component which will expand and collapse based on scroll position.
+-   Added `wrapInfo` property onto `<InfoListItem>`.
 
 ## 5.2.0 (May 28, 2021)
 
