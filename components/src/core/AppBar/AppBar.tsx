@@ -16,6 +16,7 @@ export type AppBarClasses = {
     root?: string;
     background?: string;
     expanded?: string;
+    collapsed?: string;
     expandedBackground?: string;
 };
 const useStyles = makeStyles((theme: Theme) =>
@@ -44,6 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 }),
         },
         expanded: {},
+        collapsed: {},
         expandedBackground: {},
     })
 );
@@ -228,6 +230,8 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
                 className={clsx(defaultClasses.root, classes.root, {
                     [defaultClasses.expanded]: isExpanded,
                     [classes.expanded]: isExpanded,
+                    [defaultClasses.collapsed]: !isExpanded,
+                    [classes.collapsed]: !isExpanded,
                 })}
                 style={Object.assign({}, style, {
                     height: height,

@@ -61,4 +61,5 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 | root               | Styles applied to the root element                   |
 | background         | Styles applied to the background image               |
 | expanded           | Styles applied to the root element when expanded     |
+| collapsed          | Styles applied to the root element when collapsed    |
 | expandedBackground | Styles applied to the background image when expanded |
