@@ -19,6 +19,8 @@ const appBarModule = {
 /* Display order goes here */
 export { getReadMeStory } from '../../src/utils';
 export { withBasicUsage } from './with-basic-usage';
+export { withVariants } from './with-variants';
 export { withDynamicContent } from './with-dynamic-content';
+export { withFullConfig } from './with-full-config';
 
 export default appBarModule;

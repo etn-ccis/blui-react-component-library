@@ -2,8 +2,8 @@ import React from 'react';
 import { number, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { AppBar, ThreeLiner } from '@pxblue/react-components';
-import { bodyFiller } from './filler';
 import { makeStyles } from '@material-ui/core';
+import { getBodyFiller } from '../../src/utils';
 
 export const withDynamicContent = (): StoryFnReactReturnType => {
     const useStyles = makeStyles({
@@ -58,7 +58,7 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
                     className={classes.liner}
                 ></ThreeLiner>
             </AppBar>
-            {bodyFiller()}
+            {getBodyFiller()}
         </div>
     );
 };
