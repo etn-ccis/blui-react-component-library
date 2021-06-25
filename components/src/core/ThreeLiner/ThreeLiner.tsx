@@ -78,7 +78,10 @@ export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> & {
     classes?: Partial<ThreeLinerClasses>;
 };
 
-const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProps> = (props: ThreeLinerProps) => {
+const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProps> = (
+    props: ThreeLinerProps,
+    ref: any
+) => {
     const {
         title,
         subtitle,
@@ -93,7 +96,7 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
     const defaultClasses = useStyles(props);
     //const animationDuration = durationProp || theme.transitions.duration.standard;
     return (
-        <div {...otherDivProps} className={clsx(defaultClasses.root, classes.root, className)}>
+        <div ref={ref} {...otherDivProps} className={clsx(defaultClasses.root, classes.root, className)}>
             <div className={clsx(defaultClasses.title, classes.title)}>{title}</div>
             <div className={clsx(defaultClasses.subtitle, classes.subtitle)}>{subtitle}</div>
             <div className={clsx(defaultClasses.info, classes.info)}>{info}</div>
