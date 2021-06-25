@@ -161,6 +161,12 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
 
     // Adjust the height of the app bar when we cross the scroll thresholds
     useEffect(() => {
+        if (variant === 'collapsed') {
+            setHeight(collapsedHeight);
+        } else if (variant === 'expanded') {
+            setHeight(expandedHeight);
+        }
+
         if (animating || variant !== 'snap') return;
 
         if (previousOffset < scrollThreshold && offset >= scrollThreshold) {
@@ -183,7 +189,16 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
                 setScrolling(false);
             }, animationDuration + 50);
         }
-    }, [animationDuration, animating, previousOffset, collapsedHeight, expandedHeight, offset, scrollThreshold]);
+    }, [
+        animationDuration,
+        animating,
+        previousOffset,
+        collapsedHeight,
+        expandedHeight,
+        offset,
+        scrollThreshold,
+        variant,
+    ]);
 
     // Returns the background image to apply on the app bar
     const getBackgroundImage = useCallback((): JSX.Element | undefined => {
