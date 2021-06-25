@@ -2,7 +2,7 @@ import React from 'react';
 import { number, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { AppBar, ThreeLiner } from '@pxblue/react-components';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Toolbar } from '@material-ui/core';
 import { getBodyFiller } from '../../src/utils';
 
 export const withDynamicContent = (): StoryFnReactReturnType => {
@@ -12,12 +12,11 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
         info: {},
         liner: {
             top: 0,
-            marginLeft: 32,
             position: 'relative',
         },
         expanded: {
             '& $liner': {
-                top: 20,
+                top: 64,
             },
         },
         collapsed: {
@@ -49,14 +48,16 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
                 collapsedHeight={collapsedHeight}
                 classes={{ collapsed: classes.collapsed, expanded: classes.expanded }}
             >
-                <ThreeLiner
-                    title={title}
-                    subtitle={subtitle}
-                    info={info}
-                    animationDuration={300}
-                    classes={{ title: classes.title, subtitle: classes.subtitle, info: classes.info }}
-                    className={classes.liner}
-                ></ThreeLiner>
+                <Toolbar>
+                    <ThreeLiner
+                        title={title}
+                        subtitle={subtitle}
+                        info={info}
+                        animationDuration={300}
+                        classes={{ title: classes.title, subtitle: classes.subtitle, info: classes.info }}
+                        className={classes.liner}
+                    ></ThreeLiner>
+                </Toolbar>
             </AppBar>
             {getBodyFiller()}
         </div>
