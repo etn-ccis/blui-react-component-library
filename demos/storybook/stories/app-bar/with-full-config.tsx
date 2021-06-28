@@ -9,6 +9,7 @@ import { IconButton, makeStyles, Toolbar } from '@material-ui/core';
 import { action } from '@storybook/addon-actions';
 import { getDirection } from '@pxblue/storybook-rtl-addon';
 import { getBodyFiller } from '../../src/utils';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(() => ({
     title: {},
@@ -16,9 +17,13 @@ const useStyles = makeStyles(() => ({
     info: {},
     liner: {
         top: 0,
-        marginLeft: 32,
         position: 'relative',
         flexGrow: 1,
+        marginLeft: 24,
+    },
+    linerRTL: {
+        marginLeft: 0,
+        marginRight: 24,
     },
     expanded: {
         '& $liner': {
@@ -39,17 +44,13 @@ const useStyles = makeStyles(() => ({
             marginTop: '-0.25rem',
         },
     },
-    marginLeft12: {
-        marginLeft: 12,
+    toolbarGutters: {
+        paddingLeft: 16,
+        paddingRight: 4,
     },
-    negativeMarginLeft12: {
-        marginLeft: -12,
-    },
-    negativeMarginRight12: {
-        marginRight: -12,
-    },
-    negativeMarginRight20: {
-        marginRight: -20,
+    toolbarGuttersRTL: {
+        paddingLeft: 4,
+        paddingRight: 16,
     },
 }));
 
@@ -81,27 +82,21 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                 variant={variant}
                 classes={{ collapsed: classes.collapsed, expanded: classes.expanded }}
             >
-                <Toolbar>
-                    <IconButton
-                        onClick={action('home icon clicked...')}
-                        color={'inherit'}
-                        edge={'start'}
-                        className={direction === 'rtl' ? classes.marginLeft12 : classes.negativeMarginRight20}
-                    >
+                <Toolbar
+                    classes={{ gutters: direction === 'rtl' ? classes.toolbarGuttersRTL : classes.toolbarGutters }}
+                >
+                    <IconButton onClick={action('home icon clicked...')} color={'inherit'} edge={'start'}>
                         <Menu />
                     </IconButton>
                     <ThreeLiner
                         classes={{ title: classes.title, subtitle: classes.subtitle, info: classes.info }}
-                        className={classes.liner}
+                        className={clsx([classes.liner, direction === 'rtl' ? classes.linerRTL : ''])}
                         title={title}
                         subtitle={subtitle}
                         info={info}
                         animationDuration={animationDuration}
                     />
-                    <div
-                        style={{ display: 'flex', flexDirection: 'row' }}
-                        className={direction === 'rtl' ? classes.negativeMarginLeft12 : classes.negativeMarginRight12}
-                    >
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
                         <IconButton onClick={action('home icon clicked...')} color={'inherit'}>
                             <Home />
                         </IconButton>
