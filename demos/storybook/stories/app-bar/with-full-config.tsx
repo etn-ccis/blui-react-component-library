@@ -56,20 +56,22 @@ const useStyles = makeStyles(() => ({
 export const withFullConfig = (): StoryFnReactReturnType => {
     const classes = useStyles();
     const direction = getDirection();
+    const appBarGroupId: string = 'AppBar';
+    const threeLinerGroupId: string = 'ThreeLiner';
     // AppBar props
-    const animationDuration = number('animationDuration', 300);
-    const showBackgroundImage = boolean('show backgroundImage', true);
-    const collapsedHeight = number('collapsedHeight', 64);
-    const expandedHeight = number('expandedHeight', 200);
-    const scrollThreshold = number('scrollThreshold', 136);
-    const variant = select('variant', ['snap', 'collapsed', 'expanded'], 'snap');
+    const animationDuration = number('animationDuration', 300, {}, appBarGroupId);
+    const showBackgroundImage = boolean('show backgroundImage', true, appBarGroupId);
+    const collapsedHeight = number('collapsedHeight', 64, {}, appBarGroupId);
+    const expandedHeight = number('expandedHeight', 200, {}, appBarGroupId);
+    const scrollThreshold = number('scrollThreshold', 136, {}, appBarGroupId);
+    const variant = select('variant', ['snap', 'collapsed', 'expanded'], 'snap', appBarGroupId);
     // ThreeLiner props
-    const title = text('title', 'title');
-    const subtitle = text('subtitle', 'subtitle');
-    const info = text('info', 'info');
+    const title = text('title', 'title', threeLinerGroupId);
+    const subtitle = text('subtitle', 'subtitle', threeLinerGroupId);
+    const info = text('info', 'info', threeLinerGroupId);
 
     return (
-        <div style={{ display: 'block' }}>
+        <div style={{ display: 'block', height: '100%', width: '100%' }}>
             <AppBar
                 expandedHeight={expandedHeight}
                 collapsedHeight={collapsedHeight}

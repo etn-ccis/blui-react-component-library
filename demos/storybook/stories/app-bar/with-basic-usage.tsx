@@ -11,7 +11,7 @@ export const withBasicUsage = (): StoryFnReactReturnType => {
     const collapsedHeight = number('collapsedHeight', 64);
     const scrollThreshold = number('scrollThreshold', 136);
     return (
-        <div style={{ display: 'block' }}>
+        <div style={{ display: 'block', height: '100%', width: '100%' }}>
             <AppBar expandedHeight={expandedHeight} collapsedHeight={collapsedHeight} scrollThreshold={scrollThreshold}>
                 <Toolbar>
                     <Typography variant="h6">Title</Typography>

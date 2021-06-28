@@ -36,13 +36,18 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
     });
 
     const classes = useStyles();
-    const expandedHeight = number('expandedHeight', 200);
-    const collapsedHeight = number('collapsedHeight', 64);
-    const title = text('title', 'title');
-    const subtitle = text('subtitle', 'subtitle');
-    const info = text('info', 'info');
+    const appBarGroupId: string = 'AppBar';
+    const threeLinerGroupId: string = 'ThreeLiner';
+    // AppBar props
+    const expandedHeight = number('expandedHeight', 200, {}, appBarGroupId);
+    const collapsedHeight = number('collapsedHeight', 64, {}, appBarGroupId);
+    // ThreeLiner Props
+    const title = text('title', 'title', threeLinerGroupId);
+    const subtitle = text('subtitle', 'subtitle', threeLinerGroupId);
+    const info = text('info', 'info', threeLinerGroupId);
+
     return (
-        <div style={{ display: 'block' }}>
+        <div style={{ display: 'block', height: '100%', width: '100%' }}>
             <AppBar
                 expandedHeight={expandedHeight}
                 collapsedHeight={collapsedHeight}

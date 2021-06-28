@@ -12,7 +12,7 @@ export const withVariants = (): StoryFnReactReturnType => {
     const variant = select('variant', ['snap', 'collapsed', 'expanded'], 'snap');
 
     return (
-        <div style={{ display: 'block' }}>
+        <div style={{ display: 'block', height: '100%', width: '100%' }}>
             <AppBar
                 expandedHeight={expandedHeight}
                 collapsedHeight={collapsedHeight}
