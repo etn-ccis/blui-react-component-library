@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
     },
     expanded: {
         '& $liner': {
-            top: 20,
+            top: 64,
         },
     },
     collapsed: {
