@@ -200,6 +200,14 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         variant,
     ]);
 
+    useEffect(() => {
+        if (variant === 'collapsed') {
+            setHeight(collapsedHeight);
+        } else if (variant === 'expanded') {
+            setHeight(expandedHeight);
+        }
+    }, [variant]);
+
     // Returns the background image to apply on the app bar
     const getBackgroundImage = useCallback((): JSX.Element | undefined => {
         if (backgroundImage) {
