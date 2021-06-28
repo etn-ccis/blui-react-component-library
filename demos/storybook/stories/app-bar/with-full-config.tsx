@@ -57,8 +57,8 @@ const useStyles = makeStyles(() => ({
 export const withFullConfig = (): StoryFnReactReturnType => {
     const classes = useStyles();
     const direction = getDirection();
-    const appBarGroupId: string = 'AppBar';
-    const threeLinerGroupId: string = 'ThreeLiner';
+    const appBarGroupId = 'AppBar';
+    const threeLinerGroupId = 'ThreeLiner';
     // AppBar props
     const animationDuration = number('animationDuration', 300, {}, appBarGroupId);
     const showBackgroundImage = boolean('show backgroundImage', true, appBarGroupId);

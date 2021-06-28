@@ -36,8 +36,8 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
     });
 
     const classes = useStyles();
-    const appBarGroupId: string = 'AppBar';
-    const threeLinerGroupId: string = 'ThreeLiner';
+    const appBarGroupId = 'AppBar';
+    const threeLinerGroupId = 'ThreeLiner';
     // AppBar props
     const expandedHeight = number('expandedHeight', 200, {}, appBarGroupId);
     const collapsedHeight = number('collapsedHeight', 64, {}, appBarGroupId);
