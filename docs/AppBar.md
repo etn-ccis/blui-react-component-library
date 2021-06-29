@@ -60,6 +60,7 @@ import { AppBar, ThreeLiner } from '@pxblue/react-components';
 | classes           | Style Overrides                                  | `AppBarClasses`                           | no       |               |
 | collapsedHeight   | Height of the AppBar when collapsed              | `number` \| `string`                      | no       | theme default |
 | expandedHeight    | Height of the AppBar when expanded               | `number` \| `string`                      | no       | 200           |
+| scrollContainerId | ID of the scrollable element                     | `string`                                  | no       | `window`      |
 | scrollThreshold   | Distance to scroll before collapsing the app bar | `number`                                  | no       | 136           |
 | variant           | Behavior of the App Bar                          | `'expanded'` \| `'collapsed'` \| `'snap'` | no       | 'snap'        |
 
