@@ -146,6 +146,8 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
 
     const [offset, setOffset] = useState(0);
     const previousOffset = usePrevious(offset);
+    const previousCollapsedHeight = usePrevious(collapsedHeight);
+    const previousExpandedHeight = usePrevious(expandedHeight);
     const [scrolling, setScrolling] = useState(false);
     const [animating, setAnimating] = useState(false);
     const [height, setHeight] = useState(
@@ -183,33 +185,60 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
                 setScrolling(false);
             }, animationDuration + 50);
         }
-    }, [
-        animationDuration,
-        animating,
-        previousOffset,
-        collapsedHeight,
-        expandedHeight,
-        offset,
-        scrollThreshold,
-        variant,
-    ]);
+    }, [offset, scrollThreshold]);
 
+    // respond to changes in variant
     useEffect(() => {
         if (variant === 'collapsed') {
             setHeight(collapsedHeight);
         } else if (variant === 'expanded') {
             setHeight(expandedHeight);
+        } else {
+            if (offset >= scrollThreshold) {
+                setAnimating(true);
+                setHeight(collapsedHeight);
+                setTimeout(() => {
+                    setAnimating(false);
+                    setScrolling(false);
+                    if (window.scrollY === 0) {
+                        window.scrollTo(0, 1);
+                    }
+                }, animationDuration + 50);
+            } else {
+                setAnimating(true);
+                setHeight(expandedHeight);
+                setTimeout(() => {
+                    setAnimating(false);
+                    setScrolling(false);
+                }, animationDuration + 50);
+            }
         }
-    }, [variant, collapsedHeight, expandedHeight]);
+    }, [variant]);
 
     useEffect(() => {
-        if (variant !== 'expanded' && !isExpanded) {
+        if (previousExpandedHeight === undefined || previousCollapsedHeight === undefined) return;
+
+        const wasExpanded = height === previousExpandedHeight;
+
+        if (!wasExpanded) {
+            setAnimating(true);
             setHeight(collapsedHeight);
-        }
-        if (variant !== 'collapsed' && isExpanded) {
+            setTimeout(() => {
+                setAnimating(false);
+                setScrolling(false);
+                if (window.scrollY === 0) {
+                    window.scrollTo(0, 1);
+                }
+            }, animationDuration + 50);
+        } else {
+            setAnimating(true);
             setHeight(expandedHeight);
+            setTimeout(() => {
+                setAnimating(false);
+                setScrolling(false);
+            }, animationDuration + 50);
         }
-    }, [collapsedHeight, expandedHeight, isExpanded]);
+    }, [collapsedHeight, expandedHeight]);
 
     // Returns the background image to apply on the app bar
     const getBackgroundImage = useCallback((): JSX.Element | undefined => {
