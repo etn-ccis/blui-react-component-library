@@ -3,11 +3,10 @@
 The `<AppBar>` component is an extension of the default AppBar from Material UI that can be resized / collapsed as the page is scrolled.
 
 <div style="width: 100%; text-align: center">
-    <img width="100%" style="max-width: 600px" alt="Dropdown Toolbar" src="./images/appBar.png">
-    <img width="100%" style="max-width: 600px" alt="Dropdown Toolbar" src="./images/appBarCollapsed.png">
+    <img width="100%" style="max-width: 600px" alt="Appbar" src="./images/appBar.gif">
 </div>
 
-It supports three modes:
+It supports three variants:
 
 -   Snap: Automatically switches between the `expandedHeight` and the `collapsedHeight` once the window is scrolled past the `scrollThreshold`.
 -   Collapsed: Stays permanently fixed at the `collapsedHeight` (like a standard AppBar).
@@ -15,22 +14,38 @@ It supports three modes:
 
 ## Usage
 
+<div style="width: 100%; text-align: center">
+    <img width="100%" style="max-width: 600px" alt="Appbar Anatomy" src="./images/appBarAnatomy1.png">
+    <img width="100%" style="max-width: 600px" alt="Appbar Anatomy" src="./images/appBarAnatomy2.png">
+</div>
+
 ```tsx
-import { AppBar } from '@pxblue/react-components';
+import { AppBar, ThreeLiner } from '@pxblue/react-components';
 ...
 // Default: AppBar will resize between expandedHeight and collapsed height when the window is scrolled past the scrollThreshold
-<AppBar mode={'snap'}>
+<AppBar variant={'snap'}>
   {/* Contents */}
 </AppBar>
 
-// App Bar will stay fixed at the collapsedHeight size
-<AppBar mode={'collapsed'}>
+// AppBar will stay fixed at the collapsedHeight size
+<AppBar variant={'collapsed'}>
   {/* Contents */}
 </AppBar>
 
-// App Bar will stay fixed at the expandedHeight size
-<AppBar mode={'expanded'}>
+// AppBar will stay fixed at the expandedHeight size
+<AppBar variant={'expanded'}>
   {/* Contents */}
+</AppBar>
+
+// AppBar with ThreeLiner component
+<AppBar variant={'snap'}>
+  <Toolbar>
+    <ThreeLiner
+      title={'title'}
+      subtitle={'subtitle'}
+      info={'info'}
+    ></ThreeLiner>
+  </Toolbar>
 </AppBar>
 ```
 

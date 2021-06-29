@@ -2,8 +2,7 @@ import React from 'react';
 import { number, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { AppBar, ThreeLiner } from '@pxblue/react-components';
-import { bodyFiller } from './filler';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Toolbar } from '@material-ui/core';
 
 export const withDynamicContent = (): StoryFnReactReturnType => {
     const useStyles = makeStyles({
@@ -12,12 +11,11 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
         info: {},
         liner: {
             top: 0,
-            marginLeft: 32,
             position: 'relative',
         },
         expanded: {
             '& $liner': {
-                top: 20,
+                top: 64,
             },
         },
         collapsed: {
@@ -37,18 +35,23 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
     });
 
     const classes = useStyles();
-    const expandedHeight = number('expandedHeight', 200);
-    const collapsedHeight = number('collapsedHeight', 64);
-    const title = text('title', 'title');
-    const subtitle = text('subtitle', 'subtitle');
-    const info = text('info', 'info');
+    const appBarGroupId = 'AppBar';
+    const threeLinerGroupId = 'ThreeLiner';
+    // AppBar props
+    const expandedHeight = number('expandedHeight', 200, {}, appBarGroupId);
+    const collapsedHeight = number('collapsedHeight', 64, {}, appBarGroupId);
+    // ThreeLiner Props
+    const title = text('title', 'title', threeLinerGroupId);
+    const subtitle = text('subtitle', 'subtitle', threeLinerGroupId);
+    const info = text('info', 'info', threeLinerGroupId);
+
     return (
-        <div style={{ display: 'block' }}>
-            <AppBar
-                expandedHeight={expandedHeight}
-                collapsedHeight={collapsedHeight}
-                classes={{ collapsed: classes.collapsed, expanded: classes.expanded }}
-            >
+        <AppBar
+            expandedHeight={expandedHeight}
+            collapsedHeight={collapsedHeight}
+            classes={{ collapsed: classes.collapsed, expanded: classes.expanded }}
+        >
+            <Toolbar>
                 <ThreeLiner
                     title={title}
                     subtitle={subtitle}
@@ -57,9 +60,8 @@ export const withDynamicContent = (): StoryFnReactReturnType => {
                     classes={{ title: classes.title, subtitle: classes.subtitle, info: classes.info }}
                     className={classes.liner}
                 ></ThreeLiner>
-            </AppBar>
-            {bodyFiller()}
-        </div>
+            </Toolbar>
+        </AppBar>
     );
 };
 

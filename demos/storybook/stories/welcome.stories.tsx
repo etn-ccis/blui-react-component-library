@@ -26,6 +26,7 @@ const useStyles = makeStyles(() =>
             alignContent: 'center',
             justifyContent: 'center',
             backgroundPosition: 'center',
+            flex: '1 1 0px',
         },
         container: {
             display: 'flex',

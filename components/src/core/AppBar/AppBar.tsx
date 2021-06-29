@@ -146,6 +146,8 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
 
     const [offset, setOffset] = useState(0);
     const previousOffset = usePrevious(offset);
+    const previousCollapsedHeight = usePrevious(collapsedHeight);
+    const previousExpandedHeight = usePrevious(expandedHeight);
     const [scrolling, setScrolling] = useState(false);
     const [animating, setAnimating] = useState(false);
     const [height, setHeight] = useState(
@@ -159,31 +161,66 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     );
     const isExpanded = height === expandedHeight;
 
+    const collapseToolbar = useCallback(() => {
+        setAnimating(true);
+        setHeight(collapsedHeight);
+        setTimeout(() => {
+            setAnimating(false);
+            setScrolling(false);
+            if (window.scrollY === 0) {
+                window.scrollTo(0, 1);
+            }
+        }, animationDuration + 50);
+    }, [collapsedHeight, animationDuration]);
+
+    const expandToolbar = useCallback(() => {
+        setAnimating(true);
+        setHeight(expandedHeight);
+        setTimeout(() => {
+            setAnimating(false);
+            setScrolling(false);
+        }, animationDuration + 50);
+    }, [expandedHeight, animationDuration]);
+
     // Adjust the height of the app bar when we cross the scroll thresholds
     useEffect(() => {
         if (animating || variant !== 'snap') return;
 
         if (previousOffset < scrollThreshold && offset >= scrollThreshold) {
-            setAnimating(true);
-            setHeight(collapsedHeight);
-            setTimeout(() => {
-                setAnimating(false);
-                setScrolling(false);
-                if (window.scrollY === 0) {
-                    window.scrollTo(0, 1);
-                }
-            }, animationDuration + 50);
+            collapseToolbar();
         }
         // go from small to big if we scroll back to the top
         else if (previousOffset > 0 && offset === 0) {
-            setAnimating(true);
-            setHeight(expandedHeight);
-            setTimeout(() => {
-                setAnimating(false);
-                setScrolling(false);
-            }, animationDuration + 50);
+            expandToolbar();
         }
-    }, [animationDuration, animating, previousOffset, collapsedHeight, expandedHeight, offset, scrollThreshold]);
+    }, [offset, scrollThreshold]);
+
+    // respond to changes in variant
+    useEffect(() => {
+        if (variant === 'collapsed') {
+            setHeight(collapsedHeight);
+        } else if (variant === 'expanded') {
+            setHeight(expandedHeight);
+        } else {
+            if (offset >= scrollThreshold) {
+                collapseToolbar();
+            } else {
+                expandToolbar();
+            }
+        }
+    }, [variant]);
+
+    useEffect(() => {
+        if (previousExpandedHeight === undefined || previousCollapsedHeight === undefined) return;
+
+        const wasExpanded = height === previousExpandedHeight;
+
+        if (!wasExpanded) {
+            collapseToolbar();
+        } else {
+            expandToolbar();
+        }
+    }, [collapsedHeight, expandedHeight]);
 
     // Returns the background image to apply on the app bar
     const getBackgroundImage = useCallback((): JSX.Element | undefined => {
