@@ -3,7 +3,6 @@ import { number, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { AppBar } from '@pxblue/react-components';
 import { Toolbar, Typography } from '@material-ui/core';
-import { getBodyFiller } from '../../src/utils';
 
 export const withVariants = (): StoryFnReactReturnType => {
     const expandedHeight = number('expandedHeight', 200);
@@ -12,19 +11,16 @@ export const withVariants = (): StoryFnReactReturnType => {
     const variant = select('variant', ['snap', 'collapsed', 'expanded'], 'snap');
 
     return (
-        <div style={{ display: 'block', height: '100%', width: '100%' }}>
-            <AppBar
-                expandedHeight={expandedHeight}
-                collapsedHeight={collapsedHeight}
-                scrollThreshold={scrollThreshold}
-                variant={variant}
-            >
-                <Toolbar>
-                    <Typography variant="h6">Title</Typography>
-                </Toolbar>
-            </AppBar>
-            {getBodyFiller()}
-        </div>
+        <AppBar
+            expandedHeight={expandedHeight}
+            collapsedHeight={collapsedHeight}
+            scrollThreshold={scrollThreshold}
+            variant={variant}
+        >
+            <Toolbar>
+                <Typography variant="h6">Title</Typography>
+            </Toolbar>
+        </AppBar>
     );
 };
 

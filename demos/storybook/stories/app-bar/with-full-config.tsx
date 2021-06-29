@@ -8,7 +8,6 @@ import { Menu, Work, Settings, Home } from '@material-ui/icons';
 import { IconButton, makeStyles, Toolbar } from '@material-ui/core';
 import { action } from '@storybook/addon-actions';
 import { getDirection } from '@pxblue/storybook-rtl-addon';
-import { getBodyFiller } from '../../src/utils';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(() => ({
@@ -72,45 +71,40 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const info = text('info', 'info', threeLinerGroupId);
 
     return (
-        <div style={{ display: 'block', height: '100%', width: '100%' }}>
-            <AppBar
-                expandedHeight={expandedHeight}
-                collapsedHeight={collapsedHeight}
-                scrollThreshold={scrollThreshold}
-                animationDuration={animationDuration}
-                backgroundImage={showBackgroundImage ? bgImage : undefined}
-                variant={variant}
-                classes={{ collapsed: classes.collapsed, expanded: classes.expanded }}
-            >
-                <Toolbar
-                    classes={{ gutters: direction === 'rtl' ? classes.toolbarGuttersRTL : classes.toolbarGutters }}
-                >
-                    <IconButton onClick={action('home icon clicked...')} color={'inherit'} edge={'start'}>
-                        <Menu />
+        <AppBar
+            expandedHeight={expandedHeight}
+            collapsedHeight={collapsedHeight}
+            scrollThreshold={scrollThreshold}
+            animationDuration={animationDuration}
+            backgroundImage={showBackgroundImage ? bgImage : undefined}
+            variant={variant}
+            classes={{ collapsed: classes.collapsed, expanded: classes.expanded }}
+        >
+            <Toolbar classes={{ gutters: direction === 'rtl' ? classes.toolbarGuttersRTL : classes.toolbarGutters }}>
+                <IconButton onClick={action('home icon clicked...')} color={'inherit'} edge={'start'}>
+                    <Menu />
+                </IconButton>
+                <ThreeLiner
+                    classes={{ title: classes.title, subtitle: classes.subtitle, info: classes.info }}
+                    className={clsx([classes.liner, direction === 'rtl' ? classes.linerRTL : ''])}
+                    title={title}
+                    subtitle={subtitle}
+                    info={info}
+                    animationDuration={animationDuration}
+                />
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    <IconButton onClick={action('home icon clicked...')} color={'inherit'}>
+                        <Home />
                     </IconButton>
-                    <ThreeLiner
-                        classes={{ title: classes.title, subtitle: classes.subtitle, info: classes.info }}
-                        className={clsx([classes.liner, direction === 'rtl' ? classes.linerRTL : ''])}
-                        title={title}
-                        subtitle={subtitle}
-                        info={info}
-                        animationDuration={animationDuration}
-                    />
-                    <div style={{ display: 'flex', flexDirection: 'row' }}>
-                        <IconButton onClick={action('home icon clicked...')} color={'inherit'}>
-                            <Home />
-                        </IconButton>
-                        <IconButton onClick={action('work icon clicked...')} color={'inherit'}>
-                            <Work />
-                        </IconButton>
-                        <IconButton onClick={action('settings icon clicked...')} color={'inherit'}>
-                            <Settings />
-                        </IconButton>
-                    </div>
-                </Toolbar>
-            </AppBar>
-            {getBodyFiller()}
-        </div>
+                    <IconButton onClick={action('work icon clicked...')} color={'inherit'}>
+                        <Work />
+                    </IconButton>
+                    <IconButton onClick={action('settings icon clicked...')} color={'inherit'}>
+                        <Settings />
+                    </IconButton>
+                </div>
+            </Toolbar>
+        </AppBar>
     );
 };
 

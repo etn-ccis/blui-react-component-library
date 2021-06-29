@@ -5,7 +5,9 @@ import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
 import { withA11y } from '@storybook/addon-a11y';
 
 const alignDrawer = (storyFn: any): JSX.Element => (
-    <div style={{ display: 'flex', height: '100%', alignSelf: 'flex-start', width: '100%' }}>{storyFn()}</div>
+    <div style={{ display: 'flex', height: '100%', alignSelf: 'flex-start', width: '100%', flex: '1 1 0px' }}>
+        {storyFn()}
+    </div>
 );
 
 const drawerModule = {
