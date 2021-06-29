@@ -105,9 +105,8 @@ export type AppBarProps = Omit<MuiAppBarProps, 'variant'> & {
     /**
      * A ref to the scrollable container that controls the app bar height
      * Default: window
-     * TODO: NOT IMPLEMENTED YET
      */
-    // scrollRef?: MutableRefObject<any>;
+    scrollContainerId?: string;
 
     /**
      * NOT EXPOSED YET
@@ -139,8 +138,12 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         // onExpandedHeightReached,
         // onCollapsedHeightReached,
         scrollThreshold = 136,
+        scrollContainerId,
         ...muiAppBarProps
     } = props;
+    const scrollElement = scrollContainerId ? document.getElementById(scrollContainerId) : null;
+    const scrollTop = scrollElement ? scrollElement.scrollTop : window.scrollY;
+
     const defaultClasses = useStyles(props);
     const animationDuration = durationProp || theme.transitions.duration.standard;
 
@@ -150,29 +153,32 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     const previousExpandedHeight = usePrevious(expandedHeight);
     const [scrolling, setScrolling] = useState(false);
     const [animating, setAnimating] = useState(false);
+    const [endScrollHandled, setEndScrollHandled] = useState(false);
     const [height, setHeight] = useState(
         variant === 'collapsed'
             ? collapsedHeight
             : variant === 'expanded'
             ? expandedHeight
-            : window.scrollY > scrollThreshold
+            : scrollTop > scrollThreshold
             ? collapsedHeight
             : expandedHeight
     );
     const isExpanded = height === expandedHeight;
 
+    // Smoothly collapse the toolbar to the collapsedHeight
     const collapseToolbar = useCallback(() => {
         setAnimating(true);
         setHeight(collapsedHeight);
         setTimeout(() => {
             setAnimating(false);
             setScrolling(false);
-            if (window.scrollY === 0) {
-                window.scrollTo(0, 1);
+            if (scrollTop === 0) {
+                (scrollElement || window).scrollTo(0, 1);
             }
         }, animationDuration + 50);
     }, [collapsedHeight, animationDuration]);
 
+    // Smoothly expand the toolbar to the expandedHeight
     const expandToolbar = useCallback(() => {
         setAnimating(true);
         setHeight(expandedHeight);
@@ -195,12 +201,12 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         }
     }, [offset, scrollThreshold]);
 
-    // respond to changes in variant
+    // Properly update the height whenever the variant property changes
     useEffect(() => {
         if (variant === 'collapsed') {
-            setHeight(collapsedHeight);
+            collapseToolbar();
         } else if (variant === 'expanded') {
-            setHeight(expandedHeight);
+            expandToolbar();
         } else {
             if (offset >= scrollThreshold) {
                 collapseToolbar();
@@ -210,6 +216,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         }
     }, [variant]);
 
+    // Properly update the size when either height property changes
     useEffect(() => {
         if (previousExpandedHeight === undefined || previousCollapsedHeight === undefined) return;
 
@@ -241,21 +248,28 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     const handleScroll = useCallback(() => {
         if (scrolling && !animating) {
             setScrolling(false);
-            if (window.scrollY !== offset) {
-                setOffset(window.scrollY);
+            setEndScrollHandled(false);
+
+            if (scrollTop !== offset) {
+                setOffset(scrollTop);
             }
         }
-    }, [scrolling, animating, offset]);
+        // once the scroll ends, do one more update so we don't miss the latest value due to the debounce
+        else if (!endScrollHandled) {
+            setOffset(scrollTop);
+            setEndScrollHandled(true);
+        }
+    }, [scrolling, animating, offset, endScrollHandled]);
 
     // This function listens for scroll events on the window and sets the scrolling variable to true
     useEffect(() => {
-        window.addEventListener('scroll', () => {
+        (scrollElement || window).addEventListener('scroll', () => {
             setScrolling(true);
         });
         const scrollCheck = setInterval(handleScroll, 50);
         return (): void => {
             clearInterval(scrollCheck);
-            window.removeEventListener('scroll', () => setScrolling(true));
+            (scrollElement || window).removeEventListener('scroll', () => setScrolling(true));
         };
     }, [handleScroll]);
 
@@ -286,7 +300,7 @@ export const AppBar = React.forwardRef(AppBarRender);
 AppBar.displayName = 'AppBar';
 
 /* Additional code from the work on the continuous scrolling app bar that worked
-but did ot perform well with complex toolbars or applications. */
+but did not perform well with complex toolbars or applications. */
 
 // Calculate the correct App Bar size
 // const defaultAppBarHeight = isMobile ? theme.spacing(7) : theme.spacing(8);
