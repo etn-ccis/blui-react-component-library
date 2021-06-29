@@ -2,7 +2,7 @@ import React from 'react';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
-import { AppBar, ThreeLiner } from '@pxblue/react-components';
+import { AppBar, Spacer, ThreeLiner } from '@pxblue/react-components';
 import bgImage from '../../assets/farm.jpg';
 import { Menu, Work, Settings, Home } from '@material-ui/icons';
 import { IconButton, makeStyles, Toolbar } from '@material-ui/core';
@@ -16,13 +16,13 @@ const useStyles = makeStyles(() => ({
     info: {},
     liner: {
         top: 0,
-        position: 'relative',
+        position: 'absolute',
         flexGrow: 1,
-        marginLeft: 24,
+        marginLeft: 56,
     },
     linerRTL: {
         marginLeft: 0,
-        marginRight: 24,
+        marginRight: 56,
     },
     expanded: {
         '& $liner': {
@@ -84,6 +84,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                 <IconButton onClick={action('home icon clicked...')} color={'inherit'} edge={'start'}>
                     <Menu />
                 </IconButton>
+                <Spacer />
                 <ThreeLiner
                     classes={{ title: classes.title, subtitle: classes.subtitle, info: classes.info }}
                     className={clsx([classes.liner, direction === 'rtl' ? classes.linerRTL : ''])}
