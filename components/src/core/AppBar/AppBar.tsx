@@ -161,29 +161,37 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     );
     const isExpanded = height === expandedHeight;
 
+    const collapseToolbar = useCallback(() => {
+        setAnimating(true);
+        setHeight(collapsedHeight);
+        setTimeout(() => {
+            setAnimating(false);
+            setScrolling(false);
+            if (window.scrollY === 0) {
+                window.scrollTo(0, 1);
+            }
+        }, animationDuration + 50);
+    }, [collapsedHeight, animationDuration]);
+
+    const expandToolbar = useCallback(() => {
+        setAnimating(true);
+        setHeight(expandedHeight);
+        setTimeout(() => {
+            setAnimating(false);
+            setScrolling(false);
+        }, animationDuration + 50);
+    }, [expandedHeight, animationDuration]);
+
     // Adjust the height of the app bar when we cross the scroll thresholds
     useEffect(() => {
         if (animating || variant !== 'snap') return;
 
         if (previousOffset < scrollThreshold && offset >= scrollThreshold) {
-            setAnimating(true);
-            setHeight(collapsedHeight);
-            setTimeout(() => {
-                setAnimating(false);
-                setScrolling(false);
-                if (window.scrollY === 0) {
-                    window.scrollTo(0, 1);
-                }
-            }, animationDuration + 50);
+            collapseToolbar();
         }
         // go from small to big if we scroll back to the top
         else if (previousOffset > 0 && offset === 0) {
-            setAnimating(true);
-            setHeight(expandedHeight);
-            setTimeout(() => {
-                setAnimating(false);
-                setScrolling(false);
-            }, animationDuration + 50);
+            expandToolbar();
         }
     }, [offset, scrollThreshold]);
 
@@ -195,22 +203,9 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             setHeight(expandedHeight);
         } else {
             if (offset >= scrollThreshold) {
-                setAnimating(true);
-                setHeight(collapsedHeight);
-                setTimeout(() => {
-                    setAnimating(false);
-                    setScrolling(false);
-                    if (window.scrollY === 0) {
-                        window.scrollTo(0, 1);
-                    }
-                }, animationDuration + 50);
+                collapseToolbar();
             } else {
-                setAnimating(true);
-                setHeight(expandedHeight);
-                setTimeout(() => {
-                    setAnimating(false);
-                    setScrolling(false);
-                }, animationDuration + 50);
+                expandToolbar();
             }
         }
     }, [variant]);
@@ -221,22 +216,9 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         const wasExpanded = height === previousExpandedHeight;
 
         if (!wasExpanded) {
-            setAnimating(true);
-            setHeight(collapsedHeight);
-            setTimeout(() => {
-                setAnimating(false);
-                setScrolling(false);
-                if (window.scrollY === 0) {
-                    window.scrollTo(0, 1);
-                }
-            }, animationDuration + 50);
+            collapseToolbar();
         } else {
-            setAnimating(true);
-            setHeight(expandedHeight);
-            setTimeout(() => {
-                setAnimating(false);
-                setScrolling(false);
-            }, animationDuration + 50);
+            expandToolbar();
         }
     }, [collapsedHeight, expandedHeight]);
 
