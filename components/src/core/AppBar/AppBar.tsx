@@ -176,7 +176,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
                 (scrollElement || window).scrollTo(0, 1);
             }
         }, animationDuration + 50);
-    }, [collapsedHeight, animationDuration]);
+    }, [collapsedHeight, animationDuration, scrollTop, scrollElement]);
 
     // Smoothly expand the toolbar to the expandedHeight
     const expandToolbar = useCallback(() => {
