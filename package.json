@@ -20,7 +20,7 @@
         "precommit": "yarn initialize && yarn install:dependencies && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts",
         "coverage": "yarn test --coverage --watchAll=false",
         "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json",
-        "publish:package": "cd dist && set npm_config_yes=true && npx -p @pxblue/publish pxb-publish"
+        "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @pxblue/publish pxb-publish"
     },
     "repository": {
         "type": "git",

@@ -27,7 +27,7 @@ const getIconColor = (props: InfoListItemProps, theme: Theme): string => {
     return statusColor ? statusColor : theme.palette.text.secondary;
 };
 
-const isWrapEnabled = (props: InfoListItemProps): boolean => props.wrapSubtitle || props.wrapTitle;
+const isWrapEnabled = (props: InfoListItemProps): boolean => props.wrapSubtitle || props.wrapTitle || props.wrapInfo;
 
 const getIconAlignment = (props: InfoListItemProps): 'flex-end' | 'flex-start' | 'center' => {
     switch (props.iconAlign) {

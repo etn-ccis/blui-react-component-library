@@ -32,6 +32,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             onClick={action('clicked')}
             wrapTitle={boolean('wrapTitle', false)}
             wrapSubtitle={boolean('wrapSubtitle', false)}
+            wrapInfo={boolean('wrapInfo', false)}
             disabled={boolean('disabled', false)}
         />
     );
