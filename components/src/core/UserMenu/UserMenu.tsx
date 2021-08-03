@@ -61,6 +61,7 @@ export type UserMenuGroup = {
 
 export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
     avatar: JSX.Element;
+    /** Custom classes for default style overrides */
     classes?: UserMenuClasses;
     menu?: JSX.Element;
     menuGroups?: UserMenuGroup[];

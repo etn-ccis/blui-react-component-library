@@ -47,7 +47,7 @@ export type DrawerLayoutClasses = {
 };
 
 export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> & {
-    /** Style overrides */
+    /** Custom classes for default style overrides */
     classes?: DrawerLayoutClasses;
 
     /** Drawer component to be embedded */

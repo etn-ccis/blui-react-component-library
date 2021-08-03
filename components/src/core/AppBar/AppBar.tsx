@@ -53,57 +53,67 @@ const useStyles = makeStyles((theme: Theme) =>
 export type AppBarProps = Omit<MuiAppBarProps, 'variant'> & {
     /**
      * Length of the collapse / expand animation (in ms)
+     *
      * Default: 300
      */
     animationDuration?: number;
 
     /**
      * Image to use as the background for the header
+     *
      * Default: none
      */
     backgroundImage?: string;
 
     /**
      * Opacity to use for the header background image
+     *
      * Default: 0.3
      */
+
     // backgroundImageOpacity?: number;
 
     /**
-     * Custom classes to add to app bar elements
+     * Custom classes for default style overrides
+     *
      * Default: none
      */
     classes?: Partial<AppBarClasses>;
 
     /**
      * Height of the App Bar when fully collapsed
-     * Default: 64 desktop, 56 mobile
+     *
+     * Default: desktop: 64, mobile: 56
      */
     collapsedHeight?: number | string;
 
     /**
      * Height of the App Bar when fully expanded
-     * Default: 200
+     *
+     *  Default: 200
      */
     expandedHeight?: number | string;
 
     /**
-     * Current variant of the app bar:
+     * Behavior of the app bar:
      * - 'expanded' locks the app bar at the expandedHeight,
      * - 'collapsed' locks it at the collapsedHeight,
      * - 'snap' resizes the toolbar after the window passes a scrollThreshold.
+     *
      * Default: snap
      */
     variant?: 'expanded' | 'collapsed' | 'snap';
 
     /**
      * How far to scroll before collapsing the app bar
+     *
      * Default: 136
      */
     scrollThreshold?: number;
 
     /**
      * A ref to the scrollable container that controls the app bar height
+     *
      * Default: window
      */
     scrollContainerId?: string;
@@ -296,6 +306,12 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         </>
     );
 };
+
+/**
+ * [Appbar](https://pxblue-components.github.io/react/?path=/info/components-app-bar--get-read-me-story) component
+ *
+ * An extension of the default AppBar from Material UI that can be resized / collapsed as the page is scrolled.
+ */
 export const AppBar = React.forwardRef(AppBarRender);
 AppBar.displayName = 'AppBar';
 

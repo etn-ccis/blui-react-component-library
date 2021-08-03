@@ -71,37 +71,60 @@ type DrawerClasses = {
 export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
     SharedStyleProps &
     NavItemSharedStyleProps & {
-        // the id for the currently active item
+        /** The itemID for the 'active' item */
         activeItem?: string;
 
-        // custom classes for default style overrides
+        /** Custom classes for default style overrides */
         classes?: DrawerClasses;
 
-        // Sets a smaller width when the drawer is using the rail variant
+        /**  Sets a smaller width when the drawer is using the rail variant
+         *
+         * Default: false
+         */
         condensed?: boolean;
 
-        // Describes if this Drawer is used outside of a DrawerLayout
+        /** Describes if this Drawer is used outside of a DrawerLayout
+         *
+         * Default: false
+         */
         noLayout?: boolean;
 
-        // Function called whenever a navigation item or rail item is clicked
+        /** A callback function to execute whenever an item is clicked */
         onItemSelect?: (id: string) => void;
 
-        // Controls the open/closed state of the drawer
+        /** Controls the open/closed state of the drawer */
         open: boolean;
 
-        // Enables Drawer to automatically open on hover for persistent variants.
+        /** Automatically open the drawer on hover when closed (persistent variant only)
+         *
+         * Default: true
+         */
         openOnHover?: boolean;
 
-        // Delay (ms) to use for open on hover.
+        /** Delay (ms) before triggering open on hover (persistent variant only)
+         *
+         * Default: 500
+         */
         openOnHoverDelay?: number;
 
-        // Toggles the drawer side border instead of a drop shadow
+        /** Whether to use a side border for the drawer instead of a shadow
+         *
+         * Default: false
+         */
         sideBorder?: boolean;
 
         // Drawer variant type
+        /**
+         * Behavior of the drawer:
+         * - 'permanent': Always open, even when `open` is set to false.
+         * - 'persistent': When `open` is set to false, the `<Drawer>` collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent `<Drawer>`.
+         * - 'temporary': When `open` is set to false, the `<Drawer>` is hidden; when `open` is set to true, it slides in.
+         * - 'rail': An always collapsed version of the `<Drawer>` that only displays an icons and titles.
+         *
+         */
         variant?: 'persistent' | 'permanent' | 'temporary' | 'rail';
 
-        // Sets the width of the drawer (in px) when open
+        /** Sets the width of the drawer (in px) when open */
         width?: number | string;
     };
 export type DrawerComponentProps = DrawerProps; // alias
@@ -328,7 +351,13 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
         </MUIDrawer>
     );
 };
-
+/**
+ * [Drawer](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ *
+ * The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel.
+ *
+ * The PX Blue Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerNavItem>`, `<DrawerRailItem>`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
+ */
 export const Drawer = React.forwardRef(DrawerRenderer);
 Drawer.displayName = 'PXBlueDrawer';
 // @ts-ignore

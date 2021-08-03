@@ -24,6 +24,7 @@ export type ScoreCardProps = CardProps & {
     actionRow?: JSX.Element;
     badge?: JSX.Element;
     badgeOffset?: number;
+    /** Custom classes for default style overrides */
     classes?: ScoreCardClasses;
     headerBackgroundImage?: string;
     headerColor?: string;

@@ -26,16 +26,36 @@ type DrawerHeaderClasses = {
 };
 
 export type DrawerHeaderProps = ToolbarProps & {
+    /** The color used for the background */
     backgroundColor?: string;
+    /** An image to display in the header */
     backgroundImage?: string;
+    /** The opacity of the background image
+     *
+     *  Default: 0.3
+     */
     backgroundOpacity?: number;
+    /** Custom classes for default style overrides */
     classes?: DrawerHeaderClasses;
+    /** Optional divider which appears beneath header */
     divider?: boolean;
+    /** The color of the text elements
+     *
+     *  Default: false
+     */
     fontColor?: string;
+    /** A component to render for the icon  */
     icon?: ReactNode;
+    /** A function to execute when the icon is clicked
+     *
+     * Default: `() => {}`
+     */
     onIconClick?: () => void;
+    /** The text to show on the second line */
     subtitle?: string;
+    /** The text to show on the first line */
     title?: string;
+    /** Custom content for header title area */
     titleContent?: ReactNode;
 };
 
@@ -213,6 +233,11 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         </>
     );
 };
+/**
+ * [DrawerHeader](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ *
+ * The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By default, it renders multiple lines of text in the PX Blue style. If you supply a `titleContent`, you can render your own custom content in the title area.
+ */
 export const DrawerHeader = React.forwardRef(DrawerHeaderRender);
 
 DrawerHeader.displayName = 'DrawerHeader';

@@ -28,21 +28,43 @@ export type DrawerNavItemClasses = {
 };
 export type DrawerNavItemProps = SharedStyleProps &
     NavItemSharedStyleProps & {
+        /** Custom classes for default style overrides */
         classes?: DrawerNavItemClasses;
+        /** The nested depth of the item
+         *
+         * Default: 0
+         */
         depth?: number;
+        /** Sets whether to hide the nav item */
         hidden?: boolean;
+        /** Remove left padding if no icon is used
+         *
+         * Default: false
+         */
         hidePadding?: boolean;
+        /** A component to render for the left icon */
         icon?: JSX.Element;
+        /** Sets whether the item is a parent of the currently active item (managed automatically)  */
         isInActiveTree?: boolean;
+        /** An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem */
         itemID: string;
+        /** The items nested under this item */
         items?: NestedDrawerNavItemProps[];
+        /** Callback function to the parent element to update active hierarchy styles  */
         notifyActiveParent?: (ids?: string[]) => void;
+        /** A function to execute when clicked */
         onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+        /** An icon/component to display to the right */
         rightComponent?: JSX.Element;
+        /** Status stripe and icon color */
         statusColor?: string;
+        /** The text to show on the second line */
         subtitle?: string;
+        /** The text to show on the first line */
         title: string;
+        /** Sets whether to disable the tooltip on hover for the condensed `rail` variant  */
         disableRailTooltip?: boolean;
+        /** Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props */
         InfoListItemProps?: Partial<PXBInfoListItemProps>;
     } & Pick<HTMLAttributes<HTMLDivElement>, 'children'>;
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
@@ -483,7 +505,11 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         </>
     );
 };
-
+/**
+ * [DrawerNavItem](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ *
+ * The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be generated for you by using the `items` prop of the `<DrawerNavGroup>` and passing in an array of objects with the following API. You can also create these line items by directly passing them as children to the `<DrawerNavGroup>`. Each `<DrawerNavItem>` also supports the ability to nest items (using its own `items` prop or children). When using the rail variant of the `<Drawer>`, you should use `<DrawerRailItem>` instead.
+ */
 export const DrawerNavItem = React.forwardRef(DrawerNavItemRender);
 DrawerNavItem.displayName = 'DrawerNavItem';
 DrawerNavItem.propTypes = {

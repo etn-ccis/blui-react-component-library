@@ -5,8 +5,17 @@ import { useDrawerContext } from './DrawerContext';
 import clsx from 'clsx';
 
 export type DrawerFooterProps = HTMLAttributes<HTMLDivElement> & {
+    /** The color used for the background  */
     backgroundColor?: string;
+    /** Optional divider which appears above footer
+     *
+     * Default: true
+     */
     divider?: boolean;
+    /** Hide footer contents when drawer is closed
+     *
+     * Default: true
+     */
     hideContentOnCollapse?: boolean;
 };
 
@@ -50,6 +59,11 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
     );
 };
 
+/**
+ * [DrawerFooter](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ *
+ * The `<DrawerFooter>` is an optional section that renders at the bottom of the `<Drawer>`. It can be used to add any custom content (as children).
+ */
 export const DrawerFooter = React.forwardRef(DrawerFooterRender);
 DrawerFooter.displayName = 'DrawerFooter';
 DrawerFooter.propTypes = {

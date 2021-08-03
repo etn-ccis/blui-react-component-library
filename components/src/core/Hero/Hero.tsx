@@ -18,6 +18,7 @@ export type HeroClasses = {
 };
 
 export type HeroProps = HTMLAttributes<HTMLDivElement> & {
+    /** Custom classes for default style overrides */
     classes?: HeroClasses;
     fontSize?: FontSize;
     icon: ReactNode;

@@ -7,6 +7,7 @@ export type SpacerProps = HTMLAttributes<HTMLDivElement> & {
     flex?: number;
     height?: number | string;
     width?: number | string;
+    /** Custom classes for default style overrides */
     classes?: SpacerClasses;
     style?: CSSProperties;
 };

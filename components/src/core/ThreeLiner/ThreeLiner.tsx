@@ -71,10 +71,7 @@ export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> & {
      */
     animationDuration?: number;
 
-    /**
-     * Custom classes to add to app bar elements
-     * Default: none
-     */
+    /** Custom classes for default style overrides */
     classes?: Partial<ThreeLinerClasses>;
 };
 

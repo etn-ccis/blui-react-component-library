@@ -22,19 +22,19 @@ import clsx from 'clsx';
 export type DrawerNavGroupProps = SharedStyleProps &
     NavItemSharedStyleProps &
     ListProps & {
-        // Custom classes to override default styles
+        /** Custom classes for default style overrides */
         classes?: DrawerNavGroupClasses;
 
-        // List of navigation items to render
+        /** List of items to render */
         items?: Array<DrawerNavItemProps | DrawerRailItemProps>;
 
-        // Text to display in the group header
+        /** Text to display in the group header */
         title?: string;
 
-        // Color to use for the group title text
+        /** Color used for the title text */
         titleColor?: string;
 
-        // Custom element, substitute for title
+        /** Custom element, substitute for title */
         titleContent?: ReactNode;
     };
 
@@ -340,6 +340,11 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         </NavGroupContext.Provider>
     );
 };
+/**
+ * [DrawerNavGroup](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ *
+ * A `<DrawerNavGroup>` is used inside of the `<DrawerBody>` to organize links/content. Each group consists of an (optional) group title and a series of navigation items. Most visual props are inherited from the `<DrawerBody>` but can be overridden at the NavGroup level if desired.
+ */
 export const DrawerNavGroup = React.forwardRef(DrawerNavGroupRender);
 DrawerNavGroup.displayName = 'DrawerNavGroup';
 // @ts-ignore

@@ -66,7 +66,7 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 | ------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------ | -------- | ------- |
 | activeItem                      | itemID for the 'active' item                                                 | `string`                                                     | no       |         |
 | classes                         | Style overrides                                                              | `DrawerClasses`                                              | no       |         |
-| condensed                       | Use the smaller width drawer without text labels (rail variant only)         | `boolean`                                                    | no       | `false` |
+| condensed                       | Sets a smaller width when the drawer is using the rail variant               | `boolean`                                                    | no       | `false` |
 | noLayout                        | Set to true if used without a `<DrawerLayout>`                               | `boolean`                                                    | no       | `false` |
 | onItemSelect                    | A callback function to execute whenever an item is clicked                   | `(id: string) => void`                                       | no       |         |
 | open                            | Controls the open/closed state of the drawer                                 | `boolean`                                                    | yes      |         |
@@ -176,7 +176,7 @@ Any other props supplied will be provided to the root element (`div`).
 
 ## Drawer Body
 
-The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical use case is to display `<DrawerNavGroup>` elements, but custom elements (e.g., for spacing) are accepted as well.
+The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical use case is to display `<DrawerNavGroup>` elements, but custom elements (e.g. for spacing) are accepted as well.
 
 ### Drawer Body Usage
 
@@ -292,6 +292,7 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 | classes                         | Style overrides                                                                                                                                   | `DrawerNavItemClasses`    | no       |         |
 | depth\*                         | The nested depth of the item                                                                                                                      | `number`                  | no       | 0       |
 | hidden                          | Sets whether to hide the nav item                                                                                                                 | `boolean`                 | no       |         |
+| hidePadding                     | Remove left padding if no icon is used                                                                                                            | `boolean`                 | no       | false   |
 | icon                            | A component to render for the left icon                                                                                                           | `JSX.Element`             | no       |         |
 | isInActiveTree\*                | Sets whether the item is a parent of the currently active item (managed automatically)                                                            | `boolean`                 | no       |         |
 | itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem                                                   | `string`                  | yes      |         |

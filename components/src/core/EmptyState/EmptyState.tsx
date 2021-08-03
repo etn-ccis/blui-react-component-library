@@ -14,6 +14,7 @@ export type EmptyStateClasses = {
 
 export type EmptyStateProps = HTMLAttributes<HTMLDivElement> & {
     actions?: ReactNode;
+    /** Custom classes for default style overrides */
     classes?: EmptyStateClasses;
     description?: ReactNode;
     icon: ReactNode;

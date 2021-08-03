@@ -32,7 +32,7 @@ export type DrawerRailItemClasses = {
 
 export type ExtendedNavItem = NavItem & { ButtonBaseProps?: Partial<MuiButtonBaseProps> };
 export type DrawerRailItemProps = SharedStyleProps & {
-    // classes for style overrides
+    /** Custom classes for default style overrides */
     classes?: DrawerRailItemClasses;
 
     // toggles the condensed style

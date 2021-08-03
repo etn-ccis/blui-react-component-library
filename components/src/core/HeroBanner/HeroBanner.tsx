@@ -17,6 +17,7 @@ export type HeroBannerClasses = {
 };
 
 export type HeroBannerProps = HTMLAttributes<HTMLDivElement> & {
+    /** Custom classes for default style overrides */
     classes?: HeroBannerClasses;
     divider?: boolean;
     limit?: number;

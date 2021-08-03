@@ -11,12 +11,28 @@ export type ChannelValueClasses = {
     value?: string;
 };
 export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> & {
+    /** Custom classes for default style overrides */
     classes?: ChannelValueClasses;
+    /** The color used for the text elements
+     *
+     * Default: 'inherit'
+     */
     color?: string;
+    /** The size to use for the text elements
+     *
+     *  Default: 'inherit'
+     */
     fontSize?: number | string;
+    /** A component to render for the icon */
     icon?: JSX.Element;
+    /** Whether to show the units before the value (e.g. for currency)
+     *
+     *  Default: false
+     */
     prefix?: boolean;
+    /** Text to display for the units (light text) */
     units?: string;
+    /** Text to display for the value (bold text) */
     value: number | string;
 };
 
@@ -110,6 +126,12 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         </span>
     );
 };
+/**
+ * [ChannelValue](https://pxblue-components.github.io/react/?path=/info/components-channel-value--get-read-me-story) component
+ *
+ * Used to show a stylized value and its units.
+ * You may also include an icon.
+ */
 export const ChannelValue = React.forwardRef(ChannelValueRender);
 
 ChannelValue.displayName = 'ChannelValue';

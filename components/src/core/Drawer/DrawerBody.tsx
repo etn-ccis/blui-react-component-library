@@ -13,6 +13,7 @@ type DrawerBodyClasses = {
 export type DrawerBodyProps = HTMLAttributes<HTMLDivElement> &
     SharedStyleProps &
     NavItemSharedStyleProps & {
+        /** Custom classes for default style overrides */
         classes?: DrawerBodyClasses;
     };
 
@@ -104,6 +105,11 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
     );
 };
 
+/**
+ * [DrawerBody](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ *
+ * The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical use case is to display `<DrawerNavGroup>` elements, but custom elements (e.g. for spacing) are accepted as well.
+ */
 export const DrawerBody = React.forwardRef(DrawerBodyRender);
 DrawerBody.displayName = 'DrawerBody';
 // @ts-ignore

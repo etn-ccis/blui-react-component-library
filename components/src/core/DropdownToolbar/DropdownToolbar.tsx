@@ -30,6 +30,7 @@ export type DropdownToolbarProps = ToolbarProps & {
     navigationIcon?: JSX.Element;
     menu?: JSX.Element;
     menuGroups?: ToolbarMenuGroup[];
+    /** Custom classes for default style overrides */
     classes?: DropdownToolbarClasses;
     MenuProps?: Omit<standardMenuProps, 'open'>;
     onOpen?: () => void;

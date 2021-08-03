@@ -15,6 +15,7 @@ export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
     avatar?: boolean;
     backgroundColor?: string;
     chevron?: boolean;
+    /** Custom classes for default style overrides */
     classes?: InfoListItemClasses;
     divider?: DividerType;
     fontColor?: string;
