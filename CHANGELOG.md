@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.3.1 (unreleased)
+
+### Added
+
+-   Improved intellisense popup documentation with links to full component documentation.
+
 ## 5.3.0 (June 30, 2021)
 
 ### Added
