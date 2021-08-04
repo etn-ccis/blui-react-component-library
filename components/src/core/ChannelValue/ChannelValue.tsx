@@ -25,7 +25,7 @@ export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> 
     fontSize?: number | string;
     /** A component to render for the icon */
     icon?: JSX.Element;
-    /** Whether to show the units before the value (e.g. for currency)
+    /** Whether to show the units before the value (e.g., for currency)
      *
      *  Default: false
      */

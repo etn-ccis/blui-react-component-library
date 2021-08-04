@@ -33,6 +33,8 @@ export type DrawerNavItemProps = SharedStyleProps &
         /** The nested depth of the item
          *
          * Default: 0
+         *
+         * This is managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`
          */
         depth?: number;
         /** Sets whether to hide the nav item */
@@ -44,13 +46,19 @@ export type DrawerNavItemProps = SharedStyleProps &
         hidePadding?: boolean;
         /** A component to render for the left icon */
         icon?: JSX.Element;
-        /** Sets whether the item is a parent of the currently active item (managed automatically)  */
+        /** Sets whether the item is a parent of the currently active item
+         *
+         * This is managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`
+         */
         isInActiveTree?: boolean;
-        /** An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem */
+        /** A unique identifier of the NavItem. Item will have 'active' style when this matches the `activeItem` prop of the <Drawer> */
         itemID: string;
         /** The items nested under this item */
         items?: NestedDrawerNavItemProps[];
-        /** Callback function to the parent element to update active hierarchy styles  */
+        /** Callback function to the parent element to update active hierarchy styles
+         *
+         * This is managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`
+         */
         notifyActiveParent?: (ids?: string[]) => void;
         /** A function to execute when clicked */
         onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;

@@ -28,7 +28,10 @@ export type ScoreCardProps = CardProps & {
     actionLimit?: number;
     /** Component to render for the footer */
     actionRow?: JSX.Element;
-    /** The component to render in the callout area */
+    /** Component to render in the call-out area on the right side of the card body.
+     *
+     * This is usually a single `Hero` or `HeroBanner`containing multiple Heroes.
+     */
     badge?: JSX.Element;
     /** Vertical offset for the badge component
      *

@@ -77,7 +77,7 @@ export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
         /** Custom classes for default style overrides */
         classes?: DrawerClasses;
 
-        /**  Sets a smaller width when the drawer is using the rail variant
+        /**  Enables a condensed view for the `rail` variant which removes NavItem labels and shows tooltips instead
          *
          * Default: false
          */
@@ -112,8 +112,6 @@ export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
          * Default: false
          */
         sideBorder?: boolean;
-
-        // Drawer variant type
         /**
          * Behavior of the drawer:
          * - 'permanent': Always open, even when `open` is set to false.
@@ -121,10 +119,14 @@ export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
          * - 'temporary': When `open` is set to false, the `<Drawer>` is hidden; when `open` is set to true, it slides in.
          * - 'rail': An always collapsed version of the `<Drawer>` that only displays an icons and titles.
          *
+         * Default: 'persistent
          */
         variant?: 'persistent' | 'permanent' | 'temporary' | 'rail';
 
-        /** Sets the width of the drawer (in px) when open */
+        /** Sets the width of the drawer (in px) when open
+         *
+         * Default: 22.5rem | theme.spacing(45) | 360px
+         */
         width?: number | string;
     };
 export type DrawerComponentProps = DrawerProps; // alias

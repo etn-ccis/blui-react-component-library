@@ -112,7 +112,7 @@ export type AppBarProps = Omit<MuiAppBarProps, 'variant'> & {
     scrollThreshold?: number;
 
     /**
-     * A ref to the scrollable container that controls the app bar height
+     * An element ID for the scrollable container that controls the app bar height
      *
      * Default: window
      */

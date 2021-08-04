@@ -60,7 +60,7 @@ export type UserMenuGroup = {
 };
 
 export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
-    /** MUI Avatar that displays */
+    /** MUI Avatar component to display as the menu trigger */
     avatar: JSX.Element;
     /** Custom classes for default style overrides */
     classes?: UserMenuClasses;

@@ -11,7 +11,7 @@ export type ListItemTagProps = TypographyProps & {
      */
     backgroundColor?: string;
 
-    /** Color of the label
+    /** Color of the label text
      *
      * Default: theme.palette.primary.contrastText
      */

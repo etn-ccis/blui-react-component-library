@@ -66,17 +66,17 @@ export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
     subtitleSeparator?: string;
     /** The text to show on the first line */
     title: ReactNode;
-    /** Whether to wrap info on overflow
+    /** Whether the info line text should wrap to multiple lines on overflow
      *
      * Default: false
      */
     wrapInfo?: boolean;
-    /** Whether to wrap subtitle on overflow
+    /** Whether the subtitle line text should wrap to multiple lines on overflow
      *
      * Default: false
      */
     wrapSubtitle?: boolean;
-    /** Whether to wrap title on overflow
+    /** Whether the title line text should wrap to multiple lines on overflow
      *
      * Default: false
      */

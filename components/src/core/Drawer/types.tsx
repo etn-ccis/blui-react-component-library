@@ -45,13 +45,13 @@ export type NavItemSharedStyleProps = {
     /** Whether to have chevrons for all menu items */
     chevron?: boolean;
 
-    /** Icon used to collapse drawer
+    /** Icon used to collapse nav group
      *
      * Default: expandIcon rotated 180 degrees
      */
     collapseIcon?: JSX.Element;
 
-    /** Icon used to expand drawer */
+    /** Icon used to expand nav group */
     expandIcon?: JSX.Element;
 
     /** Whether to hide the paddings reserved for menu item icons */

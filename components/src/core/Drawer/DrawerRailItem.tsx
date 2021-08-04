@@ -35,9 +35,11 @@ export type DrawerRailItemProps = SharedStyleProps & {
     /** Custom classes for default style overrides */
     classes?: DrawerRailItemClasses;
 
-    /** Sets whether to show the condensed variant without a title
+    /** Enables a condensed view for the `rail` variant which removes NavItem labels and shows tooltips instead
      *
      * Default: false
+     *
+     * This is managed automatically when using the `<DrawerRailItem>` inside of a `<Drawer>`
      */
     condensed?: boolean;
 
