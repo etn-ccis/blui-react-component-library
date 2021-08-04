@@ -60,17 +60,29 @@ export type UserMenuGroup = {
 };
 
 export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
+    /** MUI Avatar that displays */
     avatar: JSX.Element;
     /** Custom classes for default style overrides */
     classes?: UserMenuClasses;
+    /** Custom MUI Menu displayed when Avatar is clicked */
     menu?: JSX.Element;
+    /** Groups of menu items that display */
     menuGroups?: UserMenuGroup[];
+    /** Property overrides for the MUI Menu */
     MenuProps?: Omit<standardMenuProps, 'open'>;
+    /** Subtitle shown when menu is open */
     menuSubtitle?: string;
+    /** Title shown when menu is open  */
     menuTitle?: string;
+    /** Window pixel width at which the responsive bottom sheet menu is triggered (set to 0 to disable responsive behavior)
+     *
+     * Default: theme.breakpoints.values.sm
+     */
     useBottomSheetAt?: number;
     BottomSheetProps?: DrawerProps;
+    /** Function called when the menu is closed  */
     onClose?: () => void;
+    /** Function called when the menu is opened */
     onOpen?: () => void;
 };
 
@@ -251,7 +263,11 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         </div>
     );
 };
-
+/**
+ * [UserMenu](https://pxblue-components.github.io/react/?path=/info/components-user-menu--get-read-me-story) component
+ *
+ * The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically used in the top-right corner of an application and indicates who is logged in. By default, the Menu will responsively transition to a bottom sheet for mobile views (if passing in a custom menu, you will be responsible for handling any responsiveness on your content). Setting the `useBottomSheetAt` prop to zero will disable the responsiveness.
+ */
 export const UserMenu = React.forwardRef(UserMenuRender);
 
 UserMenu.displayName = 'UserMenu';

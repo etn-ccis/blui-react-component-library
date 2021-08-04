@@ -91,7 +91,11 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
         </DrawerLayoutContext.Provider>
     );
 };
-
+/**
+ * [DrawerLayout](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ *
+ * The `<DrawerLayout>` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with a PX Blue `<Drawer>`. It accepts a `<Drawer>` as a prop, and the main page content is passed in through child elements.
+ */
 export const DrawerLayout = React.forwardRef(DrawerLayoutRender);
 DrawerLayout.displayName = 'DrawerLayout';
 DrawerLayout.propTypes = {

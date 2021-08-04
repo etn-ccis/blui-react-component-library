@@ -165,10 +165,10 @@ import DrawerSubheader from '@pxblue/react-components/core/Drawer';
 
 <div style="overflow: auto;">
 
-| Prop Name             | Description                                   | Type      | Required | Default |
-| --------------------- | --------------------------------------------- | --------- | -------- | ------- |
-| divider               | Optional divider which appears above footer   | `boolean` | no       | `true`  |
-| hideContentOnCollapse | Hide subheader contents when drawer is closed | `boolean` | no       | `true`  |
+| Prop Name             | Description                                        | Type      | Required | Default |
+| --------------------- | -------------------------------------------------- | --------- | -------- | ------- |
+| divider               | Optional divider which appears below the Subheader | `boolean` | no       | `true`  |
+| hideContentOnCollapse | Hide subheader contents when drawer is closed      | `boolean` | no       | `true`  |
 
 </div>
 
@@ -374,6 +374,7 @@ When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem
 | statusColor                     | Status stripe and icon color                                                                    | `string`                | no       |         |
 | title                           | The text to show on the first line                                                              | `string`                | no       |         |
 | ButtonBaseProps                 | Used to override [ButtonBase](https://material-ui.com/api/button-base/) default props           | `InfoListItemProps`     | no       |         |
+| disableRailTooltip              | Sets whether to disable the tooltip on hover                                                    | `boolean`               | no       |         |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                      | -                       | -        |         |
 
 </div>

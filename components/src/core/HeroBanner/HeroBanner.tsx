@@ -19,7 +19,9 @@ export type HeroBannerClasses = {
 export type HeroBannerProps = HTMLAttributes<HTMLDivElement> & {
     /** Custom classes for default style overrides */
     classes?: HeroBannerClasses;
+    /** Whether to show the line separator */
     divider?: boolean;
+    /** Max number of children to display */
     limit?: number;
 };
 
@@ -42,7 +44,11 @@ const HeroBannerRender: React.ForwardRefRenderFunction<unknown, HeroBannerProps>
         </>
     );
 };
-
+/**
+ * [HeroBanner](https://pxblue-components.github.io/react/?path=/info/components-hero--get-read-me-story) component
+ *
+ * The `<HeroBanner>` component is a simple wrapper component that is used to contain `<Hero>`s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four `<Hero>` components as its children.
+ */
 export const HeroBanner = React.forwardRef(HeroBannerRender);
 
 HeroBanner.displayName = 'HeroBanner';
