@@ -5,6 +5,7 @@
 ### Fixed
 
 -   Issue where `<UserMenu>` Avatar `onClick` prop overrides the open behavior ([#307](https://github.com/pxblue/react-component-library/issues/307)).
+-   `<UserMenu>` menuGroups `iconColor` prop bug ([#305](https://github.com/pxblue/react-component-library/issues/305)).
 
 ## 5.3.0 (June 30, 2021)
 
