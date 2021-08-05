@@ -125,7 +125,7 @@ export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
 
         /** Sets the width of the drawer when open
          *
-         * Default: 22.5rem(360px)
+         * Default: 22.5rem (360px)
          */
         width?: number | string;
     };
