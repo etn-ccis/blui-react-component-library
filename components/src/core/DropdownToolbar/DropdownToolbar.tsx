@@ -18,21 +18,34 @@ import PropTypes from 'prop-types';
 
 export type ToolbarMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
 export type ToolbarMenuGroup = {
+    /** The color used for the text */
     fontColor?: string;
+    /** The color used for icons */
     iconColor?: string;
+    /** List of navigation items to render */
     items: ToolbarMenuItem[];
+    /** Text to display in the group header */
     title?: string;
 };
 
 export type DropdownToolbarProps = ToolbarProps & {
+    /** Title text to be displayed */
     title: string;
+    /** Subtitle text to be displayed */
     subtitle?: string;
+    /** Navigation Icon to be displayed */
     navigationIcon?: JSX.Element;
+    /** Custom content to be displayed in the menu */
     menu?: JSX.Element;
+    /** Groups of menu items to display */
     menuGroups?: ToolbarMenuGroup[];
+    /** Custom classes for default style overrides */
     classes?: DropdownToolbarClasses;
+    /** Property overrides for the MUI Menu */
     MenuProps?: Omit<standardMenuProps, 'open'>;
+    /** Function called when the menu is opened */
     onOpen?: () => void;
+    /** Function called when the menu is closed */
     onClose?: () => void;
 };
 
@@ -251,6 +264,11 @@ const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToo
         </>
     );
 };
+/**
+ * [DropdownToolbar](https://pxblue-components.github.io/react/?path=/info/components-dropdown-toolbar--get-read-me-story) component
+ *
+ * The `<DropdownToolbar>` component is used to display a toolbar with a dropdown menu for a subtitle. The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `<Menu>` via the `menu` prop.
+ */
 export const DropdownToolbar = React.forwardRef(DropdownToolbarRender);
 
 DropdownToolbar.displayName = 'DropdownToolbar';

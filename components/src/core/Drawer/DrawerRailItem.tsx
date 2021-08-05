@@ -32,35 +32,42 @@ export type DrawerRailItemClasses = {
 
 export type ExtendedNavItem = NavItem & { ButtonBaseProps?: Partial<MuiButtonBaseProps> };
 export type DrawerRailItemProps = SharedStyleProps & {
-    // classes for style overrides
+    /** Custom classes for default style overrides */
     classes?: DrawerRailItemClasses;
 
-    // toggles the condensed style
+    /** Enables a condensed view for the `rail` variant which removes NavItem labels and shows tooltips instead
+     *
+     * Default: false
+     *
+     * This is managed automatically when using the `<DrawerRailItem>` inside of a `<DrawerNavGroup>`
+     */
     condensed?: boolean;
 
-    // sets whether to hide the nav item
+    /** Sets whether to hide the rail item */
     hidden?: boolean;
 
-    // icon on the left
+    /** A component to render for the left icon */
     icon: JSX.Element;
 
-    // item id to match for the active state.
-    // Should be unique within the entire list. Will be used as the list key too.
+    /** An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem
+     *
+     * Should be unique within the entire list. Will be used as the list key too.
+     */
     itemID: string;
 
-    // onClick of the entire row
+    /** A function to execute when clicked */
     onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 
-    // Status stripe color
+    /** Status stripe and icon color */
     statusColor?: string;
 
-    // text to be displayed
+    /** The text to show on the first line */
     title?: string;
 
-    // props for the ButtonBase
+    /** Used to override [ButtonBase](https://material-ui.com/api/button-base/) default props */
     ButtonBaseProps?: Partial<MuiButtonBaseProps>;
 
-    // sets whether to disable the tooltip
+    /** Sets whether to disable the tooltip on hover */
     disableRailTooltip?: boolean;
 };
 
@@ -285,7 +292,11 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         innerContent
     );
 };
-
+/**
+ * [DrawerRailItem](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ *
+ * The `<DrawerRailItem>` is a simplified version of the `<DrawerNavItem>` that renders the `icon` and `title` only. When using the `condensed` version of the `<Drawer>`, the `title` will also be hidden. The `<DrawerRailItem>` cannot be nested.
+ */
 export const DrawerRailItem = React.forwardRef(DrawerRailItemRender);
 DrawerRailItem.displayName = 'DrawerRailItem';
 // @ts-ignore

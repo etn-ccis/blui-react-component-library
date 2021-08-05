@@ -19,17 +19,44 @@ export type ScoreCardClasses = {
 };
 
 export type ScoreCardProps = CardProps & {
+    /** Icons to show to the right of the text */
     actionItems?: JSX.Element[];
+    /** Max number of actionItems in the header
+     *
+     * Default: 3
+     */
     actionLimit?: number;
+    /** Component to render for the footer */
     actionRow?: JSX.Element;
+    /** Component to render in the call-out area on the right side of the card body.
+     *
+     * This is usually a single `Hero` or `HeroBanner`containing multiple Heroes.
+     */
     badge?: JSX.Element;
+    /** Vertical offset for the badge component
+     *
+     * Default: 0
+     */
     badgeOffset?: number;
+    /** Custom classes for default style overrides */
     classes?: ScoreCardClasses;
+    /** An image to display in the header */
     headerBackgroundImage?: string;
+    /** The color of the header
+     *
+     * Default: theme.palette.primary.main
+     */
     headerColor?: string;
+    /** The color for text and icons in header
+     *
+     * Default: white
+     */
     headerFontColor?: string;
+    /** Tertiary text */
     headerInfo?: string | JSX.Element;
+    /** The primary text */
     headerTitle: string;
+    /** The secondary text */
     headerSubtitle?: string | JSX.Element;
 };
 
@@ -228,7 +255,11 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         </Card>
     );
 };
-
+/**
+ * [ScoreCard](https://pxblue-components.github.io/react/?path=/info/components-score-card--get-read-me-story) component
+ *
+ * Card component that calls attention to particular values.
+ */
 export const ScoreCard = React.forwardRef(ScoreCardRender);
 
 ScoreCard.displayName = 'ScoreCard';

@@ -2,6 +2,10 @@
 
 ## 5.3.1 (unreleased)
 
+### Added
+
+-   Improved intellisense popup documentation with links to full component documentation.
+
 ### Fixed
 
 -   Issue where `<UserMenu>` Avatar `onClick` prop overrides the open behavior ([#307](https://github.com/pxblue/react-component-library/issues/307)).

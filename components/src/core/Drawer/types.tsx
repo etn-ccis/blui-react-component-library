@@ -13,55 +13,57 @@ export type DrawerContextProps = {
 };
 
 export type SharedStyleProps = {
-    // Background color for the 'active' item
+    /** Background color for the 'active' item */
     activeItemBackgroundColor?: string;
 
-    // Font color for the 'active' item
+    /** Font color for the 'active' item */
     activeItemFontColor?: string;
 
-    // Icon color for the 'active' item
+    /** Icon color for the 'active' item */
     activeItemIconColor?: string;
 
-    // Background color for the item(s)
+    /** Background color for the item(s) */
     backgroundColor?: string;
 
-    // Whether to show a line between all items
+    /** Whether to show a line between all items */
     divider?: boolean;
 
-    // The color used for the item text
+    /** The color used for the item text */
     itemFontColor?: string;
 
-    // The color used for the icon
+    /** The color used for the icon */
     itemIconColor?: string;
 
-    // Whether to apply material ripple effect to items
+    /** Whether to apply material ripple effect to items */
     ripple?: boolean;
 };
 
 export type NavItemSharedStyleProps = {
-    // shape of the active item background
+    /** shape of the active item background */
     activeItemBackgroundShape?: 'round' | 'square';
 
-    // Whether to have chevrons for all menu items
+    /** Whether to have chevrons for all menu items */
     chevron?: boolean;
 
-    // Icon used to collapse drawer
-    // default is expandIcon rotated 180 degrees
+    /** Icon used to collapse nav group
+     *
+     * Default: expandIcon rotated 180 degrees
+     */
     collapseIcon?: JSX.Element;
 
-    // Icon used to expand drawer
+    /** Icon used to expand nav group */
     expandIcon?: JSX.Element;
 
-    // Whether to hide the paddings reserved for menu item icons
+    /** Whether to hide the paddings reserved for menu item icons */
     hidePadding?: boolean;
 
-    // Disables the semi-bold style on parent elements in the selected item hierarchy
+    /** Disables the semi-bold style on parent elements in the selected item hierarchy */
     disableActiveItemParentStyles?: boolean;
 
-    // background color for a nested section of menu items
+    /** background color for a nested section of menu items */
     nestedBackgroundColor?: string;
 
-    // Whether to apply a dividing line under nested navigation items
+    /** Whether to apply a dividing line under nested navigation items */
     nestedDivider?: boolean;
 };
 

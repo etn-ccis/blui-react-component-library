@@ -5,13 +5,19 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 export type ListItemTagProps = TypographyProps & {
-    /* Color of the label background. Default is theme.palette.primary.main */
+    /** Color of the label background
+     *
+     * Default: theme.palette.primary.main
+     */
     backgroundColor?: string;
 
-    /* Color of the label. Default is theme.palette.primary.contrastText. */
+    /** Color of the label text
+     *
+     * Default: theme.palette.primary.contrastText
+     */
     fontColor?: string;
 
-    /* The string label of the tag. */
+    /** The label text */
     label: string;
 };
 
@@ -90,7 +96,11 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
         </Typography>
     );
 };
-
+/**
+ * [ListItemTag](https://pxblue-components.github.io/react/?path=/info/components-list-item-tag--get-read-me-story) component
+ *
+ * `<ListItemTag>` is a text item with a colored background and rounded corners that is used to tag lists.
+ */
 export const ListItemTag = React.forwardRef(ListItemTagRender);
 
 ListItemTag.propTypes = {
