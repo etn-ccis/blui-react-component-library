@@ -2,6 +2,10 @@
 
 ## 5.3.1 (unreleased)
 
+### Added
+
+-   Improved intellisense popup documentation with links to full component documentation.
+
 ### Fixed
 
 -   `<UserMenu>` menuGroups `iconColor` prop bug ([#305](https://github.com/pxblue/react-component-library/issues/305)).

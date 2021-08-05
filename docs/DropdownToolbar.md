@@ -46,7 +46,7 @@ import { DropdownToolbar } from '@pxblue/react-components';
 | MenuProps      | Property overrides for the MUI Menu        | `MenuProps`              | no       |         |
 | navigationIcon | Navigation Icon to be displayed            | `JSX.Element`            | no       |         |
 | onClose        | Function called when the menu is closed    | `Function`               | no       |         |
-| onOpen         | unction called when the menu is opened     | `Function`               | no       |         |
+| onOpen         | Function called when the menu is opened    | `Function`               | no       |         |
 | subtitle       | Subtitle text to be displayed              | `string`                 | no       |         |
 | title          | Title text to be displayed                 | `string`                 | yes      |         |
 

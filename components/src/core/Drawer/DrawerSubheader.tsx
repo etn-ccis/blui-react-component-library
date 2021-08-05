@@ -4,7 +4,15 @@ import { useDrawerContext } from './DrawerContext';
 import { Divider } from '@material-ui/core';
 
 export type DrawerSubheaderProps = HTMLAttributes<HTMLDivElement> & {
+    /** Optional divider which appears below the Subheader
+     *
+     * Default: true
+     */
     divider?: boolean;
+    /** Hide subheader contents when drawer is closed
+     *
+     * Default: true
+     */
     hideContentOnCollapse?: boolean;
 };
 
@@ -27,6 +35,11 @@ const DrawerSubheaderRender: React.ForwardRefRenderFunction<unknown, DrawerSubhe
         </>
     );
 };
+/**
+ * [DrawerSubheader](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ *
+ * The `<DrawerSubheader>` is an optional section that renders below the header and above the body of the `<Drawer>`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
+ */
 export const DrawerSubheader = React.forwardRef(DrawerSubheaderRender);
 
 DrawerSubheader.displayName = 'DrawerSubheader';

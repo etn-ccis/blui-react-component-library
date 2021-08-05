@@ -4,9 +4,16 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 export type SpacerProps = HTMLAttributes<HTMLDivElement> & {
+    /** Flex grow/shrink value for flex layouts
+     *
+     * Default: 1
+     */
     flex?: number;
+    /** Height (in px) for static layouts */
     height?: number | string;
+    /** Width (in px) for static layouts */
     width?: number | string;
+    /** Custom classes for default style overrides */
     classes?: SpacerClasses;
     style?: CSSProperties;
 };
@@ -36,7 +43,11 @@ const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (prop
         </div>
     );
 };
-
+/**
+ * [Spacer](https://pxblue-components.github.io/react/?path=/info/components-spacer--get-read-me-story) component
+ *
+ * An invisible utility component that acts as a spacer element in various layouts. It works with flexbox sizing or fixed sizing.
+ */
 export const Spacer = React.forwardRef(SpacerRender);
 
 Spacer.displayName = 'Spacer';
