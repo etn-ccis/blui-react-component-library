@@ -62,20 +62,20 @@ const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                                             | Type                                                         | Required | Default      |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | -------- | ------------ |
-| activeItem                      | itemID for the 'active' item                                                                            | `string`                                                     | no       |              |
-| classes                         | Style overrides                                                                                         | `DrawerClasses`                                              | no       |              |
-| condensed                       | Enables a condensed view for the `rail` variant which removes NavItem labels and shows tooltips instead | `boolean`                                                    | no       | `false`      |
-| noLayout                        | Set to true if used without a `<DrawerLayout>`                                                          | `boolean`                                                    | no       | `false`      |
-| onItemSelect                    | A callback function to execute whenever an item is clicked                                              | `(id: string) => void`                                       | no       |              |
-| open                            | Controls the open/closed state of the drawer                                                            | `boolean`                                                    | yes      |              |
-| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only)                            | `boolean`                                                    | no       | `true`       |
-| openOnHoverDelay                | Delay (ms) before triggering open on hover (persistent variant only)                                    | `number`                                                     | no       | `500`        |
-| sideBorder                      | Whether to use a side border for the drawer instead of a shadow                                         | `boolean`                                                    | no       | `false`      |
-| variant                         | The variant to use (see below)                                                                          | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       | `persistent` |
-| width                           | Sets the width of the drawer (in px) when open                                                          | `number` \| `string`                                         | no       | `22.5rem`    |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                              | -                                                            | -        |              |
+| Prop Name                       | Description                                                                  | Type                                                         | Required | Default           |
+| ------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------ | -------- | ----------------- |
+| activeItem                      | itemID for the 'active' item                                                 | `string`                                                     | no       |                   |
+| classes                         | Style overrides                                                              | `DrawerClasses`                                              | no       |                   |
+| condensed                       | Show condensed nav items without labels (`rail` variant only)                | `boolean`                                                    | no       | `false`           |
+| noLayout                        | Set to true if used without a `<DrawerLayout>`                               | `boolean`                                                    | no       | `false`           |
+| onItemSelect                    | A callback function to execute whenever an item is clicked                   | `(id: string) => void`                                       | no       |                   |
+| open                            | Controls the open/closed state of the drawer                                 | `boolean`                                                    | yes      |                   |
+| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only) | `boolean`                                                    | no       | `true`            |
+| openOnHoverDelay                | Delay (ms) before triggering open on hover (persistent variant only)         | `number`                                                     | no       | `500`             |
+| sideBorder                      | Whether to use a side border for the drawer instead of a shadow              | `boolean`                                                    | no       | `false`           |
+| variant                         | The variant to use (see below)                                               | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       | `persistent`      |
+| width                           | Sets the width of the drawer when open                                       | `number` \| `string`                                         | no       | `22.5rem (360px)` |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                   | -                                                            | -        |                   |
 
 </div>
 
@@ -363,19 +363,19 @@ When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                                             | Type                    | Required | Default |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------- |
-| classes                         | Style overrides                                                                                         | `DrawerRailItemClasses` | no       |         |
-| condensed\*                     | Enables a condensed view for the `rail` variant which removes NavItem labels and shows tooltips instead | `boolean`               | no       | `false` |
-| hidden                          | Sets whether to hide the rail item                                                                      | `boolean`               | no       |         |
-| icon                            | A component to render for the left icon                                                                 | `JSX.Element`           | yes      |         |
-| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem         | `string`                | yes      |         |
-| onClick                         | A function to execute when clicked                                                                      | `function`              | no       |         |
-| statusColor                     | Status stripe and icon color                                                                            | `string`                | no       |         |
-| title                           | The text to show on the first line                                                                      | `string`                | no       |         |
-| ButtonBaseProps                 | Used to override [ButtonBase](https://material-ui.com/api/button-base/) default props                   | `InfoListItemProps`     | no       |         |
-| disableRailTooltip              | Sets whether to disable the tooltip on hover                                                            | `boolean`               | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                              | -                       | -        |         |
+| Prop Name                       | Description                                                                                     | Type                    | Required | Default |
+| ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------- |
+| classes                         | Style overrides                                                                                 | `DrawerRailItemClasses` | no       |         |
+| condensed\*                     | Show condensed nav items without labels (`rail` variant only)                                   | `boolean`               | no       | `false` |
+| hidden                          | Sets whether to hide the rail item                                                              | `boolean`               | no       |         |
+| icon                            | A component to render for the left icon                                                         | `JSX.Element`           | yes      |         |
+| itemID                          | An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem | `string`                | yes      |         |
+| onClick                         | A function to execute when clicked                                                              | `function`              | no       |         |
+| statusColor                     | Status stripe and icon color                                                                    | `string`                | no       |         |
+| title                           | The text to show on the first line                                                              | `string`                | no       |         |
+| ButtonBaseProps                 | Used to override [ButtonBase](https://material-ui.com/api/button-base/) default props           | `InfoListItemProps`     | no       |         |
+| disableRailTooltip              | Sets whether to disable the tooltip on hover                                                    | `boolean`               | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                      | -                       | -        |         |
 
 </div>
 

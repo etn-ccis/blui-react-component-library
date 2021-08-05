@@ -123,9 +123,9 @@ export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
          */
         variant?: 'persistent' | 'permanent' | 'temporary' | 'rail';
 
-        /** Sets the width of the drawer (in px) when open
+        /** Sets the width of the drawer when open
          *
-         * Default: 22.5rem | theme.spacing(45) | 360px
+         * Default: 22.5rem(360px)
          */
         width?: number | string;
     };

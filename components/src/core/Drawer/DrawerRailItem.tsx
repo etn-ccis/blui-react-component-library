@@ -39,7 +39,7 @@ export type DrawerRailItemProps = SharedStyleProps & {
      *
      * Default: false
      *
-     * This is managed automatically when using the `<DrawerRailItem>` inside of a `<Drawer>`
+     * This is managed automatically when using the `<DrawerRailItem>` inside of a `<DrawerNavGroup>`
      */
     condensed?: boolean;
 
