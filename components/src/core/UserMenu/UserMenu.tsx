@@ -136,8 +136,8 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
             const aProps = avatar.props || {};
 
             return React.cloneElement(avatar, {
-                onClick: preserveOnClick ? onClickFn : undefined,
                 ...aProps,
+                onClick: preserveOnClick ? onClickFn : undefined,
                 classes: {
                     ...aProps.classes,
                     root: clsx(
