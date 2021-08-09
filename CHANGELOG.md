@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.3.1 (August 6, 2021)
+## 5.3.1 (August 9, 2021)
 
 ### Added
 
