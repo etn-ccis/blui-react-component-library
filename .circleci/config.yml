@@ -233,7 +233,7 @@ jobs:
         - checkout
         - gh/setup
         - run:
-            name: Tag @pxblue/tag
+            name: Tag @pxblue/react-components
             command: |
               yarn tag-package -b $CIRCLE_BRANCH
 
