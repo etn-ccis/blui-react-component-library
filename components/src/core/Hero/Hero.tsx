@@ -18,14 +18,29 @@ export type HeroClasses = {
 };
 
 export type HeroProps = HTMLAttributes<HTMLDivElement> & {
+    /** Custom classes for default style overrides */
     classes?: HeroClasses;
+    /** The text size for the value line */
     fontSize?: FontSize;
+    /** The primary icon */
     icon: ReactNode;
+    /** The color used behind the primary icon
+     *
+     * Default: 'transparent
+     */
     iconBackgroundColor?: string;
+    /** The size of the primary icon (min 10px)
+     *
+     * Default: 36
+     */
     iconSize?: number | string;
+    /** The text shown below the `ChannelValue` */
     label: string;
+    /** The value for the channel */
     value?: string | number;
+    /** The inline icon with the value */
     valueIcon?: JSX.Element;
+    /** Text to show after the value */
     units?: string;
 };
 
@@ -118,7 +133,11 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
         </div>
     );
 };
-
+/**
+ * [Hero](https://pxblue-components.github.io/react/?path=/info/components-hero--get-read-me-story) component
+ *
+ * The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [PX Blue icon](https://github.com/pxblue/icons), or [Progress Icon](https://github.com/pxblue/icons/tree/master/progress). It will also accept Text/Emoji values.
+ */
 export const Hero = React.forwardRef(HeroRender);
 
 Hero.displayName = 'Hero';

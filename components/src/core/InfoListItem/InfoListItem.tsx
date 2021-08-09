@@ -12,26 +12,74 @@ const MAX_SUBTITLE_ELEMENTS = 6;
 
 export type DividerType = 'full' | 'partial';
 export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
+    /** Show colored background for icon
+     *
+     * Default: false
+     */
     avatar?: boolean;
+    /** The color used for the background */
     backgroundColor?: string;
+    /** Add a chevron icon on the right
+     *
+     * Default: false
+     */
     chevron?: boolean;
+    /** Custom classes for default style overrides */
     classes?: InfoListItemClasses;
+    /** Show a row separator below the row */
     divider?: DividerType;
+    /** Main text color */
     fontColor?: string;
+    /** Remove left padding if no icon is used
+     *
+     * Default: false
+     */
     hidePadding?: boolean;
+    /** A component to render for the icon */
     icon?: JSX.Element;
+    /** Color override for the row icon */
     iconColor?: string;
+    /** Icon alignment when `avatar` is set to false
+     *
+     * Default: 'left
+     */
     iconAlign?: 'left' | 'center' | 'right';
+    /** The text to show on the third line */
     info?: string | Array<string | JSX.Element>;
+    /** Component to render on the left side */
     leftComponent?: ReactNode;
+    /** Component to render on the right side */
     rightComponent?: ReactNode;
+    /** Whether to apply material ripple effect on click
+     *
+     * Default: false
+     */
     ripple?: boolean;
+    /** Status stripe and icon color */
     statusColor?: string;
+    /** The text to show on the second line */
     subtitle?: string | Array<string | JSX.Element>;
+    /** Separator character for subtitle and info
+     *
+     * Default: '·' ('\u00B7')
+     */
     subtitleSeparator?: string;
+    /** The text to show on the first line */
     title: ReactNode;
+    /** Whether the info line text should wrap to multiple lines on overflow
+     *
+     * Default: false
+     */
     wrapInfo?: boolean;
+    /** Whether the subtitle line text should wrap to multiple lines on overflow
+     *
+     * Default: false
+     */
     wrapSubtitle?: boolean;
+    /** Whether the title line text should wrap to multiple lines on overflow
+     *
+     * Default: false
+     */
     wrapTitle?: boolean;
 };
 const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemProps> = (
@@ -182,6 +230,11 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         </ListItem>
     );
 };
+/**
+ * [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) component
+ *
+ * The `<InfoListItem>` is intended to be used in [`<List>`](https://material-ui.com/api/list/) views. It positions a title as well as optional subtitle(s), icon, and status stripe.
+ */
 export const InfoListItem = React.forwardRef(InfoListItemRender);
 
 InfoListItem.displayName = 'InfoListItem';
