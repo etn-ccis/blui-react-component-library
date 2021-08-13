@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.3.1 (August 9, 2021)
+## v5.3.1 (August 9, 2021)
 
 ### Added
 
@@ -11,14 +11,14 @@
 -   Issue where `<UserMenu>` Avatar `onClick` prop overrides the open behavior ([#307](https://github.com/pxblue/react-component-library/issues/307)).
 -   `<UserMenu>` menuGroups `iconColor` prop bug ([#305](https://github.com/pxblue/react-component-library/issues/305)).
 
-## 5.3.0 (June 30, 2021)
+## v5.3.0 (June 30, 2021)
 
 ### Added
 
 -   Added `<AppBar>` component which will expand and collapse based on scroll position.
 -   Added `wrapInfo` property onto `<InfoListItem>`.
 
-## 5.2.0 (May 28, 2021)
+## v5.2.0 (May 28, 2021)
 
 ### Changed
 
@@ -28,13 +28,13 @@
 
 -   Added `disableRailTooltip` to `<DrawerRailItem>`.
 
-## 5.1.1 (April 7, 2021)
+## v5.1.1 (April 7, 2021)
 
 ### Fixed
 
 -   Fixed misaligned menu icon in `<DrawerHeader>`.
 
-## 5.1.0 (March 29, 2021)
+## v5.1.0 (March 29, 2021)
 
 ### Changed
 
@@ -47,7 +47,7 @@
 -   `openOnHoverDelay` to `<Drawer>` to alter open-on-hover delay for closed persistent drawers.
 -   peerDependency support for using with React 17
 
-## 5.0.0 (February 16, 2021)
+## v5.0.0 (February 16, 2021)
 
 ### Changed
 
@@ -69,7 +69,7 @@
 -   Added new property `openOnHover` to `<Drawer>`.
 -   Ability to build `<Drawer>` contents declaratively instead of using `items` prop.
 
-## 4.2.0 (December 10, 2020)
+## v4.2.0 (December 10, 2020)
 
 ### Changed
 

@@ -21,7 +21,7 @@
         "coverage": "yarn test --coverage --watchAll=false",
         "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json",
         "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
-        "tag:package": "npx -p @pxblue/tag pxb-tag"
+        "tag:package": "cd dist && npx -p @pxblue/tag pxb-tag"
     },
     "repository": {
         "type": "git",
