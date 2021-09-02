@@ -1,23 +1,21 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Enzyme from 'enzyme';
-import { Mount, Shallow } from '../types';
+import { Mount } from '../types';
 // import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { DropdownToolbar } from './DropdownToolbar';
 import { ListItemText, Typography } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 import { act } from 'react-dom/test-utils';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 let mount: Mount;
-let shallow: Shallow;
 
 describe('DropdownToolbar', () => {
     beforeEach(() => {
         mount = createMount({ strict: true });
-        shallow = createShallow({});
     });
 
     afterEach(() => {

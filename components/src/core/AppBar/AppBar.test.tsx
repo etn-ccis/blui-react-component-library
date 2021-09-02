@@ -1,20 +1,18 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Enzyme from 'enzyme';
-import { Mount, Shallow } from '../types';
+import { Mount } from '../types';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 import { AppBar } from './AppBar';
 import { AppBar as MuiAppBar } from '@material-ui/core';
 
 Enzyme.configure({ adapter: new Adapter() });
 let mount: Mount;
-let shallow: Shallow;
 
 describe('AppBar', () => {
     beforeEach(() => {
         mount = createMount({ strict: true });
-        shallow = createShallow({});
     });
 
     afterEach(() => {
