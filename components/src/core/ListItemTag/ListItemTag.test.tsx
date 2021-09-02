@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Shallow } from '../types';
+import { Mount, Shallow } from '../types';
 import { ListItemTag } from './ListItemTag';
 import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
 import Enzyme from 'enzyme';
@@ -9,21 +9,25 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import * as Colors from '@pxblue/colors';
 import color from 'color';
 
-import { createShallow } from '@material-ui/core/test-utils';
+import { createMount, createShallow } from '@material-ui/core/test-utils';
 
 Enzyme.configure({ adapter: new Adapter() });
-
+let mount: Mount;
 let shallow: Shallow;
 
 describe('ListItemTag', () => {
     beforeEach(() => {
+        mount = createMount({ strict: true });
         shallow = createShallow();
+    });
+
+    afterEach(() => {
+        mount.cleanUp();
     });
 
     it('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<ListItemTag label={'test'} />, div);
-        ReactDOM.unmountComponentAtNode(div);
     });
 
     it('should render list-item-tag wrapper', () => {

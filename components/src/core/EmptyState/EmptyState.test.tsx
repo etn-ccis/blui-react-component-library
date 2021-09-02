@@ -38,7 +38,6 @@ describe('EmptyState', () => {
             />,
             div
         );
-        ReactDOM.unmountComponentAtNode(div);
     });
 
     it('renders with frame class', () => {

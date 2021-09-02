@@ -33,7 +33,6 @@ describe('InfoListItem', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<InfoListItem title={'test'} />, div);
-        ReactDOM.unmountComponentAtNode(div);
     });
 
     it('renders with icon', () => {
