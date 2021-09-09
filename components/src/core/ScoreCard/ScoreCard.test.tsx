@@ -31,7 +31,6 @@ describe('ScoreCard', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<ScoreCard headerTitle={'TestTitle'} />, div);
-        ReactDOM.unmountComponentAtNode(div);
     });
     it('renders with all text', () => {
         let wrapper = shallow(<ScoreCard headerTitle={'Test'} />);
