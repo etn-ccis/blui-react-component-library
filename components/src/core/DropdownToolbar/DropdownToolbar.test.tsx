@@ -7,7 +7,7 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { DropdownToolbar } from './DropdownToolbar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
-import { Menu } from '@material-ui/icons';
+import Menu from '@material-ui/icons/Menu';
 import { act } from 'react-dom/test-utils';
 import { createMount } from '@material-ui/core/test-utils';
 

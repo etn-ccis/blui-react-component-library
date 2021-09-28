@@ -6,7 +6,7 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import * as Colors from '@pxblue/colors';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
-import { MoreVert } from '@material-ui/icons';
+import MoreVert from '@material-ui/icons/MoreVert';
 import Enzyme from 'enzyme';
 // import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
