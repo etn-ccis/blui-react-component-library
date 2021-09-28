@@ -1,6 +1,8 @@
 import React, { ReactNode, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';

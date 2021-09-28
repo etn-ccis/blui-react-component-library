@@ -1,7 +1,9 @@
-import { useMediaQuery, useTheme } from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import useTheme from '@material-ui/core/styles/useTheme';
 import Drawer, { DrawerProps } from '@material-ui/core/Drawer';
 import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';

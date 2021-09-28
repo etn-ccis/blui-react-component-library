@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useDrawerContext } from './DrawerContext';
-import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import Avatar from '@material-ui/core/Avatar';
 import ButtonBase, { ButtonBaseProps as MuiButtonBaseProps } from '@material-ui/core/ButtonBase';
 import Divider from '@material-ui/core/Divider';
