@@ -5,7 +5,7 @@ import { Mount } from '../types';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { createMount } from '@material-ui/core/test-utils';
 import { AppBar } from './AppBar';
-import { AppBar as MuiAppBar } from '@material-ui/core';
+import MuiAppBar from '@material-ui/core/AppBar';
 
 Enzyme.configure({ adapter: new Adapter() });
 let mount: Mount;

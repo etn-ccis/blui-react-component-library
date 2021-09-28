@@ -1,15 +1,10 @@
 import React, { ReactNode, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import {
-    createStyles,
-    makeStyles,
-    Theme,
-    Toolbar,
-    Typography,
-    ToolbarProps,
-    Divider,
-    IconButton,
-} from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
 import { useDrawerContext } from './DrawerContext';
 import clsx from 'clsx';
 

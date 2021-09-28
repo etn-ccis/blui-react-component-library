@@ -1,4 +1,6 @@
-import { Drawer, DrawerProps, Menu, MenuProps as standardMenuProps, useMediaQuery, useTheme } from '@material-ui/core';
+import { useMediaQuery, useTheme } from '@material-ui/core';
+import Drawer, { DrawerProps } from '@material-ui/core/Drawer';
+import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';

@@ -1,16 +1,9 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import {
-    Typography,
-    Toolbar,
-    ListItemText,
-    Menu,
-    ToolbarProps,
-    createStyles,
-    makeStyles,
-    useTheme,
-    Theme,
-    MenuProps as standardMenuProps,
-} from '@material-ui/core';
+import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
+import ListItemText from '@material-ui/core/ListItemText';
+import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
 import { NavItem, DrawerNavGroup } from '../Drawer';

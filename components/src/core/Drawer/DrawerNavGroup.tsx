@@ -2,17 +2,11 @@ import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDrawerContext } from './DrawerContext';
 import { NavGroupContext } from './NavGroupContext';
-import {
-    createStyles,
-    makeStyles,
-    Theme,
-    useTheme,
-    List,
-    ListProps,
-    Typography,
-    ListSubheader,
-    Divider,
-} from '@material-ui/core';
+import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core';
+import List, { ListProps } from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import Divider from '@material-ui/core/Divider';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import { DrawerNavItem, DrawerNavItemProps, NestedDrawerNavItemProps } from './DrawerNavItem';
 import { DrawerRailItem, DrawerRailItemProps } from './DrawerRailItem';
