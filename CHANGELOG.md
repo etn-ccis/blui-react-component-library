@@ -244,3 +244,7 @@ Fixes a bug in icon size for inline `<ChannelValue>` components.
 ## v0.0.1 (May 24, 2019)
 
 Initial beta release
+
+### Updated 
+
+Updated react component library to 5.3.2
