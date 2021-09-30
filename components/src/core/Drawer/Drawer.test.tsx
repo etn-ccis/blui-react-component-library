@@ -6,7 +6,8 @@ import * as Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import { findByTestId } from '../test-utils';
-import { Avatar, Typography } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 
 import { Drawer } from './Drawer';
 import { DrawerHeader } from './DrawerHeader';

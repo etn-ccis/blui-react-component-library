@@ -1,5 +1,11 @@
 # Changelog
 
+## v5.3.2 (unpublished)
+
+### Updated
+
+-   Import material-ui components via default imports instead of named imports to reduce overall bundle size.
+
 ## v5.3.1 (August 9, 2021)
 
 ### Added

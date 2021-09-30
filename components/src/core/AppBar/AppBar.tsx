@@ -1,13 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import {
-    AppBar as MuiAppBar,
-    AppBarProps as MuiAppBarProps,
-    createStyles,
-    makeStyles,
-    Theme,
-    useMediaQuery,
-    useTheme,
-} from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useTheme from '@material-ui/core/styles/useTheme';
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@material-ui/core/AppBar';
 // import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import clsx from 'clsx';
 import { usePrevious } from '../hooks/usePrevious';
