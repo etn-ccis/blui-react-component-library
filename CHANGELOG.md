@@ -1,5 +1,11 @@
 # Changelog
 
+## v5.3.2 (unpublished)
+
+### Updated
+
+-   Import material-ui components via default imports instead of named imports to reduce overall bundle size.
+
 ## v5.3.1 (August 9, 2021)
 
 ### Added
@@ -244,17 +250,3 @@ Fixes a bug in icon size for inline `<ChannelValue>` components.
 ## v0.0.1 (May 24, 2019)
 
 Initial beta release
-
-## v5.3.2 (September 30, 2021)
-
-### Updated
-
--   Updated the import statements of material-ui components and icons to be default imports instead of named imports, so that the only components that are being used should be part of final bundle
-
-    ```typescript
-    /* Old import syntax */
-    import { ComponentName } from '@material-ui/core';
-
-    /* New import syntax */
-    import ComponentName from '@material-ui/core/ComponentName';
-    ```
