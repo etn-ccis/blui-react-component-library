@@ -245,6 +245,16 @@ Fixes a bug in icon size for inline `<ChannelValue>` components.
 
 Initial beta release
 
-### Updated 
+## v5.3.2 (September 30, 2021)
 
-Updated react component library to 5.3.2
+### Updated
+
+-   Updated the import statements of material-ui components and icons to be default imports instead of named imports, so that the only components that are being used should be part of final bundle
+
+    ```typescript
+    /* Old import syntax */
+    import { ComponentName } from '@material-ui/core';
+
+    /* New import syntax */
+    import ComponentName from '@material-ui/core/ComponentName';
+    ```
