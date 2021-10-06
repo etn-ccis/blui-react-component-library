@@ -206,10 +206,6 @@ jobs:
 
                       cd out
                       git rm -rf .
-                      # Add the CNAME record for pxblue.eaton.com
-                      # if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                      #   echo "brightlayer-ui-components/react" > CNAME
-                      # fi
                       cd ..
 
                       cp -a storybook-static/. out/.
