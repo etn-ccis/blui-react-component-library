@@ -32,5 +32,6 @@ export * from './with-basic-usage';
 export * from './with-description';
 export * from './with-actions';
 export * from './with-full-config';
+export * from './within-a-card';
 
 export default emptyStateModule;
