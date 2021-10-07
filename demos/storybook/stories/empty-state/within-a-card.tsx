@@ -21,8 +21,8 @@ import * as Colors from '@pxblue/colors';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         accordionPanel: {
-            width: '392px',
             margin: '0 auto',
+            width: '392px',
         },
         accordionRoot: {
             '& .MuiAccordionSummary-root': {
