@@ -11,7 +11,10 @@ const useWhiteBackground = (storyFn: any): JSX.Element => (
         style={{
             backgroundColor: useDarkMode() ? undefined : white[50],
             width: '100%',
-            height: '100%',
+            height: '100vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
         }}
     >
         {storyFn()}
@@ -32,5 +35,6 @@ export * from './with-basic-usage';
 export * from './with-description';
 export * from './with-actions';
 export * from './with-full-config';
+export * from './within-a-card';
 
 export default emptyStateModule;
