@@ -26,9 +26,11 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         accordionRoot: {
             '& .MuiAccordionSummary-root': {
-                borderBottom: `1px solid ${theme.palette.divider}`,
                 height: '48px',
                 minHeight: '48px',
+                '&.Mui-expanded': {
+                    borderBottom: `1px solid ${theme.palette.divider}`,
+                },
             },
         },
         accordionHeaderTitle: {
