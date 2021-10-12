@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 minHeight: '48px',
             },
         },
-        accordionHeaderTitile: {
+        accordionHeaderTitle: {
             color: `${Colors.blue[500]}`,
         },
         accordionDetails: {
@@ -50,10 +50,10 @@ export const withinACard = (): StoryFnReactReturnType => {
             <Accordion
                 expanded={expanded}
                 classes={{ root: classes.accordionRoot }}
-                onClick={(): void => setExpanded(!expanded)}
+                onChange={(): void => setExpanded(!expanded)}
             >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                    <Typography variant={'subtitle2'} className={classes.accordionHeaderTitile}>
+                    <Typography variant={'subtitle2'} className={classes.accordionHeaderTitle}>
                         Device Usage
                     </Typography>
                 </AccordionSummary>
