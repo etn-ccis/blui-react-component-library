@@ -261,7 +261,7 @@ const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToo
     );
 };
 /**
- * [DropdownToolbar](https://pxblue-components.github.io/react/?path=/info/components-dropdown-toolbar--get-read-me-story) component
+ * [DropdownToolbar](https://brightlayer-ui-components.github.io/react/?path=/info/components-dropdown-toolbar--get-read-me-story) component
  *
  * The `<DropdownToolbar>` component is used to display a toolbar with a dropdown menu for a subtitle. The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `<Menu>` via the `menu` prop.
  */

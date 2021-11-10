@@ -5,7 +5,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Card, { CardProps } from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -261,7 +261,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
     );
 };
 /**
- * [ScoreCard](https://pxblue-components.github.io/react/?path=/info/components-score-card--get-read-me-story) component
+ * [ScoreCard](https://brightlayer-ui-components.github.io/react/?path=/info/components-score-card--get-read-me-story) component
  *
  * Card component that calls attention to particular values.
  */

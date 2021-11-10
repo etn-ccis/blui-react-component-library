@@ -338,7 +338,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     );
 };
 /**
- * [DrawerNavGroup](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ * [DrawerNavGroup](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
  *
  * A `<DrawerNavGroup>` is used inside of the `<DrawerBody>` to organize links/content. Each group consists of an (optional) group title and a series of navigation items. Most visual props are inherited from the `<DrawerBody>` but can be overridden at the NavGroup level if desired.
  */

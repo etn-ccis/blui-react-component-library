@@ -290,7 +290,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     );
 };
 /**
- * [DrawerRailItem](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ * [DrawerRailItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
  *
  * The `<DrawerRailItem>` is a simplified version of the `<DrawerNavItem>` that renders the `icon` and `title` only. When using the `condensed` version of the `<Drawer>`, the `title` will also be hidden. The `<DrawerRailItem>` cannot be nested.
  */
