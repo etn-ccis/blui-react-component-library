@@ -9,7 +9,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import useTheme from '@material-ui/core/styles/useTheme';
 import List from '@material-ui/core/List';
 import Collapse from '@material-ui/core/Collapse';
-import { InfoListItem, InfoListItemProps as PXBInfoListItemProps } from '../InfoListItem';
+import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../InfoListItem';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -78,7 +78,7 @@ export type DrawerNavItemProps = SharedStyleProps &
         /** Sets whether to disable the tooltip on hover for the condensed `rail` variant  */
         disableRailTooltip?: boolean;
         /** Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props */
-        InfoListItemProps?: Partial<PXBInfoListItemProps>;
+        InfoListItemProps?: Partial<BLUIInfoListItemProps>;
     } & Pick<HTMLAttributes<HTMLDivElement>, 'children'>;
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
@@ -218,7 +218,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         expandIcon = props.depth ? <ArrowDropDown /> : <ExpandMore />,
         hidePadding,
         icon: itemIcon,
-        InfoListItemProps = {} as PXBInfoListItemProps,
+        InfoListItemProps = {} as BLUIInfoListItemProps,
         isInActiveTree,
         itemID,
         itemFontColor = theme.palette.text.primary,
