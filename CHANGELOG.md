@@ -1,6 +1,6 @@
 # Changelog
 
-## v5.3.2-beta.0 (Not yet published)
+## v5.3.2 (November 11, 2021)
 
 ### Changed
 
