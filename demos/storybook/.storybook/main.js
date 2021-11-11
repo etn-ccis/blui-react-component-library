@@ -20,7 +20,7 @@ module.exports = {
         // @accessibility remove the following line and all other lines following @accessibility in the app to hide the a11y addon
         '@storybook/addon-a11y/register',
         '@storybook/addon-google-analytics/register',
-        '@pxblue/storybook-rtl-addon/register',
+        '@brightlayer-ui/storybook-rtl-addon/register',
     ],
     webpackFinal: async (config) => {
         config.module.rules.push({
@@ -64,7 +64,7 @@ module.exports = {
         });
         config.plugins.push(new ForkTsCheckerWebpackPlugin());
         config.plugins.push(new MiniCssExtractPlugin({ filename: '[name].css' }));
-        config.watchOptions = { ignored: [/node_modules([\\]+|\/)+(?!@pxblue)/] };
+        config.watchOptions = { ignored: [/node_modules([\\]+|\/)+(?!@brightlayer-ui)/] };
         return config;
     },
 };

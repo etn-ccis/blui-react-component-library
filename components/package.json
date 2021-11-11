@@ -1,27 +1,27 @@
 {
-    "name": "@pxblue/react-components",
+    "name": "@brightlayer-ui/react-components",
     "version": "5.3.2",
-    "description": "React components for PX Blue applications",
+    "description": "React components for Brightlayer UI applications",
     "scripts": {
         "test": "jest src",
         "build": "tsc --p tsconfig.lib.json",
-        "watch:storybook": "tsc --p tsconfig.lib.json --watch --outdir ../demos/storybook/node_modules/@pxblue/react-components",
+        "watch:storybook": "tsc --p tsconfig.lib.json --watch --outdir ../demos/storybook/node_modules/@brightlayer-ui/react-components",
         "lint": "eslint \"src/**/**.{tsx,ts}\"",
         "lint:fix": "eslint \"src/**/**.{tsx,ts}\" --fix",
         "prettier": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
         "prettier:check": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check"
     },
-    "prettier": "@pxblue/prettier-config",
+    "prettier": "@brightlayer-ui/prettier-config",
     "dependencies": {
-        "@pxblue/colors": "^3.0.0",
+        "@brightlayer-ui/colors": "^3.0.0",
         "color": "^3.1.2"
     },
     "devDependencies": {
         "@material-ui/core": "^4.11.0",
         "@material-ui/icons": "^4.0.0",
-        "@pxblue/eslint-config": "^2.0.1",
-        "@pxblue/prettier-config": "^1.0.2",
-        "@pxblue/react-themes": "^6.0.0",
+        "@brightlayer-ui/eslint-config": "^2.0.1",
+        "@brightlayer-ui/prettier-config": "^1.0.2",
+        "@brightlayer-ui/react-themes": "^6.0.0",
         "@types/color": "^3.0.1",
         "@types/enzyme": "^3.10.4",
         "@types/enzyme-adapter-react-16": "^1.0.5",
@@ -45,26 +45,26 @@
     },
     "peerDependencies": {
         "@material-ui/core": "^4.11.0",
-        "@pxblue/colors": "^3.0.0",
+        "@brightlayer-ui/colors": "^3.0.0",
         "react": "^16.0.0 || ^17.0.0",
         "react-dom": "^16.0.0 || ^17.0.0"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/pxblue/react-component-library"
+        "url": "https://github.com/brightlayer-ui/react-component-library"
     },
     "keywords": [
         "react",
         "components",
-        "pxblue"
+        "brightlayer-ui"
     ],
     "bugs": {
-        "url": "https://github.com/pxblue/react-component-library/issues"
+        "url": "https://github.com/brightlayer-ui/react-component-library/issues"
     },
-    "homepage": "https://github.com/pxblue/react-component-library#readme",
+    "homepage": "https://github.com/brightlayer-ui/react-component-library#readme",
     "directories": {
         "doc": "docs"
     },
-    "author": "pxblue <pxblue@eaton.com>",
+    "author": "Brightlayer UI <brightlayer-ui@eaton.com>",
     "license": "BSD-3-Clause"
 }

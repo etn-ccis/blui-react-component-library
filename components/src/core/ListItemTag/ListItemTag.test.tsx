@@ -6,7 +6,7 @@ import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
 import Enzyme from 'enzyme';
 // import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import color from 'color';
 
 import { createMount, createShallow } from '@material-ui/core/test-utils';

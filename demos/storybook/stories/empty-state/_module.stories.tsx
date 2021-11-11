@@ -1,10 +1,10 @@
 import React from 'react';
-import { EmptyState } from '@pxblue/react-components';
+import { EmptyState } from '@brightlayer-ui/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
 import { withA11y } from '@storybook/addon-a11y';
 import { useDarkMode } from 'storybook-dark-mode';
-import { white } from '@pxblue/colors';
+import { white } from '@brightlayer-ui/colors';
 
 const useWhiteBackground = (storyFn: any): JSX.Element => (
     <div

@@ -1,7 +1,7 @@
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import { Cloud, Favorite, Mail, MoreVert, Notifications, Search } from '@material-ui/icons';
-import * as Colors from '@pxblue/colors';
-import { ScoreCard, InfoListItem } from '@pxblue/react-components';
+import * as Colors from '@brightlayer-ui/colors';
+import { ScoreCard, InfoListItem } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';

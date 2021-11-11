@@ -36,7 +36,7 @@ const DrawerSubheaderRender: React.ForwardRefRenderFunction<unknown, DrawerSubhe
     );
 };
 /**
- * [DrawerSubheader](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ * [DrawerSubheader](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
  *
  * The `<DrawerSubheader>` is an optional section that renders below the header and above the body of the `<Drawer>`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
  */

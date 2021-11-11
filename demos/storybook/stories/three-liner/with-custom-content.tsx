@@ -1,9 +1,9 @@
 import React from 'react';
 import { select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { ChannelValue, ThreeLiner } from '@pxblue/react-components';
+import { ChannelValue, ThreeLiner } from '@brightlayer-ui/react-components';
 import Trend from '@material-ui/icons/TrendingUp';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import { getLeftToRightIconTransform } from '../../src/utils';
 
 export const withCustomContent = (): StoryFnReactReturnType => {

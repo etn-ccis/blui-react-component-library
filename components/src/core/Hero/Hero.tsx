@@ -134,9 +134,9 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
     );
 };
 /**
- * [Hero](https://pxblue-components.github.io/react/?path=/info/components-hero--get-read-me-story) component
+ * [Hero](https://brightlayer-ui-components.github.io/react/?path=/info/components-hero--get-read-me-story) component
  *
- * The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [PX Blue icon](https://github.com/pxblue/icons), or [Progress Icon](https://github.com/pxblue/icons/tree/master/progress). It will also accept Text/Emoji values.
+ * The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [Brightlayer UI icon](https://github.com/brightlayer-ui/icons), or [Progress Icon](https://github.com/brightlayer-ui/icons/tree/master/progress). It will also accept Text/Emoji values.
  */
 export const Hero = React.forwardRef(HeroRender);
 

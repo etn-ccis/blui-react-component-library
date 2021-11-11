@@ -1,5 +1,5 @@
-import { Device } from '@pxblue/icons-mui';
-import { InfoListItem, ChannelValue } from '@pxblue/react-components';
+import { Device } from '@brightlayer-ui/icons-mui';
+import { InfoListItem, ChannelValue } from '@brightlayer-ui/react-components';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

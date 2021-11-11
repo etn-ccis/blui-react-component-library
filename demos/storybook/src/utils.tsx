@@ -1,7 +1,7 @@
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { COMPONENT_SECTION_NAME, README_STORY_NAME } from './constants';
-import { getDirection } from '@pxblue/storybook-rtl-addon';
+import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 
 let banner: HTMLElement;
 
@@ -34,13 +34,13 @@ const selectNotesTab = (): void => {
 
 export const updateTitle = (): void => {
     setTimeout(() => {
-        window.top.document.title = 'PX Blue | React Components';
+        window.top.document.title = 'Brightlayer UI | React Components';
     }, 10);
 
     const link: any = window.top.document.querySelector("link[rel*='icon']") || document.createElement('link');
     link.type = 'image/x-icon';
     link.rel = 'shortcut icon';
-    link.href = './pxblue.png';
+    link.href = './brightlayer-ui.png';
     window.top.document.getElementsByTagName('head')[0].appendChild(link);
 };
 

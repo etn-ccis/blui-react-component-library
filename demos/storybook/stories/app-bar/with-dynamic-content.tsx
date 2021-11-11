@@ -1,7 +1,7 @@
 import React from 'react';
 import { number, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { AppBar, ThreeLiner } from '@pxblue/react-components';
+import { AppBar, ThreeLiner } from '@brightlayer-ui/react-components';
 import { makeStyles, Toolbar } from '@material-ui/core';
 
 export const withDynamicContent = (): StoryFnReactReturnType => {

@@ -20,7 +20,7 @@ It supports three variants:
 </div>
 
 ```tsx
-import { AppBar, ThreeLiner } from '@pxblue/react-components';
+import { AppBar, ThreeLiner } from '@brightlayer-ui/react-components';
 ...
 // Default: AppBar will resize between expandedHeight and collapsed height when the window is scrolled past the scrollThreshold
 <AppBar variant={'snap'}>
@@ -70,7 +70,7 @@ Any other props supplied will be provided to the root element ([`AppBar`](https:
 
 ### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
 | Name               | Description                                          |
 | ------------------ | ---------------------------------------------------- |

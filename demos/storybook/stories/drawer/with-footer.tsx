@@ -1,5 +1,5 @@
 import { Gavel, Menu, Settings } from '@material-ui/icons';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import {
     Drawer,
     DrawerBody,
@@ -7,7 +7,7 @@ import {
     DrawerHeader,
     DrawerNavGroup,
     NavItem,
-} from '@pxblue/react-components/core/Drawer';
+} from '@brightlayer-ui/react-components/core/Drawer';
 import { boolean, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React, { useState } from 'react';

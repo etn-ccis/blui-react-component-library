@@ -1,6 +1,6 @@
 # Empty State
 
-The `<EmptyState>` component is an element that can be used as a placeholder when no data is present (such as an empty list, or a placeholder page for future content). This is only used when no data is available, rather than during loading (see [empty states pattern](https://pxblue.github.io/patterns/empty-states)).
+The `<EmptyState>` component is an element that can be used as a placeholder when no data is present (such as an empty list, or a placeholder page for future content). This is only used when no data is available, rather than during loading (see [empty states pattern](https://brightlayer-ui.github.io/patterns/empty-states)).
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 200px" alt="Empty State component with action button" src="./images/emptyState.png">
@@ -13,7 +13,7 @@ The `<EmptyState>` component is an element that can be used as a placeholder whe
 </div>
 
 ```tsx
-import { EmptyState } from '@pxblue/react-components';
+import { EmptyState } from '@brightlayer-ui/react-components';
 
 <EmptyState icon={<AlertIcon fontSize={'inherit'} />} title={'No Alarms Found'} />;
 ```
@@ -36,7 +36,7 @@ Any other props supplied will be provided to the root element (`div`).
 
 ### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
 | Name        | Description                        |
 | ----------- | ---------------------------------- |

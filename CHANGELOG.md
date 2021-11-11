@@ -2,6 +2,18 @@
 
 ## v5.3.2 (November 11, 2021)
 
+### Changed
+
+-   Changed package namespace from `@pxblue` to `@brightlayer-ui`.
+
+## Package Migration Notice
+
+Previous versions listed after this indicator refer to our deprecated `@pxblue` packages.
+
+---
+
+## v5.3.2 (November 11, 2021)
+
 ### Updated
 
 -   Import material-ui components via default imports instead of named imports to reduce overall bundle size.
