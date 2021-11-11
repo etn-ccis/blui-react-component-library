@@ -52,7 +52,7 @@ export const withMultipleNavGroups = (): StoryFnReactReturnType => {
 
     return (
         <Drawer open={boolean('open', true)} activeItem={selected}>
-            <DrawerHeader icon={<Menu />} title={'PX Blue Drawer'} subtitle={'with multiple navigation groups'} />
+            <DrawerHeader icon={<Menu />} title={'Brightlayer UI Drawer'} subtitle={'with multiple navigation groups'} />
             <DrawerBody>
                 <DrawerNavGroup title={text('navGroup[0].title', 'First DrawerNavGroup')} items={navGroupItems1} />
                 {boolean('Add Spacer', true) && <Spacer />}

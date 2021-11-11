@@ -154,7 +154,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
         fontColor: color('fontColor', Colors.white[50], headerGroupId),
         icon: getIcon(select('icon', ['<Menu />', '<FitnessCenter />', 'undefined'], '<Menu />', headerGroupId)),
         subtitle: text('subtitle', 'Organize your menu items here', headerGroupId),
-        title: text('title', 'PX Blue Drawer', headerGroupId),
+        title: text('title', 'Brightlayer UI Drawer', headerGroupId),
     };
 
     const bodyKnobs: DrawerBodyProps = {
