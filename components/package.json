@@ -1,7 +1,7 @@
 {
-    "name": "@brightlayer-ui/react-components",
-    "version": "5.3.1",
-    "description": "React components for Brightlayer UI applications",
+    "name": "@pxblue/react-components",
+    "version": "5.3.2-beta.0",
+    "description": "React components for PX Blue applications",
     "scripts": {
         "test": "jest src",
         "build": "tsc --p tsconfig.lib.json",
