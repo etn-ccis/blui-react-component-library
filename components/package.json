@@ -1,7 +1,7 @@
 {
-    "name": "@pxblue/react-components",
-    "version": "5.3.2",
-    "description": "React components for PX Blue applications",
+    "name": "@brightlayer-ui/react-components",
+    "version": "5.3.2-beta.0",
+    "description": "React components for Brightlayer UI applications",
     "scripts": {
         "test": "jest src",
         "build": "tsc --p tsconfig.lib.json",
@@ -65,6 +65,6 @@
     "directories": {
         "doc": "docs"
     },
-    "author": "brightlayer-ui <brightlayer-ui@eaton.com>",
+    "author": "Brightlayer UI <brightlayer-ui@eaton.com>",
     "license": "BSD-3-Clause"
 }
