@@ -8,7 +8,7 @@
         "@material-ui/icons": "^4.5.1",
         "@brightlayer-ui/colors": "^3.0.1",
         "@brightlayer-ui/icons-mui": "^2.7.0",
-        "@brightlayer-ui/react-components": "^5.3.2",
+        "@brightlayer-ui/react-components": "^5.3.2-beta.0",
         "@brightlayer-ui/react-themes": "^6.1.0",
         "@brightlayer-ui/storybook-rtl-addon": "^1.1.0",
         "@brightlayer-ui/storybook-themes": "^1.1.0",
