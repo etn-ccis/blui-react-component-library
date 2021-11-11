@@ -1,4 +1,4 @@
-import { Avatar } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
 import { createShallow } from '@material-ui/core/test-utils';
 import SendIcon from '@material-ui/icons/Send';
 import Enzyme from 'enzyme';

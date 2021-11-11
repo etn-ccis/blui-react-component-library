@@ -1,20 +1,30 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Enzyme from 'enzyme';
+import { Mount } from '../types';
 // import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { DropdownToolbar } from './DropdownToolbar';
-import { ListItemText, Typography } from '@material-ui/core';
-import { Menu } from '@material-ui/icons';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
+import Menu from '@material-ui/icons/Menu';
 import { act } from 'react-dom/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
 
 Enzyme.configure({ adapter: new Adapter() });
+let mount: Mount;
 
 describe('DropdownToolbar', () => {
+    beforeEach(() => {
+        mount = createMount({ strict: true });
+    });
+
+    afterEach(() => {
+        mount.cleanUp();
+    });
     it('should render without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<DropdownToolbar title={'title'} />, div);
-        ReactDOM.unmountComponentAtNode(div);
     });
 
     it('should render correct title and subtitle', () => {

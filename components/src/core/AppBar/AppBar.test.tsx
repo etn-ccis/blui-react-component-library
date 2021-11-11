@@ -1,17 +1,26 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Enzyme from 'enzyme';
+import { Mount } from '../types';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { createMount } from '@material-ui/core/test-utils';
 import { AppBar } from './AppBar';
-import { AppBar as MuiAppBar } from '@material-ui/core';
+import MuiAppBar from '@material-ui/core/AppBar';
 
 Enzyme.configure({ adapter: new Adapter() });
+let mount: Mount;
 
 describe('AppBar', () => {
+    beforeEach(() => {
+        mount = createMount({ strict: true });
+    });
+
+    afterEach(() => {
+        mount.cleanUp();
+    });
     it('should render without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<AppBar />, div);
-        ReactDOM.unmountComponentAtNode(div);
     });
 
     it('should render at the correct default sizes', () => {

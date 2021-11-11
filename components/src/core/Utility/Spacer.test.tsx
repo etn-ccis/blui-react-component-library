@@ -24,7 +24,6 @@ describe('Spacer', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<Spacer />, div);
-        ReactDOM.unmountComponentAtNode(div);
     });
     it('renders default properties', () => {
         const wrapper = shallow(<Spacer />);

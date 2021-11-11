@@ -1,4 +1,4 @@
-import { Typography, TypographyProps } from '@material-ui/core';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import React from 'react';
 import PropTypes from 'prop-types';

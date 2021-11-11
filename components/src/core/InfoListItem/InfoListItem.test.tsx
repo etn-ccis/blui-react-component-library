@@ -11,7 +11,7 @@ import color from 'color';
 
 import Chevron from '@material-ui/icons/ChevronRight';
 import PersonIcon from '@material-ui/icons/Person';
-import { Avatar } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
 
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 
@@ -33,7 +33,6 @@ describe('InfoListItem', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<InfoListItem title={'test'} />, div);
-        ReactDOM.unmountComponentAtNode(div);
     });
 
     it('renders with icon', () => {

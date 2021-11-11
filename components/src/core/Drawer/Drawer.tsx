@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import {
-    Drawer as MUIDrawer,
-    DrawerProps as MUIDrawerProps,
-    createStyles,
-    makeStyles,
-    Theme,
-    useTheme,
-} from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import createStyles from '@material-ui/core/styles/createStyles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import useTheme from '@material-ui/core/styles/useTheme';
+import MUIDrawer, { DrawerProps as MUIDrawerProps } from '@material-ui/core/Drawer';
 import { DrawerBodyProps } from './DrawerBody';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
 import { DrawerContext } from './DrawerContext';

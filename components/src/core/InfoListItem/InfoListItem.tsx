@@ -1,5 +1,10 @@
 import React, { ReactNode, useCallback } from 'react';
-import { Avatar, Divider, ListItem, ListItemAvatar, ListItemText, Typography, ListItemProps } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
+import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
 import Chevron from '@material-ui/icons/ChevronRight';
 
 import { InfoListItemClasses, useStyles } from './InfoListItem.styles';

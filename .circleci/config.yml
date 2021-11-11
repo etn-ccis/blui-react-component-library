@@ -53,6 +53,9 @@ jobs:
                   paths:
                       - dist
                       - components/coverage
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
     coverage_report:
         working_directory: ~/react-component-library
         docker:
@@ -123,6 +126,9 @@ jobs:
                   root: .
                   paths:
                       - demos/storybook/storybook-static
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
 
     # Builds the Showcase app using @pxblue/react-components persisted in /dist folder.
     build_showcase:
@@ -166,6 +172,9 @@ jobs:
                   command: |
                       cd demos/showcase
                       yarn build
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
 
     deploy_storybook:
         docker:
@@ -173,10 +182,10 @@ jobs:
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
-            - DEV_TARGET: https://github.com/pxblue-components/react-dev
-            - MASTER_TARGET: https://github.com/pxblue-components/react
+            - DEV_TARGET: https://github.com/brightlayer-ui-components/react-dev
+            - MASTER_TARGET: https://github.com/brightlayer-ui-components/react
             - GH_EMAIL: pxblue@eaton.com
-            - GH_NAME: PX Blue Agent
+            - GH_NAME: Brightlayer UI Agent
         steps:
             - checkout
             - attach_workspace:
@@ -197,10 +206,6 @@ jobs:
 
                       cd out
                       git rm -rf .
-                      # Add the CNAME record for pxblue.eaton.com
-                      # if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                      #   echo "pxblue-components.eaton.com/react" > CNAME
-                      # fi
                       cd ..
 
                       cp -a storybook-static/. out/.

@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import { mergeStyleProp } from './utilities';
