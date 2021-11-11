@@ -1,6 +1,6 @@
 # Drawer
 
-The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific PX Blue functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The PX Blue Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
+The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific Brightlayer UI functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The Brightlayer UI Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 200px" alt="Nested Drawer" src="./images/drawer.png">
@@ -17,7 +17,7 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 ### Drawer Usage
 
 ```tsx
-import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, DrawerFooter } from '@pxblue/react-components';
+import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, DrawerFooter } from '@brightlayer-ui/react-components';
 ...
 <Drawer open={true}>
     <DrawerHeader />
@@ -69,7 +69,7 @@ The `Drawer` has three `variant`s:
 
 #### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. The Drawer supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The Drawer supports the following keys:
 
 | Name    | Description                                     |
 | ------- | ----------------------------------------------- |
@@ -79,7 +79,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. The Dr
 
 ## Drawer Header
 
-The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By default, it renders multiple lines of text in the PX Blue style. If you supply a `titleContent`, you can render your own custom content in the title area.
+The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By default, it renders multiple lines of text in the Brightlayer UI style. If you supply a `titleContent`, you can render your own custom content in the title area.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 600px" alt="Drawer Header Anatomy" src="./images/drawerHeaderAnatomy.png">
@@ -109,7 +109,7 @@ Any other props will be provided to the root element [**Material UI Toolbar**](h
 
 #### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerHeader>` supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerHeader>` supports the following keys:
 
 | Name             | Description                                      |
 | ---------------- | ------------------------------------------------ |
@@ -128,7 +128,7 @@ The `<DrawerSubheader>` is an optional section that renders below the header and
 ### Drawer Subheader Usage
 
 ```tsx
-import DrawerSubheader from '@pxblue/react-components/core/Drawer';
+import DrawerSubheader from '@brightlayer-ui/react-components/core/Drawer';
 ...
 <DrawerSubheader>
     <div>Custom Subheader Content</div>
@@ -146,7 +146,7 @@ The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical 
 ### Drawer Body Usage
 
 ```tsx
-import DrawerBody from '@pxblue/react-components/core/Drawer';
+import DrawerBody from '@brightlayer-ui/react-components/core/Drawer';
 ...
 <DrawerBody>
     <DrawerNavGroup title={'Nav Items'} items={...} />
@@ -169,7 +169,7 @@ Any other props supplied will be provided to the root element (`div`).
 
 #### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerBody>` supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerBody>` supports the following keys:
 
 | Name | Description                        |
 | ---- | ---------------------------------- |
@@ -204,7 +204,7 @@ Any other props will be provided to the root element [**Material UI List**](http
 
 #### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerNavGroup>` supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerNavGroup>` supports the following keys:
 
 | Name              | Description                                   |
 | ----------------- | --------------------------------------------- |
@@ -224,7 +224,7 @@ The `<DrawerFooter>` is an optional section that renders at the bottom of the `<
 ### Usage
 
 ```tsx
-import DrawerFooter from '@pxblue/react-components/core/Drawer';
+import DrawerFooter from '@brightlayer-ui/react-components/core/Drawer';
 ...
 <DrawerFooter>
     <div>Custom Footer goes here</div>
@@ -326,7 +326,7 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 | divider                   | Whether to show a line between all items                                                                                                                    | `boolean`               | no       | true                                                         |
 | expandIcon                | Icon used to expand drawer                                                                                                                                  | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
 | hidePadding               | Whether to hide the paddings reserved for menu item icons                                                                                                   | `boolean`               | no       |                                                              |
-| InfoListItemProps         | Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) props set by the Drawer | `InfoListItemProps`     | no       |                                                              |
+| InfoListItemProps         | Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) props set by the Drawer | `InfoListItemProps`     | no       |                                                              |
 | itemFontColor             | The color used for the item text                                                                                                                            | `string`                | no       | varies for light/dark theme                                  |
 | itemIconColor             | The color used for the icon                                                                                                                                 | `string`                | no       | varies for light/dark theme                                  |
 | ripple                    | Whether to apply material ripple effect to items                                                                                                            | `boolean`               | no       | true                                                         |
@@ -380,7 +380,7 @@ import { Link } from 'react-router-dom';
 
 # Drawer Layout
 
-The `<DrawerLayout>` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with a PX Blue `<Drawer>`. It accepts a `<Drawer>` as a prop, and the main page content is passed in through child elements.
+The `<DrawerLayout>` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with a Brightlayer UI `<Drawer>`. It accepts a `<Drawer>` as a prop, and the main page content is passed in through child elements.
 
 <div style="width: 100%; text-align: center">
     <img width="100%" style="max-width: 600px" alt="DrawerLayout with labels" src="./images/drawerLayout.png">
@@ -389,7 +389,7 @@ The `<DrawerLayout>` component is used to provide the appropriate resizing behav
 ## Drawer Layout Usage
 
 ```tsx
-import { Drawer, DrawerLayout } from '@pxblue/react-components';
+import { Drawer, DrawerLayout } from '@brightlayer-ui/react-components';
 ...
 <DrawerLayout drawer={<Drawer ... />}>
     <>
@@ -415,7 +415,7 @@ Any other props supplied will be provided to the root element (`div`).
 
 #### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. The `<DrawerLayout>` supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerLayout>` supports the following keys:
 
 | Name    | Description                                  |
 | ------- | -------------------------------------------- |

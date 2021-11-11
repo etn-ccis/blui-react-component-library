@@ -4,7 +4,7 @@ import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
-import { PXBlueDrawerInheritableProperties } from './Drawer';
+import { BLUIDrawerInheritableProperties } from './Drawer';
 import { DrawerNavGroupProps } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
 import { useDrawerContext } from './DrawerContext';
@@ -37,7 +37,7 @@ export type NavItem = {
 
     // text to be displayed
     title: string;
-} & PXBlueDrawerInheritableProperties;
+} & BLUIDrawerInheritableProperties;
 
 export type NestedNavItem = Omit<NavItem, 'icon'>;
 

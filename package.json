@@ -1,7 +1,7 @@
 {
     "name": "react-components",
     "version": "0.0.0",
-    "description": "React components for PX Blue applications",
+    "description": "React components for Brightlayer UI applications",
     "scripts": {
         "initialize": "bash scripts/initializeSubmodule.sh",
         "test": "cd components && yarn test",
@@ -21,20 +21,20 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/pxblue/react-component-library"
+        "url": "https://github.com/brightlayer-ui/react-component-library"
     },
     "keywords": [
         "react",
         "components",
-        "pxblue"
+        "brightlayer-ui"
     ],
     "bugs": {
-        "url": "https://github.com/pxblue/react-component-library/issues"
+        "url": "https://github.com/brightlayer-ui/react-component-library/issues"
     },
-    "homepage": "https://github.com/pxblue/react-component-library#readme",
+    "homepage": "https://github.com/brightlayer-ui/react-component-library#readme",
     "directories": {
         "doc": "docs"
     },
-    "author": "pxblue <pxblue@eaton.com>",
+    "author": "Brightlayer UI <brightlayer-ui@eaton.com>",
     "license": "BSD-3-Clause"
 }

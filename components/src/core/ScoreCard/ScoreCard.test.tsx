@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Divider, List, Typography } from '@material-ui/core';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import { MoreVert } from '@material-ui/icons';
 import Enzyme from 'enzyme';

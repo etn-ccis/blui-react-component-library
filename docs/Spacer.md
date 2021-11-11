@@ -9,7 +9,7 @@ An invisible utility component that acts as a spacer element in various layouts.
 ## Usage
 
 ```tsx
-import { Spacer } from '@pxblue/react-components';
+import { Spacer } from '@brightlayer-ui/react-components';
 ...
 <div style={{display: 'flex'}}>
     {/* Left Content */}
@@ -35,7 +35,7 @@ Any other props supplied will be provided to the root element (`div`).
 
 ### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
 | Name | Description                        |
 | ---- | ---------------------------------- |

@@ -8,7 +8,7 @@ The `<DropdownToolbar>` component is used to display a toolbar with a dropdown m
 ## Usage
 
 ```tsx
-import { DropdownToolbar } from '@pxblue/react-components';
+import { DropdownToolbar } from '@brightlayer-ui/react-components';
 ...
 <DropdownToolbar title={"Title"} subtitle={"Subtitle"} menuGroups={[
   {
@@ -51,7 +51,7 @@ Any other props supplied will be provided to the root element ([`Toolbar`](https
 
 ### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
 | Name                  | Description                                            |
 | --------------------- | ------------------------------------------------------ |
@@ -65,7 +65,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 
 ### Toolbar Menu Groups Object
 
-The `menuGroups` prop of the `<DropdownToolbar>` includes many properties from the [`<DrawerNavGroup>`](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) array found within a [`<DrawerBody>`](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story).
+The `menuGroups` prop of the `<DropdownToolbar>` includes many properties from the [`<DrawerNavGroup>`](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) array found within a [`<DrawerBody>`](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story).
 
 <div style="overflow: auto;">
 

@@ -7,7 +7,7 @@
 ## Usage
 
 ```tsx
-import { ListItemTag } from '@pxblue/react-components';
+import { ListItemTag } from '@brightlayer-ui/react-components';
 
 <ListItemTag label={'Foo Bar'} backgroundColor={'gold'} fontColor={'black'} />;
 ```
@@ -28,7 +28,7 @@ Any other props will be provided to the root element [**Material UI Typography**
 
 ### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
 | Name | Description                        |
 | ---- | ---------------------------------- |

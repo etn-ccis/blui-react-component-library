@@ -14,11 +14,11 @@ Card component that calls attention to particular values.
 </div>
 
 ```tsx
-import { Hero, HeroBanner, ScoreCard } from '@pxblue/react-components';
+import { Hero, HeroBanner, ScoreCard } from '@brightlayer-ui/react-components';
 import { List, Card, ListItem, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import MoreVert from '@material-ui/icons/MoreVert';
-import { Temp } from '@pxblue/icons-mui';
+import { Temp } from '@brightlayer-ui/icons-mui';
 
 ...
 <ScoreCard
@@ -78,7 +78,7 @@ Any other props will be provided to the root element [**Material UI Card**](http
 
 ### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
 | Name             | Description                                             |
 | ---------------- | ------------------------------------------------------- |

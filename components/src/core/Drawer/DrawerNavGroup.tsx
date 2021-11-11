@@ -8,10 +8,10 @@ import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import PropTypes from 'prop-types';
 import {
-    PXBlueDrawerNavGroupInheritableProperties,
-    PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+    BLUIDrawerNavGroupInheritableProperties,
+    BLUIDrawerNavGroupInheritablePropertiesPropTypes,
 } from './Drawer';
-import { white, darkBlack } from '@pxblue/colors';
+import { white, darkBlack } from '@brightlayer-ui/colors';
 import { DrawerNavItem, NavItem, NestedNavItem } from './DrawerNavItem';
 
 export type DrawerNavGroupProps = ListProps & {
@@ -31,7 +31,7 @@ export type DrawerNavGroupProps = ListProps & {
 
     // Custom element, substitute for title
     titleContent?: ReactNode;
-} & PXBlueDrawerNavGroupInheritableProperties;
+} & BLUIDrawerNavGroupInheritableProperties;
 
 type DrawerNavGroupClasses = {
     active?: string;
@@ -200,7 +200,7 @@ DrawerNavGroup.propTypes = {
             statusColor: PropTypes.string,
         })
     ).isRequired,
-    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+    ...BLUIDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerNavGroup.defaultProps = {
     classes: {},

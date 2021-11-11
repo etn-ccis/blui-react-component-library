@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { HTMLAttributes } from 'react';
 import {
-    PXBlueDrawerNavGroupInheritableProperties,
-    PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+    BLUIDrawerNavGroupInheritableProperties,
+    BLUIDrawerNavGroupInheritablePropertiesPropTypes,
 } from './Drawer';
 import PropTypes from 'prop-types';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
@@ -16,7 +16,7 @@ export type DrawerBodyProps = HTMLAttributes<HTMLDivElement> & {
     backgroundColor?: string;
     classes?: DrawerBodyClasses;
     drawerOpen?: boolean;
-} & PXBlueDrawerNavGroupInheritableProperties;
+} & BLUIDrawerNavGroupInheritableProperties;
 
 const useStyles = makeStyles({
     root: {
@@ -116,7 +116,7 @@ DrawerBody.propTypes = {
         root: PropTypes.string,
     }),
     drawerOpen: PropTypes.bool,
-    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+    ...BLUIDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerBody.defaultProps = {
     classes: {},
