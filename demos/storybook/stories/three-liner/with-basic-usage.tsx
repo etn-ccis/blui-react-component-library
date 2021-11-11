@@ -2,7 +2,7 @@ import React from 'react';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
-import { ThreeLiner } from '@pxblue/react-components';
+import { ThreeLiner } from '@brightlayer-ui/react-components';
 
 export const withBasicUsage = (): StoryFnReactReturnType => {
     const title = text('title', 'title');

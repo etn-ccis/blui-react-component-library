@@ -1,10 +1,10 @@
-import { InfoListItem } from '@pxblue/react-components';
+import { InfoListItem } from '@brightlayer-ui/react-components';
 import React from 'react';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
 import { withA11y } from '@storybook/addon-a11y';
 import { useDarkMode } from 'storybook-dark-mode';
-import { black } from '@pxblue/colors';
+import { black } from '@brightlayer-ui/colors';
 import List from '@material-ui/core/List';
 
 const padDrawer = (storyFn: any): JSX.Element => (

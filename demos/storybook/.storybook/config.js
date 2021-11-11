@@ -2,14 +2,14 @@ import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { createMuiTheme, jssPreset, MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
-import { blue as ReactTheme, blueDark as ReactThemeDark } from '@pxblue/react-themes';
-import '@pxblue/react-themes/open-sans';
-import { pxblueTheme } from '@pxblue/storybook-themes';
+import { blue as ReactTheme, blueDark as ReactThemeDark } from '@brightlayer-ui/react-themes';
+import '@brightlayer-ui/react-themes/open-sans';
+import { bluiTheme } from '@brightlayer-ui/storybook-themes';
 import { CssBaseline } from '@material-ui/core';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
 import addons, { useEffect, useState } from '@storybook/addons';
-import { DIR_CHANGE_EVENT, getDirection } from '@pxblue/storybook-rtl-addon';
+import { DIR_CHANGE_EVENT, getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 import { useDarkMode } from 'storybook-dark-mode/dist';
 
 const channel = addons.getChannel();
@@ -38,23 +38,23 @@ const newViewports = {
     },
 };
 
-pxblueTheme.brandTitle = 'PX Blue React Component Library';
-pxblueTheme.brandUrl = 'https://pxblue.github.io';
+bluiTheme.brandTitle = 'Brightlayer UI React Component Library';
+bluiTheme.brandUrl = 'https://brightlayer-ui.github.io';
 
 if (window.top.location.hostname === 'localhost') {
-    pxblueTheme.brandImage = require('../assets/pxblue-react-alpha.svg');
+    bluiTheme.brandImage = require('../assets/brightlayer-ui-react-alpha.svg');
 } else if (window.top.location.pathname.slice(0, 11) === '/react-dev/') {
-    pxblueTheme.brandImage = require('../assets/pxblue-react-beta.svg');
+    bluiTheme.brandImage = require('../assets/brightlayer-ui-react-beta.svg');
 } else {
-    pxblueTheme.brandImage = require('../assets/pxblue-react.svg');
+    bluiTheme.brandImage = require('../assets/brightlayer-ui-react.svg');
 }
 
 // Only set theme inside storybook canvas.
-const themeInit = { dark: pxblueTheme, light: pxblueTheme, current: 'light' };
+const themeInit = { dark: bluiTheme, light: bluiTheme, current: 'light' };
 window.localStorage.setItem('sb-addon-themes-3', JSON.stringify(themeInit));
 
 addParameters({
-    name: 'PXBlue',
+    name: 'BLUI',
     /* Users will see this while the component is loading. */
     notes: {
         markdown: '<div> </div>',
@@ -67,9 +67,9 @@ addParameters({
     },
     darkMode: {
         // Override the default light theme
-        light: { ...pxblueTheme },
+        light: { ...bluiTheme },
         // Override the default dark theme
-        dark: { ...pxblueTheme },
+        dark: { ...bluiTheme },
     },
 });
 

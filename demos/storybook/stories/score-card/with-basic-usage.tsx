@@ -1,5 +1,5 @@
 import { List, ListItem, ListItemText } from '@material-ui/core';
-import { ScoreCard } from '@pxblue/react-components';
+import { ScoreCard } from '@brightlayer-ui/react-components';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

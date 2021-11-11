@@ -1,5 +1,5 @@
 import { Avatar, Divider, Menu, MenuItem, Typography } from '@material-ui/core';
-import { UserMenu } from '@pxblue/react-components';
+import { UserMenu } from '@brightlayer-ui/react-components';
 import { State, Store } from '@sambego/storybook-state';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

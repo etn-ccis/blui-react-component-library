@@ -1,5 +1,5 @@
-import * as Colors from '@pxblue/colors';
-import { ListItemTag } from '@pxblue/react-components';
+import * as Colors from '@brightlayer-ui/colors';
+import { ListItemTag } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { boolean, color, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';

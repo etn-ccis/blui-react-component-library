@@ -1,11 +1,11 @@
 import { AppBar, Avatar, makeStyles, Toolbar, Typography } from '@material-ui/core';
-import { Spacer, UserMenu, UserMenuItem } from '@pxblue/react-components';
+import { Spacer, UserMenu, UserMenuItem } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { getDirection } from '@pxblue/storybook-rtl-addon';
+import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 import { getLeftToRightIconTransform } from '../../src/utils';
 import React from 'react';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import { Email, ExitToApp, Settings } from '@material-ui/icons';
 import { useDarkMode } from 'storybook-dark-mode';
 

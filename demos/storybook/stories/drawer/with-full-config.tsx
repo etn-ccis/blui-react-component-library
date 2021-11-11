@@ -15,7 +15,7 @@ import {
 } from '@material-ui/icons';
 import MoveToInboxIcon from '@material-ui/icons/MoveToInbox';
 import SendIcon from '@material-ui/icons/Send';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import {
     Drawer,
     DrawerComponentProps,
@@ -28,7 +28,7 @@ import {
     DrawerNavGroupProps,
     NavItem,
     DrawerFooterProps,
-} from '@pxblue/react-components';
+} from '@brightlayer-ui/react-components';
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React, { useState } from 'react';

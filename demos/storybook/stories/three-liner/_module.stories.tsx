@@ -1,4 +1,4 @@
-import { ThreeLiner } from '@pxblue/react-components';
+import { ThreeLiner } from '@brightlayer-ui/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { storyParams, storyWrapper } from '../../src/utils';
 import { withA11y } from '@storybook/addon-a11y';

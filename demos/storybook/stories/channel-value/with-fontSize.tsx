@@ -1,6 +1,6 @@
 import Trend from '@material-ui/icons/TrendingUp';
-import * as Colors from '@pxblue/colors';
-import { ChannelValue } from '@pxblue/react-components';
+import * as Colors from '@brightlayer-ui/colors';
+import { ChannelValue } from '@brightlayer-ui/react-components';
 import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { getLeftToRightIconTransform } from '../../src/utils';
