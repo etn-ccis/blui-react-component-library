@@ -15,7 +15,7 @@ The `<ChannelValue>` component is used to display a channel value (and units). T
 </div>
 
 ```tsx
-import { ChannelValue } from '@pxblue/react-components';
+import { ChannelValue } from '@brightlayer-ui/react-components';
 ...
 <ChannelValue value={100} units={'%'} icon={<Icon/>} />
 ```
@@ -40,7 +40,7 @@ Any other props supplied will be provided to the root element (`span`).
 
 ### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
 | Name  | Description                         |
 | ----- | ----------------------------------- |

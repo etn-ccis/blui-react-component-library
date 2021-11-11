@@ -1,7 +1,7 @@
 {
     "name": "react-components",
     "version": "0.0.0",
-    "description": "React components for PX Blue applications",
+    "description": "React components for Brightlayer UI applications",
     "scripts": {
         "initialize": "bash scripts/initializeSubmodule.sh",
         "test": "cd components && yarn test",
@@ -20,31 +20,31 @@
         "precommit": "yarn initialize && yarn install:dependencies && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts",
         "coverage": "yarn test --coverage --watchAll=false",
         "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json",
-        "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
-        "tag:package": "cd dist && npx -p @pxblue/tag pxb-tag"
+        "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
+        "tag:package": "cd dist && npx -p @brightlayer-ui/tag blui-tag"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/pxblue/react-component-library"
+        "url": "https://github.com/brightlayer-ui/react-component-library"
     },
     "keywords": [
         "react",
         "components",
-        "pxblue"
+        "brightlayer-ui"
     ],
     "bugs": {
-        "url": "https://github.com/pxblue/react-component-library/issues"
+        "url": "https://github.com/brightlayer-ui/react-component-library/issues"
     },
-    "homepage": "https://github.com/pxblue/react-component-library#readme",
+    "homepage": "https://github.com/brightlayer-ui/react-component-library#readme",
     "directories": {
         "doc": "docs"
     },
-    "author": "pxblue <pxblue@eaton.com>",
+    "author": "Brightlayer UI <brightlayer-ui@eaton.com>",
     "license": "BSD-3-Clause",
     "devDependencies": {
-        "@pxblue/prettier-config": "^1.0.3",
+        "@brightlayer-ui/prettier-config": "^1.0.3",
         "codecov": "^3.8.1",
         "prettier": "^2.3.0"
     },
-    "prettier": "@pxblue/prettier-config"
+    "prettier": "@brightlayer-ui/prettier-config"
 }

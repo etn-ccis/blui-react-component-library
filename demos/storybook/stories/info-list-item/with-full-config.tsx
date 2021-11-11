@@ -1,7 +1,7 @@
-import * as Colors from '@pxblue/colors';
-import { Device } from '@pxblue/icons-mui';
+import * as Colors from '@brightlayer-ui/colors';
+import { Device } from '@brightlayer-ui/icons-mui';
 
-import { InfoListItem } from '@pxblue/react-components';
+import { InfoListItem } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { boolean, color, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';

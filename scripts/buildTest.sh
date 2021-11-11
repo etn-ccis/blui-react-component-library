@@ -91,7 +91,7 @@ echo -ne " index.js:  "
 if [ ! -f ./UserMenu/index.js ]; then echo -e "${RED}Not Found${NC}" && exit 1; else echo -e "${GREEN}Found${NC}"; fi
 
 echo -e "\r\n${GREEN}-----------------------------------"
-echo -e "@pxblue/react-components package successfully created"
+echo -e "@brightlayer-ui/react-components package successfully created"
 echo -e "-----------------------------------${NC}\r\n\r\n"
 
 exit 0

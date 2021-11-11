@@ -1,7 +1,7 @@
 import React from 'react';
 import { number, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { AppBar } from '@pxblue/react-components';
+import { AppBar } from '@brightlayer-ui/react-components';
 import { Toolbar, Typography } from '@material-ui/core';
 
 export const withVariants = (): StoryFnReactReturnType => {

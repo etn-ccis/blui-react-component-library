@@ -1,6 +1,6 @@
 import { Avatar, makeStyles } from '@material-ui/core';
-import * as Colors from '@pxblue/colors';
-import { UserMenu } from '@pxblue/react-components';
+import * as Colors from '@brightlayer-ui/colors';
+import { UserMenu } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';

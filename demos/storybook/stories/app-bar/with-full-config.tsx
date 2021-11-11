@@ -2,12 +2,12 @@ import React from 'react';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
-import { AppBar, Spacer, ThreeLiner } from '@pxblue/react-components';
+import { AppBar, Spacer, ThreeLiner } from '@brightlayer-ui/react-components';
 import bgImage from '../../assets/farm.jpg';
 import { Menu, Work, Settings, Home } from '@material-ui/icons';
 import { IconButton, makeStyles, Toolbar } from '@material-ui/core';
 import { action } from '@storybook/addon-actions';
-import { getDirection } from '@pxblue/storybook-rtl-addon';
+import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(() => ({

@@ -10,13 +10,13 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import useTheme from '@material-ui/core/styles/useTheme';
 import Button from '@material-ui/core/Button';
-import { EmptyState } from '@pxblue/react-components';
+import { EmptyState } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { getLeftToRightIconTransform } from '../../src/utils';
 import React, { useState } from 'react';
 
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

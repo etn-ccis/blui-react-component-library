@@ -97,7 +97,7 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
     );
 };
 /**
- * [ListItemTag](https://pxblue-components.github.io/react/?path=/info/components-list-item-tag--get-read-me-story) component
+ * [ListItemTag](https://brightlayer-ui-components.github.io/react/?path=/info/components-list-item-tag--get-read-me-story) component
  *
  * `<ListItemTag>` is a text item with a colored background and rounded corners that is used to tag lists.
  */

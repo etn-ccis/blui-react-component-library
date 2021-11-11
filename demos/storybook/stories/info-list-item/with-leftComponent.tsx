@@ -1,7 +1,7 @@
-import { Device } from '@pxblue/icons-mui';
-import { InfoListItem } from '@pxblue/react-components';
+import { Device } from '@brightlayer-ui/icons-mui';
+import { InfoListItem } from '@brightlayer-ui/react-components';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { getDirection } from '@pxblue/storybook-rtl-addon';
+import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 
 import React from 'react';
 
