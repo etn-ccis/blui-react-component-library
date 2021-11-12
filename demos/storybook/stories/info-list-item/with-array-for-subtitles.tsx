@@ -1,5 +1,5 @@
-import { Leaf, Temp } from '@pxblue/icons-mui';
-import { InfoListItem } from '@pxblue/react-components';
+import { Leaf, Temp } from '@brightlayer-ui/icons-mui';
+import { InfoListItem } from '@brightlayer-ui/react-components';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

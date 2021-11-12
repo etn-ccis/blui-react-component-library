@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import { DrawerLayout } from '@pxblue/react-components';
-import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
+import { DrawerLayout } from '@brightlayer-ui/react-components';
+import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@brightlayer-ui/react-components/core/Drawer';
 import { boolean, number, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
@@ -31,7 +31,7 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                     titleContent={
                         <div style={{ paddingLeft: '20px', paddingTop: '15px' }}>
                             <Typography variant="subtitle2" style={{ fontWeight: 100 }}>
-                                PX Blue
+                                Brightlayer UI
                             </Typography>
                             <Typography variant="h6" style={{ marginTop: '-10px' }}>
                                 DrawerLayout

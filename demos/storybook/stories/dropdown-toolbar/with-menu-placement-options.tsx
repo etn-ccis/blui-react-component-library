@@ -1,4 +1,4 @@
-import { DropdownToolbar } from '@pxblue/react-components';
+import { DropdownToolbar } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';

@@ -1,8 +1,8 @@
 import { Accessibility, Add, AddAPhoto, FitnessCenter, NotificationsActive, PinDrop, Remove } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
-import * as Colors from '@pxblue/colors';
-import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@pxblue/react-components';
-import { Drawer, DrawerHeader } from '@pxblue/react-components/core/Drawer';
+import * as Colors from '@brightlayer-ui/colors';
+import { ChannelValue, DrawerBody, DrawerNavGroup, ListItemTag } from '@brightlayer-ui/react-components';
+import { Drawer, DrawerHeader } from '@brightlayer-ui/react-components/core/Drawer';
 import { boolean, select, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

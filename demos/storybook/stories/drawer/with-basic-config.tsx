@@ -1,5 +1,5 @@
 import { Accessibility, Menu, NotificationsActive, Person, Today, Dashboard, LocalLibrary } from '@material-ui/icons';
-import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@pxblue/react-components';
+import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-components';
 import { boolean, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

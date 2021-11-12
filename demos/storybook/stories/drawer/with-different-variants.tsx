@@ -1,4 +1,4 @@
-import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components';
+import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup } from '@brightlayer-ui/react-components';
 import { boolean, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

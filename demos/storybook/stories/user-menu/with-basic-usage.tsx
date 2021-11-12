@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar } from '@material-ui/core';
 import { Email, ExitToApp, Settings } from '@material-ui/icons';
-import { UserMenu, UserMenuItem } from '@pxblue/react-components';
+import { UserMenu, UserMenuItem } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';

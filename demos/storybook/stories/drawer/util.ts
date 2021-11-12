@@ -1,4 +1,4 @@
-import { NavItem } from '@pxblue/react-components';
+import { NavItem } from '@brightlayer-ui/react-components';
 import { Store } from '@sambego/storybook-state';
 
 export const addClickEvents = (store: Store<DrawerState>, items: NavItem[]): void => {

@@ -1,7 +1,7 @@
 import { Divider } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
-import * as Colors from '@pxblue/colors';
-import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@pxblue/react-components/core/Drawer';
+import * as Colors from '@brightlayer-ui/colors';
+import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@brightlayer-ui/react-components/core/Drawer';
 import { boolean, color } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

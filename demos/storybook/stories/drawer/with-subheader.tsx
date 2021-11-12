@@ -16,7 +16,7 @@ import {
     DrawerHeader,
     DrawerNavGroup,
     DrawerSubheader,
-} from '@pxblue/react-components/core/Drawer';
+} from '@brightlayer-ui/react-components/core/Drawer';
 import { boolean, optionsKnob } from '@storybook/addon-knobs';
 import { OptionsKnobOptionsDisplay } from '@storybook/addon-knobs/dist/components/types/Options';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';

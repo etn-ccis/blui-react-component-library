@@ -1,7 +1,7 @@
 import { List } from '@material-ui/core';
 import { Cloud, ListAlt, Notifications } from '@material-ui/icons';
-import * as Colors from '@pxblue/colors';
-import { HeroBanner, InfoListItem, ScoreCard } from '@pxblue/react-components';
+import * as Colors from '@brightlayer-ui/colors';
+import { HeroBanner, InfoListItem, ScoreCard } from '@brightlayer-ui/react-components';
 import { boolean, color, number, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

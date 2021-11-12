@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core';
-import * as Colors from '@pxblue/colors';
-import { Spacer } from '@pxblue/react-components';
+import * as Colors from '@brightlayer-ui/colors';
+import { Spacer } from '@brightlayer-ui/react-components';
 import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

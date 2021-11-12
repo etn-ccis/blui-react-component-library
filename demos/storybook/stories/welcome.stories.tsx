@@ -1,12 +1,12 @@
 import { Button, createStyles, makeStyles, Typography } from '@material-ui/core';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { blue as ReactTheme } from '@pxblue/react-themes';
+import { blue as ReactTheme } from '@brightlayer-ui/react-themes';
 import { hideTopBanner, storyWrapper } from '../src/utils';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
 const backgroundImage = require('../assets/circles-bg.svg');
-const packageJSON = require('@pxblue/react-components/package.json');
+const packageJSON = require('@brightlayer-ui/react-components/package.json');
 
 export const stories = storiesOf('Intro/Overview', module);
 
@@ -76,15 +76,15 @@ stories.addParameters({
 
 stories.addDecorator(storyWrapper);
 
-stories.add('PX Blue React Components', () => {
+stories.add('Brightlayer UI React Components', () => {
     const classes = useStyles();
-    const icon = require('../assets/pxb-icon.svg');
+    const icon = require('../assets/blui-icon.svg');
     hideTopBanner();
     return (
         <div className={classes.root}>
             <div className={classes.container}>
                 <div className={classes.icon}>
-                    <img src={icon} alt="pxb-icon" className={'rotate'} />
+                    <img src={icon} alt="blui-icon" className={'rotate'} />
                 </div>
                 <Typography variant={'h2'}>
                     Power Xpert <strong>Blue</strong>
@@ -92,7 +92,7 @@ stories.add('PX Blue React Components', () => {
                 <Typography variant={'h4'}>React Component Library</Typography>
                 {packageJSON.version && <Typography variant={'subtitle1'}>v{packageJSON.version}</Typography>}
                 <Typography variant={'subtitle1'} className={classes.description}>
-                    Learn about and interact with our PX Blue components using Storybook.
+                    Learn about and interact with our Brightlayer UI components using Storybook.
                 </Typography>
 
                 <div className={classes.buttons}>
@@ -101,7 +101,7 @@ stories.add('PX Blue React Components', () => {
                         color="primary"
                         className={classes.link}
                         target={'_blank'}
-                        href={'https://github.com/pxblue/react-component-library'}
+                        href={'https://github.com/brightlayer-ui/react-component-library'}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={classes.githubIcon}>
                             <title>github</title>

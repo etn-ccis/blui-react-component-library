@@ -2,7 +2,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/AddCircleOutlined';
 
 import DevicesIcon from '@material-ui/icons/Devices';
-import { EmptyState } from '@pxblue/react-components';
+import { EmptyState } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';

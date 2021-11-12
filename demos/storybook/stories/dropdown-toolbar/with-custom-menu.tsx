@@ -1,11 +1,11 @@
-import { DropdownToolbar, InfoListItem } from '@pxblue/react-components';
+import { DropdownToolbar, InfoListItem } from '@brightlayer-ui/react-components';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { AppBar, Menu } from '@material-ui/core';
 import { Business, House, Apartment } from '@material-ui/icons';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import { action } from '@storybook/addon-actions';
-import { getDirection } from '@pxblue/storybook-rtl-addon';
+import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 
 export const withCustomMenu = (): StoryFnReactReturnType => {
     const direction = getDirection();

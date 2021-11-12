@@ -15,7 +15,7 @@ import {
 } from '@material-ui/icons';
 import MoveToInboxIcon from '@material-ui/icons/MoveToInbox';
 import SendIcon from '@material-ui/icons/Send';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import {
     Drawer,
     DrawerComponentProps,
@@ -27,7 +27,7 @@ import {
     DrawerBodyProps,
     DrawerNavGroupProps,
     NavItem,
-} from '@pxblue/react-components';
+} from '@brightlayer-ui/react-components';
 import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
@@ -135,7 +135,7 @@ export const withFullConfig = (context: DrawerStoryContext): StoryFnReactReturnT
         fontColor: color('fontColor', Colors.white[50], headerGroupId),
         icon: getIcon(select('icon', ['<Menu />', '<FitnessCenter />', 'undefined'], '<Menu />', headerGroupId)),
         subtitle: text('subtitle', 'Organize your menu items here', headerGroupId),
-        title: text('title', 'PX Blue Drawer', headerGroupId),
+        title: text('title', 'Brightlayer UI Drawer', headerGroupId),
     };
 
     const bodyKnobs: DrawerBodyProps = {

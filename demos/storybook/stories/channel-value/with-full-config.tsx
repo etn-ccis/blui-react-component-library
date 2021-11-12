@@ -1,7 +1,7 @@
 import React from 'react';
 import Trend from '@material-ui/icons/TrendingUp';
-import * as Colors from '@pxblue/colors';
-import { ChannelValue } from '@pxblue/react-components';
+import * as Colors from '@brightlayer-ui/colors';
+import { ChannelValue } from '@brightlayer-ui/react-components';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { boolean, color, number, text } from '@storybook/addon-knobs';
