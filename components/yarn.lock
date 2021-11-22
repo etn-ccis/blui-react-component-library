@@ -234,7 +234,7 @@
   dependencies:
     "@brightlayer-ui/types" "^2.0.0"
 
-"@brightlayer-ui/eslint-config@^2.0.1":
+"@brightlayer-ui/eslint-config@^2.0.5":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/eslint-config/-/eslint-config-2.0.5.tgz#b7ee0c47f4669d2ecefc45d5fc37d7a9e209ccc9"
   integrity sha512-qUxNX/1z+cmBWzbOeFftxGD7SPT+xkT1rUj++xsZjIQajEkwF1Ka+0mRlSY5qqAsQpRLGDCHDszx8uztmSm1lA==
@@ -244,18 +244,19 @@
   optionalDependencies:
     eslint-plugin-react "^7.16.0"
 
-"@brightlayer-ui/prettier-config@^1.0.2":
+"@brightlayer-ui/prettier-config@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-themes@^5.0.0":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-5.0.3.tgz#8c940decc288d92867d483d3722e5f441ad3439f"
-  integrity sha512-v+9ja0QjujVZLq3ePzxdgc02us3vjTrNif/aRwMPevyWK3TrRrHiM9T9yhE2u3M45oso7OpwBgKHr63IV8TIYA==
+"@brightlayer-ui/react-themes@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-6.1.0.tgz#d53a89adaaeb9fb665a07f076505ea654ec04afb"
+  integrity sha512-x3EIEULFjtMLFxJG2zBwx4vTgGBQeqlz2wS0V+xZft9oi/iWDwnQsBL95dgQXBJWDdRNzm8M8VpT3AbsdxLs+Q==
   dependencies:
     "@brightlayer-ui/colors" "^3.0.0"
-    typeface-open-sans "^0.0.75"
+    "@fontsource/open-sans" "^4.2.2"
+    color "^3.1.3"
 
 "@brightlayer-ui/types@^2.0.0":
   version "2.0.0"
@@ -289,6 +290,11 @@
     js-yaml "^3.13.1"
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
+
+"@fontsource/open-sans@^4.2.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.2.tgz#6953650035d5b42be645013b1465544d0af49d7d"
+  integrity sha512-aDQrW8s0KslG2aKb9nM5R6fiQR9iPomqWXf6iZCC30qv/UFlSY14SppodA3rE//+w37EqsJjyUq3BSEYzLdisg==
 
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
@@ -1425,7 +1431,7 @@ color-string@^1.6.0:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
-color@^3.1.2:
+color@^3.1.2, color@^3.1.3:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/color/-/color-3.2.1.tgz#3544dc198caf4490c3ecc9a790b54fe9ff45e164"
   integrity sha512-aBl7dZI9ENN6fUGC7mWpMTPNHmWUSNan9tuWN6ahh5ZLNk9baLJOnSMlrQkHcrfFgz2/RigjUVAjdx36VcemKA==
@@ -5055,11 +5061,6 @@ type-fest@^0.20.2:
   version "0.20.2"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.20.2.tgz#1bf207f4b28f91583666cb5fbd327887301cd5f4"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
-
-typeface-open-sans@^0.0.75:
-  version "0.0.75"
-  resolved "https://registry.yarnpkg.com/typeface-open-sans/-/typeface-open-sans-0.0.75.tgz#20d0c330f14c0c40463c334adbedd6005389abe4"
-  integrity sha512-0lLmB7pfj113OP4T78SbpSmC4OCdFQ0vUxdSXQccsSb6qF76F92iEuC/DghFgmPswTyidk8+Hwf+PS/htiJoRQ==
 
 typescript@^3.7.4:
   version "3.9.10"
