@@ -1,10 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { HTMLAttributes } from 'react';
-import {
-    BLUIDrawerNavGroupInheritableProperties,
-    BLUIDrawerNavGroupInheritablePropertiesPropTypes,
-} from './Drawer';
+import { BLUIDrawerNavGroupInheritableProperties, BLUIDrawerNavGroupInheritablePropertiesPropTypes } from './Drawer';
 import PropTypes from 'prop-types';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
 

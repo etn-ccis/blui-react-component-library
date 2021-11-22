@@ -7,10 +7,7 @@ import { Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Collapse from '@material-ui/core/Collapse';
 import PropTypes from 'prop-types';
-import {
-    BLUIDrawerNavGroupInheritableProperties,
-    BLUIDrawerNavGroupInheritablePropertiesPropTypes,
-} from './Drawer';
+import { BLUIDrawerNavGroupInheritableProperties, BLUIDrawerNavGroupInheritablePropertiesPropTypes } from './Drawer';
 import { white, darkBlack } from '@brightlayer-ui/colors';
 import { DrawerNavItem, NavItem, NestedNavItem } from './DrawerNavItem';
 
