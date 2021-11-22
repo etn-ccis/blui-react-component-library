@@ -19,9 +19,9 @@
     "devDependencies": {
         "@material-ui/core": "^4.11.0",
         "@material-ui/icons": "^4.0.0",
-        "@brightlayer-ui/eslint-config": "^2.0.1",
-        "@brightlayer-ui/prettier-config": "^1.0.2",
-        "@brightlayer-ui/react-themes": "^5.0.0",
+        "@brightlayer-ui/eslint-config": "^2.0.5",
+        "@brightlayer-ui/prettier-config": "^1.0.3",
+        "@brightlayer-ui/react-themes": "^6.1.0",
         "@types/color": "^3.0.1",
         "@types/enzyme": "^3.10.4",
         "@types/enzyme-adapter-react-16": "^1.0.5",
@@ -44,7 +44,7 @@
     },
     "peerDependencies": {
         "@material-ui/core": "^4.11.0",
-        "@brightlayer-ui/colors": "^3.0.0",
+        "@brightlayer-ui/colors": "^3.0.1",
         "react": "^16.8.6",
         "react-dom": "^16.8.6"
     },

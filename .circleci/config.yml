@@ -201,9 +201,6 @@ workflows:
     react_library:
         jobs:
             - build_library
-            - build_showcase:
-                  requires:
-                      - build_library
             - build_storybook:
                   requires:
                       - build_library
