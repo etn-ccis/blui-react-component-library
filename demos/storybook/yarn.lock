@@ -1228,7 +1228,7 @@
   dependencies:
     "@brightlayer-ui/types" "^2.0.0"
 
-"@brightlayer-ui/eslint-config@2.0.1":
+"@brightlayer-ui/eslint-config@2.0.5":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/eslint-config/-/eslint-config-2.0.5.tgz#b7ee0c47f4669d2ecefc45d5fc37d7a9e209ccc9"
   integrity sha512-qUxNX/1z+cmBWzbOeFftxGD7SPT+xkT1rUj++xsZjIQajEkwF1Ka+0mRlSY5qqAsQpRLGDCHDszx8uztmSm1lA==
@@ -1243,7 +1243,7 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-mui/-/icons-mui-2.7.0.tgz#8ac5b600bc236109524e2b7a969d8b884ffa90b6"
   integrity sha512-xdfwrB7BTjTiK7npst6v2QfMpuB6FVuu32/O7w3TxylR4YLnBLWujW+q2MKYyx1rEXEjXD0YzZrXNjPW0eSgjg==
 
-"@brightlayer-ui/prettier-config@1.0.2":
+"@brightlayer-ui/prettier-config@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==

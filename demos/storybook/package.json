@@ -54,8 +54,8 @@
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
-        "@brightlayer-ui/eslint-config": "2.0.1",
-        "@brightlayer-ui/prettier-config": "1.0.2",
+        "@brightlayer-ui/eslint-config": "2.0.5",
+        "@brightlayer-ui/prettier-config": "1.0.3",
         "@storybook/addon-a11y": "^5.3.18",
         "@storybook/addon-google-analytics": "^5.3.18",
         "@types/node": "12.11.7",
