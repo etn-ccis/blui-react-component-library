@@ -4,14 +4,14 @@ import React from 'react';
 import { blue as ReactTheme } from '@brightlayer-ui/react-themes';
 import { hideTopBanner, storyWrapper } from '../src/utils';
 import * as Colors from '@brightlayer-ui/colors';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 const backgroundImage = require('../assets/circles-bg.svg');
 const packageJSON = require('@brightlayer-ui/react-components/package.json');
 
 export const stories = storiesOf('Intro/Overview', module);
 
-// Refactor welcome story to just createMuiTheme directly.
-export const lightTheme = createMuiTheme(ReactTheme);
+// Refactor welcome story to just createTheme directly.
+export const lightTheme = createTheme(ReactTheme);
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -87,7 +87,7 @@ stories.add('Brightlayer UI React Components', () => {
                     <img src={icon} alt="blui-icon" className={'rotate'} />
                 </div>
                 <Typography variant={'h2'}>
-                    Power Xpert <strong>Blue</strong>
+                    Brightlayer UI
                 </Typography>
                 <Typography variant={'h4'}>React Component Library</Typography>
                 {packageJSON.version && <Typography variant={'subtitle1'}>v{packageJSON.version}</Typography>}

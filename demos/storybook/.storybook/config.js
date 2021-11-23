@@ -1,7 +1,7 @@
 import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { createMuiTheme, jssPreset, MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
+import { createTheme, jssPreset, MuiThemeProvider, StylesProvider } from '@material-ui/core/styles';
 import { blue as ReactTheme, blueDark as ReactThemeDark } from '@brightlayer-ui/react-themes';
 import 'typeface-open-sans';
 import { bluiTheme } from '@brightlayer-ui/storybook-themes';
@@ -79,8 +79,8 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const appendDirection = (theme) => Object.assign(theme, { direction: getDirection() });
 
 addDecorator((storyFn) => {
-    const [lightTheme, setLightTheme] = useState(createMuiTheme(appendDirection(ReactTheme)));
-    const [darkTheme, setDarkTheme] = useState(createMuiTheme(appendDirection(ReactThemeDark)));
+    const [lightTheme, setLightTheme] = useState(createTheme(appendDirection(ReactTheme)));
+    const [darkTheme, setDarkTheme] = useState(createTheme(appendDirection(ReactThemeDark)));
 
     useEffect(() => {
         channel.on(DIR_CHANGE_EVENT, updateDirection);
@@ -88,8 +88,8 @@ addDecorator((storyFn) => {
     }, [channel]);
 
     const updateDirection = () => {
-        setLightTheme(createMuiTheme(appendDirection(ReactTheme)));
-        setDarkTheme(createMuiTheme(appendDirection(ReactThemeDark)));
+        setLightTheme(createTheme(appendDirection(ReactTheme)));
+        setDarkTheme(createTheme(appendDirection(ReactThemeDark)));
     };
 
     return (
