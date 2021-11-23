@@ -1,7 +1,7 @@
 {
     "name": "react-components",
     "version": "0.0.0",
-    "description": "React components for PX Blue applications",
+    "description": "React components for Brightlayer UI applications",
     "scripts": {
         "initialize": "bash scripts/initializeSubmodule.sh",
         "test": "cd components && yarn test",

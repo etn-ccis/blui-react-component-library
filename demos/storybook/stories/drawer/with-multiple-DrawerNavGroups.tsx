@@ -9,7 +9,7 @@ import { navGroupItems1, navGroupItems2 } from './with-basic-config';
 
 export const withMultipleNavGroups = (context: DrawerStoryContext): StoryFnReactReturnType => (
     <Drawer open={boolean('open', true)}>
-        <DrawerHeader icon={<Menu />} title={'PX Blue Drawer'} subtitle={'with multiple navigation groups'} />
+        <DrawerHeader icon={<Menu />} title={'Brightlayer UI Drawer'} subtitle={'with multiple navigation groups'} />
         <DrawerBody>
             <DrawerNavGroup
                 title={text('navGroup[0].title', 'First DrawerNavGroup')}

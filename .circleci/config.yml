@@ -162,7 +162,7 @@ jobs:
             - DEV_TARGET: https://github.com/brightlayer-ui-components/react-dev
             - MASTER_TARGET: https://github.com/brightlayer-ui-components/react
             - GH_EMAIL: brightlayer-ui@eaton.com
-            - GH_NAME: PX Blue Agent
+            - GH_NAME: Brightlayer UI Agent
         steps:
             - checkout
             - attach_workspace:

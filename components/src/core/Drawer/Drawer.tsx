@@ -30,7 +30,7 @@ type DrawerClasses = {
 // type shared by Drawer, DrawerBody, DrawerNavGroup, NestedNavItem
 // these types are inherited from the Drawer level to the NestedNavItem
 // parent props will be overriden by the child props if defined
-export type PXBlueDrawerInheritableProperties = {
+export type BluiDrawerInheritableProperties = {
     // Background color for the 'active' item
     activeItemBackgroundColor?: string;
 
@@ -88,7 +88,7 @@ const findChildByType = (children: ReactNode, type: string): JSX.Element[] =>
 
 // type shared by Drawer, DrawerBody, DrawerNavGroup
 // inheritable props but not for NestedNavItem
-export type PXBlueDrawerNavGroupInheritableProperties = {
+export type BluiDrawerNavGroupInheritableProperties = {
     // itemID for the 'active' item
     activeItem?: string;
 
@@ -100,7 +100,7 @@ export type PXBlueDrawerNavGroupInheritableProperties = {
 
     // Font color for group header
     titleColor?: string;
-} & PXBlueDrawerInheritableProperties;
+} & BluiDrawerInheritableProperties;
 
 export type DrawerComponentProps = {
     classes?: DrawerClasses;
@@ -113,7 +113,7 @@ export type DrawerComponentProps = {
 
     // Sets the width of the drawer (in px) when open
     width?: number;
-} & PXBlueDrawerNavGroupInheritableProperties &
+} & BluiDrawerNavGroupInheritableProperties &
     Omit<DrawerProps, 'translate'>;
 
 const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentProps> = (
@@ -298,9 +298,9 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerComponentPro
 };
 
 export const DrawerComponent = React.forwardRef(DrawerRenderer);
-DrawerComponent.displayName = 'PXBlueDrawer';
+DrawerComponent.displayName = 'BLUIDrawer';
 
-export const PXBlueDrawerInheritablePropertiesPropTypes = {
+export const BluiDrawerInheritablePropertiesPropTypes = {
     activeItemBackgroundColor: PropTypes.string,
     activeItemFontColor: PropTypes.string,
     activeItemIconColor: PropTypes.string,
@@ -315,12 +315,12 @@ export const PXBlueDrawerInheritablePropertiesPropTypes = {
     itemIconColor: PropTypes.string,
     ripple: PropTypes.bool,
 };
-export const PXBlueDrawerNavGroupInheritablePropertiesPropTypes = {
+export const BluiDrawerNavGroupInheritablePropertiesPropTypes = {
     activeItem: PropTypes.string,
     nestedDivider: PropTypes.bool,
     onItemSelect: PropTypes.func,
     titleColor: PropTypes.string,
-    ...PXBlueDrawerInheritablePropertiesPropTypes,
+    ...BluiDrawerInheritablePropertiesPropTypes,
 };
 
 // @ts-ignore
@@ -332,7 +332,7 @@ DrawerComponent.propTypes = {
     }),
     open: PropTypes.bool.isRequired,
     width: PropTypes.number,
-    ...PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
+    ...BluiDrawerNavGroupInheritablePropertiesPropTypes,
 };
 DrawerComponent.defaultProps = {
     classes: {},

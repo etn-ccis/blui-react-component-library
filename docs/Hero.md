@@ -1,12 +1,12 @@
 # Hero
 
-The PX Blue `<Hero>` components are used to call attention to particular values that are of the most importance to the user. These are typically displayed in a banner.
+The Brightlayer UI `<Hero>` components are used to call attention to particular values that are of the most importance to the user. These are typically displayed in a banner.
 
 <div style="width: 100%; text-align:center">
 <img width="100%" style="max-width: 600px" alt="Hero Banner" src="./images/heroes.png">
 </div>
 
-The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [PX Blue icon](https://github.com/brightlayer-ui/icons), or [Progress Icon](https://github.com/brightlayer-ui/icons/tree/master/progress). It will also accept Text/Emoji values.
+The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [Brightlayer UI icon](https://github.com/brightlayer-ui/icons), or [Progress Icon](https://github.com/brightlayer-ui/icons/tree/master/progress). It will also accept Text/Emoji values.
 
 The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) component. To display a single simple value, the information can be passed as props (`value`, `units`, `valueIcon`). For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
 
@@ -58,7 +58,7 @@ Any other props supplied will be provided to the root element (`div`).
 
 ### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
 | Name   | Description                         |
 | ------ | ----------------------------------- |
@@ -101,7 +101,7 @@ Any other props supplied will be provided to the root element (`div`).
 
 ### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
 | Name | Description                        |
 | ---- | ---------------------------------- |

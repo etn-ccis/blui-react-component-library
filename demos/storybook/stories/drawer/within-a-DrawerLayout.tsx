@@ -37,7 +37,7 @@ export const inDrawerLayout = (context: DrawerStoryContext): StoryFnReactReturnT
                     titleContent={
                         <div style={{ paddingLeft: '20px', paddingTop: '15px' }}>
                             <Typography variant="subtitle2" style={{ fontWeight: 100 }}>
-                                PX Blue
+                                Brightlayer UI
                             </Typography>
                             <Typography variant="h6" style={{ marginTop: '-10px' }}>
                                 DrawerLayout

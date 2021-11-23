@@ -1,21 +1,21 @@
-# PX Blue React Components
+# Brightlayer UI React Components
 
 [![](https://img.shields.io/circleci/project/github/brightlayer-ui/react-component-library/master.svg?style=flat)](https://circleci.com/gh/brightlayer-ui/react-component-library/tree/master)
 ![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-components?label=%40brightlayer-ui%2Freact-components)
 
-This is a library of re-usable React components for use in PX Blue applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in PX Blue and eliminate the need for multiple teams to build their own components for these.
+This is a library of re-usable React components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
 
 Refer to the [Component Library](https://brightlayer-ui-components.github.io/react/?path=/story/channel-value--with-value) API documentation site for a list of available components or see the repository [documentation](https://github.com/brightlayer-ui/react-component-library/tree/dev/docs) for each individual component.
 
 ## Installation
 
-To install the PX Blue react components from NPM as a dependency for your project, you can run the following command in your project root:
+To install the Brightlayer UI react components from NPM as a dependency for your project, you can run the following command in your project root:
 
 ```shell
 yarn add @brightlayer-ui/react-components
 ```
 
-> **NOTE**: This install command will install the package from NPM. If you are a PX Blue developer working with components locally, you will want to follow the manual linking instructions - see below.
+> **NOTE**: This install command will install the package from NPM. If you are a Brightlayer UI developer working with components locally, you will want to follow the manual linking instructions - see below.
 
 ## Building the Library
 

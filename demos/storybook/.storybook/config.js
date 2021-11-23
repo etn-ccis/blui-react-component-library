@@ -38,7 +38,7 @@ const newViewports = {
     },
 };
 
-bluiTheme.brandTitle = 'PX Blue React Component Library';
+bluiTheme.brandTitle = 'Brightlayer UI React Component Library';
 bluiTheme.brandUrl = 'https://brightlayer-ui.github.io';
 
 if (window.top.location.hostname === 'localhost') {
@@ -54,7 +54,7 @@ const themeInit = { dark: bluiTheme, light: bluiTheme, current: 'light' };
 window.localStorage.setItem('sb-addon-themes-3', JSON.stringify(themeInit));
 
 addParameters({
-    name: 'PXBlue',
+    name: 'BLUI',
     /* Users will see this while the component is loading. */
     notes: {
         markdown: '<div> </div>',

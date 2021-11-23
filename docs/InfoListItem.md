@@ -55,7 +55,7 @@ Any other props will be provided to the root element [**Material UI ListItem**](
 
 ### Classes
 
-You can override the classes used by PX Blue by passing a `classes` prop. It supports the following keys:
+You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
 | Name           | Description                                         |
 | -------------- | --------------------------------------------------- |

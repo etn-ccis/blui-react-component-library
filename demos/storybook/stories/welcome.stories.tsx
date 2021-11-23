@@ -76,7 +76,7 @@ stories.addParameters({
 
 stories.addDecorator(storyWrapper);
 
-stories.add('PX Blue React Components', () => {
+stories.add('Brightlayer UI React Components', () => {
     const classes = useStyles();
     const icon = require('../assets/blui-icon.svg');
     hideTopBanner();
@@ -92,7 +92,7 @@ stories.add('PX Blue React Components', () => {
                 <Typography variant={'h4'}>React Component Library</Typography>
                 {packageJSON.version && <Typography variant={'subtitle1'}>v{packageJSON.version}</Typography>}
                 <Typography variant={'subtitle1'} className={classes.description}>
-                    Learn about and interact with our PX Blue components using Storybook.
+                    Learn about and interact with our Brightlayer UI components using Storybook.
                 </Typography>
 
                 <div className={classes.buttons}>
