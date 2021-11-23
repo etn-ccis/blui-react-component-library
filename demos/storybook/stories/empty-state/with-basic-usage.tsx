@@ -1,6 +1,6 @@
 import React from 'react';
 import { NotListedLocation } from '@material-ui/icons';
-import { EmptyState } from '@pxblue/react-components';
+import { EmptyState } from '@brightlayer-ui/react-components';
 import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { getLeftToRightIconTransform } from '../../src/utils';

@@ -1,4 +1,4 @@
-import { Hero } from '@pxblue/react-components';
+import { Hero } from '@brightlayer-ui/react-components';
 import React from 'react';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';

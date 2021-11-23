@@ -15,7 +15,7 @@ The `<ChannelValue>` component is used to display...a channel value (and units).
 </div>
 
 ```tsx
-import { ChannelValue } from '@pxblue/react-components';
+import { ChannelValue } from '@brightlayer-ui/react-components';
 ...
 <ChannelValue value={100} units={'%'} icon={<Icon/>} />
 ```

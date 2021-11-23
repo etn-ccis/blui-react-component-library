@@ -11,7 +11,7 @@ import {
     PXBlueDrawerNavGroupInheritableProperties,
     PXBlueDrawerNavGroupInheritablePropertiesPropTypes,
 } from './Drawer';
-import { white, darkBlack } from '@pxblue/colors';
+import { white, darkBlack } from '@brightlayer-ui/colors';
 import { DrawerNavItem, NavItem, NestedNavItem } from './DrawerNavItem';
 
 export type DrawerNavGroupProps = ListProps & {

@@ -21,20 +21,20 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/pxblue/react-component-library"
+        "url": "https://github.com/brightlayer-ui/react-component-library"
     },
     "keywords": [
         "react",
         "components",
-        "pxblue"
+        "brightlayer-ui"
     ],
     "bugs": {
-        "url": "https://github.com/pxblue/react-component-library/issues"
+        "url": "https://github.com/brightlayer-ui/react-component-library/issues"
     },
-    "homepage": "https://github.com/pxblue/react-component-library#readme",
+    "homepage": "https://github.com/brightlayer-ui/react-component-library#readme",
     "directories": {
         "doc": "docs"
     },
-    "author": "pxblue <pxblue@eaton.com>",
+    "author": "brightlayer-ui <brightlayer-ui@eaton.com>",
     "license": "BSD-3-Clause"
 }

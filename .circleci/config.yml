@@ -46,7 +46,7 @@ jobs:
                   paths:
                       - dist
 
-    # Builds the Storybook app using @pxblue/react-components persisted in /dist folder.
+    # Builds the Storybook app using @brightlayer-ui/react-components persisted in /dist folder.
     build_storybook:
         docker:
             - image: circleci/node:12.9.1-browsers
@@ -83,12 +83,12 @@ jobs:
             - run:
                   name: Build Storybook
                   command: |
-                      cp -r ./dist/. ./demos/storybook/node_modules/@pxblue/react-components
+                      cp -r ./dist/. ./demos/storybook/node_modules/@brightlayer-ui/react-components
                       cd demos/storybook
 
                       # If we are building the master branch, use the published component library.
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                        yarn add @pxblue/react-components
+                        yarn add @brightlayer-ui/react-components
                       fi
 
                       # master and dev branches should configure Google Analytics IDs before the build.
@@ -107,7 +107,7 @@ jobs:
                   paths:
                       - demos/storybook/storybook-static
 
-    # Builds the Showcase app using @pxblue/react-components persisted in /dist folder.
+    # Builds the Showcase app using @brightlayer-ui/react-components persisted in /dist folder.
     build_showcase:
         docker:
             - image: circleci/node:12.9.1-browsers
@@ -143,12 +143,12 @@ jobs:
             - run:
                   name: Build Showcase
                   command: |
-                      cp -r ./dist/. ./demos/showcase/node_modules/@pxblue/react-components
+                      cp -r ./dist/. ./demos/showcase/node_modules/@brightlayer-ui/react-components
                       cd demos/showcase
 
                       # If we are building the master branch, use the published component library.
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                        yarn add @pxblue/react-components
+                        yarn add @brightlayer-ui/react-components
                       fi
 
                       yarn build
@@ -159,9 +159,9 @@ jobs:
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
-            - DEV_TARGET: https://github.com/pxblue-components/react-dev
-            - MASTER_TARGET: https://github.com/pxblue-components/react
-            - GH_EMAIL: pxblue@eaton.com
+            - DEV_TARGET: https://github.com/brightlayer-ui-components/react-dev
+            - MASTER_TARGET: https://github.com/brightlayer-ui-components/react
+            - GH_EMAIL: brightlayer-ui@eaton.com
             - GH_NAME: PX Blue Agent
         steps:
             - checkout
@@ -183,9 +183,9 @@ jobs:
 
                       cd out
                       git rm -rf .
-                      # Add the CNAME record for pxblue.eaton.com
+                      # Add the CNAME record for brightlayer-ui.eaton.com
                       # if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                      #   echo "pxblue-components.eaton.com/react" > CNAME
+                      #   echo "brightlayer-ui-components.eaton.com/react" > CNAME
                       # fi
                       cd ..
 
@@ -201,9 +201,6 @@ workflows:
     react_library:
         jobs:
             - build_library
-            - build_showcase:
-                  requires:
-                      - build_library
             - build_storybook:
                   requires:
                       - build_library

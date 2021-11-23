@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import { EmptyState } from '@pxblue/react-components';
+import { EmptyState } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';

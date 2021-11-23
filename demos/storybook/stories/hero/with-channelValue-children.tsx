@@ -1,5 +1,5 @@
 import { Schedule } from '@material-ui/icons';
-import { ChannelValue, Hero } from '@pxblue/react-components';
+import { ChannelValue, Hero } from '@brightlayer-ui/react-components';
 import { number } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

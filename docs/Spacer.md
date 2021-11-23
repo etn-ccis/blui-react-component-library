@@ -9,7 +9,7 @@ An invisible utility component that acts as a spacer element in various layouts.
 ## Usage
 
 ```tsx
-import { Spacer } from '@pxblue/react-components';
+import { Spacer } from '@brightlayer-ui/react-components';
 ...
 <div style={{display: 'flex'}}>
     {/* Left Content */}

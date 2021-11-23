@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Card, Typography, Divider, Theme, makeStyles, createStyles, CardProps } from '@material-ui/core';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 

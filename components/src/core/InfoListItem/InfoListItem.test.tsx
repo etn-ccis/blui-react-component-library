@@ -5,7 +5,7 @@ import { InfoListItem } from './InfoListItem';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import color from 'color';
 
 import Chevron from '@material-ui/icons/ChevronRight';

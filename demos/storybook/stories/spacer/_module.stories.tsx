@@ -1,4 +1,4 @@
-import { Spacer } from '@pxblue/react-components';
+import { Spacer } from '@brightlayer-ui/react-components';
 import { COMPONENT_SECTION_NAME } from '../../src/constants';
 import { getReadMe, storyParams, storyWrapper } from '../../src/utils';
 import { withA11y } from '@storybook/addon-a11y';

@@ -18,7 +18,7 @@ The Menu can be populated via the `menuGroups` prop, or can be entirely customiz
 </div>
 
 ```tsx
-import { UserMenu } from '@pxblue/react-components';
+import { UserMenu } from '@brightlayer-ui/react-components';
 import { Avatar, Menu } from '@material-ui/core';
 import Email from '@material-ui/icons/Email';
 import Settings from '@material-ui/icons/Settings';
@@ -81,7 +81,7 @@ You can override the classes used by PX Blue by passing a `classes` prop. It sup
 
 ### User Menu Groups Object
 
-The `menuGroups` prop of the `<UserMenu>` includes many properties from the [`<DrawerNavGroup>`](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story) array found within a [`<DrawerBody>`](https://pxblue-components.github.io/react/?path=/info/components-drawer--get-read-me-story).
+The `menuGroups` prop of the `<UserMenu>` includes many properties from the [`<DrawerNavGroup>`](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) array found within a [`<DrawerBody>`](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story).
 
 <div style="overflow: auto;">
 

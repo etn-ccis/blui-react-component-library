@@ -5,7 +5,7 @@ import { ListItemTag } from './ListItemTag';
 import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import color from 'color';
 
 import { createShallow } from '@material-ui/core/test-utils';

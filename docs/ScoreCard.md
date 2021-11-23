@@ -14,11 +14,11 @@ Card component that calls attention to particular values.
 </div>
 
 ```tsx
-import { Hero, HeroBanner, ScoreCard } from '@pxblue/react-components';
+import { Hero, HeroBanner, ScoreCard } from '@brightlayer-ui/react-components';
 import { List, Card, ListItem, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import MoreVert from '@material-ui/icons/MoreVert';
-import { Temp } from '@pxblue/icons-mui';
+import { Temp } from '@brightlayer-ui/icons-mui';
 
 ...
 <ScoreCard

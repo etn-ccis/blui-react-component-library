@@ -1,4 +1,4 @@
-import { DropdownToolbar } from '@pxblue/react-components';
+import { DropdownToolbar } from '@brightlayer-ui/react-components';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';

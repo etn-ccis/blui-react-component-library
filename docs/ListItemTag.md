@@ -7,7 +7,7 @@
 ## Usage
 
 ```tsx
-import { ListItemTag } from '@pxblue/react-components';
+import { ListItemTag } from '@brightlayer-ui/react-components';
 
 <ListItemTag label={'Foo Bar'} backgroundColor={'gold'} fontColor={'black'} />;
 ```

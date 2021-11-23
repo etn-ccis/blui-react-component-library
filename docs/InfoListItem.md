@@ -7,9 +7,9 @@ The `<InfoListItem>` is intended to be used in [`<List>`](https://material-ui.co
 ## Usage
 
 ```tsx
-import { InfoListItem } from '@pxblue/react-components';
-import { GradeA, Leaf, CurrentCircled, VoltageCircled, Temp } from '@pxblue/icons-mui';
-import * as Colors from '@pxblue/colors';
+import { InfoListItem } from '@brightlayer-ui/react-components';
+import { GradeA, Leaf, CurrentCircled, VoltageCircled, Temp } from '@brightlayer-ui/icons-mui';
+import * as Colors from '@brightlayer-ui/colors';
 ...
 <InfoListItem
     title={'Status'}

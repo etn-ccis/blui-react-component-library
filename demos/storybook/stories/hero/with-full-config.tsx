@@ -1,10 +1,10 @@
-import * as Colors from '@pxblue/colors';
-import { Hero } from '@pxblue/react-components';
+import * as Colors from '@brightlayer-ui/colors';
+import { Hero } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
 import { boolean, color, number, text, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
-import { Fan } from '@pxblue/icons-mui';
+import { Fan } from '@brightlayer-ui/icons-mui';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 

@@ -17,7 +17,7 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 ### Drawer Usage
 
 ```tsx
-import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, DrawerFooter } from '@pxblue/react-components';
+import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, DrawerFooter } from '@brightlayer-ui/react-components';
 ...
 <Drawer open={true}>
     <DrawerHeader />
@@ -128,7 +128,7 @@ The `<DrawerSubheader>` is an optional section that renders below the header and
 ### Drawer Subheader Usage
 
 ```tsx
-import DrawerSubheader from '@pxblue/react-components/core/Drawer';
+import DrawerSubheader from '@brightlayer-ui/react-components/core/Drawer';
 ...
 <DrawerSubheader>
     <div>Custom Subheader Content</div>
@@ -146,7 +146,7 @@ The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical 
 ### Drawer Body Usage
 
 ```tsx
-import DrawerBody from '@pxblue/react-components/core/Drawer';
+import DrawerBody from '@brightlayer-ui/react-components/core/Drawer';
 ...
 <DrawerBody>
     <DrawerNavGroup title={'Nav Items'} items={...} />
@@ -224,7 +224,7 @@ The `<DrawerFooter>` is an optional section that renders at the bottom of the `<
 ### Usage
 
 ```tsx
-import DrawerFooter from '@pxblue/react-components/core/Drawer';
+import DrawerFooter from '@brightlayer-ui/react-components/core/Drawer';
 ...
 <DrawerFooter>
     <div>Custom Footer goes here</div>
@@ -326,7 +326,7 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 | divider                   | Whether to show a line between all items                                                                                                                    | `boolean`               | no       | true                                                         |
 | expandIcon                | Icon used to expand drawer                                                                                                                                  | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
 | hidePadding               | Whether to hide the paddings reserved for menu item icons                                                                                                   | `boolean`               | no       |                                                              |
-| InfoListItemProps         | Used to override [InfoListItem](https://pxblue-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) props set by the Drawer | `InfoListItemProps`     | no       |                                                              |
+| InfoListItemProps         | Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) props set by the Drawer | `InfoListItemProps`     | no       |                                                              |
 | itemFontColor             | The color used for the item text                                                                                                                            | `string`                | no       | varies for light/dark theme                                  |
 | itemIconColor             | The color used for the icon                                                                                                                                 | `string`                | no       | varies for light/dark theme                                  |
 | ripple                    | Whether to apply material ripple effect to items                                                                                                            | `boolean`               | no       | true                                                         |
@@ -389,7 +389,7 @@ The `<DrawerLayout>` component is used to provide the appropriate resizing behav
 ## Drawer Layout Usage
 
 ```tsx
-import { Drawer, DrawerLayout } from '@pxblue/react-components';
+import { Drawer, DrawerLayout } from '@brightlayer-ui/react-components';
 ...
 <DrawerLayout drawer={<Drawer ... />}>
     <>
