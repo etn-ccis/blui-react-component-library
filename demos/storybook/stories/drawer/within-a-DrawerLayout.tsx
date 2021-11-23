@@ -1,7 +1,13 @@
 import { Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { DrawerLayout } from '@brightlayer-ui/react-components';
-import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerNavGroup } from '@brightlayer-ui/react-components/core/Drawer';
+import {
+    Drawer,
+    DrawerBody,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerNavGroup,
+} from '@brightlayer-ui/react-components/core/Drawer';
 import { boolean, number, select } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
