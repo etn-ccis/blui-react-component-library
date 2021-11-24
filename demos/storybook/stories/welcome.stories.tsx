@@ -86,9 +86,7 @@ stories.add('Brightlayer UI React Components', () => {
                 <div className={classes.icon}>
                     <img src={icon} alt="blui-icon" className={'rotate'} />
                 </div>
-                <Typography variant={'h2'}>
-                    Power Xpert <strong>Blue</strong>
-                </Typography>
+                <Typography variant={'h2'}>Brightlayer UI</Typography>
                 <Typography variant={'h4'}>React Component Library</Typography>
                 {packageJSON.version && <Typography variant={'subtitle1'}>v{packageJSON.version}</Typography>}
                 <Typography variant={'subtitle1'} className={classes.description}>

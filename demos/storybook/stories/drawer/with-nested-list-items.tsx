@@ -229,7 +229,7 @@ export const withNestedListItems = (context: DrawerStoryContext): StoryFnReactRe
 
     return (
         <Drawer open={open} key={'drawer'}>
-            <DrawerHeader title={'Power Xpert Blue'} icon={<MenuIcon />} />
+            <DrawerHeader title={'Brightlayer UI'} icon={<MenuIcon />} />
             {drawerItemList(context.state)}
         </Drawer>
     );
