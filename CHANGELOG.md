@@ -1,5 +1,5 @@
 # Changelog
-## 4.2.0-beta.0 (Not yet published)
+## 4.2.0 (Not yet published)
 
 ### Changed
 
