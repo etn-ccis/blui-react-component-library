@@ -63,7 +63,11 @@ describe('InfoListItem', () => {
 
         wrapper = shallow(<InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} avatar />);
         testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
-        expect(testedStyle.color).toEqual(color(Colors.white['50']).rgb().string());
+        expect(testedStyle.color).toEqual(
+            color(Colors.white['50'])
+                .rgb()
+                .string()
+        );
         expect(testedStyle.backgroundColor).toEqual('red');
         testedStyle = getComputedStyleFromHTMLString(findByTestId('status-stripe', wrapper).html());
         expect(testedStyle.backgroundColor).toEqual('red');
