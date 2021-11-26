@@ -207,19 +207,31 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 primary={title}
                 className={combine('listItemText')}
                 secondary={
-                    <>
-                        <Typography
-                            variant={'subtitle2'}
-                            component={'p'}
-                            noWrap={!wrapSubtitle}
-                            className={combine('subtitle')}
-                        >
-                            {getSubtitle()}
-                        </Typography>
-                        <Typography variant={'body2'} noWrap={!wrapInfo} className={combine('info')}>
-                            {getInfo()}
-                        </Typography>
-                    </>
+                    subtitle || info ? (
+                        <>
+                            {subtitle ? (
+                                <Typography
+                                    variant={'subtitle2'}
+                                    component={'p'}
+                                    noWrap={!wrapSubtitle}
+                                    className={combine('subtitle')}
+                                >
+                                    {getSubtitle()}
+                                </Typography>
+                            ) : (
+                                undefined
+                            )}
+                            {info ? (
+                                <Typography variant={'body2'} noWrap={!wrapInfo} className={combine('info')}>
+                                    {getInfo()}
+                                </Typography>
+                            ) : (
+                                undefined
+                            )}
+                        </>
+                    ) : (
+                        undefined
+                    )
                 }
                 primaryTypographyProps={{
                     noWrap: !wrapTitle,
