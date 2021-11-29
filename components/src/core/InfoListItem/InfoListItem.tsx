@@ -207,7 +207,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 primary={title}
                 className={combine('listItemText')}
                 secondary={
-                    subtitle || info ? (
+                    subtitle || info ?(
                         <>
                             {subtitle ? (
                                 <Typography
