@@ -207,7 +207,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 primary={title}
                 className={combine('listItemText')}
                 secondary={
-                    subtitle || info ?(
+                    subtitle || info ? (
                         <>
                             {subtitle ? (
                                 <Typography
@@ -218,20 +218,14 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                                 >
                                     {getSubtitle()}
                                 </Typography>
-                            ) : (
-                                undefined
-                            )}
+                            ) : undefined}
                             {info ? (
                                 <Typography variant={'body2'} noWrap={!wrapInfo} className={combine('info')}>
                                     {getInfo()}
                                 </Typography>
-                            ) : (
-                                undefined
-                            )}
+                            ) : undefined}
                         </>
-                    ) : (
-                        undefined
-                    )
+                    ) : undefined
                 }
                 primaryTypographyProps={{
                     noWrap: !wrapTitle,
