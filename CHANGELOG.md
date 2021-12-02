@@ -1,5 +1,9 @@
 # Changelog
+## v5.3.3 (December 2, 2021)
 
+### Fixed
+
+-   Avoid rendering of HTML elements in DOM when `subtitle` or `info` prop is not available.
 ## v5.3.2 (November 11, 2021)
 
 ### Changed
