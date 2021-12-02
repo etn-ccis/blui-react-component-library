@@ -3,7 +3,7 @@
 
 ### Fixed
 
--   Avoid rendering of HTML elements in DOM when `Subtitle` or `Info` prop is not available.
+-   Avoid rendering of HTML elements in DOM when `subtitle` or `info` prop is not available.
 ## v5.3.2 (November 11, 2021)
 
 ### Changed
