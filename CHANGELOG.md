@@ -1,5 +1,5 @@
 # Changelog
-## v5.3.3 (December 2, 2021)
+## v5.3.3 (December 6, 2021)
 
 ### Fixed
 
