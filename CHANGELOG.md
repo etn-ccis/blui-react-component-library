@@ -3,7 +3,8 @@
 
 ### Fixed
 
--   Avoid rendering of HTML elements in DOM when `subtitle` or `info` prop is not available.
+-   Avoid rendering of HTML elements in `<InfoListItem>`'s DOM tree when `subtitle` or `info` prop is not available. ([#318](https://github.com/brightlayer-ui/react-component-library/issues/318))
+
 ## v5.3.2 (November 11, 2021)
 
 ### Changed
