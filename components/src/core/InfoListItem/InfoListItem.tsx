@@ -6,6 +6,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import Chevron from '@material-ui/icons/ChevronRight';
+import * as Colors from '@brightlayer-ui/colors';
 
 import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
 
@@ -152,6 +153,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                     color={'inherit'}
                     role={'button'}
                     className={clsx(combine('rightComponent'), defaultClasses.flipIcon)}
+                    style={{ color: Colors.gray[500] }}
                 />
             );
         }
