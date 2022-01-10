@@ -1,4 +1,11 @@
 # Changelog
+
+## v5.3.4 (Not yet published)
+
+### Fixed
+
+-   Fixed `InfoListItem` right component chevron color to be `gray[500]`
+
 ## v5.3.3 (December 6, 2021)
 
 ### Fixed
