@@ -115,6 +115,7 @@ jobs:
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
                         STORYBOOK_GA_ID=$MASTER_GA
                       fi
+                      echo test echo
                       if [ $CIRCLE_BRANCH == $DEV_BRANCH ]; then
                         STORYBOOK_GA_ID=$DEV_GA; else
                         STORYBOOK_GA_ID=$DEV_GA
