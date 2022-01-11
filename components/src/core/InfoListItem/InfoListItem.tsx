@@ -86,6 +86,8 @@ export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
      * Default: false
      */
     wrapTitle?: boolean;
+    /** Color override for the chevron icon */
+    chevronColor?: string;
 };
 const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemProps> = (
     props: InfoListItemProps,
@@ -117,6 +119,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         iconAlign,
         iconColor,
         statusColor,
+        chevronColor,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherListItemProps
     } = props;

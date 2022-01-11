@@ -42,6 +42,11 @@ const getIconAlignment = (props: InfoListItemProps): 'flex-end' | 'flex-start' |
     }
 };
 
+const getChevronColor = (props: InfoListItemProps, theme: Theme): string => {
+    const { chevronColor } = props;
+    return chevronColor ? chevronColor : theme.palette.text.secondary;
+};
+
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
     createStyles({
@@ -109,7 +114,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             alignItems: 'center',
         },
         chevronIcon: {
-            color: theme.palette.text.secondary,
+            color: (props) => getChevronColor(props, theme),
         },
         separator: {
             display: 'inline-block',
