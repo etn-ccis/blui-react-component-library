@@ -49,6 +49,7 @@ import * as Colors from '@brightlayer-ui/colors';
 | wrapInfo          | Whether to wrap info on overflow                 | `boolean`                            | no       | false          |
 | wrapSubtitle      | Whether to wrap subtitle on overflow             | `boolean`                            | no       | false          |
 | wrapTitle         | Whether to wrap title on overflow                | `boolean`                            | no       | false          |
+| chevronColor      | Color override for the chevron icon              | `string`                             | no       |                |
 
 </div>
 
