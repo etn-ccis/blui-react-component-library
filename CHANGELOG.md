@@ -5,6 +5,7 @@
 ### Added
 
 -   Added `chevronColor` property onto `<InfoListItem>`.
+-   Added `chevronIcon` class for `chevron` element in `<InfoListItem>`.
 
 ## v5.3.3 (December 6, 2021)
 
