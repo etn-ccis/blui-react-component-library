@@ -116,8 +116,10 @@ jobs:
                         STORYBOOK_GA_ID=$MASTER_GA
                       fi
                       if [ $CIRCLE_BRANCH == $DEV_BRANCH ]; then
+                        STORYBOOK_GA_ID=$DEV_GA; else
                         STORYBOOK_GA_ID=$DEV_GA
                       fi
+                      echo $STORYBOOK_GA_ID
 
                       yarn build-storybook
                       cd storybook-static
