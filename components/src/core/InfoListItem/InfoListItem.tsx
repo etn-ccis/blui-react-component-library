@@ -152,8 +152,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 <Chevron
                     color={'inherit'}
                     role={'button'}
-                    className={clsx(combine('rightComponent'), defaultClasses.flipIcon)}
-                    style={{ color: Colors.gray[500] }}
+                    className={clsx(combine('chevronIcon'), defaultClasses.flipIcon)}
                 />
             );
         }
@@ -260,6 +259,7 @@ InfoListItem.propTypes = {
         avatar: PropTypes.string,
         icon: PropTypes.string,
         rightComponent: PropTypes.string,
+        chevronIcon: PropTypes.string,
         separator: PropTypes.string,
         subtitle: PropTypes.string,
         title: PropTypes.string,

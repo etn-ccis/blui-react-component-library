@@ -15,6 +15,7 @@ export type InfoListItemClasses = {
     statusStripe?: string;
     subtitle?: string;
     title?: string;
+    chevronIcon?: string;
 };
 
 const getHeight = (props: InfoListItemProps): string => (props.dense ? `3.25rem` : `4.5rem`);
@@ -106,6 +107,9 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             marginLeft: theme.spacing(2),
             display: 'flex',
             alignItems: 'center',
+        },
+        chevronIcon: {
+            color: theme.palette.text.secondary,
         },
         separator: {
             display: 'inline-block',
