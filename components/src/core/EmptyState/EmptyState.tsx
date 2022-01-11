@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 export type EmptyStateClasses = {
     root?: string;
+    content?: string;
     actions?: string;
     description?: string;
     icon?: string;
@@ -27,14 +28,17 @@ export type EmptyStateProps = HTMLAttributes<HTMLDivElement> & {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: '100%',
         color: theme.palette.text.primary,
+    },
+    content: {
+        height: '100%',
         minHeight: '100%',
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
         textAlign: 'center',
         alignItems: 'center',
+        padding: '1rem',
     },
     icon: {
         color: theme.palette.text.secondary,
@@ -58,20 +62,22 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
     const defaultClasses = useStyles(useTheme());
     return (
         <div ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'frame'} {...otherDivProps}>
-            {icon && <div className={clsx(defaultClasses.icon, classes.icon)}>{icon}</div>}
-            <Typography variant="h6" color="inherit" className={classes.title}>
-                {title}
-            </Typography>
-            {description && (
-                <Typography
-                    variant="subtitle2"
-                    color={'textSecondary'}
-                    className={clsx(defaultClasses.description, classes.description)}
-                >
-                    {description}
+            <div className={clsx(defaultClasses.content, classes.content)}>
+                {icon && <div className={clsx(defaultClasses.icon, classes.icon)}>{icon}</div>}
+                <Typography variant="h6" color="inherit" className={classes.title}>
+                    {title}
                 </Typography>
-            )}
-            {actions && <div className={clsx(defaultClasses.actions, classes.actions)}>{actions}</div>}
+                {description && (
+                    <Typography
+                        variant="subtitle2"
+                        color={'textSecondary'}
+                        className={clsx(defaultClasses.description, classes.description)}
+                    >
+                        {description}
+                    </Typography>
+                )}
+                {actions && <div className={clsx(defaultClasses.actions, classes.actions)}>{actions}</div>}
+            </div>
         </div>
     );
 };

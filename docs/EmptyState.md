@@ -42,6 +42,7 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | ----------- | ---------------------------------- |
 | root        | Styles applied to the root element |
 | actions     | Styles applied to the actions      |
+| content     | Styles applied to the content      |
 | description | Styles applied to the description  |
 | icon        | Styles applied to the icon         |
 | title       | Styles applied to the title        |

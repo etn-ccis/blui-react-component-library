@@ -1,4 +1,11 @@
 # Changelog
+## v5.3.4 (Not yet published)
+
+### Added
+
+-   Added class `content` to `<EmptyState>`.
+-   Added padding to `<EmptyState>`.
+
 ## v5.3.3 (December 6, 2021)
 
 ### Fixed
