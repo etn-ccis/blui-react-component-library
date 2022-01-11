@@ -29,6 +29,7 @@ import * as Colors from '@brightlayer-ui/colors';
 | avatar            | Show colored background for icon                 | `boolean`                            | no       | false          |
 | backgroundColor   | The color used for the background                | `string`                             | no       |                |
 | chevron           | Add a chevron icon on the right                  | `boolean`                            | no       | false          |
+| chevronColor      | Color override for the chevron icon              | `string`                             | no       |                |
 | classes           | Style overrides                                  | `InfoListItemClasses`                | no       |                |
 | dense             | Smaller height row with less padding             | `boolean`                            | no       | false          |
 | divider           | Show a row separator below the row               | `'full'` \| `'partial'`              | no       |                |
@@ -49,7 +50,6 @@ import * as Colors from '@brightlayer-ui/colors';
 | wrapInfo          | Whether to wrap info on overflow                 | `boolean`                            | no       | false          |
 | wrapSubtitle      | Whether to wrap subtitle on overflow             | `boolean`                            | no       | false          |
 | wrapTitle         | Whether to wrap title on overflow                | `boolean`                            | no       | false          |
-| chevronColor      | Color override for the chevron icon              | `string`                             | no       |                |
 
 </div>
 
