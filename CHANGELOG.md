@@ -1,10 +1,13 @@
 # Changelog
-## v5.3.4 (Not yet published)
+
+## v5.4.0 (Unreleased)
 
 ### Added
 
 -   Added class `content` to `<EmptyState>`.
 -   Added 1rem default padding to `<EmptyState>`.
+-   Added `chevronColor` property onto `<InfoListItem>`.
+-   Added `chevronIcon` class for `chevron` element in `<InfoListItem>`.
 
 ## v5.3.3 (December 6, 2021)
 
