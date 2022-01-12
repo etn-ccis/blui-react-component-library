@@ -74,7 +74,7 @@ jobs:
             - image: circleci/node:12.9.1-browsers
         environment:
             - MASTER_BRANCH: master
-            - DEV_BRANCH: feature/analytics
+            - DEV_BRANCH: dev
         steps:
             - checkout
             - attach_workspace:
@@ -116,10 +116,8 @@ jobs:
                         STORYBOOK_GA_ID=$MASTER_GA
                       fi
                       if [ $CIRCLE_BRANCH == $DEV_BRANCH ]; then
-                        STORYBOOK_GA_ID=$DEV_GA; else
                         STORYBOOK_GA_ID=$DEV_GA
                       fi
-                      echo $STORYBOOK_GA_ID
 
                       yarn build-storybook
                       cd storybook-static
@@ -183,7 +181,7 @@ jobs:
             - image: circleci/node:12.9.1-browsers
         environment:
             - MASTER_BRANCH: master
-            - DEV_BRANCH: feature/analytics
+            - DEV_BRANCH: dev
             - DEV_TARGET: https://github.com/brightlayer-ui-components/react-dev
             - MASTER_TARGET: https://github.com/brightlayer-ui-components/react
             - GH_EMAIL: brightlayer-ui@eaton.com
@@ -264,7 +262,7 @@ workflows:
                       branches:
                           only:
                               - master
-                              - feature/analytics
+                              - dev
             - publish:
                   requires:
                       - build_storybook
