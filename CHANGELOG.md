@@ -1,6 +1,6 @@
 # Changelog
 
-## v5.3.4 (Not yet published)
+## v5.4.0 (Unreleased)
 
 ### Added
 
