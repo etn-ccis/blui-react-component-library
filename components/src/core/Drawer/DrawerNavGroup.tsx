@@ -33,6 +33,9 @@ export type DrawerNavGroupProps = SharedStyleProps &
 
         /** Custom element, substitute for title */
         titleContent?: ReactNode;
+
+        /** Divider for the title */
+        titleDivider?: boolean;
     };
 
 type DrawerNavGroupClasses = {
@@ -106,6 +109,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         title,
         titleColor = theme.palette.text.primary,
         titleContent,
+        titleDivider = true,
         // Shared Style Props
         activeItemBackgroundColor,
         activeItemBackgroundShape,
@@ -248,7 +252,9 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                 }
                 {...otherListProps}
             >
-                {variant !== 'rail' && <div key={`${title}_title`}>{(title || titleContent) && <Divider />}</div>}
+                {variant !== 'rail' && (
+                    <div key={`${title}_title`}>{(title || titleContent) && titleDivider && <Divider />}</div>
+                )}
                 {items.map((drawerItem: DrawerNavItemProps | DrawerRailItemProps, index: number) => {
                     if (variant === 'rail') {
                         const railItem = drawerItem as DrawerRailItemProps;
