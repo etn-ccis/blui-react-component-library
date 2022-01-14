@@ -36,12 +36,6 @@ export type SharedStyleProps = {
 
     /** Whether to apply material ripple effect to items */
     ripple?: boolean;
-
-    /** Color used for the title text */
-    titleColor?: string;
-
-    /** Divider for the title */
-    titleDivider?: boolean;
 };
 
 export type NavItemSharedStyleProps = {

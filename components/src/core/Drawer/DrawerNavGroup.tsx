@@ -28,8 +28,14 @@ export type DrawerNavGroupProps = SharedStyleProps &
         /** Text to display in the group header */
         title?: string;
 
+        /** Color used for the title text */
+        titleColor?: string;
+
         /** Custom element, substitute for title */
         titleContent?: ReactNode;
+
+        /** Divider for the title */
+        titleDivider?: boolean;
     };
 
 type DrawerNavGroupClasses = {
@@ -379,6 +385,7 @@ DrawerNavGroup.propTypes = {
     title: PropTypes.string,
     titleColor: PropTypes.string,
     titleContent: PropTypes.element,
+    titleDivider: PropTypes.bool,
 };
 DrawerNavGroup.defaultProps = {
     classes: {},

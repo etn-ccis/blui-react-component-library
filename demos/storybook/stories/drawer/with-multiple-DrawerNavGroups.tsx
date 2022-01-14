@@ -64,9 +64,17 @@ export const withMultipleNavGroups = (): StoryFnReactReturnType => {
                 subtitle={'with multiple navigation groups'}
             />
             <DrawerBody>
-                <DrawerNavGroup title={text('navGroup[0].title', 'First DrawerNavGroup')} items={navGroupItems1} />
+                <DrawerNavGroup
+                    title={text('navGroup[0].title', 'First DrawerNavGroup')}
+                    titleDivider={boolean('titleDivider', true)}
+                    items={navGroupItems1}
+                />
                 {boolean('Add Spacer', true) && <Spacer />}
-                <DrawerNavGroup title={text('navGroup[1].title', 'Second DrawerNavGroup')} items={navGroupItems2} />
+                <DrawerNavGroup
+                    title={text('navGroup[1].title', 'Second DrawerNavGroup')}
+                    titleDivider={boolean('titleDivider', true)}
+                    items={navGroupItems2}
+                />
             </DrawerBody>
         </Drawer>
     );
