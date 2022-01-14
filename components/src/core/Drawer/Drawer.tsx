@@ -152,6 +152,8 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
         nestedBackgroundColor,
         nestedDivider,
         ripple,
+        titleColor,
+        titleDivider,
         // Drawer-specific props
         activeItem,
         classes,
@@ -225,6 +227,8 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                         nestedBackgroundColor: mergeStyleProp(nestedBackgroundColor, child.props.nestedBackgroundColor),
                         nestedDivider: mergeStyleProp(nestedDivider, child.props.nestedDivider),
                         ripple: mergeStyleProp(ripple, child.props.ripple),
+                        titleColor: mergeStyleProp(titleColor, child.props.titleColor),
+                        titleDivider: mergeStyleProp(titleDivider, child.props.titleDivider),
                     } as DrawerBodyProps)
                 ),
         [
@@ -378,6 +382,8 @@ Drawer.propTypes = {
     openOnHover: PropTypes.bool,
     openOnHoverDelay: PropTypes.number,
     sideBorder: PropTypes.bool,
+    titleColor: PropTypes.string,
+    titleDivider: PropTypes.bool,
     variant: PropTypes.oneOf(['persistent', 'permanent', 'temporary', 'rail']),
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
