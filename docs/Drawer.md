@@ -231,6 +231,7 @@ The `items` property supports nested items to generate collapsible sections in t
 | title                           | Text to display in the group header                        | `string`                | no       |                             |
 | titleColor                      | Color used for the title text                              | `string`                | no       | varies for light/dark theme |
 | titleContent                    | Custom element, substitute for title                       | `ReactNode`             | no       |                             |
+| titleDivider                    | Divider for the title                                      | `boolean`               | no       | true                        |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                       | -        |                             |
 
 </div>
