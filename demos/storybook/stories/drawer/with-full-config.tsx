@@ -163,7 +163,8 @@ export const withFullConfig = (): StoryFnReactReturnType => {
 
     const navGroupKnobs: Partial<DrawerNavGroupProps> = {
         title: text('drawerNavGroup[0].title', 'NavGroup 1', navGroupId),
-        titleColor: color('drawerNavGroup[0].titleColor', Colors.black[500], navGroupId),
+        titleColor: color('titleColor', Colors.black[500], navGroupId),
+        titleDivider: boolean('titleDivider', true, navGroupId),
     };
 
     const navItemKnobs: Partial<NavItem> = {
@@ -346,7 +347,12 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                 title={headerKnobs.title}
             />
             <DrawerBody backgroundColor={bodyKnobs.backgroundColor}>
-                <DrawerNavGroup items={links1} title={navGroupKnobs.title} titleColor={navGroupKnobs.titleColor} />
+                <DrawerNavGroup
+                    items={links1}
+                    title={navGroupKnobs.title}
+                    titleColor={navGroupKnobs.titleColor}
+                    titleDivider={navGroupKnobs.titleDivider}
+                />
                 <DrawerNavGroup
                     items={links2}
                     titleContent={
@@ -363,6 +369,8 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                             <div>Software Version v1.0.3</div>
                         </div>
                     }
+                    titleColor={navGroupKnobs.titleColor}
+                    titleDivider={navGroupKnobs.titleDivider}
                 />
             </DrawerBody>
 
