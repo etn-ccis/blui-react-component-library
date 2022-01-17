@@ -4,10 +4,8 @@
 
 ### Added
 
--   Added `chevronColor` property onto `<Drawer>`.
--   Added `chevron` class onto `<DrawerNavItem>`.
--   Added `chevronColor` property onto `<InfoListItem>`.
--   Added `chevron` class onto `<InfoListItem>`.
+-   Added `chevronColor` property to `<InfoListItem>` and SharedProps of `<Drawer>`.
+-   Added class override for `chevron` on `<InfoListItem>` and `<DrawerNavItem>`.
 -   Added `titleDivider` property onto `<DrawerNavGroup>`. ([#315](https://github.com/brightlayer-ui/react-component-library/issues/315))
 -   Added 1rem default padding to the root styles of `<EmptyState>`. ([#320](https://github.com/brightlayer-ui/react-component-library/issues/320))
 
