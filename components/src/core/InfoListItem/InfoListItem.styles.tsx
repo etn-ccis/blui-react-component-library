@@ -15,7 +15,7 @@ export type InfoListItemClasses = {
     statusStripe?: string;
     subtitle?: string;
     title?: string;
-    chevronIcon?: string;
+    chevron?: string;
 };
 
 const getHeight = (props: InfoListItemProps): string => (props.dense ? `3.25rem` : `4.5rem`);
@@ -113,7 +113,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             display: 'flex',
             alignItems: 'center',
         },
-        chevronIcon: {
+        chevron: {
             color: (props) => getChevronColor(props, theme),
         },
         separator: {

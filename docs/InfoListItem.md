@@ -63,7 +63,7 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | -------------- | --------------------------------------------------- |
 | root           | Styles applied to the root element                  |
 | avatar         | Styles applied to the Avatar element                |
-| chevronIcon    | Styles applied to the chevron element               |
+| chevron        | Styles applied to the chevron element               |
 | divider        | Styles applied to the divider element               |
 | icon           | Styles applied to the icon element                  |
 | info           | Styles applied to the third line of text element    |
