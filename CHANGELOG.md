@@ -7,6 +7,7 @@
 -   Added `chevronColor` property onto `<InfoListItem>`.
 -   Added `chevronIcon` class for `chevron` element in `<InfoListItem>`.
 -   Added 1rem default padding to the root styles of `<EmptyState>`. ([#320](https://github.com/brightlayer-ui/react-component-library/issues/320))
+-   Added new property `unitSpace` to `<ChannelValue>` to manage spacing between the value and units. ([#350](https://github.com/brightlayer-ui/react-component-library/issues/350))
 
 ## v5.3.3 (December 6, 2021)
 

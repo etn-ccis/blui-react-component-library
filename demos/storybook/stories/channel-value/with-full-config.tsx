@@ -14,14 +14,20 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     const iconColor = color('icon.htmlColor', Colors.red[500]);
     const icon = boolean('Show Icon', true) ? (
         <Trend htmlColor={iconColor} style={getLeftToRightIconTransform()} />
-    ) : (
-        undefined
-    );
+    ) : undefined;
     const fontSize = number('fontSize', 30);
     const prefix = boolean('prefix', false);
     const unitSpace = select('unitSpace', ['show', 'hide', 'auto'], 'auto');
     return (
-        <ChannelValue value={value} units={units} color={textColor} icon={icon} fontSize={fontSize} prefix={prefix} unitSpace={unitSpace} />
+        <ChannelValue
+            value={value}
+            units={units}
+            color={textColor}
+            icon={icon}
+            fontSize={fontSize}
+            prefix={prefix}
+            unitSpace={unitSpace}
+        />
     );
 };
 

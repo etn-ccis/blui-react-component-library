@@ -32,8 +32,6 @@ export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> 
     prefix?: boolean;
     /** Text to display for the units (light text) */
     units?: string;
-    /** Text to display for the value (bold text) */
-    value: number | string;
     /** Whether to show a space between the value and units
      *
      * Default: auto (shows space except for white list items)
@@ -41,7 +39,9 @@ export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> 
      * prefixUnitWhitelist: ['$'];
      * suffixUnitWhitelist: ['%', '℉','°F','℃','°C','°']
      */
-     unitSpace?: 'show' | 'hide' | 'auto';
+    unitSpace?: 'show' | 'hide' | 'auto';
+    /** Text to display for the value (bold text) */
+    value: number | string;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
             color: (props: ChannelValueProps): string => props.color,
         },
         icon: {
-            marginRight: '0.35em',
+            marginRight: '0.35rem',
             display: 'inline',
             fontSize: 'inherit',
         },
@@ -63,24 +63,21 @@ const useStyles = makeStyles((theme: Theme) =>
             lineHeight: 'inherit',
             letterSpacing: 0,
         },
+        prefix: {
+            '& + h6': {
+                marginLeft: '0.25rem',
+            },
+        },
+        suffix: {},
         units: {
             fontWeight: 300,
         },
         value: {
             fontWeight: 600,
             '& + $suffix': {
-                marginLeft: '0.25em',
+                marginLeft: '0.25rem',
             },
         },
-        prefix: {
-            color: 'green',
-            '& + h6': {
-                marginLeft: '0.25em',
-            },
-        },
-        suffix: {
-            color: 'red',
-        }
     })
 );
 
@@ -109,16 +106,16 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
     } = props;
     const defaultClasses = useStyles(props);
     const prefixUnitWhitelist = ['$'];
-    const suffixUnitWhitelist = ['%', '℉','°F','℃','°C','°'];
+    const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
     const applyPrefix = useCallback((): boolean => {
-        if((!prefixUnitWhitelist.includes(units) && unitSpace !== 'hide') || unitSpace === 'show') {
-            return true
+        if ((!prefixUnitWhitelist.includes(units) && unitSpace !== 'hide') || unitSpace === 'show') {
+            return true;
         }
     }, [prefix, units, unitSpace]);
 
     const applySuffix = useCallback((): boolean => {
-        if((!suffixUnitWhitelist.includes(units) && unitSpace !== 'hide') || unitSpace === 'show') {
-            return true
+        if ((!suffixUnitWhitelist.includes(units) && unitSpace !== 'hide') || unitSpace === 'show') {
+            return true;
         }
     }, [prefix, units, unitSpace]);
 
@@ -129,8 +126,6 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                     <Typography
                         variant={'h6'}
                         color={'inherit'}
-                        // className={clsx(defaultClasses.text, defaultClasses.units, classes.units)}
-                        // className={clsx([defaultClasses.text, defaultClasses.units, classes.units, prefix && applyPrefix() ? defaultClasses.prefix : 'ekta'])}
                         className={clsx(defaultClasses.text, defaultClasses.units, classes.units, {
                             [defaultClasses.prefix]: prefix && applyPrefix(),
                             [defaultClasses.suffix]: !prefix && applySuffix(),
