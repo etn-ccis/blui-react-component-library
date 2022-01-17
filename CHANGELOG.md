@@ -4,6 +4,8 @@
 
 ### Added
 
+-   Added `chevronColor` property onto `<Drawer>`.
+-   Added `chevron` class onto `<DrawerNavItem>`.
 -   Added `chevronColor` property onto `<InfoListItem>`.
 -   Added `chevron` class onto `<InfoListItem>`.
 -   Added `titleDivider` property onto `<DrawerNavGroup>`. ([#315](https://github.com/brightlayer-ui/react-component-library/issues/315))
