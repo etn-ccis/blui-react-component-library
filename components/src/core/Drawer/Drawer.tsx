@@ -142,6 +142,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
         activeItemIconColor,
         backgroundColor,
         chevron,
+        chevronColor,
         collapseIcon,
         disableActiveItemParentStyles,
         divider,
@@ -212,6 +213,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                         activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
                         backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
                         chevron: mergeStyleProp(chevron, child.props.chevron),
+                        chevronColor: mergeStyleProp(chevronColor, child.props.chevronColor),
                         collapseIcon: mergeStyleProp(collapseIcon, child.props.collapseIcon),
                         disableActiveItemParentStyles: mergeStyleProp(
                             disableActiveItemParentStyles,
@@ -233,6 +235,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             activeItemFontColor,
             activeItemIconColor,
             chevron,
+            chevronColor,
             collapseIcon,
             disableActiveItemParentStyles,
             divider,

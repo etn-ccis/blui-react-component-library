@@ -89,6 +89,11 @@ export type NestedNavItem = NestedDrawerNavItemProps;
 const calcNestedPadding = (theme: Theme, depth: number): number =>
     theme.spacing(depth ? (depth - 1) * 4 : 0) + theme.spacing(2);
 
+const getChevronColor = (props: DrawerNavItemProps, theme: Theme): string => {
+    const { chevronColor } = props;
+    return chevronColor ? chevronColor : theme.palette.text.secondary;
+};
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         active: {
@@ -105,6 +110,9 @@ const useStyles = makeStyles((theme: Theme) =>
                 width: '100%',
                 borderRadius: 0,
             },
+        },
+        chevron: {
+            color: (props) => getChevronColor(props, theme),
         },
         drawerOpen: {},
         expanded: {},
@@ -209,6 +217,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         activeItemIconColor = theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary,
         backgroundColor,
         chevron,
+        chevronColor,
         children,
         classes = {},
         collapseIcon,
@@ -229,7 +238,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         notifyActiveParent = (): void => {},
         onClick,
         rightComponent = props.chevron && !props.items && !props.children ? (
-            <ChevronRight className={defaultClasses.flipIcon} />
+            <ChevronRight className={clsx(defaultClasses.chevron, defaultClasses.flipIcon)} />
         ) : undefined,
         ripple = true,
         statusColor,
@@ -329,6 +338,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                               activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
                               backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
                               chevron: mergeStyleProp(chevron, child.props.chevron),
+                              chevronColor: mergeStyleProp(chevronColor, child.props.chevronColor),
                               // we use props. because we don't want to pass the destructured default as the value to children
                               collapseIcon: mergeStyleProp(props.collapseIcon, child.props.collapseIcon),
                               disableActiveItemParentStyles: mergeStyleProp(
@@ -376,6 +386,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             activeHierarchy,
             backgroundColor,
             chevron,
+            chevronColor,
             collapseIcon,
             disableActiveItemParentStyles,
             divider,
@@ -486,6 +497,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                                     )}
                                     backgroundColor={mergeStyleProp(backgroundColor, subItem.backgroundColor)}
                                     chevron={mergeStyleProp(chevron, subItem.chevron)}
+                                    chevronColor={mergeStyleProp(chevronColor, subItem.chevronColor)}
                                     // we use props. because we don't want to pass the destructured default as the value to the children
                                     collapseIcon={mergeStyleProp(props.collapseIcon, subItem.collapseIcon)}
                                     disableActiveItemParentStyles={mergeStyleProp(
