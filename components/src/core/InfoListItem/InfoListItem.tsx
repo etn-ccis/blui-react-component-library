@@ -98,7 +98,6 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         avatar,
         button,
         chevron,
-        chevronColor,
         classes,
         divider,
         hidePadding,
@@ -116,6 +115,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
+        chevronColor,
         fontColor,
         iconAlign,
         iconColor,
