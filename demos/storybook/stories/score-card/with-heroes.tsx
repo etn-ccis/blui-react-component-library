@@ -18,19 +18,15 @@ export const heroes: JSX.Element[] = [
         label={'Temperature'}
         iconSize={48}
         iconBackgroundColor={Colors.white[50]}
-        value={98}
-        units={'°F'}
-        fontSize={'normal'}
+        ChannelValueProps={{ value: '98', units: '°F' }}
     />,
     <Hero
         key={'hero2'}
         icon={<Humidity fontSize={'inherit'} htmlColor={Colors.blue[300]} />}
         label={'Humidity'}
-        value={54}
+        ChannelValueProps={{ value: '54', units: '%' }}
         iconBackgroundColor={Colors.white[50]}
-        units={'%'}
         iconSize={48}
-        fontSize={'normal'}
     />,
 ];
 

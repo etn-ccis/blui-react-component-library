@@ -39,9 +39,7 @@ export const withScoreBadge = (): StoryFnReactReturnType => {
                         label={'Grade'}
                         iconSize={72}
                         iconBackgroundColor={useDarkMode() ? Colors.black[900] : Colors.white[50]}
-                        value={'98'}
-                        units={'/100'}
-                        fontSize={'normal'}
+                        ChannelValueProps={{ value: '98', units: '/100', unitSpace: 'hide' }}
                     />
                 </HeroBanner>
             }

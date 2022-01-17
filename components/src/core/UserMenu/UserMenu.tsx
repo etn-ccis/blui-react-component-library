@@ -220,10 +220,10 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         [menuGroups, defaultClasses]
     );
 
-    const printMenu = useCallback((): JSX.Element[] => [printHeader()].concat(printMenuItems()), [
-        printHeader,
-        printMenuItems,
-    ]);
+    const printMenu = useCallback(
+        (): JSX.Element[] => [printHeader()].concat(printMenuItems()),
+        [printHeader, printMenuItems]
+    );
 
     const formatMenu = useCallback((): JSX.Element => {
         const showBottomSheet = useMediaQuery(`(max-width:${useBottomSheetAt}px)`);

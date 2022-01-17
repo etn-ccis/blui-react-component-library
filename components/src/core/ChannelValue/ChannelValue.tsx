@@ -1,6 +1,6 @@
 import React, { useCallback, HTMLAttributes } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
@@ -44,7 +44,7 @@ export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> 
     value: number | string;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         root: {
             display: 'inline-flex',
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
             color: (props: ChannelValueProps): string => props.color,
         },
         icon: {
-            marginRight: '0.35rem',
+            marginRight: '0.35em',
             display: 'inline',
             fontSize: 'inherit',
         },
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         prefix: {
             '& + h6': {
-                marginLeft: '0.25rem',
+                marginLeft: '0.25em',
             },
         },
         suffix: {},
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme: Theme) =>
         value: {
             fontWeight: 600,
             '& + $suffix': {
-                marginLeft: '0.25rem',
+                marginLeft: '0.25em',
             },
         },
     })

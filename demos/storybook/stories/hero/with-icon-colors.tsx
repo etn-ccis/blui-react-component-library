@@ -10,8 +10,7 @@ export const withIconColors = (): StoryFnReactReturnType => (
         iconBackgroundColor={color('iconBackgroundColor', Colors.red[500])}
         icon={<Temp fontSize={'inherit'} htmlColor={color('icon.htmlColor', Colors.white[50])} />}
         label={'Temperature'}
-        value={'38'}
-        units={'°C'}
+        ChannelValueProps={{ units: '°C', value: '38' }}
     />
 );
 
