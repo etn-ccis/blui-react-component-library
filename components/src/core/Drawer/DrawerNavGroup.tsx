@@ -117,6 +117,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         activeItemIconColor,
         backgroundColor,
         chevron,
+        chevronColor,
         collapseIcon,
         disableActiveItemParentStyles,
         divider,
@@ -161,6 +162,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                               activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
                               backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
                               chevron: mergeStyleProp(chevron, child.props.chevron),
+                              chevronColor: mergeStyleProp(chevronColor, child.props.chevronColor),
                               collapseIcon: mergeStyleProp(collapseIcon, child.props.collapseIcon),
                               disableActiveItemParentStyles: mergeStyleProp(
                                   disableActiveItemParentStyles,
@@ -209,6 +211,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
             activeItemIconColor,
             backgroundColor,
             chevron,
+            chevronColor,
             collapseIcon,
             disableActiveItemParentStyles,
             divider,
@@ -314,6 +317,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                             activeItemIconColor={mergeStyleProp(activeItemIconColor, navItem.activeItemIconColor)}
                             backgroundColor={mergeStyleProp(backgroundColor, navItem.backgroundColor)}
                             chevron={mergeStyleProp(chevron, navItem.chevron)}
+                            chevronColor={mergeStyleProp(chevronColor, navItem.chevronColor)}
                             collapseIcon={mergeStyleProp(collapseIcon, navItem.collapseIcon)}
                             disableActiveItemParentStyles={mergeStyleProp(
                                 disableActiveItemParentStyles,

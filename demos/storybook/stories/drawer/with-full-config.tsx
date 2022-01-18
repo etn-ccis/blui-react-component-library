@@ -102,6 +102,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
         activeItemIconColor: color('activeItemIconColor', Colors.blue[500], drawerGroupId),
         activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'square', drawerGroupId),
         chevron: boolean('chevron', false, drawerGroupId),
+        chevronColor: color('chevronColor', Colors.gray[500], drawerGroupId),
         collapseIcon: getIcon(
             select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', drawerGroupId)
         ),
@@ -316,6 +317,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             activeItemIconColor={drawerKnobs.activeItemIconColor}
             activeItemBackgroundShape={drawerKnobs.activeItemBackgroundShape}
             chevron={drawerKnobs.chevron}
+            chevronColor={drawerKnobs.chevronColor}
             collapseIcon={drawerKnobs.collapseIcon}
             condensed={drawerKnobs.condensed}
             divider={drawerKnobs.divider}
