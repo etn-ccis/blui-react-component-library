@@ -18,9 +18,7 @@ export const withFullConfig = (): StoryFnReactReturnType => (
             units: 'RPM',
             icon: boolean('Show Value Icon', true) ? (
                 <TrendingUpIcon style={getLeftToRightIconTransform()} />
-            ) : (
-                undefined
-            ),
+            ) : undefined,
             unitSpace: select('unitSpace', ['show', 'hide', 'auto'], 'hide'),
             fontSize: select('fontSize', ['normal', 'small'], 'normal'),
         }}
