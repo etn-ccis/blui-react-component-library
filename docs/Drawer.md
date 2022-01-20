@@ -231,6 +231,7 @@ The `items` property supports nested items to generate collapsible sections in t
 | title                           | Text to display in the group header                        | `string`                | no       |                             |
 | titleColor                      | Color used for the title text                              | `string`                | no       | varies for light/dark theme |
 | titleContent                    | Custom element, substitute for title                       | `ReactNode`             | no       |                             |
+| titleDivider                    | Divider for the title                                      | `boolean`               | no       | true                        |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                       | -        |                             |
 
 </div>
@@ -287,25 +288,25 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                                                                                               | Type                      | Required | Default |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------- |
-| classes                         | Style overrides                                                                                                                                           | `DrawerNavItemClasses`    | no       |         |
-| depth\*                         | The nested depth of the item                                                                                                                              | `number`                  | no       | 0       |
-| hidden                          | Sets whether to hide the nav item                                                                                                                         | `boolean`                 | no       |         |
-| hidePadding                     | Remove left padding if no icon is used                                                                                                                    | `boolean`                 | no       | false   |
-| icon                            | A component to render for the left icon                                                                                                                   | `JSX.Element`             | no       |         |
-| isInActiveTree\*                | Sets whether the item is a parent of the currently active item (managed automatically)                                                                    | `boolean`                 | no       |         |
-| itemID                          | A unique identifier of the NavItem. Item will have 'active' style when this matches activeItem                                                            | `string`                  | yes      |         |
-| items                           | The items nested under this item                                                                                                                          | `NestedNavItem[]`         | no       |         |
-| notifyActiveParent\*            | Callback function to the parent element to update active hierarchy styles                                                                                 | `(ids: string[]) => void` | no       |         |
-| onClick                         | A function to execute when clicked                                                                                                                        | `function`                | no       |         |
-| rightComponent                  | An icon/component to display to the right                                                                                                                 | `ReactNode`               | no       |         |
-| statusColor                     | Status stripe and icon color                                                                                                                              | `string`                  | no       |         |
-| subtitle                        | The text to show on the second line                                                                                                                       | `string`                  | no       |         |
-| title                           | The text to show on the first line                                                                                                                        | `string`                  | yes      |         |
-| disableRailTooltip              | Sets whether to disable the tooltip on hover for the condensed `rail` variant                                                                             | `boolean`                 | no       |         |
+| Prop Name                       | Description                                                                                                                                       | Type                      | Required | Default |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------- |
+| classes                         | Style overrides                                                                                                                                   | `DrawerNavItemClasses`    | no       |         |
+| depth\*                         | The nested depth of the item                                                                                                                      | `number`                  | no       | 0       |
+| hidden                          | Sets whether to hide the nav item                                                                                                                 | `boolean`                 | no       |         |
+| hidePadding                     | Remove left padding if no icon is used                                                                                                            | `boolean`                 | no       | false   |
+| icon                            | A component to render for the left icon                                                                                                           | `JSX.Element`             | no       |         |
+| isInActiveTree\*                | Sets whether the item is a parent of the currently active item (managed automatically)                                                            | `boolean`                 | no       |         |
+| itemID                          | A unique identifier of the NavItem. Item will have 'active' style when this matches activeItem                                                    | `string`                  | yes      |         |
+| items                           | The items nested under this item                                                                                                                  | `NestedNavItem[]`         | no       |         |
+| notifyActiveParent\*            | Callback function to the parent element to update active hierarchy styles                                                                         | `(ids: string[]) => void` | no       |         |
+| onClick                         | A function to execute when clicked                                                                                                                | `function`                | no       |         |
+| rightComponent                  | An icon/component to display to the right                                                                                                         | `ReactNode`               | no       |         |
+| statusColor                     | Status stripe and icon color                                                                                                                      | `string`                  | no       |         |
+| subtitle                        | The text to show on the second line                                                                                                               | `string`                  | no       |         |
+| title                           | The text to show on the first line                                                                                                                | `string`                  | yes      |         |
+| disableRailTooltip              | Sets whether to disable the tooltip on hover for the condensed `rail` variant                                                                     | `boolean`                 | no       |         |
 | InfoListItemProps               | Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props | `InfoListItemProps`       | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                                                                                | -                         | -        |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                                                                        | -                         | -        |         |
 
 </div>
 
@@ -319,6 +320,7 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | ---------------- | --------------------------------------------------------------- |
 | root             | Styles applied to the root element wrapping the InfoListItem    |
 | active           | Styles applied to the active item highlight element             |
+| chevron          | Styles applied to the chevron element                           |
 | expandIcon       | Styles applied to the expand/collapse icon wrapper              |
 | infoListItemRoot | Styles applied to the InfoListItem root element                 |
 | nestedListGroup  | Styles applied to wrapper surrounded nested children            |
@@ -448,6 +450,7 @@ The following are additional shared props that will apply when using a non-rail 
 | ----------------------------- | ----------------------------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
 | activeItemBackgroundShape     | shape of the active item background highlight                                 | `'round'` \| `'square'` | no       | square                                                       |
 | chevron                       | Whether to have chevrons for all menu items                                   | `boolean`               | no       |                                                              |
+| chevronColor                  | Color override for the chevron icon                                           | `string`                | no       |                                                              |
 | collapseIcon                  | Icon used to collapse drawer                                                  | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                             |
 | expandIcon                    | Icon used to expand drawer                                                    | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
 | hidePadding                   | Whether to hide the paddings reserved for menu item icons                     | `boolean`               | no       |                                                              |
