@@ -29,6 +29,8 @@ export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
      * Default: false
      */
     chevron?: boolean;
+    /** Color override for the chevron icon */
+    chevronColor?: string;
     /** Custom classes for default style overrides */
     classes?: InfoListItemClasses;
     /** Show a row separator below the row */
@@ -86,8 +88,6 @@ export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
      * Default: false
      */
     wrapTitle?: boolean;
-    /** Color override for the chevron icon */
-    chevronColor?: string;
 };
 const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemProps> = (
     props: InfoListItemProps,
@@ -115,11 +115,11 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         backgroundColor,
+        chevronColor,
         fontColor,
         iconAlign,
         iconColor,
         statusColor,
-        chevronColor,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherListItemProps
     } = props;
@@ -154,7 +154,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 <Chevron
                     color={'inherit'}
                     role={'button'}
-                    className={clsx(combine('chevronIcon'), defaultClasses.flipIcon)}
+                    className={clsx(combine('chevron'), defaultClasses.flipIcon)}
                 />
             );
         }
@@ -261,7 +261,7 @@ InfoListItem.propTypes = {
         avatar: PropTypes.string,
         icon: PropTypes.string,
         rightComponent: PropTypes.string,
-        chevronIcon: PropTypes.string,
+        chevron: PropTypes.string,
         separator: PropTypes.string,
         subtitle: PropTypes.string,
         title: PropTypes.string,

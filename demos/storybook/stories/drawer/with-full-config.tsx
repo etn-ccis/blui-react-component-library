@@ -102,6 +102,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
         activeItemIconColor: color('activeItemIconColor', Colors.blue[500], drawerGroupId),
         activeItemBackgroundShape: select('activeItemBackgroundShape', ['round', 'square'], 'square', drawerGroupId),
         chevron: boolean('chevron', false, drawerGroupId),
+        chevronColor: color('chevronColor', Colors.gray[500], drawerGroupId),
         collapseIcon: getIcon(
             select('collapseIcon', ['undefined', '<Remove />', '<AddAPhoto />'], 'undefined', drawerGroupId)
         ),
@@ -163,7 +164,8 @@ export const withFullConfig = (): StoryFnReactReturnType => {
 
     const navGroupKnobs: Partial<DrawerNavGroupProps> = {
         title: text('drawerNavGroup[0].title', 'NavGroup 1', navGroupId),
-        titleColor: color('drawerNavGroup[0].titleColor', Colors.black[500], navGroupId),
+        titleColor: color('titleColor', Colors.black[500], navGroupId),
+        titleDivider: boolean('titleDivider', true, navGroupId),
     };
 
     const navItemKnobs: Partial<NavItem> = {
@@ -315,6 +317,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             activeItemIconColor={drawerKnobs.activeItemIconColor}
             activeItemBackgroundShape={drawerKnobs.activeItemBackgroundShape}
             chevron={drawerKnobs.chevron}
+            chevronColor={drawerKnobs.chevronColor}
             collapseIcon={drawerKnobs.collapseIcon}
             condensed={drawerKnobs.condensed}
             divider={drawerKnobs.divider}
@@ -346,7 +349,12 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                 title={headerKnobs.title}
             />
             <DrawerBody backgroundColor={bodyKnobs.backgroundColor}>
-                <DrawerNavGroup items={links1} title={navGroupKnobs.title} titleColor={navGroupKnobs.titleColor} />
+                <DrawerNavGroup
+                    items={links1}
+                    title={navGroupKnobs.title}
+                    titleColor={navGroupKnobs.titleColor}
+                    titleDivider={navGroupKnobs.titleDivider}
+                />
                 <DrawerNavGroup
                     items={links2}
                     titleContent={
@@ -363,6 +371,8 @@ export const withFullConfig = (): StoryFnReactReturnType => {
                             <div>Software Version v1.0.3</div>
                         </div>
                     }
+                    titleColor={navGroupKnobs.titleColor}
+                    titleDivider={navGroupKnobs.titleDivider}
                 />
             </DrawerBody>
 

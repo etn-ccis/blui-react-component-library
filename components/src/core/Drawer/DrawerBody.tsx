@@ -40,6 +40,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         activeItemIconColor,
         backgroundColor,
         chevron,
+        chevronColor,
         collapseIcon,
         disableActiveItemParentStyles,
         divider,
@@ -85,6 +86,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
                         activeItemIconColor={mergeStyleProp(activeItemIconColor, groupProps.activeItemIconColor)}
                         backgroundColor={mergeStyleProp(backgroundColor, groupProps.backgroundColor)}
                         chevron={mergeStyleProp(chevron, groupProps.chevron)}
+                        chevronColor={mergeStyleProp(chevronColor, child.props.chevronColor)}
                         collapseIcon={mergeStyleProp(collapseIcon, groupProps.collapseIcon)}
                         disableActiveItemParentStyles={mergeStyleProp(
                             disableActiveItemParentStyles,
