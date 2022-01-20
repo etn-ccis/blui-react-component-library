@@ -34,7 +34,9 @@ import { Temp } from '@brightlayer-ui/icons-mui';
                 icon={<Temp fontSize={'inherit'} htmlColor={Colors.black[500]} />}
                 label={'Temperature'}
                 iconSize={48}
-                ChannelValueProps={{ value: '98', units: '°F', fontSize: 'normal' }}
+                value={98}
+                units={'°F'}
+                fontSize={'normal'}
             />
         </HeroBanner>
     }

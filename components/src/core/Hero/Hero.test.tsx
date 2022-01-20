@@ -25,19 +25,19 @@ describe('Hero', () => {
 
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />, div);
+        ReactDOM.render(<Hero icon={'A'} label={'Healthy'} value={96} units={'/100'} />, div);
     });
     it('should render with the wrapper class', () => {
-        const wrapper = shallow(<Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />);
+        const wrapper = shallow(<Hero value={1} label={'test'} icon={'a'} />);
         expect(findByTestId('wrapper', wrapper)).toBeTruthy();
     });
     it('renders without children', () => {
-        const wrapper = shallow(<Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />);
+        const wrapper = shallow(<Hero value={1} label={'test'} icon={'a'} />);
         expect(wrapper.find(ChannelValue).length).toEqual(1);
     });
     it('renders with children', () => {
         const wrapper = shallow(
-            <Hero label={'test'} icon={'a'}>
+            <Hero value={1} label={'test'} icon={'a'}>
                 <ChannelValue value={1} />
                 <ChannelValue value={1} />
             </Hero>

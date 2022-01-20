@@ -12,21 +12,16 @@ import { getLeftToRightIconTransform } from '../../src/utils';
 export const withFullConfig = (): StoryFnReactReturnType => (
     <Hero
         label={text('label', 'Velocity')}
+        units={text('units', 'RPM')}
         onClick={action('clicked')}
-        ChannelValueProps={{
-            value: '470',
-            units: 'RPM',
-            icon: boolean('Show Value Icon', true) ? (
-                <TrendingUpIcon style={getLeftToRightIconTransform()} />
-            ) : (
-                undefined
-            ),
-            unitSpace: select('unitSpace', ['show', 'hide', 'auto'], 'hide'),
-            fontSize: select('fontSize', ['normal', 'small'], 'normal'),
-        }}
+        value={text('value', '470')}
+        valueIcon={
+            boolean('Show Value Icon', true) ? <TrendingUpIcon style={getLeftToRightIconTransform()} /> : undefined
+        }
         iconBackgroundColor={color('iconBackgroundColor', Colors.blue[500])}
         icon={<Fan fontSize={'inherit'} htmlColor={color('icon.htmlColor', Colors.white[50])} />}
         iconSize={number('iconSize', 35)}
+        fontSize={select('fontSize', ['normal', 'small'], 'normal')}
     />
 );
 

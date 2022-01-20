@@ -8,7 +8,6 @@
 -   Added `chevronIcon` class for `chevron` element in `<InfoListItem>`.
 -   Added 1rem default padding to the root styles of `<EmptyState>`. ([#320](https://github.com/brightlayer-ui/react-component-library/issues/320))
 -   Added new property `unitSpace` to `<ChannelValue>` to manage spacing between the value and units. ([#350](https://github.com/brightlayer-ui/react-component-library/issues/350))
--   In `<Hero>` component, `fontSize`, `value`, `valueIcon`, `valueColor` and `units` props have been replaced by `ChannelValueProps` prop, which will allow you to specify any props on the underlying `<ChannelValue>` component.
 
 ## v5.3.3 (December 6, 2021)
 
