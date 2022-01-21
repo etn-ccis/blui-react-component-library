@@ -15,4 +15,5 @@ const toolbarMenuModule = {
 export { getReadMeStory } from '../../src/utils';
 export { withBasicUsage } from './with-basic-usage';
 export { iconWithLabel } from './icon-with-label';
+export { withMenu } from './with-menu';
 export default toolbarMenuModule;
