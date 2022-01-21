@@ -4,7 +4,7 @@ import * as Colors from '@brightlayer-ui/colors';
 import { ChannelValue } from '@brightlayer-ui/react-components';
 import { WITH_FULL_CONFIG_STORY_NAME } from '../../src/constants';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { boolean, color, number, text } from '@storybook/addon-knobs';
+import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { getLeftToRightIconTransform } from '../../src/utils';
 
 export const withFullConfig = (): StoryFnReactReturnType => {
@@ -19,9 +19,17 @@ export const withFullConfig = (): StoryFnReactReturnType => {
     );
     const fontSize = number('fontSize', 30);
     const prefix = boolean('prefix', false);
-
+    const unitSpace = select('unitSpace', ['show', 'hide', 'auto'], 'auto');
     return (
-        <ChannelValue value={value} units={units} color={textColor} icon={icon} fontSize={fontSize} prefix={prefix} />
+        <ChannelValue
+            value={value}
+            units={units}
+            color={textColor}
+            icon={icon}
+            fontSize={fontSize}
+            prefix={prefix}
+            unitSpace={unitSpace}
+        />
     );
 };
 
