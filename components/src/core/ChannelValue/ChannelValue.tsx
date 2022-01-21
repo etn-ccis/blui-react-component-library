@@ -108,9 +108,17 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
     const prefixUnitAllowSpaceList = ['$'];
     const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
 
-    const applyPrefix = useCallback((): boolean => prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !prefixUnitAllowSpaceList.includes(units)), [units, unitSpace]);
+    const applyPrefix = useCallback(
+        (): boolean =>
+            prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !prefixUnitAllowSpaceList.includes(units)),
+        [units, unitSpace]
+    );
 
-    const applySuffix = useCallback((): boolean => !prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !suffixUnitAllowSpaceList.includes(units)), [units, unitSpace]);
+    const applySuffix = useCallback(
+        (): boolean =>
+            !prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !suffixUnitAllowSpaceList.includes(units)),
+        [units, unitSpace]
+    );
 
     const getUnitElement = useCallback(
         (): JSX.Element => (
