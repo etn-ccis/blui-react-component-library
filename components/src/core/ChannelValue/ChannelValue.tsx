@@ -36,8 +36,8 @@ export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> 
      *
      * Default: auto (shows space except for white list items)
      *
-     * prefixUnitWhitelist: ['$'];
-     * suffixUnitWhitelist: ['%', '℉','°F','℃','°C','°']
+     * prefixUnitAllowSpaceList: ['$'];
+     * suffixUnitAllowSpaceList: ['%', '℉','°F','℃','°C','°']
      */
     unitSpace?: 'show' | 'hide' | 'auto';
     /** Text to display for the value (bold text) */
@@ -105,19 +105,12 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         ...otherSpanProps
     } = props;
     const defaultClasses = useStyles(props);
-    const prefixUnitWhitelist = ['$'];
-    const suffixUnitWhitelist = ['%', '℉', '°F', '℃', '°C', '°'];
-    const applyPrefix = useCallback((): boolean => {
-        if ((!prefixUnitWhitelist.includes(units) && unitSpace !== 'hide') || unitSpace === 'show') {
-            return true;
-        }
-    }, [prefix, units, unitSpace]);
+    const prefixUnitAllowSpaceList = ['$'];
+    const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
 
-    const applySuffix = useCallback((): boolean => {
-        if ((!suffixUnitWhitelist.includes(units) && unitSpace !== 'hide') || unitSpace === 'show') {
-            return true;
-        }
-    }, [prefix, units, unitSpace]);
+    const applyPrefix = useCallback((): boolean => prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !prefixUnitAllowSpaceList.includes(units)), [units, unitSpace]);
+
+    const applySuffix = useCallback((): boolean => !prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !suffixUnitAllowSpaceList.includes(units)), [units, unitSpace]);
 
     const getUnitElement = useCallback(
         (): JSX.Element => (
@@ -127,8 +120,8 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                         variant={'h6'}
                         color={'inherit'}
                         className={clsx(defaultClasses.text, defaultClasses.units, classes.units, {
-                            [defaultClasses.prefix]: prefix && applyPrefix(),
-                            [defaultClasses.suffix]: !prefix && applySuffix(),
+                            [defaultClasses.prefix]: applyPrefix(),
+                            [defaultClasses.suffix]: applySuffix(),
                         })}
                         data-test={'units'}
                     >
