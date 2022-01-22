@@ -5,12 +5,16 @@ import { ToolbarMenu } from '@brightlayer-ui/react-components';
 import { typography } from '@storybook/theming';
 
 export const iconWithLabel = (): StoryFnReactReturnType => {
-    return <ToolbarMenu label={
-    <span>
-        <GradeA/>
-       <span>Dropdown Toolbar</span>
-    </span>
-    }/>;
+    return (
+        <ToolbarMenu
+            label={
+                <span>
+                    <GradeA />
+                    <span>Dropdown Toolbar</span>
+                </span>
+            }
+        />
+    );
 };
 
 iconWithLabel.story = { name: 'icon with label' };

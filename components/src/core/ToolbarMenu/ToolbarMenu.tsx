@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         toolbarMenuContent: {
             display: 'flex',
+            cursor: 'pointer',
         },
         navGroups: {
             '&:active, &:focus': {
@@ -169,33 +170,34 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     }, [menuGroups, menu, anchorEl, MenuProps, defaultClasses]);
 
     return (
-        <div ref={ref} {...otherDivProps} className={clsx(defaultClasses.root, classes.root)}>
+        <>
             <Typography
                 ref={anchor}
                 aria-haspopup="true"
-                component={'div'}
-                onClick={(): void => {
-                    openMenu(anchor.current);
-                }}
+                component={'span'}
                 className={clsx(
                     defaultClasses.toolbarMenuContent,
                     classes.toolbarMenuContent,
-                    menuGroups || menu ? defaultClasses.cursorPointer : ''
+                    
                 )}
             >
                 <span>{label || ''}</span>
                 {(menuGroups || menu) && (
                                 <ArrowDropDown
+                                onClick={(): void => {
+                                    openMenu(anchor.current);
+                                }}
                                     className={clsx(
                                         defaultClasses.dropdownArrow,
                                         classes.dropdownArrow,
-                                        anchorEl ? defaultClasses.rotateDropdownArrow : ''
+                                        anchorEl ? defaultClasses.rotateDropdownArrow : '',
+                                        menuGroups || menu ? defaultClasses.cursorPointer : ''
                                     )}
                                 />
                             )}
             </Typography>
             {getMenu()}
-        </div>
+        </>
     );
 };
 /**

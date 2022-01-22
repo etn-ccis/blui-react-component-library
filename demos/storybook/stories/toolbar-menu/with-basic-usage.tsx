@@ -6,8 +6,8 @@ import { ToolbarMenu } from '@brightlayer-ui/react-components';
 
 export const withBasicUsage = (): StoryFnReactReturnType => {
     const label = text('label', 'label');
-   
-    return <ToolbarMenu label={label}/>;
+
+    return <ToolbarMenu label={label} />;
 };
 
 withBasicUsage.story = { name: WITH_MIN_PROPS_STORY_NAME };
