@@ -1,9 +1,9 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
-import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
-import { ToolbarMenu } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
+import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
+import { text } from '@storybook/addon-knobs';
+import { ToolbarMenu } from '@brightlayer-ui/react-components/core/ToolbarMenu';
+import { WITH_MIN_PROPS_STORY_NAME } from '../../src/constants';
 
 const menuItems = [
     { title: 'Item 1', onClick: action('Item 1 selected') },

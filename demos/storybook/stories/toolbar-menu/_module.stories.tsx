@@ -17,4 +17,5 @@ export { withBasicUsage } from './with-basic-usage';
 export { iconWithLabel } from './icon-with-label';
 export { withAppBar } from './with-app-bar';
 export { withBluiAppBar } from './with-blui-app-bar';
+export { withMenuPlacementOptions } from './with-menu-placement-options';
 export default toolbarMenuModule;

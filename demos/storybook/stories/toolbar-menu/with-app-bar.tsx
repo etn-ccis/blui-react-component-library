@@ -1,14 +1,15 @@
 import React from 'react';
-import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { ToolbarMenu } from '@brightlayer-ui/react-components';
-import Toolbar from '@material-ui/core/Toolbar';
-import AppBar from '@material-ui/core/AppBar';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
 import { action } from '@storybook/addon-actions';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import AppBar from '@material-ui/core/AppBar';
 import * as Colors from '@brightlayer-ui/colors';
+import ListItemText from '@material-ui/core/ListItemText';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { text } from '@storybook/addon-knobs';
+import Toolbar from '@material-ui/core/Toolbar';
+import { ToolbarMenu } from '@brightlayer-ui/react-components/core/ToolbarMenu';
+import Typography from '@material-ui/core/Typography';
+
 export const withAppBar = (): StoryFnReactReturnType => {
     const menuItems = [
         { title: 'Item 1', onClick: action('Item 1 selected') },
@@ -22,9 +23,6 @@ export const withAppBar = (): StoryFnReactReturnType => {
         },
     ];
     const useStyles = makeStyles({
-        labelContent: {
-            display: 'flex',
-        },
         textContent: {
             overflow: 'hidden',
             whiteSpace: 'nowrap',
@@ -51,7 +49,7 @@ export const withAppBar = (): StoryFnReactReturnType => {
                             classes={{ root: classes.root }}
                             label={text('label', text('label', 'Subtitle'))}
                             menuGroups={menuGroups}
-                        ></ToolbarMenu>
+                        />
                     }
                 />
             </Toolbar>

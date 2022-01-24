@@ -1,17 +1,19 @@
 import React, { HTMLAttributes, ReactNode, useState, useCallback, useRef, useEffect } from 'react';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import createStyles from '@material-ui/core/styles/createStyles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
+import createStyles from '@material-ui/core/styles/createStyles';
 import { DrawerNavGroup, NavItem } from '../Drawer';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
-import { Typography, useTheme } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 export type ToolbarMenuClasses = {
     root?: string;
-    label?: string;
     dropdownArrow?: string;
+    label?: string;
+    labelContent?: string;
     menuItem?: string;
 };
 
@@ -29,27 +31,30 @@ export type ToolbarMenuGroup1 = {
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            display: 'flex',
-            cursor: 'pointer',
-        },
-        navGroups: {
-            '&:active, &:focus': {
-                outline: 'none',
-            },
-        },
         cursorPointer: {
             cursor: 'pointer',
         },
         dropdownArrow: {
             marginLeft: theme.spacing(0.5),
         },
-        rotateDropdownArrow: {
-            transform: 'rotate(180deg)',
-        },
         label: {
             textOverflow: 'ellipsis',
             overflow: 'hidden',
+        },
+        labelContent: {
+            display: 'inline-flex',
+        },
+        navGroups: {
+            '&:active, &:focus': {
+                outline: 'none',
+            },
+        },
+        root: {
+            display: 'flex',
+            cursor: 'pointer',
+        },
+        rotateDropdownArrow: {
+            transform: 'rotate(180deg)',
         },
     })
 );
@@ -71,8 +76,11 @@ export type ToolbarMenuProps = HTMLAttributes<HTMLDivElement> & {
     classes?: Partial<ToolbarMenuClasses>;
 };
 
-const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuProps> = (props: ToolbarMenuProps) => {
-    const { label, classes = {}, menuGroups, menu, MenuProps, onClose, onOpen } = props;
+const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuProps> = (
+    props: ToolbarMenuProps,
+    ref: any
+) => {
+    const { label, classes = {}, menuGroups, menu, MenuProps, onClose, onOpen, ...otherSpanProps } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
     const defaultClasses = useStyles(props);
@@ -155,19 +163,20 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     }, [menuGroups, menu, anchorEl, MenuProps, defaultClasses]);
 
     return (
-        <>
+        <span
+            ref={ref}
+            className={clsx(defaultClasses.root, classes.root, menuGroups || menu ? defaultClasses.cursorPointer : '')}
+            data-test={'wrapper'}
+            {...otherSpanProps}
+        >
             <Typography
                 ref={anchor}
                 aria-haspopup="true"
-                component={'span'}
-                className={clsx(
-                    defaultClasses.root,
-                    classes.root,
-                    menuGroups || menu ? defaultClasses.cursorPointer : ''
-                )}
                 onClick={(): void => {
                     openMenu(anchor.current);
                 }}
+                component={'span'}
+                className={clsx(defaultClasses.labelContent, classes.labelContent)}
             >
                 <span className={clsx(defaultClasses.label, classes.label)}>{label || ''}</span>
                 {(menuGroups || menu) && (
@@ -181,7 +190,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 )}
             </Typography>
             {getMenu()}
-        </>
+        </span>
     );
 };
 /**

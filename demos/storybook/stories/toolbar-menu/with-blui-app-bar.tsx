@@ -10,6 +10,7 @@ import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 import clsx from 'clsx';
 import * as Colors from '@brightlayer-ui/colors';
 import { getBodyFiller } from '../../src/utils';
+
 const menuItems = [
     { title: 'Item 1', onClick: action('Item 1 selected') },
     { title: 'Item 2', onClick: action('Item 2 selected') },
