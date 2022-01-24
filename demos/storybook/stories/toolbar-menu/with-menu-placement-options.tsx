@@ -87,17 +87,24 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
                     primary={<Typography variant="h6">Title</Typography>}
                     secondary={
                         <ToolbarMenu
-                            classes={{ root: classes.root ,label: classes.labelContent }}
+                            classes={{ root: classes.root, label: classes.labelContent }}
                             label={
                                 <span>
-                                    <GradeA className={clsx(direction === 'rtl' ? classes.iconMarginLeft : classes.iconMarginRight)} />
+                                    <GradeA
+                                        className={clsx(
+                                            direction === 'rtl' ? classes.iconMarginLeft : classes.iconMarginRight
+                                        )}
+                                    />
                                     <span>{label}</span>
                                 </span>
                             }
                             menuGroups={menuGroups}
                             MenuProps={{
                                 anchorOrigin: { horizontal: anchorOriginHorizontal, vertical: anchorOriginVertical },
-                                transformOrigin: { horizontal: transformOriginHorizontal, vertical: transformOriginVertical },
+                                transformOrigin: {
+                                    horizontal: transformOriginHorizontal,
+                                    vertical: transformOriginVertical,
+                                },
                             }}
                         ></ToolbarMenu>
                     }

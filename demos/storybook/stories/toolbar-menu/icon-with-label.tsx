@@ -12,9 +12,9 @@ import { ToolbarMenu } from '@brightlayer-ui/react-components/core/ToolbarMenu';
 import useTheme from '@material-ui/core/styles/useTheme';
 
 const menuItems = [
-    { title: 'Item 1', onClick: action('Item 1 selected') },
-    { title: 'Item 2', onClick: action('Item 2 selected') },
-    { title: 'Item 3', onClick: action('Item 3 selected') },
+    { title: 'Menu Item 1', onClick: action('Item 1 selected') },
+    { title: 'Menu Item 2', onClick: action('Item 2 selected') },
+    { title: 'Menu Item 3', onClick: action('Item 3 selected') },
 ];
 
 const menuGroups = [
