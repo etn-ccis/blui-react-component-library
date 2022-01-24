@@ -33,7 +33,8 @@ export const withAppBar = (): StoryFnReactReturnType => {
             },
         },
         root: {
-            color: Colors.white[500],
+            color: Colors.white[50],
+            marginTop: '-0.125rem',
         },
     });
 

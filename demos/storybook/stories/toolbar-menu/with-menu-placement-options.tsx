@@ -1,7 +1,6 @@
 import { ToolbarMenu } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
-import { select } from '@storybook/addon-knobs';
-import { text } from '@storybook/addon-knobs';
+import { select, text } from '@storybook/addon-knobs';
 import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';

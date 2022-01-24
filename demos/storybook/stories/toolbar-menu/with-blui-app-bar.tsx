@@ -65,7 +65,8 @@ const useStyles = makeStyles(() => ({
         paddingRight: 16,
     },
     toolbarMenuRoot: {
-        color: Colors.white[500],
+        color: Colors.white[50],
+        marginTop: '-0.125rem',
     },
 }));
 
