@@ -1,5 +1,4 @@
 import React from 'react';
-import { GradeA } from '@brightlayer-ui/icons-mui';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { ToolbarMenu } from '@brightlayer-ui/react-components';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,8 +7,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import { action } from '@storybook/addon-actions';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import clsx from 'clsx';
-export const withMenu = (): StoryFnReactReturnType => {
+import * as Colors from '@brightlayer-ui/colors';
+import { text } from '@storybook/addon-knobs';
+export const withAppBar = (): StoryFnReactReturnType => {
     const menuItems = [
         { title: 'Item 1', onClick: action('Item 1 selected') },
         { title: 'Item 2', onClick: action('Item 2 selected') },
@@ -35,52 +35,28 @@ export const withMenu = (): StoryFnReactReturnType => {
             },
         },
         root: {
-            color: 'white',
-        }
+            color: Colors.white[500],
+        },
     });
 
     const classes = useStyles();
     return (
         <AppBar color={'primary'}>
-            {/* <Toolbar>
-            <ListItemText
-                    className={clsx(classes.textContent)}
-                    primary={
-                        <Typography variant="h6">
-                            Title
-                        </Typography>
-                    }
-                    secondary={
-                        <ToolbarMenu
-                        classes={{ root: classes.root }}
-                        label={
-                            <span className={classes.labelContent}>
-                                <GradeA />
-                                <span>Dropdown Toolbar</span>
-                            </span>
-                        }
-                        menuGroups={menuGroups}
-                    ></ToolbarMenu>
-                    }
-                />
-            </Toolbar> */}
-            <Toolbar >
-                {/* {getNavigationIcon()} */}
+            <Toolbar>
                 <ListItemText
                     className={classes.textContent}
-                    primary={
-                        <Typography variant="h6">
-                           Title
-                        </Typography>
-                    }
+                    primary={<Typography variant="h6">Title</Typography>}
                     secondary={
-                        <ToolbarMenu label="dj" menuGroups={menuGroups}></ToolbarMenu>
+                        <ToolbarMenu
+                            classes={{ root: classes.root }}
+                            label={text('label', text('label', 'Subtitle'))}
+                            menuGroups={menuGroups}
+                        ></ToolbarMenu>
                     }
                 />
-                {/* {props.children} */}
             </Toolbar>
         </AppBar>
     );
 };
 
-withMenu.story = { name: 'with menu' };
+withAppBar.story = { name: 'with app bar' };

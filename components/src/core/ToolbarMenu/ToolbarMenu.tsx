@@ -4,14 +4,13 @@ import createStyles from '@material-ui/core/styles/createStyles';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
-import { NavItem, DrawerNavGroup } from '../Drawer';
+import { DrawerNavGroup, NavItem } from '../Drawer';
 import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
 import { Typography, useTheme } from '@material-ui/core';
 
 export type ToolbarMenuClasses = {
     root?: string;
     label?: string;
-    toolbarMenuContent?: string;
     dropdownArrow?: string;
     menuItem?: string;
 };
@@ -32,11 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
-            alignItems: 'center',
-            verticalAlign: 'middle',
-        },
-        toolbarMenuContent: {
-            display: 'flex',
             cursor: 'pointer',
         },
         navGroups: {
@@ -53,12 +47,16 @@ const useStyles = makeStyles((theme: Theme) =>
         rotateDropdownArrow: {
             transform: 'rotate(180deg)',
         },
+        label: {
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+        },
     })
 );
 
 export type ToolbarMenuProps = HTMLAttributes<HTMLDivElement> & {
     /** Label Content */
-    label?: ReactNode;
+    label: ReactNode;
     /** Custom content to be displayed in the menu */
     menu?: JSX.Element;
     /** Groups of menu items to display */
@@ -73,20 +71,8 @@ export type ToolbarMenuProps = HTMLAttributes<HTMLDivElement> & {
     classes?: Partial<ToolbarMenuClasses>;
 };
 
-const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuProps> = (
-    props: ToolbarMenuProps,
-    ref: any
-) => {
-    const {
-        label,
-        classes = {},
-        menuGroups,
-        menu,
-        MenuProps,
-        onClose,
-        onOpen,
-        ...otherDivProps
-    } = props;
+const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuProps> = (props: ToolbarMenuProps) => {
+    const { label, classes = {}, menuGroups, menu, MenuProps, onClose, onOpen } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
     const defaultClasses = useStyles(props);
@@ -111,7 +97,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     );
 
     useEffect(() => {
-        if(menuGroups) {
+        if (menuGroups) {
             for (const group of menuGroups) {
                 for (const item of group.items) {
                     const onClick = item.onClick;
@@ -124,7 +110,6 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 }
             }
         }
-        
     }, [menuGroups]);
 
     const getMenu = useCallback(() => {
@@ -176,32 +161,31 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 aria-haspopup="true"
                 component={'span'}
                 className={clsx(
-                    defaultClasses.toolbarMenuContent,
-                    classes.toolbarMenuContent,
-                    
+                    defaultClasses.root,
+                    classes.root,
+                    menuGroups || menu ? defaultClasses.cursorPointer : ''
                 )}
+                onClick={(): void => {
+                    openMenu(anchor.current);
+                }}
             >
-                <span>{label || ''}</span>
+                <span className={clsx(defaultClasses.label, classes.label)}>{label || ''}</span>
                 {(menuGroups || menu) && (
-                                <ArrowDropDown
-                                onClick={(): void => {
-                                    openMenu(anchor.current);
-                                }}
-                                    className={clsx(
-                                        defaultClasses.dropdownArrow,
-                                        classes.dropdownArrow,
-                                        anchorEl ? defaultClasses.rotateDropdownArrow : '',
-                                        menuGroups || menu ? defaultClasses.cursorPointer : ''
-                                    )}
-                                />
-                            )}
+                    <ArrowDropDown
+                        className={clsx(
+                            defaultClasses.dropdownArrow,
+                            classes.dropdownArrow,
+                            anchorEl ? defaultClasses.rotateDropdownArrow : ''
+                        )}
+                    />
+                )}
             </Typography>
             {getMenu()}
         </>
     );
 };
 /**
- * [ToolbarMenu](https://brightlayer-ui-components.github.io/react/?path=/info/components-three-liner--get-read-me-story) component
+ * [ToolbarMenu](https://brightlayer-ui-components.github.io/react/?path=/info/components-toolbar-menu--get-read-me-story) component
  *
  * The `ToolbarMenu` used to display a dropdown menu with label.
  */
