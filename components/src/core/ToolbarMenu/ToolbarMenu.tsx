@@ -94,7 +94,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     props: ToolbarMenuProps,
     ref: any
 ) => {
-    const { 
+    const {
         classes = {},
         /* eslint-disable @typescript-eslint/no-unused-vars */
         color,
