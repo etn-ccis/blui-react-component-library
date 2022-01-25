@@ -161,6 +161,7 @@ const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToo
     );
 
     useEffect(() => {
+        // eslint-disable-next-line no-console
         console.warn(
             `DropdwonToolbar component has been deprecated and will be removed in version 6.0.0. Instead of DropdwonToolbar use ToolbarMenu component in regular Toolbar like Mui Appbar, BLUI Appbar.`
         );
