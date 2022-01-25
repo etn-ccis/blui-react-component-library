@@ -1,15 +1,10 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
+import { color, text } from '@storybook/addon-knobs';
 import { GradeA } from '@brightlayer-ui/icons-mui';
-import clsx from 'clsx';
-import createStyles from '@material-ui/core/styles/createStyles';
-import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import { text } from '@storybook/addon-knobs';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { ToolbarMenu } from '@brightlayer-ui/react-components/core/ToolbarMenu';
-import useTheme from '@material-ui/core/styles/useTheme';
+import * as Colors from '@brightlayer-ui/colors';
 
 const menuItems = [
     { title: 'Menu Item 1', onClick: action('Item 1 selected') },
@@ -23,38 +18,13 @@ const menuGroups = [
     },
 ];
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        labelContent: {
-            '& > span': {
-                display: 'flex',
-            },
-        },
-        iconMarginRight: {
-            marginRight: `${theme.spacing(1)}px`,
-        },
-        iconMarginLeft: {
-            marginLeft: `${theme.spacing(1)}px`,
-        },
-    })
-);
 export const iconWithLabel = (): StoryFnReactReturnType => {
-    const theme = useTheme();
-    const classes = useStyles(theme);
     const label = text('label', 'Subtitle');
-    const direction = getDirection();
-    return (
-        <ToolbarMenu
-            classes={{ label: classes.labelContent }}
-            label={
-                <span>
-                    <GradeA className={clsx(direction === 'rtl' ? classes.iconMarginLeft : classes.iconMarginRight)} />
-                    <span>{label}</span>
-                </span>
-            }
-            menuGroups={menuGroups}
-        />
-    );
+    const textColor = color('color', Colors.black[500]);
+    const iconColor = color('icon.htmlColor', Colors.green[500]);
+    const icon = <GradeA htmlColor={iconColor} />;
+
+    return <ToolbarMenu color={textColor} icon={icon} label={label} menuGroups={menuGroups} />;
 };
 
 iconWithLabel.story = { name: 'icon with label' };

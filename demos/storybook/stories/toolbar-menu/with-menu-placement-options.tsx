@@ -1,7 +1,6 @@
 import { ToolbarMenu } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
-import { select, text } from '@storybook/addon-knobs';
-import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
+import { color, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
@@ -11,9 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import * as Colors from '@brightlayer-ui/colors';
 import createStyles from '@material-ui/core/styles/createStyles';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { GradeA } from '@brightlayer-ui/icons-mui';
-import clsx from 'clsx';
 
 export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
     const anchorOriginHorizontal = select(
@@ -47,19 +44,8 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
             items: menuItems,
         },
     ];
-    const useStyles = makeStyles((theme: Theme) =>
+    const useStyles = makeStyles(() =>
         createStyles({
-            labelContent: {
-                '& > span': {
-                    display: 'flex',
-                },
-            },
-            iconMarginRight: {
-                marginRight: `${theme.spacing(1)}px`,
-            },
-            iconMarginLeft: {
-                marginLeft: `${theme.spacing(1)}px`,
-            },
             textContent: {
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
@@ -69,15 +55,11 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
                     marginBottom: '0.25rem',
                 },
             },
-            root: {
-                color: Colors.white[500],
-            },
         })
     );
 
     const classes = useStyles();
     const label = text('label', 'Subtitle');
-    const direction = getDirection();
     return (
         <AppBar color={'primary'}>
             <Toolbar>
@@ -86,17 +68,9 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
                     primary={<Typography variant="h6">Title</Typography>}
                     secondary={
                         <ToolbarMenu
-                            classes={{ root: classes.root, label: classes.labelContent }}
-                            label={
-                                <span>
-                                    <GradeA
-                                        className={clsx(
-                                            direction === 'rtl' ? classes.iconMarginLeft : classes.iconMarginRight
-                                        )}
-                                    />
-                                    <span>{label}</span>
-                                </span>
-                            }
+                            color={color('color', Colors.white[50])}
+                            icon={<GradeA />}
+                            label={label}
                             menuGroups={menuGroups}
                             MenuProps={{
                                 anchorOrigin: { horizontal: anchorOriginHorizontal, vertical: anchorOriginVertical },

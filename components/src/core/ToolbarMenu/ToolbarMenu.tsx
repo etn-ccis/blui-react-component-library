@@ -8,10 +8,12 @@ import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
 import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import useTheme from '@material-ui/core/styles/useTheme';
+import PropTypes from 'prop-types';
 
 export type ToolbarMenuClasses = {
     root?: string;
     dropdownArrow?: string;
+    icon?: string;
     label?: string;
     labelContent?: string;
     menuItem?: string;
@@ -31,27 +33,32 @@ export type ToolbarMenuGroup1 = {
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        root: {
+            cursor: 'pointer',
+            color: (props: ToolbarMenuProps): string => props.color,
+        },
         cursorPointer: {
             cursor: 'pointer',
         },
         dropdownArrow: {
             marginLeft: theme.spacing(0.5),
         },
+        icon: {
+            marginRight: `${theme.spacing(1)}px`,
+            display: 'inline-flex',
+            fontSize: 'inherit',
+        },
         label: {
             textOverflow: 'ellipsis',
             overflow: 'hidden',
         },
         labelContent: {
-            display: 'inline-flex',
+            display: 'flex',
         },
         navGroups: {
             '&:active, &:focus': {
                 outline: 'none',
             },
-        },
-        root: {
-            display: 'flex',
-            cursor: 'pointer',
         },
         rotateDropdownArrow: {
             transform: 'rotate(180deg)',
@@ -60,6 +67,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type ToolbarMenuProps = HTMLAttributes<HTMLDivElement> & {
+    /** The color used for the text elements
+     *
+     * Default: 'inherit'
+     */
+    color?: string;
+    /** A component to render for the icon */
+    icon?: JSX.Element;
     /** Label Content */
     label: ReactNode;
     /** Custom content to be displayed in the menu */
@@ -80,7 +94,19 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     props: ToolbarMenuProps,
     ref: any
 ) => {
-    const { label, classes = {}, menuGroups, menu, MenuProps, onClose, onOpen, ...otherSpanProps } = props;
+    const { 
+        classes = {},
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        color,
+        icon,
+        label,
+        menuGroups,
+        menu,
+        MenuProps,
+        onClose,
+        onOpen,
+        ...otherSpanProps
+    } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
     const defaultClasses = useStyles(props);
@@ -172,15 +198,24 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
             <Typography
                 ref={anchor}
                 aria-haspopup="true"
+                className={clsx(defaultClasses.labelContent, classes.labelContent)}
+                color={'inherit'}
+                component={'span'}
                 onClick={(): void => {
                     openMenu(anchor.current);
                 }}
-                component={'span'}
-                className={clsx(defaultClasses.labelContent, classes.labelContent)}
             >
-                <span className={clsx(defaultClasses.label, classes.label)}>{label || ''}</span>
+                {icon && (
+                    <span className={clsx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
+                        {icon}
+                    </span>
+                )}
+                <span className={clsx(defaultClasses.label, classes.label)} data-test={'label'}>
+                    {label || ''}
+                </span>
                 {(menuGroups || menu) && (
                     <ArrowDropDown
+                        data-test={'arrow-dropdown'}
                         className={clsx(
                             defaultClasses.dropdownArrow,
                             classes.dropdownArrow,
@@ -200,3 +235,47 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
  */
 export const ToolbarMenu = React.forwardRef(ToolbarMenuRenderer);
 ToolbarMenu.displayName = 'ToolbarMenu';
+ToolbarMenu.propTypes = {
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        dropdownArrow: PropTypes.string,
+        icon: PropTypes.string,
+        label: PropTypes.string,
+        labelContent: PropTypes.string,
+        menuItem: PropTypes.string,
+    }),
+    color: PropTypes.string,
+    menu: PropTypes.element,
+    label: PropTypes.string,
+    icon: PropTypes.element,
+    // @ts-ignore
+    menuGroups: PropTypes.arrayOf(
+        PropTypes.shape({
+            title: PropTypes.string,
+            fontColor: PropTypes.string,
+            iconColor: PropTypes.string,
+            items: PropTypes.arrayOf(
+                PropTypes.shape({
+                    icon: PropTypes.element,
+                    onClick: PropTypes.func,
+                    statusColor: PropTypes.string,
+                    subtitle: PropTypes.string,
+                    title: PropTypes.string,
+                    divider: PropTypes.bool,
+                })
+            ),
+        })
+    ),
+    MenuProps: PropTypes.object,
+    onClose: PropTypes.func,
+    onOpen: PropTypes.func,
+};
+
+ToolbarMenu.defaultProps = {
+    classes: {},
+    color: 'inherit',
+    menuGroups: [],
+    MenuProps: {},
+    onClose: (): void => {},
+    onOpen: (): void => {},
+};

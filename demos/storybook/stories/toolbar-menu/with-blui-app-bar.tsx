@@ -1,5 +1,5 @@
 import React from 'react';
-import { boolean, number, select, text } from '@storybook/addon-knobs';
+import { boolean, color, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { AppBar, Spacer, ThreeLiner, ToolbarMenu } from '@brightlayer-ui/react-components';
 import bgImage from '../../assets/farm.jpg';
@@ -65,7 +65,6 @@ const useStyles = makeStyles(() => ({
         paddingRight: 16,
     },
     toolbarMenuRoot: {
-        color: Colors.white[50],
         marginTop: '-0.125rem',
     },
 }));
@@ -75,6 +74,7 @@ export const withBluiAppBar = (): StoryFnReactReturnType => {
     const direction = getDirection();
     const appBarGroupId = 'AppBar';
     const threeLinerGroupId = 'ThreeLiner';
+    const toolbarMenuGroupId = 'ToolbarMenu';
     // AppBar props
     const animationDuration = number('animationDuration', 300, {}, appBarGroupId);
     const showBackgroundImage = boolean('show backgroundImage', true, appBarGroupId);
@@ -85,7 +85,9 @@ export const withBluiAppBar = (): StoryFnReactReturnType => {
     // ThreeLiner props
     const title = text('title', 'title', threeLinerGroupId);
     const info = text('info', 'info', threeLinerGroupId);
-
+    // ToolbarMenu props
+    const toolbarColor = color('color', Colors.white[50], toolbarMenuGroupId);
+    const toolbarLabel = text('label', 'Subtitle', toolbarMenuGroupId);
     return (
         <>
             <AppBar
@@ -111,7 +113,8 @@ export const withBluiAppBar = (): StoryFnReactReturnType => {
                         subtitle={
                             <ToolbarMenu
                                 classes={{ root: classes.toolbarMenuRoot }}
-                                label={text('label', text('label', 'Subtitle'))}
+                                color={toolbarColor}
+                                label={toolbarLabel}
                                 menuGroups={menuGroups}
                             ></ToolbarMenu>
                         }
