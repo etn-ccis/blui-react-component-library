@@ -11,6 +11,7 @@
 -   Added new property `unitSpace` to `<ChannelValue>` to manage spacing between the value and units. ([#350](https://github.com/brightlayer-ui/react-component-library/issues/350))
 -   Added `<ToolbarMenu>` component. ([#351](https://github.com/brightlayer-ui/react-component-library/issues/351))
 -   Added Deprecation warnings for DropdownToolbar component that will be removing in version 6.0.0.
+
 ## v5.3.3 (December 6, 2021)
 
 ### Fixed
