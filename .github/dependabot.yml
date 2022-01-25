@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/components"
+    schedule:
+      interval: "daily"
+      time: "17:00"
+    target-branch: "dev"
+    labels:
+      - "external-dependency"
+  - package-ecosystem: "npm"
+    directory: "/demos/storybook"
+    schedule:
+      interval: "daily"
+      time: "17:00"
+    target-branch: "dev"
+    labels:
+      - "external-dependency"
