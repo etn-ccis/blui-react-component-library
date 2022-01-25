@@ -4,7 +4,7 @@ updates:
     directory: "/components"
     schedule:
       interval: "daily"
-      time: "17:00"
+      time: "12:00"
     target-branch: "dev"
     labels:
       - "external-dependency"
@@ -12,7 +12,7 @@ updates:
     directory: "/demos/storybook"
     schedule:
       interval: "daily"
-      time: "17:00"
+      time: "12:00"
     target-branch: "dev"
     labels:
       - "external-dependency"
