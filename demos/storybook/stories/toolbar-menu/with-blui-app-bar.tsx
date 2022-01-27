@@ -4,7 +4,7 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import { AppBar, Spacer, ThreeLiner, ToolbarMenu } from '@brightlayer-ui/react-components';
 import bgImage from '../../assets/farm.jpg';
 import { Menu, Work, Settings, Home } from '@material-ui/icons';
-import { IconButton, makeStyles, Toolbar } from '@material-ui/core';
+import { IconButton, makeStyles, Toolbar, useMediaQuery, useTheme } from '@material-ui/core';
 import { action } from '@storybook/addon-actions';
 import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 import clsx from 'clsx';
@@ -72,13 +72,16 @@ const useStyles = makeStyles(() => ({
 export const withBluiAppBar = (): StoryFnReactReturnType => {
     const classes = useStyles();
     const direction = getDirection();
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
     const appBarGroupId = 'AppBar';
     const threeLinerGroupId = 'ThreeLiner';
     const toolbarMenuGroupId = 'ToolbarMenu';
     // AppBar props
     const animationDuration = number('animationDuration', 300, {}, appBarGroupId);
     const showBackgroundImage = boolean('show backgroundImage', true, appBarGroupId);
-    const collapsedHeight = number('collapsedHeight', 64, {}, appBarGroupId);
+    const collapsedDesktopHeight = number('collapsedDesktopHeight', 64, {}, appBarGroupId);
+    const collapsedMobileHeight = number('collapsedMobileHeight', 56, {}, appBarGroupId);
     const expandedHeight = number('expandedHeight', 200, {}, appBarGroupId);
     const scrollThreshold = number('scrollThreshold', 136, {}, appBarGroupId);
     const variant = select('variant', ['snap', 'collapsed', 'expanded'], 'snap', appBarGroupId);
@@ -92,7 +95,7 @@ export const withBluiAppBar = (): StoryFnReactReturnType => {
         <>
             <AppBar
                 expandedHeight={expandedHeight}
-                collapsedHeight={collapsedHeight}
+                collapsedHeight={!isMobile ? collapsedDesktopHeight : collapsedMobileHeight}
                 scrollThreshold={scrollThreshold}
                 animationDuration={animationDuration}
                 backgroundImage={showBackgroundImage ? bgImage : undefined}
