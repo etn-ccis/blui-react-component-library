@@ -111,13 +111,13 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
     const applyPrefix = useCallback(
         (): boolean =>
             prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !prefixUnitAllowSpaceList.includes(units)),
-        [units, unitSpace]
+        [prefix, units, unitSpace]
     );
 
     const applySuffix = useCallback(
         (): boolean =>
             !prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !suffixUnitAllowSpaceList.includes(units)),
-        [units, unitSpace]
+        [prefix, units, unitSpace]
     );
 
     const getUnitElement = useCallback(
