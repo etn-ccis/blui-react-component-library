@@ -20,11 +20,10 @@ const menuGroups = [
 
 export const iconWithLabel = (): StoryFnReactReturnType => {
     const label = text('label', 'Subtitle');
-    const textColor = color('color', Colors.black[500]);
     const iconColor = color('icon.htmlColor', Colors.green[500]);
     const icon = <GradeA htmlColor={iconColor} />;
 
-    return <ToolbarMenu color={textColor} icon={icon} label={label} menuGroups={menuGroups} />;
+    return <ToolbarMenu icon={icon} label={label} menuGroups={menuGroups} />;
 };
 
 iconWithLabel.story = { name: 'icon with label' };

@@ -1,15 +1,14 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import AppBar from '@material-ui/core/AppBar';
-import { color, text } from '@storybook/addon-knobs';
+import { text } from '@storybook/addon-knobs';
 import ListItemText from '@material-ui/core/ListItemText';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-
 import Toolbar from '@material-ui/core/Toolbar';
 import { ToolbarMenu } from '@brightlayer-ui/react-components/core/ToolbarMenu';
 import Typography from '@material-ui/core/Typography';
-import * as Colors from '@brightlayer-ui/colors';
+// import * as Colors from '@brightlayer-ui/colors';
 
 export const withAppBar = (): StoryFnReactReturnType => {
     const menuItems = [
@@ -34,8 +33,7 @@ export const withAppBar = (): StoryFnReactReturnType => {
             },
         },
         root: {
-            // color: Colors.white[50],
-            marginTop: '-0.125rem',
+            marginTop: '-0.25rem',
         },
     });
 
@@ -47,14 +45,15 @@ export const withAppBar = (): StoryFnReactReturnType => {
                     className={classes.textContent}
                     primary={<Typography variant="h6">Title</Typography>}
                     secondary={
-                        <ToolbarMenu
-                            color={color('color', Colors.white[50])}
-                            classes={{ root: classes.root }}
-                            label={text('label', text('label', 'Subtitle'))}
-                            menuGroups={menuGroups}
-                        />
+                        <Typography component={'div'}>
+                            <ToolbarMenu
+                                classes={{ root: classes.root }}
+                                label={text('label', text('label', 'Subtitle'))}
+                                menuGroups={menuGroups}
+                            />
+                        </Typography>
                     }
-                />
+                ></ListItemText>
             </Toolbar>
         </AppBar>
     );

@@ -1,6 +1,6 @@
 import { ToolbarMenu } from '@brightlayer-ui/react-components';
 import { action } from '@storybook/addon-actions';
-import { color, select, text } from '@storybook/addon-knobs';
+import { select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
@@ -8,9 +8,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import * as Colors from '@brightlayer-ui/colors';
+// import * as Colors from '@brightlayer-ui/colors';
 import createStyles from '@material-ui/core/styles/createStyles';
 import { GradeA } from '@brightlayer-ui/icons-mui';
+import { typography } from '@storybook/theming';
 
 export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
     const anchorOriginHorizontal = select(
@@ -55,6 +56,9 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
                     marginBottom: '0.25rem',
                 },
             },
+            root: {
+                marginTop: '-0.25rem',
+            },
         })
     );
 
@@ -67,19 +71,25 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
                     className={classes.textContent}
                     primary={<Typography variant="h6">Title</Typography>}
                     secondary={
-                        <ToolbarMenu
-                            color={color('color', Colors.white[50])}
-                            icon={<GradeA />}
-                            label={label}
-                            menuGroups={menuGroups}
-                            MenuProps={{
-                                anchorOrigin: { horizontal: anchorOriginHorizontal, vertical: anchorOriginVertical },
-                                transformOrigin: {
-                                    horizontal: transformOriginHorizontal,
-                                    vertical: transformOriginVertical,
-                                },
-                            }}
-                        ></ToolbarMenu>
+                        <Typography component={'div'}>
+                            <ToolbarMenu
+                                // color={color('color', Colors.white[50])}
+                                classes={{ root: classes.root }}
+                                icon={<GradeA />}
+                                label={label}
+                                menuGroups={menuGroups}
+                                MenuProps={{
+                                    anchorOrigin: {
+                                        horizontal: anchorOriginHorizontal,
+                                        vertical: anchorOriginVertical,
+                                    },
+                                    transformOrigin: {
+                                        horizontal: transformOriginHorizontal,
+                                        vertical: transformOriginVertical,
+                                    },
+                                }}
+                            ></ToolbarMenu>
+                        </Typography>
                     }
                 />
             </Toolbar>

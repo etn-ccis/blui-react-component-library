@@ -1,5 +1,5 @@
 import React from 'react';
-import { boolean, color, number, select, text } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
 import { AppBar, Spacer, ThreeLiner, ToolbarMenu } from '@brightlayer-ui/react-components';
 import bgImage from '../../assets/farm.jpg';
@@ -8,7 +8,7 @@ import { IconButton, makeStyles, Toolbar, useMediaQuery, useTheme } from '@mater
 import { action } from '@storybook/addon-actions';
 import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 import clsx from 'clsx';
-import * as Colors from '@brightlayer-ui/colors';
+// import * as Colors from '@brightlayer-ui/colors';
 import { getBodyFiller } from '../../src/utils';
 
 const menuItems = [
@@ -65,7 +65,7 @@ const useStyles = makeStyles(() => ({
         paddingRight: 16,
     },
     toolbarMenuRoot: {
-        marginTop: '-0.125rem',
+        marginTop: '-0.25rem',
     },
 }));
 
@@ -89,7 +89,7 @@ export const withBluiAppBar = (): StoryFnReactReturnType => {
     const title = text('title', 'title', threeLinerGroupId);
     const info = text('info', 'info', threeLinerGroupId);
     // ToolbarMenu props
-    const toolbarColor = color('color', Colors.white[50], toolbarMenuGroupId);
+    // const toolbarColor = color('color', Colors.white[50], toolbarMenuGroupId);
     const toolbarLabel = text('label', 'Subtitle', toolbarMenuGroupId);
     return (
         <>
@@ -116,7 +116,6 @@ export const withBluiAppBar = (): StoryFnReactReturnType => {
                         subtitle={
                             <ToolbarMenu
                                 classes={{ root: classes.toolbarMenuRoot }}
-                                color={toolbarColor}
                                 label={toolbarLabel}
                                 menuGroups={menuGroups}
                             ></ToolbarMenu>

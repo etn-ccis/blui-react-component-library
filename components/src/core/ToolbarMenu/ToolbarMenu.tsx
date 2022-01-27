@@ -1,11 +1,10 @@
-import React, { HTMLAttributes, ReactNode, useState, useCallback, useRef, useEffect } from 'react';
+import React, { HTMLAttributes, useState, useCallback, useRef, useEffect } from 'react';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
 import createStyles from '@material-ui/core/styles/createStyles';
 import { DrawerNavGroup, NavItem } from '../Drawer';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
-import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import useTheme from '@material-ui/core/styles/useTheme';
 import PropTypes from 'prop-types';
@@ -15,7 +14,6 @@ export type ToolbarMenuClasses = {
     dropdownArrow?: string;
     icon?: string;
     label?: string;
-    labelContent?: string;
     menuItem?: string;
 };
 
@@ -35,6 +33,9 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             cursor: 'pointer',
+            fontSize: '1rem',
+            display: 'flex',
+            alignItems: 'center',
             color: (props: ToolbarMenuProps): string => props.color,
         },
         cursorPointer: {
@@ -51,9 +52,6 @@ const useStyles = makeStyles((theme: Theme) =>
         label: {
             textOverflow: 'ellipsis',
             overflow: 'hidden',
-        },
-        labelContent: {
-            display: 'flex',
         },
         navGroups: {
             '&:active, &:focus': {
@@ -75,7 +73,7 @@ export type ToolbarMenuProps = HTMLAttributes<HTMLDivElement> & {
     /** A component to render for the icon */
     icon?: JSX.Element;
     /** Label Content */
-    label: ReactNode;
+    label: string;
     /** Custom content to be displayed in the menu */
     menu?: JSX.Element;
     /** Groups of menu items to display */
@@ -92,11 +90,12 @@ export type ToolbarMenuProps = HTMLAttributes<HTMLDivElement> & {
 
 const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuProps> = (
     props: ToolbarMenuProps,
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     ref: any
 ) => {
     const {
         classes = {},
-        /* eslint-disable @typescript-eslint/no-unused-vars */
+        /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
         color,
         icon,
         label,
@@ -105,7 +104,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
         MenuProps,
         onClose,
         onOpen,
-        ...otherSpanProps
+        ...otherDivProps
     } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
@@ -189,18 +188,17 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     }, [menuGroups, menu, anchorEl, MenuProps, defaultClasses]);
 
     return (
-        <span
-            ref={ref}
-            className={clsx(defaultClasses.root, classes.root, menuGroups || menu ? defaultClasses.cursorPointer : '')}
-            data-test={'wrapper'}
-            {...otherSpanProps}
-        >
-            <Typography
+        <>
+            <div
                 ref={anchor}
                 aria-haspopup="true"
-                className={clsx(defaultClasses.labelContent, classes.labelContent)}
-                color={'inherit'}
-                component={'span'}
+                className={clsx(
+                    defaultClasses.root,
+                    classes.root,
+                    menuGroups || menu ? defaultClasses.cursorPointer : ''
+                )}
+                data-test={'wrapper'}
+                {...otherDivProps}
                 onClick={(): void => {
                     openMenu(anchor.current);
                 }}
@@ -223,9 +221,9 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                         )}
                     />
                 )}
-            </Typography>
+            </div>
             {getMenu()}
-        </span>
+        </>
     );
 };
 /**
@@ -241,7 +239,6 @@ ToolbarMenu.propTypes = {
         dropdownArrow: PropTypes.string,
         icon: PropTypes.string,
         label: PropTypes.string,
-        labelContent: PropTypes.string,
         menuItem: PropTypes.string,
     }),
     color: PropTypes.string,
