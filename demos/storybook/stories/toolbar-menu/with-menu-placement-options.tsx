@@ -8,10 +8,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-// import * as Colors from '@brightlayer-ui/colors';
 import createStyles from '@material-ui/core/styles/createStyles';
 import { GradeA } from '@brightlayer-ui/icons-mui';
-import { typography } from '@storybook/theming';
 
 export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
     const anchorOriginHorizontal = select(
@@ -71,25 +69,23 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
                     className={classes.textContent}
                     primary={<Typography variant="h6">Title</Typography>}
                     secondary={
-                        <Typography component={'div'}>
-                            <ToolbarMenu
-                                // color={color('color', Colors.white[50])}
-                                classes={{ root: classes.root }}
-                                icon={<GradeA />}
-                                label={label}
-                                menuGroups={menuGroups}
-                                MenuProps={{
-                                    anchorOrigin: {
-                                        horizontal: anchorOriginHorizontal,
-                                        vertical: anchorOriginVertical,
-                                    },
-                                    transformOrigin: {
-                                        horizontal: transformOriginHorizontal,
-                                        vertical: transformOriginVertical,
-                                    },
-                                }}
-                            ></ToolbarMenu>
-                        </Typography>
+                        <ToolbarMenu
+                            classes={{ root: classes.root }}
+                            icon={<GradeA />}
+                            label={label}
+                            menuGroups={menuGroups}
+                            MenuProps={{
+                                anchorOrigin: {
+                                    horizontal: anchorOriginHorizontal,
+                                    vertical: anchorOriginVertical,
+                                },
+                                transformOrigin: {
+                                    horizontal: transformOriginHorizontal,
+                                    vertical: transformOriginVertical,
+                                },
+                            }}
+                        >
+                        </ToolbarMenu>
                     }
                 />
             </Toolbar>

@@ -1,14 +1,8 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import AppBar from '@material-ui/core/AppBar';
 import { select, text } from '@storybook/addon-knobs';
-import ListItemText from '@material-ui/core/ListItemText';
-// import makeStyles from '@material-ui/core/styles/makeStyles';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
-import Toolbar from '@material-ui/core/Toolbar';
 import { ThreeLiner, ChannelValue, ToolbarMenu } from '@brightlayer-ui/react-components';
-import Typography from '@material-ui/core/Typography';
-// import * as Colors from '@brightlayer-ui/colors';
 import Trend from '@material-ui/icons/TrendingUp';
 import * as Colors from '@brightlayer-ui/colors';
 import { makeStyles } from '@material-ui/core/styles';
@@ -32,7 +26,7 @@ const useStyles = makeStyles(() => ({
 }));
 export const withThreeLinerCustomContent = (): StoryFnReactReturnType => {
     const title = text('title', 'title');
-    // const subtitle = text('subtitle', 'subtitle');
+    const subtitle = text('subtitle', 'subtitle');
     const info = text('info', 'info');
     const infoContent = select('infoContent', ['text', '<ChannelValue />'], '<ChannelValue />');
     const classes = useStyles();
@@ -42,7 +36,7 @@ export const withThreeLinerCustomContent = (): StoryFnReactReturnType => {
             subtitle={
                 <ToolbarMenu
                     classes={{ root: classes.toolbarMenuRoot }}
-                    label={'Subtitle'}
+                    label={subtitle}
                     menuGroups={menuGroups}
                 ></ToolbarMenu>
             }

@@ -1,4 +1,5 @@
 import React, { HTMLAttributes, useState, useCallback, useRef, useEffect } from 'react';
+import composeRefs from '@seznam/compose-react-refs'
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
 import createStyles from '@material-ui/core/styles/createStyles';
@@ -8,6 +9,7 @@ import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import useTheme from '@material-ui/core/styles/useTheme';
 import PropTypes from 'prop-types';
+import { Typography } from '@material-ui/core';
 
 export type ToolbarMenuClasses = {
     root?: string;
@@ -17,14 +19,14 @@ export type ToolbarMenuClasses = {
     menuItem?: string;
 };
 
-export type ToolbarMenuItem1 = Omit<NavItem, 'itemID'> & { itemID?: string };
-export type ToolbarMenuGroup1 = {
+export type ToolbarMenuCompItem = Omit<NavItem, 'itemID'> & { itemID?: string };
+export type ToolbarMenuCompGroup = {
     /** The color used for the text */
     fontColor?: string;
     /** The color used for icons */
     iconColor?: string;
     /** List of navigation items to render */
-    items: ToolbarMenuItem1[];
+    items: ToolbarMenuCompItem[];
     /** Text to display in the group header */
     title?: string;
 };
@@ -77,7 +79,7 @@ export type ToolbarMenuProps = HTMLAttributes<HTMLDivElement> & {
     /** Custom content to be displayed in the menu */
     menu?: JSX.Element;
     /** Groups of menu items to display */
-    menuGroups?: ToolbarMenuGroup1[];
+    menuGroups?: ToolbarMenuCompGroup[];
     /** Property overrides for the MUI Menu */
     MenuProps?: Omit<standardMenuProps, 'open'>;
     /** Function called when the menu is opened */
@@ -167,7 +169,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                     MenuListProps={{ style: { padding: 0 } }}
                 >
                     {!menu &&
-                        menuGroups.map((group: ToolbarMenuGroup1, index: number) => (
+                        menuGroups.map((group: ToolbarMenuCompGroup, index: number) => (
                             <div className={defaultClasses.navGroups} key={index}>
                                 <DrawerNavGroup
                                     divider={false}
@@ -176,7 +178,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                                     itemFontColor={group.fontColor}
                                     title={group.title}
                                     items={group.items.map(
-                                        (item: ToolbarMenuItem1, itemIndex: number): NavItem =>
+                                        (item: ToolbarMenuCompItem, itemIndex: number): NavItem =>
                                             Object.assign({ itemID: itemIndex.toString() }, item)
                                     )}
                                 />
@@ -189,8 +191,9 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
 
     return (
         <>
-            <div
-                ref={anchor}
+            <Typography
+                component={'span'}
+                ref={composeRefs(ref, anchor)}
                 aria-haspopup="true"
                 className={clsx(
                     defaultClasses.root,
@@ -221,7 +224,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                         )}
                     />
                 )}
-            </div>
+            </Typography>
             {getMenu()}
         </>
     );

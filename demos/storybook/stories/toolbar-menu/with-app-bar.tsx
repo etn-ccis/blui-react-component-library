@@ -45,13 +45,11 @@ export const withAppBar = (): StoryFnReactReturnType => {
                     className={classes.textContent}
                     primary={<Typography variant="h6">Title</Typography>}
                     secondary={
-                        <Typography component={'div'}>
-                            <ToolbarMenu
-                                classes={{ root: classes.root }}
-                                label={text('label', text('label', 'Subtitle'))}
-                                menuGroups={menuGroups}
-                            />
-                        </Typography>
+                        <ToolbarMenu
+                            classes={{ root: classes.root }}
+                            label={text('label', text('label', 'Subtitle'))}
+                            menuGroups={menuGroups}
+                        />
                     }
                 ></ListItemText>
             </Toolbar>
