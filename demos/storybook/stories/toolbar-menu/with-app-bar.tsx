@@ -8,9 +8,11 @@ import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/typ
 import Toolbar from '@material-ui/core/Toolbar';
 import { ToolbarMenu } from '@brightlayer-ui/react-components/core/ToolbarMenu';
 import Typography from '@material-ui/core/Typography';
-// import * as Colors from '@brightlayer-ui/colors';
+import * as Colors from '@brightlayer-ui/colors';
+import { useDarkMode } from 'storybook-dark-mode';
 
 export const withAppBar = (): StoryFnReactReturnType => {
+    const isDarkMode = useDarkMode();
     const menuItems = [
         { title: 'Item 1', onClick: action('Item 1 selected') },
         { title: 'Item 2', onClick: action('Item 2 selected') },
@@ -34,6 +36,7 @@ export const withAppBar = (): StoryFnReactReturnType => {
         },
         root: {
             marginTop: '-0.25rem',
+            color: isDarkMode ? Colors.black[50] : Colors.white[50],
         },
     });
 

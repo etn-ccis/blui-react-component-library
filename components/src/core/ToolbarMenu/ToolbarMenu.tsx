@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, useState, useCallback, useRef, useEffect } from 'react';
-import composeRefs from '@seznam/compose-react-refs'
+import composeRefs from '@seznam/compose-react-refs';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
 import createStyles from '@material-ui/core/styles/createStyles';
@@ -9,7 +9,7 @@ import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import useTheme from '@material-ui/core/styles/useTheme';
 import PropTypes from 'prop-types';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 export type ToolbarMenuClasses = {
     root?: string;
@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme: Theme) =>
             fontSize: '1rem',
             display: 'flex',
             alignItems: 'center',
-            color: (props: ToolbarMenuProps): string => props.color,
         },
         cursorPointer: {
             cursor: 'pointer',
@@ -92,7 +91,6 @@ export type ToolbarMenuProps = HTMLAttributes<HTMLDivElement> & {
 
 const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuProps> = (
     props: ToolbarMenuProps,
-    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     ref: any
 ) => {
     const {
@@ -106,7 +104,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
         MenuProps,
         onClose,
         onOpen,
-        ...otherDivProps
+        ...otherSpanProps
     } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
@@ -201,7 +199,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                     menuGroups || menu ? defaultClasses.cursorPointer : ''
                 )}
                 data-test={'wrapper'}
-                {...otherDivProps}
+                {...otherSpanProps}
                 onClick={(): void => {
                     openMenu(anchor.current);
                 }}
@@ -244,7 +242,6 @@ ToolbarMenu.propTypes = {
         label: PropTypes.string,
         menuItem: PropTypes.string,
     }),
-    color: PropTypes.string,
     menu: PropTypes.element,
     label: PropTypes.string,
     icon: PropTypes.element,
@@ -273,7 +270,6 @@ ToolbarMenu.propTypes = {
 
 ToolbarMenu.defaultProps = {
     classes: {},
-    color: 'inherit',
     menuGroups: [],
     MenuProps: {},
     onClose: (): void => {},

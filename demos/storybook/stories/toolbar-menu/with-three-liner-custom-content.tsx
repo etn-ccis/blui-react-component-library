@@ -26,7 +26,6 @@ const useStyles = makeStyles(() => ({
 }));
 export const withThreeLinerCustomContent = (): StoryFnReactReturnType => {
     const title = text('title', 'title');
-    const subtitle = text('subtitle', 'subtitle');
     const info = text('info', 'info');
     const infoContent = select('infoContent', ['text', '<ChannelValue />'], '<ChannelValue />');
     const classes = useStyles();
@@ -36,7 +35,7 @@ export const withThreeLinerCustomContent = (): StoryFnReactReturnType => {
             subtitle={
                 <ToolbarMenu
                     classes={{ root: classes.toolbarMenuRoot }}
-                    label={subtitle}
+                    label={'Subtitle'}
                     menuGroups={menuGroups}
                 ></ToolbarMenu>
             }

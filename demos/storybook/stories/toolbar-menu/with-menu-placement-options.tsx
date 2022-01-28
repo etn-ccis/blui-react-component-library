@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import createStyles from '@material-ui/core/styles/createStyles';
 import { GradeA } from '@brightlayer-ui/icons-mui';
+import { useDarkMode } from 'storybook-dark-mode';
+import * as Colors from '@brightlayer-ui/colors';
 
 export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
     const anchorOriginHorizontal = select(
@@ -43,6 +45,7 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
             items: menuItems,
         },
     ];
+    const isDarkMode = useDarkMode();
     const useStyles = makeStyles(() =>
         createStyles({
             textContent: {
@@ -56,6 +59,7 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
             },
             root: {
                 marginTop: '-0.25rem',
+                color: isDarkMode ? Colors.black[50] : Colors.white[50],
             },
         })
     );
@@ -84,8 +88,7 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
                                     vertical: transformOriginVertical,
                                 },
                             }}
-                        >
-                        </ToolbarMenu>
+                        ></ToolbarMenu>
                     }
                 />
             </Toolbar>
