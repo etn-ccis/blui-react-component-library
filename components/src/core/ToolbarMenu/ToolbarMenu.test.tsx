@@ -21,6 +21,7 @@ describe('ToolbarMenu', () => {
     afterEach(() => {
         mount.cleanUp();
     });
+    
     it('should render without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<ToolbarMenu label={'label'} />, div);
@@ -28,7 +29,7 @@ describe('ToolbarMenu', () => {
 
     it('renders with label', () => {
         const wrapper = shallow(<ToolbarMenu label={'Subtitle'} data-test={'toolbar-menu'} />);
-        expect(findByTestId('toolbar-menu', wrapper).length).toEqual(1);
+        expect(findByTestId('label', wrapper).length).toEqual(1);
     });
 
     it('renders with icon', () => {

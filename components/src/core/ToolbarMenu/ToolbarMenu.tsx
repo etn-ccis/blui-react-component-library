@@ -1,14 +1,14 @@
 import React, { HTMLAttributes, useState, useCallback, useRef, useEffect } from 'react';
-import composeRefs from '@seznam/compose-react-refs';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
 import createStyles from '@material-ui/core/styles/createStyles';
+import composeRefs from '@seznam/compose-react-refs';
 import { DrawerNavGroup, NavItem } from '../Drawer';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
+import PropTypes from 'prop-types';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import useTheme from '@material-ui/core/styles/useTheme';
-import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
 export type ToolbarMenuClasses = {
@@ -65,12 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export type ToolbarMenuProps = HTMLAttributes<HTMLDivElement> & {
-    /** The color used for the text elements
-     *
-     * Default: 'inherit'
-     */
-    color?: string;
+export type ToolbarMenuProps = HTMLAttributes<HTMLSpanElement> & {
     /** A component to render for the icon */
     icon?: JSX.Element;
     /** Label Content */
@@ -93,19 +88,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     props: ToolbarMenuProps,
     ref: any
 ) => {
-    const {
-        classes = {},
-        /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-        color,
-        icon,
-        label,
-        menuGroups,
-        menu,
-        MenuProps,
-        onClose,
-        onOpen,
-        ...otherSpanProps
-    } = props;
+    const { icon, label, menu, menuGroups, MenuProps, onClose, onOpen, classes = {} } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
     const defaultClasses = useStyles(props);
@@ -190,7 +173,6 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     return (
         <>
             <Typography
-                component={'span'}
                 ref={composeRefs(ref, anchor)}
                 aria-haspopup="true"
                 className={clsx(
@@ -198,8 +180,8 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                     classes.root,
                     menuGroups || menu ? defaultClasses.cursorPointer : ''
                 )}
+                component={'span'}
                 data-test={'wrapper'}
-                {...otherSpanProps}
                 onClick={(): void => {
                     openMenu(anchor.current);
                 }}

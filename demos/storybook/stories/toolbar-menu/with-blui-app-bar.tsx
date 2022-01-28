@@ -8,7 +8,6 @@ import { IconButton, makeStyles, Toolbar, useMediaQuery, useTheme } from '@mater
 import { action } from '@storybook/addon-actions';
 import { getDirection } from '@brightlayer-ui/storybook-rtl-addon';
 import clsx from 'clsx';
-// import * as Colors from '@brightlayer-ui/colors';
 import { getBodyFiller } from '../../src/utils';
 
 const menuItems = [
@@ -89,7 +88,6 @@ export const withBluiAppBar = (): StoryFnReactReturnType => {
     const title = text('title', 'title', threeLinerGroupId);
     const info = text('info', 'info', threeLinerGroupId);
     // ToolbarMenu props
-    // const toolbarColor = color('color', Colors.white[50], toolbarMenuGroupId);
     const toolbarLabel = text('label', 'Subtitle', toolbarMenuGroupId);
     return (
         <>

@@ -33,17 +33,16 @@ import { ToolbarMenu } from '@brightlayer-ui/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name  | Description                                  | Type                  | Required | Default   |
-| ---------- | -------------------------------------------- | --------------------- | -------- | --------- |
-| classes    | Style Overrides                              | `ToolbarMenuClasses`  | no       |           |
-| color      | The color of the font                        | `string`              | no       | 'inherit' |
-| icon       | The inline icon to display                   | `JSX.Element`         | no       |           |
-| label      | Custom content for label text / icon + label | `ReactNode`           | yes      |           |
-| menu       | Custom content to be displayed in the menu   | Material-UI `Menu`    | no       |           |
-| menuGroups | Groups of menu items to display              | `ToolbarMenuGroups[]` | no       |           |
-| MenuProps  | Property overrides for the MUI Menu          | `MenuProps`           | no       |           |
-| onClose    | Function called when the menu is closed      | `Function`            | no       |           |
-| onOpen     | Function called when the menu is opened      | `Function`            | no       |           |
+| Prop Name  | Description                                  | Type                  | Required | Default |
+| ---------- | -------------------------------------------- | --------------------- | -------- | ------- |
+| classes    | Style Overrides                              | `ToolbarMenuClasses`  | no       |         |
+| icon       | The inline icon to display                   | `JSX.Element`         | no       |         |
+| label      | Custom content for label text / icon + label | `ReactNode`           | yes      |         |
+| menu       | Custom content to be displayed in the menu   | Material-UI `Menu`    | no       |         |
+| menuGroups | Groups of menu items to display              | `ToolbarMenuGroups[]` | no       |         |
+| MenuProps  | Property overrides for the MUI Menu          | `MenuProps`           | no       |         |
+| onClose    | Function called when the menu is closed      | `Function`            | no       |         |
+| onOpen     | Function called when the menu is opened      | `Function`            | no       |         |
 
 </div>
 
@@ -51,13 +50,13 @@ import { ToolbarMenu } from '@brightlayer-ui/react-components';
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
-| Name          | Description                                          |
-| ------------- | ---------------------------------------------------- |
-| dropdownArrow | Styles applied to the dropdownArrow container        |
-| label         | Styles applied to the label / icon + label text      |
-| labelContent  | Styles applied to the label / icon + label container |
-| menuItem      | Styles applied to the menu item                      |
-| root          | Styles applied to the root element                   |
+| Name          | Description                                   |
+| ------------- | --------------------------------------------- |
+| dropdownArrow | Styles applied to the dropdownArrow container |
+| icon          | Styles applied to the icon container          |
+| label         | Styles applied to the label text              |
+| menuItem      | Styles applied to the menu item               |
+| root          | Styles applied to the root element            |
 
 ### Toolbar Menu Groups Object
 
