@@ -21,7 +21,7 @@ describe('ToolbarMenu', () => {
     afterEach(() => {
         mount.cleanUp();
     });
-    
+
     it('should render without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<ToolbarMenu label={'label'} />, div);
