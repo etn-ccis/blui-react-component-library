@@ -55,7 +55,6 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | dropdownArrow | Styles applied to the dropdownArrow container |
 | icon          | Styles applied to the icon container          |
 | label         | Styles applied to the label text              |
-| menuItem      | Styles applied to the menu item               |
 | root          | Styles applied to the root element            |
 
 ### Toolbar Menu Groups Object

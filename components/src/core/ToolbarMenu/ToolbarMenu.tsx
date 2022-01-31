@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useState, useCallback, useRef, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import clsx from 'clsx';
 import createStyles from '@material-ui/core/styles/createStyles';
@@ -9,14 +9,13 @@ import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
 import PropTypes from 'prop-types';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import useTheme from '@material-ui/core/styles/useTheme';
-import Typography from '@material-ui/core/Typography';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
 
 export type ToolbarMenuClasses = {
     root?: string;
     dropdownArrow?: string;
     icon?: string;
     label?: string;
-    menuItem?: string;
 };
 
 export type ToolbarMenuCompItem = Omit<NavItem, 'itemID'> & { itemID?: string };
@@ -35,7 +34,6 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             cursor: 'pointer',
-            fontSize: '1rem',
             display: 'flex',
             alignItems: 'center',
         },
@@ -65,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export type ToolbarMenuProps = HTMLAttributes<HTMLSpanElement> & {
+export type ToolbarMenuProps = TypographyProps & {
     /** A component to render for the icon */
     icon?: JSX.Element;
     /** Label Content */
@@ -88,7 +86,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     props: ToolbarMenuProps,
     ref: any
 ) => {
-    const { icon, label, menu, menuGroups, MenuProps, onClose, onOpen, classes = {} } = props;
+    const { icon, label, menu, menuGroups, MenuProps, onClose, onOpen, classes = {}, ...otherTypographyProps } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
     const defaultClasses = useStyles(props);
@@ -175,6 +173,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
             <Typography
                 ref={composeRefs(ref, anchor)}
                 aria-haspopup="true"
+                {...otherTypographyProps}
                 className={clsx(
                     defaultClasses.root,
                     classes.root,
@@ -222,7 +221,6 @@ ToolbarMenu.propTypes = {
         dropdownArrow: PropTypes.string,
         icon: PropTypes.string,
         label: PropTypes.string,
-        menuItem: PropTypes.string,
     }),
     menu: PropTypes.element,
     label: PropTypes.string,
