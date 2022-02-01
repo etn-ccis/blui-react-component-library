@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export type ToolbarMenuProps = TypographyProps & {
+export type ToolbarMenuProps = Omit<TypographyProps, 'onClick'> & {
     /** A component to render for the icon */
     icon?: JSX.Element;
     /** Label Content */
@@ -178,6 +178,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 className={clsx(
                     defaultClasses.root,
                     classes.root,
+                    props.className,
                     menuGroups || menu ? defaultClasses.cursorPointer : ''
                 )}
                 component={'span'}
