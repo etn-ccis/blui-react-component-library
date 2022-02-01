@@ -20,7 +20,12 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
         'left',
         'Menu'
     );
-    const anchorOriginVertical = select('menuProps.anchorOrigin.vertical', ['top', 'center', 'bottom'], 'top', 'Menu');
+    const anchorOriginVertical = select(
+        'menuProps.anchorOrigin.vertical',
+        ['top', 'center', 'bottom'],
+        'bottom',
+        'Menu'
+    );
     const transformOriginHorizontal = select(
         'menuProps.transformOrigin.horizontal',
         ['left', 'center', 'right'],
@@ -35,9 +40,9 @@ export const withMenuPlacementOptions = (): StoryFnReactReturnType => {
     );
 
     const menuItems = [
-        { title: 'Item 1', onClick: action('Item 1 selected') },
-        { title: 'Item 2', onClick: action('Item 2 selected') },
-        { title: 'Item 3', onClick: action('Item 3 selected') },
+        { title: 'Menu Item 1', onClick: action('Item 1 selected') },
+        { title: 'Menu Item 2', onClick: action('Item 2 selected') },
+        { title: 'Menu Item 3', onClick: action('Item 3 selected') },
     ];
 
     const menuGroups = [

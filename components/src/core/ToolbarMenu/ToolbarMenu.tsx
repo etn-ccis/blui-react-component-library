@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
+            maxWidth: 'fit-content',
         },
         cursorPointer: {
             cursor: 'pointer',
