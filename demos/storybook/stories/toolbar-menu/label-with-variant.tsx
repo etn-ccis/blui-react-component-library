@@ -1,5 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
+import { select } from '@storybook/addon-knobs';
 import AppBar from '@material-ui/core/AppBar';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { StoryFnReactReturnType } from '@storybook/react/dist/client/preview/types';
@@ -39,6 +40,11 @@ export const labelWithVariant = (): StoryFnReactReturnType => {
     });
 
     const classes = useStyles();
+    const variant = select(
+        'variant',
+        ['body1', 'body2', 'button', 'caption', 'h5', 'h6', 'inherit', 'overline', 'subtitle1', 'subtitle2'],
+        'h6'
+    );
     return (
         <AppBar color={'primary'}>
             <Toolbar classes={{ gutters: classes.toolbarGutters }}>
@@ -47,7 +53,7 @@ export const labelWithVariant = (): StoryFnReactReturnType => {
                 </IconButton>
                 <ToolbarMenu
                     classes={{ root: classes.root }}
-                    variant={'h6'}
+                    variant={variant}
                     label={'Click To Open'}
                     menuGroups={menuGroups}
                 />
