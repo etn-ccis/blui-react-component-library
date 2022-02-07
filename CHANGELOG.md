@@ -1,6 +1,6 @@
 # Changelog
 
-## v5.4.0-beta.1 (Unreleased)
+## v5.4.0 (February 8, 2022)
 
 ### Added
 
