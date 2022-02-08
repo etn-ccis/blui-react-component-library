@@ -45,6 +45,9 @@ export type NavItemSharedStyleProps = {
     /** Whether to have chevrons for all menu items */
     chevron?: boolean;
 
+    /** Color override for the chevron icon */
+    chevronColor?: string;
+
     /** Icon used to collapse nav group
      *
      * Default: expandIcon rotated 180 degrees
@@ -81,6 +84,7 @@ export const SharedStylePropTypes = {
 export const NavItemSharedStylePropTypes = {
     activeItemBackgroundShape: PropTypes.oneOf(['round', 'square']),
     chevron: PropTypes.bool,
+    chevronColor: PropTypes.string,
     collapseIcon: PropTypes.element,
     expandIcon: PropTypes.element,
     hidePadding: PropTypes.bool,

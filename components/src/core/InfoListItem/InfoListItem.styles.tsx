@@ -15,6 +15,7 @@ export type InfoListItemClasses = {
     statusStripe?: string;
     subtitle?: string;
     title?: string;
+    chevron?: string;
 };
 
 const getHeight = (props: InfoListItemProps): string => (props.dense ? `3.25rem` : `4.5rem`);
@@ -39,6 +40,11 @@ const getIconAlignment = (props: InfoListItemProps): 'flex-end' | 'flex-start' |
         default:
             return 'center';
     }
+};
+
+const getChevronColor = (props: InfoListItemProps, theme: Theme): string => {
+    const { chevronColor } = props;
+    return chevronColor ? chevronColor : theme.palette.text.secondary;
 };
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -106,6 +112,9 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             marginLeft: theme.spacing(2),
             display: 'flex',
             alignItems: 'center',
+        },
+        chevron: {
+            color: (props) => getChevronColor(props, theme),
         },
         separator: {
             display: 'inline-block',

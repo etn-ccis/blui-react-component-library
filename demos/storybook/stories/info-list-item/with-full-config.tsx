@@ -26,6 +26,7 @@ export const withFullConfig = (): StoryFnReactReturnType => {
             backgroundColor={color('backgroundColor', Colors.white[50])}
             avatar={boolean('avatar', false)}
             chevron={boolean('chevron', true)}
+            chevronColor={color('chevronColor', Colors.gray[500])}
             dense={boolean('dense', false)}
             divider={appliedDivider}
             ripple={boolean('ripple', false)}

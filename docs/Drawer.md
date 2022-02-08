@@ -231,6 +231,7 @@ The `items` property supports nested items to generate collapsible sections in t
 | title                           | Text to display in the group header                        | `string`                | no       |                             |
 | titleColor                      | Color used for the title text                              | `string`                | no       | varies for light/dark theme |
 | titleContent                    | Custom element, substitute for title                       | `ReactNode`             | no       |                             |
+| titleDivider                    | Divider for the title                                      | `boolean`               | no       | true                        |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                       | -        |                             |
 
 </div>
@@ -319,6 +320,7 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | ---------------- | --------------------------------------------------------------- |
 | root             | Styles applied to the root element wrapping the InfoListItem    |
 | active           | Styles applied to the active item highlight element             |
+| chevron          | Styles applied to the chevron element                           |
 | expandIcon       | Styles applied to the expand/collapse icon wrapper              |
 | infoListItemRoot | Styles applied to the InfoListItem root element                 |
 | nestedListGroup  | Styles applied to wrapper surrounded nested children            |
@@ -448,6 +450,7 @@ The following are additional shared props that will apply when using a non-rail 
 | ----------------------------- | ----------------------------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
 | activeItemBackgroundShape     | shape of the active item background highlight                                 | `'round'` \| `'square'` | no       | square                                                       |
 | chevron                       | Whether to have chevrons for all menu items                                   | `boolean`               | no       |                                                              |
+| chevronColor                  | Color override for the chevron icon                                           | `string`                | no       |                                                              |
 | collapseIcon                  | Icon used to collapse drawer                                                  | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                             |
 | expandIcon                    | Icon used to expand drawer                                                    | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
 | hidePadding                   | Whether to hide the paddings reserved for menu item icons                     | `boolean`               | no       |                                                              |

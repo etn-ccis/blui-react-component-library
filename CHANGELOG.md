@@ -1,9 +1,23 @@
 # Changelog
+
+## v5.4.0 (February 8, 2022)
+
+### Added
+
+-   Added `chevronColor` property to `<InfoListItem>` and SharedProps of `<Drawer>`.
+-   Added class override for `chevron` on `<InfoListItem>` and `<DrawerNavItem>`.
+-   Added `titleDivider` property onto `<DrawerNavGroup>`. ([#315](https://github.com/brightlayer-ui/react-component-library/issues/315))
+-   Added 1rem default padding to the root styles of `<EmptyState>`. ([#320](https://github.com/brightlayer-ui/react-component-library/issues/320))
+-   Added new property `unitSpace` to `<ChannelValue>` to manage spacing between the value and units. ([#350](https://github.com/brightlayer-ui/react-component-library/issues/350))
+-   Added `<ToolbarMenu>` component. ([#351](https://github.com/brightlayer-ui/react-component-library/issues/351))
+-   Added Deprecation warnings for DropdownToolbar component that will be removed in version 6.0.0.
+
 ## v5.3.3 (December 6, 2021)
 
 ### Fixed
 
--   Avoid rendering of HTML elements in DOM when `subtitle` or `info` prop is not available.
+-   Avoid rendering of HTML elements in `<InfoListItem>`'s DOM tree when `subtitle` or `info` prop is not available. ([#318](https://github.com/brightlayer-ui/react-component-library/issues/318))
+
 ## v5.3.2 (November 11, 2021)
 
 ### Changed

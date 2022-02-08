@@ -29,6 +29,7 @@ import * as Colors from '@brightlayer-ui/colors';
 | avatar            | Show colored background for icon                 | `boolean`                            | no       | false          |
 | backgroundColor   | The color used for the background                | `string`                             | no       |                |
 | chevron           | Add a chevron icon on the right                  | `boolean`                            | no       | false          |
+| chevronColor      | Color override for the chevron icon              | `string`                             | no       |                |
 | classes           | Style overrides                                  | `InfoListItemClasses`                | no       |                |
 | dense             | Smaller height row with less padding             | `boolean`                            | no       | false          |
 | divider           | Show a row separator below the row               | `'full'` \| `'partial'`              | no       |                |
@@ -62,6 +63,7 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | -------------- | --------------------------------------------------- |
 | root           | Styles applied to the root element                  |
 | avatar         | Styles applied to the Avatar element                |
+| chevron        | Styles applied to the chevron element               |
 | divider        | Styles applied to the divider element               |
 | icon           | Styles applied to the icon element                  |
 | info           | Styles applied to the third line of text element    |

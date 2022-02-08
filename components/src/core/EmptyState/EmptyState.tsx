@@ -27,14 +27,15 @@ export type EmptyStateProps = HTMLAttributes<HTMLDivElement> & {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: '100%',
         color: theme.palette.text.primary,
+        height: '100%',
         minHeight: '100%',
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
         textAlign: 'center',
         alignItems: 'center',
+        padding: '1rem',
     },
     icon: {
         color: theme.palette.text.secondary,

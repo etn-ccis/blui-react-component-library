@@ -1,6 +1,6 @@
 import React, { useCallback, HTMLAttributes } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
@@ -32,11 +32,19 @@ export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> 
     prefix?: boolean;
     /** Text to display for the units (light text) */
     units?: string;
+    /** Whether to show a space between the value and units
+     *
+     * Default: auto (shows space except for white list items)
+     *
+     * prefixUnitAllowSpaceList: ['$'];
+     * suffixUnitAllowSpaceList: ['%', '℉','°F','℃','°C','°']
+     */
+    unitSpace?: 'show' | 'hide' | 'auto';
     /** Text to display for the value (bold text) */
     value: number | string;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         root: {
             display: 'inline-flex',
@@ -46,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
             color: (props: ChannelValueProps): string => props.color,
         },
         icon: {
-            marginRight: theme.spacing(0.5),
+            marginRight: '0.35em',
             display: 'inline',
             fontSize: 'inherit',
         },
@@ -55,11 +63,20 @@ const useStyles = makeStyles((theme: Theme) =>
             lineHeight: 'inherit',
             letterSpacing: 0,
         },
+        prefix: {
+            '& + h6': {
+                marginLeft: '0.25em',
+            },
+        },
+        suffix: {},
         units: {
             fontWeight: 300,
         },
         value: {
             fontWeight: 600,
+            '& + $suffix': {
+                marginLeft: '0.25em',
+            },
         },
     })
 );
@@ -78,6 +95,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         icon,
         prefix,
         units,
+        unitSpace,
         value,
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -87,6 +105,20 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         ...otherSpanProps
     } = props;
     const defaultClasses = useStyles(props);
+    const prefixUnitAllowSpaceList = ['$'];
+    const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
+
+    const applyPrefix = useCallback(
+        (): boolean =>
+            prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !prefixUnitAllowSpaceList.includes(units)),
+        [prefix, units, unitSpace]
+    );
+
+    const applySuffix = useCallback(
+        (): boolean =>
+            !prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !suffixUnitAllowSpaceList.includes(units)),
+        [prefix, units, unitSpace]
+    );
 
     const getUnitElement = useCallback(
         (): JSX.Element => (
@@ -95,7 +127,10 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                     <Typography
                         variant={'h6'}
                         color={'inherit'}
-                        className={clsx(defaultClasses.text, defaultClasses.units, classes.units)}
+                        className={clsx(defaultClasses.text, defaultClasses.units, classes.units, {
+                            [defaultClasses.prefix]: applyPrefix(),
+                            [defaultClasses.suffix]: applySuffix(),
+                        })}
                         data-test={'units'}
                     >
                         {units}
@@ -103,7 +138,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                 )}
             </>
         ),
-        [units, classes, defaultClasses]
+        [units, prefix, classes, defaultClasses, unitSpace]
     );
 
     return (
@@ -147,6 +182,7 @@ ChannelValue.propTypes = {
     icon: PropTypes.element,
     prefix: PropTypes.bool,
     units: PropTypes.string,
+    unitSpace: PropTypes.oneOf(['show', 'hide', 'auto']),
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 ChannelValue.defaultProps = {

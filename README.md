@@ -5,7 +5,7 @@
 
 This is a library of re-usable React components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
 
-Refer to the [Component Library](https://brightlayer-ui-components.github.io/react/?path=/story/channel-value--with-value) API documentation site for a list of available components or see the repository [documentation](https://github.com/brightlayer-ui/react-component-library/tree/dev/docs) for each individual component.
+Refer to the [Component Library](https://brightlayer-ui-components.github.io/react/?path=/story/channel-value--with-value) API documentation site for a list of available components or see the repository [documentation](https://github.com/brightlayer-ui/react-component-library/tree/master/docs) for each individual component.
 
 ## Installation
 
@@ -58,7 +58,7 @@ from the root directory.
 
 ## Using the Components
 
-See the [documentation](https://github.com/brightlayer-ui/react-component-library/tree/dev/docs) for information on using these components.
+See the [documentation](https://github.com/brightlayer-ui/react-component-library/tree/master/docs) for information on using these components.
 
 ## Browser Support
 

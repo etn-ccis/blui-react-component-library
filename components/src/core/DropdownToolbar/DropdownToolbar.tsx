@@ -161,6 +161,13 @@ const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToo
     );
 
     useEffect(() => {
+        // eslint-disable-next-line no-console
+        console.warn(
+            `DropdwonToolbar component has been deprecated and will be removed in version 6.0.0. Instead of DropdwonToolbar use ToolbarMenu (https://brightlayer-ui-components.github.io/react/?path=/info/components-toolbar-menu--get-read-me-story) component in regular Toolbar like Mui Appbar, BLUI Appbar.`
+        );
+    });
+
+    useEffect(() => {
         for (const group of menuGroups) {
             for (const item of group.items) {
                 const onClick = item.onClick;
