@@ -1,11 +1,11 @@
 import React, { ReactNode, useCallback } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider';
-import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
-import Chevron from '@material-ui/icons/ChevronRight';
+import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
+import ListItem, { ListItemProps } from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+import Chevron from '@mui/icons-material/ChevronRight';
 
 import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
 
@@ -96,7 +96,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     const defaultClasses = useStyles(props);
     const {
         avatar,
-        button,
+        // button,
         chevron,
         classes,
         divider,
@@ -197,11 +197,11 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         return withKeys(separate(renderableInfoParts, () => getSeparator()));
     }, [info, getSeparator]);
 
-    const hasRipple = button === undefined ? (props.onClick && ripple ? true : undefined) : button ? true : undefined;
+    // const hasRipple = button === undefined ? (props.onClick && ripple ? true : undefined) : button ? true : undefined; - need discussion
 
     return (
         // @ts-ignore
-        <ListItem button={hasRipple} className={combine('root')} ref={ref} {...otherListItemProps}>
+        <ListItem button={ripple} className={combine('root')} ref={ref} {...otherListItemProps}>
             <div className={combine('statusStripe')} data-test={'status-stripe'} />
             {divider && <Divider className={combine('divider')} />}
             {(icon || !hidePadding) && getIcon()}

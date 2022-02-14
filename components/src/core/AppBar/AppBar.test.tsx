@@ -3,9 +3,9 @@ import * as ReactDOM from 'react-dom';
 import * as Enzyme from 'enzyme';
 import { Mount } from '../types';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { createMount } from '@material-ui/core/test-utils';
+import { createMount } from '@mui/material/test-utils';
 import { AppBar } from './AppBar';
-import MuiAppBar from '@material-ui/core/AppBar';
+import MuiAppBar from '@mui/material/AppBar';
 
 Enzyme.configure({ adapter: new Adapter() });
 let mount: Mount;

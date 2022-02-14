@@ -1,6 +1,6 @@
-import Avatar from '@material-ui/core/Avatar';
-import { createShallow } from '@material-ui/core/test-utils';
-import SendIcon from '@material-ui/icons/Send';
+import Avatar from '@mui/material/Avatar';
+import { createShallow } from '@mui/material/test-utils';
+import SendIcon from '@mui/icons-material/Send';
 import Enzyme from 'enzyme';
 // import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';

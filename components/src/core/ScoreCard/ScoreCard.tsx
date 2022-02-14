@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import createStyles from '@material-ui/core/styles/createStyles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import Card, { CardProps } from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import Card, { CardProps } from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import * as Colors from '@brightlayer-ui/colors';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'relative',
             backgroundColor: (props: ScoreCardProps): string =>
                 props.headerColor ||
-                (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
+                (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
             color: fontColor,
         },
         headerContent: {
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'relative',
             zIndex: 1,
             alignItems: 'flex-start',
-            padding: `1rem ${theme.spacing(2)}px 0 ${theme.spacing(2)}px`,
+            padding: `1rem ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
         },
         headerTitle: {
             color: fontColor,

@@ -1,5 +1,7 @@
 import React, { ReactElement, HTMLAttributes, useState, CSSProperties } from 'react';
-import { makeStyles, createStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { Theme, useTheme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { DrawerProps as DrawerComponentProps } from '../Drawer/Drawer';

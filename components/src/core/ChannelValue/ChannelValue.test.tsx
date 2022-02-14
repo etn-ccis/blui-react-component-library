@@ -6,8 +6,8 @@ import { ChannelValue } from './ChannelValue';
 import * as Enzyme from 'enzyme';
 // import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import Menu from '@material-ui/icons/Menu';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
+import Menu from '@mui/icons-material/Menu';
+import { createMount, createShallow } from '@mui/material/test-utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 let mount: Mount;

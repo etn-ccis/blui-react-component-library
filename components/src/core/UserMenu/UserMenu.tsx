@@ -1,15 +1,16 @@
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import createStyles from '@material-ui/core/styles/createStyles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import useTheme from '@material-ui/core/styles/useTheme';
-import Drawer, { DrawerProps } from '@material-ui/core/Drawer';
-import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import { ThemeOptions } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import Drawer, { DrawerProps } from '@mui/material/Drawer';
+import Menu, { MenuProps as standardMenuProps } from '@mui/material/Menu';
 import clsx from 'clsx';
 import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: ThemeOptions) =>
     createStyles({
         root: {},
         avatarRoot: {
@@ -254,7 +255,6 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
                 onClose={closeMenu}
-                getContentAnchorEl={null}
                 {...MenuProps}
                 MenuListProps={{ style: { padding: 0 } }}
             >

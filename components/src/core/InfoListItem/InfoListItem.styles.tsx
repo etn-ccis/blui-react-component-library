@@ -1,4 +1,6 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 import color from 'color';
 import * as Colors from '@brightlayer-ui/colors';
 import { InfoListItemProps } from './InfoListItem';
@@ -105,7 +107,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             fontWeight: 400,
             lineHeight: 1.3,
             color: (props) =>
-                props.fontColor || (theme.palette.type === 'dark' ? theme.palette.text.secondary : 'inherit'),
+                props.fontColor || (theme.palette.mode === 'dark' ? theme.palette.text.secondary : 'inherit'),
         },
         rightComponent: {
             flex: '0 0 auto',
@@ -120,7 +122,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             display: 'inline-block',
             lineHeight: 1.3,
             color: 'inherit',
-            margin: `0 ${theme.spacing(0.5)}px`,
+            margin: `0 ${theme.spacing(0.5)}`,
         },
         statusStripe: {
             position: 'absolute',
@@ -135,7 +137,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             fontWeight: 400,
             lineHeight: 1.3,
             color: (props) =>
-                props.fontColor || (theme.palette.type === 'dark' ? theme.palette.text.secondary : 'inherit'),
+                props.fontColor || (theme.palette.mode === 'dark' ? theme.palette.text.secondary : 'inherit'),
         },
         title: {
             fontWeight: 600,

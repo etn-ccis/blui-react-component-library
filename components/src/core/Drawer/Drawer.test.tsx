@@ -4,10 +4,10 @@ import { Mount, Shallow } from '../types';
 import * as Enzyme from 'enzyme';
 // import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
+import { createMount, createShallow } from '@mui/material/test-utils';
 import { findByTestId } from '../test-utils';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
 
 import { Drawer } from './Drawer';
 import { DrawerHeader } from './DrawerHeader';
@@ -16,7 +16,7 @@ import { DrawerBody } from './DrawerBody';
 import { DrawerFooter } from './DrawerFooter';
 import { DrawerNavGroup } from './DrawerNavGroup';
 import { InfoListItem } from '../InfoListItem';
-import MoreVert from '@material-ui/icons/MoreVert';
+import MoreVert from '@mui/icons-material/MoreVert';
 import { DrawerRailItem } from './DrawerRailItem';
 import { DrawerNavItem } from './DrawerNavItem';
 

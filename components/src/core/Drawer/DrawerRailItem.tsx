@@ -1,14 +1,14 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useDrawerContext } from './DrawerContext';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import createStyles from '@material-ui/core/styles/createStyles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import Avatar from '@material-ui/core/Avatar';
-import ButtonBase, { ButtonBaseProps as MuiButtonBaseProps } from '@material-ui/core/ButtonBase';
-import Divider from '@material-ui/core/Divider';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import Avatar from '@mui/material/Avatar';
+import ButtonBase, { ButtonBaseProps as MuiButtonBaseProps } from '@mui/material/ButtonBase';
+import Divider from '@mui/material/Divider';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 import { RAIL_WIDTH, RAIL_WIDTH_CONDENSED } from './Drawer';
 import { SharedStyleProps, SharedStylePropTypes } from './types';
 import { NavItem } from './DrawerNavItem';
@@ -71,18 +71,18 @@ export type DrawerRailItemProps = SharedStyleProps & {
 const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
     // approximates the [200] color but not perfectly because the theme does not have that explicit color
     const lightenedPrimary = color(
-        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .lighten(0.83)
         .desaturate(0.39)
         .string();
     const fivePercentOpacityPrimary = color(
-        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.95)
         .string();
     const twentyPercentOpacityPrimary = color(
-        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.8)
         .string();
@@ -112,7 +112,7 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             bottom: 0,
             backgroundColor: (props): string =>
                 props.activeItemBackgroundColor ||
-                (theme.palette.type === 'light' ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary),
+                (theme.palette.mode === 'light' ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary),
         },
         condensed: {
             width: RAIL_WIDTH_CONDENSED,
@@ -138,12 +138,12 @@ const useStyles = makeStyles<Theme, DrawerRailItemProps>((theme: Theme) => {
             '& $icon': {
                 color: (props): string =>
                     props.activeItemIconColor ||
-                    (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary),
+                    (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
             },
             '& $title': {
                 color: (props): string =>
                     props.activeItemFontColor ||
-                    (theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary),
+                    (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
             },
         },
         ripple: {

@@ -7,11 +7,11 @@ import Enzyme from 'enzyme';
 // import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
-import Button from '@material-ui/core/Button';
-import PersonIcon from '@material-ui/icons/Person';
-import Typography from '@material-ui/core/Typography';
+import Button from '@mui/material/Button';
+import PersonIcon from '@mui/icons-material/Person';
+import Typography from '@mui/material/Typography';
 
-import { createMount, createShallow } from '@material-ui/core/test-utils';
+import { createMount, createShallow } from '@mui/material/test-utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 let mount: Mount;

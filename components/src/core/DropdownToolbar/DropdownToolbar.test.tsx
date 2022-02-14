@@ -5,11 +5,11 @@ import { Mount } from '../types';
 // import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { DropdownToolbar } from './DropdownToolbar';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
-import Menu from '@material-ui/icons/Menu';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/icons-material/Menu';
 import { act } from 'react-dom/test-utils';
-import { createMount } from '@material-ui/core/test-utils';
+import { createMount } from '@mui/material/test-utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 let mount: Mount;

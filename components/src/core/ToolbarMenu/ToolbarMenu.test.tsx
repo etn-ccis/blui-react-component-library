@@ -4,8 +4,8 @@ import * as Enzyme from 'enzyme';
 import { Mount, Shallow } from '../types';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { ToolbarMenu } from './ToolbarMenu';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
-import Trend from '@material-ui/icons/TrendingUp';
+import { createMount, createShallow } from '@mui/material/test-utils';
+import Trend from '@mui/icons-material/TrendingUp';
 import { findByTestId } from '../test-utils';
 
 Enzyme.configure({ adapter: new Adapter() });

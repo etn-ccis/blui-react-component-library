@@ -9,7 +9,7 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import * as Colors from '@brightlayer-ui/colors';
 import color from 'color';
 
-import { createMount, createShallow } from '@material-ui/core/test-utils';
+import { createMount, createShallow } from '@mui/material/test-utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 let mount: Mount;
