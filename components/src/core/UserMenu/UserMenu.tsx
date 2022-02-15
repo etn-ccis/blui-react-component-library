@@ -1,6 +1,5 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import { ThemeOptions } from '@mui/material/styles';
+import { useTheme, Theme } from '@mui/material/styles';
 import createStyles from '@mui/styles/createStyles';
 import makeStyles from '@mui/styles/makeStyles';
 import Drawer, { DrawerProps } from '@mui/material/Drawer';
@@ -10,7 +9,7 @@ import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 
-const useStyles = makeStyles((theme: ThemeOptions) =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {},
         avatarRoot: {
@@ -221,10 +220,10 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         [menuGroups, defaultClasses]
     );
 
-    const printMenu = useCallback((): JSX.Element[] => [printHeader()].concat(printMenuItems()), [
-        printHeader,
-        printMenuItems,
-    ]);
+    const printMenu = useCallback(
+        (): JSX.Element[] => [printHeader()].concat(printMenuItems()),
+        [printHeader, printMenuItems]
+    );
 
     const formatMenu = useCallback((): JSX.Element => {
         const showBottomSheet = useMediaQuery(`(max-width:${useBottomSheetAt}px)`);

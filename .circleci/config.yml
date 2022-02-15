@@ -252,20 +252,20 @@ workflows:
             - build_showcase:
                   requires:
                       - build_library
-            - build_storybook:
-                  requires:
-                      - build_library
-            - deploy_storybook:
-                  requires:
-                      - build_storybook
-                  filters:
-                      branches:
-                          only:
-                              - master
-                              - dev
+            # - build_storybook:
+            #       requires:
+            #           - build_library
+            # - deploy_storybook:
+            #       requires:
+            #           - build_storybook
+            #       filters:
+            #           branches:
+            #               only:
+            #                   - master
+            #                   - dev
             - publish:
                   requires:
-                      - build_storybook
+                    #   - build_storybook
                       - build_showcase
                   filters:
                        branches:

@@ -194,39 +194,42 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         [backgroundImage, defaultClasses, classes]
     );
 
-    return <>
-        <Toolbar ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherToolbarProps}>
-            {getBackgroundImage()}
-            {icon && (
-                <div
-                    className={clsx(defaultClasses.navigation, classes.navigation, {
-                        [defaultClasses.railIcon]: variant === 'rail' && !condensed,
-                        [classes.railIcon]: variant === 'rail' && !condensed && classes.railIcon,
-                        [defaultClasses.nonClickable]: variant === 'rail' && !condensed && !onIconClick,
-                    })}
-                >
-                    {onIconClick && (
-                        <IconButton
-                            color={'inherit'}
-                            onClick={(): void => {
-                                onIconClick();
-                            }}
-                            edge={'start'}
-                            size="large">
-                            {icon}
-                        </IconButton>
-                    )}
-                    {!onIconClick && (
-                        <div className={clsx(defaultClasses.nonClickableIcon, classes.nonClickableIcon)}>
-                            {icon}
-                        </div>
-                    )}
-                </div>
-            )}
-            {getHeaderContent()}
-        </Toolbar>
-        {divider && <Divider />}
-    </>;
+    return (
+        <>
+            <Toolbar ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherToolbarProps}>
+                {getBackgroundImage()}
+                {icon && (
+                    <div
+                        className={clsx(defaultClasses.navigation, classes.navigation, {
+                            [defaultClasses.railIcon]: variant === 'rail' && !condensed,
+                            [classes.railIcon]: variant === 'rail' && !condensed && classes.railIcon,
+                            [defaultClasses.nonClickable]: variant === 'rail' && !condensed && !onIconClick,
+                        })}
+                    >
+                        {onIconClick && (
+                            <IconButton
+                                color={'inherit'}
+                                onClick={(): void => {
+                                    onIconClick();
+                                }}
+                                edge={'start'}
+                                size="large"
+                            >
+                                {icon}
+                            </IconButton>
+                        )}
+                        {!onIconClick && (
+                            <div className={clsx(defaultClasses.nonClickableIcon, classes.nonClickableIcon)}>
+                                {icon}
+                            </div>
+                        )}
+                    </div>
+                )}
+                {getHeaderContent()}
+            </Toolbar>
+            {divider && <Divider />}
+        </>
+    );
 };
 /**
  * [DrawerHeader](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
