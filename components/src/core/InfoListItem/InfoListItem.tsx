@@ -197,7 +197,8 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         return withKeys(separate(renderableInfoParts, () => getSeparator()));
     }, [info, getSeparator]);
 
-    // const hasRipple = button === undefined ? (props.onClick && ripple ? true : undefined) : button ? true : undefined; - need discussion
+    // button prop has been removed from ListItemProps. Ripple feature will cover in PR.
+    // const hasRipple = button === undefined ? (props.onClick && ripple ? true : undefined) : button ? true : undefined;
 
     return (
         // @ts-ignore
