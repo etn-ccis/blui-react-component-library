@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: '0.125rem',
             padding: 0,
             paddingLeft: theme.spacing(0.5),
-            paddingRight: `${parseInt(theme.spacing(0.5)) - 1}px`, // to account for extra pixel from letter-spacing
+            paddingRight: `calc(${theme.spacing(0.5)} - 1px)`, // to account for extra pixel from letter-spacing
             overflow: 'hidden',
             backgroundColor: (props: ListItemTagProps): string =>
                 props.backgroundColor ||

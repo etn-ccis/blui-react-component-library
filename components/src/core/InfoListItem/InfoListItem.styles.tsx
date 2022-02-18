@@ -12,6 +12,7 @@ export type InfoListItemClasses = {
     icon?: string;
     info?: string;
     listItemText?: string;
+    listItemButtonRoot?: string;
     rightComponent?: string;
     separator?: string;
     statusStripe?: string;
@@ -70,6 +71,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             '&:focus': {
                 outline: 'none',
             },
+            padding: (props) => (props.onClick && props.ripple ? 0 : undefined),
         },
         avatar: {
             backgroundColor: (props) => props.statusColor || Colors.black[500],
@@ -93,6 +95,9 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
             // we have to specify both here because the auto-swap from JSS isn't smart enough to do it when we use a function
             marginLeft: (props) => (props.leftComponent ? (theme.direction === 'rtl' ? 0 : theme.spacing(2)) : 0),
             marginRight: (props) => (props.leftComponent ? (theme.direction === 'rtl' ? theme.spacing(2) : 0) : 0),
+        },
+        listItemButtonRoot: {
+            height: 'inherit',
         },
         icon: {
             color: (props) => getIconColor(props, theme),
