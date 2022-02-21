@@ -264,8 +264,8 @@ workflows:
             #                   - master
             #                   - dev
             - publish:
-                requires:
-                    - build_library
+                  requires:
+                      - build_library
                   filters:
                        branches:
                           only:
