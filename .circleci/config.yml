@@ -266,7 +266,7 @@ workflows:
             - publish:
                   requires:
                     #   - build_storybook
-                    #   - build_showcase
+                      - build_showcase
                   filters:
                        branches:
                           only:
