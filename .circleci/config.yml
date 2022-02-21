@@ -131,50 +131,50 @@ jobs:
                   when: always
 
     # Builds the Showcase app using @brightlayer-ui/react-components persisted in /dist folder.
-    build_showcase:
-        docker:
-            - image: circleci/node:12.9.1-browsers
-        environment:
-            - MASTER_BRANCH: master
-        steps:
-            - checkout
-            - attach_workspace:
-                at: .
-            - run:
-                  name: Initialize Submodule
-                  command: |
-                      git submodule init && git submodule update
-            - restore_cache:
-                  keys:
-                      - v2-dependencies-react-{{ checksum "demos/showcase/yarn.lock" }}
-            - run:
-                  name: Install Dependencies
-                  command: |
-                      cd demos/showcase
-                      yarn install --frozen-lockfile
+    # build_showcase:
+    #     docker:
+    #         - image: circleci/node:12.9.1-browsers
+    #     environment:
+    #         - MASTER_BRANCH: master
+    #     steps:
+    #         - checkout
+    #         - attach_workspace:
+    #             at: .
+    #         - run:
+    #               name: Initialize Submodule
+    #               command: |
+    #                   git submodule init && git submodule update
+    #         - restore_cache:
+    #               keys:
+    #                   - v2-dependencies-react-{{ checksum "demos/showcase/yarn.lock" }}
+    #         - run:
+    #               name: Install Dependencies
+    #               command: |
+    #                   cd demos/showcase
+    #                   yarn install --frozen-lockfile
 
-                      # Install the packed version of @brightlayer-ui/react-components
-                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
-                      yarn add ../../dist/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
-            - save_cache:
-                  name: Save Cache
-                  paths:
-                      - demos/showcase/node_modules
-                  key: v2-dependencies-react-{{ checksum "demos/showcase/yarn.lock" }}
-            # This will be prettier checked on the demo repository
-            # - run:
-            #       name: Prettier Check
-            #       command: |
-            #           cd demos/showcase
-            #           yarn prettier:check
-            - run:
-                  name: Build Showcase
-                  command: |
-                      cd demos/showcase
-                      yarn build
-            - run:
-                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
-                  when: always
+    #                   # Install the packed version of @brightlayer-ui/react-components
+    #                   PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
+    #                   yarn add ../../dist/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
+    #         - save_cache:
+    #               name: Save Cache
+    #               paths:
+    #                   - demos/showcase/node_modules
+    #               key: v2-dependencies-react-{{ checksum "demos/showcase/yarn.lock" }}
+    #         # This will be prettier checked on the demo repository
+    #         # - run:
+    #         #       name: Prettier Check
+    #         #       command: |
+    #         #           cd demos/showcase
+    #         #           yarn prettier:check
+    #         - run:
+    #               name: Build Showcase
+    #               command: |
+    #                   cd demos/showcase
+    #                   yarn build
+    #         - run:
+    #               command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+    #               when: always
 
     deploy_storybook:
         docker:
@@ -249,9 +249,9 @@ workflows:
     react_library:
         jobs:
             - build_library
-            - build_showcase:
-                  requires:
-                      - build_library
+            # - build_showcase:
+                #   requires:
+                #       - build_library
             # - build_storybook:
             #       requires:
             #           - build_library
@@ -266,7 +266,7 @@ workflows:
             - publish:
                   requires:
                     #   - build_storybook
-                      - build_showcase
+                    #   - build_showcase
                   filters:
                        branches:
                           only:
