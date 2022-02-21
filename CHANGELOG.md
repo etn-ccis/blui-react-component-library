@@ -1,5 +1,5 @@
 # Changelog
-## v5.4.0-alpha.0 (Not yet published)
+## v6.0.0 (Not yet published)
 
 -   Migration from Material UI v4 to v5. [#352](https://github.com/brightlayer-ui/react-component-library/issues/352)
 ## v5.4.0 (February 8, 2022)
