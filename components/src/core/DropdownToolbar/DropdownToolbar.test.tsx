@@ -9,22 +9,27 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/icons-material/Menu';
 import { act } from 'react-dom/test-utils';
-import { createMount } from '@mui/material/test-utils';
+// import { createMount } from '@mui/material/test-utils';
+import {createTheme, ThemeProvider } from '@mui/material/styles';
 
+
+// import { createMount, createShallow } from '@mui/material/test-utils';
+import * as BLUIThemes from '@brightlayer-ui/react-themes';
+const theme = createTheme(BLUIThemes.blue);
 Enzyme.configure({ adapter: new Adapter() });
-let mount: Mount;
+// let mount: Mount;
 
 describe('DropdownToolbar', () => {
     beforeEach(() => {
-        mount = createMount({ strict: true });
+        // mount = createMount({ strict: true });
     });
 
     afterEach(() => {
-        mount.cleanUp();
+        // mount.cleanUp();
     });
     it('should render without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<DropdownToolbar title={'title'} />, div);
+        ReactDOM.render(<ThemeProvider theme={theme}><DropdownToolbar title={'title'} /></ThemeProvider>, div);
     });
 
     it('should render correct title and subtitle', () => {
