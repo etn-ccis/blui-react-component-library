@@ -5,7 +5,7 @@ import {createTheme, Theme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 const theme = createTheme(BLUIThemes.blue);
 export const findByTestId = (id: string, wrapper: ShallowWrapper | ReactWrapper): any =>
-    wrapper.find(`[data-test="${id}"]`);
+    wrapper.find(`[data-test="${id}"]`).hostNodes();
 
 // https://stackoverflow.com/a/494348
 export const getComputedStyleFromHTMLString = (str: string): CSSStyleDeclaration => {
