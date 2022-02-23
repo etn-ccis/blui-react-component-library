@@ -1,10 +1,7 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Mount, Shallow } from '../types';
 import * as Enzyme from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-// import { createMount, createShallow } from '@mui/material/test-utils';
 import { findByTestId } from '../test-utils';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
@@ -21,26 +18,13 @@ import { DrawerRailItem } from './DrawerRailItem';
 import { DrawerNavItem } from './DrawerNavItem';
 import { mountWithTheme } from '../test-utils';
 import {createTheme, ThemeProvider } from '@mui/material/styles';
-
-
-// import { createMount, createShallow } from '@mui/material/test-utils';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
+
 const theme = createTheme(BLUIThemes.blue);
+
 Enzyme.configure({ adapter: new Adapter() });
 
-// let shallow: Shallow;
-// let mount: Mount;
-
 describe('Drawer', () => {
-    beforeEach(() => {
-        // mount = createMount({ strict: true });
-        // shallow = createShallow({});
-    });
-
-    afterEach(() => {
-        // mount.cleanUp();
-    });
-
     it('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<ThemeProvider theme={theme}><Drawer open={true} /></ThemeProvider>, div);
@@ -65,10 +49,6 @@ describe('Drawer', () => {
 });
 
 describe('DrawerHeader', () => {
-    // beforeEach(() => {
-    //     shallow = createShallow({});
-    // });
-
     it('renders text correctly', () => {
         const wrapper = mountWithTheme(<DrawerHeader title={'foo'} subtitle={'bar'} />, theme);
         expect(findByTestId('drawer-header-title', wrapper).text()).toEqual('foo');
@@ -82,24 +62,16 @@ describe('DrawerHeader', () => {
 
     it('calls onIconClick', () => {
         const onIconClickFunction = jest.fn();
-        const icon = <Avatar />;
+        const icon = <Avatar data-test={'avatar'} />;
         const wrapper = mountWithTheme(<DrawerHeader onIconClick={onIconClickFunction} icon={icon} />, theme);
+        const renderedIcon = findByTestId('avatar', wrapper);
         expect(onIconClickFunction).not.toHaveBeenCalled();
-        wrapper.find(Avatar).simulate('click');
-        expect(onIconClickFunction).not.toHaveBeenCalledTimes(1);
+        renderedIcon.simulate('click', { currentTarget: 'test' });
+        expect(onIconClickFunction).toHaveBeenCalled();
     });
 });
 
 describe('DrawerNavGroup', () => {
-    beforeEach(() => {
-        // shallow = createShallow({});
-        // mount = createMount({ strict: true });
-    });
-
-    afterEach(() => {
-        // mount.cleanUp();
-    });
-
     it('renders text correctly', () => {
         const wrapper = mountWithTheme(<DrawerNavGroup title={'foo'} items={[]} />, theme);
         expect(wrapper.text()).toEqual('foo');
@@ -241,9 +213,7 @@ describe('DrawerNavGroup', () => {
                 </DrawerBody>
             </Drawer>, theme
         )
-            .find(DrawerBody)
-            .at(0)
-            .dive();
+            .find(DrawerBody);
         const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
         expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
         expect(firstDrawerNavGroup.props.divider).toBeTruthy();
@@ -254,15 +224,6 @@ describe('DrawerNavGroup', () => {
 });
 
 describe('DrawerRailItem', () => {
-    beforeEach(() => {
-        // shallow = createShallow({});
-        // mount = createMount({ strict: true });
-    });
-
-    afterEach(() => {
-        // mount.cleanUp();
-    });
-
     it('renders text at full size', () => {
         const wrapper = mountWithTheme(<DrawerRailItem title={'Test'} itemID={'test'} icon={<></>} />, theme);
         expect(wrapper.find(Typography).length).toEqual(1);
