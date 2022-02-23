@@ -2,7 +2,7 @@ import React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { findByTestId } from '../test-utils';
+import { findByTestId, mountWithTheme } from '../test-utils';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
@@ -16,8 +16,7 @@ import { InfoListItem } from '../InfoListItem';
 import MoreVert from '@mui/icons-material/MoreVert';
 import { DrawerRailItem } from './DrawerRailItem';
 import { DrawerNavItem } from './DrawerNavItem';
-import { mountWithTheme } from '../test-utils';
-import {createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 
 const theme = createTheme(BLUIThemes.blue);
@@ -27,7 +26,12 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Drawer', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<ThemeProvider theme={theme}><Drawer open={true} /></ThemeProvider>, div);
+        ReactDOM.render(
+            <ThemeProvider theme={theme}>
+                <Drawer open={true} />
+            </ThemeProvider>,
+            div
+        );
         ReactDOM.unmountComponentAtNode(div);
     });
 
@@ -38,7 +42,8 @@ describe('Drawer', () => {
                 <DrawerSubheader />
                 <DrawerBody />
                 <DrawerFooter />
-            </Drawer>, theme
+            </Drawer>,
+            theme
         );
 
         expect(wrapper.find(DrawerHeader).length).toEqual(1);
@@ -83,7 +88,10 @@ describe('DrawerNavGroup', () => {
     });
 
     it('renders rightComponent correctly', () => {
-        let wrapper = mountWithTheme(<DrawerNavGroup items={[{ title: '', itemID: '', rightComponent: <MoreVert /> }]} />, theme);
+        let wrapper = mountWithTheme(
+            <DrawerNavGroup items={[{ title: '', itemID: '', rightComponent: <MoreVert /> }]} />,
+            theme
+        );
         expect(wrapper.find(MoreVert).length).toEqual(1);
 
         wrapper = mountWithTheme(<DrawerNavGroup items={[{ title: '', itemID: '' }]} />, theme);
@@ -125,7 +133,8 @@ describe('DrawerNavGroup', () => {
                         ],
                     },
                 ]}
-            />, theme
+            />,
+            theme
         );
 
         const expectedNavItemTitleList = [
@@ -176,7 +185,8 @@ describe('DrawerNavGroup', () => {
                         },
                     ]}
                 />
-            </DrawerNavGroup>, theme
+            </DrawerNavGroup>,
+            theme
         );
 
         const expectedNavItemTitleList = [
@@ -211,9 +221,9 @@ describe('DrawerNavGroup', () => {
                         items={[{ title: '', itemID: '' }]}
                     />
                 </DrawerBody>
-            </Drawer>, theme
-        )
-            .find(DrawerBody);
+            </Drawer>,
+            theme
+        ).find(DrawerBody);
         const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
         expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
         expect(firstDrawerNavGroup.props.divider).toBeTruthy();

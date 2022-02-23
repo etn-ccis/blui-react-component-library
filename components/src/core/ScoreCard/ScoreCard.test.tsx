@@ -5,46 +5,38 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import * as Colors from '@brightlayer-ui/colors';
-// import { createMount, createShallow } from '@mui/material/test-utils';
 import MoreVert from '@mui/icons-material/MoreVert';
 import Enzyme from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { HeroBanner } from '../HeroBanner';
 import { findByTestId, getComputedStyleFromHTMLString, mountWithTheme } from '../test-utils';
-import { Mount, Shallow } from '../types';
 import { ScoreCard } from './ScoreCard';
 import color from 'color';
-import {createTheme, ThemeProvider } from '@mui/material/styles';
-
-
-// import { createMount, createShallow } from '@mui/material/test-utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
+
 const theme = createTheme(BLUIThemes.blue);
 Enzyme.configure({ adapter: new Adapter() });
-let mount: Mount;
-let shallow: Shallow;
 
 describe('ScoreCard', () => {
-    beforeEach(() => {
-        // mount = createMount({ strict: true });
-        // shallow = createShallow({ dive: true });
-    });
-
-    afterEach(() => {
-        // mount.cleanUp();
-    });
-
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<ThemeProvider theme={theme}><ScoreCard headerTitle={'TestTitle'} /></ThemeProvider>, div);
+        ReactDOM.render(
+            <ThemeProvider theme={theme}>
+                <ScoreCard headerTitle={'TestTitle'} />
+            </ThemeProvider>,
+            div
+        );
     });
     it('renders with all text', () => {
         let wrapper = mountWithTheme(<ScoreCard headerTitle={'Test'} />, theme);
         expect(wrapper.find(Typography).length).toEqual(1);
         wrapper = mountWithTheme(<ScoreCard headerTitle={'Test'} headerSubtitle={'TestSub'} />, theme);
         expect(wrapper.find(Typography).length).toEqual(2);
-        wrapper = mountWithTheme(<ScoreCard headerTitle={'Test'} headerSubtitle={'TestSub'} headerInfo={'TestInfo'} />, theme);
+        wrapper = mountWithTheme(
+            <ScoreCard headerTitle={'Test'} headerSubtitle={'TestSub'} headerInfo={'TestInfo'} />,
+            theme
+        );
         expect(wrapper.find(Typography).length).toEqual(3);
     });
     it('renders with header actions', () => {
@@ -58,7 +50,8 @@ describe('ScoreCard', () => {
                 actionLimit={2}
                 headerTitle={'Test'}
                 actionItems={[<MoreVert key={'icon1'} />, <MoreVert key={'icon2'} />, <MoreVert key={'icon3'} />]}
-            />, theme
+            />,
+            theme
         );
         expect(findByTestId('action-item', wrapper).length).toEqual(2);
         expect(wrapper.find(MoreVert).length).toEqual(2);
@@ -84,7 +77,8 @@ describe('ScoreCard', () => {
         wrapper = mountWithTheme(
             <ScoreCard headerTitle={'Test'}>
                 <List />
-            </ScoreCard>, theme
+            </ScoreCard>,
+            theme
         );
         content = findByTestId('content', wrapper);
         body = findByTestId('body-wrapper', wrapper);

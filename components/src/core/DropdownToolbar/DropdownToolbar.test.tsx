@@ -1,31 +1,23 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Enzyme from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { DropdownToolbar } from './DropdownToolbar';
-// import { createMount } from '@mui/material/test-utils';
-import {createTheme, ThemeProvider } from '@mui/material/styles';
-
-
-// import { createMount, createShallow } from '@mui/material/test-utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
-const theme = createTheme(BLUIThemes.blue);
 
+const theme = createTheme(BLUIThemes.blue);
 Enzyme.configure({ adapter: new Adapter() });
-// let mount: Mount;
 
 describe('DropdownToolbar', () => {
-    beforeEach(() => {
-        // mount = createMount({ strict: true });
-    });
-
-    afterEach(() => {
-        // mount.cleanUp();
-    });
     it('should render without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<ThemeProvider theme={theme}><DropdownToolbar title={'title'} /></ThemeProvider>, div);
+        ReactDOM.render(
+            <ThemeProvider theme={theme}>
+                <DropdownToolbar title={'title'} />
+            </ThemeProvider>,
+            div
+        );
     });
 
     // it('should render correct title and subtitle', () => {

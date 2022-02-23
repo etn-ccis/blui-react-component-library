@@ -5,23 +5,22 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { mountWithTheme } from '../test-utils';
 import { AppBar } from './AppBar';
 import MuiAppBar from '@mui/material/AppBar';
-
-Enzyme.configure({ adapter: new Adapter() });
-import {createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
+
 const theme = createTheme(BLUIThemes.blue);
 
-describe('AppBar', () => {
-    beforeEach(() => {
-        // mount = createMount({ strict: true });
-    });
+Enzyme.configure({ adapter: new Adapter() });
 
-    afterEach(() => {
-        // mount.cleanUp();
-    });
+describe('AppBar', () => {
     it('should render without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<ThemeProvider theme={theme}><AppBar /></ThemeProvider>, div);
+        ReactDOM.render(
+            <ThemeProvider theme={theme}>
+                <AppBar />
+            </ThemeProvider>,
+            div
+        );
     });
 
     it('should render at the correct default sizes', () => {

@@ -5,23 +5,22 @@ import { ChannelValue } from './ChannelValue';
 import * as Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Menu from '@mui/icons-material/Menu';
-import {createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
+
 const theme = createTheme(BLUIThemes.blue);
+
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('ChannelValue', () => {
-    beforeEach(() => {
-        
-    });
-
-    afterEach(() => {
-        // mount.cleanUp();
-    });
-
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<ThemeProvider theme={theme}><ChannelValue value={'test'} /></ThemeProvider>, div);
+        ReactDOM.render(
+            <ThemeProvider theme={theme}>
+                <ChannelValue value={'test'} />
+            </ThemeProvider>,
+            div
+        );
         ReactDOM.unmountComponentAtNode(div);
     });
     it('should render with the wrapper class', () => {

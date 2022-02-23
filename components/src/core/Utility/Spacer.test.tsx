@@ -5,7 +5,7 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { Spacer } from './Spacer';
 import { getComputedStyleFromHTMLString, mountWithTheme } from '../test-utils';
 
-import {createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 const theme = createTheme(BLUIThemes.blue);
 
@@ -14,12 +14,17 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Spacer', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<ThemeProvider theme={theme}><Spacer /></ThemeProvider>, div);
+        ReactDOM.render(
+            <ThemeProvider theme={theme}>
+                <Spacer />
+            </ThemeProvider>,
+            div
+        );
         ReactDOM.unmountComponentAtNode(div);
     });
     it('renders default properties', () => {
         const wrapper = mountWithTheme(<Spacer />, theme);
-        let style = getComputedStyleFromHTMLString(wrapper.find(Spacer).html());
+        const style = getComputedStyleFromHTMLString(wrapper.find(Spacer).html());
         expect(style.flex).toEqual('1 1 0px');
         expect(style.height).toEqual('auto');
         expect(style.width).toEqual('auto');
@@ -44,7 +49,8 @@ describe('Spacer', () => {
     });
     it('accepts style overrides', () => {
         const wrapper = mountWithTheme(
-            <Spacer style={{ flex: '3 4 100%', display: 'inline', height: '30%', width: '1rem' }} />, theme
+            <Spacer style={{ flex: '3 4 100%', display: 'inline', height: '30%', width: '1rem' }} />,
+            theme
         );
         const style = getComputedStyleFromHTMLString(wrapper.find(Spacer).html());
         expect(style.flex).toEqual('3 4 100%');
