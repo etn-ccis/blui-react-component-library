@@ -9,11 +9,11 @@ import { findByTestId, getComputedStyleFromHTMLString } from '../test-utils';
 import * as Colors from '@brightlayer-ui/colors';
 import color from 'color';
 
-import Chevron from '@material-ui/icons/ChevronRight';
-import PersonIcon from '@material-ui/icons/Person';
-import Avatar from '@material-ui/core/Avatar';
+import Chevron from '@mui/icons-material/ChevronRight';
+import PersonIcon from '@mui/icons-material/Person';
+import Avatar from '@mui/material/Avatar';
 
-import { createMount, createShallow } from '@material-ui/core/test-utils';
+import { createMount, createShallow } from '@mui/material/test-utils';
 
 Enzyme.configure({ adapter: new Adapter() });
 

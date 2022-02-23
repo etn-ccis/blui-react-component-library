@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
 import * as Colors from '@brightlayer-ui/colors';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
-import MoreVert from '@material-ui/icons/MoreVert';
+import { createMount, createShallow } from '@mui/material/test-utils';
+import MoreVert from '@mui/icons-material/MoreVert';
 import Enzyme from 'enzyme';
 // import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';

@@ -1,13 +1,12 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import createStyles from '@material-ui/core/styles/createStyles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import useTheme from '@material-ui/core/styles/useTheme';
-import Typography from '@material-ui/core/Typography';
-import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
-import ListItemText from '@material-ui/core/ListItemText';
-import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import { Theme, useTheme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import Typography from '@mui/material/Typography';
+import Toolbar, { ToolbarProps } from '@mui/material/Toolbar';
+import ListItemText from '@mui/material/ListItemText';
+import Menu, { MenuProps as standardMenuProps } from '@mui/material/Menu';
+import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import clsx from 'clsx';
 import { NavItem, DrawerNavGroup } from '../Drawer';
 import PropTypes from 'prop-types';
@@ -51,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
             minHeight: `4rem`,
-            [theme.breakpoints.down('xs')]: {
+            [theme.breakpoints.down('sm')]: {
                 minHeight: `3.5rem`,
             },
         },
@@ -193,7 +192,6 @@ const DropdownToolbarRender: React.ForwardRefRenderFunction<unknown, DropdownToo
         if (menuGroups && Boolean(anchorEl)) {
             return (
                 <Menu
-                    getContentAnchorEl={null}
                     anchorOrigin={{ vertical: 'bottom', horizontal: rtl ? 'right' : 'left' }}
                     transformOrigin={{ vertical: 'top', horizontal: rtl ? 'right' : 'left' }}
                     anchorEl={anchorEl}

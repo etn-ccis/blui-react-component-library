@@ -1,6 +1,8 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import Typography from '@mui/material/Typography';
 import { ChannelValue } from '../ChannelValue';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -55,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flex: '1 1 0px',
             overflow: 'hidden',
             color: theme.palette.text.primary,
-            padding: `1rem ${theme.spacing()}px`,
+            padding: `1rem ${theme.spacing()}`,
             cursor: (props: HeroProps): 'pointer' | 'inherit' => (props.onClick ? 'pointer' : 'inherit'),
         },
         icon: {

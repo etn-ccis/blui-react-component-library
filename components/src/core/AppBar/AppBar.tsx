@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import createStyles from '@material-ui/core/styles/createStyles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import useTheme from '@material-ui/core/styles/useTheme';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@material-ui/core/AppBar';
+import { Theme, useTheme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 // import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import clsx from 'clsx';
 import { usePrevious } from '../hooks/usePrevious';
@@ -132,7 +131,7 @@ export type AppBarProps = Omit<MuiAppBarProps, 'variant'> & {
 
 const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (props: AppBarProps, ref: any) => {
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const defaultAppBarHeight = isMobile ? '3.5rem' : '4rem';
     const {
         style = {},

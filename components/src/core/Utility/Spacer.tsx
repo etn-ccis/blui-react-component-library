@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties } from '@mui/styles';
 import React, { HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
