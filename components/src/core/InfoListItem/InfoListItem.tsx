@@ -247,7 +247,14 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     return (
         <ListItem className={combine('root')} ref={ref} {...otherListItemProps}>
             {props.onClick && ripple ? (
-                <ListItemButton className={combine('listItemButtonRoot')} focusRipple={ripple}>
+                <ListItemButton
+                    classes={{
+                        root: clsx(defaultClasses.listItemButtonRoot, {
+                            [classes.root]: props.onClick && ripple,
+                        }),
+                    }}
+                    focusRipple={ripple}
+                >
                     {getInfloListItemContent}
                 </ListItemButton>
             ) : (

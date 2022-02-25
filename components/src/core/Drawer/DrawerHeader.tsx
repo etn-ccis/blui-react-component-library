@@ -213,6 +213,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                                     onIconClick();
                                 }}
                                 edge={'start'}
+                                size={'large'}
                             >
                                 {icon}
                             </IconButton>
