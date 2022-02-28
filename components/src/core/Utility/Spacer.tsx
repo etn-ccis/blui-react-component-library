@@ -53,8 +53,8 @@ export const Spacer = React.forwardRef(SpacerRender);
 Spacer.displayName = 'Spacer';
 Spacer.propTypes = {
     flex: PropTypes.number,
-    width: PropTypes.number,
-    height: PropTypes.number,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),

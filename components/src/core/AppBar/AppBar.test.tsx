@@ -1,43 +1,43 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Enzyme from 'enzyme';
-import { Mount } from '../types';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { createMount } from '@mui/material/test-utils';
+import { mountWithTheme } from '../test-utils';
 import { AppBar } from './AppBar';
 import MuiAppBar from '@mui/material/AppBar';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import * as BLUIThemes from '@brightlayer-ui/react-themes';
+
+const theme = createTheme(BLUIThemes.blue);
 
 Enzyme.configure({ adapter: new Adapter() });
-let mount: Mount;
 
 describe('AppBar', () => {
-    beforeEach(() => {
-        mount = createMount({ strict: true });
-    });
-
-    afterEach(() => {
-        mount.cleanUp();
-    });
     it('should render without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<AppBar />, div);
+        ReactDOM.render(
+            <ThemeProvider theme={theme}>
+                <AppBar />
+            </ThemeProvider>,
+            div
+        );
     });
 
     it('should render at the correct default sizes', () => {
         // Dynamic
-        let appbar = Enzyme.mount(<AppBar />);
+        let appbar = mountWithTheme(<AppBar />, theme);
         let muiAppbar = appbar.find(MuiAppBar);
         let height = muiAppbar.props().style.height;
         expect(height).toEqual(200);
 
         // Collapsed
-        appbar = Enzyme.mount(<AppBar variant={'collapsed'} />);
+        appbar = mountWithTheme(<AppBar variant={'collapsed'} />, theme);
         muiAppbar = appbar.find(MuiAppBar);
         height = muiAppbar.props().style.height;
         expect(height).toEqual('4rem');
 
         // Expanded
-        appbar = Enzyme.mount(<AppBar variant={'expanded'} />);
+        appbar = mountWithTheme(<AppBar variant={'expanded'} />, theme);
         muiAppbar = appbar.find(MuiAppBar);
         height = muiAppbar.props().style.height;
         expect(height).toEqual(200);
@@ -45,19 +45,19 @@ describe('AppBar', () => {
 
     it('should render at the correct custom sizes', () => {
         // Dynamic
-        let appbar = Enzyme.mount(<AppBar expandedHeight={300} collapsedHeight={100} />);
+        let appbar = mountWithTheme(<AppBar expandedHeight={300} collapsedHeight={100} />, theme);
         let muiAppbar = appbar.find(MuiAppBar);
         let height = muiAppbar.props().style.height;
         expect(height).toEqual(300);
 
         // Collapsed
-        appbar = Enzyme.mount(<AppBar variant={'collapsed'} expandedHeight={300} collapsedHeight={100} />);
+        appbar = mountWithTheme(<AppBar variant={'collapsed'} expandedHeight={300} collapsedHeight={100} />, theme);
         muiAppbar = appbar.find(MuiAppBar);
         height = muiAppbar.props().style.height;
         expect(height).toEqual(100);
 
         // Expanded
-        appbar = Enzyme.mount(<AppBar variant={'expanded'} expandedHeight={300} collapsedHeight={100} />);
+        appbar = mountWithTheme(<AppBar variant={'expanded'} expandedHeight={300} collapsedHeight={100} />, theme);
         muiAppbar = appbar.find(MuiAppBar);
         height = muiAppbar.props().style.height;
         expect(height).toEqual(300);
