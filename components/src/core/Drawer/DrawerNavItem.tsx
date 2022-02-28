@@ -87,7 +87,7 @@ export type NestedNavItem = NestedDrawerNavItemProps;
 // First nested item has no additional indentation.  All items start with 16px indentation.
 const calcNestedPadding = (theme: Theme, depth: number): string => {
     const calculatePaddingInt = parseInt(theme.spacing(depth ? (depth - 1) * 4 : 0)) + parseInt(theme.spacing(2));
-    return `${calculatePaddingInt  }px`;
+    return `${calculatePaddingInt}px`;
 };
 
 const getChevronColor = (props: DrawerNavItemProps, theme: Theme): string => {
