@@ -60,20 +60,21 @@ Any other props will be provided to the root element [**Material UI ListItem**](
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
-| Name           | Description                                         |
-| -------------- | --------------------------------------------------- |
-| root           | Styles applied to the root element                  |
-| avatar         | Styles applied to the Avatar element                |
-| chevron        | Styles applied to the chevron element               |
-| divider        | Styles applied to the divider element               |
-| icon           | Styles applied to the icon element                  |
-| info           | Styles applied to the third line of text element    |
-| listItemText   | Styles applied to the title/subtitle wrapper        |
-| rightComponent | Styles applied to the rightComponent parent element |
-| separator      | Styles applied to subtitle delimiter                |
-| statusStripe   | Styles applied to the status stripe element         |
-| subtitle       | Styles applied to the subtitle element              |
-| title          | Styles applied to the title element                 |
+| Name               | Description                                         |
+| ------------------ | --------------------------------------------------- |
+| root               | Styles applied to the root element                  |
+| avatar             | Styles applied to the Avatar element                |
+| chevron            | Styles applied to the chevron element               |
+| divider            | Styles applied to the divider element               |
+| icon               | Styles applied to the icon element                  |
+| info               | Styles applied to the third line of text element    |
+| listItemButtonRoot | Styles applied to the title/subtitle wrapper        |
+| listItemText       | Styles applied to the title/subtitle wrapper        |
+| rightComponent     | Styles applied to the rightComponent parent element |
+| separator          | Styles applied to subtitle delimiter                |
+| statusStripe       | Styles applied to the status stripe element         |
+| subtitle           | Styles applied to the subtitle element              |
+| title              | Styles applied to the title element                 |
 
 ## Tips
 
