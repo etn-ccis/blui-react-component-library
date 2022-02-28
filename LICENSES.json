@@ -1,0 +1,164 @@
+{
+    "@brightlayer-ui/colors@3.0.1": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/brightlayer-ui/colors",
+        "licenseUrl": "https://github.com/brightlayer-ui/colors/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@brightlayer-ui/icons-mui@2.7.0": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/brightlayer-ui/icons",
+        "licenseUrl": "https://github.com/brightlayer-ui/icons/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@brightlayer-ui/react-components@5.3.2-beta.0": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/brightlayer-ui/react-component-library",
+        "licenseUrl": "https://github.com/brightlayer-ui/react-component-library/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@brightlayer-ui/react-themes@6.1.0": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/brightlayer-ui/react-themes",
+        "licenseUrl": "https://github.com/brightlayer-ui/react-themes/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@brightlayer-ui/storybook-rtl-addon@1.1.0": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/brightlayer-ui/storybook-addons",
+        "licenseUrl": "https://github.com/brightlayer-ui/storybook-addons/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@brightlayer-ui/storybook-themes@1.1.0": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/brightlayer-ui/storybook-themes",
+        "licenseUrl": "https://github.com/brightlayer-ui/storybook-themes/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@material-ui/core@4.11.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/mui-org/material-ui",
+        "licenseUrl": "https://github.com/mui-org/material-ui/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@material-ui/icons@4.9.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/mui-org/material-ui",
+        "licenseUrl": "https://github.com/mui-org/material-ui/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@sambego/storybook-state@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/Sambego/storybook-state",
+        "licenseUrl": "https://github.com/Sambego/storybook-state/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@seznam/compose-react-refs@1.0.6": {
+        "licenses": "ISC",
+        "repository": "https://github.com/seznam/compose-react-refs",
+        "licenseUrl": "https://github.com/seznam/compose-react-refs/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@storybook/addon-actions@5.3.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "licenseUrl": "https://github.com/storybookjs/storybook/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@storybook/addon-info@5.3.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "licenseUrl": "https://github.com/storybookjs/storybook/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@storybook/addon-knobs@5.3.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "licenseUrl": "https://github.com/storybookjs/storybook/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@storybook/addon-links@5.3.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "licenseUrl": "https://github.com/storybookjs/storybook/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@storybook/addon-notes@5.3.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "licenseUrl": "https://github.com/storybookjs/storybook/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@storybook/addon-storysource@5.3.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "licenseUrl": "https://github.com/storybookjs/storybook/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@storybook/addon-viewport@5.3.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "licenseUrl": "https://github.com/storybookjs/storybook/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@storybook/addons@5.3.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "licenseUrl": "https://github.com/storybookjs/storybook/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@storybook/preset-create-react-app@1.5.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/presets",
+        "licenseUrl": "https://github.com/storybookjs/presets",
+        "parents": "storybook"
+    },
+    "@storybook/react@5.3.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "licenseUrl": "https://github.com/storybookjs/storybook/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "@storybook/theming@5.3.21": {
+        "licenses": "MIT",
+        "repository": "https://github.com/storybookjs/storybook",
+        "licenseUrl": "https://github.com/storybookjs/storybook/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "jss-rtl@0.3.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/alitaheri/jss-rtl",
+        "licenseUrl": "https://github.com/alitaheri/jss-rtl/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "node-sass@4.14.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/sass/node-sass",
+        "licenseUrl": "https://github.com/sass/node-sass/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "react-dom@16.14.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/facebook/react",
+        "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "react-scripts@3.4.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/facebook/create-react-app",
+        "licenseUrl": "https://github.com/facebook/create-react-app/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "react@16.14.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/facebook/react",
+        "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
+        "parents": "storybook"
+    },
+    "typescript@4.0.5": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/Microsoft/TypeScript",
+        "licenseUrl": "https://github.com/Microsoft/TypeScript/raw/master/LICENSE.txt",
+        "parents": "storybook"
+    }
+}

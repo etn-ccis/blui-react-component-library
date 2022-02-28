@@ -17,11 +17,12 @@
         "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html,md}\" --write && cd components && yarn prettier && cd ../demos/showcase && yarn prettier && cd ../storybook && yarn prettier",
         "prettier:check": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html,md}\" --check && cd components && yarn prettier:check && cd ../demos/showcase && yarn prettier:check && cd ../storybook && yarn prettier:check",
         "update:submodule": "git submodule update --remote",
-        "precommit": "yarn initialize && yarn install:dependencies && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts",
+        "precommit": "yarn initialize && yarn install:dependencies && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts && yarn generate:licenses",
         "coverage": "yarn test --coverage --watchAll=false",
         "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json",
         "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
-        "tag:package": "cd dist && npx -p @brightlayer-ui/tag blui-tag"
+        "tag:package": "cd dist && npx -p @brightlayer-ui/tag blui-tag",
+        "generate:licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json"
     },
     "repository": {
         "type": "git",
@@ -44,6 +45,7 @@
     "devDependencies": {
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "codecov": "^3.8.1",
+        "npm-license-crawler": "^0.2.1",
         "prettier": "^2.3.0"
     },
     "prettier": "@brightlayer-ui/prettier-config"
