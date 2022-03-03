@@ -22,7 +22,7 @@
         "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json",
         "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
         "tag:package": "cd dist && npx -p @brightlayer-ui/tag blui-tag",
-        "generate:licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json"
+        "generate:licenses": "cd ./components && npm-license-crawler -onlyDirectDependencies -json LICENSES.json"
     },
     "repository": {
         "type": "git",
