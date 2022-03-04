@@ -24,7 +24,6 @@ export type DrawerNavItemClasses = {
     active?: string;
     expandIcon?: string;
     infoListItemRoot?: string;
-    listItemButtonRoot?: string;
     nestedListGroup?: string;
     nestedTitle?: string;
     title?: string;
@@ -131,13 +130,6 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         infoListItemRoot: {
-            // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
-            paddingLeft: (props: DrawerNavItemProps): string =>
-                theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, props.depth),
-            paddingRight: (props: DrawerNavItemProps): string =>
-                theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, props.depth),
-        },
-        listItemButtonRoot: {
             // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
             paddingLeft: (props: DrawerNavItemProps): string =>
                 theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, props.depth),
@@ -415,7 +407,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     const infoListItemClasses = {
         root: ripple && hasAction ? undefined : clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
         listItemButtonRoot:
-            ripple && hasAction ? clsx(defaultClasses.listItemButtonRoot, classes.listItemButtonRoot) : undefined,
+            ripple && hasAction ? clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot) : undefined,
         title: clsx(defaultClasses.title, classes.title, {
             [defaultClasses.titleActive]: active || (!disableActiveItemParentStyles && isInActiveTree),
             [classes.titleActive]:
@@ -555,7 +547,6 @@ DrawerNavItem.propTypes = {
         active: PropTypes.string,
         expandIcon: PropTypes.string,
         infoListItemRoot: PropTypes.string,
-        listItemButtonRoot: PropTypes.string,
         nestedListGroup: PropTypes.string,
         nestedTitle: PropTypes.string,
         ripple: PropTypes.string,
