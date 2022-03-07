@@ -85,8 +85,10 @@ export type NavItem = DrawerNavItemProps;
 export type NestedNavItem = NestedDrawerNavItemProps;
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
-const calcNestedPadding = (theme: Theme, depth: number): string =>
-    theme.spacing(depth ? (depth - 1) * 4 : 0) + theme.spacing(2);
+const calcNestedPadding = (theme: Theme, depth: number): string => {
+    const calculatePaddingInt = parseInt(theme.spacing(depth ? (depth - 1) * 4 : 0)) + parseInt(theme.spacing(2));
+    return `${calculatePaddingInt}px`;
+};
 
 const getChevronColor = (props: DrawerNavItemProps, theme: Theme): string => {
     const { chevronColor } = props;
@@ -403,7 +405,9 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
-        root: clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
+        root: ripple && hasAction ? undefined : clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
+        listItemButtonRoot:
+            ripple && hasAction ? clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot) : undefined,
         title: clsx(defaultClasses.title, classes.title, {
             [defaultClasses.titleActive]: active || (!disableActiveItemParentStyles && isInActiveTree),
             [classes.titleActive]:
@@ -462,7 +466,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         onClick={hasAction ? onClickAction : undefined}
                         hidePadding={hidePadding}
                         ripple={ripple}
-                        {...RippleProps}
+                        ListItemButtonProps={{ ...RippleProps }}
                         {...InfoListItemProps}
                         classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                     />
