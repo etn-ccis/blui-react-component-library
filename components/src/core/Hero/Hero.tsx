@@ -82,8 +82,6 @@ const useStyles = makeStyles((theme: Theme) =>
             lineHeight: 1.2,
             maxWidth: '100%',
             overflow: 'hidden',
-            // fontSize: (props: HeroProps): number | string =>
-            //     typeof props.ChannelValueProps.fontSize === 'number' ? normalizeFontSize(props.ChannelValueProps.fontSize) : props.ChannelValueProps.fontSize,
         },
         label: {
             fontSize: 'inherit',
