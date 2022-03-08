@@ -36,12 +36,6 @@ if [ ! -f ./DrawerLayout/DrawerLayout.js ]; then echo -e "${RED}Not Found${NC}" 
 echo -ne " index.js:  "
 if [ ! -f ./DrawerLayout/index.js ]; then echo -e "${RED}Not Found${NC}" && exit 1; else echo -e "${GREEN}Found${NC}"; fi
 
-echo "Checking DropdownToolbar..."
-echo -ne " DropdownToolbar.js:  "
-if [ ! -f ./DropdownToolbar/DropdownToolbar.js ]; then echo -e "${RED}Not Found${NC}" && exit 1; else echo -e "${GREEN}Found${NC}"; fi
-echo -ne " index.js:  "
-if [ ! -f ./DropdownToolbar/index.js ]; then echo -e "${RED}Not Found${NC}" && exit 1; else echo -e "${GREEN}Found${NC}"; fi
-
 echo "Checking Empty State..."
 echo -ne "  EmptyState.js: "
 if [ ! -f ./EmptyState/EmptyState.js  ]; then echo -e "${RED}Not Found${NC}" && exit 1; else echo -e "${GREEN}Found${NC}"; fi
