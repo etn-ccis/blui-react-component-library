@@ -8,9 +8,6 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 const normalizeIconSize = (size: number): number => Math.max(10, size);
-// const normalizeFontSize = (size: FontSize): string => (size === 'small' ? '1rem' : '1.25rem');
-
-// type FontSize = 'normal' | 'small';
 
 export type HeroClasses = {
     root?: string;
