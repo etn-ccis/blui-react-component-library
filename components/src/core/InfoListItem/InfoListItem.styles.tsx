@@ -98,6 +98,7 @@ export const useStyles = makeStyles<Theme, InfoListItemProps>((theme: Theme) =>
         },
         listItemButtonRoot: {
             height: 'inherit',
+            width: 'inherit',
         },
         icon: {
             color: (props) => getIconColor(props, theme),

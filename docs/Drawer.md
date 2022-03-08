@@ -316,18 +316,17 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerNavItem>` supports the following keys:
 
-| Name             | Description                                                     |
-| ---------------- | --------------------------------------------------------------- |
-| root             | Styles applied to the root element wrapping the InfoListItem    |
-| active           | Styles applied to the active item highlight element             |
-| chevron          | Styles applied to the chevron element                           |
-| expandIcon       | Styles applied to the expand/collapse icon wrapper              |
-| infoListItemRoot | Styles applied to the InfoListItem root element                 |
-| nestedListGroup  | Styles applied to wrapper surrounded nested children            |
-| nestedTitle      | Styles applied to the title text if the item is a nested item   |
-| title            | Styles applied to the title text                                |
-| titleActive      | Styles applied to the title text if the item is the active item |
-| ripple           | Styles applied to the ripple                                    |
+| Name            | Description                                                     |
+| --------------- | --------------------------------------------------------------- |
+| root            | Styles applied to the root element wrapping the InfoListItem    |
+| active          | Styles applied to the active item highlight element             |
+| chevron         | Styles applied to the chevron element                           |
+| expandIcon      | Styles applied to the expand/collapse icon wrapper              |
+| nestedListGroup | Styles applied to wrapper surrounded nested children            |
+| nestedTitle     | Styles applied to the title text if the item is a nested item   |
+| title           | Styles applied to the title text                                |
+| titleActive     | Styles applied to the title text if the item is the active item |
+| ripple          | Styles applied to the ripple                                    |
 
 ### Tips
 
