@@ -3,6 +3,7 @@
 ## v6.0.0 (Not yet published)
 
 -   Migration from Material UI v4 to v5. [#352](https://github.com/brightlayer-ui/react-component-library/issues/352)
+-   In `<Hero>` component, `fontSize`, `value`, `valueIcon`, `valueColor` and `units` props have been replaced by `ChannelValueProps` prop, which will allow you to specify any props on the underlying `<ChannelValue>` component. [#352](https://github.com/brightlayer-ui/react-component-library/issues/365)
 -   Remove DropdownToolbar component. [#353](https://github.com/brightlayer-ui/react-component-library/issues/353)
 
 ## v5.4.0 (February 8, 2022)
