@@ -1,7 +1,7 @@
 # Brightlayer UI React Components
 
 [![](https://img.shields.io/circleci/project/github/brightlayer-ui/react-component-library/master.svg?style=flat)](https://circleci.com/gh/brightlayer-ui/react-component-library/tree/master)
-![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-components?label=%40brightlayer-ui%2Freact-components)
+![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-components?label=%40brightlayer-ui%2Freact-components) [![codecov](https://codecov.io/gh/brightlayer-ui/react-component-library/branch/master/graph/badge.svg?token=HQFW5YF7WP)](https://codecov.io/gh/brightlayer-ui/react-component-library)
 
 This is a library of re-usable React components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
 
