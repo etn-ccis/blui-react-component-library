@@ -65,7 +65,7 @@ export type DrawerNavItemProps = SharedStyleProps &
          */
         notifyActiveParent?: (ids?: string[]) => void;
         /** A function to execute when clicked */
-        onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+        onClick?: (e: React.MouseEvent<HTMLElement>) => void;
         /** An icon/component to display to the right */
         rightComponent?: JSX.Element;
         /** Status stripe and icon color */
@@ -284,7 +284,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Handle click callbacks
     const onClickAction = useCallback(
-        (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+        (e: React.MouseEvent<HTMLElement>): void => {
             if (onItemSelect) {
                 onItemSelect(itemID);
             }
