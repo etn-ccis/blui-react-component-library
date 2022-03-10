@@ -16,22 +16,22 @@ describe('Hero', () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <ThemeProvider theme={theme}>
-                <Hero icon={'A'} label={'Healthy'} value={96} units={'/100'} />
+                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
             </ThemeProvider>,
             div
         );
     });
     it('should render with the wrapper class', () => {
-        const wrapper = mountWithTheme(<Hero value={1} label={'test'} icon={'a'} />, theme);
+        const wrapper = mountWithTheme(<Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />, theme);
         expect(findByTestId('wrapper', wrapper)).toBeTruthy();
     });
     it('renders without children', () => {
-        const wrapper = mountWithTheme(<Hero value={1} label={'test'} icon={'a'} />, theme);
+        const wrapper = mountWithTheme(<Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />, theme);
         expect(wrapper.find(ChannelValue).length).toEqual(1);
     });
     it('renders with children', () => {
         const wrapper = mountWithTheme(
-            <Hero value={1} label={'test'} icon={'a'}>
+            <Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'}>
                 <ChannelValue value={1} />
                 <ChannelValue value={1} />
             </Hero>,

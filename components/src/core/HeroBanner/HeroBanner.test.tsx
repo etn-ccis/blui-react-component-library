@@ -25,11 +25,11 @@ describe('HeroBanner', () => {
     it('renders only 4 children', () => {
         const hero = mountWithTheme(
             <HeroBanner>
-                <Hero icon={'A'} label={'Healthy'} value={96} units={'/100'} />
-                <Hero icon={'A'} label={'Healthy'} value={96} units={'/100'} />
-                <Hero icon={'A'} label={'Healthy'} value={96} units={'/100'} />
-                <Hero icon={'A'} label={'Healthy'} value={96} units={'/100'} />
-                <Hero icon={'A'} label={'Healthy'} value={96} units={'/100'} />
+                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
+                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
+                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
+                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
+                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
             </HeroBanner>,
             theme
         );
