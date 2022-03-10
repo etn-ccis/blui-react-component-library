@@ -315,6 +315,6 @@ UserMenu.defaultProps = {
     classes: {},
     menuGroups: [],
     MenuProps: {},
-    onClose: (): void => { },
-    onOpen: (): void => { },
+    onClose: (): void => {},
+    onOpen: (): void => {},
 };
