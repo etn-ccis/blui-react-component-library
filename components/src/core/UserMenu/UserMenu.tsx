@@ -120,7 +120,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
             for (const item of group.items) {
                 const onClick = item.onClick;
                 if (onClick) {
-                    item.onClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+                    item.onClick = (e: React.MouseEvent<HTMLElement>): void => {
                         onClick(e);
                         closeMenu();
                     };

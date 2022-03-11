@@ -53,7 +53,7 @@ export type DrawerRailItemProps = SharedStyleProps & {
     itemID: string;
 
     /** A function to execute when clicked */
-    onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+    onClick?: (e?: React.MouseEvent<HTMLElement>) => void;
 
     /** Status stripe and icon color */
     statusColor?: string;
@@ -230,7 +230,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     }, [icon, combine]);
 
     const onClickAction = useCallback(
-        (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+        (e: React.MouseEvent<HTMLElement>): void => {
             if (onItemSelect) {
                 onItemSelect(itemID);
             }

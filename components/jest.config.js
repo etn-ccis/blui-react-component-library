@@ -9,4 +9,5 @@ module.exports = {
             tsconfig: 'tsconfig.test.json',
         },
     },
+    testEnvironment: 'jsdom',
 };
