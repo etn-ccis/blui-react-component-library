@@ -8,7 +8,43 @@ The Brightlayer UI `<Hero>` components are used to call attention to particular 
 
 The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [Brightlayer UI icon](https://github.com/brightlayer-ui/icons), or [Progress Icon](https://github.com/brightlayer-ui/icons/tree/master/progress). It will also accept Text/Emoji values.
 
-The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) component. To display a single simple value, the information can be passed as props (`value`, `units`, `valueIcon`). For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
+The value section of the Hero utilizes a [`<ChannelValue>`](./ChannelValue.md) component. To display a single simple value, the information can be passed using ChannelValueProps which will allow you to specify any props on the underlying `<ChannelValue>` component. `fontSize` prop has been removed from `<Hero>`. If you are using `fontSize` prop with value `small` replace it with following:
+
+```tsx
+// before
+<Hero
+    icon={<Icon/>}
+    label={'Label'}
+    fontSize={'small'}
+/>
+
+// after
+<Hero
+    icon={<Icon/>}
+    label={'Label'}
+    ChannelValueProps={{ fontSize: '1rem' }}
+/>
+```
+
+And `fontSize` prop with value `normal` will replace with following:
+
+```tsx
+// before
+<Hero
+    icon={<Icon/>}
+    label={'Label'}
+    fontSize={'normal'}
+/>
+
+// after
+<Hero
+    icon={<Icon/>}
+    label={'Label'}
+    ChannelValueProps={{ fontSize: '1.25rem' }}
+/>
+```
+
+For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
 
 ## Hero Usage
 
@@ -39,18 +75,14 @@ import { Hero } from '@brightlayer-ui/react-components';
 
 <div style="overflow: auto;">
 
-| Prop Name           | Description                                | Type                    | Required | Default       |
-| ------------------- | ------------------------------------------ | ----------------------- | -------- | ------------- |
-| ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`     | no       |               |
-| classes             | Style overrides                            | `HeroClasses`           | no       |               |
-| fontSize            | The text size for the value line           | `'normal'` \| `'small'` | no       | 'normal'      |
-| icon                | The primary icon                           | `ReactNode`             | yes      |               |
-| iconBackgroundColor | The color used behind the primary icon     | `string`                | no       | 'transparent' |
-| iconSize            | The size of the primary icon (min 10px)    | `number` \| `string`    | no       | 36            |
-| label               | The text shown below the `ChannelValue`    | `string`                | yes      |               |
-| units               | Text to show after the value               | `string`                | no       |               |
-| value               | The value for the channel                  | `string` \| `number`    | no       |               |
-| valueIcon           | The inline icon with the value             | `JSX.Element`           | no       |               |
+| Prop Name           | Description                                | Type                 | Required | Default       |
+| ------------------- | ------------------------------------------ | -------------------- | -------- | ------------- |
+| ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`  | no       |               |
+| classes             | Style overrides                            | `HeroClasses`        | no       |               |
+| icon                | The primary icon                           | `ReactNode`          | yes      |               |
+| iconBackgroundColor | The color used behind the primary icon     | `string`             | no       | 'transparent' |
+| iconSize            | The size of the primary icon (min 10px)    | `number` \| `string` | no       | 36            |
+| label               | The text shown below the `ChannelValue`    | `string`             | yes      |               |
 
 </div>
 
