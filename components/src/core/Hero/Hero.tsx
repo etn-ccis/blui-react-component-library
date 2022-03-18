@@ -114,7 +114,9 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
         <div ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherDivProps}>
             <span className={clsx(defaultClasses.icon, classes.icon)}>{icon}</span>
             <span className={clsx(defaultClasses.values, classes.values)}>
-                {!props.children && ChannelValueProps?.value && <ChannelValue fontSize={ChannelValueProps?.fontSize} {...ChannelValueProps} />}
+                {!props.children && ChannelValueProps?.value && (
+                    <ChannelValue fontSize={ChannelValueProps?.fontSize} {...ChannelValueProps} />
+                )}
                 {props.children}
             </span>
             <Typography variant={'body1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
