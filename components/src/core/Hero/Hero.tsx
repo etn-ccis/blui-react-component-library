@@ -79,6 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
             lineHeight: 1.2,
             maxWidth: '100%',
             overflow: 'hidden',
+            fontSize: '1.25rem',
         },
         label: {
             fontSize: 'inherit',
@@ -113,7 +114,7 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
         <div ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherDivProps}>
             <span className={clsx(defaultClasses.icon, classes.icon)}>{icon}</span>
             <span className={clsx(defaultClasses.values, classes.values)}>
-                {!props.children && ChannelValueProps?.value && <ChannelValue fontSize={20} {...ChannelValueProps} />}
+                {!props.children && ChannelValueProps?.value && <ChannelValue fontSize={ChannelValueProps?.fontSize} {...ChannelValueProps} />}
                 {props.children}
             </span>
             <Typography variant={'body1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
