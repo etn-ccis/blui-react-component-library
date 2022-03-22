@@ -439,6 +439,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                             style={{ backgroundColor: activeItemBackgroundColor }}
                         />
                     )}
+                    {/* @ts-ignore issue in the @types/react@17.0.41: https://github.com/mui/material-ui/issues/31932 */}
                     <InfoListItem
                         dense
                         title={itemTitle}
