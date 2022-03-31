@@ -5,11 +5,11 @@
 ### Changed
 
 -   Components are now built to work with Material UI v5 ([#352](https://github.com/brightlayer-ui/react-component-library/issues/352))
--   In `<Hero>` component, `fontSize`, `value`, `valueIcon`, `valueColor` and `units` props have been replaced by `ChannelValueProps` prop, which will allow you to specify any props on the underlying `<ChannelValue>` component. ([#352](https://github.com/brightlayer-ui/react-component-library/issues/365))
+-   In `<Hero>` component, `fontSize`, `value`, `valueIcon`, `valueColor` and `units` props have been replaced by `ChannelValueProps` prop, which will allow you to specify any props on the underlying `<ChannelValue>` component. ([#365](https://github.com/brightlayer-ui/react-component-library/issues/365))
 
 ### Removed
 
--   Quick set options for fontSize ('normal' and 'small') have been removed in the `<Hero> / <ChannelValue>` components — if you were using these options previously, they can be replaced with '1.25rem' and '1rem', respectively, e.g.:
+-   Quick set options for fontSize ('normal' and 'small') have been removed in the `<Hero>` / `<ChannelValue>` components — if you were using these options previously, they can be replaced with '1.25rem' and '1rem', respectively, e.g.:
     -   `<Hero ChannelValueProps={{ fontSize: '1rem' }} />`
 -   DropdownToolbar. You should switch to using the `<ToolbarMenu>` component inside of a MUI Toolbar instead. ([#353](https://github.com/brightlayer-ui/react-component-library/issues/353))
 
