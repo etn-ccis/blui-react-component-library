@@ -1,4 +1,4 @@
-import { DrawerProps } from '@material-ui/core/Drawer';
+import { DrawerProps } from '@mui/material/Drawer';
 import PropTypes from 'prop-types';
 
 export type DrawerVariant = DrawerProps['variant'] | 'rail';

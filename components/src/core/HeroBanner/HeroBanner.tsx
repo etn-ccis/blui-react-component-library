@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
+import makeStyles from '@mui/styles/makeStyles';
+import Divider from '@mui/material/Divider';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 

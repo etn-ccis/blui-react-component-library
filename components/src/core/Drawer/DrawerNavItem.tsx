@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import { useDrawerContext } from './DrawerContext';
 import { useNavGroupContext } from './NavGroupContext';
 import { usePrevious } from '../hooks/usePrevious';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import createStyles from '@material-ui/core/styles/createStyles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import useTheme from '@material-ui/core/styles/useTheme';
-import List from '@material-ui/core/List';
-import Collapse from '@material-ui/core/Collapse';
+import { Theme, useTheme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import List from '@mui/material/List';
+import Collapse from '@mui/material/Collapse';
 import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../InfoListItem';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import clsx from 'clsx';
 import color from 'color';
@@ -66,7 +65,7 @@ export type DrawerNavItemProps = SharedStyleProps &
          */
         notifyActiveParent?: (ids?: string[]) => void;
         /** A function to execute when clicked */
-        onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+        onClick?: (e: React.MouseEvent<HTMLElement>) => void;
         /** An icon/component to display to the right */
         rightComponent?: JSX.Element;
         /** Status stripe and icon color */
@@ -86,8 +85,10 @@ export type NavItem = DrawerNavItemProps;
 export type NestedNavItem = NestedDrawerNavItemProps;
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
-const calcNestedPadding = (theme: Theme, depth: number): number =>
-    theme.spacing(depth ? (depth - 1) * 4 : 0) + theme.spacing(2);
+const calcNestedPadding = (theme: Theme, depth: number): string => {
+    const calculatePaddingInt = parseInt(theme.spacing(depth ? (depth - 1) * 4 : 0)) + parseInt(theme.spacing(2));
+    return `${calculatePaddingInt}px`;
+};
 
 const getChevronColor = (props: DrawerNavItemProps, theme: Theme): string => {
     const { chevronColor } = props;
@@ -101,7 +102,7 @@ const useStyles = makeStyles((theme: Theme) =>
             zIndex: 0,
             position: 'absolute',
             height: '100%',
-            width: `calc(100% - ${theme.spacing(1)}px)`,
+            width: `calc(100% - ${theme.spacing(1)})`,
             left: 0,
             top: 0,
             borderRadius: `0px 1.625rem 1.625rem 0px`,
@@ -130,9 +131,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         infoListItemRoot: {
             // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
-            paddingLeft: (props: DrawerNavItemProps): number =>
+            paddingLeft: (props: DrawerNavItemProps): string =>
                 theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, props.depth),
-            paddingRight: (props: DrawerNavItemProps): number =>
+            paddingRight: (props: DrawerNavItemProps): string =>
                 theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, props.depth),
         },
         nestedTitle: {
@@ -140,7 +141,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         nestedListGroup: {
             backgroundColor: (props: DrawerNavItemProps): string =>
-                props.nestedBackgroundColor || (theme.palette.type === 'light' ? white[200] : darkBlack[500]),
+                props.nestedBackgroundColor || (theme.palette.mode === 'light' ? white[200] : darkBlack[500]),
             paddingBottom: 0,
             paddingTop: 0,
         },
@@ -161,7 +162,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         square: {},
         textSecondary: {
-            color: theme.palette.type === 'dark' ? theme.palette.text.secondary : undefined,
+            color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
         },
         title: {
             fontWeight: 400,
@@ -190,18 +191,18 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Primary color manipulation
     const fivePercentOpacityPrimary = color(
-        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.95)
         .string();
     const twentyPercentOpacityPrimary = color(
-        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.8)
         .string();
     // approximating primary[200] but we don't have access to it directly from the theme
     const lightenedPrimary = color(
-        theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .lighten(0.83)
         .desaturate(0.39)
@@ -209,12 +210,12 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Destructure the props
     const {
-        activeItemBackgroundColor = theme.palette.type === 'light'
+        activeItemBackgroundColor = theme.palette.mode === 'light'
             ? fivePercentOpacityPrimary
             : twentyPercentOpacityPrimary,
         activeItemBackgroundShape = 'square',
-        activeItemFontColor = theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary,
-        activeItemIconColor = theme.palette.type === 'light' ? theme.palette.primary.main : lightenedPrimary,
+        activeItemFontColor = theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary,
+        activeItemIconColor = theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary,
         backgroundColor,
         chevron,
         chevronColor,
@@ -283,7 +284,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Handle click callbacks
     const onClickAction = useCallback(
-        (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+        (e: React.MouseEvent<HTMLElement>): void => {
             if (onItemSelect) {
                 onItemSelect(itemID);
             }
@@ -404,7 +405,9 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
-        root: clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
+        root: ripple && hasAction ? undefined : clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
+        listItemButtonRoot:
+            ripple && hasAction ? clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot) : undefined,
         title: clsx(defaultClasses.title, classes.title, {
             [defaultClasses.titleActive]: active || (!disableActiveItemParentStyles && isInActiveTree),
             [classes.titleActive]:
@@ -436,6 +439,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                             style={{ backgroundColor: activeItemBackgroundColor }}
                         />
                     )}
+                    {/* @ts-ignore issue in the @types/react@17.0.41: https://github.com/mui/material-ui/issues/31932 */}
                     <InfoListItem
                         dense
                         title={itemTitle}
@@ -463,7 +467,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         onClick={hasAction ? onClickAction : undefined}
                         hidePadding={hidePadding}
                         ripple={ripple}
-                        {...RippleProps}
+                        ListItemButtonProps={{ ...RippleProps }}
                         {...InfoListItemProps}
                         classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                     />

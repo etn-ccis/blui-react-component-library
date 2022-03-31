@@ -11,5 +11,22 @@ module.exports = {
     rules: {
         '@typescript-eslint/no-empty-function': 'off',
         'no-empty-function': 'off',
+        '@typescript-eslint/naming-convention': [
+            'error',
+            {
+                selector: [
+                    'classProperty',
+                    'objectLiteralProperty',
+                    'typeProperty',
+                    'classMethod',
+                    'objectLiteralMethod',
+                    'typeMethod',
+                    'accessor',
+                    'enumMember',
+                ],
+                format: null,
+                modifiers: ['requiresQuotes'],
+            },
+        ],
     },
 };

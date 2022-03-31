@@ -288,25 +288,25 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 <div style="overflow: auto;">
 
-| Prop Name                       | Description                                                                                                                                       | Type                      | Required | Default |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------- |
-| classes                         | Style overrides                                                                                                                                   | `DrawerNavItemClasses`    | no       |         |
-| depth\*                         | The nested depth of the item                                                                                                                      | `number`                  | no       | 0       |
-| hidden                          | Sets whether to hide the nav item                                                                                                                 | `boolean`                 | no       |         |
-| hidePadding                     | Remove left padding if no icon is used                                                                                                            | `boolean`                 | no       | false   |
-| icon                            | A component to render for the left icon                                                                                                           | `JSX.Element`             | no       |         |
-| isInActiveTree\*                | Sets whether the item is a parent of the currently active item (managed automatically)                                                            | `boolean`                 | no       |         |
-| itemID                          | A unique identifier of the NavItem. Item will have 'active' style when this matches activeItem                                                    | `string`                  | yes      |         |
-| items                           | The items nested under this item                                                                                                                  | `NestedNavItem[]`         | no       |         |
-| notifyActiveParent\*            | Callback function to the parent element to update active hierarchy styles                                                                         | `(ids: string[]) => void` | no       |         |
-| onClick                         | A function to execute when clicked                                                                                                                | `function`                | no       |         |
-| rightComponent                  | An icon/component to display to the right                                                                                                         | `ReactNode`               | no       |         |
-| statusColor                     | Status stripe and icon color                                                                                                                      | `string`                  | no       |         |
-| subtitle                        | The text to show on the second line                                                                                                               | `string`                  | no       |         |
-| title                           | The text to show on the first line                                                                                                                | `string`                  | yes      |         |
-| disableRailTooltip              | Sets whether to disable the tooltip on hover for the condensed `rail` variant                                                                     | `boolean`                 | no       |         |
+| Prop Name                       | Description                                                                                                                                               | Type                      | Required | Default |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------- |
+| classes                         | Style overrides                                                                                                                                           | `DrawerNavItemClasses`    | no       |         |
+| depth\*                         | The nested depth of the item                                                                                                                              | `number`                  | no       | 0       |
+| hidden                          | Sets whether to hide the nav item                                                                                                                         | `boolean`                 | no       |         |
+| hidePadding                     | Remove left padding if no icon is used                                                                                                                    | `boolean`                 | no       | false   |
+| icon                            | A component to render for the left icon                                                                                                                   | `JSX.Element`             | no       |         |
+| isInActiveTree\*                | Sets whether the item is a parent of the currently active item (managed automatically)                                                                    | `boolean`                 | no       |         |
+| itemID                          | A unique identifier of the NavItem. Item will have 'active' style when this matches activeItem                                                            | `string`                  | yes      |         |
+| items                           | The items nested under this item                                                                                                                          | `NestedNavItem[]`         | no       |         |
+| notifyActiveParent\*            | Callback function to the parent element to update active hierarchy styles                                                                                 | `(ids: string[]) => void` | no       |         |
+| onClick                         | A function to execute when clicked                                                                                                                        | `function`                | no       |         |
+| rightComponent                  | An icon/component to display to the right                                                                                                                 | `ReactNode`               | no       |         |
+| statusColor                     | Status stripe and icon color                                                                                                                              | `string`                  | no       |         |
+| subtitle                        | The text to show on the second line                                                                                                                       | `string`                  | no       |         |
+| title                           | The text to show on the first line                                                                                                                        | `string`                  | yes      |         |
+| disableRailTooltip              | Sets whether to disable the tooltip on hover for the condensed `rail` variant                                                                             | `boolean`                 | no       |         |
 | InfoListItemProps               | Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props | `InfoListItemProps`       | no       |         |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                                                                        | -                         | -        |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                                                                                | -                         | -        |         |
 
 </div>
 
@@ -316,18 +316,17 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerNavItem>` supports the following keys:
 
-| Name             | Description                                                     |
-| ---------------- | --------------------------------------------------------------- |
-| root             | Styles applied to the root element wrapping the InfoListItem    |
-| active           | Styles applied to the active item highlight element             |
-| chevron          | Styles applied to the chevron element                           |
-| expandIcon       | Styles applied to the expand/collapse icon wrapper              |
-| infoListItemRoot | Styles applied to the InfoListItem root element                 |
-| nestedListGroup  | Styles applied to wrapper surrounded nested children            |
-| nestedTitle      | Styles applied to the title text if the item is a nested item   |
-| title            | Styles applied to the title text                                |
-| titleActive      | Styles applied to the title text if the item is the active item |
-| ripple           | Styles applied to the ripple                                    |
+| Name            | Description                                                     |
+| --------------- | --------------------------------------------------------------- |
+| root            | Styles applied to the root element wrapping the InfoListItem    |
+| active          | Styles applied to the active item highlight element             |
+| chevron         | Styles applied to the chevron element                           |
+| expandIcon      | Styles applied to the expand/collapse icon wrapper              |
+| nestedListGroup | Styles applied to wrapper surrounded nested children            |
+| nestedTitle     | Styles applied to the title text if the item is a nested item   |
+| title           | Styles applied to the title text                                |
+| titleActive     | Styles applied to the title text if the item is the active item |
+| ripple          | Styles applied to the ripple                                    |
 
 ### Tips
 

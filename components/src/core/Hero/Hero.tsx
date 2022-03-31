@@ -1,14 +1,13 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import { ChannelValue } from '../ChannelValue';
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import Typography from '@mui/material/Typography';
+import { ChannelValue, ChannelValueProps as ChannelValuePropsType } from '../ChannelValue';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 const normalizeIconSize = (size: number): number => Math.max(10, size);
-const normalizeFontSize = (size: FontSize): string => (size === 'small' ? '1rem' : '1.25rem');
-
-type FontSize = 'normal' | 'small';
 
 export type HeroClasses = {
     root?: string;
@@ -20,8 +19,6 @@ export type HeroClasses = {
 export type HeroProps = HTMLAttributes<HTMLDivElement> & {
     /** Custom classes for default style overrides */
     classes?: HeroClasses;
-    /** The text size for the value line */
-    fontSize?: FontSize;
     /** The primary icon */
     icon: ReactNode;
     /** The color used behind the primary icon
@@ -36,12 +33,8 @@ export type HeroProps = HTMLAttributes<HTMLDivElement> & {
     iconSize?: number | string;
     /** The text shown below the `ChannelValue` */
     label: string;
-    /** The value for the channel */
-    value?: string | number;
-    /** The inline icon with the value */
-    valueIcon?: JSX.Element;
-    /** Text to show after the value */
-    units?: string;
+    /** Props to be passed through to ChannelValue child component */
+    ChannelValueProps?: ChannelValuePropsType;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -55,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flex: '1 1 0px',
             overflow: 'hidden',
             color: theme.palette.text.primary,
-            padding: `1rem ${theme.spacing()}px`,
+            padding: `1rem ${theme.spacing()}`,
             cursor: (props: HeroProps): 'pointer' | 'inherit' => (props.onClick ? 'pointer' : 'inherit'),
         },
         icon: {
@@ -86,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
             lineHeight: 1.2,
             maxWidth: '100%',
             overflow: 'hidden',
-            fontSize: (props: HeroProps): string => normalizeFontSize(props.fontSize),
+            fontSize: '1.25rem',
         },
         label: {
             fontSize: 'inherit',
@@ -108,12 +101,9 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
         classes,
         icon,
         label,
-        value,
-        valueIcon,
-        units,
+        ChannelValueProps,
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
-        fontSize,
         iconBackgroundColor,
         iconSize,
         /* eslint-enable @typescript-eslint/no-unused-vars */
@@ -124,7 +114,9 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
         <div ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherDivProps}>
             <span className={clsx(defaultClasses.icon, classes.icon)}>{icon}</span>
             <span className={clsx(defaultClasses.values, classes.values)}>
-                {!props.children && value && <ChannelValue value={value} units={units} icon={valueIcon} />}
+                {!props.children && ChannelValueProps?.value && (
+                    <ChannelValue fontSize={ChannelValueProps?.fontSize} {...ChannelValueProps} />
+                )}
                 {props.children}
             </span>
             <Typography variant={'body1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
@@ -148,18 +140,13 @@ Hero.propTypes = {
         icon: PropTypes.string,
         labels: PropTypes.string,
     }),
-    fontSize: PropTypes.oneOf(['normal', 'small']),
     icon: PropTypes.node.isRequired,
     iconBackgroundColor: PropTypes.string,
     iconSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     label: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    valueIcon: PropTypes.element,
-    units: PropTypes.string,
 };
 Hero.defaultProps = {
     classes: {},
-    fontSize: 'normal',
     iconBackgroundColor: 'transparent',
     iconSize: 36,
 };
