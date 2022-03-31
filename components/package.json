@@ -1,6 +1,6 @@
 {
     "name": "@brightlayer-ui/react-components",
-    "version": "6.0.0-alpha.3",
+    "version": "6.0.0",
     "description": "React components for Brightlayer UI applications",
     "scripts": {
         "test": "jest src",

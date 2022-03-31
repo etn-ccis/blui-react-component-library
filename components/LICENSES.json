@@ -11,7 +11,7 @@
         "licenseUrl": "https://github.com/seznam/compose-react-refs/raw/master/LICENSE",
         "parents": "@brightlayer-ui/react-components"
     },
-    "color@3.1.3": {
+    "color@4.2.1": {
         "licenses": "MIT",
         "repository": "https://github.com/Qix-/color",
         "licenseUrl": "https://github.com/Qix-/color/raw/master/LICENSE",
