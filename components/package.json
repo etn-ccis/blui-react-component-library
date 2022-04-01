@@ -20,7 +20,7 @@
     "devDependencies": {
         "@brightlayer-ui/eslint-config": "^3.0.0",
         "@brightlayer-ui/prettier-config": "^1.0.2",
-        "@brightlayer-ui/react-themes": "^7.0.0-alpha.2",
+        "@brightlayer-ui/react-themes": "^7.0.0",
         "@emotion/react": "^11.7.1",
         "@emotion/styled": "^11.6.0",
         "@mui/icons-material": "^5.3.1",

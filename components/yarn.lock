@@ -329,10 +329,10 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-themes@^7.0.0-alpha.2":
-  version "7.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-7.0.0-alpha.2.tgz#01489b8b8e4bcc1a365b28719860e5dd64c5e8d2"
-  integrity sha512-OW7VQzsdHOZgbZRNv0juZckhM52yX07hMFxv9oA7J7xuZamz7Q67qC1VpgDifRbD0TPNaxPbcyZAAKquUjkTWg==
+"@brightlayer-ui/react-themes@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-7.0.0.tgz#0f00a7d464461fa7ea23be72ed8b820bf356b52d"
+  integrity sha512-5osYg/eb/6/Ct2BaX50ZMEx/6ob1F6TWXiMZn01sHOpDvjJ+f5W/LaOy6488xVN0J4wRhPBAnCZztzqAFGxYXA==
   dependencies:
     "@brightlayer-ui/colors" "^3.0.0"
     "@fontsource/open-sans" "^4.2.2"
