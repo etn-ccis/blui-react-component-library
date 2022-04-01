@@ -1,28 +1,28 @@
-import Avatar from '@material-ui/core/Avatar';
-import { createShallow } from '@material-ui/core/test-utils';
-import SendIcon from '@material-ui/icons/Send';
+import Avatar from '@mui/material/Avatar';
+import SendIcon from '@mui/icons-material/Send';
 import Enzyme from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { findByTestId } from '../test-utils';
-import { Shallow } from '../types';
+import { findByTestId, mountWithTheme } from '../test-utils';
 import { UserMenu } from './UserMenu';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import * as BLUIThemes from '@brightlayer-ui/react-themes';
+
+const theme = createTheme(BLUIThemes.blue);
 
 Enzyme.configure({ adapter: new Adapter() });
 
-let shallow: Shallow;
-
 describe('User Menu', () => {
-    beforeEach(() => {
-        shallow = createShallow({ dive: false });
-    });
-
     it('renders without crashing', () => {
         const div = document.createElement('div');
         const avatar = <Avatar />;
-        ReactDOM.render(<UserMenu avatar={avatar} />, div);
+        ReactDOM.render(
+            <ThemeProvider theme={theme}>
+                <UserMenu avatar={avatar} />
+            </ThemeProvider>,
+            div
+        );
         ReactDOM.unmountComponentAtNode(div);
     });
 
@@ -32,7 +32,7 @@ describe('User Menu', () => {
                 <SendIcon data-test={'send-icon'} />
             </Avatar>
         );
-        const wrapper = shallow(<UserMenu avatar={avatar} />);
+        const wrapper = mountWithTheme(<UserMenu avatar={avatar} />, theme);
         expect(findByTestId('send-icon', wrapper).length).toEqual(1);
     });
 
@@ -43,7 +43,7 @@ describe('User Menu', () => {
                 <SendIcon />
             </Avatar>
         );
-        const wrapper = shallow(<UserMenu onOpen={onOpen} avatar={avatar} />);
+        const wrapper = mountWithTheme(<UserMenu onOpen={onOpen} avatar={avatar} />, theme);
         const renderedAvatar = findByTestId('avatar', wrapper);
         expect(onOpen).not.toHaveBeenCalled();
         renderedAvatar.simulate('click', { currentTarget: 'test' });

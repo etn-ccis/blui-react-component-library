@@ -1,12 +1,12 @@
 import React, { ReactNode, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import createStyles from '@material-ui/core/styles/createStyles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import Toolbar, { ToolbarProps } from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
 import { useDrawerContext } from './DrawerContext';
 import clsx from 'clsx';
 
@@ -65,17 +65,17 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
             boxSizing: 'border-box',
             minHeight: `4rem`,
-            [theme.breakpoints.down('xs')]: {
+            [theme.breakpoints.down('sm')]: {
                 minHeight: `3.5rem`,
             },
             backgroundColor: (props: DrawerHeaderProps): string =>
                 props.backgroundColor ||
-                (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
+                (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
             color: (props: DrawerHeaderProps): string =>
                 props.fontColor ||
                 theme.palette.getContrastText(
                     props.backgroundColor ||
-                        (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
+                        (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
                 ),
         },
         background: {
@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: 'calc(100% - 2.5rem - 32px)',
             boxSizing: 'border-box',
             zIndex: 1,
-            [theme.breakpoints.down('xs')]: {
+            [theme.breakpoints.down('sm')]: {
                 minHeight: `3.5rem`,
             },
         },
@@ -213,6 +213,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                                     onIconClick();
                                 }}
                                 edge={'start'}
+                                size={'large'}
                             >
                                 {icon}
                             </IconButton>

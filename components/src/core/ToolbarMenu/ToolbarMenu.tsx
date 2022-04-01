@@ -1,15 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import clsx from 'clsx';
-import createStyles from '@material-ui/core/styles/createStyles';
+import { Theme, useTheme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 import composeRefs from '@seznam/compose-react-refs';
 import { DrawerNavGroup, NavItem } from '../Drawer';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import Menu, { MenuProps as standardMenuProps } from '@material-ui/core/Menu';
+import Menu, { MenuProps as standardMenuProps } from '@mui/material/Menu';
 import PropTypes from 'prop-types';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import useTheme from '@material-ui/core/styles/useTheme';
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
+import Typography, { TypographyProps } from '@mui/material/Typography';
 
 export type ToolbarMenuClasses = {
     root?: string;
@@ -45,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
             marginLeft: theme.spacing(0.5),
         },
         icon: {
-            marginRight: `${theme.spacing(1)}px`,
+            marginRight: theme.spacing(1),
             display: 'inline-flex',
             fontSize: 'inherit',
         },
@@ -117,7 +116,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 for (const item of group.items) {
                     const onClick = item.onClick;
                     if (onClick) {
-                        item.onClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+                        item.onClick = (e: React.MouseEvent<HTMLElement>): void => {
                             onClick(e);
                             closeMenu();
                         };
@@ -139,7 +138,6 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
         if (menuGroups && Boolean(anchorEl)) {
             return (
                 <Menu
-                    getContentAnchorEl={null}
                     anchorOrigin={{ vertical: 'bottom', horizontal: rtl ? 'right' : 'left' }}
                     transformOrigin={{ vertical: 'top', horizontal: rtl ? 'right' : 'left' }}
                     anchorEl={anchorEl}

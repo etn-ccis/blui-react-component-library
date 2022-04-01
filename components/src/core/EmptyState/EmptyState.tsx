@@ -1,6 +1,7 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import makeStyles from '@mui/styles/makeStyles';
+import { useTheme, Theme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
@@ -25,7 +26,7 @@ export type EmptyStateProps = HTMLAttributes<HTMLDivElement> & {
     title: ReactNode;
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         color: theme.palette.text.primary,
         height: '100%',
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 96,
     },
     description: {
-        color: theme.palette.type === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
+        color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
     },
     actions: {
         marginTop: '1rem',

@@ -1,6 +1,7 @@
 import React, { useCallback, HTMLAttributes } from 'react';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import Typography from '@mui/material/Typography';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 

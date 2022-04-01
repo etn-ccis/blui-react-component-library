@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties } from '@mui/styles';
 import React, { HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -53,8 +53,8 @@ export const Spacer = React.forwardRef(SpacerRender);
 Spacer.displayName = 'Spacer';
 Spacer.propTypes = {
     flex: PropTypes.number,
-    width: PropTypes.number,
-    height: PropTypes.number,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     classes: PropTypes.shape({
         root: PropTypes.string,
     }),

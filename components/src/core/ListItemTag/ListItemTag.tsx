@@ -1,5 +1,7 @@
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Typography, { TypographyProps } from '@mui/material/Typography';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import { Theme } from '@mui/material/styles';
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -22,7 +24,7 @@ export type ListItemTagProps = TypographyProps & {
 };
 
 // See https://material-ui.com/guides/right-to-left/#opting-out-of-rtl-transformation
-declare module '@material-ui/core/styles/withStyles' {
+declare module '@mui/styles/withStyles' {
     // Augment the BaseCSSProperties so that we can control jss-rtl
     // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface BaseCSSProperties {
@@ -36,23 +38,23 @@ declare module '@material-ui/core/styles/withStyles' {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
+            flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
             borderRadius: '0.125rem',
             padding: 0,
             paddingLeft: theme.spacing(0.5),
-            paddingRight: theme.spacing(0.5) - 1, // to account for extra pixel from letter-spacing
+            paddingRight: `calc(${theme.spacing(0.5)} - 1px)`, // to account for extra pixel from letter-spacing
             overflow: 'hidden',
             backgroundColor: (props: ListItemTagProps): string =>
                 props.backgroundColor ||
-                (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
+                (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
             color: (props: ListItemTagProps): string =>
                 props.fontColor ||
                 theme.palette.getContrastText(
                     props.backgroundColor ||
-                        (theme.palette.type === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
+                        (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
                 ),
             cursor: (props: ListItemTagProps): string => (props.onClick ? 'pointer' : 'inherit'),
             display: 'inline-block',
-            flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
         },
         noVariant: {
             fontWeight: 700, // bold
