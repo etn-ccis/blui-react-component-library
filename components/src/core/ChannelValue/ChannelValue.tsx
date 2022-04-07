@@ -1,17 +1,29 @@
-import React, { useCallback, HTMLAttributes } from 'react';
+import React, { useCallback } from 'react';
 import Typography from '@mui/material/Typography';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
-import clsx from 'clsx';
+import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
+import { Box, BoxProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import channelValueClasses, { ChannelValueClasses, getChannelValueUtilityClass } from './ChannelValueClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-export type ChannelValueClasses = {
-    root?: string;
-    icon?: string;
-    units?: string;
-    value?: string;
+const useUtilityClasses = (ownerState: any) => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        icon: ['icon'],
+        text: ['text'],
+        prefix: ['prefix'],
+        suffix: ['suffix'],
+        value: ['value'],
+        units: ['units'],
+    };
+
+    return composeClasses(slots, getChannelValueUtilityClass, classes);
 };
-export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> & {
+
+export type ChannelValueProps = Omit<BoxProps, 'prefix'> & {
     /** Custom classes for default style overrides */
     classes?: ChannelValueClasses;
     /** The color used for the text elements
@@ -45,42 +57,37 @@ export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> 
     value: number | string;
 };
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        root: {
-            display: 'inline-flex',
-            alignItems: 'center',
-            lineHeight: 1.2,
-            fontSize: (props: ChannelValueProps): string | number => props.fontSize,
-            color: (props: ChannelValueProps): string => props.color,
+const Root = styled(Box, {
+    name: 'channel-value',
+    slot: 'root',
+})<Pick<ChannelValueProps, 'fontSize' | 'color'>>(({ fontSize, color }) => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    lineHeight: 1.2,
+    fontSize: fontSize,
+    color: color,
+    [`& .${channelValueClasses.icon}`]: {
+        marginRight: '0.35em',
+        display: 'inline',
+        fontSize: 'inherit',
+    },
+    [`& .${channelValueClasses.text}`]: { fontSize: 'inherit', lineHeight: 'inherit', letterSpacing: 0 },
+    [`& .${channelValueClasses.suffix}`]: {},
+    [`& .${channelValueClasses.prefix}`]: {
+        '& + h6': {
+            marginLeft: '0.25em',
         },
-        icon: {
-            marginRight: '0.35em',
-            display: 'inline',
-            fontSize: 'inherit',
+    },
+    [`& .${channelValueClasses.value}`]: {
+        fontWeight: 600,
+        '& + $suffix': {
+            marginLeft: '0.25em',
         },
-        text: {
-            fontSize: 'inherit',
-            lineHeight: 'inherit',
-            letterSpacing: 0,
-        },
-        prefix: {
-            '& + h6': {
-                marginLeft: '0.25em',
-            },
-        },
-        suffix: {},
-        units: {
-            fontWeight: 300,
-        },
-        value: {
-            fontWeight: 600,
-            '& + $suffix': {
-                marginLeft: '0.25em',
-            },
-        },
-    })
-);
+    },
+    [`& .${channelValueClasses.units}`]: {
+        fontWeight: 300,
+    },
+}));
 
 const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
     React.cloneElement(newIcon, {
@@ -103,9 +110,12 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         color,
         fontSize,
         /* eslint-enable @typescript-eslint/no-unused-vars */
-        ...otherSpanProps
+        ...otherProps
     } = props;
-    const defaultClasses = useStyles(props);
+    const ownerState = {
+        ...props,
+    };
+    const defaultClasses = useUtilityClasses(ownerState);
     const prefixUnitAllowSpaceList = ['$'];
     const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
 
@@ -128,7 +138,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                     <Typography
                         variant={'h6'}
                         color={'inherit'}
-                        className={clsx(defaultClasses.text, defaultClasses.units, classes.units, {
+                        className={cx(defaultClasses.text, defaultClasses.units, classes.units, {
                             [defaultClasses.prefix]: applyPrefix(),
                             [defaultClasses.suffix]: applySuffix(),
                         })}
@@ -143,9 +153,17 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
     );
 
     return (
-        <span ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherSpanProps}>
+        <Root
+            component="span"
+            ref={ref}
+            className={cx(defaultClasses.root, classes.root)}
+            data-test={'wrapper'}
+            fontSize={fontSize}
+            color={color}
+            {...otherProps}
+        >
             {icon && (
-                <span className={clsx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
+                <span className={cx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
                     {changeIconDisplay(icon)}
                 </span>
             )}
@@ -153,13 +171,13 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
             <Typography
                 variant={'h6'}
                 color={'inherit'}
-                className={clsx(defaultClasses.text, defaultClasses.value, classes.value)}
+                className={cx(defaultClasses.text, defaultClasses.value, classes.value)}
                 data-test={'value'}
             >
                 {value}
             </Typography>
             {!prefix && getUnitElement()}
-        </span>
+        </Root>
     );
 };
 /**
@@ -175,6 +193,9 @@ ChannelValue.propTypes = {
     classes: PropTypes.shape({
         root: PropTypes.string,
         icon: PropTypes.string,
+        text: PropTypes.string,
+        prefix: PropTypes.string,
+        suffix: PropTypes.string,
         value: PropTypes.string,
         units: PropTypes.string,
     }),

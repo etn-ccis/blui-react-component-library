@@ -15,10 +15,11 @@ yarn build
 cd ..
 
 echo -en "${BLUE}Creating new folder in node_modules...${NC}"
-rm -rf "./demos/showcase/node_modules/@brightlayer-ui/react-components"
-mkdir -p "./demos/showcase/node_modules/@brightlayer-ui/react-components"
-rm -rf "./demos/storybook/node_modules/@brightlayer-ui/react-components"
-mkdir -p "./demos/storybook/node_modules/@brightlayer-ui/react-components"
+rm -rf ./demos/showcase/node_modules/.cache
+rm -rf ./demos/showcase/node_modules/@brightlayer-ui/react-components
+mkdir -p ./demos/showcase/node_modules/@brightlayer-ui/react-components
+rm -rf ./demos/storybook/node_modules/@brightlayer-ui/react-components
+mkdir -p ./demos/storybook/node_modules/@brightlayer-ui/react-components
 echo -e "${GREEN}Done${NC}"
 
 echo -en "${BLUE}Copying build output into node_modules...${NC}";
