@@ -1,6 +1,6 @@
 import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 
-export interface ChannelValueClasses {
+export type ChannelValueClasses = {
     /** Styles applied to the root element. */
     root?: string;
     /** Styles applied to the icon element. */
@@ -15,7 +15,7 @@ export interface ChannelValueClasses {
     units?: string;
     /** Styles applied to the value element. */
     value?: string;
-}
+};
 
 export type ChannelValueClassKey = keyof ChannelValueClasses;
 

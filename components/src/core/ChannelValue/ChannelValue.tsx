@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import channelValueClasses, { ChannelValueClasses, getChannelValueUtilityClass } from './ChannelValueClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-const useUtilityClasses = (ownerState: any) => {
+const useUtilityClasses = (ownerState: ChannelValueProps): any => {
     const { classes } = ownerState;
 
     const slots = {
@@ -116,6 +116,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         ...props,
     };
     const defaultClasses = useUtilityClasses(ownerState);
+    console.log('typeof default classes: ', typeof defaultClasses);
     const prefixUnitAllowSpaceList = ['$'];
     const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
 
@@ -138,10 +139,20 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                     <Typography
                         variant={'h6'}
                         color={'inherit'}
-                        className={cx(defaultClasses.text, defaultClasses.units, classes.units, {
-                            [defaultClasses.prefix]: applyPrefix(),
-                            [defaultClasses.suffix]: applySuffix(),
-                        })}
+                        className={cx(
+                            defaultClasses.text,
+                            classes.text,
+                            defaultClasses.units,
+                            classes.units,
+                            {
+                                [defaultClasses.prefix]: applyPrefix(),
+                                [defaultClasses.suffix]: applySuffix(),
+                            },
+                            {
+                                [classes.prefix]: applyPrefix(),
+                                [classes.suffix]: applySuffix(),
+                            }
+                        )}
                         data-test={'units'}
                     >
                         {units}
@@ -171,7 +182,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
             <Typography
                 variant={'h6'}
                 color={'inherit'}
-                className={cx(defaultClasses.text, defaultClasses.value, classes.value)}
+                className={cx(defaultClasses.text, classes.text, defaultClasses.value, classes.value)}
                 data-test={'value'}
             >
                 {value}
