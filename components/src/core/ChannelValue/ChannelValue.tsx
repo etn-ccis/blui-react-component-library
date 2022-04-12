@@ -7,7 +7,9 @@ import { styled } from '@mui/material/styles';
 import channelValueClasses, { ChannelValueClasses, getChannelValueUtilityClass } from './ChannelValueClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-const useUtilityClasses = (ownerState: ChannelValueProps): any => {
+const useUtilityClasses = (
+    ownerState: ChannelValueProps
+): Record<'text' | 'prefix' | 'root' | 'icon' | 'suffix' | 'value' | 'units', string> => {
     const { classes } = ownerState;
 
     const slots = {
