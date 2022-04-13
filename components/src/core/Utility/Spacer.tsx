@@ -1,9 +1,22 @@
-import { CSSProperties } from '@mui/styles';
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { CSSProperties } from '@mui/styles';
+import { Box, BoxProps } from '@mui/material';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { SpacerClasses, getSpacerUtilityClass, SpacerClassKey } from './SpacerClasses';
+import { cx } from '@emotion/css';
+import { styled } from '@mui/material/styles';
 
-export type SpacerProps = HTMLAttributes<HTMLDivElement> & {
+const useUtilityClasses = (ownerState: SpacerProps): Record<SpacerClassKey, string> => {
+    const { classes } = ownerState;
+    const slots = {
+        root: ['root'],
+    };
+
+    return composeClasses(slots, getSpacerUtilityClass, classes);
+};
+
+export type SpacerProps = BoxProps & {
     /** Flex grow/shrink value for flex layouts
      *
      * Default: 1
@@ -15,32 +28,39 @@ export type SpacerProps = HTMLAttributes<HTMLDivElement> & {
     width?: number | string;
     /** Custom classes for default style overrides */
     classes?: SpacerClasses;
-    style?: CSSProperties;
+    style?: CSSProperties
 };
-export type SpacerClasses = {
-    root?: string;
-};
+
+const Root = styled(Box, {
+    name: 'spacer',
+    slot: 'root',
+})<Pick<SpacerProps, 'flex' | 'height' | 'width' | 'style'>>(({ flex, height, width, style }) => ({
+    flex: `${flex} ${flex} ${flex === 0 ? 'auto' : '0px'}`,
+    height: height || 'auto',
+    width: width || 'auto',
+    style: style
+}));
 
 const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (props: SpacerProps, ref: any) => {
-    const { children, classes, flex, height, style, width, ...otherDivProps } = props;
+    const { children, classes, flex, height, width, style, ...otherProps } = props;
+    const ownerState = {
+        ...props,
+    };
+    const defaultClasses = useUtilityClasses(ownerState);
 
     return (
-        <div
+        <Root
             ref={ref}
             data-test={'spacer-root'}
-            className={clsx(classes.root)}
-            style={Object.assign(
-                {
-                    flex: `${flex} ${flex} ${flex === 0 ? 'auto' : '0px'}`,
-                    height: height || 'auto',
-                    width: width || 'auto',
-                },
-                { ...style }
-            )}
-            {...otherDivProps}
+            flex={flex}
+            height={height}
+            width={width}
+            className={cx(defaultClasses.root, classes.root)}
+            style={Object.assign({...style})}
+            {...otherProps}
         >
             {children}
-        </div>
+        </Root>
     );
 };
 /**
