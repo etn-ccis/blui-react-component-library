@@ -43,28 +43,28 @@ Any other props supplied will be provided to the root element (`span`).
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
-| Name   | Description                          |
-| ------ | ------------------------------------ |
-| root   | Styles applied to the root element   |
-| icon   | Styles applied to the icon element   |
-| text   | Styles applied to the text element   |
-| prefix | Styles applied to the prefix element |
-| suffix | Styles applied to the suffix element |
-| units  | Styles applied to the units element  |
-| value  | Styles applied to the value element  |
+| Name   | Description                                               |
+| ------ | --------------------------------------------------------- |
+| root   | Styles applied to the root element                        |
+| icon   | Styles applied to the icon element                        |
+| text   | Styles applied to the text element                        |
+| prefix | Styles applied to the units element when used as a prefix |
+| suffix | Styles applied to the units element when used as a suffix |
+| units  | Styles applied to the units element                       |
+| value  | Styles applied to the value element                       |
 
 ### `sx` Class Overrides
 
 You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop. It supports the following classNames:
 
-| Selector                 | Description                          |
-| ------------------------ | ------------------------------------ |
-| .BluiChannelValue-icon   | Styles applied to the icon element   |
-| .BluiChannelValue-text   | Styles applied to the text element   |
-| .BluiChannelValue-prefix | Styles applied to the prefix element |
-| .BluiChannelValue-suffix | Styles applied to the suffix element |
-| .BluiChannelValue-units  | Styles applied to the units element  |
-| .BluiChannelValue-value  | Styles applied to the value element  |
+| Global CSS Class         | Description                                               |
+| ------------------------ | --------------------------------------------------------- |
+| .BluiChannelValue-icon   | Styles applied to the icon element                        |
+| .BluiChannelValue-text   | Styles applied to the text element                        |
+| .BluiChannelValue-prefix | Styles applied to the units element when used as a prefix |
+| .BluiChannelValue-suffix | Styles applied to the units element when used as a suffix |
+| .BluiChannelValue-units  | Styles applied to the units element                       |
+| .BluiChannelValue-value  | Styles applied to the value element                       |
 
 ```tsx
 import { ChannelValue } from '@brightlayer-ui/react-components';

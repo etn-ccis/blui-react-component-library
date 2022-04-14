@@ -4,10 +4,14 @@ import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
 import { Box, BoxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import channelValueClasses, { ChannelValueClasses, getChannelValueUtilityClass } from './ChannelValueClasses';
+import channelValueClasses, {
+    ChannelValueClasses,
+    ChannelValueClassKey,
+    getChannelValueUtilityClass,
+} from './ChannelValueClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-const useUtilityClasses = (ownerState: ChannelValueProps): any => {
+const useUtilityClasses = (ownerState: ChannelValueProps): Record<ChannelValueClassKey, string> => {
     const { classes } = ownerState;
 
     const slots = {
@@ -112,10 +116,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherProps
     } = props;
-    const ownerState = {
-        ...props,
-    };
-    const defaultClasses = useUtilityClasses(ownerState);
+    const defaultClasses = useUtilityClasses(props);
     const prefixUnitAllowSpaceList = ['$'];
     const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
 
