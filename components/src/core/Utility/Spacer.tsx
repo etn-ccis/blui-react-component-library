@@ -28,21 +28,19 @@ export type SpacerProps = BoxProps & {
     width?: number | string;
     /** Custom classes for default style overrides */
     classes?: SpacerClasses;
-    style?: CSSProperties
 };
 
 const Root = styled(Box, {
     name: 'spacer',
     slot: 'root',
-})<Pick<SpacerProps, 'flex' | 'height' | 'width' | 'style'>>(({ flex, height, width, style }) => ({
+})<Pick<SpacerProps, 'flex' | 'height' | 'width'>>(({ flex, height, width }) => ({
     flex: `${flex} ${flex} ${flex === 0 ? 'auto' : '0px'}`,
     height: height || 'auto',
     width: width || 'auto',
-    style: style
 }));
 
 const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (props: SpacerProps, ref: any) => {
-    const { children, classes, flex, height, width, style, ...otherProps } = props;
+    const { children, classes, flex, height, width, ...otherProps } = props;
     const ownerState = {
         ...props,
     };
@@ -56,7 +54,6 @@ const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (prop
             height={height}
             width={width}
             className={cx(defaultClasses.root, classes.root)}
-            style={Object.assign({...style})}
             {...otherProps}
         >
             {children}
