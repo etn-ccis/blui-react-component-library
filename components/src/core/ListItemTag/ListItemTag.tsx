@@ -1,10 +1,49 @@
-import Typography, { TypographyProps } from '@mui/material/Typography';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
-import { Theme } from '@mui/material/styles';
+import Typography, {TypographyProps} from '@mui/material/Typography';
+import {styled} from '@mui/material/styles';
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import {unstable_composeClasses as composeClasses} from "@mui/base";
+import listItemTagClasses, {getListItemTagUtilityClass} from "./ListItemTagClasses";
+import {Box} from "@mui/material";
+import {cx} from "@emotion/css";
+
+
+const useUtilityClasses = (ownerState: ListItemTagProps): any => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        icon: ['icon'],
+        text: ['text'],
+        prefix: ['prefix'],
+        suffix: ['suffix'],
+        value: ['value'],
+        units: ['units'],
+    };
+
+    return composeClasses(slots, getListItemTagUtilityClass, classes);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export type ListItemTagProps = TypographyProps & {
     /** Color of the label background
@@ -34,6 +73,36 @@ declare module '@mui/styles/withStyles' {
         flip?: boolean;
     }
 }
+
+
+const Root = styled(Box, {
+    name: 'list-item-tag',
+    slot: 'root',
+})<Pick<ListItemTagProps, 'backgroundColor' | 'fontColor' | 'onClick'>>(({ backgroundColor, fontColor, onClick, theme }) => ({
+    flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
+    borderRadius: '0.125rem',
+    padding: 0,
+    paddingLeft: '0.5rem',
+    paddingRight: `calc(0.5rem - 1px)`, // to account for extra pixel from letter-spacing
+    overflow: 'hidden',
+    display: 'inline-block',
+    cursor: onClick ? 'pointer' : 'inherit',
+    backgroundColor: backgroundColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
+    color: fontColor ||
+        theme.palette.getContrastText(
+            backgroundColor ||
+            (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
+        ),
+    [`& .${listItemTagClasses.noVariant}`]: {
+        fontWeight: 700, // bold
+        letterSpacing: 1,
+        fontSize: `0.625rem`,
+        lineHeight: `1rem`,
+        height: `1rem`,
+    },
+}));
+
+/*
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -65,6 +134,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     })
 );
+*/
 
 const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProps> = (
     props: ListItemTagProps,
@@ -81,21 +151,30 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherTypographyProps
     } = props;
-    const defaultClasses = useStyles(props);
+    const ownerState = {
+        ...props,
+    };
+    const defaultClasses = useUtilityClasses(ownerState);
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
     return (
-        <Typography
+        <Root
+            component="span"
             ref={ref}
+            className={cx(defaultClasses.root, rootUserClass, { [defaultClasses.noVariant]: !variant })}
             classes={{
-                root: clsx(defaultClasses.root, rootUserClass, { [defaultClasses.noVariant]: !variant }),
                 ...otherUserClasses,
             }}
-            variant={variant || 'overline'}
-            data-test={'list-item-tag'}
-            {...otherTypographyProps}
+            data-test={'wrapper'}
         >
-            {label}
-        </Typography>
+            <Typography
+                ref={ref}
+                variant={variant || 'overline'}
+                data-test={'list-item-tag'}
+                {...otherTypographyProps}
+            >
+                {label}
+            </Typography>
+        </Root>
     );
 };
 /**
