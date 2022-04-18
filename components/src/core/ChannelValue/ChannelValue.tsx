@@ -116,7 +116,6 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         ...props,
     };
     const defaultClasses = useUtilityClasses(ownerState);
-    console.log('typeof default classes: ', typeof defaultClasses);
     const prefixUnitAllowSpaceList = ['$'];
     const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
 
