@@ -5,8 +5,6 @@ export type ListItemTagClasses = {
     noVariant?: string;
 };
 
-export type ListItemTagClassKey = keyof ListItemTagClasses;
-
 export function getListItemTagUtilityClass(slot: string): string {
     return generateUtilityClass('BluiListItemTag', slot);
 }

@@ -13,12 +13,7 @@ const useUtilityClasses = (ownerState: ListItemTagProps): any => {
 
     const slots = {
         root: ['root'],
-        icon: ['icon'],
-        text: ['text'],
-        prefix: ['prefix'],
-        suffix: ['suffix'],
-        value: ['value'],
-        units: ['units'],
+        noVariant: ['noVariant']
     };
 
     return composeClasses(slots, getListItemTagUtilityClass, classes);
@@ -159,7 +154,6 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
     return (
         <Root
             component="span"
-            ref={ref}
             className={cx(defaultClasses.root, rootUserClass, { [defaultClasses.noVariant]: !variant })}
             classes={{
                 ...otherUserClasses,
