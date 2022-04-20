@@ -40,3 +40,19 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | Name | Description                        |
 | ---- | ---------------------------------- |
 | root | Styles applied to the root element |
+
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop.
+
+```tsx
+import * as colors from '@brightlayer-ui/colors';
+import { Spacer } from '@brightlayer-ui/react-components';
+
+<Spacer 
+    width={60} 
+    height={50} 
+    sx={{ background: colors.red[300], display: 'inline-block' }}>
+    {/* Spacer Content */}
+</Spacer>
+```
