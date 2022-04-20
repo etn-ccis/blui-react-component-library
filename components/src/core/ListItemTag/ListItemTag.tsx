@@ -3,15 +3,14 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import listItemTagClasses, { getListItemTagUtilityClass } from './ListItemTagClasses';
+import { ListItemTagClassKey, getListItemTagUtilityClass } from './ListItemTagClasses';
 import { cx } from '@emotion/css';
 
-const useUtilityClasses = (ownerState: ListItemTagProps): any => {
+const useUtilityClasses = (ownerState: ListItemTagProps): Record<ListItemTagClassKey, string> => {
     const { classes } = ownerState;
 
     const slots = {
         root: ['root'],
-        noVariant: ['noVariant'],
     };
 
     return composeClasses(slots, getListItemTagUtilityClass, classes);
@@ -49,8 +48,8 @@ declare module '@mui/styles/withStyles' {
 const Root = styled(Typography, {
     name: 'list-item-tag',
     slot: 'root',
-})<Pick<ListItemTagProps, 'backgroundColor' | 'fontColor' | 'onClick'>>(
-    ({ backgroundColor, fontColor, onClick, theme }) => ({
+})<Pick<ListItemTagProps, 'backgroundColor' | 'fontColor' | 'onClick' | 'variant'>>(
+    ({ backgroundColor, fontColor, onClick, variant, theme }) => ({
         flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
         borderRadius: '0.125rem',
         padding: 0,
@@ -68,65 +67,23 @@ const Root = styled(Typography, {
                 backgroundColor ||
                     (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
             ),
-        [`.${listItemTagClasses.noVariant}`]: {
-            fontWeight: 700, // bold
-            letterSpacing: 1,
-            fontSize: `0.625rem`,
-            lineHeight: `1rem`,
-            height: `1rem`,
-        },
+        ...(variant
+            ? {
+                  fontWeight: 700, // bold
+                  letterSpacing: 1,
+                  fontSize: `0.625rem`,
+                  lineHeight: `1rem`,
+                  height: `1rem`,
+              }
+            : {}),
     })
 );
-
-/*
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
-            borderRadius: '0.125rem',
-            padding: 0,
-            paddingLeft: theme.spacing(0.5),
-            paddingRight: `calc(${theme.spacing(0.5)} - 1px)`, // to account for extra pixel from letter-spacing
-            overflow: 'hidden',
-            backgroundColor: (props: ListItemTagProps): string =>
-                props.backgroundColor ||
-                (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
-            color: (props: ListItemTagProps): string =>
-                props.fontColor ||
-                theme.palette.getContrastText(
-                    props.backgroundColor ||
-                        (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
-                ),
-            cursor: (props: ListItemTagProps): string => (props.onClick ? 'pointer' : 'inherit'),
-            display: 'inline-block',
-        },
-        noVariant: {
-            fontWeight: 700, // bold
-            letterSpacing: 1,
-            fontSize: `0.625rem`,
-            lineHeight: `1rem`,
-            height: `1rem`,
-        },
-    })
-);
-*/
 
 const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProps> = (
     props: ListItemTagProps,
     ref: any
 ) => {
-    const {
-        classes: userClasses,
-        label,
-        variant,
-        // ignore unused vars so that we can do prop transferring to the root element
-        /* eslint-disable @typescript-eslint/no-unused-vars */
-        fontColor,
-        backgroundColor,
-        /* eslint-enable @typescript-eslint/no-unused-vars */
-        ...otherTypographyProps
-    } = props;
+    const { classes: userClasses, label, variant, ...otherTypographyProps } = props;
     const ownerState = {
         ...props,
     };
@@ -136,12 +93,8 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
         <Root
             ref={ref}
             variant={variant || 'overline'}
-            // className={cx(defaultClasses.root, rootUserClass, { [defaultClasses.noVariant]: !variant })}
-            className={cx(defaultClasses.root, rootUserClass, { [defaultClasses.noVariant]: !variant })}
-            classes={{
-                root: cx(defaultClasses.root, rootUserClass, { [defaultClasses.noVariant]: !variant }),
-                ...otherUserClasses,
-            }}
+            className={cx(defaultClasses.root)}
+            classes={{ root: rootUserClass, ...otherUserClasses }}
             data-test={'list-item-tag'}
             {...otherTypographyProps}
         >
