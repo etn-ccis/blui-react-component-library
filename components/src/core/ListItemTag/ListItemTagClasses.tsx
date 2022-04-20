@@ -9,9 +9,9 @@ export function getListItemTagUtilityClass(slot: string): string {
     return generateUtilityClass('BluiListItemTag', slot);
 }
 
-const ListItemTagClasses: ListItemTagClasses = generateUtilityClasses('BluiListItemTag', [
+const listItemTagClasses: ListItemTagClasses = generateUtilityClasses('BluiListItemTag', [
     'root',
     'noVariant',
 ]);
 
-export default ListItemTagClasses;
+export default listItemTagClasses;

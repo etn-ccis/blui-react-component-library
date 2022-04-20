@@ -21,25 +21,6 @@ const useUtilityClasses = (ownerState: ListItemTagProps): any => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export type ListItemTagProps = TypographyProps & {
     /** Color of the label background
      *
@@ -70,7 +51,7 @@ declare module '@mui/styles/withStyles' {
 }
 
 
-const Root = styled(Box, {
+const Root = styled(Typography, {
     name: 'list-item-tag',
     slot: 'root',
 })<Pick<ListItemTagProps, 'backgroundColor' | 'fontColor' | 'onClick'>>(({ backgroundColor, fontColor, onClick, theme }) => ({
@@ -153,21 +134,18 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
     return (
         <Root
-            component="span"
+            ref={ref}
+            variant={variant || 'overline'}
+           // className={cx(defaultClasses.root, rootUserClass, { [defaultClasses.noVariant]: !variant })}
             className={cx(defaultClasses.root, rootUserClass, { [defaultClasses.noVariant]: !variant })}
             classes={{
+                root: cx(defaultClasses.root, rootUserClass, { [defaultClasses.noVariant]: !variant }),
                 ...otherUserClasses,
             }}
-            data-test={'wrapper'}
+            data-test={'list-item-tag'}
+            {...otherTypographyProps}
         >
-            <Typography
-                ref={ref}
-                variant={variant || 'overline'}
-                data-test={'list-item-tag'}
-                {...otherTypographyProps}
-            >
-                {label}
-            </Typography>
+            {label}
         </Root>
     );
 };
