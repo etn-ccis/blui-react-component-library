@@ -68,7 +68,7 @@ const Root = styled(Typography, {
                 backgroundColor ||
                     (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
             ),
-        [`& .${listItemTagClasses.noVariant}`]: {
+        [`.${listItemTagClasses.noVariant}`]: {
             fontWeight: 700, // bold
             letterSpacing: 1,
             fontSize: `0.625rem`,
