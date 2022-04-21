@@ -113,6 +113,9 @@ ListItemTag.propTypes = {
     label: PropTypes.string.isRequired,
     backgroundColor: PropTypes.string,
     fontColor: PropTypes.string,
+    classes: PropTypes.shape({
+        root: PropTypes.string
+    })
 };
 ListItemTag.defaultProps = {
     noWrap: true,
