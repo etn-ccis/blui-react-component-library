@@ -49,6 +49,7 @@ declare module '@mui/styles/withStyles' {
 const Root = styled(Typography, {
     name: 'list-item-tag',
     slot: 'root',
+    shouldForwardProp: (prop) => prop !== 'fontColor',
 })<Pick<ListItemTagProps, 'backgroundColor' | 'fontColor' | 'onClick' | 'variant'>>(
     ({ backgroundColor, fontColor, onClick, theme }) => ({
         flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
@@ -82,15 +83,7 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
     props: ListItemTagProps,
     ref: any
 ) => {
-    const {
-        classes: userClasses,
-        label,
-        variant,
-        className: userClassName,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        fontColor,
-        ...otherTypographyProps
-    } = props;
+    const { classes: userClasses, label, variant, className: userClassName, ...otherTypographyProps } = props;
     const defaultClasses = useUtilityClasses(props);
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
     return (
