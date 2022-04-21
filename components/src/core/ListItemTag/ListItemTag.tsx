@@ -50,7 +50,7 @@ const Root = styled(Typography, {
     name: 'list-item-tag',
     slot: 'root',
 })<Pick<ListItemTagProps, 'backgroundColor' | 'fontColor' | 'onClick' | 'variant'>>(
-    ({ backgroundColor, fontColor, onClick, variant, theme }) => ({
+    ({ backgroundColor, fontColor, onClick, theme }) => ({
         flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
         borderRadius: '0.125rem',
         padding: 0,
@@ -87,6 +87,7 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
         label,
         variant,
         className: userClassName,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         fontColor,
         ...otherTypographyProps
     } = props;
