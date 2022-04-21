@@ -87,7 +87,7 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
         label,
         variant,
         className: userClassName,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        /eslint-disable-next-line @typescript-eslint/no-unused-vars
         fontColor,
         ...otherTypographyProps
     } = props;
