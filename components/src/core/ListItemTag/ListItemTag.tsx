@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { ListItemTagClassKey, getListItemTagUtilityClass } from './ListItemTagClasses';
+import listItemTagClasses, { ListItemTagClassKey, getListItemTagUtilityClass } from './ListItemTagClasses';
 import { cx } from '@emotion/css';
 
 const useUtilityClasses = (ownerState: ListItemTagProps): Record<ListItemTagClassKey, string> => {
@@ -11,6 +11,7 @@ const useUtilityClasses = (ownerState: ListItemTagProps): Record<ListItemTagClas
 
     const slots = {
         root: ['root'],
+        noVariant: ['noVariant'],
     };
 
     return composeClasses(slots, getListItemTagUtilityClass, classes);
@@ -68,14 +69,42 @@ const Root = styled(Typography, {
                     (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
             ),
         ...(variant
-            ? {
+            ? {}
+            : {
                   fontWeight: 700, // bold
                   letterSpacing: 1,
                   fontSize: `0.625rem`,
                   lineHeight: `1rem`,
                   height: `1rem`,
-              }
-            : {}),
+              }),
+        ['noVariant']: {
+            fontWeight: 700, // bold
+            letterSpacing: 1,
+            fontSize: `0.625rem`,
+            lineHeight: `1rem`,
+            height: `1rem`,
+        },
+        ['& .BluiListItemTag-noVariant']: {
+            fontWeight: 700, // bold
+            letterSpacing: 1,
+            fontSize: `0.625rem`,
+            lineHeight: `1rem`,
+            height: `1rem`,
+        },
+        [`& .${listItemTagClasses.noVariant}`]: {
+            fontWeight: 700, // bold
+            letterSpacing: 1,
+            fontSize: `0.625rem`,
+            lineHeight: `1rem`,
+            height: `1rem`,
+        },
+        [`.${listItemTagClasses.noVariant}`]: {
+            fontWeight: 700, // bold
+            letterSpacing: 1,
+            fontSize: `0.625rem`,
+            lineHeight: `1rem`,
+            height: `1rem`,
+        },
     })
 );
 
@@ -83,17 +112,21 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
     props: ListItemTagProps,
     ref: any
 ) => {
-    const { classes: userClasses, label, variant, ...otherTypographyProps } = props;
-    const ownerState = {
-        ...props,
-    };
-    const defaultClasses = useUtilityClasses(ownerState);
+    const {
+        classes: userClasses,
+        label,
+        variant,
+        className: userClassName,
+        fontColor,
+        ...otherTypographyProps
+    } = props;
+    const defaultClasses = useUtilityClasses(props);
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
     return (
         <Root
             ref={ref}
             variant={variant || 'overline'}
-            className={cx(defaultClasses.root)}
+            className={cx(defaultClasses.root, { [defaultClasses.noVariant]: !variant }, userClassName)}
             classes={{ root: rootUserClass, ...otherUserClasses }}
             data-test={'list-item-tag'}
             {...otherTypographyProps}
