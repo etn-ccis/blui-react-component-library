@@ -68,37 +68,7 @@ const Root = styled(Typography, {
                 backgroundColor ||
                     (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
             ),
-        ...(variant
-            ? {}
-            : {
-                  fontWeight: 700, // bold
-                  letterSpacing: 1,
-                  fontSize: `0.625rem`,
-                  lineHeight: `1rem`,
-                  height: `1rem`,
-              }),
-        ['noVariant']: {
-            fontWeight: 700, // bold
-            letterSpacing: 1,
-            fontSize: `0.625rem`,
-            lineHeight: `1rem`,
-            height: `1rem`,
-        },
-        ['& .BluiListItemTag-noVariant']: {
-            fontWeight: 700, // bold
-            letterSpacing: 1,
-            fontSize: `0.625rem`,
-            lineHeight: `1rem`,
-            height: `1rem`,
-        },
-        [`& .${listItemTagClasses.noVariant}`]: {
-            fontWeight: 700, // bold
-            letterSpacing: 1,
-            fontSize: `0.625rem`,
-            lineHeight: `1rem`,
-            height: `1rem`,
-        },
-        [`.${listItemTagClasses.noVariant}`]: {
+        [`&.${listItemTagClasses.noVariant}`]: {
             fontWeight: 700, // bold
             letterSpacing: 1,
             fontSize: `0.625rem`,
@@ -147,8 +117,8 @@ ListItemTag.propTypes = {
     backgroundColor: PropTypes.string,
     fontColor: PropTypes.string,
     classes: PropTypes.shape({
-        root: PropTypes.string
-    })
+        root: PropTypes.string,
+    }),
 };
 ListItemTag.defaultProps = {
     noWrap: true,
