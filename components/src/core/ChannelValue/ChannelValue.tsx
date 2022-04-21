@@ -104,6 +104,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
 ) => {
     const {
         classes,
+        className: userClassName,
         icon,
         prefix,
         units,
@@ -167,7 +168,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         <Root
             component="span"
             ref={ref}
-            className={cx(defaultClasses.root, classes.root)}
+            className={cx(defaultClasses.root, classes.root, userClassName)}
             data-test={'wrapper'}
             fontSize={fontSize}
             color={color}
