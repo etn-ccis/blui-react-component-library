@@ -4,7 +4,11 @@ import { cx } from '@emotion/css';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import Box, { BoxProps } from '@mui/material/Box';
-import { EmptyStateClasses, EmptyStateClassKey, getEmptyStateUtilityClass } from './EmptyStateClasses';
+import emptyStateClasses, {
+    EmptyStateClasses,
+    EmptyStateClassKey,
+    getEmptyStateUtilityClass,
+} from './EmptyStateClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 
 const useUtilityClasses = (ownerState: EmptyStateProps): Record<EmptyStateClassKey, string> => {
@@ -46,58 +50,43 @@ const Root = styled(Box, {
     textAlign: 'center',
     alignItems: 'center',
     padding: '1rem',
-}));
-
-const Icon = styled(Box, {
-    name: 'empty-state',
-    slot: 'icon',
-})(({ theme }) => ({
-    color: theme.palette.text.secondary,
-    marginBottom: '1rem',
-    display: 'flex',
-    fontSize: 96,
-}));
-
-const Description = styled(Typography, {
-    name: 'empty-state',
-    slot: 'description',
-})(({ theme }) => ({
-    color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
-}));
-
-const Actions = styled(Box, {
-    name: 'empty-state',
-    slot: 'actions',
-})(() => ({
-    marginTop: '1rem',
+    [`& .${emptyStateClasses.icon}`]: {
+        color: theme.palette.text.secondary,
+        marginBottom: '1rem',
+        display: 'flex',
+        fontSize: 96,
+    },
+    [`& .${emptyStateClasses.description}`]: {
+        color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
+    },
+    [`& .${emptyStateClasses.actions}`]: {
+        marginTop: '1rem',
+    },
 }));
 
 const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps> = (
     props: EmptyStateProps,
     ref: any
 ) => {
-    const { actions, classes, description, icon, title, ...otherProps } = props;
-    const ownerState = {
-        ...props,
-    };
-    const defaultClasses = useUtilityClasses(ownerState);
+    const { actions, classes, className: userClassName, description, icon, title, ...otherProps } = props;
+    const defaultClasses = useUtilityClasses(props);
 
     return (
         <Root ref={ref} className={cx(defaultClasses.root, classes.root)} data-test={'frame'} {...otherProps}>
-            {icon && <Icon className={cx(defaultClasses.icon, classes.icon)}>{icon}</Icon>}
+            {icon && <div className={cx(defaultClasses.icon, classes.icon)}>{icon}</div>}
             <Typography variant="h6" color="inherit" className={classes.title}>
                 {title}
             </Typography>
             {description && (
-                <Description
+                <Typography
                     variant="subtitle2"
                     color={'textSecondary'}
                     className={cx(defaultClasses.description, classes.description)}
                 >
                     {description}
-                </Description>
+                </Typography>
             )}
-            {actions && <Actions className={cx(defaultClasses.actions, classes.actions)}>{actions}</Actions>}
+            {actions && <div className={cx(defaultClasses.actions, classes.actions)}>{actions}</div>}
         </Root>
     );
 };
