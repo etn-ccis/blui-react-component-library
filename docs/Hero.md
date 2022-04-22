@@ -99,12 +99,12 @@ Any other props supplied will be provided to the root element (`div`).
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
-| Name   | Description                          |
-| ------ | ------------------------------------ |
-| root   | Styles applied to the root element   |
-| icon   | Styles applied to the icon element   |
-| label  | Styles applied to the label element  |
-| values | Styles applied to the values element |
+| Name   | Description                        |
+| ------ | ---------------------------------- |
+| root   | Styles applied to the root element |
+| icon   | Styles applied to the icon         |
+| label  | Styles applied to the label        |
+| values | Styles applied to the values       |
 
 ### `sx` Class Overrides
 
