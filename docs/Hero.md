@@ -99,17 +99,19 @@ Any other props supplied will be provided to the root element (`div`).
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
 
-| Name | Description                        |
-| ---- | ---------------------------------- |
-| root | Styles applied to the root element |
+| Name   | Description                          |
+| ------ | ------------------------------------ |
+| root   | Styles applied to the root element   |
+| icon   | Styles applied to the icon element   |
+| label  | Styles applied to the label element  |
+| values | Styles applied to the values element |
 
 ### `sx` Class Overrides
 
 You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop.
 
 ```tsx
-import * as colors from '@brightlayer-ui/colors';
 import { Hero } from '@brightlayer-ui/react-components';
 
-<Hero sx={{ margin: '1rem' }} icon={<GradeA fontSize={'inherit'} />} label={'Efficiency'} />
+<Hero sx={{ margin: '1rem' }} icon={<GradeA fontSize={'inherit'} />} label={'Efficiency'} />;
 ```
