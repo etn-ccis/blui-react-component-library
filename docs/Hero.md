@@ -112,6 +112,7 @@ You can override the styles used by Brightlayer UI by passing a `sx` prop. The `
 
 ```tsx
 import { Hero } from '@brightlayer-ui/react-components';
+import GradeA from '@brightlayer-ui/icons-mui/GradeA';
 
 <Hero sx={{ margin: '1rem' }} icon={<GradeA fontSize={'inherit'} />} label={'Efficiency'} />;
 ```
