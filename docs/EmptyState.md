@@ -45,3 +45,18 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | description | Styles applied to the description  |
 | icon        | Styles applied to the icon         |
 | title       | Styles applied to the title        |
+
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop.
+
+```tsx
+import { EmptyState } from '@brightlayer-ui/react-components';
+import NotListedLocation from '@mui/icons-material/NotListedLocation';
+...
+<EmptyState
+    sx={{margin: '0px'}}
+    icon={<NotListedLocation />}
+    title={'Location Unknown'}
+/>
+```

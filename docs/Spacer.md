@@ -48,8 +48,8 @@ You can override the styles used by Brightlayer UI by passing a `sx` prop. The `
 ```tsx
 import * as colors from '@brightlayer-ui/colors';
 import { Spacer } from '@brightlayer-ui/react-components';
-
+...
 <Spacer width={60} height={50} sx={{ background: colors.red[300], display: 'inline-block' }}>
     {/* Spacer Content */}
-</Spacer>;
+</Spacer>
 ```
