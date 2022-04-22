@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
 import Typography from '@mui/material/Typography';
 import { ChannelValue, ChannelValueProps as ChannelValuePropsType } from '../ChannelValue';
-import clsx from 'clsx';
+import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { getHeroUtilityClass, HeroClasses, HeroClassKey } from './HeroClasses';
+import heroClasses, { getHeroUtilityClass, HeroClasses, HeroClassKey } from './HeroClasses';
 
 const useUtilityClasses = (ownerState: HeroProps): Record<HeroClassKey, string> => {
     const { classes } = ownerState;
@@ -43,7 +43,9 @@ export type HeroProps = BoxProps & {
     ChannelValueProps?: ChannelValuePropsType;
 };
 
-const Root = styled(Box, { name: 'hero', slot: 'root' })<Pick<HeroProps, 'onClick'>>(({ onClick, theme }) => ({
+const Root = styled(Box, { name: 'hero', slot: 'root' })<
+    Pick<HeroProps, 'onClick' | 'iconSize' | 'iconBackgroundColor'>
+>(({ onClick, iconSize, iconBackgroundColor, theme }) => ({
     fontSize: '1rem',
     display: 'flex',
     flexDirection: 'column',
@@ -54,65 +56,51 @@ const Root = styled(Box, { name: 'hero', slot: 'root' })<Pick<HeroProps, 'onClic
     color: theme.palette.text.primary,
     padding: `1rem ${theme.spacing()}`,
     cursor: onClick ? 'pointer' : 'inherit',
-}));
-
-const Icon = styled(Box, {
-    name: 'hero',
-    slot: 'icon',
-})<Pick<HeroProps, 'iconSize' | 'iconBackgroundColor'>>(({ iconSize, iconBackgroundColor, theme }) => ({
-    lineHeight: 1,
-    color: theme.palette.text.secondary,
-    marginBottom: '.5rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    padding: `.25rem ${theme.spacing(0.5)}`,
-    borderRadius: '50%',
-    fontSize: typeof iconSize === 'number' ? normalizeIconSize(iconSize) : iconSize,
-    height: typeof iconSize === 'number' ? Math.max(44, iconSize) : iconSize,
-    width: typeof iconSize === 'number' ? Math.max(44, iconSize) : iconSize,
-    backgroundColor: iconBackgroundColor,
-}));
-
-const ChannelValueContainer = styled(Box, {
-    name: 'hero',
-    slot: 'values',
-})(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    color: theme.palette.text.primary,
-    lineHeight: 1.2,
-    maxWidth: '100%',
-    overflow: 'hidden',
-    fontSize: '1.25rem',
-}));
-
-const Label = styled(Typography, {
-    name: 'hero',
-    slot: 'label',
-})(() => ({
-    fontSize: 'inherit',
-    lineHeight: 1.2,
-    letterSpacing: 0,
-    fontWeight: 600,
-    width: '100%',
-    textAlign: 'center',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
+    [`& .${heroClasses.icon}`]: {
+        lineHeight: 1,
+        color: theme.palette.text.secondary,
+        marginBottom: '.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        padding: `.25rem ${theme.spacing(0.5)}`,
+        borderRadius: '50%',
+        fontSize: typeof iconSize === 'number' ? normalizeIconSize(iconSize) : iconSize,
+        height: typeof iconSize === 'number' ? Math.max(44, iconSize) : iconSize,
+        width: typeof iconSize === 'number' ? Math.max(44, iconSize) : iconSize,
+        backgroundColor: iconBackgroundColor,
+    },
+    [`& .${heroClasses.values}`]: {
+        display: 'flex',
+        alignItems: 'center',
+        color: theme.palette.text.primary,
+        lineHeight: 1.2,
+        maxWidth: '100%',
+        overflow: 'hidden',
+        fontSize: '1.25rem',
+    },
+    [`& .${heroClasses.label}`]: {
+        fontSize: 'inherit',
+        lineHeight: 1.2,
+        letterSpacing: 0,
+        fontWeight: 600,
+        width: '100%',
+        textAlign: 'center',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+    },
 }));
 
 const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: HeroProps, ref: any) => {
-    const ownerState = {
-        ...props,
-    };
-    const defaultClasses = useUtilityClasses(ownerState);
+    const defaultClasses = useUtilityClasses(props);
     const {
         classes,
+        className: userClassName,
         icon,
         label,
         ChannelValueProps,
@@ -125,19 +113,22 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
     } = props;
 
     return (
-        <Root ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherProps}>
-            <Icon component="span" className={clsx(defaultClasses.icon, classes.icon)}>
-                {icon}
-            </Icon>
-            <ChannelValueContainer component="span" className={clsx(defaultClasses.values, classes.values)}>
+        <Root
+            ref={ref}
+            className={cx(defaultClasses.root, classes.root, userClassName)}
+            data-test={'wrapper'}
+            {...otherProps}
+        >
+            <span className={cx(defaultClasses.icon, classes.icon)}>{icon}</span>
+            <span className={cx(defaultClasses.values, classes.values)}>
                 {!props.children && ChannelValueProps?.value && (
                     <ChannelValue fontSize={ChannelValueProps?.fontSize} {...ChannelValueProps} />
                 )}
                 {props.children}
-            </ChannelValueContainer>
-            <Label variant={'body1'} color={'inherit'} className={clsx(defaultClasses.label, classes.label)}>
+            </span>
+            <Typography variant={'body1'} color={'inherit'} className={cx(defaultClasses.label, classes.label)}>
                 {label}
-            </Label>
+            </Typography>
         </Root>
     );
 };
