@@ -72,7 +72,12 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
     const defaultClasses = useUtilityClasses(props);
 
     return (
-        <Root ref={ref} className={cx(defaultClasses.root, classes.root)} data-test={'frame'} {...otherProps}>
+        <Root
+            ref={ref}
+            className={cx(defaultClasses.root, classes.root, userClassName)}
+            data-test={'frame'}
+            {...otherProps}
+        >
             {icon && <div className={cx(defaultClasses.icon, classes.icon)}>{icon}</div>}
             <Typography variant="h6" color="inherit" className={classes.title}>
                 {title}
