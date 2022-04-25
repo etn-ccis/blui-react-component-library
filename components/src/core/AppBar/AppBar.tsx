@@ -1,20 +1,49 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Theme, useTheme } from '@mui/material/styles';
+import React, {useCallback, useEffect, useState} from 'react';
+import {styled, Theme, useTheme} from '@mui/material/styles';
 import createStyles from '@mui/styles/createStyles';
 import makeStyles from '@mui/styles/makeStyles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import MuiAppBar, {AppBarProps as MuiAppBarProps} from '@mui/material/AppBar';
 // import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import clsx from 'clsx';
-import { usePrevious } from '../hooks/usePrevious';
+import {usePrevious} from '../hooks/usePrevious';
+import {unstable_composeClasses as composeClasses} from "@mui/base";
+import {AppBarClasses, AppBarClassKey, getAppBarUtilityClass} from "./AppBarClasses";
+import {Box} from "@mui/material";
+import channelValueClasses from "../ChannelValue/ChannelValueClasses";
+import {ChannelValueProps} from "../ChannelValue";
+import {cx} from "@emotion/css";
 
-export type AppBarClasses = {
-    root?: string;
-    background?: string;
-    expanded?: string;
-    collapsed?: string;
-    expandedBackground?: string;
+const useUtilityClasses = (ownerState: AppBarProps): Record<AppBarClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        background: ['background'],
+        expanded: ['expanded'],
+        collapsed: ['collapsed'],
+        expandedBackground: ['expandedBackground'],
+
+    };
+
+    return composeClasses(slots, getAppBarUtilityClass, classes);
 };
+
+
+const Root = styled(Box, {
+    name: 'app-bar',
+    slot: 'root',
+})<Pick<AppBarProps, any>>(() => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    lineHeight: 1.2,
+    [`& .${channelValueClasses.icon}`]: {
+        marginRight: '0.35em',
+        display: 'inline',
+        fontSize: 'inherit',
+    }
+}));
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -150,7 +179,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     const scrollElement = scrollContainerId ? document.getElementById(scrollContainerId) : null;
     const scrollTop = scrollElement ? scrollElement.scrollTop : window.scrollY;
 
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     const animationDuration = durationProp || theme.transitions.duration.standard;
 
     const [offset, setOffset] = useState(0);
@@ -280,26 +309,24 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     }, [handleScroll]);
 
     return (
-        <>
-            <MuiAppBar
-                ref={ref}
-                {...muiAppBarProps}
-                className={clsx(defaultClasses.root, classes.root, {
-                    [defaultClasses.expanded]: isExpanded,
-                    [classes.expanded]: isExpanded,
-                    [defaultClasses.collapsed]: !isExpanded,
-                    [classes.collapsed]: !isExpanded,
-                })}
-                style={Object.assign({}, style, {
-                    height: height,
-                    overflow: 'hidden',
-                })}
-                position={'sticky'}
-            >
-                {getBackgroundImage()}
-                {props.children}
-            </MuiAppBar>
-        </>
+        <MuiAppBar
+            ref={ref}
+            {...muiAppBarProps}
+            className={cx(defaultClasses.root, classes.root, {
+                [defaultClasses.expanded]: isExpanded,
+                [classes.expanded]: isExpanded,
+                [defaultClasses.collapsed]: !isExpanded,
+                [classes.collapsed]: !isExpanded,
+            })}
+            style={Object.assign({}, style, {
+                height: height,
+                overflow: 'hidden',
+            })}
+            position={'sticky'}
+        >
+            {getBackgroundImage()}
+            {props.children}
+        </MuiAppBar>
     );
 };
 
