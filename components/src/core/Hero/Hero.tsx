@@ -117,6 +117,8 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
             ref={ref}
             className={cx(defaultClasses.root, classes.root, userClassName)}
             data-test={'wrapper'}
+            iconSize={iconSize}
+            iconBackgroundColor={iconBackgroundColor}
             {...otherProps}
         >
             <span className={cx(defaultClasses.icon, classes.icon)}>{icon}</span>
