@@ -87,6 +87,7 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
         subtitle,
         info,
         classes = {},
+        className: userClassName,
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         animationDuration,
@@ -95,7 +96,7 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
     const defaultClasses = useUtilityClasses(props);
     //const animationDuration = durationProp || theme.transitions.duration.standard;
     return (
-        <Root ref={ref} {...otherProps} className={cx(defaultClasses.root, classes.root)}>
+        <Root ref={ref} {...otherProps} className={cx(defaultClasses.root, classes.root, userClassName)}>
             <div className={cx(defaultClasses.title, classes.title)}>{title}</div>
             <div className={cx(defaultClasses.subtitle, classes.subtitle)}>{subtitle}</div>
             <div className={cx(defaultClasses.info, classes.info)}>{info}</div>
