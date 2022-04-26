@@ -1,13 +1,13 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {styled, useTheme} from '@mui/material/styles';
+import React, { useCallback, useEffect, useState } from 'react';
+import { styled, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import MuiAppBar, {AppBarProps as MuiAppBarProps} from '@mui/material/AppBar';
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 // import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import clsx from 'clsx';
-import {usePrevious} from '../hooks/usePrevious';
-import {unstable_composeClasses as composeClasses} from '@mui/base';
-import appBarClasses, {AppBarClasses, AppBarClassKey, getAppBarUtilityClass} from './AppBarClasses';
-import {cx} from '@emotion/css';
+import { usePrevious } from '../hooks/usePrevious';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import appBarClasses, { AppBarClasses, AppBarClassKey, getAppBarUtilityClass } from './AppBarClasses';
+import { cx } from '@emotion/css';
 
 const useUtilityClasses = (ownerState: AppBarProps): Record<AppBarClassKey, string> => {
     const { classes } = ownerState;
