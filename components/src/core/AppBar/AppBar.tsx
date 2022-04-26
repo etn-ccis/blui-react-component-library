@@ -144,6 +144,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         animationDuration: durationProp,
         expandedHeight = 200,
         backgroundImage,
+        className: userClassName,
         classes = {},
         collapsedHeight = defaultAppBarHeight,
         // onExpandedHeightReached,
@@ -288,12 +289,17 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         <Root
             ref={ref}
             {...muiAppBarProps}
-            className={cx(defaultClasses.root, classes.root, {
-                [defaultClasses.expanded]: isExpanded,
-                [classes.expanded]: isExpanded,
-                [defaultClasses.collapsed]: !isExpanded,
-                [classes.collapsed]: !isExpanded,
-            })}
+            className={cx(
+                defaultClasses.root,
+                classes.root,
+                {
+                    [defaultClasses.expanded]: isExpanded,
+                    [classes.expanded]: isExpanded,
+                    [defaultClasses.collapsed]: !isExpanded,
+                    [classes.collapsed]: !isExpanded,
+                },
+                userClassName
+            )}
             style={Object.assign({}, style, {
                 height: height,
                 overflow: 'hidden',
