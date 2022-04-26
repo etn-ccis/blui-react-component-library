@@ -25,3 +25,19 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | title    | Styles applied to the first line   |
 | subtitle | Styles applied to the second line  |
 | info     | Styles applied to the third line   |
+
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop.
+
+```tsx
+import { ThreeLiner } from '@brightlayer-ui/react-components';
+import * as colors from '@brightlayer-ui/colors';
+...
+<ThreeLiner
+    sx={{ color: colors.blue[200] }}
+    title={'Three Liner Component'}
+    subtitle={'with basic usage'}
+    info={'...and a third line'}
+/>
+```
