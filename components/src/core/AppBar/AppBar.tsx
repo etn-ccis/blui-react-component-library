@@ -1,18 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {styled, Theme, useTheme} from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
+import {styled, useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import MuiAppBar, {AppBarProps as MuiAppBarProps} from '@mui/material/AppBar';
 // import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import clsx from 'clsx';
 import {usePrevious} from '../hooks/usePrevious';
-import {unstable_composeClasses as composeClasses} from "@mui/base";
-import {AppBarClasses, AppBarClassKey, getAppBarUtilityClass} from "./AppBarClasses";
-import {Box} from "@mui/material";
-import channelValueClasses from "../ChannelValue/ChannelValueClasses";
-import {ChannelValueProps} from "../ChannelValue";
-import {cx} from "@emotion/css";
+import {unstable_composeClasses as composeClasses} from '@mui/base';
+import appBarClasses, {AppBarClasses, AppBarClassKey, getAppBarUtilityClass} from './AppBarClasses';
+import {cx} from '@emotion/css';
 
 const useUtilityClasses = (ownerState: AppBarProps): Record<AppBarClassKey, string> => {
     const { classes } = ownerState;
@@ -23,57 +18,38 @@ const useUtilityClasses = (ownerState: AppBarProps): Record<AppBarClassKey, stri
         expanded: ['expanded'],
         collapsed: ['collapsed'],
         expandedBackground: ['expandedBackground'],
-
     };
 
     return composeClasses(slots, getAppBarUtilityClass, classes);
 };
 
-
-const Root = styled(Box, {
+const Root = styled(MuiAppBar, {
     name: 'app-bar',
     slot: 'root',
-})<Pick<AppBarProps, any>>(() => ({
-    display: 'inline-flex',
-    alignItems: 'center',
-    lineHeight: 1.2,
-    [`& .${channelValueClasses.icon}`]: {
-        marginRight: '0.35em',
-        display: 'inline',
-        fontSize: 'inherit',
-    }
+})<Pick<AppBarProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
+    overflow: 'hidden',
+    transition: theme.transitions.create(['height'], {
+        duration: animationDuration || theme.transitions.duration.standard,
+        easing: theme.transitions.easing.easeInOut,
+    }),
+    [`& .${appBarClasses.collapsed}`]: {},
+    [`& .${appBarClasses.expanded}`]: {},
+    [`& .${appBarClasses.expandedBackground}`]: {},
+    [`& .${appBarClasses.background}`]: {
+        position: 'absolute',
+        zIndex: -1,
+        width: '100%',
+        backgroundSize: 'cover',
+        height: '100%',
+        opacity: 0.3,
+        backgroundPosition: 'center bottom',
+        backgroundImage: (props: AppBarProps): string => `url(${props.backgroundImage})`,
+        transition: theme.transitions.create(['all'], {
+            duration: animationDuration || theme.transitions.duration.standard,
+            easing: theme.transitions.easing.easeInOut,
+        }),
+    },
 }));
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            overflow: 'hidden',
-            transition: (props: AppBarProps): string =>
-                theme.transitions.create(['height'], {
-                    duration: props.animationDuration || theme.transitions.duration.standard,
-                    easing: theme.transitions.easing.easeInOut,
-                }),
-        },
-        background: {
-            position: 'absolute',
-            zIndex: -1,
-            width: '100%',
-            backgroundSize: 'cover',
-            height: '100%',
-            opacity: 0.3,
-            backgroundPosition: 'center bottom',
-            backgroundImage: (props: AppBarProps): string => `url(${props.backgroundImage})`,
-            transition: (props: AppBarProps): string =>
-                theme.transitions.create(['all'], {
-                    duration: props.animationDuration || theme.transitions.duration.standard,
-                    easing: theme.transitions.easing.easeInOut,
-                }),
-        },
-        expanded: {},
-        collapsed: {},
-        expandedBackground: {},
-    })
-);
 
 export type AppBarProps = Omit<MuiAppBarProps, 'variant'> & {
     /**
@@ -309,7 +285,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     }, [handleScroll]);
 
     return (
-        <MuiAppBar
+        <Root
             ref={ref}
             {...muiAppBarProps}
             className={cx(defaultClasses.root, classes.root, {
@@ -326,7 +302,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         >
             {getBackgroundImage()}
             {props.children}
-        </MuiAppBar>
+        </Root>
     );
 };
 
