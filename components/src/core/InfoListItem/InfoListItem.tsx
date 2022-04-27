@@ -1,20 +1,44 @@
 import React, { ReactNode, useCallback } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
-import ListItem, { ListItemProps } from '@mui/material/ListItem';
+import { ListItemProps } from '@mui/material/ListItem';
 import ListItemButton, { ListItemButtonProps as MuiListItemButtonProps } from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Chevron from '@mui/icons-material/ChevronRight';
-
-import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
-
 import { separate, withKeys } from '../utilities';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { cx } from '@emotion/css';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { getInfoListItemUtilityClass, InfoListItemClassKey, InfoListItemClasses } from './InfoListItemClasses';
+import { Root } from './InfoListItemRoot';
 
 const MAX_SUBTITLE_ELEMENTS = 6;
+
+const useUtilityClasses = (ownerState: InfoListItemProps): Record<InfoListItemClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        avatar: ['avatar'],
+        divider: ['divider'],
+        icon: ['icon'],
+        info: ['info'],
+        listItemText: ['listItemText'],
+        listItemButtonRoot: ['listItemButtonRoot'],
+        rightComponent: ['rightComponent'],
+        separator: ['separator'],
+        statusStripe: ['statusStripe'],
+        subtitle: ['subtitle'],
+        title: ['title'],
+        chevron: ['chevron'],
+        invisible: ['invisible'],
+        flipIcon: ['flipIcon'],
+    };
+
+    return composeClasses(slots, getInfoListItemUtilityClass, classes);
+};
 
 export type DividerType = 'full' | 'partial';
 export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
@@ -92,15 +116,17 @@ export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
     /** Used to override [ListItemButtom](https://mui.com/api/list-item-button/) default props */
     ListItemButtonProps?: Partial<MuiListItemButtonProps>;
 };
+
 const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemProps> = (
     props: InfoListItemProps,
     ref: any
 ) => {
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     const {
         avatar,
         chevron,
         classes,
+        className: userClassName,
         divider,
         hidePadding,
         icon,
@@ -124,11 +150,12 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         statusColor,
         ListItemButtonProps = {} as MuiListItemButtonProps,
         /* eslint-enable @typescript-eslint/no-unused-vars */
-        ...otherListItemProps
+        ...otherProps
     } = props;
 
     const combine = useCallback(
-        (className: keyof InfoListItemClasses): string => clsx(defaultClasses[className], classes[className]),
+        (className: keyof InfoListItemClasses): string =>
+            cx(defaultClasses[className], classes[className], userClassName),
         [defaultClasses, classes]
     );
 
@@ -143,7 +170,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             return (
                 // a dummy component to maintain the padding
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    <Avatar className={clsx(defaultClasses.avatar, defaultClasses.invisible)} />
+                    <Avatar className={cx(defaultClasses.avatar, defaultClasses.invisible)} />
                 </ListItemAvatar>
             );
         }
@@ -157,7 +184,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 <Chevron
                     color={'inherit'}
                     role={'button'}
-                    className={clsx(combine('chevron'), defaultClasses.flipIcon)}
+                    className={cx(combine('chevron'), defaultClasses.flipIcon)}
                 />
             );
         }
@@ -245,7 +272,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     );
 
     return (
-        <ListItem className={combine('root')} ref={ref} {...otherListItemProps}>
+        <Root className={combine('root')} ref={ref} {...otherProps}>
             {props.onClick && ripple ? (
                 <ListItemButton className={combine('listItemButtonRoot')} focusRipple={ripple}>
                     {getInfloListItemContent}
@@ -253,7 +280,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             ) : (
                 getInfloListItemContent
             )}
-        </ListItem>
+        </Root>
     );
 };
 /**
