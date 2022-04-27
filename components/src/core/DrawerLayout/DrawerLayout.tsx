@@ -28,7 +28,7 @@ const useUtilityClasses = (ownerState: DrawerLayoutProps): Record<DrawerLayoutCl
 const Root = styled(Box, {
     name: 'drawer-layout',
     slot: 'root',
-})<Pick<DrawerLayoutProps, null>>(({ theme }) => ({
+})(({ theme }) => ({
     display: 'flex',
     width: '100%',
     '&$expanded $content': {
@@ -42,7 +42,7 @@ const Root = styled(Box, {
 const Drawer = styled(Box, {
     name: 'drawer-layout',
     slot: 'drawer',
-})<Pick<DrawerLayoutProps, null>>(({ theme }) => ({
+})(({ theme }) => ({
     display: 'flex',
     position: 'fixed',
     height: '100%',
@@ -53,7 +53,7 @@ const Drawer = styled(Box, {
 const Content = styled(Box, {
     name: 'drawer-layout',
     slot: 'content',
-})<Pick<DrawerLayoutProps, null>>(({ theme }) => ({
+})(({ theme }) => ({
     width: '100%',
     transition: theme.transitions.create('padding', { duration: theme.transitions.duration.leavingScreen }),
     zIndex: 0,
