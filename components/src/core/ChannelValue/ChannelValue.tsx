@@ -70,26 +70,38 @@ const Root = styled(Box, {
     lineHeight: 1.2,
     fontSize: fontSize,
     color: color,
-    [`& .${channelValueClasses.icon}`]: {
-        marginRight: '0.35em',
-        display: 'inline',
-        fontSize: 'inherit',
-    },
     [`& .${channelValueClasses.text}`]: { fontSize: 'inherit', lineHeight: 'inherit', letterSpacing: 0 },
+}));
+
+const IconSpan = styled('span', {
+    name: 'channel-value',
+    slot: 'icon',
+})<Pick<ChannelValueProps, null>>(() => ({
+    marginRight: '0.35em',
+    display: 'inline',
+    fontSize: 'inherit',
+}));
+
+const Unit = styled(Typography, {
+    name: 'channel-value',
+    slot: 'units',
+})<Pick<ChannelValueProps, null>>(() => ({
+    fontWeight: 300,
     [`& .${channelValueClasses.suffix}`]: {},
     [`& .${channelValueClasses.prefix}`]: {
         '& + h6': {
             marginLeft: '0.25em',
         },
     },
-    [`& .${channelValueClasses.value}`]: {
-        fontWeight: 600,
-        '& + $suffix': {
-            marginLeft: '0.25em',
-        },
-    },
-    [`& .${channelValueClasses.units}`]: {
-        fontWeight: 300,
+}));
+
+const Value = styled(Typography, {
+    name: 'channel-value',
+    slot: 'value',
+})<Pick<ChannelValueProps, null>>(() => ({
+    fontWeight: 600,
+    '& + $suffix': {
+        marginLeft: '0.25em',
     },
 }));
 
@@ -137,7 +149,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         (): JSX.Element => (
             <>
                 {units && (
-                    <Typography
+                    <Unit
                         variant={'h6'}
                         color={'inherit'}
                         className={cx(
@@ -157,7 +169,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                         data-test={'units'}
                     >
                         {units}
-                    </Typography>
+                    </Unit>
                 )}
             </>
         ),
@@ -175,19 +187,19 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
             {...otherProps}
         >
             {icon && (
-                <span className={cx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
+                <IconSpan className={cx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
                     {changeIconDisplay(icon)}
-                </span>
+                </IconSpan>
             )}
             {prefix && getUnitElement()}
-            <Typography
+            <Value
                 variant={'h6'}
                 color={'inherit'}
                 className={cx(defaultClasses.text, classes.text, defaultClasses.value, classes.value)}
                 data-test={'value'}
             >
                 {value}
-            </Typography>
+            </Value>
             {!prefix && getUnitElement()}
         </Root>
     );
