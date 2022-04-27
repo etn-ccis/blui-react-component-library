@@ -58,7 +58,7 @@ const Root = styled(Box, { name: 'hero', slot: 'root' })<
     cursor: onClick ? 'pointer' : 'inherit',
 }));
 
-const Icon = styled(Box, { name: 'hero', slot: 'icon' })<Pick<HeroProps, 'iconSize' | 'iconBackgroundColor'>>(
+const Icon = styled('span', { name: 'hero', slot: 'icon' })<Pick<HeroProps, 'iconSize' | 'iconBackgroundColor'>>(
     ({ iconSize, iconBackgroundColor, theme }) => ({
         lineHeight: 1,
         color: theme.palette.text.secondary,
