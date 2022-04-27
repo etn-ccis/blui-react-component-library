@@ -2,11 +2,7 @@ import React, { ReactNode } from 'react';
 import { cx } from '@emotion/css';
 import { Box, BoxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import threeLinerClasses, {
-    ThreeLinerClasses,
-    ThreeLinerClassKey,
-    getThreeLinerUtilityClass,
-} from './ThreeLinerClasses';
+import { ThreeLinerClasses, ThreeLinerClassKey, getThreeLinerUtilityClass } from './ThreeLinerClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 
 const useUtilityClasses = (ownerState: ThreeLinerProps): Record<ThreeLinerClassKey, string> => {
