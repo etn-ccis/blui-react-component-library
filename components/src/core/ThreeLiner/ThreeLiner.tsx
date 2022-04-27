@@ -2,11 +2,7 @@ import React, { ReactNode } from 'react';
 import { cx } from '@emotion/css';
 import { Box, BoxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import threeLinerClasses, {
-    ThreeLinerClasses,
-    ThreeLinerClassKey,
-    getThreeLinerUtilityClass,
-} from './ThreeLinerClasses';
+import { ThreeLinerClasses, ThreeLinerClassKey, getThreeLinerUtilityClass } from './ThreeLinerClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 
 const useUtilityClasses = (ownerState: ThreeLinerProps): Record<ThreeLinerClassKey, string> => {
@@ -54,28 +50,40 @@ const Root = styled(Box, {
         duration: animationDuration || theme.transitions.duration.standard,
         easing: theme.transitions.easing.easeInOut,
     }),
-    [`& .${threeLinerClasses.title}`]: {
-        fontSize: '1.875rem',
-        transition: theme.transitions.create(['all'], {
-            duration: animationDuration || theme.transitions.duration.standard,
-            easing: theme.transitions.easing.easeInOut,
-        }),
-    },
-    [`& .${threeLinerClasses.subtitle}`]: {
-        fontSize: '1rem',
-        transition: theme.transitions.create(['all'], {
-            duration: animationDuration || theme.transitions.duration.standard,
-            easing: theme.transitions.easing.easeInOut,
-        }),
-    },
-    [`& .${threeLinerClasses.info}`]: {
-        fontSize: '0.875rem',
-        transition: theme.transitions.create(['all'], {
-            duration: animationDuration || theme.transitions.duration.standard,
-            easing: theme.transitions.easing.easeInOut,
-        }),
-        fontWeight: 300,
-    },
+}));
+
+const Title = styled(Box, {
+    name: 'three-liner',
+    slot: 'title',
+})<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
+    fontSize: '1.875rem',
+    transition: theme.transitions.create(['all'], {
+        duration: animationDuration || theme.transitions.duration.standard,
+        easing: theme.transitions.easing.easeInOut,
+    }),
+}));
+
+const Subtitle = styled(Box, {
+    name: 'three-liner',
+    slot: 'subtitle',
+})<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
+    fontSize: '1rem',
+    transition: theme.transitions.create(['all'], {
+        duration: animationDuration || theme.transitions.duration.standard,
+        easing: theme.transitions.easing.easeInOut,
+    }),
+}));
+
+const Info = styled(Box, {
+    name: 'three-liner',
+    slot: 'info',
+})<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
+    fontSize: '0.875rem',
+    transition: theme.transitions.create(['all'], {
+        duration: animationDuration || theme.transitions.duration.standard,
+        easing: theme.transitions.easing.easeInOut,
+    }),
+    fontWeight: 300,
 }));
 
 const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProps> = (
@@ -102,9 +110,9 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
             animationDuration={animationDuration}
             className={cx(defaultClasses.root, classes.root, userClassName)}
         >
-            <div className={cx(defaultClasses.title, classes.title)}>{title}</div>
-            <div className={cx(defaultClasses.subtitle, classes.subtitle)}>{subtitle}</div>
-            <div className={cx(defaultClasses.info, classes.info)}>{info}</div>
+            <Title className={cx(defaultClasses.title, classes.title)}>{title}</Title>
+            <Subtitle className={cx(defaultClasses.subtitle, classes.subtitle)}>{subtitle}</Subtitle>
+            <Info className={cx(defaultClasses.info, classes.info)}>{info}</Info>
         </Root>
     );
 };
