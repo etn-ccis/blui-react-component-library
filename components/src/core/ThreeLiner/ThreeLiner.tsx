@@ -52,7 +52,7 @@ const Root = styled(Box, {
     }),
 }));
 
-const Title = styled('div', {
+const Title = styled(Box, {
     name: 'three-liner',
     slot: 'title',
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
@@ -63,7 +63,7 @@ const Title = styled('div', {
     }),
 }));
 
-const Subtitle = styled('div', {
+const Subtitle = styled(Box, {
     name: 'three-liner',
     slot: 'subtitle',
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
@@ -74,7 +74,7 @@ const Subtitle = styled('div', {
     }),
 }));
 
-const Info = styled('div', {
+const Info = styled(Box, {
     name: 'three-liner',
     slot: 'info',
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
