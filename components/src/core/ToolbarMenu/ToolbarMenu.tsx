@@ -10,7 +10,11 @@ import { Box, BoxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Typography, { TypographyProps } from '@mui/material/Typography';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import toolbarMenuClasses, { ToolbarMenuClasses, ToolbarMenuClassKey, getToolbarMenuUtilityClass } from './ToolbarMenuClasses';
+import toolbarMenuClasses, {
+    ToolbarMenuClasses,
+    ToolbarMenuClassKey,
+    getToolbarMenuUtilityClass,
+} from './ToolbarMenuClasses';
 
 const useUtilityClasses = (ownerState: ToolbarMenuProps): Record<ToolbarMenuClassKey, string> => {
     const { classes } = ownerState;
@@ -23,7 +27,6 @@ const useUtilityClasses = (ownerState: ToolbarMenuProps): Record<ToolbarMenuClas
         cursorPointer: ['cursorPointer'],
         navGroups: ['navGroups'],
         rotateDropdownArrow: ['rotateDropdownArrow'],
-
     };
 
     return composeClasses(slots, getToolbarMenuUtilityClass, classes);
@@ -44,26 +47,26 @@ export type ToolbarMenuCompGroup = {
 const Root = styled(Typography, {
     name: 'toolbar-menu',
     slot: 'root',
-})(() => ({ 
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            maxWidth: 'fit-content',
-            [`&.${toolbarMenuClasses.cursorPointer}`]: { cursor: 'pointer '},
+})(() => ({
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    maxWidth: 'fit-content',
+    [`&.${toolbarMenuClasses.cursorPointer}`]: { cursor: 'pointer ' },
 }));
 
 const DropDownArrow = styled(ArrowDropDown, {
     name: 'toolbar-menu',
     slot: 'arrow-drop-down',
-})(({theme}) => ({ 
-        marginLeft: theme.spacing(0.5),
-           [`&.${toolbarMenuClasses.rotateDropdownArrow}`]: { transform: 'rotate(180deg)'},
+})(({ theme }) => ({
+    marginLeft: theme.spacing(0.5),
+    [`&.${toolbarMenuClasses.rotateDropdownArrow}`]: { transform: 'rotate(180deg)' },
 }));
 
 const ToolbarMenuIcon = styled(Box, {
     name: 'toolbar-menu',
     slot: 'icon',
-})(({theme}) => ({ 
+})(({ theme }) => ({
     marginRight: theme.spacing(1),
     display: 'inline-flex',
     fontSize: 'inherit',
@@ -72,7 +75,7 @@ const ToolbarMenuIcon = styled(Box, {
 const ToolbarMenuLabel = styled(Box, {
     name: 'toolbar-menu',
     slot: 'label',
-})(({theme}) => ({ 
+})(({ theme }) => ({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
 }));
@@ -80,10 +83,10 @@ const ToolbarMenuLabel = styled(Box, {
 const ToolbarMenuNavGroups = styled(Box, {
     name: 'toolbar-menu',
     slot: 'nav-groups',
-})(({theme}) => ({ 
+})(({ theme }) => ({
     '&:active, &:focus': {
-    outline: 'none',
-    }
+        outline: 'none',
+    },
 }));
 
 export type ToolbarMenuProps = Omit<TypographyProps, 'onClick'> & {
@@ -109,7 +112,18 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     props: ToolbarMenuProps,
     ref: any
 ) => {
-    const { icon, label, menu, menuGroups, MenuProps, onClose, onOpen, className: userClassName, classes = {}, ...otherTypographyProps } = props;
+    const {
+        icon,
+        label,
+        menu,
+        menuGroups,
+        MenuProps,
+        onClose,
+        onOpen,
+        className: userClassName,
+        classes = {},
+        ...otherTypographyProps
+    } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
     const defaultClasses = useUtilityClasses(props);
@@ -208,11 +222,19 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 }}
             >
                 {icon && (
-                    <ToolbarMenuIcon component={'span'} className={cx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
+                    <ToolbarMenuIcon
+                        component={'span'}
+                        className={cx(defaultClasses.icon, classes.icon)}
+                        data-test={'icon'}
+                    >
                         {icon}
                     </ToolbarMenuIcon>
                 )}
-                <ToolbarMenuLabel component={'span'} className={cx(defaultClasses.label, classes.label)} data-test={'label'}>
+                <ToolbarMenuLabel
+                    component={'span'}
+                    className={cx(defaultClasses.label, classes.label)}
+                    data-test={'label'}
+                >
                     {label || ''}
                 </ToolbarMenuLabel>
                 {(menuGroups || menu) && (
