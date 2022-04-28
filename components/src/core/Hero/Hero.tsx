@@ -43,9 +43,7 @@ export type HeroProps = BoxProps & {
     ChannelValueProps?: ChannelValuePropsType;
 };
 
-const Root = styled(Box, { name: 'hero', slot: 'root' })<
-    Pick<HeroProps, 'onClick' | 'iconSize' | 'iconBackgroundColor'>
->(({ onClick, theme }) => ({
+const Root = styled(Box, { name: 'hero', slot: 'root' })<Pick<HeroProps, 'onClick'>>(({ onClick, theme }) => ({
     fontSize: '1rem',
     display: 'flex',
     flexDirection: 'column',
@@ -122,11 +120,15 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
             ref={ref}
             className={cx(defaultClasses.root, classes.root, userClassName)}
             data-test={'wrapper'}
-            iconSize={iconSize}
-            iconBackgroundColor={iconBackgroundColor}
             {...otherProps}
         >
-            <Icon className={cx(defaultClasses.icon, classes.icon)}>{icon}</Icon>
+            <Icon
+                className={cx(defaultClasses.icon, classes.icon)}
+                iconSize={iconSize}
+                iconBackgroundColor={iconBackgroundColor}
+            >
+                {icon}
+            </Icon>
             <Values className={cx(defaultClasses.values, classes.values)}>
                 {!props.children && ChannelValueProps?.value && (
                     <ChannelValue fontSize={ChannelValueProps?.fontSize} {...ChannelValueProps} />
