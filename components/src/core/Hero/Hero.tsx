@@ -77,7 +77,7 @@ const Icon = styled(Box, { name: 'hero', slot: 'icon' })<Pick<HeroProps, 'iconSi
     })
 );
 
-const Values = styled(Box, { name: 'hero', slot: 'values' })<Pick<HeroProps, undefined>>(({ theme }) => ({
+const Values = styled(Box, { name: 'hero', slot: 'values' })(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     color: theme.palette.text.primary,
@@ -87,7 +87,7 @@ const Values = styled(Box, { name: 'hero', slot: 'values' })<Pick<HeroProps, und
     fontSize: '1.25rem',
 }));
 
-const Label = styled(Typography, { name: 'hero', slot: 'values' })<Pick<HeroProps, undefined>>(() => ({
+const Label = styled(Typography, { name: 'hero', slot: 'values' })(() => ({
     fontSize: 'inherit',
     lineHeight: 1.2,
     letterSpacing: 0,
