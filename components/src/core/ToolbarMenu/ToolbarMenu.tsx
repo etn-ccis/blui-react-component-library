@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import { cx } from '@emotion/css';
-import { Theme, useTheme } from '@mui/material/styles';
+import { useTheme, styled } from '@mui/material/styles';
 import composeRefs from '@seznam/compose-react-refs';
 import { DrawerNavGroup, NavItem } from '../Drawer';
 import Menu, { MenuProps as standardMenuProps } from '@mui/material/Menu';
 import PropTypes from 'prop-types';
-import { Box, BoxProps } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box } from '@mui/material';
 import Typography, { TypographyProps } from '@mui/material/Typography';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import toolbarMenuClasses, {
@@ -75,7 +74,7 @@ const ToolbarMenuIcon = styled(Box, {
 const ToolbarMenuLabel = styled(Box, {
     name: 'toolbar-menu',
     slot: 'label',
-})(({ theme }) => ({
+})(() => ({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
 }));
@@ -83,7 +82,7 @@ const ToolbarMenuLabel = styled(Box, {
 const ToolbarMenuNavGroups = styled(Box, {
     name: 'toolbar-menu',
     slot: 'nav-groups',
-})(({ theme }) => ({
+})(() => ({
     '&:active, &:focus': {
         outline: 'none',
     },
