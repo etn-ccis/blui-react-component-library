@@ -1,20 +1,32 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
-import clsx from 'clsx';
+import { cx } from '@emotion/css';
 import { Theme, useTheme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
 import composeRefs from '@seznam/compose-react-refs';
 import { DrawerNavGroup, NavItem } from '../Drawer';
 import Menu, { MenuProps as standardMenuProps } from '@mui/material/Menu';
 import PropTypes from 'prop-types';
+import { Box, BoxProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import Typography, { TypographyProps } from '@mui/material/Typography';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import toolbarMenuClasses, { ToolbarMenuClasses, ToolbarMenuClassKey, getToolbarMenuUtilityClass } from './ToolbarMenuClasses';
 
-export type ToolbarMenuClasses = {
-    root?: string;
-    dropdownArrow?: string;
-    icon?: string;
-    label?: string;
+const useUtilityClasses = (ownerState: ToolbarMenuProps): Record<ToolbarMenuClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        dropdownArrow: ['dropdownArrow'],
+        icon: ['icon'],
+        label: ['label'],
+        cursorPointer: ['cursorPointer'],
+        navGroups: ['navGroups'],
+        rotateDropdownArrow: ['rotateDropdownArrow'],
+
+    };
+
+    return composeClasses(slots, getToolbarMenuUtilityClass, classes);
 };
 
 export type ToolbarMenuCompItem = Omit<NavItem, 'itemID'> & { itemID?: string };
@@ -29,39 +41,50 @@ export type ToolbarMenuCompGroup = {
     title?: string;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
+const Root = styled(Typography, {
+    name: 'toolbar-menu',
+    slot: 'root',
+})(() => ({ 
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             maxWidth: 'fit-content',
-        },
-        cursorPointer: {
-            cursor: 'pointer',
-        },
-        dropdownArrow: {
-            marginLeft: theme.spacing(0.5),
-        },
-        icon: {
-            marginRight: theme.spacing(1),
-            display: 'inline-flex',
-            fontSize: 'inherit',
-        },
-        label: {
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
-        },
-        navGroups: {
-            '&:active, &:focus': {
-                outline: 'none',
-            },
-        },
-        rotateDropdownArrow: {
-            transform: 'rotate(180deg)',
-        },
-    })
-);
+            [`&.${toolbarMenuClasses.cursorPointer}`]: { cursor: 'pointer '},
+}));
+
+const DropDownArrow = styled(ArrowDropDown, {
+    name: 'toolbar-menu',
+    slot: 'arrow-drop-down',
+})(({theme}) => ({ 
+        marginLeft: theme.spacing(0.5),
+           [`&.${toolbarMenuClasses.rotateDropdownArrow}`]: { transform: 'rotate(180deg)'},
+}));
+
+const ToolbarMenuIcon = styled(Box, {
+    name: 'toolbar-menu',
+    slot: 'icon',
+})(({theme}) => ({ 
+    marginRight: theme.spacing(1),
+    display: 'inline-flex',
+    fontSize: 'inherit',
+}));
+
+const ToolbarMenuLabel = styled(Box, {
+    name: 'toolbar-menu',
+    slot: 'label',
+})(({theme}) => ({ 
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+}));
+
+const ToolbarMenuNavGroups = styled(Box, {
+    name: 'toolbar-menu',
+    slot: 'nav-groups',
+})(({theme}) => ({ 
+    '&:active, &:focus': {
+    outline: 'none',
+    }
+}));
 
 export type ToolbarMenuProps = Omit<TypographyProps, 'onClick'> & {
     /** A component to render for the icon */
@@ -86,10 +109,10 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     props: ToolbarMenuProps,
     ref: any
 ) => {
-    const { icon, label, menu, menuGroups, MenuProps, onClose, onOpen, classes = {}, ...otherTypographyProps } = props;
+    const { icon, label, menu, menuGroups, MenuProps, onClose, onOpen, className: userClassName, classes = {}, ...otherTypographyProps } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     const [anchorEl, setAnchorEl] = useState(null);
     const anchor = useRef(null);
 
@@ -148,7 +171,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 >
                     {!menu &&
                         menuGroups.map((group: ToolbarMenuCompGroup, index: number) => (
-                            <div className={defaultClasses.navGroups} key={index}>
+                            <ToolbarMenuNavGroups className={defaultClasses.navGroups} key={index}>
                                 <DrawerNavGroup
                                     divider={false}
                                     hidePadding={true}
@@ -160,7 +183,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                                             Object.assign({ itemID: itemIndex.toString() }, item)
                                     )}
                                 />
-                            </div>
+                            </ToolbarMenuNavGroups>
                         ))}
                 </Menu>
             );
@@ -169,41 +192,40 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
 
     return (
         <>
-            <Typography
+            <Root
                 ref={composeRefs(ref, anchor)}
                 aria-haspopup="true"
                 {...otherTypographyProps}
-                className={clsx(
+                className={cx(
                     defaultClasses.root,
                     classes.root,
-                    props.className,
+                    userClassName,
                     menuGroups || menu ? defaultClasses.cursorPointer : ''
                 )}
-                component={'span'}
                 data-test={'wrapper'}
                 onClick={(): void => {
                     openMenu(anchor.current);
                 }}
             >
                 {icon && (
-                    <span className={clsx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
+                    <ToolbarMenuIcon component={'span'} className={cx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
                         {icon}
-                    </span>
+                    </ToolbarMenuIcon>
                 )}
-                <span className={clsx(defaultClasses.label, classes.label)} data-test={'label'}>
+                <ToolbarMenuLabel component={'span'} className={cx(defaultClasses.label, classes.label)} data-test={'label'}>
                     {label || ''}
-                </span>
+                </ToolbarMenuLabel>
                 {(menuGroups || menu) && (
-                    <ArrowDropDown
+                    <DropDownArrow
                         data-test={'arrow-dropdown'}
-                        className={clsx(
+                        className={cx(
                             defaultClasses.dropdownArrow,
                             classes.dropdownArrow,
                             anchorEl ? defaultClasses.rotateDropdownArrow : ''
                         )}
                     />
                 )}
-            </Typography>
+            </Root>
             {getMenu()}
         </>
     );
