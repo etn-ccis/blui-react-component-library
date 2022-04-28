@@ -101,3 +101,39 @@ import { Link } from 'react-router-dom';
     button
 />
 ```
+
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop. It supports the following classNames:
+
+| Global CSS Class                       Description                              |
+| ------------------------------------ | ---------------------------------------- |
+| .BluiInfoListItem-root               | Styles applied to the root element       |
+| .BluiInfoListItem-avatar             | Styles applied to the avatar             |
+| .BluiInfoListItem-divider            | Styles applied to the divider            |
+| .BluiInfoListItem-icon               | Styles applied to the icon               |
+| .BluiInfoListItem-info               | Styles applied to the info               |
+| .BluiInfoListItem-listItemText       | Styles applied to the listItemText       |
+| .BluiInfoListItem-listItemButtonRoot | Styles applied to the listItemButtonRoot |
+| .BluiInfoListItem-rightComponent     | Styles applied to the rightComponent     |
+| .BluiInfoListItem-separator          | Styles applied to the separator          |
+| .BluiInfoListItem-statusStripe       | Styles applied to the statusStripe       |
+| .BluiInfoListItem-subtitle           | Styles applied to the subtitle           |
+| .BluiInfoListItem-title              | Styles applied to the title              |
+| .BluiInfoListItem-chevron            | Styles applied to the chevron            |
+
+```tsx
+import { InfoListItem } from '@brightlayer-ui/react-components';
+import { Leaf } from '@brightlayer-ui/icons-mui';
+import * as colors from '@brightlayer-ui/colors';
+...
+<InfoListItem
+    title={'Info List Item'}
+    subtitle={'with a background color'}
+    fontColor={colors.black[500]}
+    iconColor={colors.black[500]}
+    icon={<Leaf />}
+    backgroundColor={colors.yellow[500]}
+    sx={{ ml: 1, '& .BluiInfoListItem-icon' : { ml: '2px', fontSize: '1rem' } }}
+/>
+```

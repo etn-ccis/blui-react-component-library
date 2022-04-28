@@ -13,6 +13,7 @@ import {
     InfoListItemContentContainer,
     InfoListItemDivider,
     InfoListItemText,
+    InvisibleIcon,
     RightComponent,
     Root,
     StatusStripe,
@@ -154,7 +155,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         statusColor,
         ListItemButtonProps = {} as MuiListItemButtonProps,
         /* eslint-enable @typescript-eslint/no-unused-vars */
-        ...otherListItemProps
+        ...otherProps
     } = props;
 
     const combine = useCallback(
@@ -166,14 +167,27 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         if (icon) {
             return (
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    <Icon className={combine('avatar')}>{icon}</Icon>
+                    <Icon
+                        statusColor={statusColor}
+                        iconColor={iconColor}
+                        avatar={avatar}
+                        iconAlign={iconAlign}
+                        className={combine('avatar')}
+                    >
+                        {icon}
+                    </Icon>
                 </ListItemAvatar>
             );
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    <Icon className={cx(defaultClasses.avatar)} />
+                    <InvisibleIcon
+                        className={cx(defaultClasses.avatar)}
+                        statusColor={statusColor}
+                        iconColor={iconColor}
+                        avatar={avatar}
+                    />
                 </ListItemAvatar>
             );
         }
@@ -183,7 +197,14 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         if (rightComponent) {
             return <RightComponent className={combine('rightComponent')}>{rightComponent}</RightComponent>;
         } else if (chevron) {
-            return <InfoListItemChevron color={'inherit'} role={'button'} className={cx(combine('chevron'))} />;
+            return (
+                <InfoListItemChevron
+                    chevronColor={chevronColor}
+                    color={'inherit'}
+                    role={'button'}
+                    className={cx(combine('chevron'))}
+                />
+            );
         }
     }, [rightComponent, chevron, combine]);
 
@@ -224,62 +245,87 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         return withKeys(separate(renderableInfoParts, () => getSeparator()));
     }, [info, getSeparator]);
 
-    const getInfloListItemContent = (
-        <>
-            <StatusStripe className={combine('statusStripe')} data-test={'status-stripe'} />
-            {divider && <InfoListItemDivider className={combine('divider')} />}
-            {(icon || !hidePadding) && getIcon()}
-            {leftComponent}
-            <InfoListItemText
-                primary={title}
-                className={combine('listItemText')}
-                secondary={
-                    subtitle || info ? (
-                        <>
-                            {subtitle ? (
-                                <Subtitle
-                                    variant="subtitle2"
-                                    component="p"
-                                    noWrap={!wrapSubtitle}
-                                    className={combine('subtitle')}
-                                >
-                                    {getSubtitle()}
-                                </Subtitle>
-                            ) : undefined}
-                            {info ? (
-                                <Info variant={'body2'} noWrap={!wrapInfo} className={combine('info')}>
-                                    {getInfo()}
-                                </Info>
-                            ) : undefined}
-                        </>
-                    ) : undefined
-                }
-                primaryTypographyProps={{
-                    noWrap: !wrapTitle,
-                    variant: 'body1',
-                    fontWeight: 600,
-                    lineHeight: 1.25,
-                    display: 'block',
-                    color: fontColor || 'inherit',
-                    className: combine('title'),
-                }}
-                secondaryTypographyProps={{
-                    variant: 'subtitle2',
-                    color: 'textPrimary',
-                }}
-            />
-            {getRightComponent()}
-        </>
-    );
+    const getInfloListItemContent = () => {
+        return (
+            <>
+                <StatusStripe
+                    statusColor={statusColor}
+                    className={combine('statusStripe')}
+                    data-test={'status-stripe'}
+                />
+                {divider && <InfoListItemDivider divider={divider} className={combine('divider')} />}
+                {(icon || !hidePadding) && getIcon()}
+                {leftComponent}
+                <InfoListItemText
+                    primary={title}
+                    leftComponent={leftComponent}
+                    className={combine('listItemText')}
+                    secondary={
+                        subtitle || info ? (
+                            <>
+                                {subtitle ? (
+                                    <Subtitle
+                                        variant="subtitle2"
+                                        component="p"
+                                        fontColor={fontColor}
+                                        noWrap={!wrapSubtitle}
+                                        className={combine('subtitle')}
+                                    >
+                                        {getSubtitle()}
+                                    </Subtitle>
+                                ) : undefined}
+                                {info ? (
+                                    <Info
+                                        variant={'body2'}
+                                        fontColor={fontColor}
+                                        noWrap={!wrapInfo}
+                                        className={combine('info')}
+                                    >
+                                        {getInfo()}
+                                    </Info>
+                                ) : undefined}
+                            </>
+                        ) : undefined
+                    }
+                    primaryTypographyProps={{
+                        noWrap: !wrapTitle,
+                        variant: 'body1',
+                        fontWeight: 600,
+                        lineHeight: 1.25,
+                        display: 'block',
+                        color: fontColor || 'inherit',
+                        className: combine('title'),
+                    }}
+                    secondaryTypographyProps={{
+                        variant: 'subtitle2',
+                        color: 'textPrimary',
+                    }}
+                />
+                {getRightComponent()}
+            </>
+        );
+    };
 
     return (
-        <Root className={cx(combine('root'), userClassName)} ref={ref} {...otherListItemProps}>
+        <Root
+            onClick={props.onClick}
+            backgroundColor={backgroundColor}
+            wrapSubtitle={wrapSubtitle}
+            wrapTitle={wrapTitle}
+            wrapInfo={wrapInfo}
+            dense={props.dense}
+            ripple={ripple}
+            iconColor={iconColor}
+            className={cx(combine('root'), userClassName)}
+            ref={ref}
+            {...otherProps}
+        >
             {props.onClick && ripple ? (
                 <InfoListItemContentContainer className={combine('listItemButtonRoot')} focusRipple={ripple}>
-                    {getInfloListItemContent}
+                    {getInfloListItemContent()}
                 </InfoListItemContentContainer>
             ) : (
-                getInfloListItemContent
+                getInfloListItemContent()
             )}
         </Root>
     );
