@@ -245,66 +245,60 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         return withKeys(separate(renderableInfoParts, () => getSeparator()));
     }, [info, getSeparator]);
 
-    const getInfloListItemContent = () => {
-        return (
-            <>
-                <StatusStripe
-                    statusColor={statusColor}
-                    className={combine('statusStripe')}
-                    data-test={'status-stripe'}
-                />
-                {divider && <InfoListItemDivider divider={divider} className={combine('divider')} />}
-                {(icon || !hidePadding) && getIcon()}
-                {leftComponent}
-                <InfoListItemText
-                    primary={title}
-                    leftComponent={leftComponent}
-                    className={combine('listItemText')}
-                    secondary={
-                        subtitle || info ? (
-                            <>
-                                {subtitle ? (
-                                    <Subtitle
-                                        variant="subtitle2"
-                                        component="p"
-                                        fontColor={fontColor}
-                                        noWrap={!wrapSubtitle}
-                                        className={combine('subtitle')}
-                                    >
-                                        {getSubtitle()}
-                                    </Subtitle>
-                                ) : undefined}
-                                {info ? (
-                                    <Info
-                                        variant={'body2'}
-                                        fontColor={fontColor}
-                                        noWrap={!wrapInfo}
-                                        className={combine('info')}
-                                    >
-                                        {getInfo()}
-                                    </Info>
-                                ) : undefined}
-                            </>
-                        ) : undefined
-                    }
-                    primaryTypographyProps={{
-                        noWrap: !wrapTitle,
-                        variant: 'body1',
-                        fontWeight: 600,
-                        lineHeight: 1.25,
-                        display: 'block',
-                        color: fontColor || 'inherit',
-                        className: combine('title'),
-                    }}
-                    secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        color: 'textPrimary',
-                    }}
-                />
-                {getRightComponent()}
-            </>
-        );
-    };
+    const getInfloListItemContent = (): JSX.Element => (
+        <>
+            <StatusStripe statusColor={statusColor} className={combine('statusStripe')} data-test={'status-stripe'} />
+            {divider && <InfoListItemDivider divider={divider} className={combine('divider')} />}
+            {(icon || !hidePadding) && getIcon()}
+            {leftComponent}
+            <InfoListItemText
+                primary={title}
+                leftComponent={leftComponent}
+                className={combine('listItemText')}
+                secondary={
+                    subtitle || info ? (
+                        <>
+                            {subtitle ? (
+                                <Subtitle
+                                    variant="subtitle2"
+                                    component="p"
+                                    fontColor={fontColor}
+                                    noWrap={!wrapSubtitle}
+                                    className={combine('subtitle')}
+                                >
+                                    {getSubtitle()}
+                                </Subtitle>
+                            ) : undefined}
+                            {info ? (
+                                <Info
+                                    variant={'body2'}
+                                    fontColor={fontColor}
+                                    noWrap={!wrapInfo}
+                                    className={combine('info')}
+                                >
+                                    {getInfo()}
+                                </Info>
+                            ) : undefined}
+                        </>
+                    ) : undefined
+                }
+                primaryTypographyProps={{
+                    noWrap: !wrapTitle,
+                    variant: 'body1',
+                    fontWeight: 600,
+                    lineHeight: 1.25,
+                    display: 'block',
+                    color: fontColor || 'inherit',
+                    className: combine('title'),
+                }}
+                secondaryTypographyProps={{
+                    variant: 'subtitle2',
+                    color: 'textPrimary',
+                }}
+            />
+            {getRightComponent()}
+        </>
+    );
 
     return (
         <Root
