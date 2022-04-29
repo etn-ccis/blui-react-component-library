@@ -59,20 +59,19 @@ const Content = styled(Box, {
     zIndex: 0,
 }));
 
-export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> &
-    BoxProps & {
-        /** Custom classes for default style overrides */
-        classes?: DrawerLayoutClasses;
+export type DrawerLayoutProps = BoxProps & {
+    /** Custom classes for default style overrides */
+    classes?: DrawerLayoutClasses;
 
-        /** Drawer component to be embedded */
-        drawer: ReactElement<DrawerComponentProps>;
-    };
+    /** Drawer component to be embedded */
+    drawer: ReactElement<DrawerComponentProps>;
+};
 
 const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutProps> = (
     props: DrawerLayoutProps,
     ref: any
 ) => {
-    const { children, drawer, classes, className: userClassName, ...otherDivProps } = props;
+    const { children, drawer, classes, className: userClassName, ...otherProps } = props;
     const theme = useTheme();
     const [padding, setPadding] = useState<number | string>(0);
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -100,7 +99,7 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
                     },
                     userClassName
                 )}
-                {...otherDivProps}
+                {...otherProps}
             >
                 <Drawer className={cx(defaultClasses.drawer, classes.drawer)}>{drawer}</Drawer>
                 <Content className={cx(defaultClasses.content, classes.content)} style={style}>
