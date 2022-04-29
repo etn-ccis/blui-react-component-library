@@ -215,7 +215,12 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
 
     const getBackgroundImage = useCallback((): JSX.Element | undefined => {
         if (headerBackgroundImage) {
-            return <HeaderBackground className={cx(defaultClasses.headerBackground, classes.headerBackground)} />;
+            return (
+                <HeaderBackground
+                    className={cx(defaultClasses.headerBackground, classes.headerBackground)}
+                    headerBackgroundImage={headerBackgroundImage}
+                />
+            );
         }
     }, [headerBackgroundImage, defaultClasses, classes]);
 
@@ -223,7 +228,12 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         if (!headerInfo) return;
         if (typeof headerInfo === 'string') {
             return (
-                <HeaderInfo noWrap variant={'body2'} className={cx(defaultClasses.headerInfo, classes.headerInfo)}>
+                <HeaderInfo
+                    noWrap
+                    variant={'body2'}
+                    className={cx(defaultClasses.headerInfo, classes.headerInfo)}
+                    headerFontColor={headerFontColor}
+                >
                     {headerInfo}
                 </HeaderInfo>
             );
@@ -239,6 +249,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                     noWrap
                     variant={'body2'}
                     className={cx(defaultClasses.headerSubtitle, classes.headerSubtitle)}
+                    headerFontColor={headerFontColor}
                 >
                     {headerSubtitle}
                 </HeaderSubtitle>
@@ -284,6 +295,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
             return (
                 <BadgeWrapper
                     className={cx(defaultClasses.badgeWrapper, classes.badgeWrapper)}
+                    badgeOffset={badgeOffset}
                     data-test={'badge-wrapper'}
                 >
                     {badge}
