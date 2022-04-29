@@ -135,11 +135,7 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
                 )}
                 {props.children}
             </Values>
-            <Label
-                variant={'body1'}
-                color={'inherit'}
-                className={cx(defaultClasses.label, classes.label)}
-            >
+            <Label variant={'body1'} color={'inherit'} className={cx(defaultClasses.label, classes.label)}>
                 {label}
             </Label>
         </Root>
