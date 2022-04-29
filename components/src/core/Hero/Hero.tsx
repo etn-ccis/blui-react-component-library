@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import heroClasses, { getHeroUtilityClass, HeroClasses, HeroClassKey } from './HeroClasses';
+import { getHeroUtilityClass, HeroClasses, HeroClassKey } from './HeroClasses';
 
 const useUtilityClasses = (ownerState: HeroProps): Record<HeroClassKey, string> => {
     const { classes } = ownerState;
@@ -43,9 +43,7 @@ export type HeroProps = BoxProps & {
     ChannelValueProps?: ChannelValuePropsType;
 };
 
-const Root = styled(Box, { name: 'hero', slot: 'root' })<
-    Pick<HeroProps, 'onClick' | 'iconSize' | 'iconBackgroundColor'>
->(({ onClick, iconSize, iconBackgroundColor, theme }) => ({
+const Root = styled(Box, { name: 'hero', slot: 'root' })<Pick<HeroProps, 'onClick'>>(({ onClick, theme }) => ({
     fontSize: '1rem',
     display: 'flex',
     flexDirection: 'column',
@@ -56,7 +54,10 @@ const Root = styled(Box, { name: 'hero', slot: 'root' })<
     color: theme.palette.text.primary,
     padding: `1rem ${theme.spacing()}`,
     cursor: onClick ? 'pointer' : 'inherit',
-    [`& .${heroClasses.icon}`]: {
+}));
+
+const Icon = styled(Box, { name: 'hero', slot: 'icon' })<Pick<HeroProps, 'iconSize' | 'iconBackgroundColor'>>(
+    ({ iconSize, iconBackgroundColor, theme }) => ({
         lineHeight: 1,
         color: theme.palette.text.secondary,
         marginBottom: '.5rem',
@@ -73,27 +74,29 @@ const Root = styled(Box, { name: 'hero', slot: 'root' })<
         height: typeof iconSize === 'number' ? Math.max(44, iconSize) : iconSize,
         width: typeof iconSize === 'number' ? Math.max(44, iconSize) : iconSize,
         backgroundColor: iconBackgroundColor,
-    },
-    [`& .${heroClasses.values}`]: {
-        display: 'flex',
-        alignItems: 'center',
-        color: theme.palette.text.primary,
-        lineHeight: 1.2,
-        maxWidth: '100%',
-        overflow: 'hidden',
-        fontSize: '1.25rem',
-    },
-    [`& .${heroClasses.label}`]: {
-        fontSize: 'inherit',
-        lineHeight: 1.2,
-        letterSpacing: 0,
-        fontWeight: 600,
-        width: '100%',
-        textAlign: 'center',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-    },
+    })
+);
+
+const Values = styled(Box, { name: 'hero', slot: 'values' })(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    color: theme.palette.text.primary,
+    lineHeight: 1.2,
+    maxWidth: '100%',
+    overflow: 'hidden',
+    fontSize: '1.25rem',
+}));
+
+const Label = styled(Typography, { name: 'hero', slot: 'values' })(() => ({
+    fontSize: 'inherit',
+    lineHeight: 1.2,
+    letterSpacing: 0,
+    fontWeight: 600,
+    width: '100%',
+    textAlign: 'center',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
 }));
 
 const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: HeroProps, ref: any) => {
@@ -117,20 +120,24 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
             ref={ref}
             className={cx(defaultClasses.root, classes.root, userClassName)}
             data-test={'wrapper'}
-            iconSize={iconSize}
-            iconBackgroundColor={iconBackgroundColor}
             {...otherProps}
         >
-            <span className={cx(defaultClasses.icon, classes.icon)}>{icon}</span>
-            <span className={cx(defaultClasses.values, classes.values)}>
+            <Icon
+                className={cx(defaultClasses.icon, classes.icon)}
+                iconSize={iconSize}
+                iconBackgroundColor={iconBackgroundColor}
+            >
+                {icon}
+            </Icon>
+            <Values component={'span'} className={cx(defaultClasses.values, classes.values)}>
                 {!props.children && ChannelValueProps?.value && (
                     <ChannelValue fontSize={ChannelValueProps?.fontSize} {...ChannelValueProps} />
                 )}
                 {props.children}
-            </span>
-            <Typography variant={'body1'} color={'inherit'} className={cx(defaultClasses.label, classes.label)}>
+            </Values>
+            <Label variant={'body1'} color={'inherit'} className={cx(defaultClasses.label, classes.label)}>
                 {label}
-            </Typography>
+            </Label>
         </Root>
     );
 };
