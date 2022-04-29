@@ -1,4 +1,4 @@
-import React, { ReactElement, HTMLAttributes, useState, CSSProperties } from 'react';
+import React, { ReactElement, useState, CSSProperties } from 'react';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import { DrawerProps as DrawerComponentProps } from '../Drawer/Drawer';
