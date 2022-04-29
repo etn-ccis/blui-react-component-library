@@ -137,7 +137,6 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
             </Values>
             <Label
                 variant={'body1'}
-                component={'span'}
                 color={'inherit'}
                 className={cx(defaultClasses.label, classes.label)}
             >
