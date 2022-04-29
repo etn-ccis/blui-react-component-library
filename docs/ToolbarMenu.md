@@ -61,14 +61,14 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 
 You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
 
-| Global CSS Class                     | Description                               |
-| ------------------------------------ | ----------------------------------------- |
-| .BluiToolbarMenu-dropdownArrow       | Styles applied to the dropdownArrow       |
-| .BluiToolbarMenu-rotateDropdownArrow | Styles applied to the rotateDropdownArrow |
-| .BluiToolbarMenu-icon                | Styles applied to the icon                |
-| .BluiToolbarMenu-label               | Styles applied to the label               |
-| .BluiToolbarMenu-cursorPointer       | Styles applied to the cursorPointer       |
-| .BluiToolbarMenu-navGroups           | Styles applied to the navGroups           |
+| Global CSS Class                      | Description                                                                |
+| ------------------------------------- | -------------------------------------------------------------------------- |
+| .BluiToolbarMenu-dropdownArrow        | Styles applied to the DropdownArrow icon                                   |
+| .BluiToolbarMenu-rotatedDropdownArrow | Styles applied to the rotated DropdownArrow icon when the menu is expanded |
+| .BluiToolbarMenu-icon                 | Styles applied to the icon                                                 |
+| .BluiToolbarMenu-label                | Styles applied to the label                                                |
+| .BluiToolbarMenu-cursorPointer        | Styles applied to the cursorPointer                                        |
+| .BluiToolbarMenu-navGroups            | Styles applied to the navGroups                                            |
 
 ### Toolbar Menu Groups Object
 

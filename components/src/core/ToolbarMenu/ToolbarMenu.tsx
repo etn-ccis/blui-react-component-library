@@ -25,7 +25,7 @@ const useUtilityClasses = (ownerState: ToolbarMenuProps): Record<ToolbarMenuClas
         label: ['label'],
         cursorPointer: ['cursorPointer'],
         navGroups: ['navGroups'],
-        rotateDropdownArrow: ['rotateDropdownArrow'],
+        rotatedDropdownArrow: ['rotatedDropdownArrow'],
     };
 
     return composeClasses(slots, getToolbarMenuUtilityClass, classes);
@@ -59,7 +59,7 @@ const DropDownArrow = styled(ArrowDropDown, {
     slot: 'arrow-drop-down',
 })(({ theme }) => ({
     marginLeft: theme.spacing(0.5),
-    [`&.${toolbarMenuClasses.rotateDropdownArrow}`]: { transform: 'rotate(180deg)' },
+    [`&.${toolbarMenuClasses.rotatedDropdownArrow}`]: { transform: 'rotate(180deg)' },
 }));
 
 const ToolbarMenuIcon = styled(Box, {
@@ -242,7 +242,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                         className={cx(
                             defaultClasses.dropdownArrow,
                             classes.dropdownArrow,
-                            anchorEl ? defaultClasses.rotateDropdownArrow : ''
+                            anchorEl ? defaultClasses.rotatedDropdownArrow : ''
                         )}
                     />
                 )}

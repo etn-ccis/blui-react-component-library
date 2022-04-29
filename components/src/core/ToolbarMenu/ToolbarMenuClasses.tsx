@@ -7,7 +7,7 @@ export type ToolbarMenuClasses = {
     label?: string;
     cursorPointer?: string;
     navGroups?: string;
-    rotateDropdownArrow?: string;
+    rotatedDropdownArrow?: string;
 };
 
 export type ToolbarMenuClassKey = keyof ToolbarMenuClasses;
@@ -23,7 +23,7 @@ const toolbarMenuClasses: ToolbarMenuClasses = generateUtilityClasses('BluiToolb
     'label',
     'cursorPointer',
     'navGroups',
-    'rotateDropdownArrow',
+    'rotatedDropdownArrow',
 ]);
 
 export default toolbarMenuClasses;
