@@ -69,7 +69,12 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
     const children = React.Children.toArray(bodyChildren);
 
     return (
-        <Root ref={ref} className={cx(defaultClasses.root, classes.root)} backgroundColor={backgroundColor} {...otherProps}>
+        <Root
+            ref={ref}
+            className={cx(defaultClasses.root, classes.root)}
+            backgroundColor={backgroundColor}
+            {...otherProps}
+        >
             {children.map((child: any, index: number) => {
                 if (!child) {
                     return null;
