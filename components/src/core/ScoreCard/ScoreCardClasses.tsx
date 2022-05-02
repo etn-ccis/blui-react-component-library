@@ -11,8 +11,6 @@ export type ScoreCardClasses = {
     bodyWrapper?: string;
     /** Styles applied to the content. */
     content?: string;
-    /** Styles applied to the flexColumn. */
-    flexColumn?: string;
     /** Styles applied to the header. */
     header?: string;
     /** Styles applied to the headerBackground. */
@@ -39,7 +37,6 @@ const scoreCardClasses: ScoreCardClasses = generateUtilityClasses('BluiScoreCard
     'badgeWrapper',
     'bodyWrapper',
     'content',
-    'flexColumn',
     'header',
     'headerBackground',
     'headerContent',

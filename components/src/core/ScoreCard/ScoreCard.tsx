@@ -19,7 +19,6 @@ const useUtilityClasses = (ownerState: ScoreCardProps): Record<ScoreCardClassKey
         badgeWrapper: ['badgeWrapper'],
         bodyWrapper: ['bodyWrapper'],
         content: ['content'],
-        flexColumn: ['flexColumn'],
         header: ['header'],
         headerBackground: ['headerBackground'],
         headerContent: ['headerContent'],
@@ -90,6 +89,8 @@ const FlexColumn = styled(Box, {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
+    flex: '1 1 0px',
+    overflow: 'hidden',
 }));
 
 const Header = styled(Box, {
@@ -259,7 +260,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
 
     const getHeaderText = useCallback(
         (): JSX.Element => (
-            <FlexColumn className={defaultClasses.flexColumn} style={{ flex: '1 1 0px', overflow: 'hidden' }}>
+            <FlexColumn>
                 <HeaderTitle
                     headerFontColor={headerFontColor}
                     variant={'h6'}
