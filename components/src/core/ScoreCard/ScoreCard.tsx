@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import * as Colors from '@brightlayer-ui/colors';
 import PropTypes from 'prop-types';
-import { Box } from '@mui/material';
+import { Box, BoxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ScoreCardClasses, ScoreCardClassKey, getScoreCardUtilityClass } from './ScoreCardClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -31,47 +31,48 @@ const useUtilityClasses = (ownerState: ScoreCardProps): Record<ScoreCardClassKey
     return composeClasses(slots, getScoreCardUtilityClass, classes);
 };
 
-export type ScoreCardProps = CardProps & {
-    /** Icons to show to the right of the text */
-    actionItems?: JSX.Element[];
-    /** Max number of actionItems in the header
-     *
-     * Default: 3
-     */
-    actionLimit?: number;
-    /** Component to render for the footer */
-    actionRow?: JSX.Element;
-    /** Component to render in the call-out area on the right side of the card body.
-     *
-     * This is usually a single `Hero` or `HeroBanner`containing multiple Heroes.
-     */
-    badge?: JSX.Element;
-    /** Vertical offset for the badge component
-     *
-     * Default: 0
-     */
-    badgeOffset?: number;
-    /** Custom classes for default style overrides */
-    classes?: ScoreCardClasses;
-    /** An image to display in the header */
-    headerBackgroundImage?: string;
-    /** The color of the header
-     *
-     * Default: theme.palette.primary.main
-     */
-    headerColor?: string;
-    /** The color for text and icons in header
-     *
-     * Default: white
-     */
-    headerFontColor?: string;
-    /** Tertiary text */
-    headerInfo?: string | JSX.Element;
-    /** The primary text */
-    headerTitle: string;
-    /** The secondary text */
-    headerSubtitle?: string | JSX.Element;
-};
+export type ScoreCardProps = CardProps &
+    BoxProps & {
+        /** Icons to show to the right of the text */
+        actionItems?: JSX.Element[];
+        /** Max number of actionItems in the header
+         *
+         * Default: 3
+         */
+        actionLimit?: number;
+        /** Component to render for the footer */
+        actionRow?: JSX.Element;
+        /** Component to render in the call-out area on the right side of the card body.
+         *
+         * This is usually a single `Hero` or `HeroBanner`containing multiple Heroes.
+         */
+        badge?: JSX.Element;
+        /** Vertical offset for the badge component
+         *
+         * Default: 0
+         */
+        badgeOffset?: number;
+        /** Custom classes for default style overrides */
+        classes?: ScoreCardClasses;
+        /** An image to display in the header */
+        headerBackgroundImage?: string;
+        /** The color of the header
+         *
+         * Default: theme.palette.primary.main
+         */
+        headerColor?: string;
+        /** The color for text and icons in header
+         *
+         * Default: white
+         */
+        headerFontColor?: string;
+        /** Tertiary text */
+        headerInfo?: string | JSX.Element;
+        /** The primary text */
+        headerTitle: string;
+        /** The secondary text */
+        headerSubtitle?: string | JSX.Element;
+    };
 
 const fontColor = (headerFontColor: string): string => headerFontColor || Colors.white[50];
 
@@ -229,8 +230,8 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 <HeaderInfo
                     noWrap
                     variant={'body2'}
-                    className={cx(defaultClasses.headerInfo, classes.headerInfo)}
                     headerFontColor={headerFontColor}
+                    className={cx(defaultClasses.headerInfo, classes.headerInfo)}
                 >
                     {headerInfo}
                 </HeaderInfo>
@@ -244,10 +245,10 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         if (typeof headerSubtitle === 'string') {
             return (
                 <HeaderSubtitle
+                    headerFontColor={headerFontColor}
                     noWrap
                     variant={'body2'}
                     className={cx(defaultClasses.headerSubtitle, classes.headerSubtitle)}
-                    headerFontColor={headerFontColor}
                 >
                     {headerSubtitle}
                 </HeaderSubtitle>
@@ -260,8 +261,8 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         (): JSX.Element => (
             <FlexColumn className={defaultClasses.flexColumn} style={{ flex: '1 1 0px', overflow: 'hidden' }}>
                 <HeaderTitle
-                    variant={'h6'}
                     headerFontColor={headerFontColor}
+                    variant={'h6'}
                     noWrap
                     className={cx(defaultClasses.headerTitle, classes.headerTitle)}
                 >
