@@ -1,37 +1,45 @@
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import makeStyles from '@mui/styles/makeStyles';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import { mergeStyleProp } from './utilities';
-import clsx from 'clsx';
+import Box, { BoxProps } from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
+import { DrawerBodyClasses, DrawerBodyClassKey, getDrawerBodyUtilityClass } from './DrawerBodyClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { cx } from '@emotion/css';
 
-type DrawerBodyClasses = {
-    root?: string;
+const useUtilityClasses = (ownerState: DrawerBodyProps): Record<DrawerBodyClassKey, string> => {
+    const { classes } = ownerState;
+    const slots = {
+        root: ['root'],
+    };
+
+    return composeClasses(slots, getDrawerBodyUtilityClass, classes);
 };
 
-export type DrawerBodyProps = HTMLAttributes<HTMLDivElement> &
+export type DrawerBodyProps = BoxProps &
     SharedStyleProps &
     NavItemSharedStyleProps & {
         /** Custom classes for default style overrides */
         classes?: DrawerBodyClasses;
     };
 
-const useStyles = makeStyles({
-    root: {
+const Root = styled(Box, { name: 'drawer-body', slot: 'root' })<Pick<DrawerBodyProps, 'backgroundColor'>>(
+    ({ backgroundColor }) => ({
         display: 'flex',
         flex: '1 1 0px',
         flexDirection: 'column',
         overflowY: 'auto',
-        backgroundColor: (props: DrawerBodyProps): string => props.backgroundColor,
-    },
-});
+        backgroundColor: backgroundColor,
+    })
+);
 
 const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps> = (
     bodyProps: DrawerBodyProps,
     ref: any
 ) => {
-    const defaultClasses = useStyles(bodyProps);
+    const defaultClasses = useUtilityClasses(bodyProps);
     const {
         // Inheritable Props
         activeItemBackgroundColor,
@@ -54,14 +62,14 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         // DrawerBody-specific props
         classes,
         children: bodyChildren,
-        // Other div props
-        ...otherDivProps
+        // Other props
+        ...otherProps
     } = bodyProps;
 
     const children = React.Children.toArray(bodyChildren);
 
     return (
-        <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+        <Root ref={ref} className={cx(defaultClasses.root, classes.root)} backgroundColor={backgroundColor} {...otherProps}>
             {children.map((child: any, index: number) => {
                 if (!child) {
                     return null;
@@ -104,7 +112,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
                     />
                 );
             })}
-        </div>
+        </Root>
     );
 };
 
