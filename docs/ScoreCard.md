@@ -93,3 +93,60 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | headerInfo       | Styles applied to the tertiary text element             |
 | headerTitle      | Styles applied to the title element                     |
 | headerSubtitle   | Styles applied to the subtitle element                  |
+
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop. It supports the following classNames:
+
+| Global CSS Class                | Description                                             |
+| ----------------                | ------------------------------------------------------- |
+| .BluiScoreCard-root             | Styles applied to the root element                      |
+| .BluiScoreCard-actionItems      | Styles applied to the action items container            |
+| .BluiScoreCard-badgeWrapper     | Styles applied to the badge container                   |
+| .BluiScoreCard-bodyWrapper      | Styles applied to the child nodes container             |
+| .BluiScoreCard-content          | Styles applied to justify all body content              |
+| .BluiScoreCard-header           | Styles applied to the header container                  |
+| .BluiScoreCard-headerBackground | Styles applied to header background image               |
+| .BluiScoreCard-headerContent    | Styles applied to the header text and actions container |
+| .BluiScoreCard-headerInfo       | Styles applied to the tertiary text element             |
+| .BluiScoreCard-headerTitle      | Styles applied to the title element                     |
+| .BluiScoreCard-headerSubtitle   | Styles applied to the subtitle element                  |
+
+```tsx
+import { Hero, HeroBanner, ScoreCard } from '@brightlayer-ui/react-components';
+import { List, ListItem, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
+import * as Colors from '@brightlayer-ui/colors';
+import { ChevronRight, Humidity, MoreVert} from '@brightlayer-ui/icons-mui';
+...
+<ScoreCard
+    headerColor={Colors.red[500]}
+    headerTitle={'Substation 3'}
+    headerFontColor={Colors.white[50]}
+    actionItems={[
+        <MoreVert onClick={() => {}} />,
+    ]}
+    badge={
+        <HeroBanner>
+            <Hero
+                icon={<Temp fontSize={'inherit'} htmlColor={Colors.black[500]} />}
+                label={'Temperature'}
+                iconSize={48}
+                value={98}
+                units={'°F'}
+                fontSize={'normal'}
+            />
+        </HeroBanner>
+    }
+    actionRow={
+        <List>
+            <ListItem>
+                <ListItemText primary="View Location" />
+                <ListItemSecondaryAction> <ChevronRight /> </ListItemSecondaryAction>
+            </ListItem>
+        </List>
+    }
+    sx={{m: 1, '& .BluiScoreCard-headerInfo' : { fontSize: '1rem' }}}
+>
+    {/* Card Body Content */}
+</ScoreCard>
+```
