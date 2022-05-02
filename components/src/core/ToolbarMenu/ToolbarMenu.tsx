@@ -56,7 +56,7 @@ const Root = styled(Typography, {
 
 const DropDownArrow = styled(ArrowDropDown, {
     name: 'toolbar-menu',
-    slot: 'arrow-drop-down',
+    slot: 'drop-down-arrow',
 })(({ theme }) => ({
     marginLeft: theme.spacing(0.5),
     [`&.${toolbarMenuClasses.rotatedDropdownArrow}`]: { transform: 'rotate(180deg)' },
