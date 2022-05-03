@@ -26,15 +26,12 @@ const useUtilityClasses = (ownerState: AppBarProps): Record<AppBarClassKey, stri
 const Root = styled(MuiAppBar, {
     name: 'app-bar',
     slot: 'root',
-})<Pick<AppBarProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
+})<Pick<AppBarProps, 'animationDuration' | 'backgroundImage'>>(({ animationDuration, backgroundImage, theme }) => ({
     overflow: 'hidden',
     transition: theme.transitions.create(['height'], {
         duration: animationDuration || theme.transitions.duration.standard,
         easing: theme.transitions.easing.easeInOut,
     }),
-    [`& .${appBarClasses.collapsed}`]: {},
-    [`& .${appBarClasses.expanded}`]: {},
-    [`& .${appBarClasses.expandedBackground}`]: {},
     [`& .${appBarClasses.background}`]: {
         position: 'absolute',
         zIndex: -1,
@@ -43,7 +40,7 @@ const Root = styled(MuiAppBar, {
         height: '100%',
         opacity: 0.3,
         backgroundPosition: 'center bottom',
-        backgroundImage: (props: AppBarProps): string => `url(${props.backgroundImage})`,
+        backgroundImage: `url(${backgroundImage})`,
         transition: theme.transitions.create(['all'], {
             duration: animationDuration || theme.transitions.duration.standard,
             easing: theme.transitions.easing.easeInOut,
@@ -305,6 +302,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
                 overflow: 'hidden',
             })}
             position={'sticky'}
+            backgroundImage={backgroundImage}
         >
             {getBackgroundImage()}
             {props.children}
