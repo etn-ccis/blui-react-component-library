@@ -290,9 +290,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
                 defaultClasses.root,
                 classes.root,
                 {
-                    [defaultClasses.expanded]: isExpanded,
                     [classes.expanded]: isExpanded,
-                    [defaultClasses.collapsed]: !isExpanded,
                     [classes.collapsed]: !isExpanded,
                 },
                 userClassName
