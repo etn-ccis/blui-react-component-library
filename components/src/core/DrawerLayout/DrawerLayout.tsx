@@ -1,54 +1,65 @@
-import React, { ReactElement, HTMLAttributes, useState, CSSProperties } from 'react';
-import { Theme, useTheme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
+import React, { ReactElement, useState, CSSProperties } from 'react';
+import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { DrawerProps as DrawerComponentProps } from '../Drawer/Drawer';
 import { DrawerLayoutContext } from './contexts/DrawerLayoutContextProvider';
+import { cx } from '@emotion/css';
+import { Box, BoxProps, styled } from '@mui/material';
+import drawerLayoutClasses, {
+    DrawerLayoutClasses,
+    DrawerLayoutClassKey,
+    getDrawerLayoutUtilityClass,
+} from './DrawerLayoutClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            width: '100%',
-            '&$expanded $content': {
-                transition: theme.transitions.create('padding', {
-                    duration: theme.transitions.duration.enteringScreen,
-                }),
-            },
-        },
-        content: {
-            width: '100%',
-            transition: theme.transitions.create('padding', { duration: theme.transitions.duration.leavingScreen }),
-            zIndex: 0,
-        },
-        drawer: {
-            display: 'flex',
-            position: 'fixed',
-            height: '100%',
-            alignItems: 'stretch',
-            zIndex: theme.zIndex.drawer,
-        },
-        expanded: {},
-    })
-);
+const useUtilityClasses = (ownerState: DrawerLayoutProps): Record<DrawerLayoutClassKey, string> => {
+    const { classes } = ownerState;
 
-export type DrawerLayoutClasses = {
-    /** Styles applied to the body content container */
-    content?: string;
+    const slots = {
+        root: ['root'],
+        content: ['content'],
+        drawer: ['drawer'],
+        expanded: ['expanded'],
+    };
 
-    /** Styles applied to the drawer container */
-    drawer?: string;
-
-    /** Styles applied to the body root element when the drawer is expanded */
-    expanded?: string;
-
-    /** Styles applied to the root element */
-    root?: string;
+    return composeClasses(slots, getDrawerLayoutUtilityClass, classes);
 };
 
-export type DrawerLayoutProps = HTMLAttributes<HTMLDivElement> & {
+const Root = styled(Box, {
+    name: 'drawer-layout',
+    slot: 'root',
+})(({ theme }) => ({
+    display: 'flex',
+    width: '100%',
+    '&$expanded $content': {
+        transition: theme.transitions.create('padding', {
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    [`& .${drawerLayoutClasses.expanded}`]: {},
+}));
+
+const Drawer = styled(Box, {
+    name: 'drawer-layout',
+    slot: 'drawer',
+})(({ theme }) => ({
+    display: 'flex',
+    position: 'fixed',
+    height: '100%',
+    alignItems: 'stretch',
+    zIndex: theme.zIndex.drawer,
+}));
+
+const Content = styled(Box, {
+    name: 'drawer-layout',
+    slot: 'content',
+})(({ theme }) => ({
+    width: '100%',
+    transition: theme.transitions.create('padding', { duration: theme.transitions.duration.leavingScreen }),
+    zIndex: 0,
+}));
+
+export type DrawerLayoutProps = BoxProps & {
     /** Custom classes for default style overrides */
     classes?: DrawerLayoutClasses;
 
@@ -60,11 +71,11 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
     props: DrawerLayoutProps,
     ref: any
 ) => {
-    const { children, drawer, classes, ...otherDivProps } = props;
+    const { children, drawer, classes, className: userClassName, ...otherProps } = props;
     const theme = useTheme();
     const [padding, setPadding] = useState<number | string>(0);
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const defaultClasses = useStyles();
+    const defaultClasses = useUtilityClasses(props);
 
     const style: CSSProperties = { paddingLeft: 0, paddingRight: 0 };
     style.paddingLeft = theme.direction === 'ltr' ? padding : 0;
@@ -77,19 +88,24 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
                 setDrawerOpen,
             }}
         >
-            <div
+            <Root
                 ref={ref}
-                className={clsx(defaultClasses.root, classes.root, {
-                    [defaultClasses.expanded]: !drawerOpen,
-                    [classes.expanded]: !drawerOpen,
-                })}
-                {...otherDivProps}
+                className={cx(
+                    defaultClasses.root,
+                    classes.root,
+                    {
+                        [defaultClasses.expanded]: !drawerOpen,
+                        [classes.expanded]: !drawerOpen,
+                    },
+                    userClassName
+                )}
+                {...otherProps}
             >
-                <div className={clsx(defaultClasses.drawer, classes.drawer)}>{drawer}</div>
-                <div className={clsx(defaultClasses.content, classes.content)} style={style}>
+                <Drawer className={cx(defaultClasses.drawer, classes.drawer)}>{drawer}</Drawer>
+                <Content className={cx(defaultClasses.content, classes.content)} style={style}>
                     {children}
-                </div>
-            </div>
+                </Content>
+            </Root>
         </DrawerLayoutContext.Provider>
     );
 };
