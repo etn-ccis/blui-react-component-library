@@ -50,7 +50,7 @@ export type DrawerNavGroupProps = SharedStyleProps &
     };
 
 const Root = styled(List, {
-    name: 'drawer-layout',
+    name: 'drawer-nav-group',
     slot: 'root',
 })<Pick<DrawerNavGroupProps, 'backgroundColor'>>(({ backgroundColor }) => ({
     backgroundColor: backgroundColor,
@@ -59,8 +59,8 @@ const Root = styled(List, {
 }));
 
 const SubHeader = styled(ListSubheader, {
-    name: 'drawer-layout',
-    slot: 'root',
+    name: 'drawer-nav-group',
+    slot: 'subheader',
 })(({ theme }) => ({
     paddingBottom: 0,
     paddingLeft: theme.spacing(2),
@@ -70,8 +70,8 @@ const SubHeader = styled(ListSubheader, {
 }));
 
 const Title = styled(Typography, {
-    name: 'drawer-layout',
-    slot: 'root',
+    name: 'drawer-nav-group',
+    slot: 'title',
 })(() => ({
     display: 'block',
     alignItems: 'center',
