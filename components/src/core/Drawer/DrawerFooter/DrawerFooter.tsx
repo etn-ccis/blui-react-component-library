@@ -55,8 +55,10 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
     props: DrawerFooterProps,
     ref: any
 ) => {
-    const classes = useUtilityClasses(props);
+    const defaultClasses = useUtilityClasses(props);
     const {
+        classes,
+        className: userClassName,
         children,
         divider = true,
         // ignore unused vars so that we can do prop transferring to the root element
@@ -72,7 +74,13 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
             {divider && <Divider />}
             <Root
                 ref={ref}
-                className={cx(classes.root, { [classes.hidden]: !drawerOpen && hideContentOnCollapse })}
+                className={cx(
+                    defaultClasses.root,
+                    classes.root,
+                    { [defaultClasses.hidden]: !drawerOpen && hideContentOnCollapse },
+                    { [classes.hidden]: !drawerOpen && hideContentOnCollapse },
+                    userClassName
+                )}
                 backgroundColor={backgroundColor}
                 {...otherProps}
             >
