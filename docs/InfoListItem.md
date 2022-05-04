@@ -104,7 +104,7 @@ import { Link } from 'react-router-dom';
 
 ### `sx` Class Overrides
 
-You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop. It supports the following classNames:
+You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
 
 | Global CSS Class                       Description                              |
 | ------------------------------------ | ---------------------------------------- |

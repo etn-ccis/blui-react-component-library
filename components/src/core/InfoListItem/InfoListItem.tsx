@@ -155,7 +155,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         statusColor,
         ListItemButtonProps = {} as MuiListItemButtonProps,
         /* eslint-enable @typescript-eslint/no-unused-vars */
-        ...otherProps
+        ...otherListItemProps
     } = props;
 
     const combine = useCallback(
@@ -312,7 +312,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             iconColor={iconColor}
             className={cx(combine('root'), userClassName)}
             ref={ref}
-            {...otherProps}
+            {...otherListItemProps}
         >
             {props.onClick && ripple ? (
                 <InfoListItemContentContainer className={combine('listItemButtonRoot')} focusRipple={ripple}>
