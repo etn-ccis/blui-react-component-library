@@ -118,6 +118,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         // Nav Group Props
         children,
         classes,
+        className: userClassName,
         items = [],
         title,
         titleColor = theme.palette.text.primary,
@@ -244,7 +245,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         <NavGroupContext.Provider value={{ activeHierarchy: activeHierarchyItems }}>
             <Root
                 ref={ref}
-                className={cx(defaultClasses.root, classes.root)}
+                className={cx(defaultClasses.root, classes.root, userClassName)}
                 subheader={
                     variant !== 'rail' && (
                         <SubHeader
