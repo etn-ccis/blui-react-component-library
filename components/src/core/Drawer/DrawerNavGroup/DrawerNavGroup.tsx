@@ -262,6 +262,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                         </SubHeader>
                     )
                 }
+                backgroundColor={backgroundColor}
                 {...otherProps}
             >
                 {variant !== 'rail' && (
