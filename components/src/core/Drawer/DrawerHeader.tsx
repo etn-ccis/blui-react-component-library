@@ -23,7 +23,7 @@ const useUtilityClasses = (ownerState: DrawerHeaderProps): Record<DrawerHeaderCl
         background: ['background'],
         content: ['content'],
         navigation: ['navigation'],
-        nonCLickable: ['nonCLickable'],
+        nonClickable: ['nonClickable'],
         nonClickableIcon: ['nonClickableIcon'],
         railIcon: ['railIcon'],
         subtitle: ['subtitle'],
@@ -86,7 +86,7 @@ const Root = styled(Toolbar, { name: 'drawer-header', slot: 'root' })<
         theme.palette.getContrastText(
             backgroundColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
         ),
-    [`& .${drawerHeaderClasses.nonCLickable}`]: {},
+    [`& .${drawerHeaderClasses.nonClickable}`]: {},
     [`& .${drawerHeaderClasses.railIcon}`]: {
         marginLeft: theme.spacing(0.5),
         minWidth: 'calc(3.5rem + 16px)',
@@ -145,7 +145,7 @@ const Subtitle = styled(Typography, { name: 'drawer-header', slot: 'subtitle' })
     marginTop: '-0.125rem',
 }));
 
-const NonClickableIcon = styled(Box, { name: 'drawer-header', slot: 'nonClickableIcon' })(() => ({
+const NonClickableIcon = styled(Box, { name: 'drawer-header', slot: 'non-clickable-icon' })(() => ({
     display: 'flex',
     padding: 0,
 }));
@@ -170,7 +170,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         backgroundOpacity,
         fontColor,
         /* eslint-enable @typescript-eslint/no-unused-vars */
-        ...otherProps
+        ...otherToolbarProps
     } = props;
 
     const { variant = 'persistent', condensed = false } = useDrawerContext();
@@ -222,7 +222,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                 className={cx(defaultClasses.root, classes.root)}
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}
-                {...otherProps}
+                {...otherToolbarProps}
             >
                 {getBackgroundImage()}
                 {icon && (
@@ -230,7 +230,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                         className={clsx(defaultClasses.navigation, classes.navigation, {
                             [defaultClasses.railIcon]: variant === 'rail' && !condensed,
                             [classes.railIcon]: variant === 'rail' && !condensed && classes.railIcon,
-                            [defaultClasses.nonCLickable]: variant === 'rail' && !condensed && !onIconClick,
+                            [defaultClasses.nonClickable]: variant === 'rail' && !condensed && !onIconClick,
                         })}
                     >
                         {onIconClick && (

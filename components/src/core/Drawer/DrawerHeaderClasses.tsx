@@ -5,7 +5,7 @@ export type DrawerHeaderClasses = {
     background?: string;
     content?: string;
     navigation?: string;
-    nonCLickable?: string;
+    nonClickable?: string;
     nonClickableIcon?: string;
     railIcon?: string;
     subtitle?: string;
@@ -23,7 +23,7 @@ const drawerHeaderClasses: DrawerHeaderClasses = generateUtilityClasses('BluiDra
     'background',
     'content',
     'navigation',
-    'nonCLickable',
+    'nonClickable',
     'nonClickableIcon',
     'railIcon',
     'subtitle',
