@@ -98,11 +98,16 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
 export const DrawerFooter = React.forwardRef(DrawerFooterRender);
 DrawerFooter.displayName = 'DrawerFooter';
 DrawerFooter.propTypes = {
+    classes: PropTypes.shape({
+        root: PropTypes.string,
+        hidden: PropTypes.string,
+    }),
     backgroundColor: PropTypes.string,
     divider: PropTypes.bool,
     hideContentOnCollapse: PropTypes.bool,
 };
 DrawerFooter.defaultProps = {
+    classes: {},
     divider: true,
     hideContentOnCollapse: true,
 };
