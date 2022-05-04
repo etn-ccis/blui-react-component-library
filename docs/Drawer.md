@@ -276,6 +276,15 @@ import DrawerFooter from '@brightlayer-ui/react-components/core/Drawer';
 
 Any other props supplied will be provided to the root element (`div`).
 
+#### Classes
+
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerFooter>` supports the following keys:
+
+| Name   | Description                          |
+| ------ | ------------------------------------ |
+| root   | Styles applied to the root element   |
+| hidden | Styles applied to the hidden element |
+
 ## Drawer Nav Item
 
 The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be generated for you by using the `items` prop of the `<DrawerNavGroup>` and passing in an array of objects with the following API. You can also create these line items by directly passing them as children to the `<DrawerNavGroup>`. Each `<DrawerNavItem>` also supports the ability to nest items (using its own `items` prop or children). When using the rail variant of the `<Drawer>`, you should use `<DrawerRailItem>` instead (see below).

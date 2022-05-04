@@ -1,11 +1,31 @@
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import makeStyles from '@mui/styles/makeStyles';
 import Divider from '@mui/material/Divider';
-import { useDrawerContext } from './DrawerContext';
-import clsx from 'clsx';
+import { useDrawerContext } from '../DrawerContext';
+import { styled } from '@mui/material/styles';
+import { cx } from '@emotion/css';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import drawerFooterClasses, {
+    DrawerFooterClasses,
+    DrawerFooterClassKey,
+    getDrawerFooterUtilityClass,
+} from './DrawerFooterClasses';
+import Box, { BoxProps } from '@mui/material/Box';
 
-export type DrawerFooterProps = HTMLAttributes<HTMLDivElement> & {
+const useUtilityClasses = (ownerState: DrawerFooterProps): Record<DrawerFooterClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        hidden: ['hidden'],
+    };
+
+    return composeClasses(slots, getDrawerFooterUtilityClass, classes);
+};
+
+export type DrawerFooterProps = BoxProps & {
+    /** Custom classes for default style overrides */
+    classes?: DrawerFooterClasses;
     /** The color used for the background  */
     backgroundColor?: string;
     /** Optional divider which appears above footer
@@ -20,21 +40,22 @@ export type DrawerFooterProps = HTMLAttributes<HTMLDivElement> & {
     hideContentOnCollapse?: boolean;
 };
 
-const useStyles = makeStyles({
-    root: {
-        width: '100%',
-        backgroundColor: (props: DrawerFooterProps): string => props.backgroundColor,
-    },
-    hidden: {
+const Root = styled(Box, {
+    name: 'drawer-footer',
+    slot: 'root',
+})<Pick<DrawerFooterProps, 'backgroundColor'>>(({ backgroundColor }) => ({
+    width: '100%',
+    backgroundColor: backgroundColor,
+    [`& .${drawerFooterClasses.hidden}`]: {
         visibility: 'hidden',
     },
-});
+}));
 
 const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterProps> = (
     props: DrawerFooterProps,
     ref: any
 ) => {
-    const classes = useStyles(props);
+    const classes = useUtilityClasses(props);
     const {
         children,
         divider = true,
@@ -43,19 +64,20 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
         backgroundColor,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         hideContentOnCollapse,
-        ...otherDivProps
+        ...otherProps
     } = props;
     const { open: drawerOpen = true } = useDrawerContext();
     return (
         <>
             {divider && <Divider />}
-            <div
+            <Root
                 ref={ref}
-                className={clsx(classes.root, { [classes.hidden]: !drawerOpen && hideContentOnCollapse })}
-                {...otherDivProps}
+                className={cx(classes.root, { [classes.hidden]: !drawerOpen && hideContentOnCollapse })}
+                backgroundColor={backgroundColor}
+                {...otherProps}
             >
                 {children}
-            </div>
+            </Root>
         </>
     );
 };
