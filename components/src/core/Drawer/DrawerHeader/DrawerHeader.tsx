@@ -4,7 +4,7 @@ import Toolbar, { ToolbarProps } from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import { useDrawerContext } from './DrawerContext';
+import { useDrawerContext } from '../DrawerContext';
 import drawerHeaderClasses, {
     DrawerHeaderClasses,
     DrawerHeaderClassKey,
