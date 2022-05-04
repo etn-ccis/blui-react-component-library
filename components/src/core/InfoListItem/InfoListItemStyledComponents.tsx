@@ -123,7 +123,7 @@ export const Icon = styled(Avatar, {
     }
 );
 
-export const InvisibleIcon = styled(Avatar, {
+export const InfoListItemAvatar = styled(Avatar, {
     name: 'info-list-item',
     slot: 'invisible',
 })<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar'>>(({ statusColor, iconColor, avatar, theme }) => {

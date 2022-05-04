@@ -13,7 +13,7 @@ import {
     InfoListItemContentContainer,
     InfoListItemDivider,
     InfoListItemText,
-    InvisibleIcon,
+    InfoListItemAvatar,
     RightComponent,
     Root,
     StatusStripe,
@@ -182,7 +182,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             return (
                 // a dummy component to maintain the padding
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    <InvisibleIcon
+                    <InfoListItemAvatar
                         className={cx(defaultClasses.avatar)}
                         statusColor={statusColor}
                         iconColor={iconColor}
