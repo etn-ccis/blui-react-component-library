@@ -141,7 +141,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         nestedBackgroundColor,
         nestedDivider,
         ripple,
-        ...otherListProps
+        ...otherProps
     } = props;
 
     const { variant, open: drawerOpen = true, activeItem } = useDrawerContext();
@@ -262,7 +262,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                         </SubHeader>
                     )
                 }
-                {...otherListProps}
+                {...otherProps}
             >
                 {variant !== 'rail' && (
                     <div key={`${title}_title`}>{(title || titleContent) && titleDivider && <Divider />}</div>
