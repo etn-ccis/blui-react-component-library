@@ -44,8 +44,7 @@ export type DrawerFooterProps = BoxProps & {
 const Root = styled(React.Fragment, {
     name: 'drawer-footer',
     slot: 'root',
-})(() => ({
-}));
+})(() => ({}));
 
 const FooterContent = styled(Box, {
     name: 'drawer-footer',
