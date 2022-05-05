@@ -13,7 +13,6 @@ import {
     InfoListItemContentContainer,
     InfoListItemDivider,
     InfoListItemText,
-    InfoListItemAvatar,
     RightComponent,
     Root,
     StatusStripe,
@@ -119,7 +118,7 @@ export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
      * Default: false
      */
     wrapTitle?: boolean;
-    /** Used to override [ListItemButtom](https://mui.com/api/list-item-button/) default props */
+    /** Used to override [ListItemButton](https://mui.com/api/list-item-button/) default props */
     ListItemButtonProps?: Partial<MuiListItemButtonProps>;
 };
 const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemProps> = (
@@ -182,11 +181,12 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             return (
                 // a dummy component to maintain the padding
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    <InfoListItemAvatar
-                        className={cx(defaultClasses.avatar)}
+                    <Icon
+                        className={combine('avatar')}
                         statusColor={statusColor}
                         iconColor={iconColor}
                         avatar={avatar}
+                        isInvisible={true}
                     />
                 </ListItemAvatar>
             );
@@ -202,7 +202,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                     chevronColor={chevronColor}
                     color={'inherit'}
                     role={'button'}
-                    className={cx(combine('chevron'))}
+                    className={combine('chevron')}
                 />
             );
         }
@@ -245,7 +245,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         return withKeys(separate(renderableInfoParts, () => getSeparator()));
     }, [info, getSeparator]);
 
-    const getInfloListItemContent = (): JSX.Element => (
+    const getInfoListItemContent = (): JSX.Element => (
         <>
             <StatusStripe statusColor={statusColor} className={combine('statusStripe')} data-test={'status-stripe'} />
             {divider && <InfoListItemDivider divider={divider} className={combine('divider')} />}
@@ -316,10 +316,10 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         >
             {props.onClick && ripple ? (
                 <InfoListItemContentContainer className={combine('listItemButtonRoot')} focusRipple={ripple}>
-                    {getInfloListItemContent()}
+                    {getInfoListItemContent()}
                 </InfoListItemContentContainer>
             ) : (
-                getInfloListItemContent()
+                getInfoListItemContent()
             )}
         </Root>
     );

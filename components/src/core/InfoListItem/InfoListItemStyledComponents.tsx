@@ -11,10 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Chevron from '@mui/icons-material/ChevronRight';
 import Typography, { TypographyProps } from '@mui/material/Typography';
 
-export const Root = styled(ListItem, {
-    name: 'info-list-item',
-    slot: 'root',
-})<
+export const Root = styled(ListItem)<
     Pick<
         InfoListItemProps,
         'onClick' | 'backgroundColor' | 'wrapSubtitle' | 'wrapTitle' | 'wrapInfo' | 'dense' | 'ripple' | 'iconColor'
@@ -42,18 +39,12 @@ export const Root = styled(ListItem, {
     };
 });
 
-export const InfoListItemContentContainer = styled(ListItemButton, {
-    name: 'info-list-item',
-    slot: 'listItemButtonRoot',
-})(() => ({
+export const InfoListItemContentContainer = styled(ListItemButton)(() => ({
     height: 'inherit',
     width: 'inherit',
 }));
 
-export const StatusStripe = styled(Box, {
-    name: 'info-list-item',
-    slot: 'statusStripe',
-})<Pick<InfoListItemProps, 'statusColor'>>(({ statusColor }) => ({
+export const StatusStripe = styled(Box)<Pick<InfoListItemProps, 'statusColor'>>(({ statusColor }) => ({
     position: 'absolute',
     top: 0,
     bottom: 0,
@@ -63,10 +54,7 @@ export const StatusStripe = styled(Box, {
     backgroundColor: statusColor,
 }));
 
-export const InfoListItemDivider = styled(Divider, {
-    name: 'info-list-item',
-    slot: 'divider',
-})<Pick<InfoListItemProps, 'divider'>>(({ divider, theme }) => ({
+export const InfoListItemDivider = styled(Divider)<Pick<InfoListItemProps, 'divider'>>(({ divider, theme }) => ({
     position: 'absolute',
     bottom: 0,
     right: theme.direction === 'rtl' ? (divider === 'full' ? 0 : `4.5rem`) : 0,
@@ -75,10 +63,9 @@ export const InfoListItemDivider = styled(Divider, {
 }));
 
 export const Icon = styled(Avatar, {
-    name: 'info-list-item',
-    slot: 'avatar',
-})<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'>>(
-    ({ statusColor, iconColor, avatar, iconAlign, theme }) => {
+    shouldForwardProp: (prop) => prop !== 'isInvisible',
+})<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'> & { isInvisible?: boolean }>(
+    ({ statusColor, iconColor, avatar, iconAlign, isInvisible, theme }) => {
         const getIconColor = (): string => {
             if (iconColor) return iconColor;
             if (avatar) {
@@ -119,50 +106,28 @@ export const Icon = styled(Avatar, {
             width: `2.5rem`,
             height: `2.5rem`,
             marginRight: theme.spacing(2),
+            opacity: isInvisible ? 0 : 'auto',
         };
     }
 );
 
-export const InfoListItemAvatar = styled(Avatar, {
-    name: 'info-list-item',
-    slot: 'invisible',
-})<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar'>>(({ statusColor, iconColor, avatar, theme }) => {
-    const getIconColor = (): string => {
-        if (iconColor) return iconColor;
-        if (avatar) {
-            return statusColor
-                ? color(statusColor).isDark()
-                    ? Colors.white[50]
-                    : Colors.black[500]
-                : Colors.white[50]; // default avatar is dark gray -> white text
-        }
-        return statusColor ? statusColor : theme.palette.text.secondary;
-    };
+export const InfoListItemText = styled(ListItemText)<Pick<InfoListItemProps, 'leftComponent'>>(
+    ({ leftComponent, theme }) => ({
+        // we have to specify both here because the auto-swap from JSS isn't smart enough to do it when we use a function
+        marginLeft: leftComponent ? (theme.direction === 'rtl' ? 0 : theme.spacing(2)) : 0,
+        marginRight: leftComponent ? (theme.direction === 'rtl' ? theme.spacing(2) : 0) : 0,
+    })
+);
 
-    return {
-        backgroundColor: statusColor || Colors.black[500],
-        color: getIconColor(),
-        width: `2.5rem`,
-        height: `2.5rem`,
-        padding: `.5rem`,
-        marginRight: theme.spacing(2),
-        opacity: 0,
-    };
-});
-
-export const InfoListItemText = styled(ListItemText, {
-    name: 'info-list-item',
-    slot: 'listItemText',
-})<Pick<InfoListItemProps, 'leftComponent'>>(({ leftComponent, theme }) => ({
-    // we have to specify both here because the auto-swap from JSS isn't smart enough to do it when we use a function
-    marginLeft: leftComponent ? (theme.direction === 'rtl' ? 0 : theme.spacing(2)) : 0,
-    marginRight: leftComponent ? (theme.direction === 'rtl' ? theme.spacing(2) : 0) : 0,
+export const Subtitle = styled(Typography)<
+    Pick<InfoListItemProps & TypographyProps & BoxProps, 'fontColor' | 'component' | 'noWrap'>
+>(({ fontColor, theme }) => ({
+    fontWeight: 400,
+    lineHeight: 1.3,
+    color: fontColor || (theme.palette.mode === 'dark' ? theme.palette.text.secondary : 'inherit'),
 }));
 
-export const Subtitle = styled(Typography, {
-    name: 'info-list-item',
-    slot: 'subtitle',
-})<Pick<InfoListItemProps & TypographyProps & BoxProps, 'fontColor' | 'component' | 'noWrap'>>(
+export const Info = styled(Typography)<Pick<InfoListItemProps & TypographyProps, 'fontColor' | 'noWrap'>>(
     ({ fontColor, theme }) => ({
         fontWeight: 400,
         lineHeight: 1.3,
@@ -170,37 +135,21 @@ export const Subtitle = styled(Typography, {
     })
 );
 
-export const Info = styled(Typography, {
-    name: 'info-list-item',
-    slot: 'info',
-})<Pick<InfoListItemProps & TypographyProps, 'fontColor' | 'noWrap'>>(({ fontColor, theme }) => ({
-    fontWeight: 400,
-    lineHeight: 1.3,
-    color: fontColor || (theme.palette.mode === 'dark' ? theme.palette.text.secondary : 'inherit'),
-}));
-
-export const RightComponent = styled(Box, {
-    name: 'info-list-item',
-    slot: 'rightComponent',
-})(({ theme }) => ({
+export const RightComponent = styled(Box)(({ theme }) => ({
     flex: '0 0 auto',
     marginLeft: theme.spacing(2),
     display: 'flex',
     alignItems: 'center',
 }));
 
-export const InfoListItemChevron = styled(Chevron, {
-    name: 'info-list-item',
-    slot: 'chevron',
-})<Pick<InfoListItemProps, 'chevronColor'>>(({ chevronColor, theme }) => ({
-    color: chevronColor ? chevronColor : theme.palette.text.secondary,
-    transform: theme.direction === 'rtl' ? 'scaleX(-1)' : '',
-}));
+export const InfoListItemChevron = styled(Chevron)<Pick<InfoListItemProps, 'chevronColor'>>(
+    ({ chevronColor, theme }) => ({
+        color: chevronColor ? chevronColor : theme.palette.text.secondary,
+        transform: theme.direction === 'rtl' ? 'scaleX(-1)' : '',
+    })
+);
 
-export const SubtitleSeparator = styled(Typography, {
-    name: 'info-list-item',
-    slot: 'separator',
-})<TypographyProps & BoxProps>(({ theme }) => ({
+export const SubtitleSeparator = styled(Typography)<TypographyProps & BoxProps>(({ theme }) => ({
     display: 'inline-block',
     lineHeight: 1.3,
     color: 'inherit',
