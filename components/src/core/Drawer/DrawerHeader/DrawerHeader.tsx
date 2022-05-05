@@ -67,6 +67,8 @@ export type DrawerHeaderProps = ToolbarProps & {
     titleContent?: ReactNode;
 };
 
+const Fragment = styled(React.Fragment, { name: 'drawer-header', slot: 'drawer-header-fragment' })(() => ({}));
+
 const Root = styled(Toolbar, { name: 'drawer-header', slot: 'root' })<
     Pick<DrawerHeaderProps, 'backgroundColor' | 'fontColor'>
 >(({ backgroundColor, fontColor, theme }) => ({
@@ -216,7 +218,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
     );
 
     return (
-        <>
+        <Fragment>
             <Root
                 ref={ref}
                 className={cx(defaultClasses.root, classes.root)}
@@ -255,7 +257,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                 {getHeaderContent()}
             </Root>
             {divider && <Divider />}
-        </>
+        </Fragment>
     );
 };
 /**
