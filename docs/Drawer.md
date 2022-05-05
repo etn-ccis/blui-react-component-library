@@ -280,10 +280,11 @@ Any other props supplied will be provided to the root element (`div`).
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerFooter>` supports the following keys:
 
-| Name   | Description                          |
-| ------ | ------------------------------------ |
-| root   | Styles applied to the root element   |
-| hidden | Styles applied to the hidden element |
+| Name    | Description                                  |
+| ------- | -------------------------------------------- |
+| root    | Styles applied to the root element           |
+| content | Styles applied to the footer content element |
+| hidden  | Styles applied to the hidden element         |
 
 ## Drawer Nav Item
 
