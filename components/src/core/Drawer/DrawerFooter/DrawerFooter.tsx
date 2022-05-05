@@ -17,7 +17,6 @@ const useUtilityClasses = (ownerState: DrawerFooterProps): Record<DrawerFooterCl
 
     const slots = {
         root: ['root'],
-        content: ['content'],
         hidden: ['hidden'],
     };
 
@@ -41,14 +40,14 @@ export type DrawerFooterProps = BoxProps & {
     hideContentOnCollapse?: boolean;
 };
 
-const Root = styled(React.Fragment, {
+const Fragment = styled(React.Fragment, {
     name: 'drawer-footer',
-    slot: 'root',
+    slot: 'drawer-footer-fragment',
 })(() => ({}));
 
-const FooterContent = styled(Box, {
+const Root = styled(Box, {
     name: 'drawer-footer',
-    slot: 'content',
+    slot: 'root',
 })<Pick<DrawerFooterProps, 'backgroundColor'>>(({ backgroundColor }) => ({
     width: '100%',
     backgroundColor: backgroundColor,
@@ -76,9 +75,9 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
     } = props;
     const { open: drawerOpen = true } = useDrawerContext();
     return (
-        <Root>
+        <Fragment>
             {divider && <Divider />}
-            <FooterContent
+            <Root
                 ref={ref}
                 className={cx(
                     defaultClasses.root,
@@ -91,8 +90,8 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
                 {...otherProps}
             >
                 {children}
-            </FooterContent>
-        </Root>
+            </Root>
+        </Fragment>
     );
 };
 
