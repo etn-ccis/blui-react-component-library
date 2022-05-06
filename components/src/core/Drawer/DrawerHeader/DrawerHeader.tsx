@@ -12,7 +12,7 @@ import drawerHeaderClasses, {
 } from './DrawerHeaderClasses';
 import { cx } from '@emotion/css';
 import clsx from 'clsx';
-import { styled } from '@mui/material/styles';
+import { styled, SxProps } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 
@@ -65,9 +65,9 @@ export type DrawerHeaderProps = ToolbarProps & {
     title?: string;
     /** Custom content for header title area */
     titleContent?: ReactNode;
+    /** Optional sx props to apply style overrides */
+    sx?: SxProps;
 };
-
-const Fragment = styled(React.Fragment, { name: 'drawer-header', slot: 'drawer-header-fragment' })(() => ({}));
 
 const Root = styled(Toolbar, { name: 'drawer-header', slot: 'root' })<
     Pick<DrawerHeaderProps, 'backgroundColor' | 'fontColor'>
@@ -171,6 +171,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         backgroundColor,
         backgroundOpacity,
         fontColor,
+        sx,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherToolbarProps
     } = props;
@@ -218,12 +219,13 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
     );
 
     return (
-        <Fragment>
+        <>
             <Root
                 ref={ref}
                 className={cx(defaultClasses.root, classes.root)}
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}
+                sx={sx}
                 {...otherToolbarProps}
             >
                 {getBackgroundImage()}
@@ -257,7 +259,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                 {getHeaderContent()}
             </Root>
             {divider && <Divider />}
-        </Fragment>
+        </>
     );
 };
 /**
