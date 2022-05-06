@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Divider from '@mui/material/Divider';
 import { useDrawerContext } from '../DrawerContext';
-import { styled } from '@mui/material/styles';
+import { styled, SxProps } from '@mui/material/styles';
 import { cx } from '@emotion/css';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import drawerFooterClasses, {
@@ -38,12 +38,9 @@ export type DrawerFooterProps = BoxProps & {
      * Default: true
      */
     hideContentOnCollapse?: boolean;
+    /** Optional sx props to apply style overrides */
+    sx?:  SxProps;
 };
-
-const Fragment = styled(React.Fragment, {
-    name: 'drawer-footer',
-    slot: 'drawer-footer-fragment',
-})(() => ({}));
 
 const Root = styled(Box, {
     name: 'drawer-footer',
@@ -71,11 +68,12 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
         backgroundColor,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         hideContentOnCollapse,
+        sx,
         ...otherProps
     } = props;
     const { open: drawerOpen = true } = useDrawerContext();
     return (
-        <Fragment>
+        <>
             {divider && <Divider />}
             <Root
                 ref={ref}
@@ -87,11 +85,12 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
                     userClassName
                 )}
                 backgroundColor={backgroundColor}
+                sx={sx}
                 {...otherProps}
             >
                 {children}
             </Root>
-        </Fragment>
+        </>
     );
 };
 
