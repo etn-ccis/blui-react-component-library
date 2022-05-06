@@ -39,7 +39,7 @@ export type DrawerFooterProps = BoxProps & {
      */
     hideContentOnCollapse?: boolean;
     /** Optional sx props to apply style overrides */
-    sx?:  SxProps;
+    sx?: SxProps;
 };
 
 const Root = styled(Box, {
