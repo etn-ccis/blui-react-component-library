@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import Typography from '@mui/material/Typography';
 import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
-import { Box, BoxProps } from '@mui/material';
+import { Box, BoxProps, TypographyProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import channelValueClasses, {
     ChannelValueClasses,
@@ -18,8 +18,6 @@ const useUtilityClasses = (ownerState: ChannelValueProps): Record<ChannelValueCl
         root: ['root'],
         icon: ['icon'],
         text: ['text'],
-        prefix: ['prefix'],
-        suffix: ['suffix'],
         value: ['value'],
         units: ['units'],
     };
@@ -61,10 +59,7 @@ export type ChannelValueProps = Omit<BoxProps, 'prefix'> & {
     value: number | string;
 };
 
-const Root = styled(Box, {
-    name: 'channel-value',
-    slot: 'root',
-})<Pick<ChannelValueProps, 'fontSize' | 'color'>>(({ fontSize, color }) => ({
+const Root = styled(Box)<Pick<ChannelValueProps, 'fontSize' | 'color'>>(({ fontSize, color }) => ({
     display: 'inline-flex',
     alignItems: 'center',
     lineHeight: 1.2,
@@ -76,7 +71,7 @@ const Root = styled(Box, {
 const IconSpan = styled('span', {
     name: 'channel-value',
     slot: 'icon',
-})<Pick<ChannelValueProps, null>>(() => ({
+})(() => ({
     marginRight: '0.35em',
     display: 'inline',
     fontSize: 'inherit',
@@ -85,24 +80,23 @@ const IconSpan = styled('span', {
 const Unit = styled(Typography, {
     name: 'channel-value',
     slot: 'units',
-})<Pick<ChannelValueProps, null>>(() => ({
+    shouldForwardProp: (prop) => prop !== 'isSuffix',
+})<TypographyProps & { isSuffix: boolean }>(({ isSuffix }) => ({
     fontWeight: 300,
-    [`& .${channelValueClasses.suffix}`]: {},
-    [`& .${channelValueClasses.prefix}`]: {
-        '& + h6': {
-            marginLeft: '0.25em',
-        },
-    },
+    ...(isSuffix === true && {
+        marginLeft: '0.25em',
+    }),
 }));
 
 const Value = styled(Typography, {
     name: 'channel-value',
     slot: 'value',
-})<Pick<ChannelValueProps, null>>(() => ({
+    shouldForwardProp: (prop) => prop !== 'isPrefix',
+})<TypographyProps & { isPrefix: boolean }>(({ isPrefix }) => ({
     fontWeight: 600,
-    '& + $suffix': {
+    ...(isPrefix === true && {
         marginLeft: '0.25em',
-    },
+    }),
 }));
 
 const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
@@ -122,11 +116,8 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         units,
         unitSpace,
         value,
-        // ignore unused vars so that we can do prop transferring to the root element
-        /* eslint-disable @typescript-eslint/no-unused-vars */
         color,
         fontSize,
-        /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherProps
     } = props;
     const defaultClasses = useUtilityClasses(props);
@@ -152,20 +143,8 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                     <Unit
                         variant={'h6'}
                         color={'inherit'}
-                        className={cx(
-                            defaultClasses.text,
-                            classes.text,
-                            defaultClasses.units,
-                            classes.units,
-                            {
-                                [defaultClasses.prefix]: applyPrefix(),
-                                [defaultClasses.suffix]: applySuffix(),
-                            },
-                            {
-                                [classes.prefix]: applyPrefix(),
-                                [classes.suffix]: applySuffix(),
-                            }
-                        )}
+                        className={cx(defaultClasses.text, classes.text, defaultClasses.units, classes.units)}
+                        isSuffix={applySuffix()}
                         data-test={'units'}
                     >
                         {units}
@@ -197,6 +176,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                 color={'inherit'}
                 className={cx(defaultClasses.text, classes.text, defaultClasses.value, classes.value)}
                 data-test={'value'}
+                isPrefix={applyPrefix()}
             >
                 {value}
             </Value>
