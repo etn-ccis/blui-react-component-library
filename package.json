@@ -12,7 +12,7 @@
         "start:showcase": "yarn initialize && yarn install:dependencies && yarn link:components && cd demos/showcase && yarn start",
         "start:storybook": "yarn install:dependencies && yarn link:components && cd demos/storybook && yarn start",
         "start": "yarn start:showcase",
-        "lint": "set NODE_OPTIONS=--max_old_space_size=4096 && cd components && yarn lint",
+        "lint": "set NODE_OPTIONS=--max_old_space_size=5120 && cd components && yarn lint",
         "lint:fix": "cd components && yarn lint:fix",
         "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html,md}\" --write && cd components && yarn prettier && cd ../demos/showcase && yarn prettier && cd ../storybook && yarn prettier",
         "prettier:check": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html,md}\" --check && cd components && yarn prettier:check && cd ../demos/showcase && yarn prettier:check && cd ../storybook && yarn prettier:check",
