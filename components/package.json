@@ -6,7 +6,7 @@
         "test": "jest src",
         "build": "tsc --p tsconfig.lib.json",
         "watch:storybook": "tsc --p tsconfig.lib.json --watch --outdir ../demos/storybook/node_modules/@brightlayer-ui/react-components",
-        "lint": "eslint \"src/**/**.{tsx,ts}\"",
+        "lint": "set NODE_OPTIONS=--max_old_space_size=4096 && eslint \"src/**/**.{tsx,ts}\"",
         "lint:fix": "eslint \"src/**/**.{tsx,ts}\" --fix",
         "prettier": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
         "prettier:check": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check"
