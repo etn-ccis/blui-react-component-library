@@ -246,7 +246,6 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         chevronColor,
         children,
         classes = {},
-        className: userClassName,
         collapseIcon,
         depth = 0,
         disableActiveItemParentStyles = false,
@@ -459,7 +458,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 <Root
                     ref={ref}
                     style={{ position: 'relative' }}
-                    className={cx(defaultClasses.root, classes.root, userClassName)}
+                    className={cx(defaultClasses.root, classes.root)}
                     depth={depth}
                     nestedBackgroundColor={nestedBackgroundColor}
                     backgroundColor={backgroundColor}
