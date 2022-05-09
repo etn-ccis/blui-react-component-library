@@ -7,10 +7,6 @@ export type ChannelValueClasses = {
     icon?: string;
     /** Styles applied to the text element. */
     text?: string;
-    /** Styles applied to the prefix element. */
-    prefix?: string;
-    /** Styles applied to the suffix element. */
-    suffix?: string;
     /** Styles applied to the units element. */
     units?: string;
     /** Styles applied to the value element. */
@@ -27,8 +23,6 @@ const channelValueClasses: ChannelValueClasses = generateUtilityClasses('BluiCha
     'root',
     'icon',
     'text',
-    'prefix',
-    'suffix',
     'units',
     'value',
 ]);
