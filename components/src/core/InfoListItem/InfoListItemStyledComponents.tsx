@@ -14,6 +14,13 @@ import Typography, { TypographyProps } from '@mui/material/Typography';
 export const Root = styled(ListItem, {
     name: 'info-list-item',
     slot: 'root',
+    shouldForwardProp: (prop) =>
+        prop !== 'iconColor' &&
+        prop !== 'iconColor' &&
+        prop !== 'backgroundColor' &&
+        prop !== 'wrapSubtitle' &&
+        prop !== 'wrapTitle' &&
+        prop !== 'wrapInfo',
 })<
     Pick<
         InfoListItemProps,
@@ -53,6 +60,7 @@ export const InfoListItemContentContainer = styled(ListItemButton, {
 export const StatusStripe = styled(Box, {
     name: 'info-list-item',
     slot: 'statusStripe',
+    shouldForwardProp: (prop) => prop !== 'statusColor',
 })<Pick<InfoListItemProps, 'statusColor'>>(({ statusColor }) => ({
     position: 'absolute',
     top: 0,
@@ -77,6 +85,7 @@ export const InfoListItemDivider = styled(Divider, {
 export const Icon = styled(Avatar, {
     name: 'info-list-item',
     slot: 'avatar',
+    shouldForwardProp: (prop) => prop !== 'statusColor' && prop !== 'iconColor' && prop !== 'iconAlign',
 })<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'>>(
     ({ statusColor, iconColor, avatar, iconAlign, theme }) => {
         const getIconColor = (): string => {
@@ -126,6 +135,7 @@ export const Icon = styled(Avatar, {
 export const InfoListItemAvatar = styled(Avatar, {
     name: 'info-list-item',
     slot: 'invisible',
+    shouldForwardProp: (prop) => prop !== 'statusColor' && prop !== 'iconColor',
 })<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar'>>(({ statusColor, iconColor, avatar, theme }) => {
     const getIconColor = (): string => {
         if (iconColor) return iconColor;
@@ -153,6 +163,7 @@ export const InfoListItemAvatar = styled(Avatar, {
 export const InfoListItemText = styled(ListItemText, {
     name: 'info-list-item',
     slot: 'listItemText',
+    shouldForwardProp: (prop) => prop !== 'leftComponent',
 })<Pick<InfoListItemProps, 'leftComponent'>>(({ leftComponent, theme }) => ({
     // we have to specify both here because the auto-swap from JSS isn't smart enough to do it when we use a function
     marginLeft: leftComponent ? (theme.direction === 'rtl' ? 0 : theme.spacing(2)) : 0,
@@ -162,6 +173,7 @@ export const InfoListItemText = styled(ListItemText, {
 export const Subtitle = styled(Typography, {
     name: 'info-list-item',
     slot: 'subtitle',
+    shouldForwardProp: (prop) => prop !== 'fontColor',
 })<Pick<InfoListItemProps & TypographyProps & BoxProps, 'fontColor' | 'component' | 'noWrap'>>(
     ({ fontColor, theme }) => ({
         fontWeight: 400,
@@ -173,6 +185,7 @@ export const Subtitle = styled(Typography, {
 export const Info = styled(Typography, {
     name: 'info-list-item',
     slot: 'info',
+    shouldForwardProp: (prop) => prop !== 'fontColor',
 })<Pick<InfoListItemProps & TypographyProps, 'fontColor' | 'noWrap'>>(({ fontColor, theme }) => ({
     fontWeight: 400,
     lineHeight: 1.3,
@@ -192,6 +205,7 @@ export const RightComponent = styled(Box, {
 export const InfoListItemChevron = styled(Chevron, {
     name: 'info-list-item',
     slot: 'chevron',
+    shouldForwardProp: (prop) => prop !== 'chevronColor',
 })<Pick<InfoListItemProps, 'chevronColor'>>(({ chevronColor, theme }) => ({
     color: chevronColor ? chevronColor : theme.palette.text.secondary,
     transform: theme.direction === 'rtl' ? 'scaleX(-1)' : '',

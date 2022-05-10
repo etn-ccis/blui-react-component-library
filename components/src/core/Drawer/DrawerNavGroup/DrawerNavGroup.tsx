@@ -52,6 +52,7 @@ export type DrawerNavGroupProps = SharedStyleProps &
 const Root = styled(List, {
     name: 'drawer-nav-group',
     slot: 'root',
+    shouldForwardProp: (prop) => prop !== 'backgroundColor',
 })<Pick<DrawerNavGroupProps, 'backgroundColor'>>(({ backgroundColor }) => ({
     backgroundColor: backgroundColor,
     paddingBottom: 0,
