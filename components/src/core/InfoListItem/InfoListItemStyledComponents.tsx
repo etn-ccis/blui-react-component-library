@@ -79,8 +79,9 @@ export const InfoListItemDivider = styled(Divider)<Pick<InfoListItemProps, 'divi
 export const Icon = styled(Avatar, {
     name: 'info-list-item',
     slot: 'avatar',
-    shouldForwardProp: (prop) => prop !== 'statusColor' && prop !== 'iconColor' && prop !== 'iconAlign' && prop !== 'isInvisible',
-})<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'>& {isInvisible?: boolean}>(
+    shouldForwardProp: (prop) =>
+        prop !== 'statusColor' && prop !== 'iconColor' && prop !== 'iconAlign' && prop !== 'isInvisible',
+})<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'> & { isInvisible?: boolean }>(
     ({ statusColor, iconColor, avatar, iconAlign, isInvisible, theme }) => {
         const getIconColor = (): string => {
             if (iconColor) return iconColor;
