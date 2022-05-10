@@ -49,10 +49,7 @@ export const Root = styled(ListItem, {
     };
 });
 
-export const InfoListItemContentContainer = styled(ListItemButton, {
-    name: 'info-list-item',
-    slot: 'listItemButtonRoot',
-})(() => ({
+export const InfoListItemContentContainer = styled(ListItemButton)(() => ({
     height: 'inherit',
     width: 'inherit',
 }));
@@ -71,10 +68,7 @@ export const StatusStripe = styled(Box, {
     backgroundColor: statusColor,
 }));
 
-export const InfoListItemDivider = styled(Divider, {
-    name: 'info-list-item',
-    slot: 'divider',
-})<Pick<InfoListItemProps, 'divider'>>(({ divider, theme }) => ({
+export const InfoListItemDivider = styled(Divider)<Pick<InfoListItemProps, 'divider'>>(({ divider, theme }) => ({
     position: 'absolute',
     bottom: 0,
     right: theme.direction === 'rtl' ? (divider === 'full' ? 0 : `4.5rem`) : 0,
@@ -85,9 +79,9 @@ export const InfoListItemDivider = styled(Divider, {
 export const Icon = styled(Avatar, {
     name: 'info-list-item',
     slot: 'avatar',
-    shouldForwardProp: (prop) => prop !== 'statusColor' && prop !== 'iconColor' && prop !== 'iconAlign',
-})<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'>>(
-    ({ statusColor, iconColor, avatar, iconAlign, theme }) => {
+    shouldForwardProp: (prop) => prop !== 'statusColor' && prop !== 'iconColor' && prop !== 'iconAlign' && prop !== 'isInvisible',
+})<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'>& {isInvisible?: boolean}>(
+    ({ statusColor, iconColor, avatar, iconAlign, isInvisible, theme }) => {
         const getIconColor = (): string => {
             if (iconColor) return iconColor;
             if (avatar) {
@@ -128,6 +122,7 @@ export const Icon = styled(Avatar, {
             width: `2.5rem`,
             height: `2.5rem`,
             marginRight: theme.spacing(2),
+            opacity: isInvisible ? 0 : 'auto',
         };
     }
 );
@@ -211,10 +206,7 @@ export const InfoListItemChevron = styled(Chevron, {
     transform: theme.direction === 'rtl' ? 'scaleX(-1)' : '',
 }));
 
-export const SubtitleSeparator = styled(Typography, {
-    name: 'info-list-item',
-    slot: 'separator',
-})<TypographyProps & BoxProps>(({ theme }) => ({
+export const SubtitleSeparator = styled(Typography)<TypographyProps & BoxProps>(({ theme }) => ({
     display: 'inline-block',
     lineHeight: 1.3,
     color: 'inherit',
