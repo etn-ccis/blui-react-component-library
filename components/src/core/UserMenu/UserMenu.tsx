@@ -81,6 +81,25 @@ const Header = styled(Box, {
     },
 }));
 
+const UserMenuNavGroups = styled(Box, {
+    name: 'user-menu',
+    slot: 'nav-groups',
+})(() => ({
+    '&:active, &:focus': {
+        outline: 'none',
+    },
+}));
+
+const DrawerBottomSheet = styled(Drawer, {
+    name: 'user-menu',
+    slot: 'bottom-sheet',
+})(({ theme }) => ({
+    width: '100%',
+    maxWidth: theme.breakpoints.values.sm,
+    margin: 'auto',
+    userSelect: 'none',
+}));
+
 export type UserMenuProps = BoxProps & {
     /** MUI Avatar component to display as the menu trigger */
     avatar: JSX.Element;
@@ -214,7 +233,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     const printMenuItems = useCallback(
         (): JSX.Element[] =>
             menuGroups.map((group: UserMenuGroup, index: number) => (
-                <div className={defaultClasses.navGroups} key={index}>
+                <UserMenuNavGroups className={defaultClasses.navGroups} key={index}>
                     <DrawerNavGroup
                         divider={false}
                         itemIconColor={group.iconColor}
@@ -233,7 +252,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                                 })
                         )}
                     />
-                </div>
+                </UserMenuNavGroups>
             )),
         [menuGroups, defaultClasses]
     );
@@ -256,7 +275,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
             });
         }
         return showBottomSheet ? (
-            <Drawer
+            <DrawerBottomSheet
                 data-cy="bottom-sheet"
                 anchor={'bottom'}
                 transitionDuration={theme.transitions.duration.short}
@@ -266,7 +285,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 {...BottomSheetProps}
             >
                 {printMenu()}
-            </Drawer>
+            </DrawerBottomSheet>
         ) : (
             <Menu
                 open={Boolean(anchorEl)}

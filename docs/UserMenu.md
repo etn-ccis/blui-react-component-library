@@ -113,3 +113,55 @@ The `menuGroups` prop of the `<UserMenu>` includes many properties from the [`<D
 | title       | The text to show on the first line  | `string`      | yes      |         |
 
 </div>
+
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
+
+| Global CSS Class                | Description                                             |
+| ------------------------------- | ------------------------------------------------------- |
+| .BluiUserMenu-root              | Styles applied to the root element                      |
+| .BluiUserMenu-avatarRoot        | Styles applied to the avatarRoot element                |
+| .BluiUserMenu-header            | Styles applied to the header element                    |
+| .BluiUserMenu-headerRoot        | Styles applied to the headerRoot element                |
+| .BluiUserMenu-menuTitle         | Styles applied to the menuTitle element                 |
+| .BluiUserMenu-navigation        | Styles applied to the navigation element                |
+| .BluiUserMenu-navGroups         | Styles applied to the navGroups element                 |
+| .BluiUserMenu-noCursor          | Styles applied to the noCursor element                  |
+| .BluiUserMenu-bottomSheet       | Styles applied to the bottomSheet element               |
+| .BluiUserMenu-headerTitle       | Styles applied to the title element                     |
+| .BluiUserMenu-headerSubtitle    | Styles applied to the subtitle element                  |
+
+```tsx
+import { UserMenu } from '@brightlayer-ui/react-components';
+import { Avatar, Menu } from '@material-ui/core';
+import Email from '@material-ui/icons/Email';
+import Settings from '@material-ui/icons/Settings';
+import Send from '@material-ui/icons/Send';
+import * as Colors from '@brightlayer-ui/colors';
+
+const avatar = <Avatar><SendIcon/></Avatar>;
+...
+/* Using menuGroups prop */
+<UserMenu avatar={avatar} menuGroups={[
+    {
+       items: [
+           {
+               title: 'Log Out',
+               icon: <Send />,
+           },
+           {
+               title: 'Account Settings',
+               icon: <Settings />,
+           },
+           {
+               title: 'Contact Us',
+               icon: <Email />,
+           },
+       ],
+    },
+]} 
+sx={{p: 1, '& .BluiUserMenu-avatarRoot' : { color: Colors.blue[500] }}}
+/>
+
+```
