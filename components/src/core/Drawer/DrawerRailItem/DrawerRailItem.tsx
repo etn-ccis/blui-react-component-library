@@ -267,7 +267,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
 
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
-            return <Icon className={combine('icon')}>{icon}</Icon>;
+            return <Icon className={combine('icon')} itemIconColor={itemIconColor}>{icon}</Icon>;
         }
     }, [icon, combine]);
 
@@ -294,15 +294,19 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                 [defaultClasses.condensed]: condensed,
                 [classes.condensed]: condensed && classes.condensed,
             })}
+            statusColor={statusColor}
+            backgroundColor={backgroundColor}
+            activeItemIconColor={activeItemIconColor}
+            activeItemFontColor={activeItemFontColor}
             disableRipple={!ripple || !hasAction}
             onClick={onClickAction}
             {...RippleProps}
         >
             {/* Active Item Highlight */}
-            {active && <ActiveItem className={combine('active')} />}
+            {active && <ActiveItem className={combine('active')} activeItemBackgroundColor={activeItemBackgroundColor} />}
             {/* Status Color Stripe */}
             {statusColor !== undefined && statusColor !== '' && (
-                <StatusStripe className={combine('statusStripe')} data-test={'status-stripe'} />
+                <StatusStripe className={combine('statusStripe')} data-test={'status-stripe'} statusColor={statusColor}/>
             )}
             {/* Icon */}
             {getIcon()}
@@ -314,6 +318,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                         [defaultClasses.titleActive]: active,
                         [classes.titleActive]: active && classes.titleActive,
                     })}
+                    itemFontColor={itemFontColor}
                 >
                     {title}
                 </Title>
