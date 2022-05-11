@@ -40,17 +40,11 @@ export type UserMenuGroup = {
 const Root = styled(Box, {
     name: 'user-menu',
     slot: 'root',
-})(({ theme }) => ({
+})(() => ({
     [`& .${userMenuClasses.avatarRoot}`]: {
         cursor: 'pointer',
         height: `2.5rem`,
         width: `2.5rem`,
-    },
-    [`& .${userMenuClasses.bottomSheet}`]: {
-        width: '100%',
-        maxWidth: theme.breakpoints.values.sm,
-        margin: 'auto',
-        userSelect: 'none',
     },
 }));
 
@@ -70,11 +64,6 @@ const Header = styled(Box, {
     },
     [`& .${userMenuClasses.navigation}`]: {
         alignSelf: 'center',
-    },
-    [`& .${userMenuClasses.navGroups}`]: {
-        '&:active, &:focus': {
-            outline: 'none',
-        },
     },
     [`& .${userMenuClasses.noCursor}`]: {
         cursor: 'inherit',
