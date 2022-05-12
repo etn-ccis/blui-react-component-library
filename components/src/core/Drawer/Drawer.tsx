@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Theme, useTheme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
+import { useTheme, styled } from '@mui/material/styles';
 import MUIDrawer, { DrawerProps as MUIDrawerProps } from '@mui/material/Drawer';
 import { DrawerBodyProps } from './DrawerBody';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
@@ -10,58 +8,26 @@ import { DrawerContext } from './DrawerContext';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import { findChildByType, mergeStyleProp } from './utilities';
 import clsx from 'clsx';
+import { cx } from '@emotion/css';
+import drawerClasses, { DrawerClasses, DrawerClassKey, getDrawerUtilityClass } from './DrawerClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import Box from '@mui/material/Box';
 
 export const RAIL_WIDTH = 'calc(3.5rem + 16px)'; // 72;
 export const RAIL_WIDTH_CONDENSED = 'calc(1.5rem + 32px)'; //56;
 
-const useStyles = makeStyles<Theme, DrawerProps>((theme: Theme) =>
-    createStyles({
-        root: {
-            transition: theme.transitions.create('width', { duration: theme.transitions.duration.leavingScreen }),
-            minHeight: '100%',
-            backgroundColor: (props): string => props.backgroundColor || 'transparent',
-            '&$expanded': {
-                transition: theme.transitions.create('width', {
-                    duration: theme.transitions.duration.enteringScreen,
-                }),
-            },
-        },
-        content: {
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            width: '100%',
-        },
-        expanded: {},
-        paper: {
-            overflow: 'hidden',
-            position: 'inherit',
-            boxShadow: theme.shadows[4],
-            borderWidth: 0,
-            '&$sideBorder': {
-                borderWidth: 1,
-                boxShadow: 'none',
-            },
-        },
-        sideBorder: {},
-    })
-);
+const useUtilityClasses = (ownerState: DrawerProps): Record<DrawerClassKey, string> => {
+    const { classes } = ownerState;
 
-type DrawerClasses = {
-    /** Styles applied to the drawer content container */
-    content?: string;
+    const slots = {
+        root: ['root'],
+        content: ['content'],
+        expanded: ['expanded'],
+        paper: ['paper'],
+        sideBorder: ['sideBorder'],
+    };
 
-    /** Styles applied to the root element when the drawer is expanded */
-    expanded?: string;
-
-    /** MUI Drawer style override for the root element */
-    root?: string;
-
-    /** MUI Drawer style override for desktop viewports */
-    paper?: string;
-
-    /** Styles to apply to the root element when using side border */
-    sideBorder?: string;
+    return composeClasses(slots, getDrawerUtilityClass, classes);
 };
 
 export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
@@ -127,9 +93,47 @@ export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
     };
 export type DrawerComponentProps = DrawerProps; // alias
 
+const Root = styled(MUIDrawer, {
+    name: 'drawer',
+    slot: 'root',
+    shouldForwardProp: (prop) => prop !== 'backgroundColor',
+})<Pick<DrawerProps, 'backgroundColor'>>(({ backgroundColor, theme }) => ({
+    transition: theme.transitions.create('width', { duration: theme.transitions.duration.leavingScreen }),
+    minHeight: '100%',
+    backgroundColor: backgroundColor || 'transparent',
+    '&$expanded': {
+        transition: theme.transitions.create('width', {
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+
+    [`& .${drawerClasses.expanded}`]: {},
+    [`& .${drawerClasses.paper}`]: {
+        overflow: 'hidden',
+        position: 'inherit',
+        boxShadow: theme.shadows[4],
+        borderWidth: 0,
+        '&$sideBorder': {
+            borderWidth: 1,
+            boxShadow: 'none',
+        },
+    },
+    [`& .${drawerClasses.sideBorder}`]: {},
+}));
+
+const Content = styled(Box, {
+    name: 'drawer',
+    slot: 'content',
+})(() => ({
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    width: '100%',
+}));
+
 const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (props: DrawerProps, ref: any) => {
     let hoverDelay: NodeJS.Timeout;
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     const theme = useTheme();
     const { setPadding, setDrawerOpen } = useDrawerLayout();
     const [hover, setHover] = useState(false);
@@ -315,7 +319,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
     }, [variant, noLayout, isDrawerOpen, getDrawerWidth]);
 
     return (
-        <MUIDrawer
+        <Root
             ref={ref}
             {...drawerProps}
             variant={variant === 'temporary' ? variant : 'permanent'}
@@ -330,6 +334,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                     [classes.sideBorder]: sideBorder && classes.sideBorder,
                 }),
             }}
+            backgroundColor={backgroundColor}
             style={Object.assign(
                 {
                     width: getDrawerWidth(),
@@ -345,11 +350,11 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                     activeItem: activeItem,
                 }}
             >
-                <div className={clsx(defaultClasses.content, classes.content)} style={{ width: getContentWidth() }}>
+                <Content className={cx(defaultClasses.content, classes.content)} style={{ width: getContentWidth() }}>
                     {getDrawerContents()}
-                </div>
+                </Content>
             </DrawerContext.Provider>
-        </MUIDrawer>
+        </Root>
     );
 };
 /**
