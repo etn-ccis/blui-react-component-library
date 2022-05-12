@@ -8,7 +8,6 @@ module.exports = {
         browser: true,
         jest: true,
     },
-    ignorePatterns: ["DrawerFooter.tsx"],
     rules: {
         '@typescript-eslint/no-empty-function': 'off',
         'no-empty-function': 'off',
