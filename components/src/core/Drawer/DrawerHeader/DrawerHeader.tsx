@@ -12,7 +12,7 @@ import drawerHeaderClasses, {
 } from './DrawerHeaderClasses';
 import { cx } from '@emotion/css';
 import clsx from 'clsx';
-import { styled, SxProps } from '@mui/material/styles';
+import { styled, SxProps, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 
@@ -66,7 +66,7 @@ export type DrawerHeaderProps = ToolbarProps & {
     /** Custom content for header title area */
     titleContent?: ReactNode;
     /** Optional sx props to apply style overrides */
-    sx?: SxProps;
+    sx?: SxProps<Theme>;
 };
 
 const Root = styled(Toolbar, { name: 'drawer-header', slot: 'root' })<
