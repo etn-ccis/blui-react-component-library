@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Divider from '@mui/material/Divider';
 import { useDrawerContext } from '../DrawerContext';
-import { styled } from '@mui/material/styles';
+import { styled, Theme, SxProps } from '@mui/material/styles';
 import { cx } from '@emotion/css';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import drawerFooterClasses, {
@@ -39,7 +39,7 @@ export type DrawerFooterProps = BoxProps & {
      */
     hideContentOnCollapse?: boolean;
     /** Optional sx props to apply style overrides */
-    sx?: any;
+    sx?: SxProps<Theme>;
 };
 
 const Root = styled(Box, {
