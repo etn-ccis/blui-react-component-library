@@ -8,6 +8,7 @@ import { separate, withKeys } from '../utilities';
 import PropTypes from 'prop-types';
 import {
     Icon,
+    IconAvatar,
     Info,
     InfoListItemChevron,
     InfoListItemContentContainer,
@@ -166,22 +167,34 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         if (icon) {
             return (
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    <Icon
-                        statusColor={statusColor}
-                        iconColor={iconColor}
-                        avatar={avatar}
-                        iconAlign={iconAlign}
-                        className={combine('avatar')}
-                    >
-                        {icon}
-                    </Icon>
+                    {avatar ? (
+                        <IconAvatar
+                            statusColor={statusColor}
+                            iconColor={iconColor}
+                            avatar={avatar}
+                            iconAlign={iconAlign}
+                            className={combine('avatar')}
+                        >
+                            {icon}
+                        </IconAvatar>
+                    ) : (
+                        <Icon
+                            statusColor={statusColor}
+                            iconColor={iconColor}
+                            avatar={avatar}
+                            iconAlign={iconAlign}
+                            className={combine('avatar')}
+                        >
+                            {icon}
+                        </Icon>
+                    )}
                 </ListItemAvatar>
             );
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    <Icon
+                    <IconAvatar
                         className={combine('avatar')}
                         statusColor={statusColor}
                         iconColor={iconColor}
