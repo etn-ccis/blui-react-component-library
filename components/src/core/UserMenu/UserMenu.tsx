@@ -83,10 +83,12 @@ const DrawerBottomSheet = styled(Drawer, {
     name: 'user-menu',
     slot: 'bottom-sheet',
 })(({ theme }) => ({
-    width: '100%',
-    maxWidth: theme.breakpoints.values.sm,
-    margin: 'auto',
-    userSelect: 'none',
+    [`& .${userMenuClasses.bottomSheet}`]: {
+        width: '100%',
+        maxWidth: theme.breakpoints.values.sm,
+        margin: 'auto',
+        userSelect: 'none',
+    },
 }));
 
 export type UserMenuProps = BoxProps & {
