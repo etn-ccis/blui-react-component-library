@@ -20,7 +20,8 @@ export const Root = styled(ListItem, {
         prop !== 'backgroundColor' &&
         prop !== 'wrapSubtitle' &&
         prop !== 'wrapTitle' &&
-        prop !== 'wrapInfo',
+        prop !== 'wrapInfo' &&
+        prop !== 'ripple',
 })<
     Pick<
         InfoListItemProps,
@@ -80,7 +81,11 @@ export const Icon = styled(Avatar, {
     name: 'info-list-item',
     slot: 'avatar',
     shouldForwardProp: (prop) =>
-        prop !== 'statusColor' && prop !== 'iconColor' && prop !== 'iconAlign' && prop !== 'isInvisible',
+        prop !== 'statusColor' &&
+        prop !== 'iconColor' &&
+        prop !== 'iconAlign' &&
+        prop !== 'isInvisible' &&
+        prop !== 'avatar',
 })<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'> & { isInvisible?: boolean }>(
     ({ statusColor, iconColor, avatar, iconAlign, isInvisible, theme }) => {
         const getIconColor = (): string => {
@@ -131,7 +136,7 @@ export const Icon = styled(Avatar, {
 export const InfoListItemAvatar = styled(Avatar, {
     name: 'info-list-item',
     slot: 'invisible',
-    shouldForwardProp: (prop) => prop !== 'statusColor' && prop !== 'iconColor',
+    shouldForwardProp: (prop) => prop !== 'statusColor' && prop !== 'iconColor' && prop !== 'avatar',
 })<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar'>>(({ statusColor, iconColor, avatar, theme }) => {
     const getIconColor = (): string => {
         if (iconColor) return iconColor;
