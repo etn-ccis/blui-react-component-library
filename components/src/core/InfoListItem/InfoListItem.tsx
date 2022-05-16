@@ -183,7 +183,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                             iconColor={iconColor}
                             avatar={avatar}
                             iconAlign={iconAlign}
-                            className={combine('avatar')}
+                            className={combine('icon')}
                         >
                             {icon}
                         </Icon>
