@@ -18,7 +18,7 @@ import drawerRailItemClasses, {
     getDrawerRailItemUtilityClass,
 } from './DrawerRailItemClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { styled } from '@mui/material/styles';
+import { styled, SxProps, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
 const useUtilityClasses = (ownerState: DrawerRailItemProps): Record<DrawerRailItemClassKey, string> => {
@@ -80,6 +80,9 @@ export type DrawerRailItemProps = SharedStyleProps & {
 
     /** Sets whether to disable the tooltip on hover */
     disableRailTooltip?: boolean;
+
+    /** Optional sx props to apply style overrides */
+    sx?: SxProps<Theme>;
 };
 
 const Root = styled(ButtonBase, {
@@ -198,6 +201,9 @@ const Title = styled(Typography, {
     hyphens: 'auto',
     zIndex: 200,
     color: itemFontColor || theme.palette.text.primary,
+    [`& .${drawerRailItemClasses.titleActive}`]: {
+        fontWeight: 600,
+    },
 }));
 
 const DrawerRailItemDivider = styled(Divider, {
@@ -208,9 +214,6 @@ const DrawerRailItemDivider = styled(Divider, {
     bottom: 0,
     left: 0,
     width: '100%',
-    [`& .${drawerRailItemClasses.itemActive}`]: {
-        fontWeight: 600,
-    },
 }));
 
 const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailItemProps> = (
@@ -234,6 +237,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         icon,
         itemID,
         onClick,
+        sx,
         // onItemSelect,
         title = '',
         ButtonBaseProps,
@@ -304,6 +308,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             activeItemFontColor={activeItemFontColor}
             disableRipple={!ripple || !hasAction}
             onClick={onClickAction}
+            sx={sx}
             {...RippleProps}
         >
             {/* Active Item Highlight */}
