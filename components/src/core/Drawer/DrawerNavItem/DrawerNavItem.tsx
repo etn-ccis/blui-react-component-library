@@ -96,8 +96,8 @@ export type DrawerNavItemProps = SharedStyleProps &
         disableRailTooltip?: boolean;
         /** Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props */
         InfoListItemProps?: Partial<BLUIInfoListItemProps>;
-         /** Optional sx props to apply style overrides */
-    sx?: SxProps<Theme>;
+        /** Optional sx props to apply style overrides */
+        sx?: SxProps<Theme>;
     } & Pick<BoxProps, 'children'>;
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
@@ -272,7 +272,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         statusColor,
         subtitle: itemSubtitle,
         title: itemTitle,
-        sx
+        sx,
     } = props;
 
     const [expanded, setExpanded] = useState(isInActiveTree);
