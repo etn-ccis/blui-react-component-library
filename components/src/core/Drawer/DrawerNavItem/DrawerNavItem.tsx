@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDrawerContext } from '../DrawerContext';
 import { useNavGroupContext } from '../NavGroupContext';
 import { usePrevious } from '../../hooks/usePrevious';
-import { Theme, useTheme, styled } from '@mui/material/styles';
+import { Theme, useTheme, styled, SxProps } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Collapse from '@mui/material/Collapse';
 import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../../InfoListItem';
@@ -96,6 +96,8 @@ export type DrawerNavItemProps = SharedStyleProps &
         disableRailTooltip?: boolean;
         /** Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props */
         InfoListItemProps?: Partial<BLUIInfoListItemProps>;
+         /** Optional sx props to apply style overrides */
+    sx?: SxProps<Theme>;
     } & Pick<BoxProps, 'children'>;
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
@@ -270,6 +272,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         statusColor,
         subtitle: itemSubtitle,
         title: itemTitle,
+        sx
     } = props;
 
     const [expanded, setExpanded] = useState(isInActiveTree);
@@ -462,6 +465,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                     depth={depth}
                     nestedBackgroundColor={nestedBackgroundColor}
                     backgroundColor={backgroundColor}
+                    sx={sx}
                 >
                     {active && (
                         <ActiveItem
