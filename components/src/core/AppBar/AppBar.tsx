@@ -26,6 +26,7 @@ const useUtilityClasses = (ownerState: AppBarProps): Record<AppBarClassKey, stri
 const Root = styled(MuiAppBar, {
     name: 'app-bar',
     slot: 'root',
+    shouldForwardProp: (prop) => prop !== 'backgroundImage',
 })<Pick<AppBarProps, 'animationDuration' | 'backgroundImage'>>(({ animationDuration, backgroundImage, theme }) => ({
     overflow: 'hidden',
     transition: theme.transitions.create(['height'], {
