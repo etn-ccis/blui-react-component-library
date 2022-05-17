@@ -8,7 +8,6 @@ import { separate, withKeys } from '../utilities';
 import PropTypes from 'prop-types';
 import {
     Icon,
-    IconAvatar,
     Info,
     InfoListItemChevron,
     InfoListItemContentContainer,
@@ -168,7 +167,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             return (
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
                     {avatar ? (
-                        <IconAvatar
+                        <Icon
                             statusColor={statusColor}
                             iconColor={iconColor}
                             avatar={avatar}
@@ -176,7 +175,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                             className={combine('avatar')}
                         >
                             {icon}
-                        </IconAvatar>
+                        </Icon>
                     ) : (
                         <Icon
                             statusColor={statusColor}
@@ -194,7 +193,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             return (
                 // a dummy component to maintain the padding
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    <IconAvatar
+                    <Icon
                         className={combine('avatar')}
                         statusColor={statusColor}
                         iconColor={iconColor}

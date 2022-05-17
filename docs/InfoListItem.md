@@ -106,7 +106,7 @@ import { Link } from 'react-router-dom';
 
 You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
 
-| Global CSS Class                       Description                              |
+| Global CSS Class                     | Description                              |
 | ------------------------------------ | ---------------------------------------- |
 | .BluiInfoListItem-root               | Styles applied to the root element       |
 | .BluiInfoListItem-avatar             | Styles applied to the avatar             |

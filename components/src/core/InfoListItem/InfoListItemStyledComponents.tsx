@@ -77,47 +77,17 @@ export const InfoListItemDivider = styled(Divider)<Pick<InfoListItemProps, 'divi
     zIndex: 0,
 }));
 
-export const IconAvatar = styled(Avatar, {
-    name: 'info-list-item',
-    slot: 'avatar',
-    shouldForwardProp: (prop) =>
-        prop !== 'statusColor' &&
-        prop !== 'iconColor' &&
-        prop !== 'iconAlign' &&
-        prop !== 'isInvisible' &&
-        prop !== 'avatar',
-})<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'> & { isInvisible?: boolean }>(
-    ({ statusColor, iconColor, avatar, isInvisible, theme }) => {
-        const getIconColor = (): string => {
-            if (iconColor) return iconColor;
-            if (avatar) {
-                return statusColor
-                    ? color(statusColor).isDark()
-                        ? Colors.white[50]
-                        : Colors.black[500]
-                    : Colors.white[50]; // default avatar is dark gray -> white text
-            }
-            return statusColor ? statusColor : theme.palette.text.secondary;
-        };
-        return {
-            backgroundColor: statusColor || Colors.black[500],
-            color: getIconColor(),
-            width: `2.5rem`,
-            height: `2.5rem`,
-            padding: `.5rem`,
-            marginRight: theme.spacing(2),
-            opacity: isInvisible ? 0 : 'auto',
-        };
-    }
-);
-
 export const Icon = styled(Avatar, {
     name: 'info-list-item',
     slot: 'icon',
     shouldForwardProp: (prop) =>
-        prop !== 'statusColor' && prop !== 'iconColor' && prop !== 'iconAlign' && prop !== 'avatar',
-})<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'>>(
-    ({ statusColor, iconColor, avatar, iconAlign, theme }) => {
+        prop !== 'statusColor' &&
+        prop !== 'iconColor' &&
+        prop !== 'iconAlign' &&
+        prop !== 'avatar' &&
+        prop !== 'isInvisible',
+})<Pick<InfoListItemProps, 'statusColor' | 'iconColor' | 'avatar' | 'iconAlign'> & { isInvisible?: boolean }>(
+    ({ statusColor, iconColor, avatar, iconAlign, isInvisible, theme }) => {
         const getIconColor = (): string => {
             if (iconColor) return iconColor;
             if (avatar) {
@@ -140,6 +110,16 @@ export const Icon = styled(Avatar, {
                     return 'center';
             }
         };
+        if (avatar) {
+            return {
+                backgroundColor: statusColor || Colors.black[500],
+                color: getIconColor(),
+                width: `2.5rem`,
+                height: `2.5rem`,
+                padding: `.5rem`,
+                marginRight: theme.spacing(2),
+            };
+        }
         return {
             color: getIconColor(),
             justifyContent: getIconAlignment(),
@@ -148,6 +128,7 @@ export const Icon = styled(Avatar, {
             width: `2.5rem`,
             height: `2.5rem`,
             marginRight: theme.spacing(2),
+            opacity: isInvisible ? 0 : 'auto',
         };
     }
 );
