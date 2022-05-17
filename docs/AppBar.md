@@ -79,3 +79,9 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | expanded           | Styles applied to the root element when expanded     |
 | collapsed          | Styles applied to the root element when collapsed    |
 | expandedBackground | Styles applied to the background image when expanded |
+
+
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop (with the exception of the `expanded` class).
+
