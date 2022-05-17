@@ -545,6 +545,7 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | drawer   | Styles applied to the drawer container                         |
 | expanded | Styles applied to the root element when the drawer is expanded |
 
+<!--@TODO: update table to use .Mui-expanded class to override expanded styles with sx-->
 
 ### `sx` Class Overrides
 
