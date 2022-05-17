@@ -184,6 +184,7 @@ const StatusStripe = styled(Box, {
 const Icon = styled(Avatar, {
     name: 'drawer-rail-item',
     slot: 'icon',
+    shouldForwardProp: (prop) => prop !== 'itemIconColor',
 })<Pick<DrawerRailItemProps, 'itemIconColor'>>(({ itemIconColor, theme }) => ({
     color: itemIconColor || theme.palette.text.primary,
     backgroundColor: 'transparent',
