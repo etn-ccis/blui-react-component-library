@@ -88,7 +88,11 @@ export type DrawerRailItemProps = SharedStyleProps & {
 const Root = styled(ButtonBase, {
     name: 'drawer-rail-item',
     slot: 'root',
-    shouldForwardProp: (prop) => prop !== 'backgroundColor',
+    shouldForwardProp: (prop) =>
+        prop !== 'backgroundColor' &&
+        prop !== 'activeItemIconColor' &&
+        prop !== 'activeItemFontColor' &&
+        prop !== 'statusColor',
 })<
     Pick<
         DrawerRailItemProps,
@@ -171,6 +175,7 @@ const ActiveItem = styled(Box, {
 const StatusStripe = styled(Box, {
     name: 'drawer-rail-item',
     slot: 'statusStripe',
+    shouldForwardProp: (prop) => prop !== 'statusColor',
 })<Pick<DrawerRailItemProps, 'statusColor'>>(({ statusColor }) => ({
     position: 'absolute',
     top: 0,
@@ -196,6 +201,7 @@ const Icon = styled(Avatar, {
 const Title = styled(Typography, {
     name: 'drawer-rail-item',
     slot: 'title',
+    shouldForwardProp: (prop) => prop !== 'itemFontColor',
 })<Pick<DrawerRailItemProps, 'itemFontColor'>>(({ itemFontColor, theme }) => ({
     lineHeight: '1rem',
     wordBreak: 'break-word',
