@@ -1,25 +1,36 @@
 import React, { ReactNode, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Theme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
 import Toolbar, { ToolbarProps } from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import { useDrawerContext } from './DrawerContext';
+import { useDrawerContext } from '../DrawerContext';
+import drawerHeaderClasses, {
+    DrawerHeaderClasses,
+    DrawerHeaderClassKey,
+    getDrawerHeaderUtilityClass,
+} from './DrawerHeaderClasses';
+import { cx } from '@emotion/css';
 import clsx from 'clsx';
+import { styled, SxProps, Theme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-type DrawerHeaderClasses = {
-    root?: string;
-    background?: string;
-    content?: string;
-    navigation?: string;
-    nonCLickable?: string;
-    nonClickableIcon?: string;
-    railIcon?: string;
-    subtitle?: string;
-    title?: string;
+const useUtilityClasses = (ownerState: DrawerHeaderProps): Record<DrawerHeaderClassKey, string> => {
+    const { classes } = ownerState;
+    const slots = {
+        root: ['root'],
+        background: ['background'],
+        content: ['content'],
+        navigation: ['navigation'],
+        nonClickable: ['nonClickable'],
+        nonClickableIcon: ['nonClickableIcon'],
+        railIcon: ['railIcon'],
+        subtitle: ['subtitle'],
+        title: ['title'],
+    };
+
+    return composeClasses(slots, getDrawerHeaderUtilityClass, classes);
 };
 
 export type DrawerHeaderProps = ToolbarProps & {
@@ -54,92 +65,98 @@ export type DrawerHeaderProps = ToolbarProps & {
     title?: string;
     /** Custom content for header title area */
     titleContent?: ReactNode;
+    /** Optional sx props to apply style overrides */
+    sx?: SxProps<Theme>;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            paddingRight: 0,
-            paddingLeft: 0,
-            width: '100%',
-            alignItems: 'center',
-            boxSizing: 'border-box',
-            minHeight: `4rem`,
-            [theme.breakpoints.down('sm')]: {
-                minHeight: `3.5rem`,
-            },
-            backgroundColor: (props: DrawerHeaderProps): string =>
-                props.backgroundColor ||
-                (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
-            color: (props: DrawerHeaderProps): string =>
-                props.fontColor ||
-                theme.palette.getContrastText(
-                    props.backgroundColor ||
-                        (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
-                ),
+const Root = styled(Toolbar, { name: 'drawer-header', slot: 'root' })<
+    Pick<DrawerHeaderProps, 'backgroundColor' | 'fontColor'>
+>(({ backgroundColor, fontColor, theme }) => ({
+    paddingRight: 0,
+    paddingLeft: 0,
+    width: '100%',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    minHeight: `4rem`,
+    [theme.breakpoints.down('sm')]: {
+        minHeight: `3.5rem`,
+    },
+    backgroundColor:
+        backgroundColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
+    color:
+        fontColor ||
+        theme.palette.getContrastText(
+            backgroundColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
+        ),
+    [`& .${drawerHeaderClasses.nonClickable}`]: {},
+    [`& .${drawerHeaderClasses.railIcon}`]: {
+        marginLeft: theme.spacing(0.5),
+        minWidth: 'calc(3.5rem + 16px)',
+        justifyContent: 'center',
+        '&$nonClickable': {
+            marginLeft: 0,
         },
-        background: {
-            position: 'absolute',
-            zIndex: 0,
-            width: '100%',
-            backgroundSize: 'cover',
-            height: '100%',
-            backgroundPosition: 'center',
-            backgroundImage: (props: DrawerHeaderProps): string => `url(${props.backgroundImage})`,
-            opacity: (props: DrawerHeaderProps): number => props.backgroundOpacity,
-        },
-        content: {
-            marginLeft: theme.spacing(2),
-            paddingRight: theme.spacing(2),
-            minHeight: '4rem',
-            display: 'flex',
-            justifyContent: 'center',
-            alignSelf: 'stretch',
-            flexDirection: 'column',
-            width: 'calc(100% - 2.5rem - 32px)',
-            boxSizing: 'border-box',
-            zIndex: 1,
-            [theme.breakpoints.down('sm')]: {
-                minHeight: `3.5rem`,
-            },
-        },
-        navigation: {
-            marginLeft: theme.spacing(2),
-            minWidth: '2.5rem',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            zIndex: 1,
-        },
-        nonClickable: {},
-        nonClickableIcon: {
-            display: 'flex',
-            padding: 0,
-        },
-        railIcon: {
-            marginLeft: theme.spacing(0.5),
-            minWidth: 'calc(3.5rem + 16px)',
-            justifyContent: 'center',
-            '&$nonClickable': {
-                marginLeft: 0,
-            },
-        },
-        subtitle: {
-            lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
-            marginTop: '-0.125rem',
-        },
-        title: {
-            fontWeight: 600,
-            lineHeight: '1.6rem', // Anything lower than 1.6rem cuts off bottom text of 'g' or 'y'.
-        },
-    })
-);
+    },
+}));
+
+const Background = styled(Box, { name: 'drawer-header', slot: 'background' })<
+    Pick<DrawerHeaderProps, 'backgroundImage' | 'backgroundOpacity'>
+>(({ backgroundImage, backgroundOpacity }) => ({
+    position: 'absolute',
+    zIndex: 0,
+    width: '100%',
+    backgroundSize: 'cover',
+    height: '100%',
+    backgroundPosition: 'center',
+    backgroundImage: `url(${backgroundImage})`,
+    opacity: backgroundOpacity,
+}));
+
+const Navigation = styled(Box, { name: 'drawer-header', slot: 'navigation' })(({ theme }) => ({
+    marginLeft: theme.spacing(2),
+    minWidth: '2.5rem',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    zIndex: 1,
+}));
+
+const Content = styled(Box, { name: 'drawer-header', slot: 'content' })(({ theme }) => ({
+    marginLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    minHeight: '4rem',
+    display: 'flex',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    flexDirection: 'column',
+    width: 'calc(100% - 2.5rem - 32px)',
+    boxSizing: 'border-box',
+    zIndex: 1,
+    [theme.breakpoints.down('sm')]: {
+        minHeight: `3.5rem`,
+    },
+}));
+
+const Title = styled(Typography, { name: 'drawer-header', slot: 'title' })(() => ({
+    fontWeight: 600,
+    lineHeight: '1.6rem', // Anything lower than 1.6rem cuts off bottom text of 'g' or 'y'.
+}));
+
+const Subtitle = styled(Typography, { name: 'drawer-header', slot: 'subtitle' })(() => ({
+    lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
+    marginTop: '-0.125rem',
+}));
+
+const NonClickableIcon = styled(Box, { name: 'drawer-header', slot: 'non-clickable-icon' })(() => ({
+    display: 'flex',
+    padding: 0,
+}));
 
 const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderProps> = (
     props: DrawerHeaderProps,
     ref: any
 ) => {
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     const {
         backgroundImage,
         classes,
@@ -154,6 +171,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         backgroundColor,
         backgroundOpacity,
         fontColor,
+        sx,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherToolbarProps
     } = props;
@@ -163,43 +181,56 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
     const getHeaderContent = useCallback(
         (): ReactNode =>
             titleContent || (
-                <div className={clsx(defaultClasses.content, classes.content)}>
-                    <Typography
+                <Content className={cx(defaultClasses.content, classes.content)}>
+                    <Title
                         noWrap
                         variant={'h6'}
-                        className={clsx(defaultClasses.title, classes.title)}
+                        className={cx(defaultClasses.title, classes.title)}
                         data-test={'drawer-header-title'}
                     >
                         {title}
-                    </Typography>
+                    </Title>
 
                     {subtitle && (
-                        <Typography
+                        <Subtitle
                             noWrap
                             variant={'body2'}
-                            className={clsx(defaultClasses.subtitle, classes.subtitle)}
+                            className={cx(defaultClasses.subtitle, classes.subtitle)}
                             data-test={'drawer-header-subtitle'}
                         >
                             {subtitle}
-                        </Typography>
+                        </Subtitle>
                     )}
-                </div>
+                </Content>
             ),
         [defaultClasses, classes, title, subtitle, titleContent]
     );
 
     const getBackgroundImage = useCallback(
         (): JSX.Element | null =>
-            backgroundImage ? <div className={clsx(defaultClasses.background, classes.background)} /> : null,
+            backgroundImage ? (
+                <Background
+                    className={cx(defaultClasses.background, classes.background)}
+                    backgroundImage={backgroundImage}
+                    backgroundOpacity={backgroundOpacity}
+                />
+            ) : null,
         [backgroundImage, defaultClasses, classes]
     );
 
     return (
         <>
-            <Toolbar ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherToolbarProps}>
+            <Root
+                ref={ref}
+                className={cx(defaultClasses.root, classes.root)}
+                backgroundColor={backgroundColor}
+                fontColor={fontColor}
+                sx={sx}
+                {...otherToolbarProps}
+            >
                 {getBackgroundImage()}
                 {icon && (
-                    <div
+                    <Navigation
                         className={clsx(defaultClasses.navigation, classes.navigation, {
                             [defaultClasses.railIcon]: variant === 'rail' && !condensed,
                             [classes.railIcon]: variant === 'rail' && !condensed && classes.railIcon,
@@ -219,14 +250,14 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                             </IconButton>
                         )}
                         {!onIconClick && (
-                            <div className={clsx(defaultClasses.nonClickableIcon, classes.nonClickableIcon)}>
+                            <NonClickableIcon className={cx(defaultClasses.nonClickableIcon, classes.nonClickableIcon)}>
                                 {icon}
-                            </div>
+                            </NonClickableIcon>
                         )}
-                    </div>
+                    </Navigation>
                 )}
                 {getHeaderContent()}
-            </Toolbar>
+            </Root>
             {divider && <Divider />}
         </>
     );
