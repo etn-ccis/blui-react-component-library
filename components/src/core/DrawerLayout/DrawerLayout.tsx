@@ -94,8 +94,8 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
                     defaultClasses.root,
                     classes.root,
                     {
-                        [defaultClasses.expanded]: !drawerOpen,
-                        [classes.expanded]: !drawerOpen,
+                        [defaultClasses.expanded]: drawerOpen,
+                        [classes.expanded]: drawerOpen,
                     },
                     userClassName
                 )}
