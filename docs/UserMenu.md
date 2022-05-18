@@ -115,22 +115,14 @@ The `menuGroups` prop of the `<UserMenu>` includes many properties from the [`<D
 </div>
 
 ### `sx` Class Overrides
+`sx` Class Overrides will not work on userMenu component except below two classes. For details check issuse [437](https://github.com/brightlayer-ui/react-component-library/issues/437).
 
-You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
+Currently, It supports the following classNames:
 
 | Global CSS Class                | Description                                             |
 | ------------------------------- | ------------------------------------------------------- |
 | .BluiUserMenu-root              | Styles applied to the root element                      |
 | .BluiUserMenu-avatarRoot        | Styles applied to the avatarRoot element                |
-| .BluiUserMenu-header            | Styles applied to the header element                    |
-| .BluiUserMenu-headerRoot        | Styles applied to the headerRoot element                |
-| .BluiUserMenu-menuTitle         | Styles applied to the menuTitle element                 |
-| .BluiUserMenu-navigation        | Styles applied to the navigation element                |
-| .BluiUserMenu-navGroups         | Styles applied to the navGroups element                 |
-| .BluiUserMenu-noCursor          | Styles applied to the noCursor element                  |
-| .BluiUserMenu-bottomSheet       | Styles applied to the bottomSheet element               |
-| .BluiUserMenu-headerTitle       | Styles applied to the title element                     |
-| .BluiUserMenu-headerSubtitle    | Styles applied to the subtitle element                  |
 
 ```tsx
 import { UserMenu } from '@brightlayer-ui/react-components';
