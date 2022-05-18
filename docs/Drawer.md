@@ -276,6 +276,15 @@ import DrawerFooter from '@brightlayer-ui/react-components/core/Drawer';
 
 Any other props supplied will be provided to the root element (`div`).
 
+#### Classes
+
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerFooter>` supports the following keys:
+
+| Name   | Description                          |
+| ------ | ------------------------------------ |
+| root   | Styles applied to the root element   |
+| hidden | Styles applied to the hidden element |
+
 ## Drawer Nav Item
 
 The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be generated for you by using the `items` prop of the `<DrawerNavGroup>` and passing in an array of objects with the following API. You can also create these line items by directly passing them as children to the `<DrawerNavGroup>`. Each `<DrawerNavItem>` also supports the ability to nest items (using its own `items` prop or children). When using the rail variant of the `<Drawer>`, you should use `<DrawerRailItem>` instead (see below).
@@ -386,17 +395,48 @@ When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerRailItem>` supports the following keys:
 
-| Name         | Description                                                     |
-| ------------ | --------------------------------------------------------------- |
-| root         | Styles applied to the root element wrapping the InfoListItem    |
-| active       | Styles applied to the active item highlight element             |
-| condensed    | Styles applied to the root element when condensed is true       |
-| divider      | Styles applied to the divider element                           |
-| icon         | Styles applied to the icon wrapper                              |
-| statusStripe | Styles applied to the status stripe                             |
-| title        | Styles applied to the title text                                |
-| titleActive  | Styles applied to the title text if the item is the active item |
-| ripple       | Styles applied to the ripple                                    |
+| Name          | Description                                                     |
+| ------------- | --------------------------------------------------------------- |
+| root          | Styles applied to the root element wrapping the InfoListItem    |
+| active        | Styles applied to the active item highlight element             |
+| condensed     | Styles applied to the root element when condensed is true       |
+| divider       | Styles applied to the divider element                           |
+| icon          | Styles applied to the icon wrapper                              |
+| statusStripe  | Styles applied to the status stripe                             |
+| title         | Styles applied to the title text                                |
+| titleActive   | Styles applied to the title text if the item is the active item |
+| ripple        | Styles applied to the ripple                                    |
+| cursorPointer | Styles applied to the root element when cursor is pointer       |
+| itemActive    | Styles applied to the active item                               |
+
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
+
+| Global CSS Class                  | Description                                                     |
+| --------------------------------- | --------------------------------------------------------------- |
+| .BluiDrawerRailItem-root          | Styles applied to the root element                              |
+| .BluiDrawerRailItem-active        | Styles applied to the active element                            |
+| .BluiDrawerRailItem-condensed     | Styles applied to the root element when condensed is true       |
+| .BluiDrawerRailItem-divider       | Styles applied to the divider element                           |
+| .BluiDrawerRailItem-icon          | Styles applied to the icon wrapper                              |
+| .BluiDrawerRailItem-statusStripe  | Styles applied to the status stripe                             |
+| .BluiDrawerRailItem-title         | Styles applied to the title text                                |
+| .BluiDrawerRailItem-titleActive   | Styles applied to the title text if the item is the active item |
+| .BluiDrawerRailItem-ripple        | Styles applied to the ripple                                    |
+| .BluiDrawerRailItem-cursorPointer | Styles applied to the root element when cursor is pointer       |
+| .BluiDrawerRailItem-itemActive    | Styles applied to the active item                               |
+
+```tsx
+import { DrawerRailItem } from '@brightlayer-ui/react-components';
+import Menu from '@mui/icons-material/Menu';
+...
+ <DrawerRailItem
+    itemID="itemID"
+    icon={<Menu />}
+    sx={{ backgroundColor: 'red' }}
+/>
+```
 
 ### Tips
 
@@ -504,3 +544,8 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | content  | Styles applied to the body content container                   |
 | drawer   | Styles applied to the drawer container                         |
 | expanded | Styles applied to the root element when the drawer is expanded |
+
+
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop (with the exception of the `expanded` class).
