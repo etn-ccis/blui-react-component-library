@@ -7,7 +7,7 @@ export type UserMenuClasses = {
     avatarRoot?: string;
     /** Styles applied to the header element. */
     header?: string;
-    /** Styles applied to the headerRoot element. */
+    /** Styles applied to the headerRoot. */
     headerRoot?: string;
     /** Styles applied to the menuTitle element. */
     menuTitle?: string;
@@ -15,7 +15,7 @@ export type UserMenuClasses = {
     navigation?: string;
     /** Styles applied to the navGroups element. */
     navGroups?: string;
-    /** Styles applied to the noCursor element. */
+    /** Styles applied to the noCursor. */
     noCursor?: string;
     /** Styles applied to the bottomSheet element. */
     bottomSheet?: string;
