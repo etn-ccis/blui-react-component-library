@@ -42,48 +42,49 @@ const useUtilityClasses = (ownerState: DrawerRailItemProps): Record<DrawerRailIt
 };
 
 export type ExtendedNavItem = NavItem & { ButtonBaseProps?: Partial<MuiButtonBaseProps> };
-export type DrawerRailItemProps = SharedStyleProps & {
-    /** Custom classes for default style overrides */
-    classes?: DrawerRailItemClasses;
+export type DrawerRailItemProps = SharedStyleProps &
+    MuiButtonBaseProps & {
+        /** Custom classes for default style overrides */
+        classes?: DrawerRailItemClasses;
 
-    /** Enables a condensed view for the `rail` variant which removes NavItem labels and shows tooltips instead
-     *
-     * Default: false
-     *
-     * This is managed automatically when using the `<DrawerRailItem>` inside of a `<DrawerNavGroup>`
-     */
-    condensed?: boolean;
+        /** Enables a condensed view for the `rail` variant which removes NavItem labels and shows tooltips instead
+         *
+         * Default: false
+         *
+         * This is managed automatically when using the `<DrawerRailItem>` inside of a `<DrawerNavGroup>`
+         */
+        condensed?: boolean;
 
-    /** Sets whether to hide the rail item */
-    hidden?: boolean;
+        /** Sets whether to hide the rail item */
+        hidden?: boolean;
 
-    /** A component to render for the left icon */
-    icon: JSX.Element;
+        /** A component to render for the left icon */
+        icon: JSX.Element;
 
-    /** An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem
-     *
-     * Should be unique within the entire list. Will be used as the list key too.
-     */
-    itemID: string;
+        /** An unique identifier of the NavItem. Item will have 'active' style when this matches activeItem
+         *
+         * Should be unique within the entire list. Will be used as the list key too.
+         */
+        itemID: string;
 
-    /** A function to execute when clicked */
-    onClick?: (e?: React.MouseEvent<HTMLElement>) => void;
+        /** A function to execute when clicked */
+        onClick?: (e?: React.MouseEvent<HTMLElement>) => void;
 
-    /** Status stripe and icon color */
-    statusColor?: string;
+        /** Status stripe and icon color */
+        statusColor?: string;
 
-    /** The text to show on the first line */
-    title?: string;
+        /** The text to show on the first line */
+        title?: string;
 
-    /** Used to override [ButtonBase](https://material-ui.com/api/button-base/) default props */
-    ButtonBaseProps?: Partial<MuiButtonBaseProps>;
+        /** Used to override [ButtonBase](https://material-ui.com/api/button-base/) default props */
+        ButtonBaseProps?: Partial<MuiButtonBaseProps>;
 
-    /** Sets whether to disable the tooltip on hover */
-    disableRailTooltip?: boolean;
+        /** Sets whether to disable the tooltip on hover */
+        disableRailTooltip?: boolean;
 
-    /** Optional sx props to apply style overrides */
-    sx?: SxProps<Theme>;
-};
+        /** Optional sx props to apply style overrides */
+        sx?: SxProps<Theme>;
+    };
 
 const Root = styled(ButtonBase, {
     name: 'drawer-rail-item',
