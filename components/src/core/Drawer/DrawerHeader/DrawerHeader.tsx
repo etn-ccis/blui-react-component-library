@@ -224,7 +224,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}
                 sx={sx}
-                style={{paddingLeft: 0, paddingRight: 0}}
+                style={{ paddingLeft: 0, paddingRight: 0 }}
                 {...otherToolbarProps}
             >
                 {getBackgroundImage()}
