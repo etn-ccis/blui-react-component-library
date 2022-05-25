@@ -201,6 +201,7 @@ const ActiveComponent = styled(Box, {
 const NestedListGroup = styled(List, {
     name: 'drawer-nav-item',
     slot: 'nested-list-group',
+    shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
 })<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(({ nestedBackgroundColor, theme }) => ({
     backgroundColor: nestedBackgroundColor || (theme.palette.mode === 'light' ? white[200] : darkBlack[500]),
     paddingBottom: 0,
