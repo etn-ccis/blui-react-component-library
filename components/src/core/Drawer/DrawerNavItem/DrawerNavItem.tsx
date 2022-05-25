@@ -113,6 +113,7 @@ const calcNestedPadding = (theme: Theme, depth: number): string => {
 const Root = styled(Box, {
     name: 'drawer-nav-item',
     slot: 'value',
+    shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
 })<Pick<DrawerNavItemProps, 'depth' | 'nestedBackgroundColor' | 'backgroundColor'>>(
     ({ depth, nestedBackgroundColor, backgroundColor }) => ({
         backgroundColor: (depth > 0 ? nestedBackgroundColor : backgroundColor) || 'transparent',
