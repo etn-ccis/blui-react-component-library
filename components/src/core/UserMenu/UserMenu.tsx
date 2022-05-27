@@ -1,57 +1,31 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme, Theme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
+import { useTheme, styled } from '@mui/material/styles';
+import React, { useCallback, useState, useEffect } from 'react';
 import Drawer, { DrawerProps } from '@mui/material/Drawer';
 import Menu, { MenuProps as standardMenuProps } from '@mui/material/Menu';
-import clsx from 'clsx';
-import React, { useCallback, useState, useEffect, HTMLAttributes } from 'react';
+import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
+import { Box, BoxProps } from '@mui/material';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import userMenuClasses, { UserMenuClasses, UserMenuClassKey, getUserMenuUtilityClass } from './UserMenuClasses';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {},
-        avatarRoot: {
-            cursor: 'pointer',
-            height: `2.5rem`,
-            width: `2.5rem`,
-        },
-        header: {
-            '&:active, &:focus': {
-                outline: 'none',
-            },
-        },
-        headerRoot: {
-            minHeight: '4rem',
-        },
-        menuTitle: {
-            fontSize: '1rem',
-            lineHeight: 1.4,
-        },
-        navigation: {
-            alignSelf: 'center',
-        },
-        navGroups: {
-            '&:active, &:focus': {
-                outline: 'none',
-            },
-        },
-        noCursor: {
-            cursor: 'inherit',
-        },
-        bottomSheet: {
-            width: '100%',
-            maxWidth: theme.breakpoints.values.sm,
-            margin: 'auto',
-            userSelect: 'none',
-        },
-    })
-);
+const useUtilityClasses = (ownerState: UserMenuProps): Record<UserMenuClassKey, string> => {
+    const { classes } = ownerState;
 
-export type UserMenuClasses = {
-    root?: string;
-    bottomSheet?: string;
+    const slots = {
+        root: ['root'],
+        avatarRoot: ['avatarRoot'],
+        header: ['header'],
+        headerRoot: ['headerRoot'],
+        menuTitle: ['menuTitle'],
+        navigation: ['navigation'],
+        navGroups: ['navGroups'],
+        noCursor: ['noCursor'],
+        bottomSheet: ['bottomSheet'],
+    };
+
+    return composeClasses(slots, getUserMenuUtilityClass, classes);
 };
 
 // make itemID optional so that no legacy code is broken
@@ -63,7 +37,61 @@ export type UserMenuGroup = {
     title?: string;
 };
 
-export type UserMenuProps = HTMLAttributes<HTMLDivElement> & {
+const Root = styled(Box, {
+    name: 'user-menu',
+    slot: 'root',
+})(() => ({
+    [`& .${userMenuClasses.avatarRoot}`]: {
+        cursor: 'pointer',
+        height: `2.5rem`,
+        width: `2.5rem`,
+    },
+}));
+
+const Header = styled(Box, {
+    name: 'user-menu',
+    slot: 'header',
+})(() => ({
+    '&:active, &:focus': {
+        outline: 'none',
+    },
+    [`& .${userMenuClasses.headerRoot}`]: {
+        minHeight: '4rem',
+    },
+    [`& .${userMenuClasses.menuTitle}`]: {
+        fontSize: '1rem',
+        lineHeight: 1.4,
+    },
+    [`& .${userMenuClasses.navigation}`]: {
+        alignSelf: 'center',
+    },
+    [`& .${userMenuClasses.noCursor}`]: {
+        cursor: 'inherit',
+    },
+}));
+
+const UserMenuNavGroups = styled(Box, {
+    name: 'user-menu',
+    slot: 'nav-groups',
+})(() => ({
+    '&:active, &:focus': {
+        outline: 'none',
+    },
+}));
+
+const DrawerBottomSheet = styled(Drawer, {
+    name: 'user-menu',
+    slot: 'bottom-sheet',
+})(({ theme }) => ({
+    [`& .${userMenuClasses.bottomSheet}`]: {
+        width: '100%',
+        maxWidth: theme.breakpoints.values.sm,
+        margin: 'auto',
+        userSelect: 'none',
+    },
+}));
+
+export type UserMenuProps = BoxProps & {
     /** MUI Avatar component to display as the menu trigger */
     avatar: JSX.Element;
     /** Custom classes for default style overrides */
@@ -104,9 +132,9 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         BottomSheetProps,
         onClose,
         onOpen,
-        ...otherDivProps
+        ...otherProps
     } = props;
-    const defaultClasses = useStyles(theme);
+    const defaultClasses = useUtilityClasses(props);
     const [anchorEl, setAnchorEl] = useState(null);
 
     const closeMenu = useCallback(() => {
@@ -157,7 +185,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 onClick: preserveOnClick ? onClickFn : undefined,
                 classes: {
                     ...aProps.classes,
-                    root: clsx(
+                    root: cx(
                         defaultClasses.avatarRoot,
                         preserveOnClick ? '' : defaultClasses.noCursor,
                         aProps?.classes?.root
@@ -173,7 +201,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         if (menuTitle) {
             const nonClickableAvatar = formatAvatar(false);
             return (
-                <div className={defaultClasses.header} key={'header'}>
+                <Header className={defaultClasses.header} key={'header'}>
                     <DrawerHeader
                         icon={nonClickableAvatar}
                         title={menuTitle}
@@ -187,7 +215,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                             navigation: defaultClasses.navigation,
                         }}
                     />
-                </div>
+                </Header>
             );
         }
     }, [menuTitle, menuSubtitle, avatar]);
@@ -196,7 +224,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     const printMenuItems = useCallback(
         (): JSX.Element[] =>
             menuGroups.map((group: UserMenuGroup, index: number) => (
-                <div className={defaultClasses.navGroups} key={index}>
+                <UserMenuNavGroups className={defaultClasses.navGroups} key={index}>
                     <DrawerNavGroup
                         divider={false}
                         itemIconColor={group.iconColor}
@@ -215,7 +243,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                                 })
                         )}
                     />
-                </div>
+                </UserMenuNavGroups>
             )),
         [menuGroups, defaultClasses]
     );
@@ -238,17 +266,17 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
             });
         }
         return showBottomSheet ? (
-            <Drawer
+            <DrawerBottomSheet
                 data-cy="bottom-sheet"
                 anchor={'bottom'}
                 transitionDuration={theme.transitions.duration.short}
                 open={Boolean(anchorEl)}
                 onClose={closeMenu}
-                classes={{ paper: clsx(defaultClasses.bottomSheet, classes.bottomSheet) }}
+                classes={{ paper: cx(defaultClasses.bottomSheet, classes.bottomSheet) }}
                 {...BottomSheetProps}
             >
                 {printMenu()}
-            </Drawer>
+            </DrawerBottomSheet>
         ) : (
             <Menu
                 open={Boolean(anchorEl)}
@@ -263,10 +291,10 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt, BottomSheetProps]);
 
     return (
-        <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+        <Root ref={ref} className={cx(defaultClasses.root, classes.root)} {...otherProps}>
             {formatAvatar(true)}
             {canDisplayMenu() && formatMenu()}
-        </div>
+        </Root>
     );
 };
 /**
