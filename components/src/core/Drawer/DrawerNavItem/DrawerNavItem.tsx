@@ -144,9 +144,11 @@ const InfoListItemRoot = styled(InfoListItem, {
     name: 'drawer-nav-item',
     slot: 'info-list-item-root',
 })<Pick<DrawerNavItemProps, 'depth'>>(({ depth, theme }) => ({
-    // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
-    paddingLeft: theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, depth),
-    paddingRight: theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, depth),
+    '& .MuiListItemButton-root': {
+        // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
+        paddingLeft: theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, depth),
+        paddingRight: theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, depth),
+    },
     [`&.${drawerNavItemClasses.nestedTitle}`]: {
         fontWeight: 400,
     },
