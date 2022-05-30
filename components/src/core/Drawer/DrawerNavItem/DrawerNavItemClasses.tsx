@@ -10,11 +10,6 @@ export type DrawerNavItemClasses = {
     title?: string;
     titleActive?: string;
     ripple?: string;
-    expanded?: string;
-    drawerOpen?: string;
-    noIconTitle?: string;
-    textSecondary?: string;
-    square?: string;
 };
 
 export type DrawerNavItemClassKey = keyof DrawerNavItemClasses;
@@ -33,11 +28,6 @@ const drawerNavItemClasses: DrawerNavItemClasses = generateUtilityClasses('BluiD
     'title',
     'titleActive',
     'ripple',
-    'expanded',
-    'drawerOpen',
-    'noIconTitle',
-    'textSecondary',
-    'square',
 ]);
 
 export default drawerNavItemClasses;

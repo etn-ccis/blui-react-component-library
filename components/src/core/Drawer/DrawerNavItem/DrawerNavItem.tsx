@@ -38,11 +38,6 @@ const useUtilityClasses = (ownerState: DrawerNavItemProps): Record<DrawerNavItem
         title: ['title'],
         titleActive: ['titleActive'],
         ripple: ['ripple'],
-        expanded: ['expanded'],
-        drawerOpen: ['drawerOpen'],
-        noIconTitle: ['noIconTitle'],
-        textSecondary: ['textSecondary'],
-        square: ['square'],
     };
 
     return composeClasses(slots, getDrawerNavItemUtilityClass, classes);
@@ -123,57 +118,56 @@ const Root = styled(Box, {
 const ActiveItem = styled(Box, {
     name: 'drawer-nav-item',
     slot: 'active',
-})(({ theme }) => ({
+})<Pick<DrawerNavItemProps, 'activeItemBackgroundShape'>>(({ activeItemBackgroundShape, theme }) => ({
     content: '""',
     zIndex: 0,
     position: 'absolute',
     height: '100%',
-    width: `calc(100% - ${theme.spacing(1)})`,
+    width: activeItemBackgroundShape === 'square' ? '100%' : `calc(100% - ${theme.spacing(1)})`,
     left: 0,
     top: 0,
-    borderRadius: `0px 1.625rem 1.625rem 0px`,
+    borderRadius: activeItemBackgroundShape === 'square' ? 0 : `0px 1.625rem 1.625rem 0px`,
     opacity: 0.9,
-    '&$square': {
-        width: '100%',
-        borderRadius: 0,
-    },
-    [`&.${drawerNavItemClasses.square}`]: {},
 }));
 
 const InfoListItemRoot = styled(InfoListItem, {
     name: 'drawer-nav-item',
     slot: 'info-list-item-root',
-})<Pick<DrawerNavItemProps, 'depth'>>(({ depth, theme }) => ({
-    '& .MuiListItemButton-root': {
-        // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
-        paddingLeft: theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, depth),
-        paddingRight: theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, depth),
-    },
-    [`&.${drawerNavItemClasses.nestedTitle}`]: {
-        fontWeight: 400,
-    },
-    [`&.${drawerNavItemClasses.drawerOpen}`]: {},
-    [`&.${drawerNavItemClasses.noIconTitle}`]: {
-        opacity: 0,
-        transition: theme.transitions.create('opacity'),
-        '&$drawerOpen': {
-            opacity: 1,
-            transition: theme.transitions.create('opacity'),
+})<Pick<DrawerNavItemProps, 'depth' | 'hidePadding' | 'icon'> & { drawerOpen: boolean; active: boolean }>(
+    ({ depth, hidePadding, icon, drawerOpen, active, theme }) => ({
+        '& .MuiListItemButton-root': {
+            // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
+            paddingLeft: theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, depth),
+            paddingRight: theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, depth),
         },
-    },
-    [`&.${drawerNavItemClasses.textSecondary}`]: {
-        color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
-    },
-    [`&.${drawerNavItemClasses.titleActive}`]: {
-        fontWeight: 600,
-    },
-    [`&.${drawerNavItemClasses.title}`]: {
-        fontWeight: 400,
-    },
-    [`&.${drawerNavItemClasses.ripple}`]: {
-        backgroundColor: theme.palette.primary.main,
-    },
-}));
+        '& .MuiTypography-root': {
+            [`&.${drawerNavItemClasses.nestedTitle}`]: {
+                fontWeight: 400,
+            },
+            [`&.${drawerNavItemClasses.title}`]: {
+                fontWeight: 400,
+            },
+            [`&.${drawerNavItemClasses.titleActive}`]: {
+                fontWeight: 600,
+            },
+        },
+        '& .BluiInfoListItem-title': {
+            opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
+            transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
+        },
+        '& .BluiInfoListItem-subtitle': {
+            opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
+            transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
+            color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
+        },
+        '& .BluiInfoListItem-info': {
+            color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
+        },
+        [`&.${drawerNavItemClasses.ripple}`]: {
+            backgroundColor: theme.palette.primary.main,
+        },
+    })
+);
 
 const Chevron = styled(ChevronRight, {
     name: 'drawer-nav-item',
@@ -186,7 +180,7 @@ const Chevron = styled(ChevronRight, {
 const ActiveComponent = styled(Box, {
     name: 'drawer-nav-item',
     slot: 'active-component',
-})(({ theme }) => ({
+})<Pick<DrawerNavItemProps, 'collapseIcon'> & { expanded: boolean }>(({ collapseIcon, expanded, theme }) => ({
     transitionDuration: `${theme.transitions.duration.standard}ms`,
     cursor: 'inherit',
     display: 'flex',
@@ -194,10 +188,7 @@ const ActiveComponent = styled(Box, {
     marginRight: '-1rem',
     alignItems: 'center',
     justifyContent: 'center',
-    '&$expanded': {
-        transform: 'rotate(180deg)',
-    },
-    [`&.${drawerNavItemClasses.expanded}`]: {},
+    transform: !collapseIcon && expanded ? 'rotate(180deg)' : '',
 }));
 
 const NestedListGroup = styled(List, {
@@ -341,9 +332,9 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         e.stopPropagation();
                     }
                 }}
-                className={cx(defaultClasses.expandIcon, classes.expandIcon, {
-                    [defaultClasses.expanded]: !collapseIcon && expanded,
-                })}
+                className={cx(defaultClasses.expandIcon, classes.expandIcon)}
+                collapseIcon={collapseIcon}
+                expanded={expanded}
             >
                 {collapseIcon && expanded ? collapseIcon : expandIcon}
             </ActiveComponent>
@@ -446,16 +437,6 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 (active || (!disableActiveItemParentStyles && isInActiveTree)) && classes.titleActive,
             [defaultClasses.nestedTitle]: depth > 0,
             [classes.nestedTitle]: depth > 0 && classes.nestedTitle,
-            [defaultClasses.noIconTitle]: hidePadding && !icon,
-            [defaultClasses.drawerOpen]: drawerOpen,
-        }),
-        subtitle: cx({
-            [defaultClasses.textSecondary]: !active,
-            [defaultClasses.noIconTitle]: hidePadding && !icon,
-            [defaultClasses.drawerOpen]: drawerOpen,
-        }),
-        info: cx({
-            [defaultClasses.textSecondary]: !active,
         }),
     };
 
@@ -473,9 +454,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 >
                     {active && (
                         <ActiveItem
-                            className={cx(defaultClasses.active, classes.active, {
-                                [defaultClasses.square]: activeItemBackgroundShape === 'square',
-                            })}
+                            className={cx(defaultClasses.active, classes.active)}
                             style={{ backgroundColor: activeItemBackgroundColor }}
                         />
                     )}
@@ -508,6 +487,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         hidePadding={hidePadding}
                         ripple={ripple}
                         depth={depth}
+                        drawerOpen={drawerOpen}
+                        active={active}
                         ListItemButtonProps={{ ...RippleProps }}
                         {...InfoListItemProps}
                         classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
