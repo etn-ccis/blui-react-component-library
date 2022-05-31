@@ -171,7 +171,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         backgroundColor,
         backgroundOpacity,
         fontColor,
-        disableGutters = true, 
+        disableGutters = true,
         sx,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherToolbarProps
