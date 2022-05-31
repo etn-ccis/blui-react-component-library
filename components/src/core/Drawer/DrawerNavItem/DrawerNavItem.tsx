@@ -140,16 +140,14 @@ const InfoListItemRoot = styled(InfoListItem, {
             paddingLeft: theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, depth),
             paddingRight: theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, depth),
         },
-        '& .MuiTypography-root': {
-            [`&.${drawerNavItemClasses.nestedTitle}`]: {
-                fontWeight: 400,
-            },
-            [`&.${drawerNavItemClasses.title}`]: {
-                fontWeight: 400,
-            },
-            [`&.${drawerNavItemClasses.titleActive}`]: {
-                fontWeight: 600,
-            },
+        [`& .${drawerNavItemClasses.nestedTitle}`]: {
+            fontWeight: 400,
+        },
+        [`& .${drawerNavItemClasses.title}`]: {
+            fontWeight: 400,
+        },
+        [`& .${drawerNavItemClasses.titleActive}`]: {
+            fontWeight: 600,
         },
         '& .BluiInfoListItem-title': {
             opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
@@ -163,7 +161,7 @@ const InfoListItemRoot = styled(InfoListItem, {
         '& .BluiInfoListItem-info': {
             color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
         },
-        [`&.${drawerNavItemClasses.ripple}`]: {
+        [`&. ${drawerNavItemClasses.ripple}`]: {
             backgroundColor: theme.palette.primary.main,
         },
     })
