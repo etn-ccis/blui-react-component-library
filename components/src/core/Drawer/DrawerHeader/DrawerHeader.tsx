@@ -72,8 +72,6 @@ export type DrawerHeaderProps = ToolbarProps & {
 const Root = styled(Toolbar, { name: 'drawer-header', slot: 'root' })<
     Pick<DrawerHeaderProps, 'backgroundColor' | 'fontColor'>
 >(({ backgroundColor, fontColor, theme }) => ({
-    paddingRight: 0,
-    paddingLeft: 0,
     width: '100%',
     alignItems: 'center',
     boxSizing: 'border-box',
