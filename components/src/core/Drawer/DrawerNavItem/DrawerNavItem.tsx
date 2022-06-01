@@ -118,6 +118,7 @@ const Root = styled(Box, {
 const ActiveItem = styled(Box, {
     name: 'drawer-nav-item',
     slot: 'active',
+    shouldForwardProp: (prop) => prop !== 'activeItemBackgroundShape',
 })<Pick<DrawerNavItemProps, 'activeItemBackgroundShape'>>(({ activeItemBackgroundShape, theme }) => ({
     content: '""',
     zIndex: 0,
@@ -455,6 +456,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         <ActiveItem
                             className={cx(defaultClasses.active, classes.active)}
                             style={{ backgroundColor: activeItemBackgroundColor }}
+                            activeItemBackgroundShape={activeItemBackgroundShape}
                         />
                     )}
                     {/* @ts-ignore issue in the @types/react@17.0.41: https://github.com/mui/material-ui/issues/31932 */}
