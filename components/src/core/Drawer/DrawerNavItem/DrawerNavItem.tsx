@@ -133,6 +133,7 @@ const ActiveItem = styled(Box, {
 const InfoListItemRoot = styled(InfoListItem, {
     name: 'drawer-nav-item',
     slot: 'info-list-item-root',
+    shouldForwardProp: (prop) => prop !== 'drawerOpen' && prop !== 'active',
 })<Pick<DrawerNavItemProps, 'depth' | 'hidePadding' | 'icon'> & { drawerOpen: boolean; active: boolean }>(
     ({ depth, hidePadding, icon, drawerOpen, active, theme }) => ({
         '& .MuiListItemButton-root': {
@@ -269,7 +270,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     } = props;
 
     const [expanded, setExpanded] = useState(isInActiveTree);
-    const active = activeItem === itemID;
+    const active: boolean = activeItem === itemID;
     const hasAction = Boolean(onItemSelect || onClick || (items && items.length > 0) || Boolean(children));
     // only allow icons for the top level items
     const icon = !depth ? itemIcon : undefined;
