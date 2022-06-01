@@ -31,6 +31,7 @@ const useUtilityClasses = (ownerState: DrawerNavItemProps): Record<DrawerNavItem
     const slots = {
         root: ['root'],
         active: ['active'],
+        chevron: ['chevron'],
         expandIcon: ['expandIcon'],
         infoListItemRoot: ['infoListItemRoot'],
         nestedListGroup: ['nestedListGroup'],
@@ -47,6 +48,8 @@ export type DrawerNavItemProps = SharedStyleProps &
     NavItemSharedStyleProps & {
         /** Custom classes for default style overrides */
         classes?: DrawerNavItemClasses;
+        /** class for root default style overrides */
+        className?: string;
         /** The nested depth of the item
          *
          * Default: 0
@@ -242,6 +245,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         chevron,
         chevronColor,
         children,
+        className,
         classes = {},
         collapseIcon,
         depth = 0,
@@ -261,7 +265,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         notifyActiveParent = (): void => {},
         onClick,
         rightComponent = props.chevron && !props.items && !props.children ? (
-            <Chevron chevronColor={chevronColor} />
+            <Chevron chevronColor={chevronColor} className={cx(defaultClasses.chevron, classes.chevron)} />
         ) : undefined,
         ripple = true,
         statusColor,
@@ -446,7 +450,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 <Root
                     ref={ref}
                     style={{ position: 'relative' }}
-                    className={cx(defaultClasses.root, classes.root)}
+                    className={cx(defaultClasses.root, className, classes.root)}
                     depth={depth}
                     nestedBackgroundColor={nestedBackgroundColor}
                     backgroundColor={backgroundColor}
@@ -572,6 +576,7 @@ DrawerNavItem.propTypes = {
     ...NavItemSharedStylePropTypes,
     classes: PropTypes.shape({
         active: PropTypes.string,
+        chevron: PropTypes.string,
         expandIcon: PropTypes.string,
         infoListItemRoot: PropTypes.string,
         nestedListGroup: PropTypes.string,

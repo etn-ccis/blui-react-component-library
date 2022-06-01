@@ -3,6 +3,7 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export type DrawerNavItemClasses = {
     root?: string;
     active?: string;
+    chevron?: string;
     expandIcon?: string;
     infoListItemRoot?: string;
     nestedListGroup?: string;
@@ -21,6 +22,7 @@ export function getDrawerNavItemUtilityClass(slot: string): string {
 const drawerNavItemClasses: DrawerNavItemClasses = generateUtilityClasses('BluiDrawerNavItem', [
     'root',
     'active',
+    'chevron',
     'expandIcon',
     'infoListItemRoot',
     'nestedListGroup',
