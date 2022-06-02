@@ -47,6 +47,9 @@ export type DrawerRailItemProps = SharedStyleProps &
         /** Custom classes for default style overrides */
         classes?: DrawerRailItemClasses;
 
+        /** class for root default style overrides */
+        className?: string;
+
         /** Enables a condensed view for the `rail` variant which removes NavItem labels and shows tooltips instead
          *
          * Default: false
@@ -93,58 +96,70 @@ const Root = styled(ButtonBase, {
         prop !== 'backgroundColor' &&
         prop !== 'activeItemIconColor' &&
         prop !== 'activeItemFontColor' &&
-        prop !== 'statusColor',
+        prop !== 'statusColor' &&
+        prop !== 'hasAction' &&
+        prop !== 'itemActive' &&
+        prop !== 'condensed',
 })<
     Pick<
         DrawerRailItemProps,
-        'statusColor' | 'backgroundColor' | 'onClick' | 'activeItemIconColor' | 'activeItemFontColor'
-    >
->(({ statusColor, backgroundColor, onClick, activeItemIconColor, activeItemFontColor, theme }) => {
-    const lightenedPrimary = color(
-        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
-    )
-        .lighten(0.83)
-        .desaturate(0.39)
-        .string();
-    return {
-        width: RAIL_WIDTH,
-        minHeight: RAIL_WIDTH,
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'default',
-        padding: `1rem ${statusColor ? theme.spacing(1) : theme.spacing(0.5)}px`,
-        textAlign: 'center',
-        backgroundColor: backgroundColor || 'transparent',
-        '&:hover': {
-            backgroundColor: onClick ? theme.palette.action.hover : undefined,
-        },
-        [`& .${drawerRailItemClasses.cursorPointer}`]: {
-            cursor: 'pointer',
-        },
-        [`& .${drawerRailItemClasses.itemActive}`]: {
-            '& $icon': {
-                color:
-                    activeItemIconColor ||
-                    (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
+        'statusColor' | 'backgroundColor' | 'onClick' | 'activeItemIconColor' | 'activeItemFontColor' | 'condensed'
+    > & { hasAction: boolean; itemActive: boolean }
+>(
+    ({
+        statusColor,
+        backgroundColor,
+        onClick,
+        activeItemIconColor,
+        activeItemFontColor,
+        condensed,
+        hasAction,
+        itemActive,
+        theme,
+    }) => {
+        const lightenedPrimary = color(
+            theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        )
+            .lighten(0.83)
+            .desaturate(0.39)
+            .string();
+        return {
+            width: RAIL_WIDTH,
+            minHeight: RAIL_WIDTH,
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: hasAction ? 'cursor' : 'default',
+            padding: `1rem ${statusColor ? theme.spacing(1) : theme.spacing(0.5)}px`,
+            textAlign: 'center',
+            backgroundColor: backgroundColor || 'transparent',
+            '&:hover': {
+                backgroundColor: onClick ? theme.palette.action.hover : undefined,
             },
-            '& $title': {
-                color:
-                    activeItemFontColor ||
-                    (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
+            ...(itemActive && {
+                '& $icon': {
+                    color:
+                        activeItemIconColor ||
+                        (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
+                },
+                '& $title': {
+                    color:
+                        activeItemFontColor ||
+                        (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
+                },
+            }),
+            ...(condensed && {
+                width: RAIL_WIDTH_CONDENSED,
+                minHeight: RAIL_WIDTH_CONDENSED,
+            }),
+            [`& .${drawerRailItemClasses.ripple}`]: {
+                backgroundColor: theme.palette.primary.main,
             },
-        },
-        [`& .${drawerRailItemClasses.condensed}`]: {
-            width: RAIL_WIDTH_CONDENSED,
-            minHeight: RAIL_WIDTH_CONDENSED,
-        },
-        [`& .${drawerRailItemClasses.ripple}`]: {
-            backgroundColor: theme.palette.primary.main,
-        },
-    };
-});
+        };
+    }
+);
 
 const ActiveItem = styled(Box, {
     name: 'drawer-rail-item',
@@ -202,16 +217,16 @@ const Icon = styled(Avatar, {
 const Title = styled(Typography, {
     name: 'drawer-rail-item',
     slot: 'title',
-    shouldForwardProp: (prop) => prop !== 'itemFontColor',
-})<Pick<DrawerRailItemProps, 'itemFontColor'>>(({ itemFontColor, theme }) => ({
+    shouldForwardProp: (prop) => prop !== 'itemFontColor' && prop !== 'active',
+})<Pick<DrawerRailItemProps, 'itemFontColor'> & { active: boolean }>(({ itemFontColor, active, theme }) => ({
     lineHeight: '1rem',
     wordBreak: 'break-word',
     hyphens: 'auto',
     zIndex: 200,
     color: itemFontColor || theme.palette.text.primary,
-    [`& .${drawerRailItemClasses.titleActive}`]: {
+    ...(active && {
         fontWeight: 600,
-    },
+    }),
 }));
 
 const DrawerRailItemDivider = styled(Divider, {
@@ -240,6 +255,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         divider,
         ripple = true,
         classes = {},
+        className,
         condensed: itemCondensed,
         hidden,
         icon,
@@ -304,18 +320,20 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             ref={ref}
             {...ButtonBaseProps}
             {...directButtonBaseProps}
-            className={clsx(defaultClasses.root, classes.root, {
-                [defaultClasses.cursorPointer]: hasAction,
-                [defaultClasses.itemActive]: active,
-                [defaultClasses.condensed]: condensed,
-                [classes.condensed]: condensed && classes.condensed,
-            })}
+            className={cx(
+                defaultClasses.root,
+                classes.root,
+                condensed && classes.condensed ? classes.condensed : undefined,
+                className
+            )}
             statusColor={statusColor}
             backgroundColor={backgroundColor}
             activeItemIconColor={activeItemIconColor}
             activeItemFontColor={activeItemFontColor}
             disableRipple={!ripple || !hasAction}
             onClick={onClickAction}
+            hasAction={hasAction}
+            itemActive={active}
             sx={sx}
             {...RippleProps}
         >
@@ -337,11 +355,13 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {!condensed && (
                 <Title
                     variant={'caption'}
-                    className={clsx(defaultClasses.title, classes.title, {
-                        [defaultClasses.titleActive]: active,
-                        [classes.titleActive]: active && classes.titleActive,
-                    })}
+                    className={cx(
+                        defaultClasses.title,
+                        classes.title,
+                        active && classes.titleActive ? classes.titleActive : undefined
+                    )}
                     itemFontColor={itemFontColor}
+                    active={active}
                 >
                     {title}
                 </Title>
