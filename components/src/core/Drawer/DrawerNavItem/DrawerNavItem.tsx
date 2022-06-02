@@ -175,6 +175,7 @@ const InfoListItemRoot = styled(InfoListItem, {
 const Chevron = styled(ChevronRight, {
     name: 'drawer-nav-item',
     slot: 'chevron',
+    shouldForwardProp: (prop) => prop !== 'chevronColor',
 })<Pick<DrawerNavItemProps, 'chevronColor'>>(({ chevronColor, theme }) => ({
     color: chevronColor ? chevronColor : theme.palette.text.secondary,
     transform: theme.direction === 'rtl' ? 'scaleX(-1)' : '',
@@ -435,13 +436,16 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         root: ripple && hasAction ? undefined : cx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
         listItemButtonRoot:
             ripple && hasAction ? cx(defaultClasses.infoListItemRoot, classes.infoListItemRoot) : undefined,
-        title: clsx(defaultClasses.title, classes.title, {
-            [defaultClasses.titleActive]: active || (!disableActiveItemParentStyles && isInActiveTree),
-            [classes.titleActive]:
-                (active || (!disableActiveItemParentStyles && isInActiveTree)) && classes.titleActive,
-            [defaultClasses.nestedTitle]: depth > 0,
-            [classes.nestedTitle]: depth > 0 && classes.nestedTitle,
-        }),
+        title: cx(
+            defaultClasses.title,
+            classes.title,
+            active || (!disableActiveItemParentStyles && isInActiveTree) ? defaultClasses.titleActive : undefined,
+            (active || (!disableActiveItemParentStyles && isInActiveTree)) && classes.titleActive
+                ? classes.titleActive
+                : undefined,
+            depth > 0 ? defaultClasses.nestedTitle : undefined,
+            depth > 0 && classes.nestedTitle ? classes.nestedTitle : undefined
+        ),
     };
 
     return (
