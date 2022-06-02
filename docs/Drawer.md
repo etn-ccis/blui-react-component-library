@@ -102,6 +102,26 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | paper      | MUI Drawer style override for the underlying paper element     |
 | sideBorder | Styles applied when sideBorder is set to true                  |
 
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
+
+| Global CSS Class       | Description                                                    |
+| ---------------------- | -------------------------------------------------------------- |
+| .BluiDrawer-root       | Styles applied to the root element                             |
+| .BluiDrawer-content    | Styles applied to the drawer content container                 |
+| .BluiDrawer-expanded   | Styles applied to the root element when the drawer is expanded |
+| .BluiDrawer-paper      | MUI Drawer style override for the underlying paper element     |
+| .BluiDrawer-sideBorder | Styles applied when sideBorder is set to true                  |
+
+```tsx
+import { Drawer } from '@brightlayer-ui/react-components';
+...
+<Drawer variant='temporary' sx={{margin: '4px'}}
+>
+</Drawer>
+```
+
 ## Drawer Header
 
 The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By default, it renders multiple lines of text in the Brightlayer UI style. If you supply a `titleContent`, you can render your own custom content in the title area.
