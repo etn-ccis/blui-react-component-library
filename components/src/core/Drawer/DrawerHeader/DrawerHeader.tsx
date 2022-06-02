@@ -69,9 +69,11 @@ export type DrawerHeaderProps = ToolbarProps & {
     sx?: SxProps<Theme>;
 };
 
-const Root = styled(Toolbar, { name: 'drawer-header', slot: 'root' })<
-    Pick<DrawerHeaderProps, 'backgroundColor' | 'fontColor'>
->(({ backgroundColor, fontColor, theme }) => ({
+const Root = styled(Toolbar, {
+    name: 'drawer-header',
+    slot: 'root',
+    shouldForwardProp: (prop) => prop !== 'backgroundColor' && prop !== 'fontColor',
+})<Pick<DrawerHeaderProps, 'backgroundColor' | 'fontColor'>>(({ backgroundColor, fontColor, theme }) => ({
     width: '100%',
     alignItems: 'center',
     boxSizing: 'border-box',
