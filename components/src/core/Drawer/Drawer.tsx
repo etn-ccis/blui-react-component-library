@@ -96,29 +96,21 @@ export type DrawerComponentProps = DrawerProps; // alias
 const Root = styled(MUIDrawer, {
     name: 'drawer',
     slot: 'root',
-    shouldForwardProp: (prop) => prop !== 'backgroundColor',
-})<Pick<DrawerProps, 'backgroundColor'>>(({ backgroundColor, theme }) => ({
-    transition: theme.transitions.create('width', { duration: theme.transitions.duration.leavingScreen }),
+    shouldForwardProp: (prop) => prop !== 'backgroundColor' && prop !== 'sideBorder' && prop !== 'open',
+})<Pick<DrawerProps, 'backgroundColor' | 'sideBorder' | 'open'>>(({ backgroundColor, sideBorder, open, theme }) => ({
     minHeight: '100%',
     backgroundColor: backgroundColor || 'transparent',
-    '&$expanded': {
-        transition: theme.transitions.create('width', {
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-
-    [`& .${drawerClasses.expanded}`]: {},
+    transition: open
+        ? theme.transitions.create('width', {
+              duration: theme.transitions.duration.enteringScreen,
+          })
+        : theme.transitions.create('width', { duration: theme.transitions.duration.leavingScreen }),
     [`& .${drawerClasses.paper}`]: {
         overflow: 'hidden',
         position: 'inherit',
-        boxShadow: theme.shadows[4],
-        borderWidth: 0,
-        '&$sideBorder': {
-            borderWidth: 1,
-            boxShadow: 'none',
-        },
+        boxShadow: sideBorder ? 'none' : theme.shadows[4],
+        borderWidth: sideBorder ? 1 : 0,
     },
-    [`& .${drawerClasses.sideBorder}`]: {},
 }));
 
 const Content = styled(Box, {
@@ -341,6 +333,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                 },
                 drawerProps.style
             )}
+            sideBorder={sideBorder}
         >
             <DrawerContext.Provider
                 value={{
