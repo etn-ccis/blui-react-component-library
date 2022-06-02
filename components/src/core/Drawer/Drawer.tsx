@@ -151,6 +151,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
         // Drawer-specific props
         activeItem,
         classes,
+        className,
         condensed,
         noLayout = false,
         open,
@@ -317,7 +318,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
             classes={{
-                root: clsx(defaultClasses.root, classes.root, {
+                root: clsx(defaultClasses.root, classes.root, className, {
                     [defaultClasses.expanded]: isDrawerOpen(),
                     [classes.expanded]: isDrawerOpen() && classes.expanded,
                 }),
