@@ -74,8 +74,6 @@ const Root = styled(Toolbar, {
     slot: 'root',
     shouldForwardProp: (prop) => prop !== 'backgroundColor' && prop !== 'fontColor',
 })<Pick<DrawerHeaderProps, 'backgroundColor' | 'fontColor'>>(({ backgroundColor, fontColor, theme }) => ({
-    paddingRight: 0,
-    paddingLeft: 0,
     width: '100%',
     alignItems: 'center',
     boxSizing: 'border-box',
@@ -173,6 +171,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         backgroundColor,
         backgroundOpacity,
         fontColor,
+        disableGutters = true,
         sx,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherToolbarProps
@@ -227,6 +226,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                 className={cx(defaultClasses.root, classes.root)}
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}
+                disableGutters={disableGutters}
                 sx={sx}
                 {...otherToolbarProps}
             >
