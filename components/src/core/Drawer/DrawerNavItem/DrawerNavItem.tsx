@@ -1,39 +1,55 @@
-import React, { HTMLAttributes, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDrawerContext } from './DrawerContext';
-import { useNavGroupContext } from './NavGroupContext';
-import { usePrevious } from '../hooks/usePrevious';
-import { Theme, useTheme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
+import { useDrawerContext } from '../DrawerContext';
+import { useNavGroupContext } from '../NavGroupContext';
+import { usePrevious } from '../../hooks/usePrevious';
+import { Theme, useTheme, styled, SxProps } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Collapse from '@mui/material/Collapse';
-import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../InfoListItem';
+import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../../InfoListItem';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
+import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from '../types';
 import clsx from 'clsx';
 import color from 'color';
-import { findChildByType, mergeStyleProp } from './utilities';
+import { findChildByType, mergeStyleProp } from '../utilities';
 import { white, darkBlack } from '@brightlayer-ui/colors';
-import { DrawerRailItemProps } from './DrawerRailItem';
+import { DrawerRailItemProps } from '../DrawerRailItem';
+import { cx } from '@emotion/css';
+import drawerNavItemClasses, {
+    DrawerNavItemClasses,
+    DrawerNavItemClassKey,
+    getDrawerNavItemUtilityClass,
+} from './DrawerNavItemClasses';
+import Box, { BoxProps } from '@mui/material/Box';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-export type DrawerNavItemClasses = {
-    root?: string;
-    active?: string;
-    expandIcon?: string;
-    infoListItemRoot?: string;
-    nestedListGroup?: string;
-    nestedTitle?: string;
-    title?: string;
-    titleActive?: string;
-    ripple?: string;
+const useUtilityClasses = (ownerState: DrawerNavItemProps): Record<DrawerNavItemClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        active: ['active'],
+        chevron: ['chevron'],
+        expandIcon: ['expandIcon'],
+        infoListItemRoot: ['infoListItemRoot'],
+        nestedListGroup: ['nestedListGroup'],
+        nestedTitle: ['nestedTitle'],
+        title: ['title'],
+        titleActive: ['titleActive'],
+        ripple: ['ripple'],
+    };
+
+    return composeClasses(slots, getDrawerNavItemUtilityClass, classes);
 };
+
 export type DrawerNavItemProps = SharedStyleProps &
     NavItemSharedStyleProps & {
         /** Custom classes for default style overrides */
         classes?: DrawerNavItemClasses;
+        /** class for root default style overrides */
+        className?: string;
         /** The nested depth of the item
          *
          * Default: 0
@@ -78,7 +94,9 @@ export type DrawerNavItemProps = SharedStyleProps &
         disableRailTooltip?: boolean;
         /** Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props */
         InfoListItemProps?: Partial<BLUIInfoListItemProps>;
-    } & Pick<HTMLAttributes<HTMLDivElement>, 'children'>;
+        /** Optional sx props to apply style overrides */
+        sx?: SxProps<Theme>;
+    } & Pick<BoxProps, 'children'>;
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
 export type NavItem = DrawerNavItemProps;
@@ -90,101 +108,109 @@ const calcNestedPadding = (theme: Theme, depth: number): string => {
     return `${calculatePaddingInt}px`;
 };
 
-const getChevronColor = (props: DrawerNavItemProps, theme: Theme): string => {
-    const { chevronColor } = props;
-    return chevronColor ? chevronColor : theme.palette.text.secondary;
-};
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        active: {
-            content: '""',
-            zIndex: 0,
-            position: 'absolute',
-            height: '100%',
-            width: `calc(100% - ${theme.spacing(1)})`,
-            left: 0,
-            top: 0,
-            borderRadius: `0px 1.625rem 1.625rem 0px`,
-            opacity: 0.9,
-            '&$square': {
-                width: '100%',
-                borderRadius: 0,
-            },
-        },
-        chevron: {
-            color: (props) => getChevronColor(props, theme),
-        },
-        drawerOpen: {},
-        expanded: {},
-        expandIcon: {
-            transitionDuration: `${theme.transitions.duration.standard}ms`,
-            cursor: 'inherit',
-            display: 'flex',
-            padding: '1rem',
-            marginRight: '-1rem',
-            alignItems: 'center',
-            justifyContent: 'center',
-            '&$expanded': {
-                transform: 'rotate(180deg)',
-            },
-        },
-        infoListItemRoot: {
-            // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
-            paddingLeft: (props: DrawerNavItemProps): string =>
-                theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, props.depth),
-            paddingRight: (props: DrawerNavItemProps): string =>
-                theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, props.depth),
-        },
-        nestedTitle: {
-            fontWeight: 400,
-        },
-        nestedListGroup: {
-            backgroundColor: (props: DrawerNavItemProps): string =>
-                props.nestedBackgroundColor || (theme.palette.mode === 'light' ? white[200] : darkBlack[500]),
-            paddingBottom: 0,
-            paddingTop: 0,
-        },
-        noIconTitle: {
-            opacity: 0,
-            transition: theme.transitions.create('opacity'),
-            '&$drawerOpen': {
-                opacity: 1,
-                transition: theme.transitions.create('opacity'),
-            },
-        },
-        ripple: {
-            backgroundColor: theme.palette.primary.main,
-        },
-        root: {
-            backgroundColor: (props: DrawerNavItemProps): string =>
-                (props.depth > 0 ? props.nestedBackgroundColor : props.backgroundColor) || 'transparent',
-        },
-        square: {},
-        textSecondary: {
-            color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
-        },
-        title: {
-            fontWeight: 400,
-        },
-        titleActive: {
-            fontWeight: 600,
-        },
-        flipIcon:
-            theme.direction === 'rtl'
-                ? {
-                      transform: 'scaleX(-1)',
-                  }
-                : {},
+const Root = styled(Box, {
+    name: 'drawer-nav-item',
+    slot: 'value',
+    shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
+})<Pick<DrawerNavItemProps, 'depth' | 'nestedBackgroundColor' | 'backgroundColor'>>(
+    ({ depth, nestedBackgroundColor, backgroundColor }) => ({
+        backgroundColor: (depth > 0 ? nestedBackgroundColor : backgroundColor) || 'transparent',
     })
 );
+
+const ActiveItem = styled(Box, {
+    name: 'drawer-nav-item',
+    slot: 'active',
+    shouldForwardProp: (prop) => prop !== 'activeItemBackgroundShape',
+})<Pick<DrawerNavItemProps, 'activeItemBackgroundShape'>>(({ activeItemBackgroundShape, theme }) => ({
+    content: '""',
+    zIndex: 0,
+    position: 'absolute',
+    height: '100%',
+    width: activeItemBackgroundShape === 'square' ? '100%' : `calc(100% - ${theme.spacing(1)})`,
+    left: 0,
+    top: 0,
+    borderRadius: activeItemBackgroundShape === 'square' ? 0 : `0px 1.625rem 1.625rem 0px`,
+    opacity: 0.9,
+}));
+
+const InfoListItemRoot = styled(InfoListItem, {
+    name: 'drawer-nav-item',
+    slot: 'info-list-item-root',
+    shouldForwardProp: (prop) => prop !== 'drawerOpen' && prop !== 'active',
+})<Pick<DrawerNavItemProps, 'depth' | 'hidePadding' | 'icon'> & { drawerOpen: boolean; active: boolean }>(
+    ({ depth, hidePadding, icon, drawerOpen, active, theme }) => ({
+        '& .MuiListItemButton-root': {
+            // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
+            paddingLeft: theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, depth),
+            paddingRight: theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, depth),
+        },
+        [`& .${drawerNavItemClasses.nestedTitle}`]: {
+            fontWeight: 400,
+        },
+        [`& .${drawerNavItemClasses.title}`]: {
+            fontWeight: 400,
+        },
+        [`& .${drawerNavItemClasses.titleActive}`]: {
+            fontWeight: 600,
+        },
+        '& .BluiInfoListItem-title': {
+            opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
+            transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
+        },
+        '& .BluiInfoListItem-subtitle': {
+            opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
+            transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
+            color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
+        },
+        '& .BluiInfoListItem-info': {
+            color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
+        },
+        [`&. ${drawerNavItemClasses.ripple}`]: {
+            backgroundColor: theme.palette.primary.main,
+        },
+    })
+);
+
+const Chevron = styled(ChevronRight, {
+    name: 'drawer-nav-item',
+    slot: 'chevron',
+    shouldForwardProp: (prop) => prop !== 'chevronColor',
+})<Pick<DrawerNavItemProps, 'chevronColor'>>(({ chevronColor, theme }) => ({
+    color: chevronColor ? chevronColor : theme.palette.text.secondary,
+    transform: theme.direction === 'rtl' ? 'scaleX(-1)' : '',
+}));
+
+const ActiveComponent = styled(Box, {
+    name: 'drawer-nav-item',
+    slot: 'active-component',
+})<Pick<DrawerNavItemProps, 'collapseIcon'> & { expanded: boolean }>(({ collapseIcon, expanded, theme }) => ({
+    transitionDuration: `${theme.transitions.duration.standard}ms`,
+    cursor: 'inherit',
+    display: 'flex',
+    padding: '1rem',
+    marginRight: '-1rem',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: !collapseIcon && expanded ? 'rotate(180deg)' : '',
+}));
+
+const NestedListGroup = styled(List, {
+    name: 'drawer-nav-item',
+    slot: 'nested-list-group',
+    shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
+})<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(({ nestedBackgroundColor, theme }) => ({
+    backgroundColor: nestedBackgroundColor || (theme.palette.mode === 'light' ? white[200] : darkBlack[500]),
+    paddingBottom: 0,
+    paddingTop: 0,
+}));
 
 const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNavItemProps> = (
     props: DrawerNavItemProps,
     ref: any
 ) => {
     const theme = useTheme();
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     const { open: drawerOpen = true, activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem);
@@ -220,6 +246,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         chevron,
         chevronColor,
         children,
+        className,
         classes = {},
         collapseIcon,
         depth = 0,
@@ -239,16 +266,17 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         notifyActiveParent = (): void => {},
         onClick,
         rightComponent = props.chevron && !props.items && !props.children ? (
-            <ChevronRight className={clsx(defaultClasses.chevron, defaultClasses.flipIcon)} />
+            <Chevron chevronColor={chevronColor} className={cx(defaultClasses.chevron, classes.chevron)} />
         ) : undefined,
         ripple = true,
         statusColor,
         subtitle: itemSubtitle,
         title: itemTitle,
+        sx,
     } = props;
 
     const [expanded, setExpanded] = useState(isInActiveTree);
-    const active = activeItem === itemID;
+    const active: boolean = activeItem === itemID;
     const hasAction = Boolean(onItemSelect || onClick || (items && items.length > 0) || Boolean(children));
     // only allow icons for the top level items
     const icon = !depth ? itemIcon : undefined;
@@ -276,7 +304,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: clsx(defaultClasses.ripple, classes.ripple),
+                          child: cx(defaultClasses.ripple, classes.ripple),
                       },
                   },
               }
@@ -302,19 +330,19 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             return null;
         }
         return (
-            <div
+            <ActiveComponent
                 onClick={(e): void => {
                     if (e) {
                         setExpanded(!expanded);
                         e.stopPropagation();
                     }
                 }}
-                className={clsx(defaultClasses.expandIcon, classes.expandIcon, {
-                    [defaultClasses.expanded]: !collapseIcon && expanded,
-                })}
+                className={cx(defaultClasses.expandIcon, classes.expandIcon)}
+                collapseIcon={collapseIcon}
+                expanded={expanded}
             >
                 {collapseIcon && expanded ? collapseIcon : expandIcon}
-            </div>
+            </ActiveComponent>
         );
     }, [items, children, classes, defaultClasses, collapseIcon, expanded, expandIcon]);
     const actionComponent = getActionComponent();
@@ -405,42 +433,42 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
-        root: ripple && hasAction ? undefined : clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
+        root: ripple && hasAction ? undefined : cx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
         listItemButtonRoot:
-            ripple && hasAction ? clsx(defaultClasses.infoListItemRoot, classes.infoListItemRoot) : undefined,
-        title: clsx(defaultClasses.title, classes.title, {
-            [defaultClasses.titleActive]: active || (!disableActiveItemParentStyles && isInActiveTree),
-            [classes.titleActive]:
-                (active || (!disableActiveItemParentStyles && isInActiveTree)) && classes.titleActive,
-            [defaultClasses.nestedTitle]: depth > 0,
-            [classes.nestedTitle]: depth > 0 && classes.nestedTitle,
-            [defaultClasses.noIconTitle]: hidePadding && !icon,
-            [defaultClasses.drawerOpen]: drawerOpen,
-        }),
-        subtitle: clsx({
-            [defaultClasses.textSecondary]: !active,
-            [defaultClasses.noIconTitle]: hidePadding && !icon,
-            [defaultClasses.drawerOpen]: drawerOpen,
-        }),
-        info: clsx({
-            [defaultClasses.textSecondary]: !active,
-        }),
+            ripple && hasAction ? cx(defaultClasses.infoListItemRoot, classes.infoListItemRoot) : undefined,
+        title: cx(
+            defaultClasses.title,
+            classes.title,
+            active || (!disableActiveItemParentStyles && isInActiveTree) ? defaultClasses.titleActive : undefined,
+            (active || (!disableActiveItemParentStyles && isInActiveTree)) && classes.titleActive
+                ? classes.titleActive
+                : undefined,
+            depth > 0 ? defaultClasses.nestedTitle : undefined,
+            depth > 0 && classes.nestedTitle ? classes.nestedTitle : undefined
+        ),
     };
 
     return (
         <>
             {!props.hidden && (
-                <div ref={ref} style={{ position: 'relative' }} className={clsx(defaultClasses.root, classes.root)}>
+                <Root
+                    ref={ref}
+                    style={{ position: 'relative' }}
+                    className={cx(defaultClasses.root, className, classes.root)}
+                    depth={depth}
+                    nestedBackgroundColor={nestedBackgroundColor}
+                    backgroundColor={backgroundColor}
+                    sx={sx}
+                >
                     {active && (
-                        <div
-                            className={clsx(defaultClasses.active, classes.active, {
-                                [defaultClasses.square]: activeItemBackgroundShape === 'square',
-                            })}
+                        <ActiveItem
+                            className={cx(defaultClasses.active, classes.active)}
                             style={{ backgroundColor: activeItemBackgroundColor }}
+                            activeItemBackgroundShape={activeItemBackgroundShape}
                         />
                     )}
                     {/* @ts-ignore issue in the @types/react@17.0.41: https://github.com/mui/material-ui/issues/31932 */}
-                    <InfoListItem
+                    <InfoListItemRoot
                         dense
                         title={itemTitle}
                         subtitle={itemSubtitle}
@@ -467,16 +495,22 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         onClick={hasAction ? onClickAction : undefined}
                         hidePadding={hidePadding}
                         ripple={ripple}
+                        depth={depth}
+                        drawerOpen={drawerOpen}
+                        active={active}
                         ListItemButtonProps={{ ...RippleProps }}
                         {...InfoListItemProps}
                         classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                     />
-                </div>
+                </Root>
             )}
             {/* If the NavItem has child items defined, render them in a collapse panel */}
             {((items && items.length > 0) || Boolean(children)) && (
                 <Collapse in={expanded && drawerOpen !== false} key={`${itemTitle}_group_${depth}`}>
-                    <List className={clsx(defaultClasses.nestedListGroup, classes.nestedListGroup)}>
+                    <NestedListGroup
+                        className={cx(defaultClasses.nestedListGroup, classes.nestedListGroup)}
+                        nestedBackgroundColor={nestedBackgroundColor}
+                    >
                         {items &&
                             items.map((subItem: DrawerNavItemProps, index: number) => (
                                 // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -528,7 +562,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                                 />
                             ))}
                         {getChildren()}
-                    </List>
+                    </NestedListGroup>
                 </Collapse>
             )}
         </>
@@ -546,6 +580,7 @@ DrawerNavItem.propTypes = {
     ...NavItemSharedStylePropTypes,
     classes: PropTypes.shape({
         active: PropTypes.string,
+        chevron: PropTypes.string,
         expandIcon: PropTypes.string,
         infoListItemRoot: PropTypes.string,
         nestedListGroup: PropTypes.string,
