@@ -167,6 +167,21 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | subtitle         | Styles applied to the subtitle element           |
 | title            | Styles applied to the title element              |
 
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
+
+| Global CSS Class                   | Description                                      |
+| ---------------------------------- | ------------------------------------------------ |
+| .BluiDrawerHeader-root             | Styles applied to the root element               |
+| .BluiDrawerHeader-background       | Styles applied to the header background          |
+| .BluiDrawerHeader-content          | Styles applied to the content container          |
+| .BluiDrawerHeader-navigation       | Styles applied to the icon element               |
+| .BluiDrawerHeader-nonClickableIcon | Styles applied to the non-clickable icon element |
+| .BluiDrawerHeader-railIcon         | Styles applied to the icon when using rail style |
+| .BluiDrawerHeader-subtitle         | Styles applied to the subtitle element           |
+| .BluiDrawerHeader-title            | Styles applied to the title element              |
+
 ## Drawer Subheader
 
 The `<DrawerSubheader>` is an optional section that renders below the header and above the body of the `<Drawer>`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
@@ -267,6 +282,16 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 | root      | Styles applied to the root element           |
 | title     | Styles applied to the title text element     |
 | subheader | Styles applied to the List subheader element |
+
+### `sx` Class Overrides
+
+You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
+
+| Global CSS Class                   | Description                                      |
+| ---------------------------------- | ------------------------------------------------ |
+| .BluiDrawerNavGroup-root           | Styles applied to the root element               |
+| .BluiDrawerNavGroup-title          | Styles applied to the title text element         |
+| .BluiDrawerNavGroup-subheader      | Styles applied to the List subheader element     |
 
 ## Drawer Footer
 
