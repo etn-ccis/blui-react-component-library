@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { findByTestId, mountWithTheme } from '../test-utils';
 import { EmptyState } from './EmptyState';
 import Enzyme from 'enzyme';
@@ -17,7 +17,8 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('EmptyState', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(
+        const root = createRoot(div);
+        root.render(
             <ThemeProvider theme={theme}>
                 <EmptyState
                     icon={<PersonIcon />}
@@ -26,8 +27,7 @@ describe('EmptyState', () => {
                     actions={<Button> Test </Button>}
                 />
                 ,
-            </ThemeProvider>,
-            div
+            </ThemeProvider>
         );
     });
 

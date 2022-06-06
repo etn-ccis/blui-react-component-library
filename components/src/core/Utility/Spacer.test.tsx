@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { Spacer } from './Spacer';
@@ -14,13 +14,12 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Spacer', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(
+        const root = createRoot(div);
+        root.render(
             <ThemeProvider theme={theme}>
                 <Spacer />
-            </ThemeProvider>,
-            div
+            </ThemeProvider>
         );
-        ReactDOM.unmountComponentAtNode(div);
     });
     it('renders default properties', () => {
         const wrapper = mountWithTheme(<Spacer />, theme);

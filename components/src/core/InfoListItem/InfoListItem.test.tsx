@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { InfoListItem } from './InfoListItem';
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
@@ -17,11 +17,11 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('InfoListItem', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(
+        const root = createRoot(div);
+        root.render(
             <ThemeProvider theme={theme}>
                 <InfoListItem title={'test'} />
-            </ThemeProvider>,
-            div
+            </ThemeProvider>
         );
     });
 

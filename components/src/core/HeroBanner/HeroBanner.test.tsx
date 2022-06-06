@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { HeroBanner } from './HeroBanner';
 import { Hero } from '../Hero';
 import Enzyme from 'enzyme';
@@ -15,11 +15,11 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('HeroBanner', () => {
     test('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(
+        const root = createRoot(div);
+        root.render(
             <ThemeProvider theme={theme}>
                 <HeroBanner />,
-            </ThemeProvider>,
-            div
+            </ThemeProvider>
         );
     });
     it('renders only 4 children', () => {
