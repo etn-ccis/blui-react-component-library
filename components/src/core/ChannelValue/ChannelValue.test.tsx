@@ -1,5 +1,5 @@
 import React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { findByTestId, mountWithTheme } from '../test-utils';
 import { ChannelValue } from './ChannelValue';
 import * as Enzyme from 'enzyme';
@@ -15,13 +15,12 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('ChannelValue', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(
+        const root = createRoot(div);
+        root.render(
             <ThemeProvider theme={theme}>
                 <ChannelValue value={'test'} />
-            </ThemeProvider>,
-            div
+            </ThemeProvider>
         );
-        ReactDOM.unmountComponentAtNode(div);
     });
     it('should render with the wrapper class', () => {
         const wrapper = mountWithTheme(<ChannelValue value={1} />, theme);

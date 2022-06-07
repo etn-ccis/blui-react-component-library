@@ -35,16 +35,16 @@ export type ListItemTagProps = TypographyProps & {
 };
 
 // See https://material-ui.com/guides/right-to-left/#opting-out-of-rtl-transformation
-declare module '@mui/styles/withStyles' {
-    // Augment the BaseCSSProperties so that we can control jss-rtl
-    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-    interface BaseCSSProperties {
-        /**
-         * Used to control if the rule-set should be affected by rtl transformation
-         */
-        flip?: boolean;
-    }
-}
+// declare module '@mui/styles/withStyles' {
+//     // Augment the BaseCSSProperties so that we can control jss-rtl
+//     // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+//     interface BaseCSSProperties {
+//         /**
+//          * Used to control if the rule-set should be affected by rtl transformation
+//          */
+//         flip?: boolean;
+//     }
+// }
 
 const Root = styled(Typography, {
     name: 'list-item-tag',

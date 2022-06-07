@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { findByTestId, mountWithTheme } from '../test-utils';
 import { Hero } from './Hero';
 import { ChannelValue } from '../ChannelValue';
@@ -14,11 +14,11 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Hero', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(
+        const root = createRoot(div);
+        root.render(
             <ThemeProvider theme={theme}>
                 <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
-            </ThemeProvider>,
-            div
+            </ThemeProvider>
         );
     });
     it('should render with the wrapper class', () => {
