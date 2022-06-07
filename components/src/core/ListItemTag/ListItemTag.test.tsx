@@ -14,8 +14,8 @@ const theme = createTheme(BLUIThemes.blue);
 Enzyme.configure({ adapter: new Adapter() });
 describe('ListItemTag', () => {
     it('renders without crashing', () => {
-        const rootElement = document.getElementById('root');
-        const root = createRoot(rootElement);
+        const div = document.createElement('div');
+        const root = createRoot(div);
         root.render(
             <ThemeProvider theme={theme}>
                 <ListItemTag label={'test'} />
