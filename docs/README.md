@@ -62,3 +62,25 @@ If you want to override a component's styles using custom classes, you can use t
 To reuse the same overrides in different locations across your application, create a reusable component using the [styled()](https://mui.com/system/styled/) utility.
 
 #### Usage
+
+```tsx
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import { InfoListItem, InfoListItemProps } from '@brightlayer-ui/react-components';
+import { CheckCircle } from '@mui/icons-material';
+...
+const SuccessInfoListItem = styled(InfoListItem)<InfoListItemProps>(({ theme }) => ({
+    color: theme.palette.success.main,
+    '& .BluiInfoListItem-icon': {
+        color: theme.palette.success.main,
+    },
+}));
+
+export default function StyledCustomization() {
+  return  <SuccessInfoListItem
+              title={'Success'}
+              icon={<CheckCircle />}
+              statusColor={Colors.green[500]}
+          />;
+}
+```
