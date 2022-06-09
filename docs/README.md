@@ -19,8 +19,6 @@ We currently have the following components available for React applications:
 
 Material UI, and by extension, Brightlayer UI provides several different ways to customize a component's styles. Your specific context will determine which one is ideal. From narrowest to broadest use case, here are the options:
 
-do we want all these?? links to our packages?? links to mui?? copy mui docs vs linking to mui docs
-
 ### 1. The `sx` prop
 
 The [sx prop](https://mui.com/system/basics/#the-sx-prop) is the best option for adding style overrides to a single instance of a component in most cases.
@@ -83,4 +81,108 @@ export default function StyledCustomization() {
               statusColor={Colors.green[500]}
           />;
 }
+```
+
+### 5. Overriding Styles with the `classes` prop
+
+To customize a specific part of a component, you can use the `classes` prop provided by Brightlayer UI. These classes can be found in the `Styles` section of the documentation for each component. There are 4 ways you can approach using these:
+
+1. Continue using JSS until it is fully removed from @mui/material
+
+```tsx
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import { InfoListItem } from '@brightlayer-ui/react-components';
+import { Leaf } from '@brightlayer-ui/icons-mui';
+...
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        icon: {
+            marginLeft: '2px',
+            fontSize: '1rem'
+        }
+    })
+);
+
+const classes = useStyles();
+
+<InfoListItem
+    title={'Info List Item'}
+    icon={<Leaf />}
+    classes={{ icon: classes.icon }}
+/>
+```
+
+2. Global style sheets
+
+ComponentFile.tsx
+
+```tsx
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import { InfoListItem } from '@brightlayer-ui/react-components';
+import { Leaf } from '@brightlayer-ui/icons-mui';
+...
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        icon: {
+            marginLeft: '2px',
+            fontSize: '1rem'
+        }
+    })
+);
+
+const classes = useStyles();
+
+<InfoListItem
+    title={'Info List Item'}
+    icon={<Leaf />}
+    classes={{ icon: 'info-list-item-icon' }}
+/>
+```
+
+index.css
+
+```css
+.info-list-item-icon {
+    margin-left: 2px;
+    font-size: 1rem;
+}
+```
+
+3. [tss-react](https://mui.com/material-ui/migration/migrating-from-jss/#2-use-tss-react)
+
+4. Emotion styles
+
+(predefined)
+
+```tsx
+import { InfoListItem } from '@brightlayer-ui/react-components';
+import { Leaf } from '@brightlayer-ui/icons-mui';
+import { css } from '@emotion/css';
+...
+const ILIIconStyles = css`
+    margin-left: 2px;
+    font-size: 1rem;
+`
+
+<InfoListItem
+    title={'Info List Item'}
+    icon={<Leaf />}
+    classes={{ icon: ILIIconStyles }}
+/>
+```
+
+(inline)
+
+```tsx
+import { InfoListItem } from '@brightlayer-ui/react-components';
+import { Leaf } from '@brightlayer-ui/icons-mui';
+import { css } from '@emotion/css';
+...
+<InfoListItem
+    title={'Info List Item'}
+    icon={<Leaf />}
+    classes={{ icon: css`margin-left: 2px; font-size: 1rem;`}}
+/>
 ```
