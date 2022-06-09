@@ -273,6 +273,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         subtitle: itemSubtitle,
         title: itemTitle,
         sx,
+        style,
     } = props;
 
     const [expanded, setExpanded] = useState(isInActiveTree);
@@ -453,7 +454,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             {!props.hidden && (
                 <Root
                     ref={ref}
-                    style={{ position: 'relative' }}
+                    style={{ ...style, position: 'relative' }}
                     className={cx(defaultClasses.root, className, classes.root)}
                     depth={depth}
                     nestedBackgroundColor={nestedBackgroundColor}
