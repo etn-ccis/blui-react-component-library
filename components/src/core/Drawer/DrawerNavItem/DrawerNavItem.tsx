@@ -96,7 +96,7 @@ export type DrawerNavItemProps = SharedStyleProps &
         InfoListItemProps?: Partial<BLUIInfoListItemProps>;
         /** Optional sx props to apply style overrides */
         sx?: SxProps<Theme>;
-    } & Pick<BoxProps, 'children'>;
+    } & Pick<BoxProps, 'children' | 'style'>;
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
 export type NavItem = DrawerNavItemProps;
