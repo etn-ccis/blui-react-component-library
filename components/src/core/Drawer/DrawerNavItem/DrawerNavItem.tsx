@@ -392,6 +392,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                               notifyActiveParent: (ids: string[] = []): void => {
                                   notifyActiveParent(ids.concat(itemID));
                               },
+                              sx: mergeStyleProp(sx, child.props.sx),
+                              style: mergeStyleProp(style, child.props.style),
                           } as DrawerNavItemProps)
                         : React.cloneElement(child, {
                               // Inherited Props
@@ -406,6 +408,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                               itemFontColor: mergeStyleProp(itemFontColor, child.props.itemFontColor),
                               itemIconColor: mergeStyleProp(itemIconColor, child.props.itemIconColor),
                               ripple: mergeStyleProp(ripple, child.props.ripple),
+                              sx: mergeStyleProp(sx, child.props.sx),
+                              style: mergeStyleProp(style, child.props.style),
                           } as DrawerRailItemProps)
                 ),
         [
