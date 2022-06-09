@@ -56,7 +56,7 @@ import * as Colors from '@brightlayer-ui/colors';
 
 Any other props will be provided to the root element [**Material UI ListItem**](https://material-ui.com/api/list-item/).
 
-### Styles
+### Style Overrides
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop and using the `Name` key or by using the `Global CSS Class` in your main stylesheet or via the `sx` prop. For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 

@@ -15,7 +15,7 @@ We currently have the following components available for React applications:
 
 ---
 
-## Style Guide
+## Style Overrides Guide
 
 Material UI, and by extension, Brightlayer UI provides several different ways to customize a component's styles. Your specific context will determine which one is ideal. From narrowest to broadest use case, here are the options:
 
@@ -36,7 +36,7 @@ import { InfoListItem } from '@brightlayer-ui/react-components';
 
 ### 2. Overriding nested component styles
 
-To customize a specific part of a component, you can use the global CSS class provided by Brightlayer UI inside the sx prop. These global CSS class names can be found in the `Styles` section of the documentation for each component. As an example, let's say you want to customize the InfoListItem component's icon size and padding.
+To customize a specific part of a component, you can use the global CSS class provided by Brightlayer UI inside the sx prop. These global CSS class names can be found in the `Style Overrides` section of the documentation for each component. As an example, let's say you want to customize the InfoListItem component's icon size and padding.
 
 #### Usage
 
@@ -85,7 +85,7 @@ export default function StyledCustomization() {
 
 ### 5. Overriding Styles with the `classes` prop
 
-To customize a specific part of a component, you can use the `classes` prop provided by Brightlayer UI. These classes can be found in the `Styles` section of the documentation for each component. There are 4 ways you can approach using these:
+To customize a specific part of a component, you can use the `classes` prop provided by Brightlayer UI. These classes can be found in the `Style Overrides` section of the documentation for each component. There are 4 ways you can approach using these:
 
 1. Continue using JSS until it is fully removed from @mui/material
 
