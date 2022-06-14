@@ -49,6 +49,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import { InfoListItem, InfoListItemProps } from '@brightlayer-ui/react-components';
 import { CheckCircle } from '@mui/icons-material';
+import * as Colors from '@brightlayer-ui/colors';
 ...
 const SuccessInfoListItem = styled(InfoListItem)<InfoListItemProps>(({ theme }) => ({
     color: theme.palette.success.main,
@@ -57,14 +58,14 @@ const SuccessInfoListItem = styled(InfoListItem)<InfoListItemProps>(({ theme }) 
     },
 }));
 
-export default function StyledCustomization() {
-  return  <SuccessInfoListItem
-              title={'Success'}
-              icon={<CheckCircle />}
-              statusColor={Colors.green[500]}
-              iconColor={Colors.green[500]}
-          />;
-}
+// usage
+<SuccessInfoListItem
+    title={'Success'}
+    icon={<CheckCircle />}
+    statusColor={Colors.green[500]}
+    iconColor={Colors.green[500]}
+/>;
+
 ```
 
 ## 3. Overriding Styles with the `className` and `classes` prop
@@ -82,14 +83,12 @@ import { makeStyles } from 'tss-react/mui';
 import { InfoListItem } from '@brightlayer-ui/react-components';
 import { Leaf } from '@brightlayer-ui/icons-mui';
 ...
-const useStyles = makeStyles()((theme: Theme) =>
-    return{
+const useStyles = makeStyles()((theme: Theme) => ({
         root: {
-            padding: '1rem'
-            backgroundColor: theme.palette.background.paper
+            padding: '1rem',
+            backgroundColor: theme.palette.background.paper,
         },
-    }
-);
+    }));
 
 const { classes } = useStyles();
 
@@ -121,6 +120,7 @@ const ILIStyles = css`
     margin-top: 2px;
     padding: 1rem;
 `
+
 // className usage
 <InfoListItem
     title={'Info List Item'}
