@@ -177,14 +177,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const classes = useStyles();
 
-//className usage
+// className usage
 <InfoListItem
     title={'Info List Item'}
     icon={<Leaf />}
     className={ classes.root }
 />
 
-//classes usage
+// classes usage
 <InfoListItem
     title={'Info List Item'}
     icon={<Leaf />}
