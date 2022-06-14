@@ -11,7 +11,6 @@ import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from '../types';
-import clsx from 'clsx';
 import color from 'color';
 import { findChildByType, mergeStyleProp } from '../utilities';
 import { white, darkBlack } from '@brightlayer-ui/colors';
