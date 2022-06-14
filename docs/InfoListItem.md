@@ -58,7 +58,13 @@ Any other props will be provided to the root element [**Material UI ListItem**](
 
 ### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop and using the `Name` key or by using the `Global CSS Class` in your main stylesheet or via the `sx` prop. For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+You can override the default styles used by Brightlayer UI by:
+
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
 | Name               | Global CSS Class                     | Description                                         |
 | ------------------ | ------------------------------------ | --------------------------------------------------- |
