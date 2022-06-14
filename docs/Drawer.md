@@ -384,7 +384,7 @@ You can override the classes used by Brightlayer UI by passing a `classes` prop.
 
 ### `sx` Class Overrides
 
-You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
+You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `classes` prop (with the exception of the `active` class).
 
 | Global CSS Class                      | Description                                                     |
 | ------------------------------------- | --------------------------------------------------------------- |
