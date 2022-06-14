@@ -11,7 +11,6 @@ import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from '../types';
-import clsx from 'clsx';
 import color from 'color';
 import { findChildByType, mergeStyleProp } from '../utilities';
 import { white, darkBlack } from '@brightlayer-ui/colors';
@@ -96,7 +95,7 @@ export type DrawerNavItemProps = SharedStyleProps &
         InfoListItemProps?: Partial<BLUIInfoListItemProps>;
         /** Optional sx props to apply style overrides */
         sx?: SxProps<Theme>;
-    } & Pick<BoxProps, 'children'>;
+    } & Pick<BoxProps, 'children' | 'style'>;
 export type NestedDrawerNavItemProps = Omit<DrawerNavItemProps, 'icon'>;
 // aliases
 export type NavItem = DrawerNavItemProps;
@@ -273,6 +272,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         subtitle: itemSubtitle,
         title: itemTitle,
         sx,
+        style,
     } = props;
 
     const [expanded, setExpanded] = useState(isInActiveTree);
@@ -391,6 +391,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                               notifyActiveParent: (ids: string[] = []): void => {
                                   notifyActiveParent(ids.concat(itemID));
                               },
+                              sx: mergeStyleProp(sx, child.props.sx),
+                              style: mergeStyleProp(style, child.props.style),
                           } as DrawerNavItemProps)
                         : React.cloneElement(child, {
                               // Inherited Props
@@ -405,6 +407,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                               itemFontColor: mergeStyleProp(itemFontColor, child.props.itemFontColor),
                               itemIconColor: mergeStyleProp(itemIconColor, child.props.itemIconColor),
                               ripple: mergeStyleProp(ripple, child.props.ripple),
+                              sx: mergeStyleProp(sx, child.props.sx),
+                              style: mergeStyleProp(style, child.props.style),
                           } as DrawerRailItemProps)
                 ),
         [
@@ -453,7 +457,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             {!props.hidden && (
                 <Root
                     ref={ref}
-                    style={{ position: 'relative' }}
+                    style={{ ...style, position: 'relative' }}
                     className={cx(defaultClasses.root, className, classes.root)}
                     depth={depth}
                     nestedBackgroundColor={nestedBackgroundColor}
