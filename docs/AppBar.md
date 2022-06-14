@@ -68,18 +68,22 @@ import { AppBar, ThreeLiner } from '@brightlayer-ui/react-components';
 
 Any other props supplied will be provided to the root element ([`AppBar`](https://material-ui.com/api/app-bar/)).
 
-### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name               | Description                                          |
-| ------------------ | ---------------------------------------------------- |
-| root               | Styles applied to the root element                   |
-| background         | Styles applied to the background image               |
-| expanded           | Styles applied to the root element when expanded     |
-| collapsed          | Styles applied to the root element when collapsed    |
-| expandedBackground | Styles applied to the background image when expanded |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
 
-### `sx` Class Overrides
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop (with the exception of the `expanded` class).
+| Name               | Global CSS Class               | Description                                          |
+| ------------------ | ------------------------------ | ---------------------------------------------------- |
+| root               | .BluiAppBar-root               | Styles applied to the root element                   |
+| background         | .BluiAppBar-background         | Styles applied to the background image               |
+| expanded           | .BluiAppBar-expanded \*        | Styles applied to the root element when expanded     |
+| collapsed          | .BluiAppBar-collapsed          | Styles applied to the root element when collapsed    |
+| expandedBackground | .BluiAppBar-expandedBackground | Styles applied to the background image when expanded |
+
+> \* These classes can not be overridden via the `sx` prop.

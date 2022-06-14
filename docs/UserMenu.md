@@ -74,14 +74,21 @@ const avatar = <Avatar><SendIcon/></Avatar>;
 
 Any other props supplied will be provided to the root element (`div`).
 
-### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name        | Description                               |
-| ----------- | ----------------------------------------- |
-| root        | Styles applied to the root element        |
-| bottomSheet | Styles applied to responsive bottom sheet |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+| Name        | Global CSS Class         | Description                               |
+| ----------- | ------------------------ | ----------------------------------------- |
+| root        | .BluiUserMenu-root       | Styles applied to the root element        |
+|             | .BluiUserMenu-avatarRoot | Styles applied to the avatarRoot element  |
+| bottomSheet | n/a                      | Styles applied to responsive bottom sheet |
 
 ### User Menu Groups Object
 
@@ -113,47 +120,3 @@ The `menuGroups` prop of the `<UserMenu>` includes many properties from the [`<D
 | title       | The text to show on the first line  | `string`      | yes      |         |
 
 </div>
-
-### `sx` Class Overrides
-`sx` Class Overrides will not work on userMenu component except below two classes. For details check issuse [437](https://github.com/brightlayer-ui/react-component-library/issues/437).
-
-Currently, It supports the following classNames:
-
-| Global CSS Class                | Description                                             |
-| ------------------------------- | ------------------------------------------------------- |
-| .BluiUserMenu-root              | Styles applied to the root element                      |
-| .BluiUserMenu-avatarRoot        | Styles applied to the avatarRoot element                |
-
-```tsx
-import { UserMenu } from '@brightlayer-ui/react-components';
-import { Avatar, Menu } from '@material-ui/core';
-import Email from '@material-ui/icons/Email';
-import Settings from '@material-ui/icons/Settings';
-import Send from '@material-ui/icons/Send';
-import * as Colors from '@brightlayer-ui/colors';
-
-const avatar = <Avatar><SendIcon/></Avatar>;
-...
-/* Using menuGroups prop */
-<UserMenu avatar={avatar} menuGroups={[
-    {
-       items: [
-           {
-               title: 'Log Out',
-               icon: <Send />,
-           },
-           {
-               title: 'Account Settings',
-               icon: <Settings />,
-           },
-           {
-               title: 'Contact Us',
-               icon: <Email />,
-           },
-       ],
-    },
-]} 
-sx={{p: 1, '& .BluiUserMenu-avatarRoot' : { color: Colors.blue[500] }}}
-/>
-
-```

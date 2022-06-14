@@ -76,77 +76,26 @@ import { Temp } from '@brightlayer-ui/icons-mui';
 
 Any other props will be provided to the root element [**Material UI Card**](https://material-ui.com/api/card/).
 
-### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name             | Description                                             |
-| ---------------- | ------------------------------------------------------- |
-| root             | Styles applied to the root element                      |
-| actionItems      | Styles applied to the action items container            |
-| badgeWrapper     | Styles applied to the badge container                   |
-| bodyWrapper      | Styles applied to the child nodes container             |
-| content          | Styles applied to justify all body content              |
-| header           | Styles applied to the header container                  |
-| headerBackground | Styles applied to header background image               |
-| headerContent    | Styles applied to the header text and actions container |
-| headerInfo       | Styles applied to the tertiary text element             |
-| headerTitle      | Styles applied to the title element                     |
-| headerSubtitle   | Styles applied to the subtitle element                  |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
 
-### `sx` Class Overrides
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
-
-| Global CSS Class                | Description                                             |
-| ------------------------------- | ------------------------------------------------------- |
-| .BluiScoreCard-root             | Styles applied to the root element                      |
-| .BluiScoreCard-actionItems      | Styles applied to the action items container            |
-| .BluiScoreCard-badgeWrapper     | Styles applied to the badge container                   |
-| .BluiScoreCard-bodyWrapper      | Styles applied to the child nodes container             |
-| .BluiScoreCard-content          | Styles applied to justify all body content              |
-| .BluiScoreCard-header           | Styles applied to the header container                  |
-| .BluiScoreCard-headerBackground | Styles applied to header background image               |
-| .BluiScoreCard-headerContent    | Styles applied to the header text and actions container |
-| .BluiScoreCard-headerInfo       | Styles applied to the tertiary text element             |
-| .BluiScoreCard-headerTitle      | Styles applied to the title element                     |
-| .BluiScoreCard-headerSubtitle   | Styles applied to the subtitle element                  |
-
-```tsx
-import { Hero, HeroBanner, ScoreCard } from '@brightlayer-ui/react-components';
-import { List, ListItem, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
-import * as Colors from '@brightlayer-ui/colors';
-import { ChevronRight, Humidity, MoreVert} from '@brightlayer-ui/icons-mui';
-...
-<ScoreCard
-    headerColor={Colors.red[500]}
-    headerTitle={'Substation 3'}
-    headerFontColor={Colors.white[50]}
-    actionItems={[
-        <MoreVert onClick={() => {}} />,
-    ]}
-    badge={
-        <HeroBanner>
-            <Hero
-                icon={<Temp fontSize={'inherit'} htmlColor={Colors.black[500]} />}
-                label={'Temperature'}
-                iconSize={48}
-                value={98}
-                units={'°F'}
-                fontSize={'normal'}
-            />
-        </HeroBanner>
-    }
-    actionRow={
-        <List>
-            <ListItem>
-                <ListItemText primary="View Location" />
-                <ListItemSecondaryAction> <ChevronRight /> </ListItemSecondaryAction>
-            </ListItem>
-        </List>
-    }
-    sx={{m: 1, '& .BluiScoreCard-headerInfo' : { fontSize: '1rem' }}}
->
-    {/* Card Body Content */}
-</ScoreCard>
-```
+| Name             | Global CSS Class                | Description                                             |
+| ---------------- | ------------------------------- | ------------------------------------------------------- |
+| root             | .BluiScoreCard-root             | Styles applied to the root element                      |
+| actionItems      | .BluiScoreCard-actionItems      | Styles applied to the action items container            |
+| badgeWrapper     | .BluiScoreCard-badgeWrapper     | Styles applied to the badge container                   |
+| bodyWrapper      | .BluiScoreCard-bodyWrapper      | Styles applied to the child nodes container             |
+| content          | .BluiScoreCard-content          | Styles applied to justify all body content              |
+| header           | .BluiScoreCard-header           | Styles applied to the header container                  |
+| headerBackground | .BluiScoreCard-headerBackground | Styles applied to header background image               |
+| headerContent    | .BluiScoreCard-headerContent    | Styles applied to the header text and actions container |
+| headerInfo       | .BluiScoreCard-headerInfo       | Styles applied to the tertiary text element             |
+| headerTitle      | .BluiScoreCard-headerTitle      | Styles applied to the title element                     |
+| headerSubtitle   | .BluiScoreCard-headerSubtitle   | Styles applied to the subtitle element                  |
