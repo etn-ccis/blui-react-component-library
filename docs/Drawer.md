@@ -360,7 +360,7 @@ For more details on styling options check out our [Styling Guide](https://github
 | Name            | Global CSS Class                      | Description                                                     |
 | --------------- | ------------------------------------- | --------------------------------------------------------------- |
 | root            | .BluiDrawerNavItem-root               | Styles applied to the root element                              |
-| active          | .BluiDrawerNavItem-active             | Styles applied to the title text if the item is the active item |
+| active          | .BluiDrawerNavItem-active \*          | Styles applied to the title text if the item is the active item |
 | chevron         | .BluiDrawerNavItem-chevron            | Styles applied to the chevron element                           |
 | expandIcon      | .BluiDrawerNavItem-expandIcon         | Styles applied to the expandIcon element                        |
 | nestedListGroup | .BluiDrawerNavItem-nestedListGroup \* | Styles applied to wrapper surrounded nested children            |
