@@ -82,8 +82,8 @@ For more details on styling options check out our [Styling Guide](https://github
 | ------------------ | ------------------------------ | ---------------------------------------------------- |
 | root               | .BluiAppBar-root               | Styles applied to the root element                   |
 | background         | .BluiAppBar-background         | Styles applied to the background image               |
-| expanded           | .BluiAppBar-expanded \*        | Styles applied to the root element when expanded     |
+| expanded           | N/A\*                         | Styles applied to the root element when expanded     |
 | collapsed          | .BluiAppBar-collapsed          | Styles applied to the root element when collapsed    |
 | expandedBackground | .BluiAppBar-expandedBackground | Styles applied to the background image when expanded |
 
-> \* These classes can not be overridden via the `sx` prop.
+> \* This class cannot be overridden via the `sx` prop. However, the `.Mui-expanded` class can be used to override expanded styles with sx.
