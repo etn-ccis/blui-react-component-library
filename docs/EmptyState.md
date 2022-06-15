@@ -34,29 +34,20 @@ import { EmptyState } from '@brightlayer-ui/react-components';
 
 Any other props supplied will be provided to the root element (`div`).
 
-### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name        | Description                        |
-| ----------- | ---------------------------------- |
-| root        | Styles applied to the root element |
-| actions     | Styles applied to the actions      |
-| description | Styles applied to the description  |
-| icon        | Styles applied to the icon         |
-| title       | Styles applied to the title        |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
 
-### `sx` Class Overrides
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop.
-
-```tsx
-import { EmptyState } from '@brightlayer-ui/react-components';
-import NotListedLocation from '@mui/icons-material/NotListedLocation';
-...
-<EmptyState
-    sx={{margin: '0px'}}
-    icon={<NotListedLocation />}
-    title={'Location Unknown'}
-/>
-```
+| Name        | Global CSS Class            | Description                        |
+| ----------- | --------------------------- | ---------------------------------- |
+| root        | .BluiEmptyState-root        | Styles applied to the root element |
+| actions     | .BluiEmptyState-actions     | Styles applied to the actions      |
+| description | .BluiEmptyState-description | Styles applied to the description  |
+| icon        | .BluiEmptyState-icon        | Styles applied to the icon         |
+| title       | .BluiEmptyState-title       | Styles applied to the title        |

@@ -39,40 +39,20 @@ import { ChannelValue } from '@brightlayer-ui/react-components';
 
 Any other props supplied will be provided to the root element (`span`).
 
-### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name  | Description                         |
-| ----- | ----------------------------------- |
-| root  | Styles applied to the root element  |
-| icon  | Styles applied to the icon element  |
-| text  | Styles applied to the text element  |
-| units | Styles applied to the units element |
-| value | Styles applied to the value element |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
 
-### `sx` Class Overrides
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
-
-| Global CSS Class        | Description                         |
-| ----------------------- | ----------------------------------- |
-| .BluiChannelValue-icon  | Styles applied to the icon element  |
-| .BluiChannelValue-text  | Styles applied to the text element  |
-| .BluiChannelValue-units | Styles applied to the units element |
-| .BluiChannelValue-value | Styles applied to the value element |
-
-```tsx
-import { ChannelValue } from '@brightlayer-ui/react-components';
-...
-<ChannelValue
-    value={100}
-    units={'%'}
-    icon={<Icon/>}
-    sx={{
-        ml: 1,
-        mr: 1,
-        '& .BluiChannelValue-icon': { ml: '2px', fontSize: '1rem' }
-    }}
-/>
-```
+| Name  | Global CSS Class        | Description                         |
+| ----- | ----------------------- | ----------------------------------- |
+| root  | .BluiChannelValue-root  | Styles applied to the root element  |
+| icon  | .BluiChannelValue-icon  | Styles applied to the icon element  |
+| text  | .BluiChannelValue-text  | Styles applied to the text element  |
+| units | .BluiChannelValue-units | Styles applied to the units element |
+| value | .BluiChannelValue-value | Styles applied to the value element |

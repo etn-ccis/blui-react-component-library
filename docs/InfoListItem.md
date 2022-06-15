@@ -56,25 +56,31 @@ import * as Colors from '@brightlayer-ui/colors';
 
 Any other props will be provided to the root element [**Material UI ListItem**](https://material-ui.com/api/list-item/).
 
-### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name               | Description                                         |
-| ------------------ | --------------------------------------------------- |
-| root               | Styles applied to the root element                  |
-| avatar             | Styles applied to the Avatar element                |
-| chevron            | Styles applied to the chevron element               |
-| divider            | Styles applied to the divider element               |
-| icon               | Styles applied to the icon element                  |
-| info               | Styles applied to the third line of text element    |
-| listItemButtonRoot | Styles applied to the title/subtitle wrapper        |
-| listItemText       | Styles applied to the title/subtitle wrapper        |
-| rightComponent     | Styles applied to the rightComponent parent element |
-| separator          | Styles applied to subtitle delimiter                |
-| statusStripe       | Styles applied to the status stripe element         |
-| subtitle           | Styles applied to the subtitle element              |
-| title              | Styles applied to the title element                 |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+| Name               | Global CSS Class                     | Description                                         |
+| ------------------ | ------------------------------------ | --------------------------------------------------- |
+| root               | .BluiInfoListItem-root               | Styles applied to the root element                  |
+| avatar             | .BluiInfoListItem-avatar             | Styles applied to the Avatar element                |
+| chevron            | .BluiInfoListItem-chevron            | Styles applied to the chevron element               |
+| divider            | .BluiInfoListItem-divider            | Styles applied to the divider element               |
+| icon               | .BluiInfoListItem-icon               | Styles applied to the icon element                  |
+| info               | .BluiInfoListItem-info               | Styles applied to the third line of text element    |
+| listItemButtonRoot | .BluiInfoListItem-listItemButtonRoot | Styles applied to the title/subtitle wrapper        |
+| listItemText       | .BluiInfoListItem-listItemText       | Styles applied to the title/subtitle wrapper        |
+| rightComponent     | .BluiInfoListItem-rightComponent     | Styles applied to the rightComponent parent element |
+| separator          | .BluiInfoListItem-separator          | Styles applied to subtitle delimiter                |
+| statusStripe       | .BluiInfoListItem-statusStripe       | Styles applied to the status stripe element         |
+| subtitle           | .BluiInfoListItem-subtitle           | Styles applied to the subtitle element              |
+| title              | .BluiInfoListItem-title              | Styles applied to the title element                 |
 
 ## Tips
 
@@ -99,41 +105,5 @@ import { Link } from 'react-router-dom';
     // @ts-ignore
     href={'eaton.com'}
     button
-/>
-```
-
-### `sx` Class Overrides
-
-You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
-
-| Global CSS Class                     | Description                              |
-| ------------------------------------ | ---------------------------------------- |
-| .BluiInfoListItem-root               | Styles applied to the root element       |
-| .BluiInfoListItem-avatar             | Styles applied to the avatar             |
-| .BluiInfoListItem-divider            | Styles applied to the divider            |
-| .BluiInfoListItem-icon               | Styles applied to the icon               |
-| .BluiInfoListItem-info               | Styles applied to the info               |
-| .BluiInfoListItem-listItemText       | Styles applied to the listItemText       |
-| .BluiInfoListItem-listItemButtonRoot | Styles applied to the listItemButtonRoot |
-| .BluiInfoListItem-rightComponent     | Styles applied to the rightComponent     |
-| .BluiInfoListItem-separator          | Styles applied to the separator          |
-| .BluiInfoListItem-statusStripe       | Styles applied to the statusStripe       |
-| .BluiInfoListItem-subtitle           | Styles applied to the subtitle           |
-| .BluiInfoListItem-title              | Styles applied to the title              |
-| .BluiInfoListItem-chevron            | Styles applied to the chevron            |
-
-```tsx
-import { InfoListItem } from '@brightlayer-ui/react-components';
-import { Leaf } from '@brightlayer-ui/icons-mui';
-import * as colors from '@brightlayer-ui/colors';
-...
-<InfoListItem
-    title={'Info List Item'}
-    subtitle={'with a background color'}
-    fontColor={colors.black[500]}
-    iconColor={colors.black[500]}
-    icon={<Leaf />}
-    backgroundColor={colors.yellow[500]}
-    sx={{ ml: 1, '& .BluiInfoListItem-icon' : { ml: '2px', fontSize: '1rem' } }}
 />
 ```

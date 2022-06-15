@@ -55,8 +55,8 @@ const Root = styled(Typography, {
         flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
         borderRadius: '0.125rem',
         padding: 0,
-        paddingLeft: '0.5rem',
-        paddingRight: `calc(0.5rem - 1px)`, // to account for extra pixel from letter-spacing
+        paddingLeft: '0.25rem',
+        paddingRight: `calc(0.25rem - 1px)`, // to account for extra pixel from letter-spacing
         overflow: 'hidden',
         display: 'inline-block',
         cursor: onClick ? 'pointer' : 'inherit',

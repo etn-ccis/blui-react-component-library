@@ -46,29 +46,25 @@ import { ToolbarMenu } from '@brightlayer-ui/react-components';
 
 </div>
 
-### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name          | Description                                   |
-| ------------- | --------------------------------------------- |
-| dropdownArrow | Styles applied to the dropdownArrow container |
-| icon          | Styles applied to the icon container          |
-| label         | Styles applied to the label text              |
-| root          | Styles applied to the root element            |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
 
-### `sx` Class Overrides
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-You can override the styles used by Brightlayer UI by passing a `sx` prop. It supports the following classNames:
-
-| Global CSS Class                      | Description                                                                |
-| ------------------------------------- | -------------------------------------------------------------------------- |
-| .BluiToolbarMenu-dropdownArrow        | Styles applied to the DropdownArrow icon                                   |
-| .BluiToolbarMenu-rotatedDropdownArrow | Styles applied to the rotated DropdownArrow icon when the menu is expanded |
-| .BluiToolbarMenu-icon                 | Styles applied to the icon                                                 |
-| .BluiToolbarMenu-label                | Styles applied to the label                                                |
-| .BluiToolbarMenu-cursorPointer        | Styles applied to the cursorPointer                                        |
-| .BluiToolbarMenu-navGroups            | Styles applied to the navGroups                                            |
+| Name          | Global CSS Class                      | Description                                                                          |
+| ------------- | ------------------------------------- | ------------------------------------------------------------------------------------ |
+| root          | .BluiToolbarMenu-root                 | Styles applied to the root element                                                   |
+| dropdownArrow | .BluiToolbarMenu-dropdownArrow        | Styles applied to the DropdownArrow icon container                                   |
+|               | .BluiToolbarMenu-rotatedDropdownArrow | Styles applied to the rotated DropdownArrow icon container when the menu is expanded |
+| icon          | .BluiToolbarMenu-icon                 | Styles applied to the icon container                                                 |
+| label         | .BluiToolbarMenu-label                | Styles applied to the label text                                                     |
+|               | .BluiToolbarMenu-cursorPointer        | Styles applied to the cursorPointer                                                  |
+|               | .BluiToolbarMenu-navGroups            | Styles applied to the navGroups                                                      |
 
 ### Toolbar Menu Groups Object
 

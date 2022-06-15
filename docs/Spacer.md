@@ -33,23 +33,16 @@ import { Spacer } from '@brightlayer-ui/react-components';
 
 Any other props supplied will be provided to the root element (`div`).
 
-### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name | Description                        |
-| ---- | ---------------------------------- |
-| root | Styles applied to the root element |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
 
-### `sx` Class Overrides
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-You can override the styles used by Brightlayer UI by passing a `sx` prop. The `sx` prop styles will override styles provided through the `Classes` prop.
-
-```tsx
-import * as colors from '@brightlayer-ui/colors';
-import { Spacer } from '@brightlayer-ui/react-components';
-...
-<Spacer width={60} height={50} sx={{ background: colors.red[300], display: 'inline-block' }}>
-    {/* Spacer Content */}
-</Spacer>
-```
+| Name | Global CSS Class | Description                        |
+| ---- | ---------------- | ---------------------------------- |
+| root | .BluiSpacer-root | Styles applied to the root element |
