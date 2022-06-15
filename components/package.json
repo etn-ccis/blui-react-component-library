@@ -35,7 +35,6 @@
         "@typescript-eslint/eslint-plugin": "^5.14.0",
         "@typescript-eslint/parser": "^5.14.0",
         "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
-        "cheerio": "1.0.0-rc.10",
         "clsx": "^1.1.0",
         "enzyme": "^3.5.0",
         "enzyme-adapter-react-16": "^1.8.0",
@@ -62,7 +61,6 @@
         "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
     },
     "resolutions": {
-        "cheerio": "1.0.0-rc.10",
         "@brightlayer-ui/colors": "3.0.1"
     },
     "repository": {
