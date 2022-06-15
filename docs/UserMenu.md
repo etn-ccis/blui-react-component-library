@@ -21,10 +21,10 @@ The Menu can be populated via the `menuGroups` prop, or can be entirely customiz
 
 ```tsx
 import { UserMenu } from '@brightlayer-ui/react-components';
-import { Avatar, Menu } from '@material-ui/core';
-import Email from '@material-ui/icons/Email';
-import Settings from '@material-ui/icons/Settings';
-import Send from '@material-ui/icons/Send';
+import { Avatar, Menu } from '@mui/material';
+import Email from '@mui/icons-material/Email';
+import Settings from '@mui/icons-material/Settings';
+import Send from '@mui/icons-material/Send';
 
 const avatar = <Avatar><SendIcon/></Avatar>;
 ...

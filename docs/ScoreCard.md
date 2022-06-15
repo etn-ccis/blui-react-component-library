@@ -15,9 +15,9 @@ Card component that calls attention to particular values.
 
 ```tsx
 import { Hero, HeroBanner, ScoreCard } from '@brightlayer-ui/react-components';
-import { List, Card, ListItem, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
+import { List, Card, ListItem, ListItemText, ListItemSecondaryAction } from '@mui/material';
 import * as Colors from '@brightlayer-ui/colors';
-import MoreVert from '@material-ui/icons/MoreVert';
+import MoreVert from '@mui/icons-material/MoreVert';
 import { Temp } from '@brightlayer-ui/icons-mui';
 
 ...

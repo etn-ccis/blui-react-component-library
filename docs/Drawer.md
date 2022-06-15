@@ -47,8 +47,8 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 </Drawer>
 
 // a responsive Drawer using the variant prop
-import { useMediaQuery } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 const theme = useTheme();
 const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
