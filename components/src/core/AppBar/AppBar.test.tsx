@@ -1,5 +1,5 @@
 import React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import * as Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { mountWithTheme } from '../test-utils';
@@ -15,11 +15,11 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('AppBar', () => {
     it('should render without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(
+        const root = createRoot(div);
+        root.render(
             <ThemeProvider theme={theme}>
                 <AppBar />
-            </ThemeProvider>,
-            div
+            </ThemeProvider>
         );
     });
 

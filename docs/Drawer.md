@@ -47,8 +47,8 @@ import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, Draw
 </Drawer>
 
 // a responsive Drawer using the variant prop
-import { useMediaQuery } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 const theme = useTheme();
 const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
 
@@ -90,17 +90,33 @@ The `Drawer` has four `variant`s:
 
 > **Note on using multiple drawers**: If your application uses multiple `<Drawer>`s, each `<DrawerLayout>` will automatically adjust based on the state of the nearest `<Drawer>`. If you are using a `<Drawer>` without a `<DrawerLayout>`, you should set the `noLayout` property to true on the `<Drawer>` to prevent inadvertently affecting the styles of any `<DrawerLayout>`s.
 
-#### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. The Drawer supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name       | Description                                                    |
-| ---------- | -------------------------------------------------------------- |
-| root       | MUI Drawer style override for the root element                 |
-| content    | Styles applied to the drawer content container                 |
-| expanded   | Styles applied to the root element when the drawer is expanded |
-| paper      | MUI Drawer style override for the underlying paper element     |
-| sideBorder | Styles applied when sideBorder is set to true                  |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+| Name       | Global CSS Class       | Description                                                    |
+| ---------- | ---------------------- | -------------------------------------------------------------- |
+| root       | .BluiDrawer-root       | Styles applied to the root element                             |
+| content    | .BluiDrawer-content    | Styles applied to the drawer content container                 |
+| expanded   | N/A*                   | Styles applied to the root element when the drawer is expanded |
+| paper      | .BluiDrawer-paper      | MUI Drawer style override for the underlying paper element     |
+| sideBorder | .BluiDrawer-sideBorder | Styles applied when sideBorder is set to true                  |
+
+> \* This class cannot be overridden via the `sx` prop. However, the `.Mui-expanded` class can be used to override expanded styles with sx.
+
+```tsx
+import { Drawer } from '@brightlayer-ui/react-components';
+...
+<Drawer variant='temporary' sx={{margin: '4px'}}
+>
+</Drawer>
+```
 
 ## Drawer Header
 
@@ -132,20 +148,26 @@ The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By defau
 
 Any other props will be provided to the root element [**Material UI Toolbar**](https://material-ui.com/api/toolbar/).
 
-#### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerHeader>` supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name             | Description                                      |
-| ---------------- | ------------------------------------------------ |
-| root             | Styles applied to the root element               |
-| background       | Styles applied to the header background          |
-| content          | Styles applied to the content container          |
-| navigation       | Styles applied to the icon element               |
-| nonClickableIcon | Styles applied to the non-clickable icon element |
-| railIcon         | Styles applied to the icon when using rail style |
-| subtitle         | Styles applied to the subtitle element           |
-| title            | Styles applied to the title element              |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+| Name             | Global CSS Class                   | Description                                      |
+| ---------------- | ---------------------------------- | ------------------------------------------------ |
+| root             | .BluiDrawerHeader-root             | Styles applied to the root element               |
+| background       | .BluiDrawerHeader-background       | Styles applied to the header background          |
+| content          | .BluiDrawerHeader-content          | Styles applied to the content container          |
+| navigation       | .BluiDrawerHeader-navigation       | Styles applied to the icon element               |
+| nonClickableIcon | .BluiDrawerHeader-nonClickableIcon | Styles applied to the non-clickable icon element |
+| railIcon         | .BluiDrawerHeader-railIcon         | Styles applied to the icon when using rail style |
+| subtitle         | .BluiDrawerHeader-subtitle         | Styles applied to the subtitle element           |
+| title            | .BluiDrawerHeader-title            | Styles applied to the title element              |
 
 ## Drawer Subheader
 
@@ -238,15 +260,21 @@ The `items` property supports nested items to generate collapsible sections in t
 
 Any other props will be provided to the root element [**Material UI List**](https://material-ui.com/api/list/).
 
-#### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerNavGroup>` supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name      | Description                                  |
-| --------- | -------------------------------------------- |
-| root      | Styles applied to the root element           |
-| title     | Styles applied to the title text element     |
-| subheader | Styles applied to the List subheader element |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+| Name      | Global CSS Class              | Description                                  |
+| --------- | ----------------------------- | -------------------------------------------- |
+| root      | .BluiDrawerNavGroup-root      | Styles applied to the root element           |
+| title     | .BluiDrawerNavGroup-title     | Styles applied to the title text element     |
+| subheader | .BluiDrawerNavGroup-subheader | Styles applied to the List subheader element |
 
 ## Drawer Footer
 
@@ -275,6 +303,15 @@ import DrawerFooter from '@brightlayer-ui/react-components/core/Drawer';
 </div>
 
 Any other props supplied will be provided to the root element (`div`).
+
+#### Classes
+
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerFooter>` supports the following keys:
+
+| Name   | Description                          |
+| ------ | ------------------------------------ |
+| root   | Styles applied to the root element   |
+| hidden | Styles applied to the hidden element |
 
 ## Drawer Nav Item
 
@@ -312,21 +349,29 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 > \*These props are managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`.
 
-#### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerNavItem>` supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name            | Description                                                     |
-| --------------- | --------------------------------------------------------------- |
-| root            | Styles applied to the root element wrapping the InfoListItem    |
-| active          | Styles applied to the active item highlight element             |
-| chevron         | Styles applied to the chevron element                           |
-| expandIcon      | Styles applied to the expand/collapse icon wrapper              |
-| nestedListGroup | Styles applied to wrapper surrounded nested children            |
-| nestedTitle     | Styles applied to the title text if the item is a nested item   |
-| title           | Styles applied to the title text                                |
-| titleActive     | Styles applied to the title text if the item is the active item |
-| ripple          | Styles applied to the ripple                                    |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+| Name            | Global CSS Class                      | Description                                                     |
+| --------------- | ------------------------------------- | --------------------------------------------------------------- |
+| root            | .BluiDrawerNavItem-root               | Styles applied to the root element                              |
+| active          | N/A\*                                 | Styles applied to the title text if the item is the active item |
+| chevron         | .BluiDrawerNavItem-chevron            | Styles applied to the chevron element                           |
+| expandIcon      | .BluiDrawerNavItem-expandIcon         | Styles applied to the expandIcon element                        |
+| nestedListGroup | .BluiDrawerNavItem-nestedListGroup    | Styles applied to wrapper surrounded nested children            |
+| nestedTitle     | .BluiDrawerNavItem-nestedTitle        | Styles applied to the title if the item is a nested item        |
+| title           | .BluiDrawerNavItem-title              | Styles applied to the title text                                |
+| titleActive     | .BluiDrawerNavItem-titleActive        | Styles applied to the title text if the item is the active item |
+| ripple          | .BluiDrawerNavItem-ripple             | Styles applied to the ripple                                    |
+
+> \* These classes can not be overridden via the `sx` prop.
 
 ### Tips
 
@@ -382,21 +427,40 @@ When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem
 
 > \*These props are managed automatically when using the `<DrawerRailItem>` inside of a `<Drawer>`.
 
-#### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerRailItem>` supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name         | Description                                                     |
-| ------------ | --------------------------------------------------------------- |
-| root         | Styles applied to the root element wrapping the InfoListItem    |
-| active       | Styles applied to the active item highlight element             |
-| condensed    | Styles applied to the root element when condensed is true       |
-| divider      | Styles applied to the divider element                           |
-| icon         | Styles applied to the icon wrapper                              |
-| statusStripe | Styles applied to the status stripe                             |
-| title        | Styles applied to the title text                                |
-| titleActive  | Styles applied to the title text if the item is the active item |
-| ripple       | Styles applied to the ripple                                    |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+| Name          | Global CSS Class                  | Description                                                     |
+| ------------- | --------------------------------- | --------------------------------------------------------------- |
+| root          | .BluiDrawerRailItem-root          | Styles applied to the root element                              |
+| active        | .BluiDrawerRailItem-active        | Styles applied to the active element                            |
+| condensed     | .BluiDrawerRailItem-condensed     | Styles applied to the root element when condensed is true       |
+| divider       | .BluiDrawerRailItem-divider       | Styles applied to the divider element                           |
+| icon          | .BluiDrawerRailItem-icon          | Styles applied to the icon wrapper                              |
+| statusStripe  | .BluiDrawerRailItem-statusStripe  | Styles applied to the status stripe                             |
+| title         | .BluiDrawerRailItem-title         | Styles applied to the title text                                |
+| titleActive   | .BluiDrawerRailItem-titleActive   | Styles applied to the title text if the item is the active item |
+| ripple        | .BluiDrawerRailItem-ripple        | Styles applied to the ripple                                    |
+| cursorPointer | .BluiDrawerRailItem-cursorPointer | Styles applied to the root element when cursor is pointer       |
+| itemActive    | .BluiDrawerRailItem-itemActive    | Styles applied to the active item                               |
+
+```tsx
+import { DrawerRailItem } from '@brightlayer-ui/react-components';
+import Menu from '@mui/icons-material/Menu';
+...
+ <DrawerRailItem
+    itemID="itemID"
+    icon={<Menu />}
+    sx={{ backgroundColor: 'red' }}
+/>
+```
 
 ### Tips
 
@@ -494,13 +558,21 @@ Any other props supplied will be provided to the root element (`div`).
 
 > **Note on Scrolling**: When using client-side routing in your application, you may notice that the window scroll position does not reset when navigating to new routes. To address this issue, you will need to manually update the scroll position when new pages are loaded. If you are using React Router they have [several examples](https://reacttraining.com/react-router/web/guides/scroll-restoration) on how to implement this in your application.
 
-#### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerLayout>` supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name     | Description                                                    |
-| -------- | -------------------------------------------------------------- |
-| root     | Styles applied to the root element                             |
-| content  | Styles applied to the body content container                   |
-| drawer   | Styles applied to the drawer container                         |
-| expanded | Styles applied to the root element when the drawer is expanded |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+| Name     | Global CSS Class              | Description                                                    |
+| -------- | ----------------------------- | -------------------------------------------------------------- |
+| root     | .BluiDrawerLayout-root        | Styles applied to the root element                             |
+| content  | .BluiDrawerLayout-content     | Styles applied to the body content container                   |
+| drawer   | .BluiDrawerLayout-drawer      | Styles applied to the drawer container                         |
+| expanded | N/A\*                         | Styles applied to the root element when the drawer is expanded |
+
+> \* This class cannot be overridden via the `sx` prop. However, the `.Mui-expanded` class can be used to override expanded styles with sx.

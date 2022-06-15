@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { ListItemTag } from './ListItemTag';
 import { findByTestId, getComputedStyleFromHTMLString, mountWithTheme } from '../test-utils';
 import Enzyme from 'enzyme';
@@ -15,11 +15,11 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('ListItemTag', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(
+        const root = createRoot(div);
+        root.render(
             <ThemeProvider theme={theme}>
                 <ListItemTag label={'test'} />
-            </ThemeProvider>,
-            div
+            </ThemeProvider>
         );
     });
 

@@ -15,13 +15,20 @@ The `ThreeLiner` can display up to three lines of stylized text or other custom 
 | subtitle          | Second line content                               | `ReactNode`         | no       |                                       |
 
 </div>
-### Classes
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
+### Style Overrides
 
-| Name     | Description                        |
-| -------- | ---------------------------------- |
-| root     | Styles applied to the root element |
-| title    | Styles applied to the first line   |
-| subtitle | Styles applied to the second line  |
-| info     | Styles applied to the third line   |
+You can override the default styles used by Brightlayer UI by:
+
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+| Name     | Global CSS Class         | Description                        |
+| -------- | ------------------------ | ---------------------------------- |
+| root     | .BluiThreeLiner-root     | Styles applied to the root element |
+| title    | .BluiThreeLiner-title    | Styles applied to the first line   |
+| subtitle | .BluiThreeLiner-subtitle | Styles applied to the second line  |
+| info     | .BluiThreeLiner-info     | Styles applied to the third line   |

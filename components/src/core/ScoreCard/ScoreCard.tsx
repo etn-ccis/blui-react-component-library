@@ -1,144 +1,198 @@
 import React, { useCallback } from 'react';
-import { Theme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
+import { cx } from '@emotion/css';
 import Card, { CardProps } from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import * as Colors from '@brightlayer-ui/colors';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { Box, BoxProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { ScoreCardClasses, ScoreCardClassKey, getScoreCardUtilityClass } from './ScoreCardClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-export type ScoreCardClasses = {
-    root?: string;
-    actionItems?: string;
-    badgeWrapper?: string;
-    bodyWrapper?: string;
-    content?: string;
-    header?: string;
-    headerBackground?: string;
-    headerContent?: string;
-    headerInfo?: string;
-    headerTitle?: string;
-    headerSubtitle?: string;
+const useUtilityClasses = (ownerState: ScoreCardProps): Record<ScoreCardClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        actionItems: ['actionItems'],
+        badgeWrapper: ['badgeWrapper'],
+        bodyWrapper: ['bodyWrapper'],
+        content: ['content'],
+        header: ['header'],
+        headerBackground: ['headerBackground'],
+        headerContent: ['headerContent'],
+        headerInfo: ['headerInfo'],
+        headerTitle: ['headerTitle'],
+        headerSubtitle: ['headerSubtitle'],
+    };
+
+    return composeClasses(slots, getScoreCardUtilityClass, classes);
 };
 
-export type ScoreCardProps = CardProps & {
-    /** Icons to show to the right of the text */
-    actionItems?: JSX.Element[];
-    /** Max number of actionItems in the header
-     *
-     * Default: 3
-     */
-    actionLimit?: number;
-    /** Component to render for the footer */
-    actionRow?: JSX.Element;
-    /** Component to render in the call-out area on the right side of the card body.
-     *
-     * This is usually a single `Hero` or `HeroBanner`containing multiple Heroes.
-     */
-    badge?: JSX.Element;
-    /** Vertical offset for the badge component
-     *
-     * Default: 0
-     */
-    badgeOffset?: number;
-    /** Custom classes for default style overrides */
-    classes?: ScoreCardClasses;
-    /** An image to display in the header */
-    headerBackgroundImage?: string;
-    /** The color of the header
-     *
-     * Default: theme.palette.primary.main
-     */
-    headerColor?: string;
-    /** The color for text and icons in header
-     *
-     * Default: white
-     */
-    headerFontColor?: string;
-    /** Tertiary text */
-    headerInfo?: string | JSX.Element;
-    /** The primary text */
-    headerTitle: string;
-    /** The secondary text */
-    headerSubtitle?: string | JSX.Element;
-};
+export type ScoreCardProps = CardProps &
+    BoxProps & {
+        /** Icons to show to the right of the text */
+        actionItems?: JSX.Element[];
+        /** Max number of actionItems in the header
+         *
+         * Default: 3
+         */
+        actionLimit?: number;
+        /** Component to render for the footer */
+        actionRow?: JSX.Element;
+        /** Component to render in the call-out area on the right side of the card body.
+         *
+         * This is usually a single `Hero` or `HeroBanner`containing multiple Heroes.
+         */
+        badge?: JSX.Element;
+        /** Vertical offset for the badge component
+         *
+         * Default: 0
+         */
+        badgeOffset?: number;
+        /** Custom classes for default style overrides */
+        classes?: ScoreCardClasses;
+        /** An image to display in the header */
+        headerBackgroundImage?: string;
+        /** The color of the header
+         *
+         * Default: theme.palette.primary.main
+         */
+        headerColor?: string;
+        /** The color for text and icons in header
+         *
+         * Default: white
+         */
+        headerFontColor?: string;
+        /** Tertiary text */
+        headerInfo?: string | JSX.Element;
+        /** The primary text */
+        headerTitle: string;
+        /** The secondary text */
+        headerSubtitle?: string | JSX.Element;
+    };
 
-const fontColor = (props: ScoreCardProps): string => props.headerFontColor || Colors.white[50];
+const fontColor = (headerFontColor: string): string => headerFontColor || Colors.white[50];
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            flex: '1 1 0px',
-        },
-        flexColumn: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'stretch',
-        },
-        header: {
-            height: `6.25rem`,
-            overflow: 'hidden',
-            position: 'relative',
-            backgroundColor: (props: ScoreCardProps): string =>
-                props.headerColor ||
-                (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
-            color: fontColor,
-        },
-        headerContent: {
-            display: 'flex',
-            position: 'relative',
-            zIndex: 1,
-            alignItems: 'flex-start',
-            padding: `1rem ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
-        },
-        headerTitle: {
-            color: fontColor,
-            lineHeight: 1.4,
-        },
-        headerSubtitle: {
-            color: fontColor,
-            lineHeight: 1.4,
-        },
-        headerInfo: {
-            color: fontColor,
-            fontWeight: 300,
-        },
-        headerBackground: {
-            position: 'absolute',
-            zIndex: 0,
-            width: '100%',
-            backgroundSize: 'cover',
-            height: '100%',
-            opacity: 0.3,
-            backgroundPosition: 'center',
-            backgroundImage: (props: ScoreCardProps): string => `url(${props.headerBackgroundImage})`,
-        },
-        content: {
-            display: 'flex',
-            alignItems: 'center',
-            position: 'relative',
-        },
-        bodyWrapper: {
-            flex: '1 1 0px',
-        },
-        badgeWrapper: {
-            flex: '0 0 auto',
-            marginRight: theme.spacing(2),
-            marginLeft: theme.spacing(2),
-            alignSelf: (props: ScoreCardProps): string => (props.badgeOffset !== 0 ? 'flex-start' : 'center'),
-            marginTop: (props: ScoreCardProps): number => props.badgeOffset,
-        },
-        actionItems: {
-            marginLeft: theme.spacing(1.5),
-            cursor: 'pointer',
-        },
-    })
-);
+const Root = styled(Card, {
+    name: 'score-card',
+    slot: 'root',
+})(() => ({
+    flex: '1 1 0px',
+}));
+
+const FlexColumn = styled(Box, {
+    name: 'score-card',
+    slot: 'flexColumn',
+})(() => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    flex: '1 1 0px',
+    overflow: 'hidden',
+}));
+
+const Header = styled(Box, {
+    name: 'score-card',
+    slot: 'header',
+})<Pick<ScoreCardProps, 'headerColor' | 'headerFontColor'>>(({ headerColor, headerFontColor, theme }) => ({
+    height: `6.25rem`,
+    overflow: 'hidden',
+    position: 'relative',
+    backgroundColor:
+        headerColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
+    color: fontColor(headerFontColor),
+}));
+
+const HeaderContent = styled(Box, {
+    name: 'score-card',
+    slot: 'header-content',
+})(({ theme }) => ({
+    display: 'flex',
+    position: 'relative',
+    zIndex: 1,
+    alignItems: 'flex-start',
+    padding: `1rem ${theme.spacing(2)} 0 ${theme.spacing(2)}`,
+}));
+
+const HeaderTitle = styled(Typography, {
+    name: 'score-card',
+    slot: 'header-title',
+    shouldForwardProp: (prop) => prop !== 'headerFontColor',
+})<Pick<ScoreCardProps, 'headerFontColor'>>(({ headerFontColor }) => ({
+    color: fontColor(headerFontColor),
+    lineHeight: 1.4,
+}));
+
+const HeaderSubtitle = styled(Typography, {
+    name: 'score-card',
+    slot: 'header-subtitle',
+    shouldForwardProp: (prop) => prop !== 'headerFontColor',
+})<Pick<ScoreCardProps, 'headerFontColor'>>(({ headerFontColor }) => ({
+    color: fontColor(headerFontColor),
+    lineHeight: 1.4,
+}));
+
+const HeaderInfo = styled(Typography, {
+    name: 'score-card',
+    slot: 'header-subtitle',
+    shouldForwardProp: (prop) => prop !== 'headerFontColor',
+})<Pick<ScoreCardProps, 'headerFontColor'>>(({ headerFontColor }) => ({
+    color: fontColor(headerFontColor),
+    fontWeight: 300,
+}));
+
+const HeaderBackground = styled(Box, {
+    name: 'score-card',
+    slot: 'header-background',
+})<Pick<ScoreCardProps, 'headerBackgroundImage'>>(({ headerBackgroundImage }) => ({
+    position: 'absolute',
+    zIndex: 0,
+    width: '100%',
+    backgroundSize: 'cover',
+    height: '100%',
+    opacity: 0.3,
+    backgroundPosition: 'center',
+    backgroundImage: `url(${headerBackgroundImage})`,
+}));
+
+const Content = styled(Box, {
+    name: 'score-card',
+    slot: 'content',
+})(() => ({
+    display: 'flex',
+    alignItems: 'center',
+    position: 'relative',
+}));
+
+const BodyWrapper = styled(Box, {
+    name: 'score-card',
+    slot: 'body-wrapper',
+})(() => ({
+    flex: '1 1 0px',
+}));
+
+const BadgeWrapper = styled(Box, {
+    name: 'score-card',
+    slot: 'badge-wrapper',
+})<Pick<ScoreCardProps, 'badgeOffset'>>(({ badgeOffset, theme }) => ({
+    flex: '0 0 auto',
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+    alignSelf: badgeOffset !== 0 ? 'flex-start' : 'center',
+    marginTop: badgeOffset,
+}));
+
+const ActionItems = styled(Box, {
+    name: 'score-card',
+    slot: 'action-items',
+})(({ theme }) => ({
+    marginLeft: theme.spacing(1.5),
+    cursor: 'pointer',
+}));
 
 const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> = (props: ScoreCardProps, ref: any) => {
-    const defaultClasses = useStyles(props);
     const {
         actionLimit,
         actionItems,
@@ -147,21 +201,26 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         headerBackgroundImage,
         children,
         classes,
+        className: userClassName,
         headerInfo,
         headerTitle,
         headerSubtitle,
-        // ignore unused vars so that we can do prop transferring to the root element
-        /* eslint-disable @typescript-eslint/no-unused-vars */
         headerColor,
         headerFontColor,
         badgeOffset,
-        /* eslint-enable @typescript-eslint/no-unused-vars */
         ...otherCardProps
     } = props;
 
+    const defaultClasses = useUtilityClasses(props);
+
     const getBackgroundImage = useCallback((): JSX.Element | undefined => {
         if (headerBackgroundImage) {
-            return <div className={clsx(defaultClasses.headerBackground, classes.headerBackground)} />;
+            return (
+                <HeaderBackground
+                    className={cx(defaultClasses.headerBackground, classes.headerBackground)}
+                    headerBackgroundImage={headerBackgroundImage}
+                />
+            );
         }
     }, [headerBackgroundImage, defaultClasses, classes]);
 
@@ -169,9 +228,14 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         if (!headerInfo) return;
         if (typeof headerInfo === 'string') {
             return (
-                <Typography noWrap variant={'body2'} className={clsx(defaultClasses.headerInfo, classes.headerInfo)}>
+                <HeaderInfo
+                    noWrap
+                    variant={'body2'}
+                    headerFontColor={headerFontColor}
+                    className={cx(defaultClasses.headerInfo, classes.headerInfo)}
+                >
                     {headerInfo}
-                </Typography>
+                </HeaderInfo>
             );
         }
         return headerInfo;
@@ -181,13 +245,14 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         if (!headerSubtitle) return;
         if (typeof headerSubtitle === 'string') {
             return (
-                <Typography
+                <HeaderSubtitle
+                    headerFontColor={headerFontColor}
                     noWrap
                     variant={'body2'}
-                    className={clsx(defaultClasses.headerSubtitle, classes.headerSubtitle)}
+                    className={cx(defaultClasses.headerSubtitle, classes.headerSubtitle)}
                 >
                     {headerSubtitle}
-                </Typography>
+                </HeaderSubtitle>
             );
         }
         return headerSubtitle;
@@ -195,13 +260,18 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
 
     const getHeaderText = useCallback(
         (): JSX.Element => (
-            <div className={defaultClasses.flexColumn} style={{ flex: '1 1 0px', overflow: 'hidden' }}>
-                <Typography variant={'h6'} noWrap className={clsx(defaultClasses.headerTitle, classes.headerTitle)}>
+            <FlexColumn>
+                <HeaderTitle
+                    headerFontColor={headerFontColor}
+                    variant={'h6'}
+                    noWrap
+                    className={cx(defaultClasses.headerTitle, classes.headerTitle)}
+                >
                     {headerTitle}
-                </Typography>
+                </HeaderTitle>
                 {getHeaderSubtitle()}
                 {getHeaderInfo()}
-            </div>
+            </FlexColumn>
         ),
         [defaultClasses, classes, headerTitle, getHeaderSubtitle, getHeaderInfo]
     );
@@ -209,13 +279,13 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
     const getActionItems = useCallback((): JSX.Element[] | undefined => {
         if (actionItems) {
             return actionItems.slice(0, actionLimit).map((actionItem, index) => (
-                <div
+                <ActionItems
                     key={`${index}`}
-                    className={clsx(defaultClasses.actionItems, classes.actionItems)}
+                    className={cx(defaultClasses.actionItems, classes.actionItems)}
                     data-test={'action-item'}
                 >
                     {actionItem}
-                </div>
+                </ActionItems>
             ));
         }
     }, [actionItems, actionLimit, defaultClasses, classes]);
@@ -223,9 +293,13 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
     const getHeroes = useCallback((): JSX.Element | undefined => {
         if (badge) {
             return (
-                <div className={clsx(defaultClasses.badgeWrapper, classes.badgeWrapper)} data-test={'badge-wrapper'}>
+                <BadgeWrapper
+                    className={cx(defaultClasses.badgeWrapper, classes.badgeWrapper)}
+                    badgeOffset={badgeOffset}
+                    data-test={'badge-wrapper'}
+                >
                     {badge}
-                </div>
+                </BadgeWrapper>
             );
         }
     }, [badge, defaultClasses, classes]);
@@ -242,22 +316,32 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
     }, [actionRow]);
 
     return (
-        <Card ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'card'} {...otherCardProps}>
-            <div data-test={'header'} className={clsx(defaultClasses.header, classes.header)}>
+        <Root
+            ref={ref}
+            className={cx(defaultClasses.root, classes.root, userClassName)}
+            data-test={'card'}
+            {...otherCardProps}
+        >
+            <Header
+                data-test={'header'}
+                className={cx(defaultClasses.header, classes.header)}
+                headerColor={headerColor}
+                headerFontColor={headerFontColor}
+            >
                 {getBackgroundImage()}
-                <div className={clsx(defaultClasses.headerContent, classes.headerContent)}>
+                <HeaderContent className={cx(defaultClasses.headerContent, classes.headerContent)}>
                     {getHeaderText()}
                     {getActionItems()}
-                </div>
-            </div>
-            <div className={clsx(defaultClasses.content, classes.content)} data-test={'content'}>
-                <div className={clsx(defaultClasses.bodyWrapper, classes.bodyWrapper)} data-test={'body-wrapper'}>
+                </HeaderContent>
+            </Header>
+            <Content className={cx(defaultClasses.content, classes.content)} data-test={'content'}>
+                <BodyWrapper className={cx(defaultClasses.bodyWrapper, classes.bodyWrapper)} data-test={'body-wrapper'}>
                     {children}
-                </div>
+                </BodyWrapper>
                 {getHeroes()}
-            </div>
+            </Content>
             {getFooter()}
-        </Card>
+        </Root>
     );
 };
 /**

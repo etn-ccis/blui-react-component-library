@@ -52,16 +52,22 @@ import { Hero } from '@brightlayer-ui/react-components';
 
 Any other props supplied will be provided to the root element (`div`).
 
-### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-| Name   | Description                         |
-| ------ | ----------------------------------- |
-| root   | Styles applied to the root element  |
-| icon   | Styles applied to the icon element  |
-| label  | Styles applied to the label element |
-| values | Styles applied to the value element |
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+| Name   | Global CSS Class | Description                         |
+| ------ | ---------------- | ----------------------------------- |
+| root   | .BluiHero-root   | Styles applied to the root element  |
+| icon   | .BluiHero-icon   | Styles applied to the icon element  |
+| label  | .BluiHero-label  | Styles applied to the label element |
+| values | .BluiHero-values | Styles applied to the value element |
 
 # Hero Banner
 
@@ -94,11 +100,3 @@ import Hero from '@brightlayer-ui/react-components/core/Hero';
 </div>
 
 Any other props supplied will be provided to the root element (`div`).
-
-### Classes
-
-You can override the classes used by Brightlayer UI by passing a `classes` prop. It supports the following keys:
-
-| Name | Description                        |
-| ---- | ---------------------------------- |
-| root | Styles applied to the root element |

@@ -1,19 +1,31 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDrawerContext } from './DrawerContext';
-import { NavGroupContext } from './NavGroupContext';
-import { Theme, useTheme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
+import { useDrawerContext } from '../DrawerContext';
+import { NavGroupContext } from '../NavGroupContext';
+import { useTheme, styled } from '@mui/material/styles';
 import List, { ListProps } from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import ListSubheader from '@mui/material/ListSubheader';
 import Divider from '@mui/material/Divider';
-import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
-import { DrawerNavItem, DrawerNavItemProps, NestedDrawerNavItemProps } from './DrawerNavItem';
-import { DrawerRailItem, DrawerRailItemProps } from './DrawerRailItem';
-import { findChildByType, mergeStyleProp } from './utilities';
-import clsx from 'clsx';
+import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from '../types';
+import { DrawerNavItem, DrawerNavItemProps, NestedDrawerNavItemProps } from '../DrawerNavItem';
+import { DrawerRailItem, DrawerRailItemProps } from '../DrawerRailItem';
+import { findChildByType, mergeStyleProp } from '../utilities';
+import { cx } from '@emotion/css';
+import { DrawerNavGroupClasses, DrawerNavGroupClassKey, getDrawerNavGroupUtilityClass } from './DrawerNavGroupClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+
+const useUtilityClasses = (ownerState: DrawerNavGroupProps): Record<DrawerNavGroupClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        subheader: ['subheader'],
+        title: ['title'],
+    };
+
+    return composeClasses(slots, getDrawerNavGroupUtilityClass, classes);
+};
 
 export type DrawerNavGroupProps = SharedStyleProps &
     NavItemSharedStyleProps &
@@ -37,34 +49,37 @@ export type DrawerNavGroupProps = SharedStyleProps &
         titleDivider?: boolean;
     };
 
-type DrawerNavGroupClasses = {
-    root?: string;
-    subheader?: string;
-    title?: string;
-};
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            backgroundColor: (props: DrawerNavGroupProps): string => props.backgroundColor,
-            paddingBottom: 0,
-            paddingTop: 0,
-        },
-        title: {
-            display: 'block',
-            alignItems: 'center',
-            lineHeight: '3rem',
-            height: `3rem`,
-            fontWeight: 600,
-        },
-        subheader: {
-            paddingBottom: 0,
-            paddingLeft: theme.spacing(2),
-            paddingRight: theme.spacing(2),
-            position: 'inherit',
-            cursor: 'text',
-        },
-    })
-);
+const Root = styled(List, {
+    name: 'drawer-nav-group',
+    slot: 'root',
+    shouldForwardProp: (prop) => prop !== 'backgroundColor',
+})<Pick<DrawerNavGroupProps, 'backgroundColor'>>(({ backgroundColor }) => ({
+    backgroundColor: backgroundColor,
+    paddingBottom: 0,
+    paddingTop: 0,
+}));
+
+const SubHeader = styled(ListSubheader, {
+    name: 'drawer-nav-group',
+    slot: 'subheader',
+})(({ theme }) => ({
+    paddingBottom: 0,
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    position: 'inherit',
+    cursor: 'text',
+}));
+
+const Title = styled(Typography, {
+    name: 'drawer-nav-group',
+    slot: 'title',
+})(() => ({
+    display: 'block',
+    alignItems: 'center',
+    lineHeight: '3rem',
+    height: `3rem`,
+    fontWeight: 600,
+}));
 
 const findID = (item: DrawerNavItemProps | NestedDrawerNavItemProps, activeItem: string): boolean => {
     // if leaf node, return
@@ -98,12 +113,13 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     props: DrawerNavGroupProps,
     ref: any
 ) => {
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     const theme = useTheme();
     const {
         // Nav Group Props
         children,
         classes,
+        className: userClassName,
         items = [],
         title,
         titleColor = theme.palette.text.primary,
@@ -127,7 +143,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         nestedBackgroundColor,
         nestedDivider,
         ripple,
-        ...otherListProps
+        ...otherProps
     } = props;
 
     const { variant, open: drawerOpen = true, activeItem } = useDrawerContext();
@@ -228,31 +244,28 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
 
     return (
         <NavGroupContext.Provider value={{ activeHierarchy: activeHierarchyItems }}>
-            <List
+            <Root
                 ref={ref}
-                className={clsx(defaultClasses.root, classes.root)}
+                className={cx(defaultClasses.root, classes.root, userClassName)}
                 subheader={
                     variant !== 'rail' && (
-                        <ListSubheader
-                            className={clsx(defaultClasses.subheader, classes.subheader)}
+                        <SubHeader
+                            className={cx(defaultClasses.subheader, classes.subheader)}
                             style={{
                                 color: drawerOpen ? titleColor : 'transparent',
                             }}
                         >
                             {title && (
-                                <Typography
-                                    noWrap
-                                    variant={'overline'}
-                                    className={clsx(defaultClasses.title, classes.title)}
-                                >
+                                <Title noWrap variant={'overline'} className={cx(defaultClasses.title, classes.title)}>
                                     {title}
-                                </Typography>
+                                </Title>
                             )}
                             {titleContent}
-                        </ListSubheader>
+                        </SubHeader>
                     )
                 }
-                {...otherListProps}
+                backgroundColor={backgroundColor}
+                {...otherProps}
             >
                 {variant !== 'rail' && (
                     <div key={`${title}_title`}>{(title || titleContent) && titleDivider && <Divider />}</div>
@@ -342,7 +355,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                     );
                 })}
                 {getChildren()}
-            </List>
+            </Root>
         </NavGroupContext.Provider>
     );
 };

@@ -1,5 +1,11 @@
 # Changelog
 
+## v6.1.0 (unreleased)
+
+### Changed
+
+-   Components are now styled using use the new MUI styled engine and extend the sx prop.
+
 ## v6.0.0 (April 1, 2022)
 
 ### Changed
