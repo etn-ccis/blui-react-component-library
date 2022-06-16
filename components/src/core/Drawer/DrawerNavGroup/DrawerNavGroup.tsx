@@ -303,6 +303,8 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                                 statusColor={railItem.statusColor}
                                 title={railItem.title}
                                 disableRailTooltip={railItem.disableRailTooltip}
+                                sx={railItem.sx}
+                                style={railItem.style}
                             />
                         );
                     }
