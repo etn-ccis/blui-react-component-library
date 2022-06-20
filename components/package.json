@@ -35,7 +35,6 @@
         "@typescript-eslint/eslint-plugin": "^5.14.0",
         "@typescript-eslint/parser": "^5.14.0",
         "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
-        "clsx": "^1.1.0",
         "enzyme": "^3.5.0",
         "enzyme-adapter-react-16": "^1.8.0",
         "eslint": "^8.15.0",
