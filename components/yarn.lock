@@ -298,10 +298,17 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@brightlayer-ui/colors@3.0.1", "@brightlayer-ui/colors@^3.0.0":
+"@brightlayer-ui/colors@^3.0.0":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-3.0.1.tgz#f085acf6b6b4266a01798c78bc25841d15e44b3e"
   integrity sha512-AE9F6FN1EQWMoqFTak6q8MN3wg9et2u2SUs6HjYhcS3GVSHjMWVSsuJZ2aD5Lu9409Gfi6pBHDWsJZ5PyeLsdQ==
+  dependencies:
+    "@brightlayer-ui/types" "^2.0.0"
+
+"@brightlayer-ui/colors@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-3.1.0.tgz#eb1a0fe769328934e98d02f0f9232da72a0d714e"
+  integrity sha512-BZkrRovZQv4YrpGDagUH7tIera5v+EPjrV/gwUDgnRVT+yKOjz+KB/F3g5DzTxQiA/QDiuxHU/0CumSlxwljmQ==
   dependencies:
     "@brightlayer-ui/types" "^2.0.0"
 
