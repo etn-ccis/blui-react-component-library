@@ -166,27 +166,15 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         if (icon) {
             return (
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    {avatar ? (
-                        <Icon
-                            statusColor={statusColor}
-                            iconColor={iconColor}
-                            avatar={avatar}
-                            iconAlign={iconAlign}
-                            className={combine('avatar')}
-                        >
-                            {icon}
-                        </Icon>
-                    ) : (
-                        <Icon
-                            statusColor={statusColor}
-                            iconColor={iconColor}
-                            avatar={avatar}
-                            iconAlign={iconAlign}
-                            className={combine('icon')}
-                        >
-                            {icon}
-                        </Icon>
-                    )}
+                    <Icon
+                        statusColor={statusColor}
+                        iconColor={iconColor}
+                        avatar={avatar}
+                        iconAlign={iconAlign}
+                        className={avatar ? combine('avatar') : combine('icon')}
+                    >
+                        {icon}
+                    </Icon>
                 </ListItemAvatar>
             );
         } else if (!hidePadding) {
