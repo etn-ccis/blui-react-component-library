@@ -84,11 +84,18 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-| Name        | Global CSS Class         | Description                               |
-| ----------- | ------------------------ | ----------------------------------------- |
-| root        | .BluiUserMenu-root       | Styles applied to the root element        |
-|             | .BluiUserMenu-avatarRoot | Styles applied to the avatarRoot element  |
-| bottomSheet | n/a                      | Styles applied to responsive bottom sheet |
+| Name        | Global CSS Class            | Description                               |
+| ----------- | --------------------------- | ----------------------------------------- |
+| root        | .BluiUserMenu-root          | Styles applied to the root element        |
+| bottomSheet | .BluiUserMenu-bottomsheet\* | Styles applied to responsive bottom sheet |
+|             | .BluiUserMenu-avatarRoot    | Styles applied to the avatarRoot element  |
+|             | .BluiUserMenu-header        | Styles applied to the header element      |
+|             | .BluiUserMenu-headerRoot    | Styles applied to the headerRoot element  |
+|             | .BluiUserMenu-menuTitle     | Styles applied to the menuTitle element   |
+|             | .BluiUserMenu-navigation    | Styles applied to the navigation element  |
+|             | .BluiUserMenu-navGroups     | Styles applied to the navGroups element   |
+
+\* This element lives in a separate container and can't be styled via `sx` nesting rules.
 
 ### User Menu Groups Object
 
