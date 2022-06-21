@@ -305,10 +305,10 @@
   dependencies:
     "@brightlayer-ui/types" "^2.0.0"
 
-"@brightlayer-ui/colors@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-3.1.0.tgz#eb1a0fe769328934e98d02f0f9232da72a0d714e"
-  integrity sha512-BZkrRovZQv4YrpGDagUH7tIera5v+EPjrV/gwUDgnRVT+yKOjz+KB/F3g5DzTxQiA/QDiuxHU/0CumSlxwljmQ==
+"@brightlayer-ui/colors@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-3.1.1.tgz#7bc86498e30172c410ba4c3237149b16a2eed4c6"
+  integrity sha512-fV10E5JDuVGDQ0gCY3pEfDwUo1+lvDFC5pmOAAGpN7YDramS6ggUpJ/LmYavKAudw7FNcaJnPi7tsQWJjvv/7w==
   dependencies:
     "@brightlayer-ui/types" "^2.0.0"
 
