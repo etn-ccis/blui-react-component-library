@@ -43,8 +43,7 @@ const Root = styled(Typography, {
     slot: 'root',
     shouldForwardProp: (prop) => prop !== 'fontColor',
 })<Pick<ListItemTagProps, 'backgroundColor' | 'fontColor' | 'onClick' | 'variant'>>(
-    ({ backgroundColor, fontColor, onClick, theme }) => {
-        return `
+    ({ backgroundColor, fontColor, onClick, theme }) => `
         border-radius: 0.125rem;
         padding: 0;
         /* @noflip */
@@ -73,8 +72,7 @@ const Root = styled(Typography, {
             font-size: 0.625rem;
             line-height: 1rem;
             height: 1rem;
-        },`;
-    }
+        },`
 );
 
 const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProps> = (
