@@ -6,14 +6,14 @@
         "test": "jest src",
         "build": "tsc --p tsconfig.lib.json",
         "watch:storybook": "tsc --p tsconfig.lib.json --watch --outdir ../demos/storybook/node_modules/@brightlayer-ui/react-components",
-        "lint": "eslint \"src/**.{tsx,ts}\"",
+        "lint": "eslint \"src/**/**.{tsx,ts}\"",
         "lint:fix": "eslint \"src/**/**.{tsx,ts}\" --fix",
         "prettier": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
         "prettier:check": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check"
     },
     "prettier": "@brightlayer-ui/prettier-config",
     "dependencies": {
-        "@brightlayer-ui/colors": "3.0.1",
+        "@brightlayer-ui/colors": "^3.1.1",
         "@emotion/css": "^11.9.0",
         "@seznam/compose-react-refs": "^1.0.6",
         "color": "^4.2.1"
@@ -35,7 +35,6 @@
         "@typescript-eslint/eslint-plugin": "^5.14.0",
         "@typescript-eslint/parser": "^5.14.0",
         "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
-        "clsx": "^1.1.0",
         "enzyme": "^3.5.0",
         "enzyme-adapter-react-16": "^1.8.0",
         "eslint": "^8.15.0",
@@ -59,9 +58,6 @@
         "@mui/styles": "^5.3.0",
         "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
-    },
-    "resolutions": {
-        "@brightlayer-ui/colors": "3.0.1"
     },
     "repository": {
         "type": "git",

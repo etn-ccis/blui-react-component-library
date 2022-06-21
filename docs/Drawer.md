@@ -104,19 +104,9 @@ For more details on styling options check out our [Styling Guide](https://github
 | ---------- | ---------------------- | -------------------------------------------------------------- |
 | root       | .BluiDrawer-root       | Styles applied to the root element                             |
 | content    | .BluiDrawer-content    | Styles applied to the drawer content container                 |
-| expanded   | N/A*                   | Styles applied to the root element when the drawer is expanded |
+| expanded   | .Mui-expanded          | Styles applied to the root element when the drawer is expanded |
 | paper      | .BluiDrawer-paper      | MUI Drawer style override for the underlying paper element     |
 | sideBorder | .BluiDrawer-sideBorder | Styles applied when sideBorder is set to true                  |
-
-> \* This class cannot be overridden via the `sx` prop. However, the `.Mui-expanded` class can be used to override expanded styles with sx.
-
-```tsx
-import { Drawer } from '@brightlayer-ui/react-components';
-...
-<Drawer variant='temporary' sx={{margin: '4px'}}
->
-</Drawer>
-```
 
 ## Drawer Header
 
@@ -359,17 +349,17 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-| Name            | Global CSS Class                      | Description                                                     |
-| --------------- | ------------------------------------- | --------------------------------------------------------------- |
-| root            | .BluiDrawerNavItem-root               | Styles applied to the root element                              |
-| active          | N/A\*                                 | Styles applied to the title text if the item is the active item |
-| chevron         | .BluiDrawerNavItem-chevron            | Styles applied to the chevron element                           |
-| expandIcon      | .BluiDrawerNavItem-expandIcon         | Styles applied to the expandIcon element                        |
-| nestedListGroup | .BluiDrawerNavItem-nestedListGroup    | Styles applied to wrapper surrounded nested children            |
-| nestedTitle     | .BluiDrawerNavItem-nestedTitle        | Styles applied to the title if the item is a nested item        |
-| title           | .BluiDrawerNavItem-title              | Styles applied to the title text                                |
-| titleActive     | .BluiDrawerNavItem-titleActive        | Styles applied to the title text if the item is the active item |
-| ripple          | .BluiDrawerNavItem-ripple             | Styles applied to the ripple                                    |
+| Name            | Global CSS Class                      | Description                                                       |
+| --------------- | ------------------------------------- | ----------------------------------------------------------------- |
+| root            | .BluiDrawerNavItem-root               | Styles applied to the root element                                |
+| active          | .BluiDrawerNavItem-active\*           | Styles applied to the root element if the item is the active item |
+| chevron         | .BluiDrawerNavItem-chevron            | Styles applied to the chevron element                             |
+| expandIcon      | .BluiDrawerNavItem-expandIcon         | Styles applied to the expandIcon element                          |
+| nestedListGroup | .BluiDrawerNavItem-nestedListGroup    | Styles applied to wrapper surrounded nested children              |
+| nestedTitle     | .BluiDrawerNavItem-nestedTitle        | Styles applied to the title if the item is a nested item          |
+| title           | .BluiDrawerNavItem-title              | Styles applied to the title text                                  |
+| titleActive     | .BluiDrawerNavItem-titleActive        | Styles applied to the title text if the item is the active item   |
+| ripple          | .BluiDrawerNavItem-ripple             | Styles applied to the ripple                                      |
 
 > \* These classes can not be overridden via the `sx` prop.
 
@@ -573,6 +563,4 @@ For more details on styling options check out our [Styling Guide](https://github
 | root     | .BluiDrawerLayout-root        | Styles applied to the root element                             |
 | content  | .BluiDrawerLayout-content     | Styles applied to the body content container                   |
 | drawer   | .BluiDrawerLayout-drawer      | Styles applied to the drawer container                         |
-| expanded | N/A\*                         | Styles applied to the root element when the drawer is expanded |
-
-> \* This class cannot be overridden via the `sx` prop. However, the `.Mui-expanded` class can be used to override expanded styles with sx.
+| expanded | .Mui-expanded                 | Styles applied to the root element when the drawer is expanded |

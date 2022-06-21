@@ -70,7 +70,7 @@ const SuccessInfoListItem = styled(InfoListItem)<InfoListItemProps>(({ theme }) 
 
 ## 3. Overriding Styles with the `className` and `classes` prop
 
-If you want to override a component's styles using custom classes, you can use the `className` prop, available on each component.
+If you want to override a component's styles using custom classes, you can use the `className` prop, available on each component. `className` is only applied to the root element of each component.
 
 To customize a specific part of a component, you can use the `classes` prop provided by Brightlayer UI. These classes can be found in the `Style Overrides` section of the documentation for each component. There are 4 ways you can approach using these:
 

@@ -10,7 +10,6 @@ import { RAIL_WIDTH, RAIL_WIDTH_CONDENSED } from '../Drawer';
 import { SharedStyleProps, SharedStylePropTypes } from '../types';
 import { NavItem } from '../DrawerNavItem';
 import color from 'color';
-import clsx from 'clsx';
 import { cx } from '@emotion/css';
 import drawerRailItemClasses, {
     DrawerRailItemClasses,
@@ -289,7 +288,8 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             : {};
 
     const combine = useCallback(
-        (className: keyof DrawerRailItemClasses): string => cx(defaultClasses[className], classes[className]),
+        (drawerRailItemClassName: keyof DrawerRailItemClasses): string =>
+            cx(defaultClasses[drawerRailItemClassName], classes[drawerRailItemClassName]),
         [defaultClasses, classes]
     );
 
