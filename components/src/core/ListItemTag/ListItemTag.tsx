@@ -34,49 +34,47 @@ export type ListItemTagProps = TypographyProps & {
     label: string;
 };
 
-// See https://material-ui.com/guides/right-to-left/#opting-out-of-rtl-transformation
-// declare module '@mui/styles/withStyles' {
-//     // Augment the BaseCSSProperties so that we can control jss-rtl
-//     // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-//     interface BaseCSSProperties {
-//         /**
-//          * Used to control if the rule-set should be affected by rtl transformation
-//          */
-//         flip?: boolean;
-//     }
-// }
+// This `styled()` function invokes @noflip. `styled-components` only supports @noflip in string templates.
+// Do not convert these styles to a JS object as it will break.
+// @noflip is used to stop certain styles from flipping when the language direction is toggled.
 
 const Root = styled(Typography, {
     name: 'list-item-tag',
     slot: 'root',
     shouldForwardProp: (prop) => prop !== 'fontColor',
 })<Pick<ListItemTagProps, 'backgroundColor' | 'fontColor' | 'onClick' | 'variant'>>(
-    ({ backgroundColor, fontColor, onClick, theme }) => ({
-        flip: false, // letter-spacing doesn't flip for RTL, so neither shall our padding hack to offset it
-        borderRadius: '0.125rem',
-        padding: 0,
-        paddingLeft: '0.25rem',
-        paddingRight: `calc(0.25rem - 1px)`, // to account for extra pixel from letter-spacing
-        overflow: 'hidden',
-        display: 'inline-block',
-        cursor: onClick ? 'pointer' : 'inherit',
-        backgroundColor:
-            backgroundColor ||
-            (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
-        color:
-            fontColor ||
-            theme.palette.getContrastText(
+    ({ backgroundColor, fontColor, onClick, theme }) => {
+        return `
+        border-radius: 0.125rem;
+        padding: 0;
+        /* @noflip */
+        padding-left: 0.25rem;
+        /* @noflip */
+        padding-right: calc(0.25rem - 1px); // to account for extra pixel from letter-spacing
+        overflow: hidden;
+        display: inline-block;
+        cursor: ${onClick ? 'pointer' : 'inherit'};
+        background-color:
+            ${
                 backgroundColor ||
-                    (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
-            ),
-        [`&.${listItemTagClasses.noVariant}`]: {
-            fontWeight: 700, // bold
-            letterSpacing: 1,
-            fontSize: `0.625rem`,
-            lineHeight: `1rem`,
-            height: `1rem`,
-        },
-    })
+                (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
+            };
+        color:
+            ${
+                fontColor ||
+                theme.palette.getContrastText(
+                    backgroundColor ||
+                        (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
+                )
+            };
+        &.${listItemTagClasses.noVariant} {
+            font-weight: 700; // bold
+            letter-spacing: 1px;
+            font-size: 0.625rem;
+            line-height: 1rem;
+            height: 1rem;
+        },`;
+    }
 );
 
 const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProps> = (
