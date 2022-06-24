@@ -4,7 +4,7 @@
     "private": true,
     "prettier": "@brightlayer-ui/prettier-config",
     "dependencies": {
-        "@brightlayer-ui/colors": "^3.0.1",
+        "@brightlayer-ui/colors": "3.0.1",
         "@brightlayer-ui/icons-mui": "^2.7.0",
         "@brightlayer-ui/react-components": "^5.3.2-beta.0",
         "@brightlayer-ui/react-themes": "^6.1.0",

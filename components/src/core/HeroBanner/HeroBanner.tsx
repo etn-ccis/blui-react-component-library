@@ -1,22 +1,23 @@
-import React, { HTMLAttributes } from 'react';
-import makeStyles from '@mui/styles/makeStyles';
+import React from 'react';
 import Divider from '@mui/material/Divider';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { cx } from '@emotion/css';
+import { getHeroBannerUtilityClass, HeroBannerClasses, HeroBannerClassKey } from './HeroBannerClasses';
+import { Box, BoxProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-const useStyles = makeStyles({
-    root: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+const useUtilityClasses = (ownerState: HeroBannerProps): Record<HeroBannerClassKey, string> => {
+    const { classes } = ownerState;
 
-export type HeroBannerClasses = {
-    root?: string;
+    const slots = {
+        root: ['root'],
+    };
+
+    return composeClasses(slots, getHeroBannerUtilityClass, classes);
 };
 
-export type HeroBannerProps = HTMLAttributes<HTMLDivElement> & {
+export type HeroBannerProps = BoxProps & {
     /** Custom classes for default style overrides */
     classes?: HeroBannerClasses;
     /** Whether to show the line separator */
@@ -25,21 +26,30 @@ export type HeroBannerProps = HTMLAttributes<HTMLDivElement> & {
     limit?: number;
 };
 
+const Root = styled(Box, {
+    name: 'hero-banner',
+    slot: 'root',
+})(() => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
 const HeroBannerRender: React.ForwardRefRenderFunction<unknown, HeroBannerProps> = (
     props: HeroBannerProps,
     ref: any
 ) => {
-    const { classes, divider, limit, ...otherDivProps } = props;
-    const defaultClasses = useStyles(props);
+    const { classes, className: userClassName, divider, limit, ...otherProps } = props;
+    const defaultClasses = useUtilityClasses(props);
     const isArray = Array.isArray(props.children);
     return (
         <>
-            <div ref={ref} className={clsx(defaultClasses.root, classes.root)} {...otherDivProps}>
+            <Root ref={ref} className={cx(defaultClasses.root, classes.root, userClassName)} {...otherProps}>
                 {props.children &&
                     isArray &&
-                    (props.children as React.ReactNodeArray).slice(0, limit).map((child: any) => child)}
+                    (props.children as React.ReactNode[]).slice(0, limit).map((child: any) => child)}
                 {props.children && !isArray && <>{props.children}</>}
-            </div>
+            </Root>
             {divider && <Divider />}
         </>
     );

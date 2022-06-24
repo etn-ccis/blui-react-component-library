@@ -1,58 +1,24 @@
-import React, { HTMLAttributes, ReactNode } from 'react';
-import { Theme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
-import clsx from 'clsx';
+import React, { ReactNode } from 'react';
+import { cx } from '@emotion/css';
+import { Box, BoxProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { ThreeLinerClasses, ThreeLinerClassKey, getThreeLinerUtilityClass } from './ThreeLinerClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-export type ThreeLinerClasses = {
-    root?: string;
-    title?: string;
-    subtitle?: string;
-    info?: string;
+const useUtilityClasses = (ownerState: ThreeLinerProps): Record<ThreeLinerClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        title: ['title'],
+        subtitle: ['subtitle'],
+        info: ['info'],
+    };
+
+    return composeClasses(slots, getThreeLinerUtilityClass, classes);
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            height: '100%',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            transition: (props: ThreeLinerProps): string =>
-                theme.transitions.create(['all'], {
-                    duration: props.animationDuration || theme.transitions.duration.standard,
-                    easing: theme.transitions.easing.easeInOut,
-                }),
-        },
-        title: {
-            fontSize: '1.875rem',
-            transition: (props: ThreeLinerProps): string =>
-                theme.transitions.create(['all'], {
-                    duration: props.animationDuration || theme.transitions.duration.standard,
-                    easing: theme.transitions.easing.easeInOut,
-                }),
-        },
-        subtitle: {
-            fontSize: '1rem',
-            transition: (props: ThreeLinerProps): string =>
-                theme.transitions.create(['all'], {
-                    duration: props.animationDuration || theme.transitions.duration.standard,
-                    easing: theme.transitions.easing.easeInOut,
-                }),
-        },
-        info: {
-            fontSize: '0.875rem',
-            transition: (props: ThreeLinerProps): string =>
-                theme.transitions.create(['all'], {
-                    duration: props.animationDuration || theme.transitions.duration.standard,
-                    easing: theme.transitions.easing.easeInOut,
-                }),
-            fontWeight: 300,
-        },
-    })
-);
-
-export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> & {
+export type ThreeLinerProps = BoxProps & {
     /** First Line Content */
     title?: ReactNode;
 
@@ -72,6 +38,54 @@ export type ThreeLinerProps = HTMLAttributes<HTMLDivElement> & {
     classes?: Partial<ThreeLinerClasses>;
 };
 
+const Root = styled(Box, {
+    name: 'three-liner',
+    slot: 'root',
+})<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
+    display: 'flex',
+    height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    transition: theme.transitions.create(['all'], {
+        duration: animationDuration || theme.transitions.duration.standard,
+        easing: theme.transitions.easing.easeInOut,
+    }),
+}));
+
+const Title = styled(Box, {
+    name: 'three-liner',
+    slot: 'title',
+})<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
+    fontSize: '1.875rem',
+    transition: theme.transitions.create(['all'], {
+        duration: animationDuration || theme.transitions.duration.standard,
+        easing: theme.transitions.easing.easeInOut,
+    }),
+}));
+
+const Subtitle = styled(Box, {
+    name: 'three-liner',
+    slot: 'subtitle',
+})<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
+    fontSize: '1rem',
+    transition: theme.transitions.create(['all'], {
+        duration: animationDuration || theme.transitions.duration.standard,
+        easing: theme.transitions.easing.easeInOut,
+    }),
+}));
+
+const Info = styled(Box, {
+    name: 'three-liner',
+    slot: 'info',
+})<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
+    fontSize: '0.875rem',
+    transition: theme.transitions.create(['all'], {
+        duration: animationDuration || theme.transitions.duration.standard,
+        easing: theme.transitions.easing.easeInOut,
+    }),
+    fontWeight: 300,
+}));
+
 const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProps> = (
     props: ThreeLinerProps,
     ref: any
@@ -81,20 +95,25 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
         subtitle,
         info,
         classes = {},
-        className,
+        className: userClassName,
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         animationDuration,
-        ...otherDivProps
+        ...otherProps
     } = props;
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     //const animationDuration = durationProp || theme.transitions.duration.standard;
     return (
-        <div ref={ref} {...otherDivProps} className={clsx(defaultClasses.root, classes.root, className)}>
-            <div className={clsx(defaultClasses.title, classes.title)}>{title}</div>
-            <div className={clsx(defaultClasses.subtitle, classes.subtitle)}>{subtitle}</div>
-            <div className={clsx(defaultClasses.info, classes.info)}>{info}</div>
-        </div>
+        <Root
+            ref={ref}
+            {...otherProps}
+            animationDuration={animationDuration}
+            className={cx(defaultClasses.root, classes.root, userClassName)}
+        >
+            <Title className={cx(defaultClasses.title, classes.title)}>{title}</Title>
+            <Subtitle className={cx(defaultClasses.subtitle, classes.subtitle)}>{subtitle}</Subtitle>
+            <Info className={cx(defaultClasses.info, classes.info)}>{info}</Info>
+        </Root>
     );
 };
 /**

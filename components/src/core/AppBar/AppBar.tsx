@@ -1,50 +1,53 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Theme, useTheme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
+import { styled, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 // import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import clsx from 'clsx';
 import { usePrevious } from '../hooks/usePrevious';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import appBarClasses, { AppBarClasses, AppBarClassKey, getAppBarUtilityClass } from './AppBarClasses';
+import { cx } from '@emotion/css';
 
-export type AppBarClasses = {
-    root?: string;
-    background?: string;
-    expanded?: string;
-    collapsed?: string;
-    expandedBackground?: string;
+const useUtilityClasses = (ownerState: AppBarProps): Record<AppBarClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        background: ['background'],
+        expanded: ['expanded'],
+        collapsed: ['collapsed'],
+        expandedBackground: ['expandedBackground'],
+    };
+
+    return composeClasses(slots, getAppBarUtilityClass, classes);
 };
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            overflow: 'hidden',
-            transition: (props: AppBarProps): string =>
-                theme.transitions.create(['height'], {
-                    duration: props.animationDuration || theme.transitions.duration.standard,
-                    easing: theme.transitions.easing.easeInOut,
-                }),
-        },
-        background: {
-            position: 'absolute',
-            zIndex: -1,
-            width: '100%',
-            backgroundSize: 'cover',
-            height: '100%',
-            opacity: 0.3,
-            backgroundPosition: 'center bottom',
-            backgroundImage: (props: AppBarProps): string => `url(${props.backgroundImage})`,
-            transition: (props: AppBarProps): string =>
-                theme.transitions.create(['all'], {
-                    duration: props.animationDuration || theme.transitions.duration.standard,
-                    easing: theme.transitions.easing.easeInOut,
-                }),
-        },
-        expanded: {},
-        collapsed: {},
-        expandedBackground: {},
-    })
-);
+
+const Root = styled(MuiAppBar, {
+    name: 'app-bar',
+    slot: 'root',
+    shouldForwardProp: (prop) => prop !== 'backgroundImage',
+})<Pick<AppBarProps, 'animationDuration' | 'backgroundImage'>>(({ animationDuration, backgroundImage, theme }) => ({
+    overflow: 'hidden',
+    transition: theme.transitions.create(['height'], {
+        duration: animationDuration || theme.transitions.duration.standard,
+        easing: theme.transitions.easing.easeInOut,
+    }),
+    [`& .${appBarClasses.background}`]: {
+        position: 'absolute',
+        zIndex: -1,
+        width: '100%',
+        backgroundSize: 'cover',
+        height: '100%',
+        opacity: 0.3,
+        backgroundPosition: 'center bottom',
+        backgroundImage: `url(${backgroundImage})`,
+        transition: theme.transitions.create(['all'], {
+            duration: animationDuration || theme.transitions.duration.standard,
+            easing: theme.transitions.easing.easeInOut,
+        }),
+    },
+}));
 
 export type AppBarProps = Omit<MuiAppBarProps, 'variant'> & {
     /**
@@ -139,6 +142,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         animationDuration: durationProp,
         expandedHeight = 200,
         backgroundImage,
+        className: userClassName,
         classes = {},
         collapsedHeight = defaultAppBarHeight,
         // onExpandedHeightReached,
@@ -150,7 +154,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     const scrollElement = scrollContainerId ? document.getElementById(scrollContainerId) : null;
     const scrollTop = scrollElement ? scrollElement.scrollTop : window.scrollY;
 
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     const animationDuration = durationProp || theme.transitions.duration.standard;
 
     const [offset, setOffset] = useState(0);
@@ -280,26 +284,28 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     }, [handleScroll]);
 
     return (
-        <>
-            <MuiAppBar
-                ref={ref}
-                {...muiAppBarProps}
-                className={clsx(defaultClasses.root, classes.root, {
-                    [defaultClasses.expanded]: isExpanded,
+        <Root
+            ref={ref}
+            {...muiAppBarProps}
+            className={cx(
+                defaultClasses.root,
+                classes.root,
+                {
                     [classes.expanded]: isExpanded,
-                    [defaultClasses.collapsed]: !isExpanded,
                     [classes.collapsed]: !isExpanded,
-                })}
-                style={Object.assign({}, style, {
-                    height: height,
-                    overflow: 'hidden',
-                })}
-                position={'sticky'}
-            >
-                {getBackgroundImage()}
-                {props.children}
-            </MuiAppBar>
-        </>
+                },
+                userClassName
+            )}
+            style={Object.assign({}, style, {
+                height: height,
+                overflow: 'hidden',
+            })}
+            position={'sticky'}
+            backgroundImage={backgroundImage}
+        >
+            {getBackgroundImage()}
+            {props.children}
+        </Root>
     );
 };
 

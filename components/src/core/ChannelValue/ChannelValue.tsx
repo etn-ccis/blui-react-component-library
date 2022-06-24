@@ -1,17 +1,31 @@
-import React, { useCallback, HTMLAttributes } from 'react';
+import React, { useCallback } from 'react';
 import Typography from '@mui/material/Typography';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
-import clsx from 'clsx';
+import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
+import { Box, BoxProps, TypographyProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import channelValueClasses, {
+    ChannelValueClasses,
+    ChannelValueClassKey,
+    getChannelValueUtilityClass,
+} from './ChannelValueClasses';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-export type ChannelValueClasses = {
-    root?: string;
-    icon?: string;
-    units?: string;
-    value?: string;
+const useUtilityClasses = (ownerState: ChannelValueProps): Record<ChannelValueClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        icon: ['icon'],
+        text: ['text'],
+        value: ['value'],
+        units: ['units'],
+    };
+
+    return composeClasses(slots, getChannelValueUtilityClass, classes);
 };
-export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> & {
+
+export type ChannelValueProps = Omit<BoxProps, 'prefix'> & {
     /** Custom classes for default style overrides */
     classes?: ChannelValueClasses;
     /** The color used for the text elements
@@ -45,42 +59,45 @@ export type ChannelValueProps = Omit<HTMLAttributes<HTMLSpanElement>, 'prefix'> 
     value: number | string;
 };
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        root: {
-            display: 'inline-flex',
-            alignItems: 'center',
-            lineHeight: 1.2,
-            fontSize: (props: ChannelValueProps): string | number => props.fontSize,
-            color: (props: ChannelValueProps): string => props.color,
-        },
-        icon: {
-            marginRight: '0.35em',
-            display: 'inline',
-            fontSize: 'inherit',
-        },
-        text: {
-            fontSize: 'inherit',
-            lineHeight: 'inherit',
-            letterSpacing: 0,
-        },
-        prefix: {
-            '& + h6': {
-                marginLeft: '0.25em',
-            },
-        },
-        suffix: {},
-        units: {
-            fontWeight: 300,
-        },
-        value: {
-            fontWeight: 600,
-            '& + $suffix': {
-                marginLeft: '0.25em',
-            },
-        },
-    })
-);
+const Root = styled(Box)<Pick<ChannelValueProps, 'fontSize' | 'color'>>(({ fontSize, color }) => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    lineHeight: 1.2,
+    fontSize: fontSize,
+    color: color,
+    [`& .${channelValueClasses.text}`]: { fontSize: 'inherit', lineHeight: 'inherit', letterSpacing: 0 },
+}));
+
+const IconSpan = styled('span', {
+    name: 'channel-value',
+    slot: 'icon',
+})(() => ({
+    marginRight: '0.35em',
+    display: 'inline',
+    fontSize: 'inherit',
+}));
+
+const Unit = styled(Typography, {
+    name: 'channel-value',
+    slot: 'units',
+    shouldForwardProp: (prop) => prop !== 'isSuffix',
+})<TypographyProps & { isSuffix: boolean }>(({ isSuffix }) => ({
+    fontWeight: 300,
+    ...(isSuffix === true && {
+        marginLeft: '0.25em',
+    }),
+}));
+
+const Value = styled(Typography, {
+    name: 'channel-value',
+    slot: 'value',
+    shouldForwardProp: (prop) => prop !== 'isPrefix',
+})<TypographyProps & { isPrefix: boolean }>(({ isPrefix }) => ({
+    fontWeight: 600,
+    ...(isPrefix === true && {
+        marginLeft: '0.25em',
+    }),
+}));
 
 const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
     React.cloneElement(newIcon, {
@@ -93,19 +110,17 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
 ) => {
     const {
         classes,
+        className: userClassName,
         icon,
         prefix,
         units,
         unitSpace,
         value,
-        // ignore unused vars so that we can do prop transferring to the root element
-        /* eslint-disable @typescript-eslint/no-unused-vars */
         color,
         fontSize,
-        /* eslint-enable @typescript-eslint/no-unused-vars */
-        ...otherSpanProps
+        ...otherProps
     } = props;
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     const prefixUnitAllowSpaceList = ['$'];
     const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
 
@@ -125,17 +140,15 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         (): JSX.Element => (
             <>
                 {units && (
-                    <Typography
+                    <Unit
                         variant={'h6'}
                         color={'inherit'}
-                        className={clsx(defaultClasses.text, defaultClasses.units, classes.units, {
-                            [defaultClasses.prefix]: applyPrefix(),
-                            [defaultClasses.suffix]: applySuffix(),
-                        })}
+                        className={cx(defaultClasses.text, classes.text, defaultClasses.units, classes.units)}
+                        isSuffix={applySuffix()}
                         data-test={'units'}
                     >
                         {units}
-                    </Typography>
+                    </Unit>
                 )}
             </>
         ),
@@ -143,23 +156,32 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
     );
 
     return (
-        <span ref={ref} className={clsx(defaultClasses.root, classes.root)} data-test={'wrapper'} {...otherSpanProps}>
+        <Root
+            component="span"
+            ref={ref}
+            className={cx(defaultClasses.root, classes.root, userClassName)}
+            data-test={'wrapper'}
+            fontSize={fontSize}
+            color={color}
+            {...otherProps}
+        >
             {icon && (
-                <span className={clsx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
+                <IconSpan className={cx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
                     {changeIconDisplay(icon)}
-                </span>
+                </IconSpan>
             )}
             {prefix && getUnitElement()}
-            <Typography
+            <Value
                 variant={'h6'}
                 color={'inherit'}
-                className={clsx(defaultClasses.text, defaultClasses.value, classes.value)}
+                className={cx(defaultClasses.text, classes.text, defaultClasses.value, classes.value)}
                 data-test={'value'}
+                isPrefix={applyPrefix()}
             >
                 {value}
-            </Typography>
+            </Value>
             {!prefix && getUnitElement()}
-        </span>
+        </Root>
     );
 };
 /**
@@ -175,6 +197,9 @@ ChannelValue.propTypes = {
     classes: PropTypes.shape({
         root: PropTypes.string,
         icon: PropTypes.string,
+        text: PropTypes.string,
+        prefix: PropTypes.string,
+        suffix: PropTypes.string,
         value: PropTypes.string,
         units: PropTypes.string,
     }),

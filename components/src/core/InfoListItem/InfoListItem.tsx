@@ -1,20 +1,49 @@
 import React, { ReactNode, useCallback } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
-import ListItem, { ListItemProps } from '@mui/material/ListItem';
-import ListItemButton, { ListItemButtonProps as MuiListItemButtonProps } from '@mui/material/ListItemButton';
+import { ListItemProps } from '@mui/material/ListItem';
+import { ListItemButtonProps as MuiListItemButtonProps } from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
-import Chevron from '@mui/icons-material/ChevronRight';
-
-import { InfoListItemClasses, useStyles } from './InfoListItem.styles';
-
+import { cx } from '@emotion/css';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { separate, withKeys } from '../utilities';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import {
+    Icon,
+    Info,
+    InfoListItemChevron,
+    InfoListItemContentContainer,
+    InfoListItemDivider,
+    InfoListItemText,
+    RightComponent,
+    Root,
+    StatusStripe,
+    Subtitle,
+    SubtitleSeparator,
+} from './InfoListItemStyledComponents';
+import { getInfoListItemUtilityClass, InfoListItemClassKey, InfoListItemClasses } from './InfoListItemClasses';
 
 const MAX_SUBTITLE_ELEMENTS = 6;
+
+const useUtilityClasses = (ownerState: InfoListItemProps): Record<InfoListItemClassKey, string> => {
+    const { classes } = ownerState;
+
+    const slots = {
+        root: ['root'],
+        avatar: ['avatar'],
+        divider: ['divider'],
+        icon: ['icon'],
+        info: ['info'],
+        listItemText: ['listItemText'],
+        listItemButtonRoot: ['listItemButtonRoot'],
+        rightComponent: ['rightComponent'],
+        separator: ['separator'],
+        statusStripe: ['statusStripe'],
+        subtitle: ['subtitle'],
+        title: ['title'],
+        chevron: ['chevron'],
+    };
+
+    return composeClasses(slots, getInfoListItemUtilityClass, classes);
+};
 
 export type DividerType = 'full' | 'partial';
 export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
@@ -89,18 +118,19 @@ export type InfoListItemProps = Omit<ListItemProps, 'title' | 'divider'> & {
      * Default: false
      */
     wrapTitle?: boolean;
-    /** Used to override [ListItemButtom](https://mui.com/api/list-item-button/) default props */
+    /** Used to override [ListItemButton](https://mui.com/api/list-item-button/) default props */
     ListItemButtonProps?: Partial<MuiListItemButtonProps>;
 };
 const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemProps> = (
     props: InfoListItemProps,
     ref: any
 ) => {
-    const defaultClasses = useStyles(props);
+    const defaultClasses = useUtilityClasses(props);
     const {
         avatar,
         chevron,
         classes,
+        className: userClassName,
         divider,
         hidePadding,
         icon,
@@ -128,7 +158,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     } = props;
 
     const combine = useCallback(
-        (className: keyof InfoListItemClasses): string => clsx(defaultClasses[className], classes[className]),
+        (className: keyof InfoListItemClasses): string => cx(defaultClasses[className], classes[className]),
         [defaultClasses, classes]
     );
 
@@ -136,14 +166,28 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         if (icon) {
             return (
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    <Avatar className={combine(avatar ? 'avatar' : 'icon')}>{icon}</Avatar>
+                    <Icon
+                        statusColor={statusColor}
+                        iconColor={iconColor}
+                        avatar={avatar}
+                        iconAlign={iconAlign}
+                        className={avatar ? combine('avatar') : combine('icon')}
+                    >
+                        {icon}
+                    </Icon>
                 </ListItemAvatar>
             );
         } else if (!hidePadding) {
             return (
                 // a dummy component to maintain the padding
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
-                    <Avatar className={clsx(defaultClasses.avatar, defaultClasses.invisible)} />
+                    <Icon
+                        className={combine('avatar')}
+                        statusColor={statusColor}
+                        iconColor={iconColor}
+                        avatar={avatar}
+                        isInvisible={true}
+                    />
                 </ListItemAvatar>
             );
         }
@@ -151,13 +195,14 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
 
     const getRightComponent = useCallback((): JSX.Element | undefined => {
         if (rightComponent) {
-            return <div className={combine('rightComponent')}>{rightComponent}</div>;
+            return <RightComponent className={combine('rightComponent')}>{rightComponent}</RightComponent>;
         } else if (chevron) {
             return (
-                <Chevron
+                <InfoListItemChevron
+                    chevronColor={chevronColor}
                     color={'inherit'}
                     role={'button'}
-                    className={clsx(combine('chevron'), defaultClasses.flipIcon)}
+                    className={combine('chevron')}
                 />
             );
         }
@@ -165,9 +210,9 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
 
     const getSeparator = useCallback(
         (): JSX.Element => (
-            <Typography className={combine('separator')} component={'span'}>
+            <SubtitleSeparator className={combine('separator')} component="span">
                 {subtitleSeparator || '\u00B7'}
-            </Typography>
+            </SubtitleSeparator>
         ),
         [combine, subtitleSeparator]
     );
@@ -200,32 +245,39 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         return withKeys(separate(renderableInfoParts, () => getSeparator()));
     }, [info, getSeparator]);
 
-    const getInfloListItemContent = (
+    const getInfoListItemContent = (): JSX.Element => (
         <>
-            <div className={combine('statusStripe')} data-test={'status-stripe'} />
-            {divider && <Divider className={combine('divider')} />}
+            <StatusStripe statusColor={statusColor} className={combine('statusStripe')} data-test={'status-stripe'} />
+            {divider && <InfoListItemDivider divider={divider} className={combine('divider')} />}
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}
-            <ListItemText
+            <InfoListItemText
                 primary={title}
+                leftComponent={leftComponent}
                 className={combine('listItemText')}
                 secondary={
                     subtitle || info ? (
                         <>
                             {subtitle ? (
-                                <Typography
-                                    variant={'subtitle2'}
-                                    component={'p'}
+                                <Subtitle
+                                    variant="subtitle2"
+                                    component="p"
+                                    fontColor={fontColor}
                                     noWrap={!wrapSubtitle}
                                     className={combine('subtitle')}
                                 >
                                     {getSubtitle()}
-                                </Typography>
+                                </Subtitle>
                             ) : undefined}
                             {info ? (
-                                <Typography variant={'body2'} noWrap={!wrapInfo} className={combine('info')}>
+                                <Info
+                                    variant={'body2'}
+                                    fontColor={fontColor}
+                                    noWrap={!wrapInfo}
+                                    className={combine('info')}
+                                >
                                     {getInfo()}
-                                </Typography>
+                                </Info>
                             ) : undefined}
                         </>
                     ) : undefined
@@ -233,6 +285,10 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 primaryTypographyProps={{
                     noWrap: !wrapTitle,
                     variant: 'body1',
+                    fontWeight: 600,
+                    lineHeight: 1.25,
+                    display: 'block',
+                    color: fontColor || 'inherit',
                     className: combine('title'),
                 }}
                 secondaryTypographyProps={{
@@ -245,15 +301,27 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     );
 
     return (
-        <ListItem className={combine('root')} ref={ref} {...otherListItemProps}>
+        <Root
+            onClick={props.onClick}
+            backgroundColor={backgroundColor}
+            wrapSubtitle={wrapSubtitle}
+            wrapTitle={wrapTitle}
+            wrapInfo={wrapInfo}
+            dense={props.dense}
+            ripple={ripple}
+            iconColor={iconColor}
+            className={cx(combine('root'), userClassName)}
+            ref={ref}
+            {...otherListItemProps}
+        >
             {props.onClick && ripple ? (
-                <ListItemButton className={combine('listItemButtonRoot')} focusRipple={ripple}>
-                    {getInfloListItemContent}
-                </ListItemButton>
+                <InfoListItemContentContainer className={combine('listItemButtonRoot')} focusRipple={ripple}>
+                    {getInfoListItemContent()}
+                </InfoListItemContentContainer>
             ) : (
-                getInfloListItemContent
+                getInfoListItemContent()
             )}
-        </ListItem>
+        </Root>
     );
 };
 /**

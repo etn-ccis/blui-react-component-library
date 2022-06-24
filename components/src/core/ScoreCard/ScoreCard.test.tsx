@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
@@ -21,11 +21,11 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('ScoreCard', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(
+        const root = createRoot(div);
+        root.render(
             <ThemeProvider theme={theme}>
                 <ScoreCard headerTitle={'TestTitle'} />
-            </ThemeProvider>,
-            div
+            </ThemeProvider>
         );
     });
     it('renders with all text', () => {
