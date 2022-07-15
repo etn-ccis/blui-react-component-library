@@ -334,3 +334,7 @@ workflows:
                         branches:
                             only:
                                 - master
+    react_dev:
+        jobs:
+            - build_reactdev
+    
