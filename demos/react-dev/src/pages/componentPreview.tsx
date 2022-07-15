@@ -13,7 +13,7 @@ export const ComponentPreview = (): JSX.Element => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
             <AppBar position={'sticky'}>
-                <Toolbar sx={{pl: 2, pr: 2}}>
+                <Toolbar sx={{ pl: 2, pr: 2 }}>
                     {md ? null : (
                         <IconButton
                             color={'inherit'}
