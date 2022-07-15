@@ -223,7 +223,7 @@ jobs:
                       yarn build
             - run:
                   command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
-                  when: always``
+                  when: always
 
     deploy_storybook:
         docker:
