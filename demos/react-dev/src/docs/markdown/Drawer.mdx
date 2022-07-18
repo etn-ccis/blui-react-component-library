@@ -1,7 +1,9 @@
 import { Image } from '../../components/Image';
 import Drawer from '../images/drawer.png';
 import DrawerAnatomy from '../images/drawerAnatomy.png';
-import CustomizedTables from '../../components/Table/Table.tsx';
+import PropsTable from '../../components/Table/PropsTable.tsx';
+import ClassesTable from '../../components/Table/ClassesTable.tsx';
+import { drawerPropsData, drawerClassesData } from '../data/drawer.ts';
 
 # Drawer
 
@@ -17,4 +19,8 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 
 ### Drawer API
 
-<CustomizedTables />
+<PropsTable data={drawerPropsData} />
+
+### Classes
+
+<ClassesTable data={drawerClassesData} />
