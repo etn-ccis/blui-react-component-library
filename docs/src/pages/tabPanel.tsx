@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { ListItemTagComponent } from './ListItemTagComponent';
 import { ListItemTagComponentDoc } from './ListItemTagComponentDoc';
-import TemporaryDrawer from '../pages/temporaryDrawer';
+import TemporaryDrawer from './temporaryDrawer';
 import * as colors from '@brightlayer-ui/colors';
 
 interface TabPanelProps {
