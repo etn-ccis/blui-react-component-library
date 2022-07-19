@@ -36,8 +36,10 @@
     "webpack-dev-server": "webpack-dev-server",
     "dev": "webpack-dev-server --mode=development",
     "prod": "webpack --mode=production",
-    "prettier": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
-      "prettier:check": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check"
+    "prettier": "prettier \"src/**/**/*.{ts,tsx,js,jsx,json,css,scss,html,mdx}\" --write",
+    "prettier:check": "prettier \"src/**/**/*.{ts,tsx,js,jsx,json,css,scss,html,mdx}\" --check",
+    "lint": "eslint \"**/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint \"**/**/*.{ts,tsx}\" --fix"
   },
   "prettier": "@brightlayer-ui/prettier-config",
   "eslintConfig": {
@@ -69,7 +71,12 @@
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.30.1",
     "html-webpack-plugin": "^5.5.0",
     "path": "^0.12.7",
     "prettier": "^2.7.1",

@@ -22,6 +22,7 @@ export const NavigationDrawer: React.FC = () => {
         [navigate, setSelected]
     );
 
+    console.log('drawerOpen', drawerOpen);
     return (
         <Drawer
             open={true}
