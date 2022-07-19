@@ -35,8 +35,11 @@
     "eject": "craco eject",
     "webpack-dev-server": "webpack-dev-server",
     "dev": "webpack-dev-server --mode=development",
-    "prod": "webpack --mode=production"
+    "prod": "webpack --mode=production",
+    "prettier": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
+      "prettier:check": "prettier \"src/**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check"
   },
+  "prettier": "@brightlayer-ui/prettier-config",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -56,6 +59,8 @@
     ]
   },
   "devDependencies": {
+    "@brightlayer-ui/eslint-config": "^3.0.0",
+    "@brightlayer-ui/prettier-config": "^1.0.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.0",
@@ -64,8 +69,10 @@
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "@types/react-router-dom": "^5.3.3",
+    "eslint-config-prettier": "^8.5.0",
     "html-webpack-plugin": "^5.5.0",
     "path": "^0.12.7",
+    "prettier": "^2.7.1",
     "typescript": "^4.7.3",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
