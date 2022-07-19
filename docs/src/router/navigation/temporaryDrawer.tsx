@@ -2,10 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import { TextField } from '@mui/material';
-import { updateListTagComponent } from '../redux/listItemComponent';
-import { listItemTagPropItem } from '../componentJson/ListItemTagJson';
-import { RootState } from '../redux/store';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { updateListTagComponent } from '../../redux/listItemComponent';
+import { listItemTagPropItem } from '../../componentJson/ListItemTagJson';
+import { RootState } from '../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 type Anchor = 'right';
 

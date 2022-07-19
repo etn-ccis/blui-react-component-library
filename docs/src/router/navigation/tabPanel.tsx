@@ -3,8 +3,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { ListItemTagComponent } from './ListItemTagComponent';
-import { ListItemTagComponentDoc } from './ListItemTagComponentDoc';
+import { ListItemTagComponent } from '../../pages/ListItemTagComponent';
+import { ListItemTagComponentDoc } from '../../pages/ListItemTagComponentDoc';
 import TemporaryDrawer from './temporaryDrawer';
 import * as colors from '@brightlayer-ui/colors';
 
