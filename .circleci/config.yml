@@ -312,6 +312,14 @@ workflows:
             #               only:
             #                   - master
             #                   - dev
+            - build_reactdev:
+                  requires:
+                      - build_library
+                  #   filters:
+                  #       branches:
+                  #           only:
+                  #               - master
+                  #               - dev
             - publish:
                   requires:
                       - build_library
@@ -334,6 +342,3 @@ workflows:
                       branches:
                           only:
                               - master
-    react_dev:
-        jobs:
-            - build_reactdev
