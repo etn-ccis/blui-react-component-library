@@ -196,7 +196,7 @@ jobs:
                   name: Install Dependencies
                   command: |
                       cd docs
-                      yarn install
+                      yarn install --frozen-lockfile
 
                       # Install the packed version of @brightlayer-ui/react-components
                       PACKAGED_VERSION=`node -p "require('../dist/package.json').version"`
