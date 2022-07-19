@@ -337,3 +337,6 @@ workflows:
     react_dev:
         jobs:
             - build_reactdev
+        - coverage_report:
+                  requires:
+                      - build_library
