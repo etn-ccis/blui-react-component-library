@@ -2,7 +2,7 @@ import React from 'react';
 import { AppBar, IconButton, Toolbar, Typography, useTheme, useMediaQuery, Box } from '@mui/material';
 import Menu from '@mui/icons-material/Menu';
 import { useDrawer } from '../contexts/drawerContextProvider';
-import TabPanel from './tabPanel';
+import TabPanel from '../router/navigation/tabPanel';
 
 export const ComponentPreview = (): JSX.Element => {
     const theme = useTheme();

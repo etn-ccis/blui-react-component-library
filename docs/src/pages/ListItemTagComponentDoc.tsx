@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import Drawer from '../docs/markdown/Drawer.mdx';
+import Drawer from '../markdown/Drawer.mdx';
 
 export const ListItemTagComponentDoc = (): JSX.Element => {
     return (

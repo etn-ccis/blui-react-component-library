@@ -1,8 +1,5 @@
-import { Image } from '../../components/Image';
-import Drawer from '../images/drawer.png';
-import DrawerAnatomy from '../images/drawerAnatomy.png';
-import PropsTable from '../../components/Table/PropsTable.tsx';
-import ClassesTable from '../../components/Table/ClassesTable.tsx';
+import Drawer from './images/drawer.png';
+import DrawerAnatomy from './images/drawerAnatomy.png';
 import { drawerPropsData, drawerClassesData } from '../data/drawer.ts';
 import Box from '@mui/material/Box';
 
@@ -49,7 +46,14 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 ### Drawer API
 
 <Box sx={{overflow: 'auto',
-backgroundColor: '#ffffff'
+ 'tr:nth-of-type(odd)': {
+        backgroundColor: '#ffffff',
+    },
+    'td': {
+        padding: '4px'
+
+    }
+
 }}>
 
 | Prop Name                       | Description                                                                  | Type                                                         | Required | <code>&nbsp;</code>Default           |
