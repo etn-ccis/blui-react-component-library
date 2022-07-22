@@ -31,8 +31,7 @@ const buildRoutes = (routes: any[]): JSX.Element[] => {
                 routes[i].items[j].pages?.map(
                     // eslint-disable-next-line
                     (innerPath: SimpleNavItem) =>
-                        (
-                            ret = ret.concat(
+                        (ret = ret.concat(
                             <Route
                                 path={`${routes[i].items[j].url}${innerPath.url || ''}`}
                                 key={`${routes[i].items[j].url}/${innerPath.url || ''}`}
