@@ -3,28 +3,15 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { ListItemTagComponent } from '../../pages/ListItemTagComponent';
-import { ListItemTagComponentDoc } from '../../pages/ListItemTagComponentDoc';
-import TemporaryDrawer from './temporaryDrawer';
+// import TemporaryDrawer from '../playground/temporaryDrawer';
 import * as colors from '@brightlayer-ui/colors';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
     value: number;
 }
-
-const PreviewContainerStyles = {
-    width: '75%',
-    height: 'calc(100vh - 64px)',
-    display: 'flex',
-    p: 0,
-    overflow: 'auto',
-    position: 'relative',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-};
 
 function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
@@ -53,12 +40,32 @@ function a11yProps(index: number) {
     };
 }
 
-export default function BasicTabs() {
-    const [value, setValue] = React.useState(1);
+function getNumber(location: string) {
+    const pathname = location.split('/')[3];
+    if (!pathname) return 0;
+    else {
+        switch (pathname) {
+            case 'api-docs':
+                return 1;
+            case 'playground':
+                return 2;
+            default:
+                return 0;
+        }
+    }
+}
 
+export default function ComponentPreviewTabs() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [value, setValue] = React.useState(0);
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
+        navigate(`/${newValue === 1 ? 'api-docs' : newValue === 2 ? 'playground' : 'examples'}`);
     };
+
+    React.useEffect(() => {
+        setValue(getNumber(location?.pathname));
+    }, [location]);
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -68,23 +75,24 @@ export default function BasicTabs() {
                     onChange={handleChange}
                     aria-label="basic tabs example"
                     centered
-                    sx={{ width: value === 2 ? '75%' : '100%', bgcolor: colors.blue[200] }}
+                    sx={{ width: '100%', bgcolor: colors.blue[200] }}
                 >
-                    <Tab sx={{ width: '33%' }} label="Examples" {...a11yProps(0)} disabled />
-                    <Tab sx={{ width: '33%' }} label="API Ground" {...a11yProps(1)} />
-                    <Tab sx={{ width: '33%' }} label="Playground" {...a11yProps(2)} />
+                    <Tab to="examples" component={Link} sx={{ width: '33%' }} label="Examples" {...a11yProps(0)} />
+                    <Tab to="api-docs" component={Link} sx={{ width: '33%' }} label="API Ground" {...a11yProps(1)} />
+                    <Tab to="playground" component={Link} sx={{ width: '33%' }} label="Playground" {...a11yProps(2)} />
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                <Box sx={PreviewContainerStyles}></Box>
+                <Box>
+                    <Outlet />
+                </Box>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <ListItemTagComponentDoc />
+                <Outlet />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <Box sx={PreviewContainerStyles}>
-                    <ListItemTagComponent />
-                    <TemporaryDrawer />
+                <Box>
+                    <Outlet />
                 </Box>
             </TabPanel>
         </Box>
