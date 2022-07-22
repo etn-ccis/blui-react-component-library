@@ -41,7 +41,9 @@ function a11yProps(index: number) {
 }
 
 function getNumber(location: string) {
-    const pathname = location.split('/')[3];
+    const pathname = ['examples', 'api-docs', 'playground'].includes(location.split('/')[4])
+        ? location.split('/')[4]
+        : location.split('/')[3];
     if (!pathname) return 0;
     else {
         switch (pathname) {

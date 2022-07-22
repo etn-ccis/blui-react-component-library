@@ -81,7 +81,9 @@ export const NavigationDrawer: React.FC = () => {
     );
 
     useEffect(() => {
-        const pathname = location.pathname.split('/')[3];
+        const pathname = tabPath.includes(location.pathname.split('/')[4])
+            ? location.pathname.split('/')[4]
+            : location.pathname.split('/')[3];
         setActiveRoute(location.pathname.replace(`/${tabPath[tabPath.indexOf(pathname)]}`, ''));
         // eslint-disable-next-line
     }, [location.pathname]);
@@ -145,7 +147,18 @@ export const NavigationDrawer: React.FC = () => {
             />
             <DrawerBody>
                 {navGroupItems.map((PAGE, index: number) => (
-                    <DrawerNavGroup key={index} title={PAGE.groupTitle} items={PAGE.items} />
+                    <DrawerNavGroup
+                        key={index}
+                        hidePadding
+                        sx={{
+                            '.BluiDrawerNavGroup-title': {
+                                color: colors.blue[500],
+                            },
+                            borderBottom: `1px solid ${theme.palette.divider}`,
+                        }}
+                        title={PAGE.groupTitle}
+                        items={PAGE.items}
+                    />
                 ))}
             </DrawerBody>
         </Drawer>
