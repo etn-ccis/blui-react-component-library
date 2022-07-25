@@ -18,38 +18,25 @@ import AvatarSvg from '../assets/react_logo.svg';
 
 const backgroundImage = require('../assets/cubes_tile.png');
 const linearGradientOverlayImage = `linear-gradient(to right, rgba(0, 123, 193, 1) 22.4%, rgba(0, 123, 193, 0.2) 100%), url(${backgroundImage})`;
+const tabs = ['examples', 'api-docs', 'playground'];
 export const NavigationDrawer: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [activeRoute, setActiveRoute] = useState(location.pathname);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const tabPath = ['examples', 'api-docs', 'playground'];
+    const [tabPath, setTabPath] = useState(tabs);
 
     const createNavItems = useCallback(
         (navData: SimpleNavItem[], parentUrl: string, depth: number): NavItem[] => {
             const convertedItems: NavItem[] = [];
             for (let i = 0; i < navData.length; i++) {
                 const item = navData[i];
-                if (item.hidden) {
-                    continue;
-                }
                 const fullURL = `${parentUrl}${item.url || ''}`;
                 convertedItems.push({
                     title: item.title,
                     icon: depth === 0 ? item.icon : undefined,
                     itemID: fullURL,
-                    // To add a on hover effect to the ExpandMore chevron for NavItems
-                    // with sub pages and a landing page (e.g., Design Patterns)
-                    //
-                    // expandIcon:
-                    //     item.pages && item.component ? (
-                    //         <IconButton>
-                    //             <ExpandMore />
-                    //         </IconButton>
-                    //     ) : (
-                    //         undefined
-                    //     ),
                     onClick: item.component
                         ? (): void => {
                               navigate(fullURL);
@@ -81,12 +68,12 @@ export const NavigationDrawer: React.FC = () => {
     );
 
     useEffect(() => {
+        setTabPath(tabs);
         const pathname = tabPath.includes(location.pathname.split('/')[4])
             ? location.pathname.split('/')[4]
             : location.pathname.split('/')[3];
         setActiveRoute(location.pathname.replace(`/${tabPath[tabPath.indexOf(pathname)]}`, ''));
-        // eslint-disable-next-line
-    }, [location.pathname]);
+    }, [tabPath, location.pathname]);
 
     const [navGroupItems] = useState(createNavGroupItems(pageDefinitions));
     return (

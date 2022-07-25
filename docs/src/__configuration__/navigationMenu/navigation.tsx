@@ -13,7 +13,6 @@ export type SimpleNavItem = {
     pages?: SimpleNavItem[];
     component?: JSX.Element;
     children?: SimpleNavItem[];
-    hidden?: boolean;
 };
 
 export type SimpleGroupNavGroupItem = {
