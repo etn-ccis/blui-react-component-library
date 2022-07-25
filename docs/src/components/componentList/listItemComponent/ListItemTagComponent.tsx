@@ -1,8 +1,8 @@
 import React from 'react';
 import { ListItemTag } from '@brightlayer-ui/react-components';
 import { Box } from '@mui/material';
-import { RootState } from '../redux/store';
-import { useAppSelector } from '../redux/hooks';
+import { RootState } from '../../../redux/store';
+import { useAppSelector } from '../../../redux/hooks';
 
 const ListItemContainerStyles = {
     height: '100%',
