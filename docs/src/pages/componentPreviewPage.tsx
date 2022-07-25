@@ -14,7 +14,7 @@ export const ComponentPreviewPage: React.FC<ComponentPreviewPageProps> = (props)
     const md = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
-        <div {...divProps} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <div {...divProps} style={{ display: 'flex', flexDirection: 'column'}}>
             <AppBar position={'sticky'} color={'transparent'}>
                 <Toolbar sx={{ pl: 2, pr: 2 }}>
                     {md ? null : (
