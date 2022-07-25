@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import { TextField } from '@mui/material';
 import { updateListTagComponent } from '../../redux/listItemComponent';
-import { listItemTagPropItem } from '../../data/ListItemTagJson';
+import { listItemTagPropItem } from '../../data/ListItemTagTypes';
 import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
