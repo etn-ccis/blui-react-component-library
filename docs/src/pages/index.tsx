@@ -1,2 +1,2 @@
-export * from './componentPreview';
+export * from './componentPreviewPage';
 export * from './home';
