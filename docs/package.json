@@ -17,6 +17,7 @@
     "@mui/material": "^5.8.3",
     "@mui/styles": "^5.8.3",
     "@reduxjs/toolkit": "^1.8.2",
+    "babel-plugin-prismjs": "^2.1.0",
     "react": "^18.1.0",
     "react-app-polyfill": "^3.0.0",
     "react-app-rewired": "^2.2.1",
