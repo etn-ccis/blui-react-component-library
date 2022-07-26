@@ -15,7 +15,14 @@ export const ComponentPreviewPage: React.FC<ComponentPreviewPageProps> = (props)
 
     return (
         <div {...divProps} style={{ display: 'flex', flexDirection: 'column' }}>
-            <AppBar position={'sticky'} color={'transparent'}>
+            <AppBar
+                position={'sticky'}
+                elevation={0}
+                sx={{
+                    backgroundColor: theme.palette.background.paper,
+                    color: theme.palette.text.primary,
+                }}
+            >
                 <Toolbar sx={{ pl: 2, pr: 2 }}>
                     {md ? null : (
                         <IconButton

@@ -3,9 +3,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import * as colors from '@brightlayer-ui/colors';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { DRAWER_WIDTH } from '../../shared';
+import { Theme, useTheme } from '@mui/material/styles';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -57,10 +57,19 @@ function getNumber(location: string) {
     }
 }
 
+const tabStyles = {
+    width: '33%',
+    color: (theme: Theme) => theme.palette.text.primary,
+    '&.Mui-selected': {
+        color: (theme: Theme) => theme.palette.primary.main,
+    },
+};
+
 export default function ComponentPreviewTabs() {
     const navigate = useNavigate();
     const location = useLocation();
     const [value, setValue] = React.useState(0);
+    const theme = useTheme();
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         navigate(`/${newValue === 1 ? 'api-docs' : newValue === 2 ? 'playground' : 'examples'}`);
     };
@@ -71,17 +80,30 @@ export default function ComponentPreviewTabs() {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Box sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider', width: `calc(100% - ${DRAWER_WIDTH}px)`, position: 'fixed' }}>
+            <Box
+                sx={{
+                    bgcolor: theme.palette.background.paper,
+                    borderBottom: 1,
+                    borderColor: 'divider',
+                    width: `calc(100% - ${DRAWER_WIDTH}px)`,
+                    position: 'fixed',
+                }}
+            >
                 <Tabs
                     value={value}
                     onChange={handleChange}
                     aria-label="basic tabs example"
                     centered
-                    sx={{ width: '100%', bgcolor: colors.blue[200]}}
+                    sx={{
+                        width: '100%',
+                        '& .MuiTabs-indicator': {
+                            backgroundColor: theme.palette.primary.main,
+                        },
+                    }}
                 >
-                    <Tab to="examples" component={Link} sx={{ width: '33%' }} label="Examples" {...a11yProps(0)} />
-                    <Tab to="api-docs" component={Link} sx={{ width: '33%' }} label="API Ground" {...a11yProps(1)} />
-                    <Tab to="playground" component={Link} sx={{ width: '33%' }} label="Playground" {...a11yProps(2)} />
+                    <Tab to="examples" component={Link} sx={tabStyles} label="Examples" {...a11yProps(0)} />
+                    <Tab to="api-docs" component={Link} sx={tabStyles} label="API Docs" {...a11yProps(1)} />
+                    <Tab to="playground" component={Link} sx={tabStyles} label="Playground" {...a11yProps(2)} />
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>

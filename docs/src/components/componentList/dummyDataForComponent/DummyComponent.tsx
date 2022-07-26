@@ -5,7 +5,7 @@ import ConstructionIcon from '@mui/icons-material/Construction';
 
 export const DummyComponent = (): JSX.Element => {
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', p: '48px 40px' }}>
             <EmptyState
                 icon={<ConstructionIcon fontSize={'inherit'} />}
                 title={'Component playground is coming soon'}
