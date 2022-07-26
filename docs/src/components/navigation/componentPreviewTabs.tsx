@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import * as colors from '@brightlayer-ui/colors';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { DRAWER_WIDTH } from '../../shared';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -16,7 +17,7 @@ function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
 
     return (
-        <div
+        <Box
             role="tabpanel"
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
@@ -28,7 +29,7 @@ function TabPanel(props: TabPanelProps) {
                     <Typography component={'div'}>{children}</Typography>
                 </Box>
             )}
-        </div>
+        </Box>
     );
 }
 
@@ -70,13 +71,13 @@ export default function ComponentPreviewTabs() {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Box sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
+            <Box sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider', width: `calc(100% - ${DRAWER_WIDTH}px)`, position: 'fixed' }}>
                 <Tabs
                     value={value}
                     onChange={handleChange}
                     aria-label="basic tabs example"
                     centered
-                    sx={{ width: '100%', bgcolor: colors.blue[200] }}
+                    sx={{ width: '100%', bgcolor: colors.blue[200]}}
                 >
                     <Tab to="examples" component={Link} sx={{ width: '33%' }} label="Examples" {...a11yProps(0)} />
                     <Tab to="api-docs" component={Link} sx={{ width: '33%' }} label="API Ground" {...a11yProps(1)} />
