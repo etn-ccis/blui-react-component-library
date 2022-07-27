@@ -82,25 +82,29 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
             {
                 title: 'Drawer',
                 url: '/components/drawer',
-                component: <ComponentPreviewPage title={'Drawer'} />,
-                children: [
-                    {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <DummyExamplesComponent />,
-                    },
-                    {
-                        title: 'API Docs',
-                        url: 'api-docs',
-                        component: <DrawerDocsComponent />,
-                    },
-                    {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <DummyComponent />,
-                    },
-                ],
                 pages: [
+                    {
+                        title: 'Drawer',
+                        url: '/drawer',
+                        component: <ComponentPreviewPage title={'Drawer'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DummyExamplesComponent />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerDocsComponent />,
+                            },
+                            {
+                                title: 'Playground',
+                                url: 'playground',
+                                component: <DummyComponent />,
+                            },
+                        ],
+                    },
                     {
                         title: 'Drawer Nav Item',
                         url: '/drawer-nav-item',
