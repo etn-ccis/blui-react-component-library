@@ -7,6 +7,7 @@ import {
 } from '../../components/componentList/dummyDataForComponent';
 import DrawerDocsComponent from '../../components/componentList/drawerComponent/DrawerDocsComponent';
 import DrawerHeaderDocsComponent from '../../components/componentList/drawerHeaderDocsComponent/DrawerHeaderDocsComponent';
+import DrawerBodyDocsComponent from '../../components/componentList/drawerBodyDocsComponent/DrawerBodyDocsComponent';
 
 export type SimpleNavItem = {
     title: string;
@@ -120,6 +121,28 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                                 title: 'API Docs',
                                 url: 'api-docs',
                                 component: <DrawerHeaderDocsComponent />,
+                            },
+                            {
+                                title: 'Playground',
+                                url: 'playground',
+                                component: <DummyComponent />,
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Drawer Body',
+                        url: '/drawer-body',
+                        component: <ComponentPreviewPage title={'Drawer Body'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DummyExamplesComponent />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerBodyDocsComponent />,
                             },
                             {
                                 title: 'Playground',
