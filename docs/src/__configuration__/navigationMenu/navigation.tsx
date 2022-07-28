@@ -5,7 +5,7 @@ import {
     DummyDocsComponent,
     DummyExamplesComponent,
 } from '../../components/componentList/dummyDataForComponent';
-import { DrawerNavItemExamplesComponent } from '../../components/componentList/drawerNavItemComponent/DrawerNavItemExamplesComponent';
+import { DrawerNavItemExamples } from '../../components/componentList/drawerNavItemComponent/DrawerNavItemExamples';
 
 export type SimpleNavItem = {
     title: string;
@@ -109,7 +109,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DrawerNavItemExamplesComponent />,
+                                component: <DrawerNavItemExamples />,
                             },
                             {
                                 title: 'API Docs',
