@@ -1,88 +1,89 @@
 {
-  "name": "react-dev-docs",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@brightlayer-ui/colors": "^3.1.1",
-    "@brightlayer-ui/icons-mui": "^3.0.0",
-    "@brightlayer-ui/react-components": "^6.1.0",
-    "@brightlayer-ui/react-themes": "^7.0.0",
-    "@craco/craco": "^6.4.3",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@mdx-js/loader": "^2.1.2",
-    "@mdx-js/mdx": "^2.1.2",
-    "@mdx-js/react": "^2.1.2",
-    "@mui/icons-material": "^5.8.3",
-    "@mui/material": "^5.8.3",
-    "@mui/styles": "^5.8.3",
-    "@reduxjs/toolkit": "^1.8.2",
-    "react": "^18.1.0",
-    "react-app-polyfill": "^3.0.0",
-    "react-app-rewired": "^2.2.1",
-    "react-dom": "^18.1.0",
-    "react-redux": "^7.2.0",
-    "react-router": "^6.3.0",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
-    "redux": "^4.2.0",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "craco eject",
-    "webpack-dev-server": "webpack-dev-server",
-    "dev": "webpack-dev-server --mode=development",
-    "prod": "webpack --mode=production",
-    "prettier": "prettier \"src/**/**/*.{ts,tsx,js,jsx,json,css,scss,html,mdx}\" --write",
-    "prettier:check": "prettier \"src/**/**/*.{ts,tsx,js,jsx,json,css,scss,html,mdx}\" --check",
-    "lint": "eslint \"**/**/*.{ts,tsx}\"",
-    "lint:fix": "eslint \"**/**/*.{ts,tsx}\" --fix"
-  },
-  "prettier": "@brightlayer-ui/prettier-config",
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@brightlayer-ui/eslint-config": "^3.0.0",
-    "@brightlayer-ui/prettier-config": "^1.0.2",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^14.2.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^17.0.41",
-    "@types/react": "^18.0.12",
-    "@types/react-dom": "^18.0.5",
-    "@types/react-router-dom": "^5.3.3",
-    "@typescript-eslint/eslint-plugin": "^5.30.7",
-    "@typescript-eslint/parser": "^5.30.7",
-    "eslint": "^8.20.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-react": "^7.30.1",
-    "html-webpack-plugin": "^5.5.0",
-    "path": "^0.12.7",
-    "prettier": "^2.7.1",
-    "typescript": "^4.7.3",
-    "webpack": "^5.73.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.2"
-  }
+    "name": "react-dev-docs",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@brightlayer-ui/colors": "^3.1.1",
+        "@brightlayer-ui/icons-mui": "^3.0.0",
+        "@brightlayer-ui/react-components": "^6.1.0",
+        "@brightlayer-ui/react-themes": "^7.0.0",
+        "@craco/craco": "^6.4.3",
+        "@emotion/react": "^11.9.0",
+        "@emotion/styled": "^11.8.1",
+        "@mdx-js/loader": "^2.1.2",
+        "@mdx-js/mdx": "^2.1.2",
+        "@mdx-js/react": "^2.1.2",
+        "@mui/icons-material": "^5.8.3",
+        "@mui/material": "^5.8.3",
+        "@mui/styles": "^5.8.3",
+        "@reduxjs/toolkit": "^1.8.2",
+        "react": "^18.1.0",
+        "react-app-polyfill": "^3.0.0",
+        "react-app-rewired": "^2.2.1",
+        "react-dom": "^18.1.0",
+        "react-redux": "^7.2.0",
+        "react-router": "^6.3.0",
+        "react-router-dom": "^6.3.0",
+        "react-scripts": "5.0.1",
+        "redux": "^4.2.0",
+        "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+        "start": "craco start",
+        "build": "craco build",
+        "test": "craco test",
+        "eject": "craco eject",
+        "webpack-dev-server": "webpack-dev-server",
+        "dev": "webpack-dev-server --mode=development",
+        "prod": "webpack --mode=production",
+        "prettier": "prettier \"src/**/**/*.{ts,tsx,js,jsx,json,css,scss,html,mdx}\" --write",
+        "prettier:check": "prettier \"src/**/**/*.{ts,tsx,js,jsx,json,css,scss,html,mdx}\" --check",
+        "lint": "eslint \"**/**/*.{ts,tsx}\"",
+        "lint:fix": "eslint \"**/**/*.{ts,tsx}\" --fix"
+    },
+    "prettier": "@brightlayer-ui/prettier-config",
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@brightlayer-ui/eslint-config": "^3.0.0",
+        "@brightlayer-ui/prettier-config": "^1.0.2",
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.3.0",
+        "@testing-library/user-event": "^14.2.0",
+        "@types/jest": "^27.5.2",
+        "@types/node": "^17.0.41",
+        "@types/react": "^18.0.12",
+        "@types/react-dom": "^18.0.5",
+        "@types/react-router-dom": "^5.3.3",
+        "@typescript-eslint/eslint-plugin": "^5.30.7",
+        "@typescript-eslint/parser": "^5.30.7",
+        "eslint": "^8.20.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-config-react-app": "^7.0.1",
+        "eslint-plugin-react": "^7.30.1",
+        "html-webpack-plugin": "^5.5.0",
+        "path": "^0.12.7",
+        "prettier": "^2.7.1",
+        "typescript": "^4.7.3",
+        "webpack": "^5.73.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-dev-server": "^4.9.2",
+        "remark-gfm": "^1.0.0"
+    }
 }

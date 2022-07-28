@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import listItemTagJson, { componentType, listItemTagPropItem } from '../componentJson/ListItemTagJson';
+import listItemTagJson, { componentType, listItemTagPropItem } from '../data/ListItemTagTypes';
 
 interface ListItemTagState {
     listItemTagComponent: componentType[];

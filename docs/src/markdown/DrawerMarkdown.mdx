@@ -1,89 +1,95 @@
+import Box from '@mui/material/Box';
+
+import Drawer from './images/drawer.png';
+import DrawerAnatomy from './images/drawerAnatomy.png';
+import DrawerHeaderAnatomy from './images/drawerHeaderAnatomy.png';
+import DrawerNavGroupAnatomy from './images/drawerNavGroupAnatomy.png';
+import NavItemAnatomy from './images/navItemAnatomy.png';
+import RailAnatomy from './images/railAnatomy.png';
+import DrawerLayout from './images/drawerLayout.png';
+
 # Drawer
 
 The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific Brightlayer UI functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The Brightlayer UI Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerNavItem>`, `<DrawerRailItem>`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
 
-<div style="width: 100%; text-align: center">
-    <img width="100%" style="max-width: 200px" alt="Nested Drawer" src="./images/drawer.png">
-</div>
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '200px',
+        }}
+        component="img"
+        alt="Nested Drawer"
+        src={Drawer}
+    />
+</Box>
 
 ## Drawer
 
 The `<Drawer>` component is the parent container, which manages the overall state of the drawer and renders the child components.
 
-<div style="width: 100%; text-align: center">
-    <img width="100%" style="max-width: 500px" alt="Drawer Anatomy" src="./images/drawerAnatomy.png">
-</div>
-
-### Drawer Usage
-
-```tsx
-import { Drawer, DrawerHeader, DrawerSubheader, DrawerBody, DrawerNavGroup, DrawerFooter } from '@brightlayer-ui/react-components';
-
-// Constructing the drawer using the items object
-<Drawer>
-    <DrawerHeader />
-    <DrawerSubheader />
-    <DrawerBody>
-        <DrawerNavGroup items={[]}/>
-        <DrawerNavGroup items={[]}/>
-    </DrawerBody>
-    <DrawerFooter />
-</Drawer>
-
-// Constructing the drawer declaratively
-<Drawer>
-    <DrawerHeader />
-    <DrawerSubheader />
-    <DrawerBody>
-        <DrawerNavGroup>
-            <DrawerNavItem />
-            <DrawerNavItem>
-                <DrawerNavItem />
-                <DrawerNavItem />
-            </DrawerNavItem>
-        </DrawerNavGroup>
-    </DrawerBody>
-    <DrawerFooter />
-</Drawer>
-
-// a responsive Drawer using the variant prop
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-const theme = useTheme();
-const xsDown = useMediaQuery(theme.breakpoints.down('xs'));
-
-<Drawer
-    variant={xsDown ? 'temporary' : 'persistent'}
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
 >
-</Drawer>
-```
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '500px',
+        }}
+        component="img"
+        alt="Drawer Anatomy"
+        src={DrawerAnatomy}
+    />
+</Box>
 
 ### Drawer API
 
-<div style="overflow: auto;">
+<Box sx={{
+    overflow: 'auto',
+    'tr:nth-of-type(odd)': {
+        backgroundColor: '#ffffff',
+    },
+    'table' :{
+        borderSpacing: 0,
+    },
+    'table tr td, th': {
+        p: '6px 13px',
+        m: 0,
+        border: '1px solid #D5D8DA',
+        textAlign: 'left'
+    }
+}}>
 
-| Prop Name                       | Description                                                                  | Type                                                         | Required | Default           |
-| ------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------ | -------- | ----------------- |
-| activeItem                      | itemID for the 'active' item                                                 | `string`                                                     | no       |                   |
-| classes                         | Style overrides                                                              | `DrawerClasses`                                              | no       |                   |
-| condensed                       | Show condensed nav items without labels (`rail` variant only)                | `boolean`                                                    | no       | `false`           |
-| noLayout                        | Set to true if used without a `<DrawerLayout>`                               | `boolean`                                                    | no       | `false`           |
-| onItemSelect                    | A callback function to execute whenever an item is clicked                   | `(id: string) => void`                                       | no       |                   |
-| open                            | Controls the open/closed state of the drawer                                 | `boolean`                                                    | yes      |                   |
-| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only) | `boolean`                                                    | no       | `true`            |
-| openOnHoverDelay                | Delay (ms) before triggering open on hover (persistent variant only)         | `number`                                                     | no       | `500`             |
-| sideBorder                      | Whether to use a side border for the drawer instead of a shadow              | `boolean`                                                    | no       | `false`           |
-| variant                         | The variant to use (see below)                                               | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       | `persistent`      |
-| width                           | Sets the width of the drawer when open                                       | `number` \| `string`                                         | no       | `22.5rem (360px)` |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                   | -                                                            | -        |                   |
+| Prop Name                       | Description                                                                  | Type                                                         | Required | <code>&nbsp;</code>Default           |
+| :------------------------------ | :--------------------------------------------------------------------------- | :----------------------------------------------------------- | :------- | :----------------------------------- |
+| activeItem                      | itemID for the 'active' item                                                 | `string`                                                     | no       |                                      |
+| classes                         | Style overrides                                                              | `DrawerClasses`                                              | no       |                                      |
+| condensed                       | Show condensed nav items without labels (`rail` variant only)                | `boolean`                                                    | no       | <code>&nbsp;</code>`false`           |
+| noLayout                        | Set to true if used without a `<DrawerLayout>`                               | `boolean`                                                    | no       | <code>&nbsp;</code>`false`           |
+| onItemSelect                    | A callback function to execute whenever an item is clicked                   | `(id: string) => void`                                       | no       |                                      |
+| open                            | Controls the open/closed state of the drawer                                 | `boolean`                                                    | yes      |                                      |
+| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only) | `boolean`                                                    | no       | <code>&nbsp;</code>`true`            |
+| openOnHoverDelay                | Delay (ms) before triggering open on hover (persistent variant only)         | `number`                                                     | no       | <code>&nbsp;</code>`500`             |
+| sideBorder                      | Whether to use a side border for the drawer instead of a shadow              | `boolean`                                                    | no       | <code>&nbsp;</code>`false`           |
+| variant                         | The variant to use (see below)                                               | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       | <code>&nbsp;</code>`persistent`      |
+| width                           | Sets the width of the drawer when open                                       | `number` \| `string`                                         | no       | <code>&nbsp;</code>`22.5rem (360px)` |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                   | -                                                            | -        |                                      |
 
-</div>
+</Box>
 
 Any other props will be provided to the root element [**Material UI Drawer**](https://material-ui.com/api/drawer/).
 
 The `Drawer` has four `variant`s:
 
--   **Permanent**: Always open, even when `open` is set to false.
+-   **Permanent**: Always open, odd when `open` is set to false.
 -   **Persistent**: When `open` is set to false, the `<Drawer>` collapses itself as a navigation rail, and hover will make it expand temporarily; when `open` is set to true, it behaves like a permanent `<Drawer>`.
 -   **Temporary**: When `open` is set to false, the `<Drawer>` is hidden; when `open` is set to true, it slides in.
 -   **Rail**: An always collapsed version of the `<Drawer>` that only displays an icons and titles.
@@ -100,25 +106,70 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
+<Box sx={{
+    overflow: 'auto',
+    'tr:nth-of-type(odd)': {
+        backgroundColor: '#ffffff',
+    },
+    'table' :{
+        borderSpacing: 0,
+    },
+    'table tr td, th': {
+        p: '6px 13px',
+        m: 0,
+        border: '1px solid #D5D8DA',
+        textAlign: 'left'
+    }
+}}>
+
 | Name       | Global CSS Class       | Description                                                    |
-| ---------- | ---------------------- | -------------------------------------------------------------- |
+| :--------- | :--------------------- | :------------------------------------------------------------- |
 | root       | .BluiDrawer-root       | Styles applied to the root element                             |
 | content    | .BluiDrawer-content    | Styles applied to the drawer content container                 |
 | expanded   | .Mui-expanded          | Styles applied to the root element when the drawer is expanded |
 | paper      | .BluiDrawer-paper      | MUI Drawer style override for the underlying paper element     |
 | sideBorder | .BluiDrawer-sideBorder | Styles applied when sideBorder is set to true                  |
 
+</Box>
+
 ## Drawer Header
 
 The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By default, it renders multiple lines of text in the Brightlayer UI style. If you supply a `titleContent`, you can render your own custom content in the title area.
 
-<div style="width: 100%; text-align: center">
-    <img width="100%" style="max-width: 600px" alt="Drawer Header Anatomy" src="./images/drawerHeaderAnatomy.png">
-</div>
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '600px',
+        }}
+        component="img"
+        alt="Drawer Header Anatomy"
+        src={DrawerHeaderAnatomy}
+    />
+</Box>
 
 ### Drawer Header API
 
-<div style="overflow: auto;">
+<Box sx={{
+    overflow: 'auto',
+    'tr:nth-of-type(odd)': {
+        backgroundColor: '#ffffff',
+    },
+    'table' :{
+        borderSpacing: 0,
+    },
+    'table tr td, th': {
+        p: '6px 13px',
+        m: 0,
+        border: '1px solid #D5D8DA',
+        textAlign: 'left'
+    }
+}}>
 
 | Prop Name         | Description                                    | Type                  | Required | Default                      |
 | ----------------- | ---------------------------------------------- | --------------------- | -------- | ---------------------------- |
@@ -134,7 +185,7 @@ The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By defau
 | title             | The text to show on the first line             | `string`              | no       |                              |
 | titleContent      | Custom content for header title area           | `ReactNode`           | no       |                              |
 
-</div>
+</Box>
 
 Any other props will be provided to the root element [**Material UI Toolbar**](https://material-ui.com/api/toolbar/).
 
@@ -148,6 +199,22 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
+<Box sx={{
+    overflow: 'auto',
+    'tr:nth-of-type(odd)': {
+        backgroundColor: '#ffffff',
+    },
+    'table' :{
+        borderSpacing: 0,
+    },
+    'table tr td, th': {
+        p: '6px 13px',
+        m: 0,
+        border: '1px solid #D5D8DA',
+        textAlign: 'left'
+    }
+}}>
+
 | Name             | Global CSS Class                   | Description                                      |
 | ---------------- | ---------------------------------- | ------------------------------------------------ |
 | root             | .BluiDrawerHeader-root             | Styles applied to the root element               |
@@ -159,30 +226,35 @@ For more details on styling options check out our [Styling Guide](https://github
 | subtitle         | .BluiDrawerHeader-subtitle         | Styles applied to the subtitle element           |
 | title            | .BluiDrawerHeader-title            | Styles applied to the title element              |
 
+</Box>
+
 ## Drawer Subheader
 
 The `<DrawerSubheader>` is an optional section that renders below the header and above the body of the `<Drawer>`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
 
-### Drawer Subheader Usage
-
-```tsx
-import DrawerSubheader from '@brightlayer-ui/react-components/core/Drawer';
-...
-<DrawerSubheader>
-    <div>Custom Subheader Content</div>
-</DrawerSubheader>
-```
-
-### Drawer Subheader API
-
-<div style="overflow: auto;">
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
 
 | Prop Name             | Description                                        | Type      | Required | Default |
 | --------------------- | -------------------------------------------------- | --------- | -------- | ------- |
 | divider               | Optional divider which appears below the Subheader | `boolean` | no       | `true`  |
 | hideContentOnCollapse | Hide subheader contents when drawer is closed      | `boolean` | no       | `true`  |
 
-</div>
+</Box>
 
 Any other props supplied will be provided to the root element (`div`).
 
@@ -190,27 +262,31 @@ Any other props supplied will be provided to the root element (`div`).
 
 The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical use case is to display `<DrawerNavGroup>` elements, but custom elements (e.g., for spacing) are accepted as well.
 
-### Drawer Body Usage
-
-```tsx
-import DrawerBody from '@brightlayer-ui/react-components/core/Drawer';
-...
-<DrawerBody>
-    <DrawerNavGroup title={'Nav Items'} items={...} />
-    <DrawerNavGroup title={'More Nav Items'} items={...} />
-</DrawerBody>
-```
-
 ### Drawer Body API
 
-<div style="overflow: auto;">
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
 
 | Prop Name                       | Description                                                | Type                | Required | Default |
 | ------------------------------- | ---------------------------------------------------------- | ------------------- | -------- | ------- |
 | classes                         | Style overrides                                            | `DrawerBodyClasses` | no       |         |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                   | -        |         |
 
-</div>
+</Box>
 
 Any other props supplied will be provided to the root element (`div`).
 
@@ -218,9 +294,28 @@ Any other props supplied will be provided to the root element (`div`).
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerBody>` supports the following keys:
 
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
+
 | Name | Description                        |
 | ---- | ---------------------------------- |
 | root | Styles applied to the root element |
+
+</Box>
 
 ## Drawer Nav Group
 
@@ -228,13 +323,41 @@ A `<DrawerNavGroup>` is used inside of the `<DrawerBody>` to organize links/cont
 
 The `items` property supports nested items to generate collapsible sections in the menu. This can be used to create an arbitrary tree depth, but we do not recommend going more than two levels deep in a navigation Drawer. You can also build the navigation links declaratively by passing either `<DrawerNavItem>` or `<DrawerRailItem>` children to the `<DrawerNavGroup>`.
 
-<div style="width: 100%; text-align: center">
-    <img width="100%" style="max-width: 600px" alt="Drawer Nav Group Anatomy" src="./images/drawerNavGroupAnatomy.png">
-</div>
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '600px',
+        }}
+        component="img"
+        alt="Drawer Nav Group Anatomy"
+        src={DrawerNavGroupAnatomy}
+    />
+</Box>
 
 ### Drawer Nav Group API
 
-<div style="overflow: auto;">
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
 
 | Prop Name                       | Description                                                | Type                    | Required | Default                     |
 | ------------------------------- | ---------------------------------------------------------- | ----------------------- | -------- | --------------------------- |
@@ -246,7 +369,7 @@ The `items` property supports nested items to generate collapsible sections in t
 | titleDivider                    | Divider for the title                                      | `boolean`               | no       | true                        |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                       | -        |                             |
 
-</div>
+</Box>
 
 Any other props will be provided to the root element [**Material UI List**](https://material-ui.com/api/list/).
 
@@ -257,8 +380,26 @@ You can override the default styles used by Brightlayer UI by:
 -   using the `sx` prop
 -   passing a `classes` prop with keys from the `Name` column below
 -   using the `Global CSS Class` in your main stylesheet
+    the `Global CSS Class` in your main stylesheet
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
 
 | Name      | Global CSS Class              | Description                                  |
 | --------- | ----------------------------- | -------------------------------------------- |
@@ -266,23 +407,28 @@ For more details on styling options check out our [Styling Guide](https://github
 | title     | .BluiDrawerNavGroup-title     | Styles applied to the title text element     |
 | subheader | .BluiDrawerNavGroup-subheader | Styles applied to the List subheader element |
 
+</Box>
+
 ## Drawer Footer
 
 The `<DrawerFooter>` is an optional section that renders at the bottom of the `<Drawer>`. It can be used to add any custom content (as children).
 
-### Usage
-
-```tsx
-import DrawerFooter from '@brightlayer-ui/react-components/core/Drawer';
-...
-<DrawerFooter>
-    <div>Custom Footer goes here</div>
-</DrawerFooter>
-```
-
-### Drawer Footer API
-
-<div style="overflow: auto;">
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
 
 | Prop Name             | Description                                 | Type      | Required | Default |
 | --------------------- | ------------------------------------------- | --------- | -------- | ------- |
@@ -290,7 +436,7 @@ import DrawerFooter from '@brightlayer-ui/react-components/core/Drawer';
 | divider               | Optional divider which appears above footer | `boolean` | no       | `true`  |
 | hideContentOnCollapse | Hide footer contents when drawer is closed  | `boolean` | no       | `true`  |
 
-</div>
+</Box>
 
 Any other props supplied will be provided to the root element (`div`).
 
@@ -298,22 +444,69 @@ Any other props supplied will be provided to the root element (`div`).
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerFooter>` supports the following keys:
 
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
+
 | Name   | Description                          |
 | ------ | ------------------------------------ |
 | root   | Styles applied to the root element   |
 | hidden | Styles applied to the hidden element |
 
+</Box>
+
 ## Drawer Nav Item
 
 The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be generated for you by using the `items` prop of the `<DrawerNavGroup>` and passing in an array of objects with the following API. You can also create these line items by directly passing them as children to the `<DrawerNavGroup>`. Each `<DrawerNavItem>` also supports the ability to nest items (using its own `items` prop or children). When using the rail variant of the `<Drawer>`, you should use `<DrawerRailItem>` instead (see below).
 
-<div style="width: 100%; text-align: center">
-    <img width="100%" style="max-width: 600px" alt="Nav Item Anatomy" src="./images/navItemAnatomy.png">
-</div>
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '600px',
+        }}
+        component="img"
+        alt="Nav Item Anatomy"
+        src={NavItemAnatomy}
+    />
+</Box>
 
 ### Drawer Nav Item API
 
-<div style="overflow: auto;">
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
 
 | Prop Name                       | Description                                                                                                                                               | Type                      | Required | Default |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------- |
@@ -335,7 +528,7 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 | InfoListItemProps               | Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props | `InfoListItemProps`       | no       |         |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                                                                                | -                         | -        |         |
 
-</div>
+</Box>
 
 > \*These props are managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`.
 
@@ -349,6 +542,23 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
+
 | Name            | Global CSS Class                   | Description                                                       |
 | --------------- | ---------------------------------- | ----------------------------------------------------------------- |
 | root            | .BluiDrawerNavItem-root            | Styles applied to the root element                                |
@@ -361,43 +571,52 @@ For more details on styling options check out our [Styling Guide](https://github
 | titleActive     | .BluiDrawerNavItem-titleActive     | Styles applied to the title text if the item is the active item   |
 | ripple          | .BluiDrawerNavItem-ripple          | Styles applied to the ripple                                      |
 
+</Box>
+
 > \* These classes can not be overridden via the `sx` prop.
 
 ### Tips
 
 You can render the `<DrawerNavItem>` as a link by setting the `component` prop in the `InfoListItemProps` to a [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`. This allows you to perform helpful actions such as opening a link in a new browser tab via right-click.
 
-```tsx
-
-import { Link } from 'react-router-dom';
-// Using items prop
-<DrawerNavGroup items={[
-    itemID: 'overview',
-    title: 'Overview',
-    // @ts-ignore
-    InfoListItemProps: { component: Link, to: '/overview' },
-]}/>
-
-// Declaratively
-<DrawerNavItem
-    itemID={'overview'}
-    title={'Overview'}
-    // @ts-ignore
-    InfoListItemProps={{ component: Link, to: '/overview' }}
-/>
-```
-
 ## Drawer Rail Item
 
 When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem>` instead of `<DrawerNavItem>`. The `<DrawerRailItem>` is a simplified version of the `<DrawerNavItem>` that renders the `icon` and `title` only. When using the `condensed` version of the `<Drawer>`, the `title` will also be hidden. The `<DrawerRailItem>` cannot be nested.
 
-<div style="width: 100%; text-align: center">
-    <img width="100%" alt="Rail Anatomy" src="./images/railAnatomy.png">
-</div>
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+        }}
+        component="img"
+        alt="Rail Anatomy"
+        src={RailAnatomy}
+    />
+</Box>
 
 ### Drawer Rail Item API
 
-<div style="overflow: auto;">
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
 
 | Prop Name                       | Description                                                                                     | Type                    | Required | Default |
 | ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------- |
@@ -413,7 +632,7 @@ When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem
 | disableRailTooltip              | Sets whether to disable the tooltip on hover                                                    | `boolean`               | no       |         |
 | [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                                      | -                       | -        |         |
 
-</div>
+</Box>
 
 > \*These props are managed automatically when using the `<DrawerRailItem>` inside of a `<Drawer>`.
 
@@ -426,6 +645,23 @@ You can override the default styles used by Brightlayer UI by:
 -   using the `Global CSS Class` in your main stylesheet
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
 
 | Name          | Global CSS Class                  | Description                                                     |
 | ------------- | --------------------------------- | --------------------------------------------------------------- |
@@ -441,49 +677,36 @@ For more details on styling options check out our [Styling Guide](https://github
 | cursorPointer | .BluiDrawerRailItem-cursorPointer | Styles applied to the root element when cursor is pointer       |
 | itemActive    | .BluiDrawerRailItem-itemActive    | Styles applied to the active item                               |
 
-```tsx
-import { DrawerRailItem } from '@brightlayer-ui/react-components';
-import Menu from '@mui/icons-material/Menu';
-...
- <DrawerRailItem
-    itemID="itemID"
-    icon={<Menu />}
-    sx={{ backgroundColor: 'red' }}
-/>
-```
+</Box>
 
 ### Tips
 
 You can render the `<DrawerRailItem>` as a link by setting the `component` prop in the `ButtonBaseProps` to a [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`. This allows you to perform helpful actions such as opening a link in a new browser tab via right-click.
 
-```tsx
-
-import { Link } from 'react-router-dom';
-// Using items prop
-<DrawerNavGroup items={[
-    itemID: 'overview',
-    title: 'Overview',
-    // @ts-ignore
-    ButtonBaseProps: { component: Link, to: '/overview' },
-]}/>
-
-// Declaratively
-<DrawerRailItem
-    itemID={'overview'}
-    title={'Overview'}
-    // @ts-ignore
-    ButtonBaseProps={{ component: Link, to: '/overview' }}
-/>
-```
-
 ## Shared Props
 
 The following props can be set at any level in the drawer hierarchy (`<Drawer>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerNavItem>`, or `<DrawerRailItem>`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
 
-<div style="overflow: auto;">
+<Box
+ id='shared-props'
+ sx={{
+    overflow: 'auto',
+    'tr:nth-of-type(odd)': {
+        backgroundColor: '#ffffff',
+    },
+    'table' :{
+        borderSpacing: 0,
+    },
+    'table tr td, th': {
+        p: '6px 13px',
+        m: 0,
+        border: '1px solid #D5D8DA',
+        textAlign: 'left'
+    }
+}}>
 
 | Name                      | Description                                               | Type      | Required | Default                     |
-| ------------------------- | --------------------------------------------------------- | --------- | -------- | --------------------------- |
+| :------------------------ | :-------------------------------------------------------- | :-------- | :------- | :-------------------------- |
 | activeItemBackgroundColor | Background color for the 'active' item                    | `string`  | no       | varies for light/dark theme |
 | activeItemFontColor       | Font color for the 'active' item                          | `string`  | no       | varies for light/dark theme |
 | activeItemIconColor       | Icon color for the 'active' item                          | `string`  | no       | varies for light/dark theme |
@@ -493,56 +716,55 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 | itemIconColor             | The color used for the icon                               | `string`  | no       | varies for light/dark theme |
 | ripple                    | Whether to apply material ripple effect to items on click | `boolean` | no       | true                        |
 
-</div>
-
-The following are additional shared props that will apply when using a non-rail variant of the `<Drawer>`. They will have no effect on `<DrawerRailItem>`s.
-
-<div style="overflow: auto;">
-
-| Prop Name                     | Description                                                                   | Type                    | Required | Default                                                      |
-| ----------------------------- | ----------------------------------------------------------------------------- | ----------------------- | -------- | ------------------------------------------------------------ |
-| activeItemBackgroundShape     | shape of the active item background highlight                                 | `'round'` \| `'square'` | no       | square                                                       |
-| chevron                       | Whether to have chevrons for all menu items                                   | `boolean`               | no       |                                                              |
-| chevronColor                  | Color override for the chevron icon                                           | `string`                | no       |                                                              |
-| collapseIcon                  | Icon used to collapse drawer                                                  | `JSX.Element`           | no       | `expandIcon` rotated 180 degrees                             |
-| expandIcon                    | Icon used to expand drawer                                                    | `JSX.Element`           | no       | `<ExpandMore />` at top-level, `<ArrowDropDown />` otherwise |
-| hidePadding                   | Whether to hide the paddings reserved for menu item icons                     | `boolean`               | no       |                                                              |
-| disableActiveItemParentStyles | If true, NavItems will not have a bold title when a child NavItem is selected | `boolean`               | no       | `false`                                                      |
-| nestedBackgroundColor         | background color for nested menu items                                        | `string`                | no       | theme.palette.type === 'light' ? white[200] : darkBlack[100] |
-| nestedDivider                 | Whether to show a line between nested menu items                              | `boolean`               | no       | false                                                        |
-
-</div>
+</Box>
 
 # Drawer Layout
 
 The `<DrawerLayout>` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with a Brightlayer UI `<Drawer>`. It accepts a `<Drawer>` as a prop, and the main page content is passed in through child elements.
 
-<div style="width: 100%; text-align: center">
-    <img width="100%" style="max-width: 600px" alt="DrawerLayout with labels" src="./images/drawerLayout.png">
-</div>
-
-## Drawer Layout Usage
-
-```tsx
-import { Drawer, DrawerLayout } from '@brightlayer-ui/react-components';
-...
-<DrawerLayout drawer={<Drawer ... />}>
-    <>
-        /* Page content goes here */
-    </>
-</DrawerLayout>
-```
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '600px',
+        }}
+        component="img"
+        alt="DrawerLayout with labels"
+        src={DrawerLayout}
+    />
+</Box>
 
 ### Drawer Layout API
 
-<div style="overflow: auto;">
+<Box
+ id='shared-props'
+ sx={{
+    overflow: 'auto',
+    'tr:nth-of-type(odd)': {
+        backgroundColor: '#ffffff',
+    },
+    'table' :{
+        borderSpacing: 0,
+    },
+    'table tr td, th': {
+        p: '6px 13px',
+        m: 0,
+        border: '1px solid #D5D8DA',
+        textAlign: 'left'
+    }
+}}>
 
 | Prop Name | Description                     | Type                                 | Required | Default |
 | --------- | ------------------------------- | ------------------------------------ | -------- | ------- |
 | classes   | Style overrides                 | `DrawerLayoutClasses`                | no       |         |
 | drawer    | Drawer component to be embedded | `ReactElement<DrawerComponentProps>` | yes      |         |
 
-</div>
+</Box>
 
 Any other props supplied will be provided to the root element (`div`).
 
@@ -558,9 +780,29 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
+<Box
+ id='shared-props'
+ sx={{
+    overflow: 'auto',
+    'tr:nth-of-type(odd)': {
+        backgroundColor: '#ffffff',
+    },
+    'table' :{
+        borderSpacing: 0,
+    },
+    'table tr td, th': {
+        p: '6px 13px',
+        m: 0,
+        border: '1px solid #D5D8DA',
+        textAlign: 'left'
+    }
+}}>
+
 | Name     | Global CSS Class          | Description                                                    |
 | -------- | ------------------------- | -------------------------------------------------------------- |
 | root     | .BluiDrawerLayout-root    | Styles applied to the root element                             |
 | content  | .BluiDrawerLayout-content | Styles applied to the body content container                   |
 | drawer   | .BluiDrawerLayout-drawer  | Styles applied to the drawer container                         |
 | expanded | .Mui-expanded             | Styles applied to the root element when the drawer is expanded |
+
+</Box>
