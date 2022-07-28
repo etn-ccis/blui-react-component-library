@@ -112,7 +112,13 @@ export default function ComponentPreviewTabs() {
                 </Box>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <Outlet />
+                <Box
+                    sx={{ display: 'flex', flexDirection: 'column', height: '100%', maxWidth: '980px', m: '0px auto' }}
+                >
+                    <Box sx={{ p: '48px 40px', m: '0px auto', backgroundColor: '#F8F8F8' }}>
+                        <Outlet />
+                    </Box>
+                </Box>
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <Box>

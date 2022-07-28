@@ -7,6 +7,7 @@ import {
 } from '../../components/componentList/dummyDataForComponent';
 import DrawerDocsComponent from '../../components/componentList/drawerComponent/DrawerDocsComponent';
 import DrawerHeaderDocsComponent from '../../components/componentList/drawerHeaderDocsComponent/DrawerHeaderDocsComponent';
+import DrawerNavGroupMarkdown from '../../markdown/DrawerNavGroup.mdx';
 
 export type SimpleNavItem = {
     title: string;
@@ -163,7 +164,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DummyDocsComponent />,
+                                component: <DrawerNavGroupMarkdown />,
                             },
                             {
                                 title: 'Playground',
