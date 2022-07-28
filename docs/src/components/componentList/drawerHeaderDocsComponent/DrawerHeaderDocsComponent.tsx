@@ -1,6 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import DrawerHeaderMarkdown from '../../../markdown/DrawerHeaderMarkdown.mdx';
+import DrawerHeaderMarkdown from '../../../markdown/DrawerHeader.mdx';
 
 const DrawerHeaderDocsComponent = (): JSX.Element => {
     return (
