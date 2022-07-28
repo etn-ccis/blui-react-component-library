@@ -1,0 +1,105 @@
+import Box from '@mui/material/Box';
+
+import Drawer from './images/drawer.png';
+import DrawerAnatomy from './images/drawerAnatomy.png';
+import DrawerHeaderAnatomy from './images/drawerHeaderAnatomy.png';
+import DrawerNavGroupAnatomy from './images/drawerNavGroupAnatomy.png';
+import NavItemAnatomy from './images/navItemAnatomy.png';
+import RailAnatomy from './images/railAnatomy.png';
+import DrawerLayout from './images/drawerLayout.png';
+
+# Drawer Header
+
+The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By default, it renders multiple lines of text in the Brightlayer UI style. If you supply a `titleContent`, you can render your own custom content in the title area.
+
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '600px',
+        }}
+        component="img"
+        alt="Drawer Header Anatomy"
+        src={DrawerHeaderAnatomy}
+    />
+</Box>
+
+### Drawer Header API
+
+<Box sx={{
+    overflow: 'auto',
+    'tr:nth-of-type(odd)': {
+        backgroundColor: '#ffffff',
+    },
+    'table' :{
+        borderSpacing: 0,
+    },
+    'table tr td, th': {
+        p: '6px 13px',
+        m: 0,
+        border: '1px solid #D5D8DA',
+        textAlign: 'left'
+    }
+}}>
+
+| Prop Name         | Description                                    | Type                  | Required | Default                      |
+| ----------------- | ---------------------------------------------- | --------------------- | -------- | ---------------------------- |
+| backgroundColor   | The color used for the background              | `string`              | no       | `theme.palette.primary.main` |
+| backgroundImage   | An image to display in the header              | `string`              | no       |                              |
+| backgroundOpacity | The opacity of the background image            | `number`              | no       | `0.3`                        |
+| classes           | Style overrides                                | `DrawerHeaderClasses` | no       |                              |
+| divider           | Optional divider which appears beneath header  | `boolean`             | no       | `false`                      |
+| fontColor         | The color of the text elements                 | `string`              | no       | dynamic based on background  |
+| icon              | A component to render for the icon             | `ReactNode`           | no       |                              |
+| onIconClick       | A function to execute when the icon is clicked | `function`            | no       | `() => {}`                   |
+| subtitle          | The text to show on the second line            | `string`              | no       |                              |
+| title             | The text to show on the first line             | `string`              | no       |                              |
+| titleContent      | Custom content for header title area           | `ReactNode`           | no       |                              |
+
+</Box>
+
+Any other props will be provided to the root element [**Material UI Toolbar**](https://material-ui.com/api/toolbar/).
+
+### Style Overrides
+
+You can override the default styles used by Brightlayer UI by:
+
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+<Box sx={{
+    overflow: 'auto',
+    'tr:nth-of-type(odd)': {
+        backgroundColor: '#ffffff',
+    },
+    'table' :{
+        borderSpacing: 0,
+    },
+    'table tr td, th': {
+        p: '6px 13px',
+        m: 0,
+        border: '1px solid #D5D8DA',
+        textAlign: 'left'
+    }
+}}>
+
+| Name             | Global CSS Class                   | Description                                      |
+| ---------------- | ---------------------------------- | ------------------------------------------------ |
+| root             | .BluiDrawerHeader-root             | Styles applied to the root element               |
+| background       | .BluiDrawerHeader-background       | Styles applied to the header background          |
+| content          | .BluiDrawerHeader-content          | Styles applied to the content container          |
+| navigation       | .BluiDrawerHeader-navigation       | Styles applied to the icon element               |
+| nonClickableIcon | .BluiDrawerHeader-nonClickableIcon | Styles applied to the non-clickable icon element |
+| railIcon         | .BluiDrawerHeader-railIcon         | Styles applied to the icon when using rail style |
+| subtitle         | .BluiDrawerHeader-subtitle         | Styles applied to the subtitle element           |
+| title            | .BluiDrawerHeader-title            | Styles applied to the title element              |
+
+</Box>

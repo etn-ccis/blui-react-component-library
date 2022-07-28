@@ -6,6 +6,8 @@ import {
     DummyExamplesComponent,
 } from '../../components/componentList/dummyDataForComponent';
 import { DrawerNavItemExamples } from '../../components/componentList/drawerNavItemComponent/';
+import DrawerDocsComponent from '../../components/componentList/drawerComponent/DrawerDocsComponent';
+import DrawerHeaderDocsComponent from '../../components/componentList/drawerHeaderDocsComponent/DrawerHeaderDocsComponent';
 
 export type SimpleNavItem = {
     title: string;
@@ -82,25 +84,51 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
             {
                 title: 'Drawer',
                 url: '/components/drawer',
-                component: <ComponentPreviewPage title={'Drawer'} />,
-                children: [
-                    {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <DummyExamplesComponent />,
-                    },
-                    {
-                        title: 'API Docs',
-                        url: 'api-docs',
-                        component: <DummyDocsComponent />,
-                    },
-                    {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <DummyComponent />,
-                    },
-                ],
                 pages: [
+                    {
+                        title: 'Drawer',
+                        url: '/drawer',
+                        component: <ComponentPreviewPage title={'Drawer'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DummyExamplesComponent />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerDocsComponent />,
+                            },
+                            {
+                                title: 'Playground',
+                                url: 'playground',
+                                component: <DummyComponent />,
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Drawer Header',
+                        url: '/drawer-header',
+                        component: <ComponentPreviewPage title={'Drawer Header'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DummyExamplesComponent />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerHeaderDocsComponent />,
+                            },
+                            {
+                                title: 'Playground',
+                                url: 'playground',
+                                component: <DummyComponent />,
+                            },
+                        ],
+                    },
                     {
                         title: 'Drawer Nav Item',
                         url: '/drawer-nav-item',
