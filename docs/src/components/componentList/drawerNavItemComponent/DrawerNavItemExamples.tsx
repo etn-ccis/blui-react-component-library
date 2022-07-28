@@ -1,5 +1,4 @@
 import React from 'react';
-import { EmptyState } from '@brightlayer-ui/react-components';
 import { Box } from '@mui/material';
 
 import DrawerNavItemDocs from '../../../markdown/examples/DrawerNavItemDocs.mdx';

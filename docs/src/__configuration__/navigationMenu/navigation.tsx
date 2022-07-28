@@ -5,7 +5,7 @@ import {
     DummyDocsComponent,
     DummyExamplesComponent,
 } from '../../components/componentList/dummyDataForComponent';
-import { DrawerNavItemExamples } from '../../components/componentList/drawerNavItemComponent/DrawerNavItemExamples';
+import { DrawerNavItemExamples } from '../../components/componentList/drawerNavItemComponent/';
 
 export type SimpleNavItem = {
     title: string;
