@@ -5,9 +5,9 @@ import {
     DummyDocsComponent,
     DummyExamplesComponent,
 } from '../../components/componentList/dummyDataForComponent';
-import DrawerDocsComponent from '../../components/componentList/drawerComponent/DrawerDocsComponent';
-import DrawerHeaderDocsComponent from '../../components/componentList/drawerHeaderComponent/DrawerHeaderDocsComponent';
-import DrawerFooterDocsComponent from '../../components/componentList/drawerFooterComponent/DrawerFooterDocsComponent';
+import DrawerMarkdown from '../../markdown/Drawer.mdx';
+import DrawerHeaderMarkdown from '../../markdown/DrawerHeader.mdx';
+import DrawerFooterMarkdown from '../../markdown/DrawerFooter.mdx';
 
 export type SimpleNavItem = {
     title: string;
@@ -98,7 +98,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerDocsComponent />,
+                                component: <DrawerMarkdown />,
                             },
                             {
                                 title: 'Playground',
@@ -120,7 +120,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerHeaderDocsComponent />,
+                                component: <DrawerHeaderMarkdown />,
                             },
                             {
                                 title: 'Playground',
@@ -142,7 +142,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerFooterDocsComponent />,
+                                component: <DrawerFooterMarkdown />,
                             },
                             {
                                 title: 'Playground',
