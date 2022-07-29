@@ -82,7 +82,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
             },
             {
                 title: 'Drawer',
-                url: '/components/drawer',
+                url: '/components',
                 pages: [
                     {
                         title: 'Drawer',
@@ -108,7 +108,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     },
                     {
                         title: 'Drawer Header',
-                        url: '/drawer-header',
+                        url: '/drawer/drawer-header',
                         component: <ComponentPreviewPage title={'Drawer Header'} />,
                         children: [
                             {
@@ -130,7 +130,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     },
                     {
                         title: 'Drawer Nav Item',
-                        url: '/drawer-nav-item',
+                        url: '/drawer/drawer-nav-item',
                         component: <ComponentPreviewPage title={'Drawer Nav Item'} />,
                         children: [
                             {
@@ -152,7 +152,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     },
                     {
                         title: 'Drawer Nav Group',
-                        url: '/drawer-nav-group',
+                        url: '/drawer/drawer-nav-group',
                         component: <ComponentPreviewPage title={'Drawer Nav Group'} />,
                         children: [
                             {
