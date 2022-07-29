@@ -8,6 +8,7 @@ import {
 import DrawerMarkdown from '../../markdown/Drawer.mdx';
 import DrawerHeaderMarkdown from '../../markdown/DrawerHeader.mdx';
 import DrawerFooterMarkdown from '../../markdown/DrawerFooter.mdx';
+import DrawerBodyMarkdown from '../../markdown/DrawerBody.mdx';
 
 export type SimpleNavItem = {
     title: string;
@@ -164,7 +165,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerBodyDocsComponent />,
+                                component: <DrawerBodyMarkdown />,
                             },
                             {
                                 title: 'Playground',
