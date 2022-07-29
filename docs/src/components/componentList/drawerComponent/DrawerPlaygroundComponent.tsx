@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import TemporaryDrawer from '../../playground/temporaryDrawer';
-import { ListItemTagComponent } from '../listItemComponent';
+import { DrawerComponent } from '../drawerComponent/';
 
 const playGroundStyles = {
     width: '75%',
@@ -19,7 +19,7 @@ export const DrawerPlaygroundComponent = (): JSX.Element => {
     return (
         <Box sx={playGroundStyles}>
             <Box>
-                <ListItemTagComponent />
+                <DrawerComponent />
             </Box>
             <Box>
                 <TemporaryDrawer />
