@@ -1,0 +1,60 @@
+import Box from '@mui/material/Box';
+
+# Drawer Footer
+
+The `<DrawerFooter>` is an optional section that renders at the bottom of the `<Drawer>`. It can be used to add any custom content (as children).
+
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
+
+| Prop Name             | Description                                 | Type      | Required | Default |
+| --------------------- | ------------------------------------------- | --------- | -------- | ------- |
+| backgroundColor       | The color used for the background           | `string`  | no       |         |
+| divider               | Optional divider which appears above footer | `boolean` | no       | `true`  |
+| hideContentOnCollapse | Hide footer contents when drawer is closed  | `boolean` | no       | `true`  |
+
+</Box>
+
+Any other props supplied will be provided to the root element (`div`).
+
+#### Classes
+
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerFooter>` supports the following keys:
+
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
+
+| Name   | Description                          |
+| ------ | ------------------------------------ |
+| root   | Styles applied to the root element   |
+| hidden | Styles applied to the hidden element |
+
+</Box>

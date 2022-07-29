@@ -5,9 +5,10 @@ import {
     DummyDocsComponent,
     DummyExamplesComponent,
 } from '../../components/componentList/dummyDataForComponent';
-import DrawerDocsComponent from '../../components/componentList/drawerComponent/DrawerDocsComponent';
-import DrawerHeaderDocsComponent from '../../components/componentList/drawerHeaderDocsComponent/DrawerHeaderDocsComponent';
 import DrawerNavGroupMarkdown from '../../markdown/DrawerNavGroup.mdx';
+import DrawerMarkdown from '../../markdown/Drawer.mdx';
+import DrawerHeaderMarkdown from '../../markdown/DrawerHeader.mdx';
+import DrawerFooterMarkdown from '../../markdown/DrawerFooter.mdx';
 
 export type SimpleNavItem = {
     title: string;
@@ -98,7 +99,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerDocsComponent />,
+                                component: <DrawerMarkdown />,
                             },
                             {
                                 title: 'Playground',
@@ -120,7 +121,29 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerHeaderDocsComponent />,
+                                component: <DrawerHeaderMarkdown />,
+                            },
+                            {
+                                title: 'Playground',
+                                url: 'playground',
+                                component: <DummyComponent />,
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Drawer Footer',
+                        url: '/drawer-footer',
+                        component: <ComponentPreviewPage title={'Drawer Footer'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DummyExamplesComponent />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerFooterMarkdown />,
                             },
                             {
                                 title: 'Playground',

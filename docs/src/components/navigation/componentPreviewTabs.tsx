@@ -58,7 +58,7 @@ function getNumber(location: string) {
 }
 
 const tabStyles = {
-    width: '33%',
+    width: '100%',
     color: (theme: Theme) => theme.palette.text.primary,
     '&.Mui-selected': {
         color: (theme: Theme) => theme.palette.primary.main,
@@ -96,6 +96,8 @@ export default function ComponentPreviewTabs() {
                     centered
                     sx={{
                         width: '100%',
+                        display: 'flex',
+                        justifyContent: 'space-evenly',
                         '& .MuiTabs-indicator': {
                             backgroundColor: theme.palette.primary.main,
                         },
