@@ -5,7 +5,7 @@ import {
     DummyDocsComponent,
     DummyExamplesComponent,
 } from '../../components/componentList/dummyDataForComponent';
-import { DrawerNavItemExamples } from '../../components/componentList/drawerNavItemComponent/';
+import { DrawerNavItemDocs } from '../../markdown/examples';
 import DrawerDocsComponent from '../../components/componentList/drawerComponent/DrawerDocsComponent';
 import DrawerHeaderDocsComponent from '../../components/componentList/drawerHeaderDocsComponent/DrawerHeaderDocsComponent';
 
@@ -137,7 +137,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DrawerNavItemExamples />,
+                                component: <DrawerNavItemDocs />,
                             },
                             {
                                 title: 'API Docs',
