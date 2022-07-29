@@ -19,6 +19,7 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { store } from './redux/store';
 import { MDXProvider } from '@mdx-js/react';
+import { componentsMap } from './__configuration__/markdownMapping';
 
 const container = document.getElementById('root');
 
@@ -32,7 +33,7 @@ root.render(
             <BrowserRouter>
                 <CssBaseline />
                 <Provider store={store}>
-                    <MDXProvider>
+                    <MDXProvider components={componentsMap as any}>
                         <App />
                     </MDXProvider>
                 </Provider>
