@@ -115,7 +115,7 @@ export default function ComponentPreviewTabs() {
                 <Outlet />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <Box>
+                <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                     <Outlet />
                 </Box>
             </TabPanel>

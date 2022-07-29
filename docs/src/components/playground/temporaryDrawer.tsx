@@ -53,7 +53,7 @@ const TemporaryDrawer = () => {
         setState({ ...state, [anchor]: open });
     };
 
-    const list = (anchor: Anchor) => (
+    const list = () => (
         <Box sx={{ width: 375, p: 2 }} role="presentation">
             <div>{renderInputs()}</div>
         </Box>
@@ -61,23 +61,21 @@ const TemporaryDrawer = () => {
 
     return (
         <div>
-            {(['right'] as const).map((anchor) => (
-                <React.Fragment key={anchor}>
-                    <Drawer
-                        PaperProps={{
-                            sx: {
-                                mt: '64px',
-                            },
-                        }}
-                        anchor={anchor}
-                        open={state[anchor]}
-                        onClose={toggleDrawer(anchor, false)}
-                        variant={'persistent'}
-                    >
-                        {list(anchor)}
-                    </Drawer>
-                </React.Fragment>
-            ))}
+            <React.Fragment key={'right'}>
+                <Drawer
+                    PaperProps={{
+                        sx: {
+                            mt: '112px',
+                        },
+                    }}
+                    anchor={'right'}
+                    open={state['right']}
+                    onClose={toggleDrawer('right', false)}
+                    variant={'persistent'}
+                >
+                    {list()}
+                </Drawer>
+            </React.Fragment>
         </div>
     );
 };

@@ -5,8 +5,8 @@ import {
     DummyDocsComponent,
     DummyExamplesComponent,
 } from '../../components/componentList/dummyDataForComponent';
-import DrawerDocsComponent from '../../components/componentList/drawerComponent/DrawerDocsComponent';
 import DrawerHeaderDocsComponent from '../../components/componentList/drawerHeaderDocsComponent/DrawerHeaderDocsComponent';
+import { DrawerDocsComponent, DrawerPlaygroundComponent } from '../../components/componentList/drawerComponent';
 
 export type SimpleNavItem = {
     title: string;
@@ -102,7 +102,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Playground',
                                 url: 'playground',
-                                component: <DummyComponent />,
+                                component: <DrawerPlaygroundComponent />,
                             },
                         ],
                     },
