@@ -5,6 +5,7 @@ import DrawerAnatomy from './images/drawerAnatomy.png';
 import NavItemAnatomy from './images/navItemAnatomy.png';
 import RailAnatomy from './images/railAnatomy.png';
 import DrawerLayout from './images/drawerLayout.png';
+import SharedProps from './SharedProps.mdx';
 
 # Drawer
 
@@ -439,7 +440,6 @@ You can render the `<DrawerRailItem>` as a link by setting the `component` prop 
 The following props can be set at any level in the drawer hierarchy (`<Drawer>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerNavItem>`, or `<DrawerRailItem>`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
 
 <Box
- id='shared-props'
  sx={{
     overflow: 'auto',
     'tr:nth-of-type(odd)': {
@@ -493,7 +493,6 @@ The `<DrawerLayout>` component is used to provide the appropriate resizing behav
 ### Drawer Layout API
 
 <Box
- id='shared-props'
  sx={{
     overflow: 'auto',
     'tr:nth-of-type(odd)': {
@@ -531,29 +530,4 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-<Box
- id='shared-props'
- sx={{
-    overflow: 'auto',
-    'tr:nth-of-type(odd)': {
-        backgroundColor: '#ffffff',
-    },
-    'table' :{
-        borderSpacing: 0,
-    },
-    'table tr td, th': {
-        p: '6px 13px',
-        m: 0,
-        border: '1px solid #D5D8DA',
-        textAlign: 'left'
-    }
-}}>
-
-| Name     | Global CSS Class          | Description                                                    |
-| -------- | ------------------------- | -------------------------------------------------------------- |
-| root     | .BluiDrawerLayout-root    | Styles applied to the root element                             |
-| content  | .BluiDrawerLayout-content | Styles applied to the body content container                   |
-| drawer   | .BluiDrawerLayout-drawer  | Styles applied to the drawer container                         |
-| expanded | .Mui-expanded             | Styles applied to the root element when the drawer is expanded |
-
-</Box>
+<SharedProps />
