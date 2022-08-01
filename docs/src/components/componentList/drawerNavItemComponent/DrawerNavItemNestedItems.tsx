@@ -22,8 +22,8 @@ export const DrawerNavItemNestedItems = (): JSX.Element => {
     return (
         <Box>
             <Box sx={{ m: '32px 0', backgroundColor: colors.white[600], p: 4 }}>
-                <Drawer open={true} width={250} sx={{ height: '156px', margin: '0 auto' }} noLayout>
-                    <DrawerBody>
+                <Drawer open={true} width={250} sx={{ margin: '0 auto' }} noLayout>
+                    <DrawerBody sx={{ flex: '1 1 auto' }}>
                         <DrawerNavGroup hidePadding={true}>
                             <DrawerNavItem title="Locations" itemID="Locations">
                                 <DrawerNavItem title="By Type" itemID="By Type" hidePadding={false} />
