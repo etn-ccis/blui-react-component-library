@@ -7,7 +7,7 @@ import Notifications from '@mui/icons-material/Notifications';
 import Gavel from '@mui/icons-material/Gavel';
 import * as colors from '@brightlayer-ui/colors';
 
-const htmlCode = `<DrawerBody>
+const codeSnippet = `<DrawerBody>
   <DrawerNavGroup>
     <DrawerNavItem title="Dashboard" icon={<Dashboard/>} itemID="1" />
     <DrawerNavItem title="Locations" icon={<Notifications />} itemID="2" />
@@ -29,7 +29,7 @@ export const DrawerNavItemWithIcons = (): JSX.Element => {
                     </DrawerBody>
                 </Drawer>
             </Box>
-            <CodeBlock code={htmlCode} language="html" />
+            <CodeBlock code={codeSnippet} language="jsx" />
         </Box>
     );
 };

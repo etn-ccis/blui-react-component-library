@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock } from '../../codeSnippet/codeBlock';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
-const htmlCode = `<Drawer open={true} activeItem={selected}>
+const codeSnippet = `<Drawer open={true} activeItem={selected}>
     <DrawerBody>
         <DrawerNavGroup hidePadding={true}>
             <DrawerNavItem title="Item 1"
@@ -24,7 +24,7 @@ const htmlCode = `<Drawer open={true} activeItem={selected}>
     </DrawerBody>
 </Drawer>
 `;
-export const DrawerSelectedDrawerItems = (): JSX.Element => {
+export const DrawerNavItemSelectedItems = (): JSX.Element => {
     const [selected, setSelected] = useState('Item 1');
     return (
         <Box>
@@ -39,6 +39,7 @@ export const DrawerSelectedDrawerItems = (): JSX.Element => {
                     <DrawerBody>
                         <DrawerNavGroup hidePadding={true}>
                             <DrawerNavItem
+                                activeItemBackgroundShape="square"
                                 title="Item 1"
                                 subtitle="with square highlight"
                                 itemID="Item 1"
@@ -47,6 +48,7 @@ export const DrawerSelectedDrawerItems = (): JSX.Element => {
                                 }}
                             ></DrawerNavItem>
                             <DrawerNavItem
+                                activeItemBackgroundShape="round"
                                 title="Item 2"
                                 subtitle="with round highlight"
                                 itemID="Item 2"
@@ -66,7 +68,7 @@ export const DrawerSelectedDrawerItems = (): JSX.Element => {
                     </DrawerBody>
                 </Drawer>
             </Box>
-            <CodeBlock code={htmlCode} language="html" />
+            <CodeBlock code={codeSnippet} language="jsx" />
         </Box>
     );
 };

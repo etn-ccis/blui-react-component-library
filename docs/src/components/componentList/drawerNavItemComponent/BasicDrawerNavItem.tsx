@@ -4,7 +4,7 @@ import { CodeBlock } from '../../codeSnippet/codeBlock';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
 
-const htmlCode = `<DrawerBody>
+const codeSnippet = `<DrawerBody>
     <DrawerNavGroup hidePadding divider>
         <DrawerNavItem title="Dashboard" itemID="1" />
         <DrawerNavItem title="Locations" itemID="2" />
@@ -26,7 +26,7 @@ export const BasicDrawerNavItem = (): JSX.Element => {
                     </DrawerBody>
                 </Drawer>
             </Box>
-            <CodeBlock code={htmlCode} language="html" />
+            <CodeBlock code={codeSnippet} language="jsx" />
         </Box>
     );
 };
