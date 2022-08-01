@@ -1,0 +1,63 @@
+import Box from '@mui/material/Box';
+import SharedProps from './SharedProps.mdx';
+
+# Drawer Body
+
+The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical use case is to display `<DrawerNavGroup>` elements, but custom elements (e.g., for spacing) are accepted as well.
+
+### Drawer Body API
+
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
+
+| Prop Name                       | Description                                                | Type                | Required | Default |
+| ------------------------------- | ---------------------------------------------------------- | ------------------- | -------- | ------- |
+| classes                         | Style overrides                                            | `DrawerBodyClasses` | no       |         |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                   | -        |         |
+
+</Box>
+
+Any other props supplied will be provided to the root element (`div`).
+
+### Classes
+
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerBody>` supports the following keys:
+
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
+
+| Name | Description                        |
+| ---- | ---------------------------------- |
+| root | Styles applied to the root element |
+
+</Box>
+
+<SharedProps />
