@@ -9,6 +9,7 @@ export type propsType = {
 };
 
 export type componentType = {
+    key: string;
     componentName: string;
     props: propsType[];
     subComponentsList?: componentType[];
@@ -17,6 +18,7 @@ export type componentType = {
 export const drawerTypes: componentType[] = [
     {
         componentName: 'Drawer',
+        key: 'drawer',
         props: [
             {
                 propName: 'variant',
@@ -36,47 +38,77 @@ export const drawerTypes: componentType[] = [
                 helperText: 'Controls the open/closed state of the drawer',
                 required: true,
             },
+            {
+                propName: 'noLayout',
+                inputType: 'boolean',
+                inputValue: true,
+                currentValue: true,
+                propType: 'boolean',
+                helperText: 'Set to true if used without a <DrawerLayout>',
+                required: false,
+            },
         ],
         subComponentsList: [
             {
                 componentName: 'DrawerHeader',
+                key:'drawerHeader',
                 props: [
                     {
-                        propName: 'backgroundColor',
-                        inputType: 'ColorPicker',
-                        inputValue: 'red',
-                        currentValue: 'red',
+                        propName: 'title',
+                        inputType: 'string',
+                        inputValue: 'Simple',
+                        currentValue: 'simple',
                         propType: 'string',
                         helperText: 'The color used for the background',
                         required: false,
                     },
                     {
-                        propName: 'icon',
-                        inputType: 'select',
-                        inputValue: ['<Menu />', '<FitnessCenter />', 'undefined'],
-                        currentValue: '<Menu />',
-                        propType: 'ReactNode',
-                        helperText: 'A component to render for the icon',
+                        propName: 'backgroundColor',
+                        inputType: 'ColorPicker',
+                        inputValue: '#ff0000',
+                        currentValue: '#ff0000',
+                        propType: 'string',
+                        helperText: 'The color used for the background',
                         required: false,
                     },
+                    // {
+                    //     propName: 'icon',
+                    //     inputType: 'select',
+                    //     inputValue: ['<Menu />', '<FitnessCenter />', 'undefined'],
+                    //     currentValue: '<Menu />',
+                    //     propType: 'ReactNode',
+                    //     helperText: 'A component to render for the icon',
+                    //     required: false,
+                    // },
                 ],
             },
             {
-                componentName: 'Drawer Body',
+                componentName: 'DrawerBody',
+                key:'drawerBody',
                 props: [
                     {
                         propName: 'backgroundColor',
                         inputType: 'ColorPicker',
-                        inputValue: 'green',
-                        currentValue: 'green',
+                        inputValue: 'white',
+                        currentValue: 'white',
                         propType: 'string',
                         helperText: 'Color used for the background of the element',
+                        required: false,
+                    },
+                    {
+                        propName: 'className',
+                        inputType: 'string',
+                        inputValue: 'drawerBodyStyle',
+                        currentValue: 'drawerBodyStyle',
+                        propType: 'string',
+                        helperText: 'Drawer variants',
                         required: false,
                     },
                 ],
                 subComponentsList: [
                     {
-                        componentName: 'Drawer Nav Group',
+                        componentName: 'DrawerNavGroup',
+                        key:'drawerNavGroup',
                         props: [
                             {
                                 propName: 'titleColor',
@@ -99,7 +131,8 @@ export const drawerTypes: componentType[] = [
                         ],
                         subComponentsList: [
                             {
-                                componentName: 'Drawer Nav Item',
+                                componentName: 'DrawerNavItem',
+                                key:'drawerNavItem',
                                 props: [
                                     {
                                         propName: 'title',
