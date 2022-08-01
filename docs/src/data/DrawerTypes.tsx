@@ -20,7 +20,7 @@ export const drawerTypes: componentType[] = [
         props: [
             {
                 propName: 'variant',
-                inputType: 'Select',
+                inputType: 'select',
                 inputValue: ['persistent', 'permanent', 'temporary', 'rail'],
                 currentValue: 'permanent',
                 propType: 'string',
@@ -29,7 +29,7 @@ export const drawerTypes: componentType[] = [
             },
             {
                 propName: 'open',
-                inputType: 'Boolean',
+                inputType: 'boolean',
                 inputValue: true,
                 currentValue: true,
                 propType: 'boolean',
@@ -39,7 +39,7 @@ export const drawerTypes: componentType[] = [
         ],
         subComponentsList: [
             {
-                componentName: 'Drawer Header',
+                componentName: 'DrawerHeader',
                 props: [
                     {
                         propName: 'backgroundColor',
@@ -52,7 +52,7 @@ export const drawerTypes: componentType[] = [
                     },
                     {
                         propName: 'icon',
-                        inputType: 'Select',
+                        inputType: 'select',
                         inputValue: ['<Menu />', '<FitnessCenter />', 'undefined'],
                         currentValue: '<Menu />',
                         propType: 'ReactNode',
@@ -89,7 +89,7 @@ export const drawerTypes: componentType[] = [
                             },
                             {
                                 propName: 'titleDivider',
-                                inputType: 'Boolean',
+                                inputType: 'boolean',
                                 inputValue: true,
                                 currentValue: true,
                                 propType: 'boolean',
