@@ -1,3 +1,3 @@
-import DrawerNavItemDocs from './DrawerNavItemDocs.mdx';
+import DrawerNavItemExamples from './DrawerNavItemExamples.mdx';
 
-export { DrawerNavItemDocs };
+export { DrawerNavItemExamples };
