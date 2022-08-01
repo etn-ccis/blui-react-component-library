@@ -5,10 +5,12 @@ import {
     DummyDocsComponent,
     DummyExamplesComponent,
 } from '../../components/componentList/dummyDataForComponent';
+import DrawerNavGroupMarkdown from '../../markdown/DrawerNavGroup.mdx';
 import DrawerMarkdown from '../../markdown/Drawer.mdx';
 import DrawerHeaderMarkdown from '../../markdown/DrawerHeader.mdx';
 import DrawerFooterMarkdown from '../../markdown/DrawerFooter.mdx';
 import { DrawerNavItemDocs } from '../../markdown/examples';
+import DrawerBodyMarkdown from '../../markdown/DrawerBody.mdx';
 
 export type SimpleNavItem = {
     title: string;
@@ -153,6 +155,28 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                         ],
                     },
                     {
+                        title: 'Drawer Body',
+                        url: '/drawer-body',
+                        component: <ComponentPreviewPage title={'Drawer Body'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DummyExamplesComponent />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerBodyMarkdown />,
+                            },
+                            {
+                                title: 'Playground',
+                                url: 'playground',
+                                component: <DummyComponent />,
+                            },
+                        ],
+                    },
+                    {
                         title: 'Drawer Nav Item',
                         url: '/drawer-nav-item',
                         component: <ComponentPreviewPage title={'Drawer Nav Item'} />,
@@ -187,7 +211,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DummyDocsComponent />,
+                                component: <DrawerNavGroupMarkdown />,
                             },
                             {
                                 title: 'Playground',
