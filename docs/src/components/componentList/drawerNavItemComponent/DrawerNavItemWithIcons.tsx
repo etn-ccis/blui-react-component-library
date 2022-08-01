@@ -8,11 +8,11 @@ import Gavel from '@mui/icons-material/Gavel';
 import * as colors from '@brightlayer-ui/colors';
 
 const codeSnippet = `<DrawerBody>
-  <DrawerNavGroup>
-    <DrawerNavItem title="Dashboard" icon={<Dashboard/>} itemID="1" />
-    <DrawerNavItem title="Locations" icon={<Notifications />} itemID="2" />
-    <DrawerNavItem title="Legal" icon={<Gavel />} itemID="3" />
-  </DrawerNavGroup>
+    <DrawerNavGroup>
+        <DrawerNavItem title="Dashboard" icon={<Dashboard/>} itemID="1" />
+        <DrawerNavItem title="Locations" icon={<Notifications />} itemID="2" />
+        <DrawerNavItem title="Legal" icon={<Gavel />} itemID="3" />
+    </DrawerNavGroup>
 </DrawerBody>
 `;
 export const DrawerNavItemWithIcons = (): JSX.Element => {
