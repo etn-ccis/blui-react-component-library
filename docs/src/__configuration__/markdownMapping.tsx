@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import React, { HTMLAttributes } from 'react';
-import { Typography, TypographyProps, SvgIconProps,  Box, TableProps } from '@mui/material';
+import { Typography, TypographyProps, SvgIconProps, Box, TableProps } from '@mui/material';
 import { Link, LinkProps } from 'react-router-dom';
 import { REGULAR_WIDTH_STYLE, getHash } from '../shared';
 import * as Colors from '@brightlayer-ui/colors';
@@ -124,7 +124,7 @@ export const componentsMap = {
                         fontWeight: 400,
                         textDecoration: 'none',
                         color: (theme: Theme) => theme.palette.primary.main,
-                        fontSize: '14px'
+                        fontSize: '14px',
                     }}
                     {...tProps}
                 />
@@ -139,13 +139,22 @@ export const componentsMap = {
         return <InternalLink to={props.href} {...tProps} />;
     },
     p: (props: TypographyProps): JSX.Element => (
-        <Typography sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', lineHeight: '1.6', m: '15px auto', }} paragraph {...props} />
+        <Typography
+            sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', lineHeight: '1.6', m: '15px auto' }}
+            paragraph
+            {...props}
+        />
     ),
     ul: (props: BoxProps): JSX.Element => (
-        <Box component={'ul'} sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', m: '15px 0', pl: '60px'}} {...props} />
+        <Box component={'ul'} sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', m: '15px 0', pl: '60px' }} {...props} />
     ),
     li: (props: TypographyProps<'li'>): JSX.Element => (
-        <Typography component={'li'} className={'mdLi'} sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', m: '15px 0',}} {...props} />
+        <Typography
+            component={'li'}
+            className={'mdLi'}
+            sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', m: '15px 0' }}
+            {...props}
+        />
     ),
     blockquote: (props: TypographyProps<'blockquote'>): JSX.Element => {
         return (
@@ -154,7 +163,7 @@ export const componentsMap = {
                 sx={{
                     pr: 2,
                     mb: 1,
-                    borderLeft:' 4px solid #DDDDDD',
+                    borderLeft: ' 4px solid #DDDDDD',
                     p: '0 15px',
                     m: '15px 0',
                     color: '#666666',
