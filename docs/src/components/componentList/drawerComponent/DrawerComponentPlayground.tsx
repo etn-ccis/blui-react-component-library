@@ -14,22 +14,38 @@ import {
     DrawerNavItemProps,
     DrawerProps,
 } from '@brightlayer-ui/react-components';
-import { componentType } from '../../../data/DrawerTypesNew';
+import { componentType, nestedChildrenType, propsType } from '../../../data/DrawerTypesNew';
 
 export const DrawerComponentPlayground = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
+    console.log('drawerjson', drawerJson);
     function createProps(drawerJson: componentType[], componentName: string) {
         const compo = drawerJson.filter(function (obj: componentType) {
             return obj.componentName === componentName;
         })[0];
-        const a = compo.props.reduce((acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.currentValue }), {});
-        return a;
+        if (compo.props) {
+            const a = compo.props.reduce((acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.currentValue }), {});
+            return a;
+        } else if (compo.nestedChildren) {
+            let nestedArray: any[] = [];
+            compo.nestedChildren.map((child: nestedChildrenType, index: number) => {
+                const b = nestedArray.push(
+                    child.nestedChildrenProps.reduce(
+                        (acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.currentValue }),
+                        {}
+                    )
+                );
+                return b;
+            });
+            return nestedArray;
+        }
     }
     const drawerProps: DrawerProps = createProps(drawerJson, 'Drawer');
     const drawerHeaderProps: DrawerHeaderProps = createProps(drawerJson, 'DrawerHeader');
     const drawerBodyProps: DrawerBodyProps = createProps(drawerJson, 'DrawerBody');
-    const drawerNavGroupProps: DrawerNavGroupProps = createProps(drawerJson, 'DrawerNavGroup');
-    const drawerNavItemProps: DrawerNavItemProps = createProps(drawerJson, 'DrawerNavItem');
+    const drawerNavGroupProps = createProps(drawerJson, 'DrawerNavGroup');
+    console.log(drawerNavGroupProps, 'drawerNavGroupProps');
+    // const drawerNavItemProps: DrawerNavItemProps = createProps(drawerJson, 'DrawerNavItem');
     return (
         <Box style={{ width: '300px' }}>
             <Drawer open={drawerProps.open} noLayout={drawerProps.noLayout} variant={drawerProps.variant}>
@@ -38,7 +54,7 @@ export const DrawerComponentPlayground = (): JSX.Element => {
                     backgroundColor={drawerHeaderProps.backgroundColor}
                 ></DrawerHeader>
                 <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={drawerBodyProps.backgroundColor}>
-                    <DrawerNavGroup
+                    {/* <DrawerNavGroup
                         titleColor={drawerNavGroupProps.titleColor}
                         titleDivider={drawerNavGroupProps.titleDivider}
                         hidePadding={drawerNavGroupProps.hidePadding}
@@ -47,7 +63,17 @@ export const DrawerComponentPlayground = (): JSX.Element => {
                             itemID={drawerNavItemProps.itemID}
                             title={drawerNavItemProps.title}
                         ></DrawerNavItem>
-                    </DrawerNavGroup>
+                    </DrawerNavGroup> */}
+                    {drawerNavGroupProps.map((navGroup: DrawerNavGroupProps, index: number) => (
+                        <DrawerNavGroup
+                            key={index}
+                            hidePadding={navGroup.hidePadding}
+                            titleColor={navGroup.titleColor}
+                            titleDivider={navGroup.titleDivider}
+                        >
+                            <DrawerNavItem itemID="dd" title="ss"></DrawerNavItem>
+                        </DrawerNavGroup>
+                    ))}
                 </DrawerBody>
             </Drawer>
         </Box>
