@@ -1,15 +1,14 @@
 /* eslint-disable react/display-name */
-import React, { HTMLAttributes, useState } from 'react';
-import { Typography, TypographyProps, SvgIconProps, Snackbar, IconButton, Box } from '@mui/material';
-import { Link as LinkIcon } from '@mui/icons-material';
+import React, { HTMLAttributes } from 'react';
+import { Typography, TypographyProps, SvgIconProps,  Box, TableProps } from '@mui/material';
 import { Link, LinkProps } from 'react-router-dom';
-import { REGULAR_WIDTH_STYLE, copyTextToClipboard, getHash } from '../shared';
+import { REGULAR_WIDTH_STYLE, getHash } from '../shared';
 import * as Colors from '@brightlayer-ui/colors';
-import color from 'color';
 import { useTheme, Theme } from '@mui/material/styles';
 import { cx } from '@emotion/css';
 
 import './markdown.css';
+import { BoxProps } from '@mui/system';
 
 export const ExternalLink = (tProps: TypographyProps<'a'>): JSX.Element => {
     const theme = useTheme();
@@ -18,7 +17,7 @@ export const ExternalLink = (tProps: TypographyProps<'a'>): JSX.Element => {
             component={'a'}
             target={'_blank'}
             rel={'noopener noreferrer'}
-            style={{ fontWeight: 400, textDecoration: 'none', color: theme.palette.primary.main }}
+            sx={{ fontWeight: 400, textDecoration: 'none', fontSize: '14px', color: theme.palette.primary.main }}
             {...tProps}
         />
     );
@@ -29,7 +28,7 @@ export const InternalLink = (props: LinkProps): JSX.Element => {
     return (
         <Link
             rel={'noopener noreferrer'}
-            style={{ fontWeight: 400, textDecoration: 'none', color: theme.palette.primary.main }}
+            style={{ fontWeight: 400, textDecoration: 'none', fontSize: '14px', color: theme.palette.primary.main }}
             {...props}
         />
     );
@@ -48,16 +47,13 @@ const Headline: React.FC<Headline> = ({
     SvgIconProps: otherSvgIconProps,
     ...otherDivProps
 }) => {
-    const [onCopy, setOnCopy] = useState(false);
-    const theme = useTheme();
-
     return (
         <Box
             className={cx(className, 'headline')}
             {...otherDivProps}
             sx={{ ...REGULAR_WIDTH_STYLE, ...otherDivProps.style }}
         >
-            <Box component='span' id={hash} sx={{ position: 'relative', top: -90 }} />
+            <Box component="span" id={hash} sx={{ position: 'relative', top: -90 }} />
             <Typography
                 paragraph
                 color={'primary'}
@@ -67,32 +63,7 @@ const Headline: React.FC<Headline> = ({
                 sx={{ hyphens: 'auto', ...otherTypographyProps.style }}
             >
                 {otherTypographyProps.children}
-                <IconButton
-                    onClick={(): void => {
-                        copyTextToClipboard(`${window.location.origin}${window.location.pathname}#${hash}`);
-                        setOnCopy(true);
-                    }}
-                    style={{ marginLeft: 8 }}
-                    size={'small'}
-                    color={'primary'}
-                >
-                    <LinkIcon titleAccess={'copy to clipboard'} {...otherSvgIconProps} />
-                </IconButton>
             </Typography>
-            {onCopy && (
-                <Snackbar
-                    open={onCopy}
-                    style={{
-                        [theme.breakpoints.down('xs')]: {
-                            bottom: theme.spacing(12),
-                        },
-                    }}
-                    autoHideDuration={3000}
-                    resumeHideDuration={1000}
-                    onClose={(): void => setOnCopy(false)}
-                    message={'Link copied to clipboard.'}
-                />
-            )}
         </Box>
     );
 };
@@ -106,71 +77,94 @@ export const componentsMap = {
             TypographyProps={{ variant: 'h4', ...props }}
         />
     ),
-    h2: (props: any): JSX.Element => (
+    h2: (props: TypographyProps): JSX.Element => (
         <Headline
             style={{ marginTop: 64, marginBottom: 16 }}
             hash={getHash(props.children?.toString() || 'h2')}
             TypographyProps={{ variant: 'h6', ...props }}
         />
     ),
-    h3: (props: any): JSX.Element => (
+    h3: (props: TypographyProps): JSX.Element => (
         <Headline
             style={{ marginTop: 32, marginBottom: 16 }}
             hash={getHash(props.children?.toString() || 'h3')}
             TypographyProps={{ variant: 'body1', style: { fontWeight: 600 }, ...props }}
         />
     ),
-    h4: (props: any): JSX.Element => (
+    h4: (props: TypographyProps): JSX.Element => (
         <Headline
             style={{ marginTop: 16 }}
             hash={getHash(props.children?.toString() || 'h4')}
             TypographyProps={{ variant: 'subtitle1', ...props }}
         />
     ),
-    h5: (props: any): JSX.Element => (
+    h5: (props: TypographyProps): JSX.Element => (
         <Headline
             style={{ marginTop: 8 }}
             hash={getHash(props.children?.toString() || 'h5')}
             TypographyProps={{ variant: 'body2', ...props }}
         />
     ),
-    h6: (props: any): JSX.Element => (
+    h6: (props: TypographyProps): JSX.Element => (
         <Headline
             style={{ marginTop: 8, fontSize: '0.75rem' }}
             hash={getHash(props.children?.toString() || 'h6')}
             TypographyProps={{ variant: 'body2', ...props }}
         />
     ),
-    a: (props: any): JSX.Element => {
+    a: (props: React.LinkHTMLAttributes<HTMLLinkElement>): JSX.Element => {
         let tProps;
-        // if (props.href && (props.href.match(/^http/gi) || props.href.match(/^mailto/gi))) {
+        if (props.href?.includes('#')) {
+            tProps = props as TypographyProps<'a'>;
+
+            return (
+                <Typography
+                    component={'a'}
+                    sx={{
+                        fontWeight: 400,
+                        textDecoration: 'none',
+                        color: (theme: Theme) => theme.palette.primary.main,
+                        fontSize: '14px'
+                    }}
+                    {...tProps}
+                />
+            );
+        }
+        if (props.href && (props.href.match(/^http/gi) || props.href.match(/^mailto/gi))) {
             tProps = props as TypographyProps<'a'>;
             return <ExternalLink {...tProps} />;
-        // }
-        // tProps = props as LinkProps;
-        // @ts-ignore
-        // return <InternalLink to={props.href} {...tProps} />;
+        }
+        tProps = props as LinkProps;
+        //@ts-ignore
+        return <InternalLink to={props.href} {...tProps} />;
     },
-    p: (props: any): JSX.Element => <Typography style={{ ...REGULAR_WIDTH_STYLE }} paragraph {...props} />,
-    li: (props: any): JSX.Element => (
-        <Typography component={'li'} className={'mdLi'} style={{ ...REGULAR_WIDTH_STYLE }} {...props} />
+    p: (props: TypographyProps): JSX.Element => (
+        <Typography sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', lineHeight: '1.6', m: '15px auto', }} paragraph {...props} />
     ),
-    blockquote: (props: any): JSX.Element => {
+    ul: (props: BoxProps): JSX.Element => (
+        <Box component={'ul'} sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', m: '15px 0', pl: '60px'}} {...props} />
+    ),
+    li: (props: TypographyProps<'li'>): JSX.Element => (
+        <Typography component={'li'} className={'mdLi'} sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', m: '15px 0',}} {...props} />
+    ),
+    blockquote: (props: TypographyProps<'blockquote'>): JSX.Element => {
         return (
             <Typography
                 component={'blockquote'}
                 sx={{
-                    paddingRight: 16,
-                    marginBottom: 8,
-                    backgroundColor: (theme: Theme) => color(theme.palette.primary.main).fade(0.9).string(),
-                    borderLeftColor: (theme: Theme) => theme.palette.primary.main,
+                    pr: 2,
+                    mb: 1,
+                    borderLeft:' 4px solid #DDDDDD',
+                    p: '0 15px',
+                    m: '15px 0',
+                    color: '#666666',
                     ...REGULAR_WIDTH_STYLE,
                 }}
                 {...props}
             />
         );
     },
-    pre: (props: any): JSX.Element => {
+    pre: (props: TypographyProps<'pre'>): JSX.Element => {
         return (
             <Typography
                 component={'pre'}
@@ -193,10 +187,15 @@ export const componentsMap = {
                 component={'code'}
                 color={'textPrimary'}
                 sx={{
-                    backgroundColor: (theme: Theme) =>
-                        theme.palette.mode === 'light' ? theme.palette.background.default : Colors.darkBlack[300],
-                    fontFamily: 'Roboto Mono, Monospaced',
-                    fontSize: 12,
+                    fontSize: 14,
+                    m: '0px 2px',
+                    p: '0px 5px',
+                    whiteSpace: 'nowrap',
+                    border: '1px solid #EEEEEE',
+                    backgroundColor: '#F8F8F8',
+                    borderRadius: '3px',
+                    fontFamily: 'monospace',
+                    lineHeight: '1.6',
                 }}
                 {...props}
             />
@@ -216,6 +215,35 @@ export const componentsMap = {
                 }}
                 {...props}
             />
+        );
+    },
+    table: (props: TableProps): JSX.Element => {
+        return (
+            <Box
+                sx={{
+                    overflow: 'auto',
+                    'tr:nth-of-type(even)': {
+                        backgroundColor: '#F7F8F8',
+                    },
+                    table: {
+                        borderSpacing: 0,
+                        mx: '43px',
+                        fontSize: '14px',
+                        minWidth: 750,
+                    },
+                    'table tr td, th': {
+                        p: '6px 13px',
+                        m: 0,
+                        border: '0.5px solid #D5D8DA',
+                        textAlign: 'left',
+                    },
+                    a: {
+                        fontSize: '14px',
+                    },
+                }}
+            >
+                <table {...props} />
+            </Box>
         );
     },
 };

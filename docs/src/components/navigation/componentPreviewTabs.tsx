@@ -25,7 +25,7 @@ function TabPanel(props: TabPanelProps) {
             {...other}
         >
             {value === index && (
-                <Box>
+                <Box sx={{ backgroundColor: '#FFFFFF' }}>
                     <Typography component={'div'}>{children}</Typography>
                 </Box>
             )}
@@ -117,7 +117,7 @@ export default function ComponentPreviewTabs() {
                 <Box
                     sx={{ display: 'flex', flexDirection: 'column', height: '100%', maxWidth: '980px', m: '0px auto' }}
                 >
-                    <Box sx={{ p: '48px 40px', m: '0px auto', backgroundColor: '#F8F8F8' }}>
+                    <Box sx={{ p: '48px 40px', m: '0px auto' }}>
                         <Outlet />
                     </Box>
                 </Box>

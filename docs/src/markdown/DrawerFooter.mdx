@@ -4,22 +4,9 @@ import Box from '@mui/material/Box';
 
 The `<DrawerFooter>` is an optional section that renders at the bottom of the `<Drawer>`. It can be used to add any custom content (as children).
 
-<Box
-    sx={{
-        overflow: 'auto',
-        'tr:nth-of-type(odd)': {
-            backgroundColor: '#ffffff',
-        },
-        table: {
-            borderSpacing: 0,
-        },
-        'table tr td, th': {
-            p: '6px 13px',
-            m: 0,
-            border: '1px solid #D5D8DA',
-            textAlign: 'left',
-        },
-}}>
+### Drawer Footer API
+
+<Box>
 
 | Prop Name             | Description                                 | Type      | Required | Default |
 | --------------------- | ------------------------------------------- | --------- | -------- | ------- |
@@ -31,26 +18,11 @@ The `<DrawerFooter>` is an optional section that renders at the bottom of the `<
 
 Any other props supplied will be provided to the root element (`div`).
 
-#### Classes
+### Classes
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerFooter>` supports the following keys:
 
-<Box
-    sx={{
-        overflow: 'auto',
-        'tr:nth-of-type(odd)': {
-            backgroundColor: '#ffffff',
-        },
-        table: {
-            borderSpacing: 0,
-        },
-        'table tr td, th': {
-            p: '6px 13px',
-            m: 0,
-            border: '1px solid #D5D8DA',
-            textAlign: 'left',
-        },
-}}>
+<Box>
 
 | Name   | Description                          |
 | ------ | ------------------------------------ |
