@@ -1,4 +1,5 @@
 export type propsType = {
+    key: string;
     propName: string;
     inputType: string;
     inputValue: boolean | string | string[];
@@ -21,6 +22,7 @@ export const drawerTypes: componentType[] = [
         key: 'drawer',
         props: [
             {
+                key: 'drawer-variant',
                 propName: 'variant',
                 inputType: 'select',
                 inputValue: ['persistent', 'permanent', 'temporary', 'rail'],
@@ -30,6 +32,7 @@ export const drawerTypes: componentType[] = [
                 required: false,
             },
             {
+                key: 'drawer-open',
                 propName: 'open',
                 inputType: 'boolean',
                 inputValue: true,
@@ -39,6 +42,7 @@ export const drawerTypes: componentType[] = [
                 required: true,
             },
             {
+                key: 'drawer-noLayout',
                 propName: 'noLayout',
                 inputType: 'boolean',
                 inputValue: true,
@@ -51,9 +55,10 @@ export const drawerTypes: componentType[] = [
         subComponentsList: [
             {
                 componentName: 'DrawerHeader',
-                key:'drawerHeader',
+                key: 'drawerHeader1',
                 props: [
                     {
+                        key: 'DrawerHeader-title',
                         propName: 'title',
                         inputType: 'string',
                         inputValue: 'Simple',
@@ -63,6 +68,7 @@ export const drawerTypes: componentType[] = [
                         required: false,
                     },
                     {
+                        key: 'DrawerHeader-backgroundColor',
                         propName: 'backgroundColor',
                         inputType: 'ColorPicker',
                         inputValue: '#ff0000',
@@ -84,9 +90,10 @@ export const drawerTypes: componentType[] = [
             },
             {
                 componentName: 'DrawerBody',
-                key:'drawerBody',
+                key: 'drawerBody1',
                 props: [
                     {
+                        key: 'drawerBody-backgroundColor',
                         propName: 'backgroundColor',
                         inputType: 'ColorPicker',
                         inputValue: 'white',
@@ -96,6 +103,7 @@ export const drawerTypes: componentType[] = [
                         required: false,
                     },
                     {
+                        key: 'drawerBody-className',
                         propName: 'className',
                         inputType: 'string',
                         inputValue: 'drawerBodyStyle',
@@ -108,9 +116,10 @@ export const drawerTypes: componentType[] = [
                 subComponentsList: [
                     {
                         componentName: 'DrawerNavGroup',
-                        key:'drawerNavGroup',
+                        key: 'drawerNavGroup1',
                         props: [
                             {
+                                key: 'drawerNavGroup-titleColor',
                                 propName: 'titleColor',
                                 inputType: 'ColorPicker',
                                 inputValue: 'yellow',
@@ -120,7 +129,18 @@ export const drawerTypes: componentType[] = [
                                 required: false,
                             },
                             {
+                                key: 'drawerNavGroup-titleDivider',
                                 propName: 'titleDivider',
+                                inputType: 'boolean',
+                                inputValue: true,
+                                currentValue: true,
+                                propType: 'boolean',
+                                helperText: 'Divider for the title',
+                                required: false,
+                            },
+                            {
+                                key: 'drawerNavGroup-hidePadding',
+                                propName: 'hidePadding',
                                 inputType: 'boolean',
                                 inputValue: true,
                                 currentValue: true,
@@ -132,13 +152,50 @@ export const drawerTypes: componentType[] = [
                         subComponentsList: [
                             {
                                 componentName: 'DrawerNavItem',
-                                key:'drawerNavItem',
+                                key: 'drawerNavItem1',
                                 props: [
                                     {
+                                        key: 'drawerNavItem-title',
                                         propName: 'title',
                                         inputType: 'string',
                                         inputValue: 'yellow',
                                         currentValue: 'yellow',
+                                        propType: 'string',
+                                        helperText: 'Color used for the background of the element',
+                                        required: true,
+                                    },
+                                    {
+                                        key: 'drawerNavItem-itemID',
+                                        propName: 'itemID',
+                                        inputType: 'string',
+                                        inputValue: '1',
+                                        currentValue: '1',
+                                        propType: 'string',
+                                        helperText: 'Color used for the background of the element',
+                                        required: true,
+                                    },
+                                ],
+                            },
+                            {
+                                componentName: 'DrawerNavItem',
+                                key: 'drawerNavItem2',
+                                props: [
+                                    {
+                                        key: 'drawerNavItem2-title',
+                                        propName: 'title',
+                                        inputType: 'string',
+                                        inputValue: 'yellow',
+                                        currentValue: 'yellow',
+                                        propType: 'string',
+                                        helperText: 'Color used for the background of the element',
+                                        required: true,
+                                    },
+                                    {
+                                        key: 'drawerNavItem2-itemID',
+                                        propName: 'itemID',
+                                        inputType: 'string',
+                                        inputValue: '2',
+                                        currentValue: '2',
                                         propType: 'string',
                                         helperText: 'Color used for the background of the element',
                                         required: true,
