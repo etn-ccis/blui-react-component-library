@@ -9,6 +9,7 @@ import DrawerNavGroupMarkdown from '../../markdown/DrawerNavGroup.mdx';
 import DrawerMarkdown from '../../markdown/Drawer.mdx';
 import DrawerHeaderMarkdown from '../../markdown/DrawerHeader.mdx';
 import DrawerFooterMarkdown from '../../markdown/DrawerFooter.mdx';
+import { DrawerNavItemExamples } from '../../markdown/examples';
 import DrawerBodyMarkdown from '../../markdown/DrawerBody.mdx';
 
 export type SimpleNavItem = {
@@ -183,7 +184,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DummyExamplesComponent />,
+                                component: <DrawerNavItemExamples />,
                             },
                             {
                                 title: 'API Docs',

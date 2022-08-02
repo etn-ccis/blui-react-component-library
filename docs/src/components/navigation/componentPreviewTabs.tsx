@@ -87,6 +87,7 @@ export default function ComponentPreviewTabs() {
                     borderColor: 'divider',
                     width: `calc(100% - ${DRAWER_WIDTH}px)`,
                     position: 'fixed',
+                    zIndex: 1000,
                 }}
             >
                 <Tabs
@@ -109,8 +110,12 @@ export default function ComponentPreviewTabs() {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                <Box>
-                    <Outlet />
+                <Box
+                    sx={{ display: 'flex', flexDirection: 'column', height: '100%', maxWidth: '980px', m: '0px auto' }}
+                >
+                    <Box sx={{ p: '48px 40px', m: '0px auto', backgroundColor: '#F8F8F8' }}>
+                        <Outlet />
+                    </Box>
                 </Box>
             </TabPanel>
             <TabPanel value={value} index={1}>
