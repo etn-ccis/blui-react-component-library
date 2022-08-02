@@ -1,3 +1,4 @@
 export * from './DrawerDocsComponent';
-export * from './DrawerPlaygroundComponent';
-export * from './DrawerComponent';
+export * from './DrawerPlaygrounPage';
+// export * from './DrawerComponent';
+export * from './DrawerComponentPlayground';

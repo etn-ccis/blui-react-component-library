@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import listItemTagComponentReducer from './listItemComponent';
-import drawerComponentReducer from './drawerItemComponent';
+import drawerComponentReducer from './drawerComponent';
 
 export const store = configureStore({
     reducer: {
