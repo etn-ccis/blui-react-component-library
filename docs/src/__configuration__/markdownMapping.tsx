@@ -34,13 +34,13 @@ export const InternalLink = (props: LinkProps): JSX.Element => {
     );
 };
 
-type Headline = HTMLAttributes<HTMLDivElement> & {
+type HeadlineType = HTMLAttributes<HTMLDivElement> & {
     hash: string;
     TypographyProps: TypographyProps;
     SvgIconProps?: SvgIconProps;
 };
 
-const Headline: React.FC<Headline> = ({
+const Headline: React.FC<HeadlineType> = ({
     hash,
     className,
     TypographyProps: otherTypographyProps,
