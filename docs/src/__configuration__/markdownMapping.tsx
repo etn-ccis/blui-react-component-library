@@ -231,23 +231,45 @@ export const componentsMap = {
             <Box
                 sx={{
                     overflow: 'auto',
-                    'tr:nth-of-type(even)': {
-                        backgroundColor: '#F7F8F8',
-                    },
                     table: {
-                        borderSpacing: 0,
-                        mx: '43px',
-                        fontSize: '14px',
-                        minWidth: 750,
-                    },
-                    'table tr td, th': {
                         p: '6px 13px',
-                        m: 0,
-                        border: '0.5px solid #D5D8DA',
+                        mb: 2,
                         textAlign: 'left',
+                        boxSizing: 'border-box',
+                        borderCollapse: 'collapse',
+                        mx: '43px',
+                        minWidth: 750,
                     },
                     a: {
                         fontSize: '14px',
+                    },
+                    tr: {
+                        border: 'unset',
+                        borderLeft: 0,
+                        borderRight: 0,
+                    },
+                    th: {
+                        border: 'unset',
+                        borderLeft: 0,
+                        borderRight: 0,
+                        p: '1rem',
+                        fontSize: '0.875rem',
+                    },
+                    'tr:last-of-type': {
+                        borderBottom: 0,
+                    },
+                    thead: {
+                        backgroundColor: Colors.white[100],
+                    },
+                    'tbody tr:nth-child(odd)': {
+                        backgroundColor: Colors.white[50],
+                    },
+                    'tbody tr:nth-child(even)': {
+                        backgroundColor: Colors.white[100],
+                    },
+                    td: {
+                        fontSize: '0.875rem',
+                        p: '1rem',
                     },
                 }}
             >
