@@ -5,17 +5,14 @@ import {
     DummyDocsComponent,
     DummyExamplesComponent,
 } from '../../components/componentList/dummyDataForComponent';
-<<<<<<< HEAD
-import DrawerHeaderDocsComponent from '../../components/componentList/drawerHeaderDocsComponent/DrawerHeaderDocsComponent';
-import { DrawerDocsComponent, DrawerPlaygroundComponent } from '../../components/componentList/drawerComponent';
-=======
 import DrawerNavGroupMarkdown from '../../markdown/DrawerNavGroup.mdx';
 import DrawerMarkdown from '../../markdown/Drawer.mdx';
 import DrawerHeaderMarkdown from '../../markdown/DrawerHeader.mdx';
 import DrawerFooterMarkdown from '../../markdown/DrawerFooter.mdx';
 import { DrawerNavItemExamples } from '../../markdown/examples';
 import DrawerBodyMarkdown from '../../markdown/DrawerBody.mdx';
->>>>>>> 08a7271978814ff188f32435859f97f9ab5048f8
+
+import { DrawerPlaygroundComponent } from '../../components/componentList/drawerComponent';
 
 export type SimpleNavItem = {
     title: string;

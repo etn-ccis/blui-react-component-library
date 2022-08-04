@@ -1,23 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import drawerTypes, { componentType, propsType } from '../data/DrawerTypesNew';
+import drawerTypesNew, { componentType, propsType } from '../data/DrawerTypesNew';
 
-interface DrawerState {
-    drawerComponent: any;
-}
+// interface DrawerState {
+//     drawerComponent: componentType[];
+// }
 
-const initialState: DrawerState = {
-    drawerComponent: drawerTypes,
+const initialState = {
+    drawerComponent: drawerTypesNew,
 };
 
 export const drawerSlice = createSlice({
     name: 'drawerComponent',
     initialState,
     reducers: {
-        updateDrawerComponent: (state, action: PayloadAction<Array<propsType>>) => {
+        updateDrawerComponent: (state, action: any) => {
             const newArray = state.drawerComponent;
             console.log(newArray, 'newArray');
-            // newArray[0].children = action.payload;
-            // state.drawerComponent = { ...state.drawerComponent, ...newArray };
+            newArray[0].props = action.payload;
+            state.drawerComponent = { ...state.drawerComponent, ...newArray };
         },
     },
 });

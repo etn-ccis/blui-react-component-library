@@ -2,10 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import updateDrawerComponent from '../../redux/drawerComponent';
-import { propsType, componentType } from '../../data/DrawerTypesNew';
+import { propsType, componentType, nestedChildrenType } from '../../data/DrawerTypesNew';
 import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -30,31 +30,55 @@ const TemporaryDrawer = () => {
         return drawerJson.map((entry: componentType, index: number) => renderDrawerInput(entry, index));
     };
 
-    const handleTextChange = (
-        event: React.ChangeEvent<{ value: unknown }>,
-        index: number,
-        componentName: string
-    ): void => {
+    const updateProps = (value: any, index: number, componentName: string) => {
         const compo = drawerJson.find((o: componentType) => o.componentName === componentName);
         const newPropState: any[] = [];
         newPropState.push(
-            compo?.props?.map((obj: propsType, id: number) =>
-                id === index ? { ...obj, inputValue: String(event.target.value) } : obj
-            )
+            compo?.props?.map((obj: propsType, id: number) => (id === index ? { ...obj, inputValue: value } : obj))
         );
         const newState = drawerJson.map((obj: componentType, id: number) =>
             obj.componentName === componentName ? { ...obj, props: newPropState[0] } : obj
         );
 
         console.log('newState', newState);
-        // dispatch(updateDrawerComponent(newState, updateDrawerComponent));
     };
 
-    const renderSelect = (prop: propsType, index: number) => {
+    const handleSelectChange = (event: SelectChangeEvent, index: number, componentName: string) => {
+        updateProps(String(event.target.value), index, componentName);
+    };
+
+    const handleCheckboxChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        index: number,
+        componentName: string
+    ): void => {
+        updateProps(event.target.checked, index, componentName);
+    };
+
+    const handleTextChange = (
+        event: React.ChangeEvent<{ value: unknown }>,
+        index: number,
+        componentName: string
+    ): void => {
+        updateProps(String(event.target.value), index, componentName);
+    };
+
+    const handleColorInputChange = (
+        event: React.ChangeEvent<{ value: unknown }>,
+        index: number,
+        componentName: string
+    ): void => {
+        updateProps(String(event.target.value), index, componentName);
+    };
+
+    const renderSelect = (prop: propsType, index: number, componentName: string) => {
         return (
             <FormControl variant={'filled'} sx={{ width: '100%' }}>
-                <InputLabel>Label</InputLabel>
-                <Select value={prop.currentValue}>
+                <InputLabel>{`${prop.propName}: ${prop.propType}`}</InputLabel>
+                <Select
+                    value={prop.currentValue as string}
+                    onChange={(event) => handleSelectChange(event, index, componentName)}
+                >
                     {Array.isArray(prop.inputValue)
                         ? prop.inputValue.map((item: any, index: number) => (
                               <MenuItem key={index} value={item}>
@@ -68,11 +92,18 @@ const TemporaryDrawer = () => {
         );
     };
 
-    const renderBoolean = (prop: propsType, index: number) => {
+    const renderBoolean = (prop: propsType, index: number, componentName: string) => {
         return (
             <>
                 <FormControlLabel
-                    control={<Checkbox checked={prop.inputValue as boolean} name={prop.propName} color="primary" />}
+                    control={
+                        <Checkbox
+                            checked={prop.inputValue as boolean}
+                            name={prop.propName}
+                            color="primary"
+                            onChange={(event) => handleCheckboxChange(event, index, componentName)}
+                        />
+                    }
                     label={`${prop.propName}: ${prop.propType}`}
                 />
                 <FormHelperText>{prop.helperText}</FormHelperText>
@@ -94,13 +125,22 @@ const TemporaryDrawer = () => {
         );
     };
 
-    const renderColorInput = (prop: propsType, index: number) => {
+    const updateTitile = (componentName: string) => {
+        return (
+            <Typography display={'block'} variant={'overline'} color={'primary'}>
+                {componentName}
+            </Typography>
+        );
+    };
+
+    const renderColorInput = (prop: propsType, index: number, componentName: string) => {
         return (
             <TextField
                 sx={{ width: '100%' }}
                 id="filled-adornment-weight"
                 variant={'filled'}
                 value={prop.inputValue}
+                onChange={(event) => handleColorInputChange(event, index, componentName)}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
@@ -122,12 +162,55 @@ const TemporaryDrawer = () => {
                 </Typography>
                 {entry.props?.map((prop: propsType, index: number) => (
                     <Box key={index}>
-                        {prop.inputType === 'select' ? renderSelect(prop, index) : undefined}
-                        {prop.inputType === 'boolean' ? renderBoolean(prop, index) : undefined}
+                        {prop.inputType === 'select' ? renderSelect(prop, index, entry.componentName) : undefined}
+                        {prop.inputType === 'boolean' ? renderBoolean(prop, index, entry.componentName) : undefined}
                         {prop.inputType === 'string' ? renderTextField(prop, index, entry.componentName) : undefined}
-                        {prop.inputType === 'colorPicker' ? renderColorInput(prop, index) : undefined}
+                        {prop.inputType === 'colorPicker'
+                            ? renderColorInput(prop, index, entry.componentName)
+                            : undefined}
                     </Box>
                 ))}
+                {entry.nestedChildren?.map((nestedChild: nestedChildrenType) =>
+                    nestedChild.nestedChildrenProps?.map((prop: propsType, index: number) => (
+                        <Box key={index}>
+                            {prop.inputType === 'select' ? renderSelect(prop, index, entry.componentName) : undefined}
+                            {prop.inputType === 'boolean' ? renderBoolean(prop, index, entry.componentName) : undefined}
+                            {prop.inputType === 'string'
+                                ? renderTextField(prop, index, entry.componentName)
+                                : undefined}
+                            {prop.inputType === 'colorPicker'
+                                ? renderColorInput(prop, index, entry.componentName)
+                                : undefined}
+                        </Box>
+                    ))
+                )}
+                {entry.nestedChildren?.map((nestedChild: nestedChildrenType) =>
+                    nestedChild.nestedComponets?.map((nestedComponent: componentType, index: number) => (
+                        <Box key={index}>
+                            {
+                                <Typography display={'block'} variant={'overline'} color={'primary'}>
+                                    {nestedComponent.componentName}
+                                </Typography>
+                            }
+                            {nestedComponent.props?.map((prop: propsType, index: number) => (
+                                <Box key={index}>
+                                    {prop.inputType === 'select'
+                                        ? renderSelect(prop, index, entry.componentName)
+                                        : undefined}
+                                    {prop.inputType === 'boolean'
+                                        ? renderBoolean(prop, index, entry.componentName)
+                                        : undefined}
+                                    {prop.inputType === 'string'
+                                        ? renderTextField(prop, index, entry.componentName)
+                                        : undefined}
+                                    {prop.inputType === 'colorPicker'
+                                        ? renderColorInput(prop, index, entry.componentName)
+                                        : undefined}
+                                </Box>
+                            ))}
+                        </Box>
+                    ))
+                )}
             </Box>
         );
     };
