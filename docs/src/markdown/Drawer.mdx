@@ -53,20 +53,20 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 
 <Box>
 
-| Prop Name                       | Description                                                                  | Type                                                         | Required | <code>&nbsp;</code>Default           |
-| :------------------------------ | :--------------------------------------------------------------------------- | :----------------------------------------------------------- | :------- | :----------------------------------- |
-| activeItem                      | itemID for the 'active' item                                                 | `string`                                                     | no       |                                      |
-| classes                         | Style overrides                                                              | `DrawerClasses`                                              | no       |                                      |
-| condensed                       | Show condensed nav items without labels (`rail` variant only)                | `boolean`                                                    | no       | <code>&nbsp;</code>`false`           |
-| noLayout                        | Set to true if used without a `<DrawerLayout>`                               | `boolean`                                                    | no       | <code>&nbsp;</code>`false`           |
-| onItemSelect                    | A callback function to execute whenever an item is clicked                   | `(id: string) => void`                                       | no       |                                      |
-| open                            | Controls the open/closed state of the drawer                                 | `boolean`                                                    | yes      |                                      |
-| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only) | `boolean`                                                    | no       | <code>&nbsp;</code>`true`            |
-| openOnHoverDelay                | Delay (ms) before triggering open on hover (persistent variant only)         | `number`                                                     | no       | <code>&nbsp;</code>`500`             |
-| sideBorder                      | Whether to use a side border for the drawer instead of a shadow              | `boolean`                                                    | no       | <code>&nbsp;</code>`false`           |
-| variant                         | The variant to use (see below)                                               | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       | <code>&nbsp;</code>`persistent`      |
-| width                           | Sets the width of the drawer when open                                       | `number` \| `string`                                         | no       | <code>&nbsp;</code>`22.5rem (360px)` |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                   | -                                                            | -        |                                      |
+| Prop Name                       | Description                                                                  | Type                                                         | Required | Default           |
+| :------------------------------ | :--------------------------------------------------------------------------- | :----------------------------------------------------------- | :------- | :---------------- |
+| activeItem                      | itemID for the 'active' item                                                 | `string`                                                     | no       |                   |
+| classes                         | Style overrides                                                              | `DrawerClasses`                                              | no       |                   |
+| condensed                       | Show condensed nav items without labels (`rail` variant only)                | `boolean`                                                    | no       | `false`           |
+| noLayout                        | Set to true if used without a `<DrawerLayout>`                               | `boolean`                                                    | no       | `false`           |
+| onItemSelect                    | A callback function to execute whenever an item is clicked                   | `(id: string) => void`                                       | no       |                   |
+| open                            | Controls the open/closed state of the drawer                                 | `boolean`                                                    | yes      |                   |
+| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only) | `boolean`                                                    | no       | `true`            |
+| openOnHoverDelay                | Delay (ms) before triggering open on hover (persistent variant only)         | `number`                                                     | no       | `500`             |
+| sideBorder                      | Whether to use a side border for the drawer instead of a shadow              | `boolean`                                                    | no       | `false`           |
+| variant                         | The variant to use (see below)                                               | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       | `persistent`      |
+| width                           | Sets the width of the drawer when open                                       | `number` \| `string`                                         | no       | `22.5rem (360px)` |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                   | -                                                            | -        |                   |
 
 </Box>
 

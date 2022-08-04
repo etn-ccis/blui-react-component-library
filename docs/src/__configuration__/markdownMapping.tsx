@@ -230,15 +230,18 @@ export const componentsMap = {
         return (
             <Box
                 sx={{
+                    mx: '43px',
                     overflow: 'auto',
+                    boxSizing: 'border-box',
+                    mb: 2,
+
                     table: {
                         p: '6px 13px',
-                        mb: 2,
                         textAlign: 'left',
-                        boxSizing: 'border-box',
                         borderCollapse: 'collapse',
-                        mx: '43px',
                         minWidth: 750,
+                    border: `1px solid ${Colors.black[100]}`,
+
                     },
                     a: {
                         fontSize: '14px',
@@ -247,6 +250,7 @@ export const componentsMap = {
                         border: 'unset',
                         borderLeft: 0,
                         borderRight: 0,
+                    borderBottom: `1px solid ${Colors.black[100]}`,
                     },
                     th: {
                         border: 'unset',
@@ -254,6 +258,7 @@ export const componentsMap = {
                         borderRight: 0,
                         p: '1rem',
                         fontSize: '0.875rem',
+                        borderBottom: `1px solid ${Colors.black[100]}`,
                     },
                     'tr:last-of-type': {
                         borderBottom: 0,
