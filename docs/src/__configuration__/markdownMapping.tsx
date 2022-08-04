@@ -240,8 +240,7 @@ export const componentsMap = {
                         textAlign: 'left',
                         borderCollapse: 'collapse',
                         minWidth: 750,
-                    border: `1px solid ${Colors.black[100]}`,
-
+                        border: `1px solid ${Colors.black[100]}`,
                     },
                     a: {
                         fontSize: '14px',
@@ -250,7 +249,7 @@ export const componentsMap = {
                         border: 'unset',
                         borderLeft: 0,
                         borderRight: 0,
-                    borderBottom: `1px solid ${Colors.black[100]}`,
+                        borderBottom: `1px solid ${Colors.black[100]}`,
                     },
                     th: {
                         border: 'unset',
