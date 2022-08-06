@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import updateDrawerComponent from '../../redux/drawerComponent';
+import { updateDrawerComponent } from '../../redux/drawerComponent';
 import { propsType, componentType, nestedChildrenType } from '../../data/DrawerTypesNew';
 import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -34,13 +34,14 @@ const TemporaryDrawer = () => {
         const compo = drawerJson.find((o: componentType) => o.componentName === componentName);
         const newPropState: any[] = [];
         newPropState.push(
-            compo?.props?.map((obj: propsType, id: number) => (id === index ? { ...obj, inputValue: value } : obj))
+            compo?.props?.map((obj: propsType, id: number) => (id === index ? { ...obj, currentValue: value } : obj))
         );
         const newState = drawerJson.map((obj: componentType, id: number) =>
             obj.componentName === componentName ? { ...obj, props: newPropState[0] } : obj
         );
 
         console.log('newState', newState);
+        dispatch(updateDrawerComponent(newState));
     };
 
     const handleSelectChange = (event: SelectChangeEvent, index: number, componentName: string) => {
@@ -98,7 +99,7 @@ const TemporaryDrawer = () => {
                 <FormControlLabel
                     control={
                         <Checkbox
-                            checked={prop.inputValue as boolean}
+                            checked={prop.currentValue as boolean}
                             name={prop.propName}
                             color="primary"
                             onChange={(event) => handleCheckboxChange(event, index, componentName)}
@@ -117,19 +118,11 @@ const TemporaryDrawer = () => {
                 key={index}
                 sx={{ width: '100%' }}
                 variant={'filled'}
-                value={prop.inputValue}
+                value={prop.currentValue}
                 label={`${prop.propName}:${prop.inputType}`}
                 helperText={prop.helperText}
                 onChange={(event) => handleTextChange(event, index, componentName)}
             />
-        );
-    };
-
-    const updateTitile = (componentName: string) => {
-        return (
-            <Typography display={'block'} variant={'overline'} color={'primary'}>
-                {componentName}
-            </Typography>
         );
     };
 
@@ -139,7 +132,7 @@ const TemporaryDrawer = () => {
                 sx={{ width: '100%' }}
                 id="filled-adornment-weight"
                 variant={'filled'}
-                value={prop.inputValue}
+                value={prop.currentValue}
                 onChange={(event) => handleColorInputChange(event, index, componentName)}
                 InputProps={{
                     endAdornment: (

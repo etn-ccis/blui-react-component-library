@@ -21,16 +21,16 @@ export const DrawerComponentPlayground = (): JSX.Element => {
             return obj.componentName === componentName;
         })[0];
         if (component.props) {
-            const a = component.props.reduce(
+            const componentProps = component.props.reduce(
                 (acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.currentValue }),
                 {}
             );
-            return a;
+            return componentProps;
         } else if (component.nestedChildren) {
-            let nestedChildren: any[] = [];
+            let nestedChildrenProps: any[] = [];
 
             component.nestedChildren.map((child: nestedChildrenType) => {
-                nestedChildren.push(
+                nestedChildrenProps.push(
                     child.nestedChildrenProps.reduce(
                         (acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.currentValue }),
                         {}
@@ -46,43 +46,46 @@ export const DrawerComponentPlayground = (): JSX.Element => {
                     })
                 );
             });
-            return nestedChildren;
+            return nestedChildrenProps;
         }
     }
     const drawerProps: DrawerProps = createProps(drawerJson, 'Drawer');
     const drawerHeaderProps: DrawerHeaderProps = createProps(drawerJson, 'DrawerHeader');
     const drawerBodyProps: DrawerBodyProps = createProps(drawerJson, 'DrawerBody');
     const drawerNavGroupProps = createProps(drawerJson, 'DrawerNavGroup');
+
     return (
-        <Box style={{ width: '300px' }}>
-            <Drawer open={drawerProps.open} noLayout={drawerProps.noLayout} variant={drawerProps.variant}>
-                <DrawerHeader
-                    title={drawerHeaderProps.title}
-                    backgroundColor={drawerHeaderProps.backgroundColor}
-                    divider={drawerHeaderProps.divider}
-                ></DrawerHeader>
-                <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={drawerBodyProps.backgroundColor}>
-                    {drawerNavGroupProps.map((navGroup: any, index: number) => (
-                        <DrawerNavGroup
-                            key={index}
-                            hidePadding={navGroup.hidePadding}
-                            titleColor={navGroup.titleColor}
-                            titleDivider={navGroup.titleDivider}
-                            title={navGroup.title}
-                        >
-                            {navGroup.length > 0
-                                ? navGroup.map((item: any, index: number) => (
-                                      <DrawerNavItem
-                                          key={index}
-                                          itemID={item.itemId}
-                                          title={item.title}
-                                      ></DrawerNavItem>
-                                  ))
-                                : undefined}
-                        </DrawerNavGroup>
-                    ))}
-                </DrawerBody>
-            </Drawer>
-        </Box>
+        <>
+            <Box style={{ width: '300px' }}>
+                <Drawer open={drawerProps.open} noLayout={drawerProps.noLayout} variant={drawerProps.variant}>
+                    <DrawerHeader
+                        title={drawerHeaderProps.title}
+                        backgroundColor={drawerHeaderProps.backgroundColor}
+                        divider={drawerHeaderProps.divider}
+                    ></DrawerHeader>
+                    <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={drawerBodyProps.backgroundColor}>
+                        {drawerNavGroupProps.map((navGroup: any, index: number) => (
+                            <DrawerNavGroup
+                                key={index}
+                                hidePadding={navGroup.hidePadding}
+                                titleColor={navGroup.titleColor}
+                                titleDivider={navGroup.titleDivider}
+                                title={navGroup.title}
+                            >
+                                {navGroup.length > 0
+                                    ? navGroup.map((item: any, index: number) => (
+                                          <DrawerNavItem
+                                              key={index}
+                                              itemID={item.itemId}
+                                              title={item.title}
+                                          ></DrawerNavItem>
+                                      ))
+                                    : undefined}
+                            </DrawerNavGroup>
+                        ))}
+                    </DrawerBody>
+                </Drawer>
+            </Box>
+        </>
     );
 };
