@@ -6,6 +6,7 @@ import Dashboard from '@mui/icons-material/Dashboard';
 import Notifications from '@mui/icons-material/Notifications';
 import Gavel from '@mui/icons-material/Gavel';
 import * as colors from '@brightlayer-ui/colors';
+import { CopyToClipboard } from '../../CopyToClipboardButton';
 
 const codeSnippet = `<DrawerBody>
     <DrawerNavGroup>
@@ -30,6 +31,7 @@ export const DrawerNavItemWithIcons = (): JSX.Element => {
                 </Drawer>
             </Box>
             <CodeBlock code={codeSnippet} language="jsx" />
+            <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
         </Box>
     );
 };
