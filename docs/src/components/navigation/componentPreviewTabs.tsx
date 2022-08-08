@@ -59,11 +59,8 @@ function getNumber(location: string, docsTabs: string[]) {
 }
 
 function togglePlaygroundTab(location: string) {
-    let hideTab: boolean = true;
-    hidePlaygroudTabs.map((tab: string) => {
-        hideTab = location.split('/').indexOf(tab) > -1;
-    });
-    return hideTab;
+    const tabName = location.split('/').filter((e) => hidePlaygroudTabs.includes(e))[0];
+    return hidePlaygroudTabs.includes(tabName);
 }
 
 const tabStyles = {
