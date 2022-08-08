@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import drawerTypesNew, { componentType } from '../data/DrawerTypesNew';
+import drawerTypes, { componentType } from '../data/DrawerTypes';
 interface DrawerState {
     drawerComponent: componentType[];
 }
 const initialState: DrawerState = {
-    drawerComponent: drawerTypesNew,
+    drawerComponent: drawerTypes,
 };
 export const drawerSlice = createSlice({
     name: 'drawerComponent',

@@ -12,7 +12,7 @@ import {
     DrawerNavItem,
     DrawerProps,
 } from '@brightlayer-ui/react-components';
-import { componentType, nestedChildrenType } from '../../../data/DrawerTypesNew';
+import { componentType, nestedChildrenType } from '../../../data/DrawerTypes';
 
 export const DrawerComponentPlayground = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import { updateDrawerComponent } from '../../redux/drawerComponent';
-import { propsType, componentType, nestedChildrenType } from '../../data/DrawerTypesNew';
+import { propsType, componentType, nestedChildrenType } from '../../data/DrawerTypes';
 import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
