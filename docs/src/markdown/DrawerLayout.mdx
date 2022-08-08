@@ -1,0 +1,64 @@
+import Box from '@mui/material/Box';
+import DrawerLayoutImage from './images/drawerLayout.png';
+import SharedProps from './SharedProps.mdx';
+
+# Drawer Layout
+
+The `<DrawerLayout>` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with a Brightlayer UI `<Drawer>`. It accepts a `<Drawer>` as a prop, and the main page content is passed in through child elements.
+
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '600px',
+        }}
+        component="img"
+        alt="Drawer Layout Image"
+        src={DrawerLayoutImage}
+    />
+</Box>
+
+### Drawer Layout API
+
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
+
+| Prop Name | Description                     | Type                                 | Required | Default |
+| --------- | ------------------------------- | ------------------------------------ | -------- | ------- |
+| classes   | Style overrides                 | `DrawerLayoutClasses`                | no       |         |
+| drawer    | Drawer component to be embedded | `ReactElement<DrawerComponentProps>` | yes      |         |
+
+</Box>
+
+Any other props supplied will be provided to the root element (`div`).
+
+> **Note on Scrolling**: When using client-side routing in your application, you may notice that the window scroll position does not reset when navigating to new routes. To address this issue, you will need to manually update the scroll position when new pages are loaded. If you are using React Router they have [several examples](https://reacttraining.com/react-router/web/guides/scroll-restoration) on how to implement this in your application.
+
+### Style Overrides
+
+You can override the default styles used by Brightlayer UI by:
+
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
