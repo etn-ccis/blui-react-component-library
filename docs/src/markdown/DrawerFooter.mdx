@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import DrawerHeaderAnatomy from './images/drawerHeaderAnatomy.png';
 
 # Drawer Footer
 
@@ -6,7 +7,9 @@ The `<DrawerFooter>` is an optional section that renders at the bottom of the `<
 
 ### Drawer Footer API
 
-<Box>
+<Box sx={{'& .tableContainer': {
+    ml: 0
+}}}>
 
 | Prop Name             | Description                                 | Type      | Required | Default |
 | --------------------- | ------------------------------------------- | --------- | -------- | ------- |
@@ -16,17 +19,31 @@ The `<DrawerFooter>` is an optional section that renders at the bottom of the `<
 
 </Box>
 
-Any other props supplied will be provided to the root element (`div`).
+Any other props will be provided to the root element [**Material UI Toolbar**](https://material-ui.com/api/toolbar/).
 
-### Classes
+### Style Overrides
 
-You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerFooter>` supports the following keys:
+You can override the default styles used by Brightlayer UI by:
 
-<Box>
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the `Global CSS Class` in your main stylesheet
 
-| Name   | Description                          |
-| ------ | ------------------------------------ |
-| root   | Styles applied to the root element   |
-| hidden | Styles applied to the hidden element |
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+<Box  sx={{'& .tableContainer': {
+    ml: 0
+}}}>
+
+| Name             | Global CSS Class                   | Description                                      |
+| ---------------- | ---------------------------------- | ------------------------------------------------ |
+| root             | .BluiDrawerHeader-root             | Styles applied to the root element               |
+| background       | .BluiDrawerHeader-background       | Styles applied to the header background          |
+| content          | .BluiDrawerHeader-content          | Styles applied to the content container          |
+| navigation       | .BluiDrawerHeader-navigation       | Styles applied to the icon element               |
+| nonClickableIcon | .BluiDrawerHeader-nonClickableIcon | Styles applied to the non-clickable icon element |
+| railIcon         | .BluiDrawerHeader-railIcon         | Styles applied to the icon when using rail style |
+| subtitle         | .BluiDrawerHeader-subtitle         | Styles applied to the subtitle element           |
+| title            | .BluiDrawerHeader-title            | Styles applied to the title element              |
 
 </Box>

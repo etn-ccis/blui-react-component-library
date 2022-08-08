@@ -229,8 +229,9 @@ export const componentsMap = {
     table: (props: TableProps): JSX.Element => {
         return (
             <Box
+                className="tableContainer"
                 sx={{
-                    mx: '43px',
+                    ml: '43px',
                     overflow: 'auto',
                     boxSizing: 'border-box',
                     mb: 2,
