@@ -2,7 +2,7 @@
 import React, { HTMLAttributes } from 'react';
 import { Typography, TypographyProps, SvgIconProps, Box, TableProps } from '@mui/material';
 import { Link, LinkProps } from 'react-router-dom';
-import { REGULAR_WIDTH_STYLE, getHash } from '../shared';
+import { getHash } from '../shared';
 import * as Colors from '@brightlayer-ui/colors';
 import { useTheme, Theme } from '@mui/material/styles';
 import { cx } from '@emotion/css';
@@ -48,11 +48,7 @@ const Headline: React.FC<HeadlineType> = ({
     ...otherDivProps
 }) => {
     return (
-        <Box
-            className={cx(className, 'headline')}
-            {...otherDivProps}
-            sx={{ ...REGULAR_WIDTH_STYLE, ...otherDivProps.style }}
-        >
+        <Box className={cx(className, 'headline')} {...otherDivProps} sx={{ ...otherDivProps.style }}>
             <Box component="span" id={hash} sx={{ position: 'relative', top: -90 }} />
             <Typography
                 paragraph
@@ -139,22 +135,13 @@ export const componentsMap = {
         return <InternalLink to={props.href} {...tProps} />;
     },
     p: (props: TypographyProps): JSX.Element => (
-        <Typography
-            sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', lineHeight: '1.6', m: '15px auto' }}
-            paragraph
-            {...props}
-        />
+        <Typography sx={{ fontSize: '14px', lineHeight: '1.6', m: '15px auto' }} paragraph {...props} />
     ),
     ul: (props: BoxProps): JSX.Element => (
-        <Box component={'ul'} sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', m: '15px 0', pl: '60px' }} {...props} />
+        <Box component={'ul'} sx={{ fontSize: '14px', m: '15px auto', pl: '60px' }} {...props} />
     ),
     li: (props: TypographyProps<'li'>): JSX.Element => (
-        <Typography
-            component={'li'}
-            className={'mdLi'}
-            sx={{ ...REGULAR_WIDTH_STYLE, fontSize: '14px', m: '15px 0' }}
-            {...props}
-        />
+        <Typography component={'li'} className={'mdLi'} sx={{ fontSize: '14px', m: '15px auto' }} {...props} />
     ),
     blockquote: (props: TypographyProps<'blockquote'>): JSX.Element => {
         return (
@@ -167,7 +154,6 @@ export const componentsMap = {
                     p: '0 15px',
                     m: '15px 0',
                     color: '#666666',
-                    ...REGULAR_WIDTH_STYLE,
                 }}
                 {...props}
             />
@@ -184,7 +170,6 @@ export const componentsMap = {
                     display: 'flex',
                     backgroundColor: (theme: Theme) =>
                         theme.palette.mode === 'light' ? theme.palette.background.default : Colors.darkBlack[300],
-                    ...REGULAR_WIDTH_STYLE,
                 }}
                 {...props}
             />
@@ -231,7 +216,6 @@ export const componentsMap = {
             <Box
                 className="tableContainer"
                 sx={{
-                    ml: '43px',
                     overflow: 'auto',
                     boxSizing: 'border-box',
                     mb: 2,
