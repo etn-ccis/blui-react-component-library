@@ -165,8 +165,8 @@ export const componentsMap = {
                 component={'pre'}
                 color={'textPrimary'}
                 sx={{
-                    paddingRight: 16,
-                    marginBottom: 8,
+                    pr: 2,
+                    mb: 1,
                     display: 'flex',
                     backgroundColor: (theme: Theme) =>
                         theme.palette.mode === 'light' ? theme.palette.background.default : Colors.darkBlack[300],
