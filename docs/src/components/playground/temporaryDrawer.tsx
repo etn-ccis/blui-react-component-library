@@ -30,11 +30,17 @@ const TemporaryDrawer = () => {
         return drawerJson.map((entry: componentType, index: number) => renderDrawerInput(entry, index));
     };
 
-    const updateProps = (value: any, index: number, componentName: string) => {
+    const updateProps = (value: any, index: number, componentName: string, inputComponent?: string) => {
         const compo = drawerJson.find((o: componentType) => o.componentName === componentName);
         const newPropState: any[] = [];
         newPropState.push(
-            compo?.props?.map((obj: propsType, id: number) => (id === index ? { ...obj, currentValue: value } : obj))
+            inputComponent === 'select'
+                ? compo?.props?.map((obj: propsType, id: number) =>
+                      id === index ? { ...obj, defaultValue: value } : obj
+                  )
+                : compo?.props?.map((obj: propsType, id: number) =>
+                      id === index ? { ...obj, inputValue: value } : obj
+                  )
         );
         const newState = drawerJson.map((obj: componentType, id: number) =>
             obj.componentName === componentName ? { ...obj, props: newPropState[0] } : obj
@@ -44,8 +50,13 @@ const TemporaryDrawer = () => {
         dispatch(updateDrawerComponent(newState));
     };
 
-    const handleSelectChange = (event: SelectChangeEvent, index: number, componentName: string) => {
-        updateProps(String(event.target.value), index, componentName);
+    const handleSelectChange = (
+        event: SelectChangeEvent,
+        index: number,
+        componentName: string,
+        inputComponent: string
+    ) => {
+        updateProps(String(event.target.value), index, componentName, inputComponent);
     };
 
     const handleCheckboxChange = (
@@ -77,8 +88,8 @@ const TemporaryDrawer = () => {
             <FormControl variant={'filled'} sx={{ width: '100%' }}>
                 <InputLabel>{`${prop.propName}: ${prop.propType}`}</InputLabel>
                 <Select
-                    value={prop.currentValue as string}
-                    onChange={(event) => handleSelectChange(event, index, componentName)}
+                    value={prop.defaultValue as string}
+                    onChange={(event) => handleSelectChange(event, index, componentName, 'select')}
                 >
                     {Array.isArray(prop.inputValue)
                         ? prop.inputValue.map((item: any, index: number) => (
@@ -99,7 +110,7 @@ const TemporaryDrawer = () => {
                 <FormControlLabel
                     control={
                         <Checkbox
-                            checked={prop.currentValue as boolean}
+                            checked={prop.inputValue as boolean}
                             name={prop.propName}
                             color="primary"
                             onChange={(event) => handleCheckboxChange(event, index, componentName)}
@@ -118,7 +129,7 @@ const TemporaryDrawer = () => {
                 key={index}
                 sx={{ width: '100%' }}
                 variant={'filled'}
-                value={prop.currentValue}
+                value={prop.inputValue}
                 label={`${prop.propName}:${prop.inputType}`}
                 helperText={prop.helperText}
                 onChange={(event) => handleTextChange(event, index, componentName)}
@@ -132,7 +143,7 @@ const TemporaryDrawer = () => {
                 sx={{ width: '100%' }}
                 id="filled-adornment-weight"
                 variant={'filled'}
-                value={prop.currentValue}
+                value={prop.inputValue}
                 onChange={(event) => handleColorInputChange(event, index, componentName)}
                 InputProps={{
                     endAdornment: (

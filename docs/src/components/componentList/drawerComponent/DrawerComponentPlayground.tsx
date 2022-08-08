@@ -22,7 +22,10 @@ export const DrawerComponentPlayground = (): JSX.Element => {
         })[0];
         if (component.props) {
             const componentProps = component.props.reduce(
-                (acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.currentValue }),
+                (acc: any, cur: any) => ({
+                    ...acc,
+                    [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
+                }),
                 {}
             );
             return componentProps;
@@ -32,13 +35,13 @@ export const DrawerComponentPlayground = (): JSX.Element => {
             component.nestedChildren.map((child: nestedChildrenType) => {
                 nestedChildrenProps.push(
                     child.nestedChildrenProps.reduce(
-                        (acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.currentValue }),
+                        (acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.inputValue }),
                         {}
                     ),
                     child.nestedComponets.map((nestedComp: componentType) => {
                         const nestedComponent = nestedComp?.props
                             ? nestedComp.props.reduce(
-                                  (acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.currentValue }),
+                                  (acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.inputValue }),
                                   {}
                               )
                             : undefined;
