@@ -11,6 +11,7 @@ import DrawerHeaderMarkdown from '../../markdown/DrawerHeader.mdx';
 import DrawerFooterMarkdown from '../../markdown/DrawerFooter.mdx';
 import { DrawerNavItemExamples } from '../../markdown/examples';
 import DrawerBodyMarkdown from '../../markdown/DrawerBody.mdx';
+import DrawerNavItemMarkdown from '../../markdown/DrawerNavItem.mdx';
 
 export type SimpleNavItem = {
     title: string;
@@ -189,7 +190,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DummyDocsComponent />,
+                                component: <DrawerNavItemMarkdown />,
                             },
                             {
                                 title: 'Playground',
