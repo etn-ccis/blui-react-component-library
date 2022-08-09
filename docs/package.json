@@ -91,5 +91,8 @@
         "webpack": "^5.73.0",
         "webpack-cli": "^4.10.0",
         "webpack-dev-server": "^4.9.2"
+    },
+    "resolutions": {
+        "autoprefixer": "10.4.5"
     }
 }
