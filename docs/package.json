@@ -87,5 +87,8 @@
         "webpack-cli": "^4.10.0",
         "webpack-dev-server": "^4.9.2",
         "remark-gfm": "^1.0.0"
+    },
+    "resolutions": {
+        "autoprefixer": "10.4.5"
     }
 }
