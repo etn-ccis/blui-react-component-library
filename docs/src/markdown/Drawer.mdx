@@ -51,36 +51,22 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 
 ### Drawer API
 
-<Box sx={{
-    overflow: 'auto',
-    'tr:nth-of-type(odd)': {
-        backgroundColor: '#ffffff',
-    },
-    'table' :{
-        borderSpacing: 0,
-    },
-    'table tr td, th': {
-        p: '6px 13px',
-        m: 0,
-        border: '1px solid #D5D8DA',
-        textAlign: 'left'
-    }
-}}>
+<Box>
 
-| Prop Name                       | Description                                                                  | Type                                                         | Required | <code>&nbsp;</code>Default           |
-| :------------------------------ | :--------------------------------------------------------------------------- | :----------------------------------------------------------- | :------- | :----------------------------------- |
-| activeItem                      | itemID for the 'active' item                                                 | `string`                                                     | no       |                                      |
-| classes                         | Style overrides                                                              | `DrawerClasses`                                              | no       |                                      |
-| condensed                       | Show condensed nav items without labels (`rail` variant only)                | `boolean`                                                    | no       | <code>&nbsp;</code>`false`           |
-| noLayout                        | Set to true if used without a `<DrawerLayout>`                               | `boolean`                                                    | no       | <code>&nbsp;</code>`false`           |
-| onItemSelect                    | A callback function to execute whenever an item is clicked                   | `(id: string) => void`                                       | no       |                                      |
-| open                            | Controls the open/closed state of the drawer                                 | `boolean`                                                    | yes      |                                      |
-| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only) | `boolean`                                                    | no       | <code>&nbsp;</code>`true`            |
-| openOnHoverDelay                | Delay (ms) before triggering open on hover (persistent variant only)         | `number`                                                     | no       | <code>&nbsp;</code>`500`             |
-| sideBorder                      | Whether to use a side border for the drawer instead of a shadow              | `boolean`                                                    | no       | <code>&nbsp;</code>`false`           |
-| variant                         | The variant to use (see below)                                               | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       | <code>&nbsp;</code>`persistent`      |
-| width                           | Sets the width of the drawer when open                                       | `number` \| `string`                                         | no       | <code>&nbsp;</code>`22.5rem (360px)` |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                   | -                                                            | -        |                                      |
+| Prop Name                       | Description                                                                  | Type                                                         | Required | Default           |
+| :------------------------------ | :--------------------------------------------------------------------------- | :----------------------------------------------------------- | :------- | :---------------- |
+| activeItem                      | itemID for the 'active' item                                                 | `string`                                                     | no       |                   |
+| classes                         | Style overrides                                                              | `DrawerClasses`                                              | no       |                   |
+| condensed                       | Show condensed nav items without labels (`rail` variant only)                | `boolean`                                                    | no       | `false`           |
+| noLayout                        | Set to true if used without a `<DrawerLayout>`                               | `boolean`                                                    | no       | `false`           |
+| onItemSelect                    | A callback function to execute whenever an item is clicked                   | `(id: string) => void`                                       | no       |                   |
+| open                            | Controls the open/closed state of the drawer                                 | `boolean`                                                    | yes      |                   |
+| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only) | `boolean`                                                    | no       | `true`            |
+| openOnHoverDelay                | Delay (ms) before triggering open on hover (persistent variant only)         | `number`                                                     | no       | `500`             |
+| sideBorder                      | Whether to use a side border for the drawer instead of a shadow              | `boolean`                                                    | no       | `false`           |
+| variant                         | The variant to use (see below)                                               | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       | `persistent`      |
+| width                           | Sets the width of the drawer when open                                       | `number` \| `string`                                         | no       | `22.5rem (360px)` |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                   | -                                                            | -        |                   |
 
 </Box>
 
@@ -105,21 +91,7 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-<Box sx={{
-    overflow: 'auto',
-    'tr:nth-of-type(odd)': {
-        backgroundColor: '#ffffff',
-    },
-    'table' :{
-        borderSpacing: 0,
-    },
-    'table tr td, th': {
-        p: '6px 13px',
-        m: 0,
-        border: '1px solid #D5D8DA',
-        textAlign: 'left'
-    }
-}}>
+<Box>
 
 | Name       | Global CSS Class       | Description                                                    |
 | :--------- | :--------------------- | :------------------------------------------------------------- |
@@ -137,22 +109,7 @@ The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical 
 
 ### Drawer Body API
 
-<Box
-    sx={{
-        overflow: 'auto',
-        'tr:nth-of-type(odd)': {
-            backgroundColor: '#ffffff',
-        },
-        table: {
-            borderSpacing: 0,
-        },
-        'table tr td, th': {
-            p: '6px 13px',
-            m: 0,
-            border: '1px solid #D5D8DA',
-            textAlign: 'left',
-        },
-}}>
+<Box>
 
 | Prop Name                       | Description                                                | Type                | Required | Default |
 | ------------------------------- | ---------------------------------------------------------- | ------------------- | -------- | ------- |
@@ -167,22 +124,7 @@ Any other props supplied will be provided to the root element (`div`).
 
 You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerBody>` supports the following keys:
 
-<Box
-    sx={{
-        overflow: 'auto',
-        'tr:nth-of-type(odd)': {
-            backgroundColor: '#ffffff',
-        },
-        table: {
-            borderSpacing: 0,
-        },
-        'table tr td, th': {
-            p: '6px 13px',
-            m: 0,
-            border: '1px solid #D5D8DA',
-            textAlign: 'left',
-        },
-}}>
+<Box>
 
 | Name | Description                        |
 | ---- | ---------------------------------- |
@@ -213,22 +155,7 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 ### Drawer Nav Item API
 
-<Box
-    sx={{
-        overflow: 'auto',
-        'tr:nth-of-type(odd)': {
-            backgroundColor: '#ffffff',
-        },
-        table: {
-            borderSpacing: 0,
-        },
-        'table tr td, th': {
-            p: '6px 13px',
-            m: 0,
-            border: '1px solid #D5D8DA',
-            textAlign: 'left',
-        },
-}}>
+<Box>
 
 | Prop Name                       | Description                                                                                                                                               | Type                      | Required | Default |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------- |
@@ -264,22 +191,7 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-<Box
-    sx={{
-        overflow: 'auto',
-        'tr:nth-of-type(odd)': {
-            backgroundColor: '#ffffff',
-        },
-        table: {
-            borderSpacing: 0,
-        },
-        'table tr td, th': {
-            p: '6px 13px',
-            m: 0,
-            border: '1px solid #D5D8DA',
-            textAlign: 'left',
-        },
-}}>
+<Box>
 
 | Name            | Global CSS Class                   | Description                                                       |
 | --------------- | ---------------------------------- | ----------------------------------------------------------------- |
@@ -314,6 +226,7 @@ When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem
     <Box
         sx={{
             width: '100%',
+            maxWidth: '600px',
         }}
         component="img"
         alt="Rail Anatomy"
@@ -323,22 +236,7 @@ When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem
 
 ### Drawer Rail Item API
 
-<Box
-    sx={{
-        overflow: 'auto',
-        'tr:nth-of-type(odd)': {
-            backgroundColor: '#ffffff',
-        },
-        table: {
-            borderSpacing: 0,
-        },
-        'table tr td, th': {
-            p: '6px 13px',
-            m: 0,
-            border: '1px solid #D5D8DA',
-            textAlign: 'left',
-        },
-}}>
+<Box>
 
 | Prop Name                       | Description                                                                                     | Type                    | Required | Default |
 | ------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------- | -------- | ------- |
@@ -368,22 +266,7 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-<Box
-    sx={{
-        overflow: 'auto',
-        'tr:nth-of-type(odd)': {
-            backgroundColor: '#ffffff',
-        },
-        table: {
-            borderSpacing: 0,
-        },
-        'table tr td, th': {
-            p: '6px 13px',
-            m: 0,
-            border: '1px solid #D5D8DA',
-            textAlign: 'left',
-        },
-}}>
+<Box>
 
 | Name          | Global CSS Class                  | Description                                                     |
 | ------------- | --------------------------------- | --------------------------------------------------------------- |
@@ -409,22 +292,7 @@ You can render the `<DrawerRailItem>` as a link by setting the `component` prop 
 
 The following props can be set at any level in the drawer hierarchy (`<Drawer>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerNavItem>`, or `<DrawerRailItem>`). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
 
-<Box
- sx={{
-    overflow: 'auto',
-    'tr:nth-of-type(odd)': {
-        backgroundColor: '#ffffff',
-    },
-    'table' :{
-        borderSpacing: 0,
-    },
-    'table tr td, th': {
-        p: '6px 13px',
-        m: 0,
-        border: '1px solid #D5D8DA',
-        textAlign: 'left'
-    }
-}}>
+<Box>
 
 | Name                      | Description                                               | Type      | Required | Default                     |
 | :------------------------ | :-------------------------------------------------------- | :-------- | :------- | :-------------------------- |
@@ -439,7 +307,7 @@ The following props can be set at any level in the drawer hierarchy (`<Drawer>`,
 
 </Box>
 
-# Drawer Layout
+## Drawer Layout
 
 The `<DrawerLayout>` component is used to provide the appropriate resizing behavior for your main application content when used in conjunction with a Brightlayer UI `<Drawer>`. It accepts a `<Drawer>` as a prop, and the main page content is passed in through child elements.
 
@@ -462,22 +330,7 @@ The `<DrawerLayout>` component is used to provide the appropriate resizing behav
 
 ### Drawer Layout API
 
-<Box
- sx={{
-    overflow: 'auto',
-    'tr:nth-of-type(odd)': {
-        backgroundColor: '#ffffff',
-    },
-    'table' :{
-        borderSpacing: 0,
-    },
-    'table tr td, th': {
-        p: '6px 13px',
-        m: 0,
-        border: '1px solid #D5D8DA',
-        textAlign: 'left'
-    }
-}}>
+<Box>
 
 | Prop Name | Description                     | Type                                 | Required | Default |
 | --------- | ------------------------------- | ------------------------------------ | -------- | ------- |

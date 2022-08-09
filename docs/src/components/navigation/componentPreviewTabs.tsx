@@ -28,7 +28,7 @@ function TabPanel(props: TabPanelProps) {
             {...other}
         >
             {value === index && (
-                <Box>
+                <Box sx={{ backgroundColor: '#FFFFFF' }}>
                     <Typography component={'div'}>{children}</Typography>
                 </Box>
             )}
@@ -69,6 +69,18 @@ const tabStyles = {
     '&.Mui-selected': {
         color: (theme: Theme) => theme.palette.primary.main,
     },
+};
+const tabPanelContentStyles = {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    maxWidth: '980px',
+    m: '0px auto',
+};
+
+const outletContainerStyles = {
+    p: '48px 40px',
+    m: '0px auto',
 };
 
 export default function ComponentPreviewTabs() {
@@ -120,19 +132,15 @@ export default function ComponentPreviewTabs() {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                <Box
-                    sx={{ display: 'flex', flexDirection: 'column', height: '100%', maxWidth: '980px', m: '0px auto' }}
-                >
-                    <Box sx={{ p: '48px 40px', m: '0px auto', backgroundColor: '#F8F8F8' }}>
+                <Box sx={tabPanelContentStyles}>
+                    <Box sx={outletContainerStyles}>
                         <Outlet />
                     </Box>
                 </Box>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <Box
-                    sx={{ display: 'flex', flexDirection: 'column', height: '100%', maxWidth: '980px', m: '0px auto' }}
-                >
-                    <Box sx={{ p: '48px 40px', m: '0px auto', backgroundColor: '#F8F8F8' }}>
+                <Box sx={tabPanelContentStyles}>
+                    <Box sx={outletContainerStyles}>
                         <Outlet />
                     </Box>
                 </Box>
