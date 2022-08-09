@@ -27,7 +27,7 @@ export const BasicDrawerNavItem = (): JSX.Element => {
                     </DrawerBody>
                 </Drawer>
             </Box>
-            <CodeBlock code={codeSnippet} language="jsx" />
+            <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
         </Box>
     );

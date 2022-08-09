@@ -75,7 +75,7 @@ export const DrawerNavItemSelectedItems = (): JSX.Element => {
                     </DrawerBody>
                 </Drawer>
             </Box>
-            <CodeBlock code={codeSnippet} language="jsx" />
+            <CodeBlock code={codeSnippet} language="jsx" dataLine="4-29" />
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
         </Box>
     );
