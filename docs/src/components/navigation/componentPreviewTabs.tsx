@@ -13,6 +13,9 @@ interface TabPanelProps {
     value: number;
 }
 
+const hidePlaygroudTabs = ['drawer-layout'];
+const docsTabs = ['examples', 'api-docs', 'playground'];
+
 function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
 
@@ -40,10 +43,8 @@ function a11yProps(index: number) {
     };
 }
 
-function getNumber(location: string) {
-    const pathname = ['examples', 'api-docs', 'playground'].includes(location.split('/')[4])
-        ? location.split('/')[4]
-        : location.split('/')[3];
+function getNumber(location: string, docsTabs: string[]) {
+    const pathname = docsTabs.includes(location.split('/')[4]) ? location.split('/')[4] : location.split('/')[3];
     if (!pathname) return 0;
     else {
         switch (pathname) {
@@ -55,6 +56,11 @@ function getNumber(location: string) {
                 return 0;
         }
     }
+}
+
+function togglePlaygroundTab(location: string) {
+    const tabName = location.split('/').filter((e) => hidePlaygroudTabs.includes(e))[0];
+    return hidePlaygroudTabs.includes(tabName);
 }
 
 const tabStyles = {
@@ -69,13 +75,15 @@ export default function ComponentPreviewTabs() {
     const navigate = useNavigate();
     const location = useLocation();
     const [value, setValue] = React.useState(0);
+    const [hidePlaygroundTab, setHidePlaygroundTab] = React.useState(false);
     const theme = useTheme();
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         navigate(`/${newValue === 1 ? 'api-docs' : newValue === 2 ? 'playground' : 'examples'}`);
     };
 
     React.useEffect(() => {
-        setValue(getNumber(location?.pathname));
+        setValue(getNumber(location?.pathname, docsTabs));
+        setHidePlaygroundTab(togglePlaygroundTab(location.pathname));
     }, [location]);
 
     return (
@@ -93,7 +101,7 @@ export default function ComponentPreviewTabs() {
                 <Tabs
                     value={value}
                     onChange={handleChange}
-                    aria-label="basic tabs example"
+                    aria-label="component docs tabs"
                     centered
                     sx={{
                         width: '100%',
@@ -106,7 +114,9 @@ export default function ComponentPreviewTabs() {
                 >
                     <Tab to="examples" component={Link} sx={tabStyles} label="Examples" {...a11yProps(0)} />
                     <Tab to="api-docs" component={Link} sx={tabStyles} label="API Docs" {...a11yProps(1)} />
-                    <Tab to="playground" component={Link} sx={tabStyles} label="Playground" {...a11yProps(2)} />
+                    {!hidePlaygroundTab && (
+                        <Tab to="playground" component={Link} sx={tabStyles} label="Playground" {...a11yProps(2)} />
+                    )}
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
