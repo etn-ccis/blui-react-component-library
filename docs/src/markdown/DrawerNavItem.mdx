@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
-
 import NavItemAnatomy from './images/navItemAnatomy.png';
+
+import SharedProps from './SharedProps.mdx';
 
 # Drawer Nav Item
 
@@ -25,22 +26,7 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 ### Drawer Nav Item API
 
-<Box
-    sx={{
-        overflow: 'auto',
-        'tr:nth-of-type(odd)': {
-            backgroundColor: '#ffffff',
-        },
-        table: {
-            borderSpacing: 0,
-        },
-        'table tr td, th': {
-            p: '6px 13px',
-            m: 0,
-            border: '1px solid #D5D8DA',
-            textAlign: 'left',
-        },
-}}>
+<Box>
 
 | Prop Name                       | Description                                                                                                                                               | Type                      | Required | Default |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | -------- | ------- |
@@ -66,46 +52,7 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 
 > \*These props are managed automatically when using the `<DrawerNavItem>` inside of a `<DrawerNavGroup>`.
 
-### Style Overrides
-
-You can override the default styles used by Brightlayer UI by:
-
--   using the `sx` prop
--   passing a `classes` prop with keys from the `Name` column below
--   using the Global CSS Class in your main stylesheet
-
-For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/blob/master/docs/StyleOverridesGuide.md#style-overrides-guide).
-
-<Box
-    sx={{
-        overflow: 'auto',
-        'tr:nth-of-type(odd)': {
-            backgroundColor: '#ffffff',
-        },
-        table: {
-            borderSpacing: 0,
-        },
-        'table tr td, th': {
-            p: '6px 13px',
-            m: 0,
-            border: '1px solid #D5D8DA',
-            textAlign: 'left',
-        },
-}}>
-
-| Name            | Global CSS Class                   | Description                                                       |
-| --------------- | ---------------------------------- | ----------------------------------------------------------------- |
-| root            | .BluiDrawerNavItem-root            | Styles applied to the root element                                |
-| active          | .BluiDrawerNavItem-active\*        | Styles applied to the root element if the item is the active item |
-| chevron         | .BluiDrawerNavItem-chevron         | Styles applied to the chevron element                             |
-| expandIcon      | .BluiDrawerNavItem-expandIcon      | Styles applied to the expandIcon element                          |
-| nestedListGroup | .BluiDrawerNavItem-nestedListGroup | Styles applied to wrapper surrounded nested children              |
-| nestedTitle     | .BluiDrawerNavItem-nestedTitle     | Styles applied to the title if the item is a nested item          |
-| title           | .BluiDrawerNavItem-title           | Styles applied to the title text                                  |
-| titleActive     | .BluiDrawerNavItem-titleActive     | Styles applied to the title text if the item is the active item   |
-| ripple          | .BluiDrawerNavItem-ripple          | Styles applied to the ripple                                      |
-
-</Box>
+<SharedProps />
 
 > \* These classes can not be overridden via the `sx` prop.
 
