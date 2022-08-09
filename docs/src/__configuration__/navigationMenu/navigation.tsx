@@ -12,6 +12,9 @@ import DrawerFooterMarkdown from '../../markdown/DrawerFooter.mdx';
 import { DrawerNavItemExamples } from '../../markdown/examples';
 import DrawerBodyMarkdown from '../../markdown/DrawerBody.mdx';
 import DrawerRailItemMarkdown from '../../markdown/DrawerRailItem.mdx';
+import DrawerNavItemMarkdown from '../../markdown/DrawerNavItem.mdx';
+import DrawerLayoutMarkdown from '../../markdown/DrawerLayout.mdx';
+import ChannelValueMarkdown from '../../markdown/ChannelValue.mdx';
 
 export type SimpleNavItem = {
     title: string;
@@ -76,7 +79,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <ChannelValueMarkdown />,
                     },
                     {
                         title: 'Playground',
@@ -190,7 +193,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DummyDocsComponent />,
+                                component: <DrawerNavItemMarkdown />,
                             },
                             {
                                 title: 'Playground',
@@ -218,6 +221,23 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                                 title: 'Playground',
                                 url: 'playground',
                                 component: <DummyComponent />,
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Drawer Layout',
+                        url: '/drawer-layout',
+                        component: <ComponentPreviewPage title={'Drawer Layout'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DummyExamplesComponent />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerLayoutMarkdown />,
                             },
                         ],
                     },

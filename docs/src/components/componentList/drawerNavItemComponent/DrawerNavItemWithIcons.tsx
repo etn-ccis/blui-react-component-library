@@ -29,7 +29,7 @@ export const DrawerNavItemWithIcons = (): JSX.Element => {
                     </DrawerBody>
                 </Drawer>
             </Box>
-            <CodeBlock code={codeSnippet} language="jsx" />
+            <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
         </Box>
     );
 };
