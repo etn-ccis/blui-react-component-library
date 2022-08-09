@@ -225,7 +225,7 @@ export const componentsMap = {
                         textAlign: 'left',
                         borderCollapse: 'collapse',
                         minWidth: 750,
-                        border: `1px solid ${Colors.black[100]}`,
+                        border: (theme: Theme) => `1px solid ${theme.palette.divider}`,
                     },
                     a: {
                         fontSize: '14px',
@@ -234,7 +234,7 @@ export const componentsMap = {
                         border: 'unset',
                         borderLeft: 0,
                         borderRight: 0,
-                        borderBottom: `1px solid ${Colors.black[100]}`,
+                        borderBottom: (theme: Theme) => `1px solid ${theme.palette.divider}`,
                     },
                     th: {
                         border: 'unset',
@@ -242,7 +242,7 @@ export const componentsMap = {
                         borderRight: 0,
                         p: '1rem',
                         fontSize: '0.875rem',
-                        borderBottom: `1px solid ${Colors.black[100]}`,
+                        borderBottom: (theme: Theme) => `1px solid ${theme.palette.divider}`,
                     },
                     'tr:last-of-type': {
                         borderBottom: 0,
