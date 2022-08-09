@@ -13,7 +13,7 @@ interface TabPanelProps {
     value: number;
 }
 
-const hidePlaygroudTabs = ['drawer-layout'];
+const hidePlaygroudTabs = ['drawer-layout', 'drawer-sub-header'];
 const docsTabs = ['examples', 'api-docs', 'playground'];
 
 function TabPanel(props: TabPanelProps) {

@@ -1,0 +1,58 @@
+import Box from '@mui/material/Box';
+
+# Drawer Subheader
+
+The `<DrawerSubheader>` is an optional section that renders below the header and above the body of the `<Drawer>`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
+
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
+
+| Prop Name             | Description                                        | Type      | Required | Default |
+| --------------------- | -------------------------------------------------- | --------- | -------- | ------- |
+| divider               | Optional divider which appears below the Subheader | `boolean` | no       | `true`  |
+| hideContentOnCollapse | Hide subheader contents when drawer is closed      | `boolean` | no       | `true`  |
+
+</Box>
+
+Any other props supplied will be provided to the root element (`div`).
+
+### Classes
+
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerSubheader>` supports the following keys:
+
+<Box
+    sx={{
+        overflow: 'auto',
+        'tr:nth-of-type(odd)': {
+            backgroundColor: '#ffffff',
+        },
+        table: {
+            borderSpacing: 0,
+        },
+        'table tr td, th': {
+            p: '6px 13px',
+            m: 0,
+            border: '1px solid #D5D8DA',
+            textAlign: 'left',
+        },
+}}>
+
+| Name | Description                        |
+| ---- | ---------------------------------- |
+| root | Styles applied to the root element |
+
+</Box>
