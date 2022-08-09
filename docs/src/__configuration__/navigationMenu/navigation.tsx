@@ -13,7 +13,7 @@ import { DrawerNavItemExamples } from '../../markdown/examples';
 import DrawerBodyMarkdown from '../../markdown/DrawerBody.mdx';
 import DrawerNavItemMarkdown from '../../markdown/DrawerNavItem.mdx';
 import DrawerLayoutMarkdown from '../../markdown/DrawerLayout.mdx';
-import ChannelValueMarkdown from '../../markdown/ChannelValue.mdx'
+import ChannelValueMarkdown from '../../markdown/ChannelValue.mdx';
 import EmptyStateMarkdown from '../../markdown/EmptyState.mdx';
 
 export type SimpleNavItem = {
