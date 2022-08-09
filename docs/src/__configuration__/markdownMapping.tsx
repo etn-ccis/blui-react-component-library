@@ -221,7 +221,6 @@ export const componentsMap = {
                     mb: 2,
 
                     table: {
-                        p: '6px 13px',
                         textAlign: 'left',
                         borderCollapse: 'collapse',
                         minWidth: 750,
