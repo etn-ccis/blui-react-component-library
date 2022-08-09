@@ -38,7 +38,7 @@ export const DrawerNavItemNestedItems = (): JSX.Element => {
                     </DrawerBody>
                 </Drawer>
             </Box>
-            <CodeBlock code={codeSnippet} language="jsx" />
+            <CodeBlock code={codeSnippet} language="jsx" dataLine="3-11" />
         </Box>
     );
 };
