@@ -1,7 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import { updateDrawerComponent } from '../../redux/drawerComponent';
+import {
+    updateDrawerProps,
+    updateDrawerHeaderProps,
+    updateDrawerBodyProps,
+    updateDrawerNavGroupProps,
+} from '../../redux/drawerComponent';
 import { propsType, componentType, nestedChildrenType } from '../../data/DrawerTypes';
 import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -30,29 +35,59 @@ const TemporaryDrawer = () => {
         return drawerJson.map((entry: componentType, index: number) => renderDrawerInput(entry, index));
     };
 
-    const updateProps = (value: any, index: number, componentName: string, inputComponent?: string) => {
-        const compo = drawerJson.find((o: componentType) => o.componentName === componentName);
-        const newPropState: any[] = [];
-        newPropState.push(
-            inputComponent === 'select'
-                ? compo?.props?.map((obj: propsType, id: number) =>
-                      id === index ? { ...obj, defaultValue: value } : obj
-                  )
-                : compo?.props?.map((obj: propsType, id: number) =>
-                      id === index ? { ...obj, inputValue: value } : obj
-                  )
-        );
-        const newState = drawerJson.map((obj: componentType, id: number) =>
-            obj.componentName === componentName ? { ...obj, props: newPropState[0] } : obj
-        );
+    const dispatchActions = (componentName: string, newPropState: any) => {
+        switch (componentName) {
+            case 'Drawer':
+                dispatch(updateDrawerProps(newPropState));
+                break;
+            case 'DrawerHeader':
+                dispatch(updateDrawerHeaderProps(newPropState));
+                break;
+            case 'DrawerBody':
+                dispatch(updateDrawerBodyProps(newPropState));
+                break;
+            case 'DrawerNavGroup':
+                dispatch(updateDrawerNavGroupProps(newPropState));
+                break;
+            default:
+                dispatch(updateDrawerProps(newPropState));
+                break;
+        }
+    };
 
-        console.log('newState', newState);
-        dispatch(updateDrawerComponent(newState));
+    const updateProps = (value: any, index: string, componentName: string, inputComponent?: string) => {
+        const component = drawerJson.find((comp: componentType) => comp.componentName === componentName);
+        if (component?.props) {
+            const newComponentProp =
+                inputComponent === 'select'
+                    ? component?.props?.map((prop: propsType, id: number) =>
+                          `${componentName}-${id}` === index ? { ...prop, defaultValue: value } : prop
+                      )
+                    : component?.props?.map((prop: propsType, id: number) =>
+                          `${componentName}-${id}` === index ? { ...prop, inputValue: value } : prop
+                      );
+            dispatchActions(componentName, newComponentProp);
+        } else if (componentName === 'DrawerNavGroup') {
+            const newComponentProp = component?.nestedChildren?.map(
+                (nestedChild: nestedChildrenType, parentId: number) =>
+                    nestedChild.nestedChildrenProps?.map((prop: propsType, id: number) =>
+                        `${componentName}-${parentId}-${id}` === index ? { ...prop, inputValue: value } : prop
+                    )
+            );
+            console.log(newComponentProp, 'newComponentProp');
+            let nestedChildrenProps: any = {};
+            nestedChildrenProps['index'] = parseInt(index.split('-')[1]);
+            nestedChildrenProps['componentName'] = 'DrawerNavGroup';
+            nestedChildrenProps['updatedProps'] = newComponentProp?.[nestedChildrenProps['index']];
+
+            console.log(nestedChildrenProps, 'nestedChildrenProps');
+            dispatchActions(componentName, nestedChildrenProps);
+        }
     };
 
     const handleSelectChange = (
         event: SelectChangeEvent,
-        index: number,
+        index: string,
         componentName: string,
         inputComponent: string
     ) => {
@@ -61,7 +96,7 @@ const TemporaryDrawer = () => {
 
     const handleCheckboxChange = (
         event: React.ChangeEvent<HTMLInputElement>,
-        index: number,
+        index: string,
         componentName: string
     ): void => {
         updateProps(event.target.checked, index, componentName);
@@ -69,7 +104,7 @@ const TemporaryDrawer = () => {
 
     const handleTextChange = (
         event: React.ChangeEvent<{ value: unknown }>,
-        index: number,
+        index: string,
         componentName: string
     ): void => {
         updateProps(String(event.target.value), index, componentName);
@@ -77,13 +112,13 @@ const TemporaryDrawer = () => {
 
     const handleColorInputChange = (
         event: React.ChangeEvent<{ value: unknown }>,
-        index: number,
+        index: string,
         componentName: string
     ): void => {
         updateProps(String(event.target.value), index, componentName);
     };
 
-    const renderSelect = (prop: propsType, index: number, componentName: string) => {
+    const renderSelect = (prop: propsType, index: string, componentName: string) => {
         return (
             <FormControl variant={'filled'} sx={{ width: '100%' }}>
                 <InputLabel>{`${prop.propName}: ${prop.propType}`}</InputLabel>
@@ -104,7 +139,7 @@ const TemporaryDrawer = () => {
         );
     };
 
-    const renderBoolean = (prop: propsType, index: number, componentName: string) => {
+    const renderBoolean = (prop: propsType, index: string, componentName: string) => {
         return (
             <>
                 <FormControlLabel
@@ -123,7 +158,7 @@ const TemporaryDrawer = () => {
         );
     };
 
-    const renderTextField = (prop: propsType, index: number, componentName: string) => {
+    const renderTextField = (prop: propsType, index: string, componentName: string) => {
         return (
             <TextField
                 key={index}
@@ -137,13 +172,14 @@ const TemporaryDrawer = () => {
         );
     };
 
-    const renderColorInput = (prop: propsType, index: number, componentName: string) => {
+    const renderColorInput = (prop: propsType, index: string, componentName: string) => {
         return (
             <TextField
                 sx={{ width: '100%' }}
                 id="filled-adornment-weight"
                 variant={'filled'}
                 value={prop.inputValue}
+                type={'color'}
                 onChange={(event) => handleColorInputChange(event, index, componentName)}
                 InputProps={{
                     endAdornment: (
@@ -158,60 +194,62 @@ const TemporaryDrawer = () => {
         );
     };
 
+    const blockTitle = (componentName: string): JSX.Element => {
+        return (
+            <Typography display={'block'} variant={'overline'} color={'primary'}>
+                {componentName}
+            </Typography>
+        );
+    };
+
+    const propBlockForNestedComponent = (
+        componentName: string,
+        nestedChild: nestedChildrenType,
+        parentID: number
+    ): JSX.Element => {
+        return (
+            <Box key={`${componentName}-${parentID}`}>
+                {nestedChild.nestedChildrenProps?.map((prop: propsType, index: number) =>
+                    propBlock(componentName, prop, `${parentID}-${index}`)
+                )}
+            </Box>
+        );
+    };
+
+    const propBlock = (componentName: string, prop: propsType, index: number | string): JSX.Element => {
+        return (
+            <Box key={`${componentName}-${index}`}>
+                {prop.inputType === 'select'
+                    ? renderSelect(prop, `${componentName}-${index}`, componentName)
+                    : undefined}
+                {prop.inputType === 'boolean'
+                    ? renderBoolean(prop, `${componentName}-${index}`, componentName)
+                    : undefined}
+                {prop.inputType === 'string'
+                    ? renderTextField(prop, `${componentName}-${index}`, componentName)
+                    : undefined}
+                {prop.inputType === 'colorPicker'
+                    ? renderColorInput(prop, `${componentName}-${index}`, componentName)
+                    : undefined}
+            </Box>
+        );
+    };
+
     const renderDrawerInput = (entry: componentType, index: number) => {
         return (
             <Box key={index}>
-                <Typography display={'block'} variant={'overline'} color={'primary'}>
-                    {entry.componentName}
-                </Typography>
-                {entry.props?.map((prop: propsType, index: number) => (
-                    <Box key={index}>
-                        {prop.inputType === 'select' ? renderSelect(prop, index, entry.componentName) : undefined}
-                        {prop.inputType === 'boolean' ? renderBoolean(prop, index, entry.componentName) : undefined}
-                        {prop.inputType === 'string' ? renderTextField(prop, index, entry.componentName) : undefined}
-                        {prop.inputType === 'colorPicker'
-                            ? renderColorInput(prop, index, entry.componentName)
-                            : undefined}
-                    </Box>
-                ))}
-                {entry.nestedChildren?.map((nestedChild: nestedChildrenType) =>
-                    nestedChild.nestedChildrenProps?.map((prop: propsType, index: number) => (
-                        <Box key={index}>
-                            {prop.inputType === 'select' ? renderSelect(prop, index, entry.componentName) : undefined}
-                            {prop.inputType === 'boolean' ? renderBoolean(prop, index, entry.componentName) : undefined}
-                            {prop.inputType === 'string'
-                                ? renderTextField(prop, index, entry.componentName)
-                                : undefined}
-                            {prop.inputType === 'colorPicker'
-                                ? renderColorInput(prop, index, entry.componentName)
-                                : undefined}
-                        </Box>
-                    ))
+                {blockTitle(entry.componentName)}
+                {entry.props?.map((prop: propsType, index: number) => propBlock(entry.componentName, prop, index))}
+                {entry.nestedChildren?.map((nestedChild: nestedChildrenType, parentId: number) =>
+                    propBlockForNestedComponent(entry.componentName, nestedChild, parentId)
                 )}
                 {entry.nestedChildren?.map((nestedChild: nestedChildrenType) =>
                     nestedChild.nestedComponets?.map((nestedComponent: componentType, index: number) => (
                         <Box key={index}>
-                            {
-                                <Typography display={'block'} variant={'overline'} color={'primary'}>
-                                    {nestedComponent.componentName}
-                                </Typography>
-                            }
-                            {nestedComponent.props?.map((prop: propsType, index: number) => (
-                                <Box key={index}>
-                                    {prop.inputType === 'select'
-                                        ? renderSelect(prop, index, entry.componentName)
-                                        : undefined}
-                                    {prop.inputType === 'boolean'
-                                        ? renderBoolean(prop, index, entry.componentName)
-                                        : undefined}
-                                    {prop.inputType === 'string'
-                                        ? renderTextField(prop, index, entry.componentName)
-                                        : undefined}
-                                    {prop.inputType === 'colorPicker'
-                                        ? renderColorInput(prop, index, entry.componentName)
-                                        : undefined}
-                                </Box>
-                            ))}
+                            {blockTitle(nestedComponent.componentName)}
+                            {nestedComponent.props?.map((prop: propsType, index: number) =>
+                                propBlock(nestedComponent.componentName, prop, index)
+                            )}
                         </Box>
                     ))
                 )}
@@ -230,7 +268,7 @@ const TemporaryDrawer = () => {
         setState({ ...state, [anchor]: open });
     };
 
-    const list = () => (
+    const drawerKnobs = () => (
         <Box sx={{ width: 375, p: 2 }} role="presentation">
             <Box>{renderDrawerInputs()}</Box>
         </Box>
@@ -250,7 +288,7 @@ const TemporaryDrawer = () => {
                     onClose={toggleDrawer('right', false)}
                     variant={'persistent'}
                 >
-                    {list()}
+                    {drawerKnobs()}
                 </Drawer>
             </React.Fragment>
         </div>
