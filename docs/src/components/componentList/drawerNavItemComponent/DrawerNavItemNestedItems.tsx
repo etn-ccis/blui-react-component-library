@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock } from '../../codeSnippet/codeBlock';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
+import { CopyToClipboard } from '../../CopyToClipboardButton';
 
 const codeSnippet = `<DrawerBody>
     <DrawerNavGroup>
@@ -39,6 +40,7 @@ export const DrawerNavItemNestedItems = (): JSX.Element => {
                 </Drawer>
             </Box>
             <CodeBlock code={codeSnippet} language="jsx" dataLine="3-11" />
+            <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
         </Box>
     );
 };
