@@ -37,11 +37,11 @@ export const drawerSlice = createSlice({
         updateDrawerNavGroupProps: (state, action: PayloadAction<any>) => {
             const newArray = [...state.drawerComponent];
             console.log(action.payload);
-            const a = action.payload;
-            const drawerIndex = newArray.findIndex((drawerData) => drawerData.componentName === 'DrawerNavGroup');
-            console.log(drawerIndex, 'drawerIndex');
-            newArray[drawerIndex].nestedChildren[a.index].nestedChildrenProps = a.updatedProps;
-            state.drawerComponent = newArray;
+            // const a = action.payload;
+            // const drawerIndex = newArray.findIndex((drawerData) => drawerData.componentName === 'DrawerNavGroup');
+            // console.log(drawerIndex, 'drawerIndex');
+            // newArray[drawerIndex].nestedChildren[a.index].nestedChildrenProps = a.updatedProps;
+            // state.drawerComponent = newArray;
         },
         // updateDrawerNavGroupProps1: (state, action: PayloadAction<any>) => {
         //     const newArray = [...state.drawerComponent];

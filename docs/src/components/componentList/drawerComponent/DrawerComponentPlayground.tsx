@@ -12,7 +12,7 @@ import {
     DrawerNavItem,
     DrawerProps,
 } from '@brightlayer-ui/react-components';
-import { componentType, nestedChildrenType } from '../../../data/DrawerTypes';
+import { componentType } from '../../../data/DrawerTypes';
 
 export const DrawerComponentPlayground = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
@@ -20,43 +20,58 @@ export const DrawerComponentPlayground = (): JSX.Element => {
         const component = drawerJson.filter(function (obj: componentType) {
             return obj.componentName === componentName;
         })[0];
-        if (component.props) {
-            const componentProps = component.props.reduce(
-                (acc: any, cur: any) => ({
-                    ...acc,
-                    [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
-                }),
-                {}
-            );
-            return componentProps;
-        } else if (component.nestedChildren) {
-            let nestedChildrenProps: any[] = [];
+        const componentProps = component?.props?.reduce(
+            (acc: any, cur: any) => ({
+                ...acc,
+                [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
+            }),
+            {}
+        );
+        return componentProps;
+    }
 
-            component.nestedChildren.map((child: nestedChildrenType) => {
-                nestedChildrenProps.push(
-                    child.nestedChildrenProps.reduce(
-                        (acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.inputValue }),
-                        {}
-                    ),
-                    child.nestedComponets.map((nestedComp: componentType) => {
-                        const nestedComponent = nestedComp?.props
-                            ? nestedComp.props.reduce(
-                                  (acc: any, cur: any) => ({ ...acc, [cur.propName]: cur.inputValue }),
-                                  {}
-                              )
-                            : undefined;
-                        return nestedComponent;
-                    })
-                );
+    function createNavItemProps(drawerNavItemComponent: any) {
+        let navItemProps: any[] = [];
+        drawerNavItemComponent.map((component1: componentType) => {
+            navItemProps.push(
+                component1?.props?.reduce(
+                    (acc: any, cur: any) => ({
+                        ...acc,
+                        [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
+                    }),
+                    {}
+                )
+            );
+        });
+        return navItemProps;
+    }
+
+    function createNavGroupProps(drawerJson: componentType[], componentName: string) {
+        const component = drawerJson.filter(function (obj: componentType) {
+            return obj.componentName === componentName;
+        });
+        let navGroupProps: any[] = [];
+        component.map((component1: componentType) => {
+            const drawerNavItemComponent = drawerJson.filter(function (obj: componentType) {
+                return obj.parentId === component1.id;
             });
-            return nestedChildrenProps;
-        }
+            navGroupProps.push(
+                component1?.props?.reduce(
+                    (acc: any, cur: any) => ({
+                        ...acc,
+                        [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
+                    }),
+                    {}
+                ),
+                createNavItemProps(drawerNavItemComponent)
+            );
+        });
+        return navGroupProps;
     }
     const drawerProps: DrawerProps = createProps(drawerJson, 'Drawer');
     const drawerHeaderProps: DrawerHeaderProps = createProps(drawerJson, 'DrawerHeader');
     const drawerBodyProps: DrawerBodyProps = createProps(drawerJson, 'DrawerBody');
-    const drawerNavGroupProps = createProps(drawerJson, 'DrawerNavGroup');
-
+    const drawerNavGroupProps = createNavGroupProps(drawerJson, 'DrawerNavGroup');
     return (
         <>
             <Box style={{ width: '300px' }}>

@@ -15,6 +15,8 @@ export type nestedChildrenType = {
 
 export type componentType = {
     componentName: string;
+    id?: string;
+    parentId?: string;
     props?: propsType[];
     nestedChildren?: nestedChildrenType[];
 };
@@ -94,166 +96,146 @@ export const drawerTypes: componentType[] = [
     },
     {
         componentName: 'DrawerNavGroup',
-        nestedChildren: [
+        id: 'DrawerNavGroup-0',
+        props: [
             {
-                nestedChildrenProps: [
-                    {
-                        propName: 'title',
-                        inputType: 'string',
-                        inputValue: 'Nav Group 1',
-                        propType: 'string',
-                        helperText: 'Color used for the background of the element',
-                        required: false,
-                    },
-                    {
-                        propName: 'titleColor',
-                        inputType: 'colorPicker',
-                        inputValue: '#007bc1',
-                        propType: 'string',
-                        helperText: 'Color used for the background of the element',
-                        required: false,
-                    },
-                    {
-                        propName: 'titleDivider',
-                        inputType: 'boolean',
-                        inputValue: true,
-                        propType: 'boolean',
-                        helperText: 'Divider for the title',
-                        required: false,
-                    },
-                    {
-                        propName: 'hidePadding',
-                        inputType: 'boolean',
-                        inputValue: true,
-                        propType: 'boolean',
-                        helperText: 'Divider for the title',
-                        required: false,
-                    },
-                ],
-                nestedComponets: [
-                    {
-                        componentName: 'DrawerNavItem',
-                        props: [
-                            {
-                                propName: 'title',
-                                inputType: 'string',
-                                inputValue: 'DrawerNavItem 1',
-                                propType: 'string',
-                                helperText: 'The color used for the background',
-                                required: false,
-                            },
-                            {
-                                propName: 'itemId',
-                                inputType: 'string',
-                                inputValue: '1',
-                                propType: 'string',
-                                helperText: 'The color used for the background',
-                                required: false,
-                            },
-                        ],
-                    },
-                    {
-                        componentName: 'DrawerNavItem',
-                        props: [
-                            {
-                                propName: 'title',
-                                inputType: 'string',
-                                inputValue: 'DrawerNavItem 11',
-                                propType: 'string',
-                                helperText: 'The color used for the background',
-                                required: false,
-                            },
-                            {
-                                propName: 'itemId',
-                                inputType: 'string',
-                                inputValue: '11',
-                                propType: 'string',
-                                helperText: 'The color used for the background',
-                                required: false,
-                            },
-                        ],
-                    },
-                ],
+                propName: 'title',
+                inputType: 'string',
+                inputValue: 'Nav Group 1',
+                propType: 'string',
+                helperText: 'Color used for the background of the element',
+                required: false,
             },
             {
-                nestedChildrenProps: [
-                    {
-                        propName: 'title',
-                        inputType: 'string',
-                        inputValue: 'Nav Group 2',
-                        propType: 'string',
-                        helperText: 'Color used for the background of the element',
-                        required: false,
-                    },
-                    {
-                        propName: 'titleColor',
-                        inputType: 'colorPicker',
-                        inputValue: '#007bc1',
-                        propType: 'string',
-                        helperText: 'Color used for the background of the element',
-                        required: false,
-                    },
-                    {
-                        propName: 'titleDivider',
-                        inputType: 'boolean',
-                        inputValue: true,
-                        propType: 'boolean',
-                        helperText: 'Divider for the title',
-                        required: false,
-                    },
-                    {
-                        propName: 'hidePadding',
-                        inputType: 'boolean',
-                        inputValue: true,
-                        propType: 'boolean',
-                        helperText: 'Divider for the title',
-                        required: false,
-                    },
-                ],
-                nestedComponets: [
-                    {
-                        componentName: 'DrawerNavItem',
-                        props: [
-                            {
-                                propName: 'title',
-                                inputType: 'string',
-                                inputValue: 'DrawerNavItem 2',
-                                propType: 'string',
-                                helperText: 'The color used for the background',
-                                required: false,
-                            },
-                            {
-                                propName: 'itemId',
-                                inputType: 'string',
-                                inputValue: '2',
-                                propType: 'string',
-                                helperText: 'The color used for the background',
-                                required: false,
-                            },
-                        ],
-                    },
-                    {
-                        componentName: 'DrawerNavItem',
-                        props: [
-                            {
-                                propName: 'title',
-                                inputType: 'string',
-                                inputValue: 'DrawerNavItem 22',
-                                propType: 'string',
-                                helperText: 'The color used for the background',
-                                required: false,
-                            },
-                            {
-                                propName: 'itemId',
-                                inputType: 'string',
-                                inputValue: '22',
-                                propType: 'string',
-                                helperText: 'The color used for the background',
-                                required: false,
-                            },
-                        ],
-                    },
-                ],
+                propName: 'titleColor',
+                inputType: 'colorPicker',
+                inputValue: '#007bc1',
+                propType: 'string',
+                helperText: 'Color used for the background of the element',
+                required: false,
+            },
+            {
+                propName: 'titleDivider',
+                inputType: 'boolean',
+                inputValue: true,
+                propType: 'boolean',
+                helperText: 'Divider for the title',
+                required: false,
+            },
+            {
+                propName: 'hidePadding',
+                inputType: 'boolean',
+                inputValue: true,
+                propType: 'boolean',
+                helperText: 'Divider for the title',
+                required: false,
+            },
+        ],
+    },
+    {
+        componentName: 'DrawerNavGroup',
+        id: 'DrawerNavGroup-1',
+        props: [
+            {
+                propName: 'title',
+                inputType: 'string',
+                inputValue: 'Nav Group 2',
+                propType: 'string',
+                helperText: 'Color used for the background of the element',
+                required: false,
+            },
+            {
+                propName: 'titleColor',
+                inputType: 'colorPicker',
+                inputValue: '#007bc1',
+                propType: 'string',
+                helperText: 'Color used for the background of the element',
+                required: false,
+            },
+            {
+                propName: 'titleDivider',
+                inputType: 'boolean',
+                inputValue: true,
+                propType: 'boolean',
+                helperText: 'Divider for the title',
+                required: false,
+            },
+            {
+                propName: 'hidePadding',
+                inputType: 'boolean',
+                inputValue: true,
+                propType: 'boolean',
+                helperText: 'Divider for the title',
+                required: false,
+            },
+        ],
+    },
+    {
+        componentName: 'DrawerNavItem',
+        parentId: 'DrawerNavGroup-0',
+        id: 'DrawerNavItem-0',
+        props: [
+            {
+                propName: 'title',
+                inputType: 'string',
+                inputValue: 'DrawerNavItem 1',
+                propType: 'string',
+                helperText: 'The color used for the background',
+                required: false,
+            },
+            {
+                propName: 'itemId',
+                inputType: 'string',
+                inputValue: '1',
+                propType: 'string',
+                helperText: 'The color used for the background',
+                required: false,
+            },
+        ],
+    },
+    {
+        componentName: 'DrawerNavItem',
+        parentId: 'DrawerNavGroup-1',
+        id: 'DrawerNavItem-1',
+        props: [
+            {
+                propName: 'title',
+                inputType: 'string',
+                inputValue: 'DrawerNavItem 2',
+                propType: 'string',
+                helperText: 'The color used for the background',
+                required: false,
+            },
+            {
+                propName: 'itemId',
+                inputType: 'string',
+                inputValue: '2',
+                propType: 'string',
+                helperText: 'The color used for the background',
+                required: false,
+            },
+        ],
+    },
+    {
+        componentName: 'DrawerNavItem',
+        parentId: 'DrawerNavGroup-1',
+        id: 'DrawerNavItem-2',
+        props: [
+            {
+                propName: 'title',
+                inputType: 'string',
+                inputValue: 'DrawerNavItem 3',
+                propType: 'string',
+                helperText: 'The color used for the background',
+                required: false,
+            },
+            {
+                propName: 'itemId',
+                inputType: 'string',
+                inputValue: '3',
+                propType: 'string',
+                helperText: 'The color used for the background',
+                required: false,
             },
         ],
     },
