@@ -26,10 +26,6 @@ export const CopyToClipboard: React.FC<CopyToClipboardProps> = (props) => {
             <Tooltip {...toolTipProps} title={isCopied ? copiedTitle : title} placement={position} open={showTooltip}>
                 <Button
                     variant="outlined"
-                    sx={{
-                        fontSize: 16,
-                        cursor: 'pointer',
-                    }}
                     onMouseEnter={(): void => {
                         if (!isCopied) setShowTooltip(true);
                     }}
