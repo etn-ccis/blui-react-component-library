@@ -11,6 +11,7 @@ import DrawerHeaderMarkdown from '../../markdown/DrawerHeader.mdx';
 import DrawerFooterMarkdown from '../../markdown/DrawerFooter.mdx';
 import { DrawerNavItemExamples } from '../../markdown/examples';
 import DrawerBodyMarkdown from '../../markdown/DrawerBody.mdx';
+import DrawerRailItemMarkdown from '../../markdown/DrawerRailItem.mdx';
 import DrawerNavItemMarkdown from '../../markdown/DrawerNavItem.mdx';
 import DrawerLayoutMarkdown from '../../markdown/DrawerLayout.mdx';
 import ChannelValueMarkdown from '../../markdown/ChannelValue.mdx';
@@ -238,6 +239,28 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                                 title: 'API Docs',
                                 url: 'api-docs',
                                 component: <DrawerLayoutMarkdown />,
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Drawer Rail Item',
+                        url: '/drawer-rail-item',
+                        component: <ComponentPreviewPage title={'Drawer Rail Item'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DummyExamplesComponent />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerRailItemMarkdown />,
+                            },
+                            {
+                                title: 'Playground',
+                                url: 'playground',
+                                component: <DummyComponent />,
                             },
                         ],
                     },
