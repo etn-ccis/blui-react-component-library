@@ -32,7 +32,7 @@ export const DrawerComponentPlayground = (): JSX.Element => {
 
     function createNavItemProps(drawerNavItemComponent: any) {
         let navItemProps: any[] = [];
-        drawerNavItemComponent.map((component1: componentType) => {
+        drawerNavItemComponent.forEach((component1: componentType) => {
             navItemProps.push(
                 component1?.props?.reduce(
                     (acc: any, cur: any) => ({
@@ -51,7 +51,7 @@ export const DrawerComponentPlayground = (): JSX.Element => {
             return obj.componentName === componentName;
         });
         let navGroupProps: any[] = [];
-        component.map((component1: componentType) => {
+        component.forEach((component1: componentType) => {
             const drawerNavItemComponent = drawerJson.filter(function (obj: componentType) {
                 return obj.parentId === component1.id;
             });

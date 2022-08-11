@@ -6,8 +6,9 @@ import {
     updateDrawerHeaderProps,
     updateDrawerBodyProps,
     updateDrawerNavGroupProps,
+    updateDrawerNavItemProps,
 } from '../../redux/drawerComponent';
-import { propsType, componentType, nestedChildrenType } from '../../data/DrawerTypes';
+import { propsType, componentType } from '../../data/DrawerTypes';
 import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -56,6 +57,9 @@ const TemporaryDrawer = () => {
             case 'DrawerNavGroup':
                 dispatch(updateDrawerNavGroupProps(newPropState));
                 break;
+            case 'DrawerNavItem':
+                dispatch(updateDrawerNavItemProps(newPropState));
+                break;
             default:
                 dispatch(updateDrawerProps(newPropState));
                 break;
@@ -65,26 +69,46 @@ const TemporaryDrawer = () => {
     const updateProps = (value: any, index: string, componentName: string, inputComponent?: string) => {
         const component = drawerJson.find((comp: componentType) => comp.componentName === componentName);
         if (componentName === 'DrawerNavGroup') {
-            const findDrawerNavGroupID =  index.slice(index.indexOf(componentName) + componentName.length + 1);
-            const drawerNavGroupId = findDrawerNavGroupID.substring(0,componentName.length + 2 );
-            // console.log(findDrawerNavGroupID, 'findDrawerNavGroupID');
-            // index = findDrawerNavGroupID;
+            const findDrawerNavGroupID = index.slice(index.indexOf(componentName) + componentName.length + 1);
+            const drawerNavGroupId = findDrawerNavGroupID.substring(0, componentName.length + 2);
             const nestedComponent = drawerJson.find((comp: componentType) => comp.id === drawerNavGroupId);
             const newDrawerNavGroupProps =
                 inputComponent === 'select'
-                    ? nestedComponent?.props?.map((prop: propsType) =>
-                          findDrawerNavGroupID === index ? { ...prop, defaultValue: value } : prop
+                    ? nestedComponent?.props?.map((prop: propsType, id: number) =>
+                          `${componentName}-${drawerNavGroupId}-${id}` === index
+                              ? { ...prop, defaultValue: value }
+                              : prop
                       )
-                    : nestedComponent?.props?.map((prop: propsType) =>
-                          findDrawerNavGroupID === index ? { ...prop, inputValue: value } : prop
+                    : nestedComponent?.props?.map((prop: propsType, id: number) =>
+                          `${componentName}-${drawerNavGroupId}-${id}` === index ? { ...prop, inputValue: value } : prop
                       );
             let updateNavGroup: any = {};
             updateNavGroup = {
-                ...newDrawerNavGroupProps,
-                id: index,
+                props: newDrawerNavGroupProps,
+                id: drawerNavGroupId,
             };
             dispatchActions(componentName, updateNavGroup);
-        } else if (component?.props) {
+        } else if (componentName === 'DrawerNavItem') {
+            const findDrawerNavItemID = index.slice(index.indexOf(componentName) + componentName.length + 1);
+            const drawerNavItemId = findDrawerNavItemID.substring(0, componentName.length + 2);
+            const nestedComponent = drawerJson.find((comp: componentType) => comp.id === drawerNavItemId);
+            const newDrawerNavItemProps =
+                inputComponent === 'select'
+                    ? nestedComponent?.props?.map((prop: propsType, id: number) =>
+                          `${componentName}-${drawerNavItemId}-${id}` === index
+                              ? { ...prop, defaultValue: value }
+                              : prop
+                      )
+                    : nestedComponent?.props?.map((prop: propsType, id: number) =>
+                          `${componentName}-${drawerNavItemId}-${id}` === index ? { ...prop, inputValue: value } : prop
+                      );
+            let updateNavItem: any = {};
+            updateNavItem = {
+                props: newDrawerNavItemProps,
+                id: drawerNavItemId,
+            };
+            dispatchActions(componentName, updateNavItem);
+        } else {
             const newComponentProp =
                 inputComponent === 'select'
                     ? component?.props?.map((prop: propsType, id: number) =>
@@ -93,7 +117,7 @@ const TemporaryDrawer = () => {
                     : component?.props?.map((prop: propsType, id: number) =>
                           `${componentName}-${id}` === index ? { ...prop, inputValue: value } : prop
                       );
-            
+
             dispatchActions(componentName, newComponentProp);
         }
     };
@@ -221,11 +245,7 @@ const TemporaryDrawer = () => {
         index: number,
         id: string
     ): JSX.Element => {
-        return (
-            <Box key={`${id}-${index}`}>
-                {propBlock(componentName, prop, `${id}-${index}`)}
-            </Box>
-        );
+        return <Box key={`${id}-${index}`}>{propBlock(componentName, prop, `${id}-${index}`)}</Box>;
     };
 
     const propBlock = (componentName: string, prop: propsType, index: number | string): JSX.Element => {
@@ -250,6 +270,7 @@ const TemporaryDrawer = () => {
     const renderDrawerInput = (entry: componentType, index: number) => {
         return (
             <Box key={index}>
+                {blockTitle(entry.componentName)}
                 {entry.id
                     ? entry.props?.map((prop: propsType, index: number) =>
                           propBlockForNestedComponent(entry.componentName, prop, index, entry.id as string)

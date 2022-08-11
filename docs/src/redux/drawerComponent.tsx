@@ -39,20 +39,26 @@ export const drawerSlice = createSlice({
             console.log(action.payload);
             const drawerIndex = newArray.findIndex((drawerData) => drawerData.id === action.payload.id);
             console.log(drawerIndex, 'drawerIndex');
-            // const navGroup = newArray[drawerIndex].find((comp: componentType) => comp.componentName === componentName);
+            newArray[drawerIndex].props = action.payload['props'];
+            state.drawerComponent = newArray;
         },
-        // updateDrawerNavGroupProps1: (state, action: PayloadAction<any>) => {
-        //     const newArray = [...state.drawerComponent];
-        //     const a = action.payload;
-        //     const drawerIndex = newArray.findIndex(drawerData => drawerData.componentName === 'DrawerNavGroup');
-        //     console.log(drawerIndex, 'drawerIndex');
-        //     newArray[drawerIndex].nestedChildren[action.payload.index].nestedChildrenProps = action.payload.updatedProps;
-        //     state.drawerComponent = newArray;
-        // },
+        updateDrawerNavItemProps: (state, action: PayloadAction<any>) => {
+            const newArray = [...state.drawerComponent];
+            console.log(action.payload);
+            const drawerIndex = newArray.findIndex((drawerData) => drawerData.id === action.payload.id);
+            console.log(drawerIndex, 'drawerIndex');
+            newArray[drawerIndex].props = action.payload['props'];
+            state.drawerComponent = newArray;
+        },
     },
 });
 
-export const { updateDrawerProps, updateDrawerHeaderProps, updateDrawerBodyProps, updateDrawerNavGroupProps } =
-    drawerSlice.actions;
+export const {
+    updateDrawerProps,
+    updateDrawerHeaderProps,
+    updateDrawerBodyProps,
+    updateDrawerNavGroupProps,
+    updateDrawerNavItemProps,
+} = drawerSlice.actions;
 
 export default drawerSlice.reducer;
