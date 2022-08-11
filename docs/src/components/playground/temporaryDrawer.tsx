@@ -31,6 +31,13 @@ const TemporaryDrawer = () => {
     const dispatch = useAppDispatch();
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
 
+    // const drawerNavGroup = drawerJson.filter(function (entry) {
+    //     return entry.componentName === 'DrawerNavGroup';
+    // })
+    // const drawerNavItem = drawerJson.filter(function (entry) {
+    //     return entry.componentName === 'DrawerNavItem';
+    // })
+
     const renderDrawerInputs = () => {
         return drawerJson.map((entry: componentType, index: number) => renderDrawerInput(entry, index));
     };
@@ -57,7 +64,27 @@ const TemporaryDrawer = () => {
 
     const updateProps = (value: any, index: string, componentName: string, inputComponent?: string) => {
         const component = drawerJson.find((comp: componentType) => comp.componentName === componentName);
-        if (component?.props) {
+        if (componentName === 'DrawerNavGroup') {
+            const findDrawerNavGroupID =  index.slice(index.indexOf(componentName) + componentName.length + 1);
+            const drawerNavGroupId = findDrawerNavGroupID.substring(0,componentName.length + 2 );
+            // console.log(findDrawerNavGroupID, 'findDrawerNavGroupID');
+            // index = findDrawerNavGroupID;
+            const nestedComponent = drawerJson.find((comp: componentType) => comp.id === drawerNavGroupId);
+            const newDrawerNavGroupProps =
+                inputComponent === 'select'
+                    ? nestedComponent?.props?.map((prop: propsType) =>
+                          findDrawerNavGroupID === index ? { ...prop, defaultValue: value } : prop
+                      )
+                    : nestedComponent?.props?.map((prop: propsType) =>
+                          findDrawerNavGroupID === index ? { ...prop, inputValue: value } : prop
+                      );
+            let updateNavGroup: any = {};
+            updateNavGroup = {
+                ...newDrawerNavGroupProps,
+                id: index,
+            };
+            dispatchActions(componentName, updateNavGroup);
+        } else if (component?.props) {
             const newComponentProp =
                 inputComponent === 'select'
                     ? component?.props?.map((prop: propsType, id: number) =>
@@ -66,30 +93,8 @@ const TemporaryDrawer = () => {
                     : component?.props?.map((prop: propsType, id: number) =>
                           `${componentName}-${id}` === index ? { ...prop, inputValue: value } : prop
                       );
-            if (componentName === 'DrawerNavGroup') {
-                let updateNavGroup: any = {};
-                updateNavGroup = {
-                    ...newComponentProp,
-                    id: index,
-                };
-                dispatchActions(componentName, updateNavGroup);
-            } else {
-                dispatchActions(componentName, newComponentProp);
-            }
-        } else if (componentName === 'DrawerNavGroup') {
-            // const newComponentProp = component?.nestedChildren?.map(
-            //     (nestedChild: nestedChildrenType, parentId: number) =>
-            //         nestedChild.nestedChildrenProps?.map((prop: propsType, id: number) =>
-            //             `${componentName}-${parentId}-${id}` === index ? { ...prop, inputValue: value } : prop
-            //         )
-            // );
-            // console.log(newComponentProp, 'newComponentProp');
-            // let nestedChildrenProps: any = {};
-            // nestedChildrenProps['index'] = parseInt(index.split('-')[1]);
-            // nestedChildrenProps['componentName'] = 'DrawerNavGroup';
-            // nestedChildrenProps['updatedProps'] = newComponentProp?.[nestedChildrenProps['index']];
-            // console.log(nestedChildrenProps, 'nestedChildrenProps');
-            // dispatchActions(componentName, nestedChildrenProps);
+            
+            dispatchActions(componentName, newComponentProp);
         }
     };
 
@@ -212,14 +217,13 @@ const TemporaryDrawer = () => {
 
     const propBlockForNestedComponent = (
         componentName: string,
-        nestedChild: nestedChildrenType,
-        parentID: number
+        prop: propsType,
+        index: number,
+        id: string
     ): JSX.Element => {
         return (
-            <Box key={`${componentName}-${parentID}`}>
-                {nestedChild.nestedChildrenProps?.map((prop: propsType, index: number) =>
-                    propBlock(componentName, prop, `${parentID}-${index}`)
-                )}
+            <Box key={`${id}-${index}`}>
+                {propBlock(componentName, prop, `${id}-${index}`)}
             </Box>
         );
     };
@@ -246,21 +250,11 @@ const TemporaryDrawer = () => {
     const renderDrawerInput = (entry: componentType, index: number) => {
         return (
             <Box key={index}>
-                {blockTitle(entry.componentName)}
-                {entry.props?.map((prop: propsType, index: number) => propBlock(entry.componentName, prop, index))}
-                {/* {entry.nestedChildren?.map((nestedChild: nestedChildrenType, parentId: number) =>
-                    propBlockForNestedComponent(entry.componentName, nestedChild, parentId)
-                )} */}
-                {/* {entry.nestedChildren?.map((nestedChild: nestedChildrenType) =>
-                    nestedChild.nestedComponets?.map((nestedComponent: componentType, index: number) => (
-                        <Box key={index}>
-                            {blockTitle(nestedComponent.componentName)}
-                            {nestedComponent.props?.map((prop: propsType, index: number) =>
-                                propBlock(nestedComponent.componentName, prop, index)
-                            )}
-                        </Box>
-                    ))
-                )} */}
+                {entry.id
+                    ? entry.props?.map((prop: propsType, index: number) =>
+                          propBlockForNestedComponent(entry.componentName, prop, index, entry.id as string)
+                      )
+                    : entry.props?.map((prop: propsType, index: number) => propBlock(entry.componentName, prop, index))}
             </Box>
         );
     };
