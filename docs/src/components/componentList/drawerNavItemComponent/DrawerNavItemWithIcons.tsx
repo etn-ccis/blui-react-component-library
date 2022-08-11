@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { CodeBlock } from '../../codeSnippet/codeBlock';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import Dashboard from '@mui/icons-material/Dashboard';
@@ -7,7 +7,7 @@ import Notifications from '@mui/icons-material/Notifications';
 import Gavel from '@mui/icons-material/Gavel';
 import * as colors from '@brightlayer-ui/colors';
 import { CopyToClipboard } from '../../CopyToClipboardButton';
-import { FullCodeOnGithub } from '../../FullCodeOnGithubButton';
+import CodeIcon from '@mui/icons-material/Code';
 
 const codeSnippet = `<DrawerBody>
     <DrawerNavGroup>
@@ -34,7 +34,7 @@ export const DrawerNavItemWithIcons = (): JSX.Element => {
             <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
-                <FullCodeOnGithub url="componentList/drawerNavItemComponent/DrawerNavItemWithIcons.tsx" />
+                <Button sx={{ml: 2}} variant='outlined' target="_blank" href='https://codesandbox.io/s/drawernavitemwithicons-7k0oiy?file=/src/DrawerNavItemWithIcons.tsx' startIcon={<CodeIcon/>}>SandBox</Button>
             </Box>
         </Box>
     );
