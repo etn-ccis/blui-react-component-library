@@ -66,22 +66,30 @@ const TemporaryDrawer = () => {
                     : component?.props?.map((prop: propsType, id: number) =>
                           `${componentName}-${id}` === index ? { ...prop, inputValue: value } : prop
                       );
-            dispatchActions(componentName, newComponentProp);
+            if (componentName === 'DrawerNavGroup') {
+                let updateNavGroup: any = {};
+                updateNavGroup = {
+                    ...newComponentProp,
+                    id: index,
+                };
+                dispatchActions(componentName, updateNavGroup);
+            } else {
+                dispatchActions(componentName, newComponentProp);
+            }
         } else if (componentName === 'DrawerNavGroup') {
-            const newComponentProp = component?.nestedChildren?.map(
-                (nestedChild: nestedChildrenType, parentId: number) =>
-                    nestedChild.nestedChildrenProps?.map((prop: propsType, id: number) =>
-                        `${componentName}-${parentId}-${id}` === index ? { ...prop, inputValue: value } : prop
-                    )
-            );
-            console.log(newComponentProp, 'newComponentProp');
-            let nestedChildrenProps: any = {};
-            nestedChildrenProps['index'] = parseInt(index.split('-')[1]);
-            nestedChildrenProps['componentName'] = 'DrawerNavGroup';
-            nestedChildrenProps['updatedProps'] = newComponentProp?.[nestedChildrenProps['index']];
-
-            console.log(nestedChildrenProps, 'nestedChildrenProps');
-            dispatchActions(componentName, nestedChildrenProps);
+            // const newComponentProp = component?.nestedChildren?.map(
+            //     (nestedChild: nestedChildrenType, parentId: number) =>
+            //         nestedChild.nestedChildrenProps?.map((prop: propsType, id: number) =>
+            //             `${componentName}-${parentId}-${id}` === index ? { ...prop, inputValue: value } : prop
+            //         )
+            // );
+            // console.log(newComponentProp, 'newComponentProp');
+            // let nestedChildrenProps: any = {};
+            // nestedChildrenProps['index'] = parseInt(index.split('-')[1]);
+            // nestedChildrenProps['componentName'] = 'DrawerNavGroup';
+            // nestedChildrenProps['updatedProps'] = newComponentProp?.[nestedChildrenProps['index']];
+            // console.log(nestedChildrenProps, 'nestedChildrenProps');
+            // dispatchActions(componentName, nestedChildrenProps);
         }
     };
 
@@ -240,10 +248,10 @@ const TemporaryDrawer = () => {
             <Box key={index}>
                 {blockTitle(entry.componentName)}
                 {entry.props?.map((prop: propsType, index: number) => propBlock(entry.componentName, prop, index))}
-                {entry.nestedChildren?.map((nestedChild: nestedChildrenType, parentId: number) =>
+                {/* {entry.nestedChildren?.map((nestedChild: nestedChildrenType, parentId: number) =>
                     propBlockForNestedComponent(entry.componentName, nestedChild, parentId)
-                )}
-                {entry.nestedChildren?.map((nestedChild: nestedChildrenType) =>
+                )} */}
+                {/* {entry.nestedChildren?.map((nestedChild: nestedChildrenType) =>
                     nestedChild.nestedComponets?.map((nestedComponent: componentType, index: number) => (
                         <Box key={index}>
                             {blockTitle(nestedComponent.componentName)}
@@ -252,7 +260,7 @@ const TemporaryDrawer = () => {
                             )}
                         </Box>
                     ))
-                )}
+                )} */}
             </Box>
         );
     };

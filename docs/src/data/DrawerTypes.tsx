@@ -24,6 +24,7 @@ export type componentType = {
 export const drawerTypes: componentType[] = [
     {
         componentName: 'Drawer',
+        id: 'Drawer-0',
         props: [
             {
                 propName: 'variant',
@@ -54,6 +55,7 @@ export const drawerTypes: componentType[] = [
     },
     {
         componentName: 'DrawerHeader',
+        id: 'DrawerHeader-0',
         props: [
             {
                 propName: 'title',
@@ -83,6 +85,7 @@ export const drawerTypes: componentType[] = [
     },
     {
         componentName: 'DrawerBody',
+        id: 'DrawerBody-0',
         props: [
             {
                 propName: 'backgroundColor',
