@@ -43,7 +43,7 @@ export const DrawerNavItemNestedItems = (): JSX.Element => {
             <CodeBlock code={codeSnippet} language="jsx" dataLine="3-11" />
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
-                <FullCodeOnGithub url="#" />
+                <FullCodeOnGithub url="componentList/drawerNavItemComponent/DrawerNavItemNestedItems.tsx"  />
             </Box>
         </Box>
     );

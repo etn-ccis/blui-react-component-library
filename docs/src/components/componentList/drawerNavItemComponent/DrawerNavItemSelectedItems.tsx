@@ -79,7 +79,7 @@ export const DrawerNavItemSelectedItems = (): JSX.Element => {
             <CodeBlock code={codeSnippet} language="jsx" dataLine="4-29" />
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
-                <FullCodeOnGithub url="#" />
+                <FullCodeOnGithub url="componentList/drawerNavItemComponent/DrawerNavItemSelectedItems.tsx"  />
             </Box>
         </Box>
     );
