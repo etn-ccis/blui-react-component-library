@@ -36,7 +36,7 @@ export const DrawerNavItemWithIcons = (): JSX.Element => {
                     sx={{ ml: 2 }}
                     variant="outlined"
                     target="_blank"
-                    href="https://codesandbox.io/s/drawernavitemwithicons-7k0oiy?file=/src/DrawerNavItemWithIcons.tsx"
+                    href="https://codesandbox.io/s/drawernavitemwithicons-7k0oiy?file=/src/DrawerNavItemWithIconsExample.tsx"
                     startIcon={<CodeIcon />}
                 >
                     SandBox
