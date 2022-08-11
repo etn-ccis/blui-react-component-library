@@ -24,21 +24,7 @@ The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By defau
 
 ### Drawer Header API
 
-<Box sx={{
-    overflow: 'auto',
-    'tr:nth-of-type(odd)': {
-        backgroundColor: '#ffffff',
-    },
-    'table' :{
-        borderSpacing: 0,
-    },
-    'table tr td, th': {
-        p: '6px 13px',
-        m: 0,
-        border: '1px solid #D5D8DA',
-        textAlign: 'left'
-    }
-}}>
+<Box>
 
 | Prop Name         | Description                                    | Type                  | Required | Default                      |
 | ----------------- | ---------------------------------------------- | --------------------- | -------- | ---------------------------- |
@@ -56,7 +42,7 @@ The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By defau
 
 </Box>
 
-Any other props will be provided to the root element [**Material UI Toolbar**](https://material-ui.com/api/toolbar/).
+Any other props will be provided to the root element [**Material UI Toolbar**](https://mui.com/material-ui/api/toolbar/).
 
 ### Style Overrides
 
@@ -64,25 +50,11 @@ You can override the default styles used by Brightlayer UI by:
 
 -   using the `sx` prop
 -   passing a `classes` prop with keys from the `Name` column below
--   using the `Global CSS Class` in your main stylesheet
+-   using the Global CSS Class in your main stylesheet
 
-For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/blob/master/docs/StyleOverridesGuide.md#style-overrides-guide).
 
-<Box sx={{
-    overflow: 'auto',
-    'tr:nth-of-type(odd)': {
-        backgroundColor: '#ffffff',
-    },
-    'table' :{
-        borderSpacing: 0,
-    },
-    'table tr td, th': {
-        p: '6px 13px',
-        m: 0,
-        border: '1px solid #D5D8DA',
-        textAlign: 'left'
-    }
-}}>
+<Box>
 
 | Name             | Global CSS Class                   | Description                                      |
 | ---------------- | ---------------------------------- | ------------------------------------------------ |

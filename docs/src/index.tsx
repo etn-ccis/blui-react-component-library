@@ -19,8 +19,12 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { store } from './redux/store';
 import { MDXProvider } from '@mdx-js/react';
+import { componentsMap } from './__configuration__/markdownMapping';
+
 import 'prismjs/components/prism-jsx.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
+import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
+
 const container = document.getElementById('root');
 
 if (!container) throw new Error('Root Element was not found in the DOM');
@@ -33,7 +37,7 @@ root.render(
             <BrowserRouter>
                 <CssBaseline />
                 <Provider store={store}>
-                    <MDXProvider>
+                    <MDXProvider components={componentsMap as any}>
                         <App />
                     </MDXProvider>
                 </Provider>
