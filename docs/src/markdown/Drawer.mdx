@@ -6,7 +6,7 @@ import SharedProps from './SharedProps.mdx';
 
 # Drawer
 
-The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific Brightlayer UI functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The Brightlayer UI Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerNavItem>`, `<DrawerRailItem>`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
+The `<Drawer>` component is a wrapper around the [MUI Drawer](https://mui.com/material-ui/api/drawer/) that adds specific Brightlayer UI functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel. The Brightlayer UI Drawer includes helper components for `<DrawerHeader>`, `<DrawerSubheader>`, `<DrawerBody>`, `<DrawerNavGroup>`, `<DrawerNavItem>`, `<DrawerRailItem>`, `<DrawerFooter>`, and `<DrawerLayout>` to help organize the content.
 
 <Box
     sx={{
@@ -24,7 +24,6 @@ The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://ma
         src={Drawer}
     />
 </Box>
-
 ## Drawer
 
 The `<Drawer>` component is the parent container, which manages the overall state of the drawer and renders the child components.
@@ -45,7 +44,6 @@ The `<Drawer>` component is the parent container, which manages the overall stat
         src={DrawerAnatomy}
     />
 </Box>
-
 ### Drawer API
 
 <Box>
@@ -67,7 +65,7 @@ The `<Drawer>` component is the parent container, which manages the overall stat
 
 </Box>
 
-Any other props will be provided to the root element [**Material UI Drawer**](https://material-ui.com/api/drawer/).
+Any other props will be provided to the root element [**Material UI Drawer**](https://mui.com/material-ui/api/drawer/).
 
 The `Drawer` has four `variant`s:
 
@@ -84,9 +82,9 @@ You can override the default styles used by Brightlayer UI by:
 
 -   using the `sx` prop
 -   passing a `classes` prop with keys from the `Name` column below
--   using the `Global CSS Class` in your main stylesheet
+-   using the Global CSS Class in your main stylesheet
 
-For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/blob/master/docs/StyleOverridesGuide.md#style-overrides-guide).
 
 <Box>
 
@@ -99,20 +97,5 @@ For more details on styling options check out our [Styling Guide](https://github
 | sideBorder | .BluiDrawer-sideBorder | Styles applied when sideBorder is set to true                  |
 
 </Box>
-
-## Drawer Subheader
-
-The `<DrawerSubheader>` is an optional section that renders below the header and above the body of the `<Drawer>`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
-
-<Box>
-
-| Prop Name             | Description                                        | Type      | Required | Default |
-| --------------------- | -------------------------------------------------- | --------- | -------- | ------- |
-| divider               | Optional divider which appears below the Subheader | `boolean` | no       | `true`  |
-| hideContentOnCollapse | Hide subheader contents when drawer is closed      | `boolean` | no       | `true`  |
-
-</Box>
-
-Any other props supplied will be provided to the root element (`div`).
 
 <SharedProps />
