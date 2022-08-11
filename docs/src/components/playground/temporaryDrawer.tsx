@@ -7,6 +7,8 @@ import {
     updateDrawerBodyProps,
     updateDrawerNavGroupProps,
     updateDrawerNavItemProps,
+    updateDrawerFooterProps,
+    updateDrawerOtherProps,
 } from '../../redux/drawerComponent';
 import { propsType, componentType } from '../../data/DrawerTypes';
 import { RootState } from '../../redux/store';
@@ -22,6 +24,9 @@ import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import { Palette } from '@mui/icons-material';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
+import { PLAYGROUND_DRAWER_WIDTH } from '../../shared/constants';
 
 type Anchor = 'right';
 
@@ -29,18 +34,20 @@ const TemporaryDrawer = () => {
     const [state, setState] = React.useState({
         right: true,
     });
+    const [alignment, setAlignment] = React.useState('props');
     const dispatch = useAppDispatch();
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
 
-    // const drawerNavGroup = drawerJson.filter(function (entry) {
-    //     return entry.componentName === 'DrawerNavGroup';
-    // })
-    // const drawerNavItem = drawerJson.filter(function (entry) {
-    //     return entry.componentName === 'DrawerNavItem';
-    // })
+    const otherProps = drawerJson.filter((entry: componentType) => {
+        return entry.otherProps;
+    });
 
     const renderDrawerInputs = () => {
         return drawerJson.map((entry: componentType, index: number) => renderDrawerInput(entry, index));
+    };
+
+    const renderDrawerOtherInputs = () => {
+        return otherProps.map((entry: componentType, index: number) => renderDrawerOtherInput(entry, index));
     };
 
     const dispatchActions = (componentName: string, newPropState: any) => {
@@ -59,6 +66,12 @@ const TemporaryDrawer = () => {
                 break;
             case 'DrawerNavItem':
                 dispatch(updateDrawerNavItemProps(newPropState));
+                break;
+            case 'DrawerFooter':
+                dispatch(updateDrawerFooterProps(newPropState));
+                break;
+            case 'OtherProps':
+                dispatch(updateDrawerOtherProps(newPropState));
                 break;
             default:
                 dispatch(updateDrawerProps(newPropState));
@@ -109,16 +122,27 @@ const TemporaryDrawer = () => {
             };
             dispatchActions(componentName, updateNavItem);
         } else {
-            const newComponentProp =
-                inputComponent === 'select'
-                    ? component?.props?.map((prop: propsType, id: number) =>
-                          `${componentName}-${id}` === index ? { ...prop, defaultValue: value } : prop
-                      )
-                    : component?.props?.map((prop: propsType, id: number) =>
-                          `${componentName}-${id}` === index ? { ...prop, inputValue: value } : prop
-                      );
-
-            dispatchActions(componentName, newComponentProp);
+            if (index.indexOf('other') > 0) {
+                const newComponentProp =
+                    inputComponent === 'select'
+                        ? component?.otherProps?.map((prop: propsType, id: number) =>
+                              `${componentName}-other-${id}` === index ? { ...prop, defaultValue: value } : prop
+                          )
+                        : component?.otherProps?.map((prop: propsType, id: number) =>
+                              `${componentName}-other-${id}` === index ? { ...prop, inputValue: value } : prop
+                          );
+                dispatchActions('OtherProps', newComponentProp);
+            } else {
+                const newComponentProp =
+                    inputComponent === 'select'
+                        ? component?.props?.map((prop: propsType, id: number) =>
+                              `${componentName}-${id}` === index ? { ...prop, defaultValue: value } : prop
+                          )
+                        : component?.props?.map((prop: propsType, id: number) =>
+                              `${componentName}-${id}` === index ? { ...prop, inputValue: value } : prop
+                          );
+                dispatchActions(componentName, newComponentProp);
+            }
         }
     };
 
@@ -153,6 +177,10 @@ const TemporaryDrawer = () => {
         componentName: string
     ): void => {
         updateProps(String(event.target.value), index, componentName);
+    };
+
+    const handleToggleBtnChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
+        setAlignment(newAlignment);
     };
 
     const renderSelect = (prop: propsType, index: string, componentName: string) => {
@@ -280,6 +308,18 @@ const TemporaryDrawer = () => {
         );
     };
 
+    const renderDrawerOtherInput = (entry: componentType, index: number) => {
+        return (
+            <Box key={index}>
+                {blockTitle(entry.componentName)}
+                {entry.otherProps &&
+                    entry.otherProps?.map((prop: propsType, index: number) =>
+                        propBlock(entry.componentName, prop, `other-${index}`)
+                    )}
+            </Box>
+        );
+    };
+
     const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
         if (
             event.type === 'keydown' &&
@@ -297,6 +337,12 @@ const TemporaryDrawer = () => {
         </Box>
     );
 
+    const otherKnobs = () => (
+        <Box sx={{ width: 375, p: 2 }} role="presentation">
+            <Box>{renderDrawerOtherInputs()}</Box>
+        </Box>
+    );
+
     return (
         <div>
             <React.Fragment key={'right'}>
@@ -304,6 +350,7 @@ const TemporaryDrawer = () => {
                     PaperProps={{
                         sx: {
                             mt: '112px',
+                            width: PLAYGROUND_DRAWER_WIDTH,
                         },
                     }}
                     anchor={'right'}
@@ -311,7 +358,22 @@ const TemporaryDrawer = () => {
                     onClose={toggleDrawer('right', false)}
                     variant={'persistent'}
                 >
-                    {drawerKnobs()}
+                    <ToggleButtonGroup
+                        color="primary"
+                        value={alignment}
+                        exclusive
+                        onChange={handleToggleBtnChange}
+                        sx={{
+                            p: '16px 16px 0',
+                            '& .MuiButtonBase-root': {
+                                width: '50%',
+                            },
+                        }}
+                    >
+                        <ToggleButton value="props">Props</ToggleButton>
+                        <ToggleButton value="other">Other</ToggleButton>
+                    </ToggleButtonGroup>
+                    {alignment === 'props' ? drawerKnobs() : otherKnobs()}
                 </Drawer>
             </React.Fragment>
         </div>

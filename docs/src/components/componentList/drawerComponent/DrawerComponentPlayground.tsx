@@ -6,6 +6,7 @@ import {
     Drawer,
     DrawerBody,
     DrawerBodyProps,
+    DrawerFooter,
     DrawerHeader,
     DrawerHeaderProps,
     DrawerNavGroup,
@@ -13,6 +14,8 @@ import {
     DrawerProps,
 } from '@brightlayer-ui/react-components';
 import { componentType } from '../../../data/DrawerTypes';
+import EatonFooterLogoLight from '../../../assets/EatonLogoLight.png';
+import Typography from '@mui/material/Typography';
 
 export const DrawerComponentPlayground = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
@@ -21,6 +24,20 @@ export const DrawerComponentPlayground = (): JSX.Element => {
             return obj.componentName === componentName;
         })[0];
         const componentProps = component?.props?.reduce(
+            (acc: any, cur: any) => ({
+                ...acc,
+                [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
+            }),
+            {}
+        );
+        return componentProps;
+    }
+
+    function createOtherProps(drawerJson: componentType[], componentName: string) {
+        const component = drawerJson.filter(function (obj: componentType) {
+            return obj.componentName === componentName;
+        })[0];
+        const componentProps = component?.otherProps?.reduce(
             (acc: any, cur: any) => ({
                 ...acc,
                 [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
@@ -72,6 +89,8 @@ export const DrawerComponentPlayground = (): JSX.Element => {
     const drawerHeaderProps: DrawerHeaderProps = createProps(drawerJson, 'DrawerHeader');
     const drawerBodyProps: DrawerBodyProps = createProps(drawerJson, 'DrawerBody');
     const drawerNavGroupProps = createNavGroupProps(drawerJson, 'DrawerNavGroup');
+    const drawerFooterProps = createProps(drawerJson, 'DrawerFooter');
+    const drawerOtherFooterProps = createOtherProps(drawerJson, 'DrawerFooter');
     return (
         <>
             <Box style={{ width: '300px' }}>
@@ -102,6 +121,30 @@ export const DrawerComponentPlayground = (): JSX.Element => {
                             </DrawerNavGroup>
                         ))}
                     </DrawerBody>
+                    {drawerOtherFooterProps.showFooter && (
+                        <DrawerFooter
+                            backgroundColor={drawerFooterProps.backgroundColor}
+                            hideContentOnCollapse={drawerFooterProps.hideContentOnCollapse}
+                        >
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    flexDirection: 'row',
+                                    padding: 16,
+                                }}
+                            >
+                                <img src={EatonFooterLogoLight} alt="Eaton Logo" height={28} width={'auto'} />
+                                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                    <Typography
+                                        variant={'caption'}
+                                    >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
+                                    <Typography variant={'caption'}>All Rights Reserved</Typography>
+                                </div>
+                            </div>
+                        </DrawerFooter>
+                    )}
                 </Drawer>
             </Box>
         </>

@@ -1,4 +1,5 @@
 export const DRAWER_WIDTH = 300;
+export const PLAYGROUND_DRAWER_WIDTH = 375;
 
 export const PADDING = 24;
 

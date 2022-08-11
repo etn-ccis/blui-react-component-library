@@ -8,23 +8,17 @@ export type propsType = {
     required: boolean;
 };
 
-export type nestedChildrenType = {
-    nestedChildrenProps: propsType[];
-    nestedComponets: componentType[];
-};
-
 export type componentType = {
     componentName: string;
     id?: string;
     parentId?: string;
     props?: propsType[];
-    nestedChildren?: nestedChildrenType[];
+    otherProps?: propsType[];
 };
 
 export const drawerTypes: componentType[] = [
     {
         componentName: 'Drawer',
-        // id: 'Drawer-0',
         props: [
             {
                 propName: 'variant',
@@ -55,7 +49,6 @@ export const drawerTypes: componentType[] = [
     },
     {
         componentName: 'DrawerHeader',
-        // id: 'DrawerHeader-0',
         props: [
             {
                 propName: 'title',
@@ -85,7 +78,6 @@ export const drawerTypes: componentType[] = [
     },
     {
         componentName: 'DrawerBody',
-        // id: 'DrawerBody-0',
         props: [
             {
                 propName: 'backgroundColor',
@@ -238,6 +230,37 @@ export const drawerTypes: componentType[] = [
                 inputValue: '3',
                 propType: 'string',
                 helperText: 'The color used for the background',
+                required: false,
+            },
+        ],
+    },
+    {
+        componentName: 'DrawerFooter',
+        props: [
+            {
+                propName: 'hideContentOnCollapse',
+                inputType: 'boolean',
+                inputValue: true,
+                propType: 'boolean',
+                helperText: 'Hide subheader contents when drawer is closed',
+                required: false,
+            },
+            {
+                propName: 'backgroundColor',
+                inputType: 'colorPicker',
+                inputValue: '#ffffff',
+                propType: 'string',
+                helperText: 'The color used for the background',
+                required: false,
+            },
+        ],
+        otherProps: [
+            {
+                propName: 'showFooter',
+                inputType: 'boolean',
+                inputValue: true,
+                propType: 'boolean',
+                helperText: 'Show / Hide footer',
                 required: false,
             },
         ],
