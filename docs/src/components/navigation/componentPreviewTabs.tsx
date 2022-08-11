@@ -74,6 +74,7 @@ const tabPanelContentStyles = {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
+    minHeight: (theme: Theme) => `calc(100vh - ${theme.spacing(8)})`,
     maxWidth: '980px',
     m: '0px auto',
 };
@@ -146,7 +147,7 @@ export default function ComponentPreviewTabs() {
                 </Box>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <Box>
+                <Box sx={tabPanelContentStyles}>
                     <Outlet />
                 </Box>
             </TabPanel>

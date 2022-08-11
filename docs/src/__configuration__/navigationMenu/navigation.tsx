@@ -14,6 +14,7 @@ import DrawerBodyMarkdown from '../../markdown/DrawerBody.mdx';
 import DrawerRailItemMarkdown from '../../markdown/DrawerRailItem.mdx';
 import DrawerNavItemMarkdown from '../../markdown/DrawerNavItem.mdx';
 import DrawerLayoutMarkdown from '../../markdown/DrawerLayout.mdx';
+import DrawerSubheaderMarkdown from '../../markdown/DrawerSubheader.mdx';
 import ChannelValueMarkdown from '../../markdown/ChannelValue.mdx';
 import EmptyStateMarkdown from '../../markdown/EmptyState.mdx';
 
@@ -129,6 +130,28 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                                 title: 'API Docs',
                                 url: 'api-docs',
                                 component: <DrawerHeaderMarkdown />,
+                            },
+                            {
+                                title: 'Playground',
+                                url: 'playground',
+                                component: <DummyComponent />,
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Drawer Subheader',
+                        url: '/drawer-sub-header',
+                        component: <ComponentPreviewPage title={'Drawer Subheader'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DummyExamplesComponent />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerSubheaderMarkdown />,
                             },
                             {
                                 title: 'Playground',
