@@ -4,6 +4,7 @@ import { CodeBlock } from '../../codeSnippet/codeBlock';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
 import { CopyToClipboard } from '../../CopyToClipboardButton';
+import { FullCodeOnGithub } from '../../FullCodeOnGithubButton';
 const codeSnippet = `<Drawer open={true} activeItem={selected}>
     <DrawerBody>
         <DrawerNavGroup hidePadding={true}>
@@ -76,7 +77,10 @@ export const DrawerNavItemSelectedItems = (): JSX.Element => {
                 </Drawer>
             </Box>
             <CodeBlock code={codeSnippet} language="jsx" dataLine="4-29" />
-            <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
+                <FullCodeOnGithub url="#" />
+            </Box>
         </Box>
     );
 };

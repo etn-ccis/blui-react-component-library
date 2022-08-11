@@ -7,6 +7,7 @@ import Notifications from '@mui/icons-material/Notifications';
 import Gavel from '@mui/icons-material/Gavel';
 import * as colors from '@brightlayer-ui/colors';
 import { CopyToClipboard } from '../../CopyToClipboardButton';
+import { FullCodeOnGithub } from '../../FullCodeOnGithubButton';
 
 const codeSnippet = `<DrawerBody>
     <DrawerNavGroup>
@@ -31,7 +32,10 @@ export const DrawerNavItemWithIcons = (): JSX.Element => {
                 </Drawer>
             </Box>
             <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
-            <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
+                <FullCodeOnGithub url="componentList/drawerNavItemComponent/DrawerNavItemWithIcons.tsx" />
+            </Box>
         </Box>
     );
 };

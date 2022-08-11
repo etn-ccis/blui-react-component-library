@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { CodeBlock } from '../../codeSnippet/codeBlock';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
 import { CopyToClipboard } from '../../CopyToClipboardButton';
+import { FullCodeOnGithub } from '../../FullCodeOnGithubButton';
 
 const codeSnippet = `<DrawerBody>
     <DrawerNavGroup hidePadding divider>
@@ -28,7 +29,10 @@ export const BasicDrawerNavItem = (): JSX.Element => {
                 </Drawer>
             </Box>
             <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
-            <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
+                <FullCodeOnGithub url="#" />
+            </Box>
         </Box>
     );
 };
