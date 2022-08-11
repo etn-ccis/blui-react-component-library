@@ -9,7 +9,8 @@ interface FullCodeOnGithubProps {
 export const FullCodeOnGithub: React.FC<FullCodeOnGithubProps> = (props) => {
     const { url, ...otherButtonProps } = props;
 
-    const release = 'https://github.com/brightlayer-ui/react-component-library/tree/release/react-dev-docs/docs/src/components';
+    const release =
+        'https://github.com/brightlayer-ui/react-component-library/blob/feature/3290-full-code-on-gh-poc/docs/src';
     return (
         <Button
             {...otherButtonProps}
