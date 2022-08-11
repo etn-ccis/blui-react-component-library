@@ -16,7 +16,7 @@ const codeSnippet = `<DrawerBody>
 export const BasicDrawerNavItem = (): JSX.Element => {
     return (
         <Box>
-           <BasicDrawerNavItemExample />
+            <BasicDrawerNavItemExample />
             <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
