@@ -21,12 +21,10 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import { Palette } from '@mui/icons-material';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import { PLAYGROUND_DRAWER_WIDTH } from '../../shared/constants';
+import { DocTextField, DocColorField } from '../../shared/components';
 
 type Anchor = 'right';
 
@@ -37,7 +35,6 @@ const TemporaryDrawer = () => {
     const [alignment, setAlignment] = React.useState('props');
     const dispatch = useAppDispatch();
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
-
     const otherProps = drawerJson.filter((entry: componentType) => {
         return entry.otherProps;
     });
@@ -79,22 +76,34 @@ const TemporaryDrawer = () => {
         }
     };
 
+    const updatePropsValue = (
+        value: string,
+        props: propsType[],
+        componentId: string,
+        propId: string,
+        inputComponent?: string
+    ) => {
+        return inputComponent === 'select'
+            ? props?.map((prop: propsType, id: number) =>
+                  `${componentId}-${id}` === propId ? { ...prop, defaultValue: value } : prop
+              )
+            : props?.map((prop: propsType, id: number) =>
+                  `${componentId}-${id}` === propId ? { ...prop, inputValue: value } : prop
+              );
+    };
+
     const updateProps = (value: any, index: string, componentName: string, inputComponent?: string) => {
         const component = drawerJson.find((comp: componentType) => comp.componentName === componentName);
         if (componentName === 'DrawerNavGroup') {
             const findDrawerNavGroupID = index.slice(index.indexOf(componentName) + componentName.length + 1);
             const drawerNavGroupId = findDrawerNavGroupID.substring(0, componentName.length + 2);
             const nestedComponent = drawerJson.find((comp: componentType) => comp.id === drawerNavGroupId);
-            const newDrawerNavGroupProps =
-                inputComponent === 'select'
-                    ? nestedComponent?.props?.map((prop: propsType, id: number) =>
-                          `${componentName}-${drawerNavGroupId}-${id}` === index
-                              ? { ...prop, defaultValue: value }
-                              : prop
-                      )
-                    : nestedComponent?.props?.map((prop: propsType, id: number) =>
-                          `${componentName}-${drawerNavGroupId}-${id}` === index ? { ...prop, inputValue: value } : prop
-                      );
+            const newDrawerNavGroupProps = updatePropsValue(
+                value,
+                nestedComponent?.props as propsType[],
+                `${componentName}-${drawerNavGroupId}`,
+                index
+            );
             let updateNavGroup: any = {};
             updateNavGroup = {
                 props: newDrawerNavGroupProps,
@@ -105,16 +114,12 @@ const TemporaryDrawer = () => {
             const findDrawerNavItemID = index.slice(index.indexOf(componentName) + componentName.length + 1);
             const drawerNavItemId = findDrawerNavItemID.substring(0, componentName.length + 2);
             const nestedComponent = drawerJson.find((comp: componentType) => comp.id === drawerNavItemId);
-            const newDrawerNavItemProps =
-                inputComponent === 'select'
-                    ? nestedComponent?.props?.map((prop: propsType, id: number) =>
-                          `${componentName}-${drawerNavItemId}-${id}` === index
-                              ? { ...prop, defaultValue: value }
-                              : prop
-                      )
-                    : nestedComponent?.props?.map((prop: propsType, id: number) =>
-                          `${componentName}-${drawerNavItemId}-${id}` === index ? { ...prop, inputValue: value } : prop
-                      );
+            const newDrawerNavItemProps = updatePropsValue(
+                value,
+                nestedComponent?.props as propsType[],
+                `${componentName}-${drawerNavItemId}`,
+                index
+            );
             let updateNavItem: any = {};
             updateNavItem = {
                 props: newDrawerNavItemProps,
@@ -123,24 +128,21 @@ const TemporaryDrawer = () => {
             dispatchActions(componentName, updateNavItem);
         } else {
             if (index.indexOf('other') > 0) {
-                const newComponentProp =
-                    inputComponent === 'select'
-                        ? component?.otherProps?.map((prop: propsType, id: number) =>
-                              `${componentName}-other-${id}` === index ? { ...prop, defaultValue: value } : prop
-                          )
-                        : component?.otherProps?.map((prop: propsType, id: number) =>
-                              `${componentName}-other-${id}` === index ? { ...prop, inputValue: value } : prop
-                          );
+                const newComponentProp = updatePropsValue(
+                    value,
+                    component?.otherProps as propsType[],
+                    `${componentName}-other`,
+                    index
+                );
                 dispatchActions('OtherProps', newComponentProp);
             } else {
-                const newComponentProp =
-                    inputComponent === 'select'
-                        ? component?.props?.map((prop: propsType, id: number) =>
-                              `${componentName}-${id}` === index ? { ...prop, defaultValue: value } : prop
-                          )
-                        : component?.props?.map((prop: propsType, id: number) =>
-                              `${componentName}-${id}` === index ? { ...prop, inputValue: value } : prop
-                          );
+                const newComponentProp = updatePropsValue(
+                    value,
+                    component?.props as propsType[],
+                    `${componentName}`,
+                    index,
+                    inputComponent
+                );
                 dispatchActions(componentName, newComponentProp);
             }
         }
@@ -225,13 +227,10 @@ const TemporaryDrawer = () => {
 
     const renderTextField = (prop: propsType, index: string, componentName: string) => {
         return (
-            <TextField
+            <DocTextField
                 key={index}
                 sx={{ width: '100%' }}
-                variant={'filled'}
-                value={prop.inputValue}
-                label={`${prop.propName}:${prop.inputType}`}
-                helperText={prop.helperText}
+                propData={prop}
                 onChange={(event) => handleTextChange(event, index, componentName)}
             />
         );
@@ -239,22 +238,11 @@ const TemporaryDrawer = () => {
 
     const renderColorInput = (prop: propsType, index: string, componentName: string) => {
         return (
-            <TextField
+            <DocColorField
                 sx={{ width: '100%' }}
-                id="filled-adornment-weight"
-                variant={'filled'}
-                value={prop.inputValue}
-                type={'color'}
+                key={index}
+                propData={prop}
                 onChange={(event) => handleColorInputChange(event, index, componentName)}
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <Palette />
-                        </InputAdornment>
-                    ),
-                }}
-                label={`${prop.propName}:${prop.inputType}`}
-                helperText={prop.helperText}
             />
         );
     };

@@ -13,17 +13,14 @@ import {
     DrawerNavItem,
     DrawerProps,
 } from '@brightlayer-ui/react-components';
-import { componentType } from '../../../data/DrawerTypes';
+import { componentType, propsType } from '../../../data/DrawerTypes';
 import EatonFooterLogoLight from '../../../assets/EatonLogoLight.png';
 import Typography from '@mui/material/Typography';
 
 export const DrawerComponentPlayground = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
-    function createProps(drawerJson: componentType[], componentName: string) {
-        const component = drawerJson.filter(function (obj: componentType) {
-            return obj.componentName === componentName;
-        })[0];
-        const componentProps = component?.props?.reduce(
+    function iterateComponentProps(props: propsType[]) {
+        const componentProps = props?.reduce(
             (acc: any, cur: any) => ({
                 ...acc,
                 [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
@@ -31,34 +28,26 @@ export const DrawerComponentPlayground = (): JSX.Element => {
             {}
         );
         return componentProps;
+    }
+    function createProps(drawerJson: componentType[], componentName: string) {
+        const component = drawerJson.filter(function (obj: componentType) {
+            return obj.componentName === componentName;
+        })[0];
+
+        return iterateComponentProps(component?.props as propsType[]);
     }
 
     function createOtherProps(drawerJson: componentType[], componentName: string) {
         const component = drawerJson.filter(function (obj: componentType) {
             return obj.componentName === componentName;
         })[0];
-        const componentProps = component?.otherProps?.reduce(
-            (acc: any, cur: any) => ({
-                ...acc,
-                [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
-            }),
-            {}
-        );
-        return componentProps;
+        return iterateComponentProps(component?.otherProps as propsType[]);
     }
 
     function createNavItemProps(drawerNavItemComponent: any) {
         let navItemProps: any[] = [];
         drawerNavItemComponent.forEach((component1: componentType) => {
-            navItemProps.push(
-                component1?.props?.reduce(
-                    (acc: any, cur: any) => ({
-                        ...acc,
-                        [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
-                    }),
-                    {}
-                )
-            );
+            navItemProps.push(iterateComponentProps(component1?.props as propsType[]));
         });
         return navItemProps;
     }
@@ -73,13 +62,7 @@ export const DrawerComponentPlayground = (): JSX.Element => {
                 return obj.parentId === component1.id;
             });
             navGroupProps.push(
-                component1?.props?.reduce(
-                    (acc: any, cur: any) => ({
-                        ...acc,
-                        [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
-                    }),
-                    {}
-                ),
+                iterateComponentProps(component1?.props as propsType[]),
                 createNavItemProps(drawerNavItemComponent)
             );
         });
@@ -104,7 +87,6 @@ export const DrawerComponentPlayground = (): JSX.Element => {
                         {drawerNavGroupProps.map((navGroup: any, index: number) => (
                             <DrawerNavGroup
                                 key={index}
-                                hidePadding={navGroup.hidePadding}
                                 titleColor={navGroup.titleColor}
                                 titleDivider={navGroup.titleDivider}
                                 title={navGroup.title}
