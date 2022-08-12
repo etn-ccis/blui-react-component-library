@@ -349,8 +349,9 @@ const TemporaryDrawer = () => {
                 <Drawer
                     PaperProps={{
                         sx: {
-                            mt: '112px',
+                            top: '112px',
                             width: PLAYGROUND_DRAWER_WIDTH,
+                            paddingBottom: '112px',
                         },
                     }}
                     anchor={'right'}
