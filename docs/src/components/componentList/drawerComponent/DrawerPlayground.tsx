@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
 import {
     updateDrawerProps,
     updateDrawerHeaderProps,
@@ -9,10 +8,10 @@ import {
     updateDrawerNavItemProps,
     updateDrawerFooterProps,
     updateDrawerOtherProps,
-} from '../../redux/drawerComponent';
-import { propsType, componentType } from '../../data/DrawerTypes';
-import { RootState } from '../../redux/store';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+} from '../../../redux/drawerComponent';
+import { propsType, componentType } from '../../../data/DrawerTypes';
+import { RootState } from '../../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -23,15 +22,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
-import { PLAYGROUND_DRAWER_WIDTH } from '../../shared/constants';
-import { DocTextField, DocColorField } from '../../shared/components';
+import { DocTextField, DocColorField } from '../../../shared/components';
+import PlaygroundDrawer from '../../../shared/components/PlaygroundDrawer';
 
-type Anchor = 'right';
-
-const TemporaryDrawer = () => {
-    const [state, setState] = React.useState({
-        right: true,
-    });
+const DrawerPlayground = () => {
     const [alignment, setAlignment] = React.useState('props');
     const dispatch = useAppDispatch();
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
@@ -308,17 +302,6 @@ const TemporaryDrawer = () => {
         );
     };
 
-    const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-        if (
-            event.type === 'keydown' &&
-            ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
-        ) {
-            return;
-        }
-
-        setState({ ...state, [anchor]: open });
-    };
-
     const drawerKnobs = () => (
         <Box sx={{ width: 375, p: 2 }} role="presentation">
             <Box>{renderDrawerInputs()}</Box>
@@ -332,21 +315,9 @@ const TemporaryDrawer = () => {
     );
 
     return (
-        <div>
-            <React.Fragment key={'right'}>
-                <Drawer
-                    PaperProps={{
-                        sx: {
-                            top: '112px',
-                            width: PLAYGROUND_DRAWER_WIDTH,
-                            paddingBottom: '112px',
-                        },
-                    }}
-                    anchor={'right'}
-                    open={state['right']}
-                    onClose={toggleDrawer('right', false)}
-                    variant={'persistent'}
-                >
+        <PlaygroundDrawer
+            drawerContent={
+                <Box>
                     <ToggleButtonGroup
                         color="primary"
                         value={alignment}
@@ -354,6 +325,7 @@ const TemporaryDrawer = () => {
                         onChange={handleToggleBtnChange}
                         sx={{
                             p: '16px 16px 0',
+                            width: '100%',
                             '& .MuiButtonBase-root': {
                                 width: '50%',
                             },
@@ -363,10 +335,10 @@ const TemporaryDrawer = () => {
                         <ToggleButton value="other">Other</ToggleButton>
                     </ToggleButtonGroup>
                     {alignment === 'props' ? drawerKnobs() : otherKnobs()}
-                </Drawer>
-            </React.Fragment>
-        </div>
+                </Box>
+            }
+        />
     );
 };
 
-export default TemporaryDrawer;
+export default DrawerPlayground;

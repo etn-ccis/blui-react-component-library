@@ -82,7 +82,7 @@ export const drawerTypes: componentType[] = [
             {
                 propName: 'backgroundColor',
                 inputType: 'colorPicker',
-                inputValue: 'white',
+                inputValue: '#FFFFFF',
                 propType: 'string',
                 helperText: 'Color used for the background of the element',
                 required: false,
