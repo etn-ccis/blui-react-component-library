@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import { CodeBlock } from '../../codeSnippet/codeBlock';
 import { CopyToClipboard } from '../../CopyToClipboardButton';
-import CodeIcon from '@mui/icons-material/Code';
+import { CodeSandBox } from '../../CodeSandBoxButton';
 import { Dashboard, Gavel, Notifications } from '@mui/icons-material';
 import * as colors from '@brightlayer-ui/colors';
 
@@ -19,7 +19,7 @@ export const DrawerNavItemWithIcons = (): JSX.Element => {
     return (
         <Box>
             <Box sx={{ m: '32px 0', backgroundColor: colors.white[600], p: 4 }}>
-                <Drawer open={true} width={250} sx={{ margin: '0 auto' }}>
+                <Drawer open={true} width={250} sx={{ m: '0 auto' }} noLayout>
                     <DrawerBody sx={{ flex: '1 1 auto' }}>
                         <DrawerNavGroup>
                             <DrawerNavItem title="Dashboard" icon={<Dashboard />} itemID="1" />
@@ -32,15 +32,10 @@ export const DrawerNavItemWithIcons = (): JSX.Element => {
             <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
-                <Button
+                <CodeSandBox
                     sx={{ ml: 2 }}
-                    variant="outlined"
-                    target="_blank"
-                    href="https://codesandbox.io/s/drawernavitemwithicons-7k0oiy?file=/src/DrawerNavItemWithIconsExample.tsx"
-                    startIcon={<CodeIcon />}
-                >
-                    SandBox
-                </Button>
+                    url="https://codesandbox.io/s/drawernavitemwithicons-7k0oiy?file=/src/DrawerNavItemWithIconsExample.tsx"
+                />
             </Box>
         </Box>
     );

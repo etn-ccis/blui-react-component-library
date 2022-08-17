@@ -20,7 +20,7 @@ export const BasicDrawerNavItem = (): JSX.Element => {
             <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
-                <FullCodeOnGithub url="example/drawerNavItem/BasicDrawerNavItemExample.tsx" />
+                <FullCodeOnGithub sx={{ ml: 2 }} url="example/drawerNavItem/BasicDrawerNavItemExample.tsx" />
             </Box>
         </Box>
     );
