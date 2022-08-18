@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import listItemTagComponentReducer from './listItemComponent';
+import drawerComponentReducer from './drawerComponent';
 
 export const store = configureStore({
     reducer: {
         listItemTagComponentData: listItemTagComponentReducer,
+        drawerComponentData: drawerComponentReducer,
     },
 });
 

@@ -4,8 +4,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { DRAWER_WIDTH } from '../../shared';
 import { Theme, useTheme } from '@mui/material/styles';
+import { DRAWER_WIDTH } from '../../shared';
 
 interface TabPanelProps {
     children?: React.ReactNode;

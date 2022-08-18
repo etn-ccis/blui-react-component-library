@@ -37,6 +37,7 @@ export const NavigationDrawer: React.FC = () => {
                     title: item.title,
                     icon: depth === 0 ? item.icon : undefined,
                     itemID: fullURL,
+                    hidePadding: depth > 0 ? false : true,
                     onClick: item.component
                         ? (): void => {
                               navigate(fullURL);
