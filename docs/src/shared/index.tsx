@@ -7,3 +7,4 @@ export * from './DocColorField';
 export * from './DocTextField';
 export * from './Logo';
 export * from './PlaygroundDrawer';
+export * from './TabPanel';

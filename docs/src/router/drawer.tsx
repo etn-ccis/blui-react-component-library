@@ -134,7 +134,7 @@ export const NavigationDrawer: React.FC = () => {
                 }
             />
             <DrawerBody>
-                {navGroupItems.map((PAGE, index: number) => (
+                {navGroupItems.map((navGroupItem, index: number) => (
                     <DrawerNavGroup
                         key={index}
                         hidePadding
@@ -144,8 +144,8 @@ export const NavigationDrawer: React.FC = () => {
                             },
                             borderBottom: `1px solid ${theme.palette.divider}`,
                         }}
-                        title={PAGE.groupTitle}
-                        items={PAGE.items}
+                        title={navGroupItem.groupTitle}
+                        items={navGroupItem.items}
                     />
                 ))}
             </DrawerBody>

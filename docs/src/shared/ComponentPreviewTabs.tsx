@@ -1,50 +1,23 @@
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Theme, useTheme } from '@mui/material/styles';
-import { DRAWER_WIDTH } from '../shared';
-
-type TabPanelProps = {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-};
+import { DRAWER_WIDTH, TabPanel } from '../shared';
 
 const hidePlaygroudTabs = ['drawer-layout'];
 const docsTabs = ['examples', 'api-docs', 'playground'];
 
-function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <Box
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ backgroundColor: '#FFFFFF' }}>
-                    <Typography component={'div'}>{children}</Typography>
-                </Box>
-            )}
-        </Box>
-    );
-}
-
-function a11yProps(index: number) {
+function a11yProps(index: number): any {
     return {
         id: `simple-tab-${index}`,
         'aria-controls': `simple-tabpanel-${index}`,
     };
 }
 
-function getNumber(location: string, docsTabs: string[]) {
-    const pathname = docsTabs.includes(location.split('/')[4]) ? location.split('/')[4] : location.split('/')[3];
+function getNumber(location: string, tabs: string[]): number {
+    const pathname = tabs.includes(location.split('/')[4]) ? location.split('/')[4] : location.split('/')[3];
     if (!pathname) return 0;
 
     switch (pathname) {
@@ -57,19 +30,19 @@ function getNumber(location: string, docsTabs: string[]) {
     }
 }
 
-function togglePlaygroundTab(location: string) {
+function togglePlaygroundTab(location: string): boolean {
     const tabName = location.split('/').filter((e) => hidePlaygroudTabs.includes(e))[0];
     return hidePlaygroudTabs.includes(tabName);
 }
 
-const tabStyles = {
+const tabStyles: any = {
     width: '100%',
     color: (theme: Theme) => theme.palette.text.primary,
     '&.Mui-selected': {
         color: (theme: Theme) => theme.palette.primary.main,
     },
 };
-const tabPanelContentStyles = {
+const tabPanelContentStyles: any = {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
@@ -83,13 +56,13 @@ const outletContainerStyles = {
     m: '0px auto',
 };
 
-export default function ComponentPreviewTabs() {
+export const ComponentPreviewTabs = (): JSX.Element => {
     const navigate = useNavigate();
     const location = useLocation();
     const [value, setValue] = React.useState(0);
     const [hidePlaygroundTab, setHidePlaygroundTab] = React.useState(false);
     const theme = useTheme();
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (event: React.SyntheticEvent, newValue: number): void => {
         navigate(`/${newValue === 1 ? 'api-docs' : newValue === 2 ? 'playground' : 'examples'}`);
     };
 
@@ -152,4 +125,4 @@ export default function ComponentPreviewTabs() {
             </TabPanel>
         </Box>
     );
-}
+};

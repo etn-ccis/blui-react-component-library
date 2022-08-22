@@ -19,7 +19,8 @@ import Typography from '@mui/material/Typography';
 
 export const DrawerComponentPreview = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
-    function iterateComponentProps(props: PropsType[]): [string, boolean] {
+    
+    const iterateComponentProps = (props: PropsType[]): any => {
         const componentProps = props?.reduce(
             (acc: any, cur: any) => ({
                 ...acc,
@@ -28,38 +29,38 @@ export const DrawerComponentPreview = (): JSX.Element => {
             {}
         );
         return componentProps;
-    }
-    function createProps(drawerJson: ComponentType[], componentName: string): any {
-        const component = drawerJson.filter((obj: ComponentType) => obj.componentName === componentName)[0];
+    };
 
+    const createProps = (drawerProps: ComponentType[], componentName: string): any => {
+        const component = drawerProps.filter((obj: ComponentType) => obj.componentName === componentName)[0];
         return iterateComponentProps(component?.props as PropsType[]);
-    }
+    };
 
-    function createOtherProps(drawerJson: ComponentType[], componentName: string): any {
-        const component = drawerJson.filter((obj: ComponentType) => obj.componentName === componentName)[0];
+    const createOtherProps = (drawerOtherProps: ComponentType[], componentName: string): any => {
+        const component = drawerOtherProps.filter((obj: ComponentType) => obj.componentName === componentName)[0];
         return iterateComponentProps(component?.otherProps as PropsType[]);
-    }
+    };
 
-    function createNavItemProps(drawerNavItemComponent: any): any[] {
+    const createNavItemProps = (drawerNavItemComponent: any): any => {
         const navItemProps: any[] = [];
         drawerNavItemComponent.forEach((component1: ComponentType) => {
             navItemProps.push(iterateComponentProps(component1?.props as PropsType[]));
         });
         return navItemProps;
-    }
+    };
 
-    function createNavGroupProps(drawerJson: ComponentType[], componentName: string): any[] {
-        const component = drawerJson.filter((obj: ComponentType) => obj.componentName === componentName);
+    const createNavGroupProps = (navGroupPropsJson: ComponentType[], componentName: string): any[] => {
+        const component = navGroupPropsJson.filter((obj: ComponentType) => obj.componentName === componentName);
         const navGroupProps: any[] = [];
-        component.forEach((component1: ComponentType) => {
-            const drawerNavItemComponent = drawerJson.filter((obj: ComponentType) => obj.parentId === component1.id);
+        component.forEach((navItem: ComponentType) => {
+            const drawerNavItemComponent = navGroupPropsJson.filter((obj: ComponentType) => obj.parentId === navItem.id);
             navGroupProps.push(
-                iterateComponentProps(component1?.props as PropsType[]),
+                iterateComponentProps(navItem?.props as PropsType[]),
                 createNavItemProps(drawerNavItemComponent)
             );
         });
         return navGroupProps;
-    }
+    };
     const drawerProps: DrawerProps = createProps(drawerJson, 'Drawer');
     const drawerHeaderProps: DrawerHeaderProps = createProps(drawerJson, 'DrawerHeader');
     const drawerBodyProps: DrawerBodyProps = createProps(drawerJson, 'DrawerBody');
@@ -84,9 +85,9 @@ export const DrawerComponentPreview = (): JSX.Element => {
                                 title={navGroup.title}
                             >
                                 {navGroup.length > 0
-                                    ? navGroup.map((item: any, index: number) => (
+                                    ? navGroup.map((item: any, id: number) => (
                                           <DrawerNavItem
-                                              key={index}
+                                              key={id}
                                               itemID={item.itemId}
                                               title={item.title}
                                           ></DrawerNavItem>

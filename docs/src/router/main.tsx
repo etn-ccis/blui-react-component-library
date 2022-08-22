@@ -50,8 +50,8 @@ const buildRoutes = (routes: any[]): JSX.Element[] => {
                         {routes[i].items[j].children &&
                             routes[i].items[j].children?.map((childPath: SimpleNavItem) => (
                                 <Route
-                                    key={`url_${childPath.url}`}
-                                    path={`${childPath.url}`}
+                                    key={`url_${childPath.url || ''}`}
+                                    path={`${childPath.url || ''}`}
                                     element={childPath.component}
                                 />
                             ))}
@@ -73,8 +73,8 @@ const buildRoutes = (routes: any[]): JSX.Element[] => {
                                 {innerPath.children &&
                                     innerPath.children?.map((childPath: SimpleNavItem) => (
                                         <Route
-                                            key={`url_${childPath.url}`}
-                                            path={`${childPath.url}`}
+                                            key={`url_${childPath.url || ''}`}
+                                            path={`${childPath.url || ''}`}
                                             element={childPath.component}
                                         />
                                     ))}
