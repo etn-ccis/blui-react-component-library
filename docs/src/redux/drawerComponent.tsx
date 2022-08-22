@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import drawerTypes, { componentType, propsType } from '../data/DrawerTypes';
+import drawerTypes from '../componentDocs/Drawer/data/DrawerTypes';
+import { propsType, componentType } from '../__types__';
 interface DrawerState {
     drawerComponent: componentType[];
 }

@@ -1,24 +1,20 @@
 import React from 'react';
 import { HomePage, ComponentPreviewPage } from '../../pages';
-import {
-    DummyComponent,
-    DummyDocsComponent,
-    DummyExamplesComponent,
-} from '../../components/componentList/dummyDataForComponent';
-import DrawerNavGroupMarkdown from '../../markdown/DrawerNavGroup.mdx';
-import DrawerMarkdown from '../../markdown/Drawer.mdx';
-import DrawerHeaderMarkdown from '../../markdown/DrawerHeader.mdx';
-import DrawerFooterMarkdown from '../../markdown/DrawerFooter.mdx';
-import { DrawerNavItemExamples } from '../../markdown/examples';
-import DrawerBodyMarkdown from '../../markdown/DrawerBody.mdx';
-import DrawerRailItemMarkdown from '../../markdown/DrawerRailItem.mdx';
-import DrawerNavItemMarkdown from '../../markdown/DrawerNavItem.mdx';
-import DrawerLayoutMarkdown from '../../markdown/DrawerLayout.mdx';
-import DrawerSubheaderMarkdown from '../../markdown/DrawerSubheader.mdx';
-import ChannelValueMarkdown from '../../markdown/ChannelValue.mdx';
-import EmptyStateMarkdown from '../../markdown/EmptyState.mdx';
+import { DummyComponent, DummyDocsComponent, DummyExamplesComponent } from '../../componentDocs/DummyDataForComponent';
+import DrawerNavGroupMarkdown from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroup.mdx';
+import DrawerMarkdown from '../../componentDocs/Drawer/markdown/Drawer.mdx';
+import DrawerHeaderMarkdown from '../../componentDocs/DrawerHeader/markdown/DrawerHeader.mdx';
+import DrawerFooterMarkdown from '../../componentDocs/DrawerFooter/markdown/DrawerFooter.mdx';
+import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
+import DrawerBodyMarkdown from '../../componentDocs/DrawerBody/markdown/DrawerBody.mdx';
+import DrawerRailItemMarkdown from '../../componentDocs/DrawerRailItem/markdown/DrawerRailItem.mdx';
+import DrawerNavItemMarkdown from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItem.mdx';
+import DrawerLayoutMarkdown from '../../componentDocs/DrawerLayout/markdown/DrawerLayout.mdx';
+import DrawerSubheaderMarkdown from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheader.mdx';
+import ChannelValueMarkdown from '../../componentDocs/ChannelValue/markdown/ChannelValue.mdx';
+import EmptyStateMarkdown from '../../componentDocs/EmptyState/markdown/EmptyState.mdx';
 
-import { DrawerPlaygroundComponent } from '../../components/componentList/drawerComponent';
+import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 
 export type SimpleNavItem = {
     title: string;

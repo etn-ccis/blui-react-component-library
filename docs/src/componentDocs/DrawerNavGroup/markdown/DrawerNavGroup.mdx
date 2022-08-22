@@ -1,0 +1,67 @@
+import Box from '@mui/material/Box';
+import DrawerNavGroupAnatomy from '../images/drawerNavGroupAnatomy.png';
+import SharedProps from '../../../markdown/SharedProps.mdx';
+
+# Drawer Nav Group
+
+A `<DrawerNavGroup>` is used inside of the `<DrawerBody>` to organize links/content. Each group consists of an (optional) group title and a series of navigation items. Most visual props are inherited from the `<DrawerBody>` but can be overridden at the NavGroup level if desired.
+
+The `items` property supports nested items to generate collapsible sections in the menu. This can be used to create an arbitrary tree depth, but we do not recommend going more than two levels deep in a navigation Drawer. You can also build the navigation links declaratively by passing either `<DrawerNavItem>` or `<DrawerRailItem>` children to the `<DrawerNavGroup>`.
+
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '600px',
+        }}
+        component="img"
+        alt="Drawer Nav Group Anatomy"
+        src={DrawerNavGroupAnatomy}
+    />
+</Box>
+
+### Drawer Nav Group API
+
+<Box>
+
+| Prop Name                       | Description                                                | Type                    | Required | Default                     |
+| ------------------------------- | ---------------------------------------------------------- | ----------------------- | -------- | --------------------------- |
+| classes                         | Style overrides                                            | `DrawerNavGroupClasses` | no       |                             |
+| items                           | List of items to render                                    | `NavItem[]`             | yes      |                             |
+| title                           | Text to display in the group header                        | `string`                | no       |                             |
+| titleColor                      | Color used for the title text                              | `string`                | no       | varies for light/dark theme |
+| titleContent                    | Custom element, substitute for title                       | `ReactNode`             | no       |                             |
+| titleDivider                    | Divider for the title                                      | `boolean`               | no       | true                        |
+| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy | -                       | -        |                             |
+
+</Box>
+
+Any other props will be provided to the root element [**Material UI List**](https://material-ui.com/api/list/).
+
+### Style Overrides
+
+You can override the default styles used by Brightlayer UI by:
+
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the Global CSS Class in your main stylesheet
+    the Global CSS Class in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
+
+<Box>
+
+| Name      | Global CSS Class              | Description                                  |
+| --------- | ----------------------------- | -------------------------------------------- |
+| root      | .BluiDrawerNavGroup-root      | Styles applied to the root element           |
+| title     | .BluiDrawerNavGroup-title     | Styles applied to the title text element     |
+| subheader | .BluiDrawerNavGroup-subheader | Styles applied to the List subheader element |
+
+</Box>
+
+<SharedProps />

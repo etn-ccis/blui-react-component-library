@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from 'react';
 import { AppBar, IconButton, Toolbar, Typography, useTheme, useMediaQuery, Box } from '@mui/material';
 import Menu from '@mui/icons-material/Menu';
 import { useDrawer } from '../contexts/drawerContextProvider';
-import TabPanel from '../components/navigation/componentPreviewTabs';
+import TabPanel from '../shared/ComponentPreviewTabs';
 
 export type ComponentPreviewPageProps = HTMLAttributes<HTMLDivElement> & {
     title: string;
