@@ -1,6 +1,6 @@
-import { componentType } from '../../../__types__';
+import { ComponentType } from '../../../__types__';
 
-export const drawerTypes: componentType[] = [
+export const drawerTypes: ComponentType[] = [
     {
         componentName: 'Drawer',
         props: [

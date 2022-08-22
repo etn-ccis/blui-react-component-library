@@ -15,15 +15,13 @@ const playGroundStyles = {
     justifyContent: `center`,
 };
 
-export const DrawerPlaygroundComponent = (): JSX.Element => {
-    return (
-        <Box sx={playGroundStyles}>
-            <Box>
-                <DrawerComponentPreview />
-            </Box>
-            <Box>
-                <DrawerPlayground />
-            </Box>
+export const DrawerPlaygroundComponent = (): JSX.Element => (
+    <Box sx={playGroundStyles}>
+        <Box>
+            <DrawerComponentPreview />
         </Box>
-    );
-};
+        <Box>
+            <DrawerPlayground />
+        </Box>
+    </Box>
+);

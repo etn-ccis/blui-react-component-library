@@ -9,7 +9,7 @@ import {
     updateDrawerFooterProps,
     updateDrawerOtherProps,
 } from '../../../redux/drawerComponent';
-import { propsType, componentType } from '../../../__types__';
+import { PropsType, ComponentType } from '../../../__types__';
 import { RootState } from '../../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -29,17 +29,13 @@ const DrawerPlayground = () => {
     const [alignment, setAlignment] = React.useState('props');
     const dispatch = useAppDispatch();
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
-    const otherProps = drawerJson.filter((entry: componentType) => {
-        return entry.otherProps;
-    });
+    const otherProps = drawerJson.filter((entry: ComponentType) => entry.otherProps);
 
-    const renderDrawerInputs = () => {
-        return drawerJson.map((entry: componentType, index: number) => renderDrawerInput(entry, index));
-    };
+    const renderDrawerInputs = () =>
+        drawerJson.map((entry: ComponentType, index: number) => renderDrawerInput(entry, index));
 
-    const renderDrawerOtherInputs = () => {
-        return otherProps.map((entry: componentType, index: number) => renderDrawerOtherInput(entry, index));
-    };
+    const renderDrawerOtherInputs = () =>
+        otherProps.map((entry: ComponentType, index: number) => renderDrawerOtherInput(entry, index));
 
     const dispatchActions = (componentName: string, newPropState: any) => {
         switch (componentName) {
@@ -72,29 +68,28 @@ const DrawerPlayground = () => {
 
     const updatePropsValue = (
         value: string,
-        props: propsType[],
+        props: PropsType[],
         componentId: string,
         propId: string,
         inputComponent?: string
-    ) => {
-        return inputComponent === 'select'
-            ? props?.map((prop: propsType, id: number) =>
+    ) =>
+        inputComponent === 'select'
+            ? props?.map((prop: PropsType, id: number) =>
                   `${componentId}-${id}` === propId ? { ...prop, defaultValue: value } : prop
               )
-            : props?.map((prop: propsType, id: number) =>
+            : props?.map((prop: PropsType, id: number) =>
                   `${componentId}-${id}` === propId ? { ...prop, inputValue: value } : prop
               );
-    };
 
     const updateProps = (value: any, index: string, componentName: string, inputComponent?: string) => {
-        const component = drawerJson.find((comp: componentType) => comp.componentName === componentName);
+        const component = drawerJson.find((comp: ComponentType) => comp.componentName === componentName);
         if (componentName === 'DrawerNavGroup') {
             const findDrawerNavGroupID = index.slice(index.indexOf(componentName) + componentName.length + 1);
             const drawerNavGroupId = findDrawerNavGroupID.substring(0, componentName.length + 2);
-            const nestedComponent = drawerJson.find((comp: componentType) => comp.id === drawerNavGroupId);
+            const nestedComponent = drawerJson.find((comp: ComponentType) => comp.id === drawerNavGroupId);
             const newDrawerNavGroupProps = updatePropsValue(
                 value,
-                nestedComponent?.props as propsType[],
+                nestedComponent?.props as PropsType[],
                 `${componentName}-${drawerNavGroupId}`,
                 index
             );
@@ -107,10 +102,10 @@ const DrawerPlayground = () => {
         } else if (componentName === 'DrawerNavItem') {
             const findDrawerNavItemID = index.slice(index.indexOf(componentName) + componentName.length + 1);
             const drawerNavItemId = findDrawerNavItemID.substring(0, componentName.length + 2);
-            const nestedComponent = drawerJson.find((comp: componentType) => comp.id === drawerNavItemId);
+            const nestedComponent = drawerJson.find((comp: ComponentType) => comp.id === drawerNavItemId);
             const newDrawerNavItemProps = updatePropsValue(
                 value,
-                nestedComponent?.props as propsType[],
+                nestedComponent?.props as PropsType[],
                 `${componentName}-${drawerNavItemId}`,
                 index
             );
@@ -124,7 +119,7 @@ const DrawerPlayground = () => {
             if (index.indexOf('other') > 0) {
                 const newComponentProp = updatePropsValue(
                     value,
-                    component?.otherProps as propsType[],
+                    component?.otherProps as PropsType[],
                     `${componentName}-other`,
                     index
                 );
@@ -132,7 +127,7 @@ const DrawerPlayground = () => {
             } else {
                 const newComponentProp = updatePropsValue(
                     value,
-                    component?.props as propsType[],
+                    component?.props as PropsType[],
                     `${componentName}`,
                     index,
                     inputComponent
@@ -179,128 +174,106 @@ const DrawerPlayground = () => {
         setAlignment(newAlignment);
     };
 
-    const renderSelect = (prop: propsType, index: string, componentName: string) => {
-        return (
-            <FormControl variant={'filled'} sx={{ width: '100%' }}>
-                <InputLabel>{`${prop.propName}: ${prop.propType}`}</InputLabel>
-                <Select
-                    value={prop.defaultValue as string}
-                    onChange={(event) => handleSelectChange(event, index, componentName, 'select')}
-                >
-                    {Array.isArray(prop.inputValue)
-                        ? prop.inputValue.map((item: any, index: number) => (
-                              <MenuItem key={index} value={item}>
-                                  {item}
-                              </MenuItem>
-                          ))
-                        : undefined}
-                </Select>
-                <FormHelperText>{prop.helperText}</FormHelperText>
-            </FormControl>
-        );
-    };
+    const renderSelect = (prop: PropsType, index: string, componentName: string) => (
+        <FormControl variant={'filled'} sx={{ width: '100%' }}>
+            <InputLabel>{`${prop.propName}: ${prop.propType}`}</InputLabel>
+            <Select
+                value={prop.defaultValue as string}
+                onChange={(event) => handleSelectChange(event, index, componentName, 'select')}
+            >
+                {Array.isArray(prop.inputValue)
+                    ? prop.inputValue.map((item: any, index: number) => (
+                          <MenuItem key={index} value={item}>
+                              {item}
+                          </MenuItem>
+                      ))
+                    : undefined}
+            </Select>
+            <FormHelperText>{prop.helperText}</FormHelperText>
+        </FormControl>
+    );
 
-    const renderBoolean = (prop: propsType, index: string, componentName: string) => {
-        return (
-            <>
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            checked={prop.inputValue as boolean}
-                            name={prop.propName}
-                            color="primary"
-                            onChange={(event) => handleCheckboxChange(event, index, componentName)}
-                        />
-                    }
-                    label={`${prop.propName}: ${prop.propType}`}
-                />
-                <FormHelperText>{prop.helperText}</FormHelperText>
-            </>
-        );
-    };
-
-    const renderTextField = (prop: propsType, index: string, componentName: string) => {
-        return (
-            <DocTextField
-                key={index}
-                sx={{ width: '100%' }}
-                propData={prop}
-                onChange={(event) => handleTextChange(event, index, componentName)}
+    const renderBoolean = (prop: PropsType, index: string, componentName: string) => (
+        <>
+            <FormControlLabel
+                control={
+                    <Checkbox
+                        checked={prop.inputValue as boolean}
+                        name={prop.propName}
+                        color="primary"
+                        onChange={(event) => handleCheckboxChange(event, index, componentName)}
+                    />
+                }
+                label={`${prop.propName}: ${prop.propType}`}
             />
-        );
-    };
+            <FormHelperText>{prop.helperText}</FormHelperText>
+        </>
+    );
 
-    const renderColorInput = (prop: propsType, index: string, componentName: string) => {
-        return (
-            <DocColorField
-                sx={{ width: '100%' }}
-                key={index}
-                propData={prop}
-                onChange={(event) => handleColorInputChange(event, index, componentName)}
-            />
-        );
-    };
+    const renderTextField = (prop: PropsType, index: string, componentName: string) => (
+        <DocTextField
+            key={index}
+            sx={{ width: '100%' }}
+            propData={prop}
+            onChange={(event) => handleTextChange(event, index, componentName)}
+        />
+    );
 
-    const blockTitle = (componentName: string): JSX.Element => {
-        return (
-            <Typography display={'block'} variant={'overline'} color={'primary'}>
-                {componentName}
-            </Typography>
-        );
-    };
+    const renderColorInput = (prop: PropsType, index: string, componentName: string) => (
+        <DocColorField
+            sx={{ width: '100%' }}
+            key={index}
+            propData={prop}
+            onChange={(event) => handleColorInputChange(event, index, componentName)}
+        />
+    );
+
+    const blockTitle = (componentName: string): JSX.Element => (
+        <Typography display={'block'} variant={'overline'} color={'primary'}>
+            {componentName}
+        </Typography>
+    );
 
     const propBlockForNestedComponent = (
         componentName: string,
-        prop: propsType,
+        prop: PropsType,
         index: number,
         id: string
-    ): JSX.Element => {
-        return <Box key={`${id}-${index}`}>{propBlock(componentName, prop, `${id}-${index}`)}</Box>;
-    };
+    ): JSX.Element => <Box key={`${id}-${index}`}>{propBlock(componentName, prop, `${id}-${index}`)}</Box>;
 
-    const propBlock = (componentName: string, prop: propsType, index: number | string): JSX.Element => {
-        return (
-            <Box key={`${componentName}-${index}`}>
-                {prop.inputType === 'select'
-                    ? renderSelect(prop, `${componentName}-${index}`, componentName)
-                    : undefined}
-                {prop.inputType === 'boolean'
-                    ? renderBoolean(prop, `${componentName}-${index}`, componentName)
-                    : undefined}
-                {prop.inputType === 'string'
-                    ? renderTextField(prop, `${componentName}-${index}`, componentName)
-                    : undefined}
-                {prop.inputType === 'colorPicker'
-                    ? renderColorInput(prop, `${componentName}-${index}`, componentName)
-                    : undefined}
-            </Box>
-        );
-    };
+    const propBlock = (componentName: string, prop: PropsType, index: number | string): JSX.Element => (
+        <Box key={`${componentName}-${index}`}>
+            {prop.inputType === 'select' ? renderSelect(prop, `${componentName}-${index}`, componentName) : undefined}
+            {prop.inputType === 'boolean' ? renderBoolean(prop, `${componentName}-${index}`, componentName) : undefined}
+            {prop.inputType === 'string'
+                ? renderTextField(prop, `${componentName}-${index}`, componentName)
+                : undefined}
+            {prop.inputType === 'colorPicker'
+                ? renderColorInput(prop, `${componentName}-${index}`, componentName)
+                : undefined}
+        </Box>
+    );
 
-    const renderDrawerInput = (entry: componentType, index: number) => {
-        return (
-            <Box key={index}>
-                {blockTitle(entry.componentName)}
-                {entry.id
-                    ? entry.props?.map((prop: propsType, index: number) =>
-                          propBlockForNestedComponent(entry.componentName, prop, index, entry.id as string)
-                      )
-                    : entry.props?.map((prop: propsType, index: number) => propBlock(entry.componentName, prop, index))}
-            </Box>
-        );
-    };
+    const renderDrawerInput = (entry: ComponentType, index: number) => (
+        <Box key={index}>
+            {blockTitle(entry.componentName)}
+            {entry.id
+                ? entry.props?.map((prop: PropsType, index: number) =>
+                      propBlockForNestedComponent(entry.componentName, prop, index, entry.id as string)
+                  )
+                : entry.props?.map((prop: PropsType, index: number) => propBlock(entry.componentName, prop, index))}
+        </Box>
+    );
 
-    const renderDrawerOtherInput = (entry: componentType, index: number) => {
-        return (
-            <Box key={index}>
-                {blockTitle(entry.componentName)}
-                {entry.otherProps &&
-                    entry.otherProps?.map((prop: propsType, index: number) =>
-                        propBlock(entry.componentName, prop, `other-${index}`)
-                    )}
-            </Box>
-        );
-    };
+    const renderDrawerOtherInput = (entry: ComponentType, index: number) => (
+        <Box key={index}>
+            {blockTitle(entry.componentName)}
+            {entry.otherProps &&
+                entry.otherProps?.map((prop: PropsType, index: number) =>
+                    propBlock(entry.componentName, prop, `other-${index}`)
+                )}
+        </Box>
+    );
 
     const drawerKnobs = () => (
         <Box sx={{ width: 375, p: 2 }} role="presentation">

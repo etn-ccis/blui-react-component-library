@@ -1,9 +1,9 @@
 import React from 'react';
 import { TextField as MuiTextField, TextFieldProps as MuiTextFieldProps } from '@mui/material';
-import { propsType } from '../__types__';
+import { PropsType } from '../__types__';
 
 type TextFieldProps = MuiTextFieldProps & {
-    propData: propsType;
+    propData: PropsType;
 };
 
 export const DocTextField = (props: TextFieldProps): JSX.Element => {

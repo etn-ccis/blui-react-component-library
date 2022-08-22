@@ -7,11 +7,11 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Theme, useTheme } from '@mui/material/styles';
 import { DRAWER_WIDTH } from '../shared';
 
-interface TabPanelProps {
+type TabPanelProps = {
     children?: React.ReactNode;
     index: number;
     value: number;
-}
+};
 
 const hidePlaygroudTabs = ['drawer-layout'];
 const docsTabs = ['examples', 'api-docs', 'playground'];
@@ -46,15 +46,14 @@ function a11yProps(index: number) {
 function getNumber(location: string, docsTabs: string[]) {
     const pathname = docsTabs.includes(location.split('/')[4]) ? location.split('/')[4] : location.split('/')[3];
     if (!pathname) return 0;
-    else {
-        switch (pathname) {
-            case 'api-docs':
-                return 1;
-            case 'playground':
-                return 2;
-            default:
-                return 0;
-        }
+
+    switch (pathname) {
+        case 'api-docs':
+            return 1;
+        case 'playground':
+            return 2;
+        default:
+            return 0;
     }
 }
 
