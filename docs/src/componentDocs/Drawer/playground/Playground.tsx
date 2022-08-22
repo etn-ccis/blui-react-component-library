@@ -1,14 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {
-    updateDrawerProps,
-    updateDrawerHeaderProps,
-    updateDrawerBodyProps,
-    updateDrawerNavGroupProps,
-    updateDrawerNavItemProps,
-    updateDrawerFooterProps,
-    updateDrawerOtherProps,
-} from '../../../redux/drawerComponent';
+import { updateDrawerProps, updateDrawerOtherProps } from '../../../redux/drawerComponent';
 import { PropsType, ComponentType } from '../../../__types__';
 import { RootState } from '../../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
@@ -35,21 +27,6 @@ const DrawerPlayground = (): JSX.Element => {
         switch (componentName) {
             case 'Drawer':
                 dispatch(updateDrawerProps(newPropState));
-                break;
-            case 'DrawerHeader':
-                dispatch(updateDrawerHeaderProps(newPropState));
-                break;
-            case 'DrawerBody':
-                dispatch(updateDrawerBodyProps(newPropState));
-                break;
-            case 'DrawerNavGroup':
-                dispatch(updateDrawerNavGroupProps(newPropState));
-                break;
-            case 'DrawerNavItem':
-                dispatch(updateDrawerNavItemProps(newPropState));
-                break;
-            case 'DrawerFooter':
-                dispatch(updateDrawerFooterProps(newPropState));
                 break;
             case 'OtherProps':
                 dispatch(updateDrawerOtherProps(newPropState));
@@ -243,23 +220,12 @@ const DrawerPlayground = (): JSX.Element => {
         </Box>
     );
 
-    const propBlockForNestedComponent = (
-        componentName: string,
-        prop: PropsType,
-        index: number,
-        id: string
-    ): JSX.Element => <Box key={`${id}-${index}`}>{propBlock(componentName, prop, `${id}-${index}`)}</Box>;
-
     const renderDrawerInput = (entry: ComponentType, index: number): JSX.Element => (
         <Box key={index}>
             {blockTitle(entry.componentName)}
-            {entry.id
-                ? entry.props?.map((prop: PropsType, nestedIndex: number) =>
-                      propBlockForNestedComponent(entry.componentName, prop, nestedIndex, entry.id as string)
-                  )
-                : entry.props?.map((prop: PropsType, nestedIndex: number) =>
-                      propBlock(entry.componentName, prop, nestedIndex)
-                  )}
+            {entry.props?.map((prop: PropsType, nestedIndex: number) =>
+                propBlock(entry.componentName, prop, nestedIndex)
+            )}
         </Box>
     );
 

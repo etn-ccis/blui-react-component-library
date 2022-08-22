@@ -5,17 +5,26 @@ import { useAppSelector } from '../../../redux/hooks';
 import {
     Drawer,
     DrawerBody,
-    DrawerBodyProps,
     DrawerFooter,
     DrawerHeader,
-    DrawerHeaderProps,
     DrawerNavGroup,
     DrawerNavItem,
     DrawerProps,
 } from '@brightlayer-ui/react-components';
 import { ComponentType, PropsType } from '../../../__types__';
 import EatonFooterLogoLight from '../../../assets/EatonLogoLight.png';
+import * as Colors from '@brightlayer-ui/colors';
 import Typography from '@mui/material/Typography';
+import {
+    Accessibility,
+    Devices,
+    PinDrop,
+    Menu,
+    MoveToInbox,
+    Send,
+    Toc,
+    NotificationsActive,
+} from '@mui/icons-material';
 
 export const DrawerComponentPreview = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
@@ -41,68 +50,50 @@ export const DrawerComponentPreview = (): JSX.Element => {
         return iterateComponentProps(component?.otherProps as PropsType[]);
     };
 
-    const createNavItemProps = (drawerNavItemComponent: any): any => {
-        const navItemProps: any[] = [];
-        drawerNavItemComponent.forEach((component1: ComponentType) => {
-            navItemProps.push(iterateComponentProps(component1?.props as PropsType[]));
-        });
-        return navItemProps;
-    };
-
-    const createNavGroupProps = (navGroupPropsJson: ComponentType[], componentName: string): any[] => {
-        const component = navGroupPropsJson.filter((obj: ComponentType) => obj.componentName === componentName);
-        const navGroupProps: any[] = [];
-        component.forEach((navItem: ComponentType) => {
-            const drawerNavItemComponent = navGroupPropsJson.filter(
-                (obj: ComponentType) => obj.parentId === navItem.id
-            );
-            navGroupProps.push(
-                iterateComponentProps(navItem?.props as PropsType[]),
-                createNavItemProps(drawerNavItemComponent)
-            );
-        });
-        return navGroupProps;
-    };
     const drawerProps: DrawerProps = createProps(drawerJson, 'Drawer');
-    const drawerHeaderProps: DrawerHeaderProps = createProps(drawerJson, 'DrawerHeader');
-    const drawerBodyProps: DrawerBodyProps = createProps(drawerJson, 'DrawerBody');
-    const drawerNavGroupProps = createNavGroupProps(drawerJson, 'DrawerNavGroup');
-    const drawerFooterProps = createProps(drawerJson, 'DrawerFooter');
-    const drawerOtherFooterProps = createOtherProps(drawerJson, 'DrawerFooter');
+    const drawerOtherFooterProps = createOtherProps(drawerJson, 'Drawer');
     return (
         <>
             <Box style={{ width: '300px' }}>
                 <Drawer open={drawerProps.open} noLayout={drawerProps.noLayout} variant={drawerProps.variant}>
                     <DrawerHeader
-                        title={drawerHeaderProps.title}
-                        backgroundColor={drawerHeaderProps.backgroundColor}
-                        divider={drawerHeaderProps.divider}
+                        backgroundColor={Colors.blue[500]}
+                        divider={false}
+                        fontColor={Colors.white[50]}
+                        icon={<Menu />}
+                        subtitle={'Organize your menu items here'}
+                        title={'Brightlayer UI Drawer'}
                     ></DrawerHeader>
-                    <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={drawerBodyProps.backgroundColor}>
-                        {drawerNavGroupProps.map((navGroup: any, index: number) => (
-                            <DrawerNavGroup
-                                key={index}
-                                titleColor={navGroup.titleColor}
-                                titleDivider={navGroup.titleDivider}
-                                title={navGroup.title}
-                            >
-                                {navGroup.length > 0
-                                    ? navGroup.map((item: any, id: number) => (
-                                          <DrawerNavItem
-                                              key={id}
-                                              itemID={item.itemId}
-                                              title={item.title}
-                                          ></DrawerNavItem>
-                                      ))
-                                    : undefined}
-                            </DrawerNavGroup>
-                        ))}
+                    <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
+                        <DrawerNavGroup title={'NavGroup 1'} titleColor={Colors.black[500]} titleDivider={true}>
+                            <DrawerNavItem icon={<Toc />} itemID={'Timeline'} title={'Timeline'} />
+                            <DrawerNavItem icon={<PinDrop />} itemID={'Locations'} title={'Locations'} />
+                            <DrawerNavItem
+                                icon={<Devices />}
+                                title={'Devices'}
+                                itemID={'Devices'}
+                                subtitle={'5 new warnings'}
+                                statusColor={Colors.yellow[500]}
+                            />
+                        </DrawerNavGroup>
+                        <DrawerNavGroup title={'NavGroup 2'} titleColor={Colors.black[500]} titleDivider={true}>
+                            <DrawerNavItem icon={<MoveToInbox />} itemID={'User Guide'} title={'User Guide'} />
+                            <DrawerNavItem
+                                icon={<Send />}
+                                itemID={'License Agreement'}
+                                title={'License Agreement'}
+                                subtitle={'For Eaton employees only'}
+                            />
+                            <DrawerNavItem icon={<Accessibility />} itemID={'Accessibility'} title={'Accessibility'} />
+                            <DrawerNavItem
+                                icon={<NotificationsActive />}
+                                title={'Notifications'}
+                                itemID={'Notifications'}
+                            />
+                        </DrawerNavGroup>
                     </DrawerBody>
                     {drawerOtherFooterProps.showFooter && (
-                        <DrawerFooter
-                            backgroundColor={drawerFooterProps.backgroundColor}
-                            hideContentOnCollapse={drawerFooterProps.hideContentOnCollapse}
-                        >
+                        <DrawerFooter backgroundColor={'Colors.white[50]'}>
                             <div
                                 style={{
                                     display: 'flex',
