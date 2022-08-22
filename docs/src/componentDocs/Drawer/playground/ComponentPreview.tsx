@@ -19,7 +19,7 @@ import Typography from '@mui/material/Typography';
 
 export const DrawerComponentPreview = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
-    
+
     const iterateComponentProps = (props: PropsType[]): any => {
         const componentProps = props?.reduce(
             (acc: any, cur: any) => ({
@@ -53,7 +53,9 @@ export const DrawerComponentPreview = (): JSX.Element => {
         const component = navGroupPropsJson.filter((obj: ComponentType) => obj.componentName === componentName);
         const navGroupProps: any[] = [];
         component.forEach((navItem: ComponentType) => {
-            const drawerNavItemComponent = navGroupPropsJson.filter((obj: ComponentType) => obj.parentId === navItem.id);
+            const drawerNavItemComponent = navGroupPropsJson.filter(
+                (obj: ComponentType) => obj.parentId === navItem.id
+            );
             navGroupProps.push(
                 iterateComponentProps(navItem?.props as PropsType[]),
                 createNavItemProps(drawerNavItemComponent)
