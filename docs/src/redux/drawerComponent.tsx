@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import drawerTypes, { componentType, propsType } from '../data/DrawerTypes';
-interface DrawerState {
-    drawerComponent: componentType[];
-}
+import drawerTypes from '../componentDocs/Drawer/playground/DrawerTypes';
+import { PropsType, ComponentType } from '../__types__';
+type DrawerState = {
+    drawerComponent: ComponentType[];
+};
 const initialState: DrawerState = {
     drawerComponent: drawerTypes,
 };
@@ -10,19 +11,19 @@ export const drawerSlice = createSlice({
     name: 'drawerComponent',
     initialState: initialState,
     reducers: {
-        updateDrawerProps: (state, action: PayloadAction<Array<propsType>>) => {
+        updateDrawerProps: (state, action: PayloadAction<PropsType[]>) => {
             const newArray = [...state.drawerComponent];
             const drawerIndex = newArray.findIndex((drawerData) => drawerData.componentName === 'Drawer');
             newArray[drawerIndex].props = action.payload;
             state.drawerComponent = newArray;
         },
-        updateDrawerHeaderProps: (state, action: PayloadAction<Array<propsType>>) => {
+        updateDrawerHeaderProps: (state, action: PayloadAction<PropsType[]>) => {
             const newArray = [...state.drawerComponent];
             const drawerIndex = newArray.findIndex((drawerData) => drawerData.componentName === 'DrawerHeader');
             newArray[drawerIndex].props = action.payload;
             state.drawerComponent = newArray;
         },
-        updateDrawerBodyProps: (state, action: PayloadAction<Array<propsType>>) => {
+        updateDrawerBodyProps: (state, action: PayloadAction<PropsType[]>) => {
             const newArray = [...state.drawerComponent];
             const drawerIndex = newArray.findIndex((drawerData) => drawerData.componentName === 'DrawerBody');
             newArray[drawerIndex].props = action.payload;
@@ -40,13 +41,13 @@ export const drawerSlice = createSlice({
             newArray[drawerIndex].props = action.payload['props'];
             state.drawerComponent = newArray;
         },
-        updateDrawerFooterProps: (state, action: PayloadAction<Array<propsType>>) => {
+        updateDrawerFooterProps: (state, action: PayloadAction<PropsType[]>) => {
             const newArray = [...state.drawerComponent];
             const drawerIndex = newArray.findIndex((drawerData) => drawerData.componentName === 'DrawerFooter');
             newArray[drawerIndex].props = action.payload;
             state.drawerComponent = newArray;
         },
-        updateDrawerOtherProps: (state, action: PayloadAction<Array<propsType>>) => {
+        updateDrawerOtherProps: (state, action: PayloadAction<PropsType[]>) => {
             const newArray = [...state.drawerComponent];
             const drawerIndex = newArray.findIndex((drawerData) => drawerData.componentName === 'DrawerFooter');
             newArray[drawerIndex].otherProps = action.payload;

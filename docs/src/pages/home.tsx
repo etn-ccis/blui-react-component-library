@@ -14,7 +14,7 @@ import {
 import createStyles from '@mui/styles/createStyles';
 import makeStyles from '@mui/styles/makeStyles';
 import MenuIcon from '@mui/icons-material/Menu';
-import { BluiSVG } from '../components/Logo';
+import { BluiSVG } from '../shared';
 import { useDrawer } from '../contexts/drawerContextProvider';
 
 const useStyles = makeStyles((theme: Theme) =>
