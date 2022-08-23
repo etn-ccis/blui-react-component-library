@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React, { HTMLAttributes } from 'react';
 import { Typography, TypographyProps, SvgIconProps, Box, TableProps } from '@mui/material';
 import { Link, LinkProps } from 'react-router-dom';
