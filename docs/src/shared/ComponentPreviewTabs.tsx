@@ -47,8 +47,8 @@ const tabPanelContentStyles: any = {
     flexDirection: 'column',
     height: '100%',
     minHeight: (theme: Theme) => `calc(100vh - ${theme.spacing(8)})`,
-    maxWidth: '980px',
-    m: '0px auto',
+    // maxWidth: '980px',
+    // m: '0px auto',
 };
 
 const outletContainerStyles = {
