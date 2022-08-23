@@ -51,12 +51,13 @@ export const DrawerComponentPreview = (): JSX.Element => {
     };
 
     const drawerProps: DrawerProps = createProps(drawerJson, 'Drawer');
-    const drawerOtherFooterProps = createOtherProps(drawerJson, 'Drawer');
+    const drawerOtherProps = createOtherProps(drawerJson, 'Drawer');
     return (
         <>
             <Box style={{ width: '300px' }}>
                 <Drawer
                     activeItem={drawerProps.activeItem}
+                    activeItemBackgroundColor={drawerOtherProps.activeItemBackgroundColor}
                     condensed={drawerProps.condensed}
                     noLayout={drawerProps.noLayout}
                     open={drawerProps.open}
@@ -102,27 +103,25 @@ export const DrawerComponentPreview = (): JSX.Element => {
                             />
                         </DrawerNavGroup>
                     </DrawerBody>
-                    {drawerOtherFooterProps.showFooter && (
-                        <DrawerFooter backgroundColor={'Colors.white[50]'}>
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    flexDirection: 'row',
-                                    padding: 16,
-                                }}
-                            >
-                                <img src={EatonFooterLogoLight} alt="Eaton Logo" height={28} width={'auto'} />
-                                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                                    <Typography
-                                        variant={'caption'}
-                                    >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
-                                    <Typography variant={'caption'}>All Rights Reserved</Typography>
-                                </div>
+                    <DrawerFooter backgroundColor={Colors.white[50]}>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                flexDirection: 'row',
+                                padding: 16,
+                            }}
+                        >
+                            <img src={EatonFooterLogoLight} alt="Eaton Logo" height={28} width={'auto'} />
+                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                <Typography
+                                    variant={'caption'}
+                                >{`Copyright \u00A9 Eaton ${new Date().getFullYear()}`}</Typography>
+                                <Typography variant={'caption'}>All Rights Reserved</Typography>
                             </div>
-                        </DrawerFooter>
-                    )}
+                        </div>
+                    </DrawerFooter>
                 </Drawer>
             </Box>
         </>

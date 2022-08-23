@@ -1,4 +1,5 @@
 import { ComponentType } from '../../../__types__';
+import { sharedPropsTypes } from '../../../shared/data/SharedPropsTypes';
 
 export const drawerTypes: ComponentType[] = [
     {
@@ -88,16 +89,7 @@ export const drawerTypes: ComponentType[] = [
                 required: false,
             },
         ],
-        otherProps: [
-            {
-                propName: 'showFooter',
-                inputType: 'boolean',
-                inputValue: true,
-                propType: 'boolean',
-                helperText: 'Show / Hide footer',
-                required: false,
-            },
-        ],
+        otherProps: sharedPropsTypes,
     },
 ];
 
