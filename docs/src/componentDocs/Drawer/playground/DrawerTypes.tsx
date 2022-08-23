@@ -1,4 +1,4 @@
-import { ComponentType } from '../../../../__types__';
+import { ComponentType } from '../../../__types__';
 
 export const drawerTypes: ComponentType[] = [
     {
