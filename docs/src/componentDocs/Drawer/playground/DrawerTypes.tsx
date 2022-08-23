@@ -1,5 +1,5 @@
-import { ComponentType } from '../../../../__types__';
-import { sharedPropsTypes } from '../../../../shared/data/SharedPropsTypes';
+import { ComponentType } from '../../../__types__';
+import { sharedPropsTypes } from '../../../shared/data/SharedPropsTypes';
 
 export const drawerTypes: ComponentType[] = [
     {
