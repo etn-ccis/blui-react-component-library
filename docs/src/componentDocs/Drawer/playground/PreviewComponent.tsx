@@ -17,7 +17,7 @@ import { ComponentType, PropsType } from '../../../__types__';
 import EatonFooterLogoLight from '../../../assets/EatonLogoLight.png';
 import Typography from '@mui/material/Typography';
 
-export const DrawerComponentPreview = (): JSX.Element => {
+export const PreviewComponent = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
 
     const iterateComponentProps = (props: PropsType[]): any => {

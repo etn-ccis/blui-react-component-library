@@ -25,7 +25,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import { DocTextField, DocColorField } from '../../../shared';
 import PlaygroundDrawer from '../../../shared/PlaygroundDrawer';
 
-const DrawerPlayground = (): JSX.Element => {
+const PropsPlayground = (): JSX.Element => {
     const [alignment, setAlignment] = React.useState('props');
     const dispatch = useAppDispatch();
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
@@ -318,4 +318,4 @@ const DrawerPlayground = (): JSX.Element => {
     );
 };
 
-export default DrawerPlayground;
+export default PropsPlayground;
