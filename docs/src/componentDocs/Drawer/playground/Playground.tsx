@@ -16,6 +16,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import { DocTextField, DocColorField } from '../../../shared';
 import PlaygroundDrawer from '../../../shared/PlaygroundDrawer';
+import Slider from '@mui/material/Slider';
 
 const DrawerPlayground = (): JSX.Element => {
     const [alignment, setAlignment] = React.useState('props');
@@ -54,57 +55,23 @@ const DrawerPlayground = (): JSX.Element => {
 
     const updateProps = (value: any, index: string, componentName: string, inputComponent?: string): void => {
         const component = drawerJson.find((comp: ComponentType) => comp.componentName === componentName);
-        if (componentName === 'DrawerNavGroup') {
-            const findDrawerNavGroupID = index.slice(index.indexOf(componentName) + componentName.length + 1);
-            const drawerNavGroupId = findDrawerNavGroupID.substring(0, componentName.length + 2);
-            const nestedComponent = drawerJson.find((comp: ComponentType) => comp.id === drawerNavGroupId);
-            const newDrawerNavGroupProps = updatePropsValue(
+        if (index.indexOf('other') > 0) {
+            const newComponentProp = updatePropsValue(
                 value,
-                nestedComponent?.props as PropsType[],
-                `${componentName}-${drawerNavGroupId}`,
+                component?.otherProps as PropsType[],
+                `${componentName}-other`,
                 index
             );
-            let updateNavGroup: any = {};
-            updateNavGroup = {
-                props: newDrawerNavGroupProps,
-                id: drawerNavGroupId,
-            };
-            dispatchActions(componentName, updateNavGroup);
-        } else if (componentName === 'DrawerNavItem') {
-            const findDrawerNavItemID = index.slice(index.indexOf(componentName) + componentName.length + 1);
-            const drawerNavItemId = findDrawerNavItemID.substring(0, componentName.length + 2);
-            const nestedComponent = drawerJson.find((comp: ComponentType) => comp.id === drawerNavItemId);
-            const newDrawerNavItemProps = updatePropsValue(
-                value,
-                nestedComponent?.props as PropsType[],
-                `${componentName}-${drawerNavItemId}`,
-                index
-            );
-            let updateNavItem: any = {};
-            updateNavItem = {
-                props: newDrawerNavItemProps,
-                id: drawerNavItemId,
-            };
-            dispatchActions(componentName, updateNavItem);
+            dispatchActions('OtherProps', newComponentProp);
         } else {
-            if (index.indexOf('other') > 0) {
-                const newComponentProp = updatePropsValue(
-                    value,
-                    component?.otherProps as PropsType[],
-                    `${componentName}-other`,
-                    index
-                );
-                dispatchActions('OtherProps', newComponentProp);
-            } else {
-                const newComponentProp = updatePropsValue(
-                    value,
-                    component?.props as PropsType[],
-                    `${componentName}`,
-                    index,
-                    inputComponent
-                );
-                dispatchActions(componentName, newComponentProp);
-            }
+            const newComponentProp = updatePropsValue(
+                value,
+                component?.props as PropsType[],
+                `${componentName}`,
+                index,
+                inputComponent
+            );
+            dispatchActions(componentName, newComponentProp);
         }
     };
 
@@ -115,6 +82,10 @@ const DrawerPlayground = (): JSX.Element => {
         inputComponent: string
     ): void => {
         updateProps(String(event.target.value), index, componentName, inputComponent);
+    };
+
+    const handleSliderChange = (newValue: number | number[], index: string, componentName: string): void => {
+        updateProps(newValue, index, componentName);
     };
 
     const handleCheckboxChange = (
@@ -189,6 +160,22 @@ const DrawerPlayground = (): JSX.Element => {
         </>
     );
 
+    const renderSlider = (prop: PropsType, index: string, componentName: string): JSX.Element => (
+        <>
+            <Typography component="span">{`${prop.propName}: ${prop.propType}`}</Typography>
+            <Slider
+                value={prop.inputValue as number}
+                valueLabelDisplay="on"
+                step={prop.inputSets?.step}
+                marks
+                min={prop.inputSets?.min}
+                max={prop.inputSets?.max}
+                onChange={(event, value): void => handleSliderChange(value, index, componentName)}
+            />
+            <FormHelperText>{prop.helperText}</FormHelperText>
+        </>
+    );
+
     const renderTextField = (prop: PropsType, index: string, componentName: string): JSX.Element => (
         <DocTextField
             key={index}
@@ -217,6 +204,7 @@ const DrawerPlayground = (): JSX.Element => {
             {prop.inputType === 'colorPicker'
                 ? renderColorInput(prop, `${componentName}-${index}`, componentName)
                 : undefined}
+            {prop.inputType === 'number' ? renderSlider(prop, `${componentName}-${index}`, componentName) : undefined}
         </Box>
     );
 

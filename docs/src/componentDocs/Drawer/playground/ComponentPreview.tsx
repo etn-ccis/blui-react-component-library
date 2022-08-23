@@ -55,7 +55,17 @@ export const DrawerComponentPreview = (): JSX.Element => {
     return (
         <>
             <Box style={{ width: '300px' }}>
-                <Drawer open={drawerProps.open} noLayout={drawerProps.noLayout} variant={drawerProps.variant}>
+                <Drawer
+                    activeItem={drawerProps.activeItem}
+                    condensed={drawerProps.condensed}
+                    noLayout={drawerProps.noLayout}
+                    open={drawerProps.open}
+                    openOnHover={drawerProps.openOnHover}
+                    openOnHoverDelay={drawerProps.openOnHoverDelay}
+                    sideBorder={drawerProps.sideBorder}
+                    variant={drawerProps.variant}
+                    width={drawerProps.width}
+                >
                     <DrawerHeader
                         backgroundColor={Colors.blue[500]}
                         divider={false}

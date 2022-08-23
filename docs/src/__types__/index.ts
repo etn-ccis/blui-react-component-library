@@ -1,7 +1,14 @@
+export type SliderInputType = {
+    min: number;
+    max: number;
+    step: number;
+};
+
 export type PropsType = {
     propName: string;
     inputType: string;
-    inputValue: boolean | string | string[] | [];
+    inputValue: boolean | number | string | string[] | [];
+    inputSets?: SliderInputType;
     defaultValue?: string;
     propType: string;
     helperText: string;
