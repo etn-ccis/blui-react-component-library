@@ -26,7 +26,7 @@ import {
     NotificationsActive,
 } from '@mui/icons-material';
 
-export const DrawerComponentPreview = (): JSX.Element => {
+export const PreviewComponent = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
 
     const iterateComponentProps = (props: PropsType[]): any => {

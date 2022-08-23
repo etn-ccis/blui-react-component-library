@@ -1,19 +1,24 @@
 import React from 'react';
 import { HomePage, ComponentPreviewPage } from '../../pages';
 import { DummyComponent, DummyDocsComponent, DummyExamplesComponent } from '../../componentDocs/DummyDataForComponent';
-import DrawerNavGroupMarkdown from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroup.mdx';
-import DrawerMarkdown from '../../componentDocs/Drawer/markdown/Drawer.mdx';
-import DrawerHeaderMarkdown from '../../componentDocs/DrawerHeader/markdown/DrawerHeader.mdx';
-import DrawerFooterMarkdown from '../../componentDocs/DrawerFooter/markdown/DrawerFooter.mdx';
-import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
-import DrawerBodyMarkdown from '../../componentDocs/DrawerBody/markdown/DrawerBody.mdx';
-import DrawerRailItemMarkdown from '../../componentDocs/DrawerRailItem/markdown/DrawerRailItem.mdx';
-import DrawerNavItemMarkdown from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItem.mdx';
-import DrawerLayoutMarkdown from '../../componentDocs/DrawerLayout/markdown/DrawerLayout.mdx';
-import DrawerSubheaderMarkdown from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheader.mdx';
-import ChannelValueMarkdown from '../../componentDocs/ChannelValue/markdown/ChannelValue.mdx';
-import EmptyStateMarkdown from '../../componentDocs/EmptyState/markdown/EmptyState.mdx';
 
+// API Docs markdown
+import DrawerNavGroupAPIDocs from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupAPIDocs.mdx';
+import DrawerAPIDocs from '../../componentDocs/Drawer/markdown/DrawerAPIDocs.mdx';
+import DrawerHeaderAPIDocs from '../../componentDocs/DrawerHeader/markdown/DrawerHeaderAPIDocs.mdx';
+import DrawerFooterAPIDocs from '../../componentDocs/DrawerFooter/markdown/DrawerFooterAPIDocs.mdx';
+import DrawerBodyAPIDocs from '../../componentDocs/DrawerBody/markdown/DrawerBodyAPIDocs.mdx';
+import DrawerRailItemAPIDocs from '../../componentDocs/DrawerRailItem/markdown/DrawerRailItemAPIDocs.mdx';
+import DrawerNavItemAPIDocs from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemAPIDocs.mdx';
+import DrawerLayoutAPIDocs from '../../componentDocs/DrawerLayout/markdown/DrawerLayoutAPIDocs.mdx';
+import DrawerSubheaderAPIDocs from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheaderAPIDocs.mdx';
+import ChannelValueAPIDocs from '../../componentDocs/ChannelValue/markdown/ChannelValueAPIDocs.mdx';
+import EmptyStateAPIDocs from '../../componentDocs/EmptyState/markdown/EmptyStateAPIDocs.mdx';
+
+// Examples markdown
+import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
+
+// Components playground components
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 
 export type SimpleNavItem = {
@@ -79,7 +84,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <ChannelValueMarkdown />,
+                        component: <ChannelValueAPIDocs />,
                     },
                     {
                         title: 'Playground',
@@ -105,7 +110,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerMarkdown />,
+                                component: <DrawerAPIDocs />,
                             },
                             {
                                 title: 'Playground',
@@ -127,7 +132,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerHeaderMarkdown />,
+                                component: <DrawerHeaderAPIDocs />,
                             },
                             {
                                 title: 'Playground',
@@ -149,7 +154,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerSubheaderMarkdown />,
+                                component: <DrawerSubheaderAPIDocs />,
                             },
                             {
                                 title: 'Playground',
@@ -171,7 +176,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerFooterMarkdown />,
+                                component: <DrawerFooterAPIDocs />,
                             },
                             {
                                 title: 'Playground',
@@ -193,7 +198,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerBodyMarkdown />,
+                                component: <DrawerBodyAPIDocs />,
                             },
                             {
                                 title: 'Playground',
@@ -215,7 +220,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerNavItemMarkdown />,
+                                component: <DrawerNavItemAPIDocs />,
                             },
                             {
                                 title: 'Playground',
@@ -237,7 +242,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerNavGroupMarkdown />,
+                                component: <DrawerNavGroupAPIDocs />,
                             },
                             {
                                 title: 'Playground',
@@ -259,7 +264,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerLayoutMarkdown />,
+                                component: <DrawerLayoutAPIDocs />,
                             },
                         ],
                     },
@@ -276,7 +281,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerRailItemMarkdown />,
+                                component: <DrawerRailItemAPIDocs />,
                             },
                             {
                                 title: 'Playground',
@@ -300,7 +305,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <EmptyStateMarkdown />,
+                        component: <EmptyStateAPIDocs />,
                     },
                     {
                         title: 'Playground',

@@ -1,3 +1,2 @@
-export * from './DocsComponent';
-export * from './PlaygrounPage';
-export * from './ComponentPreview';
+export * from './PlaygroundPage';
+export * from './PreviewComponent';
