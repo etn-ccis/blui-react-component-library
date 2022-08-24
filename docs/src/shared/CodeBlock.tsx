@@ -12,7 +12,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
     const { code, language, dataLine, ...divProps } = props;
     useEffect(() => {
         Prism.highlightAll();
-    }, []);
+    }, [code]);
     return (
         <Box
             sx={{

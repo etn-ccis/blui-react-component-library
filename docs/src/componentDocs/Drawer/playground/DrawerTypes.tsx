@@ -14,7 +14,7 @@ export const drawerTypes: ComponentType[] = [
                 required: false,
             },
             {
-                propName: 'condensed (rail only)',
+                propName: 'condensed',
                 inputType: 'boolean',
                 inputValue: false,
                 propType: 'boolean',

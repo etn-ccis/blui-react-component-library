@@ -1,3 +1,5 @@
+import { Add, AddAPhoto, PinDrop, Remove } from '@mui/icons-material';
+
 export const getSnakeCase = (str: string): string => str.replace(/[A-Z]/g, '_$&').toLowerCase().slice(1);
 
 export const getKebabCase = (str: string): string => str.replace(/[A-Z]/g, '-$&').toLowerCase().slice(1);
@@ -35,3 +37,19 @@ export const getHash = (str: string): string =>
         .replace(/ /g, '-')
         .replace(/[#?/&]/g, '')
         .toLowerCase();
+
+export const getIcon = (icon: string): JSX.Element | undefined => {
+    switch (icon) {
+        case '<Add />':
+            return <Add />;
+        case '<PinDrop />':
+            return <PinDrop />;
+        case '<Remove />':
+            return <Remove />;
+        case '<AddAPhoto />':
+            return <AddAPhoto />;
+        case 'undefined':
+        default:
+            return undefined;
+    }
+};

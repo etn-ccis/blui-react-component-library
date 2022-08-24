@@ -52,6 +52,14 @@ export const sharedPropsTypes: PropsType[] = [
         required: false,
     },
     {
+        propName: 'chevronColor',
+        inputType: 'colorPicker',
+        inputValue: Colors.gray[500],
+        propType: 'string',
+        helperText: 'Color override for the chevron icon',
+        required: false,
+    },
+    {
         propName: 'collapseIcon',
         inputType: 'select',
         inputValue: ['undefined', '<Remove />', '<AddAPhoto />'],

@@ -60,7 +60,8 @@ const PropsPlayground = (): JSX.Element => {
                 value,
                 component?.otherProps as PropsType[],
                 `${componentName}-other`,
-                index
+                index,
+                inputComponent
             );
             dispatchActions('OtherProps', newComponentProp);
         } else {
