@@ -1,4 +1,4 @@
-export type SliderInputType = {
+export type RangeDataTypes = {
     min: number;
     max: number;
     step: number;
@@ -8,11 +8,11 @@ export type PropsType = {
     propName: string;
     inputType: string;
     inputValue: boolean | number | string | string[] | [];
-    inputSets?: SliderInputType;
     defaultValue?: string;
     propType: string;
     helperText: string;
     required: boolean;
+    rangeData?: RangeDataTypes;
 };
 
 export type ComponentType = {

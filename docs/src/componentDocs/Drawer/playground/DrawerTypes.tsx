@@ -49,14 +49,14 @@ export const drawerTypes: ComponentType[] = [
                 propName: 'openOnHoverDelay',
                 inputType: 'number',
                 inputValue: 500,
-                inputSets: {
+                propType: 'number',
+                helperText: 'Delay (ms) before triggering open on hover (persistent variant only)',
+                required: false,
+                rangeData: {
                     min: 100,
                     max: 1000,
                     step: 100,
                 },
-                propType: 'number',
-                helperText: 'Delay (ms) before triggering open on hover (persistent variant only)',
-                required: false,
             },
             {
                 propName: 'sideBorder',
@@ -79,14 +79,14 @@ export const drawerTypes: ComponentType[] = [
                 propName: 'width',
                 inputType: 'number',
                 inputValue: 350,
-                inputSets: {
+                propType: 'number | string',
+                helperText: 'Sets the width of the drawer when open. Default value is 22.5rem (360px)',
+                required: false,
+                rangeData: {
                     min: 200,
                     max: 700,
                     step: 50,
                 },
-                propType: 'number | string',
-                helperText: 'Sets the width of the drawer when open. Default value is 22.5rem (360px)',
-                required: false,
             },
         ],
         otherProps: sharedPropsTypes,

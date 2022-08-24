@@ -256,7 +256,7 @@ export const PreviewComponent = (): JSX.Element => {
                         pt: 1,
                     }}
                 >
-                    <CodeBlock code={jsx} language="jsx" dataLine="1-27" />
+                    <CodeBlock code={jsx} language="jsx" />
                 </Box>
             </Box>
         </>

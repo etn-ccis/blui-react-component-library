@@ -167,10 +167,10 @@ const PropsPlayground = (): JSX.Element => {
             <Slider
                 value={prop.inputValue as number}
                 valueLabelDisplay="on"
-                step={prop.inputSets?.step}
+                step={prop.rangeData?.step}
                 marks
-                min={prop.inputSets?.min}
-                max={prop.inputSets?.max}
+                min={prop.rangeData?.min}
+                max={prop.rangeData?.max}
                 onChange={(event, value): void => handleSliderChange(value, index, componentName)}
             />
             <FormHelperText>{prop.helperText}</FormHelperText>

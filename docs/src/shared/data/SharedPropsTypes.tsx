@@ -36,14 +36,6 @@ export const sharedPropsTypes: PropsType[] = [
         required: false,
     },
     {
-        propName: 'backgroundColor',
-        inputType: 'colorPicker',
-        inputValue: Colors.white[50],
-        propType: 'string',
-        helperText: 'Color used for the background of the element',
-        required: false,
-    },
-    {
         propName: 'chevron',
         inputType: 'boolean',
         inputValue: false,
