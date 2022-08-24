@@ -76,7 +76,7 @@ export const PreviewComponent = (): JSX.Element => {
     noLayout={${drawerProps.noLayout}}
     open={${drawerProps.open}}
     openOnHover={${drawerProps.openOnHover}}
-    openOnHoverDelay={"${drawerProps.openOnHoverDelay}"}
+    openOnHoverDelay={${drawerProps.openOnHoverDelay}}
     ripple={${drawerOtherProps.ripple}}
     sideBorder={${drawerProps.sideBorder}}
     variant={"${drawerProps.variant}"}
