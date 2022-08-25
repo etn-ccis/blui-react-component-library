@@ -17,6 +17,7 @@ import EmptyStateAPIDocs from '../../componentDocs/EmptyState/markdown/EmptyStat
 
 // Examples markdown
 import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
+import DrawerFooterExamples from '../../componentDocs/DrawerFooter/markdown/DrawerFooterExamples.mdx';
 
 // Components playground components
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
@@ -171,7 +172,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DummyExamplesComponent />,
+                                component: <DrawerFooterExamples />,
                             },
                             {
                                 title: 'API Docs',
