@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import drawerComponentReducer from './drawerComponent';
+import drawerHeaderComponentReducer from './drawerHeaderComponent';
 
 export const store = configureStore({
     reducer: {
         drawerComponentData: drawerComponentReducer,
+        drawerHeaderComponentData: drawerHeaderComponentReducer,
     },
 });
 
