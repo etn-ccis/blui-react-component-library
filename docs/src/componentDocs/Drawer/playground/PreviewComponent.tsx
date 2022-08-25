@@ -97,7 +97,7 @@ export const PreviewComponent = (): JSX.Element => {
         subtitle={'Organize your menu items here'}
         title={'Brightlayer UI Drawer'}
     />
-    <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
+    <DrawerBody>
         <DrawerNavGroup title={'NavGroup 1'} titleColor={Colors.black[500]} titleDivider={true}>
             <DrawerNavItem
                 icon={<Toc />}
