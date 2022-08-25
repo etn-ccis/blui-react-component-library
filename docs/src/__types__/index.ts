@@ -13,6 +13,7 @@ export type PropsType = {
     helperText: string;
     required: boolean;
     rangeData?: RangeDataTypes;
+    disable?: boolean;
 };
 
 export type ComponentType = {

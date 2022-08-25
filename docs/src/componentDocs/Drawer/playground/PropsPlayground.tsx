@@ -153,6 +153,7 @@ const PropsPlayground = (): JSX.Element => {
                         name={prop.propName}
                         color="primary"
                         onChange={(event): void => handleCheckboxChange(event, index, componentName)}
+                        disabled={prop.disable}
                     />
                 }
                 label={`${prop.propName}: ${prop.propType}`}
