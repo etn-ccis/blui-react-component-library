@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { CodeBlock, CopyToClipboard } from '../../../shared';
+import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
 import { SpacingNavGroupsExample } from './SpacingNavGroupsExample';
 
 const codeSnippet = `<Drawer>
@@ -21,7 +21,10 @@ const codeSnippet = `<Drawer>
 export const SpacingNavGroups = (): JSX.Element => (
     <Box>
         <SpacingNavGroupsExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-12" />
-        <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-12" />{' '}
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
+            <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/DrawerNavGroup/examples/SpacingNavGroupsExample.tsx" />
+        </Box>
     </Box>
 );

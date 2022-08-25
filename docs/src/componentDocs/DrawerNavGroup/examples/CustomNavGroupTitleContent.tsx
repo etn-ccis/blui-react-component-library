@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { CodeBlock, CopyToClipboard } from '../../../shared';
+import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
 import { CustomNavGroupTitleContentExample } from './CustomNavGroupTitleContentExample';
 
 const codeSnippet = `<Drawer>
@@ -24,6 +24,12 @@ export const CustomNavGroupTitleContent = (): JSX.Element => (
     <Box>
         <CustomNavGroupTitleContentExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="3-13" />
-        <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
+            <FullCodeOnGithub
+                sx={{ ml: 2 }}
+                url="componentDocs/DrawerNavGroup/examples/CustomNavGroupTitleContentExample.tsx"
+            />
+        </Box>
     </Box>
 );
