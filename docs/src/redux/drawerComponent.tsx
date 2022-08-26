@@ -23,9 +23,16 @@ export const drawerSlice = createSlice({
             newArray[drawerIndex].otherProps = action.payload;
             state.drawerComponent = newArray;
         },
+        updateActiveItemProp: (state, action: PayloadAction<string>) => {
+            const newArray = [...state.drawerComponent];
+            const activeItemProp = newArray[0]?.props?.filter((todo) => todo.propName === 'activeItem');
+            if (activeItemProp) {
+                activeItemProp[0].inputValue = action.payload;
+            }
+        },
     },
 });
 
-export const { updateDrawerProps, updateDrawerOtherProps } = drawerSlice.actions;
+export const { updateDrawerProps, updateDrawerOtherProps, updateActiveItemProp } = drawerSlice.actions;
 
 export default drawerSlice.reducer;

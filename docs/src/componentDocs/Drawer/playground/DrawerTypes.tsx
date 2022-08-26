@@ -26,8 +26,9 @@ export const drawerTypes: ComponentType[] = [
                 inputType: 'boolean',
                 inputValue: true,
                 propType: 'boolean',
-                helperText: 'Set to true if used without a <DrawerLayout>',
+                helperText: 'Set to true if used without a <DrawerLayout>. Default value is false',
                 required: false,
+                disable: true,
             },
             {
                 propName: 'open',

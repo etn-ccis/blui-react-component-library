@@ -2,7 +2,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { RootState } from '../../../redux/store';
-import { useAppSelector } from '../../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import {
     Drawer,
     DrawerBody,
@@ -28,9 +28,11 @@ import {
 } from '@mui/icons-material';
 import { CodeBlock } from '../../../shared/CodeBlock';
 import { getIcon } from '../../../shared/utilities';
+import { updateActiveItemProp } from '../../../redux/drawerComponent';
 
 export const PreviewComponent = (): JSX.Element => {
     const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
+    const dispatch = useAppDispatch();
 
     const iterateComponentProps = (props: PropsType[]): any => {
         const componentProps = props?.reduce(
@@ -53,6 +55,10 @@ export const PreviewComponent = (): JSX.Element => {
         return iterateComponentProps(component?.otherProps as PropsType[]);
     };
 
+    const updateActiveItem = (activeItem: string): void => {
+        dispatch(updateActiveItemProp(activeItem));
+    };
+
     const drawerProps: DrawerProps = createProps(drawerJson, 'Drawer');
     const drawerOtherProps = createOtherProps(drawerJson, 'Drawer');
 
@@ -66,6 +72,7 @@ export const PreviewComponent = (): JSX.Element => {
     chevronColor={"${drawerOtherProps.chevronColor}"}
     collapseIcon={${drawerOtherProps.collapseIcon}}
     condensed={${drawerProps.condensed}}
+    disableActiveItemParentStyles={${drawerOtherProps.disableActiveItemParentStyles}}
     divider={${drawerOtherProps.divider}}
     expandIcon={${drawerOtherProps.expandIcon}}
     hidePadding={${drawerOtherProps.hidePadding}}
@@ -90,34 +97,47 @@ export const PreviewComponent = (): JSX.Element => {
         subtitle={'Organize your menu items here'}
         title={'Brightlayer UI Drawer'}
     />
-    <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
+    <DrawerBody>
         <DrawerNavGroup title={'NavGroup 1'} titleColor={Colors.black[500]} titleDivider={true}>
-            <DrawerNavItem icon={<Toc />} itemID={'Timeline'} title={'Timeline'} />
-            <DrawerNavItem icon={<PinDrop />} itemID={'Locations'} title={'Locations'} />
+            <DrawerNavItem
+                icon={<Toc />}
+                itemID={'Timeline'}
+                title={'Timeline'}
+                onClick={(): void => updateActiveItem('Timeline')}
+            />
+            <DrawerNavItem icon={<PinDrop />} itemID={'Locations'} title={'Locations'} onClick={(): void => updateActiveItem('Locations')}/>
             <DrawerNavItem
                 icon={<Devices />}
                 title={'Devices'}
                 itemID={'Devices'}
                 subtitle={'5 new warnings'}
                 statusColor={Colors.yellow[500]}
+                onClick={(): void => updateActiveItem('Devices')}
             />
         </DrawerNavGroup>
         <DrawerNavGroup title={'NavGroup 2'} titleColor={Colors.black[500]} titleDivider={true}>
-            <DrawerNavItem icon={<MoveToInbox />} itemID={'User Guide'} title={'User Guide'} />
+            <DrawerNavItem icon={<MoveToInbox />} itemID={'User Guide'} title={'User Guide'} onClick={(): void => updateActiveItem('User Guide')} />
             <DrawerNavItem
                 icon={<Send />}
                 itemID={'License Agreement'}
                 title={'License Agreement'}
                 subtitle={'For Eaton employees only'}
+                onClick={(): void => updateActiveItem('License Agreement')}
             />
-            <DrawerNavItem icon={<Accessibility />} itemID={'Accessibility'} title={'Accessibility'}>
-                <DrawerNavItem itemID={'Color Contrast Guide'} title={'Color Contrast Guide'} />
-                <DrawerNavItem itemID={'Screen Reader'} title={'Screen Reader'} />
+            <DrawerNavItem
+                icon={<Accessibility />}
+                itemID={'Accessibility'}
+                title={'Accessibility'}
+                onClick={(): void => updateActiveItem('Accessibility')}
+            >
+                <DrawerNavItem itemID={'Color Contrast Guide'} title={'Color Contrast Guide'} onClick={(): void => updateActiveItem('Color Contrast Guide')} />
+                <DrawerNavItem itemID={'Screen Reader'} title={'Screen Reader'} onClick={(): void => updateActiveItem('Screen Reader')}/>
             </DrawerNavItem>
             <DrawerNavItem
                 icon={<NotificationsActive />}
                 title={'Notifications'}
                 itemID={'Notifications'}
+                onClick={(): void => updateActiveItem('Notifications')}
             />
         </DrawerNavGroup>
     </DrawerBody>
@@ -169,6 +189,7 @@ export const PreviewComponent = (): JSX.Element => {
                         chevronColor={drawerOtherProps.chevronColor}
                         collapseIcon={getIcon(drawerOtherProps.collapseIcon)}
                         condensed={drawerProps.condensed}
+                        disableActiveItemParentStyles={drawerOtherProps.disableActiveItemParentStyles}
                         divider={drawerOtherProps.divider}
                         expandIcon={getIcon(drawerOtherProps.expandIcon)}
                         hidePadding={drawerOtherProps.hidePadding}
@@ -180,7 +201,7 @@ export const PreviewComponent = (): JSX.Element => {
                         open={drawerProps.open}
                         openOnHover={drawerProps.openOnHover}
                         openOnHoverDelay={drawerProps.openOnHoverDelay}
-                        ripple={drawerProps.ripple}
+                        ripple={drawerOtherProps.ripple}
                         sideBorder={drawerProps.sideBorder}
                         variant={drawerProps.variant}
                         width={drawerProps.width}
@@ -195,36 +216,63 @@ export const PreviewComponent = (): JSX.Element => {
                         />
                         <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
                             <DrawerNavGroup title={'NavGroup 1'} titleColor={Colors.black[500]} titleDivider={true}>
-                                <DrawerNavItem icon={<Toc />} itemID={'Timeline'} title={'Timeline'} />
-                                <DrawerNavItem icon={<PinDrop />} itemID={'Locations'} title={'Locations'} />
+                                <DrawerNavItem
+                                    icon={<Toc />}
+                                    itemID={'Timeline'}
+                                    title={'Timeline'}
+                                    onClick={(): void => updateActiveItem('Timeline')}
+                                />
+                                <DrawerNavItem
+                                    icon={<PinDrop />}
+                                    itemID={'Locations'}
+                                    title={'Locations'}
+                                    onClick={(): void => updateActiveItem('Locations')}
+                                />
                                 <DrawerNavItem
                                     icon={<Devices />}
                                     title={'Devices'}
                                     itemID={'Devices'}
                                     subtitle={'5 new warnings'}
                                     statusColor={Colors.yellow[500]}
+                                    onClick={(): void => updateActiveItem('Devices')}
                                 />
                             </DrawerNavGroup>
                             <DrawerNavGroup title={'NavGroup 2'} titleColor={Colors.black[500]} titleDivider={true}>
-                                <DrawerNavItem icon={<MoveToInbox />} itemID={'User Guide'} title={'User Guide'} />
+                                <DrawerNavItem
+                                    icon={<MoveToInbox />}
+                                    itemID={'User Guide'}
+                                    title={'User Guide'}
+                                    onClick={(): void => updateActiveItem('User Guide')}
+                                />
                                 <DrawerNavItem
                                     icon={<Send />}
                                     itemID={'License Agreement'}
                                     title={'License Agreement'}
                                     subtitle={'For Eaton employees only'}
+                                    onClick={(): void => updateActiveItem('License Agreement')}
                                 />
                                 <DrawerNavItem
                                     icon={<Accessibility />}
                                     itemID={'Accessibility'}
                                     title={'Accessibility'}
+                                    onClick={(): void => updateActiveItem('Accessibility')}
                                 >
-                                    <DrawerNavItem itemID={'Color Contrast Guide'} title={'Color Contrast Guide'} />
-                                    <DrawerNavItem itemID={'Screen Reader'} title={'Screen Reader'} />
+                                    <DrawerNavItem
+                                        itemID={'Color Contrast Guide'}
+                                        title={'Color Contrast Guide'}
+                                        onClick={(): void => updateActiveItem('Color Contrast Guide')}
+                                    />
+                                    <DrawerNavItem
+                                        itemID={'Screen Reader'}
+                                        title={'Screen Reader'}
+                                        onClick={(): void => updateActiveItem('Screen Reader')}
+                                    />
                                 </DrawerNavItem>
                                 <DrawerNavItem
                                     icon={<NotificationsActive />}
                                     title={'Notifications'}
                                     itemID={'Notifications'}
+                                    onClick={(): void => updateActiveItem('Notifications')}
                                 />
                             </DrawerNavGroup>
                         </DrawerBody>
@@ -253,7 +301,8 @@ export const PreviewComponent = (): JSX.Element => {
                     sx={{
                         overflow: 'auto',
                         boxSizing: 'border-box',
-                        pt: 1,
+                        mt: 2,
+                        height: 450,
                     }}
                 >
                     <CodeBlock code={jsx} language="jsx" />
