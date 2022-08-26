@@ -6,7 +6,7 @@ export type RangeDataTypes = {
 
 export type PropsType = {
     propName: string;
-    inputType: string;
+    inputType: 'boolean' | 'colorPicker' | 'select' | 'string' | 'number';
     inputValue: boolean | number | string | string[] | [];
     defaultValue?: string;
     propType: string;

@@ -1,4 +1,10 @@
-import { Add, AddAPhoto, PinDrop, Remove } from '@mui/icons-material';
+import Add from '@mui/icons-material/Add';
+import AddAPhoto from '@mui/icons-material/AddAPhoto';
+import FitnessCenter from '@mui/icons-material/FitnessCenter';
+import Menu from '@mui/icons-material/Menu';
+import PinDrop from '@mui/icons-material/PinDrop';
+import Remove from '@mui/icons-material/Remove';
+import { ComponentType } from '../__types__';
 
 export const getSnakeCase = (str: string): string => str.replace(/[A-Z]/g, '_$&').toLowerCase().slice(1);
 
@@ -42,14 +48,29 @@ export const getIcon = (icon: string): JSX.Element | undefined => {
     switch (icon) {
         case '<Add />':
             return <Add />;
+        case '<AddAPhoto />':
+            return <AddAPhoto />;
+        case 'FitnessCenter':
+            return <FitnessCenter />;
+        case '<Menu />':
+            return <Menu />;
         case '<PinDrop />':
             return <PinDrop />;
         case '<Remove />':
             return <Remove />;
-        case '<AddAPhoto />':
-            return <AddAPhoto />;
         case 'undefined':
         default:
             return undefined;
     }
+};
+
+export const createProps = (componentData: ComponentType[]): any => {
+    const componentProps = componentData[0].props?.reduce(
+        (acc: any, cur: any) => ({
+            ...acc,
+            [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
+        }),
+        {}
+    );
+    return componentProps;
 };

@@ -25,7 +25,7 @@ export const drawerSlice = createSlice({
         },
         updateActiveItemProp: (state, action: PayloadAction<string>) => {
             const newArray = [...state.drawerComponent];
-            const activeItemProp = newArray[0]?.props?.filter((todo) => todo.propName === 'activeItem');
+            const activeItemProp = newArray[0]?.props?.filter((prop) => prop.propName === 'activeItem');
             if (activeItemProp) {
                 activeItemProp[0].inputValue = action.payload;
             }

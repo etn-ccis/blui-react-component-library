@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import drawerHeaderTypes from '../componentDocs/DrawerHeader/playground/DrawerTypes';
+import drawerHeaderTypes from '../componentDocs/DrawerHeader/playground/DrawerHeaderTypes';
 import { PropsType, ComponentType } from '../__types__';
 type DrawerState = {
     drawerHeaderComponent: ComponentType[];

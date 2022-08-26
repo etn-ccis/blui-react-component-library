@@ -1,56 +1,42 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Box } from '@mui/material';
 import { RootState } from '../../../redux/store';
 import { useAppSelector } from '../../../redux/hooks';
-import {
-    DrawerHeader,
-    DrawerProps,
-} from '@brightlayer-ui/react-components';
-import { ComponentType, PropsType } from '../../../__types__';
-import EatonFooterLogoLight from '../../../assets/EatonLogoLight.png';
-import * as Colors from '@brightlayer-ui/colors';
-import Typography from '@mui/material/Typography';
-import {
-    Accessibility,
-    Devices,
-    PinDrop,
-    Menu,
-    MoveToInbox,
-    Send,
-    Toc,
-    NotificationsActive,
-} from '@mui/icons-material';
+import { DrawerHeader } from '@brightlayer-ui/react-components';
 import { CodeBlock } from '../../../shared/CodeBlock';
-import { getIcon } from '../../../shared/utilities';
+import { createProps, getIcon } from '../../../shared/utilities';
+const topologyBgImage = require('../images/topology_40.png');
+const farmBgImage = require('../images/farm.jpg');
 
 export const PreviewComponent = (): JSX.Element => {
-    const drawerHeaderJson = useAppSelector((state: RootState) => state.drawerHeaderComponentData.drawerHeaderComponent);
+    const drawerHeaderJson = useAppSelector(
+        (state: RootState) => state.drawerHeaderComponentData.drawerHeaderComponent
+    );
+    const drawerHeaderProps = createProps(drawerHeaderJson);
 
-    const iterateComponentProps = (props: PropsType[]): any => {
-        const componentProps = props?.reduce(
-            (acc: any, cur: any) => ({
-                ...acc,
-                [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
-            }),
-            {}
-        );
-        return componentProps;
+    const getImage = (image: string): string => {
+        switch (image) {
+            case 'Pattern':
+                return topologyBgImage;
+            case 'Farm':
+                return farmBgImage;
+            case 'undefined':
+                return 'undefined';
+            default:
+                return 'undefined';
+        }
     };
 
-    const createProps = (drawerProps: ComponentType[], componentName: string): any => {
-        const component = drawerProps.filter((obj: ComponentType) => obj.componentName === componentName)[0];
-        return iterateComponentProps(component?.props as PropsType[]);
-    };
-
-    const createOtherProps = (drawerOtherProps: ComponentType[], componentName: string): any => {
-        const component = drawerOtherProps.filter((obj: ComponentType) => obj.componentName === componentName)[0];
-        return iterateComponentProps(component?.otherProps as PropsType[]);
-    };
-
-    const drawerProps: DrawerProps = createProps(drawerHeaderJson, 'DrawerHeader');
-
-    const jsx = `hello`;
+    const jsx = `<DrawerHeader
+    backgroundColor={"${drawerHeaderProps.backgroundColor}"}
+    backgroundImage={"${getImage(drawerHeaderProps.backgroundImage)}"}
+    backgroundOpacity={${drawerHeaderProps.backgroundOpacity}}
+    divider={${drawerHeaderProps.divider}}
+    fontColor={"${drawerHeaderProps.fontColor}"}
+    icon={${drawerHeaderProps.icon}}
+    subtitle={"${drawerHeaderProps.subtitle}"}
+    title={"${drawerHeaderProps.title}"}>
+</DrawerHeader>`;
 
     return (
         <>
@@ -69,14 +55,18 @@ export const PreviewComponent = (): JSX.Element => {
                         alignItems: 'center',
                     }}
                 >
-                    <DrawerHeader
-                        backgroundColor={Colors.blue[500]}
-                        divider={false}
-                        fontColor={Colors.white[50]}
-                        icon={<Menu />}
-                        subtitle={'Organize your menu items here'}
-                        title={'Brightlayer UI Drawer'}
-                    />
+                    <Box sx={{ width: 300 }}>
+                        <DrawerHeader
+                            backgroundColor={drawerHeaderProps.backgroundColor}
+                            backgroundImage={getImage(drawerHeaderProps.backgroundImage)}
+                            backgroundOpacity={drawerHeaderProps.backgroundOpacity}
+                            divider={drawerHeaderProps.divider}
+                            fontColor={drawerHeaderProps.fontColor}
+                            icon={getIcon(drawerHeaderProps.icon)}
+                            subtitle={drawerHeaderProps.subtitle}
+                            title={drawerHeaderProps.title}
+                        />
+                    </Box>
                 </Box>
                 <Box
                     sx={{

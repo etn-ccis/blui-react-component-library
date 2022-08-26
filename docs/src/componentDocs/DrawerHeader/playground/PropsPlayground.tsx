@@ -12,17 +12,15 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import ToggleButton from '@mui/material/ToggleButton';
 import { DocTextField, DocColorField } from '../../../shared';
 import PlaygroundDrawer from '../../../shared/PlaygroundDrawer';
 import Slider from '@mui/material/Slider';
 
 const PropsPlayground = (): JSX.Element => {
-    const [alignment, setAlignment] = React.useState('props');
     const dispatch = useAppDispatch();
-    const drawerJson = useAppSelector((state: RootState) => state.drawerComponentData.drawerComponent);
-    const otherProps = drawerJson.filter((entry: ComponentType) => entry.otherProps);
+    const drawerHeaderJson = useAppSelector(
+        (state: RootState) => state.drawerHeaderComponentData.drawerHeaderComponent
+    );
 
     const dispatchActions = (componentName: string, newPropState: any): void => {
         switch (componentName) {
@@ -54,7 +52,7 @@ const PropsPlayground = (): JSX.Element => {
               );
 
     const updateProps = (value: any, index: string, componentName: string, inputComponent?: string): void => {
-        const component = drawerJson.find((comp: ComponentType) => comp.componentName === componentName);
+        const component = drawerHeaderJson.find((comp: ComponentType) => comp.componentName === componentName);
         if (index.indexOf('other') > 0) {
             const newComponentProp = updatePropsValue(
                 value,
@@ -111,10 +109,6 @@ const PropsPlayground = (): JSX.Element => {
         componentName: string
     ): void => {
         updateProps(String(event.target.value), index, componentName);
-    };
-
-    const handleToggleBtnChange = (event: React.MouseEvent<HTMLElement>, newAlignment: string): void => {
-        setAlignment(newAlignment);
     };
 
     const blockTitle = (componentName: string): JSX.Element => (
@@ -218,59 +212,16 @@ const PropsPlayground = (): JSX.Element => {
         </Box>
     );
 
-    const renderDrawerOtherInput = (entry: ComponentType, index: number): JSX.Element => (
-        <Box key={index}>
-            {blockTitle(entry.componentName)}
-            {entry.otherProps &&
-                entry.otherProps?.map((prop: PropsType, otherPropId: number) =>
-                    propBlock(entry.componentName, prop, `other-${otherPropId}`)
-                )}
-        </Box>
-    );
-
     const renderDrawerInputs = (): JSX.Element[] =>
-        drawerJson.map((entry: ComponentType, index: number) => renderDrawerInput(entry, index));
+        drawerHeaderJson.map((entry: ComponentType, index: number) => renderDrawerInput(entry, index));
 
-    const renderDrawerOtherInputs = (): JSX.Element[] =>
-        otherProps.map((entry: ComponentType, index: number) => renderDrawerOtherInput(entry, index));
-
-    const drawerKnobs = (): JSX.Element => (
+    const drawerHeaderKnobs = (): JSX.Element => (
         <Box sx={{ width: 375, p: 2 }} role="presentation">
             <Box>{renderDrawerInputs()}</Box>
         </Box>
     );
 
-    const otherKnobs = (): JSX.Element => (
-        <Box sx={{ width: 375, p: 2 }} role="presentation">
-            <Box>{renderDrawerOtherInputs()}</Box>
-        </Box>
-    );
-
-    return (
-        <PlaygroundDrawer
-            drawerContent={
-                <Box>
-                    <ToggleButtonGroup
-                        color="primary"
-                        value={alignment}
-                        exclusive
-                        onChange={handleToggleBtnChange}
-                        sx={{
-                            p: '16px 16px 0',
-                            width: '100%',
-                            '& .MuiButtonBase-root': {
-                                width: '50%',
-                            },
-                        }}
-                    >
-                        <ToggleButton value="props">Props</ToggleButton>
-                        <ToggleButton value="other">Other</ToggleButton>
-                    </ToggleButtonGroup>
-                    {alignment === 'props' ? drawerKnobs() : otherKnobs()}
-                </Box>
-            }
-        />
-    );
+    return <PlaygroundDrawer drawerContent={<Box>{drawerHeaderKnobs()}</Box>} />;
 };
 
 export default PropsPlayground;
