@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, FormHelperText, Typography } from '@mui/material';
 import { Drawer, DrawerBody, DrawerFooter, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
 import EatonFooterLogoLight from '../images/EatonLogoLight.png';
@@ -17,13 +17,13 @@ export const ComplexDrawerFooterExample = (): JSX.Element => (
             <DrawerFooter sx={{ p: 2 }}>
                 <Box sx={{ mb: 1 }}>
                     <Box>
-                        <Typography variant="caption">v2.4.0</Typography>
+                        <FormHelperText>v2.4.0</FormHelperText>
                     </Box>
                     <Box>
-                        <Typography variant="caption">10:33:05 03/12/22</Typography>
+                        <FormHelperText>10:33:05 03/12/22</FormHelperText>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 1 }}>
-                        <Box component="img" src={EatonFooterLogoLight} />
+                        <Box sx={{ width: 83 }} component="img" src={EatonFooterLogoLight} />
                         <Box>
                             <Typography sx={{ display: 'block' }} variant="caption">
                                 Copyright © Eaton
