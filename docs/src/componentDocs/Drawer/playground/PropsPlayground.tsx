@@ -1,14 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {
-    updateDrawerProps,
-    updateDrawerHeaderProps,
-    updateDrawerBodyProps,
-    updateDrawerNavGroupProps,
-    updateDrawerNavItemProps,
-    updateDrawerFooterProps,
-    updateDrawerOtherProps,
-} from '../../../redux/drawerComponent';
+import { updateDrawerProps, updateDrawerOtherProps } from '../../../redux/drawerComponent';
 import { PropsType, ComponentType } from '../../../__types__';
 import { RootState } from '../../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
@@ -24,6 +16,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import { DocTextField, DocColorField } from '../../../shared';
 import PlaygroundDrawer from '../../../shared/PlaygroundDrawer';
+import Slider from '@mui/material/Slider';
 
 const PropsPlayground = (): JSX.Element => {
     const [alignment, setAlignment] = React.useState('props');
@@ -35,21 +28,6 @@ const PropsPlayground = (): JSX.Element => {
         switch (componentName) {
             case 'Drawer':
                 dispatch(updateDrawerProps(newPropState));
-                break;
-            case 'DrawerHeader':
-                dispatch(updateDrawerHeaderProps(newPropState));
-                break;
-            case 'DrawerBody':
-                dispatch(updateDrawerBodyProps(newPropState));
-                break;
-            case 'DrawerNavGroup':
-                dispatch(updateDrawerNavGroupProps(newPropState));
-                break;
-            case 'DrawerNavItem':
-                dispatch(updateDrawerNavItemProps(newPropState));
-                break;
-            case 'DrawerFooter':
-                dispatch(updateDrawerFooterProps(newPropState));
                 break;
             case 'OtherProps':
                 dispatch(updateDrawerOtherProps(newPropState));
@@ -77,57 +55,24 @@ const PropsPlayground = (): JSX.Element => {
 
     const updateProps = (value: any, index: string, componentName: string, inputComponent?: string): void => {
         const component = drawerJson.find((comp: ComponentType) => comp.componentName === componentName);
-        if (componentName === 'DrawerNavGroup') {
-            const findDrawerNavGroupID = index.slice(index.indexOf(componentName) + componentName.length + 1);
-            const drawerNavGroupId = findDrawerNavGroupID.substring(0, componentName.length + 2);
-            const nestedComponent = drawerJson.find((comp: ComponentType) => comp.id === drawerNavGroupId);
-            const newDrawerNavGroupProps = updatePropsValue(
+        if (index.indexOf('other') > 0) {
+            const newComponentProp = updatePropsValue(
                 value,
-                nestedComponent?.props as PropsType[],
-                `${componentName}-${drawerNavGroupId}`,
-                index
+                component?.otherProps as PropsType[],
+                `${componentName}-other`,
+                index,
+                inputComponent
             );
-            let updateNavGroup: any = {};
-            updateNavGroup = {
-                props: newDrawerNavGroupProps,
-                id: drawerNavGroupId,
-            };
-            dispatchActions(componentName, updateNavGroup);
-        } else if (componentName === 'DrawerNavItem') {
-            const findDrawerNavItemID = index.slice(index.indexOf(componentName) + componentName.length + 1);
-            const drawerNavItemId = findDrawerNavItemID.substring(0, componentName.length + 2);
-            const nestedComponent = drawerJson.find((comp: ComponentType) => comp.id === drawerNavItemId);
-            const newDrawerNavItemProps = updatePropsValue(
-                value,
-                nestedComponent?.props as PropsType[],
-                `${componentName}-${drawerNavItemId}`,
-                index
-            );
-            let updateNavItem: any = {};
-            updateNavItem = {
-                props: newDrawerNavItemProps,
-                id: drawerNavItemId,
-            };
-            dispatchActions(componentName, updateNavItem);
+            dispatchActions('OtherProps', newComponentProp);
         } else {
-            if (index.indexOf('other') > 0) {
-                const newComponentProp = updatePropsValue(
-                    value,
-                    component?.otherProps as PropsType[],
-                    `${componentName}-other`,
-                    index
-                );
-                dispatchActions('OtherProps', newComponentProp);
-            } else {
-                const newComponentProp = updatePropsValue(
-                    value,
-                    component?.props as PropsType[],
-                    `${componentName}`,
-                    index,
-                    inputComponent
-                );
-                dispatchActions(componentName, newComponentProp);
-            }
+            const newComponentProp = updatePropsValue(
+                value,
+                component?.props as PropsType[],
+                `${componentName}`,
+                index,
+                inputComponent
+            );
+            dispatchActions(componentName, newComponentProp);
         }
     };
 
@@ -138,6 +83,10 @@ const PropsPlayground = (): JSX.Element => {
         inputComponent: string
     ): void => {
         updateProps(String(event.target.value), index, componentName, inputComponent);
+    };
+
+    const handleSliderChange = (newValue: number | number[], index: string, componentName: string): void => {
+        updateProps(newValue, index, componentName);
     };
 
     const handleCheckboxChange = (
@@ -204,9 +153,26 @@ const PropsPlayground = (): JSX.Element => {
                         name={prop.propName}
                         color="primary"
                         onChange={(event): void => handleCheckboxChange(event, index, componentName)}
+                        disabled={prop.disable}
                     />
                 }
                 label={`${prop.propName}: ${prop.propType}`}
+            />
+            <FormHelperText>{prop.helperText}</FormHelperText>
+        </>
+    );
+
+    const renderSlider = (prop: PropsType, index: string, componentName: string): JSX.Element => (
+        <>
+            <Typography component="span">{`${prop.propName}: ${prop.propType}`}</Typography>
+            <Slider
+                value={prop.inputValue as number}
+                valueLabelDisplay="on"
+                step={prop.rangeData?.step}
+                marks
+                min={prop.rangeData?.min}
+                max={prop.rangeData?.max}
+                onChange={(event, value): void => handleSliderChange(value, index, componentName)}
             />
             <FormHelperText>{prop.helperText}</FormHelperText>
         </>
@@ -240,26 +206,16 @@ const PropsPlayground = (): JSX.Element => {
             {prop.inputType === 'colorPicker'
                 ? renderColorInput(prop, `${componentName}-${index}`, componentName)
                 : undefined}
+            {prop.inputType === 'number' ? renderSlider(prop, `${componentName}-${index}`, componentName) : undefined}
         </Box>
     );
-
-    const propBlockForNestedComponent = (
-        componentName: string,
-        prop: PropsType,
-        index: number,
-        id: string
-    ): JSX.Element => <Box key={`${id}-${index}`}>{propBlock(componentName, prop, `${id}-${index}`)}</Box>;
 
     const renderDrawerInput = (entry: ComponentType, index: number): JSX.Element => (
         <Box key={index}>
             {blockTitle(entry.componentName)}
-            {entry.id
-                ? entry.props?.map((prop: PropsType, nestedIndex: number) =>
-                      propBlockForNestedComponent(entry.componentName, prop, nestedIndex, entry.id as string)
-                  )
-                : entry.props?.map((prop: PropsType, nestedIndex: number) =>
-                      propBlock(entry.componentName, prop, nestedIndex)
-                  )}
+            {entry.props?.map((prop: PropsType, nestedIndex: number) =>
+                propBlock(entry.componentName, prop, nestedIndex)
+            )}
         </Box>
     );
 
