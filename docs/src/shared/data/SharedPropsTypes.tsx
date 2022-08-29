@@ -13,8 +13,8 @@ export const sharedPropsTypes: PropsType[] = [
     {
         propName: 'activeItemBackgroundShape',
         inputType: 'select',
-        inputValue: ['round', 'square'],
-        defaultValue: 'square',
+        inputValue: 'square',
+        options: ['round', 'square'],
         propType: 'string',
         helperText: 'Shape of the active item background highlight',
         required: false,
@@ -54,8 +54,8 @@ export const sharedPropsTypes: PropsType[] = [
     {
         propName: 'collapseIcon',
         inputType: 'select',
-        inputValue: ['undefined', '<Remove />', '<AddAPhoto />'],
-        defaultValue: 'undefined',
+        inputValue: 'undefined',
+        options: ['undefined', '<Remove />', '<AddAPhoto />'],
         propType: 'JSX.Element',
         helperText: 'Icon used to collapse drawer',
         required: false,
@@ -79,8 +79,8 @@ export const sharedPropsTypes: PropsType[] = [
     {
         propName: 'expandIcon',
         inputType: 'select',
-        inputValue: ['undefined', '<Add />', '<PinDrop />'],
-        defaultValue: 'undefined',
+        inputValue: 'undefined',
+        options: ['undefined', '<Add />', '<PinDrop />'],
         propType: 'JSX.Element',
         helperText: 'Icon used to expand drawer',
         required: false,

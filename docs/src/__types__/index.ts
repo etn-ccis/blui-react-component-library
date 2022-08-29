@@ -4,11 +4,18 @@ export type RangeDataTypes = {
     step: number;
 };
 
+export type PayloadType = {
+    propName: string;
+    propValue: boolean | number | string | string[] | [];
+    componentName: string;
+    groupType: string;
+};
+
 export type PropsType = {
     propName: string;
     inputType: 'boolean' | 'colorPicker' | 'select' | 'string' | 'number';
     inputValue: boolean | number | string | string[] | [];
-    defaultValue?: string;
+    options?: string[] | [];
     propType: string;
     helperText: string;
     required: boolean;
@@ -17,9 +24,10 @@ export type PropsType = {
 };
 
 export type ComponentType = {
-    componentName: string;
+    componentName?: string;
     id?: string;
     parentId?: string;
     props?: PropsType[];
     otherProps?: PropsType[];
+    sharedProps?: PropsType[];
 };

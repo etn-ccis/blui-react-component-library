@@ -4,7 +4,7 @@ import FitnessCenter from '@mui/icons-material/FitnessCenter';
 import Menu from '@mui/icons-material/Menu';
 import PinDrop from '@mui/icons-material/PinDrop';
 import Remove from '@mui/icons-material/Remove';
-import { ComponentType } from '../__types__';
+import { ComponentType, PropsType } from '../__types__';
 
 export const getSnakeCase = (str: string): string => str.replace(/[A-Z]/g, '_$&').toLowerCase().slice(1);
 
@@ -64,8 +64,8 @@ export const getIcon = (icon: string): JSX.Element | undefined => {
     }
 };
 
-export const createProps = (componentData: ComponentType[]): any => {
-    const componentProps = componentData[0].props?.reduce(
+export const createProps = (props: PropsType[]): any => {
+    const componentProps = props?.reduce(
         (acc: any, cur: any) => ({
             ...acc,
             [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
@@ -73,4 +73,15 @@ export const createProps = (componentData: ComponentType[]): any => {
         {}
     );
     return componentProps;
+};
+
+export const getComponentState = (componentName: string, state: any): ComponentType => {
+    switch (componentName) {
+        case 'Drawer Header':
+            return state.drawerHeaderComponent;
+        case 'Drawer':
+            return state.drawerComponent;
+        default:
+            return state.drawerComponent;
+    }
 };

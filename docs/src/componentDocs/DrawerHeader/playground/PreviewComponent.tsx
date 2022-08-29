@@ -5,14 +5,14 @@ import { useAppSelector } from '../../../redux/hooks';
 import { DrawerHeader } from '@brightlayer-ui/react-components';
 import { CodeBlock } from '../../../shared/CodeBlock';
 import { createProps, getIcon } from '../../../shared/utilities';
+import { PropsType } from '../../../__types__';
 const topologyBgImage = require('../images/topology_40.png');
 const farmBgImage = require('../images/farm.jpg');
 
 export const PreviewComponent = (): JSX.Element => {
-    const drawerHeaderJson = useAppSelector(
-        (state: RootState) => state.drawerHeaderComponentData.drawerHeaderComponent
-    );
-    const drawerHeaderProps = createProps(drawerHeaderJson);
+    const drawerHeaderJson = useAppSelector((state: RootState) => state.componentsPropsState.drawerHeaderComponent);
+
+    const drawerHeaderProps = createProps(drawerHeaderJson.props as PropsType[]);
 
     const getImage = (image: string): string => {
         switch (image) {
