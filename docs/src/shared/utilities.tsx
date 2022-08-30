@@ -81,6 +81,8 @@ export const getComponentState = (componentName: string, state: any): ComponentT
             return state.drawerHeaderComponent;
         case 'Drawer':
             return state.drawerComponent;
+        case 'Drawer Subheader':
+            return state.drawerSubheaderComponent;
         default:
             return state.drawerComponent;
     }
