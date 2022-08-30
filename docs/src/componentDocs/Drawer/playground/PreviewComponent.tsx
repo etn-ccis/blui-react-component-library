@@ -54,19 +54,23 @@ export const PreviewComponent = (): JSX.Element => {
     activeItemBackgroundColor={"${drawerSharedProps.activeItemBackgroundColor}"}
     activeItemFontColor={"${drawerSharedProps.activeItemFontColor}"}
     activeItemIconColor={"${drawerSharedProps.activeItemIconColor}"}
-    activeItemBackgroundShape={"${drawerSharedProps.activeItemBackgroundShape}"}
+    ${toggleDefaultProp('activeItemBackgroundShape', drawerProps.activeItemBackgroundShape, 'sharedProps')}
     chevron={${drawerSharedProps.chevron}}
     chevronColor={"${drawerSharedProps.chevronColor}"}
-    collapseIcon={${drawerSharedProps.collapseIcon}}
+    ${toggleDefaultProp('collapseIcon', drawerSharedProps.collapseIcon, 'sharedProps')}
     ${toggleDefaultProp('condensed', drawerProps.condensed, 'props')}
-    disableActiveItemParentStyles={${drawerSharedProps.disableActiveItemParentStyles}, 'sharedProps'}
+    ${toggleDefaultProp(
+        'disableActiveItemParentStyles',
+        drawerSharedProps.disableActiveItemParentStyles,
+        'sharedProps'
+    )}
     ${toggleDefaultProp('divider', drawerSharedProps.divider, 'sharedProps')}
-    expandIcon={${drawerSharedProps.expandIcon}}
+    ${toggleDefaultProp('expandIcon', drawerSharedProps.expandIcon, 'sharedProps')}
     hidePadding={${drawerSharedProps.hidePadding}}
     itemFontColor={"${drawerSharedProps.itemFontColor}"}
     itemIconColor={"${drawerSharedProps.itemIconColor}"}
     nestedBackgroundColor={"${drawerSharedProps.nestedBackgroundColor}"}
-    nestedDivider={${drawerSharedProps.nestedDivider}}
+    ${toggleDefaultProp('nestedDivider', drawerSharedProps.nestedDivider, 'sharedProps')}
     ${toggleDefaultProp('noLayout', drawerProps.noLayout)}
     open={${drawerProps.open}}
     ${toggleDefaultProp('openOnHover', drawerProps.openOnHover, 'props')}

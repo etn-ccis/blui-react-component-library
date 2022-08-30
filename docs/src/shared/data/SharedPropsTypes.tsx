@@ -18,6 +18,7 @@ export const sharedPropsTypes: PropsType[] = [
         propType: 'string',
         helperText: 'Shape of the active item background highlight',
         required: false,
+        defaultValue: 'square',
     },
     {
         propName: 'activeItemFontColor',
@@ -59,6 +60,7 @@ export const sharedPropsTypes: PropsType[] = [
         propType: 'JSX.Element',
         helperText: 'Icon used to collapse drawer',
         required: false,
+        defaultValue: 'undefined',
     },
     {
         propName: 'disableActiveItemParentStyles',
@@ -67,6 +69,7 @@ export const sharedPropsTypes: PropsType[] = [
         propType: 'boolean',
         helperText: 'If true, NavItems will not have a bold title when a child NavItem is selected',
         required: false,
+        defaultValue: false,
     },
     {
         propName: 'divider',
@@ -85,6 +88,7 @@ export const sharedPropsTypes: PropsType[] = [
         propType: 'JSX.Element',
         helperText: 'Icon used to expand drawer',
         required: false,
+        defaultValue: 'undefined',
     },
     {
         propName: 'hidePadding',
@@ -125,6 +129,7 @@ export const sharedPropsTypes: PropsType[] = [
         propType: 'boolean',
         helperText: 'Whether to show a line between nested menu items',
         required: false,
+        defaultValue: false,
     },
     {
         propName: 'ripple',
