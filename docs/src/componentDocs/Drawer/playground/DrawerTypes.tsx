@@ -19,6 +19,7 @@ export const drawerTypes: ComponentType = {
             propType: 'boolean',
             helperText: `Show condensed nav items without labels (rail variant only)`,
             required: false,
+            defaultValue: false,
         },
         {
             propName: 'noLayout',
@@ -28,6 +29,7 @@ export const drawerTypes: ComponentType = {
             helperText: 'Set to true if used without a <DrawerLayout>. Default value is false',
             required: false,
             disable: true,
+            defaultValue: false,
         },
         {
             propName: 'open',
@@ -44,6 +46,7 @@ export const drawerTypes: ComponentType = {
             propType: 'boolean',
             helperText: 'Automatically open the drawer on hover when closed (persistent variant only)',
             required: false,
+            defaultValue: true,
         },
         {
             propName: 'openOnHoverDelay',
@@ -57,6 +60,7 @@ export const drawerTypes: ComponentType = {
                 max: 1000,
                 step: 100,
             },
+            defaultValue: 500,
         },
         {
             propName: 'sideBorder',
@@ -65,6 +69,7 @@ export const drawerTypes: ComponentType = {
             propType: 'boolean',
             helperText: 'Whether to use a side border for the drawer instead of a shadow',
             required: false,
+            defaultValue: false,
         },
         {
             propName: 'variant',
@@ -74,6 +79,7 @@ export const drawerTypes: ComponentType = {
             propType: 'string',
             helperText: `The variant to use from options 'persistent', 'permanent', 'temporary', 'rail'`,
             required: false,
+            defaultValue: 'persistent',
         },
         {
             propName: 'width',
@@ -87,6 +93,7 @@ export const drawerTypes: ComponentType = {
                 max: 700,
                 step: 50,
             },
+            defaultValue: 360,
         },
     ],
     sharedProps: sharedPropsTypes,

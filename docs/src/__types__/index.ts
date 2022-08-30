@@ -15,6 +15,7 @@ export type PropsType = {
     propName: string;
     inputType: 'boolean' | 'colorPicker' | 'select' | 'string' | 'number';
     inputValue: boolean | number | string | string[] | [];
+    defaultValue?: boolean | number | string | string[] | [];
     options?: string[] | [];
     propType: string;
     helperText: string;

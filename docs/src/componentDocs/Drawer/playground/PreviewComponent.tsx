@@ -24,7 +24,7 @@ import {
     Toc,
     NotificationsActive,
 } from '@mui/icons-material';
-import { createProps, getIcon } from '../../../shared/utilities';
+import { createProps, getIcon, hideDefaultPropsFromSnippet, removeEmptyLines } from '../../../shared/utilities';
 import { updateActiveItemProp } from '../../../redux/componentsPropsState';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
 
@@ -45,106 +45,111 @@ export const PreviewComponent = (): JSX.Element => {
     const drawerProps = createProps(drawerJson.props as PropsType[]);
     const drawerSharedProps = createProps(drawerJson.sharedProps as PropsType[]);
 
-    const jsx = `<Drawer
-        activeItem={"${drawerProps.activeItem}"}
-        activeItemBackgroundColor={"${drawerSharedProps.activeItemBackgroundColor}"}
-        activeItemFontColor={"${drawerSharedProps.activeItemFontColor}"}
-        activeItemIconColor={"${drawerSharedProps.activeItemIconColor}"}
-        activeItemBackgroundShape={"${drawerSharedProps.activeItemBackgroundShape}"}
-        chevron={${drawerSharedProps.chevron}}
-        chevronColor={"${drawerSharedProps.chevronColor}"}
-        collapseIcon={${drawerSharedProps.collapseIcon}}
-        condensed={${drawerProps.condensed}}
-        disableActiveItemParentStyles={${drawerSharedProps.disableActiveItemParentStyles}}
-        divider={${drawerSharedProps.divider}}
-        expandIcon={${drawerSharedProps.expandIcon}}
-        hidePadding={${drawerSharedProps.hidePadding}}
-        itemFontColor={"${drawerSharedProps.itemFontColor}"}
-        itemIconColor={"${drawerSharedProps.itemIconColor}"}
-        nestedBackgroundColor={"${drawerSharedProps.nestedBackgroundColor}"}
-        nestedDivider={${drawerSharedProps.nestedDivider}}
-        noLayout={${drawerProps.noLayout}}
-        open={${drawerProps.open}}
-        openOnHover={${drawerProps.openOnHover}}
-        openOnHoverDelay={${drawerProps.openOnHoverDelay}}
-        ripple={${drawerSharedProps.ripple}}
-        sideBorder={${drawerProps.sideBorder}}
-        variant={"${drawerProps.variant}"}
-        width={${drawerProps.width}}
-    >
-        <DrawerHeader
-            backgroundColor={Colors.blue[500]}
-            divider={false}
-            fontColor={Colors.white[50]}
-            icon={<Menu />}
-            subtitle={'Organize your menu items here'}
-            title={'Brightlayer UI Drawer'}
-        />
-        <DrawerBody>
-            <DrawerNavGroup title={'NavGroup 1'} titleColor={Colors.black[500]} titleDivider={true}>
-                <DrawerNavItem
-                    icon={<Toc />}
-                    itemID={'Timeline'}
-                    title={'Timeline'}
-                    onClick={(): void => updateActiveItem('Timeline')}
-                />
-                <DrawerNavItem icon={<PinDrop />} itemID={'Locations'} title={'Locations'} onClick={(): void => updateActiveItem('Locations')}/>
-                <DrawerNavItem
-                    icon={<Devices />}
-                    title={'Devices'}
-                    itemID={'Devices'}
-                    subtitle={'5 new warnings'}
-                    statusColor={Colors.yellow[500]}
-                    onClick={(): void => updateActiveItem('Devices')}
-                />
-            </DrawerNavGroup>
-            <DrawerNavGroup title={'NavGroup 2'} titleColor={Colors.black[500]} titleDivider={true}>
-                <DrawerNavItem icon={<MoveToInbox />} itemID={'User Guide'} title={'User Guide'} onClick={(): void => updateActiveItem('User Guide')} />
-                <DrawerNavItem
-                    icon={<Send />}
-                    itemID={'License Agreement'}
-                    title={'License Agreement'}
-                    subtitle={'For Eaton employees only'}
-                    onClick={(): void => updateActiveItem('License Agreement')}
-                />
-                <DrawerNavItem
-                    icon={<Accessibility />}
-                    itemID={'Accessibility'}
-                    title={'Accessibility'}
-                    onClick={(): void => updateActiveItem('Accessibility')}
-                >
-                    <DrawerNavItem itemID={'Color Contrast Guide'} title={'Color Contrast Guide'} onClick={(): void => updateActiveItem('Color Contrast Guide')} />
-                    <DrawerNavItem itemID={'Screen Reader'} title={'Screen Reader'} onClick={(): void => updateActiveItem('Screen Reader')}/>
-                </DrawerNavItem>
-                <DrawerNavItem
-                    icon={<NotificationsActive />}
-                    title={'Notifications'}
-                    itemID={'Notifications'}
-                    onClick={(): void => updateActiveItem('Notifications')}
-                />
-            </DrawerNavGroup>
-        </DrawerBody>
-        <DrawerFooter backgroundColor={Colors.white[50]}>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                    padding: 16,
-                }}
-            >
-                <img src={EatonFooterLogoLight} alt="Eaton Logo" height={28} width={'auto'} />
-                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <Typography
-                        variant={'caption'}
-                    >{'Copyright \u00A9 Eaton ${new Date().getFullYear()}'}</Typography>
-                    <Typography variant={'caption'}>All Rights Reserved</Typography>
-                </div>
-            </div>
-        </DrawerFooter>
-    </Drawer>`;
+    const toggleDefaultProp = (propName: string, currentValue: any, groupType?: string): string =>
+        hideDefaultPropsFromSnippet(drawerJson, propName, currentValue, groupType);
 
+    const generateCodeSnippet = (): string => {
+        const jsx = `<Drawer
+    activeItem={"${drawerProps.activeItem}"}
+    activeItemBackgroundColor={"${drawerSharedProps.activeItemBackgroundColor}"}
+    activeItemFontColor={"${drawerSharedProps.activeItemFontColor}"}
+    activeItemIconColor={"${drawerSharedProps.activeItemIconColor}"}
+    activeItemBackgroundShape={"${drawerSharedProps.activeItemBackgroundShape}"}
+    chevron={${drawerSharedProps.chevron}}
+    chevronColor={"${drawerSharedProps.chevronColor}"}
+    collapseIcon={${drawerSharedProps.collapseIcon}}
+    ${toggleDefaultProp('condensed', drawerProps.condensed, 'props')}
+    disableActiveItemParentStyles={${drawerSharedProps.disableActiveItemParentStyles}, 'sharedProps'}
+    ${toggleDefaultProp('divider', drawerSharedProps.divider, 'sharedProps')}
+    expandIcon={${drawerSharedProps.expandIcon}}
+    hidePadding={${drawerSharedProps.hidePadding}}
+    itemFontColor={"${drawerSharedProps.itemFontColor}"}
+    itemIconColor={"${drawerSharedProps.itemIconColor}"}
+    nestedBackgroundColor={"${drawerSharedProps.nestedBackgroundColor}"}
+    nestedDivider={${drawerSharedProps.nestedDivider}}
+    ${toggleDefaultProp('noLayout', drawerProps.noLayout)}
+    open={${drawerProps.open}}
+    ${toggleDefaultProp('openOnHover', drawerProps.openOnHover, 'props')}
+    ${toggleDefaultProp('openOnHoverDelay', drawerProps.openOnHoverDelay, 'props')}
+    ${toggleDefaultProp('ripple', drawerSharedProps.ripple, 'sharedProps')}
+    ${toggleDefaultProp('sideBorder', drawerProps.sideBorder, 'props')}
+    ${toggleDefaultProp('variant', drawerProps.variant, 'props')}
+    ${toggleDefaultProp('width', drawerProps.width, 'props')}
+>
+    <DrawerHeader
+        backgroundColor={Colors.blue[500]}
+        divider={false}
+        fontColor={Colors.white[50]}
+        icon={<Menu />}
+        subtitle={'Organize your menu items here'}
+        title={'Brightlayer UI Drawer'}
+    />
+    <DrawerBody>
+        <DrawerNavGroup title={'NavGroup 1'} titleColor={Colors.black[500]} titleDivider={true}>
+            <DrawerNavItem
+                icon={<Toc />}
+                itemID={'Timeline'}
+                title={'Timeline'}
+                onClick={(): void => updateActiveItem('Timeline')}
+            />
+            <DrawerNavItem icon={<PinDrop />} itemID={'Locations'} title={'Locations'} onClick={(): void => updateActiveItem('Locations')}/>
+            <DrawerNavItem
+                icon={<Devices />}
+                title={'Devices'}
+                itemID={'Devices'}
+                subtitle={'5 new warnings'}
+                statusColor={Colors.yellow[500]}
+                onClick={(): void => updateActiveItem('Devices')}
+            />
+        </DrawerNavGroup>
+        <DrawerNavGroup title={'NavGroup 2'} titleColor={Colors.black[500]} titleDivider={true}>
+            <DrawerNavItem icon={<MoveToInbox />} itemID={'User Guide'} title={'User Guide'} onClick={(): void => updateActiveItem('User Guide')} />
+            <DrawerNavItem
+                icon={<Send />}
+                itemID={'License Agreement'}
+                title={'License Agreement'}
+                subtitle={'For Eaton employees only'}
+                onClick={(): void => updateActiveItem('License Agreement')}
+            />
+            <DrawerNavItem
+                icon={<Accessibility />}
+                itemID={'Accessibility'}
+                title={'Accessibility'}
+                onClick={(): void => updateActiveItem('Accessibility')}
+            >
+                <DrawerNavItem itemID={'Color Contrast Guide'} title={'Color Contrast Guide'} onClick={(): void => updateActiveItem('Color Contrast Guide')} />
+                <DrawerNavItem itemID={'Screen Reader'} title={'Screen Reader'} onClick={(): void => updateActiveItem('Screen Reader')}/>
+            </DrawerNavItem>
+            <DrawerNavItem
+                icon={<NotificationsActive />}
+                title={'Notifications'}
+                itemID={'Notifications'}
+                onClick={(): void => updateActiveItem('Notifications')}
+            />
+        </DrawerNavGroup>
+    </DrawerBody>
+    <DrawerFooter backgroundColor={Colors.white[50]}>
+        <div
+            style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexDirection: 'row',
+                padding: 16,
+            }}
+        >
+            <img src={EatonFooterLogoLight} alt="Eaton Logo" height={28} width={'auto'} />
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Typography
+                    variant={'caption'}
+                >{'Copyright \u00A9 Eaton ${new Date().getFullYear()}'}</Typography>
+                <Typography variant={'caption'}>All Rights Reserved</Typography>
+            </div>
+        </div>
+    </DrawerFooter>
+</Drawer>`;
+        return removeEmptyLines(jsx);
+    };
     return (
         <PreviewComponentWithCode
             previewContent={
@@ -266,7 +271,7 @@ export const PreviewComponent = (): JSX.Element => {
                     </DrawerFooter>
                 </Drawer>
             }
-            code={jsx}
+            code={generateCodeSnippet()}
         />
     );
 };

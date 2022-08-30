@@ -20,6 +20,7 @@ export const drawerTypes: ComponentType = {
             propType: 'string',
             helperText: 'An image to display in the header',
             required: false,
+            defaultValue: 'undefined',
         },
         {
             propName: 'backgroundOpacity',
@@ -28,6 +29,7 @@ export const drawerTypes: ComponentType = {
             propType: 'number',
             helperText: 'The opacity of the background image',
             required: false,
+            defaultValue: 0.3,
             rangeData: {
                 min: 0,
                 max: 1,
@@ -41,6 +43,7 @@ export const drawerTypes: ComponentType = {
             propType: 'boolean',
             helperText: 'Optional divider which appears beneath header',
             required: false,
+            defaultValue: false,
         },
         {
             propName: 'fontColor',
@@ -58,6 +61,7 @@ export const drawerTypes: ComponentType = {
             propType: 'ReactNode',
             helperText: 'A component to render for the icon',
             required: false,
+            defaultValue: 'undefined',
         },
         {
             propName: 'subtitle',

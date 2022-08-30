@@ -1,10 +1,8 @@
 import React from 'react';
-// import { Box } from '@mui/material';
 import { RootState } from '../../../redux/store';
 import { useAppSelector } from '../../../redux/hooks';
 import { DrawerHeader } from '@brightlayer-ui/react-components';
-// import { CodeBlock } from '../../../shared/CodeBlock';
-import { createProps, getIcon } from '../../../shared/utilities';
+import { createProps, getIcon, hideDefaultPropsFromSnippet, removeEmptyLines } from '../../../shared/utilities';
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
 const topologyBgImage = require('../images/topology_40.png');
@@ -28,16 +26,23 @@ export const PreviewComponent = (): JSX.Element => {
         }
     };
 
-    const jsx = `<DrawerHeader
+    const toggleDefaultProp = (propName: string, currentValue: any): string =>
+        hideDefaultPropsFromSnippet(drawerHeaderJson, propName, currentValue, 'props');
+
+    const generateCodeSnippet = (): string => {
+        const jsx = `<DrawerHeader
     backgroundColor={"${drawerHeaderProps.backgroundColor}"}
-    backgroundImage={"${getImage(drawerHeaderProps.backgroundImage)}"}
-    backgroundOpacity={${drawerHeaderProps.backgroundOpacity}}
-    divider={${drawerHeaderProps.divider}}
+    ${toggleDefaultProp('backgroundImage', `${getImage(drawerHeaderProps.backgroundImage)}`)}
+    ${toggleDefaultProp('divider', drawerHeaderProps.divider)}
+    ${toggleDefaultProp('backgroundOpacity', drawerHeaderProps.backgroundOpacity)}
     fontColor={"${drawerHeaderProps.fontColor}"}
-    icon={${drawerHeaderProps.icon}}
+    ${toggleDefaultProp('icon', drawerHeaderProps.icon)}
     subtitle={"${drawerHeaderProps.subtitle}"}
     title={"${drawerHeaderProps.title}"}>
 </DrawerHeader>`;
+
+        return removeEmptyLines(jsx);
+    };
 
     return (
         <PreviewComponentWithCode
@@ -54,7 +59,7 @@ export const PreviewComponent = (): JSX.Element => {
                     title={drawerHeaderProps.title}
                 />
             }
-            code={jsx}
+            code={generateCodeSnippet()}
         />
     );
 };

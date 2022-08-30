@@ -85,3 +85,24 @@ export const getComponentState = (componentName: string, state: any): ComponentT
             return state.drawerComponent;
     }
 };
+
+export const hideDefaultPropsFromSnippet = (
+    state: ComponentType,
+    propName: string,
+    currentValue: any,
+    groupType?: string
+): string => {
+    const knob =
+        groupType !== 'props'
+            ? state.sharedProps?.filter((prop) => prop.propName === propName)[0]
+            : state.props?.filter((prop) => prop.propName === propName)[0];
+    if (knob?.defaultValue === currentValue) {
+        return '';
+    }
+    if (knob?.propType === 'string') {
+        return `${propName}={"${currentValue}"}`;
+    }
+    return `${propName}={${currentValue}}`;
+};
+
+export const removeEmptyLines = (code: string): string => code.replace(/^\s*$(?:\r\n?|\n)/gm, '');

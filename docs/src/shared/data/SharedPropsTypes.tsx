@@ -75,6 +75,7 @@ export const sharedPropsTypes: PropsType[] = [
         propType: 'boolean',
         helperText: 'Whether to show a line between all items',
         required: false,
+        defaultValue: false,
     },
     {
         propName: 'expandIcon',
@@ -132,6 +133,7 @@ export const sharedPropsTypes: PropsType[] = [
         propType: 'boolean',
         helperText: 'Whether to apply material ripple effect to items on click',
         required: false,
+        defaultValue: false,
     },
 ];
 
