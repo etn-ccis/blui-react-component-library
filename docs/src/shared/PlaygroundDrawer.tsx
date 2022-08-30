@@ -92,7 +92,10 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
     const renderSelect = (prop: PropsType, index: string): JSX.Element => (
         <FormControl variant={'filled'} sx={{ width: '100%' }} key={index}>
-            <InputLabel>{`${prop.propName}: ${prop.propType}`}</InputLabel>
+            <InputLabel>
+                {`${prop.propName}: ${prop.propType}`}
+                {prop.required && '*'}
+            </InputLabel>
             <Select
                 value={prop.inputValue as string}
                 onChange={(event): void =>
@@ -128,7 +131,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                         disabled={prop.disable}
                     />
                 }
-                label={`${prop.propName}: ${prop.propType}`}
+                label={`${prop.propName}: ${prop.propType} ${prop.required ? '*' : ''}`}
             />
             <FormHelperText>{prop.helperText}</FormHelperText>
         </>
@@ -136,7 +139,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
     const renderSlider = (prop: PropsType, index: string): JSX.Element => (
         <Box key={index}>
-            <Typography component="span">{`${prop.propName}: ${prop.propType}`}</Typography>
+            <Typography component="span">{`${prop.propName}: ${prop.propType} ${prop.required ? '*' : ''}`}</Typography>
             <Slider
                 value={prop.inputValue as number}
                 valueLabelDisplay="auto"

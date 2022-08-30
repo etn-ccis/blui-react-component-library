@@ -23,7 +23,7 @@ export const DocColorField = (props: TextFieldProps): JSX.Element => {
                 ),
             }}
             value={propData.inputValue}
-            label={`${propData.propName}:${propData.inputType}`}
+            label={`${propData.propName}: ${propData.propType} ${propData.required ? '*' : ''}`}
             helperText={propData.helperText}
         />
     );
