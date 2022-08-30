@@ -6,6 +6,10 @@
 
 -   Components are now styled using use the new MUI styled engine and extend the sx prop.
 
+### Fixed
+
+-   Temporary drawer rendering, due to incorrectly passing open prop ([#486](https://github.com/brightlayer-ui/react-component-library/issues/486)).
+
 ## v6.0.0 (April 1, 2022)
 
 ### Changed
