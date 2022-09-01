@@ -50,7 +50,7 @@ export const getIcon = (icon: string): JSX.Element | undefined => {
             return <Add />;
         case '<AddAPhoto />':
             return <AddAPhoto />;
-        case 'FitnessCenter':
+        case '<FitnessCenter />':
             return <FitnessCenter />;
         case '<Menu />':
             return <Menu />;
