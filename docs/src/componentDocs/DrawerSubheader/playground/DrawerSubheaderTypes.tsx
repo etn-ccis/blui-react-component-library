@@ -31,15 +31,6 @@ export const drawerSubheaderTypes: ComponentType = {
             helperText: 'Controls the open/closed state of the drawer',
             required: false,
         },
-        {
-            propName: 'content',
-            inputType: 'select',
-            inputValue: 'Filter',
-            options: ['Filter', 'Accordion'],
-            propType: 'string',
-            helperText: 'Content to show inside Subheader section',
-            required: false,
-        },
     ],
 };
 
