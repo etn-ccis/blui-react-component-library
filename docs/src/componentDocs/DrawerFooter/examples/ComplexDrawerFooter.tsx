@@ -3,26 +3,32 @@ import { Box } from '@mui/material';
 import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
 import { ComplexDrawerFooterExample } from './ComplexDrawerFooterExample';
 
-const codeSnippet = ` <Drawer>
-    <DrawerBody>
-        <DrawerNavGroup>
+const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} noLayout>
+    <DrawerBody sx={{ flex: '1 1 auto' }}>
+        <DrawerNavGroup hidePadding>
             <DrawerNavItem title="Dashboard" itemID="1" />
             <DrawerNavItem title="Locations" itemID="2" />
             <DrawerNavItem title="Legal" itemID="3" />
         </DrawerNavGroup>
     </DrawerBody>
-    <DrawerFooter>
-        <Typography variant="caption">v2.4.0</Typography>
-        <Typography variant="caption">10:33:05 03/12/22</Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 1 }}>
-            <Box sx={{ width: 83 }} component="img" src={EatonFooterLogoLight} />
+    <DrawerFooter sx={{ p: 2 }}>
+        <Box sx={{ mb: 1 }}>
             <Box>
-                <Typography variant="caption">
-                    Copyright © Eaton
-                </Typography>
-                <Typography variant="caption">
-                    All Rights Reserved
-                </Typography>
+                <FormHelperText>v2.4.0</FormHelperText>
+            </Box>
+            <Box>
+                <FormHelperText>10:33:05 03/12/22</FormHelperText>
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 1 }}>
+                <Box sx={{ width: 83 }} component="img" src={EatonFooterLogoLight} />
+                <Box>
+                    <Typography sx={{ display: 'block' }} variant="caption">
+                        Copyright © Eaton
+                    </Typography>
+                    <Typography sx={{ display: 'block' }} variant="caption">
+                        All Rights Reserved
+                    </Typography>
+                </Box>
             </Box>
         </Box>
     </DrawerFooter>

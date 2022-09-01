@@ -12,8 +12,8 @@ export const MultipleDrawerNavGroupsExample = (): JSX.Element => (
                     <DrawerNavItem title="National" itemID="2" divider={false} />
                 </DrawerNavGroup>
                 <DrawerNavGroup title="Status" hidePadding divider>
-                    <DrawerNavItem title="Network" itemID="1" divider={false} />
-                    <DrawerNavItem title="Node" itemID="2" divider={false} />
+                    <DrawerNavItem title="Network" itemID="3" divider={false} />
+                    <DrawerNavItem title="Node" itemID="4" divider={false} />
                 </DrawerNavGroup>
             </DrawerBody>
         </Drawer>

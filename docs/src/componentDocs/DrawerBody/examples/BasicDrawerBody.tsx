@@ -3,9 +3,9 @@ import { Box } from '@mui/material';
 import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
 import { BasicDrawerBodyExample } from './BasicDrawerBodyExample';
 
-const codeSnippet = `<Drawer>
-    <DrawerBody>
-        <DrawerNavGroup hidePadding divider>
+const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} noLayout>
+    <DrawerBody sx={{ flex: '1 1 auto' }}>
+        <DrawerNavGroup hidePadding>
             <DrawerNavItem title="Dashboard" itemID="1" />
             <DrawerNavItem title="Locations" itemID="2" />
             <DrawerNavItem title="Legal" itemID="3" />
