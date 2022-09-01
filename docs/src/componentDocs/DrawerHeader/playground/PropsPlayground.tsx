@@ -4,9 +4,9 @@ import { useAppSelector } from '../../../redux/hooks';
 import PlaygroundDrawer from '../../../shared/PlaygroundDrawer';
 
 const PropsPlayground = (): JSX.Element => {
-    const drawerJson = useAppSelector((state: RootState) => state.componentsPropsState.drawerComponent);
+    const drawerHeaderJson = useAppSelector((state: RootState) => state.componentsPropsState.drawerHeaderComponent);
 
-    return <PlaygroundDrawer drawerData={drawerJson} />;
+    return <PlaygroundDrawer drawerData={drawerHeaderJson} />;
 };
 
 export default PropsPlayground;

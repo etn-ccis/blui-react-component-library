@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import drawerComponentReducer from './drawerComponent';
+// import drawerComponentReducer from './drawerComponent';
+import componentsPropsStateReducer from './componentsPropsState';
 
 export const store = configureStore({
     reducer: {
-        drawerComponentData: drawerComponentReducer,
+        componentsPropsState: componentsPropsStateReducer,
     },
 });
 
