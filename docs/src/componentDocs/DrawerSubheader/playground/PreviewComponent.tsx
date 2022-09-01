@@ -72,7 +72,12 @@ export const PreviewComponent = (): JSX.Element => {
     return (
         <PreviewComponentWithCode
             previewContent={
-                <Drawer open={drawerSubheaderOtherProps.open} activeItem={'Identity Management'} noLayout>
+                <Drawer
+                    open={drawerSubheaderOtherProps.open}
+                    activeItem={'Identity Management'}
+                    noLayout
+                    sx={{ minHeight: 'auto' }}
+                >
                     <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
                     <DrawerSubheader
                         hideContentOnCollapse={drawerSubheaderProps.hideContentOnCollapse}

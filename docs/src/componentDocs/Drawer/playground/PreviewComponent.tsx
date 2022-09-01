@@ -183,6 +183,7 @@ export const PreviewComponent = (): JSX.Element => {
                     sideBorder={drawerProps.sideBorder}
                     variant={drawerProps.variant}
                     width={drawerProps.width}
+                    sx={{ minHeight: 'auto' }}
                 >
                     <DrawerHeader
                         backgroundColor={Colors.blue[500]}
