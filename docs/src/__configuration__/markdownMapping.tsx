@@ -170,7 +170,7 @@ export const componentsMap = {
     code: (props: TypographyProps<'code'>): JSX.Element => (
         <Typography
             component={'code'}
-            color={'textPrimary'}
+            color={'inherit'}
             sx={{
                 fontSize: 14,
                 m: '0px 2px',
