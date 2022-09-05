@@ -1,15 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import drawerTypes from '../componentDocs/Drawer/playground/DrawerTypes';
 import drawerHeaderTypes from '../componentDocs/DrawerHeader/playground/DrawerHeaderTypes';
+import heroTypes from '../componentDocs/Hero/playground/HeroTypes';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
 type ComponentState = {
     drawerComponent: ComponentType;
     drawerHeaderComponent: ComponentType;
+    heroComponent: ComponentType;
 };
 const initialState: ComponentState = {
     drawerComponent: drawerTypes,
     drawerHeaderComponent: drawerHeaderTypes,
+    heroComponent: heroTypes,
 };
 export const drawerHeaderSlice = createSlice({
     name: 'componentsPropsState',

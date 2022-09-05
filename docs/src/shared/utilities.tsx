@@ -4,7 +4,10 @@ import FitnessCenter from '@mui/icons-material/FitnessCenter';
 import Menu from '@mui/icons-material/Menu';
 import PinDrop from '@mui/icons-material/PinDrop';
 import Remove from '@mui/icons-material/Remove';
+import TrendingUp from '@mui/icons-material/TrendingUp';
+import Fan from '@brightlayer-ui/icons-mui/Fan';
 import { ComponentType, PropsType } from '../__types__';
+import * as Colors from '@brightlayer-ui/colors';
 
 export const getSnakeCase = (str: string): string => str.replace(/[A-Z]/g, '_$&').toLowerCase().slice(1);
 
@@ -50,6 +53,8 @@ export const getIcon = (icon: string): JSX.Element | undefined => {
             return <Add />;
         case '<AddAPhoto />':
             return <AddAPhoto />;
+        case '<Fan />':
+            return <Fan fontSize={'inherit'} htmlColor={Colors.white[50]} />;
         case '<FitnessCenter />':
             return <FitnessCenter />;
         case '<Menu />':
@@ -58,6 +63,8 @@ export const getIcon = (icon: string): JSX.Element | undefined => {
             return <PinDrop />;
         case '<Remove />':
             return <Remove />;
+        case '<TrendingUp />':
+            return <TrendingUp />;
         case 'undefined':
         default:
             return undefined;
@@ -81,6 +88,8 @@ export const getComponentState = (componentName: string, state: any): ComponentT
             return state.drawerHeaderComponent;
         case 'Drawer':
             return state.drawerComponent;
+        case 'Hero':
+            return state.heroComponent;
         default:
             return state.drawerComponent;
     }

@@ -24,6 +24,7 @@ import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/Dr
 // Components playground components
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeader/playground';
+import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
 
 export type SimpleNavItem = {
     title: string;
@@ -336,7 +337,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <HeroPlaygroundComponent />,
                     },
                 ],
             },
