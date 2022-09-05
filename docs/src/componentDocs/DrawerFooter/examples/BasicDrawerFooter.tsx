@@ -11,7 +11,9 @@ const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} n
             <DrawerNavItem title="Legal" itemID="3" />
         </DrawerNavGroup>
     </DrawerBody>
-    <DrawerFooter sx={{ p: 2 }}>Footer Content Here</DrawerFooter>
+    <DrawerFooter sx={{ p: 2 }}>
+        Footer Content Here
+    </DrawerFooter>
 </Drawer>
 `;
 
