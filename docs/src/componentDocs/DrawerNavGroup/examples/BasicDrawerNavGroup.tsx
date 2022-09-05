@@ -15,7 +15,7 @@ const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} n
 export const BasicDrawerNavGroup = (): JSX.Element => (
     <Box>
         <BasicDrawerNavGroupExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-6" />{' '}
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-6" />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub
