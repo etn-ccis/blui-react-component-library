@@ -14,6 +14,7 @@ import DrawerLayoutAPIDocs from '../../componentDocs/DrawerLayout/markdown/Drawe
 import DrawerSubheaderAPIDocs from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheaderAPIDocs.mdx';
 import ChannelValueAPIDocs from '../../componentDocs/ChannelValue/markdown/ChannelValueAPIDocs.mdx';
 import EmptyStateAPIDocs from '../../componentDocs/EmptyState/markdown/EmptyStateAPIDocs.mdx';
+import HeroAPIDocs from '../../componentDocs/Hero/markdown/HeroAPIDocs.mdx';
 import InfoListItemAPIDocs from '../../componentDocs/InfoListItem/markdown/InfoListItemAPIDocs.mdx';
 
 // Examples markdown
@@ -329,7 +330,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <HeroAPIDocs />,
                     },
                     {
                         title: 'Playground',
