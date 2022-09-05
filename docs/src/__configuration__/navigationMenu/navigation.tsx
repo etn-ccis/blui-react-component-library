@@ -16,6 +16,7 @@ import ChannelValueAPIDocs from '../../componentDocs/ChannelValue/markdown/Chann
 import EmptyStateAPIDocs from '../../componentDocs/EmptyState/markdown/EmptyStateAPIDocs.mdx';
 import HeroAPIDocs from '../../componentDocs/Hero/markdown/HeroAPIDocs.mdx';
 import InfoListItemAPIDocs from '../../componentDocs/InfoListItem/markdown/InfoListItemAPIDocs.mdx';
+import AppBarAPIDocs from '../../componentDocs/AppBar/markdown/AppBarAPIDocs.mdx';
 
 // Examples markdown
 import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
@@ -65,7 +66,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <AppBarAPIDocs />,
                     },
                     {
                         title: 'Playground',
