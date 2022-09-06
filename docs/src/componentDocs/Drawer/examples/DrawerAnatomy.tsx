@@ -3,10 +3,10 @@ import { Box } from '@mui/material';
 import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
 import { DrawerAnatomyExample } from './DrawerAnatomyExample';
 
-const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} noLayout>
+const codeSnippet = `<Drawer open={true} width={250}>
     <DrawerHeader title="Header" />
     <DrawerSubheader>
-        <Box sx={{p: 2}}>Subheader Content Here</Box>
+        <Box>Subheader Content Here</Box>
     </DrawerSubheader>
     <DrawerBody sx={{ flex: '1 1 auto' }}>
         <DrawerNavGroup hidePadding>
@@ -16,7 +16,7 @@ const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} n
         </DrawerNavGroup>
     </DrawerBody>
     <DrawerFooter>
-        <Box sx={{p: 2}}>Footer Content Here</Box>
+        <Box>Footer Content Here</Box>
     </DrawerFooter>
 </Drawer>
 `;
@@ -24,7 +24,7 @@ const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} n
 export const DrawerAnatomy = (): JSX.Element => (
     <Box>
         <DrawerAnatomyExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="1-16" />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/Drawer/examples/DrawerAnatomyExample.tsx" />

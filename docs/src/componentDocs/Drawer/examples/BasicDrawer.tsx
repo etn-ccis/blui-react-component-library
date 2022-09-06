@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
 import { BasicDrawerExample } from './BasicDrawerExample';
 
-const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} noLayout>
+const codeSnippet = `<Drawer open={true} width={250}>
     <DrawerHeader title="Title" />
     <DrawerBody sx={{ flex: '1 1 auto' }}>
         <DrawerNavGroup hidePadding>
@@ -18,7 +18,7 @@ const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} n
 export const BasicDrawer = (): JSX.Element => (
     <Box>
         <BasicDrawerExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="1-10" />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/Drawer/examples/BasicDrawerExample.tsx" />

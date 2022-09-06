@@ -3,13 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
 import { ComplexDrawerExample } from './ComplexDrawerExample';
 
-const codeSnippet = `<Drawer
-    open={true}
-    width={300}
-    sx={{ margin: '0 auto', height: 580, '& .MuiPaper-root': { overflow: 'auto' } }}
-    activeItem={selected}
-    noLayout
-    >
+const codeSnippet = `<Drawer open={true} width={300}>
     <DrawerHeader icon={<Menu />} title="Brightlayer UI" subtitle="Drawer Component" />
     <DrawerBody sx={{ flex: '1 1 auto' }}>
         <DrawerNavGroup title="Group 1" hidePadding divider>
@@ -19,7 +13,6 @@ const codeSnippet = `<Drawer
                 icon={<Dashboard />}
                 statusColor={colors.green[500]}
                 itemID="1"
-                onClick={(): void => setSelected('1')}
                 divider
             >
                 <DrawerNavItem title="Monthly Report" itemID="2" hidePadding={false} divider />
@@ -63,7 +56,6 @@ const codeSnippet = `<Drawer
                 icon={<Accessibility />}
                 itemID="9"
                 hidePadding={false}
-                onClick={(): void => setSelected('9')}
                 divider
             >
                 <DrawerNavItem title="Color Contrast Guide" itemID="10" hidePadding={false} />
@@ -84,7 +76,7 @@ const codeSnippet = `<Drawer
 export const ComplexDrawer = (): JSX.Element => (
     <Box>
         <ComplexDrawerExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="1-70" />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/Drawer/examples/ComplexDrawerExample.tsx" />
