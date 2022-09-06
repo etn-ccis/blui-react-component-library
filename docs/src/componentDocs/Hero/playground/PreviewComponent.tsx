@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import { RootState } from '../../../redux/store';
 import { useAppSelector } from '../../../redux/hooks';
@@ -11,24 +10,35 @@ export const PreviewComponent = (): JSX.Element => {
     const heroJson = useAppSelector((state: RootState) => state.componentsPropsState.heroComponent);
 
     const heroProps = createProps(heroJson.props as PropsType[]);
-    const channelValuProps = createProps(heroJson.otherProps as PropsType[]);
+    const otherProps = createProps(heroJson.otherProps as PropsType[]);
 
     const toggleDefaultProp = (propName: string, currentValue: any): string =>
         hideDefaultPropsFromSnippet(heroJson, propName, currentValue, 'props');
 
-    const generateCodeSnippet = (): string => {
-        const jsx = `
-        <Hero
-            label={"${heroProps.label}"}
-            ChannelValueProps={{ icon: ${`${channelValuProps.icon}`}, value: "${channelValuProps.value}", units: "${
-            channelValuProps.units
-        }" }}
-            iconBackgroundColor={"${heroProps.iconBackgroundColor}"}
-            ${toggleDefaultProp('icon', `${heroProps.icon}`)}
-            iconSize={"${heroProps.iconSize}"}
-        />
-        `;
+    const iterateIconProps = (iconProps: any): string => {
+        let str = '';
+        for (const prop in iconProps) {
+            str = `${str}` + `${prop}="${iconProps[prop]}" `;
+        }
+        return str;
+    };
 
+    const getIconWithProp = (icon: string, iconProps: any): any => {
+        const index = icon.lastIndexOf('/>');
+        const result = icon.slice(0, index) + iterateIconProps(iconProps) + icon.slice(index);
+        return result;
+    };
+
+    const generateCodeSnippet = (): string => {
+        const jsx = `<Hero
+    label={"${heroProps.label}"}
+    ChannelValueProps={{ icon: ${`${otherProps.valueIcon}`}, value: "${otherProps.value}", units: "${
+            otherProps.units
+        }" }}
+    icon={${getIconWithProp(heroProps.icon, { fontSize: 'inherit', htmlColor: `${otherProps.htmlColor}` })}}
+    ${toggleDefaultProp('iconBackgroundColor', heroProps.iconBackgroundColor)}
+    ${toggleDefaultProp('iconSize', heroProps.iconSize)}
+/>`;
         return removeEmptyLines(jsx);
     };
 
@@ -38,12 +48,12 @@ export const PreviewComponent = (): JSX.Element => {
                 <Hero
                     label={heroProps.label}
                     ChannelValueProps={{
-                        icon: getIcon(`${channelValuProps.icon}`),
-                        value: `${channelValuProps.value}`,
-                        units: `${channelValuProps.units}`,
+                        icon: getIcon(`${otherProps.valueIcon}`),
+                        value: `${otherProps.value}`,
+                        units: `${otherProps.units}`,
                     }}
                     iconBackgroundColor={heroProps.iconBackgroundColor}
-                    icon={getIcon(heroProps.icon)}
+                    icon={getIcon(heroProps.icon, { fontSize: 'inherit', htmlColor: otherProps.htmlColor })}
                     iconSize={heroProps.iconSize}
                 />
             }

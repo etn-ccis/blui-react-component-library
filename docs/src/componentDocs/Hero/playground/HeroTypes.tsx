@@ -8,7 +8,7 @@ export const heroTypes: ComponentType = {
             propName: 'icon',
             inputType: 'select',
             inputValue: '<Fan />',
-            options: ['<Fan />'],
+            options: ['<Fan />', '<FanCircled />'],
             propType: 'ReactNode',
             helperText: 'The primary icon',
             required: true,
@@ -20,6 +20,7 @@ export const heroTypes: ComponentType = {
             propType: 'string',
             helperText: 'The color used behind the primary icon',
             required: false,
+            defaultValue: 'transparent',
         },
         {
             propName: 'iconSize',
@@ -28,12 +29,12 @@ export const heroTypes: ComponentType = {
             propType: 'number | string',
             helperText: 'The size of the primary icon (min 10px)',
             required: false,
+            defaultValue: 36,
             rangeData: {
                 min: 10,
-                max: 360,
+                max: 100,
                 step: 1,
             },
-            defaultValue: 36,
         },
         {
             propName: 'label',
@@ -46,7 +47,23 @@ export const heroTypes: ComponentType = {
     ],
     otherProps: [
         {
-            propName: 'icon',
+            propName: 'htmlColor',
+            inputType: 'colorPicker',
+            inputValue: Colors.white[50],
+            propType: 'string',
+            helperText: 'The color apply to primary icon',
+            required: false,
+        },
+        {
+            propName: 'units',
+            inputType: 'string',
+            inputValue: 'RPM',
+            propType: 'string',
+            helperText: 'The text to display for the units (light text)',
+            required: false,
+        },
+        {
+            propName: 'valueIcon',
             inputType: 'select',
             inputValue: '<TrendingUp />',
             options: ['<TrendingUp />', 'undefined'],
@@ -57,24 +74,11 @@ export const heroTypes: ComponentType = {
         },
         {
             propName: 'value',
-            inputType: 'number',
+            inputType: 'string',
             inputValue: 470,
             propType: 'number | string',
             helperText: 'The value (bold text) to display',
             required: true,
-            rangeData: {
-                min: 10,
-                max: 500,
-                step: 10,
-            },
-        },
-        {
-            propName: 'units',
-            inputType: 'string',
-            inputValue: 'RPM',
-            propType: 'string',
-            helperText: 'The text to display for the units (light text)',
-            required: false,
         },
     ],
 };
