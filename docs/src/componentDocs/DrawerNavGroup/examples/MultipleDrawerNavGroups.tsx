@@ -21,7 +21,7 @@ export const MultipleDrawerNavGroups = (): JSX.Element => (
     <Box>
         <MultipleDrawerNavGroupsExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="3-10" />
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub
                 sx={{ ml: 2 }}

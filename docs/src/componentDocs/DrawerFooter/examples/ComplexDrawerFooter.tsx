@@ -39,7 +39,7 @@ export const ComplexDrawerFooter = (): JSX.Element => (
     <Box>
         <ComplexDrawerFooterExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="9-30" />
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/DrawerFooter/examples/ComplexDrawerFooterExample.tsx" />
         </Box>

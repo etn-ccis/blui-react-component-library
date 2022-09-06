@@ -21,7 +21,7 @@ export const BasicDrawerFooter = (): JSX.Element => (
     <Box>
         <BasicDrawerFooterExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="9-11" />
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/DrawerFooter/examples/BasicDrawerFooterExample.tsx" />
         </Box>

@@ -24,7 +24,7 @@ export const CustomNavGroupTitleContent = (): JSX.Element => (
     <Box>
         <CustomNavGroupTitleContentExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="3-13" />
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub
                 sx={{ ml: 2 }}

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
-import { BasicDrawerBodyExample } from './BasicDrawerBodyExample';
+import { BasicDrawerExample } from './BasicDrawerExample';
 
 const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} noLayout>
+    <DrawerHeader title="Title" />
     <DrawerBody sx={{ flex: '1 1 auto' }}>
         <DrawerNavGroup hidePadding>
             <DrawerNavItem title="Dashboard" itemID="1" />
@@ -14,13 +15,13 @@ const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} n
 </Drawer>
 `;
 
-export const BasicDrawerBody = (): JSX.Element => (
+export const BasicDrawer = (): JSX.Element => (
     <Box>
-        <BasicDrawerBodyExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-8" />
+        <BasicDrawerExample />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
-            <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/DrawerBody/examples/BasicDrawerBodyExample.tsx" />
+            <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/Drawer/examples/BasicDrawerExample.tsx" />
         </Box>
     </Box>
 );
