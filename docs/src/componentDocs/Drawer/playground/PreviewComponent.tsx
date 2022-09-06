@@ -14,16 +14,7 @@ import { PropsType } from '../../../__types__';
 import EatonFooterLogoLight from '../../../assets/EatonLogoLight.png';
 import * as Colors from '@brightlayer-ui/colors';
 import Typography from '@mui/material/Typography';
-import {
-    Accessibility,
-    Devices,
-    PinDrop,
-    Menu,
-    MoveToInbox,
-    Send,
-    Toc,
-    NotificationsActive,
-} from '@mui/icons-material';
+import { Devices, AirportShuttle, Menu, Dashboard, Toc } from '@mui/icons-material';
 import { createProps, getIcon, hideDefaultPropsFromSnippet, removeEmptyLines } from '../../../shared/utilities';
 import { updateActiveItemProp } from '../../../redux/componentsPropsState';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
@@ -89,14 +80,30 @@ export const PreviewComponent = (): JSX.Element => {
         title={'Brightlayer UI Drawer'}
     />
     <DrawerBody>
-        <DrawerNavGroup title={'NavGroup 1'} titleColor={Colors.black[500]} titleDivider={true}>
+        <DrawerNavGroup>
+            <DrawerNavItem
+                icon={<Dashboard />}
+                itemID={'Overview'}
+                title={'Overview'}
+                onClick={(): void => updateActiveItem('Overview')}
+            >
+                <DrawerNavItem
+                    itemID={'Monthly Report'}
+                    title={'Monthly Report'}
+                    onClick={(): void => updateActiveItem('Monthly Report')}
+                />
+                <DrawerNavItem
+                    itemID={'Annual Report'}
+                    title={'Annual Report'}
+                    onClick={(): void => updateActiveItem('Annual Report')}
+                />
+            </DrawerNavItem>
             <DrawerNavItem
                 icon={<Toc />}
                 itemID={'Timeline'}
                 title={'Timeline'}
                 onClick={(): void => updateActiveItem('Timeline')}
             />
-            <DrawerNavItem icon={<PinDrop />} itemID={'Locations'} title={'Locations'} onClick={(): void => updateActiveItem('Locations')}/>
             <DrawerNavItem
                 icon={<Devices />}
                 title={'Devices'}
@@ -105,30 +112,11 @@ export const PreviewComponent = (): JSX.Element => {
                 statusColor={Colors.yellow[500]}
                 onClick={(): void => updateActiveItem('Devices')}
             />
-        </DrawerNavGroup>
-        <DrawerNavGroup title={'NavGroup 2'} titleColor={Colors.black[500]} titleDivider={true}>
-            <DrawerNavItem icon={<MoveToInbox />} itemID={'User Guide'} title={'User Guide'} onClick={(): void => updateActiveItem('User Guide')} />
             <DrawerNavItem
-                icon={<Send />}
-                itemID={'License Agreement'}
-                title={'License Agreement'}
-                subtitle={'For Eaton employees only'}
-                onClick={(): void => updateActiveItem('License Agreement')}
-            />
-            <DrawerNavItem
-                icon={<Accessibility />}
-                itemID={'Accessibility'}
-                title={'Accessibility'}
-                onClick={(): void => updateActiveItem('Accessibility')}
-            >
-                <DrawerNavItem itemID={'Color Contrast Guide'} title={'Color Contrast Guide'} onClick={(): void => updateActiveItem('Color Contrast Guide')} />
-                <DrawerNavItem itemID={'Screen Reader'} title={'Screen Reader'} onClick={(): void => updateActiveItem('Screen Reader')}/>
-            </DrawerNavItem>
-            <DrawerNavItem
-                icon={<NotificationsActive />}
-                title={'Notifications'}
-                itemID={'Notifications'}
-                onClick={(): void => updateActiveItem('Notifications')}
+                icon={<AirportShuttle />}
+                itemID={'Schedule'}
+                title={'Schedule'}
+                onClick={(): void => updateActiveItem('Schedule')}
             />
         </DrawerNavGroup>
     </DrawerBody>
@@ -190,22 +178,33 @@ export const PreviewComponent = (): JSX.Element => {
                         divider={false}
                         fontColor={Colors.white[50]}
                         icon={<Menu />}
-                        subtitle={'Organize your menu items here'}
-                        title={'Brightlayer UI Drawer'}
+                        subtitle={'Drawer Component'}
+                        title={'Brightlayer UI'}
                     />
                     <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
-                        <DrawerNavGroup title={'NavGroup 1'} titleColor={Colors.black[500]} titleDivider={true}>
+                        <DrawerNavGroup>
+                            <DrawerNavItem
+                                icon={<Dashboard />}
+                                itemID={'Overview'}
+                                title={'Overview'}
+                                onClick={(): void => updateActiveItem('Overview')}
+                            >
+                                <DrawerNavItem
+                                    itemID={'Monthly Report'}
+                                    title={'Monthly Report'}
+                                    onClick={(): void => updateActiveItem('Monthly Report')}
+                                />
+                                <DrawerNavItem
+                                    itemID={'Annual Report'}
+                                    title={'Annual Report'}
+                                    onClick={(): void => updateActiveItem('Annual Report')}
+                                />
+                            </DrawerNavItem>
                             <DrawerNavItem
                                 icon={<Toc />}
                                 itemID={'Timeline'}
                                 title={'Timeline'}
                                 onClick={(): void => updateActiveItem('Timeline')}
-                            />
-                            <DrawerNavItem
-                                icon={<PinDrop />}
-                                itemID={'Locations'}
-                                title={'Locations'}
-                                onClick={(): void => updateActiveItem('Locations')}
                             />
                             <DrawerNavItem
                                 icon={<Devices />}
@@ -215,43 +214,11 @@ export const PreviewComponent = (): JSX.Element => {
                                 statusColor={Colors.yellow[500]}
                                 onClick={(): void => updateActiveItem('Devices')}
                             />
-                        </DrawerNavGroup>
-                        <DrawerNavGroup title={'NavGroup 2'} titleColor={Colors.black[500]} titleDivider={true}>
                             <DrawerNavItem
-                                icon={<MoveToInbox />}
-                                itemID={'User Guide'}
-                                title={'User Guide'}
-                                onClick={(): void => updateActiveItem('User Guide')}
-                            />
-                            <DrawerNavItem
-                                icon={<Send />}
-                                itemID={'License Agreement'}
-                                title={'License Agreement'}
-                                subtitle={'For Eaton employees only'}
-                                onClick={(): void => updateActiveItem('License Agreement')}
-                            />
-                            <DrawerNavItem
-                                icon={<Accessibility />}
-                                itemID={'Accessibility'}
-                                title={'Accessibility'}
-                                onClick={(): void => updateActiveItem('Accessibility')}
-                            >
-                                <DrawerNavItem
-                                    itemID={'Color Contrast Guide'}
-                                    title={'Color Contrast Guide'}
-                                    onClick={(): void => updateActiveItem('Color Contrast Guide')}
-                                />
-                                <DrawerNavItem
-                                    itemID={'Screen Reader'}
-                                    title={'Screen Reader'}
-                                    onClick={(): void => updateActiveItem('Screen Reader')}
-                                />
-                            </DrawerNavItem>
-                            <DrawerNavItem
-                                icon={<NotificationsActive />}
-                                title={'Notifications'}
-                                itemID={'Notifications'}
-                                onClick={(): void => updateActiveItem('Notifications')}
+                                icon={<AirportShuttle />}
+                                itemID={'Schedule'}
+                                title={'Schedule'}
+                                onClick={(): void => updateActiveItem('Schedule')}
                             />
                         </DrawerNavGroup>
                     </DrawerBody>

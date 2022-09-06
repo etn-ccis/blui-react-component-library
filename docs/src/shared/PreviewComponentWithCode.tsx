@@ -17,7 +17,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
             <Box
                 sx={{
                     p: 2,
-                    height: '70%',
+                    height: '70vh',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -28,7 +28,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
             </Box>
             <Box
                 sx={{
-                    height: '30%',
+                    height: '30vh',
                     overflow: 'auto',
                     boxSizing: 'border-box',
                 }}

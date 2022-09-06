@@ -9,7 +9,7 @@ import {
     DrawerNavItem,
     DrawerSubheader,
 } from '@brightlayer-ui/react-components/core/Drawer';
-import { createProps, removeEmptyLines } from '../../../shared/utilities';
+import { createProps, hideDefaultPropsFromSnippet, removeEmptyLines } from '../../../shared/utilities';
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
 import { Accessibility, Menu, NotificationsActive, Person, Today } from '@mui/icons-material';
@@ -23,6 +23,9 @@ export const PreviewComponent = (): JSX.Element => {
     const drawerSubheaderProps = createProps(drawerSubheaderJson.props as PropsType[]);
     const drawerSubheaderOtherProps = createProps(drawerSubheaderJson.otherProps as PropsType[]);
 
+    const toggleDefaultProp = (propName: string, currentValue: any): string =>
+        hideDefaultPropsFromSnippet(drawerSubheaderJson, propName, currentValue, 'props');
+
     const generateCodeSnippet = (): string => {
         const jsx = `<Drawer open={${drawerSubheaderOtherProps.open}} activeItem={'Identity Management'}>
         <DrawerHeader 
@@ -30,10 +33,10 @@ export const PreviewComponent = (): JSX.Element => {
             title={'Subheader Demo'}
             subtitle={'See the DrawerSubheader below'} 
         />
-        <DrawerSubheader
-            hideContentOnCollapse={${drawerSubheaderProps.hideContentOnCollapse}}
-            divider={${drawerSubheaderProps.divider}}
-        >
+        <DrawerSubheader ${toggleDefaultProp('divider', drawerSubheaderProps.divider)} ${toggleDefaultProp(
+            'hideContentOnCollapse',
+            drawerSubheaderProps.hideContentOnCollapse
+        )}>
             <Box
                 sx={{
                     p: 2,
