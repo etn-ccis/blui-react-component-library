@@ -18,10 +18,11 @@ import EmptyStateAPIDocs from '../../componentDocs/EmptyState/markdown/EmptyStat
 // Examples markdown
 import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
 
-// Components playground components
+// Playground components
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeader/playground';
 import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSubheader/playground';
+import { DrawerFooterPlaygroundComponent } from '../../componentDocs/DrawerFooter/playground';
 
 export type SimpleNavItem = {
     title: string;
@@ -183,7 +184,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Playground',
                                 url: 'playground',
-                                component: <DummyComponent />,
+                                component: <DrawerFooterPlaygroundComponent />,
                             },
                         ],
                     },
