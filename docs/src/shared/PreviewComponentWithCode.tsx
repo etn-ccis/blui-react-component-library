@@ -1,7 +1,6 @@
 import React, { HTMLAttributes } from 'react';
 import Box from '@mui/material/Box/Box';
 import { CodeBlock } from './CodeBlock';
-import { CopyToClipboard } from './CopyToClipboardButton';
 
 export type PreviewComponentProps = HTMLAttributes<HTMLDivElement> & {
     previewContent: JSX.Element;
@@ -34,16 +33,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                 onMouseEnter={(): void => setShow(!show)}
                 onMouseLeave={(): void => setShow(false)}
             >
-                <CodeBlock code={code} language="jsx" />
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        bottom: '16px',
-                        right: '400px',
-                    }}
-                >
-                    {show && <CopyToClipboard title={'Copy All'} copyText={code} />}
-                </Box>
+                <CodeBlock code={code} language="jsx" url="#" copyText="" />
             </Box>
         </>
     );
