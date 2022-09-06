@@ -1,5 +1,10 @@
 # Changelog
 
+## v6.1.1 (Unreleased)
+
+### Fixed
+
+-   `hideContentOnCollapse` prop of `<DrawerFooter>` not hiding footer content ([#486](https://github.com/brightlayer-ui/react-component-library/issues/484)).
 ## v6.1.0 (June 24, 2022)
 
 ### Changed
