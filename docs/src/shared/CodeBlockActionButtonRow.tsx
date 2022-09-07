@@ -4,18 +4,20 @@ import { CopyToClipboard } from './CopyToClipboardButton';
 import { FullCodeOnGithub } from './FullCodeOnGithubButton';
 
 export type CodeBlockActionButtonRowProps = {
-    copyText: string;
+    shouldRenderCopyButton?: boolean;
+    shouldRenderGithubButton?: boolean;
+    copyText?: string;
     title?: string;
-    url: string;
+    url?: string;
 };
 
 export const CodeBlockActionButtonRow: React.FC<CodeBlockActionButtonRowProps> = (props): JSX.Element => {
-    const { title = 'Copy All' } = props;
+    const { title = 'Copy All', shouldRenderCopyButton = true, shouldRenderGithubButton = true, copyText = '', url='#' } = props;
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
-            <CopyToClipboard title={title} copyText={props.copyText} />
-            <FullCodeOnGithub sx={{ ml: 1 }} url={props.url} />
+            {shouldRenderCopyButton && <CopyToClipboard title={title} copyText={copyText} />}
+            {shouldRenderGithubButton && <FullCodeOnGithub sx={{ ml: 1 }} url={url} />}
         </Box>
     );
 };
