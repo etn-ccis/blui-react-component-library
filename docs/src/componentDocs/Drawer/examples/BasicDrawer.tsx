@@ -18,7 +18,7 @@ const codeSnippet = `<Drawer open={true} width={250}>
 export const BasicDrawer = (): JSX.Element => (
     <Box>
         <BasicDrawerExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="1-10" />
+        <CodeBlock code={codeSnippet} language="jsx" />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/Drawer/examples/BasicDrawerExample.tsx" />

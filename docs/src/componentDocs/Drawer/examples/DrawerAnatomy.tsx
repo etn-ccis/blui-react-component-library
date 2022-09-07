@@ -24,7 +24,7 @@ const codeSnippet = `<Drawer open={true} width={250}>
 export const DrawerAnatomy = (): JSX.Element => (
     <Box>
         <DrawerAnatomyExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="1-16" />
+        <CodeBlock code={codeSnippet} language="jsx" />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/Drawer/examples/DrawerAnatomyExample.tsx" />

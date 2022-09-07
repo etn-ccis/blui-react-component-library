@@ -10,7 +10,7 @@ export const DrawerHeaderWithTitleContentExample = (): JSX.Element => (
             <DrawerHeader
                 icon={<Menu />}
                 titleContent={
-                    <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', ml: 2 }}>
                         <Typography variant="subtitle1" sx={{ mb: -1 }}>
                             Customizable
                         </Typography>
