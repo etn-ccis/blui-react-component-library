@@ -24,9 +24,11 @@ import DrawerFooterExamples from '../../componentDocs/DrawerFooter/markdown/Draw
 import DrawerBodyExamples from '../../componentDocs/DrawerBody/markdown/DrawerBodyExamples.mdx';
 import DrawerNavGroupExamples from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupExamples.mdx';
 
-// Components playground components
+// Playground components
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeader/playground';
+import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSubheader/playground';
+import { DrawerFooterPlaygroundComponent } from '../../componentDocs/DrawerFooter/playground';
 
 export type SimpleNavItem = {
     title: string;
@@ -166,7 +168,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Playground',
                                 url: 'playground',
-                                component: <DummyComponent />,
+                                component: <DrawerSubheaderPlaygroundComponent />,
                             },
                         ],
                     },
@@ -188,7 +190,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Playground',
                                 url: 'playground',
-                                component: <DummyComponent />,
+                                component: <DrawerFooterPlaygroundComponent />,
                             },
                         ],
                     },

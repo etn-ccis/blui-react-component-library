@@ -1,17 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import drawerTypes from '../componentDocs/Drawer/playground/DrawerTypes';
 import drawerHeaderTypes from '../componentDocs/DrawerHeader/playground/DrawerHeaderTypes';
+import drawerSubheaderTypes from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderTypes';
+import DrawerFooterTypes from '../componentDocs/DrawerFooter/playground/DrawerFooterTypes';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
 type ComponentState = {
     drawerComponent: ComponentType;
     drawerHeaderComponent: ComponentType;
+    drawerSubheaderComponent: ComponentType;
+    drawerFooterComponent: ComponentType;
 };
 const initialState: ComponentState = {
     drawerComponent: drawerTypes,
     drawerHeaderComponent: drawerHeaderTypes,
+    drawerSubheaderComponent: drawerSubheaderTypes,
+    drawerFooterComponent: DrawerFooterTypes,
 };
-export const drawerHeaderSlice = createSlice({
+export const componentPropsStateSlice = createSlice({
     name: 'componentsPropsState',
     initialState: initialState,
     reducers: {
@@ -46,6 +52,6 @@ export const drawerHeaderSlice = createSlice({
     },
 });
 
-export const { updateProp, updateSharedProp, updateOtherProp, updateActiveItemProp } = drawerHeaderSlice.actions;
+export const { updateProp, updateSharedProp, updateOtherProp, updateActiveItemProp } = componentPropsStateSlice.actions;
 
-export default drawerHeaderSlice.reducer;
+export default componentPropsStateSlice.reducer;

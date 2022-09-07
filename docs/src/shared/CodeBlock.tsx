@@ -22,11 +22,13 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
                 '.line-highlight::after': {
                     display: 'none',
                 },
+                height: '100%',
+                display: 'flex',
             }}
             {...divProps}
             className="Code"
         >
-            <pre data-line={dataLine} style={{ margin: 0 }}>
+            <pre data-line={dataLine} style={{ margin: 0, width: '100%' }}>
                 <code style={{ fontFamily: 'monospace' }} className={`language-${language}`}>
                     {code}
                 </code>

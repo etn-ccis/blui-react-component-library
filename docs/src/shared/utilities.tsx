@@ -4,6 +4,7 @@ import FitnessCenter from '@mui/icons-material/FitnessCenter';
 import Menu from '@mui/icons-material/Menu';
 import PinDrop from '@mui/icons-material/PinDrop';
 import Remove from '@mui/icons-material/Remove';
+import { RootState } from '../redux/store';
 import { ComponentType, PropsType } from '../__types__';
 
 export const getSnakeCase = (str: string): string => str.replace(/[A-Z]/g, '_$&').toLowerCase().slice(1);
@@ -75,12 +76,16 @@ export const createProps = (props: PropsType[]): any => {
     return componentProps;
 };
 
-export const getComponentState = (componentName: string, state: any): ComponentType => {
+export const getComponentState = (componentName: string, state: RootState['componentsPropsState']): ComponentType => {
     switch (componentName) {
         case 'Drawer Header':
             return state.drawerHeaderComponent;
         case 'Drawer':
             return state.drawerComponent;
+        case 'Drawer Subheader':
+            return state.drawerSubheaderComponent;
+        case 'Drawer Footer':
+            return state.drawerFooterComponent;
         default:
             return state.drawerComponent;
     }
