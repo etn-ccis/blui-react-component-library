@@ -7,107 +7,65 @@ import {
     DrawerHeader,
     DrawerNavGroup,
     DrawerNavItem,
-    DrawerSubheader,
 } from '@brightlayer-ui/react-components/core/Drawer';
 import { createProps, hideDefaultPropsFromSnippet, removeEmptyLines } from '../../../shared/utilities';
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
-import { Accessibility, Menu, NotificationsActive, Person, Today } from '@mui/icons-material';
-import Box from '@mui/material/Box';
+import LooksOne from '@mui/icons-material/LooksOne';
+import LooksTwo from '@mui/icons-material/LooksTwo';
+import Menu from '@mui/icons-material/Menu';
 
 export const PreviewComponent = (): JSX.Element => {
-    const drawerSubheaderJson = useAppSelector(
-        (state: RootState) => state.componentsPropsState.drawerSubheaderComponent
-    );
+    const drawerNavGroupJson = useAppSelector((state: RootState) => state.componentsPropsState.drawerNavGroupComponent);
 
-    const drawerSubheaderProps = createProps(drawerSubheaderJson.props as PropsType[]);
-    const drawerSubheaderOtherProps = createProps(drawerSubheaderJson.otherProps as PropsType[]);
+    const drawerNavGroupProps = createProps(drawerNavGroupJson.props as PropsType[]);
 
     const toggleDefaultProp = (propName: string, currentValue: any): string =>
-        hideDefaultPropsFromSnippet(drawerSubheaderJson, propName, currentValue, 'props');
+        hideDefaultPropsFromSnippet(drawerNavGroupJson, propName, currentValue, 'props');
 
     const generateCodeSnippet = (): string => {
-        const jsx = `<Drawer open={${drawerSubheaderOtherProps.open}} activeItem={'Identity Management'}>
-        <DrawerHeader 
-            icon={<Menu />}
-            title={'Subheader Demo'}
-            subtitle={'See the DrawerSubheader below'} 
-        />
-        <DrawerSubheader ${toggleDefaultProp('divider', drawerSubheaderProps.divider)} ${toggleDefaultProp(
-            'hideContentOnCollapse',
-            drawerSubheaderProps.hideContentOnCollapse
-        )}>
-            <Box
-                sx={{
-                    p: 2,
-                }}
-            >
-                Subheader Content Here
-            </Box>
-        </DrawerSubheader>
-        <DrawerBody>
-            <DrawerNavGroup>
-                <DrawerNavItem
-                    icon={<Person />}
-                    itemID={'Identity Management'}
-                    title={'Identity Management'}
-                />
-                <DrawerNavItem
-                    icon={<Today />}
-                    itemID={'Calendar'}
-                    title={'Calendar'} />
-                <DrawerNavItem 
-                    icon={<Accessibility />}
-                    title={'Accessibility'}
-                    itemID={'Accessibility'} />
-                <DrawerNavItem
-                    icon={<NotificationsActive />}
-                    title={'Notifications'}
-                    itemID={'Notifications'}
-                />
-            </DrawerNavGroup>
-        </DrawerBody>
-    </Drawer>`;
+        const jsx = `<Drawer open={true}>
+    <DrawerHeader 
+        icon={<Menu />}
+        title={'Header Title'}
+    />
 
+    <DrawerBody>
+        <DrawerNavGroup
+            title={"${drawerNavGroupProps.title}"}
+            titleColor={"${drawerNavGroupProps.titleColor}"}
+            ${toggleDefaultProp('titleDivider', drawerNavGroupProps.titleDivider)}
+        >
+            <DrawerNavItem
+                icon={<LooksOne />}
+                itemID={'Nav Item 1'}
+                title={'Nav Item 1'}
+            />
+            <DrawerNavItem
+                icon={<LooksTwo />}
+                itemID={'Nav Item 2'}
+                title={'Nav Item 2'}
+            />
+        </DrawerNavGroup>
+    </DrawerBody>
+</Drawer>`;
         return removeEmptyLines(jsx);
     };
 
     return (
         <PreviewComponentWithCode
             previewContent={
-                <Drawer
-                    open={drawerSubheaderOtherProps.open}
-                    activeItem={'Identity Management'}
-                    noLayout
-                    sx={{ minHeight: 'auto' }}
-                >
-                    <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
-                    <DrawerSubheader
-                        hideContentOnCollapse={drawerSubheaderProps.hideContentOnCollapse}
-                        divider={drawerSubheaderProps.divider}
-                    >
-                        <Box
-                            sx={{
-                                p: 2,
-                            }}
-                        >
-                            Subheader Content Here
-                        </Box>
-                    </DrawerSubheader>
+                <Drawer open={true} noLayout sx={{ minHeight: 'auto' }}>
+                    <DrawerHeader icon={<Menu />} title={'Header Title'} />
+
                     <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
-                        <DrawerNavGroup>
-                            <DrawerNavItem
-                                icon={<Person />}
-                                itemID={'Identity Management'}
-                                title={'Identity Management'}
-                            />
-                            <DrawerNavItem icon={<Today />} itemID={'Calendar'} title={'Calendar'} />
-                            <DrawerNavItem icon={<Accessibility />} title={'Accessibility'} itemID={'Accessibility'} />
-                            <DrawerNavItem
-                                icon={<NotificationsActive />}
-                                title={'Notifications'}
-                                itemID={'Notifications'}
-                            />
+                        <DrawerNavGroup
+                            title={drawerNavGroupProps.title}
+                            titleColor={drawerNavGroupProps.titleColor}
+                            titleDivider={drawerNavGroupProps.titleDivider}
+                        >
+                            <DrawerNavItem icon={<LooksOne />} itemID={'Nav Item 1'} title={'Nav Item 1'} />
+                            <DrawerNavItem icon={<LooksTwo />} itemID={'Nav Item 2'} title={'Nav Item 2'} />
                         </DrawerNavGroup>
                     </DrawerBody>
                 </Drawer>

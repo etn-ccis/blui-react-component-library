@@ -1,7 +1,7 @@
 import { PropsType } from '../../__types__';
 import * as Colors from '@brightlayer-ui/colors';
 
-export const sharedPropsTypes: PropsType[] = [
+export const sharedPropsConfig: PropsType[] = [
     {
         propName: 'activeItemBackgroundColor',
         inputType: 'colorPicker',
@@ -142,4 +142,4 @@ export const sharedPropsTypes: PropsType[] = [
     },
 ];
 
-export default sharedPropsTypes;
+export default sharedPropsConfig;

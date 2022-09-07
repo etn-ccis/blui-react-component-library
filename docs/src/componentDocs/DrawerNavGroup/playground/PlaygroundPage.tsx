@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import DrawerSubheaderPlayground from './PropsPlayground';
+import DrawerNavGroupPlayground from './PropsPlayground';
 import { PreviewComponent } from './PreviewComponent';
 
-export const DrawerSubheaderPlaygroundComponent = (): JSX.Element => (
+export const DrawerNavGroupPlaygroundComponent = (): JSX.Element => (
     <Box
         sx={{
             width: '100%',
@@ -12,6 +12,6 @@ export const DrawerSubheaderPlaygroundComponent = (): JSX.Element => (
         }}
     >
         <PreviewComponent />
-        <DrawerSubheaderPlayground />
+        <DrawerNavGroupPlayground />
     </Box>
 );
