@@ -2,6 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import { CopyToClipboard } from './CopyToClipboardButton';
 import { FullCodeOnGithub } from './FullCodeOnGithubButton';
+import { SxProps } from '@mui/material/styles';
 
 export type CodeBlockActionButtonRowProps = {
     shouldRenderCopyButton?: boolean;
@@ -9,13 +10,21 @@ export type CodeBlockActionButtonRowProps = {
     copyText?: string;
     title?: string;
     url?: string;
+    sx?: SxProps;
 };
 
 export const CodeBlockActionButtonRow: React.FC<CodeBlockActionButtonRowProps> = (props): JSX.Element => {
-    const { title = 'Copy All', shouldRenderCopyButton = true, shouldRenderGithubButton = true, copyText = '', url='#' } = props;
+    const {
+        title = 'Copy All',
+        shouldRenderCopyButton = true,
+        shouldRenderGithubButton = true,
+        copyText = '',
+        url = '#',
+        sx,
+    } = props;
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1, ...sx }}>
             {shouldRenderCopyButton && <CopyToClipboard title={title} copyText={copyText} />}
             {shouldRenderGithubButton && <FullCodeOnGithub sx={{ ml: 1 }} url={url} />}
         </Box>
