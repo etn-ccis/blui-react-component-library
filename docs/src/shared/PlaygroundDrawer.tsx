@@ -8,24 +8,38 @@ import Typography from '@mui/material/Typography';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
-import * as Colors from '@brightlayer-ui/colors';
-import FormControl from '@mui/material/FormControl/FormControl';
-import InputLabel from '@mui/material/InputLabel/InputLabel';
-import Select from '@mui/material/Select/Select';
-import MenuItem from '@mui/material/MenuItem/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText/FormHelperText';
-import FormControlLabel from '@mui/material/FormControlLabel/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox/Checkbox';
+import Divider from '@mui/material/Divider';
+import FormControl from '@mui/material/FormControl/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel/FormControlLabel';
+import FormHelperText from '@mui/material/FormHelperText/FormHelperText';
+import InputLabel from '@mui/material/InputLabel/InputLabel';
+import MenuItem from '@mui/material/MenuItem/MenuItem';
+import Select from '@mui/material/Select/Select';
 import Slider from '@mui/material/Slider/Slider';
+import * as Colors from '@brightlayer-ui/colors';
 
 const Heading = styled(Typography)(({ theme }) => ({
     fontSize: theme.typography.pxToRem(15),
     fontWeight: 'regular',
     color: Colors.blue[500],
 }));
+
+const useStyles = makeStyles(() =>
+    createStyles({
+        accordionRoot: {
+            boxShadow: 'none',
+            '&:before': {
+                display: 'none',
+            },
+        },
+    })
+);
 
 type Anchor = 'right';
 type DrawerProps = {
@@ -35,6 +49,8 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     const { drawerData: DrawerData } = props;
     const componentName = DrawerData.componentName as string;
     const dispatch = useAppDispatch();
+    const theme = useTheme();
+    const classes = useStyles(theme);
     const [state, setState] = React.useState({
         right: true,
     });
@@ -187,18 +203,21 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
         sectionNumber: number,
         groupType: string
     ): JSX.Element => (
-        <Accordion defaultExpanded={sectionNumber === 0} sx={{ boxShadow: 'none' }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: Colors.blue[500] }} />}>
-                <Heading>{headingTitle}</Heading>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Box>
-                    {knobs?.map(
-                        (item: PropsType, index: number): JSX.Element => propBlock(item, `${groupType}-${index}`)
-                    )}
-                </Box>
-            </AccordionDetails>
-        </Accordion>
+        <>
+            <Accordion defaultExpanded={sectionNumber === 0} classes={{ root: classes.accordionRoot }}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: Colors.blue[500] }} />}>
+                    <Heading>{headingTitle}</Heading>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Box>
+                        {knobs?.map(
+                            (item: PropsType, index: number): JSX.Element => propBlock(item, `${groupType}-${index}`)
+                        )}
+                    </Box>
+                </AccordionDetails>
+            </Accordion>
+            <Divider />
+        </>
     );
 
     const displayPropsByGroupType = (data: ComponentType): JSX.Element => {

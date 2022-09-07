@@ -66,7 +66,7 @@ export const PreviewComponent = (): JSX.Element => {
     return (
         <PreviewComponentWithCode
             previewContent={
-                <Drawer open={true} activeItem={'Identity Management'} noLayout>
+                <Drawer open={true} activeItem={'Identity Management'} noLayout sx={{ minHeight: 'auto' }}>
                     <DrawerHeader
                         backgroundColor={drawerHeaderProps.backgroundColor}
                         backgroundImage={getImage(drawerHeaderProps.backgroundImage)}

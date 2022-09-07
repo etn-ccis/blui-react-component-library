@@ -16,18 +16,19 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
         <>
             <Box
                 sx={{
-                    padding: '1rem 1rem 0',
-                    height: '68vh',
+                    p: 2,
+                    height: '70vh',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
+                    mt: 6,
                 }}
             >
                 {previewContent}
             </Box>
             <Box
                 sx={{
-                    height: '32vh',
+                    height: '30vh',
                     overflow: 'auto',
                     boxSizing: 'border-box',
                 }}
