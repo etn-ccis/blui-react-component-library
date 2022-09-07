@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { CodeBlock } from '../../../shared';
+import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { MultipleDrawerNavGroupsExample } from './MultipleDrawerNavGroupsExample';
 
 const codeSnippet = `<Drawer open={true} width={250}>
@@ -20,10 +20,8 @@ const codeSnippet = `<Drawer open={true} width={250}>
 export const MultipleDrawerNavGroups = (): JSX.Element => (
     <Box>
         <MultipleDrawerNavGroupsExample />
-        <CodeBlock
-            code={codeSnippet}
-            language="jsx"
-            dataLine="3-10"
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-10" />
+        <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/DrawerNavGroup/examples/MultipleDrawerNavGroupsExample.tsx"
         />

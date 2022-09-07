@@ -33,7 +33,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                 onMouseEnter={(): void => setShow(!show)}
                 onMouseLeave={(): void => setShow(false)}
             >
-                <CodeBlock code={code} language="jsx" url="#" copyText="" />
+                <CodeBlock code={code} language="jsx" />
             </Box>
         </>
     );

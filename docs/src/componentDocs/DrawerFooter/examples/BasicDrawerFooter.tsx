@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { CodeBlock } from '../../../shared';
+import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { BasicDrawerFooterExample } from './BasicDrawerFooterExample';
 
 const codeSnippet = `<Drawer open={true} width={250}>
@@ -24,6 +24,8 @@ export const BasicDrawerFooter = (): JSX.Element => (
             code={codeSnippet}
             language="jsx"
             dataLine="9-11"
+        />
+        <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/DrawerFooter/examples/BasicDrawerFooterExample.tsx"
         />

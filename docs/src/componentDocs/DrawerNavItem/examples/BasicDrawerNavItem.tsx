@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { CodeBlock } from '../../../shared';
+import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
 import { BasicDrawerNavItemExample } from './BasicDrawerNavItemExample';
 
@@ -17,10 +17,8 @@ export const BasicDrawerNavItem = (): JSX.Element => (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
             <BasicDrawerNavItemExample />
         </Box>
-        <CodeBlock
-            code={codeSnippet}
-            language="jsx"
-            dataLine="3-5"
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-5" />
+        <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/DrawerNavItem/examples/BasicDrawerNavItemExample.tsx"
         />
