@@ -3,8 +3,8 @@ import { Box } from '@mui/material';
 import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
 import { MultipleDrawerNavGroupsExample } from './MultipleDrawerNavGroupsExample';
 
-const codeSnippet = `<Drawer open={true} width={250} sx={{ margin: '0 auto' }} noLayout>
-    <DrawerBody sx={{ flex: '1 1 auto' }}>
+const codeSnippet = `<Drawer open={true} width={250}>
+    <DrawerBody>
         <DrawerNavGroup title="Locations" hidePadding divider>
             <DrawerNavItem title="Regional" itemID="1" divider={false} />
             <DrawerNavItem title="National" itemID="2" divider={false} />
