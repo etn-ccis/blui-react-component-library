@@ -20,6 +20,9 @@ import AppBarAPIDocs from '../../componentDocs/AppBar/markdown/AppBarAPIDocs.mdx
 
 // Examples markdown
 import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
+import DrawerFooterExamples from '../../componentDocs/DrawerFooter/markdown/DrawerFooterExamples.mdx';
+import DrawerBodyExamples from '../../componentDocs/DrawerBody/markdown/DrawerBodyExamples.mdx';
+import DrawerNavGroupExamples from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupExamples.mdx';
 
 // Components playground components
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
@@ -175,7 +178,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DummyExamplesComponent />,
+                                component: <DrawerFooterExamples />,
                             },
                             {
                                 title: 'API Docs',
@@ -197,7 +200,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DummyExamplesComponent />,
+                                component: <DrawerBodyExamples />,
                             },
                             {
                                 title: 'API Docs',
@@ -241,7 +244,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DummyExamplesComponent />,
+                                component: <DrawerNavGroupExamples />,
                             },
                             {
                                 title: 'API Docs',

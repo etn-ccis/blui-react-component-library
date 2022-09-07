@@ -37,7 +37,6 @@ const codeSnippet = `<Drawer open={true} activeItem={selected}>
     </DrawerBody>
 </Drawer>
 `;
-
 export const DrawerNavItemSelectedItems = (): JSX.Element => (
     <Box>
         <Box sx={{ m: '32px 0', backgroundColor: colors.white[600], p: 4 }}>
