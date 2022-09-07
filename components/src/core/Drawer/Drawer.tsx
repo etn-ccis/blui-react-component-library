@@ -96,7 +96,7 @@ export type DrawerComponentProps = DrawerProps; // alias
 const Root = styled(MUIDrawer, {
     name: 'drawer',
     slot: 'root',
-    shouldForwardProp: (prop) => prop !== 'backgroundColor' && prop !== 'sideBorder' && prop !== 'open',
+    shouldForwardProp: (prop) => prop !== 'backgroundColor' && prop !== 'sideBorder',
 })<Pick<DrawerProps, 'backgroundColor' | 'sideBorder' | 'open'>>(({ backgroundColor, sideBorder, open, theme }) => ({
     minHeight: '100%',
     backgroundColor: backgroundColor || 'transparent',
