@@ -12,3 +12,6 @@ body,
 .drawerBodyStyle {
     flex: 1 1 auto;
 }
+.line-highlight {
+    margin-top: 20px;
+}
