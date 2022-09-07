@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
+import { CodeBlock } from '../../../shared';
 import { ComplexDrawerFooterExample } from './ComplexDrawerFooterExample';
 
 const codeSnippet = `<Drawer open={true} width={250}>
@@ -38,10 +38,12 @@ const codeSnippet = `<Drawer open={true} width={250}>
 export const ComplexDrawerFooter = (): JSX.Element => (
     <Box>
         <ComplexDrawerFooterExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="9-30" />
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
-            <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/DrawerFooter/examples/ComplexDrawerFooterExample.tsx" />
-        </Box>
+        <CodeBlock
+            code={codeSnippet}
+            language="jsx"
+            dataLine="9-30"
+            copyText={codeSnippet}
+            url="componentDocs/DrawerFooter/examples/ComplexDrawerFooterExample.tsx"
+        />
     </Box>
 );
