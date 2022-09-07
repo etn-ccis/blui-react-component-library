@@ -17,10 +17,11 @@ export const ComplexDrawerSubheaderExample = (): JSX.Element => {
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
             <Drawer open={true} width={250} sx={{ margin: '0 auto' }} noLayout openOnHover={false}>
                 <DrawerHeader title="Energy Co." />
-                <DrawerSubheader>
+                <DrawerSubheader divider={false}>
                     <FormControl sx={{ height: 56, width: '100%', mt: 1 }}>
                         <InputLabel id="organization">Organization</InputLabel>
                         <Select
+                            label="organization"
                             labelId="organization"
                             value={selected}
                             onChange={(event): void => setSelected(event.target.value)}
@@ -29,7 +30,7 @@ export const ComplexDrawerSubheaderExample = (): JSX.Element => {
                             <MenuItem value="blui">BLUI CO.</MenuItem>
                             <Divider />
                             <MenuItem value="addnew">
-                                <Typography variant="caption" sx={{ fontSize: '1rem' }}>
+                                <Typography variant="caption" sx={{ fontSize: '1rem', color: colors.gray[400] }}>
                                     + Add a New Organization...
                                 </Typography>
                             </MenuItem>
@@ -37,7 +38,7 @@ export const ComplexDrawerSubheaderExample = (): JSX.Element => {
                     </FormControl>
                 </DrawerSubheader>
                 <DrawerBody sx={{ flex: '1 1 auto' }}>
-                    <DrawerNavGroup hidePadding>
+                    <DrawerNavGroup>
                         <DrawerNavItem title="Dashboard" icon={<Dashboard />} itemID="1" />
                         <DrawerNavItem title="Locations" icon={<LocationOn />} itemID="2" />
                         <DrawerNavItem title="Legal" icon={<Copyright />} itemID="3" />

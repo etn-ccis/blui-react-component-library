@@ -5,10 +5,11 @@ import { ComplexDrawerSubheaderExample } from './ComplexDrawerSubheaderExample';
 
 const codeSnippet = `<Drawer open={true} width={250}>
     <DrawerHeader title="Energy Co." />
-    <DrawerSubheader>
+    <DrawerSubheader divider={false}>
         <FormControl sx={{ height: 56, width: '100%', mt: 1 }}>
             <InputLabel id="organization">Organization</InputLabel>
             <Select
+                label="organization"
                 labelId="organization"
                 value={selected}
                 onChange={(event): void => setSelected(event.target.value)}
@@ -25,7 +26,7 @@ const codeSnippet = `<Drawer open={true} width={250}>
         </FormControl>
     </DrawerSubheader>
     <DrawerBody sx={{ flex: '1 1 auto' }}>
-        <DrawerNavGroup hidePadding>
+        <DrawerNavGroup>
             <DrawerNavItem title="Dashboard" icon={<Dashboard />} itemID="1" />
             <DrawerNavItem title="Locations" icon={<LocationOn />} itemID="2" />
             <DrawerNavItem title="Legal" icon={<Copyright />} itemID="3" />
