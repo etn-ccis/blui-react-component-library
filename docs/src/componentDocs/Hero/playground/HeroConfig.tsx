@@ -1,7 +1,7 @@
 import { ComponentType } from '../../../__types__';
 import * as Colors from '@brightlayer-ui/colors';
 
-export const heroTypes: ComponentType = {
+export const heroConfig: ComponentType = {
     componentName: 'Hero',
     props: [
         {
@@ -83,4 +83,4 @@ export const heroTypes: ComponentType = {
     ],
 };
 
-export default heroTypes;
+export default heroConfig;
