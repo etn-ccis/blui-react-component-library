@@ -41,7 +41,7 @@ export const heroConfig: ComponentType = {
             inputType: 'string',
             inputValue: 'Velocity',
             propType: 'string',
-            helperText: 'The text shown below the `ChannelValue`',
+            helperText: 'The text shown below the Channel Value',
             required: true,
         },
     ],
