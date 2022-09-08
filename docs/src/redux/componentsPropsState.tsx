@@ -4,6 +4,7 @@ import drawerHeaderConfig from '../componentDocs/DrawerHeader/playground/DrawerH
 import drawerSubheaderConfig from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderConfig';
 import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerFooterConfig';
 import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
+import drawerNavItemConfig from '../componentDocs/DrawerNavItem/playground/DrawerNavItemConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
 type ComponentState = {
@@ -12,6 +13,7 @@ type ComponentState = {
     drawerSubheaderComponent: ComponentType;
     drawerFooterComponent: ComponentType;
     drawerNavGroupComponent: ComponentType;
+    drawerNavItemComponent: ComponentType;
 };
 const initialState: ComponentState = {
     drawerComponent: drawerTypes,
@@ -19,6 +21,7 @@ const initialState: ComponentState = {
     drawerSubheaderComponent: drawerSubheaderConfig,
     drawerFooterComponent: drawerFooterConfig,
     drawerNavGroupComponent: drawerNavGroupConfig,
+    drawerNavItemComponent: drawerNavItemConfig,
 };
 export const componentPropsStateSlice = createSlice({
     name: 'componentsPropsState',

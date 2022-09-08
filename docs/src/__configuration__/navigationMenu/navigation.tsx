@@ -30,6 +30,7 @@ import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeade
 import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSubheader/playground';
 import { DrawerFooterPlaygroundComponent } from '../../componentDocs/DrawerFooter/playground';
 import { DrawerNavGroupPlaygroundComponent } from '../../componentDocs/DrawerNavGroup/playground';
+import { DrawerNavItemPlaygroundComponent } from '../../componentDocs/DrawerNavItem/playground';
 
 export type SimpleNavItem = {
     title: string;
@@ -235,7 +236,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Playground',
                                 url: 'playground',
-                                component: <DummyComponent />,
+                                component: <DrawerNavItemPlaygroundComponent />,
                             },
                         ],
                     },
