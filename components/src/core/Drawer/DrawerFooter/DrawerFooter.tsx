@@ -48,7 +48,7 @@ const Root = styled(Box, {
 })<Pick<DrawerFooterProps, 'backgroundColor'>>(({ backgroundColor }) => ({
     width: '100%',
     backgroundColor: backgroundColor,
-    [`& .${drawerFooterClasses.hidden}`]: {
+    [`&.${drawerFooterClasses.hidden}`]: {
         visibility: 'hidden',
     },
 }));
