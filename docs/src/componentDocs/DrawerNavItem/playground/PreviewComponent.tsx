@@ -15,7 +15,7 @@ export const PreviewComponent = (): JSX.Element => {
         hideDefaultPropsFromSnippet(drawerNavItemJson, propName, currentValue, 'props');
 
     const generateCodeSnippet = (): string => {
-        const jsx = `<Drawer open={true} activeItem={"${drawerNavItemProps.itemID}"}>
+        const jsx = `<Drawer open={true} activeItem={"${drawerNavItemProps.itemID}"} hidePadding>
     <DrawerBody>
         <DrawerNavGroup>
             <DrawerNavItem 
@@ -38,7 +38,13 @@ export const PreviewComponent = (): JSX.Element => {
     return (
         <PreviewComponentWithCode
             previewContent={
-                <Drawer open={true} noLayout sx={{ minHeight: 'auto' }} activeItem={drawerNavItemProps.itemID}>
+                <Drawer
+                    open={true}
+                    noLayout
+                    sx={{ minHeight: 'auto' }}
+                    activeItem={drawerNavItemProps.itemID}
+                    hidePadding
+                >
                     <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
                         <DrawerNavGroup>
                             <DrawerNavItem

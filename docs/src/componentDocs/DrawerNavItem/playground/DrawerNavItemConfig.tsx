@@ -1,5 +1,4 @@
 import { ComponentType } from '../../../__types__';
-import * as Colors from '@brightlayer-ui/colors';
 
 export const drawerNavItemConfig: ComponentType = {
     componentName: 'Drawer Nav Item',
@@ -15,7 +14,7 @@ export const drawerNavItemConfig: ComponentType = {
         {
             propName: 'hidePadding',
             inputType: 'boolean',
-            inputValue: false,
+            inputValue: true,
             propType: 'boolean',
             helperText: 'Remove left padding if no icon is used',
             required: false,
@@ -42,7 +41,7 @@ export const drawerNavItemConfig: ComponentType = {
         {
             propName: 'statusColor',
             inputType: 'colorPicker',
-            inputValue: Colors.gray[500],
+            inputValue: '#ffac00',
             propType: 'string',
             helperText: 'Status stripe and icon color',
             required: false,
