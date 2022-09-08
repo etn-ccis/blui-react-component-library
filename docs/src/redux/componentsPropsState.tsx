@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import drawerTypes from '../componentDocs/Drawer/playground/DrawerTypes';
-import drawerHeaderTypes from '../componentDocs/DrawerHeader/playground/DrawerHeaderTypes';
-import drawerSubheaderTypes from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderTypes';
-import DrawerFooterTypes from '../componentDocs/DrawerFooter/playground/DrawerFooterTypes';
+import drawerTypes from '../componentDocs/Drawer/playground/DrawerConfig';
+import drawerHeaderConfig from '../componentDocs/DrawerHeader/playground/DrawerHeaderConfig';
+import drawerSubheaderConfig from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderConfig';
+import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerFooterConfig';
+import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
 type ComponentState = {
@@ -10,12 +11,14 @@ type ComponentState = {
     drawerHeaderComponent: ComponentType;
     drawerSubheaderComponent: ComponentType;
     drawerFooterComponent: ComponentType;
+    drawerNavGroupComponent: ComponentType;
 };
 const initialState: ComponentState = {
     drawerComponent: drawerTypes,
-    drawerHeaderComponent: drawerHeaderTypes,
-    drawerSubheaderComponent: drawerSubheaderTypes,
-    drawerFooterComponent: DrawerFooterTypes,
+    drawerHeaderComponent: drawerHeaderConfig,
+    drawerSubheaderComponent: drawerSubheaderConfig,
+    drawerFooterComponent: drawerFooterConfig,
+    drawerNavGroupComponent: drawerNavGroupConfig,
 };
 export const componentPropsStateSlice = createSlice({
     name: 'componentsPropsState',

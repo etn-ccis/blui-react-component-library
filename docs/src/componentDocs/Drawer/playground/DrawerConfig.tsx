@@ -1,7 +1,7 @@
 import { ComponentType } from '../../../__types__';
-import { sharedPropsTypes } from '../../../shared/data/SharedPropsTypes';
+import sharedPropsConfig from '../../../shared/data/SharedPropsConfig';
 
-export const drawerTypes: ComponentType = {
+export const drawerConfig: ComponentType = {
     componentName: 'Drawer',
     props: [
         {
@@ -96,7 +96,7 @@ export const drawerTypes: ComponentType = {
             defaultValue: 360,
         },
     ],
-    sharedProps: sharedPropsTypes,
+    sharedProps: sharedPropsConfig,
 };
 
-export default drawerTypes;
+export default drawerConfig;
