@@ -6,20 +6,26 @@ import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerF
 import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
+import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
+
 type ComponentState = {
     drawerComponent: ComponentType;
     drawerHeaderComponent: ComponentType;
     drawerSubheaderComponent: ComponentType;
     drawerFooterComponent: ComponentType;
     drawerNavGroupComponent: ComponentType;
+    listItemTagComponent: ComponentType;
 };
+
 const initialState: ComponentState = {
     drawerComponent: drawerTypes,
     drawerHeaderComponent: drawerHeaderConfig,
     drawerSubheaderComponent: drawerSubheaderConfig,
     drawerFooterComponent: drawerFooterConfig,
     drawerNavGroupComponent: drawerNavGroupConfig,
+    listItemTagComponent: listItemTagConfig,
 };
+
 export const componentPropsStateSlice = createSlice({
     name: 'componentsPropsState',
     initialState: initialState,

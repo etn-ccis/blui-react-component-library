@@ -88,6 +88,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.drawerFooterComponent;
         case 'Drawer Nav Group':
             return state.drawerNavGroupComponent;
+        case 'List Item Tag':
+            return state.listItemTagComponent;
         default:
             return state.drawerComponent;
     }
