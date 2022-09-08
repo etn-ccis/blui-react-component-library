@@ -1,6 +1,7 @@
 import React, { HTMLAttributes } from 'react';
 import Box from '@mui/material/Box/Box';
 import { CodeBlock } from './CodeBlock';
+import { CodeBlockActionButtonRow } from './CodeBlockActionButtonRow';
 
 export type PreviewComponentProps = HTMLAttributes<HTMLDivElement> & {
     previewContent: JSX.Element;
@@ -34,6 +35,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                 onMouseLeave={(): void => setShow(false)}
             >
                 <CodeBlock code={code} language="jsx" />
+                <CodeBlockActionButtonRow url="#" copyText="<PreviewComponentWithCode />" />
             </Box>
         </>
     );
