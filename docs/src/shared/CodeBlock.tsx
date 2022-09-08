@@ -1,7 +1,6 @@
 import React, { HTMLAttributes, useEffect } from 'react';
 import Prism from 'prismjs';
 import Box from '@mui/material/Box';
-
 export type CodeBlockProps = HTMLAttributes<HTMLDivElement> & {
     code: string;
     language: string;
