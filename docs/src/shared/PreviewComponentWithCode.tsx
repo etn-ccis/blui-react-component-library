@@ -36,7 +36,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                 onMouseLeave={(): void => setShow(false)}
             >
                 <CodeBlock code={code} language="jsx" />
-                <CodeBlockActionButtonRow url="#" copyText="<PreviewComponentWithCode />" />
+                <CodeBlockActionButtonRow url="#" copyText={code} />
             </Box>
         </>
     );

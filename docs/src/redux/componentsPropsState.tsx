@@ -4,15 +4,17 @@ import drawerHeaderConfig from '../componentDocs/DrawerHeader/playground/DrawerH
 import drawerSubheaderConfig from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderConfig';
 import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerFooterConfig';
 import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
+import heroConfig from '../componentDocs/Hero/playground/HeroConfig';
+import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
-import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
 
 type ComponentState = {
     drawerComponent: ComponentType;
     drawerHeaderComponent: ComponentType;
     drawerSubheaderComponent: ComponentType;
     drawerFooterComponent: ComponentType;
+    heroComponent: ComponentType;
     drawerNavGroupComponent: ComponentType;
     listItemTagComponent: ComponentType;
 };
@@ -23,6 +25,7 @@ const initialState: ComponentState = {
     drawerSubheaderComponent: drawerSubheaderConfig,
     drawerFooterComponent: drawerFooterConfig,
     drawerNavGroupComponent: drawerNavGroupConfig,
+    heroComponent: heroConfig,
     listItemTagComponent: listItemTagConfig,
 };
 
