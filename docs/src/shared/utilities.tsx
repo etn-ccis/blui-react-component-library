@@ -1,12 +1,17 @@
+import React from 'react';
 import Add from '@mui/icons-material/Add';
 import AddAPhoto from '@mui/icons-material/AddAPhoto';
+import Fan from '@brightlayer-ui/icons-mui/Fan';
+import FanCircled from '@brightlayer-ui/icons-mui/FanCircled';
 import FitnessCenter from '@mui/icons-material/FitnessCenter';
 import Home from '@mui/icons-material/Home';
 import Menu from '@mui/icons-material/Menu';
 import PinDrop from '@mui/icons-material/PinDrop';
 import Remove from '@mui/icons-material/Remove';
+import TrendingUp from '@mui/icons-material/TrendingUp';
 import { RootState } from '../redux/store';
 import { ComponentType, PropsType } from '../__types__';
+import { SvgIconProps } from '@mui/material';
 
 export const getSnakeCase = (str: string): string => str.replace(/[A-Z]/g, '_$&').toLowerCase().slice(1);
 
@@ -46,12 +51,16 @@ export const getHash = (str: string): string =>
         .replace(/[#?/&]/g, '')
         .toLowerCase();
 
-export const getIcon = (icon: string): JSX.Element | undefined => {
+export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | undefined => {
     switch (icon) {
         case '<Add />':
             return <Add />;
         case '<AddAPhoto />':
             return <AddAPhoto />;
+        case '<Fan />':
+            return React.createElement(Fan, iconProps);
+        case '<FanCircled />':
+            return React.createElement(FanCircled, iconProps);
         case '<FitnessCenter />':
             return <FitnessCenter />;
         case '<Home />':
@@ -62,6 +71,8 @@ export const getIcon = (icon: string): JSX.Element | undefined => {
             return <PinDrop />;
         case '<Remove />':
             return <Remove />;
+        case '<TrendingUp />':
+            return <TrendingUp />;
         case 'undefined':
         default:
             return undefined;
@@ -93,6 +104,10 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.drawerNavGroupComponent;
         case 'Drawer Nav Item':
             return state.drawerNavItemComponent;
+        case 'Hero':
+            return state.heroComponent;
+        case 'List Item Tag':
+            return state.listItemTagComponent;
         default:
             return state.drawerComponent;
     }

@@ -4,6 +4,7 @@
 
 ### Fixed
 
+-   `hideContentOnCollapse` prop of `<DrawerFooter>` not hiding footer content ([#484](https://github.com/brightlayer-ui/react-component-library/issues/484)).
 -   Temporary drawer rendering, due to incorrectly passing open prop ([#486](https://github.com/brightlayer-ui/react-component-library/issues/486)).
 
 ## v6.1.0 (June 24, 2022)
