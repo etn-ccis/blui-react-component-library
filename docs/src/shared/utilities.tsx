@@ -97,8 +97,12 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.drawerSubheaderComponent;
         case 'Drawer Footer':
             return state.drawerFooterComponent;
+        case 'Drawer Nav Group':
+            return state.drawerNavGroupComponent;
         case 'Hero':
             return state.heroComponent;
+        case 'List Item Tag':
+            return state.listItemTagComponent;
         default:
             return state.drawerComponent;
     }

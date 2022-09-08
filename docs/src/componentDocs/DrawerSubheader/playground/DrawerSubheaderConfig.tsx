@@ -1,6 +1,6 @@
 import { ComponentType } from '../../../__types__';
 
-export const drawerSubheaderTypes: ComponentType = {
+export const drawerSubheaderConfig: ComponentType = {
     componentName: 'Drawer Subheader',
     props: [
         {
@@ -34,4 +34,4 @@ export const drawerSubheaderTypes: ComponentType = {
     ],
 };
 
-export default drawerSubheaderTypes;
+export default drawerSubheaderConfig;

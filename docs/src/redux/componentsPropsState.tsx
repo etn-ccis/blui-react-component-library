@@ -1,25 +1,34 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import drawerTypes from '../componentDocs/Drawer/playground/DrawerTypes';
-import drawerHeaderTypes from '../componentDocs/DrawerHeader/playground/DrawerHeaderTypes';
-import drawerSubheaderTypes from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderTypes';
-import DrawerFooterTypes from '../componentDocs/DrawerFooter/playground/DrawerFooterTypes';
-import heroTypes from '../componentDocs/Hero/playground/HeroTypes';
+import drawerTypes from '../componentDocs/Drawer/playground/DrawerConfig';
+import drawerHeaderConfig from '../componentDocs/DrawerHeader/playground/DrawerHeaderConfig';
+import drawerSubheaderConfig from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderConfig';
+import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerFooterConfig';
+import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
+import heroConfig from '../componentDocs/Hero/playground/HeroConfig';
+import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
+
 type ComponentState = {
     drawerComponent: ComponentType;
     drawerHeaderComponent: ComponentType;
     drawerSubheaderComponent: ComponentType;
     drawerFooterComponent: ComponentType;
     heroComponent: ComponentType;
+    drawerNavGroupComponent: ComponentType;
+    listItemTagComponent: ComponentType;
 };
+
 const initialState: ComponentState = {
     drawerComponent: drawerTypes,
-    drawerHeaderComponent: drawerHeaderTypes,
-    drawerSubheaderComponent: drawerSubheaderTypes,
-    drawerFooterComponent: DrawerFooterTypes,
-    heroComponent: heroTypes,
+    drawerHeaderComponent: drawerHeaderConfig,
+    drawerSubheaderComponent: drawerSubheaderConfig,
+    drawerFooterComponent: drawerFooterConfig,
+    drawerNavGroupComponent: drawerNavGroupConfig,
+    heroComponent: heroConfig,
+    listItemTagComponent: listItemTagConfig,
 };
+
 export const componentPropsStateSlice = createSlice({
     name: 'componentsPropsState',
     initialState: initialState,
