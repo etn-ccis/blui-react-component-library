@@ -32,6 +32,7 @@ import { DrawerFooterPlaygroundComponent } from '../../componentDocs/DrawerFoote
 import { DrawerNavGroupPlaygroundComponent } from '../../componentDocs/DrawerNavGroup/playground';
 import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
 import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/playground';
+import { InfoListItemPlaygroundComponent } from '../../componentDocs/InfoListItem/playground';
 
 export type SimpleNavItem = {
     title: string;
@@ -350,7 +351,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
             },
             {
                 title: 'Info List Item',
-                url: '/components/list-item-tag',
+                url: '/components/info-list-item',
                 component: <ComponentPreviewPage title={'Info List Item'} />,
                 children: [
                     {
@@ -366,13 +367,13 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <InfoListItemPlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'List Item Tag',
-                url: '/components/info-list-item',
+                url: '/components/list-item-tag',
                 component: <ComponentPreviewPage title={'List Item Tag'} />,
                 children: [
                     {
