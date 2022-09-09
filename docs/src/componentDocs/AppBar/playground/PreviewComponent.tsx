@@ -24,24 +24,19 @@ export const PreviewComponent = (): JSX.Element => {
         hideDefaultPropsFromSnippet(appBarJson, propName, currentValue, 'props');
 
     const generateCodeSnippet = (): string => {
-        const jsx = `<Box>
-    <AppBar
-        animationDuration={${appBarProps.animationDuration}}
-        ${toggleDefaultProp('backgroundImage', `${getImage(appBarProps.backgroundImage)}`)}
-        ${toggleDefaultProp('collapsedHeight', appBarProps.collapsedHeight)}
-        ${toggleDefaultProp('expandedHeight', appBarProps.expandedHeight)}
-        scrollContainerId={"${appBarProps.scrollContainerId}"}
-        scrollThreshold={${appBarProps.scrollThreshold}}
-        variant={"${appBarProps.variant}"}
-    >
-        <Toolbar>
-            <Typography variant="h6">Title</Typography>
-        </Toolbar>
-    </AppBar>
-    <Box id={"appbarBodyFiller1"} sx={{ height: 400, overflow: 'scroll' }}>
-        {getBodyFiller()}
-    </Box>
-</Box>`;
+        const jsx = `<AppBar
+    animationDuration={${appBarProps.animationDuration}}
+    ${toggleDefaultProp('backgroundImage', `${getImage(appBarProps.backgroundImage)}`)}
+    ${toggleDefaultProp('collapsedHeight', appBarProps.collapsedHeight)}
+    ${toggleDefaultProp('expandedHeight', appBarProps.expandedHeight)}
+    scrollContainerId={"${appBarProps.scrollContainerId}"}
+    scrollThreshold={${appBarProps.scrollThreshold}}
+    variant={"${appBarProps.variant}"}
+>
+    <Toolbar>
+        <Typography variant="h6">Title</Typography>
+    </Toolbar>
+</AppBar>`;
         return removeEmptyLines(jsx);
     };
 
