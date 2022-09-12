@@ -103,6 +103,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.heroComponent;
         case 'List Item Tag':
             return state.listItemTagComponent;
+        case 'Score Card':
+            return state.scoreCardComponent;
         default:
             return state.drawerComponent;
     }

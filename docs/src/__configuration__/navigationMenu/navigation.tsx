@@ -32,6 +32,7 @@ import { DrawerFooterPlaygroundComponent } from '../../componentDocs/DrawerFoote
 import { DrawerNavGroupPlaygroundComponent } from '../../componentDocs/DrawerNavGroup/playground';
 import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
 import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/playground';
+import { ScoreCardPlaygroundComponent } from '../../componentDocs/ScoreCard/playground';
 
 export type SimpleNavItem = {
     title: string;
@@ -410,7 +411,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <ScoreCardPlaygroundComponent />,
                     },
                 ],
             },
