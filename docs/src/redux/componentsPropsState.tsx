@@ -6,6 +6,7 @@ import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerF
 import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
 import heroConfig from '../componentDocs/Hero/playground/HeroConfig';
 import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
+import threeLinerConfig from '../componentDocs/ThreeLiner/playground/ThreeLinerConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
 
@@ -17,6 +18,7 @@ type ComponentState = {
     heroComponent: ComponentType;
     drawerNavGroupComponent: ComponentType;
     listItemTagComponent: ComponentType;
+    threeLinerComponent: ComponentType;
 };
 
 const initialState: ComponentState = {
@@ -27,6 +29,7 @@ const initialState: ComponentState = {
     drawerNavGroupComponent: drawerNavGroupConfig,
     heroComponent: heroConfig,
     listItemTagComponent: listItemTagConfig,
+    threeLinerComponent: threeLinerConfig,
 };
 
 export const componentPropsStateSlice = createSlice({
