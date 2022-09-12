@@ -114,6 +114,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.heroComponent;
         case 'List Item Tag':
             return state.listItemTagComponent;
+        case 'Three Liner':
+            return state.threeLinerComponent;
         default:
             return state.drawerComponent;
     }
