@@ -28,10 +28,10 @@ export const PreviewComponent = (): JSX.Element => {
     ${toggleDefaultProp('icon', infoListItemProps.icon)}
     ${toggleDefaultProp('iconAlign', infoListItemProps.iconAlign)}
     iconColor={"${infoListItemProps.iconColor}"}
-    info={"${infoListItemProps.info}"}
+    ${toggleDefaultProp('info', infoListItemProps.info)}
     ${toggleDefaultProp('ripple', infoListItemProps.ripple)}
     statusColor={"${infoListItemProps.statusColor}"}
-    subtitle={"${infoListItemProps.subtitle}"}
+    ${toggleDefaultProp('subtitle', infoListItemProps.subtitle)}
     title={"${infoListItemProps.title}"}
     ${toggleDefaultProp('wrapInfo', infoListItemProps.wrapInfo)}
     ${toggleDefaultProp('wrapSubtitle', infoListItemProps.wrapSubtitle)}

@@ -163,10 +163,10 @@ export const hideDefaultPropsFromSnippet = (
     if (knob?.defaultValue === currentValue) {
         return '';
     }
-    if (knob?.propType === 'string') {
-        return `${propName}={"${currentValue}"}`;
-    }
-    return `${propName}={${currentValue}}`;
+
+    const propValue = knob?.inputType === 'string' && currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
+
+    return propValue;
 };
 
 export const removeEmptyLines = (code: string): string => code.replace(/^\s*$(?:\r\n?|\n)/gm, '');
