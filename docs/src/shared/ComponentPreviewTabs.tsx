@@ -58,12 +58,11 @@ const outletContainerStyles = {
 };
 
 const playgroundContentStyles = {
-    minHeight: `calc(100vh - 48px)`,
+    maxHeight: `calc(100vh - 64px)`,
     height: '100%',
     display: 'flex',
     flex: '1 1 0px',
     marginRight: `${PLAYGROUND_DRAWER_WIDTH}px`,
-    pt: 6,
 };
 
 export const ComponentPreviewTabs = (): JSX.Element => {

@@ -17,6 +17,7 @@ import EmptyStateAPIDocs from '../../componentDocs/EmptyState/markdown/EmptyStat
 import HeroAPIDocs from '../../componentDocs/Hero/markdown/HeroAPIDocs.mdx';
 import InfoListItemAPIDocs from '../../componentDocs/InfoListItem/markdown/InfoListItemAPIDocs.mdx';
 import AppBarAPIDocs from '../../componentDocs/AppBar/markdown/AppBarAPIDocs.mdx';
+import ListItemTagAPIDocs from '../../componentDocs/ListItemTag/markdown/ListItemTagAPIDocs.mdx';
 
 // Examples markdown
 import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
@@ -27,9 +28,17 @@ import DrawerExamples from '../../componentDocs/Drawer/markdown/DrawerExamples.m
 import DrawerHeaderExamples from '../../componentDocs/DrawerHeader/markdown/DrawerHeaderExamples.mdx';
 import DrawerSubheaderExamples from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheaderExamples.mdx';
 
-// Components playground components
+// Playground components
+import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground';
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeader/playground';
+import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSubheader/playground';
+import { DrawerFooterPlaygroundComponent } from '../../componentDocs/DrawerFooter/playground';
+import { DrawerNavGroupPlaygroundComponent } from '../../componentDocs/DrawerNavGroup/playground';
+import { DrawerNavItemPlaygroundComponent } from '../../componentDocs/DrawerNavItem/playground';
+import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
+import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/playground';
+import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/playground';
 
 export type SimpleNavItem = {
     title: string;
@@ -77,7 +86,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <AppBarPlaygroundComponent />,
                     },
                 ],
             },
@@ -169,7 +178,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Playground',
                                 url: 'playground',
-                                component: <DummyComponent />,
+                                component: <DrawerSubheaderPlaygroundComponent />,
                             },
                         ],
                     },
@@ -191,7 +200,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Playground',
                                 url: 'playground',
-                                component: <DummyComponent />,
+                                component: <DrawerFooterPlaygroundComponent />,
                             },
                         ],
                     },
@@ -235,7 +244,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Playground',
                                 url: 'playground',
-                                component: <DummyComponent />,
+                                component: <DrawerNavItemPlaygroundComponent />,
                             },
                         ],
                     },
@@ -257,7 +266,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Playground',
                                 url: 'playground',
-                                component: <DummyComponent />,
+                                component: <DrawerNavGroupPlaygroundComponent />,
                             },
                         ],
                     },
@@ -342,13 +351,13 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <HeroPlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'Info List Item',
-                url: '/components/list-item-tag',
+                url: '/components/info-list-item',
                 component: <ComponentPreviewPage title={'Info List Item'} />,
                 children: [
                     {
@@ -370,7 +379,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
             },
             {
                 title: 'List Item Tag',
-                url: '/components/info-list-item',
+                url: '/components/list-item-tag',
                 component: <ComponentPreviewPage title={'List Item Tag'} />,
                 children: [
                     {
@@ -381,12 +390,12 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <ListItemTagAPIDocs />,
                     },
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <ListItemTagPlaygroundComponent />,
                     },
                 ],
             },
@@ -452,7 +461,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <ThreeLinerPlaygroundComponent />,
                     },
                 ],
             },

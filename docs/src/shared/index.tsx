@@ -9,3 +9,4 @@ export * from './Logo';
 export * from './PlaygroundDrawer';
 export * from './TabPanel';
 export * from './FullCodeOnGithubButton';
+export * from './CodeBlockActionButtonRow';

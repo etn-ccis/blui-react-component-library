@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from 'react';
 import Box from '@mui/material/Box/Box';
 import { CodeBlock } from './CodeBlock';
-import { CopyToClipboard } from './CopyToClipboardButton';
+import { CodeBlockActionButtonRow } from './CodeBlockActionButtonRow';
 
 export type PreviewComponentProps = HTMLAttributes<HTMLDivElement> & {
     previewContent: JSX.Element;
@@ -16,18 +16,19 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
         <>
             <Box
                 sx={{
-                    padding: '1rem 1rem 0',
-                    height: '68vh',
+                    p: 2,
+                    height: '70vh',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
+                    mt: 6,
                 }}
             >
                 {previewContent}
             </Box>
             <Box
                 sx={{
-                    height: '32vh',
+                    height: '30vh',
                     overflow: 'auto',
                     boxSizing: 'border-box',
                 }}
@@ -35,15 +36,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                 onMouseLeave={(): void => setShow(false)}
             >
                 <CodeBlock code={code} language="jsx" />
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        bottom: '16px',
-                        right: '400px',
-                    }}
-                >
-                    {show && <CopyToClipboard title={'Copy All'} copyText={code} />}
-                </Box>
+                <CodeBlockActionButtonRow url="#" copyText={code} />
             </Box>
         </>
     );

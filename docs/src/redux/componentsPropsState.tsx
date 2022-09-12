@@ -1,17 +1,44 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import drawerTypes from '../componentDocs/Drawer/playground/DrawerTypes';
-import drawerHeaderTypes from '../componentDocs/DrawerHeader/playground/DrawerHeaderTypes';
+import appBarConfig from '../componentDocs/AppBar/playground/AppBarConfig';
+import drawerConfig from '../componentDocs/Drawer/playground/DrawerConfig';
+import drawerHeaderConfig from '../componentDocs/DrawerHeader/playground/DrawerHeaderConfig';
+import drawerSubheaderConfig from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderConfig';
+import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerFooterConfig';
+import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
+import drawerNavItemConfig from '../componentDocs/DrawerNavItem/playground/DrawerNavItemConfig';
+import heroConfig from '../componentDocs/Hero/playground/HeroConfig';
+import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
+import threeLinerConfig from '../componentDocs/ThreeLiner/playground/ThreeLinerConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
+
 type ComponentState = {
+    appBarComponent: ComponentType;
     drawerComponent: ComponentType;
     drawerHeaderComponent: ComponentType;
+    drawerSubheaderComponent: ComponentType;
+    drawerFooterComponent: ComponentType;
+    drawerNavGroupComponent: ComponentType;
+    drawerNavItemComponent: ComponentType;
+    heroComponent: ComponentType;
+    listItemTagComponent: ComponentType;
+    threeLinerComponent: ComponentType;
 };
+
 const initialState: ComponentState = {
-    drawerComponent: drawerTypes,
-    drawerHeaderComponent: drawerHeaderTypes,
+    appBarComponent: appBarConfig,
+    drawerComponent: drawerConfig,
+    drawerHeaderComponent: drawerHeaderConfig,
+    drawerSubheaderComponent: drawerSubheaderConfig,
+    drawerFooterComponent: drawerFooterConfig,
+    drawerNavGroupComponent: drawerNavGroupConfig,
+    drawerNavItemComponent: drawerNavItemConfig,
+    heroComponent: heroConfig,
+    listItemTagComponent: listItemTagConfig,
+    threeLinerComponent: threeLinerConfig,
 };
-export const drawerHeaderSlice = createSlice({
+
+export const componentPropsStateSlice = createSlice({
     name: 'componentsPropsState',
     initialState: initialState,
     reducers: {
@@ -46,6 +73,6 @@ export const drawerHeaderSlice = createSlice({
     },
 });
 
-export const { updateProp, updateSharedProp, updateOtherProp, updateActiveItemProp } = drawerHeaderSlice.actions;
+export const { updateProp, updateSharedProp, updateOtherProp, updateActiveItemProp } = componentPropsStateSlice.actions;
 
-export default drawerHeaderSlice.reducer;
+export default componentPropsStateSlice.reducer;
