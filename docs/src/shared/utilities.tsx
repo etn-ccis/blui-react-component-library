@@ -5,6 +5,7 @@ import Device from '@brightlayer-ui/icons-mui/Device';
 import Fan from '@brightlayer-ui/icons-mui/Fan';
 import FanCircled from '@brightlayer-ui/icons-mui/FanCircled';
 import FitnessCenter from '@mui/icons-material/FitnessCenter';
+import Home from '@mui/icons-material/Home';
 import Menu from '@mui/icons-material/Menu';
 import PinDrop from '@mui/icons-material/PinDrop';
 import Remove from '@mui/icons-material/Remove';
@@ -65,6 +66,8 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
             return React.createElement(FanCircled, iconProps);
         case '<FitnessCenter />':
             return <FitnessCenter />;
+        case '<Home />':
+            return <Home />;
         case '<Menu />':
             return <Menu />;
         case '<PinDrop />':
@@ -102,6 +105,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.drawerFooterComponent;
         case 'Drawer Nav Group':
             return state.drawerNavGroupComponent;
+        case 'Drawer Nav Item':
+            return state.drawerNavItemComponent;
         case 'Hero':
             return state.heroComponent;
         case 'Info List Item':
