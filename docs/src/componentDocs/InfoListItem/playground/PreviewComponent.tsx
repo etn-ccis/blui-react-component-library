@@ -17,31 +17,31 @@ export const PreviewComponent = (): JSX.Element => {
 
     const generateCodeSnippet = (): string => {
         const jsx = `<InfoListItem
-        ${toggleDefaultProp('avatar', infoListItemProps.avatar)}
-        backgroundColor={"${infoListItemProps.backgroundColor}"}
-        ${toggleDefaultProp('chevron', infoListItemProps.chevron)}
-        chevronColor={"${infoListItemProps.chevronColor}"}
-        ${toggleDefaultProp('dense', infoListItemProps.dense)}
-        ${toggleDefaultProp('divider', infoListItemProps.divider)}
-        fontColor={"${infoListItemProps.fontColor}"}
-        ${toggleDefaultProp('hidePadding', infoListItemProps.hidePadding)}
-        ${toggleDefaultProp('icon', infoListItemProps.icon)}
-        ${toggleDefaultProp('iconAlign', infoListItemProps.iconAlign)}
-        iconColor={"${infoListItemProps.iconColor}"}
-        info={"${infoListItemProps.info}"}
-        ${toggleDefaultProp('ripple', infoListItemProps.ripple)}
-        statusColor={"${infoListItemProps.statusColor}"}
-        subtitle={"${infoListItemProps.subtitle}"}
-        title={"${infoListItemProps.title}"}
-        ${toggleDefaultProp('wrapInfo', infoListItemProps.wrapInfo)}
-        ${toggleDefaultProp('wrapSubtitle', infoListItemProps.wrapSubtitle)}
-        ${toggleDefaultProp('wrapTitle', infoListItemProps.wrapTitle)}
-        ${toggleDefaultProp('disabled', infoListItemOtherProps.disabled, 'otherProps')}
-        onClick={(): void => {
-            // eslint-disable-next-line
-            console.log('clicked');
-        }}
-    />`;
+    ${toggleDefaultProp('avatar', infoListItemProps.avatar)}
+    backgroundColor={"${infoListItemProps.backgroundColor}"}
+    ${toggleDefaultProp('chevron', infoListItemProps.chevron)}
+    chevronColor={"${infoListItemProps.chevronColor}"}
+    ${toggleDefaultProp('dense', infoListItemProps.dense)}
+    ${toggleDefaultProp('divider', infoListItemProps.divider)}
+    fontColor={"${infoListItemProps.fontColor}"}
+    ${toggleDefaultProp('hidePadding', infoListItemProps.hidePadding)}
+    ${toggleDefaultProp('icon', infoListItemProps.icon)}
+    ${toggleDefaultProp('iconAlign', infoListItemProps.iconAlign)}
+    iconColor={"${infoListItemProps.iconColor}"}
+    info={"${infoListItemProps.info}"}
+    ${toggleDefaultProp('ripple', infoListItemProps.ripple)}
+    statusColor={"${infoListItemProps.statusColor}"}
+    subtitle={"${infoListItemProps.subtitle}"}
+    title={"${infoListItemProps.title}"}
+    ${toggleDefaultProp('wrapInfo', infoListItemProps.wrapInfo)}
+    ${toggleDefaultProp('wrapSubtitle', infoListItemProps.wrapSubtitle)}
+    ${toggleDefaultProp('wrapTitle', infoListItemProps.wrapTitle)}
+    ${toggleDefaultProp('disabled', infoListItemOtherProps.disabled, 'otherProps')}
+    onClick={(): void => {
+        // eslint-disable-next-line
+        console.log('clicked');
+    }}
+/>`;
         return removeEmptyLines(jsx);
     };
 
