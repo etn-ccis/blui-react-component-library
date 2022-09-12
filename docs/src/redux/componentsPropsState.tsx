@@ -4,6 +4,7 @@ import drawerHeaderConfig from '../componentDocs/DrawerHeader/playground/DrawerH
 import drawerSubheaderConfig from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderConfig';
 import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerFooterConfig';
 import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
+import drawerNavItemConfig from '../componentDocs/DrawerNavItem/playground/DrawerNavItemConfig';
 import heroConfig from '../componentDocs/Hero/playground/HeroConfig';
 import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
 import { getComponentState } from '../shared/utilities';
@@ -14,8 +15,9 @@ type ComponentState = {
     drawerHeaderComponent: ComponentType;
     drawerSubheaderComponent: ComponentType;
     drawerFooterComponent: ComponentType;
-    heroComponent: ComponentType;
     drawerNavGroupComponent: ComponentType;
+    drawerNavItemComponent: ComponentType;
+    heroComponent: ComponentType;
     listItemTagComponent: ComponentType;
 };
 
@@ -25,6 +27,7 @@ const initialState: ComponentState = {
     drawerSubheaderComponent: drawerSubheaderConfig,
     drawerFooterComponent: drawerFooterConfig,
     drawerNavGroupComponent: drawerNavGroupConfig,
+    drawerNavItemComponent: drawerNavItemConfig,
     heroComponent: heroConfig,
     listItemTagComponent: listItemTagConfig,
 };
