@@ -17,6 +17,7 @@ import EmptyStateAPIDocs from '../../componentDocs/EmptyState/markdown/EmptyStat
 import HeroAPIDocs from '../../componentDocs/Hero/markdown/HeroAPIDocs.mdx';
 import InfoListItemAPIDocs from '../../componentDocs/InfoListItem/markdown/InfoListItemAPIDocs.mdx';
 import AppBarAPIDocs from '../../componentDocs/AppBar/markdown/AppBarAPIDocs.mdx';
+import ListItemTagAPIDocs from '../../componentDocs/ListItemTag/markdown/ListItemTagAPIDocs.mdx';
 
 // Examples markdown
 import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
@@ -351,7 +352,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
             },
             {
                 title: 'Info List Item',
-                url: '/components/list-item-tag',
+                url: '/components/info-list-item',
                 component: <ComponentPreviewPage title={'Info List Item'} />,
                 children: [
                     {
@@ -373,7 +374,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
             },
             {
                 title: 'List Item Tag',
-                url: '/components/info-list-item',
+                url: '/components/list-item-tag',
                 component: <ComponentPreviewPage title={'List Item Tag'} />,
                 children: [
                     {
@@ -384,7 +385,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <ListItemTagAPIDocs />,
                     },
                     {
                         title: 'Playground',
