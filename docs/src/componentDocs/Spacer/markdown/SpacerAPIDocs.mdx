@@ -14,7 +14,7 @@ An invisible utility component that acts as a spacer element in various layouts.
     <Box
         sx={{
             width: '100%',
-            maxWidth: '600px',
+            maxWidth: '300px',
         }}
         component="img"
         alt="Spacer used in Drawer Body"
@@ -26,12 +26,12 @@ An invisible utility component that acts as a spacer element in various layouts.
 
 <Box>
 
-| Prop Name | Description                             | Type                 | Required | Default | Examples                  |
-| :-------- | :-------------------------------------- | :------------------- | :------- | :------ | :------------------------ |
-| classes   | Classes object to override styles       | `SpacerClasses`      | no       |         | {root: 'customRootClass'} |
-| flex      | Flex grow/shrink value for flex layouts | `number`             | no       | 1       |                           |
-| height    | Height (in px) for static layouts       | `number` \| `string` | no       |         |                           |
-| width     | Width (in px) for static layouts        | `number` \| `string` | no       |         |                           |
+| Prop Name | Description                             | Type                 | Required | Default | Examples                    |
+| :-------- | :-------------------------------------- | :------------------- | :------- | :------ | :-------------------------- |
+| classes   | Classes object to override styles       | `SpacerClasses`      | no       |         | `{root: 'customRootClass'}` |
+| flex      | Flex grow/shrink value for flex layouts | `number`             | no       | 1       |                             |
+| height    | Height (in px) for static layouts       | `number` \| `string` | no       |         |                             |
+| width     | Width (in px) for static layouts        | `number` \| `string` | no       |         |                             |
 
 </Box>
 
@@ -49,9 +49,8 @@ For more details on styling options check out our [Styling Guide](https://github
 
 <Box>
 
-| Name                  | Global CSS Class            | Description                        |
-| :-------------------- | :-------------------------- | :--------------------------------- |
-| root                  | .BluiSpacer-root            | Styles applied to the root element |
-| .BluiEmptyState-title | Styles applied to the title |
+| Name | Global CSS Class | Description                        |
+| :--- | :--------------- | :--------------------------------- |
+| root | .BluiSpacer-root | Styles applied to the root element |
 
 </Box>
