@@ -26,7 +26,7 @@ import DrawerBodyExamples from '../../componentDocs/DrawerBody/markdown/DrawerBo
 import DrawerNavGroupExamples from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupExamples.mdx';
 
 // Playground components
-import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground';
+import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeader/playground';
 import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSubheader/playground';

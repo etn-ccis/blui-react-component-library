@@ -49,6 +49,7 @@ export const PreviewComponent = (): JSX.Element => {
         <PreviewComponentWithCode
             previewContent={
                 <InfoListItem
+                    sx={{ maxWidth: '700px' }}
                     avatar={infoListItemProps.avatar}
                     backgroundColor={infoListItemProps.backgroundColor}
                     chevron={infoListItemProps.chevron}

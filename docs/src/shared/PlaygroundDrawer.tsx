@@ -228,7 +228,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
         let sectionNumber = 0;
         return (
             <Box>
-                {requiredProps?.length > 0 && iterateProps(requiredProps, '', sectionNumber++, 'props')}
+                {requiredProps?.length > 0 && iterateProps(requiredProps, 'Required Props', sectionNumber++, 'props')}
                 {optionalProps?.length > 0 && iterateProps(optionalProps, 'Optional Props', sectionNumber++, 'props')}
                 {sharedProps?.length > 0 && iterateProps(sharedProps, 'Shared Props', sectionNumber++, 'sharedProps')}
                 {otherProps?.length > 0 && iterateProps(otherProps, 'Others', sectionNumber++, 'otherProps')}
