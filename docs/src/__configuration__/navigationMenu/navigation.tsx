@@ -19,6 +19,7 @@ import InfoListItemAPIDocs from '../../componentDocs/InfoListItem/markdown/InfoL
 import AppBarAPIDocs from '../../componentDocs/AppBar/markdown/AppBarAPIDocs.mdx';
 import ListItemTagAPIDocs from '../../componentDocs/ListItemTag/markdown/ListItemTagAPIDocs.mdx';
 import UserMenuAPIDocs from '../../componentDocs/UserMenu/markdown/UserMenuAPIDocs.mdx';
+import ThreeLinerAPIDocs from '../../componentDocs/ThreeLiner/markdown/ThreeLinerAPIDocs.mdx';
 import SpacerAPIDocs from '../../componentDocs/Spacer/markdown/SpacerAPIDocs.mdx';
 import ScoreCardAPIDocs from '../../componentDocs/ScoreCard/markdown/ScoreCardAPIDocs.mdx';
 
@@ -456,7 +457,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <ThreeLinerAPIDocs />,
                     },
                     {
                         title: 'Playground',
