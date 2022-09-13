@@ -43,7 +43,7 @@ export const infoListItemConfig: ComponentType = {
             inputType: 'boolean',
             inputValue: false,
             propType: 'boolean',
-            helperText: 'Smaller height row with less padding	',
+            helperText: 'Smaller height row with less padding',
             required: false,
             defaultValue: false,
         },
