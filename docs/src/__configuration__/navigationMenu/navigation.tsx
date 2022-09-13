@@ -18,6 +18,7 @@ import HeroAPIDocs from '../../componentDocs/Hero/markdown/HeroAPIDocs.mdx';
 import InfoListItemAPIDocs from '../../componentDocs/InfoListItem/markdown/InfoListItemAPIDocs.mdx';
 import AppBarAPIDocs from '../../componentDocs/AppBar/markdown/AppBarAPIDocs.mdx';
 import ListItemTagAPIDocs from '../../componentDocs/ListItemTag/markdown/ListItemTagAPIDocs.mdx';
+import ThreeLinerAPIDocs from '../../componentDocs/ThreeLiner/markdown/ThreeLinerAPIDocs.mdx';
 
 // Examples markdown
 import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
@@ -453,7 +454,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <ThreeLinerAPIDocs />,
                     },
                     {
                         title: 'Playground',
