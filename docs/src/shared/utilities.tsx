@@ -1,6 +1,7 @@
 import React from 'react';
 import Add from '@mui/icons-material/Add';
 import AddAPhoto from '@mui/icons-material/AddAPhoto';
+import Device from '@brightlayer-ui/icons-mui/Device';
 import Fan from '@brightlayer-ui/icons-mui/Fan';
 import FanCircled from '@brightlayer-ui/icons-mui/FanCircled';
 import FitnessCenter from '@mui/icons-material/FitnessCenter';
@@ -61,6 +62,8 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
             return <Add />;
         case '<AddAPhoto />':
             return <AddAPhoto />;
+        case '<Device />':
+            return <Device />;
         case '<Fan />':
             return React.createElement(Fan, iconProps);
         case '<FanCircled />':
@@ -112,6 +115,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.drawerNavItemComponent;
         case 'Hero':
             return state.heroComponent;
+        case 'Info List Item':
+            return state.infoListItemComponent;
         case 'List Item Tag':
             return state.listItemTagComponent;
         case 'Three Liner':
@@ -134,23 +139,34 @@ export const getImage = (image: string): string => {
     }
 };
 
+export const filterPropsAsPerGroupType = (state: ComponentType, propName: string, groupType?: string): any => {
+    switch (groupType) {
+        case 'props':
+            return state.props?.filter((prop) => prop.propName === propName)[0];
+        case 'sharedProps':
+            return state.sharedProps?.filter((prop) => prop.propName === propName)[0];
+        case 'otherProps':
+            return state.otherProps?.filter((prop) => prop.propName === propName)[0];
+        default:
+            return state.props?.filter((prop) => prop.propName === propName)[0];
+    }
+};
+
 export const hideDefaultPropsFromSnippet = (
     state: ComponentType,
     propName: string,
     currentValue: any,
     groupType?: string
 ): string => {
-    const knob =
-        groupType !== 'props'
-            ? state.sharedProps?.filter((prop) => prop.propName === propName)[0]
-            : state.props?.filter((prop) => prop.propName === propName)[0];
+    const knob = filterPropsAsPerGroupType(state, propName, groupType);
+
     if (knob?.defaultValue === currentValue) {
         return '';
     }
-    if (knob?.propType === 'string') {
-        return `${propName}={"${currentValue}"}`;
-    }
-    return `${propName}={${currentValue}}`;
+
+    const propValue = knob?.inputType === 'string' && currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
+
+    return propValue;
 };
 
 export const removeEmptyLines = (code: string): string => code.replace(/^\s*$(?:\r\n?|\n)/gm, '');

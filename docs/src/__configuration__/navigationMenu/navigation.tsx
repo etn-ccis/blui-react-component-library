@@ -29,7 +29,7 @@ import DrawerBodyExamples from '../../componentDocs/DrawerBody/markdown/DrawerBo
 import DrawerNavGroupExamples from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupExamples.mdx';
 
 // Playground components
-import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground';
+import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeader/playground';
 import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSubheader/playground';
@@ -37,6 +37,7 @@ import { DrawerFooterPlaygroundComponent } from '../../componentDocs/DrawerFoote
 import { DrawerNavGroupPlaygroundComponent } from '../../componentDocs/DrawerNavGroup/playground';
 import { DrawerNavItemPlaygroundComponent } from '../../componentDocs/DrawerNavItem/playground';
 import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
+import { InfoListItemPlaygroundComponent } from '../../componentDocs/InfoListItem/playground';
 import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/playground';
 import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/playground';
 
@@ -373,7 +374,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <InfoListItemPlaygroundComponent />,
                     },
                 ],
             },
