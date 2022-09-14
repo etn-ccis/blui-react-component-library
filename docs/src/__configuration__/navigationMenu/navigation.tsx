@@ -18,6 +18,11 @@ import HeroAPIDocs from '../../componentDocs/Hero/markdown/HeroAPIDocs.mdx';
 import InfoListItemAPIDocs from '../../componentDocs/InfoListItem/markdown/InfoListItemAPIDocs.mdx';
 import AppBarAPIDocs from '../../componentDocs/AppBar/markdown/AppBarAPIDocs.mdx';
 import ListItemTagAPIDocs from '../../componentDocs/ListItemTag/markdown/ListItemTagAPIDocs.mdx';
+import UserMenuAPIDocs from '../../componentDocs/UserMenu/markdown/UserMenuAPIDocs.mdx';
+import ThreeLinerAPIDocs from '../../componentDocs/ThreeLiner/markdown/ThreeLinerAPIDocs.mdx';
+import SpacerAPIDocs from '../../componentDocs/Spacer/markdown/SpacerAPIDocs.mdx';
+import ScoreCardAPIDocs from '../../componentDocs/ScoreCard/markdown/ScoreCardAPIDocs.mdx';
+import ToolbarMenuAPIDocs from '../../componentDocs/ToolbarMenu/markdown/ToolbarMenuAPIDocs.mdx';
 
 // Examples markdown
 import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/DrawerNavItemExamples.mdx';
@@ -29,7 +34,7 @@ import DrawerHeaderExamples from '../../componentDocs/DrawerHeader/markdown/Draw
 import DrawerSubheaderExamples from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheaderExamples.mdx';
 
 // Playground components
-import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground';
+import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeader/playground';
 import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSubheader/playground';
@@ -37,6 +42,7 @@ import { DrawerFooterPlaygroundComponent } from '../../componentDocs/DrawerFoote
 import { DrawerNavGroupPlaygroundComponent } from '../../componentDocs/DrawerNavGroup/playground';
 import { DrawerNavItemPlaygroundComponent } from '../../componentDocs/DrawerNavItem/playground';
 import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
+import { InfoListItemPlaygroundComponent } from '../../componentDocs/InfoListItem/playground';
 import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/playground';
 import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/playground';
 
@@ -373,7 +379,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <InfoListItemPlaygroundComponent />,
                     },
                 ],
             },
@@ -412,7 +418,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <ScoreCardAPIDocs />,
                     },
                     {
                         title: 'Playground',
@@ -434,7 +440,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <SpacerAPIDocs />,
                     },
                     {
                         title: 'Playground',
@@ -456,7 +462,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <ThreeLinerAPIDocs />,
                     },
                     {
                         title: 'Playground',
@@ -478,7 +484,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <ToolbarMenuAPIDocs />,
                     },
                     {
                         title: 'Playground',
@@ -500,7 +506,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'API Docs',
                         url: 'api-docs',
-                        component: <DummyDocsComponent />,
+                        component: <UserMenuAPIDocs />,
                     },
                     {
                         title: 'Playground',
