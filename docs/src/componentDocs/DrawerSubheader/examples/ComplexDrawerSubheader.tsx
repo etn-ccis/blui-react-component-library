@@ -38,7 +38,7 @@ const codeSnippet = `<Drawer open={true} width={250}>
 export const ComplexDrawerSubheader = (): JSX.Element => (
     <Box>
         <ComplexDrawerSubheaderExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-21" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-22" />
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <CopyToClipboard title={'Copy All'} copyText={codeSnippet} />
             <FullCodeOnGithub sx={{ ml: 2 }} url="componentDocs/DrawerSubheader/examples/ComplexDrawerSubheader.tsx" />
