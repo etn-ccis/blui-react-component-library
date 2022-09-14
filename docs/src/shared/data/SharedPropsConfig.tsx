@@ -138,7 +138,7 @@ export const sharedPropsConfig: PropsType[] = [
         propType: 'boolean',
         helperText: 'Whether to apply material ripple effect to items on click',
         required: false,
-        defaultValue: false,
+        defaultValue: true,
     },
 ];
 
