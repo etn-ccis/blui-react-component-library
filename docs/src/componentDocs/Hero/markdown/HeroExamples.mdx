@@ -1,0 +1,22 @@
+import { BasicHero } from '../examples/BasicHero';
+import { HeroWithValueAndUnits } from '../examples/HeroWithValueAndUnits';
+import { HeroWithChannelValue } from '../examples/HeroWithChannelValue';
+
+## Basic Hero
+
+The `<Hero />` accepts a label prop and the icon property will accept any valid component.
+
+<BasicHero />
+
+## Hero with Value and Units
+
+The value section of the `<Hero />` utilizes a `<ChannelValue />` component.
+To display a single simple value, the information can be passed using ChannelValueProps. It is used to commonly display metric data.
+
+<HeroWithValueAndUnits />
+
+## Hero with Channel Value Children
+
+Users can pass in `<ChannelValue>` components as children and they will be displayed inline.
+
+<HeroWithChannelValue />

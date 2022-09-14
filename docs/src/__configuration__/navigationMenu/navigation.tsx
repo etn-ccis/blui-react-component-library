@@ -27,9 +27,10 @@ import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/Dr
 import DrawerFooterExamples from '../../componentDocs/DrawerFooter/markdown/DrawerFooterExamples.mdx';
 import DrawerBodyExamples from '../../componentDocs/DrawerBody/markdown/DrawerBodyExamples.mdx';
 import DrawerNavGroupExamples from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupExamples.mdx';
+import HeroExamples from '../../componentDocs/Hero/markdown/HeroExamples.mdx';
 
 // Playground components
-import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground';
+import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeader/playground';
 import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSubheader/playground';
@@ -341,7 +342,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Examples',
                         url: 'examples',
-                        component: <DummyExamplesComponent />,
+                        component: <HeroExamples />,
                     },
                     {
                         title: 'API Docs',
