@@ -6,7 +6,7 @@ import { ComplexDrawerSubheaderExample } from './ComplexDrawerSubheaderExample';
 const codeSnippet = `<Drawer open={true} width={250}>
     <DrawerHeader title="Energy Co." />
     <DrawerSubheader divider={false}>
-        <FormControl sx={{ height: 56, width: '100%', mt: 1 }}>
+        <FormControl>
             <InputLabel id="organization">Organization</InputLabel>
             <Select
                 label="organization"
@@ -18,7 +18,7 @@ const codeSnippet = `<Drawer open={true} width={250}>
                 <MenuItem value="blui">BLUI CO.</MenuItem>
                 <Divider />
                 <MenuItem value="addnew">
-                    <Typography variant="caption" sx={{ fontSize: '1rem' }}>
+                    <Typography variant="caption">
                         + Add a New Organization...
                     </Typography>
                 </MenuItem>

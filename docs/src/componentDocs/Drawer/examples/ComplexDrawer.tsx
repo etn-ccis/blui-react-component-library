@@ -4,34 +4,29 @@ import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
 import { ComplexDrawerExample } from './ComplexDrawerExample';
 
 const codeSnippet = `<Drawer open={true} width={300}>
-    <DrawerHeader icon={<Menu />} title="Brightlayer UI" subtitle="Drawer Component" />
+    <DrawerHeader icon={<Menu />} title="Brightlayer UI"/>
     <DrawerBody>
-        <DrawerNavGroup title="Group 1" hidePadding divider>
+        <DrawerNavGroup title="Group 1" divider>
             <DrawerNavItem
                 title="Overview"
-                subtitle="Learn more about us"
                 icon={<Dashboard />}
-                statusColor={colors.green[500]}
                 itemID="1"
             >
-                <DrawerNavItem title="Monthly Report" itemID="2" hidePadding={false} />
-                <DrawerNavItem title="Annual Report" itemID="3" hidePadding={false} />
+                <DrawerNavItem title="Monthly Report" itemID="2" />
+                <DrawerNavItem title="Annual Report" itemID="3" />
             </DrawerNavItem>
             <DrawerNavItem title="Timeline" icon={<Toc />} itemID="4" />
             <DrawerNavItem
                 title="Devices"
-                subtitle="4 new warnings"
                 icon={<Devices />}
-                statusColor={colors.yellow[500]}
                 itemID="5"
             />
             <DrawerNavItem title="Schedule" icon={<AirportShuttle />} itemID="6" />
         </DrawerNavGroup>
-        <DrawerNavGroup title="Group 2" hidePadding divider>
+        <DrawerNavGroup title="Group 2" divider>
             <DrawerNavItem title="User Guide" icon={<MoveToInbox />} itemID="7" />
             <DrawerNavItem
                 title="License Agreement"
-                subtitle="For Eaton employees only"
                 icon={<FactCheck />}
                 itemID="8"
             />
@@ -40,8 +35,8 @@ const codeSnippet = `<Drawer open={true} width={300}>
                 icon={<Accessibility />}
                 itemID="9"
             >
-                <DrawerNavItem title="Color Contrast Guide" itemID="10" hidePadding={false} />
-                <DrawerNavItem title="Screen Reader" itemID="11" hidePadding={false} />
+                <DrawerNavItem title="Color Contrast Guide" itemID="10" />
+                <DrawerNavItem title="Screen Reader" itemID="11" />
             </DrawerNavItem>
             <DrawerNavItem title="Notifications" icon={<Notifications />} itemID="12" />
         </DrawerNavGroup>
