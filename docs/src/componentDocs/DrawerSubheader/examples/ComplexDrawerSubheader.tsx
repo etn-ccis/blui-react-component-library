@@ -25,7 +25,7 @@ const codeSnippet = `<Drawer open={true} width={250}>
             </Select>
         </FormControl>
     </DrawerSubheader>
-    <DrawerBody sx={{ flex: '1 1 auto' }}>
+    <DrawerBody>
         <DrawerNavGroup>
             <DrawerNavItem title="Dashboard" icon={<Dashboard />} itemID="1" />
             <DrawerNavItem title="Locations" icon={<LocationOn />} itemID="2" />

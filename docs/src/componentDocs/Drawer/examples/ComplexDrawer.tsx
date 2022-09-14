@@ -5,7 +5,7 @@ import { ComplexDrawerExample } from './ComplexDrawerExample';
 
 const codeSnippet = `<Drawer open={true} width={300}>
     <DrawerHeader icon={<Menu />} title="Brightlayer UI" subtitle="Drawer Component" />
-    <DrawerBody sx={{ flex: '1 1 auto' }}>
+    <DrawerBody>
         <DrawerNavGroup title="Group 1" hidePadding divider>
             <DrawerNavItem
                 title="Overview"

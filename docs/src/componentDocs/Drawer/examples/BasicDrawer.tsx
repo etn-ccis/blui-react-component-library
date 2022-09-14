@@ -4,14 +4,20 @@ import { CodeBlock, CopyToClipboard, FullCodeOnGithub } from '../../../shared';
 import { BasicDrawerExample } from './BasicDrawerExample';
 
 const codeSnippet = `<Drawer open={true} width={250}>
-    <DrawerHeader title="Title" />
-    <DrawerBody sx={{ flex: '1 1 auto' }}>
+    <DrawerHeader title="Header" />
+    <DrawerSubheader>
+        <Box>Subheader Content Here</Box>
+    </DrawerSubheader>
+    <DrawerBody>
         <DrawerNavGroup hidePadding>
-            <DrawerNavItem title="Dashboard" itemID="1" />
-            <DrawerNavItem title="Locations" itemID="2" />
-            <DrawerNavItem title="Legal" itemID="3" />
+            <DrawerNavItem title="Item 1" itemID="1" />
+            <DrawerNavItem title="Item 2" itemID="2" />
+            <DrawerNavItem title="Item 3" itemID="3" />
         </DrawerNavGroup>
     </DrawerBody>
+    <DrawerFooter>
+        <Box>Footer Content Here</Box>
+    </DrawerFooter>
 </Drawer>
 `;
 
