@@ -1,6 +1,6 @@
 import React from 'react';
 import { HomePage, ComponentPreviewPage } from '../../pages';
-import { DummyComponent, DummyDocsComponent, DummyExamplesComponent } from '../../componentDocs/DummyDataForComponent';
+import { DummyComponent, DummyExamplesComponent } from '../../componentDocs/DummyDataForComponent';
 
 // API Docs markdown
 import DrawerNavGroupAPIDocs from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupAPIDocs.mdx';
