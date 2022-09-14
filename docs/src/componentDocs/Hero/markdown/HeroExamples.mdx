@@ -1,22 +1,43 @@
 import { BasicHero } from '../examples/BasicHero';
 import { HeroWithValueAndUnits } from '../examples/HeroWithValueAndUnits';
 import { HeroWithChannelValue } from '../examples/HeroWithChannelValue';
+import { HeroWithSecondaryIcon } from '../examples/HeroWithSecondaryIcon';
+import { HeroBanner } from '../examples/HeroBanner';
+import { HeroBannerWithIconSize } from '../examples/HeroBannerWithIconSize';
 
-## Basic Hero
+# Basic Hero
 
 The `<Hero />` accepts a label prop and the icon property will accept any valid component.
 
 <BasicHero />
 
-## Hero with Value and Units
+# Hero with Value and Units
 
 The value section of the `<Hero />` utilizes a `<ChannelValue />` component.
 To display a single simple value, the information can be passed using ChannelValueProps. It is used to commonly display metric data.
 
 <HeroWithValueAndUnits />
 
-## Hero with Channel Value Children
+# Hero with Channel Value Children
 
 Users can pass in `<ChannelValue>` components as children and they will be displayed inline.
 
 <HeroWithChannelValue />
+
+# Hero with a Secondary Icon
+
+The `<Hero />` accepts an optional secondary icon which we can pass through `ChannelValueProps`.
+
+<HeroWithSecondaryIcon />
+
+# Heroes with a Hero Banner
+
+The `<HeroBanner />` component is a simple wrapper component that accepts up to four `<Hero />` components as its children.
+
+<HeroBanner />
+
+# Hero with Icon Size and Image Types
+
+The `<Hero />` supports multiple image types and has an iconSize prop to scale.
+
+<HeroBannerWithIconSize />
