@@ -26,18 +26,18 @@ export const PreviewComponent = (): JSX.Element => {
                 ${toggleDefaultProp('condensed', drawerRailItemProps.condensed, 'props')}
                 ${toggleDefaultProp('disableRailTooltip', drawerRailItemProps.disableRailTooltip, 'props')}
                 ${toggleDefaultProp('hidden', drawerRailItemProps.hidden, 'props')}
-                ${toggleDefaultProp('icon', drawerRailItemProps.icon)}
+                icon={${drawerRailItemProps.icon}}
                 itemID={"${drawerRailItemProps.itemID}"}
                 statusColor={"${drawerRailItemProps.statusColor}"}
                 title={"${drawerRailItemProps.title}"}
-                activeItemBackgroundColor={"${drawerRailItemSharedProps.title}"}
+                activeItemBackgroundColor={"${drawerRailItemSharedProps.activeItemBackgroundColor}"}
                 activeItemFontColor={"${drawerRailItemSharedProps.activeItemFontColor}"}
                 activeItemIconColor={"${drawerRailItemSharedProps.activeItemIconColor}"}
                 backgroundColor={"${drawerRailItemSharedProps.backgroundColor}"}
-                divider={${drawerRailItemSharedProps.divider}}
+                ${toggleDefaultProp('divider', drawerRailItemSharedProps.divider, 'sharedProps')}
                 itemFontColor={"${drawerRailItemSharedProps.itemFontColor}"}
                 itemIconColor={"${drawerRailItemSharedProps.itemIconColor}"}
-                ripple={${drawerRailItemSharedProps.ripple}}
+                ${toggleDefaultProp('ripple', drawerRailItemSharedProps.ripple, 'sharedProps')}
                 onClick={(): void => {
                     // eslint-disable-next-line
                     console.log('clicked');

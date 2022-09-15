@@ -164,14 +164,18 @@ export const hideDefaultPropsFromSnippet = (
     groupType?: string
 ): string => {
     const knob = filterPropsAsPerGroupType(state, propName, groupType);
-
     if (knob?.defaultValue === currentValue) {
         return '';
     }
 
-    const propValue = knob?.inputType === 'string' && currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
-
-    return propValue;
+    switch (knob?.inputType) {
+        case 'string':
+            return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
+        case 'boolean':
+            return `${propName}={${currentValue}}`;
+        default:
+            return '';
+    }
 };
 
 export const removeEmptyLines = (code: string): string => code.replace(/^\s*$(?:\r\n?|\n)/gm, '');
