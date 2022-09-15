@@ -32,12 +32,11 @@ export const PreviewComponent = (): JSX.Element => {
     const toggleIconProp = (icon: string): string => {
         if (icon === 'undefined') {
             return toggleDefaultProp('icon', channelValueProps.icon);
-        } else {
-            return `icon={${getIconWithProp(channelValueProps.icon, {
-                fontSize: 'inherit',
-                htmlColor: `${otherProps.htmlColor}`,
-            })}}`;
         }
+        return `icon={${getIconWithProp(channelValueProps.icon, {
+            fontSize: 'inherit',
+            htmlColor: `${otherProps.htmlColor}`,
+        })}}`;
     };
 
     const generateCodeSnippet = (): string => {
