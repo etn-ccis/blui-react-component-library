@@ -6,11 +6,11 @@ import CurrentCircled from '@brightlayer-ui/icons-mui/CurrentCircled';
 import Temp from '@brightlayer-ui/icons-mui/Temp';
 
 export const HeroBannerExample = (): JSX.Element => (
-    <HeroBanner sx={{ maxWidth: 275, m: '0 auto' }}>
+    <HeroBanner divider sx={{ maxWidth: 275, m: '0 auto' }}>
         <Hero
             icon={<GradeA fontSize={'inherit'} />}
             label={'Health'}
-            ChannelValueProps={{ value: '96', units: '/100' }}
+            ChannelValueProps={{ value: '96', units: '/100', unitSpace: 'hide' }}
         />
         <Hero
             icon={<CurrentCircled fontSize={'inherit'} />}
