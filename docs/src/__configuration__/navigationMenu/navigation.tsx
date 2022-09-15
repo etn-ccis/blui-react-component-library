@@ -33,6 +33,7 @@ import ListItemTagExamples from '../../componentDocs/ListItemTag/markdown/ListIt
 
 // Playground components
 import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
+import { ChannelValuePlaygroundComponent } from '../../componentDocs/ChannelValue/playground';
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeader/playground';
 import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSubheader/playground';
@@ -112,7 +113,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <ChannelValuePlaygroundComponent />,
                     },
                 ],
             },
