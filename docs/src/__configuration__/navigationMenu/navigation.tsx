@@ -32,6 +32,7 @@ import DrawerNavGroupExamples from '../../componentDocs/DrawerNavGroup/markdown/
 import DrawerExamples from '../../componentDocs/Drawer/markdown/DrawerExamples.mdx';
 import DrawerHeaderExamples from '../../componentDocs/DrawerHeader/markdown/DrawerHeaderExamples.mdx';
 import DrawerSubheaderExamples from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheaderExamples.mdx';
+import ListItemTagExamples from '../../componentDocs/ListItemTag/markdown/ListItemTagExamples.mdx';
 
 // Playground components
 import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
@@ -391,7 +392,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Examples',
                         url: 'examples',
-                        component: <DummyExamplesComponent />,
+                        component: <ListItemTagExamples />,
                     },
                     {
                         title: 'API Docs',
