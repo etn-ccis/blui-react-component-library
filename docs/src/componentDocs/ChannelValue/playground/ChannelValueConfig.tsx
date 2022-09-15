@@ -21,7 +21,7 @@ export const channelValueConfig: ComponentType = {
             required: false,
             rangeData: {
                 min: 10,
-                max: 700,
+                max: 50,
                 step: 10,
             },
         },
@@ -29,10 +29,11 @@ export const channelValueConfig: ComponentType = {
             propName: 'icon',
             inputType: 'select',
             inputValue: '<TrendingUp />',
-            options: ['<TrendingUp />', '<TrendingDown />'],
+            options: ['undefined', '<TrendingUp />'],
             propType: 'JSX.Element',
             helperText: 'The inline icon to display',
             required: false,
+            defaultValue: 'undefined',
         },
         {
             propName: 'prefix',

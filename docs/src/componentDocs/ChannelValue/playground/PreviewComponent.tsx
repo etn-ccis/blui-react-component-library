@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import { RootState } from '../../../redux/store';
 import { useAppSelector } from '../../../redux/hooks';
@@ -6,7 +5,6 @@ import { createProps, getIcon, hideDefaultPropsFromSnippet, removeEmptyLines } f
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
 import { ChannelValue } from '@brightlayer-ui/react-components/core/ChannelValue';
-// import { ThreeLiner } from '@brightlayer-ui/react-components';
 
 export const PreviewComponent = (): JSX.Element => {
     const channelValueJson = useAppSelector((state: RootState) => state.componentsPropsState.channelValueComponent);
@@ -31,17 +29,27 @@ export const PreviewComponent = (): JSX.Element => {
         return result;
     };
 
+    const toggleIconProp = (icon: string): string => {
+        if (icon === 'undefined') {
+            return toggleDefaultProp('icon', channelValueProps.icon);
+        } else {
+            return `icon={${getIconWithProp(channelValueProps.icon, {
+                fontSize: 'inherit',
+                htmlColor: `${otherProps.htmlColor}`,
+            })}}`;
+        }
+    };
+
     const generateCodeSnippet = (): string => {
         const jsx = `<ChannelValue
-        value={"${channelValueProps.value}"}
-        units={"${channelValueProps.units}"}
-        color={"${channelValueProps.color}"}
-        icon={${getIconWithProp(channelValueProps.icon, { fontSize: 'inherit', htmlColor: `${otherProps.htmlColor}` })}}
-        fontSize={"${channelValueProps.fontSize}"}
-        color={"${channelValueProps.color}"}
-        prefix={"${channelValueProps.prefix}"}
-        ${toggleDefaultProp('unitSpace', channelValueProps.unitSpace)}
-    />`;
+    color={"${channelValueProps.color}"}
+    fontSize={"${channelValueProps.fontSize}"}
+    ${toggleIconProp(channelValueProps.icon)}
+    ${toggleDefaultProp('prefix', channelValueProps.prefix)}
+    ${toggleDefaultProp('units', channelValueProps.units)}
+    ${toggleDefaultProp('unitSpace', channelValueProps.unitSpace)}
+    value={"${channelValueProps.value}"}
+/>`;
         return removeEmptyLines(jsx);
     };
 
@@ -49,13 +57,13 @@ export const PreviewComponent = (): JSX.Element => {
         <PreviewComponentWithCode
             previewContent={
                 <ChannelValue
-                    value={channelValueProps.value}
-                    units={channelValueProps.units}
                     color={channelValueProps.color}
-                    icon={getIcon(channelValueProps.icon, { fontSize: 'inherit', htmlColor: otherProps.htmlColor })}
                     fontSize={channelValueProps.fontSize}
+                    icon={getIcon(channelValueProps.icon, { fontSize: 'inherit', htmlColor: otherProps.htmlColor })}
                     prefix={channelValueProps.prefix}
+                    units={channelValueProps.units}
                     unitSpace={channelValueProps.unitSpace}
+                    value={channelValueProps.value}
                 />
             }
             code={generateCodeSnippet()}
