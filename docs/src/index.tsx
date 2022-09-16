@@ -21,10 +21,13 @@ import { store } from './redux/store';
 import { MDXProvider } from '@mdx-js/react';
 import { componentsMap } from './__configuration__/markdownMapping';
 
+// prismJs
 import 'prismjs/components/prism-jsx.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 
+// Brightlayer UI Icon font
+require('@brightlayer-ui/icons/iconfont/BrightlayerUIIcons.css');
 const container = document.getElementById('root');
 
 if (!container) throw new Error('Root Element was not found in the DOM');

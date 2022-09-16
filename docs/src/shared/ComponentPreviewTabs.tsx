@@ -53,8 +53,7 @@ const tabPanelContentStyles: any = {
 };
 
 const outletContainerStyles = {
-    p: '48px 40px',
-    m: '0px auto',
+    p: '48px 0',
 };
 
 const playgroundContentStyles = {

@@ -1100,6 +1100,11 @@
   resolved "https://registry.npmjs.org/@brightlayer-ui/icons-mui/-/icons-mui-3.0.0.tgz"
   integrity sha512-w90mdDeXIu6GhxGjdMMIxRjpVZ6w2pwzRSA5tKF/V3lmShAHJPFh5FwMctiOfrc4GBidC617SEeBDkvJBGcJIA==
 
+"@brightlayer-ui/icons@^1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons/-/icons-1.11.0.tgz#412baae591b9c5fc87dda7b3cdd278dc2671d667"
+  integrity sha512-2pHKJY7Xpao6BQ1ZIRcXxpTFuhSlalOJKw2//D05mNSzIFTZmBCv+6OVtAE45NxbLNIDP/To0/Cykm2mA9I1Vw==
+
 "@brightlayer-ui/prettier-config@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"

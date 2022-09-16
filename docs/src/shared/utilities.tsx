@@ -11,6 +11,7 @@ import Menu from '@mui/icons-material/Menu';
 import PinDrop from '@mui/icons-material/PinDrop';
 import Remove from '@mui/icons-material/Remove';
 import TrendingUp from '@mui/icons-material/TrendingUp';
+import TrendingDown from '@mui/icons-material/TrendingDown';
 import { RootState } from '../redux/store';
 import { ComponentType, PropsType } from '../__types__';
 import { SvgIconProps } from '@mui/material';
@@ -64,9 +65,9 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
         case '<AddAPhoto />':
             return <AddAPhoto />;
         case '<Device />':
-            return <Device />;
+            return React.createElement(Device, iconProps);
         case '<Devices />':
-            return <Devices />;
+            return React.createElement(Devices, iconProps);
         case '<Fan />':
             return React.createElement(Fan, iconProps);
         case '<FanCircled />':
@@ -82,7 +83,9 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
         case '<Remove />':
             return <Remove />;
         case '<TrendingUp />':
-            return <TrendingUp />;
+            return React.createElement(TrendingUp, iconProps);
+        case '<TrendingDown />':
+            return React.createElement(TrendingDown, iconProps);
         case 'undefined':
         default:
             return undefined;
@@ -104,6 +107,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
     switch (componentName) {
         case 'App Bar':
             return state.appBarComponent;
+        case 'Channel Value':
+            return state.channelValueComponent;
         case 'Drawer Header':
             return state.drawerHeaderComponent;
         case 'Drawer':
@@ -118,6 +123,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.drawerNavItemComponent;
         case 'Drawer Rail Item':
             return state.drawerRailItemComponent;
+        case 'Empty State':
+            return state.emptyStateComponent;
         case 'Hero':
             return state.heroComponent;
         case 'Info List Item':
@@ -167,14 +174,15 @@ export const hideDefaultPropsFromSnippet = (
     if (knob?.defaultValue === currentValue) {
         return '';
     }
-
-    switch (knob?.inputType) {
+    switch (knob?.propType) {
         case 'string':
+            return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
+        case 'string | Array<React.ReactNode>':
             return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
         case 'boolean':
             return `${propName}={${currentValue}}`;
         default:
-            return '';
+            return `${propName}={${currentValue}}`;
     }
 };
 
