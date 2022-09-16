@@ -124,6 +124,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.infoListItemComponent;
         case 'List Item Tag':
             return state.listItemTagComponent;
+        case 'Spacer':
+            return state.spacerComponent;
         case 'Three Liner':
             return state.threeLinerComponent;
         default:
