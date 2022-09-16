@@ -26,8 +26,8 @@ export const scoreCardConfig: ComponentType = {
             helperText: 'Max number of actionItems in the header',
             required: false,
             rangeData: {
-                min: -10,
-                max: 100,
+                min: -50,
+                max: 50,
                 step: 10,
             },
             defaultValue: 0,
@@ -82,6 +82,22 @@ export const scoreCardConfig: ComponentType = {
             propType: 'string',
             helperText: 'The secondary text',
             required: false,
+        },
+    ],
+    otherProps: [
+        {
+            propName: 'numberofHeroes',
+            inputType: 'number',
+            inputValue: 1,
+            propType: 'number',
+            helperText: 'Max number of hero',
+            required: false,
+            rangeData: {
+                min: 0,
+                max: 2,
+                step: 1,
+            },
+            defaultValue: 1,
         },
     ],
 };
