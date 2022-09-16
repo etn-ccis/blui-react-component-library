@@ -2,6 +2,7 @@ import React, { HTMLAttributes } from 'react';
 import Box from '@mui/material/Box/Box';
 import { CodeBlock } from './CodeBlock';
 import { CodeBlockActionButtonRow } from './CodeBlockActionButtonRow';
+import * as Colors from '@brightlayer-ui/colors';
 
 export type PreviewComponentProps = HTMLAttributes<HTMLDivElement> & {
     previewContent: JSX.Element;
@@ -22,6 +23,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                     justifyContent: 'center',
                     alignItems: 'center',
                     mt: 6,
+                    bgcolor: Colors.white[200],
                 }}
             >
                 {previewContent}
@@ -36,7 +38,16 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                 onMouseLeave={(): void => setShow(false)}
             >
                 <CodeBlock code={code} language="jsx" />
-                <CodeBlockActionButtonRow url="#" copyText={code} />
+
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        bottom: '16px',
+                        right: '400px',
+                    }}
+                >
+                    {show && <CodeBlockActionButtonRow copyText={code} />}
+                </Box>
             </Box>
         </>
     );
