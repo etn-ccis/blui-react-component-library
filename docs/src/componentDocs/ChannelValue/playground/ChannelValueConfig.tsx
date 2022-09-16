@@ -59,7 +59,7 @@ export const channelValueConfig: ComponentType = {
             options: ['auto', 'hide', 'show'],
             propType: 'string',
             helperText: 'Show/Hide spacing between the value and units',
-            required: true,
+            required: false,
             defaultValue: 'auto',
         },
         {
