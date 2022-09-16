@@ -29,17 +29,23 @@ import DrawerNavItemExamples from '../../componentDocs/DrawerNavItem/markdown/Dr
 import DrawerFooterExamples from '../../componentDocs/DrawerFooter/markdown/DrawerFooterExamples.mdx';
 import DrawerBodyExamples from '../../componentDocs/DrawerBody/markdown/DrawerBodyExamples.mdx';
 import DrawerNavGroupExamples from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupExamples.mdx';
+import DrawerExamples from '../../componentDocs/Drawer/markdown/DrawerExamples.mdx';
+import DrawerHeaderExamples from '../../componentDocs/DrawerHeader/markdown/DrawerHeaderExamples.mdx';
+import DrawerSubheaderExamples from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheaderExamples.mdx';
+import HeroExamples from '../../componentDocs/Hero/markdown/HeroExamples.mdx';
 import ListItemTagExamples from '../../componentDocs/ListItemTag/markdown/ListItemTagExamples.mdx';
 import DrawerLayoutExamples from '../../componentDocs/DrawerLayout/markdown/DrawerLayoutExamples.mdx';
 
 // Playground components
 import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
+import { ChannelValuePlaygroundComponent } from '../../componentDocs/ChannelValue/playground';
 import { DrawerPlaygroundComponent } from '../../componentDocs/Drawer/playground';
 import { DrawerHeaderPlaygroundComponent } from '../../componentDocs/DrawerHeader/playground';
 import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSubheader/playground';
 import { DrawerFooterPlaygroundComponent } from '../../componentDocs/DrawerFooter/playground';
 import { DrawerNavGroupPlaygroundComponent } from '../../componentDocs/DrawerNavGroup/playground';
 import { DrawerNavItemPlaygroundComponent } from '../../componentDocs/DrawerNavItem/playground';
+import { EmptyStatePlaygroundComponent } from '../../componentDocs/EmptyState/playground';
 import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
 import { InfoListItemPlaygroundComponent } from '../../componentDocs/InfoListItem/playground';
 import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/playground';
@@ -113,7 +119,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <ChannelValuePlaygroundComponent />,
                     },
                 ],
             },
@@ -129,7 +135,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DummyExamplesComponent />,
+                                component: <DrawerExamples />,
                             },
                             {
                                 title: 'API Docs',
@@ -151,7 +157,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DummyExamplesComponent />,
+                                component: <DrawerHeaderExamples />,
                             },
                             {
                                 title: 'API Docs',
@@ -173,7 +179,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DummyExamplesComponent />,
+                                component: <DrawerSubheaderExamples />,
                             },
                             {
                                 title: 'API Docs',
@@ -334,7 +340,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <EmptyStatePlaygroundComponent />,
                     },
                 ],
             },
@@ -346,7 +352,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Examples',
                         url: 'examples',
-                        component: <DummyExamplesComponent />,
+                        component: <HeroExamples />,
                     },
                     {
                         title: 'API Docs',
