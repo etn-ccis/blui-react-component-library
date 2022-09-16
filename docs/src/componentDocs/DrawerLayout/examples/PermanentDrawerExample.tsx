@@ -1,7 +1,6 @@
 import React from 'react';
 import { DrawerLayout, Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import Box from '@mui/material/Box';
-//import * as colors from '@brightlayer-ui/colors';
 
 export const PermanentDrawerExample = (): JSX.Element => (
     <DrawerLayout
