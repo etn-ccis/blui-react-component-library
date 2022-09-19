@@ -106,18 +106,6 @@ export const PreviewComponent = (): JSX.Element => {
         }
     };
 
-    const showActions = (actionLimit: number): string => {
-        const a = [
-            `<Search key={'search'} />`,
-            `\n\t\t<Mail key={'mail'} />`,
-            `\n\t\t<Notifications key={'notifications'} />`,
-            `\n\t\t<Favorite key={'favorite'} />`,
-            `\n\t\t<Cloud key={'cloud'} />`,
-            `\n\t\t<MoreVert key={'morevert'} />`,
-        ].slice(0, actionLimit);
-        return a.join();
-    };
-
     const generateCodeSnippet = (): string => {
         const jsx = `<ScoreCard
     sx={{ width: 400, flex: '0 0 auto' }}
@@ -127,9 +115,14 @@ export const PreviewComponent = (): JSX.Element => {
     headerColor={"${scoreCardProps.headerColor}"}
     headerFontColor={"${scoreCardProps.headerFontColor}"}
     ${toggleDefaultProp('headerBackgroundImage', `${getImage(scoreCardProps.headerBackgroundImage)}`)}
-    actionLimit={"${scoreCardProps.actionLimit}"}
+    actionLimit={${scoreCardProps.actionLimit}}
     actionItems={[
-        ${showActions(scoreCardProps.actionLimit)}
+        <Search key={'search'} />,
+        <Mail key={'mail'} />,
+        <Notifications key={'notifications'} />,
+        <Favorite key={'favorite'} />,
+        <Cloud key={'cloud'} />,
+        <MoreVert key={'morevert'} />,
     ]}
     actionRow={
         <List style={{ padding: 0 }}>
