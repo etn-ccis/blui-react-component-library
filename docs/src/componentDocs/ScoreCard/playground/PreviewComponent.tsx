@@ -3,22 +3,24 @@ import { RootState } from '../../../redux/store';
 import { useAppSelector } from '../../../redux/hooks';
 import { ScoreCard } from '@brightlayer-ui/react-components/core/ScoreCard';
 import { InfoListItem } from '@brightlayer-ui/react-components/core/InfoListItem';
-import List from '@mui/material/List';
+import { Hero } from '@brightlayer-ui/react-components/core/Hero';
+import { HeroBanner } from '@brightlayer-ui/react-components/core/HeroBanner';
 import Cloud from '@mui/icons-material/Cloud';
-import ListAlt from '@mui/icons-material/ListAlt';
 import Favorite from '@mui/icons-material/Favorite';
+import Humidity from '@brightlayer-ui/icons-mui/Moisture';
+import List from '@mui/material/List';
+import ListAlt from '@mui/icons-material/ListAlt';
 import Mail from '@mui/icons-material/Mail';
 import MoreVert from '@mui/icons-material/MoreVert';
 import Notifications from '@mui/icons-material/Notifications';
 import Search from '@mui/icons-material/Search';
+import Temp from '@brightlayer-ui/icons-mui/Temp';
 import { createProps, getImage, hideDefaultPropsFromSnippet, removeEmptyLines } from '../../../shared/utilities';
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
+
 import * as Colors from '@brightlayer-ui/colors';
-import { Hero } from '@brightlayer-ui/react-components/core/Hero';
-import Temp from '@brightlayer-ui/icons-mui/Temp';
-import Humidity from '@brightlayer-ui/icons-mui/Moisture';
-import { HeroBanner } from '@brightlayer-ui/react-components/core/HeroBanner';
+
 export const PreviewComponent = (): JSX.Element => {
     const scoreCardJson = useAppSelector((state: RootState) => state.componentsPropsState.scoreCardComponent);
 
@@ -104,6 +106,18 @@ export const PreviewComponent = (): JSX.Element => {
         }
     };
 
+    const showActions = (actionLimit: number): string => {
+        const a = [
+            `<Search key={'search'} />`,
+            `\n\t\t\t<Mail key={'mail'} />`,
+            `\n\t\t\t<Notifications key={'notifications'} />`,
+            `\n\t\t\t<Favorite key={'favorite'} />`,
+            `\n\t\t\t<Cloud key={'cloud'} />`,
+            `\n\t\t\t<MoreVert key={'morevert'} />`,
+        ].slice(0, actionLimit);
+        return a.join();
+    };
+
     const generateCodeSnippet = (): string => {
         const jsx = `<ScoreCard
         sx={{ width: 400, flex: '0 0 auto' }}
@@ -115,14 +129,7 @@ export const PreviewComponent = (): JSX.Element => {
         ${toggleDefaultProp('headerBackgroundImage', `${getImage(scoreCardProps.headerBackgroundImage)}`)}
         actionLimit={"${scoreCardProps.actionLimit}"}
         actionItems={[
-            ${[
-                `<Search key={'search'} />`,
-                `<Mail key={'mail'} />`,
-                `<Notifications key={'notifications'} />`,
-                `<Favorite key={'favorite'} />`,
-                `<Cloud key={'cloud'} />`,
-                `<MoreVert key={'morevert'} />`,
-            ].slice(0, scoreCardProps.actionLimit)}
+            ${showActions(scoreCardProps.actionLimit)}
         ]}
         actionRow={
             <List style={{ padding: 0 }}>
