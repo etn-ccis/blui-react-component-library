@@ -1,7 +1,6 @@
 import React, { HTMLAttributes } from 'react';
 import Box from '@mui/material/Box/Box';
-import { CodeBlock } from './CodeBlock';
-import { CodeBlockActionButtonRow } from './CodeBlockActionButtonRow';
+import { CodeBlock, CopyToClipboard } from '.';
 import * as Colors from '@brightlayer-ui/colors';
 
 export type PreviewComponentProps = HTMLAttributes<HTMLDivElement> & {
@@ -38,7 +37,6 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                 onMouseLeave={(): void => setShow(false)}
             >
                 <CodeBlock code={code} language="jsx" />
-
                 <Box
                     sx={{
                         position: 'absolute',
@@ -46,7 +44,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                         right: '400px',
                     }}
                 >
-                    {show && <CodeBlockActionButtonRow copyText={code} />}
+                    {show && <CopyToClipboard title={'Copy All'} copyText={code} />}
                 </Box>
             </Box>
         </>
