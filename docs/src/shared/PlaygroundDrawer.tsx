@@ -139,7 +139,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                 control={
                     <Checkbox
                         checked={prop.inputValue as boolean}
-                        name={prop.propName}
+                        name={prop.label ? prop.label : prop.propName}
                         color="primary"
                         onChange={(event): void =>
                             handleChange(prop.propName, event.target.checked, componentName, index)
@@ -147,7 +147,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                         disabled={prop.disable}
                     />
                 }
-                label={`${prop.propName}: ${prop.propType} ${prop.required ? '*' : ''}`}
+                label={`${prop.label ? prop.label : prop.propName}: ${prop.propType} ${prop.required ? '*' : ''}`}
             />
             <FormHelperText>{prop.helperText}</FormHelperText>
         </>
@@ -155,7 +155,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
     const renderSlider = (prop: PropsType, index: string): JSX.Element => (
         <Box key={index}>
-            <Typography component="span">{`${prop.propName}: ${prop.propType} ${prop.required ? '*' : ''}`}</Typography>
+            <Typography component="span">{`${prop.label ? prop.label : prop.propName}: ${prop.propType} ${
+                prop.required ? '*' : ''
+            }`}</Typography>
             <Slider
                 value={prop.inputValue as number}
                 valueLabelDisplay="auto"
