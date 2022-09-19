@@ -109,61 +109,60 @@ export const PreviewComponent = (): JSX.Element => {
     const showActions = (actionLimit: number): string => {
         const a = [
             `<Search key={'search'} />`,
-            `\n\t\t\t<Mail key={'mail'} />`,
-            `\n\t\t\t<Notifications key={'notifications'} />`,
-            `\n\t\t\t<Favorite key={'favorite'} />`,
-            `\n\t\t\t<Cloud key={'cloud'} />`,
-            `\n\t\t\t<MoreVert key={'morevert'} />`,
+            `\n\t\t<Mail key={'mail'} />`,
+            `\n\t\t<Notifications key={'notifications'} />`,
+            `\n\t\t<Favorite key={'favorite'} />`,
+            `\n\t\t<Cloud key={'cloud'} />`,
+            `\n\t\t<MoreVert key={'morevert'} />`,
         ].slice(0, actionLimit);
         return a.join();
     };
 
     const generateCodeSnippet = (): string => {
         const jsx = `<ScoreCard
-        sx={{ width: 400, flex: '0 0 auto' }}
-        headerTitle={"${scoreCardProps.headerTitle}"}
-        ${toggleDefaultProp('headerSubtitle', scoreCardProps.headerSubtitle)}
-        ${toggleDefaultProp('headerInfo', scoreCardProps.headerInfo)}
-        headerColor={"${scoreCardProps.headerColor}"}
-        headerFontColor={"${scoreCardProps.headerFontColor}"}
-        ${toggleDefaultProp('headerBackgroundImage', `${getImage(scoreCardProps.headerBackgroundImage)}`)}
-        actionLimit={"${scoreCardProps.actionLimit}"}
-        actionItems={[
-            ${showActions(scoreCardProps.actionLimit)}
-        ]}
-        actionRow={
-            <List style={{ padding: 0 }}>
-                <InfoListItem dense chevron title={'View Location'} hidePadding />
-            </List>
-        }
-       
-        ${showHeroSection(scoreCardOtherProps.numberofHeroes)}
-        ${toggleDefaultProp('badgeOffset', scoreCardProps.badgeOffset)}
-    >
-        <List sx={{ padding: '.5rem 0' }}>
-            <InfoListItem
-                dense
-                sx={{ height: '2.25rem' }}
-                title={'0 Alarms'}
-                icon={<Notifications color={'inherit'} />}
-            />
-            <InfoListItem
-                dense
-                sx={{ height: '2.25rem' }}
-                fontColor={Colors.blue[500]}
-                iconColor={Colors.blue[500]}
-                title={'1 Event'}
-                icon={<ListAlt color={'inherit'} />}
-            />
-            <InfoListItem
-                dense
-                sx={{ height: '2.25rem' }}
-                title={'Online'}
-                icon={<Cloud color={'inherit'} />}
-            />
+    sx={{ width: 400, flex: '0 0 auto' }}
+    headerTitle={"${scoreCardProps.headerTitle}"}
+    ${toggleDefaultProp('headerSubtitle', scoreCardProps.headerSubtitle)}
+    ${toggleDefaultProp('headerInfo', scoreCardProps.headerInfo)}
+    headerColor={"${scoreCardProps.headerColor}"}
+    headerFontColor={"${scoreCardProps.headerFontColor}"}
+    ${toggleDefaultProp('headerBackgroundImage', `${getImage(scoreCardProps.headerBackgroundImage)}`)}
+    actionLimit={"${scoreCardProps.actionLimit}"}
+    actionItems={[
+        ${showActions(scoreCardProps.actionLimit)}
+    ]}
+    actionRow={
+        <List style={{ padding: 0 }}>
+            <InfoListItem dense chevron title={'View Location'} hidePadding />
         </List>
-    </ScoreCard>`;
-
+    }
+    
+    ${showHeroSection(scoreCardOtherProps.numberofHeroes)}
+    ${toggleDefaultProp('badgeOffset', scoreCardProps.badgeOffset)}
+>
+    <List sx={{ padding: '.5rem 0' }}>
+        <InfoListItem
+            dense
+            sx={{ height: '2.25rem' }}
+            title={'0 Alarms'}
+            icon={<Notifications color={'inherit'} />}
+        />
+        <InfoListItem
+            dense
+            sx={{ height: '2.25rem' }}
+            fontColor={Colors.blue[500]}
+            iconColor={Colors.blue[500]}
+            title={'1 Event'}
+            icon={<ListAlt color={'inherit'} />}
+        />
+        <InfoListItem
+            dense
+            sx={{ height: '2.25rem' }}
+            title={'Online'}
+            icon={<Cloud color={'inherit'} />}
+        />
+    </List>
+</ScoreCard>`;
         return removeEmptyLines(jsx);
     };
 
