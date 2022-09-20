@@ -5,18 +5,15 @@ import { SnapAppBarExample } from './SnapAppBarExample';
 
 const codeSnippet = `<Box>
     <AppBar
-        variant={'snap'}
-        expandedHeight={200}
-        collapsedHeight={64}
-        scrollThreshold={100}
-        scrollContainerId="appBarSnapContainer"
-        animationDuration={300}
+        variant="snap"
+        scrollContainerId={'appbarBodyFiller1'}
+        position={'sticky'}
     >
         <Toolbar>
             <Typography variant="h6">Content</Typography>
         </Toolbar>
     </AppBar>
-    <Box id='appBarSnapContainer'>
+    <Box id='appbarBodyFiller1'>
         {getBodyFiller()}
     </Box>
 </Box>
@@ -25,7 +22,7 @@ const codeSnippet = `<Box>
 export const SnapAppBar = (): JSX.Element => (
     <Box>
         <SnapAppBarExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-13" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-10" />
         <CodeBlockActionButtonRow copyText={codeSnippet} url="componentDocs/AppBar/examples/SnapAppBarExample.tsx" />
     </Box>
 );
