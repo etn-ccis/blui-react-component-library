@@ -9,9 +9,9 @@ const codeSnippet = `<DrawerLayout
         <Drawer open={true} width={332} variant={'rail'}>
             <DrawerBody>
                 <DrawerNavGroup>
-                    <DrawerNavItem title="Dashboard" icon={<Dashboard />} itemID="1" />
-                    <DrawerNavItem title="Locations" icon={<Notifications />} itemID="2" />
-                    <DrawerNavItem title="Legal" icon={<Gavel />} itemID="3" />
+                    <DrawerRailItem title="Devices" icon={<Devices />} itemID="1"/>
+                    <DrawerRailItem title="Locations" icon={<LocationOn />} itemID="2"/>
+                    <DrawerRailItem title="Legal" icon={<Gavel />} itemID="3"/>
                 </DrawerNavGroup>
             </DrawerBody>
         </Drawer>
