@@ -22,6 +22,7 @@ export type PropsType = {
     required: boolean;
     rangeData?: RangeDataTypes;
     disable?: boolean;
+    label?: string;
 };
 
 export type ComponentType = {

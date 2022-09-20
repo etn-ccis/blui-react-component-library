@@ -23,7 +23,7 @@ export const scoreCardConfig: ComponentType = {
             inputType: 'number',
             inputValue: -40,
             propType: 'number',
-            helperText: 'Max number of actionItems in the header',
+            helperText: 'Vertical offset for the badge component',
             required: false,
             rangeData: {
                 min: -50,
@@ -90,7 +90,7 @@ export const scoreCardConfig: ComponentType = {
             inputType: 'number',
             inputValue: 1,
             propType: 'number',
-            helperText: 'Max number of hero',
+            helperText: 'Number of heroes to render as badges',
             required: false,
             rangeData: {
                 min: 0,
@@ -98,6 +98,7 @@ export const scoreCardConfig: ComponentType = {
                 step: 1,
             },
             defaultValue: 1,
+            label: 'Number of Heroes',
         },
     ],
 };
