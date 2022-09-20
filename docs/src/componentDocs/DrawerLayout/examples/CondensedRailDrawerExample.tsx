@@ -4,27 +4,30 @@ import Box from '@mui/material/Box';
 import Gavel from '@mui/icons-material/Gavel';
 import { Devices, LocationOn } from '@mui/icons-material';
 
-export const RailDrawerExample = (): JSX.Element => (
+export const CondensedRailDrawerExample = (): JSX.Element => (
     <DrawerLayout
         drawer={
-            <Drawer open={true} width={332} variant={'rail'}>
+            <Drawer open={true} width={332} variant={'rail'} condensed={true}>
                 <DrawerBody>
                     <DrawerNavGroup>
                         <DrawerRailItem
-                            sx={{ cursor: 'pointer' }}
+                            sx={{ width: '100%', cursor: 'pointer' }}
                             title="Devices"
                             icon={<Devices />}
                             itemID="1"
-                            divider
                         />
                         <DrawerRailItem
-                            sx={{ cursor: 'pointer' }}
+                            sx={{ width: '100%', cursor: 'pointer' }}
                             title="Locations"
                             icon={<LocationOn />}
                             itemID="2"
-                            divider
                         />
-                        <DrawerRailItem sx={{ cursor: 'pointer' }} title="Legal" icon={<Gavel />} itemID="3" divider />
+                        <DrawerRailItem
+                            sx={{ width: '100%', cursor: 'pointer' }}
+                            title="Legal"
+                            icon={<Gavel />}
+                            itemID="3"
+                        />
                     </DrawerNavGroup>
                 </DrawerBody>
             </Drawer>

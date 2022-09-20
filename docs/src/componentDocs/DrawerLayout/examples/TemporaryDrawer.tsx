@@ -11,7 +11,6 @@ const codeSnippet = `<DrawerLayout
                 title="Title"
                 icon={<Close />}
                 onClick={(): void => setOpen(false)}
-                sx={{ cursor: 'pointer' }}
             />
             <DrawerBody>
                 <DrawerNavGroup>
