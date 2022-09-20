@@ -14,11 +14,16 @@ const codeSnippet = `<Drawer open={true} width={250}>
     <DrawerFooter sx={{ p: 2 }}>
         <Box sx={{ mb: 1 }}>
             <Box>
-                <FormHelperText>v2.4.0</FormHelperText>
+                <Typography variant="caption">
+                    v2.4.0
+                </Typography>
             </Box>
             <Box>
-                <FormHelperText>10:33:05 03/12/22</FormHelperText>
+                <Typography variant="caption">
+                    10:33:05 03/12/22
+                </Typography>
             </Box>
+        </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 1 }}>
                 <Box sx={{ width: 83 }} component="img" src={EatonFooterLogoLight} />
                 <Box>
