@@ -27,10 +27,10 @@ export const ComplexDrawerFooterExample = (): JSX.Element => (
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 1 }}>
                         <Box sx={{ width: 83 }} component="img" src={EatonFooterLogoLight} />
                         <Box>
-                            <Typography sx={{ display: 'block' }} variant="caption">
+                            <Typography variant="caption" sx={{ display: 'block' }}>
                                 Copyright © Eaton
                             </Typography>
-                            <Typography sx={{ display: 'block' }} variant="caption">
+                            <Typography variant="caption" sx={{ display: 'block' }}>
                                 All Rights Reserved
                             </Typography>
                         </Box>
