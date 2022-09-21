@@ -3,18 +3,11 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { InfoListItemWithRightComponentExample } from './InfoListItemWithRightComponentExample';
 
-const codeSnippet = `<InfoListItem
+const codeSnippet = ` <InfoListItem
     title="Info List Item"
-    subtitle="with a timestamp as a left component"
+    subtitle="with a ChannelValue component to the right"
     icon={<BatteryChargingFull />}
-    leftComponent={
-        <Box>
-            <Typography variant="caption">
-                <strong>8:32 </strong>AM
-            </Typography>
-            <Typography variant="caption">11/21/21</Typography>
-        </Box>
-    }
+    rightComponent={<ChannelValue value={'15'} units={'A'} />}
 />`;
 
 export const InfoListItemWithRightComponent = (): JSX.Element => (
