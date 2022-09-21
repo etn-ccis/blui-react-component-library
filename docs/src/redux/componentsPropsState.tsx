@@ -11,7 +11,7 @@ import emptyStateConfig from '../componentDocs/EmptyState/playground/EmptyStateC
 import heroConfig from '../componentDocs/Hero/playground/HeroConfig';
 import infoListItemConfig from '../componentDocs/InfoListItem/playground/InfoListItemConfig';
 import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
-// import spacerConfig from '../componentDocs/Spacer/playground/SpacerConfig';
+import spacerConfig from '../componentDocs/Spacer/playground/SpacerConfig';
 import scoreCardConfig from '../componentDocs/ScoreCard/playground/ScoreCardConfig';
 import threeLinerConfig from '../componentDocs/ThreeLiner/playground/ThreeLinerConfig';
 import { getComponentState } from '../shared/utilities';
@@ -30,7 +30,7 @@ type ComponentState = {
     heroComponent: ComponentType;
     infoListItemComponent: ComponentType;
     listItemTagComponent: ComponentType;
-    // spacerComponent: ComponentType;
+    spacerComponent: ComponentType;
     scoreCardComponent: ComponentType;
     threeLinerComponent: ComponentType;
 };
@@ -48,7 +48,7 @@ const initialState: ComponentState = {
     heroComponent: heroConfig,
     infoListItemComponent: infoListItemConfig,
     listItemTagComponent: listItemTagConfig,
-    // spacerComponent: spacerConfig,
+    spacerComponent: spacerConfig,
     scoreCardComponent: scoreCardConfig,
     threeLinerComponent: threeLinerConfig,
 };
