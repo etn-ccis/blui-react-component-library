@@ -34,8 +34,6 @@ export const RailDrawerExample = (): JSX.Element => (
             '& .BluiDrawerLayout-content': { zIndex: 'auto' },
         }}
     >
-        <Box sx={{ p: 2, backgroundColor: (theme) => theme.palette.background.paper, height: 216 }}>
-            App Content Here.
-        </Box>
+        <Box sx={{ p: 2, backgroundColor: 'background.paper', height: 216 }}>App Content Here.</Box>
     </DrawerLayout>
 );

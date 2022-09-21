@@ -6,7 +6,7 @@ import { RailDrawerExample } from './RailDrawerExample';
 
 const codeSnippet = `<DrawerLayout
     drawer={
-        <Drawer open={true} width={332} variant={'rail'}>
+        <Drawer open={true} variant={'rail'}>
             <DrawerBody>
                 <DrawerNavGroup>
                     <DrawerRailItem title="Devices" icon={<Devices />} itemID="1"/>

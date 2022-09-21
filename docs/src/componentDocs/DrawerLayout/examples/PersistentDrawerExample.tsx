@@ -39,9 +39,7 @@ export const PersistentDrawerExample = (): JSX.Element => {
                 '& .BluiDrawerLayout-content': { zIndex: 'auto' },
             }}
         >
-            <Box sx={{ p: 2, backgroundColor: (theme) => theme.palette.background.paper, height: 250 }}>
-                App Content Here.
-            </Box>
+            <Box sx={{ p: 2, backgroundColor: 'background.paper', height: 250 }}>App Content Here.</Box>
         </DrawerLayout>
     );
 };

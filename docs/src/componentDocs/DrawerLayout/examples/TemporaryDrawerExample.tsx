@@ -43,7 +43,7 @@ export const TemporaryDrawerExample = (): JSX.Element => {
                 '& .BluiDrawerLayout-content': { zIndex: 'auto' },
             }}
         >
-            <Box sx={{ backgroundColor: (theme) => theme.palette.background.paper, height: 250 }}>
+            <Box sx={{ backgroundColor: 'background.paper', height: 250 }}>
                 <AppBar position="static">
                     <Toolbar>
                         <IconButton

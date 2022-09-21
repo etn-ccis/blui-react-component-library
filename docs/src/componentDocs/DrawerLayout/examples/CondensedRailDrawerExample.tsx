@@ -10,24 +10,9 @@ export const CondensedRailDrawerExample = (): JSX.Element => (
             <Drawer open={true} width={332} variant={'rail'} condensed={true}>
                 <DrawerBody>
                     <DrawerNavGroup>
-                        <DrawerRailItem
-                            sx={{ width: '100%', cursor: 'pointer' }}
-                            title="Devices"
-                            icon={<Devices />}
-                            itemID="1"
-                        />
-                        <DrawerRailItem
-                            sx={{ width: '100%', cursor: 'pointer' }}
-                            title="Locations"
-                            icon={<LocationOn />}
-                            itemID="2"
-                        />
-                        <DrawerRailItem
-                            sx={{ width: '100%', cursor: 'pointer' }}
-                            title="Legal"
-                            icon={<Gavel />}
-                            itemID="3"
-                        />
+                        <DrawerRailItem title="Devices" icon={<Devices />} itemID="1" />
+                        <DrawerRailItem title="Locations" icon={<LocationOn />} itemID="2" />
+                        <DrawerRailItem title="Legal" icon={<Gavel />} itemID="3" />
                     </DrawerNavGroup>
                 </DrawerBody>
             </Drawer>
@@ -37,8 +22,6 @@ export const CondensedRailDrawerExample = (): JSX.Element => (
             '& .BluiDrawerLayout-content': { zIndex: 'auto' },
         }}
     >
-        <Box sx={{ p: 2, backgroundColor: (theme) => theme.palette.background.paper, height: 216 }}>
-            App Content Here.
-        </Box>
+        <Box sx={{ p: 2, backgroundColor: 'background.paper', height: 216 }}>App Content Here.</Box>
     </DrawerLayout>
 );

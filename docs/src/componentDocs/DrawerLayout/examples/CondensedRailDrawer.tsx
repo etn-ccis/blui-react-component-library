@@ -6,7 +6,7 @@ import { CondensedRailDrawerExample } from './CondensedRailDrawerExample';
 
 const codeSnippet = `<DrawerLayout
     drawer={
-        <Drawer open={true} width={332} variant={'rail'} condensed={true}>
+        <Drawer open={true} variant={'rail'} condensed={true}>
             <DrawerBody>
                 <DrawerNavGroup>
                     <DrawerRailItem title="Devices" icon={<Devices />} itemID="1"/>
