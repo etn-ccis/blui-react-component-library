@@ -37,17 +37,14 @@ export const PreviewComponent = (): JSX.Element => {
                 {
                     title: 'Settings',
                     icon: <Settings />,
-                    onClick: (): void => {},
                 },
                 {
                     title: 'Contact Us',
                     icon: <Email />,
-                    onClick: (): void => {},
                 },
                 {
                     title: 'Log Out',
                     icon: <ExitToApp />,
-                    onClick: (): void => {},
                 },
             ],
         },
@@ -70,17 +67,14 @@ export const PreviewComponent = (): JSX.Element => {
                                 {
                                     title: 'Settings',
                                     icon: <Settings />,
-                                    onClick: (): void => {},
                                 },
                                 {
                                     title: 'Contact Us',
                                     icon: <Email />,
-                                    onClick: (): void => {},
                                 },
                                 {
                                     title: 'Log Out',
                                     icon: <ExitToApp />,
-                                    onClick: (): void => {},
                                 },
                             ],
                         },
