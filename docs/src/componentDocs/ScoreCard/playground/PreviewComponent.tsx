@@ -47,9 +47,9 @@ export const PreviewComponent = (): JSX.Element => {
             icon={<Temp fontSize={'inherit'} />}
             label={'Temperature'}
             iconSize={48}
+            iconBackgroundColor={theme.palette.background.paper}
             ChannelValueProps={{ value: 98, units: '°F' }}
             fontSize={'normal'}
-            sx={{ '& .BluiHero-icon': { backgroundColor: theme.palette.background.paper } }}
         />,
         <Hero
             key={'hero2'}
@@ -57,8 +57,8 @@ export const PreviewComponent = (): JSX.Element => {
             label={'Humidity'}
             ChannelValueProps={{ value: 54, units: '%' }}
             iconSize={48}
+            iconBackgroundColor={theme.palette.background.paper}
             fontSize={'normal'}
-            sx={{ '& .BluiHero-icon': { backgroundColor: theme.palette.background.paper } }}
         />,
     ];
 
@@ -74,9 +74,9 @@ export const PreviewComponent = (): JSX.Element => {
                     icon={<Temp fontSize={'inherit'} />}
                     label={'Temperature'}
                     iconSize={48}
+                    iconBackgroundColor={"${theme.palette.background.paper}"}
                     ChannelValueProps={{ value: 98, units: '°F' }}
                     fontSize={'normal'}
-                    sx={{'& .BluiHero-icon':{ backgroundColor: '${theme.palette.background.paper}'}}}
                 />
             <HeroBanner>
         }`;
@@ -88,9 +88,9 @@ export const PreviewComponent = (): JSX.Element => {
                     icon={<Temp fontSize={'inherit'} />}
                     label={'Temperature'}
                     iconSize={48}
+                    iconBackgroundColor={"${theme.palette.background.paper}"}
                     ChannelValueProps={{ value: 98, units: "°F" }}
                     fontSize={'normal'}
-                    sx={{ '& .BluiHero-icon' : { backgroundColor: '${theme.palette.background.paper}' } }}
                 />
                 <Hero
                     key={'hero2'}
@@ -98,8 +98,8 @@ export const PreviewComponent = (): JSX.Element => {
                     label={'Humidity'}
                     ChannelValueProps={{ value: 54, units: "%" }}
                     iconSize={48}
+                    iconBackgroundColor={"${theme.palette.background.paper}"}
                     fontSize={'normal'}
-                    sx={{ '& .BluiHero-icon' : { backgroundColor: '${theme.palette.background.paper}' } }}
                 />
             <HeroBanner>
         }`;
