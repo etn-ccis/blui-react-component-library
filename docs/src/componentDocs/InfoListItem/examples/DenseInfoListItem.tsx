@@ -8,7 +8,7 @@ const codeSnippet = `<InfoListItem title='Info List Item' dense={true} />`;
 export const DenseInfoListItem = (): JSX.Element => (
     <Box>
         <DenseInfoListItemExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine={'6-18'} />
+        <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/ListItemTag/examples/DenseInfoListItemExample.tsx"
