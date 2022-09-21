@@ -17,10 +17,10 @@ export const ComplexDrawerFooterExample = (): JSX.Element => (
             <DrawerFooter sx={{ p: 2 }}>
                 <Box>
                     <Box sx={{ mb: 1 }}>
-                        <Typography variant="caption" color={'text.disabled'} sx={{display: 'block'}}>
+                        <Typography variant="caption" color={'text.disabled'} sx={{ display: 'block' }}>
                             v2.4.0
                         </Typography>
-                        <Typography variant="caption" color={'text.disabled'} sx={{display: 'block'}}>
+                        <Typography variant="caption" color={'text.disabled'} sx={{ display: 'block' }}>
                             10:33:05 03/12/22
                         </Typography>
                     </Box>
