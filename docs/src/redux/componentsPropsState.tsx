@@ -12,6 +12,7 @@ import heroConfig from '../componentDocs/Hero/playground/HeroConfig';
 import infoListItemConfig from '../componentDocs/InfoListItem/playground/InfoListItemConfig';
 import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
 import threeLinerConfig from '../componentDocs/ThreeLiner/playground/ThreeLinerConfig';
+import userMenuConfig from '../componentDocs/UserMenu/playground/UserMenuConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
 
@@ -29,6 +30,7 @@ type ComponentState = {
     infoListItemComponent: ComponentType;
     listItemTagComponent: ComponentType;
     threeLinerComponent: ComponentType;
+    userMenuComponent: ComponentType;
 };
 
 const initialState: ComponentState = {
@@ -45,6 +47,7 @@ const initialState: ComponentState = {
     infoListItemComponent: infoListItemConfig,
     listItemTagComponent: listItemTagConfig,
     threeLinerComponent: threeLinerConfig,
+    userMenuComponent: userMenuConfig,
 };
 
 export const componentPropsStateSlice = createSlice({
