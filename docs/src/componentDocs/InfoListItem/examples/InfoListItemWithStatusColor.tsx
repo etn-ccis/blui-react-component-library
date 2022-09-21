@@ -17,7 +17,7 @@ export const InfoListItemWithStatusColor = (): JSX.Element => (
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/ListItemTag/examples/InfoListItemWithStatusColorExample.tsx"
+            url="componentDocs/InfoListItem/examples/InfoListItemWithStatusColorExample.tsx"
         />
     </Box>
 );

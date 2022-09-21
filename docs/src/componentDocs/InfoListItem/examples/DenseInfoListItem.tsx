@@ -11,7 +11,7 @@ export const DenseInfoListItem = (): JSX.Element => (
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/ListItemTag/examples/DenseInfoListItemExample.tsx"
+            url="componentDocs/InfoListItem/examples/DenseInfoListItemExample.tsx"
         />
     </Box>
 );

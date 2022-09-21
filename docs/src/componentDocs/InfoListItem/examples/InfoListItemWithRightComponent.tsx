@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import { InfoListItemWithLeftComponentExample } from './InfoListItemWithLeftComponentExample';
+import { InfoListItemWithRightComponentExample } from './InfoListItemWithRightComponentExample';
 
 const codeSnippet = `<InfoListItem
     title="Info List Item"
@@ -17,13 +17,13 @@ const codeSnippet = `<InfoListItem
     }
 />`;
 
-export const InfoListItemWithLeftComponent = (): JSX.Element => (
+export const InfoListItemWithRightComponent = (): JSX.Element => (
     <Box>
-        <InfoListItemWithLeftComponentExample />
+        <InfoListItemWithRightComponentExample />
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/InfoListItem/examples/InfoListItemWithLeftComponentExample.tsx"
+            url="componentDocs/InfoListItem/examples/InfoListItemWithRightComponentExample.tsx"
         />
     </Box>
 );

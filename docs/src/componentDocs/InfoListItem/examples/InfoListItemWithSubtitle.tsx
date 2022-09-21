@@ -11,7 +11,7 @@ export const InfoListItemWithSubtitle = (): JSX.Element => (
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/ListItemTag/examples/InfoListItemWithSubtitleExample.tsx"
+            url="componentDocs/InfoListItem/examples/InfoListItemWithSubtitleExample.tsx"
         />
     </Box>
 );

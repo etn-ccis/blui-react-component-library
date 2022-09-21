@@ -11,7 +11,7 @@ export const InfoListItemWithIcon = (): JSX.Element => (
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/ListItemTag/examples/InfoListItemWithIconExample.tsx"
+            url="componentDocs/InfoListItem/examples/InfoListItemWithIconExample.tsx"
         />
     </Box>
 );
