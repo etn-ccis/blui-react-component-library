@@ -48,6 +48,7 @@ import { EmptyStatePlaygroundComponent } from '../../componentDocs/EmptyState/pl
 import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
 import { InfoListItemPlaygroundComponent } from '../../componentDocs/InfoListItem/playground';
 import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/playground';
+// import { SpacerPlaygroundComponent } from '../../componentDocs/Spacer/playground';
 import { ScoreCardPlaygroundComponent } from '../../componentDocs/ScoreCard/playground';
 import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/playground';
 
@@ -447,11 +448,11 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                         url: 'api-docs',
                         component: <SpacerAPIDocs />,
                     },
-                    {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <DummyComponent />,
-                    },
+                    // {
+                    //     title: 'Playground',
+                    //     url: 'playground',
+                    //     component: <SpacerPlaygroundComponent />,
+                    // },
                 ],
             },
             {

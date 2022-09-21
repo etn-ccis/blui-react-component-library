@@ -7,7 +7,7 @@ import { Theme, useTheme } from '@mui/material/styles';
 import { DRAWER_WIDTH, TabPanel } from '../shared';
 import { PLAYGROUND_DRAWER_WIDTH } from './constants';
 
-const hidePlaygroudTabs = ['drawer-layout'];
+const hidePlaygroudTabs = ['drawer-layout', 'spacer'];
 const docsTabs = ['examples', 'api-docs', 'playground'];
 
 function a11yProps(index: number): any {

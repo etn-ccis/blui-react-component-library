@@ -139,7 +139,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                 control={
                     <Checkbox
                         checked={prop.inputValue as boolean}
-                        name={prop.propName}
+                        name={prop.label ? prop.label : prop.propName}
                         color="primary"
                         onChange={(event): void =>
                             handleChange(prop.propName, event.target.checked, componentName, index)
@@ -147,7 +147,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                         disabled={prop.disable}
                     />
                 }
-                label={`${prop.propName}: ${prop.propType} ${prop.required ? '*' : ''}`}
+                label={`${prop.label ? prop.label : prop.propName}: ${prop.propType} ${prop.required ? '*' : ''}`}
             />
             <FormHelperText>{prop.helperText}</FormHelperText>
         </>
