@@ -11,6 +11,7 @@ import emptyStateConfig from '../componentDocs/EmptyState/playground/EmptyStateC
 import heroConfig from '../componentDocs/Hero/playground/HeroConfig';
 import infoListItemConfig from '../componentDocs/InfoListItem/playground/InfoListItemConfig';
 import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
+import scoreCardConfig from '../componentDocs/ScoreCard/playground/ScoreCardConfig';
 import threeLinerConfig from '../componentDocs/ThreeLiner/playground/ThreeLinerConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
@@ -28,6 +29,7 @@ type ComponentState = {
     heroComponent: ComponentType;
     infoListItemComponent: ComponentType;
     listItemTagComponent: ComponentType;
+    scoreCardComponent: ComponentType;
     threeLinerComponent: ComponentType;
 };
 
@@ -44,6 +46,7 @@ const initialState: ComponentState = {
     heroComponent: heroConfig,
     infoListItemComponent: infoListItemConfig,
     listItemTagComponent: listItemTagConfig,
+    scoreCardComponent: scoreCardConfig,
     threeLinerComponent: threeLinerConfig,
 };
 
