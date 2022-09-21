@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import { RootState } from '../../../redux/store';
 import { useAppSelector } from '../../../redux/hooks';
@@ -10,22 +9,61 @@ import Avatar from '@mui/material/Avatar';
 import Email from '@mui/icons-material/Email';
 import ExitToApp from '@mui/icons-material/ExitToApp';
 import Settings from '@mui/icons-material/Settings';
-
-import * as Colors from '@brightlayer-ui/colors';
+import Trex from '../images/trex.png';
 
 export const PreviewComponent = (): JSX.Element => {
     const userMenuJson = useAppSelector((state: RootState) => state.componentsPropsState.userMenuComponent);
 
     const userMenuProps = createProps(userMenuJson.props as PropsType[]);
+    const userMenuOtherProps = createProps(userMenuJson.otherProps as PropsType[]);
 
     const toggleDefaultProp = (propName: string, currentValue: any): string =>
         hideDefaultPropsFromSnippet(userMenuJson, propName, currentValue, 'props');
+
+    const toggleAvatarSection = (showAvatarImage: boolean): JSX.Element =>
+        showAvatarImage ? <Avatar src={Trex} alt={'User Avatar'} /> : <Avatar>AV</Avatar>;
+
+    const toggleAvatarSnippet = (showAvatarImageSnippet: boolean): string =>
+        showAvatarImageSnippet
+            ? `avatar={<Avatar src={'../images/trex.png'} alt={'User Avatar'} />}`
+            : `avatar={<Avatar>AV</Avatar>}`;
+
+    const generateCodeSnippet = (): string => {
+        const jsx = `<UserMenu
+    ${toggleAvatarSnippet(userMenuOtherProps.showAvatarImage)}
+    menuGroups={[
+        {
+            items: [
+                {
+                    title: 'Settings',
+                    icon: <Settings />,
+                    onClick: (): void => {},
+                },
+                {
+                    title: 'Contact Us',
+                    icon: <Email />,
+                    onClick: (): void => {},
+                },
+                {
+                    title: 'Log Out',
+                    icon: <ExitToApp />,
+                    onClick: (): void => {},
+                },
+            ],
+        },
+    ]}
+    ${toggleDefaultProp('menuTitle', userMenuProps.menuTitle)}
+    ${toggleDefaultProp('menuSubtitle', userMenuProps.menuSubtitle)}
+    useBottomSheetAt={${userMenuProps.useBottomSheetAt}}
+/>`;
+        return removeEmptyLines(jsx);
+    };
 
     return (
         <PreviewComponentWithCode
             previewContent={
                 <UserMenu
-                    avatar={<Avatar>AB</Avatar>}
+                    avatar={toggleAvatarSection(userMenuOtherProps.showAvatarImage)}
                     menuGroups={[
                         {
                             items: [
@@ -52,7 +90,7 @@ export const PreviewComponent = (): JSX.Element => {
                     useBottomSheetAt={userMenuProps.useBottomSheetAt}
                 />
             }
-            code={'ss'}
+            code={generateCodeSnippet()}
         />
     );
 };
