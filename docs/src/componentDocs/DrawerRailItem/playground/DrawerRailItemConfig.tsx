@@ -42,14 +42,6 @@ export const drawerRailItemConfig: ComponentType = {
             defaultValue: '<Device />',
         },
         {
-            propName: 'itemID',
-            inputType: 'string',
-            inputValue: 'Title',
-            propType: 'string',
-            helperText: `An unique identifier of the Rail Item. Item will have 'active' style when this matches activeItem`,
-            required: true,
-        },
-        {
             propName: 'statusColor',
             inputType: 'colorPicker',
             inputValue: '#ffac00',

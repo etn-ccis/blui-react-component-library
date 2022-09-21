@@ -19,15 +19,15 @@ export const PreviewComponent = (): JSX.Element => {
         hideDefaultPropsFromSnippet(drawerRailItemJson, propName, currentValue, groupType);
 
     const generateCodeSnippet = (): string => {
-        const jsx = `<Drawer open={true} variant={'rail'} activeItem={"${drawerRailItemProps.itemID}"}>
-    <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
+        const jsx = `<Drawer open={true} variant={"rail"} activeItem={"${drawerRailItemProps.title}"}>
+    <DrawerBody sx={{ flex: "1 1 auto" }} backgroundColor={"transparent"}>
         <DrawerNavGroup>
             <DrawerRailItem
                 ${toggleDefaultProp('condensed', drawerRailItemProps.condensed, 'props')}
                 ${toggleDefaultProp('disableRailTooltip', drawerRailItemProps.disableRailTooltip, 'props')}
                 ${toggleDefaultProp('hidden', drawerRailItemProps.hidden, 'props')}
                 icon={${drawerRailItemProps.icon}}
-                itemID={"${drawerRailItemProps.itemID}"}
+                itemID={"${drawerRailItemProps.title}"}
                 statusColor={"${drawerRailItemProps.statusColor}"}
                 title={"${drawerRailItemProps.title}"}
                 activeItemBackgroundColor={"${drawerRailItemSharedProps.activeItemBackgroundColor}"}
@@ -43,8 +43,8 @@ export const PreviewComponent = (): JSX.Element => {
                     console.log('clicked');
                 }}
             />
-            <DrawerRailItem icon={<LocationOn />} itemID={'Locations'} title={'Locations'} />
-            <DrawerRailItem icon={<Gavel />} itemID={'Legal'} title={'Legal'} />
+            <DrawerRailItem icon={<LocationOn />} itemID={"Locations"} title={"Locations"} />
+            <DrawerRailItem icon={<Gavel />} itemID={"Legal"} title={"Legal"} />
         </DrawerNavGroup>
     </DrawerBody>
 </Drawer>`;
@@ -54,13 +54,7 @@ export const PreviewComponent = (): JSX.Element => {
     return (
         <PreviewComponentWithCode
             previewContent={
-                <Drawer
-                    open={true}
-                    variant={'rail'}
-                    activeItem={drawerRailItemProps.itemID}
-                    noLayout
-                    sx={{ minHeight: 'auto' }}
-                >
+                <Drawer open={true} variant={'rail'} activeItem={'Title'} noLayout sx={{ minHeight: 'auto' }}>
                     <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
                         <DrawerNavGroup>
                             <DrawerRailItem
