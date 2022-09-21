@@ -6,21 +6,6 @@ import { CustomContentAppBarExample } from './CustomContentAppBarExample';
 const codeSnippet = `<Box>
     <AppBar
         classes={{ collapsed: 'collapsed', expanded: 'expanded' }}
-        sx={{
-            '&.collapsed': {
-                '& .BluiThreeLiner-subtitle': {
-                    fontSize: 0,
-                },
-                '.BluiAppBar-background': {
-                    display: 'none',
-                },
-            },
-            '&.expanded': {
-                '& .BluiThreeLiner-root': {
-                    top: 64,
-                },
-            },
-        }}
         scrollContainerId={'appbarBodyFiller2'}
         position={'sticky'}
         backgroundImage={BackgroundImage}
@@ -36,14 +21,14 @@ const codeSnippet = `<Box>
                 animationDuration={300}
             />
             <Spacer />
-            <Box style={{ display: 'flex', flexDirection: 'row' }}>
+            <Box>
                 <IconButton color={'inherit'}>
                     <Search />
                 </IconButton>
                 <IconButton color={'inherit'}>
                     <Download />
                 </IconButton>
-                <IconButton color={'inherit'}>
+                <IconButton color={'inherit'} edge={'end'}>
                     <MoreVert />
                 </IconButton>
             </Box>
@@ -58,7 +43,7 @@ const codeSnippet = `<Box>
 export const CustomContentAppBar = (): JSX.Element => (
     <Box>
         <CustomContentAppBarExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-46" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-31" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/AppBar/examples/CustomContentAppBarExample.tsx"

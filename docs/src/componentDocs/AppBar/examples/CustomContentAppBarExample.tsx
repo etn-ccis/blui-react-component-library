@@ -54,19 +54,18 @@ export const CustomContentAppBarExample = (): JSX.Element => (
                         sx={{
                             top: 0,
                             position: 'relative',
-                            flexGrow: 1,
-                            marginLeft: 7,
+                            marginLeft: 4,
                         }}
                     />
                     <Spacer />
-                    <Box style={{ display: 'flex', flexDirection: 'row' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                         <IconButton color={'inherit'}>
                             <Search />
                         </IconButton>
                         <IconButton color={'inherit'}>
                             <Download />
                         </IconButton>
-                        <IconButton color={'inherit'}>
+                        <IconButton color={'inherit'} edge={'end'}>
                             <MoreVert />
                         </IconButton>
                     </Box>
@@ -77,7 +76,7 @@ export const CustomContentAppBarExample = (): JSX.Element => (
                 sx={{
                     height: 400,
                     overflow: 'scroll',
-                    backgroundColor: (theme) => theme.palette.background.paper,
+                    backgroundColor: 'background.paper',
                     width: 450,
                     mx: 'auto',
                 }}

@@ -15,7 +15,7 @@ export const ExpandedAppBarExample = (): JSX.Element => (
             sx={{
                 height: 140,
                 overflow: 'scroll',
-                backgroundColor: (theme) => theme.palette.background.paper,
+                backgroundColor: 'background.paper',
                 width: 450,
                 mx: 'auto',
             }}
