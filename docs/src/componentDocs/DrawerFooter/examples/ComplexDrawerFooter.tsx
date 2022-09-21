@@ -11,26 +11,22 @@ const codeSnippet = `<Drawer open={true} width={250}>
             <DrawerNavItem title="Legal" itemID="3" />
         </DrawerNavGroup>
     </DrawerBody>
-    <DrawerFooter sx={{ p: 2 }}>
-        <Box sx={{ mb: 1 }}>
-            <Box>
-                <Typography variant="caption">
-                    v2.4.0
-                </Typography>
-            </Box>
-            <Box>
-                <Typography variant="caption">
-                    10:33:05 03/12/22
-                </Typography>
-            </Box>
+    <DrawerFooter>
+        <Box>
+            <Typography variant="caption" color={'text.disabled'}>
+                v2.4.0
+            </Typography>
+            <Typography variant="caption" color={'text.disabled'}>
+                10:33:05 03/12/22
+            </Typography>
         </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 1 }}>
-                <Box sx={{ width: 83 }} component="img" src={EatonFooterLogoLight} />
+            <Box>
+                <Box component="img" src={EatonFooterLogoLight} />
                 <Box>
-                    <Typography sx={{ display: 'block' }} variant="caption">
+                    <Typography variant="caption">
                         Copyright © Eaton
                     </Typography>
-                    <Typography sx={{ display: 'block' }} variant="caption">
+                    <Typography variant="caption">
                         All Rights Reserved
                     </Typography>
                 </Box>
