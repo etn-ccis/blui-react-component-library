@@ -155,7 +155,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
     const renderSlider = (prop: PropsType, index: string): JSX.Element => (
         <Box key={index}>
-            <Typography component="span">{`${prop.propName}: ${prop.propType} ${prop.required ? '*' : ''}`}</Typography>
+            <Typography component="span">{`${prop.label ? prop.label : prop.propName}: ${prop.propType} ${
+                prop.required ? '*' : ''
+            }`}</Typography>
             <Slider
                 value={prop.inputValue as number}
                 valueLabelDisplay="auto"

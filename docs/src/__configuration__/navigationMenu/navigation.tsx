@@ -48,6 +48,7 @@ import { EmptyStatePlaygroundComponent } from '../../componentDocs/EmptyState/pl
 import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
 import { InfoListItemPlaygroundComponent } from '../../componentDocs/InfoListItem/playground';
 import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/playground';
+import { ScoreCardPlaygroundComponent } from '../../componentDocs/ScoreCard/playground';
 import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/playground';
 import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 
@@ -428,7 +429,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <ScoreCardPlaygroundComponent />,
                     },
                 ],
             },

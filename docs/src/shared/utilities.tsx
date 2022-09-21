@@ -129,6 +129,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.infoListItemComponent;
         case 'List Item Tag':
             return state.listItemTagComponent;
+        case 'Score Card':
+            return state.scoreCardComponent;
         case 'Three Liner':
             return state.threeLinerComponent;
         case 'User Menu':
@@ -176,8 +178,8 @@ export const hideDefaultPropsFromSnippet = (
     }
     switch (knob?.propType) {
         case 'string':
-            return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
         case 'string | Array<React.ReactNode>':
+        case 'ReactNode':
             return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
         case 'boolean':
             return `${propName}={${currentValue}}`;
