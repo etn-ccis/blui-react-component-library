@@ -20,11 +20,9 @@ import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
 
 import * as Colors from '@brightlayer-ui/colors';
-import useTheme from '@mui/styles/useTheme';
 
 export const PreviewComponent = (): JSX.Element => {
     const scoreCardJson = useAppSelector((state: RootState) => state.componentsPropsState.scoreCardComponent);
-    const theme = useTheme();
 
     const scoreCardProps = createProps(scoreCardJson.props as PropsType[]);
     const scoreCardOtherProps = createProps(scoreCardJson.otherProps as PropsType[]);
@@ -47,7 +45,7 @@ export const PreviewComponent = (): JSX.Element => {
             icon={<Temp fontSize={'inherit'} />}
             label={'Temperature'}
             iconSize={48}
-            iconBackgroundColor={theme.palette.background.paper}
+            iconBackgroundColor={Colors.white[50]}
             ChannelValueProps={{ value: 98, units: '°F' }}
             fontSize={'normal'}
         />,
@@ -57,7 +55,7 @@ export const PreviewComponent = (): JSX.Element => {
             label={'Humidity'}
             ChannelValueProps={{ value: 54, units: '%' }}
             iconSize={48}
-            iconBackgroundColor={theme.palette.background.paper}
+            iconBackgroundColor={Colors.white[50]}
             fontSize={'normal'}
         />,
     ];
@@ -74,7 +72,7 @@ export const PreviewComponent = (): JSX.Element => {
                     icon={<Temp fontSize={'inherit'} />}
                     label={'Temperature'}
                     iconSize={48}
-                    iconBackgroundColor={"${theme.palette.background.paper}"}
+                    iconBackgroundColor={"${Colors.white[50]}"}
                     ChannelValueProps={{ value: 98, units: '°F' }}
                     fontSize={'normal'}
                 />
@@ -88,7 +86,7 @@ export const PreviewComponent = (): JSX.Element => {
                     icon={<Temp fontSize={'inherit'} />}
                     label={'Temperature'}
                     iconSize={48}
-                    iconBackgroundColor={"${theme.palette.background.paper}"}
+                    iconBackgroundColor={"${Colors.white[50]}"}
                     ChannelValueProps={{ value: 98, units: "°F" }}
                     fontSize={'normal'}
                 />
@@ -98,7 +96,7 @@ export const PreviewComponent = (): JSX.Element => {
                     label={'Humidity'}
                     ChannelValueProps={{ value: 54, units: "%" }}
                     iconSize={48}
-                    iconBackgroundColor={"${theme.palette.background.paper}"}
+                    iconBackgroundColor={"${Colors.white[50]}"}
                     fontSize={'normal'}
                 />
             <HeroBanner>
