@@ -31,6 +31,9 @@ export const PreviewComponent = (): JSX.Element => {
     const generateCodeSnippet = (): string => {
         const jsx = `<UserMenu
     ${toggleAvatarSnippet(userMenuOtherProps.showAvatarImage)}
+    ${toggleDefaultProp('menuTitle', userMenuProps.menuTitle)}
+    ${toggleDefaultProp('menuSubtitle', userMenuProps.menuSubtitle)}
+    useBottomSheetAt={${userMenuProps.useBottomSheetAt}}
     menuGroups={[
         {
             items: [
@@ -49,9 +52,6 @@ export const PreviewComponent = (): JSX.Element => {
             ],
         },
     ]}
-    ${toggleDefaultProp('menuTitle', userMenuProps.menuTitle)}
-    ${toggleDefaultProp('menuSubtitle', userMenuProps.menuSubtitle)}
-    useBottomSheetAt={${userMenuProps.useBottomSheetAt}}
 />`;
         return removeEmptyLines(jsx);
     };
