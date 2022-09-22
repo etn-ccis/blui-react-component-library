@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, FormHelperText, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { Drawer, DrawerBody, DrawerFooter, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
 import EatonFooterLogoLight from '../images/EatonLogoLight.png';
@@ -15,20 +15,22 @@ export const ComplexDrawerFooterExample = (): JSX.Element => (
                 </DrawerNavGroup>
             </DrawerBody>
             <DrawerFooter sx={{ p: 2 }}>
-                <Box sx={{ mb: 1 }}>
-                    <Box>
-                        <FormHelperText>v2.4.0</FormHelperText>
-                    </Box>
-                    <Box>
-                        <FormHelperText>10:33:05 03/12/22</FormHelperText>
+                <Box>
+                    <Box sx={{ mb: 1 }}>
+                        <Typography variant="caption" color={'text.disabled'} sx={{ display: 'block' }}>
+                            v2.4.0
+                        </Typography>
+                        <Typography variant="caption" color={'text.disabled'} sx={{ display: 'block' }}>
+                            10:33:05 03/12/22
+                        </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 1 }}>
                         <Box sx={{ width: 83 }} component="img" src={EatonFooterLogoLight} />
                         <Box>
-                            <Typography sx={{ display: 'block' }} variant="caption">
+                            <Typography variant="caption" sx={{ display: 'block' }}>
                                 Copyright © Eaton
                             </Typography>
-                            <Typography sx={{ display: 'block' }} variant="caption">
+                            <Typography variant="caption" sx={{ display: 'block' }}>
                                 All Rights Reserved
                             </Typography>
                         </Box>
