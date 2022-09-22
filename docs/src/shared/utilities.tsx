@@ -6,6 +6,8 @@ import Devices from '@mui/icons-material/Devices';
 import Fan from '@brightlayer-ui/icons-mui/Fan';
 import FanCircled from '@brightlayer-ui/icons-mui/FanCircled';
 import FitnessCenter from '@mui/icons-material/FitnessCenter';
+import GradeA from '@brightlayer-ui/icons-mui/GradeA';
+import GradeB from '@brightlayer-ui/icons-mui/GradeB';
 import Home from '@mui/icons-material/Home';
 import Menu from '@mui/icons-material/Menu';
 import PinDrop from '@mui/icons-material/PinDrop';
@@ -74,6 +76,10 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
             return React.createElement(FanCircled, iconProps);
         case '<FitnessCenter />':
             return <FitnessCenter />;
+        case '<GradeA />':
+            return React.createElement(GradeA, iconProps);
+        case '<GradeB />':
+            return React.createElement(GradeB, iconProps);
         case '<Home />':
             return <Home />;
         case '<Menu />':
@@ -135,6 +141,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.scoreCardComponent;
         case 'Three Liner':
             return state.threeLinerComponent;
+        case 'Toolbar Menu':
+            return state.toolbarMenuComponent;
         default:
             return state.drawerComponent;
     }

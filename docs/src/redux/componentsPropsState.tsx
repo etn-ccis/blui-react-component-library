@@ -14,6 +14,7 @@ import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemT
 import spacerConfig from '../componentDocs/Spacer/playground/SpacerConfig';
 import scoreCardConfig from '../componentDocs/ScoreCard/playground/ScoreCardConfig';
 import threeLinerConfig from '../componentDocs/ThreeLiner/playground/ThreeLinerConfig';
+import toolbarMenuConfig from '../componentDocs/ToolbarMenu/playground/ToolbarMenuConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
 
@@ -33,6 +34,7 @@ type ComponentState = {
     spacerComponent: ComponentType;
     scoreCardComponent: ComponentType;
     threeLinerComponent: ComponentType;
+    toolbarMenuComponent: ComponentType;
 };
 
 const initialState: ComponentState = {
@@ -51,6 +53,7 @@ const initialState: ComponentState = {
     spacerComponent: spacerConfig,
     scoreCardComponent: scoreCardConfig,
     threeLinerComponent: threeLinerConfig,
+    toolbarMenuComponent: toolbarMenuConfig,
 };
 
 export const componentPropsStateSlice = createSlice({
