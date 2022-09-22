@@ -52,6 +52,7 @@ import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/
 // import { SpacerPlaygroundComponent } from '../../componentDocs/Spacer/playground';
 import { ScoreCardPlaygroundComponent } from '../../componentDocs/ScoreCard/playground';
 import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/playground';
+import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 
 export type SimpleNavItem = {
     title: string;
@@ -518,7 +519,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <UserMenuPlaygroundComponent />,
                     },
                 ],
             },
