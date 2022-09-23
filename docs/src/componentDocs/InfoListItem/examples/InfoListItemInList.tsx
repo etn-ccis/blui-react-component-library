@@ -3,9 +3,15 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { InfoListItemInListExample } from './InfoListItemInListExample';
 
-const codeSnippet = `<List>
+const codeSnippet = `<Stack 
+    sx={{ '& .BluiInfoListItem-root': { 
+            maxWidth: 700, 
+            m: 'auto', 
+            backgroundColor: 'background.paper' } 
+        }}
+    >
     <InfoListItem
-        dense={true}
+        dense
         title={'Status'}
         divider="partial"
         statusColor='#2ca618'
@@ -17,7 +23,7 @@ const codeSnippet = `<List>
     <InfoListItem
         title={'Output Voltage'}
         divider={'partial'}
-        avatar={true}
+        avatar
         statusColor='#ca3c3d'
         subtitle={['Phase A', 'Phase B', 'Phase C']}
         icon={<CheckCircle color={'inherit'} />}
@@ -30,9 +36,10 @@ const codeSnippet = `<List>
         }
     />
     <InfoListItem
-        dense={true}
+        dense
         title={'Output Current'}
         icon={<BatteryChargingFull color={'inherit'} />}
+        iconAlign={'center'}
         rightComponent={
             <span>
                 <ChannelValue value={15} units={'A'} />,{' '}
@@ -40,14 +47,13 @@ const codeSnippet = `<List>
                 <ChannelValue value={15} units={'A'} />
             </span>
         }
-        iconAlign={'center'}
     />
-</List>`;
+</Stack>`;
 
 export const InfoListItemInList = (): JSX.Element => (
     <Box>
         <InfoListItemInListExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-39" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-45" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/InfoListItem/examples/InfoListItemInListExample.tsx"

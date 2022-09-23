@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { DenseInfoListItemExample } from './DenseInfoListItemExample';
 
-const codeSnippet = `<InfoListItem title='Info List Item' dense={true} />`;
+const codeSnippet = `<InfoListItem title='Info List Item' dense />`;
 
 export const DenseInfoListItem = (): JSX.Element => (
     <Box>

@@ -13,7 +13,7 @@ const codeSnippet = ` <InfoListItem
 export const InfoListItemWithRightComponent = (): JSX.Element => (
     <Box>
         <InfoListItemWithRightComponentExample />
-        <CodeBlock code={codeSnippet} language="jsx" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="5" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/InfoListItem/examples/InfoListItemWithRightComponentExample.tsx"

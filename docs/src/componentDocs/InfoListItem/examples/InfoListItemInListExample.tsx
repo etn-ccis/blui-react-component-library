@@ -1,17 +1,16 @@
 import React from 'react';
 import { InfoListItem } from '@brightlayer-ui/react-components/core/InfoListItem';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import * as colors from '@brightlayer-ui/colors';
-import List from '@mui/material/List';
 import { ChannelValue } from '@brightlayer-ui/react-components';
 import { DeviceActivating } from '@brightlayer-ui/icons-mui';
 import { BatteryChargingFull, CheckCircle } from '@mui/icons-material';
 
 export const InfoListItemInListExample = (): JSX.Element => (
     <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
-        <List>
+        <Stack sx={{ '& .BluiInfoListItem-root': { maxWidth: 700, m: 'auto', backgroundColor: 'background.paper' } }}>
             <InfoListItem
-                sx={{ maxWidth: 700, m: 'auto', backgroundColor: 'background.paper' }}
                 dense
                 title={'Status'}
                 divider="partial"
@@ -22,7 +21,6 @@ export const InfoListItemInListExample = (): JSX.Element => (
                 rightComponent={<ChannelValue fontSize={'1rem'} value={'Online, ESS+'} />}
             />
             <InfoListItem
-                sx={{ maxWidth: 700, m: 'auto', backgroundColor: 'background.paper' }}
                 title={'Output Voltage'}
                 divider={'partial'}
                 avatar
@@ -38,10 +36,10 @@ export const InfoListItemInListExample = (): JSX.Element => (
                 }
             />
             <InfoListItem
-                sx={{ maxWidth: 700, m: 'auto', backgroundColor: 'background.paper' }}
                 dense
                 title={'Output Current'}
                 icon={<BatteryChargingFull color={'inherit'} />}
+                iconAlign={'center'}
                 rightComponent={
                     <span>
                         <ChannelValue fontSize={'1rem'} value={15} units={'A'} />,{' '}
@@ -49,8 +47,7 @@ export const InfoListItemInListExample = (): JSX.Element => (
                         <ChannelValue fontSize={'1rem'} value={15} units={'A'} />
                     </span>
                 }
-                iconAlign={'center'}
             />
-        </List>
+        </Stack>
     </Box>
 );

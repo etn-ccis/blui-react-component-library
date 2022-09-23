@@ -7,7 +7,7 @@ const codeSnippet = `<InfoListItem
     title="Info List Item"
     subtitle="with a status indicator"
     icon={<OfflineBolt />}
-    avatar={true}
+    avatar
     statusColor='#2ca618'
 />`;
 

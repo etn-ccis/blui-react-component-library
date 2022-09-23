@@ -8,7 +8,7 @@ export const DenseInfoListItemExample = (): JSX.Element => (
         <InfoListItem
             sx={{ maxWidth: 700, m: 'auto', backgroundColor: 'background.paper' }}
             title="Dense Info List Item"
-            dense={true}
+            dense
         />
     </Box>
 );

@@ -11,7 +11,7 @@ export const InfoListItemWithStatusColorExample = (): JSX.Element => (
             title="Info List Item"
             subtitle="with a status indicator"
             icon={<OfflineBolt sx={{ color: 'white', backgroundColor: colors.green[700] }} />}
-            avatar={true}
+            avatar
             statusColor={colors.green[700]}
         />
     </Box>
