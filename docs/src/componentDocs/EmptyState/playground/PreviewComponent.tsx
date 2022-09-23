@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import { RootState } from '../../../redux/store';
 import { useAppSelector } from '../../../redux/hooks';
@@ -15,23 +14,21 @@ export const PreviewComponent = (): JSX.Element => {
     const emptyStateProps = createProps(emptyStateJson.props as PropsType[]);
     const emptyStateOtherProps = createProps(emptyStateJson.otherProps as PropsType[]);
 
-    const toggleActionSection = (toggleActionSection: boolean): JSX.Element | undefined => {
-        return toggleActionSection ? (
+    const toggleActionSection = (showAction: boolean): JSX.Element | undefined =>
+        showAction ? (
             <Button variant={'outlined'} color={'primary'} startIcon={<AddIcon />}>
                 {'Add Device'}
             </Button>
         ) : undefined;
-    };
 
-    const toggleActionSnippet = (showActions: boolean): string => {
-        return showActions
+    const toggleActionSnippet = (showActionSnippet: boolean): string =>
+        showActionSnippet
             ? `actions={
         <Button variant={'outlined'} color={'primary'} startIcon={<AddIcon />}>
             {'Add Device'}
         </Button>
     }`
             : ``;
-    };
 
     const toggleDefaultProp = (propName: string, currentValue: any, groupType?: string): string =>
         hideDefaultPropsFromSnippet(emptyStateJson, propName, currentValue, groupType);
