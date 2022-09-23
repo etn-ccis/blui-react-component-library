@@ -18,7 +18,7 @@ export const drawerRailItemConfig: ComponentType = {
             inputType: 'boolean',
             inputValue: false,
             propType: 'boolean',
-            helperText: 'Sets whether to disable the tooltip on hover',
+            helperText: 'Sets whether to disable the tooltip on hover (applies when rail item is condensed)',
             required: false,
             defaultValue: false,
         },
@@ -42,6 +42,15 @@ export const drawerRailItemConfig: ComponentType = {
             defaultValue: '<Device />',
         },
         {
+            propName: 'itemID',
+            inputType: 'string',
+            inputValue: 'Title',
+            propType: 'string',
+            helperText: `itemID for the 'active' item`,
+            required: true,
+            disable: true,
+        },
+        {
             propName: 'statusColor',
             inputType: 'colorPicker',
             inputValue: '#ffac00',
@@ -56,6 +65,7 @@ export const drawerRailItemConfig: ComponentType = {
             propType: 'string',
             helperText: 'The text to show on the first line',
             required: true,
+            disable: true,
         },
     ],
     sharedProps: [
@@ -86,7 +96,7 @@ export const drawerRailItemConfig: ComponentType = {
         {
             propName: 'backgroundColor',
             inputType: 'colorPicker',
-            inputValue: Colors.blue[500],
+            inputValue: 'transparent',
             propType: 'string',
             helperText: 'Color used for the background of the element',
             required: false,
