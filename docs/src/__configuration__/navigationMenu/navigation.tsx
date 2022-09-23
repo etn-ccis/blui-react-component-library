@@ -34,6 +34,7 @@ import DrawerHeaderExamples from '../../componentDocs/DrawerHeader/markdown/Draw
 import DrawerSubheaderExamples from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheaderExamples.mdx';
 import HeroExamples from '../../componentDocs/Hero/markdown/HeroExamples.mdx';
 import ListItemTagExamples from '../../componentDocs/ListItemTag/markdown/ListItemTagExamples.mdx';
+import AppBarExamples from '../../componentDocs/AppBar/markdown/AppBarExamples.mdx';
 
 // Playground components
 import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
@@ -52,6 +53,7 @@ import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/
 import { ScoreCardPlaygroundComponent } from '../../componentDocs/ScoreCard/playground';
 import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/playground';
 import { ToolbarMenuPlaygroundComponent } from '../../componentDocs/ToolbarMenu/playground';
+import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 
 export type SimpleNavItem = {
     title: string;
@@ -89,7 +91,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Examples',
                         url: 'examples',
-                        component: <DummyExamplesComponent />,
+                        component: <AppBarExamples />,
                     },
                     {
                         title: 'API Docs',
@@ -518,7 +520,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <UserMenuPlaygroundComponent />,
                     },
                 ],
             },

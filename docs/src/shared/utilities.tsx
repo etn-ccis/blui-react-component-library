@@ -143,6 +143,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.threeLinerComponent;
         case 'Toolbar Menu':
             return state.toolbarMenuComponent;
+        case 'User Menu':
+            return state.userMenuComponent;
         default:
             return state.drawerComponent;
     }
