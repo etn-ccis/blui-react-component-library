@@ -234,11 +234,6 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                                 url: 'api-docs',
                                 component: <DrawerBodyAPIDocs />,
                             },
-                            {
-                                title: 'Playground',
-                                url: 'playground',
-                                component: <DummyComponent />,
-                            },
                         ],
                     },
                     {
