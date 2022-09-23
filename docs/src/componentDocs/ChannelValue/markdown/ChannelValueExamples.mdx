@@ -1,0 +1,28 @@
+import { BasicChannelValue } from '../examples/BasicChannelValue';
+import { ChannelValueWithIcon } from '../examples/ChannelValueWithIcon';
+import { ChannelValueWithPrefix } from '../examples/ChannelValueWithPrefix';
+import { ChannelValueWithDifferentUnits } from '../examples/ChannelValueWithDifferentUnits';
+
+# Basic Channel Value
+
+The `<ChannelValue>` accepts a `value` and a `units` props to display metric data.
+
+<BasicChannelValue />
+
+# Channel Value with Icon
+
+The `<ChannelValue>` accepts an optional `icon` prop.
+
+<ChannelValueWithIcon />
+
+# Channel Value with Prefix
+
+The `<ChannelValue>` accepts an optional `prefix` prop that will show the `units` before its `value`.
+
+<ChannelValueWithPrefix />
+
+# Channel Value with Different Units
+
+The `<ChannelValue>` will hide the whitespace by default between a `value` and its `units` when the `units` '%', '°F', '°C', '°' or '$' are used. This behavior can be overridden via the optional `unitSpace` prop.
+
+<ChannelValueWithDifferentUnits />
