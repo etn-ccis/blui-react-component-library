@@ -1,5 +1,6 @@
 import { ComponentType } from '../../../__types__';
 import * as Colors from '@brightlayer-ui/colors';
+import sharedPropsConfig from '../../../shared/data/SharedPropsConfig';
 
 export const drawerNavGroupConfig: ComponentType = {
     componentName: 'Drawer Nav Group',
@@ -30,6 +31,7 @@ export const drawerNavGroupConfig: ComponentType = {
             defaultValue: true,
         },
     ],
+    sharedProps: sharedPropsConfig,
 };
 
 export default drawerNavGroupConfig;
