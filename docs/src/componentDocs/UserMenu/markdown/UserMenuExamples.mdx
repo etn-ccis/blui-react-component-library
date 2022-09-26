@@ -2,6 +2,7 @@ import { BasicUserMenu } from '../examples/BasicUserMenu';
 import { UserMenuWithNonTextAvatars } from '../examples/UserMenuWithNonTextAvatars';
 import { UserMenuWithMenuHeader } from '../examples/UserMenuWithMenuHeader';
 import { UserMenuWithCustomHeader } from '../examples/UserMenuWithCustomHeader';
+import { UserMenuWithPlacementOptions } from '../examples/UserMenuWithPlacementOptions';
 
 # Basic User Menu
 
@@ -23,4 +24,12 @@ The `<UserMenu>` can create an optional menu header through the `menuTitle` and 
 
 # User Menu with a Custom Header
 
+A custom menu header can be added by providing a `menu` prop.
+
 <UserMenuWithCustomHeader />
+
+# User Menu with Placement Options
+
+The `<UserMenu>` accepts `MenuProps` to change where the overlay menu originates from.
+
+<UserMenuWithPlacementOptions />
