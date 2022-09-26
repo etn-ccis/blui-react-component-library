@@ -4,6 +4,7 @@ import { UserMenuWithMenuHeader } from '../examples/UserMenuWithMenuHeader';
 import { UserMenuWithCustomHeader } from '../examples/UserMenuWithCustomHeader';
 import { UserMenuWithPlacementOptions } from '../examples/UserMenuWithPlacementOptions';
 import { ResponsiveUserMenu } from '../examples/ResponsiveUserMenu';
+import { UserMenuWithinToolbar } from '../examples/UserMenuWithinToolbar';
 
 # Basic User Menu
 
@@ -40,3 +41,9 @@ The `<UserMenu>` accepts `MenuProps` to change where the overlay menu originates
 The `<UserMenu>` by default renders (or transitions if already opened) as a bottomsheet if the window width is less than `600px`. The `useBottomSheetAt` prop is used to adjust the screen width where this transition occurs.
 
 <ResponsiveUserMenu />
+
+# User Menu within a Toolbar
+
+The `<UserMenu>` is commonly placed within a `<Toolbar>`.
+
+<UserMenuWithinToolbar />
