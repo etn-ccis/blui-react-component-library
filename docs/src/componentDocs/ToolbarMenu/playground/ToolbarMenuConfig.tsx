@@ -6,11 +6,12 @@ export const toolbarMenuConfig: ComponentType = {
         {
             propName: 'icon',
             inputType: 'select',
-            inputValue: '<GradeA />',
-            options: ['<GradeA />', '<GradeB />'],
+            inputValue: 'undefined',
+            options: ['undefined', '<Home />', '<Place />'],
             propType: 'JSX.Element',
             helperText: 'The inline icon to display',
             required: false,
+            defaultValue: 'undefined',
         },
         {
             propName: 'label',

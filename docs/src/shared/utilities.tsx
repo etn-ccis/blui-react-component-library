@@ -1,17 +1,17 @@
 import React from 'react';
 import Add from '@mui/icons-material/Add';
 import AddAPhoto from '@mui/icons-material/AddAPhoto';
-import Device from '@brightlayer-ui/icons-mui/Device';
 import Devices from '@mui/icons-material/Devices';
 import Fan from '@brightlayer-ui/icons-mui/Fan';
 import FanCircled from '@brightlayer-ui/icons-mui/FanCircled';
 import FitnessCenter from '@mui/icons-material/FitnessCenter';
-import GradeA from '@brightlayer-ui/icons-mui/GradeA';
-import GradeB from '@brightlayer-ui/icons-mui/GradeB';
 import Home from '@mui/icons-material/Home';
 import Menu from '@mui/icons-material/Menu';
+import Place from '@mui/icons-material/Place';
 import PinDrop from '@mui/icons-material/PinDrop';
 import Remove from '@mui/icons-material/Remove';
+import RouterIcon from '@mui/icons-material/Router';
+import SensorsOffIcon from '@mui/icons-material/SensorsOff';
 import TrendingUp from '@mui/icons-material/TrendingUp';
 import TrendingDown from '@mui/icons-material/TrendingDown';
 import { RootState } from '../redux/store';
@@ -66,8 +66,6 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
             return <Add />;
         case '<AddAPhoto />':
             return <AddAPhoto />;
-        case '<Device />':
-            return React.createElement(Device, iconProps);
         case '<Devices />':
             return React.createElement(Devices, iconProps);
         case '<Fan />':
@@ -76,18 +74,20 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
             return React.createElement(FanCircled, iconProps);
         case '<FitnessCenter />':
             return <FitnessCenter />;
-        case '<GradeA />':
-            return React.createElement(GradeA, iconProps);
-        case '<GradeB />':
-            return React.createElement(GradeB, iconProps);
         case '<Home />':
             return <Home />;
         case '<Menu />':
             return <Menu />;
+        case '<Place />':
+            return <Place />;
         case '<PinDrop />':
             return <PinDrop />;
         case '<Remove />':
             return <Remove />;
+        case '<RouterIcon />':
+            return React.createElement(RouterIcon, iconProps);
+        case '<SensorsOffIcon />':
+            return React.createElement(SensorsOffIcon, iconProps);
         case '<TrendingUp />':
             return React.createElement(TrendingUp, iconProps);
         case '<TrendingDown />':
@@ -163,7 +163,25 @@ export const getImage = (image: string): string => {
     }
 };
 
-export const filterPropsAsPerGroupType = (state: ComponentType, propName: string, groupType?: string): any => {
+const iterateIconProps = (iconProps: any): string => {
+    let str = '';
+    for (const prop in iconProps) {
+        str = `${str}` + `${prop}="${iconProps[prop]}" `;
+    }
+    return str;
+};
+
+export const getIconWithProp = (icon: string, iconProps: SvgIconProps): string => {
+    const index = icon.lastIndexOf('/>');
+    const result = icon.slice(0, index) + iterateIconProps(iconProps) + icon.slice(index);
+    return result;
+};
+
+export const filterPropsAsPerGroupType = (
+    state: ComponentType,
+    propName: string,
+    groupType?: string
+): PropsType | undefined => {
     switch (groupType) {
         case 'props':
             return state.props?.filter((prop) => prop.propName === propName)[0];
