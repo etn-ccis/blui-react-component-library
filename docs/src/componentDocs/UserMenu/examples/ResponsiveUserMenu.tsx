@@ -2,10 +2,10 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
-import { UserMenuWithPlacementOptionsExample } from './UserMenuWithPlacementOptionsExample';
+import { ResponsiveUserMenuExample } from './ResponsiveUserMenuExample';
 
 const codeSnippet = `<UserMenu
-    avatar={<Avatar>PO</Avatar>}
+    avatar={<Avatar>BS</Avatar>}
     menuGroups={[
         {
             items: [
@@ -13,24 +13,30 @@ const codeSnippet = `<UserMenu
                     title: 'Settings',
                     icon: <Settings />,
                 },
+
+                {
+                    title: 'Contact Us',
+                    icon: <Email />,
+                },
+                {
+                    title: 'Log Out',
+                    icon: <ExitToApp />,
+                },
             ],
         },
     ]}
-    MenuProps={{
-        anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-        transformOrigin: { horizontal: 'left', vertical: 'top' },
-    }}
+    useBottomSheetAt={3000}
 />`;
 
-export const UserMenuWithPlacementOptions = (): JSX.Element => (
+export const ResponsiveUserMenu = (): JSX.Element => (
     <Box>
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
-            <UserMenuWithPlacementOptionsExample />
+            <ResponsiveUserMenuExample />
         </Box>
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/UserMenu/examples/UserMenuWithPlacementOptionsExample.tsx"
+            url="componentDocs/UserMenu/examples/ResponsiveUserMenuExample.tsx"
         />
     </Box>
 );
