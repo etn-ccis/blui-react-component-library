@@ -17,7 +17,7 @@ export const drawerConfig: ComponentType = {
             inputType: 'boolean',
             inputValue: false,
             propType: 'boolean',
-            helperText: `Show condensed nav items without labels (rail variant only)`,
+            helperText: 'Show condensed nav items without labels (rail variant only)',
             required: false,
             defaultValue: false,
         },
