@@ -6,7 +6,7 @@ import { UserMenuWithNonTextAvatarsExample } from './UserMenuWithNonTextAvatarsE
 
 const codeSnippet = `<Box sx={{ display: 'flex', justifyContent: 'space-between', width: 150 }}>
     <UserMenu
-        avatar={<Avatar src={tRex} alt={'User Avatar'} />}
+        avatar={<Avatar src='../images/tRex.png' alt={'User Avatar'} />}
         menuGroups={[
             {
                 items: [
@@ -42,7 +42,7 @@ export const UserMenuWithNonTextAvatars = (): JSX.Element => (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <UserMenuWithNonTextAvatarsExample />
         </Box>
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-31" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="3, 16-20" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/UserMenu/examples/UserMenuWithNonTextAvatarsExample.tsx"

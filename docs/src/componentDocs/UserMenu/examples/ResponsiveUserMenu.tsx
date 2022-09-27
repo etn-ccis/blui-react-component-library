@@ -13,7 +13,6 @@ const codeSnippet = `<UserMenu
                     title: 'Settings',
                     icon: <Settings />,
                 },
-
                 {
                     title: 'Contact Us',
                     icon: <Email />,
@@ -33,7 +32,7 @@ export const ResponsiveUserMenu = (): JSX.Element => (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <ResponsiveUserMenuExample />
         </Box>
-        <CodeBlock code={codeSnippet} language="jsx" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="21" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/UserMenu/examples/ResponsiveUserMenuExample.tsx"

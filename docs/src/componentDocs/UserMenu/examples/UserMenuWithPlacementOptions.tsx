@@ -27,7 +27,7 @@ export const UserMenuWithPlacementOptions = (): JSX.Element => (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <UserMenuWithPlacementOptionsExample />
         </Box>
-        <CodeBlock code={codeSnippet} language="jsx" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="13-16" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/UserMenu/examples/UserMenuWithPlacementOptionsExample.tsx"

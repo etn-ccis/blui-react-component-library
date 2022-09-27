@@ -6,7 +6,7 @@ import { UserMenuWithCustomHeaderExample } from './UserMenuWithCustomHeaderExamp
 
 const codeSnippet = `<UserMenu
     onClick={(): void => setOpen(!open)}
-    avatar={<Avatar src={tRex} alt={'User Avatar'} />}
+    avatar={<Avatar src='../images/tRex.png' alt={'User Avatar'} />}
     menu={
         <Menu open={open} onClose={(): void => setOpen(false)}>
             <Box sx={{ position: 'relative', p: '16px 8px 8px 8px' }}>
@@ -23,7 +23,7 @@ const codeSnippet = `<UserMenu
                         width: '100%',
                         opacity: 0.2,
                         backgroundSize: 'cover',
-                        backgroundImage: \`url(\${tRex})\`,
+                        backgroundImage: \`url('../images/tRex.png')\`,
                     }}
                 />
             </Box>
@@ -43,7 +43,7 @@ export const UserMenuWithCustomHeader = (): JSX.Element => (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <UserMenuWithCustomHeaderExample />
         </Box>
-        <CodeBlock code={codeSnippet} language="jsx" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="6-30" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/UserMenu/examples/UserMenuWithCustomHeaderExample.tsx"

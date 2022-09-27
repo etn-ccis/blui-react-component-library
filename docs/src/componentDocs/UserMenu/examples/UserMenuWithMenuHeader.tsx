@@ -25,7 +25,7 @@ export const UserMenuWithMenuHeader = (): JSX.Element => (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <UserMenuWithMenuHeaderExample />
         </Box>
-        <CodeBlock code={codeSnippet} language="jsx" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="13-14" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/UserMenu/examples/UserMenuWithMenuHeaderExample.tsx"
