@@ -14,8 +14,7 @@ const codeSnippet = `<ThreeLiner
                 {
                     items: [{ title: 'Menu Item 1' }, 
                             { title: 'Menu Item 2' }, 
-                            { title: 'Menu Item 3' }
-                        ],
+                            { title: 'Menu Item 3' }],
                 },
             ]}
         />
