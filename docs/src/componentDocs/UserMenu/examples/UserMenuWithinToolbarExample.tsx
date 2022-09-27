@@ -49,8 +49,6 @@ export const UserMenuWithinToolbarExample = (): JSX.Element => (
                     ]}
                     menuTitle={'Jane Doe'}
                     menuSubtitle={'Account Manager'}
-                    onOpen={(): void => {}}
-                    onClose={(): void => {}}
                 />
             </Toolbar>
         </AppBar>

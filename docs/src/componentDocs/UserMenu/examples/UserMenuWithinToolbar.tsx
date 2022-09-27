@@ -45,8 +45,6 @@ const codeSnippet = `<Box sx={{ width: 300 }}>
                 ]}
                 menuTitle={'Jane Doe'}
                 menuSubtitle={'Account Manager'}
-                onOpen={(): void => {}}
-                onClose={(): void => {}}
             />
         </Toolbar>
     </AppBar>
