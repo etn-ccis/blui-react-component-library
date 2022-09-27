@@ -38,6 +38,7 @@ import InfoListItemExamples from '../../componentDocs/InfoListItem/markdown/Info
 import DrawerLayoutExamples from '../../componentDocs/DrawerLayout/markdown/DrawerLayoutExamples.mdx';
 import AppBarExamples from '../../componentDocs/AppBar/markdown/AppBarExamples.mdx';
 import UserMenuExamples from '../../componentDocs/UserMenu/markdown/UserMenuExamples.mdx';
+import ChannelValueExamples from '../../componentDocs/ChannelValue/markdown/ChannelValueExamples.mdx';
 
 // Playground components
 import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
@@ -48,6 +49,7 @@ import { DrawerSubheaderPlaygroundComponent } from '../../componentDocs/DrawerSu
 import { DrawerFooterPlaygroundComponent } from '../../componentDocs/DrawerFooter/playground';
 import { DrawerNavGroupPlaygroundComponent } from '../../componentDocs/DrawerNavGroup/playground';
 import { DrawerNavItemPlaygroundComponent } from '../../componentDocs/DrawerNavItem/playground';
+import { DrawerRailItemPlaygroundComponent } from '../../componentDocs/DrawerRailItem/playground';
 import { EmptyStatePlaygroundComponent } from '../../componentDocs/EmptyState/playground';
 import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
 import { InfoListItemPlaygroundComponent } from '../../componentDocs/InfoListItem/playground';
@@ -115,7 +117,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Examples',
                         url: 'examples',
-                        component: <DummyExamplesComponent />,
+                        component: <ChannelValueExamples />,
                     },
                     {
                         title: 'API Docs',
@@ -317,7 +319,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Playground',
                                 url: 'playground',
-                                component: <DummyComponent />,
+                                component: <DrawerRailItemPlaygroundComponent />,
                             },
                         ],
                     },
