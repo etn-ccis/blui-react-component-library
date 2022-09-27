@@ -1,0 +1,49 @@
+import { BasicUserMenu } from '../examples/BasicUserMenu';
+import { UserMenuWithNonTextAvatars } from '../examples/UserMenuWithNonTextAvatars';
+import { UserMenuWithMenuHeader } from '../examples/UserMenuWithMenuHeader';
+import { UserMenuWithCustomHeader } from '../examples/UserMenuWithCustomHeader';
+import { UserMenuWithPlacementOptions } from '../examples/UserMenuWithPlacementOptions';
+import { ResponsiveUserMenu } from '../examples/ResponsiveUserMenu';
+import { UserMenuWithinToolbar } from '../examples/UserMenuWithinToolbar';
+
+# Basic User Menu
+
+The `<UserMenu>` accepts an `avatar` and a `menuGroups` props.
+
+<BasicUserMenu />
+
+# User Menu with non-text Avatars
+
+The `<UserMenu>` supports non-text avatars.
+
+<UserMenuWithNonTextAvatars />
+
+# User Menu with a Menu Header
+
+The `<UserMenu>` can create an optional menu header through the `menuTitle` and `menuSubtitle` props.
+
+<UserMenuWithMenuHeader />
+
+# User Menu with a Custom Header
+
+A custom menu header can be added by providing a `menu` prop.
+
+<UserMenuWithCustomHeader />
+
+# User Menu with Placement Options
+
+The `<UserMenu>` accepts [`MenuProps`](https://mui.com/material-ui/api/menu/#props) to change where the overlay menu originates from.
+
+<UserMenuWithPlacementOptions />
+
+# Responsive User Menu
+
+The `<UserMenu>` by default renders (or transitions if already opened) as a bottomsheet if the window width is less than `600px`. The `useBottomSheetAt` prop is used to adjust the screen width where this transition occurs.
+
+<ResponsiveUserMenu />
+
+# User Menu within a Toolbar
+
+The `<UserMenu>` is commonly placed within a `<Toolbar>`.
+
+<UserMenuWithinToolbar />
