@@ -1,6 +1,6 @@
 import React from 'react';
 import { HomePage, ComponentPreviewPage } from '../../pages';
-import { DummyComponent, DummyExamplesComponent } from '../../componentDocs/DummyDataForComponent';
+import { DummyExamplesComponent } from '../../componentDocs/DummyDataForComponent';
 
 // API Docs markdown
 import DrawerNavGroupAPIDocs from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupAPIDocs.mdx';
@@ -57,6 +57,7 @@ import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/
 // import { SpacerPlaygroundComponent } from '../../componentDocs/Spacer/playground';
 import { ScoreCardPlaygroundComponent } from '../../componentDocs/ScoreCard/playground';
 import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/playground';
+import { ToolbarMenuPlaygroundComponent } from '../../componentDocs/ToolbarMenu/playground';
 import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 
 export type SimpleNavItem = {
@@ -497,7 +498,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <ToolbarMenuPlaygroundComponent />,
                     },
                 ],
             },

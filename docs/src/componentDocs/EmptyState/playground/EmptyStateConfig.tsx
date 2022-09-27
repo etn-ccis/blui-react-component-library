@@ -7,7 +7,7 @@ export const emptyStateConfig: ComponentType = {
             propName: 'icon',
             inputType: 'select',
             inputValue: '<Devices />',
-            options: ['<Devices />', '<Device />'],
+            options: ['<Devices />', '<RouterIcon />', '<SensorsOffIcon />'],
             propType: 'ReactNode',
             helperText: 'The primary icon',
             required: true,

@@ -1,7 +1,13 @@
 import React from 'react';
 import { RootState } from '../../../redux/store';
 import { useAppSelector } from '../../../redux/hooks';
-import { createProps, getIcon, hideDefaultPropsFromSnippet, removeEmptyLines } from '../../../shared/utilities';
+import {
+    createProps,
+    getIcon,
+    getIconWithProp,
+    hideDefaultPropsFromSnippet,
+    removeEmptyLines,
+} from '../../../shared/utilities';
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
 import { ChannelValue } from '@brightlayer-ui/react-components/core/ChannelValue';
@@ -14,20 +20,6 @@ export const PreviewComponent = (): JSX.Element => {
 
     const toggleDefaultProp = (propName: string, currentValue: any): string =>
         hideDefaultPropsFromSnippet(channelValueJson, propName, currentValue, 'props');
-
-    const iterateIconProps = (iconProps: any): string => {
-        let str = '';
-        for (const prop in iconProps) {
-            str = `${str}` + `${prop}="${iconProps[prop]}" `;
-        }
-        return str;
-    };
-
-    const getIconWithProp = (icon: string, iconProps: any): any => {
-        const index = icon.lastIndexOf('/>');
-        const result = icon.slice(0, index) + iterateIconProps(iconProps) + icon.slice(index);
-        return result;
-    };
 
     const toggleIconProp = (icon: string): string => {
         if (icon === 'undefined') {
