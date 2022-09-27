@@ -1,4 +1,5 @@
 import { ComponentType } from '../../../__types__';
+import sharedPropsConfig from '../../../shared/data/SharedPropsConfig';
 
 export const drawerNavItemConfig: ComponentType = {
     componentName: 'Drawer Nav Item',
@@ -33,10 +34,11 @@ export const drawerNavItemConfig: ComponentType = {
         {
             propName: 'itemID',
             inputType: 'string',
-            inputValue: 'Title',
+            inputValue: 'Monthly Report',
             propType: 'string',
             helperText: `itemID for the 'active' item`,
             required: true,
+            disable: true,
         },
         {
             propName: 'statusColor',
@@ -63,6 +65,7 @@ export const drawerNavItemConfig: ComponentType = {
             required: true,
         },
     ],
+    sharedProps: sharedPropsConfig,
 };
 
 export default drawerNavItemConfig;
