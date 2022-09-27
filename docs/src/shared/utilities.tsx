@@ -127,6 +127,8 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.drawerNavGroupComponent;
         case 'Drawer Nav Item':
             return state.drawerNavItemComponent;
+        case 'Drawer Rail Item':
+            return state.drawerRailItemComponent;
         case 'Empty State':
             return state.emptyStateComponent;
         case 'Hero':
