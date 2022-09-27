@@ -16,7 +16,7 @@ import * as Colors from '@brightlayer-ui/colors';
 import Typography from '@mui/material/Typography';
 import { Devices, AirportShuttle, Menu, Dashboard, Toc } from '@mui/icons-material';
 import { createProps, getIcon, hideDefaultPropsFromSnippet, removeEmptyLines } from '../../../shared/utilities';
-import { updateActiveItemProp } from '../../../redux/componentsPropsState';
+import { updateComponentProp } from '../../../redux/componentsPropsState';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
 
 export const PreviewComponent = (): JSX.Element => {
@@ -30,7 +30,7 @@ export const PreviewComponent = (): JSX.Element => {
             componentName: drawerJson.componentName as string,
             groupType: 'props',
         };
-        dispatch(updateActiveItemProp(newState));
+        dispatch(updateComponentProp(newState));
     };
 
     const drawerProps = createProps(drawerJson.props as PropsType[]);

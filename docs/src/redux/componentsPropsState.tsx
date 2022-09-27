@@ -81,7 +81,7 @@ export const componentPropsStateSlice = createSlice({
                 updatedKnob[0].inputValue = action.payload.propValue;
             }
         },
-        updateActiveItemProp: (state, action: PayloadAction<PayloadType>) => {
+        updateComponentProp: (state, action: PayloadAction<PayloadType>) => {
             const newArray = getComponentState(action.payload.componentName, state);
             const updatedKnob = newArray?.props?.filter((prop) => prop.propName === action.payload.propName);
             if (updatedKnob) {
@@ -91,6 +91,6 @@ export const componentPropsStateSlice = createSlice({
     },
 });
 
-export const { updateProp, updateSharedProp, updateOtherProp, updateActiveItemProp } = componentPropsStateSlice.actions;
+export const { updateProp, updateSharedProp, updateOtherProp, updateComponentProp } = componentPropsStateSlice.actions;
 
 export default componentPropsStateSlice.reducer;
