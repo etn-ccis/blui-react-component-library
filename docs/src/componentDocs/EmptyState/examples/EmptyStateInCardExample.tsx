@@ -19,7 +19,7 @@ export const EmptyStateInCardExample = (): JSX.Element => (
     >
         <Accordion defaultExpanded>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography>Device Usage</Typography>
+                <Typography>Device Usage</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 <EmptyState

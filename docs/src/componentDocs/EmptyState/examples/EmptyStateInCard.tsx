@@ -4,8 +4,7 @@ import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
 import { EmptyStateInCardExample } from './EmptyStateInCardExample';
 
-const codeSnippet = (
-    `<Accordion defaultExpanded>
+const codeSnippet = `<Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>Device Usage</Typography>
         </AccordionSummary>
@@ -21,8 +20,7 @@ const codeSnippet = (
                 }
             />
         </AccordionDetails>
-    </Accordion>`
-);
+    </Accordion>`;
 
 export const EmptyStateInCard = (): JSX.Element => (
     <Box>
