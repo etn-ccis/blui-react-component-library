@@ -32,6 +32,7 @@ import DrawerNavGroupExamples from '../../componentDocs/DrawerNavGroup/markdown/
 import DrawerExamples from '../../componentDocs/Drawer/markdown/DrawerExamples.mdx';
 import DrawerHeaderExamples from '../../componentDocs/DrawerHeader/markdown/DrawerHeaderExamples.mdx';
 import DrawerSubheaderExamples from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheaderExamples.mdx';
+import EmptyStateExamples from '../../componentDocs/EmptyState/markdown/EmptyStateExamples.mdx';
 import HeroExamples from '../../componentDocs/Hero/markdown/HeroExamples.mdx';
 import ListItemTagExamples from '../../componentDocs/ListItemTag/markdown/ListItemTagExamples.mdx';
 import InfoListItemExamples from '../../componentDocs/InfoListItem/markdown/InfoListItemExamples.mdx';
@@ -332,7 +333,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Examples',
                         url: 'examples',
-                        component: <DummyExamplesComponent />,
+                        component: <EmptyStateExamples />,
                     },
                     {
                         title: 'API Docs',
