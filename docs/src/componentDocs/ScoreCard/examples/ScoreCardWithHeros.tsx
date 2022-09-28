@@ -42,7 +42,7 @@ export const ScoreCardWithHeros = (): JSX.Element => (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <ScoreCardWithHerosExample />
         </Box>
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="7-19" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="6-20" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/ScoreCard/examples/ScoreCardWithHerosExample.tsx"
