@@ -138,12 +138,12 @@ const Root = styled(ButtonBase, {
                 backgroundColor: onClick ? theme.palette.action.hover : undefined,
             },
             ...(itemActive && {
-                '& $icon': {
+                [`& .${drawerRailItemClasses.icon}`]: {
                     color:
                         activeItemIconColor ||
                         (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
                 },
-                '& $title': {
+                [`& .${drawerRailItemClasses.title}`]: {
                     color:
                         activeItemFontColor ||
                         (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
