@@ -34,7 +34,7 @@ export const ThreeLinerWithCustomContent = (): JSX.Element => (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <ThreeLinerWithCustomContentExample />
         </Box>
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="5-15" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="5-22" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/ThreeLiner/examples/ThreeLinerWithCustomContentExample.tsx"
