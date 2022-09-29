@@ -30,7 +30,7 @@ export const CondensedRailDrawer = (): JSX.Element => (
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/DrawerLayout/examples/CondensedRailDrawerExample.tsx"
+            url="componentDocs/Drawer/examples/CondensedRailDrawerExample.tsx"
         />
     </Box>
 );

@@ -49,7 +49,7 @@ export const TemporaryDrawer = (): JSX.Element => (
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/DrawerLayout/examples/TemporaryDrawerExample.tsx"
+            url="componentDocs/Drawer/examples/TemporaryDrawerExample.tsx"
         />
     </Box>
 );

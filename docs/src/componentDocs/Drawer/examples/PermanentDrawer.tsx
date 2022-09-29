@@ -30,7 +30,7 @@ export const PermanentDrawer = (): JSX.Element => (
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/DrawerLayout/examples/PermanentDrawerExample.tsx"
+            url="componentDocs/Drawer/examples/PermanentDrawerExample.tsx"
         />
     </Box>
 );
