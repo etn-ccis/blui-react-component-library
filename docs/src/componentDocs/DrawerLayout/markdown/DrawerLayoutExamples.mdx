@@ -1,39 +1,3 @@
-import { PermanentDrawer } from '../examples/PermanentDrawer';
-import { PersistentDrawer } from '../examples/PersistentDrawer';
-import { TemporaryDrawer } from '../examples/TemporaryDrawer';
-import { RailDrawer } from '../examples/RailDrawer';
-import { CondensedRailDrawer } from '../examples/CondensedRailDrawer';
-
 # Drawer Layout
 
 The `<DrawerLayout>` manages how a `<Drawer>` and its application content is displayed. It supports four different variant options - `permanent`, `persistent`, `temporary`, and `rail`.
-
-# Permanent Variant
-
-The `permanent` variant is used when a `<Drawer>` is never intended to dismiss from the screen.
-
-<PermanentDrawer />
-
-# Persistent Variant
-
-The `persistent` variant allows a `<Drawer>` to open and close, but never fully exits the screen.
-
-<PersistentDrawer />
-
-# Temporary Variant
-
-The `temporary` variant allows a `<Drawer>` to enter the screen from the left side as an overlay.
-
-<TemporaryDrawer />
-
-# Rail Variant
-
-The `rail` variant is similar to a collapsed persistent state.
-
-<RailDrawer />
-
-# Rail Condensed Variant
-
-The `rail` variant can be `condensed` so that it only displays icons. Each navigation item will show a tooltip when hovered while in this mode.
-
-<CondensedRailDrawer />
