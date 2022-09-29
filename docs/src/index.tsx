@@ -37,7 +37,7 @@ const root = ReactDOMClient.createRoot(container);
 root.render(
     <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(BLUIThemes.blue)}>
-            <BrowserRouter>
+            <BrowserRouter basename={'/react-dev'}>
                 <CssBaseline />
                 <Provider store={store}>
                     <MDXProvider components={componentsMap as any}>

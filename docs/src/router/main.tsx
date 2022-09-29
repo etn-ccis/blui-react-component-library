@@ -1,11 +1,7 @@
 import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 import { HomePage } from '../pages';
-import {
-    pageDefinitions,
-    SimpleGroupNavGroupItem,
-    SimpleNavItem,
-} from '../__configuration__/navigationMenu/navigation';
+import { pageDefinitions, SimpleNavItem } from '../__configuration__/navigationMenu/navigation';
 
 const buildRedirectURL = (routes: any[]): JSX.Element[] => {
     let ret: any[] = [];
@@ -91,23 +87,11 @@ const buildRoutes = (routes: any[]): JSX.Element[] => {
     return ret;
 };
 
-const baseHref = '/react-dev';
-const applyBaseHref = (groups: SimpleGroupNavGroupItem[]): SimpleGroupNavGroupItem[] => {
-    groups.map((group: SimpleGroupNavGroupItem) => {
-        group.items.map((item: SimpleNavItem) => {
-            if (item.url) {
-                item.url = `${baseHref}/${item.url}`;
-            }
-        });
-    });
-    return groups;
-};
-
 export const MainRouter = (
     <>
-        <Route path={baseHref} element={<HomePage />} />
-        {buildRedirectURL(applyBaseHref(pageDefinitions))}
-        {buildRoutes(applyBaseHref(pageDefinitions))}
-        <Route path={'*'} element={<Navigate to={baseHref} />} />
+        <Route path={'/'} element={<HomePage />} />
+        {buildRedirectURL(pageDefinitions)}
+        {buildRoutes(pageDefinitions)}
+        <Route path={'*'} element={<Navigate to={'/'} />} />
     </>
 );
