@@ -5,15 +5,15 @@ import * as colors from '@brightlayer-ui/colors';
 import { EmptyStateWithActionsExample } from './EmptyStateWithActionsExample';
 
 const codeSnippet = `<EmptyState
-        icon={<Devices fontSize={'inherit'} />}
-        title={'No Devices'}
-        description={'Check your network connection or add a new device'}
-        actions={
-            <Button variant={'outlined'} color={'primary'} startIcon={<Add />}>
-                Add Device
-            </Button>
-        }
-    />`;
+    icon={<Devices fontSize={'inherit'} />}
+    title={'No Devices'}
+    description={'Check your network connection or add a new device'}
+    actions={
+        <Button variant={'outlined'} color={'primary'} startIcon={<Add />}>
+            Add Device
+        </Button>
+    }
+/>`;
 
 export const EmptyStateWithActions = (): JSX.Element => (
     <Box>

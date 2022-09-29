@@ -5,10 +5,10 @@ import * as colors from '@brightlayer-ui/colors';
 import { EmptyStateWithContentExample } from './EmptyStateWithContentExample';
 
 const codeSnippet = `<EmptyState
-        icon={<ReportIcon fontSize={'inherit'} />}
-        title={'Request Permission'}
-        description={'You must contact your system admin to view this content.'}
-    />`;
+    icon={<ReportIcon fontSize={'inherit'} />}
+    title={'Request Permission'}
+    description={'You must contact your system admin to view this content.'}
+/>`;
 
 export const EmptyStateWithContent = (): JSX.Element => (
     <Box>

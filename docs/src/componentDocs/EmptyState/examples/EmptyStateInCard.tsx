@@ -5,22 +5,22 @@ import * as colors from '@brightlayer-ui/colors';
 import { EmptyStateInCardExample } from './EmptyStateInCardExample';
 
 const codeSnippet = `<Accordion defaultExpanded>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography>Device Usage</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-            <EmptyState
-                icon={<LocationOff fontSize={'inherit'} />}
-                title={'No Devices Found'}
-                description={'Enable Location Services via Settings to receive GPS information'}
-                actions={
-                    <Button variant={'contained'} color={'primary'} startIcon={<Add />}>
-                        Learn More
-                    </Button>
-                }
-            />
-        </AccordionDetails>
-    </Accordion>`;
+    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography>Device Usage</Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+        <EmptyState
+            icon={<LocationOff fontSize={'inherit'} />}
+            title={'No Devices Found'}
+            description={'Enable Location Services via Settings to receive GPS information'}
+            actions={
+                <Button variant={'contained'} color={'primary'} startIcon={<Add />}>
+                    Learn More
+                </Button>
+            }
+        />
+    </AccordionDetails>
+</Accordion>`;
 
 export const EmptyStateInCard = (): JSX.Element => (
     <Box>

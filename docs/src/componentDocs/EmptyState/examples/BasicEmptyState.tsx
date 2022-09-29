@@ -4,10 +4,7 @@ import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
 import { BasicEmptyStateExample } from './BasicEmptyStateExample';
 
-const codeSnippet = `<EmptyState 
-        icon={<NotListedLocation fontSize={'inherit'} />} 
-        title={'Location Unknown'} 
-    />`;
+const codeSnippet = `<EmptyState icon={<NotListedLocation fontSize={'inherit'} />} title={'Location Unknown'} />`;
 
 export const BasicEmptyState = (): JSX.Element => (
     <Box>

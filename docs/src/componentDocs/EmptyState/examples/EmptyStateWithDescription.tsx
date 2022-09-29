@@ -5,10 +5,10 @@ import * as colors from '@brightlayer-ui/colors';
 import { EmptyStateWithDescriptionExample } from './EmptyStateWithDescriptionExample';
 
 const codeSnippet = `<EmptyState
-        icon={<LocationOff fontSize={'inherit'} />}
-        title={'Location Services Disabled'}
-        description={'Enable Location Services via Settings to receive GPS information'}
-    />`;
+    icon={<LocationOff fontSize={'inherit'} />}
+    title={'Location Services Disabled'}
+    description={'Enable Location Services via Settings to receive GPS information'}
+/>`;
 
 export const EmptyStateWithDescription = (): JSX.Element => (
     <Box>
