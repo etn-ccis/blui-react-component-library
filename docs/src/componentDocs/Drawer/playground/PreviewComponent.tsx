@@ -8,7 +8,7 @@ import {
     DrawerFooter,
     DrawerHeader,
     DrawerNavGroup,
-    DrawerNavItem,
+    NavItem,
 } from '@brightlayer-ui/react-components';
 import { PropsType } from '../../../__types__';
 import EatonFooterLogoLight from '../../../assets/EatonLogoLight.png';
@@ -35,6 +35,47 @@ export const PreviewComponent = (): JSX.Element => {
 
     const drawerProps = createProps(drawerJson.props as PropsType[]);
     const drawerSharedProps = createProps(drawerJson.sharedProps as PropsType[]);
+
+    const navGroupItems: NavItem[] = [
+        {
+            icon: <Dashboard />,
+            itemID: 'Overview',
+            title: 'Overview',
+            onClick: (): void => updateActiveItem('Overview'),
+            items: [
+                {
+                    itemID: 'Monthly Report',
+                    title: 'Monthly Report',
+                    onClick: (): void => updateActiveItem('Monthly Report'),
+                },
+                {
+                    itemID: 'Annual Report',
+                    title: 'Annual Report',
+                    onClick: (): void => updateActiveItem('Annual Report'),
+                },
+            ],
+        },
+        {
+            icon: <Toc />,
+            itemID: 'Timeline',
+            title: 'Timeline',
+            onClick: (): void => updateActiveItem('Timeline'),
+        },
+        {
+            icon: <Devices />,
+            title: 'Devices',
+            itemID: 'Devices',
+            subtitle: '5 new warnings',
+            statusColor: Colors.yellow[500],
+            onClick: (): void => updateActiveItem('Devices'),
+        },
+        {
+            icon: <AirportShuttle />,
+            itemID: 'Schedule',
+            title: 'Schedule',
+            onClick: (): void => updateActiveItem('Schedule'),
+        },
+    ];
 
     const toggleDefaultProp = (propName: string, currentValue: any, groupType?: string): string =>
         hideDefaultPropsFromSnippet(drawerJson, propName, currentValue, groupType);
@@ -80,44 +121,49 @@ export const PreviewComponent = (): JSX.Element => {
         title={'Brightlayer UI Drawer'}
     />
     <DrawerBody>
-        <DrawerNavGroup>
-            <DrawerNavItem
-                icon={<Dashboard />}
-                itemID={'Overview'}
-                title={'Overview'}
-                onClick={(): void => updateActiveItem('Overview')}
-            >
-                <DrawerNavItem
-                    itemID={'Monthly Report'}
-                    title={'Monthly Report'}
-                    onClick={(): void => updateActiveItem('Monthly Report')}
-                />
-                <DrawerNavItem
-                    itemID={'Annual Report'}
-                    title={'Annual Report'}
-                    onClick={(): void => updateActiveItem('Annual Report')}
-                />
-            </DrawerNavItem>
-            <DrawerNavItem
-                icon={<Toc />}
-                itemID={'Timeline'}
-                title={'Timeline'}
-                onClick={(): void => updateActiveItem('Timeline')}
-            />
-            <DrawerNavItem
-                icon={<Devices />}
-                title={'Devices'}
-                itemID={'Devices'}
-                subtitle={'5 new warnings'}
-                statusColor={Colors.yellow[500]}
-                onClick={(): void => updateActiveItem('Devices')}
-            />
-            <DrawerNavItem
-                icon={<AirportShuttle />}
-                itemID={'Schedule'}
-                title={'Schedule'}
-                onClick={(): void => updateActiveItem('Schedule')}
-            />
+        <DrawerNavGroup items={
+            [
+                {
+                    icon:<Dashboard />,
+                    itemID:'Overview',
+                    title:'Overview',
+                    onClick:(): void => updateActiveItem('Overview'),
+                    items: [
+                        {
+                            itemID:'Monthly Report',
+                            title:'Monthly Report',
+                            onClick: (): void => updateActiveItem('Monthly Report'),
+                        },
+                        {
+                            itemID:'Annual Report',
+                            title:'Annual Report',
+                            onClick: (): void => updateActiveItem('Annual Report'),
+                        },
+                    ],
+                },
+                {
+                    icon:<Toc />,
+                    itemID:'Timeline',
+                    title:'Timeline',
+                    onClick:(): void => updateActiveItem('Timeline'),
+                },
+                {
+                    icon:<Devices />,
+                    title:'Devices',
+                    itemID:'Devices',
+                    subtitle:'5 new warnings',
+                    statusColor:Colors.yellow[500],
+                    onClick:(): void => updateActiveItem('Devices'),
+                },
+                {
+                    icon:<AirportShuttle />,
+                    itemID:'Schedule',
+                    title:'Schedule',
+                    onClick:(): void => updateActiveItem('Schedule'),
+                }
+            ]
+        }>
+            
         </DrawerNavGroup>
     </DrawerBody>
     <DrawerFooter backgroundColor={Colors.white[50]}>
@@ -130,7 +176,7 @@ export const PreviewComponent = (): JSX.Element => {
                 padding: 16,
             }}
         >
-            <img src={EatonFooterLogoLight} alt="Eaton Logo" height={28} width={'auto'} />
+            <img src={'../../../assets/EatonLogoLight.png'} alt="Eaton Logo" height={28} width={'auto'} />
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <Typography
                     variant={'caption'}
@@ -182,45 +228,7 @@ export const PreviewComponent = (): JSX.Element => {
                         title={'Brightlayer UI'}
                     />
                     <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
-                        <DrawerNavGroup>
-                            <DrawerNavItem
-                                icon={<Dashboard />}
-                                itemID={'Overview'}
-                                title={'Overview'}
-                                onClick={(): void => updateActiveItem('Overview')}
-                            >
-                                <DrawerNavItem
-                                    itemID={'Monthly Report'}
-                                    title={'Monthly Report'}
-                                    onClick={(): void => updateActiveItem('Monthly Report')}
-                                />
-                                <DrawerNavItem
-                                    itemID={'Annual Report'}
-                                    title={'Annual Report'}
-                                    onClick={(): void => updateActiveItem('Annual Report')}
-                                />
-                            </DrawerNavItem>
-                            <DrawerNavItem
-                                icon={<Toc />}
-                                itemID={'Timeline'}
-                                title={'Timeline'}
-                                onClick={(): void => updateActiveItem('Timeline')}
-                            />
-                            <DrawerNavItem
-                                icon={<Devices />}
-                                title={'Devices'}
-                                itemID={'Devices'}
-                                subtitle={'5 new warnings'}
-                                statusColor={Colors.yellow[500]}
-                                onClick={(): void => updateActiveItem('Devices')}
-                            />
-                            <DrawerNavItem
-                                icon={<AirportShuttle />}
-                                itemID={'Schedule'}
-                                title={'Schedule'}
-                                onClick={(): void => updateActiveItem('Schedule')}
-                            />
-                        </DrawerNavGroup>
+                        <DrawerNavGroup items={navGroupItems}></DrawerNavGroup>
                     </DrawerBody>
                     <DrawerFooter backgroundColor={Colors.white[50]}>
                         <Box
