@@ -4,42 +4,33 @@ import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
 import { TemporaryDrawerExample } from './TemporaryDrawerExample';
 
-const codeSnippet = `<DrawerLayout
-    drawer={
-        <Drawer open={open} width={332} variant={'temporary'}>
-            <DrawerHeader
-                title="Title"
-                icon={<Close />}
-                onClick={(): void => setOpen(false)}
-            />
-            <DrawerBody>
-                <DrawerNavGroup>
-                    <DrawerNavItem title="Dashboard" icon={<Dashboard />} itemID="1" />
-                    <DrawerNavItem title="Locations" icon={<Notifications />} itemID="2" />
-                    <DrawerNavItem title="Legal" icon={<Gavel />} itemID="3" />
-                </DrawerNavGroup>
-            </DrawerBody>
-        </Drawer>
-    }
-    >
-    <Box>
-        <AppBar position="static">
-            <Toolbar>
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    onClick={(): void => setOpen(true)}
-                >
-                    <Menu />
-                </IconButton>
-                <Typography variant="h6">Toolbar</Typography>
-            </Toolbar>
-        </AppBar>
-        <Box>App Content Here.</Box>
-    </Box>
-</DrawerLayout>`;
+const codeSnippet = `<Drawer open={open} variant="temporary">
+    <DrawerHeader
+        title="Title"
+        icon={<Close />}
+        onClick={(): void => setOpen(false)}
+    />
+    <DrawerBody>
+        <DrawerNavGroup>
+            <DrawerNavItem title="Dashboard" icon={<Dashboard />} itemID="1" />
+            <DrawerNavItem title="Locations" icon={<Notifications />} itemID="2" />
+            <DrawerNavItem title="Legal" icon={<Gavel />} itemID="3" />
+        </DrawerNavGroup>
+    </DrawerBody>
+</Drawer>
+<AppBar position="static">
+    <Toolbar>
+        <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={(): void => setOpen(true)}
+        >
+            <Menu />
+        </IconButton>
+    </Toolbar>
+</AppBar>`;
 
 export const TemporaryDrawer = (): JSX.Element => (
     <Box>

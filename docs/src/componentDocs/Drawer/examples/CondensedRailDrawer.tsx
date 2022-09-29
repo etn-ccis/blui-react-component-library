@@ -4,23 +4,15 @@ import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
 import { CondensedRailDrawerExample } from './CondensedRailDrawerExample';
 
-const codeSnippet = `<DrawerLayout
-    drawer={
-        <Drawer open={true} variant={'rail'} condensed={true}>
-            <DrawerBody>
-                <DrawerNavGroup>
-                    <DrawerRailItem title="Devices" icon={<Devices />} itemID="1"/>
-                    <DrawerRailItem title="Locations" icon={<LocationOn />} itemID="2"/>
-                    <DrawerRailItem title="Legal" icon={<Gavel />} itemID="3"/>
-                </DrawerNavGroup>
-            </DrawerBody>
-        </Drawer>
-    }
-    >
-    <Box>
-        App Content Here.
-    </Box>
-</DrawerLayout>`;
+const codeSnippet = ` <Drawer open width={250} variant="rail" condensed>
+    <DrawerBody>
+        <DrawerNavGroup>
+            <DrawerRailItem title="Devices" icon={<Devices />} itemID="1" />
+            <DrawerRailItem title="Locations" icon={<LocationOn />} itemID="2" />
+            <DrawerRailItem title="Legal" icon={<Gavel />} itemID="3" />
+        </DrawerNavGroup>
+    </DrawerBody>
+</Drawer>`;
 
 export const CondensedRailDrawer = (): JSX.Element => (
     <Box>

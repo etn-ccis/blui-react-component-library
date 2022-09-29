@@ -4,23 +4,20 @@ import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
 import { RailDrawerExample } from './RailDrawerExample';
 
-const codeSnippet = `<DrawerLayout
-    drawer={
-        <Drawer open={true} variant={'rail'}>
-            <DrawerBody>
-                <DrawerNavGroup>
-                    <DrawerRailItem title="Devices" icon={<Devices />} itemID="1"/>
-                    <DrawerRailItem title="Locations" icon={<LocationOn />} itemID="2"/>
-                    <DrawerRailItem title="Legal" icon={<Gavel />} itemID="3"/>
-                </DrawerNavGroup>
-            </DrawerBody>
-        </Drawer>
-    }
-    >
-    <Box>
-        App Content Here.
-    </Box>
-</DrawerLayout>`;
+const codeSnippet = `<Drawer open width={250} variant="rail">
+    <DrawerBody>
+        <DrawerNavGroup>
+            <DrawerRailItem title="Devices" icon={<Devices />} itemID="1" divider />
+            <DrawerRailItem
+                title="Locations"
+                icon={<LocationOn />}
+                itemID="2"
+                divider
+            />
+            <DrawerRailItem title="Legal" icon={<Gavel />} itemID="3" divider />
+        </DrawerNavGroup>
+    </DrawerBody>
+</Drawer>`;
 
 export const RailDrawer = (): JSX.Element => (
     <Box>
@@ -28,9 +25,6 @@ export const RailDrawer = (): JSX.Element => (
             <RailDrawerExample />
         </Box>
         <CodeBlock code={codeSnippet} language="jsx" />
-        <CodeBlockActionButtonRow
-            copyText={codeSnippet}
-            url="componentDocs/Drawer/examples/RailDrawerExample.tsx"
-        />
+        <CodeBlockActionButtonRow copyText={codeSnippet} url="componentDocs/Drawer/examples/RailDrawerExample.tsx" />
     </Box>
 );

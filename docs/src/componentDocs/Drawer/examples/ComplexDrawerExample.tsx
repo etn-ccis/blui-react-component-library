@@ -18,9 +18,9 @@ export const ComplexDrawerExample = (): JSX.Element => {
     return (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
             <Drawer
-                open={true}
+                open
                 width={300}
-                sx={{ margin: '0 auto', height: 580, '& .MuiPaper-root': { overflow: 'auto' } }}
+                sx={{ mx: 'auto', height: 580, '& .MuiPaper-root': { overflow: 'auto' } }}
                 activeItem={selected}
                 noLayout
             >
