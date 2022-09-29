@@ -89,9 +89,9 @@ const buildRoutes = (routes: any[]): JSX.Element[] => {
 
 export const MainRouter = (
     <>
-        <Route path={'/'} element={<HomePage />} />
+        <Route path={'/react-dev'} element={<HomePage />} />
         {buildRedirectURL(pageDefinitions)}
         {buildRoutes(pageDefinitions)}
-        <Route path={'*'} element={<Navigate to={'/'} />} />
+        <Route path={'*'} element={<Navigate to={'/react-dev'} />} />
     </>
 );
