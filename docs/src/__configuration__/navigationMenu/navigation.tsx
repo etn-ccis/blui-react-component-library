@@ -1,6 +1,6 @@
 import React from 'react';
 import { HomePage, ComponentPreviewPage } from '../../pages';
-import { DummyComponent, DummyExamplesComponent } from '../../componentDocs/DummyDataForComponent';
+import { DummyExamplesComponent } from '../../componentDocs/DummyDataForComponent';
 
 // API Docs markdown
 import DrawerNavGroupAPIDocs from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupAPIDocs.mdx';
@@ -37,8 +37,10 @@ import ListItemTagExamples from '../../componentDocs/ListItemTag/markdown/ListIt
 import InfoListItemExamples from '../../componentDocs/InfoListItem/markdown/InfoListItemExamples.mdx';
 import DrawerLayoutExamples from '../../componentDocs/DrawerLayout/markdown/DrawerLayoutExamples.mdx';
 import AppBarExamples from '../../componentDocs/AppBar/markdown/AppBarExamples.mdx';
+import UserMenuExamples from '../../componentDocs/UserMenu/markdown/UserMenuExamples.mdx';
 import ChannelValueExamples from '../../componentDocs/ChannelValue/markdown/ChannelValueExamples.mdx';
 import ScoreCardExamples from '../../componentDocs/ScoreCard/markdown/ScoreCardExamples.mdx';
+import ThreeLinerExamples from '../../componentDocs/ThreeLiner/markdown/ThreeLinerExamples.mdx';
 
 // Playground components
 import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
@@ -57,6 +59,7 @@ import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/
 // import { SpacerPlaygroundComponent } from '../../componentDocs/Spacer/playground';
 import { ScoreCardPlaygroundComponent } from '../../componentDocs/ScoreCard/playground';
 import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/playground';
+import { ToolbarMenuPlaygroundComponent } from '../../componentDocs/ToolbarMenu/playground';
 import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 
 export type SimpleNavItem = {
@@ -465,7 +468,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Examples',
                         url: 'examples',
-                        component: <DummyExamplesComponent />,
+                        component: <ThreeLinerExamples />,
                     },
                     {
                         title: 'API Docs',
@@ -497,7 +500,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Playground',
                         url: 'playground',
-                        component: <DummyComponent />,
+                        component: <ToolbarMenuPlaygroundComponent />,
                     },
                 ],
             },
@@ -509,7 +512,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Examples',
                         url: 'examples',
-                        component: <DummyExamplesComponent />,
+                        component: <UserMenuExamples />,
                     },
                     {
                         title: 'API Docs',

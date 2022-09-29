@@ -15,6 +15,7 @@ import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemT
 import spacerConfig from '../componentDocs/Spacer/playground/SpacerConfig';
 import scoreCardConfig from '../componentDocs/ScoreCard/playground/ScoreCardConfig';
 import threeLinerConfig from '../componentDocs/ThreeLiner/playground/ThreeLinerConfig';
+import toolbarMenuConfig from '../componentDocs/ToolbarMenu/playground/ToolbarMenuConfig';
 import userMenuConfig from '../componentDocs/UserMenu/playground/UserMenuConfig';
 import { getComponentState } from '../shared/utilities';
 import { PayloadType, ComponentType } from '../__types__';
@@ -36,6 +37,7 @@ type ComponentState = {
     spacerComponent: ComponentType;
     scoreCardComponent: ComponentType;
     threeLinerComponent: ComponentType;
+    toolbarMenuComponent: ComponentType;
     userMenuComponent: ComponentType;
 };
 
@@ -56,6 +58,7 @@ const initialState: ComponentState = {
     spacerComponent: spacerConfig,
     scoreCardComponent: scoreCardConfig,
     threeLinerComponent: threeLinerConfig,
+    toolbarMenuComponent: toolbarMenuConfig,
     userMenuComponent: userMenuConfig,
 };
 
@@ -84,7 +87,7 @@ export const componentPropsStateSlice = createSlice({
                 updatedKnob[0].inputValue = action.payload.propValue;
             }
         },
-        updateActiveItemProp: (state, action: PayloadAction<PayloadType>) => {
+        updateComponentProp: (state, action: PayloadAction<PayloadType>) => {
             const newArray = getComponentState(action.payload.componentName, state);
             const updatedKnob = newArray?.props?.filter((prop) => prop.propName === action.payload.propName);
             if (updatedKnob) {
@@ -94,6 +97,6 @@ export const componentPropsStateSlice = createSlice({
     },
 });
 
-export const { updateProp, updateSharedProp, updateOtherProp, updateActiveItemProp } = componentPropsStateSlice.actions;
+export const { updateProp, updateSharedProp, updateOtherProp, updateComponentProp } = componentPropsStateSlice.actions;
 
 export default componentPropsStateSlice.reducer;
