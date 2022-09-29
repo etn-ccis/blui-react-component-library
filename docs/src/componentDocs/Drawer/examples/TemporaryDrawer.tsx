@@ -4,7 +4,7 @@ import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
 import { TemporaryDrawerExample } from './TemporaryDrawerExample';
 
-const codeSnippet = `<Drawer open={open} variant="temporary">
+const codeSnippet = `<Drawer open={open} width={250} variant="temporary">
     <DrawerHeader
         title="Title"
         icon={<Close />}

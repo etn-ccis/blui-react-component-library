@@ -14,7 +14,7 @@ export const TemporaryDrawerExample = (): JSX.Element => {
     const [open, setOpen] = useState(false);
     return (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
-            <Drawer open={open} variant="temporary" noLayout>
+            <Drawer open={open} width={250} variant="temporary" noLayout>
                 <DrawerHeader
                     title="Title"
                     icon={<Close />}
