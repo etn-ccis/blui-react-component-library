@@ -4,7 +4,7 @@ import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
 import { CondensedDrawerRailItemExample } from './CondensedDrawerRailItemExample';
 
-const codeSnippet = ` <Drawer open width={250} variant="rail" condensed>
+const codeSnippet = `<Drawer open width={250} variant="rail" condensed>
     <DrawerBody>
         <DrawerNavGroup>
             <DrawerRailItem title="Devices" icon={<Devices />} itemID="1" />
