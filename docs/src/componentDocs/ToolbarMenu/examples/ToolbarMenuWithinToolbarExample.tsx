@@ -11,13 +11,14 @@ import { Typography } from '@mui/material';
 export const ToolbarMenuWithinToolbarExample = (): JSX.Element => (
     <Box>
         <AppBar
+            variant="collapsed"
             sx={{
                 width: 300,
                 zIndex: 'auto',
             }}
         >
             <Toolbar>
-                <IconButton sx={{ mr: 3 }} color={'inherit'} edge={'start'}>
+                <IconButton sx={{ mr: 3 }} color="inherit" edge="start">
                     <Menu />
                 </IconButton>
                 <ListItemText

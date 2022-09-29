@@ -5,7 +5,6 @@ import * as colors from '@brightlayer-ui/colors';
 import { ToolbarMenuWithIconExample } from './ToolbarMenuWithIconExample';
 
 const codeSnippet = `<ToolbarMenu
-    sx={{ maxWidth: 'inherit' }}
     label="My Home"
     icon={<Home />}
     menuGroups={[
@@ -20,7 +19,7 @@ export const ToolbarMenuWithIcon = (): JSX.Element => (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <ToolbarMenuWithIconExample />
         </Box>
-        <CodeBlock code={codeSnippet} language="jsx" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="3" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/ToolbarMenu/examples/ToolbarMenuWithIconExample.tsx"
