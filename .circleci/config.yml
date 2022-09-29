@@ -158,6 +158,13 @@ jobs:
                   name: Build React Dev
                   command: |
                       cd docs
+                    
+                      if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
+                        export PUBLIC_URL=/react
+                      else
+                        export PUBLIC_URL=/react-dev
+                      fi
+                    
                       yarn build
             - run:
                   command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
