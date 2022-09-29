@@ -1,2 +1,2 @@
-export * from './CondensedRailDrawer';
-export * from './RailDrawer';
+export * from './CondensedDrawerRailItemExample';
+export * from './BasicDrawerRailItem';

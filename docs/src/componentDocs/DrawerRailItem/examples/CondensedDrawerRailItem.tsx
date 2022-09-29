@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
-import { CondensedRailDrawerExample } from './CondensedRailDrawerExample';
+import { CondensedDrawerRailItemExample } from './CondensedDrawerRailItemExample';
 
 const codeSnippet = ` <Drawer open width={250} variant="rail" condensed>
     <DrawerBody>
@@ -14,15 +14,15 @@ const codeSnippet = ` <Drawer open width={250} variant="rail" condensed>
     </DrawerBody>
 </Drawer>`;
 
-export const CondensedRailDrawer = (): JSX.Element => (
+export const CondensedDrawerRailItem = (): JSX.Element => (
     <Box>
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
-            <CondensedRailDrawerExample />
+            <CondensedDrawerRailItemExample />
         </Box>
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/DrawerRailItem/examples/CondensedRailDrawerExample.tsx"
+            url="componentDocs/DrawerRailItem/examples/CondensedDrawerRailItemExample.tsx"
         />
     </Box>
 );
