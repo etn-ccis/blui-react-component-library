@@ -1,5 +1,11 @@
-import { BasicDrawer } from '../examples/BasicDrawer';
-import { ComplexDrawer } from '../examples/ComplexDrawer';
+import {
+    BasicDrawer,
+    ComplexDrawer,
+    PermanentDrawer,
+    PersistentDrawer,
+    TemporaryDrawer,
+    RailDrawer,
+} from '../examples';
 
 # Basic Drawer
 
@@ -12,3 +18,27 @@ A `<Drawer />` is a navigation menu that appears to the side of an application.
 A `<Drawer />` can contain multiple `<DrawerNavGroup />` and nested `<DrawerNavItem />`.
 
 <ComplexDrawer />
+
+# Permanent Variant
+
+The `permanent` variant is used when a `<Drawer>` is never intended to dismiss from the screen.
+
+<PermanentDrawer />
+
+# Persistent Variant
+
+The `persistent` variant allows a `<Drawer>` to open and close, but never fully exits the screen.
+
+<PersistentDrawer />
+
+# Temporary Variant
+
+The `temporary` variant allows a `<Drawer>` to enter the screen from the left side as an overlay.
+
+<TemporaryDrawer />
+
+# Rail Variant
+
+The `rail` variant is similar to a collapsed persistent state.
+
+<RailDrawer />

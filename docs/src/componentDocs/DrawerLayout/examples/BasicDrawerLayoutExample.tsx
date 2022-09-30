@@ -13,7 +13,7 @@ import Notifications from '@mui/icons-material/Notifications';
 import Gavel from '@mui/icons-material/Gavel';
 import Menu from '@mui/icons-material/Menu';
 
-export const PersistentDrawerExample = (): JSX.Element => {
+export const BasicDrawerLayoutExample = (): JSX.Element => {
     const [open, setOpen] = useState(true);
     return (
         <DrawerLayout
