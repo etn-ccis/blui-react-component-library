@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { ComplexDrawerExample } from './ComplexDrawerExample';
 
-const codeSnippet = `<Drawer open={true} width={300}>
+const codeSnippet = `<Drawer open width={300}>
     <DrawerHeader icon={<Menu />} title="Brightlayer UI"/>
     <DrawerBody>
         <DrawerNavGroup title="Group 1" divider>

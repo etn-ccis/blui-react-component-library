@@ -32,6 +32,7 @@ import DrawerNavGroupExamples from '../../componentDocs/DrawerNavGroup/markdown/
 import DrawerExamples from '../../componentDocs/Drawer/markdown/DrawerExamples.mdx';
 import DrawerHeaderExamples from '../../componentDocs/DrawerHeader/markdown/DrawerHeaderExamples.mdx';
 import DrawerSubheaderExamples from '../../componentDocs/DrawerSubheader/markdown/DrawerSubheaderExamples.mdx';
+import EmptyStateExamples from '../../componentDocs/EmptyState/markdown/EmptyStateExamples.mdx';
 import HeroExamples from '../../componentDocs/Hero/markdown/HeroExamples.mdx';
 import ListItemTagExamples from '../../componentDocs/ListItemTag/markdown/ListItemTagExamples.mdx';
 import InfoListItemExamples from '../../componentDocs/InfoListItem/markdown/InfoListItemExamples.mdx';
@@ -40,7 +41,9 @@ import AppBarExamples from '../../componentDocs/AppBar/markdown/AppBarExamples.m
 import UserMenuExamples from '../../componentDocs/UserMenu/markdown/UserMenuExamples.mdx';
 import ChannelValueExamples from '../../componentDocs/ChannelValue/markdown/ChannelValueExamples.mdx';
 import ToolbarMenuExamples from '../../componentDocs/ToolbarMenu/markdown/ToolbarMenuExamples.mdx';
+import ScoreCardExamples from '../../componentDocs/ScoreCard/markdown/ScoreCardExamples.mdx';
 import ThreeLinerExamples from '../../componentDocs/ThreeLiner/markdown/ThreeLinerExamples.mdx';
+import DrawerRailItemExamples from '../../componentDocs/DrawerRailItem/markdown/DrawerRailItemExamples.mdx';
 
 // Playground components
 import { AppBarPlaygroundComponent } from '../../componentDocs/AppBar/playground/PlaygroundPage';
@@ -312,7 +315,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DummyExamplesComponent />,
+                                component: <DrawerRailItemExamples />,
                             },
                             {
                                 title: 'API Docs',
@@ -336,7 +339,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Examples',
                         url: 'examples',
-                        component: <DummyExamplesComponent />,
+                        component: <EmptyStateExamples />,
                     },
                     {
                         title: 'API Docs',
@@ -424,7 +427,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                     {
                         title: 'Examples',
                         url: 'examples',
-                        component: <DummyExamplesComponent />,
+                        component: <ScoreCardExamples />,
                     },
                     {
                         title: 'API Docs',
