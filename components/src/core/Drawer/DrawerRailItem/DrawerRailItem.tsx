@@ -103,7 +103,7 @@ const Root = styled(ButtonBase, {
     Pick<
         DrawerRailItemProps,
         'statusColor' | 'backgroundColor' | 'onClick' | 'activeItemIconColor' | 'activeItemFontColor' | 'condensed'
-    > & { hasAction: boolean; itemActive: boolean }
+    > & { condensed: boolean; hasAction: boolean; itemActive: boolean }
 >(
     ({
         statusColor,
@@ -328,6 +328,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             )}
             statusColor={statusColor}
             backgroundColor={backgroundColor}
+            condensed={condensed}
             activeItemIconColor={activeItemIconColor}
             activeItemFontColor={activeItemFontColor}
             disableRipple={!ripple || !hasAction}

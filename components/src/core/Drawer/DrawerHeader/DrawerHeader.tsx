@@ -93,7 +93,7 @@ const Root = styled(Toolbar, {
         marginLeft: theme.spacing(0.5),
         minWidth: 'calc(3.5rem + 16px)',
         justifyContent: 'center',
-        '&$nonClickable': {
+        [`&.${drawerHeaderClasses.nonClickable}`]: {
             marginLeft: 0,
         },
     },
