@@ -200,10 +200,11 @@ export const hideDefaultPropsFromSnippet = (
     state: ComponentType,
     propName: string,
     currentValue: any,
-    groupType?: string
+    groupType?: string,
+    themeDefaultValue?: string | number
 ): string => {
     const knob = filterPropsAsPerGroupType(state, propName, groupType);
-    if (knob?.defaultValue === currentValue) {
+    if (knob?.defaultValue === currentValue || themeDefaultValue === currentValue) {
         return '';
     }
     switch (knob?.propType) {

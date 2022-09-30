@@ -45,7 +45,7 @@ export const PreviewComponent = (): JSX.Element => {
     activeItemBackgroundColor={"${drawerSharedProps.activeItemBackgroundColor}"}
     activeItemFontColor={"${drawerSharedProps.activeItemFontColor}"}
     activeItemIconColor={"${drawerSharedProps.activeItemIconColor}"}
-    ${toggleDefaultProp('activeItemBackgroundShape', drawerProps.activeItemBackgroundShape, 'sharedProps')}
+    ${toggleDefaultProp('activeItemBackgroundShape', drawerSharedProps.activeItemBackgroundShape, 'sharedProps')}
     chevron={${drawerSharedProps.chevron}}
     chevronColor={"${drawerSharedProps.chevronColor}"}
     ${toggleDefaultProp('collapseIcon', drawerSharedProps.collapseIcon, 'sharedProps')}

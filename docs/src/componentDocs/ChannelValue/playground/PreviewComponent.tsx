@@ -34,7 +34,7 @@ export const PreviewComponent = (): JSX.Element => {
     const generateCodeSnippet = (): string => {
         const jsx = `<ChannelValue
     color={"${channelValueProps.color}"}
-    fontSize={"${channelValueProps.fontSize}"}
+    fontSize={${channelValueProps.fontSize}}
     ${toggleIconProp(channelValueProps.icon)}
     ${toggleDefaultProp('prefix', channelValueProps.prefix)}
     ${toggleDefaultProp('units', channelValueProps.units)}

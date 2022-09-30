@@ -11,6 +11,7 @@ export const drawerConfig: ComponentType = {
             propType: 'string',
             helperText: `itemID for the 'active' item`,
             required: false,
+            disable: true,
         },
         {
             propName: 'condensed',
