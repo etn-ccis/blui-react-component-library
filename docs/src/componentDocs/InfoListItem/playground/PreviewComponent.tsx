@@ -39,7 +39,7 @@ export const PreviewComponent = (): JSX.Element => {
     ${toggleDefaultProp('disabled', infoListItemOtherProps.disabled, 'otherProps')}
     onClick={(): void => {
         // eslint-disable-next-line
-        console.log('clicked');
+        console.log("clicked");
     }}
 />`;
         return removeEmptyLines(jsx);

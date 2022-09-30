@@ -210,8 +210,12 @@ export const hideDefaultPropsFromSnippet = (
     switch (knob?.propType) {
         case 'string':
         case 'string | Array<React.ReactNode>':
-        case 'ReactNode':
             return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
+        case 'ReactNode':
+            if (knob.inputType === 'string') {
+                return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
+            }
+            return `${propName}={${currentValue}}`;
         case 'boolean':
             return `${propName}={${currentValue}}`;
         default:

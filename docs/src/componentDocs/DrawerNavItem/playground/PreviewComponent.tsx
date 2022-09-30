@@ -41,9 +41,9 @@ export const PreviewComponent = (): JSX.Element => {
                             : drawerNavItemSharedProps.hidePadding
                     )}
                     ${toggleDefaultProp('icon', drawerNavItemProps.icon)}
-                    itemID={'Title'}
+                    itemID={"Title"}
                     statusColor={"${drawerNavItemProps.statusColor}"}
-                    subtitle={"${drawerNavItemProps.subtitle}"}
+                    ${toggleDefaultProp('subtitle', drawerNavItemProps.subtitle, 'props')}
                     title={"${drawerNavItemProps.title}"}
                     activeItemBackgroundColor={"${drawerNavItemSharedProps.activeItemBackgroundColor}"}
                     activeItemFontColor={"${drawerNavItemSharedProps.activeItemFontColor}"}
@@ -64,11 +64,11 @@ export const PreviewComponent = (): JSX.Element => {
                     nestedBackgroundColor={"${drawerNavItemSharedProps.nestedBackgroundColor}"}
                     ${toggleDefaultProp('nestedDivider', drawerNavItemSharedProps.nestedDivider, 'sharedProps')}
                     ${toggleDefaultProp('ripple', drawerNavItemSharedProps.ripple, 'sharedProps')}
-                    onClick={(): void => updateItemID('Title')}
+                    onClick={(): void => updateItemID("Title")}
                 >
                     <DrawerNavItem
-                        itemID={'Monthly Report'}
-                        title={'Monthly Report'}
+                        itemID={"Monthly Report"}
+                        title={"Monthly Report"}
                         activeItemBackgroundColor={"${drawerNavItemSharedProps.activeItemBackgroundColor}"}
                         activeItemFontColor={"${drawerNavItemSharedProps.activeItemFontColor}"}
                         activeItemIconColor={"${drawerNavItemSharedProps.activeItemIconColor}"}
@@ -88,11 +88,11 @@ export const PreviewComponent = (): JSX.Element => {
                         nestedBackgroundColor={"${drawerNavItemSharedProps.nestedBackgroundColor}"}
                         ${toggleDefaultProp('nestedDivider', drawerNavItemSharedProps.nestedDivider, 'sharedProps')}
                         ${toggleDefaultProp('ripple', drawerNavItemSharedProps.ripple, 'sharedProps')}
-                        onClick={(): void => updateItemID('Monthly Report')}
+                        onClick={(): void => updateItemID("Monthly Report")}
                     />
                     <DrawerNavItem
-                        itemID={'Annual Report'}
-                        title={'Annual Report'}
+                        itemID={"Annual Report"}
+                        title={"Annual Report"}
                         activeItemBackgroundColor={"${drawerNavItemSharedProps.activeItemBackgroundColor}"}
                         activeItemFontColor={"${drawerNavItemSharedProps.activeItemFontColor}"}
                         activeItemIconColor={"${drawerNavItemSharedProps.activeItemIconColor}"}
@@ -112,7 +112,7 @@ export const PreviewComponent = (): JSX.Element => {
                         nestedBackgroundColor={"${drawerNavItemSharedProps.nestedBackgroundColor}"}
                         ${toggleDefaultProp('nestedDivider', drawerNavItemSharedProps.nestedDivider, 'sharedProps')}
                         ${toggleDefaultProp('ripple', drawerNavItemSharedProps.ripple, 'sharedProps')}
-                        onClick={(): void => updateItemID('Annual Report')}
+                        onClick={(): void => updateItemID("Annual Report")}
                     />
                 </DrawerNavItem>
             </DrawerNavGroup>

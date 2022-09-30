@@ -29,7 +29,7 @@ export const PreviewComponent = (): JSX.Element => {
         const jsx = `<Drawer open={true} activeItem={"${drawerActiveItem}"}>
     <DrawerHeader 
         icon={<Menu />}
-        title={'Header Title'}
+        title={"Header Title"}
     />
 
     <DrawerBody>
@@ -59,40 +59,40 @@ export const PreviewComponent = (): JSX.Element => {
         >
         <DrawerNavItem
             icon={<Dashboard />}
-            itemID={'Overview'}
-            title={'Overview'}
-            onClick={(): void => setDrawerActiveItem('Overview')}
+            itemID={"Overview"}
+            title={"Overview"}
+            onClick={(): void => setDrawerActiveItem("Overview")}
         >
             <DrawerNavItem
-                itemID={'Monthly Report'}
-                title={'Monthly Report'}
-                onClick={(): void => setDrawerActiveItem('Monthly Report')}
+                itemID={"Monthly Report"}
+                title={"Monthly Report"}
+                onClick={(): void => setDrawerActiveItem("Monthly Report")}
             />
             <DrawerNavItem
-                itemID={'Annual Report'}
-                title={'Annual Report'}
-                onClick={(): void => setDrawerActiveItem('Annual Report')}
+                itemID={"Annual Report"}
+                title={"Annual Report"}
+                onClick={(): void => setDrawerActiveItem("Annual Report")}
             />
         </DrawerNavItem>
         <DrawerNavItem
             icon={<Toc />}
-            itemID={'Timeline'}
-            title={'Timeline'}
-            onClick={(): void => setDrawerActiveItem('Timeline')}
+            itemID={"Timeline"}
+            title={"Timeline"}
+            onClick={(): void => setDrawerActiveItem("Timeline")}
         />
         <DrawerNavItem
             icon={<Devices />}
-            title={'Devices'}
-            itemID={'Devices'}
-            subtitle={'5 new warnings'}
+            title={"Devices"}
+            itemID={"Devices"}
+            subtitle={"5 new warnings"}
             statusColor={Colors.yellow[500]}
-            onClick={(): void => setDrawerActiveItem('Devices')}
+            onClick={(): void => setDrawerActiveItem("Devices")}
         />
         <DrawerNavItem
             icon={<AirportShuttle />}
-            itemID={'Schedule'}
-            title={'Schedule'}
-            onClick={(): void => setDrawerActiveItem('Schedule')}
+            itemID={"Schedule"}
+            title={"Schedule"}
+            onClick={(): void => setDrawerActiveItem("Schedule")}
         />
         </DrawerNavGroup>
     </DrawerBody>

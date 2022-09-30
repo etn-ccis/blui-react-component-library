@@ -76,66 +76,66 @@ export const PreviewComponent = (): JSX.Element => {
         divider={false}
         fontColor={Colors.white[50]}
         icon={<Menu />}
-        subtitle={'Organize your menu items here'}
-        title={'Brightlayer UI Drawer'}
+        subtitle={"Organize your menu items here"}
+        title={"Brightlayer UI Drawer"}
     />
     <DrawerBody>
         <DrawerNavGroup>
             <DrawerNavItem
                 icon={<Dashboard />}
-                itemID={'Overview'}
-                title={'Overview'}
-                onClick={(): void => updateActiveItem('Overview')}
+                itemID={"Overview"}
+                title={"Overview"}
+                onClick={(): void => updateActiveItem("Overview")}
             >
                 <DrawerNavItem
-                    itemID={'Monthly Report'}
-                    title={'Monthly Report'}
-                    onClick={(): void => updateActiveItem('Monthly Report')}
+                    itemID={"Monthly Report"}
+                    title={"Monthly Report"}
+                    onClick={(): void => updateActiveItem("Monthly Report")}
                 />
                 <DrawerNavItem
-                    itemID={'Annual Report'}
-                    title={'Annual Report'}
-                    onClick={(): void => updateActiveItem('Annual Report')}
+                    itemID={"Annual Report"}
+                    title={"Annual Report"}
+                    onClick={(): void => updateActiveItem("Annual Report")}
                 />
             </DrawerNavItem>
             <DrawerNavItem
                 icon={<Toc />}
-                itemID={'Timeline'}
-                title={'Timeline'}
-                onClick={(): void => updateActiveItem('Timeline')}
+                itemID={"Timeline"}
+                title={"Timeline"}
+                onClick={(): void => updateActiveItem("Timeline")}
             />
             <DrawerNavItem
                 icon={<Devices />}
-                title={'Devices'}
-                itemID={'Devices'}
-                subtitle={'5 new warnings'}
+                title={"Devices"}
+                itemID={"Devices"}
+                subtitle={"5 new warnings"}
                 statusColor={Colors.yellow[500]}
-                onClick={(): void => updateActiveItem('Devices')}
+                onClick={(): void => updateActiveItem("Devices")}
             />
             <DrawerNavItem
                 icon={<AirportShuttle />}
-                itemID={'Schedule'}
-                title={'Schedule'}
-                onClick={(): void => updateActiveItem('Schedule')}
+                itemID={"Schedule"}
+                title={"Schedule"}
+                onClick={(): void => updateActiveItem("Schedule")}
             />
         </DrawerNavGroup>
     </DrawerBody>
     <DrawerFooter backgroundColor={Colors.white[50]}>
         <div
             style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexDirection: 'row',
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexDirection: "row",
                 padding: 16,
             }}
         >
-            <img src={EatonFooterLogoLight} alt="Eaton Logo" height={28} width={'auto'} />
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <img src={EatonFooterLogoLight} alt="Eaton Logo" height={28} width={"auto"} />
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <Typography
-                    variant={'caption'}
-                >{'Copyright \u00A9 Eaton ${new Date().getFullYear()}'}</Typography>
-                <Typography variant={'caption'}>All Rights Reserved</Typography>
+                    variant={"caption"}
+                >{"Copyright \u00A9 Eaton ${new Date().getFullYear()}"}</Typography>
+                <Typography variant={"caption"}>All Rights Reserved</Typography>
             </div>
         </div>
     </DrawerFooter>

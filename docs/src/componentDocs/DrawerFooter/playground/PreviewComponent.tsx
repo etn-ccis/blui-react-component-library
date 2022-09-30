@@ -28,20 +28,20 @@ export const PreviewComponent = (): JSX.Element => {
         const jsx = `<Drawer open={${drawerFooterOtherProps.open}}>
     <DrawerHeader
         icon={<Menu />}
-        title={'Header Title'}
+        title={"Header Title"}
     />
 
     <DrawerBody>
         <DrawerNavGroup>
             <DrawerNavItem
                 hidePadding
-                itemID={'Nav Item'}
-                title={'Nav Item'}
+                itemID={"Nav Item"}
+                title={"Nav Item"}
             />
         </DrawerNavGroup>
     </DrawerBody>
     <DrawerFooter
-        backgroundColor="${drawerFooterProps.backgroundColor}"
+        backgroundColor={"${drawerFooterProps.backgroundColor}"}
         ${toggleDefaultProp('divider', drawerFooterProps.divider)}
         ${toggleDefaultProp('hideContentOnCollapse', drawerFooterProps.hideContentOnCollapse)}
     >

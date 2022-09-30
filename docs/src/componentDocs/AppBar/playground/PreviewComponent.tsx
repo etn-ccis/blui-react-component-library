@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import { RootState } from '../../../redux/store';
 import { useAppSelector } from '../../../redux/hooks';
@@ -25,7 +24,7 @@ export const PreviewComponent = (): JSX.Element => {
 
     const toggleDefaultProp = (propName: string, currentValue: any, themeDefaultValue?: string | number): string =>
         hideDefaultPropsFromSnippet(appBarJson, propName, currentValue, 'props', themeDefaultValue);
-        
+
     const generateCodeSnippet = (): string => {
         const jsx = `<AppBar
     ${toggleDefaultProp('animationDuration', appBarProps.animationDuration, theme.transitions.duration.standard)}

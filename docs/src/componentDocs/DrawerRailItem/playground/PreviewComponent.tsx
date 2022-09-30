@@ -5,7 +5,6 @@ import { createProps, getIcon, hideDefaultPropsFromSnippet, removeEmptyLines } f
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerRailItem } from '@brightlayer-ui/react-components';
-import Devices from '@mui/icons-material/Devices';
 import Gavel from '@mui/icons-material/Gavel';
 import LocationOn from '@mui/icons-material/LocationOn';
 
@@ -39,7 +38,7 @@ export const PreviewComponent = (): JSX.Element => {
                 itemIconColor={"${drawerRailItemSharedProps.itemIconColor}"}
                 ${toggleDefaultProp('ripple', drawerRailItemSharedProps.ripple, 'sharedProps')}
                 onClick={(): void => {
-                    setActiveItem(${drawerRailItemProps.title});
+                    setActiveItem("${drawerRailItemProps.title}");
                 }}
             />
             <DrawerRailItem
@@ -57,13 +56,13 @@ export const PreviewComponent = (): JSX.Element => {
                 itemIconColor={"${drawerRailItemSharedProps.itemIconColor}"}
                 ${toggleDefaultProp('ripple', drawerRailItemSharedProps.ripple, 'sharedProps')}
                 onClick={(): void => {
-                    setActiveItem('Locations');
+                    setActiveItem("Locations");
                 }}
             />
             <DrawerRailItem
                 icon={<Gavel />}
-                itemID={'Legal'}
-                title={'Legal'}
+                itemID={"Legal"}
+                title={"Legal"}
                 ${toggleDefaultProp('condensed', drawerRailItemProps.condensed, 'props')}
                 ${toggleDefaultProp('disableRailTooltip', drawerRailItemProps.disableRailTooltip, 'props')}
                 activeItemBackgroundColor={"${drawerRailItemSharedProps.activeItemBackgroundColor}"}
@@ -75,7 +74,7 @@ export const PreviewComponent = (): JSX.Element => {
                 itemIconColor={"${drawerRailItemSharedProps.itemIconColor}"}
                 ${toggleDefaultProp('ripple', drawerRailItemSharedProps.ripple, 'sharedProps')}
                 onClick={(): void => {
-                    setActiveItem('Legal');
+                    setActiveItem("Legal");
                 }}
             />
         </DrawerNavGroup>
@@ -94,7 +93,7 @@ export const PreviewComponent = (): JSX.Element => {
                                 condensed={drawerRailItemProps.condensed}
                                 disableRailTooltip={drawerRailItemProps.disableRailTooltip}
                                 hidden={drawerRailItemProps.hidden}
-                                icon={getIcon(drawerRailItemProps.icon) || <Devices />}
+                                icon={getIcon(drawerRailItemProps.icon) as JSX.Element}
                                 itemID={drawerRailItemProps.title}
                                 statusColor={drawerRailItemProps.statusColor}
                                 title={drawerRailItemProps.title}
