@@ -48,7 +48,7 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
                     handleNumberChange(e as ChangeEvent<HTMLInputElement>);
                 }}
                 variant={'filled'}
-                type={'text'}
+                type={'number'}
                 onClick={handleOpen}
                 InputProps={{
                     endAdornment: (
@@ -60,7 +60,7 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
                                     sx={{ height: 10, width: 10, p: 0.75 }}
                                     onClick={(e): void => {
                                         e.stopPropagation();
-                                        const newValue = `${parseInt(propData.inputValue as string, 10) + 1}`;
+                                        const newValue = (propData.inputValue as number) + 1;
                                         handleNumberChange({ target: { value: newValue } } as any);
                                     }}
                                 >
@@ -71,7 +71,7 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
                                     sx={{ height: 10, width: 10, p: 0.75 }}
                                     onClick={(e): void => {
                                         e.stopPropagation();
-                                        const newValue = `${parseInt(propData.inputValue as string, 10) - 1}`;
+                                        const newValue = (propData.inputValue as number) - 1;
                                         handleNumberChange({ target: { value: newValue } } as any);
                                     }}
                                 >
@@ -81,7 +81,7 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
                         </InputAdornment>
                     ),
                 }}
-                value={propData.inputValue}
+                value={propData.inputValue as number}
                 label={`${propData.propName}: ${propData.propType}`}
                 helperText={propData.helperText}
             />
@@ -95,7 +95,7 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
                 <Paper square sx={{ p: 1, width: '100%' }}>
                     <ClickAwayListener onClickAway={handleClose}>
                         <Slider
-                            value={parseInt(propData.inputValue as string, 10)}
+                            value={propData.inputValue as number}
                             size={'small'}
                             step={propData.rangeData?.step}
                             marks

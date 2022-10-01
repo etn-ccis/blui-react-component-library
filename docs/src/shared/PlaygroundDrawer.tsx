@@ -159,7 +159,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             fullWidth
             key={index}
             propData={prop}
-            onChange={(event): void => handleChange(prop.propName, String(event.target.value), componentName, index)}
+            onChange={(event): void =>
+                handleChange(prop.propName, parseInt(event.target.value, 10), componentName, index)
+            }
         />
     );
 
