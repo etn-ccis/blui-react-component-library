@@ -95,7 +95,7 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
                 <Paper square sx={{ p: 1, width: '100%' }}>
                     <ClickAwayListener onClickAway={handleClose}>
                         <Slider
-                            value={propData.inputValue as number}
+                            value={propData.inputValue === '' ? 0 : (propData.inputValue as number)}
                             size={'small'}
                             step={propData.rangeData?.step}
                             marks
