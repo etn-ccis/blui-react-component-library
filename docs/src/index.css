@@ -1,0 +1,17 @@
+@import 'prismjs/themes/prism-tomorrow.css';
+@import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+@import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
+
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.drawerBodyStyle {
+    flex: 1 1 auto;
+}
+.line-highlight {
+    margin-top: 20px;
+}

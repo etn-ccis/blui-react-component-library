@@ -1,0 +1,95 @@
+import Box from '@mui/material/Box';
+import ToolbarMenuAnatomy from '../images/ToolbarMenuAnatomy.png';
+
+# Toolbar Menu
+
+The `ToolbarMenu` component is used to display a dropdown menu with label, primarily inside of `<Toolbar>` or Card Header elements. The Menu can be populated via the `menuGroups` prop, or can be entirely customized by supplying your own `<Menu>` via the `menu` prop.
+
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '600px',
+        }}
+        component="img"
+        alt="Toolbar Menu"
+        src={ToolbarMenuAnatomy}
+    />
+</Box>
+
+### Toolbar Menu API
+
+<Box>
+
+| Prop Name  | Description                                  | Type                                    | Required | Default |
+| :--------- | :------------------------------------------- | :-------------------------------------- | :------- | :------ |
+| classes    | Style Overrides                              | `ToolbarMenuClasses`                    | no       |         |
+| icon       | The inline icon to display                   | `JSX.Element`                           | no       |         |
+| label      | Custom content for label text / icon + label | `ReactNode`                             | yes      |         |
+| menu       | Custom content to be displayed in the menu   | [`MUI Menu`](https://mui.com/api/menu/) | no       |         |
+| menuGroups | Groups of menu items to display              | `ToolbarMenuGroups[]`                   | no       |         |
+| MenuProps  | Property overrides for the MUI Menu          | `MenuProps`                             | no       |         |
+| onClose    | Function called when the menu is closed      | `Function`                              | no       |         |
+| onOpen     | Function called when the menu is opened      | `Function`                              | no       |         |
+
+</Box>
+
+### Style Overrides
+
+You can override the default styles used by Brightlayer UI by:
+
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the Global CSS Class in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/blob/master/docs/StyleOverridesGuide.md).
+
+<Box>
+
+| Name          | Global CSS Class                      | Description                                                                          |
+| :------------ | :------------------------------------ | :----------------------------------------------------------------------------------- |
+| root          | .BluiToolbarMenu-root                 | Styles applied to the root element                                                   |
+| dropdownArrow | .BluiToolbarMenu-dropdownArrow        | Styles applied to the DropdownArrow icon container                                   |
+|               | .BluiToolbarMenu-rotatedDropdownArrow | Styles applied to the rotated DropdownArrow icon container when the menu is expanded |
+| icon          | .BluiToolbarMenu-icon                 | Styles applied to the icon container                                                 |
+| label         | .BluiToolbarMenu-label                | Styles applied to the label text                                                     |
+|               | .BluiToolbarMenu-cursorPointer        | Styles applied to the cursorPointer                                                  |
+|               | .BluiToolbarMenu-navGroups            | Styles applied to the navGroups                                                      |
+
+</Box>
+
+### Toolbar Menu Groups Object
+
+The `menuGroups` prop of the `<ToolbarMenu>` includes many properties from the [`<DrawerNavGroup>`](/components/drawer/drawer-nav-group/api-docs) array found within a [`<DrawerBody>`](/components/drawer-body/api-docs).
+
+<Box>
+
+| Prop Name | Description                         | Type                | Required | Default |
+| --------- | ----------------------------------- | ------------------- | -------- | ------- |
+| fontColor | The color used for the text         | `string`            | no       |         |
+| iconColor | The color used for icons            | `string`            | no       |         |
+| items     | List of navigation items to render  | `ToolbarMenuItem[]` | yes      |         |
+| title     | Text to display in the group header | `string`            | no       |         |
+
+</Box>
+
+### Toolbar Menu Item Object
+
+<Box>
+
+| Attribute   | Description                         | Type          | Required | Default |
+| ----------- | ----------------------------------- | ------------- | -------- | ------- |
+| chevron     | Show chevron icon to the right      | `boolean`     | no       | false   |
+| divider     | Show a divider line below the item  | `boolean`     | no       |         |
+| icon        | A component to render for the icon  | `JSX.Element` | no       |         |
+| onClick     | A function to execute when clicked  | `function`    | no       |         |
+| statusColor | Status stripe and icon color        | `string`      | no       |         |
+| subtitle    | The text to show on the second line | `string`      | no       |         |
+| title       | The text to show on the first line  | `string`      | yes      |         |
+
+</Box>

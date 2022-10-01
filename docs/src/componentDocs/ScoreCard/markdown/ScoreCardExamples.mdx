@@ -1,0 +1,35 @@
+import { BasicScoreCard } from '../examples/BasicScoreCard';
+import { ScoreCardWithHeaderSubtitle } from '../examples/ScoreCardWithHeaderSubtitle';
+import { ScoreCardWithActions } from '../examples/ScoreCardWithActions';
+import { ScoreCardWithHeros } from '../examples/ScoreCardWithHeros';
+import { ScoreCardWithScoreBadge } from '../examples/ScoreCardWithScoreBadge';
+
+# Basic Score Card
+
+The `<ScoreCard>` is a [`Card`](https://mui.com/material-ui/react-card/) component that calls attention to particular values. A minimal example accepts a `headerTitle` prop and children elements.
+
+<BasicScoreCard />
+
+# Score Card Header with Subtitle and Info
+
+The `<ScoreCard>` also accepts a `headerSubtitle` and `headerInfo` props to provide additional context.
+
+<ScoreCardWithHeaderSubtitle />
+
+# Score Card with Actions
+
+The `<ScoreCard>` accepts an `actionItems` and `actionRow` props to allow users to interact with each card.
+
+<ScoreCardWithActions />
+
+# Score Card with Heroes
+
+The `<ScoreCard>` accepts a `badge` prop to display detailed metrics. A [`<Hero>`](/components/hero/api-docs) is commonly used here.
+
+<ScoreCardWithHeros />
+
+# Score Card with Score Badge
+
+The `badge` position can be adjusted via the `badgeOffset` prop.
+
+<ScoreCardWithScoreBadge />

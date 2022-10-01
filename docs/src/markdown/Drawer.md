@@ -349,17 +349,17 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-| Name            | Global CSS Class                      | Description                                                       |
-| --------------- | ------------------------------------- | ----------------------------------------------------------------- |
-| root            | .BluiDrawerNavItem-root               | Styles applied to the root element                                |
-| active          | .BluiDrawerNavItem-active\*           | Styles applied to the root element if the item is the active item |
-| chevron         | .BluiDrawerNavItem-chevron            | Styles applied to the chevron element                             |
-| expandIcon      | .BluiDrawerNavItem-expandIcon         | Styles applied to the expandIcon element                          |
-| nestedListGroup | .BluiDrawerNavItem-nestedListGroup    | Styles applied to wrapper surrounded nested children              |
-| nestedTitle     | .BluiDrawerNavItem-nestedTitle        | Styles applied to the title if the item is a nested item          |
-| title           | .BluiDrawerNavItem-title              | Styles applied to the title text                                  |
-| titleActive     | .BluiDrawerNavItem-titleActive        | Styles applied to the title text if the item is the active item   |
-| ripple          | .BluiDrawerNavItem-ripple             | Styles applied to the ripple                                      |
+| Name            | Global CSS Class                   | Description                                                       |
+| --------------- | ---------------------------------- | ----------------------------------------------------------------- |
+| root            | .BluiDrawerNavItem-root            | Styles applied to the root element                                |
+| active          | .BluiDrawerNavItem-active\*        | Styles applied to the root element if the item is the active item |
+| chevron         | .BluiDrawerNavItem-chevron         | Styles applied to the chevron element                             |
+| expandIcon      | .BluiDrawerNavItem-expandIcon      | Styles applied to the expandIcon element                          |
+| nestedListGroup | .BluiDrawerNavItem-nestedListGroup | Styles applied to wrapper surrounded nested children              |
+| nestedTitle     | .BluiDrawerNavItem-nestedTitle     | Styles applied to the title if the item is a nested item          |
+| title           | .BluiDrawerNavItem-title           | Styles applied to the title text                                  |
+| titleActive     | .BluiDrawerNavItem-titleActive     | Styles applied to the title text if the item is the active item   |
+| ripple          | .BluiDrawerNavItem-ripple          | Styles applied to the ripple                                      |
 
 > \* These classes can not be overridden via the `sx` prop.
 
@@ -558,9 +558,9 @@ You can override the default styles used by Brightlayer UI by:
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
 
-| Name     | Global CSS Class              | Description                                                    |
-| -------- | ----------------------------- | -------------------------------------------------------------- |
-| root     | .BluiDrawerLayout-root        | Styles applied to the root element                             |
-| content  | .BluiDrawerLayout-content     | Styles applied to the body content container                   |
-| drawer   | .BluiDrawerLayout-drawer      | Styles applied to the drawer container                         |
-| expanded | .Mui-expanded                 | Styles applied to the root element when the drawer is expanded |
+| Name     | Global CSS Class          | Description                                                    |
+| -------- | ------------------------- | -------------------------------------------------------------- |
+| root     | .BluiDrawerLayout-root    | Styles applied to the root element                             |
+| content  | .BluiDrawerLayout-content | Styles applied to the body content container                   |
+| drawer   | .BluiDrawerLayout-drawer  | Styles applied to the drawer container                         |
+| expanded | .Mui-expanded             | Styles applied to the root element when the drawer is expanded |

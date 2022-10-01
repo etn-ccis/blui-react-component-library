@@ -1,0 +1,105 @@
+import Box from '@mui/material/Box';
+
+import HeroAnatomy from '../images/heroAnatomy.png';
+
+import Heroes from '../images/heroes.png';
+
+# Hero
+
+The Brightlayer UI `<Hero>` components are used to call attention to particular values that are of the most importance to the user. These are typically displayed in a banner.
+
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '600px',
+        }}
+        component="img"
+        alt="Hero Banner"
+        src={Heroes}
+    />
+</Box>
+
+The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [Brightlayer UI icon](https://github.com/brightlayer-ui/icons), or [Progress Icon](https://github.com/brightlayer-ui/progress-icons/tree/master). It will also accept Text/Emoji values.
+
+The value section of the Hero utilizes a [`<ChannelValue>`](/components/channel-value/api-docs) component. To display a single simple value, the information can be passed using ChannelValueProps which will allow you to specify any props on the underlying `<ChannelValue>` component. For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
+
+## Hero Usage
+
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '600px',
+        }}
+        component="img"
+        alt="Hero Anatomy"
+        src={HeroAnatomy}
+    />
+</Box>
+
+### Hero API
+
+<Box>
+
+| Prop Name           | Description                                | Type                 | Required | Default       |
+| :------------------ | :----------------------------------------- | :------------------- | :------- | :------------ |
+| ChannelValueProps   | Props passed through to ChannelValue child | `ChannelValueProps`  | no       |               |
+| classes             | Style overrides                            | `HeroClasses`        | no       |               |
+| icon                | The primary icon                           | `ReactNode`          | yes      |               |
+| iconBackgroundColor | The color used behind the primary icon     | `string`             | no       | 'transparent' |
+| iconSize            | The size of the primary icon (min 10px)    | `number` \| `string` | no       | 36            |
+| label               | The text shown below the `ChannelValue`    | `string`             | yes      |               |
+
+</Box>
+
+Any other props supplied will be provided to the root element (`div`).
+
+### Style Overrides
+
+You can override the default styles used by Brightlayer UI by:
+
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the `Name` column below
+-   using the Global CSS Class in your main stylesheet
+
+For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/blob/master/docs/StyleOverridesGuide.md).
+
+<Box>
+
+| Name   | Global CSS Class | Description                         |
+| :----- | :--------------- | :---------------------------------- |
+| root   | .BluiHero-root   | Styles applied to the root element  |
+| icon   | .BluiHero-icon   | Styles applied to the icon element  |
+| label  | .BluiHero-label  | Styles applied to the label element |
+| values | .BluiHero-values | Styles applied to the value element |
+
+</Box>
+
+# Hero Banner
+
+The `<HeroBanner>` component is a simple wrapper component that is used to contain `<Hero>`s. It creates the flex container and sets up the spacing rules to display them. It accepts up to four `<Hero>` components as its children.
+
+### Hero Banner API
+
+<Box>
+
+| Prop Name | Description                        | Type                | Required | Default |
+| :-------- | :--------------------------------- | :------------------ | :------- | :------ |
+| classes   | Style overrides                    | `HeroBannerClasses` | no       |         |
+| divider   | Whether to show the line separator | `boolean`           | no       | false   |
+| limit     | Max number of children to display  | `number`            | no       | 4       |
+
+</Box>
+
+Any other props supplied will be provided to the root element (`div`).
