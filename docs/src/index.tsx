@@ -14,6 +14,8 @@ import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/
 import CssBaseline from '@mui/material/CssBaseline';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 import '@brightlayer-ui/react-themes/open-sans';
+import '@fontsource/roboto';
+import '@fontsource/roboto-mono';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';

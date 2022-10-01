@@ -1,6 +1,6 @@
 import React from 'react';
 import Drawer from '@mui/material/Drawer';
-import { DocColorField, DocTextField, PLAYGROUND_DRAWER_WIDTH } from '../shared';
+import { DocTextField, PLAYGROUND_DRAWER_WIDTH } from '../shared';
 import { ComponentType, PropsType } from '../__types__';
 import { updateProp, updateSharedProp, updateOtherProp } from '../redux/componentsPropsState';
 import { useAppDispatch } from '../redux/hooks';
@@ -23,6 +23,7 @@ import MenuItem from '@mui/material/MenuItem/MenuItem';
 import Select from '@mui/material/Select/Select';
 import Slider from '@mui/material/Slider/Slider';
 import * as Colors from '@brightlayer-ui/colors';
+import { ColorPicker } from './components/ColorPicker/ColorPicker.component';
 
 const Heading = styled(Typography)(({ theme }) => ({
     fontSize: theme.typography.pxToRem(15),
@@ -181,12 +182,18 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     );
 
     const renderColorInput = (prop: PropsType, index: string): JSX.Element => (
-        <DocColorField
-            sx={{ width: '100%' }}
+        <ColorPicker
+            fullWidth
             key={index}
             propData={prop}
             onChange={(event): void => handleChange(prop.propName, String(event.target.value), componentName, index)}
         />
+        // <DocColorField
+        //     sx={{ width: '100%' }}
+        //     key={index}
+        //     propData={prop}
+        //     onChange={(event): void => handleChange(prop.propName, String(event.target.value), componentName, index)}
+        // />
     );
 
     const propBlock = (prop: PropsType, index: string): JSX.Element => (
@@ -247,6 +254,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                             top: '112px',
                             width: PLAYGROUND_DRAWER_WIDTH,
                             paddingBottom: '112px',
+                            '& .MuiInputBase-root, & .MuiFormControlLabel-label': {
+                                fontFamily: '"Roboto Mono", monspace',
+                            },
                         },
                     }}
                     anchor={'right'}
