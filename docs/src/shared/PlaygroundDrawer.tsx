@@ -21,9 +21,9 @@ import FormHelperText from '@mui/material/FormHelperText/FormHelperText';
 import InputLabel from '@mui/material/InputLabel/InputLabel';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
 import Select from '@mui/material/Select/Select';
-import Slider from '@mui/material/Slider/Slider';
 import * as Colors from '@brightlayer-ui/colors';
 import { ColorPicker } from './components/ColorPicker/ColorPicker.component';
+import { NumberPicker } from './components/NumberPicker/NumberPicker.component';
 
 const Heading = styled(Typography)(({ theme }) => ({
     fontSize: theme.typography.pxToRem(15),
@@ -155,21 +155,12 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     );
 
     const renderSlider = (prop: PropsType, index: string): JSX.Element => (
-        <Box key={index}>
-            <Typography component="span">{`${prop.label ? prop.label : prop.propName}: ${prop.propType} ${
-                prop.required ? '*' : ''
-            }`}</Typography>
-            <Slider
-                value={prop.inputValue as number}
-                valueLabelDisplay="auto"
-                step={prop.rangeData?.step}
-                marks
-                min={prop.rangeData?.min}
-                max={prop.rangeData?.max}
-                onChange={(event, value): void => handleChange(prop.propName, value, componentName, index)}
-            />
-            <FormHelperText>{prop.helperText}</FormHelperText>
-        </Box>
+        <NumberPicker
+            fullWidth
+            key={index}
+            propData={prop}
+            onChange={(event): void => handleChange(prop.propName, String(event.target.value), componentName, index)}
+        />
     );
 
     const renderTextField = (prop: PropsType, index: string): JSX.Element => (
@@ -188,12 +179,6 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             propData={prop}
             onChange={(event): void => handleChange(prop.propName, String(event.target.value), componentName, index)}
         />
-        // <DocColorField
-        //     sx={{ width: '100%' }}
-        //     key={index}
-        //     propData={prop}
-        //     onChange={(event): void => handleChange(prop.propName, String(event.target.value), componentName, index)}
-        // />
     );
 
     const propBlock = (prop: PropsType, index: string): JSX.Element => (
