@@ -51,7 +51,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                                     color: Colors.blue[200],
                                     borderColor: Colors.blue[200],
                                     backgroundColor: Colors.black[800],
-                                    '&:hover': { borderColor: Colors.blue[200], backgroundColor: 'inherit' },
+                                    '&:hover': { borderColor: Colors.blue[200], backgroundColor: Colors.black[800] },
                                 },
                             }}
                             title={'Copy All'}
