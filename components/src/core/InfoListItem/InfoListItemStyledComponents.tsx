@@ -32,10 +32,9 @@ export const Root = styled(ListItem, {
     const getHeight = (): string => (dense ? `3.25rem` : `4.5rem`);
 
     let isCssColor = true;
-    try{
+    try {
         color(backgroundColor);
-    }
-    catch(e){
+    } catch (e) {
         isCssColor = false;
     }
 
