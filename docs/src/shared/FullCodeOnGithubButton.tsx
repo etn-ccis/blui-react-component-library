@@ -2,19 +2,21 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { SxProps, Theme } from '@mui/material/styles';
+import { MASTER_BRANCH } from '.';
 
 type FullCodeOnGithubProps = {
     url: string;
     sx?: SxProps<Theme>;
 };
 
-export const FullCodeOnGithub: React.FC<FullCodeOnGithubProps> = (props) => {
-    const { url, sx } = props;
-
-    const release = 'https://github.com/brightlayer-ui/react-component-library/blob/release/react-dev-docs/docs/src';
-    return (
-        <Button variant="outlined" target="_blank" href={`${release}/${url}`} startIcon={<GitHubIcon />} sx={sx}>
-            Full Code on GitHub
-        </Button>
-    );
-};
+export const FullCodeOnGithub: React.FC<FullCodeOnGithubProps> = (props) => (
+    <Button
+        variant="outlined"
+        target="_blank"
+        href={`${MASTER_BRANCH}/${props.url}`}
+        startIcon={<GitHubIcon />}
+        sx={props.sx}
+    >
+        Full Code on GitHub
+    </Button>
+);
