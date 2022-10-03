@@ -5,8 +5,14 @@ import { isMobile } from 'react-device-detect';
 import CopyAllIcon from '@mui/icons-material/CopyAll';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { Theme, SxProps } from '@mui/material/styles';
 
 type Position = 'bottom' | 'top' | 'left' | 'right';
+
+type CopyButtonProps = {
+    sx?: SxProps<Theme>;
+};
+
 type CopyToClipboardProps = {
     duration?: number;
     position?: Position;
@@ -14,10 +20,19 @@ type CopyToClipboardProps = {
     copiedTitle?: string;
     copyText: string;
     toolTipProps?: TooltipProps;
+    copyButtonProps?: CopyButtonProps;
 };
 
 export const CopyToClipboard: React.FC<CopyToClipboardProps> = (props) => {
-    const { duration = 1000, position = 'bottom', title = '', copiedTitle = 'Copied', copyText, toolTipProps } = props;
+    const {
+        duration = 1000,
+        position = 'bottom',
+        title = '',
+        copiedTitle = 'Copied',
+        copyText,
+        toolTipProps,
+        copyButtonProps,
+    } = props;
     const [isCopied, setIsCopied] = useState(false);
     const [showTooltip, setShowTooltip] = useState(false);
 
@@ -43,6 +58,8 @@ export const CopyToClipboard: React.FC<CopyToClipboardProps> = (props) => {
                         });
                     }}
                     startIcon={<CopyAllIcon />}
+                    {...copyButtonProps}
+                    sx={{ ...copyButtonProps?.sx }}
                 >
                     Copy All
                 </Button>

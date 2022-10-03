@@ -1,6 +1,8 @@
 import React, { HTMLAttributes, useEffect } from 'react';
 import Prism from 'prismjs';
 import Box from '@mui/material/Box';
+import * as Colors from '@brightlayer-ui/colors';
+
 export type CodeBlockProps = HTMLAttributes<HTMLDivElement> & {
     code: string;
     language: string;
@@ -27,7 +29,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
             {...divProps}
             className="Code"
         >
-            <pre data-line={dataLine} style={{ margin: 0, width: '100%' }}>
+            <pre data-line={dataLine} style={{ margin: 0, width: '100%', backgroundColor: Colors.black[800] }}>
                 <code style={{ fontFamily: 'monospace' }} className={`language-${language}`}>
                     {code}
                 </code>
