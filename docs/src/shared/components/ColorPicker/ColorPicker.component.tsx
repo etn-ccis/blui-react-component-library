@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { Box, IconButton, Stack, TextField as MuiTextField, TextFieldProps as MuiTextFieldProps } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
-import { Colorize } from '@mui/icons-material';
+import { Colorize, QuestionMark } from '@mui/icons-material';
 import { PropsType } from '../../../__types__';
 import Color from 'color';
 import _debounce from 'lodash.debounce';
@@ -77,9 +77,18 @@ export const ColorPicker = (props: ColorPickerProps): JSX.Element => {
                         <InputAdornment position="end">
                             <IconButton sx={{ position: 'relative' }}>
                                 <Stack alignItems={'center'}>
-                                    <Colorize />
+                                    {validColor ? <Colorize /> : <QuestionMark />}
                                     <Box
-                                        sx={{ mt: 0.5, height: 8, width: 40, bgcolor: validColor ? color : undefined }}
+                                        sx={{
+                                            mt: 0.5,
+                                            height: 8,
+                                            width: 40,
+                                            bgcolor:
+                                                color === '' ? 'text.primary' : validColor ? color : 'common.white',
+                                            borderWidth: 1,
+                                            borderStyle: 'solid',
+                                            borderColor: 'divider',
+                                        }}
                                     />
                                 </Stack>
                                 <input
@@ -104,7 +113,7 @@ export const ColorPicker = (props: ColorPickerProps): JSX.Element => {
                 value={color}
                 label={`${propData.propName}: ${propData.propType}`}
                 error={!validColor}
-                helperText={validColor ? propData.helperText : 'Invalid color format'}
+                helperText={validColor ? propData.helperText : 'Color value not recognized'}
             />
         </>
     );
