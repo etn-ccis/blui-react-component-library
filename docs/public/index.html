@@ -13,16 +13,18 @@
             // When the single page app is loaded further down in this file,
             // the correct url will be waiting in the browser's history for
             // the single page app to route accordingly.
-            (function(l) {
-                if (l.search[1] === '/' ) {
-                    var decoded = l.search.slice(1).split('&').map(function(s) {
-                        return s.replace(/~and~/g, '&')
-                    }).join('?');
-                    window.history.replaceState(null, null,
-                        l.pathname.slice(0, -1) + decoded + l.hash
-                    );
+            (function (l) {
+                if (l.search[1] === '/') {
+                    var decoded = l.search
+                        .slice(1)
+                        .split('&')
+                        .map(function (s) {
+                            return s.replace(/~and~/g, '&');
+                        })
+                        .join('?');
+                    window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
                 }
-            }(window.location))
+            })(window.location);
         </script>
         <!-- End Single Page Apps for GitHub Pages -->
 
@@ -32,7 +34,7 @@
         <meta name="theme-color" content="#000000" />
         <meta name="description" content="Web site created using create-react-app" />
         <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-        <base href="%PUBLIC_URL%/">
+        <base href="%PUBLIC_URL%/" />
 
         <!--
       manifest.json provides metadata used when your web app is installed on a
