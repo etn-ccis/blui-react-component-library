@@ -13,3 +13,5 @@ export const REGULAR_WIDTH_STYLE = {
     marginRight: 'auto',
     maxWidth: PAGE_WIDTH.REGULAR,
 };
+
+export const MASTER_BRANCH = 'https://github.com/brightlayer-ui/react-component-library/blob/master/docs';
