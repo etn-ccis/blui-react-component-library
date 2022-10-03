@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem, DrawerHeader } from '@brightlayer-ui/react-components';
 import Dashboard from '@mui/icons-material/Dashboard';
 import Notifications from '@mui/icons-material/Notifications';
@@ -12,9 +12,34 @@ import * as colors from '@brightlayer-ui/colors';
 
 export const TemporaryDrawerExample = (): JSX.Element => {
     const [open, setOpen] = useState(false);
+    const containerRef = useRef(null);
+
     return (
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
-            <Drawer open={open} width={250} variant="temporary" noLayout>
+        <Box
+            sx={{
+                m: '16px 0',
+                backgroundColor: colors.white[600],
+                p: 4,
+                minHeight: 250,
+                position: 'relative',
+                overflow: 'hidden',
+            }}
+            ref={containerRef}
+        >
+            <Drawer
+                open={open}
+                width={250}
+                variant="temporary"
+                noLayout
+                disablePortal
+                SlideProps={{
+                    container: containerRef.current,
+                }}
+                BackdropProps={{
+                    sx: { position: 'absolute' },
+                }}
+                sx={{ position: 'absolute', minWidth: '100%' }}
+            >
                 <DrawerHeader
                     title="Title"
                     icon={<Close />}
