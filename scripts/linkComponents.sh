@@ -40,26 +40,26 @@ if [ ! -s ./demos/showcase/node_modules/@brightlayer-ui/react-components ];
 fi
 
 echo -en "${BLUE}Creating new folder in node_modules of react-dev...${NC}"
-rm -rf "./docs/react-dev/node_modules/.cache"
-rm -rf "./docs/react-dev/node_modules/@brightlayer-ui/react-components"
-mkdir -p "./docs/react-dev/node_modules/@brightlayer-ui/react-components"
+rm -rf "./docs/node_modules/.cache"
+rm -rf "./docs/node_modules/@brightlayer-ui/react-components"
+mkdir -p "./docs/node_modules/@brightlayer-ui/react-components"
 # rm -rf ./demos/storybook/node_modules/@brightlayer-ui/react-components
 # mkdir -p ./demos/storybook/node_modules/@brightlayer-ui/react-components
 echo -e "${GREEN}Done${NC}"
 
 echo -en "${BLUE}Copying build output into node_modules...${NC}";
-cp -r ./components/package.json ./docs/react-dev/node_modules/@brightlayer-ui/react-components/package.json
-cp -r ./dist/. ./docs/react-dev/node_modules/@brightlayer-ui/react-components
+cp -r ./components/package.json ./docs/node_modules/@brightlayer-ui/react-components/package.json
+cp -r ./dist/. ./docs/node_modules/@brightlayer-ui/react-components
 # cp -r ./components/package.json ./demos/storybook/node_modules/@brightlayer-ui/react-components/package.json
 # cp -r ./dist/. ./demos/storybook/node_modules/@brightlayer-ui/react-components
 echo -e "${GREEN}Done${NC}"
 
 echo -en "\r\n${BLUE}Linking Components: ${NC}"
-if [ ! -f ./docs/react-dev/node_modules/@brightlayer-ui/react-components/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
+if [ ! -f ./docs/node_modules/@brightlayer-ui/react-components/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
 # if [ ! -f ./demos/storybook/node_modules/@brightlayer-ui/react-components/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
-if [ ! -s ./docs/react-dev/node_modules/@brightlayer-ui/react-components ];
+if [ ! -s ./docs/node_modules/@brightlayer-ui/react-components ];
     then
-        if [ ! -f ./docs/react-dev/node_modules/@brightlayer-ui/react-components/index.js ];
+        if [ ! -f ./docs/node_modules/@brightlayer-ui/react-components/index.js ];
         then echo -e "${BRED}Not Linked${NC}" && exit 1;
         fi;
 fi

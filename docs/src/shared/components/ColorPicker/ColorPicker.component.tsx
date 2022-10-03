@@ -8,6 +8,7 @@ import _debounce from 'lodash.debounce';
 
 type ColorPickerProps = MuiTextFieldProps & {
     propData: PropsType;
+    allowMUIColors?: boolean;
 };
 
 const HEX = /^#[0-9a-f]{6}$/i;
@@ -19,16 +20,18 @@ const MUI_DIVIDER = /^divider$/;
 const MUI_BACKGROUND = /^(background)\.(paper|default)$/;
 const MUI_ACTION = /^(action)\.(active|hover|selected|disabled|disabledBackground|focus)$/;
 
-const colorRegex = [MUI_COLOR, MUI_GREY, MUI_COMMON, MUI_TEXT, MUI_DIVIDER, MUI_BACKGROUND, MUI_ACTION];
+const muiRegex = [MUI_COLOR, MUI_GREY, MUI_COMMON, MUI_TEXT, MUI_DIVIDER, MUI_BACKGROUND, MUI_ACTION];
 
-const colorIsValid = (color: string): boolean => {
+const colorIsValid = (color: string, useMui = false): boolean => {
     try {
         Color(color);
         return true;
     } catch (e) {
-        for (let i = 0; i < colorRegex.length; i++) {
-            if (colorRegex[i].test(color)) {
-                return true;
+        if (useMui) {
+            for (let i = 0; i < muiRegex.length; i++) {
+                if (muiRegex[i].test(color)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -36,7 +39,7 @@ const colorIsValid = (color: string): boolean => {
 };
 
 export const ColorPicker = (props: ColorPickerProps): JSX.Element => {
-    const { propData, ...textFieldProps } = props;
+    const { propData, allowMUIColors = false, ...textFieldProps } = props;
     const [color, setColor] = useState<string>(propData.inputValue as string);
 
     const handleColorChange = useCallback(
@@ -46,7 +49,7 @@ export const ColorPicker = (props: ColorPickerProps): JSX.Element => {
         [textFieldProps.onChange]
     );
 
-    const validColor = colorIsValid(color) || (!propData.required && color === '');
+    const validColor = colorIsValid(color, allowMUIColors) || (!propData.required && color === '');
 
     // debounce the color change events to 1 per 300ms
     const handleColorChangeDebounced = useMemo(() => _debounce(handleColorChange, 300), [handleColorChange]);
@@ -75,10 +78,12 @@ export const ColorPicker = (props: ColorPickerProps): JSX.Element => {
                             <IconButton sx={{ position: 'relative' }}>
                                 <Stack alignItems={'center'}>
                                     <Colorize />
-                                    <Box sx={{ mt: 0.5, height: 8, width: 40, bgcolor: color }} />
+                                    <Box
+                                        sx={{ mt: 0.5, height: 8, width: 40, bgcolor: validColor ? color : undefined }}
+                                    />
                                 </Stack>
                                 <input
-                                    value={HEX.test(color) ? color : undefined}
+                                    value={HEX.test(color) ? color : '#000000'}
                                     type={'color'}
                                     style={{
                                         position: 'absolute',

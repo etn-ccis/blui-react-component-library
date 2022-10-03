@@ -31,6 +31,14 @@ export const Root = styled(ListItem, {
     const isWrapEnabled = (): boolean => wrapSubtitle || wrapTitle || wrapInfo;
     const getHeight = (): string => (dense ? `3.25rem` : `4.5rem`);
 
+    let isCssColor = true;
+    try{
+        color(backgroundColor);
+    }
+    catch(e){
+        isCssColor = false;
+    }
+
     return {
         cursor: onClick ? 'pointer' : 'inherit',
         backgroundColor: backgroundColor || 'inherit',
@@ -38,7 +46,7 @@ export const Root = styled(ListItem, {
         height: !isWrapEnabled() ? getHeight() : 'auto',
         '&:hover': {
             backgroundColor: onClick
-                ? backgroundColor && backgroundColor !== 'inherit' && backgroundColor !== 'transparent'
+                ? backgroundColor && backgroundColor !== 'inherit' && backgroundColor !== 'transparent' && isCssColor
                     ? color(backgroundColor).darken(0.08).string()
                     : theme.palette.action.hover
                 : undefined,
