@@ -33,11 +33,12 @@ const container = document.getElementById('root');
 if (!container) throw new Error('Root Element was not found in the DOM');
 
 const root = ReactDOMClient.createRoot(container);
+const basename = process.env.PUBLIC_URL || '/';
 
 root.render(
     <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(BLUIThemes.blue)}>
-            <BrowserRouter>
+            <BrowserRouter basename={basename}>
                 <CssBaseline />
                 <Provider store={store}>
                     <MDXProvider components={componentsMap as any}>
