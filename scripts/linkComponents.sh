@@ -14,7 +14,7 @@ cd ../components
 yarn build
 cd ..
 
-echo -en "${BLUE}Creating new folder in node_modules...${NC}"
+echo -en "${BLUE}Creating new folder in node_modules of showcase...${NC}"
 rm -rf "./demos/showcase/node_modules/.cache"
 rm -rf "./demos/showcase/node_modules/@brightlayer-ui/react-components"
 mkdir -p "./demos/showcase/node_modules/@brightlayer-ui/react-components"
@@ -22,7 +22,7 @@ mkdir -p "./demos/showcase/node_modules/@brightlayer-ui/react-components"
 # mkdir -p ./demos/storybook/node_modules/@brightlayer-ui/react-components
 echo -e "${GREEN}Done${NC}"
 
-echo -en "${BLUE}Copying build output into node_modules...${NC}";
+echo -en "${BLUE}Copying build output into node_modules of showcase...${NC}";
 cp -r ./components/package.json ./demos/showcase/node_modules/@brightlayer-ui/react-components/package.json
 cp -r ./dist/. ./demos/showcase/node_modules/@brightlayer-ui/react-components
 # cp -r ./components/package.json ./demos/storybook/node_modules/@brightlayer-ui/react-components/package.json
@@ -47,7 +47,7 @@ mkdir -p "./docs/node_modules/@brightlayer-ui/react-components"
 # mkdir -p ./demos/storybook/node_modules/@brightlayer-ui/react-components
 echo -e "${GREEN}Done${NC}"
 
-echo -en "${BLUE}Copying build output into node_modules...${NC}";
+echo -en "${BLUE}Copying build output into node_modules or react-dev...${NC}";
 cp -r ./components/package.json ./docs/node_modules/@brightlayer-ui/react-components/package.json
 cp -r ./dist/. ./docs/node_modules/@brightlayer-ui/react-components
 # cp -r ./components/package.json ./demos/storybook/node_modules/@brightlayer-ui/react-components/package.json
