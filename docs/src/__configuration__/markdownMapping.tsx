@@ -236,10 +236,10 @@ export const componentsMap = {
                 thead: {
                     backgroundColor: Colors.white[100],
                 },
-                'tbody tr:nth-child(odd)': {
+                'tbody tr:nth-of-type(odd)': {
                     backgroundColor: Colors.white[50],
                 },
-                'tbody tr:nth-child(even)': {
+                'tbody tr:nth-of-type(even)': {
                     backgroundColor: Colors.white[100],
                 },
                 td: {
