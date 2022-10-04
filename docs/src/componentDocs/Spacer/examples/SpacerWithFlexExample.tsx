@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box } from '@mui/material';
-// import * as Colors from '@brightlayer-ui/colors';
 import { Spacer } from '@brightlayer-ui/react-components';
 
 export const SpacerWithFlexExample = (): JSX.Element => (
