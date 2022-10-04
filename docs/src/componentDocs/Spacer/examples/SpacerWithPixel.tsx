@@ -25,7 +25,7 @@ export const SpacerWithPixel = (): JSX.Element => (
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/EmptyState/examples/SpacerWithPixelExample.tsx"
+            url="componentDocs/Spacer/examples/SpacerWithPixelExample.tsx"
         />
     </Box>
 );

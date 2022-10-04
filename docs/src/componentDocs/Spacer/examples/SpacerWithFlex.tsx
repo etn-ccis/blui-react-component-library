@@ -18,7 +18,7 @@ export const SpacerWithFlex = (): JSX.Element => (
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/EmptyState/examples/SpacerWithFlexExample.tsx"
+            url="componentDocs/Spacer/examples/SpacerWithFlexExample.tsx"
         />
     </Box>
 );
