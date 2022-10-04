@@ -38,7 +38,6 @@ export const PreviewComponent = (): JSX.Element => {
     ${toggleDefaultProp('wrapTitle', infoListItemProps.wrapTitle)}
     ${toggleDefaultProp('disabled', infoListItemOtherProps.disabled, 'otherProps')}
     onClick={(): void => {
-        // eslint-disable-next-line
         console.log("clicked");
     }}
 />`;

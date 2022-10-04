@@ -25,7 +25,7 @@ export const PreviewComponent = (): JSX.Element => {
 
     const toggleAvatarSnippet = (showAvatarImageSnippet: boolean): string =>
         showAvatarImageSnippet
-            ? `avatar={<Avatar src={'../images/trex.png'} alt={'User Avatar'} />}`
+            ? `avatar={<Avatar src={"../images/trex.png"} alt={"User Avatar"} />}`
             : `avatar={<Avatar>AV</Avatar>}`;
 
     const generateCodeSnippet = (): string => {
@@ -38,15 +38,15 @@ export const PreviewComponent = (): JSX.Element => {
         {
             items: [
                 {
-                    title: 'Settings',
+                    title: "Settings",
                     icon: <Settings />,
                 },
                 {
-                    title: 'Contact Us',
+                    title: "Contact Us",
                     icon: <Email />,
                 },
                 {
-                    title: 'Log Out',
+                    title: "Log Out",
                     icon: <ExitToApp />,
                 },
             ],
