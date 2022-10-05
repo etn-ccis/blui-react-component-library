@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
@@ -10,22 +11,15 @@ import MoveToInbox from '@mui/icons-material/MoveToInbox';
 import FactCheck from '@mui/icons-material/FactCheck';
 import Accessibility from '@mui/icons-material/Accessibility';
 import Notifications from '@mui/icons-material/Notifications';
-import { useState } from 'react';
 
 export const ComplexDrawerExample = (): JSX.Element => {
     const [selected, setSelected] = useState('1');
 
     return (
         <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
-            <Drawer
-                open
-                width={300}
-                sx={{ mx: 'auto', height: 580, '& .MuiPaper-root': { overflow: 'auto' } }}
-                activeItem={selected}
-                noLayout
-            >
+            <Drawer open width={300} sx={{ mx: 'auto', height: 580 }} activeItem={selected} noLayout>
                 <DrawerHeader icon={<Menu />} title="Brightlayer UI" subtitle="Drawer Component" />
-                <DrawerBody sx={{ flex: '1 1 auto' }}>
+                <DrawerBody>
                     <DrawerNavGroup title="Group 1" hidePadding divider>
                         <DrawerNavItem
                             title="Overview"

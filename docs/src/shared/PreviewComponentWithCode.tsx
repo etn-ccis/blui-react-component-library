@@ -44,7 +44,20 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                         right: '400px',
                     }}
                 >
-                    {show && <CopyToClipboard title={'Copy All'} copyText={code} />}
+                    {show && (
+                        <CopyToClipboard
+                            copyButtonProps={{
+                                sx: {
+                                    color: Colors.blue[200],
+                                    borderColor: Colors.blue[200],
+                                    backgroundColor: Colors.black[800],
+                                    '&:hover': { borderColor: Colors.blue[200], backgroundColor: Colors.black[800] },
+                                },
+                            }}
+                            title={'Copy All'}
+                            copyText={code}
+                        />
+                    )}
                 </Box>
             </Box>
         </>
