@@ -38,7 +38,7 @@ export const PreviewComponent = (): JSX.Element => {
         ${toggleDefaultProp('backgroundImage', `${getImage(drawerHeaderProps.backgroundImage)}`)}
         ${toggleDefaultProp('divider', drawerHeaderProps.divider)}
         ${toggleDefaultProp('backgroundOpacity', drawerHeaderProps.backgroundOpacity)}
-        fontColor={"${drawerHeaderProps.fontColor}"}
+        ${toggleDefaultProp('fontColor', drawerHeaderProps.fontColor)}
         ${toggleIconProp(drawerHeaderProps.icon)}
         ${toggleDefaultProp('subtitle', drawerHeaderProps.subtitle)}
         ${toggleDefaultProp('title', drawerHeaderProps.title)}

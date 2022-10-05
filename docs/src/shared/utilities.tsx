@@ -218,6 +218,9 @@ export const hideDefaultPropsFromSnippet = (
             return `${propName}={${currentValue}}`;
         case 'boolean':
             return `${propName}={${currentValue}}`;
+        case 'number':
+        case 'number | string':
+            return currentValue === '' ? '' : `${propName}={${currentValue}}`;
         default:
             return `${propName}={${currentValue}}`;
     }

@@ -161,7 +161,12 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             propData={prop}
             onChange={(event): void => {
                 const value = parseInt(event.target.value, 10);
-                handleChange(prop.propName, isNaN(value) ? '' : value, componentName, index);
+                handleChange(
+                    prop.propName,
+                    isNaN(value) && prop.propType === 'number | string' ? '' : isNaN(value) ? 0 : value,
+                    componentName,
+                    index
+                );
             }}
         />
     );

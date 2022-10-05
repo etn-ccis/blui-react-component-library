@@ -10,7 +10,6 @@ export const PreviewComponent = (): JSX.Element => {
     const infoListItemJson = useAppSelector((state: RootState) => state.componentsPropsState.infoListItemComponent);
 
     const infoListItemProps = createProps(infoListItemJson.props as PropsType[]);
-    const infoListItemOtherProps = createProps(infoListItemJson.otherProps as PropsType[]);
 
     const toggleDefaultProp = (propName: string, currentValue: any, groupType?: string): string =>
         hideDefaultPropsFromSnippet(infoListItemJson, propName, currentValue, groupType);
@@ -18,25 +17,25 @@ export const PreviewComponent = (): JSX.Element => {
     const generateCodeSnippet = (): string => {
         const jsx = `<InfoListItem
     ${toggleDefaultProp('avatar', infoListItemProps.avatar)}
-    backgroundColor={"${infoListItemProps.backgroundColor}"}
+    ${toggleDefaultProp('backgroundColor', infoListItemProps.backgroundColor)}
     ${toggleDefaultProp('chevron', infoListItemProps.chevron)}
-    chevronColor={"${infoListItemProps.chevronColor}"}
+    ${toggleDefaultProp('chevronColor', infoListItemProps.chevronColor)}
     ${toggleDefaultProp('dense', infoListItemProps.dense)}
     ${toggleDefaultProp('divider', infoListItemProps.divider)}
-    fontColor={"${infoListItemProps.fontColor}"}
+    ${toggleDefaultProp('fontColor', infoListItemProps.fontColor)}
     ${toggleDefaultProp('hidePadding', infoListItemProps.hidePadding)}
     ${toggleDefaultProp('icon', infoListItemProps.icon)}
     ${toggleDefaultProp('iconAlign', infoListItemProps.iconAlign)}
-    iconColor={"${infoListItemProps.iconColor}"}
+    ${toggleDefaultProp('iconColor', infoListItemProps.iconColor)}
     ${toggleDefaultProp('info', infoListItemProps.info)}
     ${toggleDefaultProp('ripple', infoListItemProps.ripple)}
-    statusColor={"${infoListItemProps.statusColor}"}
+    ${toggleDefaultProp('statusColor', infoListItemProps.statusColor)}
     ${toggleDefaultProp('subtitle', infoListItemProps.subtitle)}
-    title={"${infoListItemProps.title}"}
+    ${toggleDefaultProp('title', infoListItemProps.title)}
     ${toggleDefaultProp('wrapInfo', infoListItemProps.wrapInfo)}
     ${toggleDefaultProp('wrapSubtitle', infoListItemProps.wrapSubtitle)}
     ${toggleDefaultProp('wrapTitle', infoListItemProps.wrapTitle)}
-    ${toggleDefaultProp('disabled', infoListItemOtherProps.disabled, 'otherProps')}
+    ${toggleDefaultProp('disabled', infoListItemProps.disabled)}
     onClick={(): void => {
         console.log("clicked");
     }}
@@ -68,9 +67,9 @@ export const PreviewComponent = (): JSX.Element => {
                     wrapInfo={infoListItemProps.wrapInfo}
                     wrapSubtitle={infoListItemProps.wrapSubtitle}
                     wrapTitle={infoListItemProps.wrapTitle}
-                    disabled={infoListItemOtherProps.disabled}
+                    disabled={infoListItemProps.disabled}
                     onClick={(): void => {
-                        if (!infoListItemOtherProps.disabled) {
+                        if (!infoListItemProps.disabled) {
                             // eslint-disable-next-line
                             console.log('clicked');
                         }

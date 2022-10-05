@@ -43,6 +43,7 @@ export const sharedPropsConfig: PropsType[] = [
         propType: 'boolean',
         helperText: 'Whether to have chevrons for all menu items',
         required: false,
+        defaultValue: false,
     },
     {
         propName: 'chevronColor',
@@ -97,6 +98,7 @@ export const sharedPropsConfig: PropsType[] = [
         propType: 'boolean',
         helperText: 'Whether to hide the paddings reserved for menu item icons',
         required: false,
+        defaultValue: false,
     },
     {
         propName: 'itemFontColor',

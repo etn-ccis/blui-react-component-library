@@ -35,13 +35,22 @@ export const PreviewComponent = (): JSX.Element => {
     <DrawerBody>
         <DrawerNavGroup
             ${toggleDefaultProp('title', drawerNavGroupProps.title)}
-            titleColor={"${drawerNavGroupProps.titleColor}"}
+            ${toggleDefaultProp('titleColor', drawerNavGroupProps.titleColor)}
             ${toggleDefaultProp('titleDivider', drawerNavGroupProps.titleDivider)}
-            activeItemBackgroundColor={"${drawerNavGroupSharedProps.activeItemBackgroundColor}"}
-            activeItemFontColor={"${drawerNavGroupSharedProps.activeItemFontColor}"}
-            activeItemIconColor={"${drawerNavGroupSharedProps.activeItemIconColor}"}
-            chevron={${drawerNavGroupSharedProps.chevron}}
-            chevronColor={"${drawerNavGroupSharedProps.chevronColor}"}
+            ${toggleDefaultProp(
+                'activeItemBackgroundColor',
+                drawerNavGroupSharedProps.activeItemBackgroundColor,
+                'sharedProps'
+            )}
+            ${toggleDefaultProp(
+                'activeItemBackgroundShape',
+                drawerNavGroupSharedProps.activeItemBackgroundShape,
+                'sharedProps'
+            )}
+            ${toggleDefaultProp('activeItemFontColor', drawerNavGroupSharedProps.activeItemFontColor, 'sharedProps')}
+            ${toggleDefaultProp('activeItemIconColor', drawerNavGroupSharedProps.activeItemIconColor, 'sharedProps')}
+            ${toggleDefaultProp('chevron', drawerNavGroupSharedProps.chevron, 'sharedProps')}
+            ${toggleDefaultProp('chevronColor', drawerNavGroupSharedProps.chevronColor, 'sharedProps')}
             ${toggleDefaultProp('collapseIcon', drawerNavGroupSharedProps.collapseIcon, 'sharedProps')}
             ${toggleDefaultProp(
                 'disableActiveItemParentStyles',
@@ -50,10 +59,14 @@ export const PreviewComponent = (): JSX.Element => {
             )}
             ${toggleDefaultProp('divider', drawerNavGroupSharedProps.divider, 'sharedProps')}
             ${toggleDefaultProp('expandIcon', drawerNavGroupSharedProps.expandIcon, 'sharedProps')}
-            hidePadding={${drawerNavGroupSharedProps.hidePadding}}
-            itemFontColor={"${drawerNavGroupSharedProps.itemFontColor}"}
-            itemIconColor={"${drawerNavGroupSharedProps.itemIconColor}"}
-            nestedBackgroundColor={"${drawerNavGroupSharedProps.nestedBackgroundColor}"}
+            ${toggleDefaultProp('hidePadding', drawerNavGroupSharedProps.hidePadding, 'sharedProps')}
+            ${toggleDefaultProp('itemFontColor', drawerNavGroupSharedProps.itemFontColor, 'sharedProps')}
+            ${toggleDefaultProp('itemIconColor', drawerNavGroupSharedProps.itemIconColor, 'sharedProps')}
+            ${toggleDefaultProp(
+                'nestedBackgroundColor',
+                drawerNavGroupSharedProps.nestedBackgroundColor,
+                'sharedProps'
+            )}
             ${toggleDefaultProp('nestedDivider', drawerNavGroupSharedProps.nestedDivider, 'sharedProps')}
             ${toggleDefaultProp('ripple', drawerNavGroupSharedProps.ripple, 'sharedProps')}
         >

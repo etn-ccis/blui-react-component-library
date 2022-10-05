@@ -112,10 +112,10 @@ export const PreviewComponent = (): JSX.Element => {
     headerTitle={"${scoreCardProps.headerTitle}"}
     ${toggleDefaultProp('headerSubtitle', scoreCardProps.headerSubtitle)}
     ${toggleDefaultProp('headerInfo', scoreCardProps.headerInfo)}
-    headerColor={"${scoreCardProps.headerColor}"}
-    headerFontColor={"${scoreCardProps.headerFontColor}"}
+    ${toggleDefaultProp('headerColor', scoreCardProps.headerColor)}
+    ${toggleDefaultProp('headerFontColor', scoreCardProps.headerFontColor)}
     ${toggleDefaultProp('headerBackgroundImage', `${getImage(scoreCardProps.headerBackgroundImage)}`)}
-    actionLimit={${scoreCardProps.actionLimit}}
+    ${toggleDefaultProp('actionLimit', scoreCardProps.actionLimit)}
     actionItems={[
         <Search key={"search"} />,
         <Mail key={"mail"} />,

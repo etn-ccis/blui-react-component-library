@@ -170,8 +170,6 @@ export const infoListItemConfig: ComponentType = {
             required: false,
             defaultValue: false,
         },
-    ],
-    otherProps: [
         {
             propName: 'disabled',
             inputType: 'boolean',

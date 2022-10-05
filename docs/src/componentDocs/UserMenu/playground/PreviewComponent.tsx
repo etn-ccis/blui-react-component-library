@@ -33,7 +33,7 @@ export const PreviewComponent = (): JSX.Element => {
     ${toggleAvatarSnippet(userMenuOtherProps.showAvatarImage)}
     ${toggleDefaultProp('menuTitle', userMenuProps.menuTitle)}
     ${toggleDefaultProp('menuSubtitle', userMenuProps.menuSubtitle)}
-    useBottomSheetAt={${userMenuProps.useBottomSheetAt}}
+    ${toggleDefaultProp('useBottomSheetAt', userMenuProps.useBottomSheetAt)}
     menuGroups={[
         {
             items: [

@@ -41,7 +41,7 @@ export const PreviewComponent = (): JSX.Element => {
         </DrawerNavGroup>
     </DrawerBody>
     <DrawerFooter
-        backgroundColor={"${drawerFooterProps.backgroundColor}"}
+        ${toggleDefaultProp('backgroundColor', drawerFooterProps.backgroundColor)}
         ${toggleDefaultProp('divider', drawerFooterProps.divider)}
         ${toggleDefaultProp('hideContentOnCollapse', drawerFooterProps.hideContentOnCollapse)}
     >

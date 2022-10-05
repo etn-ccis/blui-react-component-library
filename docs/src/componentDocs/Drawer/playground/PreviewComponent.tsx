@@ -33,6 +33,26 @@ export const PreviewComponent = (): JSX.Element => {
         dispatch(updateComponentProp(newState));
     };
 
+    const updateOpenProp = (open: boolean): void => {
+        const newState = {
+            propName: 'open',
+            propValue: open,
+            componentName: drawerJson.componentName as string,
+            groupType: 'props',
+        };
+        dispatch(updateComponentProp(newState));
+        setTimeout((): void => {
+            dispatch(
+                updateComponentProp({
+                    propName: 'variant',
+                    propValue: 'permanent',
+                    componentName: drawerJson.componentName as string,
+                    groupType: 'props',
+                })
+            );
+        }, 500);
+    };
+
     const drawerProps = createProps(drawerJson.props as PropsType[]);
     const drawerSharedProps = createProps(drawerJson.sharedProps as PropsType[]);
 
@@ -83,12 +103,12 @@ export const PreviewComponent = (): JSX.Element => {
     const generateCodeSnippet = (): string => {
         const jsx = `<Drawer
     activeItem={"${drawerProps.activeItem}"}
-    activeItemBackgroundColor={"${drawerSharedProps.activeItemBackgroundColor}"}
-    activeItemFontColor={"${drawerSharedProps.activeItemFontColor}"}
-    activeItemIconColor={"${drawerSharedProps.activeItemIconColor}"}
+    ${toggleDefaultProp('activeItemBackgroundColor', drawerSharedProps.activeItemBackgroundColor, 'sharedProps')}
+    ${toggleDefaultProp('activeItemFontColor', drawerSharedProps.activeItemFontColor, 'sharedProps')}
+    ${toggleDefaultProp('activeItemIconColor', drawerSharedProps.activeItemIconColor, 'sharedProps')}
     ${toggleDefaultProp('activeItemBackgroundShape', drawerSharedProps.activeItemBackgroundShape, 'sharedProps')}
-    chevron={${drawerSharedProps.chevron}}
-    chevronColor={"${drawerSharedProps.chevronColor}"}
+    ${toggleDefaultProp('chevron', drawerSharedProps.chevron, 'sharedProps')}
+    ${toggleDefaultProp('chevronColor', drawerSharedProps.chevronColor, 'sharedProps')}
     ${toggleDefaultProp('collapseIcon', drawerSharedProps.collapseIcon, 'sharedProps')}
     ${toggleDefaultProp('condensed', drawerProps.condensed, 'props')}
     ${toggleDefaultProp(
@@ -98,10 +118,10 @@ export const PreviewComponent = (): JSX.Element => {
     )}
     ${toggleDefaultProp('divider', drawerSharedProps.divider, 'sharedProps')}
     ${toggleDefaultProp('expandIcon', drawerSharedProps.expandIcon, 'sharedProps')}
-    hidePadding={${drawerSharedProps.hidePadding}}
-    itemFontColor={"${drawerSharedProps.itemFontColor}"}
-    itemIconColor={"${drawerSharedProps.itemIconColor}"}
-    nestedBackgroundColor={"${drawerSharedProps.nestedBackgroundColor}"}
+    ${toggleDefaultProp('hidePadding', drawerSharedProps.hidePadding, 'sharedProps')}
+    ${toggleDefaultProp('itemFontColor', drawerSharedProps.itemFontColor, 'sharedProps')}
+    ${toggleDefaultProp('itemIconColor', drawerSharedProps.itemIconColor, 'sharedProps')}
+    ${toggleDefaultProp('nestedBackgroundColor', drawerSharedProps.nestedBackgroundColor, 'sharedProps')}
     ${toggleDefaultProp('nestedDivider', drawerSharedProps.nestedDivider, 'sharedProps')}
     ${toggleDefaultProp('noLayout', drawerProps.noLayout)}
     open={${drawerProps.open}}
@@ -218,6 +238,11 @@ export const PreviewComponent = (): JSX.Element => {
                     variant={drawerProps.variant}
                     width={drawerProps.width}
                     sx={{ minHeight: 'auto' }}
+                    ModalProps={{
+                        onBackdropClick: (): void => {
+                            updateOpenProp(false);
+                        },
+                    }}
                 >
                     <DrawerHeader
                         backgroundColor={Colors.blue[500]}
