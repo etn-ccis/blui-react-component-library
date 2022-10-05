@@ -102,14 +102,14 @@ export const NavigationDrawer: React.FC = () => {
                             display: 'flex',
                             zIndex: 1,
                             padding: '0 16px',
-                            alignItems: 'center',
+                            alignItems: 'flex-start',
                             width: '100%',
                             height: '100%',
                             flexDirection: 'column',
                             justifyContent: 'center',
                         }}
                     >
-                        <Typography variant="subtitle1">Brightlayer UI</Typography>
+                        <Typography variant="subtitle1">Brightlayer User Interface</Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                             <Typography variant={'body2'} paragraph={false}>
                                 Developer Docs
@@ -120,7 +120,11 @@ export const NavigationDrawer: React.FC = () => {
                                     backgroundColor: 'white',
                                 }}
                                 icon={<img src={AvatarSvg} />}
-                                label={<Typography variant={'overline'}>react</Typography>}
+                                label={
+                                    <Typography variant={'overline'} sx={{ fontWeight: 700, letterSpacing: 1 }}>
+                                        REACT
+                                    </Typography>
+                                }
                                 variant={'filled'}
                                 size={'small'}
                             />
