@@ -14,6 +14,8 @@ import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/
 import CssBaseline from '@mui/material/CssBaseline';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 import '@brightlayer-ui/react-themes/open-sans';
+import '@fontsource/roboto';
+import '@fontsource/roboto-mono';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
@@ -33,11 +35,12 @@ const container = document.getElementById('root');
 if (!container) throw new Error('Root Element was not found in the DOM');
 
 const root = ReactDOMClient.createRoot(container);
+const basename = process.env.PUBLIC_URL || '/';
 
 root.render(
     <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(BLUIThemes.blue)}>
-            <BrowserRouter>
+            <BrowserRouter basename={basename}>
                 <CssBaseline />
                 <Provider store={store}>
                     <MDXProvider components={componentsMap as any}>

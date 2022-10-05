@@ -1,6 +1,6 @@
 import React from 'react';
 import Drawer from '@mui/material/Drawer';
-import { DocColorField, DocTextField, PLAYGROUND_DRAWER_WIDTH } from '../shared';
+import { DocTextField, PLAYGROUND_DRAWER_WIDTH } from '../shared';
 import { ComponentType, PropsType } from '../__types__';
 import { updateProp, updateSharedProp, updateOtherProp } from '../redux/componentsPropsState';
 import { useAppDispatch } from '../redux/hooks';
@@ -21,8 +21,9 @@ import FormHelperText from '@mui/material/FormHelperText/FormHelperText';
 import InputLabel from '@mui/material/InputLabel/InputLabel';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
 import Select from '@mui/material/Select/Select';
-import Slider from '@mui/material/Slider/Slider';
 import * as Colors from '@brightlayer-ui/colors';
+import { ColorPicker } from './components/ColorPicker/ColorPicker.component';
+import { NumberPicker } from './components/NumberPicker/NumberPicker.component';
 
 const Heading = styled(Typography)(({ theme }) => ({
     fontSize: theme.typography.pxToRem(15),
@@ -154,21 +155,15 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     );
 
     const renderSlider = (prop: PropsType, index: string): JSX.Element => (
-        <Box key={index}>
-            <Typography component="span">{`${prop.label ? prop.label : prop.propName}: ${prop.propType} ${
-                prop.required ? '*' : ''
-            }`}</Typography>
-            <Slider
-                value={prop.inputValue as number}
-                valueLabelDisplay="auto"
-                step={prop.rangeData?.step}
-                marks
-                min={prop.rangeData?.min}
-                max={prop.rangeData?.max}
-                onChange={(event, value): void => handleChange(prop.propName, value, componentName, index)}
-            />
-            <FormHelperText>{prop.helperText}</FormHelperText>
-        </Box>
+        <NumberPicker
+            fullWidth
+            key={index}
+            propData={prop}
+            onChange={(event): void => {
+                const value = parseInt(event.target.value, 10);
+                handleChange(prop.propName, isNaN(value) ? '' : value, componentName, index);
+            }}
+        />
     );
 
     const renderTextField = (prop: PropsType, index: string): JSX.Element => (
@@ -181,8 +176,8 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     );
 
     const renderColorInput = (prop: PropsType, index: string): JSX.Element => (
-        <DocColorField
-            sx={{ width: '100%' }}
+        <ColorPicker
+            fullWidth
             key={index}
             propData={prop}
             onChange={(event): void => handleChange(prop.propName, String(event.target.value), componentName, index)}
@@ -247,6 +242,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                             top: '112px',
                             width: PLAYGROUND_DRAWER_WIDTH,
                             paddingBottom: '112px',
+                            '& .MuiInputBase-root, & .MuiFormControlLabel-label': {
+                                fontFamily: '"Roboto Mono", monspace',
+                            },
                         },
                     }}
                     anchor={'right'}

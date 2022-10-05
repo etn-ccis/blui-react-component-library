@@ -63,7 +63,7 @@ export const drawerRailItemConfig: ComponentType = {
         {
             propName: 'activeItemBackgroundColor',
             inputType: 'colorPicker',
-            inputValue: Colors.blue[50],
+            inputValue: Colors.white[50],
             propType: 'string',
             helperText: `Background color for the 'active' item`,
             required: false,
@@ -87,7 +87,7 @@ export const drawerRailItemConfig: ComponentType = {
         {
             propName: 'backgroundColor',
             inputType: 'colorPicker',
-            inputValue: 'transparent',
+            inputValue: Colors.white[50],
             propType: 'string',
             helperText: 'Color used for the background of the element',
             required: false,
