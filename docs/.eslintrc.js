@@ -1,10 +1,10 @@
-module.exports =  {
-    parser:  '@typescript-eslint/parser',
-    extends:  [ '@brightlayer-ui/eslint-config/ts' ],
-    parserOptions:  {
-        project: "./tsconfig.json",
+module.exports = {
+    parser: '@typescript-eslint/parser',
+    extends: ['@brightlayer-ui/eslint-config/ts'],
+    parserOptions: {
+        project: './tsconfig.json',
     },
     env: {
-        browser: true
+        browser: true,
     },
 };

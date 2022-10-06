@@ -29,14 +29,14 @@ The `<Drawer>` component is a wrapper around the [MUI Drawer](https://mui.com/ma
 
 The `<Drawer>` component is the parent container, which manages the overall state of the drawer and renders the child components.
 
-A `<Drawer />` can be broken down into the following subsections:
+A `<Drawer>` can be broken down into the following subsections:
 
--   [`<DrawerHeader />`](/components/drawer/drawer-header/examples)
--   [`<DrawerSubheader />`](/components/drawer-sub-header/examples)
--   [`<DrawerBody />`](/components/drawer-body/examples)
--   [`<DrawerNavItem />`](/components/drawer/drawer-nav-item/examples)
--   [`<DrawerNavGroup />`](/components/drawer/drawer-nav-group/examples)
--   [`<DrawerFooter />`](/components/drawer-footer/examples)
+-   [`<DrawerHeader>`](/components/drawer/drawer-header/examples)
+-   [`<DrawerSubheader>`](/components/drawer-sub-header/examples)
+-   [`<DrawerBody>`](/components/drawer-body/examples)
+-   [`<DrawerNavItem>`](/components/drawer/drawer-nav-item/examples)
+-   [`<DrawerNavGroup>`](/components/drawer/drawer-nav-group/examples)
+-   [`<DrawerFooter>`](/components/drawer-footer/examples)
 
 <Box
     sx={{
@@ -59,20 +59,20 @@ A `<Drawer />` can be broken down into the following subsections:
 
 <Box>
 
-| Prop Name                       | Description                                                                  | Type                                                         | Required | Default           |
-| :------------------------------ | :--------------------------------------------------------------------------- | :----------------------------------------------------------- | :------- | :---------------- |
-| activeItem                      | itemID for the 'active' item                                                 | `string`                                                     | no       |                   |
-| classes                         | Style overrides                                                              | `DrawerClasses`                                              | no       |                   |
-| condensed                       | Show condensed nav items without labels (`rail` variant only)                | `boolean`                                                    | no       | `false`           |
-| noLayout                        | Set to true if used without a `<DrawerLayout>`                               | `boolean`                                                    | no       | `false`           |
-| onItemSelect                    | A callback function to execute whenever an item is clicked                   | `(id: string) => void`                                       | no       |                   |
-| open                            | Controls the open/closed state of the drawer                                 | `boolean`                                                    | yes      |                   |
-| openOnHover                     | Automatically open the drawer on hover when closed (persistent variant only) | `boolean`                                                    | no       | `true`            |
-| openOnHoverDelay                | Delay (ms) before triggering open on hover (persistent variant only)         | `number`                                                     | no       | `500`             |
-| sideBorder                      | Whether to use a side border for the drawer instead of a shadow              | `boolean`                                                    | no       | `false`           |
-| variant                         | The variant to use (see below)                                               | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       | `persistent`      |
-| width                           | Sets the width of the drawer when open                                       | `number` \| `string`                                         | no       | `22.5rem (360px)` |
-| [...sharedProps](#shared-props) | Props that can be set at any level in the drawer hierarchy                   | -                                                            | -        |                   |
+| Prop Name                                                  | Description                                                                  | Type                                                         | Required | Default           |
+| :--------------------------------------------------------- | :--------------------------------------------------------------------------- | :----------------------------------------------------------- | :------- | :---------------- |
+| activeItem                                                 | itemID for the 'active' item                                                 | `string`                                                     | no       |                   |
+| classes                                                    | Style overrides                                                              | `DrawerClasses`                                              | no       |                   |
+| condensed                                                  | Show condensed nav items without labels (`rail` variant only)                | `boolean`                                                    | no       | `false`           |
+| noLayout                                                   | Set to true if used without a `<DrawerLayout>`                               | `boolean`                                                    | no       | `false`           |
+| onItemSelect                                               | A callback function to execute whenever an item is clicked                   | `(id: string) => void`                                       | no       |                   |
+| open                                                       | Controls the open/closed state of the drawer                                 | `boolean`                                                    | yes      |                   |
+| openOnHover                                                | Automatically open the drawer on hover when closed (persistent variant only) | `boolean`                                                    | no       | `true`            |
+| openOnHoverDelay                                           | Delay (ms) before triggering open on hover (persistent variant only)         | `number`                                                     | no       | `500`             |
+| sideBorder                                                 | Whether to use a side border for the drawer instead of a shadow              | `boolean`                                                    | no       | `false`           |
+| variant                                                    | The variant to use (see below)                                               | `'permanent'` \| `'persistent'` \| `'temporary'` \| `'rail'` | no       | `persistent`      |
+| width                                                      | Sets the width of the drawer when open                                       | `number` \| `string`                                         | no       | `22.5rem (360px)` |
+| [...sharedProps](/components/drawer/api-docs#shared-props) | Props that can be set at any level in the drawer hierarchy                   | -                                                            | -        |                   |
 
 </Box>
 
