@@ -107,7 +107,7 @@ const Root = styled(MUIDrawer, {
         : theme.transitions.create('width', { duration: theme.transitions.duration.leavingScreen }),
     [`& .${drawerClasses.paper}`]: {
         overflow: 'hidden',
-        position: 'inherit',
+        position: 'relative',
         boxShadow: sideBorder ? 'none' : theme.shadows[4],
         borderWidth: sideBorder ? 1 : 0,
     },
