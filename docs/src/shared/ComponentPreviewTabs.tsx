@@ -43,13 +43,14 @@ const tabStyles: any = {
         color: (theme: Theme) => theme.palette.primary.main,
     },
 };
+
 const tabPanelContentStyles: any = {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
     minHeight: (theme: Theme) => `calc(100vh - ${theme.spacing(8)})`,
-    maxWidth: '980px',
-    m: '0px auto',
+    maxWidth: '1080px',
+    m: '0 auto',
 };
 
 const outletContainerStyles = {
@@ -89,6 +90,9 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                     width: `calc(100% - ${DRAWER_WIDTH}px)`,
                     position: 'fixed',
                     zIndex: 1000,
+                    [theme.breakpoints.down('lg')]: {
+                        width: '100%',
+                    },
                 }}
             >
                 <Tabs
@@ -105,22 +109,71 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                         },
                     }}
                 >
-                    <Tab to="examples" component={Link} sx={tabStyles} label="Examples" {...a11yProps(0)} />
-                    <Tab to="api-docs" component={Link} sx={tabStyles} label="API Docs" {...a11yProps(1)} />
+                    <Tab
+                        to="examples"
+                        component={Link}
+                        sx={{
+                            ...tabStyles,
+                            [theme.breakpoints.down(1040)]: {
+                                width: '33%',
+                            },
+                        }}
+                        label="Examples"
+                        {...a11yProps(0)}
+                    />
+                    <Tab
+                        to="api-docs"
+                        component={Link}
+                        sx={{
+                            ...tabStyles,
+                            [theme.breakpoints.down(1040)]: {
+                                width: '33%',
+                            },
+                        }}
+                        label="API Docs"
+                        {...a11yProps(1)}
+                    />
                     {!hidePlaygroundTab && (
-                        <Tab to="playground" component={Link} sx={tabStyles} label="Playground" {...a11yProps(2)} />
+                        <Tab
+                            to="playground"
+                            component={Link}
+                            sx={{
+                                ...tabStyles,
+                                [theme.breakpoints.down(1040)]: {
+                                    width: '33%',
+                                },
+                            }}
+                            label="Playground"
+                            {...a11yProps(2)}
+                        />
                     )}
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                <Box sx={tabPanelContentStyles}>
+                <Box
+                    sx={{
+                        ...tabPanelContentStyles,
+                        [theme.breakpoints.down(1440)]: {
+                            m: '0 24px',
+                            maxWidth: '100%',
+                        },
+                    }}
+                >
                     <Box sx={outletContainerStyles}>
                         <Outlet />
                     </Box>
                 </Box>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <Box sx={tabPanelContentStyles}>
+                <Box
+                    sx={{
+                        ...tabPanelContentStyles,
+                        [theme.breakpoints.down(1440)]: {
+                            m: '0 24px',
+                            maxWidth: '100%',
+                        },
+                    }}
+                >
                     <Box sx={outletContainerStyles}>
                         <Outlet />
                     </Box>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomePage, ComponentPreviewPage } from '../../pages';
+import { ComponentPreviewPage } from '../../pages';
 import { DummyExamplesComponent } from '../../componentDocs/DummyDataForComponent';
 
 // API Docs markdown
@@ -80,16 +80,6 @@ export type SimpleGroupNavGroupItem = {
 };
 
 export const pageDefinitions: SimpleGroupNavGroupItem[] = [
-    {
-        groupTitle: 'Getting Started',
-        items: [
-            {
-                title: 'Environment',
-                url: '/environment',
-                component: <HomePage />,
-            },
-        ],
-    },
     {
         groupTitle: 'Components',
         items: [
