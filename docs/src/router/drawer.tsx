@@ -2,13 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-components';
-import * as colors from '@brightlayer-ui/colors';
 import {
     pageDefinitions,
     SimpleNavItem,
     SimpleGroupNavGroupItem,
 } from '../__configuration__/navigationMenu/navigation';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
@@ -112,34 +110,35 @@ export const NavigationDrawer: React.FC = () => {
                     <div
                         style={{
                             display: 'flex',
-                            justifyContent: 'space-between',
                             zIndex: 1,
                             padding: '0 16px',
-                            alignItems: 'center',
+                            alignItems: 'flex-start',
                             width: '100%',
                             height: '100%',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
                         }}
                     >
-                        <div>
-                            <Typography variant="subtitle1">Brightlayer UI</Typography>
-                            <Box sx={{ marginTop: '-8px', display: 'flex' }}>
-                                <Typography variant="body2" sx={{ p: '8px 8px 8px 0px' }}>
-                                    Developer Docs
-                                </Typography>
-                                <Chip
-                                    sx={{
-                                        color: colors.blue[500],
-                                        '& .MuiChip-avatar': {
-                                            backgroundColor: 'transparent',
-                                        },
-                                    }}
-                                    avatar={<Avatar alt="React" src={AvatarSvg} />}
-                                    label="REACT"
-                                    variant="filled"
-                                    color="success"
-                                />
-                            </Box>
-                        </div>
+                        <Typography variant="subtitle1">Brightlayer User Interface</Typography>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                            <Typography variant={'body2'} paragraph={false}>
+                                Developer Docs
+                            </Typography>
+                            <Chip
+                                sx={{
+                                    color: 'primary.main',
+                                    backgroundColor: 'white',
+                                }}
+                                icon={<img src={AvatarSvg} />}
+                                label={
+                                    <Typography variant={'overline'} sx={{ fontWeight: 700, letterSpacing: 1 }}>
+                                        REACT
+                                    </Typography>
+                                }
+                                variant={'filled'}
+                                size={'small'}
+                            />
+                        </Box>
                     </div>
                 }
             />
@@ -150,7 +149,7 @@ export const NavigationDrawer: React.FC = () => {
                         hidePadding
                         sx={{
                             '.BluiDrawerNavGroup-title': {
-                                color: colors.blue[500],
+                                color: 'primary.main',
                             },
                         }}
                         title={navGroupItem.groupTitle}
