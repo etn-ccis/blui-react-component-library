@@ -51,7 +51,7 @@ import { ToolbarMenu } from '@brightlayer-ui/react-components';
 You can override the default styles used by Brightlayer UI by:
 
 -   using the `sx` prop
--   passing a `classes` prop with keys from the `Name` column below
+-   passing a `classes` prop with keys from the Name column below
 -   using the `Global CSS Class` in your main stylesheet
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).

@@ -95,7 +95,7 @@ The `Drawer` has four `variant`s:
 You can override the default styles used by Brightlayer UI by:
 
 -   using the `sx` prop
--   passing a `classes` prop with keys from the `Name` column below
+-   passing a `classes` prop with keys from the Name column below
 -   using the `Global CSS Class` in your main stylesheet
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
@@ -143,7 +143,7 @@ Any other props will be provided to the root element [**Material UI Toolbar**](h
 You can override the default styles used by Brightlayer UI by:
 
 -   using the `sx` prop
--   passing a `classes` prop with keys from the `Name` column below
+-   passing a `classes` prop with keys from the Name column below
 -   using the `Global CSS Class` in your main stylesheet
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
@@ -255,7 +255,7 @@ Any other props will be provided to the root element [**Material UI List**](http
 You can override the default styles used by Brightlayer UI by:
 
 -   using the `sx` prop
--   passing a `classes` prop with keys from the `Name` column below
+-   passing a `classes` prop with keys from the Name column below
 -   using the `Global CSS Class` in your main stylesheet
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
@@ -344,7 +344,7 @@ The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be
 You can override the default styles used by Brightlayer UI by:
 
 -   using the `sx` prop
--   passing a `classes` prop with keys from the `Name` column below
+-   passing a `classes` prop with keys from the Name column below
 -   using the `Global CSS Class` in your main stylesheet
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
@@ -422,7 +422,7 @@ When using the `rail` variant of the `<Drawer>`, you should use `<DrawerRailItem
 You can override the default styles used by Brightlayer UI by:
 
 -   using the `sx` prop
--   passing a `classes` prop with keys from the `Name` column below
+-   passing a `classes` prop with keys from the Name column below
 -   using the `Global CSS Class` in your main stylesheet
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
@@ -553,7 +553,7 @@ Any other props supplied will be provided to the root element (`div`).
 You can override the default styles used by Brightlayer UI by:
 
 -   using the `sx` prop
--   passing a `classes` prop with keys from the `Name` column below
+-   passing a `classes` prop with keys from the Name column below
 -   using the `Global CSS Class` in your main stylesheet
 
 For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/tree/master/docs#style-guide).
