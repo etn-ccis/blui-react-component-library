@@ -16,14 +16,14 @@ export const SpacerWithPixelExample = (): JSX.Element => (
             </Spacer>
         </Box>
 
-        <Box sx={{ mt: 4, width: '300px' }}>
-            <Spacer height={25} sx={{ backgroundColor: '#4da3d4' }}>
+        <Box sx={{ mt: 4, width: '300px', display: 'flex', flexDirection: 'column' }}>
+            <Spacer height={25} flex={0} sx={{ backgroundColor: '#4da3d4' }}>
                 25
             </Spacer>
-            <Spacer height={50} sx={{ backgroundColor: '#f5db6d' }}>
+            <Spacer height={50} flex={0} sx={{ backgroundColor: '#f5db6d' }}>
                 50
             </Spacer>
-            <Spacer height={75} sx={{ backgroundColor: '#da7777' }}>
+            <Spacer height={75} flex={0} sx={{ backgroundColor: '#da7777' }}>
                 75
             </Spacer>
         </Box>
