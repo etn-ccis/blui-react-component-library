@@ -110,6 +110,7 @@ const Root = styled(MUIDrawer, {
         position: 'relative',
         boxShadow: sideBorder ? 'none' : theme.shadows[4],
         borderWidth: sideBorder ? 1 : 0,
+        zIndex: 'auto',
     },
 }));
 
