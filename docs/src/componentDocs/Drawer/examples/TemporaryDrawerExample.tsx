@@ -34,7 +34,6 @@ export const TemporaryDrawerExample = (): JSX.Element => {
                 BackdropProps={{
                     sx: { position: 'absolute' },
                 }}
-                PaperProps={{ elevation: 2 }}
                 sx={{
                     position: 'absolute',
                     minWidth: '100%',
