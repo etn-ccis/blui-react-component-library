@@ -49,8 +49,9 @@ export const PreviewComponent = (): JSX.Element => {
                     <AppBar
                         animationDuration={appBarProps.animationDuration}
                         backgroundImage={getImage(appBarProps.backgroundImage)}
-                        collapsedHeight={appBarProps.collapsedHeight}
-                        expandedHeight={appBarProps.expandedHeight}
+                        //TODO - Need fix for mobile.
+                        collapsedHeight={appBarProps.collapsedHeight ? '' : 64}
+                        expandedHeight={appBarProps.expandedHeight ? '' : 200}
                         scrollContainerId={appBarProps.scrollContainerId}
                         scrollThreshold={appBarProps.scrollThreshold}
                         variant={appBarProps.variant}
