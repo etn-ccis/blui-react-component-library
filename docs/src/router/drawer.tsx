@@ -89,8 +89,6 @@ export const NavigationDrawer: React.FC = () => {
             variant={lgDown ? 'temporary' : 'permanent'}
             activeItem={activeRoute}
             width={DRAWER_WIDTH}
-            itemFontColor={theme.palette.text.primary}
-            activeItemFontColor={theme.palette.primary.main}
             hidePadding
             activeItemBackgroundShape={'round'}
             ModalProps={{

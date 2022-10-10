@@ -3,7 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { Theme, useTheme } from '@mui/material/styles';
+import { SxProps, Theme, useTheme } from '@mui/material/styles';
 import { DRAWER_WIDTH, TabPanel } from '../shared';
 import { PLAYGROUND_DRAWER_WIDTH } from './constants';
 
@@ -36,21 +36,21 @@ function togglePlaygroundTab(location: string): boolean {
     return hidePlaygroudTabs.includes(tabName);
 }
 
-const tabStyles: any = {
+const tabStyles = {
     width: '100%',
-    color: (theme: Theme) => theme.palette.text.primary,
+    color: 'text.primary',
     '&.Mui-selected': {
-        color: (theme: Theme) => theme.palette.primary.main,
+        color: 'primary.main',
     },
 };
 
-const tabPanelContentStyles: any = {
+const tabPanelContentStyles: SxProps<Theme> = {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
     minHeight: (theme: Theme) => `calc(100vh - ${theme.spacing(8)})`,
     maxWidth: '1080px',
-    m: '0 auto',
+    mx: 'auto',
 };
 
 const outletContainerStyles = {
@@ -105,7 +105,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                         display: 'flex',
                         justifyContent: 'space-evenly',
                         '& .MuiTabs-indicator': {
-                            backgroundColor: theme.palette.primary.main,
+                            backgroundColor: 'primary.main',
                         },
                     }}
                 >
@@ -154,7 +154,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                     sx={{
                         ...tabPanelContentStyles,
                         [theme.breakpoints.down(1440)]: {
-                            m: '0 24px',
+                            mx: 3,
                             maxWidth: '100%',
                         },
                     }}
@@ -169,7 +169,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                     sx={{
                         ...tabPanelContentStyles,
                         [theme.breakpoints.down(1440)]: {
-                            m: '0 24px',
+                            mx: 3,
                             maxWidth: '100%',
                         },
                     }}
