@@ -105,10 +105,31 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                         },
                     }}
                 >
-                    <Tab to="examples" component={Link} sx={tabStyles} label="Examples" {...a11yProps(0)} />
-                    <Tab to="api-docs" component={Link} sx={tabStyles} label="API Docs" {...a11yProps(1)} />
+                    <Tab
+                        to="examples"
+                        component={Link}
+                        sx={tabStyles}
+                        label="Examples"
+                        {...a11yProps(0)}
+                        replace={true}
+                    />
+                    <Tab
+                        to="api-docs"
+                        component={Link}
+                        sx={tabStyles}
+                        label="API Docs"
+                        {...a11yProps(1)}
+                        replace={true}
+                    />
                     {!hidePlaygroundTab && (
-                        <Tab to="playground" component={Link} sx={tabStyles} label="Playground" {...a11yProps(2)} />
+                        <Tab
+                            to="playground"
+                            component={Link}
+                            sx={tabStyles}
+                            label="Playground"
+                            {...a11yProps(2)}
+                            replace={true}
+                        />
                     )}
                 </Tabs>
             </Box>
