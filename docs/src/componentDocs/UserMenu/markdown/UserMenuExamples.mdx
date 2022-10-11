@@ -1,20 +1,22 @@
-import { UserMenuWithNonTextAvatars } from '../examples/UserMenuWithNonTextAvatars';
-import { UserMenuWithMenuHeader } from '../examples/UserMenuWithMenuHeader';
-import { UserMenuWithCustomHeader } from '../examples/UserMenuWithCustomHeader';
-import { ResponsiveUserMenu } from '../examples/ResponsiveUserMenu';
-import { UserMenuWithinToolbar } from '../examples/UserMenuWithinToolbar';
+import {
+    UserMenu,
+    UserMenuAlternativeAvatarFormats,
+    UserMenuWithMenuHeader,
+    UserMenuWithCustomHeader,
+    UserMenuWithBottomSheet,
+} from '../examples';
 
 ## User Menu
 
 The User Menu is a combination of an avatar and [`MUI Menu`](https://mui.com/api/menu/) that is used to hold user account-related information and actions. It is typically located in the top corner of your application within a toolbar.
 
-<UserMenuWithinToolbar />
+<UserMenu />
 
 ## Alternative Avatar Formats
 
 The User Menu supports multiple avatar formats (text, icon, image).
 
-<UserMenuWithNonTextAvatars />
+<UserMenuAlternativeAvatarFormats />
 
 ## Adding a Menu Header
 
@@ -32,4 +34,4 @@ If you want to supply your own custom menu header, you can pass in content via a
 
 On larger screens the User Menu opens as a dropdown, but on smaller screens it opens as a bottomsheet. You can customize the point where this transition occurs via the `useBottomSheetAt` prop (default of 600px).
 
-<ResponsiveUserMenu />
+<UserMenuWithBottomSheet />

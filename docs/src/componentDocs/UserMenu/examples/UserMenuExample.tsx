@@ -6,7 +6,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-export const UserMenuWithinToolbarExample = (): JSX.Element => (
+export const UserMenuExample = (): JSX.Element => (
     <AppBar position="relative" color="primary" sx={{ width: 300 }}>
         <Toolbar sx={{ px: 2, minHeight: 'unset', height: '4rem' }}>
             <Typography variant="h6">Toolbar Title</Typography>

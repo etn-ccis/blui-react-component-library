@@ -27,7 +27,7 @@ const codeSnippet = `<UserMenu
 
 export const UserMenuWithCustomHeader = (): JSX.Element => (
     <Box>
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <UserMenuWithCustomHeaderExample />
         </Box>
         <CodeBlock code={codeSnippet} language="jsx" dataLine="4-19" />

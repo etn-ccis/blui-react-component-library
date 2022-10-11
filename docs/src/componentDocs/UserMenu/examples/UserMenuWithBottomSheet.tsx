@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
-import { ResponsiveUserMenuExample } from './ResponsiveUserMenuExample';
+import { UserMenuWithBottomSheetExample } from './UserMenuWithBottomSheetExample';
 
 const codeSnippet = `<UserMenu
     avatar={<Avatar>BS</Avatar>}
@@ -27,15 +27,15 @@ const codeSnippet = `<UserMenu
     useBottomSheetAt={100000}
 />`;
 
-export const ResponsiveUserMenu = (): JSX.Element => (
+export const UserMenuWithBottomSheet = (): JSX.Element => (
     <Box>
         <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
-            <ResponsiveUserMenuExample />
+            <UserMenuWithBottomSheetExample />
         </Box>
         <CodeBlock code={codeSnippet} language="jsx" dataLine="21" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/UserMenu/examples/ResponsiveUserMenuExample.tsx"
+            url="componentDocs/UserMenu/examples/UserMenuWithBottomSheetExample.tsx"
         />
     </Box>
 );
