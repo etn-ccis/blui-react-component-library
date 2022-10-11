@@ -12,12 +12,12 @@ export const UserMenuWithCustomHeaderExample = (): JSX.Element => {
         <Box>
             <UserMenu
                 onClick={(): void => setOpen(!open)}
-                avatar={<Avatar src={tRex} alt={'User Avatar'} />}
+                avatar={<Avatar src={tRex} alt="User Avatar" />}
                 menu={
                     <Menu open={open} onClose={(): void => setOpen(false)}>
-                        <Box sx={{ position: 'relative', p: '16px 8px 8px 8px' }}>
-                            <Typography variant={'h6'}>Welcome, </Typography>
-                            <Typography sx={{ fontWeight: 600, marginTop: '-10px' }} variant={'h3'}>
+                        <Box sx={{ position: 'relative', p: 1, pt: 2 }}>
+                            <Typography variant="h6">Welcome, </Typography>
+                            <Typography sx={{ fontWeight: 600, mt: -1 }} variant="h3">
                                 T-Rex
                             </Typography>
                             <Box

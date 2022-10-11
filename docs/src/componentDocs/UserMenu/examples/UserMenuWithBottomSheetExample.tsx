@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import { UserMenu } from '@brightlayer-ui/react-components';
 import { Email, ExitToApp, Settings } from '@mui/icons-material';
 
-export const ResponsiveUserMenuExample = (): JSX.Element => (
+export const UserMenuWithBottomSheetExample = (): JSX.Element => (
     <Box>
         <UserMenu
             avatar={<Avatar>BS</Avatar>}
@@ -27,7 +27,7 @@ export const ResponsiveUserMenuExample = (): JSX.Element => (
                     ],
                 },
             ]}
-            useBottomSheetAt={3000}
+            useBottomSheetAt={100000}
         />
     </Box>
 );
