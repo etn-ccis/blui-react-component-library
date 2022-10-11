@@ -5,21 +5,7 @@ import * as colors from '@brightlayer-ui/colors';
 import { TemporaryDrawerExample } from './TemporaryDrawerExample';
 
 const codeSnippet = `<Box>
-    <Drawer 
-        open={open} 
-        variant="temporary"
-        disablePortal
-        SlideProps={{
-            container: containerRef.current,
-        }}
-        BackdropProps={{
-            sx: { position: 'absolute' },
-        }}
-        sx={{
-            position: 'absolute',
-            '& .MuiPaper-root': { background: 'transparent' },
-        }}
-        >
+    <Drawer open={open} variant="temporary">
         <DrawerHeader
             title="Title"
             icon={<Close />}
