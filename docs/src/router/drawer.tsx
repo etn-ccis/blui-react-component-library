@@ -10,19 +10,24 @@ import {
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/icons-material/Menu';
 import { DRAWER_WIDTH } from '../shared';
 import AvatarSvg from '../assets/react_logo.svg';
+
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { RootState } from '../redux/store';
+import { closeDrawer, toggleDrawer } from '../redux/appState';
 
 const backgroundImage = require('../assets/cubes_tile.png');
 const linearGradientOverlayImage = `linear-gradient(to right, rgba(0, 123, 193, 1) 22.4%, rgba(0, 123, 193, 0.2) 100%), url(${backgroundImage})`;
 const tabs = ['examples', 'api-docs', 'playground'];
 export const NavigationDrawer: React.FC = () => {
+    const drawerOpen = useAppSelector((state: RootState) => state.appState.drawerOpen);
+    const dispatch = useAppDispatch();
     const location = useLocation();
     const navigate = useNavigate();
     const [activeRoute, setActiveRoute] = useState(location.pathname);
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
     const [tabPath, setTabPath] = useState(tabs);
 
     const createNavItems = useCallback(
@@ -39,6 +44,7 @@ export const NavigationDrawer: React.FC = () => {
                     onClick: item.component
                         ? (): void => {
                               navigate(fullURL);
+                              dispatch(toggleDrawer());
                           }
                         : undefined,
                     items: item.pages
@@ -77,17 +83,19 @@ export const NavigationDrawer: React.FC = () => {
     const [navGroupItems] = useState(createNavGroupItems(pageDefinitions));
     return (
         <Drawer
-            open={true}
-            variant={isMobile ? 'temporary' : 'persistent'}
+            open={drawerOpen}
+            variant={lgDown ? 'temporary' : 'permanent'}
             activeItem={activeRoute}
             width={DRAWER_WIDTH}
-            itemFontColor={theme.palette.text.primary}
-            activeItemFontColor={theme.palette.primary.main}
             hidePadding
             activeItemBackgroundShape={'round'}
+            ModalProps={{
+                onClose: (): void => {
+                    dispatch(closeDrawer());
+                },
+            }}
         >
             <DrawerHeader
-                icon={isMobile ? <Menu /> : undefined}
                 backgroundImage={backgroundImage}
                 sx={{
                     '& .BluiDrawerHeader-background': {
@@ -141,7 +149,6 @@ export const NavigationDrawer: React.FC = () => {
                             '.BluiDrawerNavGroup-title': {
                                 color: 'primary.main',
                             },
-                            borderBottom: `1px solid ${theme.palette.divider}`,
                         }}
                         title={navGroupItem.groupTitle}
                         items={navGroupItem.items}

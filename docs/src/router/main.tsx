@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
-import { HomePage } from '../pages';
 import { pageDefinitions, SimpleNavItem } from '../__configuration__/navigationMenu/navigation';
 
 const buildRedirectURL = (routes: any[]): JSX.Element[] => {
@@ -89,9 +88,9 @@ const buildRoutes = (routes: any[]): JSX.Element[] => {
 
 export const MainRouter = (
     <>
-        <Route path={'/'} element={<HomePage />} />
+        <Route path={'/'} element={<Navigate to={'/components/app-bar'} />} />
         {buildRedirectURL(pageDefinitions)}
         {buildRoutes(pageDefinitions)}
-        <Route path={'*'} element={<Navigate to={'/'} />} />
+        <Route path={'*'} element={<Navigate to={'/components/app-bar'} />} />
     </>
 );

@@ -3,7 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { Theme, useTheme } from '@mui/material/styles';
+import { SxProps, Theme, useTheme } from '@mui/material/styles';
 import { DRAWER_WIDTH, TabPanel } from '../shared';
 import { PLAYGROUND_DRAWER_WIDTH } from './constants';
 
@@ -36,20 +36,21 @@ function togglePlaygroundTab(location: string): boolean {
     return hidePlaygroudTabs.includes(tabName);
 }
 
-const tabStyles: any = {
+const tabStyles = {
     width: '100%',
-    color: (theme: Theme) => theme.palette.text.primary,
+    color: 'text.primary',
     '&.Mui-selected': {
-        color: (theme: Theme) => theme.palette.primary.main,
+        color: 'primary.main',
     },
 };
-const tabPanelContentStyles: any = {
+
+const tabPanelContentStyles: SxProps<Theme> = {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
     minHeight: (theme: Theme) => `calc(100vh - ${theme.spacing(8)})`,
-    maxWidth: '980px',
-    m: '0px auto',
+    maxWidth: '1080px',
+    mx: 'auto',
 };
 
 const outletContainerStyles = {
@@ -89,6 +90,9 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                     width: `calc(100% - ${DRAWER_WIDTH}px)`,
                     position: 'fixed',
                     zIndex: 1000,
+                    [theme.breakpoints.down('lg')]: {
+                        width: '100%',
+                    },
                 }}
             >
                 <Tabs
@@ -101,47 +105,78 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                         display: 'flex',
                         justifyContent: 'space-evenly',
                         '& .MuiTabs-indicator': {
-                            backgroundColor: theme.palette.primary.main,
+                            backgroundColor: 'primary.main',
                         },
                     }}
                 >
                     <Tab
                         to="examples"
                         component={Link}
-                        sx={tabStyles}
+                        sx={{
+                            ...tabStyles,
+                            [theme.breakpoints.down(1040)]: {
+                                width: '33%',
+                            },
+                        }}
                         label="Examples"
-                        {...a11yProps(0)}
                         replace={true}
+                        {...a11yProps(0)}
                     />
                     <Tab
                         to="api-docs"
                         component={Link}
-                        sx={tabStyles}
+                        sx={{
+                            ...tabStyles,
+                            [theme.breakpoints.down(1040)]: {
+                                width: '33%',
+                            },
+                        }}
                         label="API Docs"
-                        {...a11yProps(1)}
                         replace={true}
+                        {...a11yProps(1)}
                     />
                     {!hidePlaygroundTab && (
                         <Tab
                             to="playground"
                             component={Link}
-                            sx={tabStyles}
+                            sx={{
+                                ...tabStyles,
+                                [theme.breakpoints.down(1040)]: {
+                                    width: '33%',
+                                },
+                            }}
                             label="Playground"
-                            {...a11yProps(2)}
                             replace={true}
+                            {...a11yProps(2)}
                         />
                     )}
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                <Box sx={tabPanelContentStyles}>
+                <Box
+                    sx={{
+                        ...tabPanelContentStyles,
+                        [theme.breakpoints.down(1440)]: {
+                            mx: 3,
+                            maxWidth: '100%',
+                        },
+                    }}
+                >
                     <Box sx={outletContainerStyles}>
                         <Outlet />
                     </Box>
                 </Box>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <Box sx={tabPanelContentStyles}>
+                <Box
+                    sx={{
+                        ...tabPanelContentStyles,
+                        [theme.breakpoints.down(1440)]: {
+                            mx: 3,
+                            maxWidth: '100%',
+                        },
+                    }}
+                >
                     <Box sx={outletContainerStyles}>
                         <Outlet />
                     </Box>
