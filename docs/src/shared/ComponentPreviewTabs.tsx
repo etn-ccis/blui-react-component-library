@@ -119,6 +119,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                             },
                         }}
                         label="Examples"
+                        replace={true}
                         {...a11yProps(0)}
                     />
                     <Tab
@@ -131,6 +132,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                             },
                         }}
                         label="API Docs"
+                        replace={true}
                         {...a11yProps(1)}
                     />
                     {!hidePlaygroundTab && (
@@ -144,6 +146,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                                 },
                             }}
                             label="Playground"
+                            replace={true}
                             {...a11yProps(2)}
                         />
                     )}
