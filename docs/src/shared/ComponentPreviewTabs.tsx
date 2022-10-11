@@ -88,7 +88,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                     borderColor: 'divider',
                     width: `calc(100% - ${DRAWER_WIDTH}px)`,
                     position: 'fixed',
-                    zIndex: 1000,
+                    zIndex: theme.zIndex.appBar,
                 }}
             >
                 <Tabs
