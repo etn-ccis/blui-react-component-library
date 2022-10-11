@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cd components && yarn && cd ../docs && yarn && cd .. && yarn link:components && cd docs && yarn build
-      - uses: emclaug2/action-hosting-deploy@main
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BLUI_REACT_DOCS }}'
