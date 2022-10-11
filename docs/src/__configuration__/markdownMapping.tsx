@@ -210,7 +210,7 @@ export const componentsMap = {
                 table: {
                     textAlign: 'left',
                     borderCollapse: 'collapse',
-                    minWidth: 750,
+                    minWidth: '100%',
                     border: (theme: Theme) => `1px solid ${theme.palette.divider}`,
                 },
                 a: {
