@@ -27,7 +27,7 @@ export const ResponsiveUserMenuExample = (): JSX.Element => (
                     ],
                 },
             ]}
-            useBottomSheetAt={3000}
+            useBottomSheetAt={100000}
         />
     </Box>
 );

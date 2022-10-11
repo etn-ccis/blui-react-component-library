@@ -24,12 +24,12 @@ const codeSnippet = `<UserMenu
             ],
         },
     ]}
-    useBottomSheetAt={3000}
+    useBottomSheetAt={100000}
 />`;
 
 export const ResponsiveUserMenu = (): JSX.Element => (
     <Box>
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <ResponsiveUserMenuExample />
         </Box>
         <CodeBlock code={codeSnippet} language="jsx" dataLine="21" />
