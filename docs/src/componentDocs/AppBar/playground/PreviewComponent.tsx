@@ -15,9 +15,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box/Box';
 import Typography from '@mui/material/Typography';
 import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const PreviewComponent = (): JSX.Element => {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const appBarJson = useAppSelector((state: RootState) => state.componentsPropsState.appBarComponent);
 
     const appBarProps = createProps(appBarJson.props as PropsType[]);
@@ -49,9 +51,10 @@ export const PreviewComponent = (): JSX.Element => {
                     <AppBar
                         animationDuration={appBarProps.animationDuration}
                         backgroundImage={getImage(appBarProps.backgroundImage)}
-                        //TODO - Need fix for mobile.
-                        collapsedHeight={appBarProps.collapsedHeight ? '' : 64}
-                        expandedHeight={appBarProps.expandedHeight ? '' : 200}
+                        collapsedHeight={
+                            appBarProps.collapsedHeight === '' ? (isMobile ? 56 : 64) : appBarProps.collapsedHeight
+                        }
+                        expandedHeight={appBarProps.expandedHeight === '' ? 200 : appBarProps.expandedHeight}
                         scrollContainerId={appBarProps.scrollContainerId}
                         scrollThreshold={appBarProps.scrollThreshold}
                         variant={appBarProps.variant}
