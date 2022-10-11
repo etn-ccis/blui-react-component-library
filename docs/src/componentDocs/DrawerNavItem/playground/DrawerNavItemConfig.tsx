@@ -38,7 +38,7 @@ export const drawerNavItemConfig: ComponentType = {
             propType: 'string',
             helperText: `itemID for the 'active' item`,
             required: true,
-            disable: true,
+            disabled: true,
         },
         {
             propName: 'statusColor',

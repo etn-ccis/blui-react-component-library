@@ -136,7 +136,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                     name={prop.label ? prop.label : prop.propName}
                     color="primary"
                     onChange={(event): void => handleChange(prop.propName, event.target.checked, componentName, index)}
-                    disabled={prop.disable}
+                    disabled={prop.disabled}
                 />
             }
             sx={{ alignItems: 'flex-start' }}
@@ -145,7 +145,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                     <Typography sx={{ fontFamily: 'inherit' }}>{`${prop.label ? prop.label : prop.propName}: ${
                         prop.propType
                     } ${prop.required ? '*' : ''}`}</Typography>
-                    <Typography variant={'caption'} color={prop.disable ? 'text.disabled' : 'text.secondary'}>
+                    <Typography variant={'caption'} color={prop.disabled ? 'text.disabled' : 'text.secondary'}>
                         {prop.helperText}
                     </Typography>
                 </Box>

@@ -61,7 +61,7 @@ export const appBarConfig: ComponentType = {
             propType: 'string',
             helperText: 'ID of the scrollable element',
             required: false,
-            disable: true,
+            disabled: true,
         },
         {
             propName: 'scrollThreshold',
