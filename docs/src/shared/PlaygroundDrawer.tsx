@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import { styled, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import createStyles from '@mui/styles/createStyles';
 import makeStyles from '@mui/styles/makeStyles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -20,16 +20,10 @@ import FormControlLabel from '@mui/material/FormControlLabel/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText/FormHelperText';
 import InputLabel from '@mui/material/InputLabel/InputLabel';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
+import Stack from '@mui/material/Stack';
 import Select from '@mui/material/Select/Select';
-import * as Colors from '@brightlayer-ui/colors';
 import { ColorPicker } from './components/ColorPicker/ColorPicker.component';
 import { NumberPicker } from './components/NumberPicker/NumberPicker.component';
-
-const Heading = styled(Typography)(({ theme }) => ({
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: 'regular',
-    color: Colors.blue[500],
-}));
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -134,24 +128,29 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     );
 
     const renderBoolean = (prop: PropsType, index: string): JSX.Element => (
-        <>
-            <FormControlLabel
-                key={index}
-                control={
-                    <Checkbox
-                        checked={prop.inputValue as boolean}
-                        name={prop.label ? prop.label : prop.propName}
-                        color="primary"
-                        onChange={(event): void =>
-                            handleChange(prop.propName, event.target.checked, componentName, index)
-                        }
-                        disabled={prop.disable}
-                    />
-                }
-                label={`${prop.label ? prop.label : prop.propName}: ${prop.propType} ${prop.required ? '*' : ''}`}
-            />
-            <FormHelperText>{prop.helperText}</FormHelperText>
-        </>
+        <FormControlLabel
+            key={index}
+            control={
+                <Checkbox
+                    checked={prop.inputValue as boolean}
+                    name={prop.label ? prop.label : prop.propName}
+                    color="primary"
+                    onChange={(event): void => handleChange(prop.propName, event.target.checked, componentName, index)}
+                    disabled={prop.disabled}
+                />
+            }
+            sx={{ alignItems: 'flex-start' }}
+            label={
+                <Box>
+                    <Typography sx={{ fontFamily: 'inherit' }}>{`${prop.label ? prop.label : prop.propName}: ${
+                        prop.propType
+                    } ${prop.required ? '*' : ''}`}</Typography>
+                    <Typography variant={'caption'} color={prop.disabled ? 'text.disabled' : 'text.secondary'}>
+                        {prop.helperText}
+                    </Typography>
+                </Box>
+            }
+        />
     );
 
     const renderSlider = (prop: PropsType, index: string): JSX.Element => (
@@ -205,21 +204,20 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
         sectionNumber: number,
         groupType: string
     ): JSX.Element => (
-        <>
-            <Accordion defaultExpanded={sectionNumber === 0} classes={{ root: classes.accordionRoot }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: Colors.blue[500] }} />}>
-                    <Heading>{headingTitle}</Heading>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Box>
-                        {knobs?.map(
-                            (item: PropsType, index: number): JSX.Element => propBlock(item, `${groupType}-${index}`)
-                        )}
-                    </Box>
-                </AccordionDetails>
-            </Accordion>
-            <Divider />
-        </>
+        <Accordion defaultExpanded={sectionNumber === 0} classes={{ root: classes.accordionRoot }}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: 'primary.main' }} />}>
+                <Typography variant={'subtitle1'} color={'primary.main'}>
+                    {headingTitle}
+                </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+                <Stack gap={3}>
+                    {knobs?.map(
+                        (item: PropsType, index: number): JSX.Element => propBlock(item, `${groupType}-${index}`)
+                    )}
+                </Stack>
+            </AccordionDetails>
+        </Accordion>
     );
 
     const displayPropsByGroupType = (data: ComponentType): JSX.Element => {
@@ -229,12 +227,12 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
         const sharedProps: PropsType[] = data.sharedProps as PropsType[];
         let sectionNumber = 0;
         return (
-            <Box>
+            <Stack divider={<Divider />} mb={2}>
                 {requiredProps?.length > 0 && iterateProps(requiredProps, 'Required Props', sectionNumber++, 'props')}
                 {optionalProps?.length > 0 && iterateProps(optionalProps, 'Optional Props', sectionNumber++, 'props')}
                 {sharedProps?.length > 0 && iterateProps(sharedProps, 'Shared Props', sectionNumber++, 'sharedProps')}
                 {otherProps?.length > 0 && iterateProps(otherProps, 'Others', sectionNumber++, 'otherProps')}
-            </Box>
+            </Stack>
         );
     };
 
@@ -250,6 +248,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                             '& .MuiInputBase-root, & .MuiFormControlLabel-label': {
                                 fontFamily: '"Roboto Mono", monspace',
                             },
+                            zIndex: theme.zIndex.appBar - 1,
                         },
                     }}
                     anchor={'right'}
