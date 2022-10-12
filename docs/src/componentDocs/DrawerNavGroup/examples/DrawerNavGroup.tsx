@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import { MultipleDrawerNavGroupsExample } from './MultipleDrawerNavGroupsExample';
+import { DrawerNavGroupExample } from './DrawerNavGroupExample';
 
 const codeSnippet = `<Drawer open={true} width={250}>
     <DrawerBody>
@@ -17,13 +17,13 @@ const codeSnippet = `<Drawer open={true} width={250}>
 </Drawer>
 `;
 
-export const MultipleDrawerNavGroups = (): JSX.Element => (
+export const DrawerNavGroup = (): JSX.Element => (
     <Box>
-        <MultipleDrawerNavGroupsExample />
+        <DrawerNavGroupExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="3-10" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/DrawerNavGroup/examples/MultipleDrawerNavGroupsExample.tsx"
+            url="componentDocs/DrawerNavGroup/examples/DrawerNavGroupExample.tsx"
         />
     </Box>
 );
