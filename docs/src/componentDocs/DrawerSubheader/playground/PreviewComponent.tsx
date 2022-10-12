@@ -27,7 +27,7 @@ export const PreviewComponent = (): JSX.Element => {
         hideDefaultPropsFromSnippet(drawerSubheaderJson, propName, currentValue, 'props');
 
     const generateCodeSnippet = (): string => {
-        const jsx = `<Drawer open={${drawerSubheaderOtherProps.open}} activeItem={'Identity Management'}>
+        const jsx = `<Drawer open={${drawerSubheaderOtherProps.open}}>
         <DrawerHeader 
             icon={<Menu />}
             title={'Subheader Demo'}
@@ -75,12 +75,7 @@ export const PreviewComponent = (): JSX.Element => {
     return (
         <PreviewComponentWithCode
             previewContent={
-                <Drawer
-                    open={drawerSubheaderOtherProps.open}
-                    activeItem={'Identity Management'}
-                    noLayout
-                    sx={{ minHeight: 'auto' }}
-                >
+                <Drawer open={drawerSubheaderOtherProps.open} noLayout sx={{ minHeight: 'auto' }}>
                     <DrawerHeader icon={<Menu />} title={'Subheader Demo'} subtitle={'See the DrawerSubheader below'} />
                     <DrawerSubheader
                         hideContentOnCollapse={drawerSubheaderProps.hideContentOnCollapse}

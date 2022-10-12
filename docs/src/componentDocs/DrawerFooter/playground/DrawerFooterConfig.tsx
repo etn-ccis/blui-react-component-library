@@ -39,6 +39,7 @@ export const drawerTypes: ComponentType = {
             propType: 'boolean',
             helperText: 'Controls the open/closed state of the drawer',
             required: false,
+            label: 'Drawer Open',
         },
     ],
 };

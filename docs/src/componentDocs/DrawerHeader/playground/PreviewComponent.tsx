@@ -22,7 +22,7 @@ export const PreviewComponent = (): JSX.Element => {
         hideDefaultPropsFromSnippet(drawerHeaderJson, propName, currentValue, 'props');
 
     const generateCodeSnippet = (): string => {
-        const jsx = `<Drawer open={true} activeItem={'Identity Management'}>
+        const jsx = `<Drawer open={true}>
     <DrawerHeader
         backgroundColor={"${drawerHeaderProps.backgroundColor}"}
         ${toggleDefaultProp('backgroundImage', `${getImage(drawerHeaderProps.backgroundImage)}`)}
@@ -57,7 +57,7 @@ export const PreviewComponent = (): JSX.Element => {
     return (
         <PreviewComponentWithCode
             previewContent={
-                <Drawer open={true} activeItem={'Identity Management'} noLayout sx={{ minHeight: 'auto' }}>
+                <Drawer open={true} noLayout sx={{ minHeight: 'auto' }}>
                     <DrawerHeader
                         backgroundColor={drawerHeaderProps.backgroundColor}
                         backgroundImage={getImage(drawerHeaderProps.backgroundImage)}

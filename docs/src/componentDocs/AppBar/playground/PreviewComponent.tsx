@@ -43,7 +43,15 @@ export const PreviewComponent = (): JSX.Element => {
     return (
         <PreviewComponentWithCode
             previewContent={
-                <Box>
+                <Box
+                    sx={{
+                        overflow: 'hidden',
+                        width: '100%',
+                        maxWidth: 450,
+                        maxHeight: 400,
+                        position: 'relative',
+                    }}
+                >
                     <AppBar
                         animationDuration={appBarProps.animationDuration}
                         backgroundImage={getImage(appBarProps.backgroundImage)}

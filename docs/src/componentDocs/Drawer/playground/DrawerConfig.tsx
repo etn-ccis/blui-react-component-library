@@ -6,8 +6,9 @@ export const drawerConfig: ComponentType = {
     props: [
         {
             propName: 'activeItem',
-            inputType: 'string',
-            inputValue: 'Devices',
+            inputType: 'select',
+            inputValue: 'Overview',
+            options: ['Overview', 'Monthly Report', 'Annual Report', 'Timeline', 'Devices', 'Schedule'],
             propType: 'string',
             helperText: `itemID for the 'active' item`,
             required: false,
@@ -19,16 +20,6 @@ export const drawerConfig: ComponentType = {
             propType: 'boolean',
             helperText: 'Show condensed nav items without labels (rail variant only)',
             required: false,
-            defaultValue: false,
-        },
-        {
-            propName: 'noLayout',
-            inputType: 'boolean',
-            inputValue: true,
-            propType: 'boolean',
-            helperText: 'Set to true if used without a <DrawerLayout>. Default value is false',
-            required: false,
-            disable: true,
             defaultValue: false,
         },
         {

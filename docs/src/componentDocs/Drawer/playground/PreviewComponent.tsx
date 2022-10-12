@@ -103,7 +103,6 @@ export const PreviewComponent = (): JSX.Element => {
     itemIconColor={"${drawerSharedProps.itemIconColor}"}
     nestedBackgroundColor={"${drawerSharedProps.nestedBackgroundColor}"}
     ${toggleDefaultProp('nestedDivider', drawerSharedProps.nestedDivider, 'sharedProps')}
-    ${toggleDefaultProp('noLayout', drawerProps.noLayout)}
     open={${drawerProps.open}}
     ${toggleDefaultProp('openOnHover', drawerProps.openOnHover, 'props')}
     ${toggleDefaultProp('openOnHoverDelay', drawerProps.openOnHoverDelay, 'props')}
@@ -209,7 +208,7 @@ export const PreviewComponent = (): JSX.Element => {
                     itemIconColor={drawerSharedProps.itemIconColor}
                     nestedBackgroundColor={drawerSharedProps.nestedBackgroundColor}
                     nestedDivider={drawerSharedProps.nestedDivider}
-                    noLayout={drawerProps.noLayout}
+                    noLayout={true}
                     open={drawerProps.open}
                     openOnHover={drawerProps.openOnHover}
                     openOnHoverDelay={drawerProps.openOnHoverDelay}

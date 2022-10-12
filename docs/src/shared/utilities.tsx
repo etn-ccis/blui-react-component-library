@@ -1,6 +1,7 @@
 import React from 'react';
 import Add from '@mui/icons-material/Add';
 import AddAPhoto from '@mui/icons-material/AddAPhoto';
+import Device from '@brightlayer-ui/icons-mui/Device';
 import Devices from '@mui/icons-material/Devices';
 import Fan from '@brightlayer-ui/icons-mui/Fan';
 import FanCircled from '@brightlayer-ui/icons-mui/FanCircled';
@@ -66,6 +67,8 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
             return <Add />;
         case '<AddAPhoto />':
             return <AddAPhoto />;
+        case '<Device />':
+            return React.createElement(Device, iconProps);
         case '<Devices />':
             return React.createElement(Devices, iconProps);
         case '<Fan />':

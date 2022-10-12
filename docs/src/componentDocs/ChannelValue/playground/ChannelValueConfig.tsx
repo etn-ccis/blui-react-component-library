@@ -29,7 +29,7 @@ export const channelValueConfig: ComponentType = {
             propName: 'icon',
             inputType: 'select',
             inputValue: '<TrendingUp />',
-            options: ['undefined', '<TrendingUp />'],
+            options: ['undefined', '<TrendingUp />', '<TrendingDown />'],
             propType: 'JSX.Element',
             helperText: 'The inline icon to display',
             required: false,
