@@ -1,12 +1,19 @@
-import { BasicListItemTag } from '../examples/BasicListItemTag';
-import { ComplexListItemTag } from '../examples/ComplexListItemTag';
+import { ListItemTag, ListItemTagUsingInfoListItem, ListItemTagWithVariants } from '../examples';
 
-# Basic List Item Tag
+## List Item Tag
 
-<BasicListItemTag />
+A `<ListItemTag>` is a stylized Typography element used for labeling. The text and background colors are customizable via the `'fontColor'` and `'backgroundColor'` props.
 
-# List Item Tag within an Info List Item
+<ListItemTag />
 
-User can use `<ListItemTag />` within `<InfoListItem />` component by using `rightComponent` prop.
+## Using Variants
 
-<ComplexListItemTag />
+The List Item Tag is an extension of the [`MUI Typography`](https://mui.com/material-ui/api/typography/) element, so you can also apply different text styles with the `'variant'` prop.
+
+<ListItemTagWithVariants />
+
+## Using within an Info List Item
+
+The List Item Tag commonly appears within an [`Info List Item`](/components/info-list-item/examples).
+
+<ListItemTagUsingInfoListItem />
