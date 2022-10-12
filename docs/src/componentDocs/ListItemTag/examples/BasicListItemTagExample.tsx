@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 
 export const BasicListItemTagExample = (): JSX.Element => (
     <Box>
-        <ListItemTag label={'Default Tag'} />
+        <ListItemTag label="Default Tag" />
+        <ListItemTag sx={{ ml: 4 }} label="Custom Tag" fontColor="#424e54" backgroundColor="#f0cb2f" />
     </Box>
 );

@@ -7,22 +7,21 @@ import * as Colors from '@brightlayer-ui/colors';
 
 export const ComplexListItemTagExample = (): JSX.Element => (
     <InfoListItem
+        sx={{ width: 'auto' }}
         icon={<BatteryChargingFull />}
-        title={'Info List Item'}
-        subtitle={'with a ListItemTag component to the right'}
-        backgroundColor={'white'}
+        title="Info List Item"
+        subtitle="with a ListItemTag component to the right"
+        backgroundColor="white"
+        iconColor="text.primary"
         rightComponent={
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ ml: 2 }}>
                 <ListItemTag
-                    label={'Build Passing'}
+                    label="Build Passing"
                     backgroundColor={Colors.green[300]}
                     fontColor={Colors.black[900]}
-                    sx={{
-                        mr: 2,
-                        ml: 0,
-                    }}
+                    sx={{ mr: 2 }}
                 />
-                <ListItemTag label={'5 Bugs'} backgroundColor={Colors.red[300]} fontColor={Colors.black[900]} />
+                <ListItemTag label="5 Bugs" backgroundColor={Colors.red[300]} fontColor={Colors.black[900]} />
             </Box>
         }
     />
