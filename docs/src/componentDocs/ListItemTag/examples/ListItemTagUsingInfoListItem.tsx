@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
-import { ComplexListItemTagExample } from './ComplexListItemTagExample';
+import { ListItemTagUsingInfoListItemExample } from './ListItemTagUsingInfoListItemExample';
 
 const codeSnippet = `<InfoListItem
     icon={<BatteryChargingFull />}
@@ -22,15 +22,15 @@ const codeSnippet = `<InfoListItem
     }
 />`;
 
-export const ComplexListItemTag = (): JSX.Element => (
+export const ListItemTagUsingInfoListItem = (): JSX.Element => (
     <Box>
         <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
-            <ComplexListItemTagExample />
+            <ListItemTagUsingInfoListItemExample />
         </Box>
         <CodeBlock code={codeSnippet} language="jsx" dataLine="9-14" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/ListItemTag/examples/ComplexListItemTagExample.tsx"
+            url="componentDocs/ListItemTag/examples/ListItemTagUsingInfoListItemExample.tsx"
         />
     </Box>
 );

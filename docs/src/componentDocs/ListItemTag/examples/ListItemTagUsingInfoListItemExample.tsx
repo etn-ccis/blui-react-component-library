@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import BatteryChargingFull from '@mui/icons-material/BatteryChargingFull';
 import * as Colors from '@brightlayer-ui/colors';
 
-export const ComplexListItemTagExample = (): JSX.Element => (
+export const ListItemTagUsingInfoListItemExample = (): JSX.Element => (
     <InfoListItem
         sx={{ width: 'auto' }}
         icon={<BatteryChargingFull />}
