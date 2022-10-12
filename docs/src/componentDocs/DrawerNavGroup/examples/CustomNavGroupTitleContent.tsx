@@ -23,7 +23,7 @@ const codeSnippet = `<Drawer open={true} width={250}>
 export const CustomNavGroupTitleContent = (): JSX.Element => (
     <Box>
         <CustomNavGroupTitleContentExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-13" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="4-9" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/DrawerNavGroup/examples/CustomNavGroupTitleContentExample.tsx"
