@@ -256,11 +256,11 @@ workflows:
             - deploy_reactdev:
                   requires:
                       - build_reactdev
-            #       filters:
-            #           branches:
-            #               only:
-            #                   - master
-            #                   - dev
+                  filters:
+                       branches:
+                           only:
+                               - master
+                               - dev
             - build_reactdev:
                   requires:
                       - build_library
