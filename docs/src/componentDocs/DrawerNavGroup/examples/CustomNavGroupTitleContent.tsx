@@ -13,8 +13,8 @@ const codeSnippet = `<Drawer open={true} width={250}>
                 </Box>
             }
         >
-            <DrawerNavItem title="Item 1" itemID="1" divider={false} />
-            <DrawerNavItem title="Item 2" itemID="2" divider={false} />
+            <DrawerNavItem title="Item 1" itemID="1" />
+            <DrawerNavItem title="Item 2" itemID="2" />
         </DrawerNavGroup>
     </DrawerBody>
 </Drawer>

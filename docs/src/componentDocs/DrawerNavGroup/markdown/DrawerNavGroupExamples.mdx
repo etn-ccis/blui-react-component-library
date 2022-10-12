@@ -1,6 +1,7 @@
 import { MultipleDrawerNavGroups } from '../examples/MultipleDrawerNavGroups';
 import { SpacingNavGroups } from '../examples/SpacingNavGroups';
 import { CustomNavGroupTitleContent } from '../examples/CustomNavGroupTitleContent';
+import { DrawerNavGroupComposition } from '../examples/DrawerNavGroupComposition';
 
 ## Drawer Nav Group
 
@@ -23,3 +24,5 @@ By default, each nav group has a simple string as the title. You can customize t
 ## Composition vs Configuration
 
 You can define the [Drawer Nav Items](/components/drawer/drawer-nav-item/api-docs) that you want to appear in each group via composition (simply add them as children) or configuration (define them in the `items` prop). Composition will offer slightly better re-rendering performance when props change, but using the `items` prop is easier to read/maintain, especially if you have a large number of items.
+
+<DrawerNavGroupComposition />
