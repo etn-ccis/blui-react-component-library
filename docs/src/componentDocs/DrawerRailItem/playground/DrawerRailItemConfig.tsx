@@ -56,7 +56,7 @@ export const drawerRailItemConfig: ComponentType = {
             propType: 'string',
             helperText: 'The label text',
             required: true,
-            disable: true,
+            disabled: true,
         },
     ],
     sharedProps: [

@@ -11,7 +11,7 @@ export const drawerConfig: ComponentType = {
             propType: 'string',
             helperText: `itemID for the 'active' item`,
             required: false,
-            disable: true,
+            disabled: true,
         },
         {
             propName: 'condensed',
@@ -29,7 +29,7 @@ export const drawerConfig: ComponentType = {
             propType: 'boolean',
             helperText: 'Set to true if used without a <DrawerLayout>. Default value is false',
             required: false,
-            disable: true,
+            disabled: true,
             defaultValue: false,
         },
         {
