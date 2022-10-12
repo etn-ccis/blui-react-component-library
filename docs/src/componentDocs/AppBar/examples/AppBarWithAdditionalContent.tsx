@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import { CustomContentAppBarExample } from './CustomContentAppBarExample';
+import { AppBarWithAdditionalContentExample } from './AppBarWithAdditionalContentExample';
 
 const codeSnippet = `<Box>
     <AppBar
@@ -40,13 +40,13 @@ const codeSnippet = `<Box>
 </Box>
 `;
 
-export const CustomContentAppBar = (): JSX.Element => (
+export const AppBarWithAdditionalContent = (): JSX.Element => (
     <Box>
-        <CustomContentAppBarExample />
+        <AppBarWithAdditionalContentExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="2-31" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/AppBar/examples/CustomContentAppBarExample.tsx"
+            url="componentDocs/AppBar/examples/AppBarWithAdditionalContentExample.tsx"
         />
     </Box>
 );
