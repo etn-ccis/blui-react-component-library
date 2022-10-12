@@ -23,6 +23,7 @@ export const CodeBlockActionButtonRow: React.FC<CodeBlockActionButtonRowProps> =
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1, ...sx }}>
+            {url !== '' && <FullCodeOnGithub sx={{ ml: 1 }} url={url} />}
             {copyText !== '' && (
                 <CopyToClipboard
                     title={title}
@@ -33,7 +34,6 @@ export const CodeBlockActionButtonRow: React.FC<CodeBlockActionButtonRowProps> =
                     toolTipProps={props.toolTipProps}
                 />
             )}
-            {url !== '' && <FullCodeOnGithub sx={{ ml: 1 }} url={url} />}
         </Box>
     );
 };
