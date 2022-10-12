@@ -33,6 +33,26 @@ export const PreviewComponent = (): JSX.Element => {
         dispatch(updateComponentProp(newState));
     };
 
+    const updateOpenProp = (open: boolean): void => {
+        const newState = {
+            propName: 'open',
+            propValue: open,
+            componentName: drawerJson.componentName as string,
+            groupType: 'props',
+        };
+        dispatch(updateComponentProp(newState));
+        setTimeout((): void => {
+            dispatch(
+                updateComponentProp({
+                    propName: 'variant',
+                    propValue: 'permanent',
+                    componentName: drawerJson.componentName as string,
+                    groupType: 'props',
+                })
+            );
+        }, 500);
+    };
+
     const drawerProps = createProps(drawerJson.props as PropsType[]);
     const drawerSharedProps = createProps(drawerJson.sharedProps as PropsType[]);
 
@@ -83,12 +103,12 @@ export const PreviewComponent = (): JSX.Element => {
     const generateCodeSnippet = (): string => {
         const jsx = `<Drawer
     activeItem={"${drawerProps.activeItem}"}
-    activeItemBackgroundColor={"${drawerSharedProps.activeItemBackgroundColor}"}
-    activeItemFontColor={"${drawerSharedProps.activeItemFontColor}"}
-    activeItemIconColor={"${drawerSharedProps.activeItemIconColor}"}
-    ${toggleDefaultProp('activeItemBackgroundShape', drawerProps.activeItemBackgroundShape, 'sharedProps')}
-    chevron={${drawerSharedProps.chevron}}
-    chevronColor={"${drawerSharedProps.chevronColor}"}
+    ${toggleDefaultProp('activeItemBackgroundColor', drawerSharedProps.activeItemBackgroundColor, 'sharedProps')}
+    ${toggleDefaultProp('activeItemFontColor', drawerSharedProps.activeItemFontColor, 'sharedProps')}
+    ${toggleDefaultProp('activeItemIconColor', drawerSharedProps.activeItemIconColor, 'sharedProps')}
+    ${toggleDefaultProp('activeItemBackgroundShape', drawerSharedProps.activeItemBackgroundShape, 'sharedProps')}
+    ${toggleDefaultProp('chevron', drawerSharedProps.chevron, 'sharedProps')}
+    ${toggleDefaultProp('chevronColor', drawerSharedProps.chevronColor, 'sharedProps')}
     ${toggleDefaultProp('collapseIcon', drawerSharedProps.collapseIcon, 'sharedProps')}
     ${toggleDefaultProp('condensed', drawerProps.condensed, 'props')}
     ${toggleDefaultProp(
@@ -98,10 +118,10 @@ export const PreviewComponent = (): JSX.Element => {
     )}
     ${toggleDefaultProp('divider', drawerSharedProps.divider, 'sharedProps')}
     ${toggleDefaultProp('expandIcon', drawerSharedProps.expandIcon, 'sharedProps')}
-    hidePadding={${drawerSharedProps.hidePadding}}
-    itemFontColor={"${drawerSharedProps.itemFontColor}"}
-    itemIconColor={"${drawerSharedProps.itemIconColor}"}
-    nestedBackgroundColor={"${drawerSharedProps.nestedBackgroundColor}"}
+    ${toggleDefaultProp('hidePadding', drawerSharedProps.hidePadding, 'sharedProps')}
+    ${toggleDefaultProp('itemFontColor', drawerSharedProps.itemFontColor, 'sharedProps')}
+    ${toggleDefaultProp('itemIconColor', drawerSharedProps.itemIconColor, 'sharedProps')}
+    ${toggleDefaultProp('nestedBackgroundColor', drawerSharedProps.nestedBackgroundColor, 'sharedProps')}
     ${toggleDefaultProp('nestedDivider', drawerSharedProps.nestedDivider, 'sharedProps')}
     ${toggleDefaultProp('noLayout', drawerProps.noLayout)}
     open={${drawerProps.open}}
@@ -117,49 +137,49 @@ export const PreviewComponent = (): JSX.Element => {
         divider={false}
         fontColor={Colors.white[50]}
         icon={<Menu />}
-        subtitle={'Organize your menu items here'}
-        title={'Brightlayer UI Drawer'}
+        subtitle={"Organize your menu items here"}
+        title={"Brightlayer UI Drawer"}
     />
     <DrawerBody>
         <DrawerNavGroup items={
             [
                 {
-                    icon:<Dashboard />,
-                    itemID:'Overview',
-                    title:'Overview',
-                    onClick:(): void => updateActiveItem('Overview'),
+                    icon: <Dashboard />,
+                    itemID: "Overview",
+                    title: "Overview",
+                    onClick:(): void => updateActiveItem("Overview"),
                     items: [
                         {
-                            itemID:'Monthly Report',
-                            title:'Monthly Report',
-                            onClick: (): void => updateActiveItem('Monthly Report'),
+                            itemID: "Monthly Report",
+                            title: "Monthly Report",
+                            onClick: (): void => updateActiveItem("Monthly Report"),
                         },
                         {
-                            itemID:'Annual Report',
-                            title:'Annual Report',
-                            onClick: (): void => updateActiveItem('Annual Report'),
+                            itemID: "Annual Report",
+                            title: "Annual Report",
+                            onClick: (): void => updateActiveItem("Annual Report"),
                         },
                     ],
                 },
                 {
-                    icon:<Toc />,
-                    itemID:'Timeline',
-                    title:'Timeline',
-                    onClick:(): void => updateActiveItem('Timeline'),
+                    icon: <Toc />,
+                    itemID: "Timeline",
+                    title: "Timeline",
+                    onClick:(): void => updateActiveItem("Timeline"),
                 },
                 {
-                    icon:<Devices />,
-                    title:'Devices',
-                    itemID:'Devices',
-                    subtitle:'5 new warnings',
-                    statusColor:Colors.yellow[500],
-                    onClick:(): void => updateActiveItem('Devices'),
+                    icon: <Devices />,
+                    title: "Devices",
+                    itemID: "Devices",
+                    subtitle: "5 new warnings",
+                    statusColor: Colors.yellow[500],
+                    onClick:(): void => updateActiveItem("Devices"),
                 },
                 {
-                    icon:<AirportShuttle />,
-                    itemID:'Schedule',
-                    title:'Schedule',
-                    onClick:(): void => updateActiveItem('Schedule'),
+                    icon: <AirportShuttle />,
+                    itemID: "Schedule",
+                    title: "Schedule",
+                    onClick:(): void => updateActiveItem("Schedule"),
                 }
             ]
         }>
@@ -169,19 +189,19 @@ export const PreviewComponent = (): JSX.Element => {
     <DrawerFooter backgroundColor={Colors.white[50]}>
         <div
             style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexDirection: 'row',
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexDirection: "row",
                 padding: 16,
             }}
         >
-            <img src={'../../../assets/EatonLogoLight.png'} alt="Eaton Logo" height={28} width={'auto'} />
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <img src={"../../../assets/EatonLogoLight.png"} alt="Eaton Logo" height={28} width={"auto"} />
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <Typography
-                    variant={'caption'}
-                >{'Copyright \u00A9 Eaton ${new Date().getFullYear()}'}</Typography>
-                <Typography variant={'caption'}>All Rights Reserved</Typography>
+                    variant={"caption"}
+                >{"Copyright \u00A9 Eaton ${new Date().getFullYear()}"}</Typography>
+                <Typography variant={"caption"}>All Rights Reserved</Typography>
             </div>
         </div>
     </DrawerFooter>
@@ -218,6 +238,11 @@ export const PreviewComponent = (): JSX.Element => {
                     variant={drawerProps.variant}
                     width={drawerProps.width}
                     sx={{ minHeight: 'auto' }}
+                    ModalProps={{
+                        onBackdropClick: (): void => {
+                            updateOpenProp(false);
+                        },
+                    }}
                 >
                     <DrawerHeader
                         backgroundColor={Colors.blue[500]}

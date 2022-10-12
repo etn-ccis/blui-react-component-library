@@ -5,7 +5,6 @@ import { createProps, getIcon, hideDefaultPropsFromSnippet, removeEmptyLines } f
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerRailItem } from '@brightlayer-ui/react-components';
-import Devices from '@mui/icons-material/Devices';
 import Gavel from '@mui/icons-material/Gavel';
 import LocationOn from '@mui/icons-material/LocationOn';
 
@@ -19,63 +18,101 @@ export const PreviewComponent = (): JSX.Element => {
         hideDefaultPropsFromSnippet(drawerRailItemJson, propName, currentValue, groupType);
 
     const generateCodeSnippet = (): string => {
-        const jsx = `<Drawer open={true} variant={"rail"} activeItem={"${activeItem}"}>
+        const jsx = `<Drawer 
+    open={true} 
+    variant={"rail"} 
+    activeItem={"${activeItem}"} 
+    ${toggleDefaultProp('condensed', drawerRailItemProps.condensed, 'props')}
+>
     <DrawerBody>
         <DrawerNavGroup>
             <DrawerRailItem
-                ${toggleDefaultProp('condensed', drawerRailItemProps.condensed, 'props')}
                 ${toggleDefaultProp('disableRailTooltip', drawerRailItemProps.disableRailTooltip, 'props')}
                 ${toggleDefaultProp('hidden', drawerRailItemProps.hidden, 'props')}
                 icon={${drawerRailItemProps.icon}}
                 itemID={"${drawerRailItemProps.title}"}
-                statusColor={"${drawerRailItemProps.statusColor}"}
-                title={"${drawerRailItemProps.title}"}
-                activeItemBackgroundColor={"${drawerRailItemSharedProps.activeItemBackgroundColor}"}
-                activeItemFontColor={"${drawerRailItemSharedProps.activeItemFontColor}"}
-                activeItemIconColor={"${drawerRailItemSharedProps.activeItemIconColor}"}
-                backgroundColor={"${drawerRailItemSharedProps.backgroundColor}"}
+                ${toggleDefaultProp('statusColor', drawerRailItemProps.statusColor)}
+                ${toggleDefaultProp('title', drawerRailItemProps.title)}
+                ${toggleDefaultProp(
+                    'activeItemBackgroundColor',
+                    drawerRailItemSharedProps.activeItemBackgroundColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp(
+                    'activeItemFontColor',
+                    drawerRailItemSharedProps.activeItemFontColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp(
+                    'activeItemIconColor',
+                    drawerRailItemSharedProps.activeItemIconColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp('backgroundColor', drawerRailItemSharedProps.backgroundColor, 'sharedProps')}
                 ${toggleDefaultProp('divider', drawerRailItemSharedProps.divider, 'sharedProps')}
-                itemFontColor={"${drawerRailItemSharedProps.itemFontColor}"}
-                itemIconColor={"${drawerRailItemSharedProps.itemIconColor}"}
+                ${toggleDefaultProp('itemFontColor', drawerRailItemSharedProps.itemFontColor, 'sharedProps')}
+                ${toggleDefaultProp('itemIconColor', drawerRailItemSharedProps.itemIconColor, 'sharedProps')}
                 ${toggleDefaultProp('ripple', drawerRailItemSharedProps.ripple, 'sharedProps')}
                 onClick={(): void => {
-                    setActiveItem(${drawerRailItemProps.title});
+                    setActiveItem("${drawerRailItemProps.title}");
                 }}
             />
             <DrawerRailItem
                 icon={<LocationOn />}
                 itemID={'Locations'}
                 title={'Locations'}
-                ${toggleDefaultProp('condensed', drawerRailItemProps.condensed, 'props')}
                 ${toggleDefaultProp('disableRailTooltip', drawerRailItemProps.disableRailTooltip, 'props')}
-                activeItemBackgroundColor={"${drawerRailItemSharedProps.activeItemBackgroundColor}"}
-                activeItemFontColor={"${drawerRailItemSharedProps.activeItemFontColor}"}
-                activeItemIconColor={"${drawerRailItemSharedProps.activeItemIconColor}"}
-                backgroundColor={"${drawerRailItemSharedProps.backgroundColor}"}
+                ${toggleDefaultProp(
+                    'activeItemBackgroundColor',
+                    drawerRailItemSharedProps.activeItemBackgroundColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp(
+                    'activeItemFontColor',
+                    drawerRailItemSharedProps.activeItemFontColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp(
+                    'activeItemIconColor',
+                    drawerRailItemSharedProps.activeItemIconColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp('backgroundColor', drawerRailItemSharedProps.backgroundColor, 'sharedProps')}
                 ${toggleDefaultProp('divider', drawerRailItemSharedProps.divider, 'sharedProps')}
-                itemFontColor={"${drawerRailItemSharedProps.itemFontColor}"}
-                itemIconColor={"${drawerRailItemSharedProps.itemIconColor}"}
+                ${toggleDefaultProp('itemFontColor', drawerRailItemSharedProps.itemFontColor, 'sharedProps')}
+                ${toggleDefaultProp('itemIconColor', drawerRailItemSharedProps.itemIconColor, 'sharedProps')}
                 ${toggleDefaultProp('ripple', drawerRailItemSharedProps.ripple, 'sharedProps')}
                 onClick={(): void => {
-                    setActiveItem('Locations');
+                    setActiveItem("Locations");
                 }}
             />
             <DrawerRailItem
                 icon={<Gavel />}
-                itemID={'Legal'}
-                title={'Legal'}
-                ${toggleDefaultProp('condensed', drawerRailItemProps.condensed, 'props')}
+                itemID={"Legal"}
+                title={"Legal"}
                 ${toggleDefaultProp('disableRailTooltip', drawerRailItemProps.disableRailTooltip, 'props')}
-                activeItemBackgroundColor={"${drawerRailItemSharedProps.activeItemBackgroundColor}"}
-                activeItemFontColor={"${drawerRailItemSharedProps.activeItemFontColor}"}
-                activeItemIconColor={"${drawerRailItemSharedProps.activeItemIconColor}"}
-                backgroundColor={"${drawerRailItemSharedProps.backgroundColor}"}
+                ${toggleDefaultProp(
+                    'activeItemBackgroundColor',
+                    drawerRailItemSharedProps.activeItemBackgroundColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp(
+                    'activeItemFontColor',
+                    drawerRailItemSharedProps.activeItemFontColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp(
+                    'activeItemIconColor',
+                    drawerRailItemSharedProps.activeItemIconColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp('backgroundColor', drawerRailItemSharedProps.backgroundColor, 'sharedProps')}
                 ${toggleDefaultProp('divider', drawerRailItemSharedProps.divider, 'sharedProps')}
-                itemFontColor={"${drawerRailItemSharedProps.itemFontColor}"}
-                itemIconColor={"${drawerRailItemSharedProps.itemIconColor}"}
+                ${toggleDefaultProp('itemFontColor', drawerRailItemSharedProps.itemFontColor, 'sharedProps')}
+                ${toggleDefaultProp('itemIconColor', drawerRailItemSharedProps.itemIconColor, 'sharedProps')}
                 ${toggleDefaultProp('ripple', drawerRailItemSharedProps.ripple, 'sharedProps')}
                 onClick={(): void => {
-                    setActiveItem('Legal');
+                    setActiveItem("Legal");
                 }}
             />
         </DrawerNavGroup>
@@ -87,14 +124,20 @@ export const PreviewComponent = (): JSX.Element => {
     return (
         <PreviewComponentWithCode
             previewContent={
-                <Drawer open={true} variant={'rail'} activeItem={activeItem} noLayout sx={{ minHeight: 'auto' }}>
+                <Drawer
+                    open={true}
+                    variant={'rail'}
+                    activeItem={activeItem}
+                    noLayout
+                    sx={{ minHeight: 'auto' }}
+                    condensed={drawerRailItemProps.condensed}
+                >
                     <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
                         <DrawerNavGroup>
                             <DrawerRailItem
-                                condensed={drawerRailItemProps.condensed}
                                 disableRailTooltip={drawerRailItemProps.disableRailTooltip}
                                 hidden={drawerRailItemProps.hidden}
-                                icon={getIcon(drawerRailItemProps.icon) || <Devices />}
+                                icon={getIcon(drawerRailItemProps.icon) as JSX.Element}
                                 itemID={drawerRailItemProps.title}
                                 statusColor={drawerRailItemProps.statusColor}
                                 title={drawerRailItemProps.title}
@@ -117,7 +160,6 @@ export const PreviewComponent = (): JSX.Element => {
                                 onClick={(): void => {
                                     setActiveItem('Locations');
                                 }}
-                                condensed={drawerRailItemProps.condensed}
                                 disableRailTooltip={drawerRailItemProps.disableRailTooltip}
                                 activeItemBackgroundColor={drawerRailItemSharedProps.activeItemBackgroundColor}
                                 activeItemFontColor={drawerRailItemSharedProps.activeItemFontColor}
@@ -135,7 +177,6 @@ export const PreviewComponent = (): JSX.Element => {
                                 onClick={(): void => {
                                     setActiveItem('Legal');
                                 }}
-                                condensed={drawerRailItemProps.condensed}
                                 disableRailTooltip={drawerRailItemProps.disableRailTooltip}
                                 activeItemBackgroundColor={drawerRailItemSharedProps.activeItemBackgroundColor}
                                 activeItemFontColor={drawerRailItemSharedProps.activeItemFontColor}

@@ -68,13 +68,13 @@ export const PreviewComponent = (): JSX.Element => {
                 return `badge={
             <HeroBanner>
                 <Hero
-                    key={'hero1'}
-                    icon={<Temp fontSize={'inherit'} />}
-                    label={'Temperature'}
+                    key={"hero1"}
+                    icon={<Temp fontSize={"inherit"} />}
+                    label={"Temperature"}
                     iconSize={48}
                     iconBackgroundColor={"${Colors.white[50]}"}
-                    ChannelValueProps={{ value: 98, units: '°F' }}
-                    fontSize={'normal'}
+                    ChannelValueProps={{ value: 98, units: "°F" }}
+                    fontSize={"normal"}
                 />
             <HeroBanner>
         }`;
@@ -82,22 +82,22 @@ export const PreviewComponent = (): JSX.Element => {
                 return `badge={
             <HeroBanner>
                 <Hero
-                    key={'hero1'}
-                    icon={<Temp fontSize={'inherit'} />}
-                    label={'Temperature'}
+                    key={"hero1"}
+                    icon={<Temp fontSize={"inherit"} />}
+                    label={"Temperature"}
                     iconSize={48}
                     iconBackgroundColor={"${Colors.white[50]}"}
                     ChannelValueProps={{ value: 98, units: "°F" }}
-                    fontSize={'normal'}
+                    fontSize={"normal"}
                 />
                 <Hero
-                    key={'hero2'}
-                    icon={<Humidity fontSize={'inherit'} htmlColor={Colors.blue[300]} />}
-                    label={'Humidity'}
+                    key={"hero2"}
+                    icon={<Humidity fontSize={"inherit"} htmlColor={Colors.blue[300]} />}
+                    label={"Humidity"}
                     ChannelValueProps={{ value: 54, units: "%" }}
                     iconSize={48}
                     iconBackgroundColor={"${Colors.white[50]}"}
-                    fontSize={'normal'}
+                    fontSize={"normal"}
                 />
             <HeroBanner>
         }`;
@@ -112,45 +112,45 @@ export const PreviewComponent = (): JSX.Element => {
     headerTitle={"${scoreCardProps.headerTitle}"}
     ${toggleDefaultProp('headerSubtitle', scoreCardProps.headerSubtitle)}
     ${toggleDefaultProp('headerInfo', scoreCardProps.headerInfo)}
-    headerColor={"${scoreCardProps.headerColor}"}
-    headerFontColor={"${scoreCardProps.headerFontColor}"}
+    ${toggleDefaultProp('headerColor', scoreCardProps.headerColor)}
+    ${toggleDefaultProp('headerFontColor', scoreCardProps.headerFontColor)}
     ${toggleDefaultProp('headerBackgroundImage', `${getImage(scoreCardProps.headerBackgroundImage)}`)}
-    actionLimit={${scoreCardProps.actionLimit}}
+    ${toggleDefaultProp('actionLimit', scoreCardProps.actionLimit)}
     actionItems={[
-        <Search key={'search'} />,
-        <Mail key={'mail'} />,
-        <Notifications key={'notifications'} />,
-        <Favorite key={'favorite'} />,
-        <Cloud key={'cloud'} />,
-        <MoreVert key={'morevert'} />,
+        <Search key={"search"} />,
+        <Mail key={"mail"} />,
+        <Notifications key={"notifications"} />,
+        <Favorite key={"favorite"} />,
+        <Cloud key={"cloud"} />,
+        <MoreVert key={"morevert"} />,
     ]}
     actionRow={
         <List sx={{ padding: 0 }}>
-            <InfoListItem dense chevron title={'View Location'} hidePadding />
+            <InfoListItem dense chevron title={"View Location"} hidePadding />
         </List>
     }
     ${showHeroSection(scoreCardOtherProps.numberofHeroes)}
     ${toggleDefaultProp('badgeOffset', scoreCardProps.badgeOffset)}
 >
-    <List sx={{ padding: '.5rem 0' }}>
+    <List sx={{ padding: ".5rem 0" }}>
         <InfoListItem
             dense
-            sx={{ height: '2.25rem' }}
-            title={'0 Alarms'}
+            sx={{ height: "2.25rem" }}
+            title={"0 Alarms"}
             icon={<Notifications />}
         />
         <InfoListItem
             dense
-            sx={{ height: '2.25rem' }}
+            sx={{ height: "2.25rem" }}
             fontColor={Colors.blue[500]}
             iconColor={Colors.blue[500]}
-            title={'1 Event'}
+            title={"1 Event"}
             icon={<ListAlt />}
         />
         <InfoListItem
             dense
-            sx={{ height: '2.25rem' }}
-            title={'Online'}
+            sx={{ height: "2.25rem" }}
+            title={"Online"}
             icon={<Cloud />}
         />
     </List>
@@ -172,14 +172,14 @@ export const PreviewComponent = (): JSX.Element => {
                     actionLimit={scoreCardProps.actionLimit}
                     actionItems={actionItems}
                     actionRow={
-                        <List sx={{ padding: 0 }}>
+                        <List sx={{ p: 0 }}>
                             <InfoListItem dense chevron title={'View Location'} hidePadding />
                         </List>
                     }
                     badge={<HeroBanner>{heroes.slice(0, scoreCardOtherProps.numberofHeroes)}</HeroBanner>}
                     badgeOffset={scoreCardProps.badgeOffset}
                 >
-                    <List sx={{ padding: '.5rem 0' }}>
+                    <List sx={{ p: '.5rem 0' }}>
                         <InfoListItem dense sx={{ height: '2.25rem' }} title={'0 Alarms'} icon={<Notifications />} />
                         <InfoListItem
                             dense

@@ -200,19 +200,27 @@ export const hideDefaultPropsFromSnippet = (
     state: ComponentType,
     propName: string,
     currentValue: any,
-    groupType?: string
+    groupType?: string,
+    themeDefaultValue?: string | number
 ): string => {
     const knob = filterPropsAsPerGroupType(state, propName, groupType);
-    if (knob?.defaultValue === currentValue) {
+    if (knob?.defaultValue === currentValue || themeDefaultValue === currentValue) {
         return '';
     }
     switch (knob?.propType) {
         case 'string':
         case 'string | Array<React.ReactNode>':
-        case 'ReactNode':
             return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
+        case 'ReactNode':
+            if (knob.inputType === 'string') {
+                return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
+            }
+            return `${propName}={${currentValue}}`;
         case 'boolean':
             return `${propName}={${currentValue}}`;
+        case 'number':
+        case 'number | string':
+            return currentValue === '' ? '' : `${propName}={${currentValue}}`;
         default:
             return `${propName}={${currentValue}}`;
     }

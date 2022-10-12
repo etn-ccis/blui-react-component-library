@@ -5,6 +5,7 @@ import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, DrawerNavItem } from 
 import {
     createProps,
     getIcon,
+    getIconWithProp,
     getImage,
     hideDefaultPropsFromSnippet,
     removeEmptyLines,
@@ -12,40 +13,50 @@ import {
 import { Accessibility, NotificationsActive, Person, Today } from '@mui/icons-material';
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
+import useTheme from '@mui/material/styles/useTheme';
 
 export const PreviewComponent = (): JSX.Element => {
+    const theme = useTheme();
     const drawerHeaderJson = useAppSelector((state: RootState) => state.componentsPropsState.drawerHeaderComponent);
 
     const drawerHeaderProps = createProps(drawerHeaderJson.props as PropsType[]);
 
-    const toggleDefaultProp = (propName: string, currentValue: any): string =>
-        hideDefaultPropsFromSnippet(drawerHeaderJson, propName, currentValue, 'props');
+    const toggleDefaultProp = (propName: string, currentValue: any, themeDefaultValue?: string | number): string =>
+        hideDefaultPropsFromSnippet(drawerHeaderJson, propName, currentValue, 'props', themeDefaultValue);
+
+    const toggleIconProp = (icon: string): string => {
+        if (icon === 'undefined') {
+            return toggleDefaultProp('icon', icon);
+        }
+        return `icon={${getIconWithProp(icon, {})}}`;
+    };
 
     const generateCodeSnippet = (): string => {
-        const jsx = `<Drawer open={true} activeItem={'Identity Management'}>
+        const jsx = `<Drawer open={true} activeItem={"Identity Management"}>
     <DrawerHeader
-        backgroundColor={"${drawerHeaderProps.backgroundColor}"}
+        ${toggleDefaultProp('backgroundColor', drawerHeaderProps.backgroundColor, theme.palette.primary.main)}
         ${toggleDefaultProp('backgroundImage', `${getImage(drawerHeaderProps.backgroundImage)}`)}
         ${toggleDefaultProp('divider', drawerHeaderProps.divider)}
         ${toggleDefaultProp('backgroundOpacity', drawerHeaderProps.backgroundOpacity)}
-        fontColor={"${drawerHeaderProps.fontColor}"}
-        ${toggleDefaultProp('icon', drawerHeaderProps.icon)}
-        subtitle={"${drawerHeaderProps.subtitle}"}
-        title={"${drawerHeaderProps.title}"}>
+        ${toggleDefaultProp('fontColor', drawerHeaderProps.fontColor)}
+        ${toggleIconProp(drawerHeaderProps.icon)}
+        ${toggleDefaultProp('subtitle', drawerHeaderProps.subtitle)}
+        ${toggleDefaultProp('title', drawerHeaderProps.title)}
+    >
     </DrawerHeader>
     <DrawerBody>
         <DrawerNavGroup>
             <DrawerNavItem
                 icon={<Person />}
-                itemID={'Identity Management'}
-                title={'Identity Management'}
+                itemID={"Identity Management"}
+                title={"Identity Management"}
             />
-            <DrawerNavItem icon={<Today />} itemID={'Calendar'} title={'Calendar'} />
-            <DrawerNavItem icon={<Accessibility />} title={'Accessibility'} itemID={'Accessibility'} />
+            <DrawerNavItem icon={<Today />} itemID={"Calendar"} title={"Calendar"} />
+            <DrawerNavItem icon={<Accessibility />} title={"Accessibility"} itemID={"Accessibility"} />
             <DrawerNavItem
                 icon={<NotificationsActive />}
-                title={'Notifications'}
-                itemID={'Notifications'}
+                title={"Notifications"}
+                itemID={"Notifications"}
             />
         </DrawerNavGroup>
     </DrawerBody>

@@ -30,8 +30,8 @@ export const PreviewComponent = (): JSX.Element => {
     const toggleActionSnippet = (showActionSnippet: boolean): string =>
         showActionSnippet
             ? `actions={
-        <Button variant={'outlined'} color={'primary'} startIcon={<AddIcon />}>
-            {'Add Device'}
+        <Button variant={"outlined"} color={"primary"} startIcon={<AddIcon />}>
+            {"Add Device"}
         </Button>
     }`
             : ``;
