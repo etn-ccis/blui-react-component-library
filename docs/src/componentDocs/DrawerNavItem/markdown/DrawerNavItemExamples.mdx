@@ -1,26 +1,21 @@
-import { BasicDrawerNavItem } from '../examples/BasicDrawerNavItem';
 import { DrawerNavItemWithIcons } from '../examples/DrawerNavItemWithIcons';
 import { DrawerNavItemNestedItems } from '../examples/DrawerNavItemNestedItems';
 import { DrawerNavItemSelectedItems } from '../examples/DrawerNavItemSelectedItems';
 
-# Basic Drawer Nav Items
+## Drawer Nav Item
 
-<BasicDrawerNavItem />
-
-# Drawer Nav Items With Icons
-
-Drawer navigation items accept icons denoted with the blui-icon selector.
+A `<DrawerNavItem>` represents a single list item in the navigation drawer. Nav items can contain any combination of title, subtitle and icon.
 
 <DrawerNavItemWithIcons />
 
-# Nested Drawer Nav Items
+## Selecting a Nav Item
 
-Navigation items can be nested to allow for different levels of navigation. To create a nested navigation item, simply place a `<DrawerNavItem />` inside of another. The `<DrawerNavItem />` allows nested navigation up to 3 levels deep.
-
-<DrawerNavItemNestedItems />
-
-# Selected Navigation Items
-
-`activeItem` prop of Drawer should be updated with itemID of selected `<DrawerNavItem />`. The active item's highlighted shape can be adjusted via the `activeItemBackgroundShape` prop to be either "square" (default) or "round".
+Navigation items can be highlighted with an active state by setting the `'activeItem'` prop. The shape of the highlight can be either "square" (default) or "round".
 
 <DrawerNavItemSelectedItems />
+
+## Nesting the Nav Items
+
+Navigation items can be nested to allow for a multi-level navigation hierarchy. Similar to the [Drawer Nav Group](/components/drawer/drawer-nav-group/api-docs), you can do this by adding additional Nav Items as children or by specifying the nested structure via the `'items'` prop. Deep nesting can cause performance issues — we recommend limiting yourself to 2-3 levels when possible.
+
+<DrawerNavItemNestedItems />
