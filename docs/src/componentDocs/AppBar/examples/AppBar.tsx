@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import { SnapAppBarExample } from './SnapAppBarExample';
+import { AppBarExample } from './AppBarExample';
 
 const codeSnippet = `<Box>
     <AppBar
@@ -19,10 +19,10 @@ const codeSnippet = `<Box>
 </Box>
 `;
 
-export const SnapAppBar = (): JSX.Element => (
+export const AppBar = (): JSX.Element => (
     <Box>
-        <SnapAppBarExample />
+        <AppBarExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="2-10" />
-        <CodeBlockActionButtonRow copyText={codeSnippet} url="componentDocs/AppBar/examples/SnapAppBarExample.tsx" />
+        <CodeBlockActionButtonRow copyText={codeSnippet} url="componentDocs/AppBar/examples/AppBarExample.tsx" />
     </Box>
 );
