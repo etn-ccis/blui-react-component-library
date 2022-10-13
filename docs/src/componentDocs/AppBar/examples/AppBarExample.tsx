@@ -4,8 +4,8 @@ import * as colors from '@brightlayer-ui/colors';
 import { AppBar } from '@brightlayer-ui/react-components';
 import { getBodyFiller } from '../../../shared';
 
-export const SnapAppBarExample = (): JSX.Element => (
-    <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, overflow: 'hidden' }}>
+export const AppBarExample = (): JSX.Element => (
+    <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4, overflow: 'hidden' }}>
         <Box sx={{ mb: 2, overflow: 'hidden', height: 400 }}>
             <AppBar
                 variant="snap"

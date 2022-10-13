@@ -26,6 +26,16 @@ export const PreviewComponent = (): JSX.Element => {
     const toggleDefaultProp = (propName: string, currentValue: any): string =>
         hideDefaultPropsFromSnippet(drawerSubheaderJson, propName, currentValue, 'props');
 
+    const generateSubHeaderSnippet = (): string => {
+        if (drawerSubheaderProps.divider && drawerSubheaderProps.hideContentOnCollapse) {
+            return `<DrawerSubheader>`;
+        }
+        return `<DrawerSubheader 
+            ${toggleDefaultProp('divider', drawerSubheaderProps.divider)}
+            ${toggleDefaultProp('hideContentOnCollapse', drawerSubheaderProps.hideContentOnCollapse)}
+        >`;
+    };
+
     const generateCodeSnippet = (): string => {
         const jsx = `<Drawer open={${drawerSubheaderOtherProps.open}}>
         <DrawerHeader 
@@ -33,10 +43,7 @@ export const PreviewComponent = (): JSX.Element => {
             title={'Subheader Demo'}
             subtitle={'See the DrawerSubheader below'} 
         />
-        <DrawerSubheader ${toggleDefaultProp('divider', drawerSubheaderProps.divider)} ${toggleDefaultProp(
-            'hideContentOnCollapse',
-            drawerSubheaderProps.hideContentOnCollapse
-        )}>
+        ${generateSubHeaderSnippet()}
             <Box
                 sx={{
                     p: 2,

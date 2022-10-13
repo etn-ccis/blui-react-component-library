@@ -29,19 +29,28 @@ export const PreviewComponent = (): JSX.Element => {
         const jsx = `<Drawer open={true} activeItem={"${drawerActiveItem}"}>
     <DrawerHeader 
         icon={<Menu />}
-        title={'Header Title'}
+        title={"Header Title"}
     />
 
     <DrawerBody>
         <DrawerNavGroup
             ${toggleDefaultProp('title', drawerNavGroupProps.title)}
-            titleColor={"${drawerNavGroupProps.titleColor}"}
+            ${toggleDefaultProp('titleColor', drawerNavGroupProps.titleColor)}
             ${toggleDefaultProp('titleDivider', drawerNavGroupProps.titleDivider)}
-            activeItemBackgroundColor={"${drawerNavGroupSharedProps.activeItemBackgroundColor}"}
-            activeItemFontColor={"${drawerNavGroupSharedProps.activeItemFontColor}"}
-            activeItemIconColor={"${drawerNavGroupSharedProps.activeItemIconColor}"}
-            chevron={${drawerNavGroupSharedProps.chevron}}
-            chevronColor={"${drawerNavGroupSharedProps.chevronColor}"}
+            ${toggleDefaultProp(
+                'activeItemBackgroundColor',
+                drawerNavGroupSharedProps.activeItemBackgroundColor,
+                'sharedProps'
+            )}
+            ${toggleDefaultProp(
+                'activeItemBackgroundShape',
+                drawerNavGroupSharedProps.activeItemBackgroundShape,
+                'sharedProps'
+            )}
+            ${toggleDefaultProp('activeItemFontColor', drawerNavGroupSharedProps.activeItemFontColor, 'sharedProps')}
+            ${toggleDefaultProp('activeItemIconColor', drawerNavGroupSharedProps.activeItemIconColor, 'sharedProps')}
+            ${toggleDefaultProp('chevron', drawerNavGroupSharedProps.chevron, 'sharedProps')}
+            ${toggleDefaultProp('chevronColor', drawerNavGroupSharedProps.chevronColor, 'sharedProps')}
             ${toggleDefaultProp('collapseIcon', drawerNavGroupSharedProps.collapseIcon, 'sharedProps')}
             ${toggleDefaultProp(
                 'disableActiveItemParentStyles',
@@ -50,49 +59,53 @@ export const PreviewComponent = (): JSX.Element => {
             )}
             ${toggleDefaultProp('divider', drawerNavGroupSharedProps.divider, 'sharedProps')}
             ${toggleDefaultProp('expandIcon', drawerNavGroupSharedProps.expandIcon, 'sharedProps')}
-            hidePadding={${drawerNavGroupSharedProps.hidePadding}}
-            itemFontColor={"${drawerNavGroupSharedProps.itemFontColor}"}
-            itemIconColor={"${drawerNavGroupSharedProps.itemIconColor}"}
-            nestedBackgroundColor={"${drawerNavGroupSharedProps.nestedBackgroundColor}"}
+            ${toggleDefaultProp('hidePadding', drawerNavGroupSharedProps.hidePadding, 'sharedProps')}
+            ${toggleDefaultProp('itemFontColor', drawerNavGroupSharedProps.itemFontColor, 'sharedProps')}
+            ${toggleDefaultProp('itemIconColor', drawerNavGroupSharedProps.itemIconColor, 'sharedProps')}
+            ${toggleDefaultProp(
+                'nestedBackgroundColor',
+                drawerNavGroupSharedProps.nestedBackgroundColor,
+                'sharedProps'
+            )}
             ${toggleDefaultProp('nestedDivider', drawerNavGroupSharedProps.nestedDivider, 'sharedProps')}
             ${toggleDefaultProp('ripple', drawerNavGroupSharedProps.ripple, 'sharedProps')}
         >
         <DrawerNavItem
             icon={<Dashboard />}
-            itemID={'Overview'}
-            title={'Overview'}
-            onClick={(): void => setDrawerActiveItem('Overview')}
+            itemID={"Overview"}
+            title={"Overview"}
+            onClick={(): void => setDrawerActiveItem("Overview")}
         >
             <DrawerNavItem
-                itemID={'Monthly Report'}
-                title={'Monthly Report'}
-                onClick={(): void => setDrawerActiveItem('Monthly Report')}
+                itemID={"Monthly Report"}
+                title={"Monthly Report"}
+                onClick={(): void => setDrawerActiveItem("Monthly Report")}
             />
             <DrawerNavItem
-                itemID={'Annual Report'}
-                title={'Annual Report'}
-                onClick={(): void => setDrawerActiveItem('Annual Report')}
+                itemID={"Annual Report"}
+                title={"Annual Report"}
+                onClick={(): void => setDrawerActiveItem("Annual Report")}
             />
         </DrawerNavItem>
         <DrawerNavItem
             icon={<Toc />}
-            itemID={'Timeline'}
-            title={'Timeline'}
-            onClick={(): void => setDrawerActiveItem('Timeline')}
+            itemID={"Timeline"}
+            title={"Timeline"}
+            onClick={(): void => setDrawerActiveItem("Timeline")}
         />
         <DrawerNavItem
             icon={<Devices />}
-            title={'Devices'}
-            itemID={'Devices'}
-            subtitle={'5 new warnings'}
+            title={"Devices"}
+            itemID={"Devices"}
+            subtitle={"5 new warnings"}
             statusColor={Colors.yellow[500]}
-            onClick={(): void => setDrawerActiveItem('Devices')}
+            onClick={(): void => setDrawerActiveItem("Devices")}
         />
         <DrawerNavItem
             icon={<AirportShuttle />}
-            itemID={'Schedule'}
-            title={'Schedule'}
-            onClick={(): void => setDrawerActiveItem('Schedule')}
+            itemID={"Schedule"}
+            title={"Schedule"}
+            onClick={(): void => setDrawerActiveItem("Schedule")}
         />
         </DrawerNavGroup>
     </DrawerBody>

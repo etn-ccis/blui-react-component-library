@@ -57,7 +57,7 @@ export const drawerTypes: ComponentType = {
             propName: 'icon',
             inputType: 'select',
             inputValue: '<Menu />',
-            options: ['<Menu />', '<FitnessCenter />', 'undefined'],
+            options: ['undefined', '<Menu />', '<FitnessCenter />'],
             propType: 'ReactNode',
             helperText: 'A component to render for the icon',
             required: false,

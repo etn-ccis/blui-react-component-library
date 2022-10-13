@@ -77,8 +77,8 @@ export const infoListItemConfig: ComponentType = {
         {
             propName: 'icon',
             inputType: 'select',
-            inputValue: '<Device />',
-            options: ['undefined', '<Device />'],
+            inputValue: '<Devices />',
+            options: ['undefined', '<Devices />'],
             propType: 'JSX.Element',
             helperText: 'A component to render for the icon',
             required: false,
@@ -170,8 +170,6 @@ export const infoListItemConfig: ComponentType = {
             required: false,
             defaultValue: false,
         },
-    ],
-    otherProps: [
         {
             propName: 'disabled',
             inputType: 'boolean',

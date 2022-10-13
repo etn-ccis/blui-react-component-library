@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 
 export const DrawerNavItemSelectedItemsExample = (): JSX.Element => {
-    const [selected, setSelected] = useState('Item 1');
+    const [selected, setSelected] = useState('Item 2');
 
     return (
-        <Drawer open={true} width={250} sx={{ margin: '0 auto' }} noLayout activeItem={selected}>
+        <Drawer open={true} width={250} sx={{ mx: 'auto' }} noLayout activeItem={selected}>
             <DrawerBody sx={{ flex: '1 1 auto' }}>
                 <DrawerNavGroup hidePadding={true}>
                     <DrawerNavItem

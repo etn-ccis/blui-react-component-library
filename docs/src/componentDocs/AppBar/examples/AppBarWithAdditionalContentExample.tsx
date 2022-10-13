@@ -6,8 +6,8 @@ import { getBodyFiller } from '../../../shared';
 import { Download, Menu, MoreVert, Search } from '@mui/icons-material';
 import BackgroundImage from '../images/farm.jpg';
 
-export const CustomContentAppBarExample = (): JSX.Element => (
-    <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, overflow: 'hidden' }}>
+export const AppBarWithAdditionalContentExample = (): JSX.Element => (
+    <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4, overflow: 'hidden' }}>
         <Box sx={{ mb: 2, overflow: 'hidden', height: 400 }}>
             <AppBar
                 classes={{ collapsed: 'collapsed', expanded: 'expanded' }}

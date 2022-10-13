@@ -30,26 +30,75 @@ export const PreviewComponent = (): JSX.Element => {
 
     const generateCodeSnippet = (): string => {
         const jsx = `<Drawer open={true} activeItem={"${drawerNavItemProps.itemID}"}>
-        <DrawerBody>
-            <DrawerNavGroup>
+    <DrawerBody>
+        <DrawerNavGroup>
+            <DrawerNavItem
+                ${toggleDefaultProp('hidden', drawerNavItemProps.hidden)}
+                ${toggleDefaultProp('hidePadding', drawerNavItemSharedProps.hidePadding)}
+                ${toggleDefaultProp('icon', drawerNavItemProps.icon)}
+                itemID={"Title"}
+                ${toggleDefaultProp('statusColor', drawerNavItemProps.statusColor, 'props')}
+                ${toggleDefaultProp('subtitle', drawerNavItemProps.subtitle, 'props')}
+                title={"${drawerNavItemProps.title}"}
+                ${toggleDefaultProp(
+                    'activeItemBackgroundColor',
+                    drawerNavItemSharedProps.activeItemBackgroundColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp(
+                    'activeItemBackgroundShape',
+                    drawerNavItemSharedProps.activeItemBackgroundShape,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp('activeItemFontColor', drawerNavItemSharedProps.activeItemFontColor, 'sharedProps')}
+                ${toggleDefaultProp('activeItemIconColor', drawerNavItemSharedProps.activeItemIconColor, 'sharedProps')}
+                ${toggleDefaultProp('chevron', drawerNavItemSharedProps.chevron, 'sharedProps')}
+                ${toggleDefaultProp('chevronColor', drawerNavItemSharedProps.chevronColor, 'sharedProps')}
+                ${toggleDefaultProp('collapseIcon', drawerNavItemSharedProps.collapseIcon, 'sharedProps')}
+                ${toggleDefaultProp(
+                    'disableActiveItemParentStyles',
+                    drawerNavItemSharedProps.disableActiveItemParentStyles,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp('divider', drawerNavItemSharedProps.divider, 'sharedProps')}
+                ${toggleDefaultProp('expandIcon', drawerNavItemSharedProps.expandIcon, 'sharedProps')}
+                ${toggleDefaultProp('hidePadding', drawerNavItemSharedProps.hidePadding, 'sharedProps')}
+                ${toggleDefaultProp('itemFontColor', drawerNavItemSharedProps.itemFontColor, 'sharedProps')}
+                ${toggleDefaultProp('itemIconColor', drawerNavItemSharedProps.itemIconColor, 'sharedProps')}
+                ${toggleDefaultProp(
+                    'nestedBackgroundColor',
+                    drawerNavItemSharedProps.nestedBackgroundColor,
+                    'sharedProps'
+                )}
+                ${toggleDefaultProp('nestedDivider', drawerNavItemSharedProps.nestedDivider, 'sharedProps')}
+                ${toggleDefaultProp('ripple', drawerNavItemSharedProps.ripple, 'sharedProps')}
+                onClick={(): void => updateItemID("Title")}
+            >
                 <DrawerNavItem
-                    hidden={${drawerNavItemProps.hidden}}
+                    itemID={"Monthly Report"}
+                    title={"Monthly Report"}
                     ${toggleDefaultProp(
-                        'hidePadding',
-                        drawerNavItemProps.hidePadding
-                            ? drawerNavItemProps.hidePadding
-                            : drawerNavItemSharedProps.hidePadding
+                        'activeItemBackgroundColor',
+                        drawerNavItemSharedProps.activeItemBackgroundColor,
+                        'sharedProps'
                     )}
-                    ${toggleDefaultProp('icon', drawerNavItemProps.icon)}
-                    itemID={'Title'}
-                    statusColor={"${drawerNavItemProps.statusColor}"}
-                    subtitle={"${drawerNavItemProps.subtitle}"}
-                    title={"${drawerNavItemProps.title}"}
-                    activeItemBackgroundColor={"${drawerNavItemSharedProps.activeItemBackgroundColor}"}
-                    activeItemFontColor={"${drawerNavItemSharedProps.activeItemFontColor}"}
-                    activeItemIconColor={"${drawerNavItemSharedProps.activeItemIconColor}"}
-                    chevron={${drawerNavItemSharedProps.chevron}}
-                    chevronColor={"${drawerNavItemSharedProps.chevronColor}"}
+                    ${toggleDefaultProp(
+                        'activeItemBackgroundShape',
+                        drawerNavItemSharedProps.activeItemBackgroundShape,
+                        'sharedProps'
+                    )}
+                    ${toggleDefaultProp(
+                        'activeItemFontColor',
+                        drawerNavItemSharedProps.activeItemFontColor,
+                        'sharedProps'
+                    )}
+                    ${toggleDefaultProp(
+                        'activeItemIconColor',
+                        drawerNavItemSharedProps.activeItemIconColor,
+                        'sharedProps'
+                    )}
+                    ${toggleDefaultProp('chevron', drawerNavItemSharedProps.chevron, 'sharedProps')}
+                    ${toggleDefaultProp('chevronColor', drawerNavItemSharedProps.chevronColor, 'sharedProps')}
                     ${toggleDefaultProp('collapseIcon', drawerNavItemSharedProps.collapseIcon, 'sharedProps')}
                     ${toggleDefaultProp(
                         'disableActiveItemParentStyles',
@@ -58,66 +107,67 @@ export const PreviewComponent = (): JSX.Element => {
                     )}
                     ${toggleDefaultProp('divider', drawerNavItemSharedProps.divider, 'sharedProps')}
                     ${toggleDefaultProp('expandIcon', drawerNavItemSharedProps.expandIcon, 'sharedProps')}
-                    hidePadding={${drawerNavItemSharedProps.hidePadding}}
-                    itemFontColor={"${drawerNavItemSharedProps.itemFontColor}"}
-                    itemIconColor={"${drawerNavItemSharedProps.itemIconColor}"}
-                    nestedBackgroundColor={"${drawerNavItemSharedProps.nestedBackgroundColor}"}
+                    ${toggleDefaultProp('hidePadding', drawerNavItemSharedProps.hidePadding, 'sharedProps')}
+                    ${toggleDefaultProp('itemFontColor', drawerNavItemSharedProps.itemFontColor, 'sharedProps')}
+                    ${toggleDefaultProp('itemIconColor', drawerNavItemSharedProps.itemIconColor, 'sharedProps')}
+                    ${toggleDefaultProp(
+                        'nestedBackgroundColor',
+                        drawerNavItemSharedProps.nestedBackgroundColor,
+                        'sharedProps'
+                    )}
                     ${toggleDefaultProp('nestedDivider', drawerNavItemSharedProps.nestedDivider, 'sharedProps')}
                     ${toggleDefaultProp('ripple', drawerNavItemSharedProps.ripple, 'sharedProps')}
-                    onClick={(): void => updateItemID('Title')}
-                >
-                    <DrawerNavItem
-                        itemID={'Monthly Report'}
-                        title={'Monthly Report'}
-                        activeItemBackgroundColor={"${drawerNavItemSharedProps.activeItemBackgroundColor}"}
-                        activeItemFontColor={"${drawerNavItemSharedProps.activeItemFontColor}"}
-                        activeItemIconColor={"${drawerNavItemSharedProps.activeItemIconColor}"}
-                        chevron={${drawerNavItemSharedProps.chevron}}
-                        chevronColor={"${drawerNavItemSharedProps.chevronColor}"}
-                        ${toggleDefaultProp('collapseIcon', drawerNavItemSharedProps.collapseIcon, 'sharedProps')}
-                        ${toggleDefaultProp(
-                            'disableActiveItemParentStyles',
-                            drawerNavItemSharedProps.disableActiveItemParentStyles,
-                            'sharedProps'
-                        )}
-                        ${toggleDefaultProp('divider', drawerNavItemSharedProps.divider, 'sharedProps')}
-                        ${toggleDefaultProp('expandIcon', drawerNavItemSharedProps.expandIcon, 'sharedProps')}
-                        hidePadding={${drawerNavItemSharedProps.hidePadding}}
-                        itemFontColor={"${drawerNavItemSharedProps.itemFontColor}"}
-                        itemIconColor={"${drawerNavItemSharedProps.itemIconColor}"}
-                        nestedBackgroundColor={"${drawerNavItemSharedProps.nestedBackgroundColor}"}
-                        ${toggleDefaultProp('nestedDivider', drawerNavItemSharedProps.nestedDivider, 'sharedProps')}
-                        ${toggleDefaultProp('ripple', drawerNavItemSharedProps.ripple, 'sharedProps')}
-                        onClick={(): void => updateItemID('Monthly Report')}
-                    />
-                    <DrawerNavItem
-                        itemID={'Annual Report'}
-                        title={'Annual Report'}
-                        activeItemBackgroundColor={"${drawerNavItemSharedProps.activeItemBackgroundColor}"}
-                        activeItemFontColor={"${drawerNavItemSharedProps.activeItemFontColor}"}
-                        activeItemIconColor={"${drawerNavItemSharedProps.activeItemIconColor}"}
-                        chevron={${drawerNavItemSharedProps.chevron}}
-                        chevronColor={"${drawerNavItemSharedProps.chevronColor}"}
-                        ${toggleDefaultProp('collapseIcon', drawerNavItemSharedProps.collapseIcon, 'sharedProps')}
-                        ${toggleDefaultProp(
-                            'disableActiveItemParentStyles',
-                            drawerNavItemSharedProps.disableActiveItemParentStyles,
-                            'sharedProps'
-                        )}
-                        ${toggleDefaultProp('divider', drawerNavItemSharedProps.divider, 'sharedProps')}
-                        ${toggleDefaultProp('expandIcon', drawerNavItemSharedProps.expandIcon, 'sharedProps')}
-                        hidePadding={${drawerNavItemSharedProps.hidePadding}}
-                        itemFontColor={"${drawerNavItemSharedProps.itemFontColor}"}
-                        itemIconColor={"${drawerNavItemSharedProps.itemIconColor}"}
-                        nestedBackgroundColor={"${drawerNavItemSharedProps.nestedBackgroundColor}"}
-                        ${toggleDefaultProp('nestedDivider', drawerNavItemSharedProps.nestedDivider, 'sharedProps')}
-                        ${toggleDefaultProp('ripple', drawerNavItemSharedProps.ripple, 'sharedProps')}
-                        onClick={(): void => updateItemID('Annual Report')}
-                    />
-                </DrawerNavItem>
-            </DrawerNavGroup>
-        </DrawerBody>
-    </Drawer>`;
+                    onClick={(): void => updateItemID("Monthly Report")}
+                />
+                <DrawerNavItem
+                    itemID={"Annual Report"}
+                    title={"Annual Report"}
+                    ${toggleDefaultProp(
+                        'activeItemBackgroundColor',
+                        drawerNavItemSharedProps.activeItemBackgroundColor,
+                        'sharedProps'
+                    )}
+                    ${toggleDefaultProp(
+                        'activeItemBackgroundShape',
+                        drawerNavItemSharedProps.activeItemBackgroundShape,
+                        'sharedProps'
+                    )}
+                    ${toggleDefaultProp(
+                        'activeItemFontColor',
+                        drawerNavItemSharedProps.activeItemFontColor,
+                        'sharedProps'
+                    )}
+                    ${toggleDefaultProp(
+                        'activeItemIconColor',
+                        drawerNavItemSharedProps.activeItemIconColor,
+                        'sharedProps'
+                    )}
+                    ${toggleDefaultProp('chevron', drawerNavItemSharedProps.chevron, 'sharedProps')}
+                    ${toggleDefaultProp('chevronColor', drawerNavItemSharedProps.chevronColor, 'sharedProps')}
+                    ${toggleDefaultProp('collapseIcon', drawerNavItemSharedProps.collapseIcon, 'sharedProps')}
+                    ${toggleDefaultProp(
+                        'disableActiveItemParentStyles',
+                        drawerNavItemSharedProps.disableActiveItemParentStyles,
+                        'sharedProps'
+                    )}
+                    ${toggleDefaultProp('divider', drawerNavItemSharedProps.divider, 'sharedProps')}
+                    ${toggleDefaultProp('expandIcon', drawerNavItemSharedProps.expandIcon, 'sharedProps')}
+                    ${toggleDefaultProp('hidePadding', drawerNavItemSharedProps.hidePadding, 'sharedProps')}
+                    ${toggleDefaultProp('itemFontColor', drawerNavItemSharedProps.itemFontColor, 'sharedProps')}
+                    ${toggleDefaultProp('itemIconColor', drawerNavItemSharedProps.itemIconColor, 'sharedProps')}
+                    ${toggleDefaultProp(
+                        'nestedBackgroundColor',
+                        drawerNavItemSharedProps.nestedBackgroundColor,
+                        'sharedProps'
+                    )}
+                    ${toggleDefaultProp('nestedDivider', drawerNavItemSharedProps.nestedDivider, 'sharedProps')}
+                    ${toggleDefaultProp('ripple', drawerNavItemSharedProps.ripple, 'sharedProps')}
+                    onClick={(): void => updateItemID("Annual Report")}
+                />
+            </DrawerNavItem>
+        </DrawerNavGroup>
+    </DrawerBody>
+</Drawer>`;
         return removeEmptyLines(jsx);
     };
 

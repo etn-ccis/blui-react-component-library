@@ -34,12 +34,12 @@ export const drawerRailItemConfig: ComponentType = {
         {
             propName: 'icon',
             inputType: 'select',
-            inputValue: '<Device />',
-            options: ['<Device />', '<Devices />'],
+            inputValue: '<RouterIcon />',
+            options: ['<RouterIcon />', '<Devices />'],
             propType: 'JSX.Element',
             helperText: 'An icon component to render',
             required: true,
-            defaultValue: '<Device />',
+            defaultValue: '<RouterIcon />',
         },
         {
             propName: 'statusColor',
@@ -56,7 +56,7 @@ export const drawerRailItemConfig: ComponentType = {
             propType: 'string',
             helperText: 'The label text',
             required: true,
-            disable: true,
+            disabled: true,
         },
     ],
     sharedProps: [

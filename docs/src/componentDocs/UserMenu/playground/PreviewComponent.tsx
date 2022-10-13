@@ -25,7 +25,7 @@ export const PreviewComponent = (): JSX.Element => {
 
     const toggleAvatarSnippet = (showAvatarImageSnippet: boolean): string =>
         showAvatarImageSnippet
-            ? `avatar={<Avatar src={'../images/trex.png'} alt={'User Avatar'} />}`
+            ? `avatar={<Avatar src={"../images/trex.png"} alt={"User Avatar"} />}`
             : `avatar={<Avatar>AV</Avatar>}`;
 
     const generateCodeSnippet = (): string => {
@@ -33,20 +33,20 @@ export const PreviewComponent = (): JSX.Element => {
     ${toggleAvatarSnippet(userMenuOtherProps.showAvatarImage)}
     ${toggleDefaultProp('menuTitle', userMenuProps.menuTitle)}
     ${toggleDefaultProp('menuSubtitle', userMenuProps.menuSubtitle)}
-    useBottomSheetAt={${userMenuProps.useBottomSheetAt}}
+    ${toggleDefaultProp('useBottomSheetAt', userMenuProps.useBottomSheetAt)}
     menuGroups={[
         {
             items: [
                 {
-                    title: 'Settings',
+                    title: "Settings",
                     icon: <Settings />,
                 },
                 {
-                    title: 'Contact Us',
+                    title: "Contact Us",
                     icon: <Email />,
                 },
                 {
-                    title: 'Log Out',
+                    title: "Log Out",
                     icon: <ExitToApp />,
                 },
             ],

@@ -11,14 +11,6 @@ export const drawerNavItemConfig: ComponentType = {
             propType: 'boolean',
             helperText: 'Sets whether to hide the nav item',
             required: false,
-        },
-        {
-            propName: 'hidePadding',
-            inputType: 'boolean',
-            inputValue: true,
-            propType: 'boolean',
-            helperText: 'Remove left padding if no icon is used',
-            required: false,
             defaultValue: false,
         },
         {
@@ -38,7 +30,7 @@ export const drawerNavItemConfig: ComponentType = {
             propType: 'string',
             helperText: `itemID for the 'active' item`,
             required: true,
-            disable: true,
+            disabled: true,
         },
         {
             propName: 'statusColor',

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import * as colors from '@brightlayer-ui/colors';
-import { BasicDrawerLayoutExample } from './BasicDrawerLayoutExample';
+import { DrawerLayoutExample } from './DrawerLayoutExample';
 
 const codeSnippet = `<DrawerLayout
     drawer={
@@ -27,15 +27,15 @@ const codeSnippet = `<DrawerLayout
     </Box>
 </DrawerLayout>`;
 
-export const BasicDrawerLayout = (): JSX.Element => (
+export const DrawerLayout = (): JSX.Element => (
     <Box>
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
-            <BasicDrawerLayoutExample />
+        <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4 }}>
+            <DrawerLayoutExample />
         </Box>
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/DrawerLayout/examples/BasicDrawerLayoutExample.tsx"
+            url="componentDocs/DrawerLayout/examples/DrawerLayoutExample.tsx"
         />
     </Box>
 );

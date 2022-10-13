@@ -25,16 +25,18 @@ export const PreviewComponent = (): JSX.Element => {
         if (icon === 'undefined') {
             return toggleDefaultProp('icon', channelValueProps.icon);
         }
-        return `icon={${getIconWithProp(channelValueProps.icon, {
-            fontSize: 'inherit',
-            htmlColor: `${otherProps.htmlColor}`,
-        })}}`;
+        return `icon={${getIconWithProp(
+            channelValueProps.icon,
+            otherProps.htmlColor
+                ? { fontSize: 'inherit', htmlColor: `${otherProps.htmlColor}` }
+                : { fontSize: 'inherit' }
+        )}}`;
     };
 
     const generateCodeSnippet = (): string => {
         const jsx = `<ChannelValue
-    color={"${channelValueProps.color}"}
-    fontSize={"${channelValueProps.fontSize}"}
+    ${toggleDefaultProp('color', channelValueProps.color)}
+    ${toggleDefaultProp('fontSize', channelValueProps.fontSize)}
     ${toggleIconProp(channelValueProps.icon)}
     ${toggleDefaultProp('prefix', channelValueProps.prefix)}
     ${toggleDefaultProp('units', channelValueProps.units)}

@@ -66,7 +66,7 @@ export const heroConfig: ComponentType = {
             propName: 'valueIcon',
             inputType: 'select',
             inputValue: '<TrendingUp />',
-            options: ['<TrendingUp />', 'undefined'],
+            options: ['undefined', '<TrendingUp />'],
             propType: 'JSX.Element',
             helperText: 'The inline icon to display',
             required: false,

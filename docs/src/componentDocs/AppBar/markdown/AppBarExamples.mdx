@@ -1,32 +1,25 @@
-import { CollapsedAppBar } from '../examples/CollapsedAppBar';
-import { ExpandedAppBar } from '../examples/ExpandedAppBar';
-import { SnapAppBar } from '../examples/SnapAppBar';
-import { CustomContentAppBar } from '../examples/CustomContentAppBar';
+import { AppBar, CollapsedAppBar, ExpandedAppBar, AppBarWithAdditionalContent } from '../examples';
 
-# App Bar
+## Collapsible App Bar
 
-An `<AppBar>` supports multiple variants - `collapsed`, `expanded`, and `snap`.
+An `<AppBar>` is an extension of the [`MUI Toolbar`](https://mui.com/material-ui/api/toolbar/) that can expand and collapse as you scroll the page.
 
-# Collapsed Variant
+<AppBar />
 
-An `<AppBar>` with a `collapsed` variant will stay fixed at the `collapsedHeight` size.
+## Permanently Collapsed
+
+Setting the variant to `'collapsed'` will lock the App Bar at its collapsed size and it will behave like a default toolbar.
 
 <CollapsedAppBar />
 
-# Expanded Variant
+## Permanently Expanded
 
-An `<AppBar>` with an `expanded` variant will stay fixed at the `expandedHeight` size.
+Setting the variant to `'expanded'` will lock the App Bar at its expanded size.
 
 <ExpandedAppBar />
 
-# Snap Variant
+## Adding Additional Content
 
-An `<AppBar>` will resize between `collapsedHeight` and `expandedHeight` as the window is scrolled.
+You can organize the contents of your App Bar by adding a [`Toolbar`](https://mui.com/material-ui/api/toolbar/) component, just as you would with a [`MUI App Bar`](https://mui.com/material-ui/api/app-bar/) component.
 
-<SnapAppBar />
-
-# App Bar with Custom Content
-
-An `<AppBar>` can accept an icon, actions and custom content.
-
-<CustomContentAppBar />
+<AppBarWithAdditionalContent />

@@ -5,10 +5,10 @@ import { UserMenu } from '@brightlayer-ui/react-components';
 import { Pets, Settings } from '@mui/icons-material';
 const tRex = require('../images/trex.png');
 
-export const UserMenuWithNonTextAvatarsExample = (): JSX.Element => (
+export const UserMenuAlternativeAvatarFormatsExample = (): JSX.Element => (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', width: 150 }}>
         <UserMenu
-            avatar={<Avatar src={tRex} alt={'User Avatar'} />}
+            avatar={<Avatar src={tRex} alt="User Avatar" />}
             menuGroups={[
                 {
                     items: [

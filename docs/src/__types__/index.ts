@@ -21,7 +21,7 @@ export type PropsType = {
     helperText: string;
     required: boolean;
     rangeData?: RangeDataTypes;
-    disable?: boolean;
+    disabled?: boolean;
     label?: string;
 };
 

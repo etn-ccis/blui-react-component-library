@@ -1,4 +1,3 @@
-export * from './BasicDrawerNavItem';
-export * from './DrawerNavItemWithIcons';
+export * from './DrawerNavItem';
 export * from './DrawerNavItemNestedItems';
 export * from './DrawerNavItemSelectedItems';
