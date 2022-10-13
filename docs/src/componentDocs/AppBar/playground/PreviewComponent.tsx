@@ -33,7 +33,7 @@ export const PreviewComponent = (): JSX.Element => {
     ${toggleDefaultProp('backgroundImage', `${getImage(appBarProps.backgroundImage)}`)}
     ${toggleDefaultProp('collapsedHeight', appBarProps.collapsedHeight)}
     ${toggleDefaultProp('expandedHeight', appBarProps.expandedHeight)}
-    scrollContainerId={"${appBarProps.scrollContainerId}"}
+    scrollContainerId={"appbarBodyFiller1"}
     ${toggleDefaultProp('scrollThreshold', appBarProps.scrollThreshold)}
     ${toggleDefaultProp('variant', appBarProps.variant)}
 >
@@ -63,7 +63,7 @@ export const PreviewComponent = (): JSX.Element => {
                             appBarProps.collapsedHeight === '' ? (isMobile ? 56 : 64) : appBarProps.collapsedHeight
                         }
                         expandedHeight={appBarProps.expandedHeight === '' ? 200 : appBarProps.expandedHeight}
-                        scrollContainerId={appBarProps.scrollContainerId}
+                        scrollContainerId={'appbarBodyFiller1'}
                         scrollThreshold={appBarProps.scrollThreshold}
                         variant={appBarProps.variant}
                     >
