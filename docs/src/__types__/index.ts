@@ -25,11 +25,16 @@ export type PropsType = {
     label?: string;
 };
 
+export type OtherComponentPropsType = {
+    childComponentName: string;
+    childComponentProps: PropsType[];
+};
+
 export type ComponentType = {
     componentName?: string;
     id?: string;
-    parentId?: string;
     props?: PropsType[];
-    otherProps?: PropsType[];
     sharedProps?: PropsType[];
+    otherComponentProps?: OtherComponentPropsType;
+    otherProps?: PropsType[];
 };

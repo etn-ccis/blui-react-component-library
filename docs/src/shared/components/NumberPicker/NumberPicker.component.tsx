@@ -82,7 +82,7 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
                     ),
                 }}
                 value={propData.inputValue as number}
-                label={`${propData.propName}: ${propData.propType}`}
+                label={`${propData.label ? propData.label : propData.propName}: ${propData.propType}`}
                 helperText={propData.helperText}
             />
 

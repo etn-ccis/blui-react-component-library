@@ -43,7 +43,7 @@ export const userMenuConfig: ComponentType = {
             propType: 'boolean',
             helperText: 'Show / hide image for avatar',
             required: false,
-            label: 'Use image for avatar',
+            label: 'Use Image For Avatar',
         },
     ],
 };

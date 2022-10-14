@@ -1,8 +1,8 @@
 import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import { DocTextField, PLAYGROUND_DRAWER_WIDTH } from '../shared';
-import { ComponentType, PropsType } from '../__types__';
-import { updateProp, updateSharedProp, updateOtherProp } from '../redux/componentsPropsState';
+import { ComponentType, OtherComponentPropsType, PropsType } from '../__types__';
+import { updateProp, updateSharedProp, updateOtherProp, updateOtherComponentProp } from '../redux/componentsPropsState';
 import { useAppDispatch } from '../redux/hooks';
 import Typography from '@mui/material/Typography';
 import Accordion from '@mui/material/Accordion';
@@ -72,6 +72,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             case 'sharedProps':
                 dispatch(updateSharedProp(newPropState));
                 break;
+            case 'otherComponentProps':
+                dispatch(updateOtherComponentProp(newPropState));
+                break;
             default:
                 dispatch(updateProp(newPropState));
                 break;
@@ -103,10 +106,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
     const renderSelect = (prop: PropsType, index: string): JSX.Element => (
         <FormControl variant={'filled'} sx={{ width: '100%' }} key={index}>
-            <InputLabel>
-                {`${prop.propName}: ${prop.propType}`}
-                {prop.required && '*'}
-            </InputLabel>
+            <InputLabel>{`${prop.propName}: ${prop.propType}`}</InputLabel>
             <Select
                 value={prop.inputValue as string}
                 onChange={(event): void =>
@@ -142,9 +142,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             sx={{ alignItems: 'flex-start' }}
             label={
                 <Box>
-                    <Typography sx={{ fontFamily: 'inherit' }}>{`${prop.label ? prop.label : prop.propName}: ${
-                        prop.propType
-                    } ${prop.required ? '*' : ''}`}</Typography>
+                    <Typography sx={{ fontFamily: 'inherit' }}>{`${
+                        prop.label ? prop.label : prop.propName
+                    }`}</Typography>
                     <Typography variant={'caption'} color={prop.disabled ? 'text.disabled' : 'text.secondary'}>
                         {prop.helperText}
                     </Typography>
@@ -225,12 +225,20 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
         const optionalProps: PropsType[] = data.props?.filter((prop) => !prop.required) as PropsType[];
         const otherProps: PropsType[] = data.otherProps as PropsType[];
         const sharedProps: PropsType[] = data.sharedProps as PropsType[];
+        const otherComponentProps: OtherComponentPropsType = data.otherComponentProps as OtherComponentPropsType;
         let sectionNumber = 0;
         return (
             <Stack divider={<Divider />} mb={2}>
                 {requiredProps?.length > 0 && iterateProps(requiredProps, 'Required Props', sectionNumber++, 'props')}
                 {optionalProps?.length > 0 && iterateProps(optionalProps, 'Optional Props', sectionNumber++, 'props')}
                 {sharedProps?.length > 0 && iterateProps(sharedProps, 'Shared Props', sectionNumber++, 'sharedProps')}
+                {otherComponentProps?.childComponentProps?.length > 0 &&
+                    iterateProps(
+                        otherComponentProps.childComponentProps,
+                        otherComponentProps.childComponentName,
+                        sectionNumber++,
+                        'otherComponentProps'
+                    )}
                 {otherProps?.length > 0 && iterateProps(otherProps, 'Others', sectionNumber++, 'otherProps')}
             </Stack>
         );
