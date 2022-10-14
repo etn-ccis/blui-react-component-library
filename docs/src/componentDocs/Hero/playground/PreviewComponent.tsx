@@ -16,7 +16,8 @@ export const PreviewComponent = (): JSX.Element => {
     const heroJson = useAppSelector((state: RootState) => state.componentsPropsState.heroComponent);
 
     const heroProps = createProps(heroJson.props as PropsType[]);
-    const otherProps = createProps(heroJson.otherProps as PropsType[]);
+    const heroOtherProps = createProps(heroJson.otherProps as PropsType[]);
+    const channelValueProps = createProps(heroJson.otherComponentProps?.childComponentProps as PropsType[]);
 
     const toggleDefaultProp = (propName: string, currentValue: any): string =>
         hideDefaultPropsFromSnippet(heroJson, propName, currentValue, 'props');
@@ -24,10 +25,10 @@ export const PreviewComponent = (): JSX.Element => {
     const generateCodeSnippet = (): string => {
         const jsx = `<Hero
     label={"${heroProps.label}"}
-    ChannelValueProps={{ icon: ${`${otherProps.valueIcon}`}, value: "${otherProps.value}", units: "${
-            otherProps.units
+    ChannelValueProps={{ icon: ${`${channelValueProps.valueIcon}`}, value: "${channelValueProps.value}", units: "${
+            channelValueProps.units
         }" }}
-    icon={${getIconWithProp(heroProps.icon, { fontSize: 'inherit', htmlColor: `${otherProps.htmlColor}` })}}
+    icon={${getIconWithProp(heroProps.icon, { fontSize: 'inherit', htmlColor: `${heroOtherProps.htmlColor}` })}}
     ${toggleDefaultProp('iconBackgroundColor', heroProps.iconBackgroundColor)}
     ${toggleDefaultProp('iconSize', heroProps.iconSize)}
 />`;
@@ -40,12 +41,12 @@ export const PreviewComponent = (): JSX.Element => {
                 <Hero
                     label={heroProps.label}
                     ChannelValueProps={{
-                        icon: getIcon(`${otherProps.valueIcon}`),
-                        value: `${otherProps.value}`,
-                        units: `${otherProps.units}`,
+                        icon: getIcon(`${channelValueProps.valueIcon}`),
+                        value: `${channelValueProps.value}`,
+                        units: `${channelValueProps.units}`,
                     }}
                     iconBackgroundColor={heroProps.iconBackgroundColor}
-                    icon={getIcon(heroProps.icon, { fontSize: 'inherit', htmlColor: otherProps.htmlColor })}
+                    icon={getIcon(heroProps.icon, { fontSize: 'inherit', htmlColor: heroOtherProps.htmlColor })}
                     iconSize={heroProps.iconSize}
                 />
             }

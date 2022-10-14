@@ -111,7 +111,9 @@ export const ColorPicker = (props: ColorPickerProps): JSX.Element => {
                     ),
                 }}
                 value={color}
-                label={`${propData.propName}: ${propData.propType}`}
+                label={`${propData.label ? propData.label : propData.propName}${
+                    propData.label ? '' : `:${propData.propType}`
+                }`}
                 error={!validColor}
                 helperText={validColor ? propData.helperText : 'Color value not recognized'}
             />

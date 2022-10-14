@@ -14,7 +14,7 @@ export const DocTextField = (props: TextFieldProps): JSX.Element => {
             {...textFieldProps}
             variant={'filled'}
             value={propData.inputValue}
-            label={`${propData.propName}: ${propData.propType} ${propData.required ? '*' : ''}`}
+            label={`${propData.label ? propData.label : propData.propName}: ${propData.propType}`}
             helperText={propData.helperText}
             disabled={propData.disabled}
         />

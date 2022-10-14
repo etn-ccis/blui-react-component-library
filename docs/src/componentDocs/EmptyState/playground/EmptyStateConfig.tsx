@@ -38,6 +38,7 @@ export const emptyStateConfig: ComponentType = {
             propType: 'boolean',
             helperText: 'Whether to show action section or not',
             required: false,
+            label: 'Show Action',
         },
     ],
 };

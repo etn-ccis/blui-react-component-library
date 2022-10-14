@@ -79,6 +79,7 @@ export const channelValueConfig: ComponentType = {
             propType: 'string',
             helperText: 'The color apply to primary icon',
             required: false,
+            label: 'Icon Color',
         },
     ],
 };
