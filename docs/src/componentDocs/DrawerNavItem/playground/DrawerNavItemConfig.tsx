@@ -17,7 +17,7 @@ export const drawerNavItemConfig: ComponentType = {
             propName: 'icon',
             inputType: 'select',
             inputValue: 'undefined',
-            options: ['undefined', '<Home />'],
+            options: ['undefined', '<Home />', '<Place />'],
             propType: 'JSX.Element',
             helperText: 'A component to render for the left icon',
             required: false,
