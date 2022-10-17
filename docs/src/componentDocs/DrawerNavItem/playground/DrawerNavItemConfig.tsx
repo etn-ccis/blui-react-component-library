@@ -24,15 +24,6 @@ export const drawerNavItemConfig: ComponentType = {
             defaultValue: 'undefined',
         },
         {
-            propName: 'itemID',
-            inputType: 'string',
-            inputValue: 'Monthly Report',
-            propType: 'string',
-            helperText: `itemID for the 'active' item`,
-            required: true,
-            disabled: true,
-        },
-        {
             propName: 'statusColor',
             inputType: 'colorPicker',
             inputValue: '#ffac00',
