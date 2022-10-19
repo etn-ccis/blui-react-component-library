@@ -8,15 +8,16 @@ type TextFieldProps = MuiTextFieldProps & {
 
 export const DocTextField = (props: TextFieldProps): JSX.Element => {
     const { propData, ...textFieldProps } = props;
-
+    const isRequiredPropEmpty = propData.required && propData.inputValue === '';
     return (
         <MuiTextField
             {...textFieldProps}
             variant={'filled'}
             value={propData.inputValue}
             label={`${propData.label ? propData.label : propData.propName}: ${propData.propType}`}
-            helperText={propData.helperText}
+            helperText={isRequiredPropEmpty ? `${propData.propName} is required` : propData.helperText}
             disabled={propData.disabled}
+            error={isRequiredPropEmpty}
         />
     );
 };

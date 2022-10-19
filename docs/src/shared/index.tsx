@@ -3,7 +3,6 @@ export * from './ComponentPreviewTabs';
 export * from './constants';
 export * from './CopyToClipboardButton';
 export * from './utilities';
-export * from './DocColorField';
 export * from './DocTextField';
 export * from './Logo';
 export * from './PlaygroundDrawer';
