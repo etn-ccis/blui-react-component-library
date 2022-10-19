@@ -37,7 +37,7 @@ export const drawerRailItemConfig: ComponentType = {
             inputType: 'colorPicker',
             inputValue: '#ffac00',
             propType: 'string',
-            helperText: 'Status stripe and icon color',
+            helperText: 'Status stripe color',
             required: false,
         },
         {
