@@ -93,135 +93,133 @@ export const PreviewComponent = (): JSX.Element => {
         variantIsRail
             ? `<Box>App Content Here.</Box>`
             : `<Box>
-        <AppBar position="static">
-             <Toolbar>
-                 <IconButton
-                     size="large"
-                     edge="start"
-                     color="inherit"
-                     aria-label="menu"
-                     sx={{ mr: 2 }}
-                     onClick={(): void => ${toggleOpenProp(drawerProps.open)}}
-                 >
-                     <Menu />
-                 </IconButton>
-                 <Typography variant="h6">Toolbar</Typography>
-             </Toolbar>
-         </AppBar>
-         <Box>App Content Here.</Box>
-     </Box>`;
+    <AppBar position="static">
+        <Toolbar>
+            <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+                onClick={(): void => ${toggleOpenProp(drawerProps.open)}}
+            >
+                <Menu />
+            </IconButton>
+            <Typography variant="h6">Toolbar</Typography>
+        </Toolbar>
+    </AppBar>
+    <Box>App Content Here.</Box>
+</Box>`;
 
     const updateHeaderAsPerVariant = (): string => {
         if (variantIsTemporary) {
             return `
-            <DrawerHeader
-                title="Title"
-                icon={<Close />}
-                onClick={(): void => ${toggleOpenProp(drawerProps.open)}}
-                sx={{ cursor: 'pointer' }}
-            />
+    <DrawerHeader
+        title="Title"
+        icon={<Close />}
+        onClick={(): void => ${toggleOpenProp(drawerProps.open)}}
+        sx={{ cursor: 'pointer' }}
+    />
         `;
         } else if (variantIsPersistent) {
             return `
-                <DrawerHeader
-                title="Title"
-                icon={<Menu />}
-                onClick={(): void => ${toggleOpenProp(drawerProps.open)}}
-                sx={{ cursor: 'pointer' }}
-            />
+    <DrawerHeader
+        title="Title"
+        icon={<Menu />}
+        onClick={(): void => ${toggleOpenProp(drawerProps.open)}}
+        sx={{ cursor: 'pointer' }}
+    />
             `;
         } else if (variantIsPermanent) {
             return `
-                <DrawerHeader
-                    title="Title"
-                />
+    <DrawerHeader
+        title="Title"
+    />
             `;
         }
         return ``;
     };
 
     const generateCodeSnippet = (): string => {
-        const jsx = `<Box>
-    <Drawer
-        activeItem={"${drawerProps.activeItem}"}
-        ${toggleDefaultProp('activeItemBackgroundColor', drawerSharedProps.activeItemBackgroundColor, 'sharedProps')}
-        ${toggleDefaultProp('activeItemFontColor', drawerSharedProps.activeItemFontColor, 'sharedProps')}
-        ${toggleDefaultProp('activeItemIconColor', drawerSharedProps.activeItemIconColor, 'sharedProps')}
-        ${toggleDefaultProp('activeItemBackgroundShape', drawerSharedProps.activeItemBackgroundShape, 'sharedProps')}
-        ${toggleDefaultProp('chevron', drawerSharedProps.chevron, 'sharedProps')}
-        ${toggleDefaultProp('chevronColor', drawerSharedProps.chevronColor, 'sharedProps')}
-        ${toggleDefaultProp('collapseIcon', drawerSharedProps.collapseIcon, 'sharedProps')}
-        ${toggleDefaultProp('condensed', drawerProps.condensed, 'props')}
-        ${toggleDefaultProp(
-            'disableActiveItemParentStyles',
-            drawerSharedProps.disableActiveItemParentStyles,
-            'sharedProps'
-        )}
-        ${toggleDefaultProp('divider', drawerSharedProps.divider, 'sharedProps')}
-        ${toggleDefaultProp('expandIcon', drawerSharedProps.expandIcon, 'sharedProps')}
-        ${toggleDefaultProp('hidePadding', drawerSharedProps.hidePadding, 'sharedProps')}
-        ${toggleDefaultProp('itemFontColor', drawerSharedProps.itemFontColor, 'sharedProps')}
-        ${toggleDefaultProp('itemIconColor', drawerSharedProps.itemIconColor, 'sharedProps')}
-        ${toggleDefaultProp('nestedBackgroundColor', drawerSharedProps.nestedBackgroundColor, 'sharedProps')}
-        ${toggleDefaultProp('nestedDivider', drawerSharedProps.nestedDivider, 'sharedProps')}
-        open={${drawerProps.open}}
-        ${toggleDefaultProp('openOnHover', drawerProps.openOnHover, 'props')}
-        ${toggleDefaultProp('openOnHoverDelay', drawerProps.openOnHoverDelay, 'props')}
-        ${toggleDefaultProp('ripple', drawerSharedProps.ripple, 'sharedProps')}
-        ${toggleDefaultProp('sideBorder', drawerProps.sideBorder, 'props')}
-        ${toggleDefaultProp('variant', drawerProps.variant, 'props')}
-        ${toggleDefaultProp('width', drawerProps.width, 'props')}
-    >
-        ${updateHeaderAsPerVariant()}
-        <DrawerBody>
-            <DrawerNavGroup items={
-                [
-                    {
-                        icon: <Dashboard />,
-                        itemID: "Overview",
-                        title: "Overview",
-                        onClick:(): void => updateActiveItem("Overview"),
-                        items: [
-                            {
-                                itemID: "Monthly Report",
-                                title: "Monthly Report",
-                                onClick: (): void => updateActiveItem("Monthly Report"),
-                            },
-                            {
-                                itemID: "Annual Report",
-                                title: "Annual Report",
-                                onClick: (): void => updateActiveItem("Annual Report"),
-                            },
-                        ],
-                    },
-                    {
-                        icon: <Toc />,
-                        itemID: "Timeline",
-                        title: "Timeline",
-                        onClick:(): void => updateActiveItem("Timeline"),
-                    },
-                    {
-                        icon: <Devices />,
-                        title: "Devices",
-                        itemID: "Devices",
-                        subtitle: "5 new warnings",
-                        statusColor: Colors.yellow[500],
-                        onClick:(): void => updateActiveItem("Devices"),
-                    },
-                    {
-                        icon: <AirportShuttle />,
-                        itemID: "Schedule",
-                        title: "Schedule",
-                        onClick:(): void => updateActiveItem("Schedule"),
-                    }
-                ]
-            }>
-                
-            </DrawerNavGroup>
-        </DrawerBody>
-    </Drawer>
-    ${toggleAppContent()}
-</Box>`;
+        const jsx = `<Drawer
+    activeItem={"${drawerProps.activeItem}"}
+    ${toggleDefaultProp('activeItemBackgroundColor', drawerSharedProps.activeItemBackgroundColor, 'sharedProps')}
+    ${toggleDefaultProp('activeItemFontColor', drawerSharedProps.activeItemFontColor, 'sharedProps')}
+    ${toggleDefaultProp('activeItemIconColor', drawerSharedProps.activeItemIconColor, 'sharedProps')}
+    ${toggleDefaultProp('activeItemBackgroundShape', drawerSharedProps.activeItemBackgroundShape, 'sharedProps')}
+    ${toggleDefaultProp('chevron', drawerSharedProps.chevron, 'sharedProps')}
+    ${toggleDefaultProp('chevronColor', drawerSharedProps.chevronColor, 'sharedProps')}
+    ${toggleDefaultProp('collapseIcon', drawerSharedProps.collapseIcon, 'sharedProps')}
+    ${toggleDefaultProp('condensed', drawerProps.condensed, 'props')}
+    ${toggleDefaultProp(
+        'disableActiveItemParentStyles',
+        drawerSharedProps.disableActiveItemParentStyles,
+        'sharedProps'
+    )}
+    ${toggleDefaultProp('divider', drawerSharedProps.divider, 'sharedProps')}
+    ${toggleDefaultProp('expandIcon', drawerSharedProps.expandIcon, 'sharedProps')}
+    ${toggleDefaultProp('hidePadding', drawerSharedProps.hidePadding, 'sharedProps')}
+    ${toggleDefaultProp('itemFontColor', drawerSharedProps.itemFontColor, 'sharedProps')}
+    ${toggleDefaultProp('itemIconColor', drawerSharedProps.itemIconColor, 'sharedProps')}
+    ${toggleDefaultProp('nestedBackgroundColor', drawerSharedProps.nestedBackgroundColor, 'sharedProps')}
+    ${toggleDefaultProp('nestedDivider', drawerSharedProps.nestedDivider, 'sharedProps')}
+    open={${drawerProps.open}}
+    ${toggleDefaultProp('openOnHover', drawerProps.openOnHover, 'props')}
+    ${toggleDefaultProp('openOnHoverDelay', drawerProps.openOnHoverDelay, 'props')}
+    ${toggleDefaultProp('ripple', drawerSharedProps.ripple, 'sharedProps')}
+    ${toggleDefaultProp('sideBorder', drawerProps.sideBorder, 'props')}
+    ${toggleDefaultProp('variant', drawerProps.variant, 'props')}
+    ${toggleDefaultProp('width', drawerProps.width, 'props')}
+>
+${updateHeaderAsPerVariant()}
+    <DrawerBody>
+        <DrawerNavGroup items={
+            [
+                {
+                    icon: <Dashboard />,
+                    itemID: "Overview",
+                    title: "Overview",
+                    onClick:(): void => updateActiveItem("Overview"),
+                    items: [
+                        {
+                            itemID: "Monthly Report",
+                            title: "Monthly Report",
+                            onClick: (): void => updateActiveItem("Monthly Report"),
+                        },
+                        {
+                            itemID: "Annual Report",
+                            title: "Annual Report",
+                            onClick: (): void => updateActiveItem("Annual Report"),
+                        },
+                    ],
+                },
+                {
+                    icon: <Toc />,
+                    itemID: "Timeline",
+                    title: "Timeline",
+                    onClick:(): void => updateActiveItem("Timeline"),
+                },
+                {
+                    icon: <Devices />,
+                    title: "Devices",
+                    itemID: "Devices",
+                    subtitle: "5 new warnings",
+                    statusColor: Colors.yellow[500],
+                    onClick:(): void => updateActiveItem("Devices"),
+                },
+                {
+                    icon: <AirportShuttle />,
+                    itemID: "Schedule",
+                    title: "Schedule",
+                    onClick:(): void => updateActiveItem("Schedule"),
+                }
+            ]
+        }>
+            
+        </DrawerNavGroup>
+    </DrawerBody>
+</Drawer>
+${toggleAppContent()}`;
         return removeEmptyLines(jsx);
     };
     return (
