@@ -318,9 +318,9 @@
     "@brightlayer-ui/types" "^2.0.0"
 
 "@brightlayer-ui/eslint-config@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/eslint-config/-/eslint-config-3.0.0.tgz#d2bf9967a2b24f6403cec2d9d1bb797b35b1c3d3"
-  integrity sha512-8gpRirMd+4eEiunHZcSEQz2RK9mL+VR2T8Qc/B3O1P/Glhzw+VXXbh+OPsPT3bpVzObAw+r4E21CnjzZcEd1sg==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/eslint-config/-/eslint-config-3.0.1.tgz#a2c0332366375a0ed33d98a4c366f40c0d1e907b"
+  integrity sha512-Oysfov3klmqidenOo8+ZFwfxEmyBDpKaB58pi/4dy5aJLMb4vDUfatf2rFrKmYJI9BOAXoIrBuSA+MKYCIp3AQ==
   dependencies:
     "@typescript-eslint/parser" "^5.9.0"
     eslint-config-prettier ">= 8.0.0"
