@@ -12,6 +12,7 @@ export const PreviewComponent = (): JSX.Element => {
     const drawerRailItemJson = useAppSelector((state: RootState) => state.componentsPropsState.drawerRailItemComponent);
     const drawerRailItemProps = createProps(drawerRailItemJson.props as PropsType[]);
     const drawerRailItemSharedProps = createProps(drawerRailItemJson.sharedProps as PropsType[]);
+    const drawerProps = createProps(drawerRailItemJson.otherComponentProps?.childComponentProps as PropsType[]);
     const [activeItem, setActiveItem] = useState(drawerRailItemProps.title as string);
 
     const toggleDefaultProp = (propName: string, currentValue: any, groupType?: string): string =>
@@ -22,7 +23,7 @@ export const PreviewComponent = (): JSX.Element => {
     open={true} 
     variant={"rail"} 
     activeItem={"${activeItem}"} 
-    ${toggleDefaultProp('condensed', drawerRailItemProps.condensed, 'props')}
+    ${toggleDefaultProp('condensed', drawerProps.condensed, 'props')}
 >
     <DrawerBody>
         <DrawerNavGroup>
@@ -130,7 +131,7 @@ export const PreviewComponent = (): JSX.Element => {
                     activeItem={activeItem}
                     noLayout
                     sx={{ minHeight: 'auto' }}
-                    condensed={drawerRailItemProps.condensed}
+                    condensed={drawerProps.condensed}
                 >
                     <DrawerBody sx={{ flex: '1 1 auto' }} backgroundColor={'transparent'}>
                         <DrawerNavGroup>

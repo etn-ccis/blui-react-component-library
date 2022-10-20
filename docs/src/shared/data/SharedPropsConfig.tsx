@@ -77,7 +77,7 @@ export const sharedPropsConfig: PropsType[] = [
         inputType: 'boolean',
         inputValue: false,
         propType: 'boolean',
-        helperText: 'Whether to show a line between all items',
+        helperText: 'Whether to show a line between non-nested items',
         required: false,
         defaultValue: false,
     },

@@ -5,15 +5,6 @@ export const drawerRailItemConfig: ComponentType = {
     componentName: 'Drawer Rail Item',
     props: [
         {
-            propName: 'condensed',
-            inputType: 'boolean',
-            inputValue: false,
-            propType: 'boolean',
-            helperText: 'Show condensed nav items without title text',
-            required: false,
-            defaultValue: false,
-        },
-        {
             propName: 'disableRailTooltip',
             inputType: 'boolean',
             inputValue: false,
@@ -46,7 +37,7 @@ export const drawerRailItemConfig: ComponentType = {
             inputType: 'colorPicker',
             inputValue: '#ffac00',
             propType: 'string',
-            helperText: 'Status stripe and icon color',
+            helperText: 'Status stripe color',
             required: false,
         },
         {
@@ -56,14 +47,13 @@ export const drawerRailItemConfig: ComponentType = {
             propType: 'string',
             helperText: 'The label text',
             required: true,
-            disabled: true,
         },
     ],
     sharedProps: [
         {
             propName: 'activeItemBackgroundColor',
             inputType: 'colorPicker',
-            inputValue: Colors.white[50],
+            inputValue: '',
             propType: 'string',
             helperText: `Background color for the 'active' item`,
             required: false,
@@ -127,6 +117,20 @@ export const drawerRailItemConfig: ComponentType = {
             defaultValue: true,
         },
     ],
+    otherComponentProps: {
+        childComponentName: 'Drawer Props',
+        childComponentProps: [
+            {
+                propName: 'condensed',
+                inputType: 'boolean',
+                inputValue: false,
+                propType: 'boolean',
+                helperText: 'Show condensed nav items without title text',
+                required: false,
+                defaultValue: false,
+            },
+        ],
+    },
 };
 
 export default drawerRailItemConfig;

@@ -16,21 +16,12 @@ export const drawerNavItemConfig: ComponentType = {
         {
             propName: 'icon',
             inputType: 'select',
-            inputValue: 'undefined',
-            options: ['undefined', '<Home />'],
+            inputValue: '<Home />',
+            options: ['undefined', '<Home />', '<Place />'],
             propType: 'JSX.Element',
             helperText: 'A component to render for the left icon',
             required: false,
             defaultValue: 'undefined',
-        },
-        {
-            propName: 'itemID',
-            inputType: 'string',
-            inputValue: 'Monthly Report',
-            propType: 'string',
-            helperText: `itemID for the 'active' item`,
-            required: true,
-            disabled: true,
         },
         {
             propName: 'statusColor',

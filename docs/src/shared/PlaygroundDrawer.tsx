@@ -231,7 +231,6 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             <Stack divider={<Divider />} mb={2}>
                 {requiredProps?.length > 0 && iterateProps(requiredProps, 'Required Props', sectionNumber++, 'props')}
                 {optionalProps?.length > 0 && iterateProps(optionalProps, 'Optional Props', sectionNumber++, 'props')}
-                {sharedProps?.length > 0 && iterateProps(sharedProps, 'Shared Props', sectionNumber++, 'sharedProps')}
                 {otherComponentProps?.childComponentProps?.length > 0 &&
                     iterateProps(
                         otherComponentProps.childComponentProps,
@@ -239,6 +238,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                         sectionNumber++,
                         'otherComponentProps'
                     )}
+                {sharedProps?.length > 0 && iterateProps(sharedProps, 'Shared Props', sectionNumber++, 'sharedProps')}
                 {otherProps?.length > 0 && iterateProps(otherProps, 'Others', sectionNumber++, 'otherProps')}
             </Stack>
         );
