@@ -89,27 +89,27 @@ export const PreviewComponent = (): JSX.Element => {
 
     const toggleOpenProp = (open: boolean): string => `updateOpenProp(${open ? `false` : `true`})`;
 
-    const toggleAppContent = (): string =>
-        variantIsRail
-            ? `<Box>App Content Here.</Box>`
-            : `<Box>
-    <AppBar position="static">
-        <Toolbar>
-            <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-                onClick={(): void => ${toggleOpenProp(drawerProps.open)}}
-            >
-                <Menu />
-            </IconButton>
-            <Typography variant="h6">Toolbar</Typography>
-        </Toolbar>
-    </AppBar>
-    <Box>App Content Here.</Box>
-</Box>`;
+    //     const toggleAppContent = (): string =>
+    //         variantIsRail
+    //             ? `<Box>App Content Here.</Box>`
+    //             : `<Box>
+    //     <AppBar position="static">
+    //         <Toolbar>
+    //             <IconButton
+    //                 size="large"
+    //                 edge="start"
+    //                 color="inherit"
+    //                 aria-label="menu"
+    //                 sx={{ mr: 2 }}
+    //                 onClick={(): void => ${toggleOpenProp(drawerProps.open)}}
+    //             >
+    //                 <Menu />
+    //             </IconButton>
+    //             <Typography variant="h6">Toolbar</Typography>
+    //         </Toolbar>
+    //     </AppBar>
+    //     <Box>App Content Here.</Box>
+    // </Box>`;
 
     const updateHeaderAsPerVariant = (): string => {
         if (variantIsTemporary) {
@@ -218,8 +218,7 @@ ${updateHeaderAsPerVariant()}
             
         </DrawerNavGroup>
     </DrawerBody>
-</Drawer>
-${toggleAppContent()}`;
+</Drawer>`;
         return removeEmptyLines(jsx);
     };
     return (
@@ -333,8 +332,10 @@ ${toggleAppContent()}`;
                                     sx={{
                                         p: 2,
                                         ml: drawerProps.open
-                                            ? `${drawerProps.width}px`
-                                            : drawerProps.variant === 'persistent'
+                                            ? variantIsTemporary
+                                                ? 1
+                                                : `${drawerProps.width}px`
+                                            : variantIsPersistent
                                             ? 7
                                             : 1,
                                     }}
