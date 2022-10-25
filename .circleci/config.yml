@@ -161,8 +161,10 @@ jobs:
                     
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
                         export PUBLIC_URL=/react
-                      else
+                        REACT_APP_ID=$MASTER_GA
+                      elif [ $CIRCLE_BRANCH == $DEV_BRANCH ]; then
                         export PUBLIC_URL=/react-dev
+                        REACT_APP_ID=$DEV_GA
                       fi
                     
                       yarn build
