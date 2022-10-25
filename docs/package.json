@@ -46,7 +46,9 @@
         "prettier": "prettier \"src/**/**/*.{ts,tsx,js,jsx,json,css,scss,html,mdx}\" --write",
         "prettier:check": "prettier \"src/**/**/*.{ts,tsx,js,jsx,json,css,scss,html,mdx}\" --check",
         "lint": "eslint \"**/**/*.{ts,tsx}\"",
-        "lint:fix": "eslint \"**/**/*.{ts,tsx}\" --fix"
+        "lint:fix": "eslint \"**/**/*.{ts,tsx}\" --fix",
+        "ga:master": "cp -r ./googleAnalytics/ga.master.js ./src/ga.js",
+        "ga:dev": "cp -r ./googleAnalytics/ga.dev.js ./src/ga.js"
     },
     "prettier": "@brightlayer-ui/prettier-config",
     "eslintConfig": {

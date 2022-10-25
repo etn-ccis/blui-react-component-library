@@ -206,6 +206,15 @@ jobs:
                       git rm -rf .
                       cd ..
 
+                      # Copy the correct Google Analytics files (master/dev)
+                      if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]
+                      then
+                        yarn ga:master
+                      elif [ $CIRCLE_BRANCH == $DEV_BRANCH ]
+                      then
+                        yarn ga:dev
+                      fi
+
                       cp -a build/. out/.
                       cd out
 
