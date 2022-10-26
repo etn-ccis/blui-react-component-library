@@ -22,11 +22,20 @@ import './index.css';
 import { store } from './redux/store';
 import { MDXProvider } from '@mdx-js/react';
 import { componentsMap } from './__configuration__/markdownMapping';
+import { GoogleAnalyticsWrapper } from './router/GoogleAnalyticsWrapper';
 
 // prismJs
 import 'prismjs/components/prism-jsx.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
+
+// google analytics
+import ReactGA from 'react-ga';
+// ReactGA.initialize('UA-139646200-4');
+import { gaID } from './ga.js';
+if (gaID) {
+    ReactGA.initialize(gaID);
+}
 
 // Brightlayer UI Icon font
 require('@brightlayer-ui/icons/iconfont/BrightlayerUIIcons.css');
@@ -41,6 +50,7 @@ root.render(
     <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(BLUIThemes.blue)}>
             <BrowserRouter basename={basename}>
+                <GoogleAnalyticsWrapper />
                 <CssBaseline />
                 <Provider store={store}>
                     <MDXProvider components={componentsMap as any}>
