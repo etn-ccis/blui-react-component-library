@@ -31,7 +31,6 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 
 // google analytics
 import ReactGA from 'react-ga';
-// ReactGA.initialize('UA-139646200-4');
 import { gaID } from './ga.js';
 if (gaID) {
     ReactGA.initialize(gaID);
