@@ -1,10 +1,9 @@
 import React from 'react';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
-import Box from '@mui/material/Box';
-import * as colors from '@brightlayer-ui/colors';
+import { ExampleShowcase } from '../../../shared';
 
 export const PermanentDrawerExample = (): JSX.Element => (
-    <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
+    <ExampleShowcase>
         <Drawer open width={250} variant="permanent" sx={{ mx: 'auto' }} noLayout>
             <DrawerHeader title="Header" />
             <DrawerBody sx={{ flex: '1 1 auto' }}>
@@ -15,5 +14,5 @@ export const PermanentDrawerExample = (): JSX.Element => (
                 </DrawerNavGroup>
             </DrawerBody>
         </Drawer>
-    </Box>
+    </ExampleShowcase>
 );

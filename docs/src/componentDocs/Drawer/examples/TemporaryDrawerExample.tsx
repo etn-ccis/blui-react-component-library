@@ -5,17 +5,15 @@ import Box from '@mui/material/Box';
 import Menu from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import { IconButton, Toolbar, Typography } from '@mui/material';
-import * as colors from '@brightlayer-ui/colors';
+import {  ExampleShowcase } from '../../../shared';
 
 export const TemporaryDrawerExample = (): JSX.Element => {
     const [open, setOpen] = useState(false);
     const containerRef = useRef(null);
 
     return (
-        <Box
+        <ExampleShowcase
             sx={{
-                m: '16px 0',
-                backgroundColor: colors.white[600],
                 minHeight: 250,
                 position: 'relative',
                 overflow: 'hidden',
@@ -73,6 +71,6 @@ export const TemporaryDrawerExample = (): JSX.Element => {
                 </AppBar>
                 <Box sx={{ p: 2 }}>App Content Here. </Box>
             </Box>
-        </Box>
+        </ExampleShowcase>
     );
 };

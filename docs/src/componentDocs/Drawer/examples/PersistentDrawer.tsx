@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import * as colors from '@brightlayer-ui/colors';
 import { PersistentDrawerExample } from './PersistentDrawerExample';
 
 const codeSnippet = `<Drawer open={open} width={332} variant="persistent">
@@ -17,9 +16,7 @@ const codeSnippet = `<Drawer open={open} width={332} variant="persistent">
 
 export const PersistentDrawer = (): JSX.Element => (
     <Box>
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
             <PersistentDrawerExample />
-        </Box>
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}

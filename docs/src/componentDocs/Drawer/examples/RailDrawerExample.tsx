@@ -1,12 +1,11 @@
 import React from 'react';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerRailItem } from '@brightlayer-ui/react-components';
-import Box from '@mui/material/Box';
 import Gavel from '@mui/icons-material/Gavel';
 import { Devices, LocationOn } from '@mui/icons-material';
-import * as colors from '@brightlayer-ui/colors';
+import { ExampleShowcase } from '../../../shared';
 
 export const RailDrawerExample = (): JSX.Element => (
-    <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
+    <ExampleShowcase>
         <Drawer open width={250} variant="rail" sx={{ mx: 'auto' }} noLayout>
             <DrawerBody sx={{ flex: '1 1 auto' }}>
                 <DrawerNavGroup>
@@ -16,5 +15,5 @@ export const RailDrawerExample = (): JSX.Element => (
                 </DrawerNavGroup>
             </DrawerBody>
         </Drawer>
-    </Box>
+    </ExampleShowcase>
 );

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
 import Menu from '@mui/icons-material/Menu';
@@ -11,12 +10,13 @@ import MoveToInbox from '@mui/icons-material/MoveToInbox';
 import FactCheck from '@mui/icons-material/FactCheck';
 import Accessibility from '@mui/icons-material/Accessibility';
 import Notifications from '@mui/icons-material/Notifications';
+import { ExampleShowcase } from '../../../shared';
 
 export const ComplexDrawerExample = (): JSX.Element => {
     const [selected, setSelected] = useState('1');
 
     return (
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
+        <ExampleShowcase>
             <Drawer open width={300} sx={{ mx: 'auto', height: 580 }} activeItem={selected} noLayout>
                 <DrawerHeader icon={<Menu />} title="Brightlayer UI" subtitle="Drawer Component" />
                 <DrawerBody>
@@ -63,6 +63,6 @@ export const ComplexDrawerExample = (): JSX.Element => {
                     </DrawerNavGroup>
                 </DrawerBody>
             </Drawer>
-        </Box>
+        </ExampleShowcase>
     );
 };
