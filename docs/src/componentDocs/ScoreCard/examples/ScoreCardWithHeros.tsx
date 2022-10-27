@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import * as colors from '@brightlayer-ui/colors';
 import { ScoreCardWithHerosExample } from './ScoreCardWithHerosExample';
 
 const codeSnippet = `<ScoreCard
@@ -39,9 +38,7 @@ const codeSnippet = `<ScoreCard
 
 export const ScoreCardWithHeros = (): JSX.Element => (
     <Box>
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
-            <ScoreCardWithHerosExample />
-        </Box>
+        <ScoreCardWithHerosExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="6-20" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
