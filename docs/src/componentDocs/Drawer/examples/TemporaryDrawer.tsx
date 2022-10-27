@@ -38,7 +38,7 @@ const codeSnippet = `<Box>
 
 export const TemporaryDrawer = (): JSX.Element => (
     <Box>
-            <TemporaryDrawerExample />
+        <TemporaryDrawerExample />
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}

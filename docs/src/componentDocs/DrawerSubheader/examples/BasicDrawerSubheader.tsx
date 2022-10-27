@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { BasicDrawerSubheaderExample } from './BasicDrawerSubheaderExample';
 
-const codeSnippet = `<Drawer open={true} width={250}>
+const codeSnippet = `<Drawer open width={250}>
     <DrawerHeader title="Title" />
     <DrawerSubheader hideContentOnCollapse={false}>
         <Box>Custom Content Goes here</Box>

@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Menu from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import { IconButton, Toolbar, Typography } from '@mui/material';
-import {  ExampleShowcase } from '../../../shared';
+import { ExampleShowcase } from '../../../shared';
 
 export const TemporaryDrawerExample = (): JSX.Element => {
     const [open, setOpen] = useState(false);

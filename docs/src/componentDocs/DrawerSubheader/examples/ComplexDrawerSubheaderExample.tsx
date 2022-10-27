@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Divider, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { Divider, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import {
     Drawer,
     DrawerBody,
@@ -10,15 +10,16 @@ import {
 } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
 import { Copyright, Dashboard, LocationOn } from '@mui/icons-material';
+import { ExampleShowcase } from '../../../shared';
 
 export const ComplexDrawerSubheaderExample = (): JSX.Element => {
     const [selected, setSelected] = useState('blui');
     return (
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
+        <ExampleShowcase>
             <Drawer
-                open={true}
+                open
                 width={250}
-                sx={{ margin: '0 auto', '& .BluiDrawer-paper': { boxShadow: 'none' } }}
+                sx={{ mx: 'auto', '& .BluiDrawer-paper': { boxShadow: 'none' } }}
                 noLayout
                 openOnHover={false}
             >
@@ -54,6 +55,6 @@ export const ComplexDrawerSubheaderExample = (): JSX.Element => {
                     </DrawerNavGroup>
                 </DrawerBody>
             </Drawer>
-        </Box>
+        </ExampleShowcase>
     );
 };

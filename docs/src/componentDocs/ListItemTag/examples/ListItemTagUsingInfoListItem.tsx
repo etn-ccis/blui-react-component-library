@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import * as colors from '@brightlayer-ui/colors';
 import { ListItemTagUsingInfoListItemExample } from './ListItemTagUsingInfoListItemExample';
 
 const codeSnippet = `<InfoListItem
@@ -24,9 +23,7 @@ const codeSnippet = `<InfoListItem
 
 export const ListItemTagUsingInfoListItem = (): JSX.Element => (
     <Box>
-        <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
-            <ListItemTagUsingInfoListItemExample />
-        </Box>
+        <ListItemTagUsingInfoListItemExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="9-14" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}

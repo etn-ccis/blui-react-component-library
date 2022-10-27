@@ -16,7 +16,7 @@ const codeSnippet = `<Drawer open width={250} variant="permanent">
 
 export const PermanentDrawer = (): JSX.Element => (
     <Box>
-            <PermanentDrawerExample />
+        <PermanentDrawerExample />
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}

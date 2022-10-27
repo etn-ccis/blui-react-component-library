@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import * as colors from '@brightlayer-ui/colors';
 import { HeroBannerWithIconSizeExample } from './HeroBannerWithIconSizeExample';
 
 const codeSnippet = `{[36, 48, 72].map((iconSize, index) => (
@@ -32,11 +31,10 @@ const codeSnippet = `{[36, 48, 72].map((iconSize, index) => (
         />
     </HeroBanner>
 ))}`;
+
 export const HeroBannerWithIconSize = (): JSX.Element => (
     <Box>
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
-            <HeroBannerWithIconSizeExample />
-        </Box>
+        <HeroBannerWithIconSizeExample />
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}

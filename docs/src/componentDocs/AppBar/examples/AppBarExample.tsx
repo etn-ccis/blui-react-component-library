@@ -9,7 +9,7 @@ export const AppBarExample = (): JSX.Element => (
             <AppBar
                 variant="snap"
                 scrollContainerId={'appbarBodyFiller1'}
-                position='sticky'
+                position="sticky"
                 sx={{ width: 450, mx: 'auto', zIndex: 'auto' }}
             >
                 <Toolbar>

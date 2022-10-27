@@ -1,14 +1,14 @@
 import React from 'react';
 import { InfoListItem } from '@brightlayer-ui/react-components/core/InfoListItem';
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import * as colors from '@brightlayer-ui/colors';
 import { ChannelValue } from '@brightlayer-ui/react-components';
 import { DeviceActivating } from '@brightlayer-ui/icons-mui';
 import { BatteryChargingFull, CheckCircle } from '@mui/icons-material';
+import { ExampleShowcase } from '../../../shared';
 
 export const InfoListItemInListExample = (): JSX.Element => (
-    <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
+    <ExampleShowcase>
         <Stack sx={{ '& .BluiInfoListItem-root': { maxWidth: 700, m: 'auto', backgroundColor: 'background.paper' } }}>
             <InfoListItem
                 dense
@@ -49,5 +49,5 @@ export const InfoListItemInListExample = (): JSX.Element => (
                 }
             />
         </Stack>
-    </Box>
+    </ExampleShowcase>
 );

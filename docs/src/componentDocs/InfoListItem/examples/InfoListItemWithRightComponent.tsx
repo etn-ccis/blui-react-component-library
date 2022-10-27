@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { InfoListItemWithRightComponentExample } from './InfoListItemWithRightComponentExample';
 
-const codeSnippet = ` <InfoListItem
+const codeSnippet = `<InfoListItem
     title="Info List Item"
     subtitle="with a ChannelValue component to the right"
     icon={<BatteryChargingFull />}
