@@ -1,13 +1,12 @@
 import React from 'react';
 import { Box, IconButton, Toolbar } from '@mui/material';
-import * as colors from '@brightlayer-ui/colors';
 import { AppBar, Spacer, ThreeLiner } from '@brightlayer-ui/react-components';
-import { getBodyFiller } from '../../../shared';
+import { getBodyFiller, ExampleShowcase } from '../../../shared';
 import { Download, Menu, MoreVert, Search } from '@mui/icons-material';
 import BackgroundImage from '../images/farm.jpg';
 
 export const AppBarWithAdditionalContentExample = (): JSX.Element => (
-    <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4, overflow: 'hidden' }}>
+    <ExampleShowcase sx={{ overflow: 'hidden' }}>
         <Box sx={{ mb: 2, overflow: 'hidden', height: 400 }}>
             <AppBar
                 classes={{ collapsed: 'collapsed', expanded: 'expanded' }}
@@ -84,5 +83,5 @@ export const AppBarWithAdditionalContentExample = (): JSX.Element => (
                 {getBodyFiller()}
             </Box>
         </Box>
-    </Box>
+    </ExampleShowcase>
 );
