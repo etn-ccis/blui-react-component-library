@@ -1,56 +1,35 @@
-import { BasicInfoListItem } from '../examples/BasicInfoListItem';
 import { DenseInfoListItem } from '../examples/DenseInfoListItem';
-import { InfoListItemWithSubtitle } from '../examples/InfoListItemWithSubtitle';
 import { InfoListItemWithIcon } from '../examples/InfoListItemWithIcon';
 import { InfoListItemWithStatusColor } from '../examples/InfoListItemWithStatusColor';
-import { InfoListItemWithLeftComponent } from '../examples/InfoListItemWithLeftComponent';
 import { InfoListItemWithRightComponent } from '../examples/InfoListItemWithRightComponent';
 import { InfoListItemInList } from '../examples/InfoListItemInList';
 
-# Basic Info List Item
+## Info List Item
 
-The `<InfoListItem>` is intended to be used in List Views. A minimal example accepts a `title` prop.
-
-<BasicInfoListItem />
-
-# Dense Info List Item
-
-The `<InfoListItem>` accepts an optional `dense` prop to make the row skinnier.
-
-<DenseInfoListItem />
-
-# Info List Item with Subtitle
-
-The `<InfoListItem>` accepts an optional `subtitle` prop that appears on the second line.
-
-<InfoListItemWithSubtitle />
-
-# Info List Item with Icon
-
-The `<InfoListItem>` accepts an optional `icon` prop that will appear to the left.
+A `<InfoListItem>` is a wrapper around the [MUI List Item](https://mui.com/material-ui/api/list-item/) that provides convenient styling and content arrangement options. A basic use case displays a combination of title, subtitle, and icon.
 
 <InfoListItemWithIcon />
 
-# Info List Item with Status
+## Showing Lots of List Items
 
-The `<InfoListItem>` accepts an optional `statusColor` prop that adds a status stripe to the left side of the row. This can be paired with the `avatar` prop to add a padding and color around the `icon`.
+When showing many list items, you can use the `'dense'` prop to reduce their vertical padding and fit more list items on the page.
+
+<DenseInfoListItem />
+
+## Indicating Status
+
+You can apply a status to a list item using the `'statusColor'` prop. This will apply a colored stripe on the side of the list item and can be paired with the `'avatar'` prop to add additional highlighting around the icon.
 
 <InfoListItemWithStatusColor />
 
-# Info List Item with Left Content
+## Adding Additional Content
 
-The `<InfoListItem>` accepts an optional `leftComponent` prop which renders between `icon` and `title`.
-
-<InfoListItemWithLeftComponent />
-
-# Info List Item with Right Content
-
-The `<InfoListItem>` accepts an optional `rightComponent` prop which renders at the right edge of the item.
+If you want to show additional content in the list item, such as a timestamp or action buttons, these can be provided through `'leftComponent'` and / or `'rightComponent'` props.
 
 <InfoListItemWithRightComponent />
 
-# Info List Item in a List
+## Clickable List Items
 
-The `<InfoListItem>` typically appear in a list which contains multiple rows of data.
+If you want your list items to navigate elsewhere in your application, place them within a [Stack](https://mui.com/material-ui/api/stack/).
 
 <InfoListItemInList />

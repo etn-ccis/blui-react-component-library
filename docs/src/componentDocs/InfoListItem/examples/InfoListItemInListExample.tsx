@@ -2,51 +2,50 @@ import React from 'react';
 import { InfoListItem } from '@brightlayer-ui/react-components/core/InfoListItem';
 import Stack from '@mui/material/Stack';
 import * as colors from '@brightlayer-ui/colors';
-import { ChannelValue } from '@brightlayer-ui/react-components';
 import { DeviceActivating } from '@brightlayer-ui/icons-mui';
 import { BatteryChargingFull, CheckCircle } from '@mui/icons-material';
 import { ExampleShowcase } from '../../../shared';
 
 export const InfoListItemInListExample = (): JSX.Element => (
     <ExampleShowcase>
-        <Stack sx={{ '& .BluiInfoListItem-root': { maxWidth: 700, m: 'auto', backgroundColor: 'background.paper' } }}>
+        <Stack
+            sx={{
+                '& .BluiInfoListItem-root': {
+                    maxWidth: 700,
+                    m: 'auto',
+                    backgroundColor: 'background.paper',
+                    cursor: 'pointer',
+                    '&:hover': {
+                        backgroundColor: 'action.hover',
+                    },
+                },
+            }}
+        >
             <InfoListItem
                 dense
-                title={'Status'}
+                title="Status"
                 divider="partial"
                 statusColor={colors.green[500]}
-                subtitleSeparator={'/'}
-                icon={<DeviceActivating color={'inherit'} />}
-                iconAlign={'center'}
-                rightComponent={<ChannelValue fontSize={'1rem'} value={'Online, ESS+'} />}
+                subtitleSeparator="/"
+                icon={<DeviceActivating color="inherit" />}
+                iconAlign="center"
+                chevron
             />
             <InfoListItem
-                title={'Output Voltage'}
-                divider={'partial'}
+                title="Output Voltage"
+                divider="partial"
                 avatar
                 statusColor={colors.red[500]}
                 subtitle={['Phase A', 'Phase B', 'Phase C']}
-                icon={<CheckCircle color={'inherit'} />}
-                rightComponent={
-                    <span>
-                        <ChannelValue fontSize={'1rem'} value={478} units={'V'} />,{' '}
-                        <ChannelValue fontSize={'1rem'} value={479} units={'V'} />,{' '}
-                        <ChannelValue fontSize={'1rem'} value={473} units={'V'} />
-                    </span>
-                }
+                icon={<CheckCircle color="inherit" />}
+                chevron
             />
             <InfoListItem
                 dense
-                title={'Output Current'}
-                icon={<BatteryChargingFull color={'inherit'} />}
-                iconAlign={'center'}
-                rightComponent={
-                    <span>
-                        <ChannelValue fontSize={'1rem'} value={15} units={'A'} />,{' '}
-                        <ChannelValue fontSize={'1rem'} value={14.9} units={'A'} />,{' '}
-                        <ChannelValue fontSize={'1rem'} value={15} units={'A'} />
-                    </span>
-                }
+                title="Output Current"
+                icon={<BatteryChargingFull color="inherit" />}
+                iconAlign="center"
+                chevron
             />
         </Stack>
     </ExampleShowcase>

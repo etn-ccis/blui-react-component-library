@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { InfoListItemWithIconExample } from './InfoListItemWithIconExample';
 
-const codeSnippet = `<InfoListItem title="Info List Item" subtitle="with an icon" icon={<Alarm />} />`;
+const codeSnippet = `<InfoListItem title="Info List Item Title" subtitle="Info List Item Subtitle" icon={<Alarm />} />`;
 
 export const InfoListItemWithIcon = (): JSX.Element => (
     <Box>

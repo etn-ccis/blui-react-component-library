@@ -7,8 +7,8 @@ export const InfoListItemWithIconExample = (): JSX.Element => (
     <ExampleShowcase>
         <InfoListItem
             sx={{ maxWidth: 700, m: 'auto', backgroundColor: 'background.paper' }}
-            title="Info List Item"
-            subtitle="with an icon"
+            title="Info List Item Title"
+            subtitle="Info List Item Subtitle"
             icon={<Alarm />}
         />
     </ExampleShowcase>
