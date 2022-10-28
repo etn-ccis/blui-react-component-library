@@ -16,25 +16,25 @@ export const HeroBannerWithIconSizeExample = (): JSX.Element => (
                         icon={<VoltageCircledOutline fontSize="inherit" />}
                         iconSize={iconSize}
                         label="SVG"
-                        ChannelValueProps={{ value: iconSize, units: 'px' }}
+                        ChannelValueProps={{ value: iconSize, units: 'px', unitSpace: 'hide' }}
                     />
                     <Hero
                         icon={<Schedule fontSize="inherit" />}
                         iconSize={iconSize}
                         label="Mui Icon"
-                        ChannelValueProps={{ value: iconSize, units: 'px' }}
+                        ChannelValueProps={{ value: iconSize, units: 'px', unitSpace: 'hide' }}
                     />
                     <Hero
                         icon={<i className="blui-current_circled"></i>}
                         iconSize={iconSize}
                         label="icon font"
-                        ChannelValueProps={{ value: iconSize, units: 'px' }}
+                        ChannelValueProps={{ value: iconSize, units: 'px', unitSpace: 'hide' }}
                     />
                     <Hero
                         icon={<img src={Trex} height={iconSize} alt="A T-Rex as the avatar image" />}
                         iconSize={iconSize}
                         label="PNG"
-                        ChannelValueProps={{ value: iconSize, units: 'px' }}
+                        ChannelValueProps={{ value: iconSize, units: 'px', unitSpace: 'hide' }}
                     />
                 </HeroBanner>
             ))}
