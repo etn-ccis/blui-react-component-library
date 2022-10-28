@@ -3,26 +3,26 @@ import { ChannelValueWithIcon } from '../examples/ChannelValueWithIcon';
 import { ChannelValueWithPrefix } from '../examples/ChannelValueWithPrefix';
 import { ChannelValueWithDifferentUnits } from '../examples/ChannelValueWithDifferentUnits';
 
-# Basic Channel Value
+## Channel Value
 
-The `<ChannelValue>` accepts a `value` and a `units` props to display metric data.
+The `<ChannelValue>` is used to show a particular measurement or parameter.
 
 <BasicChannelValue />
 
-# Channel Value with Icon
+## Adding an Icon
 
-The `<ChannelValue>` accepts an optional `icon` prop.
+You can add an optional icon to show trends or to highlight the category of the value.
 
 <ChannelValueWithIcon />
 
-# Channel Value with Prefix
+## Flipping the Units
 
-The `<ChannelValue>` accepts an optional `prefix` prop that will show the `units` before its `value`.
+Some measurements may require the units to appear before the value. This can be achieved by passing the `'prefix'` prop.
 
 <ChannelValueWithPrefix />
 
-# Channel Value with Different Units
+## Units & Spacing
 
-The `<ChannelValue>` will hide the whitespace by default between a `value` and its `units` when the `units` '%', '°F', '°C', '°' or '$' are used. This behavior can be overridden via the optional `unitSpace` prop.
+Some measurements require a space between the value and units, and some do not. The Channel Value handles this automatically for common units, but you can override this behavior through the `'unitSpace'` prop.
 
 <ChannelValueWithDifferentUnits />

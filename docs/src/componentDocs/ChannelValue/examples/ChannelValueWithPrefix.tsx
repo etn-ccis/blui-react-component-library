@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { ChannelValueWithPrefixExample } from './ChannelValueWithPrefixExample';
 
-const codeSnippet = `<ChannelValue value="123" units="hz" prefix icon={<TrendingUp />} />`;
+const codeSnippet = `<ChannelValue value="12" units="$" prefix icon={<CheckCircle />} />`;
 
 export const ChannelValueWithPrefix = (): JSX.Element => (
     <Box>
