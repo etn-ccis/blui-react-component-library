@@ -12,7 +12,18 @@ const codeSnippet = `<ScoreCard
             <InfoListItem dense chevron title="View Location" hidePadding />
         </List>
     }
-    headerBackgroundImage='../../../shared/images/topology_40.png'
+    badge={
+        <HeroBanner>
+            <Hero
+                icon={<GradeA fontSize="inherit" />}
+                label="Grade"
+                iconSize={72}
+                iconBackgroundColor={colors.white[50]}
+                ChannelValueProps={{ value: '98', units: '/100', unitSpace: 'hide' }}
+            />
+        </HeroBanner>
+    }
+    badgeOffset={-54}
     >
     <List>
         <ListItem>
