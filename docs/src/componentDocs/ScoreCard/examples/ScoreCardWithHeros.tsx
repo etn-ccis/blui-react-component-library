@@ -23,11 +23,6 @@ const codeSnippet = `<ScoreCard
             />
         </HeroBanner>
     }
-    actionRow={
-        <List sx={{ p: 0 }}>
-            <InfoListItem dense chevron title="View Location" hidePadding />
-        </List>
-    }
     >
     <List>
         <ListItem>

@@ -8,11 +8,6 @@ const codeSnippet = `<ScoreCard
     headerTitle={'Substation 3'}
     headerSubtitle={'High Humidity Alarm'}
     headerInfo={'4 Devices'}
-    actionRow={
-        <List sx={{ p: 0 }}>
-            <InfoListItem dense chevron title="View Location" hidePadding />
-        </List>
-    }
     badge={
         <HeroBanner>
             <Hero

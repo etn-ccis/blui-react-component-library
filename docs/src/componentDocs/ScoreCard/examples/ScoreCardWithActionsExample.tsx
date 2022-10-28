@@ -1,12 +1,13 @@
 import React from 'react';
-import { InfoListItem, ScoreCard } from '@brightlayer-ui/react-components';
+import { Hero, HeroBanner, InfoListItem, ScoreCard } from '@brightlayer-ui/react-components';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { MoreVert, Settings, Star } from '@mui/icons-material';
 import { ExampleShowcase } from '../../../shared';
 import Box from '@mui/material/Box';
-const backgroundImage = require('../../../shared/images/topology_40.png');
+import { GradeA } from '@brightlayer-ui/icons-mui';
+import * as colors from '@brightlayer-ui/colors';
 
 export const ScoreCardWithActionsExample = (): JSX.Element => (
     <ExampleShowcase sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -20,7 +21,18 @@ export const ScoreCardWithActionsExample = (): JSX.Element => (
                         <InfoListItem dense chevron title="View Location" hidePadding />
                     </List>
                 }
-                headerBackgroundImage={backgroundImage}
+                badge={
+                    <HeroBanner>
+                        <Hero
+                            icon={<GradeA fontSize="inherit" />}
+                            label="Grade"
+                            iconSize={72}
+                            iconBackgroundColor={colors.white[50]}
+                            ChannelValueProps={{ value: '98', units: '/100', unitSpace: 'hide' }}
+                        />
+                    </HeroBanner>
+                }
+                badgeOffset={-54}
             >
                 <List>
                     <ListItem>

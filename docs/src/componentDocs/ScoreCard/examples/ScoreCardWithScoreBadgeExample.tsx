@@ -1,6 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { Hero, HeroBanner, InfoListItem, ScoreCard } from '@brightlayer-ui/react-components';
+import { Hero, HeroBanner, ScoreCard } from '@brightlayer-ui/react-components';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -16,11 +16,6 @@ export const ScoreCardWithScoreBadgeExample = (): JSX.Element => (
                 headerTitle="Substation 3"
                 headerSubtitle="High Humidity Alarm"
                 headerInfo="4 Devices"
-                actionRow={
-                    <List sx={{ p: 0 }}>
-                        <InfoListItem dense chevron title="View Location" hidePadding />
-                    </List>
-                }
                 badge={
                     <HeroBanner>
                         <Hero
