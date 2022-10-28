@@ -4,9 +4,9 @@ import { Drawer, DrawerBody, DrawerFooter, DrawerNavGroup, DrawerNavItem } from 
 import EatonFooterLogoLight from '../images/EatonLogoLight.png';
 import { ExampleShowcase } from '../../../shared';
 
-export const ComplexDrawerFooterExample = (): JSX.Element => (
+export const DrawerFooterExample = (): JSX.Element => (
     <ExampleShowcase>
-        <Drawer open={true} width={250} sx={{ mx: 'auto' }} noLayout>
+        <Drawer open width={250} sx={{ mx: 'auto' }} noLayout>
             <DrawerBody sx={{ flex: '1 1 auto' }}>
                 <DrawerNavGroup hidePadding>
                     <DrawerNavItem title="Dashboard" itemID="1" />
