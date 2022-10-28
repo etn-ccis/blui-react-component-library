@@ -1,2 +1,2 @@
-export * from './DrawerHeaderWithSubtitle';
+export * from './DrawerHeader';
 export * from './DrawerHeaderWithTitleContent';
