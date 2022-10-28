@@ -7,8 +7,11 @@ import { AppBar, ToolbarMenu } from '@brightlayer-ui/react-components';
 import ListItemText from '@mui/material/ListItemText';
 import * as colors from '@brightlayer-ui/colors';
 import { Typography } from '@mui/material';
+import { ExampleShowcase } from '../../../shared';
 
 export const ToolbarMenuWithinToolbarExample = (): JSX.Element => (
+    <ExampleShowcase sx={{ display: 'flex', justifyContent: 'center' }}>
+
     <Box>
         <AppBar
             variant="collapsed"
@@ -42,4 +45,6 @@ export const ToolbarMenuWithinToolbarExample = (): JSX.Element => (
             </Toolbar>
         </AppBar>
     </Box>
+    </ExampleShowcase>
+
 );

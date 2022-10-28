@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import * as colors from '@brightlayer-ui/colors';
 import { ToolbarMenuWithinToolbarExample } from './ToolbarMenuWithinToolbarExample';
 
 const codeSnippet = `<AppBar variant="collapsed">
@@ -31,9 +30,7 @@ const codeSnippet = `<AppBar variant="collapsed">
 
 export const ToolbarMenuWithinToolbar = (): JSX.Element => (
     <Box>
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
             <ToolbarMenuWithinToolbarExample />
-        </Box>
         <CodeBlock code={codeSnippet} language="jsx" dataLine="2-23" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
