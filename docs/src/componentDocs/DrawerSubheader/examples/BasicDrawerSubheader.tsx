@@ -8,6 +8,12 @@ const codeSnippet = `<Drawer open width={250}>
     <DrawerSubheader hideContentOnCollapse={false}>
         <Box>Custom Content Goes here</Box>
     </DrawerSubheader>
+    <DrawerBody>
+        <DrawerNavGroup>
+            <DrawerNavItem title="Dashboard" itemID="1" />
+            <DrawerNavItem title="Locations" itemID="2" />
+        </DrawerNavGroup>
+    </DrawerBody>
 </Drawer>
 `;
 
