@@ -76,12 +76,8 @@ export const ComponentPreviewTabs = (): JSX.Element => {
     };
 
     React.useEffect(() => {
-        // eslint-disable-next-line no-console
-        console.log(location);
         setValue(getTabNumber(location?.pathname));
         setHidePlaygroundTab(togglePlaygroundTab(location.pathname));
-        // eslint-disable-next-line no-console
-        console.log(value);
     }, [location]);
 
     return (
