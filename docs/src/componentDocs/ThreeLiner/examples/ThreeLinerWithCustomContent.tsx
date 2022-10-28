@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import * as colors from '@brightlayer-ui/colors';
 import { ThreeLinerWithCustomContentExample } from './ThreeLinerWithCustomContentExample';
 
 const codeSnippet = `<ThreeLiner
@@ -31,9 +30,7 @@ const codeSnippet = `<ThreeLiner
 
 export const ThreeLinerWithCustomContent = (): JSX.Element => (
     <Box>
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
-            <ThreeLinerWithCustomContentExample />
-        </Box>
+        <ThreeLinerWithCustomContentExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="5-22" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
