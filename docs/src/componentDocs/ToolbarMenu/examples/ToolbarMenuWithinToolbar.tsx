@@ -9,10 +9,10 @@ const codeSnippet = `<AppBar variant="collapsed">
             <Menu />
         </IconButton>
         <ListItemText
-            primary={<Typography variant="h6">Title</Typography>}
+            primary={<Typography variant="h6">Alarms</Typography>}
             secondary={
                 <ToolbarMenu
-                    label="Subtitle"
+                    label="Location"
                     menuGroups={[
                         {
                             items: [

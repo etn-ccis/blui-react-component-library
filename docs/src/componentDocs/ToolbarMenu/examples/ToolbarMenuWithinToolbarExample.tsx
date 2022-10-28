@@ -24,11 +24,11 @@ export const ToolbarMenuWithinToolbarExample = (): JSX.Element => (
                         <Menu />
                     </IconButton>
                     <ListItemText
-                        primary={<Typography variant="h6">Title</Typography>}
+                        primary={<Typography variant="h6">Alarms</Typography>}
                         secondary={
                             <ToolbarMenu
                                 sx={{ color: colors.white[50], mt: -1 }}
-                                label="Subtitle"
+                                label="Location"
                                 menuGroups={[
                                     {
                                         items: [
