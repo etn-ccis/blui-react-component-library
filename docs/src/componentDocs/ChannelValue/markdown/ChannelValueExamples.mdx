@@ -1,13 +1,12 @@
-import { BasicChannelValue } from '../examples/BasicChannelValue';
+import { ChannelValue, ChannelValueUnitsSpacing } from '../examples';
 import { ChannelValueWithIcon } from '../examples/ChannelValueWithIcon';
 import { ChannelValueWithPrefix } from '../examples/ChannelValueWithPrefix';
-import { ChannelValueWithDifferentUnits } from '../examples/ChannelValueWithDifferentUnits';
 
 ## Channel Value
 
 The `<ChannelValue>` is used to show a particular measurement or parameter.
 
-<BasicChannelValue />
+<ChannelValue />
 
 ## Adding an Icon
 
@@ -25,4 +24,4 @@ Some measurements may require the units to appear before the value. This can be 
 
 Some measurements require a space between the value and units, and some do not. The Channel Value handles this automatically for common units, but you can override this behavior through the `'unitSpace'` prop.
 
-<ChannelValueWithDifferentUnits />
+<ChannelValueUnitsSpacing />

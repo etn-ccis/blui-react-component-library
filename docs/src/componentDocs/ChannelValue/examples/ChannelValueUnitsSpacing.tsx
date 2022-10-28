@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import { ChannelValueWithDifferentUnitsExample } from './ChannelValueWithDifferentUnitsExample';
+import { ChannelValueUnitsSpacingExample } from './ChannelValueUnitsSpacingExample';
 
 const codeSnippet = `<Box sx={{ display: 'flex', flexDirection: 'column', '& .BluiChannelValue-root': { my: 0.25 } }}>
     <ChannelValue value="85" units="kWh" unitSpace="hide" />
@@ -12,13 +12,13 @@ const codeSnippet = `<Box sx={{ display: 'flex', flexDirection: 'column', '& .Bl
     <ChannelValue value="13.62" units="$" prefix />
 </Box>`;
 
-export const ChannelValueWithDifferentUnits = (): JSX.Element => (
+export const ChannelValueUnitsSpacing = (): JSX.Element => (
     <Box>
-        <ChannelValueWithDifferentUnitsExample />
+        <ChannelValueUnitsSpacingExample />
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/ChannelValue/examples/ChannelValueWithDifferentUnitsExample.tsx"
+            url="componentDocs/ChannelValue/examples/ChannelValueUnitsSpacingExample.tsx"
         />
     </Box>
 );

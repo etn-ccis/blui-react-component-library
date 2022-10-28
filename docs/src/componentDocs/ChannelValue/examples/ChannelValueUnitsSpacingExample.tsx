@@ -2,7 +2,7 @@ import React from 'react';
 import { ChannelValue } from '@brightlayer-ui/react-components';
 import { ExampleShowcase } from '../../../shared';
 
-export const ChannelValueWithDifferentUnitsExample = (): JSX.Element => (
+export const ChannelValueUnitsSpacingExample = (): JSX.Element => (
     <ExampleShowcase
         sx={{
             display: 'flex',

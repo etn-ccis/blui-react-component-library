@@ -1,17 +1,17 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import { BasicChannelValueExample } from './BasicChannelValueExample';
+import { ChannelValueExample } from './ChannelValueExample';
 
 const codeSnippet = `<ChannelValue value="123" units="hz" />`;
 
-export const BasicChannelValue = (): JSX.Element => (
+export const ChannelValue = (): JSX.Element => (
     <Box>
-        <BasicChannelValueExample />
+        <ChannelValueExample />
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
-            url="componentDocs/ChannelValue/examples/BasicChannelValueExample.tsx"
+            url="componentDocs/ChannelValue/examples/ChannelValueExample.tsx"
         />
     </Box>
 );
