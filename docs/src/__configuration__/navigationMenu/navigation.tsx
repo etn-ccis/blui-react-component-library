@@ -214,6 +214,7 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                             },
                         ],
                     },
+
                     {
                         title: 'Drawer Body',
                         url: '/drawer-body',
