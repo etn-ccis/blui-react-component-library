@@ -16,7 +16,7 @@ body,
     margin-top: 20px;
 }
 a,
-a:visited {
+a:not(.MuiTab-root):visited {
     color: #007bc1;
     font-weight: 400;
 }
