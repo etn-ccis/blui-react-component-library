@@ -132,6 +132,23 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                 url: '/components',
                 pages: [
                     {
+                        title: 'Drawer Layout',
+                        url: '/drawer-layout',
+                        component: <ComponentPreviewPage title={'Drawer Layout'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DrawerLayoutExamples />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerLayoutAPIDocs />,
+                            },
+                        ],
+                    },
+                    {
                         title: 'Drawer',
                         url: '/drawer',
                         component: <ComponentPreviewPage title={'Drawer'} />,
@@ -198,28 +215,6 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                         ],
                     },
                     {
-                        title: 'Drawer Footer',
-                        url: '/drawer-footer',
-                        component: <ComponentPreviewPage title={'Drawer Footer'} />,
-                        children: [
-                            {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerFooterExamples />,
-                            },
-                            {
-                                title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerFooterAPIDocs />,
-                            },
-                            {
-                                title: 'Playground',
-                                url: 'playground',
-                                component: <DrawerFooterPlaygroundComponent />,
-                            },
-                        ],
-                    },
-                    {
                         title: 'Drawer Body',
                         url: '/drawer-body',
                         component: <ComponentPreviewPage title={'Drawer Body'} />,
@@ -233,28 +228,6 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                                 title: 'API Docs',
                                 url: 'api-docs',
                                 component: <DrawerBodyAPIDocs />,
-                            },
-                        ],
-                    },
-                    {
-                        title: 'Drawer Nav Item',
-                        url: '/drawer/drawer-nav-item',
-                        component: <ComponentPreviewPage title={'Drawer Nav Item'} />,
-                        children: [
-                            {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerNavItemExamples />,
-                            },
-                            {
-                                title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerNavItemAPIDocs />,
-                            },
-                            {
-                                title: 'Playground',
-                                url: 'playground',
-                                component: <DrawerNavItemPlaygroundComponent />,
                             },
                         ],
                     },
@@ -281,19 +254,24 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                         ],
                     },
                     {
-                        title: 'Drawer Layout',
-                        url: '/drawer-layout',
-                        component: <ComponentPreviewPage title={'Drawer Layout'} />,
+                        title: 'Drawer Nav Item',
+                        url: '/drawer/drawer-nav-item',
+                        component: <ComponentPreviewPage title={'Drawer Nav Item'} />,
                         children: [
                             {
                                 title: 'Examples',
                                 url: 'examples',
-                                component: <DrawerLayoutExamples />,
+                                component: <DrawerNavItemExamples />,
                             },
                             {
                                 title: 'API Docs',
                                 url: 'api-docs',
-                                component: <DrawerLayoutAPIDocs />,
+                                component: <DrawerNavItemAPIDocs />,
+                            },
+                            {
+                                title: 'Playground',
+                                url: 'playground',
+                                component: <DrawerNavItemPlaygroundComponent />,
                             },
                         ],
                     },
@@ -316,6 +294,28 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
                                 title: 'Playground',
                                 url: 'playground',
                                 component: <DrawerRailItemPlaygroundComponent />,
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Drawer Footer',
+                        url: '/drawer-footer',
+                        component: <ComponentPreviewPage title={'Drawer Footer'} />,
+                        children: [
+                            {
+                                title: 'Examples',
+                                url: 'examples',
+                                component: <DrawerFooterExamples />,
+                            },
+                            {
+                                title: 'API Docs',
+                                url: 'api-docs',
+                                component: <DrawerFooterAPIDocs />,
+                            },
+                            {
+                                title: 'Playground',
+                                url: 'playground',
+                                component: <DrawerFooterPlaygroundComponent />,
                             },
                         ],
                     },
