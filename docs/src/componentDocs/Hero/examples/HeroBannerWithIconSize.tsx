@@ -35,7 +35,7 @@ const codeSnippet = `{[36, 48, 72].map((iconSize, index) => (
 export const HeroBannerWithIconSize = (): JSX.Element => (
     <Box>
         <HeroBannerWithIconSizeExample />
-        <CodeBlock code={codeSnippet} language="jsx" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine={'4, 10, 16, 22'} />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/Hero/examples/HeroBannerWithIconSizeExample.tsx"

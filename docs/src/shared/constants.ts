@@ -14,4 +14,4 @@ export const REGULAR_WIDTH_STYLE = {
     maxWidth: PAGE_WIDTH.REGULAR,
 };
 
-export const MASTER_BRANCH = 'https://github.com/brightlayer-ui/react-component-library/blob/master/docs/src';
+export const DOCS_BRANCH = process.env.REACT_APP_BRANCH || 'master'; // default to master if there is no value

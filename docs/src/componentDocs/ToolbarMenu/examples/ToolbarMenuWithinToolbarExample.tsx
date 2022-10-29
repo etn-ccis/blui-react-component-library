@@ -32,9 +32,9 @@ export const ToolbarMenuWithinToolbarExample = (): JSX.Element => (
                                 menuGroups={[
                                     {
                                         items: [
-                                            { title: 'Menu Item 1' },
-                                            { title: 'Menu Item 2' },
-                                            { title: 'Menu Item 3' },
+                                            { title: 'Location 1' },
+                                            { title: 'Location 2' },
+                                            { title: 'Location 3' },
                                         ],
                                     },
                                 ]}

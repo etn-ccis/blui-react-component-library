@@ -19,7 +19,7 @@ const codeSnippet = `<ScoreCard
 export const ScoreCardWithHeaderSubtitle = (): JSX.Element => (
     <Box>
         <ScoreCardWithHeaderSubtitleExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="4-5" />
+        <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/ScoreCard/examples/ScoreCardWithHeaderSubtitleExample.tsx"

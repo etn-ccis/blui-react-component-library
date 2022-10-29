@@ -21,7 +21,7 @@ const codeSnippet = `<Drawer open width={250}>
 export const SpacingNavGroups = (): JSX.Element => (
     <Box>
         <SpacingNavGroupsExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-12" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="7" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/DrawerNavGroup/examples/SpacingNavGroupsExample.tsx"

@@ -35,7 +35,7 @@ const codeSnippet = `<ScoreCard
 export const ScoreCardWithActions = (): JSX.Element => (
     <Box>
         <ScoreCardWithActionsExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="6-9" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="5-9" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/ScoreCard/examples/ScoreCardWithActionsExample.tsx"

@@ -16,7 +16,7 @@ export const ExternalLink = (tProps: TypographyProps<'a'>): JSX.Element => {
             component={'a'}
             target={'_blank'}
             rel={'noopener noreferrer'}
-            sx={{ fontWeight: 400, textDecoration: 'none', fontSize: '14px', color: theme.palette.primary.main }}
+            sx={{ fontWeight: 400, color: theme.palette.primary.main }}
             {...tProps}
         />
     );
@@ -25,11 +25,7 @@ export const ExternalLink = (tProps: TypographyProps<'a'>): JSX.Element => {
 export const InternalLink = (props: LinkProps): JSX.Element => {
     const theme = useTheme();
     return (
-        <Link
-            rel={'noopener noreferrer'}
-            style={{ fontWeight: 400, textDecoration: 'none', fontSize: '14px', color: theme.palette.primary.main }}
-            {...props}
-        />
+        <Link rel={'noopener noreferrer'} style={{ fontWeight: 400, color: theme.palette.primary.main }} {...props} />
     );
 };
 
@@ -116,7 +112,6 @@ export const componentsMap = {
                         fontWeight: 400,
                         textDecoration: 'none',
                         color: (theme: Theme) => theme.palette.primary.main,
-                        fontSize: '14px',
                     }}
                     {...tProps}
                 />
@@ -131,13 +126,11 @@ export const componentsMap = {
         return <InternalLink to={props.href} {...tProps} />;
     },
     p: (props: TypographyProps): JSX.Element => (
-        <Typography sx={{ fontSize: '14px', lineHeight: '1.6', m: '15px auto' }} paragraph {...props} />
+        <Typography sx={{ lineHeight: '1.6', m: '15px auto' }} paragraph {...props} />
     ),
-    ul: (props: BoxProps): JSX.Element => (
-        <Box component={'ul'} sx={{ fontSize: '14px', m: '15px auto', pl: '60px' }} {...props} />
-    ),
+    ul: (props: BoxProps): JSX.Element => <Box component={'ul'} sx={{ m: '15px auto', pl: '60px' }} {...props} />,
     li: (props: TypographyProps<'li'>): JSX.Element => (
-        <Typography component={'li'} className={'mdLi'} sx={{ fontSize: '14px', m: '15px auto' }} {...props} />
+        <Typography component={'li'} className={'mdLi'} sx={{ m: '15px auto' }} {...props} />
     ),
     blockquote: (props: TypographyProps<'blockquote'>): JSX.Element => (
         <Typography
@@ -172,7 +165,7 @@ export const componentsMap = {
             component={'code'}
             color={'inherit'}
             sx={{
-                fontSize: 14,
+                fontSize: '0.875rem',
                 m: '0px 2px',
                 p: '0px 5px',
                 whiteSpace: 'nowrap',
@@ -214,7 +207,7 @@ export const componentsMap = {
                     border: (theme: Theme) => `1px solid ${theme.palette.divider}`,
                 },
                 a: {
-                    fontSize: '14px',
+                    fontSize: '0.875rem',
                 },
                 tr: {
                     border: 'unset',

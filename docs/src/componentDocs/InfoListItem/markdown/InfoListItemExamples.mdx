@@ -6,30 +6,30 @@ import { InfoListItemInList } from '../examples/InfoListItemInList';
 
 ## Info List Item
 
-A `<InfoListItem>` is a wrapper around the [MUI List Item](https://mui.com/material-ui/api/list-item/) that provides convenient styling and content arrangement options. A basic use case displays a combination of title, subtitle, and icon.
+An `<InfoListItem>` is a wrapper around the [MUI List Item](https://mui.com/material-ui/api/list-item/) that provides convenient styling and content arrangement options. A basic use case displays a combination of title, subtitle, and icon.
 
 <InfoListItemWithIcon />
 
 ## Showing Lots of List Items
 
-When showing many list items, you can use the `'dense'` prop to reduce their vertical padding and fit more list items on the page.
+When showing many list items, you can use the `dense` prop to reduce their vertical padding and fit more list items on the page.
 
 <DenseInfoListItem />
 
 ## Indicating Status
 
-You can apply a status to a list item using the `'statusColor'` prop. This will apply a colored stripe on the side of the list item and can be paired with the `'avatar'` prop to add additional highlighting around the icon.
+You can apply a status to a list item using the `statusColor` prop. This will apply a colored stripe on the side of the list item and can be paired with the `avatar` prop to add additional highlighting around the icon.
 
 <InfoListItemWithStatusColor />
 
 ## Adding Additional Content
 
-If you want to show additional content in the list item, such as a timestamp or action buttons, these can be provided through `'leftComponent'` and / or `'rightComponent'` props.
+If you want to show additional content in the list item, such as a timestamp or action buttons, these can be provided through the `leftComponent` and / or `rightComponent` props.
 
 <InfoListItemWithRightComponent />
 
 ## Clickable List Items
 
-If you want your list items to navigate elsewhere in your application, place them within a [Stack](https://mui.com/material-ui/api/stack/).
+If you want your list items to be clickable, add an `onClick` handler (you can also add a ripple effect by setting the `ripple` prop to true).
 
 <InfoListItemInList />

@@ -5,8 +5,8 @@ import { ExampleShowcase } from '../../../shared';
 export const BasicDrawerBodyExample = (): JSX.Element => (
     <ExampleShowcase>
         <Drawer open={true} width={250} sx={{ mx: 'auto' }} noLayout>
-            <DrawerBody sx={{ flex: '1 1 auto' }}>
-                <DrawerNavGroup hidePadding>
+            <DrawerBody hidePadding sx={{ flex: '1 1 auto' }}>
+                <DrawerNavGroup>
                     <DrawerNavItem title="Dashboard" itemID="1" />
                     <DrawerNavItem title="Locations" itemID="2" />
                     <DrawerNavItem title="Legal" itemID="3" />

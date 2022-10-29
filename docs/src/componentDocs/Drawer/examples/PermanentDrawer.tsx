@@ -5,7 +5,7 @@ import { PermanentDrawerExample } from './PermanentDrawerExample';
 
 const codeSnippet = `<Drawer open width={250} variant="permanent">
     <DrawerHeader title="Header" />
-    <DrawerBody>
+    <DrawerBody hidePadding>
         <DrawerNavGroup>
             <DrawerNavItem title="Dashboard" itemID="1" />
             <DrawerNavItem title="Locations" itemID="2" />
@@ -17,7 +17,7 @@ const codeSnippet = `<Drawer open width={250} variant="permanent">
 export const PermanentDrawer = (): JSX.Element => (
     <Box>
         <PermanentDrawerExample />
-        <CodeBlock code={codeSnippet} language="jsx" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine={'1'} />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/Drawer/examples/PermanentDrawerExample.tsx"
