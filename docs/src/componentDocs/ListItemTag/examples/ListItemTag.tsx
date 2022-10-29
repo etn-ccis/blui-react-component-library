@@ -3,10 +3,8 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { ListItemTagExample } from './ListItemTagExample';
 
-const codeSnippet = `<Box>
-    <ListItemTag label="Default Tag" />
-    <ListItemTag label="Custom Tag" fontColor="#424e54" backgroundColor="#f0cb2f" />
-</Box>`;
+const codeSnippet = `<ListItemTag label="Default Tag" />
+<ListItemTag label="Custom Tag" fontColor="#424e54" backgroundColor="#f0cb2f" />`;
 
 export const ListItemTag = (): JSX.Element => (
     <Box>

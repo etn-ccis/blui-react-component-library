@@ -3,11 +3,9 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { ListItemTagWithVariantsExample } from './ListItemTagWithVariantsExample';
 
-const codeSnippet = `<Box>
-    <ListItemTag variant="overline" label="overline" />
-    <ListItemTag variant="button" label="button" />
-    <ListItemTag variant="h6" label="h6" />
-</Box>`;
+const codeSnippet = `<ListItemTag variant="overline" label="overline" />
+<ListItemTag variant="button" label="button" />
+<ListItemTag variant="h6" label="h6" />`;
 
 export const ListItemTagWithVariants = (): JSX.Element => (
     <Box>
