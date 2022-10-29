@@ -4,18 +4,18 @@ import { EmptyStateWithContent } from '../examples/EmptyStateWithContent';
 
 ## Empty State
 
-A `<EmptyState>` is a placeholder element that you can show when there is no data or content is missing.
+An `<EmptyState>` is a placeholder element that you can show when there is no data or content is missing.
 
 <EmptyStateWithDescription />
 
 ## Adding an Action
 
-If you want to provide your users with a call-to-action, you can pass in custom content via `'actions'` prop.
+If you want to provide your users with a call-to-action, you can pass in custom content via the `actions` prop.
 
 <EmptyStateWithActions />
 
 ## Customizing the Title and Description
 
-If you need to pass in more than simple strings, you can provide a `'title'` and / or `'description'` prop.
+The `title` and `description` props accept ReactNode elements if you need to pass in more than simple strings.
 
 <EmptyStateWithContent />
