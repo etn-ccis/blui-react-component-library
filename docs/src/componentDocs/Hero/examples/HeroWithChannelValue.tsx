@@ -21,7 +21,7 @@ const codeSnippet = `<Hero label={'Duration'} icon={<Schedule fontSize={'inherit
 export const HeroWithChannelValue = (): JSX.Element => (
     <Box>
         <HeroWithChannelValueExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-12" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-13" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/Hero/examples/HeroWithChannelValueExample.tsx"
