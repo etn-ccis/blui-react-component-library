@@ -10,15 +10,9 @@ export const InfoListItemInListExample = (): JSX.Element => (
     <ExampleShowcase>
         <Stack
             sx={{
-                '& .BluiInfoListItem-root': {
-                    maxWidth: 700,
-                    m: 'auto',
-                    backgroundColor: 'background.paper',
-                    cursor: 'pointer',
-                    '&:hover': {
-                        backgroundColor: 'action.hover',
-                    },
-                },
+                backgroundColor: 'background.paper',
+                maxWidth: 700,
+                m: 'auto',
             }}
         >
             <InfoListItem
@@ -30,6 +24,8 @@ export const InfoListItemInListExample = (): JSX.Element => (
                 icon={<DeviceActivating color="inherit" />}
                 iconAlign="center"
                 chevron
+                ripple
+                onClick={(): void => {}}
             />
             <InfoListItem
                 title="Output Voltage"
@@ -39,6 +35,8 @@ export const InfoListItemInListExample = (): JSX.Element => (
                 subtitle={['Phase A', 'Phase B', 'Phase C']}
                 icon={<CheckCircle color="inherit" />}
                 chevron
+                ripple
+                onClick={(): void => {}}
             />
             <InfoListItem
                 dense
@@ -46,6 +44,8 @@ export const InfoListItemInListExample = (): JSX.Element => (
                 icon={<BatteryChargingFull color="inherit" />}
                 iconAlign="center"
                 chevron
+                ripple
+                onClick={(): void => {}}
             />
         </Stack>
     </ExampleShowcase>
