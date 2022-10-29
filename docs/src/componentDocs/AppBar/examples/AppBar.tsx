@@ -9,9 +9,7 @@ const codeSnippet = `<Box>
         scrollContainerId={'appbarBodyFiller1'}
         position={'sticky'}
     >
-        <Toolbar>
-            <Typography variant="h6">Content</Typography>
-        </Toolbar>
+        <Typography variant="h6">Content</Typography>
     </AppBar>
     <Box id='appbarBodyFiller1'>
         {getBodyFiller()}
