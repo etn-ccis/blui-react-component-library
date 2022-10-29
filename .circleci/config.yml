@@ -161,9 +161,11 @@ jobs:
                     
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
                         export PUBLIC_URL=/react
+                        export REACT_APP_BRANCH=master
                         yarn ga:master
                       else
                         export PUBLIC_URL=/react-dev
+                        export REACT_APP_BRANCH=dev
                         yarn ga:dev
                       fi
                     

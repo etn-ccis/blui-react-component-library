@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { SxProps, Theme } from '@mui/material/styles';
-import { MASTER_BRANCH } from '.';
+import { DOCS_BRANCH } from './constants';
 
 type FullCodeOnGithubProps = {
     url: string;
@@ -13,7 +13,7 @@ export const FullCodeOnGithub: React.FC<FullCodeOnGithubProps> = (props) => (
     <Button
         variant="outlined"
         target="_blank"
-        href={`${MASTER_BRANCH}/${props.url}`}
+        href={`https://github.com/brightlayer-ui/react-component-library/blob/${DOCS_BRANCH}/docs/src/${props.url}`}
         startIcon={<GitHubIcon />}
         sx={props.sx}
     >

@@ -1,8 +1,7 @@
 import Box from '@mui/material/Box';
-
 import HeroAnatomy from '../images/heroAnatomy.png';
-
 import Heroes from '../images/heroes.png';
+import { DOCS_BRANCH } from '../../../shared/constants';
 
 # Hero
 
@@ -25,7 +24,7 @@ The Brightlayer UI `<Hero>` components are used to call attention to particular 
     />
 </Box>
 
-The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [Brightlayer UI icon](https://github.com/brightlayer-ui/icons), or [Progress Icon](https://github.com/brightlayer-ui/progress-icons/tree/master). It will also accept Text/Emoji values.
+The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [Brightlayer UI icon](https://github.com/brightlayer-ui/icons), or [Progress Icon](https://github.com/brightlayer-ui/progress-icons). It will also accept Text/Emoji values.
 
 The value section of the Hero utilizes a [`<ChannelValue>`](/components/channel-value/api-docs) component. To display a single simple value, the information can be passed using ChannelValueProps which will allow you to specify any props on the underlying `<ChannelValue>` component. For more complex values (such as a duration that displays hours and minutes), you can pass in `<ChannelValue>` components as children and they will be displayed inline.
 
@@ -73,7 +72,15 @@ You can override the default styles used by Brightlayer UI by:
 -   passing a `classes` prop with keys from the Name column below
 -   using the Global CSS Class in your main stylesheet
 
-For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/blob/master/docs/StyleOverridesGuide.md).
+<p>
+    For more details on styling options check out our{' '}
+    <a
+        href={`https://github.com/brightlayer-ui/react-component-library/blob/${DOCS_BRANCH}/docs/StyleOverridesGuide.md`}
+    >
+        Styling Guide
+    </a>
+    .
+</p>
 
 <Box>
 

@@ -15,6 +15,11 @@ body,
 .line-highlight {
     margin-top: 20px;
 }
+a,
+a:visited {
+    color: #007bc1;
+    font-weight: 400;
+}
 
 /* HIDE INCREMENT/DECREMENT BUTTONS ON NUMBER INPUTS */
 /* Chrome, Safari, Edge, Opera */
