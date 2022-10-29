@@ -1,18 +1,36 @@
 import React from 'react';
-import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
+import {
+    Drawer,
+    DrawerBody,
+    DrawerHeader,
+    DrawerLayout,
+    DrawerNavGroup,
+    DrawerNavItem,
+} from '@brightlayer-ui/react-components';
 import { ExampleShowcase } from '../../../shared';
+import { Box } from '@mui/material';
 
 export const PermanentDrawerExample = (): JSX.Element => (
     <ExampleShowcase>
-        <Drawer open width={250} variant="permanent" sx={{ mx: 'auto' }} noLayout>
-            <DrawerHeader title="Header" />
-            <DrawerBody sx={{ flex: '1 1 auto' }}>
-                <DrawerNavGroup>
-                    <DrawerNavItem title="Dashboard" itemID="1" hidePadding />
-                    <DrawerNavItem title="Locations" itemID="2" hidePadding />
-                    <DrawerNavItem title="Legal" itemID="3" hidePadding />
-                </DrawerNavGroup>
-            </DrawerBody>
-        </Drawer>
+        <DrawerLayout
+            drawer={
+                <Drawer open={true} width={332} variant="permanent">
+                    <DrawerHeader title="Header" />
+                    <DrawerBody hidePadding>
+                        <DrawerNavGroup>
+                            <DrawerNavItem title="Dashboard" itemID="1" />
+                            <DrawerNavItem title="Locations" itemID="2" />
+                            <DrawerNavItem title="Legal" itemID="3" />
+                        </DrawerNavGroup>
+                    </DrawerBody>
+                </Drawer>
+            }
+            sx={{
+                '& .BluiDrawerLayout-drawer': { position: 'absolute', height: 250, zIndex: 'auto' },
+                '& .BluiDrawerLayout-content': { zIndex: 'auto' },
+            }}
+        >
+            <Box sx={{ p: 2, backgroundColor: 'background.paper', height: 250 }}>App Content Here.</Box>
+        </DrawerLayout>
     </ExampleShowcase>
 );

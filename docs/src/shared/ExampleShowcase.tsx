@@ -7,8 +7,10 @@ export type ExampleShowcaseProps = BoxProps & {
     sx?: SxProps<Theme>;
 };
 
-export const ExampleShowcase = (props: ExampleShowcaseProps): JSX.Element => (
-    <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4, borderRadius: '4px', ...props.sx }}>
-        {props.children}
-    </Box>
+export const ExampleShowcase = React.forwardRef(
+    (props: ExampleShowcaseProps, ref): JSX.Element => (
+        <Box ref={ref} sx={{ my: 2, backgroundColor: colors.white[600], p: 4, borderRadius: '4px', ...props.sx }}>
+            {props.children}
+        </Box>
+    )
 );
