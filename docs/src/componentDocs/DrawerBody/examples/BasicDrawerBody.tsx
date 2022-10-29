@@ -4,8 +4,8 @@ import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { BasicDrawerBodyExample } from './BasicDrawerBodyExample';
 
 const codeSnippet = `<Drawer open={true} width={250}>
-    <DrawerBody>
-        <DrawerNavGroup hidePadding>
+    <DrawerBody hidePadding>
+        <DrawerNavGroup>
             <DrawerNavItem title="Dashboard" itemID="1" />
             <DrawerNavItem title="Locations" itemID="2" />
             <DrawerNavItem title="Legal" itemID="3" />

@@ -16,7 +16,7 @@ const codeSnippet = `<Drawer open width={250} variant="rail" condensed>
 export const CondensedDrawerRailItem = (): JSX.Element => (
     <Box>
         <CondensedDrawerRailItemExample />
-        <CodeBlock code={codeSnippet} language="jsx" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine={'1'} />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/DrawerRailItem/examples/CondensedDrawerRailItemExample.tsx"

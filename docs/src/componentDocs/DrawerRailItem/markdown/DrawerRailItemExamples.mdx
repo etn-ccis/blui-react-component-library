@@ -2,12 +2,14 @@ import { BasicDrawerRailItem, CondensedDrawerRailItem } from '../examples';
 
 ## Drawer Rail Item
 
-When using the `rail` variant of the [`<Drawer>`](/components/drawer/api-docs), `<DrawerRailItem>` should be used instead of [`<DrawerNavItem>`](/components/drawer/drawer-nav-item/api-docs). The `<DrawerRailItem>` is always collapsed version of the [`<Drawer>`](/components/drawer/api-docs) that only displays an icons and titles.
+When using the `'rail'` variant of the [Drawer](/components/drawer/examples), navigation items are rendered as `<DrawerRailItem>` components instead of [Drawer Nav Items](/components/drawer/drawer-nav-item/api-docs). If you are using the `items` prop to declare navigation items for your drawer, the correct component will be selected automatically. If you are building your Drawer structure using composition, make sure you use the correct nav/rail item component for your chosen variant.
 
 <BasicDrawerRailItem />
 
 ## Condensed Drawer Rail Item
 
-The `<DrawerRailItem>` can be `condensed` so that it only displays icons. Each navigation item will show a tooltip when hovered while in this mode.
+The Navigation Rail can be made even smaller by setting the `condensed` prop on the Drawer. This will hide the navigation item titles and only show the icons.
+
+> The `condensed` prop is available on the Rail Item component, but it should always be set at the Drawer level to avoid inconsistent sizing between elements.
 
 <CondensedDrawerRailItem />

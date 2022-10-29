@@ -17,7 +17,7 @@ const codeSnippet = `<Drawer open={true} width={250}>
                 <MenuItem value="acme">ACME Co.</MenuItem>
                 <MenuItem value="blui">BLUI CO.</MenuItem>
                 <Divider />
-                <MenuItem value="addnew">
+                <MenuItem>
                     <Typography variant="caption">
                         + Add a New Organization...
                     </Typography>

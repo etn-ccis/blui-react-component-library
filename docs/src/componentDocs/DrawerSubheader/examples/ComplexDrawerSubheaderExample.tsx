@@ -24,22 +24,19 @@ export const ComplexDrawerSubheaderExample = (): JSX.Element => {
                 openOnHover={false}
             >
                 <DrawerHeader title="Energy Co." />
-                <DrawerSubheader divider={false}>
-                    <FormControl variant="filled" sx={{ height: 56, width: '100%' }}>
-                        <InputLabel id="organization" sx={{ pl: 2, pt: 1 }}>
-                            Organization
-                        </InputLabel>
+                <DrawerSubheader divider={false} className={'bumpuy'}>
+                    <FormControl variant="filled" sx={{ width: '100%' }}>
+                        <InputLabel id="organization">Organization</InputLabel>
                         <Select
                             label="organization"
                             labelId="organization"
                             value={selected}
                             onChange={(event): void => setSelected(event.target.value)}
-                            sx={{ '& .MuiSelect-icon': { mr: 2 }, '& .MuiFilledInput-input': { mt: 1 }, px: 2 }}
                         >
                             <MenuItem value="acme">ACME Co.</MenuItem>
                             <MenuItem value="blui">BLUI CO.</MenuItem>
                             <Divider />
-                            <MenuItem value="addnew">
+                            <MenuItem>
                                 <Typography variant="caption" sx={{ fontSize: '1rem', color: colors.gray[400] }}>
                                     + Add a New Organization...
                                 </Typography>
