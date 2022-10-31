@@ -14,7 +14,7 @@ const codeSnippet = `<InfoListItem
 export const InfoListItemWithStatusColor = (): JSX.Element => (
     <Box>
         <InfoListItemWithStatusColorExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine={'5-6'} />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="5-6" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/InfoListItem/examples/InfoListItemWithStatusColorExample.tsx"
