@@ -102,21 +102,6 @@ export const componentsMap = {
     ),
     a: (props: React.LinkHTMLAttributes<HTMLLinkElement>): JSX.Element => {
         let tProps;
-        if (props.href?.includes('#')) {
-            tProps = props as TypographyProps<'a'>;
-
-            return (
-                <Typography
-                    component={'a'}
-                    sx={{
-                        fontWeight: 400,
-                        textDecoration: 'none',
-                        color: (theme: Theme) => theme.palette.primary.main,
-                    }}
-                    {...tProps}
-                />
-            );
-        }
         if (props.href && (props.href.match(/^http/gi) || props.href.match(/^mailto/gi))) {
             tProps = props as TypographyProps<'a'>;
             return <ExternalLink {...tProps} />;

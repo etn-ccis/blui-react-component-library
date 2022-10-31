@@ -1,6 +1,6 @@
 # Changelog
 
-## v6.1.1 (October 31, 2022)
+## v6.1.1 (November 1, 2022)
 
 ### Fixed
 
