@@ -122,7 +122,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
 };
 
 /**
- * [DrawerBody](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ * [DrawerBody](https://brightlayer-ui-components.github.io/react/components/drawer-body) component
  *
  * The `<DrawerBody>` is a wrapper for the main content of the Drawer. The typical use case is to display `<DrawerNavGroup>` elements, but custom elements (e.g., for spacing) are accepted as well.
  */

@@ -252,7 +252,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     );
 };
 /**
- * [ToolbarMenu](https://brightlayer-ui-components.github.io/react/?path=/info/components-toolbar-menu--get-read-me-story) component
+ * [ToolbarMenu](https://brightlayer-ui-components.github.io/react/components/toolbar-menu) component
  *
  * The `ToolbarMenu` used to display a dropdown menu with label.
  */

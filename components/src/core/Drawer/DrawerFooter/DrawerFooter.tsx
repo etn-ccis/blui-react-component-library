@@ -95,7 +95,7 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
 };
 
 /**
- * [DrawerFooter](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ * [DrawerFooter](https://brightlayer-ui-components.github.io/react/components/drawer-footer) component
  *
  * The `<DrawerFooter>` is an optional section that renders at the bottom of the `<Drawer>`. It can be used to add any custom content (as children).
  */

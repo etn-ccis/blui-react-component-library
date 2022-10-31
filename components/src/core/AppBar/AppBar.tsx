@@ -311,7 +311,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
 };
 
 /**
- * [Appbar](https://brightlayer-ui-components.github.io/react/?path=/info/components-app-bar--get-read-me-story) component
+ * [Appbar](https://brightlayer-ui-components.github.io/react/components/app-bar) component
  *
  * An extension of the default AppBar from Material UI that can be resized / collapsed as the page is scrolled.
  */

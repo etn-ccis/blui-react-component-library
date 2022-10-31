@@ -185,7 +185,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
     );
 };
 /**
- * [ChannelValue](https://brightlayer-ui-components.github.io/react/?path=/info/components-channel-value--get-read-me-story) component
+ * [ChannelValue](https://brightlayer-ui-components.github.io/react/components/channel-value) component
  *
  * Used to show a stylized value and its units.
  * You may also include an icon.

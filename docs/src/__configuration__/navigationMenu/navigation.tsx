@@ -189,7 +189,7 @@ export const pageDefinitions: RouteConfig[] = [
                     },
                     {
                         title: 'Drawer Subheader',
-                        path: 'drawer-sub-header/',
+                        path: 'drawer-subheader/',
                         element: <ComponentPreviewPage title={'Drawer Subheader'} />,
                         children: [
                             {

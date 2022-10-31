@@ -298,7 +298,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     );
 };
 /**
- * [UserMenu](https://brightlayer-ui-components.github.io/react/?path=/info/components-user-menu--get-read-me-story) component
+ * [UserMenu](https://brightlayer-ui-components.github.io/react/components/user-menu) component
  *
  * The `<UserMenu>` is an Avatar that opens a Menu when clicked. It is typically used in the top-right corner of an application and indicates who is logged in. By default, the Menu will responsively transition to a bottom sheet for mobile views (if passing in a custom menu, you will be responsible for handling any responsiveness on your content). Setting the `useBottomSheetAt` prop to zero will disable the responsiveness.
  */

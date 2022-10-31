@@ -117,7 +117,7 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
     );
 };
 /**
- * [ThreeLiner](https://brightlayer-ui-components.github.io/react/?path=/info/components-three-liner--get-read-me-story) component
+ * [ThreeLiner](https://brightlayer-ui-components.github.io/react/components/three-liner) component
  *
  * The `ThreeLiner` can display up to three lines of stylized text or other custom content. It is most commonly used within the context of a [`AppBar`](./AppBar.md) component where the text can grow / shrink as the App Bar is expanded and collapsed.
  */
