@@ -43,9 +43,7 @@ export const ComponentPreviewPage: React.FC<ComponentPreviewPageProps> = (props)
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Box>
-                <ComponentPreviewTabs />
-            </Box>
+            <ComponentPreviewTabs />
         </Box>
     );
 };
