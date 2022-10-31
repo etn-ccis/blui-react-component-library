@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { SxProps, Theme, useTheme } from '@mui/material/styles';
-import { DRAWER_WIDTH, TabPanel } from '../shared';
+import { TabPanel } from '../shared';
 import { PLAYGROUND_DRAWER_WIDTH } from './constants';
 
 const hidePlaygroudTabs = ['drawer-layout', 'spacer', 'drawer-body'];
@@ -54,7 +54,7 @@ const tabPanelContentStyles: SxProps<Theme> = {
 };
 
 const outletContainerStyles = {
-    p: '48px 0',
+    pb: 6,
 };
 
 const playgroundContentStyles = {
@@ -81,36 +81,56 @@ export const ComponentPreviewTabs = (): JSX.Element => {
     }, [location]);
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box
+        <>
+            <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="component docs tabs"
+                centered
                 sx={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-evenly',
                     bgcolor: theme.palette.background.paper,
                     borderBottom: 1,
                     borderColor: 'divider',
-                    width: `calc(100% - ${DRAWER_WIDTH}px)`,
-                    position: 'fixed',
+                    position: 'sticky',
+                    top: { xs: 56, sm: 64 },
                     zIndex: theme.zIndex.appBar,
-                    [theme.breakpoints.down('lg')]: {
-                        width: '100%',
+                    '& .MuiTabs-indicator': {
+                        backgroundColor: 'primary.main',
                     },
                 }}
             >
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    aria-label="component docs tabs"
-                    centered
+                <Tab
+                    to="examples"
+                    component={Link}
                     sx={{
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'space-evenly',
-                        '& .MuiTabs-indicator': {
-                            backgroundColor: 'primary.main',
+                        ...tabStyles,
+                        [theme.breakpoints.down(1040)]: {
+                            width: '33%',
                         },
                     }}
-                >
+                    label="Examples"
+                    replace={true}
+                    {...a11yProps(0)}
+                />
+                <Tab
+                    to="api-docs"
+                    component={Link}
+                    sx={{
+                        ...tabStyles,
+                        [theme.breakpoints.down(1040)]: {
+                            width: '33%',
+                        },
+                    }}
+                    label="API Docs"
+                    replace={true}
+                    {...a11yProps(1)}
+                />
+                {!hidePlaygroundTab && (
                     <Tab
-                        to="examples"
+                        to="playground"
                         component={Link}
                         sx={{
                             ...tabStyles,
@@ -118,40 +138,12 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                                 width: '33%',
                             },
                         }}
-                        label="Examples"
+                        label="Playground"
                         replace={true}
-                        {...a11yProps(0)}
+                        {...a11yProps(2)}
                     />
-                    <Tab
-                        to="api-docs"
-                        component={Link}
-                        sx={{
-                            ...tabStyles,
-                            [theme.breakpoints.down(1040)]: {
-                                width: '33%',
-                            },
-                        }}
-                        label="API Docs"
-                        replace={true}
-                        {...a11yProps(1)}
-                    />
-                    {!hidePlaygroundTab && (
-                        <Tab
-                            to="playground"
-                            component={Link}
-                            sx={{
-                                ...tabStyles,
-                                [theme.breakpoints.down(1040)]: {
-                                    width: '33%',
-                                },
-                            }}
-                            label="Playground"
-                            replace={true}
-                            {...a11yProps(2)}
-                        />
-                    )}
-                </Tabs>
-            </Box>
+                )}
+            </Tabs>
             <TabPanel value={value} index={0}>
                 <Box
                     sx={{
@@ -187,6 +179,6 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                     <Outlet />
                 </Box>
             </TabPanel>
-        </Box>
+        </>
     );
 };
