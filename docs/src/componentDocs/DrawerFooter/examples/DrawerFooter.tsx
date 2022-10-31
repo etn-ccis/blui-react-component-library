@@ -39,7 +39,7 @@ const codeSnippet = `<Drawer open={true} width={250}>
 export const DrawerFooter = (): JSX.Element => (
     <Box>
         <DrawerFooterExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="9-34" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="9-30" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/DrawerFooter/examples/DrawerFooterExample.tsx"

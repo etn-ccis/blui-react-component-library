@@ -20,7 +20,7 @@ const codeSnippet = `<Box>
 export const AppBar = (): JSX.Element => (
     <Box>
         <AppBarExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-10" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-8" />
         <CodeBlockActionButtonRow copyText={codeSnippet} url="componentDocs/AppBar/examples/AppBarExample.tsx" />
     </Box>
 );
