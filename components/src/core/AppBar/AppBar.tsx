@@ -26,7 +26,7 @@ const useUtilityClasses = (ownerState: AppBarProps): Record<AppBarClassKey, stri
 const Root = styled(MuiAppBar, {
     name: 'app-bar',
     slot: 'root',
-    shouldForwardProp: (prop) => prop !== 'backgroundImage',
+    shouldForwardProp: (prop) => !['backgroundImage', 'animationDuration'].includes(prop.toString()),
 })<Pick<AppBarProps, 'animationDuration' | 'backgroundImage'>>(({ animationDuration, backgroundImage, theme }) => ({
     overflow: 'hidden',
     transition: theme.transitions.create(['height'], {
@@ -302,6 +302,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             })}
             position={'sticky'}
             backgroundImage={backgroundImage}
+            animationDuration={durationProp}
         >
             {getBackgroundImage()}
             {props.children}
