@@ -124,7 +124,7 @@ export const pageDefinitions: RouteConfig[] = [
             },
             {
                 title: 'Drawer',
-                path: 'drawer/',
+                path: '',
                 pages: [
                     {
                         title: 'Drawer Layout',
