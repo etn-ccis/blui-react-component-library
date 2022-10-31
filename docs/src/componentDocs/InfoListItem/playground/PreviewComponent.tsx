@@ -68,12 +68,7 @@ export const PreviewComponent = (): JSX.Element => {
                     wrapSubtitle={infoListItemProps.wrapSubtitle}
                     wrapTitle={infoListItemProps.wrapTitle}
                     disabled={infoListItemProps.disabled}
-                    onClick={(): void => {
-                        if (!infoListItemProps.disabled) {
-                            // eslint-disable-next-line
-                            console.log('clicked');
-                        }
-                    }}
+                    onClick={(): void => {}}
                 />
             }
             code={generateCodeSnippet()}
