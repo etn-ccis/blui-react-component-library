@@ -32,6 +32,7 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 // google analytics
 import ReactGA from 'react-ga';
 import { gaID } from './ga.js';
+import { ScrollToTop } from './router/ScrollToTop';
 if (gaID) {
     ReactGA.initialize(gaID);
 }
@@ -49,6 +50,7 @@ root.render(
     <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(BLUIThemes.blue)}>
             <BrowserRouter basename={basename}>
+                <ScrollToTop />
                 <GoogleAnalyticsWrapper />
                 <CssBaseline />
                 <Provider store={store}>
