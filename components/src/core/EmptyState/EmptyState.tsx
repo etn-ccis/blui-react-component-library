@@ -87,18 +87,26 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
             {...otherProps}
         >
             {icon && <Icon className={cx(defaultClasses.icon, classes.icon)}>{icon}</Icon>}
-            <Typography variant="h6" color="inherit" className={classes.title}>
-                {title}
-            </Typography>
-            {description && (
-                <Description
-                    variant="subtitle2"
-                    color={'textSecondary'}
-                    className={cx(defaultClasses.description, classes.description)}
-                >
-                    {description}
-                </Description>
-            )}
+            {title &&
+                (typeof title === 'string' ? (
+                    <Typography variant="h6" color="inherit" className={classes.title}>
+                        {title}
+                    </Typography>
+                ) : (
+                    title
+                ))}
+            {description &&
+                (typeof description === 'string' ? (
+                    <Description
+                        variant="subtitle2"
+                        color={'textSecondary'}
+                        className={cx(defaultClasses.description, classes.description)}
+                    >
+                        {description}
+                    </Description>
+                ) : (
+                    description
+                ))}
             {actions && <Actions className={cx(defaultClasses.actions, classes.actions)}>{actions}</Actions>}
         </Root>
     );

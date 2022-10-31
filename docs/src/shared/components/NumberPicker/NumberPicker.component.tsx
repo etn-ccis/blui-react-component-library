@@ -18,8 +18,24 @@ type NumberPickerProps = MuiTextFieldProps & {
     propData: PropsType;
 };
 
+const floatMath = (value: string | number, step: number): number => {
+    const valueDecimal = value.toString().indexOf('.') + 1;
+    const valueDecimalPlaces = value.toString().length - valueDecimal;
+    const stepDecimal = step.toString().indexOf('.') + 1;
+    const stepDecimalPlaces = step.toString().length - stepDecimal;
+
+    const floatCorrectionFactor = Math.pow(10, Math.max(valueDecimalPlaces, stepDecimalPlaces));
+    // floating point math correction
+    return ((value as number) * floatCorrectionFactor + step * floatCorrectionFactor) / floatCorrectionFactor;
+};
+
 export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
     const { propData, ...textFieldProps } = props;
+    const {
+        step: stepSize = 1,
+        min = Number.MIN_SAFE_INTEGER,
+        max = Number.MAX_SAFE_INTEGER,
+    } = propData?.rangeData || {};
 
     // Slider Popover
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -44,8 +60,13 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
                 {...textFieldProps}
                 onChange={(e): void => {
                     // only allow numeric values to be typed in
-                    if (!/^[0-9]*$/.test(e.target.value)) return;
+                    if (e.target.value && !/^\d+(?:[.]\d+)?$/.test(e.target.value)) return;
                     handleNumberChange(e as ChangeEvent<HTMLInputElement>);
+                }}
+                inputProps={{
+                    min: propData?.rangeData?.min,
+                    max: propData?.rangeData?.max,
+                    step: stepSize,
                 }}
                 variant={'filled'}
                 type={'number'}
@@ -60,7 +81,10 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
                                     sx={{ height: 10, width: 10, p: 0.75 }}
                                     onClick={(e): void => {
                                         e.stopPropagation();
-                                        const newValue = (propData.inputValue as number) + 1;
+                                        const newValue = Math.min(
+                                            max,
+                                            floatMath(propData.inputValue as number, stepSize)
+                                        );
                                         handleNumberChange({ target: { value: newValue } } as any);
                                     }}
                                 >
@@ -71,7 +95,10 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
                                     sx={{ height: 10, width: 10, p: 0.75 }}
                                     onClick={(e): void => {
                                         e.stopPropagation();
-                                        const newValue = (propData.inputValue as number) - 1;
+                                        const newValue = Math.max(
+                                            min,
+                                            floatMath(propData.inputValue as number, -1 * stepSize)
+                                        );
                                         handleNumberChange({ target: { value: newValue } } as any);
                                     }}
                                 >

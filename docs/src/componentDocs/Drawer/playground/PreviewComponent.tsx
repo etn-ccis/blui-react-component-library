@@ -311,11 +311,13 @@ ${updateHeaderAsPerVariant()}
                                         p: 2,
                                         ml: drawerProps.open
                                             ? variantIsTemporary
-                                                ? 1
-                                                : `${drawerProps.width}px`
+                                                ? 1 // temporary open
+                                                : `${drawerProps.width}px` // all other open
                                             : variantIsPersistent
-                                            ? 7
-                                            : 1,
+                                            ? 7 // closed persistent
+                                            : variantIsPermanent
+                                            ? `${drawerProps.width}px` // closed permanent
+                                            : 1, // all other closed
                                     }}
                                 >
                                     App Content Here.

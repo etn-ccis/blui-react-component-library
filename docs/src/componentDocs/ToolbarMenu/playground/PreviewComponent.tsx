@@ -36,24 +36,15 @@ export const PreviewComponent = (): JSX.Element => {
             items: [
                 {
                     title: 'Menu Item 1',
-                    onClick: (): void => {
-                        // eslint-disable-next-line
-                        console.log('clicked 1');
-                    },
+                    onClick: (): void => {},
                 },
                 {
                     title: 'Menu Item 2',
-                    onClick: (): void => {
-                        // eslint-disable-next-line
-                        console.log('clicked 2');
-                    },
+                    onClick: (): void => {},
                 },
                 {
                     title: 'Menu Item 3',
-                    onClick: (): void => {
-                        // eslint-disable-next-line
-                        console.log('clicked 3');
-                    },
+                    onClick: (): void => {},
                 },
             ],
         },

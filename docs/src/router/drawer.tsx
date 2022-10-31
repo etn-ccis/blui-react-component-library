@@ -1,12 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-components';
-import {
-    pageDefinitions,
-    SimpleNavItem,
-    SimpleGroupNavGroupItem,
-} from '../__configuration__/navigationMenu/navigation';
+import { pageDefinitions, RouteConfig } from '../__configuration__/navigationMenu/navigation';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
@@ -19,73 +15,64 @@ import { closeDrawer, toggleDrawer } from '../redux/appState';
 
 const backgroundImage = require('../assets/cubes_tile.png');
 const linearGradientOverlayImage = `linear-gradient(to right, rgba(0, 123, 193, 1) 22.4%, rgba(0, 123, 193, 0.2) 100%), url(${backgroundImage})`;
+
 const tabs = ['examples', 'api-docs', 'playground'];
+
+const convertNavItems = (
+    navData: RouteConfig[],
+    parentUrl: string,
+    depth: number,
+    handleNavigate: (u: string) => void,
+    dispatch: any
+): NavItem[] => {
+    const convertedItems: NavItem[] = [];
+    for (let i = 0; i < navData.length; i++) {
+        const item = navData[i];
+        const fullURL = `${parentUrl}${item.path || ''}`;
+        convertedItems.push({
+            title: item.title,
+            icon: depth === 0 ? item.icon : undefined,
+            itemID: fullURL.replace(/\/$/, ''),
+            hidePadding: depth > 0 ? false : true,
+            onClick: item.element
+                ? (): void => {
+                      handleNavigate(fullURL);
+                      dispatch(toggleDrawer());
+                  }
+                : undefined,
+            items: item.pages
+                ? convertNavItems(item.pages, `${parentUrl}${item.path || ''}`, depth + 1, handleNavigate, dispatch)
+                : undefined,
+        });
+    }
+    return convertedItems;
+};
+
 export const NavigationDrawer: React.FC = () => {
     const drawerOpen = useAppSelector((state: RootState) => state.appState.drawerOpen);
+    const theme = useTheme();
+    const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
     const dispatch = useAppDispatch();
     const location = useLocation();
     const navigate = useNavigate();
-    const [activeRoute, setActiveRoute] = useState(location.pathname);
-    const theme = useTheme();
-    const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
-    const [tabPath, setTabPath] = useState(tabs);
+    const activeItem = location.pathname.replace(/\/(examples|api-docs|playground)/, '');
 
-    const createNavItems = useCallback(
-        (navData: SimpleNavItem[], parentUrl: string, depth: number): NavItem[] => {
-            const convertedItems: NavItem[] = [];
-            for (let i = 0; i < navData.length; i++) {
-                const item = navData[i];
-                const fullURL = `${parentUrl}${item.url || ''}`;
-                convertedItems.push({
-                    title: item.title,
-                    icon: depth === 0 ? item.icon : undefined,
-                    itemID: fullURL,
-                    hidePadding: depth > 0 ? false : true,
-                    onClick: item.component
-                        ? (): void => {
-                              navigate(fullURL);
-                              dispatch(toggleDrawer());
-                          }
-                        : undefined,
-                    items: item.pages
-                        ? createNavItems(item.pages, `${parentUrl}${item.url || ''}`, depth + 1)
-                        : undefined,
-                });
-            }
-            return convertedItems;
+    const handleNavigate = useCallback(
+        (id: string): void => {
+            const tabName = tabs.includes(location.pathname.split('/')[4])
+                ? location.pathname.split('/')[4]
+                : location.pathname.split('/')[3];
+            navigate(`${id}${tabName || ''}`);
+            dispatch(toggleDrawer());
         },
-        [navigate]
+        [location.pathname, dispatch, navigate]
     );
 
-    const createNavGroupItems = useCallback(
-        (navData: SimpleGroupNavGroupItem[]) => {
-            const convertedGroupItems = [];
-            for (let i = 0; i < navData.length; i++) {
-                const item = navData[i];
-                convertedGroupItems.push({
-                    groupTitle: item.groupTitle,
-                    items: createNavItems(item.items, '', 0),
-                });
-            }
-            return convertedGroupItems;
-        },
-        [createNavItems]
-    );
-
-    useEffect(() => {
-        setTabPath(tabs);
-        const pathname = tabPath.includes(location.pathname.split('/')[4])
-            ? location.pathname.split('/')[4]
-            : location.pathname.split('/')[3];
-        setActiveRoute(location.pathname.replace(`/${tabPath[tabPath.indexOf(pathname)]}`, ''));
-    }, [tabPath, location.pathname]);
-
-    const [navGroupItems] = useState(createNavGroupItems(pageDefinitions));
     return (
         <Drawer
             open={drawerOpen}
             variant={lgDown ? 'temporary' : 'permanent'}
-            activeItem={activeRoute}
+            activeItem={activeItem}
             width={DRAWER_WIDTH}
             hidePadding
             activeItemBackgroundShape={'round'}
@@ -140,18 +127,12 @@ export const NavigationDrawer: React.FC = () => {
                     </div>
                 }
             />
-            <DrawerBody>
-                {navGroupItems.map((navGroupItem, index: number) => (
+            <DrawerBody hidePadding>
+                {pageDefinitions.map((navGroup) => (
                     <DrawerNavGroup
-                        key={index}
-                        hidePadding
-                        sx={{
-                            '.BluiDrawerNavGroup-title': {
-                                color: 'primary.main',
-                            },
-                        }}
-                        title={navGroupItem.groupTitle}
-                        items={navGroupItem.items}
+                        key={navGroup.title}
+                        title={navGroup.title}
+                        items={convertNavItems(navGroup.pages || [], navGroup.path || '', 0, handleNavigate, dispatch)}
                     />
                 ))}
             </DrawerBody>

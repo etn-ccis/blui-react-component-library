@@ -9,6 +9,7 @@ const codeSnippet = `<AppBar variant="collapsed">
             <Menu />
         </IconButton>
         <ListItemText
+            disableTypography
             primary={<Typography variant="h6">Alarms</Typography>}
             secondary={
                 <ToolbarMenu

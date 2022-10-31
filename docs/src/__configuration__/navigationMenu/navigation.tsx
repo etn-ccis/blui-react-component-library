@@ -59,264 +59,259 @@ import { EmptyStatePlaygroundComponent } from '../../componentDocs/EmptyState/pl
 import { HeroPlaygroundComponent } from '../../componentDocs/Hero/playground';
 import { InfoListItemPlaygroundComponent } from '../../componentDocs/InfoListItem/playground';
 import { ListItemTagPlaygroundComponent } from '../../componentDocs/ListItemTag/playground';
-// import { SpacerPlaygroundComponent } from '../../componentDocs/Spacer/playground';
 import { ScoreCardPlaygroundComponent } from '../../componentDocs/ScoreCard/playground';
 import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/playground';
 import { ToolbarMenuPlaygroundComponent } from '../../componentDocs/ToolbarMenu/playground';
 import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
+import { Outlet, RouteProps } from 'react-router';
 
-export type SimpleNavItem = {
+export type RouteConfig = Omit<RouteProps, 'children'> & {
     title: string;
-    url?: string;
     icon?: JSX.Element;
-    pages?: SimpleNavItem[];
-    component?: JSX.Element;
-    children?: SimpleNavItem[];
+    pages?: RouteConfig[];
+    children?: RouteConfig[];
 };
 
-export type SimpleGroupNavGroupItem = {
-    groupTitle: string;
-    items: SimpleNavItem[];
-};
-
-export const pageDefinitions: SimpleGroupNavGroupItem[] = [
+export const pageDefinitions: RouteConfig[] = [
     {
-        groupTitle: 'Components',
-        items: [
+        title: 'Components',
+        path: '/components/',
+        element: <Outlet />,
+        pages: [
             {
                 title: 'App Bar',
-                url: '/components/app-bar',
-                component: <ComponentPreviewPage title={'App Bar'} />,
+                path: 'app-bar/',
+                element: <ComponentPreviewPage title={'App Bar'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <AppBarExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <AppBarExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <AppBarAPIDocs />,
+                        path: 'api-docs',
+                        element: <AppBarAPIDocs />,
                     },
                     {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <AppBarPlaygroundComponent />,
+                        title: 'playground',
+                        path: 'playground',
+                        element: <AppBarPlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'Channel Value',
-                url: '/components/channel-value',
-                component: <ComponentPreviewPage title={'Channel Value'} />,
+                path: 'channel-value/',
+                element: <ComponentPreviewPage title={'Channel Value'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <ChannelValueExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <ChannelValueExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <ChannelValueAPIDocs />,
+                        path: 'api-docs',
+                        element: <ChannelValueAPIDocs />,
                     },
                     {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <ChannelValuePlaygroundComponent />,
+                        title: 'playground',
+                        path: 'playground',
+                        element: <ChannelValuePlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'Drawer',
-                url: '/components',
+                path: '',
                 pages: [
                     {
                         title: 'Drawer Layout',
-                        url: '/drawer-layout',
-                        component: <ComponentPreviewPage title={'Drawer Layout'} />,
+                        path: 'drawer-layout/',
+                        element: <ComponentPreviewPage title={'Drawer Layout'} />,
                         children: [
                             {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerLayoutExamples />,
+                                title: 'examples',
+                                path: 'examples',
+                                element: <DrawerLayoutExamples />,
                             },
                             {
                                 title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerLayoutAPIDocs />,
+                                path: 'api-docs',
+                                element: <DrawerLayoutAPIDocs />,
                             },
                         ],
                     },
                     {
                         title: 'Drawer',
-                        url: '/drawer',
-                        component: <ComponentPreviewPage title={'Drawer'} />,
+                        path: 'drawer/',
+                        element: <ComponentPreviewPage title={'Drawer'} />,
                         children: [
                             {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerExamples />,
+                                title: 'examples',
+                                path: 'examples',
+                                element: <DrawerExamples />,
                             },
                             {
                                 title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerAPIDocs />,
+                                path: 'api-docs',
+                                element: <DrawerAPIDocs />,
                             },
                             {
-                                title: 'Playground',
-                                url: 'playground',
-                                component: <DrawerPlaygroundComponent />,
+                                title: 'playground',
+                                path: 'playground',
+                                element: <DrawerPlaygroundComponent />,
                             },
                         ],
                     },
                     {
                         title: 'Drawer Header',
-                        url: '/drawer/drawer-header',
-                        component: <ComponentPreviewPage title={'Drawer Header'} />,
+                        path: 'drawer-header/',
+                        element: <ComponentPreviewPage title={'Drawer Header'} />,
                         children: [
                             {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerHeaderExamples />,
+                                title: 'examples',
+                                path: 'examples',
+                                element: <DrawerHeaderExamples />,
                             },
                             {
                                 title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerHeaderAPIDocs />,
+                                path: 'api-docs',
+                                element: <DrawerHeaderAPIDocs />,
                             },
                             {
-                                title: 'Playground',
-                                url: 'playground',
-                                component: <DrawerHeaderPlaygroundComponent />,
+                                title: 'playground',
+                                path: 'playground',
+                                element: <DrawerHeaderPlaygroundComponent />,
                             },
                         ],
                     },
                     {
                         title: 'Drawer Subheader',
-                        url: '/drawer-sub-header',
-                        component: <ComponentPreviewPage title={'Drawer Subheader'} />,
+                        path: 'drawer-sub-header/',
+                        element: <ComponentPreviewPage title={'Drawer Subheader'} />,
                         children: [
                             {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerSubheaderExamples />,
+                                title: 'examples',
+                                path: 'examples',
+                                element: <DrawerSubheaderExamples />,
                             },
                             {
                                 title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerSubheaderAPIDocs />,
+                                path: 'api-docs',
+                                element: <DrawerSubheaderAPIDocs />,
                             },
                             {
-                                title: 'Playground',
-                                url: 'playground',
-                                component: <DrawerSubheaderPlaygroundComponent />,
+                                title: 'playground',
+                                path: 'playground',
+                                element: <DrawerSubheaderPlaygroundComponent />,
                             },
                         ],
                     },
 
                     {
                         title: 'Drawer Body',
-                        url: '/drawer-body',
-                        component: <ComponentPreviewPage title={'Drawer Body'} />,
+                        path: 'drawer-body/',
+                        element: <ComponentPreviewPage title={'Drawer Body'} />,
                         children: [
                             {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerBodyExamples />,
+                                title: 'examples',
+                                path: 'examples',
+                                element: <DrawerBodyExamples />,
                             },
                             {
                                 title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerBodyAPIDocs />,
+                                path: 'api-docs',
+                                element: <DrawerBodyAPIDocs />,
                             },
                         ],
                     },
                     {
                         title: 'Drawer Nav Group',
-                        url: '/drawer/drawer-nav-group',
-                        component: <ComponentPreviewPage title={'Drawer Nav Group'} />,
+                        path: 'drawer-nav-group/',
+                        element: <ComponentPreviewPage title={'Drawer Nav Group'} />,
                         children: [
                             {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerNavGroupExamples />,
+                                title: 'examples',
+                                path: 'examples',
+                                element: <DrawerNavGroupExamples />,
                             },
                             {
                                 title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerNavGroupAPIDocs />,
+                                path: 'api-docs',
+                                element: <DrawerNavGroupAPIDocs />,
                             },
                             {
-                                title: 'Playground',
-                                url: 'playground',
-                                component: <DrawerNavGroupPlaygroundComponent />,
+                                title: 'playground',
+                                path: 'playground',
+                                element: <DrawerNavGroupPlaygroundComponent />,
                             },
                         ],
                     },
                     {
                         title: 'Drawer Nav Item',
-                        url: '/drawer/drawer-nav-item',
-                        component: <ComponentPreviewPage title={'Drawer Nav Item'} />,
+                        path: 'drawer-nav-item/',
+                        element: <ComponentPreviewPage title={'Drawer Nav Item'} />,
                         children: [
                             {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerNavItemExamples />,
+                                title: 'examples',
+                                path: 'examples',
+                                element: <DrawerNavItemExamples />,
                             },
                             {
                                 title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerNavItemAPIDocs />,
+                                path: 'api-docs',
+                                element: <DrawerNavItemAPIDocs />,
                             },
                             {
-                                title: 'Playground',
-                                url: 'playground',
-                                component: <DrawerNavItemPlaygroundComponent />,
+                                title: 'playground',
+                                path: 'playground',
+                                element: <DrawerNavItemPlaygroundComponent />,
                             },
                         ],
                     },
                     {
                         title: 'Drawer Rail Item',
-                        url: '/drawer-rail-item',
-                        component: <ComponentPreviewPage title={'Drawer Rail Item'} />,
+                        path: 'drawer-rail-item/',
+                        element: <ComponentPreviewPage title={'Drawer Rail Item'} />,
                         children: [
                             {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerRailItemExamples />,
+                                title: 'examples',
+                                path: 'examples',
+                                element: <DrawerRailItemExamples />,
                             },
                             {
                                 title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerRailItemAPIDocs />,
+                                path: 'api-docs',
+                                element: <DrawerRailItemAPIDocs />,
                             },
                             {
-                                title: 'Playground',
-                                url: 'playground',
-                                component: <DrawerRailItemPlaygroundComponent />,
+                                title: 'playground',
+                                path: 'playground',
+                                element: <DrawerRailItemPlaygroundComponent />,
                             },
                         ],
                     },
                     {
                         title: 'Drawer Footer',
-                        url: '/drawer-footer',
-                        component: <ComponentPreviewPage title={'Drawer Footer'} />,
+                        path: 'drawer-footer/',
+                        element: <ComponentPreviewPage title={'Drawer Footer'} />,
                         children: [
                             {
-                                title: 'Examples',
-                                url: 'examples',
-                                component: <DrawerFooterExamples />,
+                                title: 'examples',
+                                path: 'examples',
+                                element: <DrawerFooterExamples />,
                             },
                             {
                                 title: 'API Docs',
-                                url: 'api-docs',
-                                component: <DrawerFooterAPIDocs />,
+                                path: 'api-docs',
+                                element: <DrawerFooterAPIDocs />,
                             },
                             {
-                                title: 'Playground',
-                                url: 'playground',
-                                component: <DrawerFooterPlaygroundComponent />,
+                                title: 'playground',
+                                path: 'playground',
+                                element: <DrawerFooterPlaygroundComponent />,
                             },
                         ],
                     },
@@ -324,199 +319,194 @@ export const pageDefinitions: SimpleGroupNavGroupItem[] = [
             },
             {
                 title: 'Empty State',
-                url: '/components/empty-state',
-                component: <ComponentPreviewPage title={'Empty State'} />,
+                path: 'empty-state/',
+                element: <ComponentPreviewPage title={'Empty State'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <EmptyStateExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <EmptyStateExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <EmptyStateAPIDocs />,
+                        path: 'api-docs',
+                        element: <EmptyStateAPIDocs />,
                     },
                     {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <EmptyStatePlaygroundComponent />,
+                        title: 'playground',
+                        path: 'playground',
+                        element: <EmptyStatePlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'Hero',
-                url: '/components/hero',
-                component: <ComponentPreviewPage title={'Hero'} />,
+                path: 'hero/',
+                element: <ComponentPreviewPage title={'Hero'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <HeroExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <HeroExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <HeroAPIDocs />,
+                        path: 'api-docs',
+                        element: <HeroAPIDocs />,
                     },
                     {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <HeroPlaygroundComponent />,
+                        title: 'playground',
+                        path: 'playground',
+                        element: <HeroPlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'Info List Item',
-                url: '/components/info-list-item',
-                component: <ComponentPreviewPage title={'Info List Item'} />,
+                path: 'info-list-item/',
+                element: <ComponentPreviewPage title={'Info List Item'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <InfoListItemExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <InfoListItemExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <InfoListItemAPIDocs />,
+                        path: 'api-docs',
+                        element: <InfoListItemAPIDocs />,
                     },
                     {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <InfoListItemPlaygroundComponent />,
+                        title: 'playground',
+                        path: 'playground',
+                        element: <InfoListItemPlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'List Item Tag',
-                url: '/components/list-item-tag',
-                component: <ComponentPreviewPage title={'List Item Tag'} />,
+                path: 'list-item-tag/',
+                element: <ComponentPreviewPage title={'List Item Tag'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <ListItemTagExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <ListItemTagExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <ListItemTagAPIDocs />,
+                        path: 'api-docs',
+                        element: <ListItemTagAPIDocs />,
                     },
                     {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <ListItemTagPlaygroundComponent />,
+                        title: 'playground',
+                        path: 'playground',
+                        element: <ListItemTagPlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'Score Card',
-                url: '/components/score-card',
-                component: <ComponentPreviewPage title={'Score Card'} />,
+                path: 'score-card/',
+                element: <ComponentPreviewPage title={'Score Card'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <ScoreCardExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <ScoreCardExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <ScoreCardAPIDocs />,
+                        path: 'api-docs',
+                        element: <ScoreCardAPIDocs />,
                     },
                     {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <ScoreCardPlaygroundComponent />,
+                        title: 'playground',
+                        path: 'playground',
+                        element: <ScoreCardPlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'Spacer',
-                url: '/components/spacer',
-                component: <ComponentPreviewPage title={'Spacer'} />,
+                path: 'spacer/',
+                element: <ComponentPreviewPage title={'Spacer'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <SpacerExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <SpacerExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <SpacerAPIDocs />,
+                        path: 'api-docs',
+                        element: <SpacerAPIDocs />,
                     },
-                    // {
-                    //     title: 'Playground',
-                    //     url: 'playground',
-                    //     component: <SpacerPlaygroundComponent />,
-                    // },
                 ],
             },
             {
                 title: 'Three Liner',
-                url: '/components/three-liner',
-                component: <ComponentPreviewPage title={'Three Liner'} />,
+                path: 'three-liner/',
+                element: <ComponentPreviewPage title={'Three Liner'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <ThreeLinerExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <ThreeLinerExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <ThreeLinerAPIDocs />,
+                        path: 'api-docs',
+                        element: <ThreeLinerAPIDocs />,
                     },
                     {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <ThreeLinerPlaygroundComponent />,
+                        title: 'playground',
+                        path: 'playground',
+                        element: <ThreeLinerPlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'Toolbar Menu',
-                url: '/components/toolbar-menu',
-                component: <ComponentPreviewPage title={'Toolbar Menu'} />,
+                path: 'toolbar-menu/',
+                element: <ComponentPreviewPage title={'Toolbar Menu'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <ToolbarMenuExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <ToolbarMenuExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <ToolbarMenuAPIDocs />,
+                        path: 'api-docs',
+                        element: <ToolbarMenuAPIDocs />,
                     },
                     {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <ToolbarMenuPlaygroundComponent />,
+                        title: 'playground',
+                        path: 'playground',
+                        element: <ToolbarMenuPlaygroundComponent />,
                     },
                 ],
             },
             {
                 title: 'User Menu',
-                url: '/components/user-menu',
-                component: <ComponentPreviewPage title={'User Menu'} />,
+                path: 'user-menu/',
+                element: <ComponentPreviewPage title={'User Menu'} />,
                 children: [
                     {
-                        title: 'Examples',
-                        url: 'examples',
-                        component: <UserMenuExamples />,
+                        title: 'examples',
+                        path: 'examples',
+                        element: <UserMenuExamples />,
                     },
                     {
                         title: 'API Docs',
-                        url: 'api-docs',
-                        component: <UserMenuAPIDocs />,
+                        path: 'api-docs',
+                        element: <UserMenuAPIDocs />,
                     },
                     {
-                        title: 'Playground',
-                        url: 'playground',
-                        component: <UserMenuPlaygroundComponent />,
+                        title: 'playground',
+                        path: 'playground',
+                        element: <UserMenuPlaygroundComponent />,
                     },
                 ],
             },

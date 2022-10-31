@@ -72,7 +72,7 @@ export const PreviewComponent = (): JSX.Element => {
                     <DrawerHeader
                         backgroundColor={drawerHeaderProps.backgroundColor}
                         backgroundImage={getImage(drawerHeaderProps.backgroundImage)}
-                        backgroundOpacity={drawerHeaderProps.backgroundOpacity}
+                        backgroundOpacity={drawerHeaderProps.backgroundOpacity || undefined}
                         divider={drawerHeaderProps.divider}
                         fontColor={drawerHeaderProps.fontColor}
                         icon={getIcon(drawerHeaderProps.icon)}
