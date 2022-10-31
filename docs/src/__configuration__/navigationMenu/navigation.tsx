@@ -65,20 +65,6 @@ import { ToolbarMenuPlaygroundComponent } from '../../componentDocs/ToolbarMenu/
 import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 import { Outlet, RouteProps } from 'react-router';
 
-// export type SimpleNavItem = {
-//     title: string;
-//     url?: string;
-//     icon?: JSX.Element;
-//     pages?: SimpleNavItem[];
-//     component?: JSX.Element;
-//     children?: SimpleNavItem[];
-// };
-
-// export type SimpleGroupNavGroupItem = {
-//     groupTitle: string;
-//     items: SimpleNavItem[];
-// };
-
 export type RouteConfig = Omit<RouteProps, 'children'> & {
     title: string;
     icon?: JSX.Element;
