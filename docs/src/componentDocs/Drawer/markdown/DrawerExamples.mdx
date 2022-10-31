@@ -7,38 +7,46 @@ import {
     RailDrawer,
 } from '../examples';
 
-# Basic Drawer
+## Drawer
 
-A `<Drawer>` is a navigation menu that appears to the side of an application.
+The `<Drawer>` is a navigational element that holds links to different pages in your application. It organizes content using sub-elements for:
+
+-   [Drawer Header](/components/drawer-header/examples)
+-   [Drawer Subheader](/components/drawer-subheader/examples)
+-   [Drawer Body](/components/drawer-body/examples)
+-   [Drawer Nav Group](/components/drawer-nav-group/examples)
+-   [Drawer Nav Item](/components/drawer-nav-item/examples)
+-   [Drawer Rail Item](/components/drawer-rail-item/examples)
+-   [Drawer Footer](/components/drawer-footer/examples)
 
 <BasicDrawer />
 
-# Complex Drawer
+## Customizing the Drawer
 
-A `<Drawer>` can contain multiple [`<DrawerNavGroup>`](/components/drawer/drawer-nav-group/api-docs) and nested [`<DrawerNavItem>`](/components/drawer/drawer-nav-item/api-docs).
+The Drawer is highly customizable for organizing and styling your items. Navigation items can be declared in a list format to simplify your JSX and make customization easier.
 
 <ComplexDrawer />
 
-# Permanent Variant
+## Permanent Variant
 
-The `permanent` variant is used when a `<Drawer>` is never intended to dismiss from the screen.
+The `'permanent'` drawer is full-sized and always visible.
 
 <PermanentDrawer />
 
-# Persistent Variant
+## Persistent Variant
 
-The `persistent` variant allows a `<Drawer>` to open and close, but never fully exits the screen.
+The `'persistent'` drawer can be opened and closed. When opened, it pushes the main application content.
 
 <PersistentDrawer />
 
-# Temporary Variant
+## Temporary Variant
 
-The `temporary` variant allows a `<Drawer>` to enter the screen from the left side as an overlay.
+The `'temporary'` drawer is hidden until it is opened. When open, it appears as an overlay on top of the application content. This is typically used on smaller screens and mobile devices.
 
 <TemporaryDrawer />
 
-# Rail Variant
+## Navigation Rail
 
-The `rail` variant is similar to a collapsed persistent state.
+The `'rail'` variant is always opened but takes up less space than a full-sized drawer.
 
 <RailDrawer />

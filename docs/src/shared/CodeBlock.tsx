@@ -29,7 +29,10 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
             {...divProps}
             className="Code"
         >
-            <pre data-line={dataLine} style={{ margin: 0, width: '100%', backgroundColor: Colors.black[800] }}>
+            <pre
+                data-line={dataLine}
+                style={{ margin: 0, width: '100%', backgroundColor: Colors.black[800], borderRadius: 4 }}
+            >
                 <code style={{ fontFamily: 'monospace' }} className={`language-${language}`}>
                     {code}
                 </code>

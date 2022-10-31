@@ -1,11 +1,10 @@
 import React from 'react';
 import { Box, Toolbar, Typography } from '@mui/material';
-import * as colors from '@brightlayer-ui/colors';
 import { AppBar } from '@brightlayer-ui/react-components';
-import { getBodyFiller } from '../../../shared';
+import { getBodyFiller, ExampleShowcase } from '../../../shared';
 
 export const ExpandedAppBarExample = (): JSX.Element => (
-    <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4 }}>
+    <ExampleShowcase>
         <AppBar collapsedHeight={64} variant={'expanded'} sx={{ width: 450, mx: 'auto', zIndex: 'auto' }}>
             <Toolbar>
                 <Typography variant="h6">Content</Typography>
@@ -22,5 +21,5 @@ export const ExpandedAppBarExample = (): JSX.Element => (
         >
             {getBodyFiller()}
         </Box>
-    </Box>
+    </ExampleShowcase>
 );

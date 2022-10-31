@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import * as colors from '@brightlayer-ui/colors';
 import { DrawerNavItemNestedItemsExample } from './DrawerNavItemNestedItemsExample';
 
 const codeSnippet = `<DrawerBody>
@@ -18,9 +17,7 @@ const codeSnippet = `<DrawerBody>
 
 export const DrawerNavItemNestedItems = (): JSX.Element => (
     <Box>
-        <Box sx={{ my: 4, backgroundColor: colors.white[600], p: 4 }}>
-            <DrawerNavItemNestedItemsExample />
-        </Box>
+        <DrawerNavItemNestedItemsExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="3-6" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}

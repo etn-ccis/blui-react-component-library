@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Drawer from '../images/drawer.png';
 import DrawerAnatomy from '../images/drawerAnatomy.png';
 import SharedProps from '../../../shared/markdown/SharedProps.mdx';
+import { DOCS_BRANCH } from '../../../shared/constants';
 
 # Drawer
 
@@ -28,15 +29,6 @@ The `<Drawer>` component is a wrapper around the [MUI Drawer](https://mui.com/ma
 ## Drawer
 
 The `<Drawer>` component is the parent container, which manages the overall state of the drawer and renders the child components.
-
-A `<Drawer>` can be broken down into the following subsections:
-
--   [`<DrawerHeader>`](/components/drawer/drawer-header/examples)
--   [`<DrawerSubheader>`](/components/drawer-sub-header/examples)
--   [`<DrawerBody>`](/components/drawer-body/examples)
--   [`<DrawerNavItem>`](/components/drawer/drawer-nav-item/examples)
--   [`<DrawerNavGroup>`](/components/drawer/drawer-nav-group/examples)
--   [`<DrawerFooter>`](/components/drawer-footer/examples)
 
 <Box
     sx={{
@@ -95,7 +87,8 @@ You can override the default styles used by Brightlayer UI by:
 -   passing a `classes` prop with keys from the Name column below
 -   using the Global CSS Class in your main stylesheet
 
-For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/blob/master/docs/StyleOverridesGuide.md#style-overrides-guide).
+{/* prettier-ignore */}
+<p>For more details on styling options check out our <a href={`https://github.com/brightlayer-ui/react-component-library/blob/${DOCS_BRANCH}/docs/StyleOverridesGuide.md`}>Styling Guide</a>.</p>
 
 <Box>
 

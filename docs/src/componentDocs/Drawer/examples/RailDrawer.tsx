@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import * as colors from '@brightlayer-ui/colors';
 import { RailDrawerExample } from './RailDrawerExample';
 
 const codeSnippet = `<Drawer open width={250} variant="rail">
@@ -21,9 +20,7 @@ const codeSnippet = `<Drawer open width={250} variant="rail">
 
 export const RailDrawer = (): JSX.Element => (
     <Box>
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
-            <RailDrawerExample />
-        </Box>
+        <RailDrawerExample />
         <CodeBlock code={codeSnippet} language="jsx" />
         <CodeBlockActionButtonRow copyText={codeSnippet} url="componentDocs/Drawer/examples/RailDrawerExample.tsx" />
     </Box>

@@ -5,7 +5,6 @@ import { AppBarWithAdditionalContentExample } from './AppBarWithAdditionalConten
 
 const codeSnippet = `<Box>
     <AppBar
-        classes={{ collapsed: 'collapsed', expanded: 'expanded' }}
         scrollContainerId={'appbarBodyFiller2'}
         position={'sticky'}
         backgroundImage={BackgroundImage}
@@ -43,7 +42,7 @@ const codeSnippet = `<Box>
 export const AppBarWithAdditionalContent = (): JSX.Element => (
     <Box>
         <AppBarWithAdditionalContentExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="8-30" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="7-29" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/AppBar/examples/AppBarWithAdditionalContentExample.tsx"

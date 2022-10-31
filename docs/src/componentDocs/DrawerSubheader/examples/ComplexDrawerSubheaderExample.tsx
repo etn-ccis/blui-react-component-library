@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Divider, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { Divider, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import {
     Drawer,
     DrawerBody,
@@ -10,35 +10,33 @@ import {
 } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
 import { Copyright, Dashboard, LocationOn } from '@mui/icons-material';
+import { ExampleShowcase } from '../../../shared';
 
 export const ComplexDrawerSubheaderExample = (): JSX.Element => {
     const [selected, setSelected] = useState('blui');
     return (
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
+        <ExampleShowcase>
             <Drawer
-                open={true}
+                open
                 width={250}
-                sx={{ margin: '0 auto', '& .BluiDrawer-paper': { boxShadow: 'none' } }}
+                sx={{ mx: 'auto', '& .BluiDrawer-paper': { boxShadow: 'none' } }}
                 noLayout
                 openOnHover={false}
             >
                 <DrawerHeader title="Energy Co." />
-                <DrawerSubheader divider={false}>
-                    <FormControl variant="filled" sx={{ height: 56, width: '100%' }}>
-                        <InputLabel id="organization" sx={{ pl: 2, pt: 1 }}>
-                            Organization
-                        </InputLabel>
+                <DrawerSubheader divider={false} className={'bumpuy'}>
+                    <FormControl variant="filled" sx={{ width: '100%' }}>
+                        <InputLabel id="organization">Organization</InputLabel>
                         <Select
                             label="organization"
                             labelId="organization"
                             value={selected}
                             onChange={(event): void => setSelected(event.target.value)}
-                            sx={{ '& .MuiSelect-icon': { mr: 2 }, '& .MuiFilledInput-input': { mt: 1 }, px: 2 }}
                         >
                             <MenuItem value="acme">ACME Co.</MenuItem>
                             <MenuItem value="blui">BLUI CO.</MenuItem>
                             <Divider />
-                            <MenuItem value="addnew">
+                            <MenuItem>
                                 <Typography variant="caption" sx={{ fontSize: '1rem', color: colors.gray[400] }}>
                                     + Add a New Organization...
                                 </Typography>
@@ -54,6 +52,6 @@ export const ComplexDrawerSubheaderExample = (): JSX.Element => {
                     </DrawerNavGroup>
                 </DrawerBody>
             </Drawer>
-        </Box>
+        </ExampleShowcase>
     );
 };

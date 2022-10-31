@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import * as colors from '@brightlayer-ui/colors';
 import { UserMenuWithMenuHeaderExample } from './UserMenuWithMenuHeaderExample';
 
 const codeSnippet = `<UserMenu
@@ -22,9 +21,7 @@ const codeSnippet = `<UserMenu
 
 export const UserMenuWithMenuHeader = (): JSX.Element => (
     <Box>
-        <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4, display: 'flex', justifyContent: 'center' }}>
-            <UserMenuWithMenuHeaderExample />
-        </Box>
+        <UserMenuWithMenuHeaderExample />
         <CodeBlock code={codeSnippet} language="jsx" dataLine="13-14" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}

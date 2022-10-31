@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { SpacingNavGroupsExample } from './SpacingNavGroupsExample';
 
-const codeSnippet = `<Drawer open={true} width={250}>
+const codeSnippet = `<Drawer open width={250}>
     <DrawerBody>
         <DrawerNavGroup title="Group 1" hidePadding>
             <DrawerNavItem title="Item 1" itemID="1" />
@@ -21,7 +21,7 @@ const codeSnippet = `<Drawer open={true} width={250}>
 export const SpacingNavGroups = (): JSX.Element => (
     <Box>
         <SpacingNavGroupsExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="3-12" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="7" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/DrawerNavGroup/examples/SpacingNavGroupsExample.tsx"

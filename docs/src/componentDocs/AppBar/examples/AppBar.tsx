@@ -9,9 +9,7 @@ const codeSnippet = `<Box>
         scrollContainerId={'appbarBodyFiller1'}
         position={'sticky'}
     >
-        <Toolbar>
-            <Typography variant="h6">Content</Typography>
-        </Toolbar>
+        <Typography variant="h6">Content</Typography>
     </AppBar>
     <Box id='appbarBodyFiller1'>
         {getBodyFiller()}
@@ -22,7 +20,7 @@ const codeSnippet = `<Box>
 export const AppBar = (): JSX.Element => (
     <Box>
         <AppBarExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-10" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-8" />
         <CodeBlockActionButtonRow copyText={codeSnippet} url="componentDocs/AppBar/examples/AppBarExample.tsx" />
     </Box>
 );

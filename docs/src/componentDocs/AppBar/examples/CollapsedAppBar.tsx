@@ -4,10 +4,8 @@ import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { CollapsedAppBarExample } from './CollapsedAppBarExample';
 
 const codeSnippet = `<Box>
-    <AppBar collapsedHeight={64} variant={'collapsed'}>
-        <Toolbar>
-            <Typography variant="h6">Content</Typography>
-        </Toolbar>
+    <AppBar variant={'collapsed'}>
+        <Typography variant="h6">Content</Typography>
     </AppBar>
     <Box>
         {getBodyFiller()}
@@ -18,7 +16,7 @@ const codeSnippet = `<Box>
 export const CollapsedAppBar = (): JSX.Element => (
     <Box>
         <CollapsedAppBarExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-6" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="2" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/AppBar/examples/CollapsedAppBarExample.tsx"

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, Divider } from '@mui/material';
+import { Divider } from '@mui/material';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
-import * as colors from '@brightlayer-ui/colors';
+import { ExampleShowcase } from '../../../shared';
 
 export const DrawerNavGroupCompositionExample = (): JSX.Element => (
-    <Box sx={{ my: 2, backgroundColor: colors.white[600], p: 4 }}>
-        <Drawer open={true} width={250} sx={{ mx: 'auto' }} noLayout>
+    <ExampleShowcase>
+        <Drawer open width={250} sx={{ mx: 'auto' }} noLayout>
             <DrawerBody sx={{ flex: '1 1 auto' }}>
                 <DrawerNavGroup title="Group 1" hidePadding titleDivider={false}>
                     <DrawerNavItem title="Item 1" itemID="1" />
@@ -29,5 +29,5 @@ export const DrawerNavGroupCompositionExample = (): JSX.Element => (
                 />
             </DrawerBody>
         </Drawer>
-    </Box>
+    </ExampleShowcase>
 );

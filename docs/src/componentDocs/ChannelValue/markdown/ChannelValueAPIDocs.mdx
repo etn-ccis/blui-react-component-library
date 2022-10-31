@@ -1,10 +1,11 @@
 import Box from '@mui/material/Box';
 import ChannelValueImage from '../images/channelValue.png';
 import ChannelValueAnatomyImage from '../images/channelValueAnatomy.png';
+import { DOCS_BRANCH } from '../../../shared/constants';
 
 # Channel Value
 
-The `<ChannelValue>` component is used to display a channel value (and units). This component abstracts the styles used to display the channel and units as well as an optional inline icon. These are used as part of the [`<Hero>`](/components/hero/api-docs) component, but can also be used inline (e.g., in a list).
+The `<ChannelValue>` component is used to display a channel value (and units). This component abstracts the styles used to display the channel and units as well as an optional inline icon. These are used as part of the [`<Hero>`](/components/hero/examples) component, but can also be used inline (e.g., in a list).
 
 <Box
     sx={{
@@ -69,7 +70,8 @@ You can override the default styles used by Brightlayer UI by:
 -   passing a `classes` prop with keys from the Name column below
 -   using the Global CSS Class in your main stylesheet
 
-For more details on styling options check out our [Styling Guide](https://github.com/brightlayer-ui/react-component-library/blob/master/docs/StyleOverridesGuide.md#style-overrides-guide).
+{/* prettier-ignore */}
+<p>For more details on styling options check out our <a href={`https://github.com/brightlayer-ui/react-component-library/blob/${DOCS_BRANCH}/docs/StyleOverridesGuide.md`}>Styling Guide</a>.</p>
 
 <Box>
 

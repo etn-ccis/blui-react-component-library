@@ -1,12 +1,11 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
-import * as colors from '@brightlayer-ui/colors';
 import { PermanentDrawerExample } from './PermanentDrawerExample';
 
 const codeSnippet = `<Drawer open width={250} variant="permanent">
     <DrawerHeader title="Header" />
-    <DrawerBody>
+    <DrawerBody hidePadding>
         <DrawerNavGroup>
             <DrawerNavItem title="Dashboard" itemID="1" />
             <DrawerNavItem title="Locations" itemID="2" />
@@ -17,10 +16,8 @@ const codeSnippet = `<Drawer open width={250} variant="permanent">
 
 export const PermanentDrawer = (): JSX.Element => (
     <Box>
-        <Box sx={{ m: '16px 0', backgroundColor: colors.white[600], p: 4 }}>
-            <PermanentDrawerExample />
-        </Box>
-        <CodeBlock code={codeSnippet} language="jsx" />
+        <PermanentDrawerExample />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine={'1'} />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/Drawer/examples/PermanentDrawerExample.tsx"
