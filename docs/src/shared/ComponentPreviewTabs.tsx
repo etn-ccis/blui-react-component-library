@@ -36,7 +36,7 @@ function togglePlaygroundTab(location: string): boolean {
 }
 
 const tabStyles = {
-    width: '100%',
+    flex: 1,
     color: 'text.primary',
     '&.Mui-selected': {
         color: 'primary.main',
@@ -102,42 +102,13 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                     },
                 }}
             >
-                <Tab
-                    to="examples"
-                    component={Link}
-                    sx={{
-                        ...tabStyles,
-                        [theme.breakpoints.down(1040)]: {
-                            width: '33%',
-                        },
-                    }}
-                    label="Examples"
-                    replace={true}
-                    {...a11yProps(0)}
-                />
-                <Tab
-                    to="api-docs"
-                    component={Link}
-                    sx={{
-                        ...tabStyles,
-                        [theme.breakpoints.down(1040)]: {
-                            width: '33%',
-                        },
-                    }}
-                    label="API Docs"
-                    replace={true}
-                    {...a11yProps(1)}
-                />
+                <Tab to="examples" component={Link} sx={tabStyles} label="Examples" replace={true} {...a11yProps(0)} />
+                <Tab to="api-docs" component={Link} sx={tabStyles} label="API Docs" replace={true} {...a11yProps(1)} />
                 {!hidePlaygroundTab && (
                     <Tab
                         to="playground"
                         component={Link}
-                        sx={{
-                            ...tabStyles,
-                            [theme.breakpoints.down(1040)]: {
-                                width: '33%',
-                            },
-                        }}
+                        sx={tabStyles}
                         label="Playground"
                         replace={true}
                         {...a11yProps(2)}
