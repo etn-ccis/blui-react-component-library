@@ -17,11 +17,10 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
             <Box
                 sx={{
                     p: 2,
-                    height: '70vh',
+                    height: { xs: 'calc(70vh - 105px)', sm: 'calc(70vh - 113px)' },
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    mt: 6,
                     bgcolor: Colors.white[200],
                 }}
             >
