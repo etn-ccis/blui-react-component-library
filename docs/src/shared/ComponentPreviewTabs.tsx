@@ -36,7 +36,6 @@ function togglePlaygroundTab(location: string): boolean {
 }
 
 const tabStyles = {
-    // width: '100%',
     flex: 1,
     color: 'text.primary',
     '&.Mui-selected': {
