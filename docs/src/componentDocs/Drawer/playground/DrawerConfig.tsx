@@ -66,7 +66,7 @@ export const drawerConfig: ComponentType = {
         {
             propName: 'variant',
             inputType: 'select',
-            inputValue: 'permanent',
+            inputValue: 'persistent',
             options: ['persistent', 'permanent', 'temporary', 'rail'],
             propType: 'string',
             helperText: `The variant to use from options 'persistent', 'permanent', 'temporary', 'rail'`,
