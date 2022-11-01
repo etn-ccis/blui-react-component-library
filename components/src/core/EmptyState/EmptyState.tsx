@@ -87,24 +87,32 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
             {...otherProps}
         >
             {icon && <Icon className={cx(defaultClasses.icon, classes.icon)}>{icon}</Icon>}
-            <Typography variant="h6" color="inherit" className={classes.title}>
-                {title}
-            </Typography>
-            {description && (
-                <Description
-                    variant="subtitle2"
-                    color={'textSecondary'}
-                    className={cx(defaultClasses.description, classes.description)}
-                >
-                    {description}
-                </Description>
-            )}
+            {title &&
+                (typeof title === 'string' ? (
+                    <Typography variant="h6" color="inherit" className={classes.title}>
+                        {title}
+                    </Typography>
+                ) : (
+                    title
+                ))}
+            {description &&
+                (typeof description === 'string' ? (
+                    <Description
+                        variant="subtitle2"
+                        color={'textSecondary'}
+                        className={cx(defaultClasses.description, classes.description)}
+                    >
+                        {description}
+                    </Description>
+                ) : (
+                    description
+                ))}
             {actions && <Actions className={cx(defaultClasses.actions, classes.actions)}>{actions}</Actions>}
         </Root>
     );
 };
 /**
- * [EmptyState](https://brightlayer-ui-components.github.io/react/?path=/info/components-empty-state--get-read-me-story) component
+ * [EmptyState](https://brightlayer-ui-components.github.io/react/components/empty-state) component
  *
  * The `<EmptyState>` component is an element that can be used as a placeholder when no data is present (such as an empty list, or a placeholder page for future content). This is only used when no data is available, rather than during loading (see [empty states pattern](https://brightlayer-ui.github.io/patterns/empty-states)).
  */

@@ -48,7 +48,7 @@ jobs:
             - run:
                   name: NPM Package
                   command: |
-                       cd dist && npm pack
+                      cd dist && npm pack
             # Save the dist folder for use in future jobs.
             - persist_to_workspace:
                   root: .
@@ -65,72 +65,10 @@ jobs:
         steps:
             - checkout
             - attach_workspace:
-                at: .
+                  at: .
             - codecov/upload:
-                file: './components/coverage/clover.xml'
-                token: 5e6faafe-eaf0-4d71-a931-22f279d3e446
-
-    # Builds the Storybook app using @brightlayer-ui/react-components persisted in /dist folder.
-    build_storybook:
-        docker:
-            - image: cimg/node:14.19.0-browsers
-        environment:
-            - MASTER_BRANCH: master
-            - DEV_BRANCH: dev
-        steps:
-            - checkout
-            - attach_workspace:
-                at: .
-            - restore_cache:
-                  keys:
-                      - v2-dependencies-react-{{ checksum "demos/storybook/yarn.lock" }}
-            - run:
-                  name: Install Dependencies
-                  command: |
-                      cd demos/storybook
-                      yarn install --frozen-lockfile
-
-                      # Install the packed version of @brightlayer-ui/react-components
-                      PACKAGED_VERSION=`node -p "require('../../dist/package.json').version"`
-                      yarn add ../../dist/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
-            - save_cache:
-                  name: Save Cache
-                  paths:
-                      - demos/storybook/node_modules
-                  key: v2-dependencies-react-{{ checksum "demos/storybook/yarn.lock" }}
-            - run:
-                  name: Prettier Check
-                  command: |
-                      cd demos/storybook
-                      yarn prettier:check
-            - run:
-                  name: Lint
-                  command: |
-                      cd demos/storybook
-                      yarn lint
-            - run:
-                  name: Build Storybook
-                  command: |
-                      cd demos/storybook
-
-                      # master and dev branches should configure Google Analytics IDs before the build.
-                      if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
-                        STORYBOOK_GA_ID=$MASTER_GA
-                      fi
-                      if [ $CIRCLE_BRANCH == $DEV_BRANCH ]; then
-                        STORYBOOK_GA_ID=$DEV_GA
-                      fi
-
-                      yarn build-storybook
-                      cd storybook-static
-                      touch .nojekyll
-            - persist_to_workspace:
-                  root: .
-                  paths:
-                      - demos/storybook/storybook-static
-            - run:
-                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
-                  when: always
+                  file: './components/coverage/clover.xml'
+                  token: 5e6faafe-eaf0-4d71-a931-22f279d3e446
 
     # Builds the Showcase app using @brightlayer-ui/react-components persisted in /dist folder.
     build_showcase:
@@ -141,7 +79,7 @@ jobs:
         steps:
             - checkout
             - attach_workspace:
-                at: .
+                  at: .
             - run:
                   name: Initialize Submodule
                   command: |
@@ -178,7 +116,69 @@ jobs:
                   command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
                   when: always
 
-    deploy_storybook:
+    # Builds the React Dev app using @brightlayer-ui/react-components persisted in /dist folder.
+    build_reactdev:
+        docker:
+            - image: cimg/node:14.19.0-browsers
+        environment:
+            - MASTER_BRANCH: master
+            - DEV_BRANCH: dev
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: .
+            - restore_cache:
+                  keys:
+                      - v2-dependencies-react-{{ checksum "docs/yarn.lock" }}
+            - run:
+                  name: Install Dependencies
+                  command: |
+                      cd docs
+                      yarn install --frozen-lockfile
+
+                      # Install the packed version of @brightlayer-ui/react-components
+                      PACKAGED_VERSION=`node -p "require('../dist/package.json').version"`
+                      yarn add ../dist/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
+            - save_cache:
+                  name: Save Cache
+                  paths:
+                      - docs/node_modules
+                  key: v2-dependencies-react-{{ checksum "docs/yarn.lock" }}
+            - run:
+                  name: Prettier Check
+                  command: |
+                      cd docs
+                      yarn prettier:check
+            - run:
+                  name: Lint
+                  command: |
+                      cd docs
+                      yarn lint
+            - run:
+                  name: Build React Dev
+                  command: |
+                      cd docs
+                    
+                      if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
+                        export PUBLIC_URL=/react
+                        export REACT_APP_BRANCH=master
+                        yarn ga:master
+                      else
+                        export PUBLIC_URL=/react-dev
+                        export REACT_APP_BRANCH=dev
+                        yarn ga:dev
+                      fi
+                    
+                      yarn build
+            - run:
+                  command: cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+                  when: always
+            - persist_to_workspace:
+                  root: .
+                  paths:
+                      - docs/build
+
+    deploy_reactdev:
         docker:
             - image: cimg/node:14.19.0-browsers
         environment:
@@ -193,12 +193,12 @@ jobs:
             - attach_workspace:
                   at: .
             - run:
-                  name: Deploy Storybook
+                  name: Deploy Dev Doc
                   command: |
                       git config --global user.email "$GH_EMAIL"
                       git config --global user.name "$GH_NAME"
 
-                      cd demos/storybook
+                      cd docs
 
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
                         git clone $MASTER_TARGET out
@@ -210,41 +210,41 @@ jobs:
                       git rm -rf .
                       cd ..
 
-                      cp -a storybook-static/. out/.
+                      cp -a build/. out/.
                       cd out
 
                       git add -A
                       git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
                       git push
     publish:
-      docker:
-        - image: cimg/node:14.19.0-browsers
-      steps:
-        - checkout
-        - attach_workspace:
-            at: .
-        - run:
-            name: Authenticate with registry
-            command: |
-              echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-              echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-        - run:
-            name: Publish @brightlayer-ui/react-components
-            command:  |
-              yarn publish:package -b $CIRCLE_BRANCH
+        docker:
+            - image: cimg/node:14.19.0-browsers
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: .
+            - run:
+                  name: Authenticate with registry
+                  command: |
+                      echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+                      echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+            - run:
+                  name: Publish @brightlayer-ui/react-components
+                  command: |
+                      yarn publish:package -b $CIRCLE_BRANCH
 
     tag:
-      docker:
-        - image: cimg/node:14.19.0-browsers
-      steps:
-        - checkout
-        - attach_workspace:
-            at: .
-        - gh/setup
-        - run:
-            name: Tag @brightlayer-ui/react-components
-            command: |
-              yarn tag:package -b $CIRCLE_BRANCH -s -blui-react-components
+        docker:
+            - image: cimg/node:14.19.0-browsers
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: .
+            - gh/setup
+            - run:
+                  name: Tag @brightlayer-ui/react-components
+                  command: |
+                      yarn tag:package -b $CIRCLE_BRANCH -s -blui-react-components
 
 workflows:
     version: 2
@@ -252,24 +252,28 @@ workflows:
         jobs:
             - build_library
             # - build_showcase:
-                #   requires:
-                #       - build_library
+            #   requires:
+            #       - build_library
             # - build_storybook:
             #       requires:
             #           - build_library
-            # - deploy_storybook:
-            #       requires:
-            #           - build_storybook
-            #       filters:
-            #           branches:
-            #               only:
-            #                   - master
-            #                   - dev
+            - deploy_reactdev:
+                  requires:
+                      - build_reactdev
+                  filters:
+                       branches:
+                           only:
+                               - master
+                               - dev
+            - build_reactdev:
+                  requires:
+                      - build_library
             - publish:
                   requires:
                       - build_library
+                      - build_reactdev
                   filters:
-                       branches:
+                      branches:
                           only:
                               - master
                               - dev
@@ -279,11 +283,11 @@ workflows:
                   filters:
                       branches:
                           only:
-                             - master
+                              - master
             - coverage_report:
-                   requires:
-                        - build_library
-                   filters:
-                        branches:
-                            only:
-                                - master
+                  requires:
+                      - build_library
+                  filters:
+                      branches:
+                          only:
+                              - master

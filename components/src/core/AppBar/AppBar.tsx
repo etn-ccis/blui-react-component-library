@@ -26,7 +26,7 @@ const useUtilityClasses = (ownerState: AppBarProps): Record<AppBarClassKey, stri
 const Root = styled(MuiAppBar, {
     name: 'app-bar',
     slot: 'root',
-    shouldForwardProp: (prop) => prop !== 'backgroundImage',
+    shouldForwardProp: (prop) => !['backgroundImage', 'animationDuration'].includes(prop.toString()),
 })<Pick<AppBarProps, 'animationDuration' | 'backgroundImage'>>(({ animationDuration, backgroundImage, theme }) => ({
     overflow: 'hidden',
     transition: theme.transitions.create(['height'], {
@@ -302,6 +302,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             })}
             position={'sticky'}
             backgroundImage={backgroundImage}
+            animationDuration={durationProp}
         >
             {getBackgroundImage()}
             {props.children}
@@ -310,7 +311,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
 };
 
 /**
- * [Appbar](https://brightlayer-ui-components.github.io/react/?path=/info/components-app-bar--get-read-me-story) component
+ * [Appbar](https://brightlayer-ui-components.github.io/react/components/app-bar) component
  *
  * An extension of the default AppBar from Material UI that can be resized / collapsed as the page is scrolled.
  */

@@ -3,11 +3,13 @@
 ### Manual Steps
 
 #### Showcase
+
 1. Beta package integrates into showcase without errors.
 2. BLUI Data Display page renders correctly; checking ChannelValue, EmptyState, Hero, InfoListItem, ThreeLiner, and UserMenu.
-4. BLUI Surfaces page renders correctly; checking Collapsible Appbar, Toolbar Menu, and Scorecard.
+3. BLUI Surfaces page renders correctly; checking Collapsible Appbar, Toolbar Menu, and Scorecard.
 
 #### Sandbox
+
 1. Verify the AppBar component renders correctly in the sandbox environment, using available knobs.
 2. Verify the ChannelValue component renders correctly in the sandbox environment, using available knobs.
 3. Verify the Drawer component renders correctly in the sandbox environment, using available knobs.
@@ -23,4 +25,5 @@
 13. Verify the UserMenu component renders correctly in the sandbox environment, using available knobs.
 
 ### Unit Test Count
+
 59

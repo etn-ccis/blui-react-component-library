@@ -1,0 +1,28 @@
+import { HeroWithChannelValue } from '../examples/HeroWithChannelValue';
+import { HeroWithSecondaryIcon } from '../examples/HeroWithSecondaryIcon';
+import { HeroBanner } from '../examples/HeroBanner';
+import { HeroBannerWithIconSize } from '../examples/HeroBannerWithIconSize';
+
+## Hero
+
+A `<Hero>` is used to call attention to a particular value or parameter. It adds some additional visual elements onto a [Channel Value](/components/channel-value/examples). When showing multiple heroes, they are typically placed within a Hero Banner to help with layout.
+
+<HeroBanner />
+
+## Showing Multiple Channel Values
+
+By default, a Hero renders a single Channel Value. If you need to support multiple Channel Values, you can pass them in as children.
+
+<HeroWithChannelValue />
+
+## Adding a Channel Value Icon
+
+If you want to include an inline icon, specify it in the Channel Value `icon` prop.
+
+<HeroWithSecondaryIcon />
+
+## Icon Formatting
+
+The primary icon of a Hero can be provided in a variety of formats and sizes.
+
+<HeroBannerWithIconSize />

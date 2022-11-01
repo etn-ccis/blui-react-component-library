@@ -60,7 +60,7 @@ const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (prop
     );
 };
 /**
- * [Spacer](https://brightlayer-ui-components.github.io/react/?path=/info/components-spacer--get-read-me-story) component
+ * [Spacer](https://brightlayer-ui-components.github.io/react/components/spacer) component
  *
  * An invisible utility component that acts as a spacer element in various layouts. It works with flexbox sizing or fixed sizing.
  */

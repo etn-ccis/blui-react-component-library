@@ -1,0 +1,25 @@
+import { DrawerNavGroup, SpacingNavGroups, CustomNavGroupTitleContent, DrawerNavGroupComposition } from '../examples';
+
+## Drawer Nav Group
+
+A `<DrawerNavGroup>` organizes related navigation items together. You can have as many groups as needed.
+
+<DrawerNavGroup />
+
+## Spacing the Groups
+
+If you want to add an extra space between your groups, you can use a [Spacer](/components/spacer/examples) component.
+
+<SpacingNavGroups />
+
+## Customizing the Title
+
+By default, each nav group has a simple string as the title. You can customize this and pass in your own content through the `titleContent` prop.
+
+<CustomNavGroupTitleContent />
+
+## Composition vs Configuration
+
+You can define the [Drawer Nav Items](/components/drawer-nav-item/examples) that you want to appear in each group via composition (simply add them as children) or configuration (define them in the `items` prop). Composition will offer slightly better re-rendering performance when props change, but using the `items` prop is easier to read/maintain, especially if you have a large number of items.
+
+<DrawerNavGroupComposition />

@@ -142,7 +142,7 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
     );
 };
 /**
- * [Hero](https://brightlayer-ui-components.github.io/react/?path=/info/components-hero--get-read-me-story) component
+ * [Hero](https://brightlayer-ui-components.github.io/react/components/hero) component
  *
  * The `<Hero>` component displays a particular icon, value/units, and a label. The icon property will accept any valid component - this will typically be a Material icon, [Brightlayer UI icon](https://github.com/brightlayer-ui/icons), or [Progress Icon](https://github.com/brightlayer-ui/icons/tree/master/progress). It will also accept Text/Emoji values.
  */

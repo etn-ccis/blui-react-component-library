@@ -93,7 +93,7 @@ const Root = styled(Toolbar, {
         marginLeft: theme.spacing(0.5),
         minWidth: 'calc(3.5rem + 16px)',
         justifyContent: 'center',
-        '&$nonClickable': {
+        [`&.${drawerHeaderClasses.nonClickable}`]: {
             marginLeft: 0,
         },
     },
@@ -265,7 +265,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
     );
 };
 /**
- * [DrawerHeader](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ * [DrawerHeader](https://brightlayer-ui-components.github.io/react/components/drawer-header) component
  *
  * The `<DrawerHeader>` contains the content at the top of the `<Drawer>`. By default, it renders multiple lines of text in the Brightlayer UI style. If you supply a `titleContent`, you can render your own custom content in the title area.
  */

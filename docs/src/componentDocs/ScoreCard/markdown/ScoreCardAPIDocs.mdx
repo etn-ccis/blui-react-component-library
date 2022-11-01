@@ -1,0 +1,88 @@
+import Box from '@mui/material/Box';
+import ScoreCard from '../images/scoreCard.png';
+import ScoreCardAlt from '../images/scoreCard_alt.png';
+import { DOCS_BRANCH } from '../../../shared/constants';
+
+# Score Card
+
+Card component that calls attention to particular values.
+
+<Box
+    sx={{
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        mb: 2,
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '40%',
+        }}
+        component="img"
+        alt="Score Card with multiple highlighted values"
+        src={ScoreCard}
+    />
+    <Box
+        sx={{
+            width: '40%',
+        }}
+        component="img"
+        alt="Score Card with single badge-style value"
+        src={ScoreCardAlt}
+    />
+</Box>
+
+### Score Card API
+
+<Box>
+
+| Prop Name             | Description                                 | Type               | Required | Default                      |
+| :-------------------- | :------------------------------------------ | :----------------- | :------- | :--------------------------- |
+| actionItems           | Icons to show to the right of the text      | `JSX.Element[]`    | no       |                              |
+| actionLimit           | Max number of actionItems in the header     | `number`           | no       | 3                            |
+| actionRow             | Component to render for the footer          | `JSX.Element`      | no       |                              |
+| badge                 | The component to render in the callout area | `JSX.Element`      | no       |                              |
+| badgeOffset           | Vertical offset for the badge component     | `number`           | no       | 0                            |
+| classes               | Style overrides                             | `ScoreCardClasses` | no       |                              |
+| headerBackgroundImage | An image to display in the header           | `string`           | no       |                              |
+| headerColor           | The color of the header                     | `string`           | no       | `theme.palette.primary.main` |
+| headerFontColor       | The color for text and icons in header      | `string`           | no       | `white`                      |
+| headerInfo            | Tertiary text                               | `string`           | no       |                              |
+| headerTitle           | The primary text                            | `string`           | yes      |                              |
+| headerSubtitle        | The secondary text                          | `string`           | no       |                              |
+
+</Box>
+
+Any other props will be provided to the root element [**Material UI Card**](https://mui.com/api/card/).
+
+### Style Overrides
+
+You can override the default styles used by Brightlayer UI by:
+
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the Name column below
+-   using the Global CSS Class in your main stylesheet
+
+{/* prettier-ignore */}
+<p>For more details on styling options check out our <a href={`https://github.com/brightlayer-ui/react-component-library/blob/${DOCS_BRANCH}/docs/src/shared/markdown/StyleOverridesGuide.md`}>Styling Guide</a>.</p>
+
+<Box>
+
+| Name             | Global CSS Class                | Description                                             |
+| :--------------- | :------------------------------ | :------------------------------------------------------ |
+| root             | .BluiScoreCard-root             | Styles applied to the root element                      |
+| actionItems      | .BluiScoreCard-actionItems      | Styles applied to the action items container            |
+| badgeWrapper     | .BluiScoreCard-badgeWrapper     | Styles applied to the badge container                   |
+| bodyWrapper      | .BluiScoreCard-bodyWrapper      | Styles applied to the child nodes container             |
+| content          | .BluiScoreCard-content          | Styles applied to justify all body content              |
+| header           | .BluiScoreCard-header           | Styles applied to the header container                  |
+| headerBackground | .BluiScoreCard-headerBackground | Styles applied to header background image               |
+| headerContent    | .BluiScoreCard-headerContent    | Styles applied to the header text and actions container |
+| headerInfo       | .BluiScoreCard-headerInfo       | Styles applied to the tertiary text element             |
+| headerTitle      | .BluiScoreCard-headerTitle      | Styles applied to the title element                     |
+| headerSubtitle   | .BluiScoreCard-headerSubtitle   | Styles applied to the subtitle element                  |
+
+</Box>

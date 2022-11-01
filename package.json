@@ -8,14 +8,14 @@
         "test:artifacts": "cd scripts && bash ./buildTest.sh && cd ..",
         "build": "bash ./scripts/buildComponents.sh",
         "link:components": "cd scripts && bash ./linkComponents.sh && cd ..",
-        "install:dependencies": "cd demos/showcase && yarn && cd ../storybook && yarn && cd ../../components && yarn",
+        "install:dependencies": "cd demos/showcase && yarn && cd ../../docs && yarn && cd ../components && yarn",
         "start:showcase": "yarn initialize && yarn install:dependencies && yarn link:components && cd demos/showcase && yarn start",
-        "start:storybook": "yarn install:dependencies && yarn link:components && cd demos/storybook && yarn start",
+        "start:reactdev": "yarn install:dependencies && yarn link:components && cd docs && yarn start",
         "start": "yarn start:showcase",
-        "lint": "cd components && yarn lint && cd ../demos/storybook && yarn lint",
-        "lint:fix": "cd components && yarn lint:fix && cd ../demos/storybook && yarn lint:fix",
-        "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html,md}\" --write && cd components && yarn prettier && cd ../demos/showcase && yarn prettier && cd ../storybook && yarn prettier",
-        "prettier:check": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html,md}\" --check && cd components && yarn prettier:check && cd ../demos/showcase && yarn prettier:check && cd ../storybook && yarn prettier:check",
+        "lint": "cd components && yarn lint",
+        "lint:fix": "cd components && yarn lint:fix",
+        "prettier": "prettier \"*.{json,css,scss,html,md}\" --write && cd components && yarn prettier && cd ../demos/showcase && yarn prettier && cd ../../docs && yarn prettier",
+        "prettier:check": "prettier \"*.{json,css,scss,html,md}\" --check && cd components && yarn prettier:check && cd ../demos/showcase && yarn prettier:check && cd ../../docs && yarn prettier",
         "update:submodule": "git submodule update --remote",
         "precommit": "yarn initialize && yarn install:dependencies && yarn prettier && yarn lint && yarn test && yarn build && yarn test:artifacts && yarn generate:licenses",
         "coverage": "yarn test --coverage --watchAll=false",
@@ -46,7 +46,7 @@
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "codecov": "^3.8.1",
         "npm-license-crawler": "^0.2.1",
-        "prettier": "^2.3.0"
+        "prettier": "^2.7.1"
     },
     "prettier": "@brightlayer-ui/prettier-config"
 }

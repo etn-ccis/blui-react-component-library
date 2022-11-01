@@ -91,7 +91,7 @@ export type DrawerNavItemProps = SharedStyleProps &
         title: string;
         /** Sets whether to disable the tooltip on hover for the condensed `rail` variant  */
         disableRailTooltip?: boolean;
-        /** Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-info-list-item--get-read-me-story) default props */
+        /** Used to override [InfoListItem](https://brightlayer-ui-components.github.io/react/components/info-list-item) default props */
         InfoListItemProps?: Partial<BLUIInfoListItemProps>;
         /** Optional sx props to apply style overrides */
         sx?: SxProps<Theme>;
@@ -573,7 +573,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     );
 };
 /**
- * [DrawerNavItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ * [DrawerNavItem](https://brightlayer-ui-components.github.io/react/components/drawer-nav-item) component
  *
  * The `<DrawerNavItem>` is an individual line item in the `<Drawer>`. These can be generated for you by using the `items` prop of the `<DrawerNavGroup>` and passing in an array of objects with the following API. You can also create these line items by directly passing them as children to the `<DrawerNavGroup>`. Each `<DrawerNavItem>` also supports the ability to nest items (using its own `items` prop or children). When using the rail variant of the `<Drawer>`, you should use `<DrawerRailItem>` instead.
  */

@@ -345,7 +345,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
     );
 };
 /**
- * [ScoreCard](https://brightlayer-ui-components.github.io/react/?path=/info/components-score-card--get-read-me-story) component
+ * [ScoreCard](https://brightlayer-ui-components.github.io/react/components/score-card) component
  *
  * Card component that calls attention to particular values.
  */

@@ -96,7 +96,7 @@ export type DrawerComponentProps = DrawerProps; // alias
 const Root = styled(MUIDrawer, {
     name: 'drawer',
     slot: 'root',
-    shouldForwardProp: (prop) => prop !== 'backgroundColor' && prop !== 'sideBorder' && prop !== 'open',
+    shouldForwardProp: (prop) => prop !== 'backgroundColor' && prop !== 'sideBorder',
 })<Pick<DrawerProps, 'backgroundColor' | 'sideBorder' | 'open'>>(({ backgroundColor, sideBorder, open, theme }) => ({
     minHeight: '100%',
     backgroundColor: backgroundColor || 'transparent',
@@ -352,7 +352,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
     );
 };
 /**
- * [Drawer](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ * [Drawer](https://brightlayer-ui-components.github.io/react/components/drawer) component
  *
  * The `<Drawer>` component is a wrapper around the [Material UI Drawer](https://material-ui.com/api/drawer/) that adds specific Brightlayer UI functionality and styling. It is used to organize content (typically navigation links) in a collapsible side panel.
  *

@@ -1,0 +1,63 @@
+import Box from '@mui/material/Box';
+import EmptyStateImage from '../images/emptyState.png';
+import { DOCS_BRANCH } from '../../../shared/constants';
+
+# Empty State
+
+The `<EmptyState>` component is an element that can be used as a placeholder when no data is present (such as an empty list, or a placeholder page for future content). This is only used when no data is available, rather than during loading (see [empty states pattern](https://brightlayer-ui.github.io/patterns/empty-states)).
+
+<Box
+    sx={{
+        width: '100%',
+        textAlign: 'center',
+    }}
+>
+    <Box
+        sx={{
+            width: '100%',
+            maxWidth: '200px',
+        }}
+        component="img"
+        alt="Empty State Image"
+        src={EmptyStateImage}
+    />
+</Box>
+
+## Empty State API
+
+<Box>
+
+| Prop Name   | Description                           | Type                | Required | Default |
+| ----------- | ------------------------------------- | ------------------- | -------- | ------- |
+| actions     | Additional components to render below | `ReactNode`         | no       |         |
+| classes     | Style overrides                       | `EmptyStateClasses` | no       |         |
+| icon        | The primary icon                      | `ReactNode`         | yes      |         |
+| description | The secondary text to display         | `ReactNode`         | no       |         |
+| title       | The main text to display              | `ReactNode`         | yes      |         |
+
+</Box>
+
+Any other props supplied will be provided to the root element ([`<Box>`](https://mui.com/material-ui/api/box/)).
+
+### Style Overrides
+
+You can override the default styles used by Brightlayer UI by:
+
+-   using the `sx` prop
+-   passing a `classes` prop with keys from the Name column below
+-   using the Global CSS Class in your main stylesheet
+
+{/* prettier-ignore */}
+<p>For more details on styling options check out our <a href={`https://github.com/brightlayer-ui/react-component-library/blob/${DOCS_BRANCH}/docs/src/shared/markdown/StyleOverridesGuide.md`}>Styling Guide</a>.</p>
+
+<Box>
+
+| Name        | Global CSS Class            | Description                        |
+| ----------- | --------------------------- | ---------------------------------- |
+| root        | .BluiEmptyState-root        | Styles applied to the root element |
+| actions     | .BluiEmptyState-actions     | Styles applied to the actions      |
+| description | .BluiEmptyState-description | Styles applied to the description  |
+| icon        | .BluiEmptyState-icon        | Styles applied to the icon         |
+| title       | .BluiEmptyState-title       | Styles applied to the title        |
+
+</Box>

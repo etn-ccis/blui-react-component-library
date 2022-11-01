@@ -103,7 +103,7 @@ const Root = styled(ButtonBase, {
     Pick<
         DrawerRailItemProps,
         'statusColor' | 'backgroundColor' | 'onClick' | 'activeItemIconColor' | 'activeItemFontColor' | 'condensed'
-    > & { hasAction: boolean; itemActive: boolean }
+    > & { condensed: boolean; hasAction: boolean; itemActive: boolean }
 >(
     ({
         statusColor,
@@ -138,12 +138,12 @@ const Root = styled(ButtonBase, {
                 backgroundColor: onClick ? theme.palette.action.hover : undefined,
             },
             ...(itemActive && {
-                '& $icon': {
+                [`& .${drawerRailItemClasses.icon}`]: {
                     color:
                         activeItemIconColor ||
                         (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
                 },
-                '& $title': {
+                [`& .${drawerRailItemClasses.title}`]: {
                     color:
                         activeItemFontColor ||
                         (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
@@ -328,6 +328,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             )}
             statusColor={statusColor}
             backgroundColor={backgroundColor}
+            condensed={condensed}
             activeItemIconColor={activeItemIconColor}
             activeItemFontColor={activeItemFontColor}
             disableRipple={!ripple || !hasAction}
@@ -380,7 +381,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     );
 };
 /**
- * [DrawerRailItem](https://brightlayer-ui-components.github.io/react/?path=/info/components-drawer--get-read-me-story) component
+ * [DrawerRailItem](https://brightlayer-ui-components.github.io/react/components/drawer-rail-item) component
  *
  * The `<DrawerRailItem>` is a simplified version of the `<DrawerNavItem>` that renders the `icon` and `title` only. When using the `condensed` version of the `<Drawer>`, the `title` will also be hidden. The `<DrawerRailItem>` cannot be nested.
  */

@@ -1,0 +1,28 @@
+import Box from '@mui/material/Box';
+
+# Drawer Subheader
+
+The `<DrawerSubheader>` is an optional section that renders below the header and above the body of the `<Drawer>`. It can be used to support custom content (passed as children), such as filtering options or to display additional information.
+
+<Box>
+
+| Prop Name             | Description                                        | Type      | Required | Default |
+| --------------------- | -------------------------------------------------- | --------- | -------- | ------- |
+| divider               | Optional divider which appears below the Subheader | `boolean` | no       | `true`  |
+| hideContentOnCollapse | Hide subheader contents when drawer is closed      | `boolean` | no       | `true`  |
+
+</Box>
+
+Any other props supplied will be provided to the root element ([`<Box>`](https://mui.com/material-ui/api/box/)).
+
+### Classes
+
+You can override the classes used by Brightlayer UI by passing a `classes` prop. The `<DrawerSubheader>` supports the following keys:
+
+<Box>
+
+| Name | Description                        |
+| ---- | ---------------------------------- |
+| root | Styles applied to the root element |
+
+</Box>

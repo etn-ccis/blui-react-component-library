@@ -1,8 +1,14 @@
 {
-    "@brightlayer-ui/colors@3.0.1": {
+    "@brightlayer-ui/colors@3.1.1": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/brightlayer-ui/colors",
         "licenseUrl": "https://github.com/brightlayer-ui/colors/raw/master/LICENSE",
+        "parents": "@brightlayer-ui/react-components"
+    },
+    "@emotion/css@11.9.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/emotion-js/emotion/tree/main/packages/css",
+        "licenseUrl": "https://github.com/emotion-js/emotion/tree/main/packages/css/raw/master/LICENSE",
         "parents": "@brightlayer-ui/react-components"
     },
     "@seznam/compose-react-refs@1.0.6": {
@@ -11,7 +17,7 @@
         "licenseUrl": "https://github.com/seznam/compose-react-refs/raw/master/LICENSE",
         "parents": "@brightlayer-ui/react-components"
     },
-    "color@4.2.1": {
+    "color@4.2.3": {
         "licenses": "MIT",
         "repository": "https://github.com/Qix-/color",
         "licenseUrl": "https://github.com/Qix-/color/raw/master/LICENSE",

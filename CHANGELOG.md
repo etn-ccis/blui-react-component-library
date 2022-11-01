@@ -1,5 +1,17 @@
 # Changelog
 
+## v6.1.1 (November 1, 2022)
+
+### Fixed
+
+-   `hideContentOnCollapse` prop of `<DrawerFooter>` not hiding footer content ([#484](https://github.com/brightlayer-ui/react-component-library/issues/484)).
+-   Temporary drawer rendering, due to incorrectly passing open prop ([#486](https://github.com/brightlayer-ui/react-component-library/issues/486)).
+-   `activeItemFontColor`, `activeItemIconColor` prop of `<DrawerRailItem>` not updating `font color` and `icon color` of active rail item. ([#486](https://github.com/brightlayer-ui/react-component-library/issues/486)).
+-   `condensed` prop of `<DrawerRailItem>` not appling height and width `56X56` to all rail items. ([#541](https://github.com/brightlayer-ui/react-component-library/issues/541)).
+-   Styling of `nonClickableIcon` in `<DrawerHeader>` not applying properly ([#562](https://github.com/brightlayer-ui/react-component-library/issues/562)).
+-   `animationDuration` not being applied properly to `<AppBar>` component.
+-   DOM Nesting warnings when passing custom content to `title` or `description` of `<EmptyState>`.
+
 ## v6.1.0 (June 24, 2022)
 
 ### Changed
