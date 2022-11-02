@@ -20,8 +20,8 @@ const buildRoutes = (routes: RouteConfig[]): JSX.Element[] =>
 
 export const MainRouter = (
     <>
-        <Route path={'/'} element={<Navigate to={'/components/app-bar'} />} />
+        <Route path={'/'} element={<Navigate replace to={'/components/app-bar'} />} />
         {buildRoutes(pageDefinitions)}
-        <Route path={'*'} element={<Navigate to={'/components/app-bar'} />} />
+        <Route path={'*'} element={<Navigate replace to={'/components/app-bar'} />} />
     </>
 );
