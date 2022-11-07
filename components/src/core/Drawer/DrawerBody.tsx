@@ -1,15 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DrawerNavGroup, DrawerNavGroupProps } from './DrawerNavGroup';
-import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
+import {
+    NavItemSharedStyleProps,
+    NavItemSharedStylePropTypes,
+    SharedStyleProps,
+    SharedStylePropTypes,
+} from './types';
 import { mergeStyleProp } from './utilities';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { DrawerBodyClasses, DrawerBodyClassKey, getDrawerBodyUtilityClass } from './DrawerBodyClasses';
+import {
+    DrawerBodyClasses,
+    DrawerBodyClassKey,
+    getDrawerBodyUtilityClass,
+} from './DrawerBodyClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { cx } from '@emotion/css';
 
-const useUtilityClasses = (ownerState: DrawerBodyProps): Record<DrawerBodyClassKey, string> => {
+const useUtilityClasses = (
+    ownerState: DrawerBodyProps,
+): Record<DrawerBodyClassKey, string> => {
     const { classes } = ownerState;
     const slots = {
         root: ['root'],
@@ -25,20 +36,20 @@ export type DrawerBodyProps = BoxProps &
         classes?: DrawerBodyClasses;
     };
 
-const Root = styled(Box, { name: 'drawer-body', slot: 'root' })<Pick<DrawerBodyProps, 'backgroundColor'>>(
-    ({ backgroundColor }) => ({
-        display: 'flex',
-        flex: '1 1 0px',
-        flexDirection: 'column',
-        overflowY: 'auto',
-        backgroundColor: backgroundColor,
-    })
-);
+const Root = styled(Box, { name: 'drawer-body', slot: 'root' })<
+    Pick<DrawerBodyProps, 'backgroundColor'>
+>(({ backgroundColor }) => ({
+    display: 'flex',
+    flex: '1 1 0px',
+    flexDirection: 'column',
+    overflowY: 'auto',
+    backgroundColor: backgroundColor,
+}));
 
-const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps> = (
-    bodyProps: DrawerBodyProps,
-    ref: any
-) => {
+const DrawerBodyRender: React.ForwardRefRenderFunction<
+    unknown,
+    DrawerBodyProps
+> = (bodyProps: DrawerBodyProps, ref: any) => {
     const defaultClasses = useUtilityClasses(bodyProps);
     const {
         // Inheritable Props
@@ -80,39 +91,72 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
                     return null;
                 }
 
-                if (child.type && child.type.displayName !== 'DrawerNavGroup') return child;
+                if (child.type && child.type.displayName !== 'DrawerNavGroup')
+                    return child;
                 const groupProps: DrawerNavGroupProps = child.props;
 
                 return (
-                    /* @ts-ignore issue in the @types/react@17.0.41: https://github.com/mui/material-ui/issues/31932 */
                     <DrawerNavGroup
                         key={`NavGroup_${index}`}
                         {...groupProps}
                         activeItemBackgroundColor={mergeStyleProp(
                             activeItemBackgroundColor,
-                            groupProps.activeItemBackgroundColor
+                            groupProps.activeItemBackgroundColor,
                         )}
                         activeItemBackgroundShape={mergeStyleProp(
                             activeItemBackgroundShape,
-                            groupProps.activeItemBackgroundShape
+                            groupProps.activeItemBackgroundShape,
                         )}
-                        activeItemFontColor={mergeStyleProp(activeItemFontColor, groupProps.activeItemFontColor)}
-                        activeItemIconColor={mergeStyleProp(activeItemIconColor, groupProps.activeItemIconColor)}
-                        backgroundColor={mergeStyleProp(backgroundColor, groupProps.backgroundColor)}
+                        activeItemFontColor={mergeStyleProp(
+                            activeItemFontColor,
+                            groupProps.activeItemFontColor,
+                        )}
+                        activeItemIconColor={mergeStyleProp(
+                            activeItemIconColor,
+                            groupProps.activeItemIconColor,
+                        )}
+                        backgroundColor={mergeStyleProp(
+                            backgroundColor,
+                            groupProps.backgroundColor,
+                        )}
                         chevron={mergeStyleProp(chevron, groupProps.chevron)}
-                        chevronColor={mergeStyleProp(chevronColor, child.props.chevronColor)}
-                        collapseIcon={mergeStyleProp(collapseIcon, groupProps.collapseIcon)}
+                        chevronColor={mergeStyleProp(
+                            chevronColor,
+                            child.props.chevronColor,
+                        )}
+                        collapseIcon={mergeStyleProp(
+                            collapseIcon,
+                            groupProps.collapseIcon,
+                        )}
                         disableActiveItemParentStyles={mergeStyleProp(
                             disableActiveItemParentStyles,
-                            groupProps.disableActiveItemParentStyles
+                            groupProps.disableActiveItemParentStyles,
                         )}
                         divider={mergeStyleProp(divider, groupProps.divider)}
-                        expandIcon={mergeStyleProp(expandIcon, groupProps.expandIcon)}
-                        hidePadding={mergeStyleProp(hidePadding, groupProps.hidePadding)}
-                        itemFontColor={mergeStyleProp(itemFontColor, groupProps.itemFontColor)}
-                        itemIconColor={mergeStyleProp(itemIconColor, groupProps.itemIconColor)}
-                        nestedBackgroundColor={mergeStyleProp(nestedBackgroundColor, groupProps.nestedBackgroundColor)}
-                        nestedDivider={mergeStyleProp(nestedDivider, groupProps.nestedDivider)}
+                        expandIcon={mergeStyleProp(
+                            expandIcon,
+                            groupProps.expandIcon,
+                        )}
+                        hidePadding={mergeStyleProp(
+                            hidePadding,
+                            groupProps.hidePadding,
+                        )}
+                        itemFontColor={mergeStyleProp(
+                            itemFontColor,
+                            groupProps.itemFontColor,
+                        )}
+                        itemIconColor={mergeStyleProp(
+                            itemIconColor,
+                            groupProps.itemIconColor,
+                        )}
+                        nestedBackgroundColor={mergeStyleProp(
+                            nestedBackgroundColor,
+                            groupProps.nestedBackgroundColor,
+                        )}
+                        nestedDivider={mergeStyleProp(
+                            nestedDivider,
+                            groupProps.nestedDivider,
+                        )}
                         ripple={mergeStyleProp(ripple, groupProps.ripple)}
                     />
                 );
