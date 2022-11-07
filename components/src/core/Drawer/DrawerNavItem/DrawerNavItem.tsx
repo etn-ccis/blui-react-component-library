@@ -137,42 +137,39 @@ const InfoListItemRoot = styled(InfoListItem, {
     name: 'drawer-nav-item',
     slot: 'info-list-item-root',
     shouldForwardProp: (prop) => prop !== 'drawerOpen' && prop !== 'active',
-})<
-    Pick<DrawerNavItemProps, 'depth' | 'hidePadding' | 'icon'> & {
-        drawerOpen: boolean;
-        active: boolean;
-    }
->(({ depth, hidePadding, icon, drawerOpen, active, theme }) => ({
-    '& .MuiListItemButton-root': {
-        // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
-        paddingLeft: theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, depth),
-        paddingRight: theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, depth),
-    },
-    [`& .${drawerNavItemClasses.nestedTitle}`]: {
-        fontWeight: 400,
-    },
-    [`& .${drawerNavItemClasses.title}`]: {
-        fontWeight: 400,
-    },
-    [`& .${drawerNavItemClasses.titleActive}`]: {
-        fontWeight: 600,
-    },
-    '& .BluiInfoListItem-title': {
-        opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
-        transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
-    },
-    '& .BluiInfoListItem-subtitle': {
-        opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
-        transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
-        color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
-    },
-    '& .BluiInfoListItem-info': {
-        color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
-    },
-    [`&. ${drawerNavItemClasses.ripple}`]: {
-        backgroundColor: theme.palette.primary.main,
-    },
-}));
+})<Pick<DrawerNavItemProps, 'depth' | 'hidePadding' | 'icon'> & { drawerOpen: boolean; active: boolean }>(
+    ({ depth, hidePadding, icon, drawerOpen, active, theme }) => ({
+        '& .MuiListItemButton-root': {
+            // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
+            paddingLeft: theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, depth),
+            paddingRight: theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, depth),
+        },
+        [`& .${drawerNavItemClasses.nestedTitle}`]: {
+            fontWeight: 400,
+        },
+        [`& .${drawerNavItemClasses.title}`]: {
+            fontWeight: 400,
+        },
+        [`& .${drawerNavItemClasses.titleActive}`]: {
+            fontWeight: 600,
+        },
+        '& .BluiInfoListItem-title': {
+            opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
+            transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
+        },
+        '& .BluiInfoListItem-subtitle': {
+            opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
+            transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
+            color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
+        },
+        '& .BluiInfoListItem-info': {
+            color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
+        },
+        [`&. ${drawerNavItemClasses.ripple}`]: {
+            backgroundColor: theme.palette.primary.main,
+        },
+    })
+);
 
 const Chevron = styled(ChevronRight, {
     name: 'drawer-nav-item',
@@ -470,9 +467,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                     {active && (
                         <ActiveItem
                             className={cx(defaultClasses.active, classes.active)}
-                            style={{
-                                backgroundColor: activeItemBackgroundColor,
-                            }}
+                            style={{ backgroundColor: activeItemBackgroundColor }}
                             activeItemBackgroundShape={activeItemBackgroundShape}
                         />
                     )}
