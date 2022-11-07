@@ -6,19 +6,11 @@ import { usePrevious } from '../../hooks/usePrevious';
 import { Theme, useTheme, styled, SxProps } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Collapse from '@mui/material/Collapse';
-import {
-    InfoListItem,
-    InfoListItemProps as BLUIInfoListItemProps,
-} from '../../InfoListItem';
+import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../../InfoListItem';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import {
-    NavItemSharedStyleProps,
-    NavItemSharedStylePropTypes,
-    SharedStyleProps,
-    SharedStylePropTypes,
-} from '../types';
+import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from '../types';
 import color from 'color';
 import { findChildByType, mergeStyleProp } from '../utilities';
 import { white, darkBlack } from '@brightlayer-ui/colors';
@@ -32,9 +24,7 @@ import drawerNavItemClasses, {
 import Box, { BoxProps } from '@mui/material/Box';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 
-const useUtilityClasses = (
-    ownerState: DrawerNavItemProps,
-): Record<DrawerNavItemClassKey, string> => {
+const useUtilityClasses = (ownerState: DrawerNavItemProps): Record<DrawerNavItemClassKey, string> => {
     const { classes } = ownerState;
 
     const slots = {
@@ -113,9 +103,7 @@ export type NestedNavItem = NestedDrawerNavItemProps;
 
 // First nested item has no additional indentation.  All items start with 16px indentation.
 const calcNestedPadding = (theme: Theme, depth: number): string => {
-    const calculatePaddingInt =
-        parseInt(theme.spacing(depth ? (depth - 1) * 4 : 0)) +
-        parseInt(theme.spacing(2));
+    const calculatePaddingInt = parseInt(theme.spacing(depth ? (depth - 1) * 4 : 0)) + parseInt(theme.spacing(2));
     return `${calculatePaddingInt}px`;
 };
 
@@ -123,39 +111,27 @@ const Root = styled(Box, {
     name: 'drawer-nav-item',
     slot: 'value',
     shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
-})<
-    Pick<
-        DrawerNavItemProps,
-        'depth' | 'nestedBackgroundColor' | 'backgroundColor'
-    >
->(({ depth, nestedBackgroundColor, backgroundColor }) => ({
-    backgroundColor:
-        (depth > 0 ? nestedBackgroundColor : backgroundColor) || 'transparent',
-}));
+})<Pick<DrawerNavItemProps, 'depth' | 'nestedBackgroundColor' | 'backgroundColor'>>(
+    ({ depth, nestedBackgroundColor, backgroundColor }) => ({
+        backgroundColor: (depth > 0 ? nestedBackgroundColor : backgroundColor) || 'transparent',
+    })
+);
 
 const ActiveItem = styled(Box, {
     name: 'drawer-nav-item',
     slot: 'active',
     shouldForwardProp: (prop) => prop !== 'activeItemBackgroundShape',
-})<Pick<DrawerNavItemProps, 'activeItemBackgroundShape'>>(
-    ({ activeItemBackgroundShape, theme }) => ({
-        content: '""',
-        zIndex: 0,
-        position: 'absolute',
-        height: '100%',
-        width:
-            activeItemBackgroundShape === 'square'
-                ? '100%'
-                : `calc(100% - ${theme.spacing(1)})`,
-        left: 0,
-        top: 0,
-        borderRadius:
-            activeItemBackgroundShape === 'square'
-                ? 0
-                : `0px 1.625rem 1.625rem 0px`,
-        opacity: 0.9,
-    }),
-);
+})<Pick<DrawerNavItemProps, 'activeItemBackgroundShape'>>(({ activeItemBackgroundShape, theme }) => ({
+    content: '""',
+    zIndex: 0,
+    position: 'absolute',
+    height: '100%',
+    width: activeItemBackgroundShape === 'square' ? '100%' : `calc(100% - ${theme.spacing(1)})`,
+    left: 0,
+    top: 0,
+    borderRadius: activeItemBackgroundShape === 'square' ? 0 : `0px 1.625rem 1.625rem 0px`,
+    opacity: 0.9,
+}));
 
 const InfoListItemRoot = styled(InfoListItem, {
     name: 'drawer-nav-item',
@@ -169,14 +145,8 @@ const InfoListItemRoot = styled(InfoListItem, {
 >(({ depth, hidePadding, icon, drawerOpen, active, theme }) => ({
     '& .MuiListItemButton-root': {
         // Have to specify both of these. JSS doesn't like to automatically flip the rule when it's calculated from a function
-        paddingLeft:
-            theme.direction === 'rtl'
-                ? theme.spacing(2)
-                : calcNestedPadding(theme, depth),
-        paddingRight:
-            theme.direction === 'ltr'
-                ? theme.spacing(2)
-                : calcNestedPadding(theme, depth),
+        paddingLeft: theme.direction === 'rtl' ? theme.spacing(2) : calcNestedPadding(theme, depth),
+        paddingRight: theme.direction === 'ltr' ? theme.spacing(2) : calcNestedPadding(theme, depth),
     },
     [`& .${drawerNavItemClasses.nestedTitle}`]: {
         fontWeight: 400,
@@ -188,34 +158,16 @@ const InfoListItemRoot = styled(InfoListItem, {
         fontWeight: 600,
     },
     '& .BluiInfoListItem-title': {
-        opacity:
-            hidePadding && !icon && drawerOpen
-                ? 1
-                : hidePadding && !icon
-                ? 0
-                : 'inherit',
-        transition:
-            hidePadding && !icon ? theme.transitions.create('opacity') : '',
+        opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
+        transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
     },
     '& .BluiInfoListItem-subtitle': {
-        opacity:
-            hidePadding && !icon && drawerOpen
-                ? 1
-                : hidePadding && !icon
-                ? 0
-                : 'inherit',
-        transition:
-            hidePadding && !icon ? theme.transitions.create('opacity') : '',
-        color:
-            !active && theme.palette.mode === 'dark'
-                ? theme.palette.text.secondary
-                : undefined,
+        opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
+        transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
+        color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
     },
     '& .BluiInfoListItem-info': {
-        color:
-            !active && theme.palette.mode === 'dark'
-                ? theme.palette.text.secondary
-                : undefined,
+        color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
     },
     [`&. ${drawerNavItemClasses.ripple}`]: {
         backgroundColor: theme.palette.primary.main,
@@ -234,67 +186,51 @@ const Chevron = styled(ChevronRight, {
 const ActiveComponent = styled(Box, {
     name: 'drawer-nav-item',
     slot: 'active-component',
-})<Pick<DrawerNavItemProps, 'collapseIcon'> & { expanded: boolean }>(
-    ({ collapseIcon, expanded, theme }) => ({
-        transitionDuration: `${theme.transitions.duration.standard}ms`,
-        cursor: 'inherit',
-        display: 'flex',
-        padding: '1rem',
-        marginRight: '-1rem',
-        alignItems: 'center',
-        justifyContent: 'center',
-        transform: !collapseIcon && expanded ? 'rotate(180deg)' : '',
-    }),
-);
+})<Pick<DrawerNavItemProps, 'collapseIcon'> & { expanded: boolean }>(({ collapseIcon, expanded, theme }) => ({
+    transitionDuration: `${theme.transitions.duration.standard}ms`,
+    cursor: 'inherit',
+    display: 'flex',
+    padding: '1rem',
+    marginRight: '-1rem',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: !collapseIcon && expanded ? 'rotate(180deg)' : '',
+}));
 
 const NestedListGroup = styled(List, {
     name: 'drawer-nav-item',
     slot: 'nested-list-group',
     shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
-})<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(
-    ({ nestedBackgroundColor, theme }) => ({
-        backgroundColor:
-            nestedBackgroundColor ||
-            (theme.palette.mode === 'light' ? white[200] : darkBlack[500]),
-        paddingBottom: 0,
-        paddingTop: 0,
-    }),
-);
+})<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(({ nestedBackgroundColor, theme }) => ({
+    backgroundColor: nestedBackgroundColor || (theme.palette.mode === 'light' ? white[200] : darkBlack[500]),
+    paddingBottom: 0,
+    paddingTop: 0,
+}));
 
-const DrawerNavItemRender: React.ForwardRefRenderFunction<
-    HTMLElement,
-    DrawerNavItemProps
-> = (props: DrawerNavItemProps, ref: any) => {
+const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNavItemProps> = (
+    props: DrawerNavItemProps,
+    ref: any
+) => {
     const theme = useTheme();
     const defaultClasses = useUtilityClasses(props);
-    const {
-        open: drawerOpen = true,
-        activeItem,
-        onItemSelect,
-    } = useDrawerContext();
+    const { open: drawerOpen = true, activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem);
 
     // Primary color manipulation
     const fivePercentOpacityPrimary = color(
-        theme.palette.mode === 'dark'
-            ? theme.palette.primary.dark
-            : theme.palette.primary.main,
+        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.95)
         .string();
     const twentyPercentOpacityPrimary = color(
-        theme.palette.mode === 'dark'
-            ? theme.palette.primary.dark
-            : theme.palette.primary.main,
+        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.8)
         .string();
     // approximating primary[200] but we don't have access to it directly from the theme
     const lightenedPrimary = color(
-        theme.palette.mode === 'dark'
-            ? theme.palette.primary.dark
-            : theme.palette.primary.main,
+        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .lighten(0.83)
         .desaturate(0.39)
@@ -306,12 +242,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
             ? fivePercentOpacityPrimary
             : twentyPercentOpacityPrimary,
         activeItemBackgroundShape = 'square',
-        activeItemFontColor = theme.palette.mode === 'light'
-            ? theme.palette.primary.main
-            : lightenedPrimary,
-        activeItemIconColor = theme.palette.mode === 'light'
-            ? theme.palette.primary.main
-            : lightenedPrimary,
+        activeItemFontColor = theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary,
+        activeItemIconColor = theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary,
         backgroundColor,
         chevron,
         chevronColor,
@@ -336,10 +268,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
         notifyActiveParent = (): void => {},
         onClick,
         rightComponent = props.chevron && !props.items && !props.children ? (
-            <Chevron
-                chevronColor={chevronColor}
-                className={cx(defaultClasses.chevron, classes.chevron)}
-            />
+            <Chevron chevronColor={chevronColor} className={cx(defaultClasses.chevron, classes.chevron)} />
         ) : undefined,
         ripple = true,
         statusColor,
@@ -351,22 +280,11 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
 
     const [expanded, setExpanded] = useState(isInActiveTree);
     const active: boolean = activeItem === itemID;
-    const hasAction = Boolean(
-        onItemSelect ||
-            onClick ||
-            (items && items.length > 0) ||
-            Boolean(children),
-    );
+    const hasAction = Boolean(onItemSelect || onClick || (items && items.length > 0) || Boolean(children));
     // only allow icons for the top level items
     const icon = !depth ? itemIcon : undefined;
     const showDivider =
-        depth > 0
-            ? nestedDivider !== undefined
-                ? nestedDivider
-                : false
-            : divider !== undefined
-            ? divider
-            : false;
+        depth > 0 ? (nestedDivider !== undefined ? nestedDivider : false) : divider !== undefined ? divider : false;
 
     // When the activeItem changes, update our expanded state
     useEffect(() => {
@@ -407,7 +325,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
                 setExpanded(!expanded);
             }
         },
-        [onItemSelect, onClick, itemID, items, expanded, setExpanded],
+        [onItemSelect, onClick, itemID, items, expanded, setExpanded]
     );
 
     const getActionComponent = useCallback((): JSX.Element => {
@@ -429,15 +347,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
                 {collapseIcon && expanded ? collapseIcon : expandIcon}
             </ActiveComponent>
         );
-    }, [
-        items,
-        children,
-        classes,
-        defaultClasses,
-        collapseIcon,
-        expanded,
-        expandIcon,
-    ]);
+    }, [items, children, classes, defaultClasses, collapseIcon, expanded, expandIcon]);
     const actionComponent = getActionComponent();
 
     const getChildren = useCallback(
@@ -450,81 +360,38 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
                               // Inherited Props
                               activeItemBackgroundColor: mergeStyleProp(
                                   activeItemBackgroundColor,
-                                  child.props.activeItemBackgroundColor,
+                                  child.props.activeItemBackgroundColor
                               ),
                               activeItemBackgroundShape: mergeStyleProp(
                                   activeItemBackgroundShape,
-                                  child.props.activeItemBackgroundShape,
+                                  child.props.activeItemBackgroundShape
                               ),
-                              activeItemFontColor: mergeStyleProp(
-                                  activeItemFontColor,
-                                  child.props.activeItemFontColor,
-                              ),
-                              activeItemIconColor: mergeStyleProp(
-                                  activeItemIconColor,
-                                  child.props.activeItemIconColor,
-                              ),
-                              backgroundColor: mergeStyleProp(
-                                  backgroundColor,
-                                  child.props.backgroundColor,
-                              ),
-                              chevron: mergeStyleProp(
-                                  chevron,
-                                  child.props.chevron,
-                              ),
-                              chevronColor: mergeStyleProp(
-                                  chevronColor,
-                                  child.props.chevronColor,
-                              ),
+                              activeItemFontColor: mergeStyleProp(activeItemFontColor, child.props.activeItemFontColor),
+                              activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
+                              backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
+                              chevron: mergeStyleProp(chevron, child.props.chevron),
+                              chevronColor: mergeStyleProp(chevronColor, child.props.chevronColor),
                               // we use props. because we don't want to pass the destructured default as the value to children
-                              collapseIcon: mergeStyleProp(
-                                  props.collapseIcon,
-                                  child.props.collapseIcon,
-                              ),
+                              collapseIcon: mergeStyleProp(props.collapseIcon, child.props.collapseIcon),
                               disableActiveItemParentStyles: mergeStyleProp(
                                   disableActiveItemParentStyles,
-                                  child.props.disableActiveItemParentStyles,
+                                  child.props.disableActiveItemParentStyles
                               ),
-                              divider: mergeStyleProp(
-                                  divider,
-                                  child.props.divider,
-                              ),
+                              divider: mergeStyleProp(divider, child.props.divider),
                               // we use props. because we don't want to pass the destructured default as the value to children
-                              expandIcon: mergeStyleProp(
-                                  props.expandIcon,
-                                  child.props.expandIcon,
-                              ),
-                              hidePadding: mergeStyleProp(
-                                  hidePadding,
-                                  child.props.hidePadding,
-                              ),
-                              itemFontColor: mergeStyleProp(
-                                  itemFontColor,
-                                  child.props.itemFontColor,
-                              ),
-                              itemIconColor: mergeStyleProp(
-                                  itemIconColor,
-                                  child.props.itemIconColor,
-                              ),
+                              expandIcon: mergeStyleProp(props.expandIcon, child.props.expandIcon),
+                              hidePadding: mergeStyleProp(hidePadding, child.props.hidePadding),
+                              itemFontColor: mergeStyleProp(itemFontColor, child.props.itemFontColor),
+                              itemIconColor: mergeStyleProp(itemIconColor, child.props.itemIconColor),
                               nestedBackgroundColor: mergeStyleProp(
                                   nestedBackgroundColor,
-                                  child.props.nestedBackgroundColor,
+                                  child.props.nestedBackgroundColor
                               ),
-                              nestedDivider: mergeStyleProp(
-                                  nestedDivider,
-                                  child.props.nestedDivider,
-                              ),
-                              ripple: mergeStyleProp(
-                                  ripple,
-                                  child.props.ripple,
-                              ),
+                              nestedDivider: mergeStyleProp(nestedDivider, child.props.nestedDivider),
+                              ripple: mergeStyleProp(ripple, child.props.ripple),
                               depth: depth + 1,
-                              isInActiveTree: activeHierarchy.includes(
-                                  child.props.itemID,
-                              ),
-                              notifyActiveParent: (
-                                  ids: string[] = [],
-                              ): void => {
+                              isInActiveTree: activeHierarchy.includes(child.props.itemID),
+                              notifyActiveParent: (ids: string[] = []): void => {
                                   notifyActiveParent(ids.concat(itemID));
                               },
                               sx: mergeStyleProp(sx, child.props.sx),
@@ -534,39 +401,18 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
                               // Inherited Props
                               activeItemBackgroundColor: mergeStyleProp(
                                   activeItemBackgroundColor,
-                                  child.props.activeItemBackgroundColor,
+                                  child.props.activeItemBackgroundColor
                               ),
-                              activeItemFontColor: mergeStyleProp(
-                                  activeItemFontColor,
-                                  child.props.activeItemFontColor,
-                              ),
-                              activeItemIconColor: mergeStyleProp(
-                                  activeItemIconColor,
-                                  child.props.activeItemIconColor,
-                              ),
-                              backgroundColor: mergeStyleProp(
-                                  backgroundColor,
-                                  child.props.backgroundColor,
-                              ),
-                              divider: mergeStyleProp(
-                                  divider,
-                                  child.props.divider,
-                              ),
-                              itemFontColor: mergeStyleProp(
-                                  itemFontColor,
-                                  child.props.itemFontColor,
-                              ),
-                              itemIconColor: mergeStyleProp(
-                                  itemIconColor,
-                                  child.props.itemIconColor,
-                              ),
-                              ripple: mergeStyleProp(
-                                  ripple,
-                                  child.props.ripple,
-                              ),
+                              activeItemFontColor: mergeStyleProp(activeItemFontColor, child.props.activeItemFontColor),
+                              activeItemIconColor: mergeStyleProp(activeItemIconColor, child.props.activeItemIconColor),
+                              backgroundColor: mergeStyleProp(backgroundColor, child.props.backgroundColor),
+                              divider: mergeStyleProp(divider, child.props.divider),
+                              itemFontColor: mergeStyleProp(itemFontColor, child.props.itemFontColor),
+                              itemIconColor: mergeStyleProp(itemIconColor, child.props.itemIconColor),
+                              ripple: mergeStyleProp(ripple, child.props.ripple),
                               sx: mergeStyleProp(sx, child.props.sx),
                               style: mergeStyleProp(style, child.props.style),
-                          } as DrawerRailItemProps),
+                          } as DrawerRailItemProps)
                 ),
         [
             activeItemBackgroundColor,
@@ -589,31 +435,23 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
             notifyActiveParent,
             ripple,
             children,
-        ],
+        ]
     );
 
     // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
-        root:
-            ripple && hasAction
-                ? undefined
-                : cx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
+        root: ripple && hasAction ? undefined : cx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
         listItemButtonRoot:
-            ripple && hasAction
-                ? cx(defaultClasses.infoListItemRoot, classes.infoListItemRoot)
-                : undefined,
+            ripple && hasAction ? cx(defaultClasses.infoListItemRoot, classes.infoListItemRoot) : undefined,
         title: cx(
             defaultClasses.title,
             classes.title,
-            active || (!disableActiveItemParentStyles && isInActiveTree)
-                ? defaultClasses.titleActive
-                : undefined,
-            (active || (!disableActiveItemParentStyles && isInActiveTree)) &&
-                classes.titleActive
+            active || (!disableActiveItemParentStyles && isInActiveTree) ? defaultClasses.titleActive : undefined,
+            (active || (!disableActiveItemParentStyles && isInActiveTree)) && classes.titleActive
                 ? classes.titleActive
                 : undefined,
             depth > 0 ? defaultClasses.nestedTitle : undefined,
-            depth > 0 && classes.nestedTitle ? classes.nestedTitle : undefined,
+            depth > 0 && classes.nestedTitle ? classes.nestedTitle : undefined
         ),
     };
 
@@ -631,16 +469,11 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
                 >
                     {active && (
                         <ActiveItem
-                            className={cx(
-                                defaultClasses.active,
-                                classes.active,
-                            )}
+                            className={cx(defaultClasses.active, classes.active)}
                             style={{
                                 backgroundColor: activeItemBackgroundColor,
                             }}
-                            activeItemBackgroundShape={
-                                activeItemBackgroundShape
-                            }
+                            activeItemBackgroundShape={activeItemBackgroundShape}
                         />
                     )}
                     <InfoListItemRoot
@@ -658,9 +491,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
                                     style={{
                                         display: 'flex',
                                         alignItems: 'center',
-                                        color: active
-                                            ? activeItemIconColor
-                                            : itemIconColor,
+                                        color: active ? activeItemIconColor : itemIconColor,
                                     }}
                                 >
                                     {rightComponent}
@@ -677,120 +508,67 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<
                         active={active}
                         ListItemButtonProps={{ ...RippleProps }}
                         {...InfoListItemProps}
-                        classes={Object.assign(
-                            infoListItemClasses,
-                            InfoListItemProps.classes,
-                        )}
+                        classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                     />
                 </Root>
             )}
             {/* If the NavItem has child items defined, render them in a collapse panel */}
             {((items && items.length > 0) || Boolean(children)) && (
-                <Collapse
-                    in={expanded && drawerOpen !== false}
-                    key={`${itemTitle}_group_${depth}`}
-                >
+                <Collapse in={expanded && drawerOpen !== false} key={`${itemTitle}_group_${depth}`}>
                     <NestedListGroup
-                        className={cx(
-                            defaultClasses.nestedListGroup,
-                            classes.nestedListGroup,
-                        )}
+                        className={cx(defaultClasses.nestedListGroup, classes.nestedListGroup)}
                         nestedBackgroundColor={nestedBackgroundColor}
                     >
                         {items &&
-                            items.map(
-                                (
-                                    subItem: DrawerNavItemProps,
-                                    index: number,
-                                ) => (
-                                    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-                                    <DrawerNavItem
-                                        key={`itemList_${index}`}
-                                        {...subItem}
-                                        activeItemBackgroundColor={mergeStyleProp(
-                                            activeItemBackgroundColor,
-                                            subItem.activeItemBackgroundColor,
-                                        )}
-                                        activeItemBackgroundShape={mergeStyleProp(
-                                            activeItemBackgroundShape,
-                                            subItem.activeItemBackgroundShape,
-                                        )}
-                                        activeItemFontColor={mergeStyleProp(
-                                            activeItemFontColor,
-                                            subItem.activeItemFontColor,
-                                        )}
-                                        activeItemIconColor={mergeStyleProp(
-                                            activeItemIconColor,
-                                            subItem.activeItemIconColor,
-                                        )}
-                                        backgroundColor={mergeStyleProp(
-                                            backgroundColor,
-                                            subItem.backgroundColor,
-                                        )}
-                                        chevron={mergeStyleProp(
-                                            chevron,
-                                            subItem.chevron,
-                                        )}
-                                        chevronColor={mergeStyleProp(
-                                            chevronColor,
-                                            subItem.chevronColor,
-                                        )}
-                                        // we use props. because we don't want to pass the destructured default as the value to the children
-                                        collapseIcon={mergeStyleProp(
-                                            props.collapseIcon,
-                                            subItem.collapseIcon,
-                                        )}
-                                        disableActiveItemParentStyles={mergeStyleProp(
-                                            disableActiveItemParentStyles,
-                                            subItem.disableActiveItemParentStyles,
-                                        )}
-                                        divider={mergeStyleProp(
-                                            divider,
-                                            subItem.divider,
-                                        )}
-                                        // we use props. because we don't want to pass the destructured default as the value to the children
-                                        expandIcon={mergeStyleProp(
-                                            props.expandIcon,
-                                            subItem.expandIcon,
-                                        )}
-                                        hidePadding={mergeStyleProp(
-                                            hidePadding,
-                                            subItem.hidePadding,
-                                        )}
-                                        itemFontColor={mergeStyleProp(
-                                            itemFontColor,
-                                            subItem.itemFontColor,
-                                        )}
-                                        itemIconColor={mergeStyleProp(
-                                            itemIconColor,
-                                            subItem.itemIconColor,
-                                        )}
-                                        nestedBackgroundColor={mergeStyleProp(
-                                            nestedBackgroundColor,
-                                            subItem.nestedBackgroundColor,
-                                        )}
-                                        nestedDivider={mergeStyleProp(
-                                            nestedDivider,
-                                            subItem.nestedDivider,
-                                        )}
-                                        ripple={mergeStyleProp(
-                                            ripple,
-                                            subItem.ripple,
-                                        )}
-                                        depth={depth + 1}
-                                        isInActiveTree={activeHierarchy.includes(
-                                            subItem.itemID,
-                                        )}
-                                        notifyActiveParent={(
-                                            ids: string[] = [],
-                                        ): void => {
-                                            notifyActiveParent(
-                                                ids.concat(itemID),
-                                            );
-                                        }}
-                                    />
-                                ),
-                            )}
+                            items.map((subItem: DrawerNavItemProps, index: number) => (
+                                // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                                <DrawerNavItem
+                                    key={`itemList_${index}`}
+                                    {...subItem}
+                                    activeItemBackgroundColor={mergeStyleProp(
+                                        activeItemBackgroundColor,
+                                        subItem.activeItemBackgroundColor
+                                    )}
+                                    activeItemBackgroundShape={mergeStyleProp(
+                                        activeItemBackgroundShape,
+                                        subItem.activeItemBackgroundShape
+                                    )}
+                                    activeItemFontColor={mergeStyleProp(
+                                        activeItemFontColor,
+                                        subItem.activeItemFontColor
+                                    )}
+                                    activeItemIconColor={mergeStyleProp(
+                                        activeItemIconColor,
+                                        subItem.activeItemIconColor
+                                    )}
+                                    backgroundColor={mergeStyleProp(backgroundColor, subItem.backgroundColor)}
+                                    chevron={mergeStyleProp(chevron, subItem.chevron)}
+                                    chevronColor={mergeStyleProp(chevronColor, subItem.chevronColor)}
+                                    // we use props. because we don't want to pass the destructured default as the value to the children
+                                    collapseIcon={mergeStyleProp(props.collapseIcon, subItem.collapseIcon)}
+                                    disableActiveItemParentStyles={mergeStyleProp(
+                                        disableActiveItemParentStyles,
+                                        subItem.disableActiveItemParentStyles
+                                    )}
+                                    divider={mergeStyleProp(divider, subItem.divider)}
+                                    // we use props. because we don't want to pass the destructured default as the value to the children
+                                    expandIcon={mergeStyleProp(props.expandIcon, subItem.expandIcon)}
+                                    hidePadding={mergeStyleProp(hidePadding, subItem.hidePadding)}
+                                    itemFontColor={mergeStyleProp(itemFontColor, subItem.itemFontColor)}
+                                    itemIconColor={mergeStyleProp(itemIconColor, subItem.itemIconColor)}
+                                    nestedBackgroundColor={mergeStyleProp(
+                                        nestedBackgroundColor,
+                                        subItem.nestedBackgroundColor
+                                    )}
+                                    nestedDivider={mergeStyleProp(nestedDivider, subItem.nestedDivider)}
+                                    ripple={mergeStyleProp(ripple, subItem.ripple)}
+                                    depth={depth + 1}
+                                    isInActiveTree={activeHierarchy.includes(subItem.itemID)}
+                                    notifyActiveParent={(ids: string[] = []): void => {
+                                        notifyActiveParent(ids.concat(itemID));
+                                    }}
+                                />
+                            ))}
                         {getChildren()}
                     </NestedListGroup>
                 </Collapse>
@@ -837,7 +615,7 @@ DrawerNavItem.propTypes = {
             onClick: PropTypes.func,
             rightComponent: PropTypes.element,
             statusColor: PropTypes.string,
-        }),
+        })
     ),
     notifyActiveParent: PropTypes.func,
     onClick: PropTypes.func,
