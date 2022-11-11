@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '@mui/material';
 
 export type DrawerClasses = {
     /** Styles applied to the drawer content container */

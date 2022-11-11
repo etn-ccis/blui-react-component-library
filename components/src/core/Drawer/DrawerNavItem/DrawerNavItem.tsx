@@ -183,6 +183,7 @@ const Chevron = styled(ChevronRight, {
 const ActiveComponent = styled(Box, {
     name: 'drawer-nav-item',
     slot: 'active-component',
+    shouldForwardProp: (prop) => !['collapseIcon', 'expanded'].includes(prop.toString()),
 })<Pick<DrawerNavItemProps, 'collapseIcon'> & { expanded: boolean }>(({ collapseIcon, expanded, theme }) => ({
     transitionDuration: `${theme.transitions.duration.standard}ms`,
     cursor: 'inherit',
