@@ -5,11 +5,6 @@ import * as BLUIThemes from '@brightlayer-ui/react-themes';
 import { ComponentPreviewPage } from './pages/componentPreviewPage';
 import { DrawerContext } from './contexts/drawerContextProvider';
 
-declare module '@mui/styles/defaultTheme' {
-    // eslint-disable-next-line
-    interface DefaultTheme extends Theme {}
-}
-
 test('renders welcome text', () => {
     render(
         <StyledEngineProvider injectFirst>
