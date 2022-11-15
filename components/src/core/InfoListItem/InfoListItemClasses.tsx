@@ -1,4 +1,4 @@
-import { generateUtilityClass } from '@mui/base';
+import { generateUtilityClass } from '@mui/material';
 
 export type InfoListItemClasses = {
     root?: string;

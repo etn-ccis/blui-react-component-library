@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '@mui/material';
 
 export type ListItemTagClasses = {
     /** Styles applied to the root element. */
