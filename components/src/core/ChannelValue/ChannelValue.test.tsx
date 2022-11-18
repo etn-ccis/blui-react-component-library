@@ -1,49 +1,55 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { findByTestId, mountWithTheme } from '../test-utils';
+import { render, screen, cleanup } from '@testing-library/react';
 import { ChannelValue } from './ChannelValue';
-import * as Enzyme from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Menu from '@mui/icons-material/Menu';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 
 const theme = createTheme(BLUIThemes.blue);
 
-Enzyme.configure({ adapter: new Adapter() });
+afterEach(cleanup);
 
 describe('ChannelValue', () => {
     it('renders without crashing', () => {
-        const div = document.createElement('div');
-        const root = createRoot(div);
-        root.render(
+        render(
             <ThemeProvider theme={theme}>
                 <ChannelValue value={'test'} />
             </ThemeProvider>
         );
+        expect(screen.getByText('test')).toBeTruthy;
     });
     it('should render with the wrapper class', () => {
-        const wrapper = mountWithTheme(<ChannelValue value={1} />, theme);
-        expect(findByTestId('wrapper', wrapper)).toBeTruthy();
-        wrapper.unmount();
+        render(
+            <ThemeProvider theme={theme}>
+                <ChannelValue value={1} />
+            </ThemeProvider>
+        );
+        expect(screen.getByText('1')).toBeTruthy;
     });
     it('should render value properly', () => {
-        const wrapper = mountWithTheme(<ChannelValue value={1} />, theme);
-        expect(findByTestId('value', wrapper).length).toEqual(1);
-        wrapper.unmount();
+        render(
+            <ThemeProvider theme={theme}>
+                <ChannelValue value={1} />
+            </ThemeProvider>
+        );
+        expect(screen.getByText('1')).toBeTruthy;
     });
     it('should render icon properly', () => {
-        let wrapper = mountWithTheme(<ChannelValue icon={<Menu />} value={1} />, theme);
-        expect(findByTestId('icon', wrapper).length).toEqual(1);
-        wrapper = mountWithTheme(<ChannelValue value={1} />, theme);
-        expect(findByTestId('icon', wrapper).length).toEqual(0);
-        wrapper.unmount();
+        render(
+            <ThemeProvider theme={theme}>
+                <ChannelValue icon={<Menu />} value={1} />
+            </ThemeProvider>
+        );
+        expect(screen.getByTestId('MenuIcon')).toBeTruthy;
+        expect(screen.getByText('1')).toBeTruthy;
     });
     it('should render units properly', () => {
-        let wrapper = mountWithTheme(<ChannelValue value={1} units={'X'} />, theme);
-        expect(findByTestId('units', wrapper).length).toEqual(1);
-        wrapper = mountWithTheme(<ChannelValue value={1} />, theme);
-        expect(findByTestId('units', wrapper).length).toEqual(0);
-        wrapper.unmount();
+        render(
+            <ThemeProvider theme={theme}>
+                <ChannelValue value={1} units={'X'} />
+            </ThemeProvider>
+        );
+        expect(screen.getByTestId('units')).toBeTruthy;
+        expect(screen.getByText('1')).toBeTruthy;
     });
 });

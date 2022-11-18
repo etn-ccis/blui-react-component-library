@@ -282,7 +282,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 <ActionItems
                     key={`${index}`}
                     className={cx(defaultClasses.actionItems, classes.actionItems)}
-                    data-test={'action-item'}
+                    data-testid={'action-item'}
                 >
                     {actionItem}
                 </ActionItems>
@@ -296,7 +296,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 <BadgeWrapper
                     className={cx(defaultClasses.badgeWrapper, classes.badgeWrapper)}
                     badgeOffset={badgeOffset}
-                    data-test={'badge-wrapper'}
+                    data-testid={'badge-wrapper'}
                 >
                     {badge}
                 </BadgeWrapper>
@@ -319,11 +319,11 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         <Root
             ref={ref}
             className={cx(defaultClasses.root, classes.root, userClassName)}
-            data-test={'card'}
+            data-testid={'card'}
             {...otherCardProps}
         >
             <Header
-                data-test={'header'}
+                data-testid={'header'}
                 className={cx(defaultClasses.header, classes.header)}
                 headerColor={headerColor}
                 headerFontColor={headerFontColor}
@@ -334,8 +334,11 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                     {getActionItems()}
                 </HeaderContent>
             </Header>
-            <Content className={cx(defaultClasses.content, classes.content)} data-test={'content'}>
-                <BodyWrapper className={cx(defaultClasses.bodyWrapper, classes.bodyWrapper)} data-test={'body-wrapper'}>
+            <Content className={cx(defaultClasses.content, classes.content)} data-testid={'content'}>
+                <BodyWrapper
+                    className={cx(defaultClasses.bodyWrapper, classes.bodyWrapper)}
+                    data-testid={'body-wrapper'}
+                >
                     {children}
                 </BodyWrapper>
                 {getHeroes()}

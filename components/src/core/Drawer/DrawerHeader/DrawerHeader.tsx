@@ -187,7 +187,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                         noWrap
                         variant={'h6'}
                         className={cx(defaultClasses.title, classes.title)}
-                        data-test={'drawer-header-title'}
+                        data-testid={'drawer-header-title'}
                     >
                         {title}
                     </Title>
@@ -197,7 +197,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                             noWrap
                             variant={'body2'}
                             className={cx(defaultClasses.subtitle, classes.subtitle)}
-                            data-test={'drawer-header-subtitle'}
+                            data-testid={'drawer-header-subtitle'}
                         >
                             {subtitle}
                         </Subtitle>

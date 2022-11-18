@@ -145,7 +145,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                         color={'inherit'}
                         className={cx(defaultClasses.text, classes.text, defaultClasses.units, classes.units)}
                         isSuffix={applySuffix()}
-                        data-test={'units'}
+                        data-testid={'units'}
                     >
                         {units}
                     </Unit>

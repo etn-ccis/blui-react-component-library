@@ -119,7 +119,7 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
         <Root
             ref={ref}
             className={cx(defaultClasses.root, classes.root, userClassName)}
-            data-test={'wrapper'}
+            data-testid={'wrapper'}
             {...otherProps}
         >
             <Icon

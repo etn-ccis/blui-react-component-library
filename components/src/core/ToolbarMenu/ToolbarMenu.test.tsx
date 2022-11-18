@@ -1,22 +1,18 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import * as Enzyme from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { render, screen, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { ToolbarMenu } from './ToolbarMenu';
-import Trend from '@mui/icons-material/TrendingUp';
-import { findByTestId, mountWithTheme } from '../test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
+import HomeIcon from '@mui/icons-material/Home';
 
 const theme = createTheme(BLUIThemes.blue);
 
-Enzyme.configure({ adapter: new Adapter() });
+afterEach(cleanup);
 
 describe('ToolbarMenu', () => {
     it('should render without crashing', () => {
-        const div = document.createElement('div');
-        const root = createRoot(div);
-        root.render(
+        render(
             <ThemeProvider theme={theme}>
                 <ToolbarMenu label={'label'} />
             </ThemeProvider>
@@ -24,16 +20,35 @@ describe('ToolbarMenu', () => {
     });
 
     it('renders with label', () => {
-        const wrapper = mountWithTheme(<ToolbarMenu label={'Subtitle'} data-test={'toolbar-menu'} />, theme);
-        expect(findByTestId('label', wrapper).length).toEqual(1);
+        render(
+            <ThemeProvider theme={theme}>
+                <ToolbarMenu label={'Subtitle'} />
+            </ThemeProvider>
+        );
+        expect(screen.getByText('Subtitle')).toBeTruthy;
     });
 
     it('renders with icon', () => {
-        const icon = <Trend data-test={'trend-icon'} />;
-        const wrapper = mountWithTheme(
-            <ToolbarMenu label={'Subtitle'} icon={icon} data-test={'toolbar-menu'} />,
-            theme
+        render(
+            <ThemeProvider theme={theme}>
+                <ToolbarMenu label="My Home" icon={<HomeIcon />} />
+            </ThemeProvider>
         );
-        expect(findByTestId('trend-icon', wrapper).length).toEqual(1);
+        expect(screen.findByRole('icon')).toBeTruthy;
+    });
+    it('renders with menu group items', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <ToolbarMenu
+                    label="My Home"
+                    menuGroups={[
+                        {
+                            items: [{ title: 'London' }, { title: 'New York' }, { title: 'New Haven' }],
+                        },
+                    ]}
+                />
+            </ThemeProvider>
+        );
+        expect(screen.findByText('London')).toBeTruthy;
     });
 });
