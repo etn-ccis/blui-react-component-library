@@ -267,8 +267,8 @@ describe('DrawerRailItem', () => {
     it('renders no text for condensed', () => {
         render(
             <ThemeProvider theme={theme}>
-        <DrawerRailItem condensed title={'Test'} itemID={'test'} icon={<></>} />
-        </ThemeProvider>
+                <DrawerRailItem condensed title={'Test'} itemID={'test'} icon={<></>} />
+            </ThemeProvider>
         );
         // expect(wrapper.find(Typography).length).toEqual(0);
     });

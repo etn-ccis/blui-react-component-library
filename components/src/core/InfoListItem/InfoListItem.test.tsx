@@ -36,13 +36,17 @@ describe('InfoListItem', () => {
         render(
             <ThemeProvider theme={theme}>
                 {/* <InfoListItem title={'Test'} icon={<PersonIcon />} avatar iconColor={'red'} statusColor={'red'} /> */}
-                <InfoListItem title={'Test'} icon={<PersonIcon color={'inherit'} />} avatar iconColor={'red'} statusColor={'red'} />
+                <InfoListItem
+                    title={'Test'}
+                    icon={<PersonIcon color={'inherit'} />}
+                    avatar
+                    iconColor={'red'}
+                    statusColor={'red'}
+                />
             </ThemeProvider>
         );
         expect(screen.getByTestId('status-stripe')).toHaveStyle(`background-color: red`);
         // expect(screen.getByTestId('PersonIcon')).toHaveStyle(`color: red`);
-
-
 
         // wrapper = mountWithTheme(
         //     <InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} iconColor={'green'} />,

@@ -16,7 +16,7 @@ describe('ChannelValue', () => {
             <ThemeProvider theme={theme}>
                 <ChannelValue value={'test'} />
             </ThemeProvider>
-            );
+        );
         expect(screen.getByText('test')).toBeTruthy();
     });
     it('should render with the wrapper class', () => {

@@ -22,7 +22,8 @@ describe('Hero', () => {
         render(
             <ThemeProvider theme={theme}>
                 <Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />
-            </ThemeProvider>);
+            </ThemeProvider>
+        );
         expect(screen.getByTestId('wrapper')).toBeTruthy();
     });
     it('renders without children', () => {
