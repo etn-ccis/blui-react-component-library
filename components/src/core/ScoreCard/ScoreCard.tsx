@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import * as Colors from '@brightlayer-ui/colors';
 import PropTypes from 'prop-types';
-import { Box, BoxProps } from '@mui/material';
+import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { ScoreCardClasses, ScoreCardClassKey, getScoreCardUtilityClass } from './ScoreCardClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';

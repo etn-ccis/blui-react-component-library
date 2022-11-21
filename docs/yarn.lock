@@ -1102,10 +1102,10 @@
   optionalDependencies:
     eslint-plugin-react "^7.28.0"
 
-"@brightlayer-ui/icons-mui@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-mui/-/icons-mui-3.2.0.tgz#6ef097d8786875891ebdfd5aff0b823181adadbe"
-  integrity sha512-EanLzuY9a7zlSBbw5uBKiM+QGAKdyqdrfdV3VTTdRnXeA9bZny6l8Boqh2pXYaEJYlimNEoxMW3BBBEK2SmoMg==
+"@brightlayer-ui/icons-mui@^4.0.0-alpha.0":
+  version "4.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-mui/-/icons-mui-4.0.0-alpha.0.tgz#a5a0ba4ae8e21ef7f3bf438fbe6bb170f9357fc9"
+  integrity sha512-ln0Dkxjn0dFHbyh26X9yzozaQ2dIzAaqCTJHdarkH5ssBSBfJDZJh/kEZYAF8/a+SKDQZlRduj+lOhIF8waTXw==
 
 "@brightlayer-ui/icons@^1.11.0":
   version "1.11.0"
@@ -1117,7 +1117,7 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-components@^6.1.1":
+"@brightlayer-ui/react-components@^6.0.0":
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-components/-/react-components-6.1.1.tgz#97fa7bd09f18339833be066d03726fe916585126"
   integrity sha512-cRQ87jkRGZ6p4pwWovxYO5/nE+lGq2bbmaXKs7ZYekFl29eZcD/HGkgfCeHoDXTDFTaWQDg3MHyX1JE1RI/gsA==
@@ -1127,10 +1127,10 @@
     "@seznam/compose-react-refs" "^1.0.6"
     color "^4.2.1"
 
-"@brightlayer-ui/react-themes@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.npmjs.org/@brightlayer-ui/react-themes/-/react-themes-7.0.0.tgz"
-  integrity sha512-5osYg/eb/6/Ct2BaX50ZMEx/6ob1F6TWXiMZn01sHOpDvjJ+f5W/LaOy6488xVN0J4wRhPBAnCZztzqAFGxYXA==
+"@brightlayer-ui/react-themes@^7.1.0-alpha.0":
+  version "7.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-7.1.0-alpha.0.tgz#745079123cd321eaad689fe92b53c6fd2a7d0c4a"
+  integrity sha512-j9RS3puo4AttidbTPtLtGxpszr1TrVq3M+iNh2gT4Lk5LGyMwE0+jcSVZrlTqZZ8rIqZUG6vGg0ElD0CsGfI4w==
   dependencies:
     "@brightlayer-ui/colors" "^3.0.0"
     "@fontsource/open-sans" "^4.2.2"

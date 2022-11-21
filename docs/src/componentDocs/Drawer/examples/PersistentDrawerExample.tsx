@@ -12,7 +12,7 @@ import Notifications from '@mui/icons-material/Notifications';
 import Gavel from '@mui/icons-material/Gavel';
 import Menu from '@mui/icons-material/Menu';
 import { ExampleShowcase } from '../../../shared';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 export const PersistentDrawerExample = (): JSX.Element => {
     const [open, setOpen] = useState(true);

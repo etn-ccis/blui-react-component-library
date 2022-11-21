@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { cx } from '@emotion/css';
-import { Box, BoxProps } from '@mui/material';
+import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { ThreeLinerClasses, ThreeLinerClassKey, getThreeLinerUtilityClass } from './ThreeLinerClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';

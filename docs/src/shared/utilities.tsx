@@ -17,7 +17,7 @@ import TrendingUp from '@mui/icons-material/TrendingUp';
 import TrendingDown from '@mui/icons-material/TrendingDown';
 import { RootState } from '../redux/store';
 import { ComponentType, PropsType } from '../__types__';
-import { SvgIconProps } from '@mui/material';
+import { SvgIconProps } from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
 
 const topologyBgImage = require('../shared/images/topology_40.png');
