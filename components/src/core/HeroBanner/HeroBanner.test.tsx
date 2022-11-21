@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { HeroBanner } from './HeroBanner';
 import { Hero } from '../Hero';
 import { createTheme, ThemeProvider } from '@mui/material/styles';

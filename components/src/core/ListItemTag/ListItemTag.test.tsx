@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import { ListItemTag } from './ListItemTag';
 import * as Colors from '@brightlayer-ui/colors';
-import color from 'color';
+// import color from 'color';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 
@@ -25,7 +25,7 @@ describe('ListItemTag', () => {
                 <ListItemTag label={'test'} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('list-item-tag')).toBeTruthy;
+        expect(screen.getByTestId('list-item-tag')).toBeTruthy();
     });
 
     it('renders the correct label text', () => {
@@ -34,7 +34,7 @@ describe('ListItemTag', () => {
                 <ListItemTag label={'test'} />
             </ThemeProvider>
         );
-        expect(screen.getByText('test')).toBeTruthy;
+        expect(screen.getByText('test')).toBeTruthy();
     });
 
     it('renders with correct colors', () => {

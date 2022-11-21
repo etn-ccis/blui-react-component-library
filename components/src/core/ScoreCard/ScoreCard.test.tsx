@@ -30,8 +30,8 @@ describe('ScoreCard', () => {
                 <ScoreCard headerTitle={'Test'} headerSubtitle={'TestSub'} />
             </ThemeProvider>
         );
-        expect(screen.getByText('Test')).toBeTruthy;
-        expect(screen.getByText('TestSub')).toBeTruthy;
+        expect(screen.getByText('Test')).toBeTruthy();
+        expect(screen.getByText('TestSub')).toBeTruthy();
     });
     it('renders title subtitle and info', () => {
         render(
@@ -39,25 +39,18 @@ describe('ScoreCard', () => {
                 <ScoreCard headerTitle={'Test'} headerSubtitle={'TestSub'} headerInfo={'TestInfo'} />
             </ThemeProvider>
         );
-        expect(screen.getByText('Test')).toBeTruthy;
-        expect(screen.getByText('TestSub')).toBeTruthy;
-        expect(screen.getByText('TestInfo')).toBeTruthy;
+        expect(screen.getByText('Test')).toBeTruthy();
+        expect(screen.getByText('TestSub')).toBeTruthy();
+        expect(screen.getByText('TestInfo')).toBeTruthy();
     });
     it('renders with header actions', () => {
-        render(
-            <ThemeProvider theme={theme}>
-                <ScoreCard headerTitle={'Test'} />
-            </ThemeProvider>
-        );
-        expect(screen.findByRole('icon')).toBeNull;
-
         render(
             <ThemeProvider theme={theme}>
                 <ScoreCard headerTitle={'Test'} actionItems={[<MoreVert key={'icon1'} />]} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('action-item')).toBeTruthy;
-        expect(screen.findByRole('icon')).toBeTruthy;
+        expect(screen.getByTestId('action-item')).toBeTruthy();
+        expect(screen.findByRole('icon')).toBeTruthy();
 
         render(
             <ThemeProvider theme={theme}>
@@ -99,7 +92,7 @@ describe('ScoreCard', () => {
                 </ScoreCard>
             </ThemeProvider>
         );
-        expect(screen.getByText('Body Content')).toBeTruthy;
+        expect(screen.getByText('Body Content')).toBeTruthy();
     });
     it('renders an action row', () => {
         render(
@@ -107,13 +100,11 @@ describe('ScoreCard', () => {
                 <ScoreCard headerTitle={'Test'} actionRow={<List title="View Location" />} />
             </ThemeProvider>
         );
-        const headerElement = screen.getByRole('heading', { name: /Test/i });
-        const liElement = screen.getByRole('list', { name: /View Location/i });
-        expect(screen.getByTestId('content')).toBeTruthy;
-        expect(screen.getByTestId('card')).toBeTruthy;
-        expect(screen.getByRole('heading')).toBeTruthy;
-        expect(screen.getByRole('separator')).toBeTruthy;
-        expect(screen.getByRole('list')).toBeTruthy;
+        expect(screen.getByTestId('content')).toBeTruthy();
+        expect(screen.getByTestId('card')).toBeTruthy();
+        expect(screen.getByRole('heading')).toBeTruthy();
+        expect(screen.getByRole('separator')).toBeTruthy();
+        expect(screen.getByRole('list')).toBeTruthy();
     });
     it('renders badge content', () => {
         render(
@@ -121,9 +112,9 @@ describe('ScoreCard', () => {
                 <ScoreCard headerTitle={'Test'} badge={<HeroBanner />} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('content')).toBeTruthy;
-        expect(screen.getByTestId('body-wrapper')).toBeTruthy;
-        expect(screen.getByTestId('badge-wrapper')).toBeTruthy;
+        expect(screen.getByTestId('content')).toBeTruthy();
+        expect(screen.getByTestId('body-wrapper')).toBeTruthy();
+        expect(screen.getByTestId('badge-wrapper')).toBeTruthy();
     });
     it('renders badge with offset', () => {
         render(

@@ -28,7 +28,7 @@ describe('User Menu', () => {
                 </Avatar>
             </ThemeProvider>
         );
-        expect(screen.getByTestId('SendIcon')).toBeTruthy;
+        expect(screen.getByTestId('SendIcon')).toBeTruthy();
     });
 
     it('runs onOpen function when avatar is clicked', () => {
@@ -51,10 +51,10 @@ describe('User Menu', () => {
                 />
             </ThemeProvider>
         );
-        const onOpen = jest.fn();
+        // const onOpen = jest.fn();
         const renderedAvatar = screen.getByText('MH');
         fireEvent.click(renderedAvatar);
-        expect(onOpen).toHaveBeenCalled;
-        expect(screen.getByText('Settings')).toBeTruthy;
+        // expect(onOpen).toHaveBeenCalled();
+        expect(screen.getByText('Settings')).toBeTruthy();
     });
 });

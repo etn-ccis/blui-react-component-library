@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Hero } from './Hero';
 import { ChannelValue } from '../ChannelValue';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -21,9 +22,8 @@ describe('Hero', () => {
         render(
             <ThemeProvider theme={theme}>
                 <Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />
-            </ThemeProvider>
-        );
-        expect(screen.getByTestId('wrapper')).toBeTruthy;
+            </ThemeProvider>);
+        expect(screen.getByTestId('wrapper')).toBeTruthy();
     });
     it('renders without children', () => {
         render(
@@ -31,8 +31,8 @@ describe('Hero', () => {
                 <Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />
             </ThemeProvider>
         );
-        expect(screen.getByText('1')).toBeTruthy;
-        expect(screen.getByText('test')).toBeTruthy;
+        expect(screen.getByText('1')).toBeTruthy();
+        expect(screen.getByText('test')).toBeTruthy();
     });
     it('renders with children', () => {
         render(

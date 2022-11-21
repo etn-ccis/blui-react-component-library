@@ -287,6 +287,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         <Root
             ref={ref}
             {...muiAppBarProps}
+            data-testid={'appbar-root'}
             className={cx(
                 defaultClasses.root,
                 classes.root,

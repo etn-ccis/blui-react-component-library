@@ -25,7 +25,7 @@ describe('ToolbarMenu', () => {
                 <ToolbarMenu label={'Subtitle'} />
             </ThemeProvider>
         );
-        expect(screen.getByText('Subtitle')).toBeTruthy;
+        expect(screen.getByText('Subtitle')).toBeTruthy();
     });
 
     it('renders with icon', () => {
@@ -34,7 +34,7 @@ describe('ToolbarMenu', () => {
                 <ToolbarMenu label="My Home" icon={<HomeIcon />} />
             </ThemeProvider>
         );
-        expect(screen.findByRole('icon')).toBeTruthy;
+        expect(screen.findByRole('icon')).toBeTruthy();
     });
     it('renders with menu group items', () => {
         render(
@@ -49,6 +49,6 @@ describe('ToolbarMenu', () => {
                 />
             </ThemeProvider>
         );
-        expect(screen.findByText('London')).toBeTruthy;
+        expect(screen.findByText('London')).toBeTruthy();
     });
 });

@@ -24,9 +24,9 @@ describe('Three liner', () => {
                 <ThreeLiner title="title" subtitle="subtitle" info="info" />
             </ThemeProvider>
         );
-        expect(screen.getByText('title')).toBeTruthy;
-        expect(screen.getByText('subtitle')).toBeTruthy;
-        expect(screen.getByText('info')).toBeTruthy;
+        expect(screen.getByText('title')).toBeTruthy();
+        expect(screen.getByText('subtitle')).toBeTruthy();
+        expect(screen.getByText('info')).toBeTruthy();
     });
     it('renders with custom content', () => {
         render(

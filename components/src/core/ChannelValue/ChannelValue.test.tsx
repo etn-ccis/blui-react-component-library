@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { ChannelValue } from './ChannelValue';
 import Menu from '@mui/icons-material/Menu';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -15,8 +16,8 @@ describe('ChannelValue', () => {
             <ThemeProvider theme={theme}>
                 <ChannelValue value={'test'} />
             </ThemeProvider>
-        );
-        expect(screen.getByText('test')).toBeTruthy;
+            );
+        expect(screen.getByText('test')).toBeTruthy();
     });
     it('should render with the wrapper class', () => {
         render(
@@ -24,7 +25,7 @@ describe('ChannelValue', () => {
                 <ChannelValue value={1} />
             </ThemeProvider>
         );
-        expect(screen.getByText('1')).toBeTruthy;
+        expect(screen.getByText('1')).toBeTruthy();
     });
     it('should render value properly', () => {
         render(
@@ -32,7 +33,7 @@ describe('ChannelValue', () => {
                 <ChannelValue value={1} />
             </ThemeProvider>
         );
-        expect(screen.getByText('1')).toBeTruthy;
+        expect(screen.getByText('1')).toBeTruthy();
     });
     it('should render icon properly', () => {
         render(
@@ -40,8 +41,8 @@ describe('ChannelValue', () => {
                 <ChannelValue icon={<Menu />} value={1} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('MenuIcon')).toBeTruthy;
-        expect(screen.getByText('1')).toBeTruthy;
+        expect(screen.getByTestId('MenuIcon')).toBeTruthy();
+        expect(screen.getByText('1')).toBeTruthy();
     });
     it('should render units properly', () => {
         render(
@@ -49,7 +50,7 @@ describe('ChannelValue', () => {
                 <ChannelValue value={1} units={'X'} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('units')).toBeTruthy;
-        expect(screen.getByText('1')).toBeTruthy;
+        expect(screen.getByTestId('units')).toBeTruthy();
+        expect(screen.getByText('1')).toBeTruthy();
     });
 });
