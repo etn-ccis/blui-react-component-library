@@ -2,11 +2,8 @@ import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { InfoListItem } from './InfoListItem';
-// import * as Colors from '@brightlayer-ui/colors';
-// import color from 'color';
-// import Chevron from '@mui/icons-material/ChevronRight';
+import { OfflineBolt } from '@mui/icons-material';
 import PersonIcon from '@mui/icons-material/Person';
-// import Avatar from '@mui/material/Avatar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 
@@ -35,65 +32,61 @@ describe('InfoListItem', () => {
     it('renders correct icon Color', () => {
         render(
             <ThemeProvider theme={theme}>
-                {/* <InfoListItem title={'Test'} icon={<PersonIcon />} avatar iconColor={'red'} statusColor={'red'} /> */}
                 <InfoListItem
                     title={'Test'}
-                    icon={<PersonIcon color={'inherit'} />}
-                    avatar
+                    icon={<OfflineBolt />}
+                    avatar={true}
                     iconColor={'red'}
                     statusColor={'red'}
                 />
             </ThemeProvider>
         );
         expect(screen.getByTestId('status-stripe')).toHaveStyle(`background-color: red`);
-        // expect(screen.getByTestId('PersonIcon')).toHaveStyle(`color: red`);
-
-        // wrapper = mountWithTheme(
-        //     <InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} iconColor={'green'} />,
-        //     theme
-        // );
-        // testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
-        // expect(testedStyle.color).toEqual('green');
-        // testedStyle = getComputedStyleFromHTMLString(findByTestId('status-stripe', wrapper).html());
-        // expect(testedStyle.backgroundColor).toEqual('red');
-
-        // wrapper = mountWithTheme(
-        //     <InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} avatar />,
-        //     theme
-        // );
-        // testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
-        // expect(testedStyle.color).toEqual(color(Colors.white['50']).rgb().string());
-        // expect(testedStyle.backgroundColor).toEqual('red');
-        // testedStyle = getComputedStyleFromHTMLString(findByTestId('status-stripe', wrapper).html());
-        // expect(testedStyle.backgroundColor).toEqual('red');
-
-        // wrapper = mountWithTheme(
-        //     <InfoListItem title={'Test'} icon={<PersonIcon />} statusColor={'red'} iconColor={'blue'} avatar />,
-        //     theme
-        // );
-        // testedStyle = getComputedStyleFromHTMLString(wrapper.find(Avatar).html());
-        // expect(testedStyle.color).toEqual('blue');
-        // expect(testedStyle.backgroundColor).toEqual('red');
-        // testedStyle = getComputedStyleFromHTMLString(findByTestId('status-stripe', wrapper).html());
-        // expect(testedStyle.backgroundColor).toEqual('red');
+        // this is blocked from testing right now. OffLIneBoltIcon has this style but fails in test
+        // other tests should check avatar and icon colors that also fail.
+        // expect(screen.getByTestId('OfflineBoltIcon')).toHaveStyle(`background-color: red`);
     });
 
-    // it('renders rightComponent', () => {
-    //     let wrapper = mountWithTheme(<InfoListItem title="Test" chevron />, theme);
-    //     expect(wrapper.find(Chevron).length).toEqual(1);
+    it('renders rightComponent', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <InfoListItem title="Test" chevron />
+            </ThemeProvider>
+        );
+        expect(screen.getByText('Test')).toBeTruthy();
+        expect(screen.findByRole('icon')).toBeTruthy();
+        expect(screen.getByTestId('ChevronRightIcon')).toBeTruthy();
+    });
 
-    //     wrapper = mountWithTheme(<InfoListItem title="Test" />, theme);
-    //     expect(wrapper.find(Chevron).length).toEqual(0);
+    it('renders no rightComponent', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <InfoListItem title="Test" />
+            </ThemeProvider>
+        );
+        expect(screen.getByText('Test')).toBeTruthy();
+        expect(screen.queryByRole('icon')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('ChevronRightIcon')).not.toBeInTheDocument();
+    });
 
-    //     wrapper = mountWithTheme(
-    //         <InfoListItem title="Test" onClick={(): void => {}} rightComponent={<PersonIcon />} />,
-    //         theme
-    //     );
-    //     expect(wrapper.find(Chevron).length).toEqual(0);
-    //     expect(wrapper.find(PersonIcon).length).toEqual(1);
-    // });
-    // it('renders leftComponent', () => {
-    //     const wrapper = mountWithTheme(<InfoListItem title="Test" leftComponent={<PersonIcon />} />, theme);
-    //     expect(wrapper.find(PersonIcon).length).toEqual(1);
-    // });
+    it('renders correct rightComponent icon', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <InfoListItem title="Test" onClick={(): void => {}} rightComponent={<PersonIcon />} />
+            </ThemeProvider>
+        );
+        expect(screen.getByText('Test')).toBeTruthy();
+        expect(screen.queryByTestId('ChevronRightIcon')).not.toBeInTheDocument();
+        expect(screen.findByTestId('PersonIcon')).toBeTruthy();
+    });
+
+    it('renders leftComponent', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <InfoListItem title="Test" leftComponent={<PersonIcon />} />
+            </ThemeProvider>
+        );
+        expect(screen.getByText('Test')).toBeTruthy();
+        expect(screen.findByTestId('PersonIcon')).toBeTruthy();
+    });
 });

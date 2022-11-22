@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { ListItemTag } from './ListItemTag';
 import * as Colors from '@brightlayer-ui/colors';
-// import color from 'color';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 
@@ -45,9 +45,8 @@ describe('ListItemTag', () => {
                 <ListItemTag label={'test'} fontColor={fontColor} backgroundColor={backgroundColor} />
             </ThemeProvider>
         );
-        // const computedStyle = getComputedStyleFromHTMLString(wrapper.html());
-
-        // expect(computedStyle.color).toEqual(color(fontColor).rgb().string());
-        // expect(computedStyle.backgroundColor).toEqual(color(backgroundColor).rgb().string());
+        expect(screen.getByTestId('list-item-tag')).toBeTruthy();
+        expect(screen.getByTestId('list-item-tag')).toHaveStyle(`color: rgb(248, 213, 143)`);
+        expect(screen.getByTestId('list-item-tag')).toHaveStyle(`background-color: rgb(23, 142, 11)`);
     });
 });
