@@ -9,7 +9,7 @@ import channelValueClasses, {
     getChannelValueUtilityClass,
 } from './ChannelValueClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import Box, { BoxProps } from '@mui/material/box';
+import Box, { BoxProps } from '@mui/material/Box';
 
 const useUtilityClasses = (ownerState: ChannelValueProps): Record<ChannelValueClassKey, string> => {
     const { classes } = ownerState;

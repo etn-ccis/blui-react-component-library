@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { DrawerProps as DrawerComponentProps } from '../Drawer/Drawer';
 import { DrawerLayoutContext } from './contexts/DrawerLayoutContextProvider';
 import { cx } from '@emotion/css';
-import Box, { BoxProps } from '@mui/material/box';
+import Box, { BoxProps } from '@mui/material/Box';
 import drawerLayoutClasses, {
     DrawerLayoutClasses,
     DrawerLayoutClassKey,
