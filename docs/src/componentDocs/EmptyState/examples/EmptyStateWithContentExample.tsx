@@ -2,7 +2,8 @@ import React from 'react';
 import ReportIcon from '@mui/icons-material/Report';
 import { EmptyState } from '@brightlayer-ui/react-components/core/EmptyState';
 import { ExampleShowcase } from '../../../shared';
-import { Link, Typography } from '@mui/material';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 
 export const EmptyStateWithContentExample = (): JSX.Element => (
     <ExampleShowcase>

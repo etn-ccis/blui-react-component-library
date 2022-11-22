@@ -3,7 +3,7 @@ import Divider from '@mui/material/Divider';
 import PropTypes from 'prop-types';
 import { cx } from '@emotion/css';
 import { getHeroBannerUtilityClass, HeroBannerClasses, HeroBannerClassKey } from './HeroBannerClasses';
-import { Box, BoxProps } from '@mui/material';
+import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 

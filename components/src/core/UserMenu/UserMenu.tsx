@@ -6,7 +6,7 @@ import Menu, { MenuProps as standardMenuProps } from '@mui/material/Menu';
 import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
-import { Box, BoxProps } from '@mui/material';
+import Box, { BoxProps } from '@mui/material/Box';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import userMenuClasses, { UserMenuClasses, UserMenuClassKey, getUserMenuUtilityClass } from './UserMenuClasses';
 

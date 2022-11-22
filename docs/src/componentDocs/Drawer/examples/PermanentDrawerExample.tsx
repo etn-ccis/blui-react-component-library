@@ -8,7 +8,7 @@ import {
     DrawerNavItem,
 } from '@brightlayer-ui/react-components';
 import { ExampleShowcase } from '../../../shared';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 export const PermanentDrawerExample = (): JSX.Element => (
     <ExampleShowcase>

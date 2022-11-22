@@ -1,20 +1,17 @@
 import React, { ChangeEvent, useCallback } from 'react';
-import {
-    Box,
-    ClickAwayListener,
-    Collapse,
-    IconButton,
-    Paper,
-    Slider,
-    Stack,
-    TextField as MuiTextField,
-    TextFieldProps as MuiTextFieldProps,
-} from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
 import { PropsType } from '../../../__types__';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import Paper from '@mui/material/Paper';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Slider from '@mui/material/Slider';
 
-type NumberPickerProps = MuiTextFieldProps & {
+type NumberPickerProps = TextFieldProps & {
     propData: PropsType;
 };
 
@@ -56,7 +53,7 @@ export const NumberPicker = (props: NumberPickerProps): JSX.Element => {
 
     return (
         <Box sx={{ position: 'relative' }}>
-            <MuiTextField
+            <TextField
                 {...textFieldProps}
                 onChange={(e): void => {
                     // only allow numeric values to be typed in

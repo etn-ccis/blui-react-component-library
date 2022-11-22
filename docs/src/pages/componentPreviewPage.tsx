@@ -1,9 +1,15 @@
 import React, { HTMLAttributes } from 'react';
-import { AppBar, IconButton, Toolbar, Typography, useTheme, useMediaQuery, Box } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import IconButton from '@mui/material/IconButton';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import Menu from '@mui/icons-material/Menu';
 import { ComponentPreviewTabs } from '../shared';
 import { toggleDrawer } from '../redux/appState';
 import { useAppDispatch } from '../redux/hooks';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export type ComponentPreviewPageProps = HTMLAttributes<HTMLDivElement> & {
     title: string;

@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import { UserMenu } from '@brightlayer-ui/react-components';
-import { Divider, Menu, MenuItem, Typography } from '@mui/material';
 import { ExampleShowcase } from '../../../shared';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 const tRex = require('../images/trex.png');
 
 export const UserMenuWithCustomHeaderExample = (): JSX.Element => {

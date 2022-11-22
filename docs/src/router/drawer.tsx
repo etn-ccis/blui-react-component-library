@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
-import { useMediaQuery, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate, useLocation } from 'react-router';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-components';
 import { pageDefinitions, RouteConfig } from '../__configuration__/navigationMenu/navigation';
