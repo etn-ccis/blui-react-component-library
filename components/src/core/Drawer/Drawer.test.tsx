@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Avatar from '@mui/material/Avatar';
 // import Typography from '@mui/material/Typography';
@@ -10,7 +10,7 @@ import { DrawerSubheader } from './DrawerSubheader';
 import { DrawerBody } from './DrawerBody';
 import { DrawerFooter } from './DrawerFooter';
 import { DrawerNavGroup } from './DrawerNavGroup';
-// import { InfoListItem } from '../InfoListItem';
+import { InfoListItem } from '../InfoListItem';
 import MoreVert from '@mui/icons-material/MoreVert';
 import { DrawerRailItem } from './DrawerRailItem';
 import { DrawerNavItem } from './DrawerNavItem';
@@ -41,11 +41,10 @@ describe('Drawer', () => {
                 </Drawer>
             </ThemeProvider>
         );
-
-        // expect(wrapper.find(DrawerHeader).length).toEqual(1);
-        // expect(wrapper.find(DrawerSubheader).length).toEqual(1);
-        // expect(wrapper.find(DrawerBody).length).toEqual(1);
-        // expect(wrapper.find(DrawerFooter).length).toEqual(1);
+        expect(screen.getByTestId('drawer-header')).toBeTruthy();
+        expect(screen.getByTestId('drawer-sub-header')).toBeTruthy();
+        expect(screen.getByTestId('drawer-body')).toBeTruthy();
+        expect(screen.getByTestId('drawer-footer')).toBeTruthy();
     });
 });
 
@@ -53,11 +52,11 @@ describe('DrawerHeader', () => {
     it('renders text correctly', () => {
         render(
             <ThemeProvider theme={theme}>
-                <DrawerHeader title={'foo'} subtitle={'bar'} />
+                <DrawerHeader title={'header title'} subtitle={'header subtitle'} />
             </ThemeProvider>
         );
-        // expect(findByTestId('drawer-header-title', wrapper).text()).toEqual('foo');
-        // expect(findByTestId('drawer-header-subtitle', wrapper).text()).toEqual('bar');
+        expect(screen.getByTestId('drawer-header-title')).toHaveTextContent('header title');
+        expect(screen.getByTestId('drawer-header-subtitle')).toHaveTextContent('header subtitle');
     });
 
     it('renders titleContent', () => {
@@ -66,7 +65,7 @@ describe('DrawerHeader', () => {
                 <DrawerHeader titleContent={<Avatar />} />
             </ThemeProvider>
         );
-        // expect(wrapper.find(Avatar).length).toEqual(1);
+        expect(screen.findByRole('icon')).toBeTruthy();
     });
 
     it('calls onIconClick', () => {
@@ -88,10 +87,10 @@ describe('DrawerNavGroup', () => {
     it('renders text correctly', () => {
         render(
             <ThemeProvider theme={theme}>
-                <DrawerNavGroup title={'foo'} items={[]} />
+                <DrawerNavGroup title={'nav group title'} items={[]} />
             </ThemeProvider>
         );
-        // expect(wrapper.text()).toEqual('foo');
+        expect(screen.getByTestId('drawer-nav-group')).toHaveTextContent('nav group title');
     });
 
     it('renders custom content correctly', () => {
@@ -100,7 +99,7 @@ describe('DrawerNavGroup', () => {
                 <DrawerNavGroup titleContent={<Avatar />} items={[]} />
             </ThemeProvider>
         );
-        // expect(wrapper.find(Avatar).length).toEqual(1);
+        expect(screen.findByRole('icon')).toBeTruthy();
     });
 
     it('renders rightComponent correctly', () => {
@@ -109,10 +108,7 @@ describe('DrawerNavGroup', () => {
                 <DrawerNavGroup items={[{ title: '', itemID: '', rightComponent: <MoreVert /> }]} />
             </ThemeProvider>
         );
-        // expect(wrapper.find(MoreVert).length).toEqual(1);
-
-        // wrapper = mountWithTheme(<DrawerNavGroup items={[{ title: '', itemID: '' }]} />, theme);
-        // expect(wrapper.find(MoreVert).length).toEqual(0);
+        expect(screen.getByTestId('MoreVertIcon')).toBeInTheDocument();
     });
 
     it('renders its menu items recursively in the correct order', () => {
@@ -234,20 +230,22 @@ it('inherits and overrides properties from Drawer', () => {
         <ThemeProvider theme={theme}>
             <Drawer activeItemBackgroundColor={'white'} divider={true} open={true}>
                 <DrawerBody>
-                    <DrawerNavGroup items={[{ title: '', itemID: '' }]} />
+                    <DrawerNavGroup items={[{ title: 'title 1', itemID: '' }]} />
                     <DrawerNavGroup
                         activeItemBackgroundColor={'black'}
                         divider={false}
-                        items={[{ title: '', itemID: '' }]}
+                        items={[{ title: 'title 2', itemID: '' }]}
                     />
                 </DrawerBody>
             </Drawer>
         </ThemeProvider>
     );
-    //     .find(DrawerBody);
-    //     const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
-    //     expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
-    //     expect(firstDrawerNavGroup.props.divider).toBeTruthy();
+    const firstDrawerNavGroup = screen.getByText(/title 1/i);
+
+    // const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
+    // expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
+    // expect(firstDrawerNavGroup.props.divider).toBeTruthy();
+
     //     const secondDrawerNavGroup = wrapper.find(DrawerNavGroup).get(1);
     //     expect(secondDrawerNavGroup.props.activeItemBackgroundColor).toEqual('black');
     //     expect(secondDrawerNavGroup.props.divider).toBeFalsy();
@@ -261,7 +259,8 @@ describe('DrawerRailItem', () => {
                 <DrawerRailItem title={'Test'} itemID={'test'} icon={<></>} />
             </ThemeProvider>
         );
-        // expect(wrapper.find(Typography).length).toEqual(1);
+        expect(screen.getByText('Test')).toBeTruthy();
+        expect(screen.getByText('Test')).toBeVisible();
     });
 
     it('renders no text for condensed', () => {
@@ -270,6 +269,7 @@ describe('DrawerRailItem', () => {
                 <DrawerRailItem condensed title={'Test'} itemID={'test'} icon={<></>} />
             </ThemeProvider>
         );
-        // expect(wrapper.find(Typography).length).toEqual(0);
+        expect(screen.queryByText('Test')).toBeFalsy();
+        expect(screen.queryByText('Test')).toBeNull();
     });
 });

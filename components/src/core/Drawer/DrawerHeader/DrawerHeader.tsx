@@ -223,6 +223,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         <>
             <Root
                 ref={ref}
+                data-testid={'drawer-header'}
                 className={cx(defaultClasses.root, classes.root)}
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}

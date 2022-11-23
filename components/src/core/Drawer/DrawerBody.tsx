@@ -71,6 +71,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
     return (
         <Root
             ref={ref}
+            data-testid={'drawer-body'}
             className={cx(defaultClasses.root, classes.root)}
             backgroundColor={backgroundColor}
             {...otherProps}

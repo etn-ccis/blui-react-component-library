@@ -28,7 +28,7 @@ describe('ToolbarMenu', () => {
         expect(screen.getByText('Subtitle')).toBeTruthy();
     });
 
-    it('renders with icon', () => {
+    it('renders label with icon', () => {
         render(
             <ThemeProvider theme={theme}>
                 <ToolbarMenu label="My Home" icon={<HomeIcon />} />
@@ -36,6 +36,17 @@ describe('ToolbarMenu', () => {
         );
         expect(screen.findByRole('icon')).toBeTruthy();
     });
+
+    it('renders menu onclick with icon', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <ToolbarMenu label="My Home" icon={<HomeIcon />} />
+            </ThemeProvider>
+        );
+        expect(screen.findByRole('icon')).toBeTruthy();
+        // need onclick to assert the onOpen event
+    });
+
     it('renders with menu group items', () => {
         render(
             <ThemeProvider theme={theme}>
