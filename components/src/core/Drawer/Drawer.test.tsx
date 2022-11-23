@@ -10,7 +10,7 @@ import { DrawerSubheader } from './DrawerSubheader';
 import { DrawerBody } from './DrawerBody';
 import { DrawerFooter } from './DrawerFooter';
 import { DrawerNavGroup } from './DrawerNavGroup';
-import { InfoListItem } from '../InfoListItem';
+// import { InfoListItem } from '../InfoListItem';
 import MoreVert from '@mui/icons-material/MoreVert';
 import { DrawerRailItem } from './DrawerRailItem';
 import { DrawerNavItem } from './DrawerNavItem';
@@ -240,7 +240,7 @@ it('inherits and overrides properties from Drawer', () => {
             </Drawer>
         </ThemeProvider>
     );
-    const firstDrawerNavGroup = screen.getByText(/title 1/i);
+    // const firstDrawerNavGroup = screen.getByText(/title 1/i);
 
     // const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
     // expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
