@@ -183,6 +183,7 @@ const Chevron = styled(ChevronRight, {
 const ActiveComponent = styled(Box, {
     name: 'drawer-nav-item',
     slot: 'active-component',
+    shouldForwardProp: (prop) => !['collapseIcon', 'expanded'].includes(prop.toString()),
 })<Pick<DrawerNavItemProps, 'collapseIcon'> & { expanded: boolean }>(({ collapseIcon, expanded, theme }) => ({
     transitionDuration: `${theme.transitions.duration.standard}ms`,
     cursor: 'inherit',
@@ -471,7 +472,6 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                             activeItemBackgroundShape={activeItemBackgroundShape}
                         />
                     )}
-                    {/* @ts-ignore issue in the @types/react@17.0.41: https://github.com/mui/material-ui/issues/31932 */}
                     <InfoListItemRoot
                         dense
                         title={itemTitle}

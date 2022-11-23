@@ -1,14 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ThemeProvider, Theme, createTheme, StyledEngineProvider } from '@mui/material/styles';
+import { ThemeProvider, createTheme, StyledEngineProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 import { ComponentPreviewPage } from './pages/componentPreviewPage';
 import { DrawerContext } from './contexts/drawerContextProvider';
-
-declare module '@mui/styles/defaultTheme' {
-    // eslint-disable-next-line
-    interface DefaultTheme extends Theme {}
-}
 
 test('renders welcome text', () => {
     render(

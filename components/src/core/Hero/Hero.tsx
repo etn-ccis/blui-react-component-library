@@ -56,26 +56,28 @@ const Root = styled(Box, { name: 'hero', slot: 'root' })<Pick<HeroProps, 'onClic
     cursor: onClick ? 'pointer' : 'inherit',
 }));
 
-const Icon = styled(Box, { name: 'hero', slot: 'icon' })<Pick<HeroProps, 'iconSize' | 'iconBackgroundColor'>>(
-    ({ iconSize, iconBackgroundColor, theme }) => ({
-        lineHeight: 1,
-        color: theme.palette.text.secondary,
-        marginBottom: '.5rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        padding: `.25rem ${theme.spacing(0.5)}`,
-        borderRadius: '50%',
-        fontSize: typeof iconSize === 'number' ? normalizeIconSize(iconSize) : iconSize,
-        height: typeof iconSize === 'number' ? Math.max(44, iconSize) : iconSize,
-        width: typeof iconSize === 'number' ? Math.max(44, iconSize) : iconSize,
-        backgroundColor: iconBackgroundColor,
-    })
-);
+const Icon = styled(Box, {
+    name: 'hero',
+    slot: 'icon',
+    shouldForwardProp: (prop) => !['iconSize', 'iconBackgroundColor'].includes(prop.toString()),
+})<Pick<HeroProps, 'iconSize' | 'iconBackgroundColor'>>(({ iconSize, iconBackgroundColor, theme }) => ({
+    lineHeight: 1,
+    color: theme.palette.text.secondary,
+    marginBottom: '.5rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    padding: `.25rem ${theme.spacing(0.5)}`,
+    borderRadius: '50%',
+    fontSize: typeof iconSize === 'number' ? normalizeIconSize(iconSize) : iconSize,
+    height: typeof iconSize === 'number' ? Math.max(44, iconSize) : iconSize,
+    width: typeof iconSize === 'number' ? Math.max(44, iconSize) : iconSize,
+    backgroundColor: iconBackgroundColor,
+}));
 
 const Values = styled(Box, { name: 'hero', slot: 'values' })(({ theme }) => ({
     display: 'flex',

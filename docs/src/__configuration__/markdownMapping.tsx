@@ -1,5 +1,4 @@
 import React, { HTMLAttributes } from 'react';
-import { Typography, TypographyProps, SvgIconProps, Box, TableProps } from '@mui/material';
 import { Link, LinkProps } from 'react-router-dom';
 import { getHash } from '../shared';
 import * as Colors from '@brightlayer-ui/colors';
@@ -8,6 +7,10 @@ import { cx } from '@emotion/css';
 
 import './markdown.css';
 import { BoxProps } from '@mui/system';
+import Typography, { TypographyProps } from '@mui/material/Typography';
+import { SvgIconProps } from '@mui/material/SvgIcon';
+import { TableProps } from '@mui/material/Table';
+import Box from '@mui/material/Box';
 
 export const ExternalLink = (tProps: TypographyProps<'a'>): JSX.Element => {
     const theme = useTheme();

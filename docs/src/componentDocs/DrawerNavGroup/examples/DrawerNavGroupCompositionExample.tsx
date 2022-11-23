@@ -1,7 +1,7 @@
 import React from 'react';
-import { Divider } from '@mui/material';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem } from '@brightlayer-ui/react-components';
 import { ExampleShowcase } from '../../../shared';
+import Divider from '@mui/material/Divider';
 
 export const DrawerNavGroupCompositionExample = (): JSX.Element => (
     <ExampleShowcase>

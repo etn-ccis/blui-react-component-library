@@ -6,7 +6,7 @@ import composeRefs from '@seznam/compose-react-refs';
 import { DrawerNavGroup, NavItem } from '../Drawer';
 import Menu, { MenuProps as standardMenuProps } from '@mui/material/Menu';
 import PropTypes from 'prop-types';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import Typography, { TypographyProps } from '@mui/material/Typography';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import toolbarMenuClasses, {

@@ -6,7 +6,7 @@ import { Menu } from '@mui/icons-material';
 import { AppBar, ToolbarMenu } from '@brightlayer-ui/react-components';
 import ListItemText from '@mui/material/ListItemText';
 import * as colors from '@brightlayer-ui/colors';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { ExampleShowcase } from '../../../shared';
 
 export const ToolbarMenuWithinToolbarExample = (): JSX.Element => (

@@ -9,8 +9,6 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { useTheme } from '@mui/material/styles';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox/Checkbox';
@@ -25,17 +23,6 @@ import Select from '@mui/material/Select/Select';
 import { ColorPicker } from './components/ColorPicker/ColorPicker.component';
 import { NumberPicker } from './components/NumberPicker/NumberPicker.component';
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        accordionRoot: {
-            boxShadow: 'none',
-            '&:before': {
-                display: 'none',
-            },
-        },
-    })
-);
-
 type Anchor = 'right';
 type DrawerProps = {
     drawerData: ComponentType;
@@ -45,7 +32,6 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     const componentName = DrawerData.componentName as string;
     const dispatch = useAppDispatch();
     const theme = useTheme();
-    const classes = useStyles(theme);
     const [state, setState] = React.useState({
         right: true,
     });
@@ -204,7 +190,15 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
         sectionNumber: number,
         groupType: string
     ): JSX.Element => (
-        <Accordion defaultExpanded={sectionNumber === 0} classes={{ root: classes.accordionRoot }}>
+        <Accordion
+            defaultExpanded={sectionNumber === 0}
+            sx={{
+                boxShadow: 'none',
+                '&:before': {
+                    display: 'none',
+                },
+            }}
+        >
             <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: 'primary.main' }} />}>
                 <Typography variant={'subtitle1'} color={'primary.main'}>
                     {headingTitle}

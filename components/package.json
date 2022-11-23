@@ -1,6 +1,6 @@
 {
     "name": "@brightlayer-ui/react-components",
-    "version": "6.1.1",
+    "version": "6.1.2-alpha.0",
     "description": "React components for Brightlayer UI applications",
     "scripts": {
         "test": "jest src",
@@ -13,22 +13,21 @@
     "prettier": "@brightlayer-ui/prettier-config",
     "dependencies": {
         "@brightlayer-ui/colors": "^3.1.1",
-        "@emotion/css": "^11.9.0",
+        "@emotion/css": "^11.10.5",
         "@seznam/compose-react-refs": "^1.0.6",
-        "color": "^4.2.1"
+        "color": "^4.2.3"
     },
     "devDependencies": {
-        "@brightlayer-ui/eslint-config": "^3.0.0",
-        "@brightlayer-ui/prettier-config": "^1.0.2",
-        "@brightlayer-ui/react-themes": "^7.0.0",
-        "@emotion/react": "^11.7.1",
-        "@emotion/styled": "^11.6.0",
-        "@mui/icons-material": "^5.3.1",
-        "@mui/material": "^5.4.1",
-        "@mui/styles": "^5.4.1",
+        "@brightlayer-ui/eslint-config": "^3.0.1",
+        "@brightlayer-ui/prettier-config": "^1.0.3",
+        "@brightlayer-ui/react-themes": "^7.1.0-alpha.0",
+        "@emotion/react": "^11.10.5",
+        "@emotion/styled": "^11.10.5",
+        "@mui/icons-material": "^5.10.9",
+        "@mui/material": "^5.10.13",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
-        "@types/color": "^3.0.1",
+        "@types/color": "^3.0.3",
         "@types/jest": "^27.0.0",
         "@types/node": "^16.11.63",
         "@types/react-dom": "^18.0.5",
@@ -44,10 +43,10 @@
         "jest-environment-jsdom": "^29.3.1",
         "npm": "^8.12.1",
         "prettier": "^2.2.0",
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "ts-jest": "^28.0.4",
-        "typescript": "^4.2.3"
+        "typescript": "^4.8.4"
     },
     "peerDependencies": {
         "@brightlayer-ui/colors": "^3.0.0",
@@ -55,7 +54,6 @@
         "@emotion/styled": "^11.6.0",
         "@mui/icons-material": "^5.3.1",
         "@mui/material": "^5.4.0",
-        "@mui/styles": "^5.3.0",
         "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
     },

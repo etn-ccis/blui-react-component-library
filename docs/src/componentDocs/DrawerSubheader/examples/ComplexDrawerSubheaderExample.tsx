@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Divider, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+
 import {
     Drawer,
     DrawerBody,
@@ -11,6 +11,12 @@ import {
 import * as colors from '@brightlayer-ui/colors';
 import { Copyright, Dashboard, LocationOn } from '@mui/icons-material';
 import { ExampleShowcase } from '../../../shared';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 
 export const ComplexDrawerSubheaderExample = (): JSX.Element => {
     const [selected, setSelected] = useState('blui');

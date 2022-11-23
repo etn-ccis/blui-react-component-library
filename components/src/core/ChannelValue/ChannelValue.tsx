@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
-import Typography from '@mui/material/Typography';
+import Typography, { TypographyProps } from '@mui/material/Typography';
 import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
-import { Box, BoxProps, TypographyProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import channelValueClasses, {
     ChannelValueClasses,
@@ -10,6 +9,7 @@ import channelValueClasses, {
     getChannelValueUtilityClass,
 } from './ChannelValueClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import Box, { BoxProps } from '@mui/material/Box';
 
 const useUtilityClasses = (ownerState: ChannelValueProps): Record<ChannelValueClassKey, string> => {
     const { classes } = ownerState;

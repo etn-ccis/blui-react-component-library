@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, BoxProps } from '@mui/material';
+import Box, { BoxProps } from '@mui/material/Box';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { SpacerClasses, getSpacerUtilityClass, SpacerClassKey } from './SpacerClasses';
 import { cx } from '@emotion/css';

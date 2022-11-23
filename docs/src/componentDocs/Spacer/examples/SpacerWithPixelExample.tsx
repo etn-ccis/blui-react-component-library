@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { Spacer } from '@brightlayer-ui/react-components';
 import * as colors from '@brightlayer-ui/colors';
 import { ExampleShowcase } from '../../../shared';

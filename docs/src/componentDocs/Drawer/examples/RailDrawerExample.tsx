@@ -3,7 +3,7 @@ import { Drawer, DrawerBody, DrawerLayout, DrawerNavGroup, DrawerRailItem } from
 import Gavel from '@mui/icons-material/Gavel';
 import { Devices, LocationOn } from '@mui/icons-material';
 import { ExampleShowcase } from '../../../shared';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 export const RailDrawerExample = (): JSX.Element => (
     <ExampleShowcase>

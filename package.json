@@ -46,7 +46,7 @@
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "codecov": "^3.8.1",
         "npm-license-crawler": "^0.2.1",
-        "prettier": "^2.7.1"
+        "prettier": "^2.8.0"
     },
     "prettier": "@brightlayer-ui/prettier-config"
 }
