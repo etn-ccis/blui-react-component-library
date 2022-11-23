@@ -1,7 +1,9 @@
 import React from 'react';
-import { Box, Toolbar, Typography } from '@mui/material';
 import { AppBar } from '@brightlayer-ui/react-components';
 import { getBodyFiller, ExampleShowcase } from '../../../shared';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
 export const AppBarExample = (): JSX.Element => (
     <ExampleShowcase sx={{ overflow: 'hidden' }}>

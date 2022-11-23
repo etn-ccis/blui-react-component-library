@@ -1,9 +1,11 @@
 import React from 'react';
-import { Box, IconButton, Toolbar } from '@mui/material';
 import { AppBar, Spacer, ThreeLiner } from '@brightlayer-ui/react-components';
 import { getBodyFiller, ExampleShowcase } from '../../../shared';
 import { Download, Menu, MoreVert, Search } from '@mui/icons-material';
 import BackgroundImage from '../images/farm.jpg';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Toolbar from '@mui/material/Toolbar';
 
 export const AppBarWithAdditionalContentExample = (): JSX.Element => (
     <ExampleShowcase sx={{ overflow: 'hidden' }}>

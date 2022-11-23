@@ -1,12 +1,15 @@
 import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
-import { Box, IconButton, Stack, TextField as MuiTextField, TextFieldProps as MuiTextFieldProps } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import { Colorize, QuestionMark } from '@mui/icons-material';
 import { PropsType } from '../../../__types__';
 import Color from 'color';
 import _debounce from 'lodash.debounce';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
-type ColorPickerProps = MuiTextFieldProps & {
+type ColorPickerProps = TextFieldProps & {
     propData: PropsType;
     allowMUIColors?: boolean;
 };
@@ -64,7 +67,7 @@ export const ColorPicker = (props: ColorPickerProps): JSX.Element => {
 
     return (
         <>
-            <MuiTextField
+            <TextField
                 {...textFieldProps}
                 onChange={(e): void => {
                     setColor(e.target.value);

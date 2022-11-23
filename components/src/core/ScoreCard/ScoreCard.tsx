@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import * as Colors from '@brightlayer-ui/colors';
 import PropTypes from 'prop-types';
-import { Box, BoxProps } from '@mui/material';
+import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { ScoreCardClasses, ScoreCardClassKey, getScoreCardUtilityClass } from './ScoreCardClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -96,6 +96,7 @@ const FlexColumn = styled(Box, {
 const Header = styled(Box, {
     name: 'score-card',
     slot: 'header',
+    shouldForwardProp: (prop) => !['headerColor', 'headerFontColor'].includes(prop.toString()),
 })<Pick<ScoreCardProps, 'headerColor' | 'headerFontColor'>>(({ headerColor, headerFontColor, theme }) => ({
     height: `6.25rem`,
     overflow: 'hidden',
@@ -146,6 +147,7 @@ const HeaderInfo = styled(Typography, {
 const HeaderBackground = styled(Box, {
     name: 'score-card',
     slot: 'header-background',
+    shouldForwardProp: (prop) => prop !== 'headerBackgroundImage',
 })<Pick<ScoreCardProps, 'headerBackgroundImage'>>(({ headerBackgroundImage }) => ({
     position: 'absolute',
     zIndex: 0,
@@ -176,6 +178,7 @@ const BodyWrapper = styled(Box, {
 const BadgeWrapper = styled(Box, {
     name: 'score-card',
     slot: 'badge-wrapper',
+    shouldForwardProp: (prop) => prop !== 'badgeOffset',
 })<Pick<ScoreCardProps, 'badgeOffset'>>(({ badgeOffset, theme }) => ({
     flex: '0 0 auto',
     marginRight: theme.spacing(2),

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Toolbar, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import { AppBar } from '@brightlayer-ui/react-components';
 import { getBodyFiller, ExampleShowcase } from '../../../shared';
 

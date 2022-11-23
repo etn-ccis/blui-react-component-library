@@ -72,7 +72,7 @@ export type DrawerHeaderProps = ToolbarProps & {
 const Root = styled(Toolbar, {
     name: 'drawer-header',
     slot: 'root',
-    shouldForwardProp: (prop) => prop !== 'backgroundColor' && prop !== 'fontColor',
+    shouldForwardProp: (prop) => !['backgroundColor', 'fontColor'].includes(prop.toString()),
 })<Pick<DrawerHeaderProps, 'backgroundColor' | 'fontColor'>>(({ backgroundColor, fontColor, theme }) => ({
     width: '100%',
     alignItems: 'center',
@@ -99,9 +99,11 @@ const Root = styled(Toolbar, {
     },
 }));
 
-const Background = styled(Box, { name: 'drawer-header', slot: 'background' })<
-    Pick<DrawerHeaderProps, 'backgroundImage' | 'backgroundOpacity'>
->(({ backgroundImage, backgroundOpacity }) => ({
+const Background = styled(Box, {
+    name: 'drawer-header',
+    slot: 'background',
+    shouldForwardProp: (prop) => !['backgroundImage', 'backgroundOpacity'].includes(prop.toString()),
+})<Pick<DrawerHeaderProps, 'backgroundImage' | 'backgroundOpacity'>>(({ backgroundImage, backgroundOpacity }) => ({
     position: 'absolute',
     zIndex: 0,
     width: '100%',
