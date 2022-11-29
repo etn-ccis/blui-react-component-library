@@ -83,7 +83,7 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
         <Root
             ref={ref}
             className={cx(defaultClasses.root, classes.root, userClassName)}
-            data-testid={'frame'}
+            data-testid={'empty-state-root'}
             {...otherProps}
         >
             {icon && <Icon className={cx(defaultClasses.icon, classes.icon)}>{icon}</Icon>}

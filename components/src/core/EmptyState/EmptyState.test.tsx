@@ -26,13 +26,13 @@ describe('EmptyState', () => {
         );
     });
 
-    it('renders with frame class', () => {
+    it('renders root empty state', () => {
         render(
             <ThemeProvider theme={theme}>
                 <EmptyState icon={<PersonIcon />} title="Test" />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('frame')).toBeTruthy();
+        expect(screen.getByTestId('empty-state-root')).toBeTruthy();
     });
 
     it('renders with icon', () => {
