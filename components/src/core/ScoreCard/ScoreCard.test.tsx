@@ -49,7 +49,7 @@ describe('ScoreCard', () => {
                 <ScoreCard headerTitle={'Test'} actionItems={[<MoreVert key={'icon1'} />]} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('action-item')).toBeTruthy();
+        expect(screen.getByTestId('blui-action-item')).toBeTruthy();
         expect(screen.findByRole('icon')).toBeTruthy();
 
         render(
@@ -61,7 +61,7 @@ describe('ScoreCard', () => {
                 />
             </ThemeProvider>
         );
-        expect(screen.getAllByTestId('action-item')).toHaveLength(3);
+        expect(screen.getAllByTestId('blui-action-item')).toHaveLength(3);
         // need to test 2 actionItems (actionLimit) are visible when 3 are in dom
     });
     it('renders correct header text color', () => {
@@ -70,7 +70,7 @@ describe('ScoreCard', () => {
                 <ScoreCard headerTitle={'Test'} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('header')).toHaveStyle(`color: #ffffff`);
+        expect(screen.getByTestId('blui-score-card-header')).toHaveStyle(`color: #ffffff`);
     });
     it('renders correct header text color when changed', () => {
         render(
@@ -78,7 +78,7 @@ describe('ScoreCard', () => {
                 <ScoreCard headerTitle={'Test'} headerFontColor={'red'} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('header')).toHaveStyle(`color: red`);
+        expect(screen.getByTestId('blui-score-card-header')).toHaveStyle(`color: red`);
     });
     it('renders body content', () => {
         render(
@@ -100,8 +100,8 @@ describe('ScoreCard', () => {
                 <ScoreCard headerTitle={'Test'} actionRow={<List title="View Location" />} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('content')).toBeTruthy();
-        expect(screen.getByTestId('card')).toBeTruthy();
+        expect(screen.getByTestId('blui-body-content')).toBeTruthy();
+        expect(screen.getByTestId('blui-score-card-root')).toBeTruthy();
         expect(screen.getByRole('heading')).toBeTruthy();
         expect(screen.getByRole('separator')).toBeTruthy();
         expect(screen.getByRole('list')).toBeTruthy();
@@ -112,9 +112,9 @@ describe('ScoreCard', () => {
                 <ScoreCard headerTitle={'Test'} badge={<HeroBanner />} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('content')).toBeTruthy();
-        expect(screen.getByTestId('body-wrapper')).toBeTruthy();
-        expect(screen.getByTestId('badge-wrapper')).toBeTruthy();
+        expect(screen.getByTestId('blui-body-content')).toBeTruthy();
+        expect(screen.getByTestId('blui-body-wrapper')).toBeTruthy();
+        expect(screen.getByTestId('blui-badge-wrapper')).toBeTruthy();
     });
     it('renders badge with offset', () => {
         render(
@@ -144,6 +144,6 @@ describe('ScoreCard', () => {
                 </ScoreCard>
             </ThemeProvider>
         );
-        expect(screen.getByTestId('badge-wrapper')).toHaveStyle(`margin-top: -54px`);
+        expect(screen.getByTestId('blui-badge-wrapper')).toHaveStyle(`margin-top: -54px`);
     });
 });

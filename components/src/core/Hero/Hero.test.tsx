@@ -24,7 +24,7 @@ describe('Hero', () => {
                 <Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('wrapper')).toBeTruthy();
+        expect(screen.getByTestId('blui-hero-root')).toBeTruthy();
     });
     it('renders without children', () => {
         render(

@@ -10,7 +10,7 @@ import { DrawerFooter } from './DrawerFooter';
 import { DrawerNavGroup } from './DrawerNavGroup';
 import MoreVert from '@mui/icons-material/MoreVert';
 import { DrawerRailItem } from './DrawerRailItem';
-import { DrawerNavItem } from './DrawerNavItem';
+// import { DrawerNavItem } from './DrawerNavItem';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 
@@ -38,10 +38,10 @@ describe('Drawer', () => {
                 </Drawer>
             </ThemeProvider>
         );
-        expect(screen.getByTestId('drawer-header')).toBeTruthy();
-        expect(screen.getByTestId('drawer-sub-header')).toBeTruthy();
-        expect(screen.getByTestId('drawer-body')).toBeTruthy();
-        expect(screen.getByTestId('drawer-footer')).toBeTruthy();
+        expect(screen.getByTestId('blui-drawer-header')).toBeTruthy();
+        expect(screen.getByTestId('blui-drawer-sub-header')).toBeTruthy();
+        expect(screen.getByTestId('blui-drawer-body')).toBeTruthy();
+        expect(screen.getByTestId('blui-drawer-footer')).toBeTruthy();
     });
 });
 
@@ -52,8 +52,8 @@ describe('DrawerHeader', () => {
                 <DrawerHeader title={'header title'} subtitle={'header subtitle'} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('drawer-header-title')).toHaveTextContent('header title');
-        expect(screen.getByTestId('drawer-header-subtitle')).toHaveTextContent('header subtitle');
+        expect(screen.getByTestId('blui-drawer-header-title')).toHaveTextContent('header title');
+        expect(screen.getByTestId('blui-drawer-header-subtitle')).toHaveTextContent('header subtitle');
     });
 
     it('renders titleContent', () => {
@@ -73,10 +73,10 @@ describe('DrawerHeader', () => {
     //             <DrawerHeader onIconClick={onIconClickFunction} icon={icon} />
     //         </ThemeProvider>
     //     );
-        // const renderedIcon = findByTestId('avatar', wrapper);
-        // expect(onIconClickFunction).not.toHaveBeenCalled();
-        // renderedIcon.simulate('click', { currentTarget: 'test' });
-        // expect(onIconClickFunction).toHaveBeenCalled();
+    // const renderedIcon = findByTestId('avatar', wrapper);
+    // expect(onIconClickFunction).not.toHaveBeenCalled();
+    // renderedIcon.simulate('click', { currentTarget: 'test' });
+    // expect(onIconClickFunction).toHaveBeenCalled();
     // });
 });
 
@@ -87,7 +87,7 @@ describe('DrawerNavGroup', () => {
                 <DrawerNavGroup title={'nav group title'} items={[]} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('drawer-nav-group')).toHaveTextContent('nav group title');
+        expect(screen.getByTestId('blui-drawer-nav-group')).toHaveTextContent('nav group title');
     });
 
     it('renders custom content correctly', () => {
@@ -148,24 +148,24 @@ describe('DrawerNavGroup', () => {
     //         </ThemeProvider>
     //     );
 
-        // const expectedNavItemTitleList = [
-        //     'a',
-        //     'b',
-        //     'b_0',
-        //     'b_0_0',
-        //     'b_0_1',
-        //     'b_1',
-        //     'b_1_0',
-        //     'c',
-        //     'c_0',
-        //     'c_0_0',
-        //     'c_0_1',
-        // ];
+    // const expectedNavItemTitleList = [
+    //     'a',
+    //     'b',
+    //     'b_0',
+    //     'b_0_0',
+    //     'b_0_1',
+    //     'b_1',
+    //     'b_1_0',
+    //     'c',
+    //     'c_0',
+    //     'c_0_0',
+    //     'c_0_1',
+    // ];
 
-        // const navItemList = wrapper.find(InfoListItem);
-        // expect(navItemList.length).toEqual(expectedNavItemTitleList.length);
-        // navItemList.forEach((item, index) => {
-        //     expect(item.prop('title')).toEqual(expectedNavItemTitleList[index]);
+    // const navItemList = wrapper.find(InfoListItem);
+    // expect(navItemList.length).toEqual(expectedNavItemTitleList.length);
+    // navItemList.forEach((item, index) => {
+    //     expect(item.prop('title')).toEqual(expectedNavItemTitleList[index]);
     // });
 });
 
@@ -201,25 +201,25 @@ describe('DrawerNavGroup', () => {
 //         </ThemeProvider>
 //     );
 
-    // const expectedNavItemTitleList = [
-    //     'a',
-    //     'b',
-    //     'b_0',
-    //     'b_0_0',
-    //     'b_0_1',
-    //     'b_1',
-    //     'b_1_0',
-    //     'c',
-    //     'c_0',
-    //     'c_0_0',
-    //     'c_0_1',
-    // ];
+// const expectedNavItemTitleList = [
+//     'a',
+//     'b',
+//     'b_0',
+//     'b_0_0',
+//     'b_0_1',
+//     'b_1',
+//     'b_1_0',
+//     'c',
+//     'c_0',
+//     'c_0_0',
+//     'c_0_1',
+// ];
 
-    // const navItemList = wrapper.find(InfoListItem);
-    // expect(navItemList.length).toEqual(expectedNavItemTitleList.length);
-    // navItemList.forEach((item, index) => {
-    //     expect(item.prop('title')).toEqual(expectedNavItemTitleList[index]);
-    // });
+// const navItemList = wrapper.find(InfoListItem);
+// expect(navItemList.length).toEqual(expectedNavItemTitleList.length);
+// navItemList.forEach((item, index) => {
+//     expect(item.prop('title')).toEqual(expectedNavItemTitleList[index]);
+// });
 // });
 
 // it('inherits and overrides properties from Drawer', () => {

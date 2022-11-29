@@ -48,7 +48,7 @@ const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (prop
     return (
         <Root
             ref={ref}
-            data-testid={'spacer-root'}
+            data-testid={'blui-spacer-root'}
             flex={flex}
             height={height}
             width={width}

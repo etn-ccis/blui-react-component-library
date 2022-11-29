@@ -285,7 +285,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 <ActionItems
                     key={`${index}`}
                     className={cx(defaultClasses.actionItems, classes.actionItems)}
-                    data-testid={'action-item'}
+                    data-testid={'blui-action-item'}
                 >
                     {actionItem}
                 </ActionItems>
@@ -299,7 +299,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 <BadgeWrapper
                     className={cx(defaultClasses.badgeWrapper, classes.badgeWrapper)}
                     badgeOffset={badgeOffset}
-                    data-testid={'badge-wrapper'}
+                    data-testid={'blui-badge-wrapper'}
                 >
                     {badge}
                 </BadgeWrapper>
@@ -322,11 +322,11 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         <Root
             ref={ref}
             className={cx(defaultClasses.root, classes.root, userClassName)}
-            data-testid={'card'}
+            data-testid={'blui-score-card-root'}
             {...otherCardProps}
         >
             <Header
-                data-testid={'header'}
+                data-testid={'blui-score-card-header'}
                 className={cx(defaultClasses.header, classes.header)}
                 headerColor={headerColor}
                 headerFontColor={headerFontColor}
@@ -337,10 +337,10 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                     {getActionItems()}
                 </HeaderContent>
             </Header>
-            <Content className={cx(defaultClasses.content, classes.content)} data-testid={'content'}>
+            <Content className={cx(defaultClasses.content, classes.content)} data-testid={'blui-body-content'}>
                 <BodyWrapper
                     className={cx(defaultClasses.bodyWrapper, classes.bodyWrapper)}
-                    data-testid={'body-wrapper'}
+                    data-testid={'blui-body-wrapper'}
                 >
                     {children}
                 </BodyWrapper>

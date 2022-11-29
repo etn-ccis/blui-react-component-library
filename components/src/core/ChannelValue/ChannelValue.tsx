@@ -145,7 +145,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                         color={'inherit'}
                         className={cx(defaultClasses.text, classes.text, defaultClasses.units, classes.units)}
                         isSuffix={applySuffix()}
-                        data-testid={'units'}
+                        data-testid={'blui-channel-value-units'}
                     >
                         {units}
                     </Unit>
@@ -160,13 +160,13 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
             component="span"
             ref={ref}
             className={cx(defaultClasses.root, classes.root, userClassName)}
-            data-test={'wrapper'}
+            data-testid={'blui-channel-value-root'}
             fontSize={fontSize}
             color={color}
             {...otherProps}
         >
             {icon && (
-                <IconSpan className={cx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
+                <IconSpan className={cx(defaultClasses.icon, classes.icon)} data-testid={'icon'}>
                     {changeIconDisplay(icon)}
                 </IconSpan>
             )}
@@ -175,7 +175,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                 variant={'h6'}
                 color={'inherit'}
                 className={cx(defaultClasses.text, classes.text, defaultClasses.value, classes.value)}
-                data-test={'value'}
+                data-testid={'blui-channel-value-value'}
                 isPrefix={applyPrefix()}
             >
                 {value}

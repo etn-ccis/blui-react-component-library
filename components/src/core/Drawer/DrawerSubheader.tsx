@@ -26,7 +26,7 @@ const DrawerSubheaderRender: React.ForwardRefRenderFunction<unknown, DrawerSubhe
         <>
             <div
                 ref={ref}
-                data-testid={'drawer-sub-header'}
+                data-testid={'blui-drawer-sub-header'}
                 style={{ visibility: drawerOpen || !hideContentOnCollapse ? 'inherit' : 'hidden' }}
                 {...otherDivProps}
             >

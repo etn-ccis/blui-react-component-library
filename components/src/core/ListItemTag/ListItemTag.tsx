@@ -88,7 +88,7 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
             variant={variant || 'overline'}
             className={cx(defaultClasses.root, { [defaultClasses.noVariant]: !variant }, userClassName)}
             classes={{ root: rootUserClass, ...otherUserClasses }}
-            data-testid={'list-item-tag'}
+            data-testid={'blui-list-item-tag'}
             {...otherTypographyProps}
         >
             {label}

@@ -32,7 +32,7 @@ describe('EmptyState', () => {
                 <EmptyState icon={<PersonIcon />} title="Test" />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('empty-state-root')).toBeTruthy();
+        expect(screen.getByTestId('blui-empty-state-root')).toBeTruthy();
     });
 
     it('renders with icon', () => {

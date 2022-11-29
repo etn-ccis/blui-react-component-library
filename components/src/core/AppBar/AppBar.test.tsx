@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { AppBar } from './AppBar';
-// import MuiAppBar from '@mui/material/AppBar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 import Typography from '@mui/material/Typography';
@@ -38,7 +37,7 @@ describe('AppBar', () => {
                 <AppBar variant="snap"></AppBar>
             </ThemeProvider>
         );
-        expect(screen.getByTestId('appbar-root')).toHaveStyle(`height: 200px`);
+        expect(screen.getByTestId('blui-appbar-root')).toHaveStyle(`height: 200px`);
     });
 
     it('should render at the correct collapsed height size', () => {
@@ -47,7 +46,7 @@ describe('AppBar', () => {
                 <AppBar variant="collapsed"></AppBar>
             </ThemeProvider>
         );
-        expect(screen.getByTestId('appbar-root')).toHaveStyle(`height: 4rem`);
+        expect(screen.getByTestId('blui-appbar-root')).toHaveStyle(`height: 4rem`);
     });
 
     it('should render at the correct expanded height size', () => {
@@ -56,6 +55,6 @@ describe('AppBar', () => {
                 <AppBar variant="expanded"></AppBar>
             </ThemeProvider>
         );
-        expect(screen.getByTestId('appbar-root')).toHaveStyle(`height: 200px`);
+        expect(screen.getByTestId('blui-appbar-root')).toHaveStyle(`height: 200px`);
     });
 });

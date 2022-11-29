@@ -41,7 +41,7 @@ describe('InfoListItem', () => {
                 />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('status-stripe')).toHaveStyle(`background-color: red`);
+        expect(screen.getByTestId('blui-status-stripe')).toHaveStyle(`background-color: red`);
         // this is blocked from testing right now. OffLIneBoltIcon has this style but fails in test
         // other tests should check avatar and icon colors that also fail.
         // expect(screen.getByTestId('OfflineBoltIcon')).toHaveStyle(`background-color: red`);

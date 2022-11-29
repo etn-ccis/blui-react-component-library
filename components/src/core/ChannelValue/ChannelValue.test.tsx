@@ -42,7 +42,7 @@ describe('ChannelValue', () => {
                 <ChannelValue value={1} units={'X'} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('units')).toBeTruthy();
+        expect(screen.getByTestId('blui-channel-value-units')).toBeTruthy();
         expect(screen.getByText('1')).toBeTruthy();
     });
 });

@@ -346,7 +346,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {statusColor !== undefined && statusColor !== '' && (
                 <StatusStripe
                     className={combine('statusStripe')}
-                    data-testid={'status-stripe'}
+                    data-testid={'blui-status-stripe'}
                     statusColor={statusColor}
                 />
             )}

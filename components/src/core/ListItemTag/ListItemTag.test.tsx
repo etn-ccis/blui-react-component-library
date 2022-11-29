@@ -25,7 +25,7 @@ describe('ListItemTag', () => {
                 <ListItemTag label={'test'} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('list-item-tag')).toBeTruthy();
+        expect(screen.getByTestId('blui-list-item-tag')).toBeTruthy();
     });
 
     it('renders the correct label text', () => {
@@ -45,8 +45,8 @@ describe('ListItemTag', () => {
                 <ListItemTag label={'test'} fontColor={fontColor} backgroundColor={backgroundColor} />
             </ThemeProvider>
         );
-        expect(screen.getByTestId('list-item-tag')).toBeTruthy();
-        expect(screen.getByTestId('list-item-tag')).toHaveStyle(`color: rgb(248, 213, 143)`);
-        expect(screen.getByTestId('list-item-tag')).toHaveStyle(`background-color: rgb(23, 142, 11)`);
+        expect(screen.getByTestId('blui-list-item-tag')).toBeTruthy();
+        expect(screen.getByTestId('blui-list-item-tag')).toHaveStyle(`color: rgb(248, 213, 143)`);
+        expect(screen.getByTestId('blui-list-item-tag')).toHaveStyle(`background-color: rgb(23, 142, 11)`);
     });
 });
