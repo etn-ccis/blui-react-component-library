@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Avatar from '@mui/material/Avatar';
 import { Drawer } from './Drawer';
@@ -65,19 +65,25 @@ describe('DrawerHeader', () => {
         expect(screen.findByRole('icon')).toBeTruthy();
     });
 
-    // it('calls onIconClick', () => {
-    //     const onIconClickFunction = jest.fn();
-    //     const icon = <Avatar data-test={'avatar'} />;
-    //     render(
-    //         <ThemeProvider theme={theme}>
-    //             <DrawerHeader onIconClick={onIconClickFunction} icon={icon} />
-    //         </ThemeProvider>
-    //     );
-    // const renderedIcon = findByTestId('avatar', wrapper);
-    // expect(onIconClickFunction).not.toHaveBeenCalled();
-    // renderedIcon.simulate('click', { currentTarget: 'test' });
-    // expect(onIconClickFunction).toHaveBeenCalled();
-    // });
+    it('calls onIconClick', () => {
+        const onIconClickFunction = jest.fn();
+        const icon = <Avatar data-testid={'avatar'} />;
+        render(
+            <ThemeProvider theme={theme}>
+                <DrawerHeader onIconClick={onIconClickFunction} icon={icon} />
+            </ThemeProvider>
+        );
+        const renderedIcon = screen.getByTestId('avatar');
+        expect(onIconClickFunction).not.toHaveBeenCalled();
+        fireEvent(
+            renderedIcon,
+            new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+            })
+        );
+        expect(onIconClickFunction).toHaveBeenCalled();
+    });
 });
 
 describe('DrawerNavGroup', () => {
@@ -239,14 +245,14 @@ describe('DrawerNavGroup', () => {
     //     );
     //     // const firstDrawerNavGroup = screen.getByText(/title 1/i);
 
-    //     // const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
-    //     // expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
-    //     // expect(firstDrawerNavGroup.props.divider).toBeTruthy();
+    // const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
+    // expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
+    // expect(firstDrawerNavGroup.props.divider).toBeTruthy();
 
-    //     //     const secondDrawerNavGroup = wrapper.find(DrawerNavGroup).get(1);
-    //     //     expect(secondDrawerNavGroup.props.activeItemBackgroundColor).toEqual('black');
-    //     //     expect(secondDrawerNavGroup.props.divider).toBeFalsy();
-    //     // });
+    //     const secondDrawerNavGroup = wrapper.find(DrawerNavGroup).get(1);
+    //     expect(secondDrawerNavGroup.props.activeItemBackgroundColor).toEqual('black');
+    //     expect(secondDrawerNavGroup.props.divider).toBeFalsy();
+    // });
 });
 
 describe('DrawerRailItem', () => {
