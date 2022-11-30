@@ -10,7 +10,7 @@ import { DrawerFooter } from './DrawerFooter';
 import { DrawerNavGroup } from './DrawerNavGroup';
 import MoreVert from '@mui/icons-material/MoreVert';
 import { DrawerRailItem } from './DrawerRailItem';
-// import { DrawerNavItem } from './DrawerNavItem';
+import { DrawerNavItem } from './DrawerNavItem';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 
@@ -108,146 +108,146 @@ describe('DrawerNavGroup', () => {
         expect(screen.getByTestId('MoreVertIcon')).toBeInTheDocument();
     });
 
-    // it('renders its menu items recursively in the correct order', () => {
+    it('renders its menu items recursively in the correct order', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <DrawerNavGroup
+                    items={[
+                        { title: 'a', itemID: 'a' },
+                        {
+                            title: 'b',
+                            itemID: 'b',
+                            items: [
+                                {
+                                    title: 'b_0',
+                                    itemID: 'b_0',
+                                    items: [
+                                        { title: 'b_0_0', itemID: 'b_0_0' },
+                                        { title: 'b_0_1', itemID: 'b_0_1' },
+                                    ],
+                                },
+                                { title: 'b_1', itemID: 'b_1', items: [{ title: 'b_1_0', itemID: 'b_1_0' }] },
+                            ],
+                        },
+                        {
+                            title: 'c',
+                            itemID: 'c',
+                            items: [
+                                {
+                                    title: 'c_0',
+                                    itemID: 'c_0',
+                                    items: [
+                                        { title: 'c_0_0', itemID: 'c_0_0' },
+                                        { title: 'c_0_1', itemID: 'c_0_1' },
+                                    ],
+                                },
+                            ],
+                        },
+                    ]}
+                />
+            </ThemeProvider>
+        );
+
+        const expectedNavItemTitleList = [
+            'a',
+            'b',
+            'b_0',
+            'b_0_0',
+            'b_0_1',
+            'b_1',
+            'b_1_0',
+            'c',
+            'c_0',
+            'c_0_0',
+            'c_0_1',
+        ];
+
+        const navItemList = screen.getAllByTestId('blui-drawer-nav-item');
+        expect(navItemList.length).toEqual(expectedNavItemTitleList.length);
+        navItemList.forEach((item, index) => {
+            expect(item).toHaveTextContent(expectedNavItemTitleList[index]);
+        });
+    });
+
+    it('renders its menu items declaratively in the correct order', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <DrawerNavGroup>
+                    <DrawerNavItem title={'a'} itemID={'a'} />
+                    <DrawerNavItem title={'b'} itemID={'b'}>
+                        <DrawerNavItem title={'b_0'} itemID={'b_0'}>
+                            <DrawerNavItem title={'b_0_0'} itemID={'b_0_0'} />
+                            <DrawerNavItem title={'b_0_1'} itemID={'b_0_1'} />
+                        </DrawerNavItem>
+                        <DrawerNavItem title={'b_1'} itemID={'b_1'}>
+                            <DrawerNavItem title={'b_1_0'} itemID={'b_1_0'} />
+                        </DrawerNavItem>
+                    </DrawerNavItem>
+                    <DrawerNavItem
+                        title={'c'}
+                        itemID={'c'}
+                        items={[
+                            {
+                                title: 'c_0',
+                                itemID: 'c_0',
+                                items: [
+                                    { title: 'c_0_0', itemID: 'c_0_0' },
+                                    { title: 'c_0_1', itemID: 'c_0_1' },
+                                ],
+                            },
+                        ]}
+                    />
+                </DrawerNavGroup>
+            </ThemeProvider>
+        );
+
+        const expectedNavItemTitleList = [
+            'a',
+            'b',
+            'b_0',
+            'b_0_0',
+            'b_0_1',
+            'b_1',
+            'b_1_0',
+            'c',
+            'c_0',
+            'c_0_0',
+            'c_0_1',
+        ];
+
+        const navItemList = screen.getAllByTestId('blui-drawer-nav-item');
+        expect(navItemList.length).toEqual(expectedNavItemTitleList.length);
+        navItemList.forEach((item, index) => {
+            expect(item).toHaveTextContent(expectedNavItemTitleList[index]);
+        });
+    });
+
+    // it('inherits and overrides properties from Drawer', () => {
     //     render(
     //         <ThemeProvider theme={theme}>
-    //             <DrawerNavGroup
-    //                 items={[
-    //                     { title: 'a', itemID: 'a' },
-    //                     {
-    //                         title: 'b',
-    //                         itemID: 'b',
-    //                         items: [
-    //                             {
-    //                                 title: 'b_0',
-    //                                 itemID: 'b_0',
-    //                                 items: [
-    //                                     { title: 'b_0_0', itemID: 'b_0_0' },
-    //                                     { title: 'b_0_1', itemID: 'b_0_1' },
-    //                                 ],
-    //                             },
-    //                             { title: 'b_1', itemID: 'b_1', items: [{ title: 'b_1_0', itemID: 'b_1_0' }] },
-    //                         ],
-    //                     },
-    //                     {
-    //                         title: 'c',
-    //                         itemID: 'c',
-    //                         items: [
-    //                             {
-    //                                 title: 'c_0',
-    //                                 itemID: 'c_0',
-    //                                 items: [
-    //                                     { title: 'c_0_0', itemID: 'c_0_0' },
-    //                                     { title: 'c_0_1', itemID: 'c_0_1' },
-    //                                 ],
-    //                             },
-    //                         ],
-    //                     },
-    //                 ]}
-    //             />
+    //             <Drawer activeItemBackgroundColor={'white'} divider={true} open={true}>
+    //                 <DrawerBody>
+    //                     <DrawerNavGroup items={[{ title: 'title 1', itemID: '' }]} />
+    //                     <DrawerNavGroup
+    //                         activeItemBackgroundColor={'black'}
+    //                         divider={false}
+    //                         items={[{ title: 'title 2', itemID: '' }]}
+    //                     />
+    //                 </DrawerBody>
+    //             </Drawer>
     //         </ThemeProvider>
     //     );
+    //     // const firstDrawerNavGroup = screen.getByText(/title 1/i);
 
-    // const expectedNavItemTitleList = [
-    //     'a',
-    //     'b',
-    //     'b_0',
-    //     'b_0_0',
-    //     'b_0_1',
-    //     'b_1',
-    //     'b_1_0',
-    //     'c',
-    //     'c_0',
-    //     'c_0_0',
-    //     'c_0_1',
-    // ];
+    //     // const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
+    //     // expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
+    //     // expect(firstDrawerNavGroup.props.divider).toBeTruthy();
 
-    // const navItemList = wrapper.find(InfoListItem);
-    // expect(navItemList.length).toEqual(expectedNavItemTitleList.length);
-    // navItemList.forEach((item, index) => {
-    //     expect(item.prop('title')).toEqual(expectedNavItemTitleList[index]);
-    // });
+    //     //     const secondDrawerNavGroup = wrapper.find(DrawerNavGroup).get(1);
+    //     //     expect(secondDrawerNavGroup.props.activeItemBackgroundColor).toEqual('black');
+    //     //     expect(secondDrawerNavGroup.props.divider).toBeFalsy();
+    //     // });
 });
-
-// it('renders its menu items declaratively in the correct order', () => {
-//     render(
-//         <ThemeProvider theme={theme}>
-//             <DrawerNavGroup>
-//                 <DrawerNavItem title={'a'} itemID={'a'} />
-//                 <DrawerNavItem title={'b'} itemID={'b'}>
-//                     <DrawerNavItem title={'b_0'} itemID={'b_0'}>
-//                         <DrawerNavItem title={'b_0_0'} itemID={'b_0_0'} />
-//                         <DrawerNavItem title={'b_0_1'} itemID={'b_0_1'} />
-//                     </DrawerNavItem>
-//                     <DrawerNavItem title={'b_1'} itemID={'b_1'}>
-//                         <DrawerNavItem title={'b_1_0'} itemID={'b_1_0'} />
-//                     </DrawerNavItem>
-//                 </DrawerNavItem>
-//                 <DrawerNavItem
-//                     title={'c'}
-//                     itemID={'c'}
-//                     items={[
-//                         {
-//                             title: 'c_0',
-//                             itemID: 'c_0',
-//                             items: [
-//                                 { title: 'c_0_0', itemID: 'c_0_0' },
-//                                 { title: 'c_0_1', itemID: 'c_0_1' },
-//                             ],
-//                         },
-//                     ]}
-//                 />
-//             </DrawerNavGroup>
-//         </ThemeProvider>
-//     );
-
-// const expectedNavItemTitleList = [
-//     'a',
-//     'b',
-//     'b_0',
-//     'b_0_0',
-//     'b_0_1',
-//     'b_1',
-//     'b_1_0',
-//     'c',
-//     'c_0',
-//     'c_0_0',
-//     'c_0_1',
-// ];
-
-// const navItemList = wrapper.find(InfoListItem);
-// expect(navItemList.length).toEqual(expectedNavItemTitleList.length);
-// navItemList.forEach((item, index) => {
-//     expect(item.prop('title')).toEqual(expectedNavItemTitleList[index]);
-// });
-// });
-
-// it('inherits and overrides properties from Drawer', () => {
-//     render(
-//         <ThemeProvider theme={theme}>
-//             <Drawer activeItemBackgroundColor={'white'} divider={true} open={true}>
-//                 <DrawerBody>
-//                     <DrawerNavGroup items={[{ title: 'title 1', itemID: '' }]} />
-//                     <DrawerNavGroup
-//                         activeItemBackgroundColor={'black'}
-//                         divider={false}
-//                         items={[{ title: 'title 2', itemID: '' }]}
-//                     />
-//                 </DrawerBody>
-//             </Drawer>
-//         </ThemeProvider>
-//     );
-//     // const firstDrawerNavGroup = screen.getByText(/title 1/i);
-
-//     // const firstDrawerNavGroup = wrapper.find(DrawerNavGroup).get(0);
-//     // expect(firstDrawerNavGroup.props.activeItemBackgroundColor).toEqual('white');
-//     // expect(firstDrawerNavGroup.props.divider).toBeTruthy();
-
-//     //     const secondDrawerNavGroup = wrapper.find(DrawerNavGroup).get(1);
-//     //     expect(secondDrawerNavGroup.props.activeItemBackgroundColor).toEqual('black');
-//     //     expect(secondDrawerNavGroup.props.divider).toBeFalsy();
-//     // });
-// });
 
 describe('DrawerRailItem', () => {
     it('renders text at full size', () => {

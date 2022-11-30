@@ -503,6 +503,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         drawerOpen={drawerOpen}
                         active={active}
                         ListItemButtonProps={{ ...RippleProps }}
+                        data-testid={'blui-drawer-nav-item'}
                         {...InfoListItemProps}
                         classes={Object.assign(infoListItemClasses, InfoListItemProps.classes)}
                     />
