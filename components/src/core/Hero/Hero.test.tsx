@@ -44,7 +44,9 @@ describe('Hero', () => {
                 </Hero>
             </ThemeProvider>
         );
-        const spanElements = screen.getAllByRole('heading');
-        expect(spanElements).toHaveLength(2);
+        expect(screen.getByTestId('blui-hero-root')).toBeTruthy();
+        expect(screen.queryAllByTestId('blui-channel-value-value')).toBeTruthy();
+        expect(screen.getByText('test')).toBeTruthy();
+        expect(screen.findByRole('icon')).toBeTruthy();
     });
 });

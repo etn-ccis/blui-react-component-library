@@ -66,11 +66,5 @@ describe('EmptyState', () => {
             </ThemeProvider>
         );
         expect(screen.getByRole('button', { name: /test/i })).toBeTruthy();
-        render(
-            <ThemeProvider theme={theme}>
-                <EmptyState icon={<PersonIcon />} title="Test" description="Test Description" />
-            </ThemeProvider>
-        );
-        // expect(screen.getByRole('button')).not.toBeInTheDocument();
     });
 });
