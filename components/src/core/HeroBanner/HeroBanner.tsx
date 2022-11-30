@@ -44,7 +44,12 @@ const HeroBannerRender: React.ForwardRefRenderFunction<unknown, HeroBannerProps>
     const isArray = Array.isArray(props.children);
     return (
         <>
-            <Root ref={ref} className={cx(defaultClasses.root, classes.root, userClassName)} {...otherProps}>
+            <Root
+                ref={ref}
+                data-testid={'blui-hero-banner-root'}
+                className={cx(defaultClasses.root, classes.root, userClassName)}
+                {...otherProps}
+            >
                 {props.children &&
                     isArray &&
                     (props.children as React.ReactNode[]).slice(0, limit).map((child: any) => child)}

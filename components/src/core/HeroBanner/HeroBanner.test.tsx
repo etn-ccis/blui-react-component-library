@@ -30,7 +30,9 @@ describe('HeroBanner', () => {
                 </HeroBanner>
             </ThemeProvider>
         );
-        const spanElements = screen.getAllByRole('heading');
-        expect(spanElements).toHaveLength(8);
+        expect(screen.getByTestId('blui-hero-banner-root')).toBeTruthy();
+        expect(screen.queryAllByTestId('blui-hero-root')).toBeTruthy();
+        expect(screen.queryAllByTestId('blui-channel-value-value')).toHaveLength(4);
+        expect(screen.queryAllByTestId('blui-channel-value-units')).toHaveLength(4);
     });
 });
