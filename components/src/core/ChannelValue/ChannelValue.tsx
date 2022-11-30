@@ -166,7 +166,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
             {...otherProps}
         >
             {icon && (
-                <IconSpan className={cx(defaultClasses.icon, classes.icon)} data-testid={'icon'}>
+                <IconSpan className={cx(defaultClasses.icon, classes.icon)} data-testid={'blui-channel-value-icon'}>
                     {changeIconDisplay(icon)}
                 </IconSpan>
             )}
