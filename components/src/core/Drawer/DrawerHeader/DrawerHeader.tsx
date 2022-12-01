@@ -189,7 +189,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                         noWrap
                         variant={'h6'}
                         className={cx(defaultClasses.title, classes.title)}
-                        data-test={'drawer-header-title'}
+                        data-testid={'blui-drawer-header-title'}
                     >
                         {title}
                     </Title>
@@ -199,7 +199,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                             noWrap
                             variant={'body2'}
                             className={cx(defaultClasses.subtitle, classes.subtitle)}
-                            data-test={'drawer-header-subtitle'}
+                            data-testid={'blui-drawer-header-subtitle'}
                         >
                             {subtitle}
                         </Subtitle>
@@ -225,6 +225,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         <>
             <Root
                 ref={ref}
+                data-testid={'blui-drawer-header'}
                 className={cx(defaultClasses.root, classes.root)}
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}

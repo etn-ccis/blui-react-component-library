@@ -77,6 +77,7 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
             {divider && <Divider />}
             <Root
                 ref={ref}
+                data-testid={'blui-drawer-footer'}
                 className={cx(
                     defaultClasses.root,
                     classes.root,

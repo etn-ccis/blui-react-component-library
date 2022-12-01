@@ -1,74 +1,60 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import * as Enzyme from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { mountWithTheme } from '../test-utils';
+import { render, screen, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { AppBar } from './AppBar';
-import MuiAppBar from '@mui/material/AppBar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
+import Typography from '@mui/material/Typography';
 
 const theme = createTheme(BLUIThemes.blue);
 
-Enzyme.configure({ adapter: new Adapter() });
+afterEach(cleanup);
 
 describe('AppBar', () => {
     it('should render without crashing', () => {
-        const div = document.createElement('div');
-        const root = createRoot(div);
-        root.render(
+        render(
             <ThemeProvider theme={theme}>
                 <AppBar />
             </ThemeProvider>
         );
     });
 
-    it('should render at the correct default sizes', () => {
-        // Dynamic
-        let appbar = mountWithTheme(<AppBar />, theme);
-        let muiAppbar = appbar.find(MuiAppBar);
-        let height = muiAppbar.props().style.height;
-        expect(height).toEqual(200);
-
-        // Collapsed
-        appbar = mountWithTheme(<AppBar variant={'collapsed'} />, theme);
-        muiAppbar = appbar.find(MuiAppBar);
-        height = muiAppbar.props().style.height;
-        expect(height).toEqual('4rem');
-
-        // Expanded
-        appbar = mountWithTheme(<AppBar variant={'expanded'} />, theme);
-        muiAppbar = appbar.find(MuiAppBar);
-        height = muiAppbar.props().style.height;
-        expect(height).toEqual(200);
+    it('should render Typography title', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <AppBar>
+                    <Typography variant="h6">AppBar</Typography>
+                </AppBar>
+            </ThemeProvider>
+        );
+        const divElement = screen.getByText(/AppBar/i);
+        expect(divElement).toBeTruthy();
     });
 
-    it('should render at the correct custom sizes', () => {
-        // Dynamic
-        let appbar = mountWithTheme(<AppBar expandedHeight={300} collapsedHeight={100} />, theme);
-        let muiAppbar = appbar.find(MuiAppBar);
-        let height = muiAppbar.props().style.height;
-        expect(height).toEqual(300);
-
-        // Collapsed
-        appbar = mountWithTheme(<AppBar variant={'collapsed'} expandedHeight={300} collapsedHeight={100} />, theme);
-        muiAppbar = appbar.find(MuiAppBar);
-        height = muiAppbar.props().style.height;
-        expect(height).toEqual(100);
-
-        // Expanded
-        appbar = mountWithTheme(<AppBar variant={'expanded'} expandedHeight={300} collapsedHeight={100} />, theme);
-        muiAppbar = appbar.find(MuiAppBar);
-        height = muiAppbar.props().style.height;
-        expect(height).toEqual(300);
+    it('should render at the correct default size', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <AppBar variant="snap"></AppBar>
+            </ThemeProvider>
+        );
+        expect(screen.getByTestId('blui-appbar-root')).toHaveStyle(`height: 200px`);
     });
 
-    // TESTS FOR CYPRESS
-    // 1. should be the correct size on underscroll
-    // 1a: underscrolled should be min height
-    // 1b. with custom size
-    // 2. should be the correect size on overscroll
-    // 2a. overscrolled should be max height
-    // 2b. with custom size
-    // 3. should be the correct size on partial scroll
+    it('should render at the correct collapsed height size', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <AppBar variant="collapsed"></AppBar>
+            </ThemeProvider>
+        );
+        expect(screen.getByTestId('blui-appbar-root')).toHaveStyle(`height: 4rem`);
+    });
+
+    it('should render at the correct expanded height size', () => {
+        render(
+            <ThemeProvider theme={theme}>
+                <AppBar variant="expanded"></AppBar>
+            </ThemeProvider>
+        );
+        expect(screen.getByTestId('blui-appbar-root')).toHaveStyle(`height: 200px`);
+    });
 });

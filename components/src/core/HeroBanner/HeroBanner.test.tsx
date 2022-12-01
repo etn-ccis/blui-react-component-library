@@ -1,38 +1,38 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import { render, screen, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { HeroBanner } from './HeroBanner';
 import { Hero } from '../Hero';
-import Enzyme from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
-import { mountWithTheme } from '../test-utils';
 
 const theme = createTheme(BLUIThemes.blue);
 
-Enzyme.configure({ adapter: new Adapter() });
+afterEach(cleanup);
 
 describe('HeroBanner', () => {
     test('renders without crashing', () => {
-        const div = document.createElement('div');
-        const root = createRoot(div);
-        root.render(
+        render(
             <ThemeProvider theme={theme}>
                 <HeroBanner />,
             </ThemeProvider>
         );
     });
     it('renders only 4 children', () => {
-        const hero = mountWithTheme(
-            <HeroBanner>
-                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
-                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
-                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
-                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
-                <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
-            </HeroBanner>,
-            theme
+        render(
+            <ThemeProvider theme={theme}>
+                <HeroBanner>
+                    <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
+                    <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
+                    <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
+                    <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
+                    <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
+                </HeroBanner>
+            </ThemeProvider>
         );
-        expect(hero.find(Hero).length).toEqual(4);
+        expect(screen.getByTestId('blui-hero-banner-root')).toBeTruthy();
+        expect(screen.queryAllByTestId('blui-hero-root')).toBeTruthy();
+        expect(screen.queryAllByTestId('blui-channel-value-value')).toHaveLength(4);
+        expect(screen.queryAllByTestId('blui-channel-value-units')).toHaveLength(4);
     });
 });

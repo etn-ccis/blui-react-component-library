@@ -215,7 +215,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                     userClassName,
                     menuGroups || menu ? defaultClasses.cursorPointer : ''
                 )}
-                data-test={'wrapper'}
+                data-testid={'blui-menu-root'}
                 onClick={(): void => {
                     openMenu(anchor.current);
                 }}
@@ -224,7 +224,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                     <ToolbarMenuIcon
                         component={'span'}
                         className={cx(defaultClasses.icon, classes.icon)}
-                        data-test={'icon'}
+                        data-testid={'blui-toolbar-menu-icon'}
                     >
                         {icon}
                     </ToolbarMenuIcon>
@@ -232,13 +232,13 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 <ToolbarMenuLabel
                     component={'span'}
                     className={cx(defaultClasses.label, classes.label)}
-                    data-test={'label'}
+                    data-testid={'blui-toolbar-menu-label'}
                 >
                     {label || ''}
                 </ToolbarMenuLabel>
                 {(menuGroups || menu) && (
                     <DropDownArrow
-                        data-test={'arrow-dropdown'}
+                        data-testid={'blui-arrow-dropdown'}
                         className={cx(
                             defaultClasses.dropdownArrow,
                             classes.dropdownArrow,

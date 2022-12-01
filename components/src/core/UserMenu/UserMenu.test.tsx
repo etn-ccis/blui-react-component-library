@@ -1,51 +1,60 @@
-import Avatar from '@mui/material/Avatar';
-import SendIcon from '@mui/icons-material/Send';
-import Enzyme from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { findByTestId, mountWithTheme } from '../test-utils';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { UserMenu } from './UserMenu';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Avatar from '@mui/material/Avatar';
+import SendIcon from '@mui/icons-material/Send';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 
 const theme = createTheme(BLUIThemes.blue);
 
-Enzyme.configure({ adapter: new Adapter() });
+afterEach(cleanup);
 
 describe('User Menu', () => {
     it('renders without crashing', () => {
-        const div = document.createElement('div');
-        const root = createRoot(div);
-        const avatar = <Avatar />;
-        root.render(
+        render(
             <ThemeProvider theme={theme}>
-                <UserMenu avatar={avatar} />
+                <UserMenu avatar={<Avatar>AV</Avatar>} />
             </ThemeProvider>
         );
     });
 
     it('renders with icon', () => {
-        const avatar = (
-            <Avatar data-test={'avatar'}>
-                <SendIcon data-test={'send-icon'} />
-            </Avatar>
+        render(
+            <ThemeProvider theme={theme}>
+                <Avatar>
+                    <SendIcon />
+                </Avatar>
+            </ThemeProvider>
         );
-        const wrapper = mountWithTheme(<UserMenu avatar={avatar} />, theme);
-        expect(findByTestId('send-icon', wrapper).length).toEqual(1);
+        expect(screen.getByTestId('SendIcon')).toBeTruthy();
     });
 
     it('runs onOpen function when avatar is clicked', () => {
-        const onOpen = jest.fn();
-        const avatar = (
-            <Avatar data-test={'avatar'}>
-                <SendIcon />
-            </Avatar>
+        render(
+            <ThemeProvider theme={theme}>
+                <UserMenu
+                    avatar={<Avatar>MH</Avatar>}
+                    menuGroups={[
+                        {
+                            items: [
+                                {
+                                    title: 'Settings',
+                                    icon: <SendIcon />,
+                                },
+                            ],
+                        },
+                    ]}
+                    menuTitle="Sample Title"
+                    menuSubtitle="Sample Subtitle"
+                />
+            </ThemeProvider>
         );
-        const wrapper = mountWithTheme(<UserMenu onOpen={onOpen} avatar={avatar} />, theme);
-        const renderedAvatar = findByTestId('avatar', wrapper);
-        expect(onOpen).not.toHaveBeenCalled();
-        renderedAvatar.simulate('click', { currentTarget: 'test' });
-        expect(onOpen).toHaveBeenCalled();
+        // const onOpen = jest.fn();
+        const renderedAvatar = screen.getByText('MH');
+        fireEvent.click(renderedAvatar);
+        // expect(onOpen).toHaveBeenCalled();
+        expect(screen.getByText('Settings')).toBeTruthy();
     });
 });
