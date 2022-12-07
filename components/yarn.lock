@@ -331,7 +331,7 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-themes@^7.1.0-alpha.0":
+"@brightlayer-ui/react-themes@^7.1.0":
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-7.1.0.tgz#09519522ab192cdb16c47c2d15ccd238d0fc8c5e"
   integrity sha512-zAESyIZJmGAcRDHwX2nB26gsloQ53Kx9FGb4I4bPdDf3Ragbaio/Is03/3CRCim5qCVwjcDqq/iy4iDqg1Q9BQ==

@@ -1,6 +1,6 @@
 {
     "name": "@brightlayer-ui/react-components",
-    "version": "6.1.2-alpha.0",
+    "version": "6.1.2",
     "description": "React components for Brightlayer UI applications",
     "scripts": {
         "test": "jest src",
@@ -20,7 +20,7 @@
     "devDependencies": {
         "@brightlayer-ui/eslint-config": "^3.0.1",
         "@brightlayer-ui/prettier-config": "^1.0.3",
-        "@brightlayer-ui/react-themes": "^7.1.0-alpha.0",
+        "@brightlayer-ui/react-themes": "^7.1.0",
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
         "@mui/icons-material": "^5.10.9",
