@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider } from '@mui/material';
+import Divider from '@mui/material/Divider';
 import { Drawer, DrawerBody, DrawerNavGroup, DrawerNavItem, Spacer } from '@brightlayer-ui/react-components';
 import { ExampleShowcase } from '../../../shared';
 

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { cx } from '@emotion/css';
-import { Box, BoxProps } from '@mui/material';
+import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { ThreeLinerClasses, ThreeLinerClassKey, getThreeLinerUtilityClass } from './ThreeLinerClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -41,6 +41,7 @@ export type ThreeLinerProps = BoxProps & {
 const Root = styled(Box, {
     name: 'three-liner',
     slot: 'root',
+    shouldForwardProp: (prop) => !['animationDuration'].includes(prop.toString()),
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
     display: 'flex',
     height: '100%',
@@ -55,6 +56,7 @@ const Root = styled(Box, {
 const Title = styled(Box, {
     name: 'three-liner',
     slot: 'title',
+    shouldForwardProp: (prop) => !['animationDuration'].includes(prop.toString()),
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
     fontSize: '1.875rem',
     transition: theme.transitions.create(['all'], {
@@ -66,6 +68,7 @@ const Title = styled(Box, {
 const Subtitle = styled(Box, {
     name: 'three-liner',
     slot: 'subtitle',
+    shouldForwardProp: (prop) => !['animationDuration'].includes(prop.toString()),
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
     fontSize: '1rem',
     transition: theme.transitions.create(['all'], {
@@ -77,6 +80,7 @@ const Subtitle = styled(Box, {
 const Info = styled(Box, {
     name: 'three-liner',
     slot: 'info',
+    shouldForwardProp: (prop) => !['animationDuration'].includes(prop.toString()),
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
     fontSize: '0.875rem',
     transition: theme.transitions.create(['all'], {

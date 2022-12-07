@@ -1,42 +1,52 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { findByTestId, mountWithTheme } from '../test-utils';
+import { render, screen, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Hero } from './Hero';
 import { ChannelValue } from '../ChannelValue';
-import Enzyme from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as BLUIThemes from '@brightlayer-ui/react-themes';
 
 const theme = createTheme(BLUIThemes.blue);
 
-Enzyme.configure({ adapter: new Adapter() });
+afterEach(cleanup);
+
 describe('Hero', () => {
     it('renders without crashing', () => {
-        const div = document.createElement('div');
-        const root = createRoot(div);
-        root.render(
+        render(
             <ThemeProvider theme={theme}>
                 <Hero icon={'A'} label={'Healthy'} ChannelValueProps={{ value: '96', units: '/100' }} />
             </ThemeProvider>
         );
     });
     it('should render with the wrapper class', () => {
-        const wrapper = mountWithTheme(<Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />, theme);
-        expect(findByTestId('wrapper', wrapper)).toBeTruthy();
+        render(
+            <ThemeProvider theme={theme}>
+                <Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />
+            </ThemeProvider>
+        );
+        expect(screen.getByTestId('blui-hero-root')).toBeTruthy();
     });
     it('renders without children', () => {
-        const wrapper = mountWithTheme(<Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />, theme);
-        expect(wrapper.find(ChannelValue).length).toEqual(1);
+        render(
+            <ThemeProvider theme={theme}>
+                <Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'} />
+            </ThemeProvider>
+        );
+        expect(screen.getByText('1')).toBeTruthy();
+        expect(screen.getByText('test')).toBeTruthy();
     });
     it('renders with children', () => {
-        const wrapper = mountWithTheme(
-            <Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'}>
-                <ChannelValue value={1} />
-                <ChannelValue value={1} />
-            </Hero>,
-            theme
+        render(
+            <ThemeProvider theme={theme}>
+                <Hero ChannelValueProps={{ value: '1' }} label={'test'} icon={'a'}>
+                    <ChannelValue value={1} />
+                    <ChannelValue value={1} />
+                </Hero>
+            </ThemeProvider>
         );
-        expect(wrapper.find(ChannelValue).length).toEqual(2);
+        expect(screen.getByTestId('blui-hero-root')).toBeTruthy();
+        expect(screen.queryAllByTestId('blui-channel-value-value')).toBeTruthy();
+        expect(screen.getByText('test')).toBeTruthy();
+        expect(screen.findByRole('icon')).toBeTruthy();
     });
 });

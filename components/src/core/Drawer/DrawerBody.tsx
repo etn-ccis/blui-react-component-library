@@ -71,6 +71,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
     return (
         <Root
             ref={ref}
+            data-testid={'blui-drawer-body'}
             className={cx(defaultClasses.root, classes.root)}
             backgroundColor={backgroundColor}
             {...otherProps}
@@ -84,7 +85,6 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
                 const groupProps: DrawerNavGroupProps = child.props;
 
                 return (
-                    /* @ts-ignore issue in the @types/react@17.0.41: https://github.com/mui/material-ui/issues/31932 */
                     <DrawerNavGroup
                         key={`NavGroup_${index}`}
                         {...groupProps}

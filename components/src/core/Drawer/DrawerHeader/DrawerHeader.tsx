@@ -72,7 +72,7 @@ export type DrawerHeaderProps = ToolbarProps & {
 const Root = styled(Toolbar, {
     name: 'drawer-header',
     slot: 'root',
-    shouldForwardProp: (prop) => prop !== 'backgroundColor' && prop !== 'fontColor',
+    shouldForwardProp: (prop) => !['backgroundColor', 'fontColor'].includes(prop.toString()),
 })<Pick<DrawerHeaderProps, 'backgroundColor' | 'fontColor'>>(({ backgroundColor, fontColor, theme }) => ({
     width: '100%',
     alignItems: 'center',
@@ -99,9 +99,11 @@ const Root = styled(Toolbar, {
     },
 }));
 
-const Background = styled(Box, { name: 'drawer-header', slot: 'background' })<
-    Pick<DrawerHeaderProps, 'backgroundImage' | 'backgroundOpacity'>
->(({ backgroundImage, backgroundOpacity }) => ({
+const Background = styled(Box, {
+    name: 'drawer-header',
+    slot: 'background',
+    shouldForwardProp: (prop) => !['backgroundImage', 'backgroundOpacity'].includes(prop.toString()),
+})<Pick<DrawerHeaderProps, 'backgroundImage' | 'backgroundOpacity'>>(({ backgroundImage, backgroundOpacity }) => ({
     position: 'absolute',
     zIndex: 0,
     width: '100%',
@@ -187,7 +189,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                         noWrap
                         variant={'h6'}
                         className={cx(defaultClasses.title, classes.title)}
-                        data-test={'drawer-header-title'}
+                        data-testid={'blui-drawer-header-title'}
                     >
                         {title}
                     </Title>
@@ -197,7 +199,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                             noWrap
                             variant={'body2'}
                             className={cx(defaultClasses.subtitle, classes.subtitle)}
-                            data-test={'drawer-header-subtitle'}
+                            data-testid={'blui-drawer-header-subtitle'}
                         >
                             {subtitle}
                         </Subtitle>
@@ -223,6 +225,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         <>
             <Root
                 ref={ref}
+                data-testid={'blui-drawer-header'}
                 className={cx(defaultClasses.root, classes.root)}
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}

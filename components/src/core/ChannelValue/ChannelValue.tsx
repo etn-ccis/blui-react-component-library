@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
-import Typography from '@mui/material/Typography';
+import Typography, { TypographyProps } from '@mui/material/Typography';
 import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
-import { Box, BoxProps, TypographyProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import channelValueClasses, {
     ChannelValueClasses,
@@ -10,6 +9,7 @@ import channelValueClasses, {
     getChannelValueUtilityClass,
 } from './ChannelValueClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import Box, { BoxProps } from '@mui/material/Box';
 
 const useUtilityClasses = (ownerState: ChannelValueProps): Record<ChannelValueClassKey, string> => {
     const { classes } = ownerState;
@@ -145,7 +145,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                         color={'inherit'}
                         className={cx(defaultClasses.text, classes.text, defaultClasses.units, classes.units)}
                         isSuffix={applySuffix()}
-                        data-test={'units'}
+                        data-testid={'blui-channel-value-units'}
                     >
                         {units}
                     </Unit>
@@ -160,13 +160,13 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
             component="span"
             ref={ref}
             className={cx(defaultClasses.root, classes.root, userClassName)}
-            data-test={'wrapper'}
+            data-testid={'blui-channel-value-root'}
             fontSize={fontSize}
             color={color}
             {...otherProps}
         >
             {icon && (
-                <IconSpan className={cx(defaultClasses.icon, classes.icon)} data-test={'icon'}>
+                <IconSpan className={cx(defaultClasses.icon, classes.icon)} data-testid={'blui-channel-value-icon'}>
                     {changeIconDisplay(icon)}
                 </IconSpan>
             )}
@@ -175,7 +175,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                 variant={'h6'}
                 color={'inherit'}
                 className={cx(defaultClasses.text, classes.text, defaultClasses.value, classes.value)}
-                data-test={'value'}
+                data-testid={'blui-channel-value-value'}
                 isPrefix={applyPrefix()}
             >
                 {value}

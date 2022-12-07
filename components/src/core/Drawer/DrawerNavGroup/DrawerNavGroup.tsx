@@ -246,6 +246,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         <NavGroupContext.Provider value={{ activeHierarchy: activeHierarchyItems }}>
             <Root
                 ref={ref}
+                data-testid={'blui-drawer-nav-group'}
                 className={cx(defaultClasses.root, classes.root, userClassName)}
                 subheader={
                     variant !== 'rail' && (
