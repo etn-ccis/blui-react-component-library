@@ -22,8 +22,11 @@ a:not(.MuiTab-root):visited {
     font-weight: 400;
 }
 
-code[class*="language-"], pre[class*="language-"], code[class*="language-"] *, pre[class*="language-"] * {
-    font-family: monospace!important;
+code[class*='language-'],
+pre[class*='language-'],
+code[class*='language-'] *,
+pre[class*='language-'] * {
+    font-family: monospace !important;
 }
 
 /* HIDE INCREMENT/DECREMENT BUTTONS ON NUMBER INPUTS */
