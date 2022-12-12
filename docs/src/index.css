@@ -13,7 +13,7 @@ body,
     flex: 1 1 auto;
 }
 .line-highlight {
-    margin-top: 20px;
+    margin-top: 16px;
 }
 a,
 a:not(.MuiTab-root):visited {
