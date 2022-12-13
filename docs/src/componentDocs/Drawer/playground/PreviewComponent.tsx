@@ -218,6 +218,7 @@ ${updateHeaderAsPerVariant()}
                         variant={drawerProps.variant}
                         {...(variantIsTemporary && { disablePortal: true })}
                         noLayout
+                        onClick={(): void => updateOpenProp(!drawerProps.open)}
                         SlideProps={{
                             container: containerRef.current,
                         }}
