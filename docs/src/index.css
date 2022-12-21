@@ -29,6 +29,12 @@ pre[class*='language-'] * {
     font-family: monospace !important;
 }
 
+pre[class*="language-"] {
+    padding-left: 1em;
+    padding-right: 1rem;
+}
+
+
 /* HIDE INCREMENT/DECREMENT BUTTONS ON NUMBER INPUTS */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
