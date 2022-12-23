@@ -256,6 +256,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}
             <InfoListItemText
+                disableTypography
                 primary={title}
                 leftComponent={leftComponent}
                 className={combine('listItemText')}
@@ -265,7 +266,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                             {subtitle ? (
                                 <Subtitle
                                     variant="subtitle2"
-                                    component="p"
+                                    component="div"
                                     fontColor={fontColor}
                                     noWrap={!wrapSubtitle}
                                     className={combine('subtitle')}
@@ -276,6 +277,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                             {info ? (
                                 <Info
                                     variant={'body2'}
+                                    component="div"
                                     fontColor={fontColor}
                                     noWrap={!wrapInfo}
                                     className={combine('info')}
