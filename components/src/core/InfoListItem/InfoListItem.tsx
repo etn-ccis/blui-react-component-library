@@ -256,7 +256,6 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}
             <InfoListItemText
-                disableTypography
                 primary={title}
                 leftComponent={leftComponent}
                 className={combine('listItemText')}
@@ -296,6 +295,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                     display: 'block',
                     color: fontColor || 'inherit',
                     className: combine('title'),
+                    component: 'div',
                 }}
                 secondaryTypographyProps={{
                     variant: 'subtitle2',
