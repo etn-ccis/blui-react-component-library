@@ -8,7 +8,7 @@ const codeSnippet = `<ScoreCard
     headerTitle="Station 3"
     headerSubtitle="High Humidity Alarm"
     headerInfo="4 Devices"
-    >
+>
     <List>
         <ListItem>
             <ListItemText primary="Body Content" />

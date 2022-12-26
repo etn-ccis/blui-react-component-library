@@ -24,7 +24,7 @@ const codeSnippet = `<ScoreCard
         </HeroBanner>
     }
     badgeOffset={-54}
-    >
+>
     <List>
         <ListItem>
             <ListItemText primary="Body Content" />

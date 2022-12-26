@@ -31,50 +31,50 @@ export const PreviewComponent = (): JSX.Element => {
             return `<DrawerSubheader>`;
         }
         return `<DrawerSubheader 
-            ${toggleDefaultProp('divider', drawerSubheaderProps.divider)}
-            ${toggleDefaultProp('hideContentOnCollapse', drawerSubheaderProps.hideContentOnCollapse)}
-        >`;
+        ${toggleDefaultProp('divider', drawerSubheaderProps.divider)}
+        ${toggleDefaultProp('hideContentOnCollapse', drawerSubheaderProps.hideContentOnCollapse)}
+    >`;
     };
 
     const generateCodeSnippet = (): string => {
         const jsx = `<Drawer open={${drawerSubheaderOtherProps.open}}>
-        <DrawerHeader 
-            icon={<Menu />}
-            title={'Subheader Demo'}
-            subtitle={'See the DrawerSubheader below'} 
-        />
-        ${generateSubHeaderSnippet()}
-            <Box
-                sx={{
-                    p: 2,
-                }}
-            >
-                Subheader Content Here
-            </Box>
-        </DrawerSubheader>
-        <DrawerBody>
-            <DrawerNavGroup>
-                <DrawerNavItem
-                    icon={<Person />}
-                    itemID={'Identity Management'}
-                    title={'Identity Management'}
-                />
-                <DrawerNavItem
-                    icon={<Today />}
-                    itemID={'Calendar'}
-                    title={'Calendar'} />
-                <DrawerNavItem 
-                    icon={<Accessibility />}
-                    title={'Accessibility'}
-                    itemID={'Accessibility'} />
-                <DrawerNavItem
-                    icon={<NotificationsActive />}
-                    title={'Notifications'}
-                    itemID={'Notifications'}
-                />
-            </DrawerNavGroup>
-        </DrawerBody>
-    </Drawer>`;
+    <DrawerHeader 
+        icon={<Menu />}
+        title={'Subheader Demo'}
+        subtitle={'See the DrawerSubheader below'} 
+    />
+    ${generateSubHeaderSnippet()}
+        <Box
+            sx={{
+                p: 2,
+            }}
+        >
+            Subheader Content Here
+        </Box>
+    </DrawerSubheader>
+    <DrawerBody>
+        <DrawerNavGroup>
+            <DrawerNavItem
+                icon={<Person />}
+                itemID={'Identity Management'}
+                title={'Identity Management'}
+            />
+            <DrawerNavItem
+                icon={<Today />}
+                itemID={'Calendar'}
+                title={'Calendar'} />
+            <DrawerNavItem 
+                icon={<Accessibility />}
+                title={'Accessibility'}
+                itemID={'Accessibility'} />
+            <DrawerNavItem
+                icon={<NotificationsActive />}
+                title={'Notifications'}
+                itemID={'Notifications'}
+            />
+        </DrawerNavGroup>
+    </DrawerBody>
+</Drawer>`;
 
         return removeEmptyLines(jsx);
     };

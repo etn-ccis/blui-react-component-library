@@ -1,10 +1,10 @@
 # Changelog
 
-## v6.1.2 (unreleased)
+## v6.1.2 (December 7, 2022)
 
 ### Updated
 
--   Remove dependency on @mui/styles. [#633](https://github.com/brightlayer-ui/react-component-library/issues/633)
+-   Remove dependency on @mui/styles ([#633](https://github.com/brightlayer-ui/react-component-library/issues/633)).
 
 ## v6.1.1 (November 1, 2022)
 

@@ -11,9 +11,24 @@ const codeSnippet = `<Drawer open={open} variant="temporary">
     />
     <DrawerBody>
         <DrawerNavGroup>
-            <DrawerNavItem title="Dashboard" itemID="1" />
-            <DrawerNavItem title="Locations" itemID="2" />
-            <DrawerNavItem title="Legal" itemID="3" />
+            <DrawerNavItem
+                title="Dashboard"
+                itemID="1"
+                hidePadding
+                onClick={(): void => setOpen(false)}
+            />
+            <DrawerNavItem
+                title="Locations"
+                itemID="2"
+                hidePadding
+                onClick={(): void => setOpen(false)}
+            />
+            <DrawerNavItem
+                title="Legal"
+                itemID="3"
+                hidePadding
+                onClick={(): void => setOpen(false)}
+            />
         </DrawerNavGroup>
     </DrawerBody>
 </Drawer>`;

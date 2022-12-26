@@ -23,7 +23,7 @@ const codeSnippet = `<ScoreCard
             />
         </HeroBanner>
     }
-    >
+>
     <List>
         <ListItem>
             <ListItemText primary="Body Content" />

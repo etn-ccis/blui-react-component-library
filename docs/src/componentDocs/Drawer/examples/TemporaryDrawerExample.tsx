@@ -35,6 +35,7 @@ export const TemporaryDrawerExample = (): JSX.Element => {
                         open={open}
                         width={250}
                         variant="temporary"
+                        onClick={(): void => setOpen(false)}
                         noLayout
                         disablePortal
                         SlideProps={{
@@ -58,9 +59,24 @@ export const TemporaryDrawerExample = (): JSX.Element => {
                         />
                         <DrawerBody>
                             <DrawerNavGroup>
-                                <DrawerNavItem title="Dashboard" itemID="1" hidePadding />
-                                <DrawerNavItem title="Locations" itemID="2" hidePadding />
-                                <DrawerNavItem title="Legal" itemID="3" hidePadding />
+                                <DrawerNavItem
+                                    title="Dashboard"
+                                    itemID="1"
+                                    hidePadding
+                                    onClick={(): void => setOpen(false)}
+                                />
+                                <DrawerNavItem
+                                    title="Locations"
+                                    itemID="2"
+                                    hidePadding
+                                    onClick={(): void => setOpen(false)}
+                                />
+                                <DrawerNavItem
+                                    title="Legal"
+                                    itemID="3"
+                                    hidePadding
+                                    onClick={(): void => setOpen(false)}
+                                />
                             </DrawerNavGroup>
                         </DrawerBody>
                     </Drawer>

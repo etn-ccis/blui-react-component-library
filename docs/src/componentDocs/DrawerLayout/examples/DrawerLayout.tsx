@@ -20,7 +20,7 @@ const codeSnippet = `<DrawerLayout
             </DrawerBody>
         </Drawer>
     }
-    >
+>
     <Box>
         App Content Here.
     </Box>
