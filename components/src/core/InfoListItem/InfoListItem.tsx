@@ -265,7 +265,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                             {subtitle ? (
                                 <Subtitle
                                     variant="subtitle2"
-                                    component="p"
+                                    component="div"
                                     fontColor={fontColor}
                                     noWrap={!wrapSubtitle}
                                     className={combine('subtitle')}
@@ -276,6 +276,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                             {info ? (
                                 <Info
                                     variant={'body2'}
+                                    component="div"
                                     fontColor={fontColor}
                                     noWrap={!wrapInfo}
                                     className={combine('info')}
@@ -294,6 +295,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                     display: 'block',
                     color: fontColor || 'inherit',
                     className: combine('title'),
+                    component: 'div',
                 }}
                 secondaryTypographyProps={{
                     variant: 'subtitle2',
