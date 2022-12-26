@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.1.3-alpha.0 (Unreleased)
+
+### Fixed
+
+-   DOM nesting console warnings in `<InfoListItem>`'s title, subtitle and info props ([#644](https://github.com/brightlayer-ui/react-component-library/issues/644)).
+
 ## v6.1.2 (December 7, 2022)
 
 ### Updated
