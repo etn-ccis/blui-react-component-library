@@ -171,15 +171,6 @@ const InfoListItemRoot = styled(InfoListItem, {
     })
 );
 
-const Chevron = styled(ChevronRight, {
-    name: 'drawer-nav-item',
-    slot: 'chevron',
-    shouldForwardProp: (prop) => prop !== 'chevronColor',
-})<Pick<DrawerNavItemProps, 'chevronColor'>>(({ chevronColor, theme }) => ({
-    color: chevronColor ? chevronColor : theme.palette.text.secondary,
-    transform: theme.direction === 'rtl' ? 'scaleX(-1)' : '',
-}));
-
 const ActiveComponent = styled(Box, {
     name: 'drawer-nav-item',
     slot: 'active-component',
@@ -265,9 +256,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         nestedDivider,
         notifyActiveParent = (): void => {},
         onClick,
-        rightComponent = props.chevron && !props.items && !props.children ? (
-            <Chevron chevronColor={chevronColor} className={cx(defaultClasses.chevron, classes.chevron)} />
-        ) : undefined,
+        rightComponent,
         ripple = true,
         statusColor,
         subtitle: itemSubtitle,
@@ -481,6 +470,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         fontColor={active ? activeItemFontColor : itemFontColor}
                         icon={icon}
                         iconColor={active ? activeItemIconColor : itemIconColor}
+                        chevron={chevron}
+                        chevronColor={chevronColor}
                         rightComponent={
                             (actionComponent || rightComponent) && (
                                 <div
