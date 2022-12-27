@@ -193,8 +193,8 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         }
     }, [icon, avatar, hidePadding, combine]);
 
-    const getRightComponent = useCallback((): JSX.Element | undefined => {
-        return (
+    const getRightComponent = useCallback(
+        (): JSX.Element | undefined => (
             <>
                 {rightComponent && (
                     <RightComponent className={combine('rightComponent')}>{rightComponent}</RightComponent>
@@ -208,8 +208,9 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                     />
                 )}
             </>
-        );
-    }, [rightComponent, chevron, combine]);
+        ),
+        [rightComponent, chevron, combine]
+    );
 
     const getSeparator = useCallback(
         (): JSX.Element => (
