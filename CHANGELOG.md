@@ -5,6 +5,11 @@
 ### Fixed
 
 -   DOM nesting console warnings in `<InfoListItem>`'s `title`, `subtitle` and `info` props ([#644](https://github.com/brightlayer-ui/react-component-library/issues/644)).
+-   Rendering of chevron and right component in `<InfoListItem>` at the same time ([#364](https://github.com/brightlayer-ui/react-component-library/issues/364)).
+
+### Updated
+
+-   `<DrawerNavItem>` to pass `chevron` and `chevronColor` props to `<InfoListItem>` ([#364](https://github.com/brightlayer-ui/react-component-library/issues/364)).
 
 ## v6.1.2 (December 7, 2022)
 
