@@ -8,7 +8,6 @@ import List from '@mui/material/List';
 import Collapse from '@mui/material/Collapse';
 import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../../InfoListItem';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
-import ChevronRight from '@mui/icons-material/ChevronRight';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from '../types';
 import color from 'color';
