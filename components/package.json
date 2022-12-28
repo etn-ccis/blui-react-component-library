@@ -28,7 +28,7 @@
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
         "@types/color": "^3.0.3",
-        "@types/jest": "^27.0.0",
+        "@types/jest": "^29.2.4",
         "@types/node": "^16.11.63",
         "@types/react-dom": "^18.0.5",
         "@typescript-eslint/eslint-plugin": "^5.14.0",
