@@ -42,7 +42,7 @@
         "@brightlayer-ui/icons-mui": "^3.3.0",
         "@brightlayer-ui/react-components": "^6.0.0",
         "@brightlayer-ui/react-themes": "^7.1.0",
-        "@craco/craco": "^6.4.3",
+        "@craco/craco": "^7.0.0",
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
         "@fontsource/roboto": "^4.5.8",
