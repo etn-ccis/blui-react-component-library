@@ -469,7 +469,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         fontColor={active ? activeItemFontColor : itemFontColor}
                         icon={icon}
                         iconColor={active ? activeItemIconColor : itemIconColor}
-                        chevron={chevron}
+                        chevron={chevron && !items && !children}
                         chevronColor={chevronColor}
                         rightComponent={
                             (actionComponent || rightComponent) && (
