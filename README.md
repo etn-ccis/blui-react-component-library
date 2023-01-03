@@ -40,7 +40,7 @@ We recommend using this library in conjunction with [@brightlayer-ui/react-theme
 ## Running the demo projects
 
 This repository comes with two demo projects found within the `/demos` folder.
-The first is a [Storybook](https://storybook.js.org/) application that allows you to see the components in isolation and interact with their properties. The second is a Showcase project (from [react-showcase-demo](https://github.com/brightlayer-ui/react-showcase-demo)) that shows a combination of components in the context of a realistic interface.
+The first is a [Storybook](https://storybook.js.org/) application that allows you to see the components in isolation and interact with their properties. The second is a Showcase project (from [react-showcase-demo](https://github.com/etn-ccis/blui-react-native-showcase-demo)) that shows a combination of components in the context of a realistic interface.
 
 You can build, link, and start the demo applications in a single step by calling either
 
