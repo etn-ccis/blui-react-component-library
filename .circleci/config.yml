@@ -233,19 +233,6 @@ jobs:
                   command: |
                       yarn publish:package -b $CIRCLE_BRANCH
 
-    tag:
-        docker:
-            - image: cimg/node:14.19.0-browsers
-        steps:
-            - checkout
-            - attach_workspace:
-                  at: .
-            - gh/setup
-            - run:
-                  name: Tag @brightlayer-ui/react-components
-                  command: |
-                      yarn tag:package -b $CIRCLE_BRANCH -s -blui-react-components
-
 workflows:
     version: 2
     react_library:
@@ -277,13 +264,6 @@ workflows:
                           only:
                               - master
                               - dev
-            - tag:
-                  requires:
-                      - publish
-                  filters:
-                      branches:
-                          only:
-                              - master
             - coverage_report:
                   requires:
                       - build_library
