@@ -5,7 +5,7 @@
 
 This is a library of re-usable React components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
 
-Refer to the [Component Library](https://brightlayer-ui-components.github.io/react) API documentation site for a list of available components or see the repository [documentation](https://github.com/brightlayer-ui/react-component-library/tree/master/docs) for each individual component.
+Refer to the [Component Library](https://brightlayer-ui-components.github.io/react) API documentation site for a list of available components or see the repository [documentation](https://github.com/etn-ccis/blui-react-component-library/tree/master/docs) for each individual component.
 
 ## Installation
 
@@ -22,7 +22,7 @@ yarn add @brightlayer-ui/react-components
 To work with this library, first clone down the repository and install dependencies:
 
 ```shell
-git clone https://github.com/brightlayer-ui/react-component-library
+git clone https://github.com/etn-ccis/blui-react-component-library
 cd react-component-library
 yarn initialize
 ```
@@ -58,7 +58,7 @@ from the root directory.
 
 ## Using the Components
 
-See the [documentation](https://github.com/brightlayer-ui/react-component-library/tree/master/docs) for information on using these components.
+See the [documentation](https://github.com/etn-ccis/blui-react-component-library/tree/master/docs) for information on using these components.
 
 ## Browser Support
 
