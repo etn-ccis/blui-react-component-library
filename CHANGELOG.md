@@ -4,28 +4,24 @@
 
 ### Fixed
 
--   DOM nesting console warnings in `<InfoListItem>`'s `title`, `subtitle` and `info` props ([#644](https://github.com/brightlayer-ui/react-component-library/issues/644)).
--   Rendering of chevron and right component in `<InfoListItem>` at the same time ([#364](https://github.com/brightlayer-ui/react-component-library/issues/364)).
-
-### Updated
-
--   `<DrawerNavItem>` to pass `chevron` and `chevronColor` props to `<InfoListItem>` ([#364](https://github.com/brightlayer-ui/react-component-library/issues/364)).
+-   DOM nesting console warnings in `<InfoListItem>`'s `title`, `subtitle` and `info` props ([#644](https://github.com/etn-ccis/blui-react-component-library/issues/644)).
+-   Rendering of chevron and right component in `<InfoListItem>` at the same time ([#364](https://github.com/etn-ccis/blui-react-component-library/issues/364)).
 
 ## v6.1.2 (December 7, 2022)
 
 ### Updated
 
--   Remove dependency on @mui/styles ([#633](https://github.com/brightlayer-ui/react-component-library/issues/633)).
+-   Remove dependency on @mui/styles ([#633](https://github.com/etn-ccis/blui-react-component-library/issues/633)).
 
 ## v6.1.1 (November 1, 2022)
 
 ### Fixed
 
--   `hideContentOnCollapse` prop of `<DrawerFooter>` not hiding footer content ([#484](https://github.com/brightlayer-ui/react-component-library/issues/484)).
--   Temporary drawer rendering, due to incorrectly passing open prop ([#486](https://github.com/brightlayer-ui/react-component-library/issues/486)).
--   `activeItemFontColor`, `activeItemIconColor` prop of `<DrawerRailItem>` not updating `font color` and `icon color` of active rail item. ([#486](https://github.com/brightlayer-ui/react-component-library/issues/486)).
--   `condensed` prop of `<DrawerRailItem>` not appling height and width `56X56` to all rail items. ([#541](https://github.com/brightlayer-ui/react-component-library/issues/541)).
--   Styling of `nonClickableIcon` in `<DrawerHeader>` not applying properly ([#562](https://github.com/brightlayer-ui/react-component-library/issues/562)).
+-   `hideContentOnCollapse` prop of `<DrawerFooter>` not hiding footer content ([#484](https://github.com/etn-ccis/blui-react-component-library/issues/484)).
+-   Temporary drawer rendering, due to incorrectly passing open prop ([#486](https://github.com/etn-ccis/blui-react-component-library/issues/486)).
+-   `activeItemFontColor`, `activeItemIconColor` prop of `<DrawerRailItem>` not updating `font color` and `icon color` of active rail item. ([#486](https://github.com/etn-ccis/blui-react-component-library/issues/486)).
+-   `condensed` prop of `<DrawerRailItem>` not appling height and width `56X56` to all rail items. ([#541](https://github.com/etn-ccis/blui-react-component-library/issues/541)).
+-   Styling of `nonClickableIcon` in `<DrawerHeader>` not applying properly ([#562](https://github.com/etn-ccis/blui-react-component-library/issues/562)).
 -   `animationDuration` not being applied properly to `<AppBar>` component.
 -   DOM Nesting warnings when passing custom content to `title` or `description` of `<EmptyState>`.
 
@@ -39,14 +35,14 @@
 
 ### Changed
 
--   Components are now built to work with Material UI v5 ([#352](https://github.com/brightlayer-ui/react-component-library/issues/352)).
--   In `<Hero>` component, `fontSize`, `value`, `valueIcon`, `valueColor` and `units` props have been replaced by `ChannelValueProps` prop, which will allow you to specify any props on the underlying `<ChannelValue>` component. ([#365](https://github.com/brightlayer-ui/react-component-library/issues/365)).
+-   Components are now built to work with Material UI v5 ([#352](https://github.com/etn-ccis/blui-react-component-library/issues/352)).
+-   In `<Hero>` component, `fontSize`, `value`, `valueIcon`, `valueColor` and `units` props have been replaced by `ChannelValueProps` prop, which will allow you to specify any props on the underlying `<ChannelValue>` component. ([#365](https://github.com/etn-ccis/blui-react-component-library/issues/365)).
 
 ### Removed
 
 -   Quick set options for fontSize ('normal' and 'small') have been removed in the `<Hero>` / `<ChannelValue>` components — if you were using these options previously, they can be replaced with '1.25rem' and '1rem', respectively, e.g.:
     -   `<Hero ChannelValueProps={{ fontSize: '1rem' }} />`
--   DropdownToolbar. You should switch to using the `<ToolbarMenu>` component inside of a MUI Toolbar instead. ([#353](https://github.com/brightlayer-ui/react-component-library/issues/353)).
+-   DropdownToolbar. You should switch to using the `<ToolbarMenu>` component inside of a MUI Toolbar instead. ([#353](https://github.com/etn-ccis/blui-react-component-library/issues/353)).
 
 ## v5.4.0 (February 8, 2022)
 
@@ -54,17 +50,17 @@
 
 -   Added `chevronColor` property to `<InfoListItem>` and SharedProps of `<Drawer>`.
 -   Added class override for `chevron` on `<InfoListItem>` and `<DrawerNavItem>`.
--   Added `titleDivider` property onto `<DrawerNavGroup>`. ([#315](https://github.com/brightlayer-ui/react-component-library/issues/315))
--   Added 1rem default padding to the root styles of `<EmptyState>`. ([#320](https://github.com/brightlayer-ui/react-component-library/issues/320))
--   Added new property `unitSpace` to `<ChannelValue>` to manage spacing between the value and units. ([#350](https://github.com/brightlayer-ui/react-component-library/issues/350))
--   Added `<ToolbarMenu>` component. ([#351](https://github.com/brightlayer-ui/react-component-library/issues/351))
+-   Added `titleDivider` property onto `<DrawerNavGroup>`. ([#315](https://github.com/etn-ccis/blui-react-component-library/issues/315))
+-   Added 1rem default padding to the root styles of `<EmptyState>`. ([#320](https://github.com/etn-ccis/blui-react-component-library/issues/320))
+-   Added new property `unitSpace` to `<ChannelValue>` to manage spacing between the value and units. ([#350](https://github.com/etn-ccis/blui-react-component-library/issues/350))
+-   Added `<ToolbarMenu>` component. ([#351](https://github.com/etn-ccis/blui-react-component-library/issues/351))
 -   Added Deprecation warnings for DropdownToolbar component that will be removed in version 6.0.0.
 
 ## v5.3.3 (December 6, 2021)
 
 ### Fixed
 
--   Avoid rendering of HTML elements in `<InfoListItem>`'s DOM tree when `subtitle` or `info` prop is not available. ([#318](https://github.com/brightlayer-ui/react-component-library/issues/318))
+-   Avoid rendering of HTML elements in `<InfoListItem>`'s DOM tree when `subtitle` or `info` prop is not available. ([#318](https://github.com/etn-ccis/blui-react-component-library/issues/318))
 
 ## v5.3.2 (November 11, 2021)
 
