@@ -21,7 +21,7 @@
         "coverage": "yarn test --coverage --watchAll=false",
         "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json",
         "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
-        "tag:package": "cd dist && npx -p @brightlayer-ui/tag blui-tag",
+        "tag:package": "cd dist && npx -p @brightlayer-ui/tag blui-tag -s -blui-react-components",
         "generate:licenses": "cd ./components && npm-license-crawler -onlyDirectDependencies -json LICENSES.json"
     },
     "repository": {

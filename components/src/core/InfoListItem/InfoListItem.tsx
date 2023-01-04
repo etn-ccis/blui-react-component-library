@@ -193,20 +193,24 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         }
     }, [icon, avatar, hidePadding, combine]);
 
-    const getRightComponent = useCallback((): JSX.Element | undefined => {
-        if (rightComponent) {
-            return <RightComponent className={combine('rightComponent')}>{rightComponent}</RightComponent>;
-        } else if (chevron) {
-            return (
-                <InfoListItemChevron
-                    chevronColor={chevronColor}
-                    color={'inherit'}
-                    role={'button'}
-                    className={combine('chevron')}
-                />
-            );
-        }
-    }, [rightComponent, chevron, combine]);
+    const getRightComponent = useCallback(
+        (): JSX.Element | undefined => (
+            <>
+                {rightComponent && (
+                    <RightComponent className={combine('rightComponent')}>{rightComponent}</RightComponent>
+                )}
+                {chevron && (
+                    <InfoListItemChevron
+                        chevronColor={chevronColor}
+                        color={'inherit'}
+                        role={'button'}
+                        className={combine('chevron')}
+                    />
+                )}
+            </>
+        ),
+        [rightComponent, chevron, combine]
+    );
 
     const getSeparator = useCallback(
         (): JSX.Element => (
