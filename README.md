@@ -1,11 +1,11 @@
 # Brightlayer UI React Components
 
-[![](https://img.shields.io/circleci/project/github/brightlayer-ui/react-component-library/master.svg?style=flat)](https://circleci.com/gh/brightlayer-ui/react-component-library/tree/master)
-![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-components?label=%40brightlayer-ui%2Freact-components) [![codecov](https://codecov.io/gh/brightlayer-ui/react-component-library/branch/master/graph/badge.svg?token=HQFW5YF7WP)](https://codecov.io/gh/brightlayer-ui/react-component-library)
+[![](https://img.shields.io/circleci/project/github/etn-ccis/blui-react-component-library/master.svg?style=flat)](https://circleci.com/gh/etn-ccis/blui-react-component-library/tree/master)
+![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-components?label=%40brightlayer-ui%2Freact-components) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-component-library/branch/master/graph/badge.svg?token=HQFW5YF7WP)](https://codecov.io/gh/etn-ccis/blui-react-component-library)
 
 This is a library of re-usable React components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
 
-Refer to the [Component Library](https://brightlayer-ui-components.github.io/react) API documentation site for a list of available components or see the repository [documentation](https://github.com/etn-ccis/blui-react-component-library/tree/master/docs) for each individual component.
+Refer to the [Component Library](https://brightlayer-ui-components.github.io/react) API documentation site for a list of available components and the document for each individual component.
 
 ## Installation
 
@@ -35,7 +35,7 @@ yarn build
 
 ## Using with @brightlayer-ui/react-themes
 
-We recommend using this library in conjunction with [@brightlayer-ui/react-themes](https://www.npmjs.com/package/@brightlayer-ui/react-themes). If you are using version 6.0.0+ of the Brightlayer UI themes, you must upgrade to at least version 5.1.0 of @brightlayer-ui/react-components or you may see some unintended default styles on some components.
+We recommend using this library in conjunction with [@brightlayer-ui/react-themes](https://www.npmjs.com/package/@brightlayer-ui/react-themes). If you are using version 6.0.0+ of the Brightlayer UI themes, you must upgrade to at least version 5.1.0 of @brightlayer-ui/react-components, or you may see some unintended default styles on some components.
 
 ## Running the demo projects
 
@@ -58,7 +58,7 @@ from the root directory.
 
 ## Using the Components
 
-See the [documentation](https://github.com/etn-ccis/blui-react-component-library/tree/master/docs) for information on using these components.
+See the [documentation](https://brightlayer-ui-components.github.io/react) for information on using these components.
 
 ## Browser Support
 

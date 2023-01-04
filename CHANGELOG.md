@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.1.3-alpha.0 (Unreleased)
+## 6.1.3 (Unreleased)
 
 ### Fixed
 
