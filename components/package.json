@@ -59,7 +59,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/brightlayer-ui/react-component-library"
+        "url": "https://github.com/etn-ccis/blui-react-component-library"
     },
     "keywords": [
         "react",
@@ -67,9 +67,9 @@
         "brightlayer-ui"
     ],
     "bugs": {
-        "url": "https://github.com/brightlayer-ui/react-component-library/issues"
+        "url": "https://github.com/etn-ccis/blui-react-component-library/issues"
     },
-    "homepage": "https://github.com/brightlayer-ui/react-component-library#readme",
+    "homepage": "https://github.com/etn-ccis/blui-react-component-library#readme",
     "directories": {
         "doc": "docs"
     },

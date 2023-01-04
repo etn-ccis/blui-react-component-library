@@ -13,7 +13,7 @@ export const FullCodeOnGithub: React.FC<FullCodeOnGithubProps> = (props) => (
     <Button
         variant="outlined"
         target="_blank"
-        href={`https://github.com/brightlayer-ui/react-component-library/blob/${DOCS_BRANCH}/docs/src/${props.url}`}
+        href={`https://github.com/etn-ccis/blui-react-component-library/blob/${DOCS_BRANCH}/docs/src/${props.url}`}
         startIcon={<GitHubIcon />}
         sx={props.sx}
     >
