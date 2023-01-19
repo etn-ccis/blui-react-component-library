@@ -66,6 +66,7 @@ export const componentPropsStateSlice = createSlice({
     name: 'componentsPropsState',
     initialState: initialState,
     reducers: {
+        resetProps: () => initialState,
         updateProp: (state, action: PayloadAction<PayloadType>) => {
             const newArray = getComponentState(action.payload.componentName, state);
             const updatedKnob = newArray?.props?.filter((prop) => prop.propName === action.payload.propName);
@@ -106,7 +107,13 @@ export const componentPropsStateSlice = createSlice({
     },
 });
 
-export const { updateProp, updateSharedProp, updateOtherProp, updateComponentProp, updateOtherComponentProp } =
-    componentPropsStateSlice.actions;
+export const {
+    resetProps,
+    updateProp,
+    updateSharedProp,
+    updateOtherProp,
+    updateComponentProp,
+    updateOtherComponentProp,
+} = componentPropsStateSlice.actions;
 
 export default componentPropsStateSlice.reducer;
