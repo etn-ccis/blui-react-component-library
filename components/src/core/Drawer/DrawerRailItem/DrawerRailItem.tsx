@@ -163,6 +163,7 @@ const Root = styled(ButtonBase, {
 const ActiveItem = styled(Box, {
     name: 'drawer-rail-item',
     slot: 'active',
+    shouldForwardProp: (prop) => prop !== 'activeItemBackgroundColor',
 })<Pick<DrawerRailItemProps, 'activeItemBackgroundColor'>>(({ activeItemBackgroundColor, theme }) => {
     const fivePercentOpacityPrimary = color(
         theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
