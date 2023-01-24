@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.2.0 (January 23, 2023)
+## 6.2.0 (January 24, 2023)
 
 ### Fixed
 
