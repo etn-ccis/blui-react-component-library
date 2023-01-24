@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Drawer from '@mui/material/Drawer';
 import { DocTextField, PLAYGROUND_DRAWER_WIDTH } from '../shared';
 import { ComponentType, OtherComponentPropsType, PropsType } from '../__types__';
-import { updateProp, updateSharedProp, updateOtherProp, updateOtherComponentProp } from '../redux/componentsPropsState';
+import {
+    resetProps,
+    updateProp,
+    updateSharedProp,
+    updateOtherProp,
+    updateOtherComponentProp,
+} from '../redux/componentsPropsState';
 import { useAppDispatch } from '../redux/hooks';
 import Typography from '@mui/material/Typography';
 import Accordion from '@mui/material/Accordion';
@@ -35,6 +41,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     const [state, setState] = React.useState({
         right: true,
     });
+    useEffect(() => {
+        dispatch(resetProps());
+    }, []);
     const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
         if (
             event.type === 'keydown' &&

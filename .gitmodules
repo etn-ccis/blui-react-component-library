@@ -1,4 +1,4 @@
 [submodule "demos/showcase"]
 	path = demos/showcase
-	url = https://github.com/brightlayer-ui/react-showcase-demo
+	url = https://github.com/etn-ccis/blui-react-showcase-demo
 	branch = dev

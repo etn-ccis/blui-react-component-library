@@ -166,11 +166,13 @@ export const Info = styled(Typography, {
     name: 'info-list-item',
     slot: 'info',
     shouldForwardProp: (prop) => prop !== 'fontColor',
-})<Pick<InfoListItemProps & TypographyProps, 'fontColor' | 'noWrap'>>(({ fontColor, theme }) => ({
-    fontWeight: 400,
-    lineHeight: 1.3,
-    color: fontColor || (theme.palette.mode === 'dark' ? theme.palette.text.secondary : 'inherit'),
-}));
+})<Pick<InfoListItemProps & TypographyProps & BoxProps, 'fontColor' | 'component' | 'noWrap'>>(
+    ({ fontColor, theme }) => ({
+        fontWeight: 400,
+        lineHeight: 1.3,
+        color: fontColor || (theme.palette.mode === 'dark' ? theme.palette.text.secondary : 'inherit'),
+    })
+);
 
 export const RightComponent = styled(Box, {
     name: 'info-list-item',

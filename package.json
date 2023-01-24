@@ -21,12 +21,12 @@
         "coverage": "yarn test --coverage --watchAll=false",
         "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json",
         "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
-        "tag:package": "cd dist && npx -p @brightlayer-ui/tag blui-tag",
+        "tag:package": "cd dist && npx -p @brightlayer-ui/tag blui-tag -s -blui-react-components",
         "generate:licenses": "cd ./components && npm-license-crawler -onlyDirectDependencies -json LICENSES.json"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/brightlayer-ui/react-component-library"
+        "url": "https://github.com/etn-ccis/blui-react-component-library"
     },
     "keywords": [
         "react",
@@ -34,9 +34,9 @@
         "brightlayer-ui"
     ],
     "bugs": {
-        "url": "https://github.com/brightlayer-ui/react-component-library/issues"
+        "url": "https://github.com/etn-ccis/blui-react-component-library/issues"
     },
-    "homepage": "https://github.com/brightlayer-ui/react-component-library#readme",
+    "homepage": "https://github.com/etn-ccis/blui-react-component-library#readme",
     "directories": {
         "doc": "docs"
     },
@@ -45,7 +45,7 @@
     "devDependencies": {
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "npm-license-crawler": "^0.2.1",
-        "prettier": "^2.8.0"
+        "prettier": "^2.8.3"
     },
     "prettier": "@brightlayer-ui/prettier-config"
 }

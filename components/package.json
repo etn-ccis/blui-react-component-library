@@ -1,6 +1,6 @@
 {
     "name": "@brightlayer-ui/react-components",
-    "version": "6.1.2",
+    "version": "6.2.0",
     "description": "React components for Brightlayer UI applications",
     "scripts": {
         "test": "jest src",
@@ -28,7 +28,7 @@
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
         "@types/color": "^3.0.3",
-        "@types/jest": "^27.0.0",
+        "@types/jest": "^29.2.4",
         "@types/node": "^16.11.63",
         "@types/react-dom": "^18.0.5",
         "@typescript-eslint/eslint-plugin": "^5.14.0",
@@ -45,7 +45,7 @@
         "prettier": "^2.2.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "ts-jest": "^28.0.4",
+        "ts-jest": "^29.0.3",
         "typescript": "^4.8.4"
     },
     "peerDependencies": {
@@ -59,7 +59,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/brightlayer-ui/react-component-library"
+        "url": "https://github.com/etn-ccis/blui-react-component-library"
     },
     "keywords": [
         "react",
@@ -67,9 +67,9 @@
         "brightlayer-ui"
     ],
     "bugs": {
-        "url": "https://github.com/brightlayer-ui/react-component-library/issues"
+        "url": "https://github.com/etn-ccis/blui-react-component-library/issues"
     },
-    "homepage": "https://github.com/brightlayer-ui/react-component-library#readme",
+    "homepage": "https://github.com/etn-ccis/blui-react-component-library#readme",
     "directories": {
         "doc": "docs"
     },

@@ -101,7 +101,7 @@ stories.add('Brightlayer UI React Components', () => {
                         color="primary"
                         className={classes.link}
                         target={'_blank'}
-                        href={'https://github.com/brightlayer-ui/react-component-library'}
+                        href={'https://github.com/etn-ccis/blui-react-component-library'}
                         startIcon={
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={classes.githubIcon}>
                                 <title>github</title>
