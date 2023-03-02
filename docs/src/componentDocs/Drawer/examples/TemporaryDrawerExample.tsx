@@ -15,10 +15,12 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { ExampleShowcase } from '../../../shared';
+import { useTheme } from '@mui/material/styles';
 
 export const TemporaryDrawerExample = (): JSX.Element => {
     const [open, setOpen] = useState(false);
     const containerRef = useRef(null);
+    const theme = useTheme();
 
     return (
         <ExampleShowcase
@@ -38,6 +40,7 @@ export const TemporaryDrawerExample = (): JSX.Element => {
                         onClick={(): void => setOpen(false)}
                         noLayout
                         disablePortal
+                        disableScrollLock
                         SlideProps={{
                             container: containerRef.current,
                         }}
@@ -84,8 +87,12 @@ export const TemporaryDrawerExample = (): JSX.Element => {
                 sx={{
                     position: 'relative',
                     overflow: 'hidden',
-                    '& .BluiDrawerLayout-drawer': { position: 'absolute', height: 250, zIndex: 'auto', width: '100%' },
-                    '& .BluiDrawerLayout-content': { zIndex: 'auto' },
+                    '& .BluiDrawerLayout-drawer': {
+                        position: 'absolute',
+                        height: 250,
+                        zIndex: open ? theme.zIndex.appBar - 1 : 'auto',
+                        width: '100%',
+                    },
                 }}
             >
                 <Box sx={{ backgroundColor: 'background.paper', height: 250 }}>
