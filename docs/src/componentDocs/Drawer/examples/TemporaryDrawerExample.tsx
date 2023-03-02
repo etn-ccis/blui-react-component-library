@@ -41,6 +41,8 @@ export const TemporaryDrawerExample = (): JSX.Element => {
                         noLayout
                         disablePortal
                         disableScrollLock
+                        disableAutoFocus
+                        disableRestoreFocus
                         SlideProps={{
                             container: containerRef.current,
                         }}
