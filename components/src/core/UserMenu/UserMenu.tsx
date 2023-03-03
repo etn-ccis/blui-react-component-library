@@ -279,6 +279,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
             </DrawerBottomSheet>
         ) : (
             <Menu
+                disablePortal
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
                 onClose={closeMenu}
