@@ -54,6 +54,8 @@ export const Root = styled(ListItem, {
             outline: 'none',
         },
         padding: onClick && ripple ? 0 : undefined,
+        paddingTop: isWrapEnabled() ? 0 : 'auto',
+        paddingBottom: isWrapEnabled() ? 0 : 'auto',
     };
 });
 
