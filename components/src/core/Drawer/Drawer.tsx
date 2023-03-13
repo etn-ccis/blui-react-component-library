@@ -94,8 +94,6 @@ export type DrawerProps = Omit<MUIDrawerProps, 'translate' | 'variant'> &
 export type DrawerComponentProps = DrawerProps; // alias
 
 const Root = styled(MUIDrawer, {
-    name: 'drawer',
-    slot: 'root',
     shouldForwardProp: (prop) => prop !== 'backgroundColor' && prop !== 'sideBorder',
 })<Pick<DrawerProps, 'backgroundColor' | 'sideBorder' | 'open'>>(({ backgroundColor, sideBorder, open, theme }) => ({
     minHeight: '100%',
@@ -113,10 +111,7 @@ const Root = styled(MUIDrawer, {
     },
 }));
 
-const Content = styled(Box, {
-    name: 'drawer',
-    slot: 'content',
-})(() => ({
+const Content = styled(Box, {})(() => ({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',

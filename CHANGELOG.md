@@ -2,6 +2,10 @@
 
 ## v6.3.0 (Unreleased)
 
+### Removed
+
+-   Cleaned up slot names from the components([#458](https://github.com/etn-ccis/blui-react-component-library/issues/458)).
+
 ### Fixed
 
 -   Issue with `sx` prop in `<UserMenu>` component ([#437](https://github.com/etn-ccis/blui-react-component-library/issues/437)).

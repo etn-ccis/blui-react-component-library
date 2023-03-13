@@ -39,8 +39,6 @@ export type ThreeLinerProps = BoxProps & {
 };
 
 const Root = styled(Box, {
-    name: 'three-liner',
-    slot: 'root',
     shouldForwardProp: (prop) => !['animationDuration'].includes(prop.toString()),
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
     display: 'flex',
@@ -54,8 +52,6 @@ const Root = styled(Box, {
 }));
 
 const Title = styled(Box, {
-    name: 'three-liner',
-    slot: 'title',
     shouldForwardProp: (prop) => !['animationDuration'].includes(prop.toString()),
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
     fontSize: '1.875rem',
@@ -66,8 +62,6 @@ const Title = styled(Box, {
 }));
 
 const Subtitle = styled(Box, {
-    name: 'three-liner',
-    slot: 'subtitle',
     shouldForwardProp: (prop) => !['animationDuration'].includes(prop.toString()),
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
     fontSize: '1rem',
@@ -78,8 +72,6 @@ const Subtitle = styled(Box, {
 }));
 
 const Info = styled(Box, {
-    name: 'three-liner',
-    slot: 'info',
     shouldForwardProp: (prop) => !['animationDuration'].includes(prop.toString()),
 })<Pick<ThreeLinerProps, 'animationDuration'>>(({ animationDuration, theme }) => ({
     fontSize: '0.875rem',

@@ -70,8 +70,6 @@ export type DrawerHeaderProps = ToolbarProps & {
 };
 
 const Root = styled(Toolbar, {
-    name: 'drawer-header',
-    slot: 'root',
     shouldForwardProp: (prop) => !['backgroundColor', 'fontColor'].includes(prop.toString()),
 })<Pick<DrawerHeaderProps, 'backgroundColor' | 'fontColor'>>(({ backgroundColor, fontColor, theme }) => ({
     width: '100%',
@@ -100,8 +98,6 @@ const Root = styled(Toolbar, {
 }));
 
 const Background = styled(Box, {
-    name: 'drawer-header',
-    slot: 'background',
     shouldForwardProp: (prop) => !['backgroundImage', 'backgroundOpacity'].includes(prop.toString()),
 })<Pick<DrawerHeaderProps, 'backgroundImage' | 'backgroundOpacity'>>(({ backgroundImage, backgroundOpacity }) => ({
     position: 'absolute',
@@ -114,7 +110,7 @@ const Background = styled(Box, {
     opacity: backgroundOpacity,
 }));
 
-const Navigation = styled(Box, { name: 'drawer-header', slot: 'navigation' })(({ theme }) => ({
+const Navigation = styled(Box, {})(({ theme }) => ({
     marginLeft: theme.spacing(2),
     minWidth: '2.5rem',
     height: '100%',
@@ -123,7 +119,7 @@ const Navigation = styled(Box, { name: 'drawer-header', slot: 'navigation' })(({
     zIndex: 1,
 }));
 
-const Content = styled(Box, { name: 'drawer-header', slot: 'content' })(({ theme }) => ({
+const Content = styled(Box, {})(({ theme }) => ({
     marginLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     minHeight: '4rem',
@@ -139,17 +135,17 @@ const Content = styled(Box, { name: 'drawer-header', slot: 'content' })(({ theme
     },
 }));
 
-const Title = styled(Typography, { name: 'drawer-header', slot: 'title' })(() => ({
+const Title = styled(Typography, {})(() => ({
     fontWeight: 600,
     lineHeight: '1.6rem', // Anything lower than 1.6rem cuts off bottom text of 'g' or 'y'.
 }));
 
-const Subtitle = styled(Typography, { name: 'drawer-header', slot: 'subtitle' })(() => ({
+const Subtitle = styled(Typography, {})(() => ({
     lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
     marginTop: '-0.125rem',
 }));
 
-const NonClickableIcon = styled(Box, { name: 'drawer-header', slot: 'non-clickable-icon' })(() => ({
+const NonClickableIcon = styled(Box, {})(() => ({
     display: 'flex',
     padding: 0,
 }));

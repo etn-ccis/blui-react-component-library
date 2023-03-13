@@ -89,8 +89,6 @@ export type DrawerRailItemProps = SharedStyleProps &
     };
 
 const Root = styled(ButtonBase, {
-    name: 'drawer-rail-item',
-    slot: 'root',
     shouldForwardProp: (prop) =>
         prop !== 'backgroundColor' &&
         prop !== 'activeItemIconColor' &&
@@ -161,8 +159,6 @@ const Root = styled(ButtonBase, {
 );
 
 const ActiveItem = styled(Box, {
-    name: 'drawer-rail-item',
-    slot: 'active',
     shouldForwardProp: (prop) => prop !== 'activeItemBackgroundColor',
 })<Pick<DrawerRailItemProps, 'activeItemBackgroundColor'>>(({ activeItemBackgroundColor, theme }) => {
     const fivePercentOpacityPrimary = color(
@@ -189,8 +185,6 @@ const ActiveItem = styled(Box, {
 });
 
 const StatusStripe = styled(Box, {
-    name: 'drawer-rail-item',
-    slot: 'statusStripe',
     shouldForwardProp: (prop) => prop !== 'statusColor',
 })<Pick<DrawerRailItemProps, 'statusColor'>>(({ statusColor }) => ({
     position: 'absolute',
@@ -203,8 +197,6 @@ const StatusStripe = styled(Box, {
 }));
 
 const Icon = styled(Avatar, {
-    name: 'drawer-rail-item',
-    slot: 'icon',
     shouldForwardProp: (prop) => prop !== 'itemIconColor',
 })<Pick<DrawerRailItemProps, 'itemIconColor'>>(({ itemIconColor, theme }) => ({
     color: itemIconColor || theme.palette.text.primary,
@@ -215,8 +207,6 @@ const Icon = styled(Avatar, {
 }));
 
 const Title = styled(Typography, {
-    name: 'drawer-rail-item',
-    slot: 'title',
     shouldForwardProp: (prop) => prop !== 'itemFontColor' && prop !== 'active',
 })<Pick<DrawerRailItemProps, 'itemFontColor'> & { active: boolean }>(({ itemFontColor, active, theme }) => ({
     lineHeight: '1rem',
@@ -229,10 +219,7 @@ const Title = styled(Typography, {
     }),
 }));
 
-const DrawerRailItemDivider = styled(Divider, {
-    name: 'drawer-rail-item',
-    slot: 'divider',
-})(() => ({
+const DrawerRailItemDivider = styled(Divider, {})(() => ({
     position: 'absolute',
     bottom: 0,
     left: 0,

@@ -33,10 +33,7 @@ export type EmptyStateProps = BoxProps & {
     title: ReactNode;
 };
 
-const Root = styled(Box, {
-    name: 'empty-state',
-    slot: 'root',
-})(({ theme }) => ({
+const Root = styled(Box, {})(({ theme }) => ({
     color: theme.palette.text.primary,
     height: '100%',
     minHeight: '100%',
@@ -48,27 +45,18 @@ const Root = styled(Box, {
     padding: '1rem',
 }));
 
-const Icon = styled(Box, {
-    name: 'empty-state',
-    slot: 'icon',
-})(({ theme }) => ({
+const Icon = styled(Box, {})(({ theme }) => ({
     color: theme.palette.text.secondary,
     marginBottom: '1rem',
     display: 'flex',
     fontSize: 96,
 }));
 
-const Description = styled(Typography, {
-    name: 'empty-state',
-    slot: 'description',
-})(({ theme }) => ({
+const Description = styled(Typography, {})(({ theme }) => ({
     color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
 }));
 
-const Actions = styled(Box, {
-    name: 'empty-state',
-    slot: 'action',
-})(() => ({
+const Actions = styled(Box, {})(() => ({
     marginTop: '1rem',
 }));
 
