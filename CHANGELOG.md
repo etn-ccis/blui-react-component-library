@@ -5,6 +5,7 @@
 ### Fixed
 
 -   Issue with `sx` prop in `<UserMenu>` component ([#437](https://github.com/etn-ccis/blui-react-component-library/issues/437)).
+-   Padding issue in `<InfoListItem>`, when `wrapTitle`, `wrapSubtitle` and `wrapInfo` props are enabled ([#712](https://github.com/etn-ccis/blui-react-component-library/issues/712)).
 
 ## v6.2.0 (January 24, 2023)
 
