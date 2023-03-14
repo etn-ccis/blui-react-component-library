@@ -272,6 +272,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 transitionDuration={theme.transitions.duration.short}
                 open={Boolean(anchorEl)}
                 onClose={closeMenu}
+                disablePortal
                 classes={{ paper: cx(defaultClasses.bottomSheet, classes.bottomSheet) }}
                 {...BottomSheetProps}
             >
