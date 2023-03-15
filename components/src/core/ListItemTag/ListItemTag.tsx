@@ -39,8 +39,6 @@ export type ListItemTagProps = TypographyProps & {
 // @noflip is used to stop certain styles from flipping when the language direction is toggled.
 
 const Root = styled(Typography, {
-    name: 'list-item-tag',
-    slot: 'root',
     shouldForwardProp: (prop) => prop !== 'fontColor',
 })<Pick<ListItemTagProps, 'backgroundColor' | 'fontColor' | 'onClick' | 'variant'>>(
     ({ backgroundColor, fontColor, onClick, theme }) => `

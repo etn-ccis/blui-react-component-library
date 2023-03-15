@@ -75,17 +75,11 @@ export type ScoreCardProps = CardProps &
 
 const fontColor = (headerFontColor: string): string => headerFontColor || Colors.white[50];
 
-const Root = styled(Card, {
-    name: 'score-card',
-    slot: 'root',
-})(() => ({
+const Root = styled(Card, {})(() => ({
     flex: '1 1 0px',
 }));
 
-const FlexColumn = styled(Box, {
-    name: 'score-card',
-    slot: 'flexColumn',
-})(() => ({
+const FlexColumn = styled(Box, {})(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
@@ -94,8 +88,6 @@ const FlexColumn = styled(Box, {
 }));
 
 const Header = styled(Box, {
-    name: 'score-card',
-    slot: 'header',
     shouldForwardProp: (prop) => !['headerColor', 'headerFontColor'].includes(prop.toString()),
 })<Pick<ScoreCardProps, 'headerColor' | 'headerFontColor'>>(({ headerColor, headerFontColor, theme }) => ({
     height: `6.25rem`,
@@ -106,10 +98,7 @@ const Header = styled(Box, {
     color: fontColor(headerFontColor),
 }));
 
-const HeaderContent = styled(Box, {
-    name: 'score-card',
-    slot: 'header-content',
-})(({ theme }) => ({
+const HeaderContent = styled(Box, {})(({ theme }) => ({
     display: 'flex',
     position: 'relative',
     zIndex: 1,
@@ -118,8 +107,6 @@ const HeaderContent = styled(Box, {
 }));
 
 const HeaderTitle = styled(Typography, {
-    name: 'score-card',
-    slot: 'header-title',
     shouldForwardProp: (prop) => prop !== 'headerFontColor',
 })<Pick<ScoreCardProps, 'headerFontColor'>>(({ headerFontColor }) => ({
     color: fontColor(headerFontColor),
@@ -127,8 +114,6 @@ const HeaderTitle = styled(Typography, {
 }));
 
 const HeaderSubtitle = styled(Typography, {
-    name: 'score-card',
-    slot: 'header-subtitle',
     shouldForwardProp: (prop) => prop !== 'headerFontColor',
 })<Pick<ScoreCardProps, 'headerFontColor'>>(({ headerFontColor }) => ({
     color: fontColor(headerFontColor),
@@ -136,8 +121,6 @@ const HeaderSubtitle = styled(Typography, {
 }));
 
 const HeaderInfo = styled(Typography, {
-    name: 'score-card',
-    slot: 'header-subtitle',
     shouldForwardProp: (prop) => prop !== 'headerFontColor',
 })<Pick<ScoreCardProps, 'headerFontColor'>>(({ headerFontColor }) => ({
     color: fontColor(headerFontColor),
@@ -145,8 +128,6 @@ const HeaderInfo = styled(Typography, {
 }));
 
 const HeaderBackground = styled(Box, {
-    name: 'score-card',
-    slot: 'header-background',
     shouldForwardProp: (prop) => prop !== 'headerBackgroundImage',
 })<Pick<ScoreCardProps, 'headerBackgroundImage'>>(({ headerBackgroundImage }) => ({
     position: 'absolute',
@@ -159,25 +140,17 @@ const HeaderBackground = styled(Box, {
     backgroundImage: `url(${headerBackgroundImage})`,
 }));
 
-const Content = styled(Box, {
-    name: 'score-card',
-    slot: 'content',
-})(() => ({
+const Content = styled(Box, {})(() => ({
     display: 'flex',
     alignItems: 'center',
     position: 'relative',
 }));
 
-const BodyWrapper = styled(Box, {
-    name: 'score-card',
-    slot: 'body-wrapper',
-})(() => ({
+const BodyWrapper = styled(Box, {})(() => ({
     flex: '1 1 0px',
 }));
 
 const BadgeWrapper = styled(Box, {
-    name: 'score-card',
-    slot: 'badge-wrapper',
     shouldForwardProp: (prop) => prop !== 'badgeOffset',
 })<Pick<ScoreCardProps, 'badgeOffset'>>(({ badgeOffset, theme }) => ({
     flex: '0 0 auto',
@@ -187,10 +160,7 @@ const BadgeWrapper = styled(Box, {
     marginTop: badgeOffset,
 }));
 
-const ActionItems = styled(Box, {
-    name: 'score-card',
-    slot: 'action-items',
-})(({ theme }) => ({
+const ActionItems = styled(Box, {})(({ theme }) => ({
     marginLeft: theme.spacing(1.5),
     cursor: 'pointer',
 }));

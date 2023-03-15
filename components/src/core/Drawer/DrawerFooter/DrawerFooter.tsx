@@ -43,8 +43,6 @@ export type DrawerFooterProps = BoxProps & {
 };
 
 const Root = styled(Box, {
-    name: 'drawer-footer',
-    slot: 'root',
 })<Pick<DrawerFooterProps, 'backgroundColor'>>(({ backgroundColor }) => ({
     width: '100%',
     backgroundColor: backgroundColor,

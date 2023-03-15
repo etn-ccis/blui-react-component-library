@@ -25,7 +25,7 @@ export type DrawerBodyProps = BoxProps &
         classes?: DrawerBodyClasses;
     };
 
-const Root = styled(Box, { name: 'drawer-body', slot: 'root' })<Pick<DrawerBodyProps, 'backgroundColor'>>(
+const Root = styled(Box, {})<Pick<DrawerBodyProps, 'backgroundColor'>>(
     ({ backgroundColor }) => ({
         display: 'flex',
         flex: '1 1 0px',

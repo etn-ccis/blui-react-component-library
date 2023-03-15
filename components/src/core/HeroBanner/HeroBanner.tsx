@@ -26,10 +26,7 @@ export type HeroBannerProps = BoxProps & {
     limit?: number;
 };
 
-const Root = styled(Box, {
-    name: 'hero-banner',
-    slot: 'root',
-})(() => ({
+const Root = styled(Box, {})(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

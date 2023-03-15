@@ -69,8 +69,6 @@ const Root = styled(Box)<Pick<ChannelValueProps, 'fontSize' | 'color'>>(({ fontS
 }));
 
 const IconSpan = styled('span', {
-    name: 'channel-value',
-    slot: 'icon',
 })(() => ({
     marginRight: '0.35em',
     display: 'inline',
@@ -78,8 +76,6 @@ const IconSpan = styled('span', {
 }));
 
 const Unit = styled(Typography, {
-    name: 'channel-value',
-    slot: 'units',
     shouldForwardProp: (prop) => prop !== 'isSuffix',
 })<TypographyProps & { isSuffix: boolean }>(({ isSuffix }) => ({
     fontWeight: 300,
@@ -89,8 +85,6 @@ const Unit = styled(Typography, {
 }));
 
 const Value = styled(Typography, {
-    name: 'channel-value',
-    slot: 'value',
     shouldForwardProp: (prop) => prop !== 'isPrefix',
 })<TypographyProps & { isPrefix: boolean }>(({ isPrefix }) => ({
     fontWeight: 600,
