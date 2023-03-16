@@ -147,7 +147,6 @@ export const NavigationDrawer: React.FC = () => {
                 ))}
                 <DrawerNavGroup
                     title="COMMUNITY"
-                    itemID="COMMUNITY"
                     titleColor={Colors.blue[500]}
                     titleDivider={false}
                     items={[
@@ -176,6 +175,7 @@ export const NavigationDrawer: React.FC = () => {
                         {
                             title: 'Roadmap',
                             itemID: 'Roadmap',
+                            divider: true,
                             rightComponent: <ExternalLinkIcon url="https://brightlayer-ui.github.io/roadmap" />,
                         },
                     ]}
