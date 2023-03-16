@@ -1,5 +1,6 @@
 import React from 'react';
 import { Divider } from '../layout/Divider';
+import { CodeBlock } from '../shared';
 
 {/* KEYWORDS: developer develop environment guide tutorial */}
 
@@ -17,18 +18,16 @@ Chances are, you probably want to keep your application in source control. Git i
 
 You may already have git installed. To check, run:
 
-```sh
-git --version
-```
+<CodeBlock sx={{ height: 'auto', fontSize: '14px'}} 
+code={`git --version`} />
 
 in a command prompt. If you don't have git installed, you can download it from the [Git Website](http://git-scm.com/downloads).
 
 If you are behind a proxy, you'll also need to set up the git proxies as well:
 
-```sh
-git config --global http.proxy http://url.to.your.proxy:port
-git config --global https.proxy http://url.to.your.proxy:port
-```
+<CodeBlock sx={{ height: 'auto', fontSize: '14px'}} 
+code={`git config --global http.proxy http://url.to.your.proxy:port
+git config --global https.proxy http://url.to.your.proxy:port`} />
 
 The proxy addresses may vary depending on your location. Consult your local IT department if you’re not sure.
 
@@ -42,22 +41,19 @@ Our projects and example code are set up to be run using yarn, but if you prefer
 
 To check if you have yarn installed, run:
 
-```sh
-yarn -v
-```
+<CodeBlock sx={{ height: 'auto', fontSize: '14px'}} 
+code={`yarn -v`} />
 
 from a command prompt. If you are behind a proxy, you will also need to configure your proxy settings. It may be sufficient for you to set `HTTP_PROXY` and `HTTPS_PROXY` in your environment variables. However, you may need to also explicitly set proxy values for yarn:
 
-```sh
-yarn config set proxy http://url.to.your.proxy:port
-yarn config set https-proxy http://url.to.your.proxy:port
-```
+<CodeBlock sx={{ height: 'auto', fontSize: '14px'}} 
+code={`yarn config set proxy http://url.to.your.proxy:port
+yarn config set https-proxy http://url.to.your.proxy:port`} />
 
 The proxy addresses may vary depending on your location. Consult your local IT department if you’re not sure. Once you have configured the proxy, you should be able to install packages by using:
 
-```sh
-yarn add <package-name>
-```
+<CodeBlock sx={{ height: 'auto', fontSize: '14px'}} 
+code={`yarn add <package-name>`} />
 
 > If you are installing packages globally using yarn, you will need to ensure that your PATH variable has an entry pointing to your global yarn install directory. This location will vary based on your operating system.
 
