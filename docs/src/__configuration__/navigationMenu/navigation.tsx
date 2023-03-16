@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentPreviewPage } from '../../pages';
+import { ComponentPreviewPage, MarkdownPage } from '../../pages';
 
 // API Docs markdown
 import DrawerNavGroupAPIDocs from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupAPIDocs.mdx';
@@ -65,6 +65,9 @@ import { ToolbarMenuPlaygroundComponent } from '../../componentDocs/ToolbarMenu/
 import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 import { Outlet, RouteProps } from 'react-router';
 
+// Site markdown docs
+import * as markdownDocs from '../../markdownDocs/';
+
 export type RouteConfig = Omit<RouteProps, 'children'> & {
     title: string;
     icon?: JSX.Element;
@@ -73,6 +76,23 @@ export type RouteConfig = Omit<RouteProps, 'children'> & {
 };
 
 export const pageDefinitions: RouteConfig[] = [
+    {
+        title: 'Getting Started',
+        path: '/docs/',
+        element: <Outlet />,
+        pages: [
+            {
+                title: 'Environment',
+                path: 'environment/',
+                element: <MarkdownPage title={'Environment Setup'} markdown={markdownDocs.Environment} />,
+            },
+            {
+                title: 'Start a Project',
+                path: 'start-project/',
+                element: <MarkdownPage title={'React Guide'} markdown={markdownDocs.React} />,
+            },
+        ],
+    },
     {
         title: 'Components',
         path: '/components/',
