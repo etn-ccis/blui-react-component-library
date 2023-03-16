@@ -27,10 +27,7 @@ export const MarkdownPage: React.FC<MarkdownPageProps> = (props): JSX.Element =>
 
     return (
         <div {...divProps}>
-            <PageContent
-                noPadding={noPadding}
-                wideLayout={wideLayout}
-            >
+            <PageContent noPadding={noPadding} wideLayout={wideLayout}>
                 <Markdown />
             </PageContent>
         </div>
@@ -38,5 +35,5 @@ export const MarkdownPage: React.FC<MarkdownPageProps> = (props): JSX.Element =>
 };
 MarkdownPage.displayName = 'MarkdownPage';
 // MarkdownPage.defaultProps = {
-    // background: 'light',
+// background: 'light',
 // };
