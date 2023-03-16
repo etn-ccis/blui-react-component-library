@@ -153,14 +153,14 @@ export const NavigationDrawer: React.FC = () => {
                     items={[
                         {
                             title: 'Resources',
-                            itemID: '1',
+                            itemID: 'Resources',
                             rightComponent: (
                                 <ExternalLinkIcon url="https://brightlayer-ui.github.io/resources/developer" />
                             ),
                         },
                         {
                             title: 'Release Notes',
-                            itemID: '2',
+                            itemID: 'Release Notes',
                             rightComponent: (
                                 <Box
                                     sx={{
@@ -175,7 +175,7 @@ export const NavigationDrawer: React.FC = () => {
                         },
                         {
                             title: 'Roadmap',
-                            itemID: '3',
+                            itemID: 'Roadmap',
                             rightComponent: <ExternalLinkIcon url="https://brightlayer-ui.github.io/roadmap" />,
                         },
                     ]}
