@@ -2,17 +2,26 @@ import React, { useCallback } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate, useLocation } from 'react-router';
-import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-components';
+import {
+    Drawer,
+    DrawerBody,
+    DrawerHeader,
+    DrawerNavGroup,
+    ListItemTag,
+    NavItem,
+} from '@brightlayer-ui/react-components';
 import { pageDefinitions, RouteConfig } from '../__configuration__/navigationMenu/navigation';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import { DRAWER_WIDTH } from '../shared';
 import AvatarSvg from '../assets/react_logo.svg';
+import * as Colors from '@brightlayer-ui/colors';
 
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { RootState } from '../redux/store';
 import { closeDrawer, toggleDrawer } from '../redux/appState';
+import { ExternalLinkIcon } from '../shared/components/ExternalLinkIcon';
 
 const backgroundImage = require('../assets/cubes_tile.png');
 const linearGradientOverlayImage = `linear-gradient(to right, rgba(0, 123, 193, 1) 22.4%, rgba(0, 123, 193, 0.2) 100%), url(${backgroundImage})`;
@@ -136,6 +145,41 @@ export const NavigationDrawer: React.FC = () => {
                         items={convertNavItems(navGroup.pages || [], navGroup.path || '', 0, handleNavigate, dispatch)}
                     />
                 ))}
+                <DrawerNavGroup
+                    title="COMMUNITY"
+                    itemID="COMMUNITY"
+                    titleColor={Colors.blue[500]}
+                    titleDivider={false}
+                    items={[
+                        {
+                            title: 'Resources',
+                            itemID: '1',
+                            rightComponent: (
+                                <ExternalLinkIcon url="https://brightlayer-ui.github.io/resources/developer" />
+                            ),
+                        },
+                        {
+                            title: 'Release Notes',
+                            itemID: '2',
+                            rightComponent: (
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <ListItemTag label="New" />
+                                    <ExternalLinkIcon url="https://brightlayer-ui.github.io/release-notes" />
+                                </Box>
+                            ),
+                        },
+                        {
+                            title: 'Roadmap',
+                            itemID: '3',
+                            rightComponent: <ExternalLinkIcon url="https://brightlayer-ui.github.io/roadmap" />,
+                        },
+                    ]}
+                />
             </DrawerBody>
         </Drawer>
     );
