@@ -1,4 +1,6 @@
 import React, { HTMLAttributes, useMemo } from 'react';
+import * as Colors from '@brightlayer-ui/colors';
+import { useBackgroundColor } from '../hooks/useBackgroundColor';
 import { PAGE_WIDTH, PADDING } from '../shared';
 
 export type PageContentProps = HTMLAttributes<HTMLDivElement> & {
@@ -8,13 +10,15 @@ export type PageContentProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 export const PageContent: React.FC<PageContentProps> = (props): JSX.Element => {
-    const { noPadding, children, style, wideLayout, ...other } = props;
+    const { noPadding, children, style, backgroundColor, wideLayout, ...other } = props;
     const pageBodyWidth = useMemo((): number => {
         if (wideLayout) {
             return PAGE_WIDTH.WIDE;
         }
         return PAGE_WIDTH.REGULAR;
     }, [wideLayout]);
+
+    useBackgroundColor(backgroundColor);
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -33,4 +37,8 @@ export const PageContent: React.FC<PageContentProps> = (props): JSX.Element => {
             </div>
         </div>
     );
+};
+PageContent.displayName = 'PageContent';
+PageContent.defaultProps = {
+    backgroundColor: Colors.white[50],
 };

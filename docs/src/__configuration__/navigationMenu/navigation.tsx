@@ -78,7 +78,7 @@ export type RouteConfig = Omit<RouteProps, 'children'> & {
 export const pageDefinitions: RouteConfig[] = [
     {
         title: 'Getting Started',
-        path: '/docs/',
+        path: '/getting-started/',
         element: <Outlet />,
         pages: [
             {
@@ -88,7 +88,7 @@ export const pageDefinitions: RouteConfig[] = [
             },
             {
                 title: 'Start a Project',
-                path: 'start-project/',
+                path: 'react/',
                 element: <MarkdownPage title={'React Guide'} markdown={markdownDocs.React} />,
             },
         ],
