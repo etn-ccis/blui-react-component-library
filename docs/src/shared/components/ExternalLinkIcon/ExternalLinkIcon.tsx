@@ -10,8 +10,8 @@ type ExternalLinkIconProps = {
 export const ExternalLinkIcon = (props: ExternalLinkIconProps): JSX.Element => {
     const { url = '#' } = props;
     return (
-        <IconButton target="_blank" href={url}>
-            <OpenInNew sx={{ ml: 1, color: Colors.gray[200] }} />
+        <IconButton sx={{ ml: 1 }} target="_blank" href={url}>
+            <OpenInNew sx={{ color: Colors.gray[200] }} />
         </IconButton>
     );
 };
