@@ -68,7 +68,7 @@ export const NavigationDrawer: React.FC = () => {
         },
         [location.pathname, dispatch, navigate]
     );
-    
+
     return (
         <Drawer
             open={drawerOpen}
