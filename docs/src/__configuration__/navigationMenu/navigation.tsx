@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentPreviewPage, MarkdownPage, ComponentCatalog } from '../../pages';
+import { ComponentPreviewPage, MarkdownPage } from '../../pages';
 
 // API Docs markdown
 import DrawerNavGroupAPIDocs from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupAPIDocs.mdx';
@@ -90,6 +90,11 @@ export const pageDefinitions: RouteConfig[] = [
                 title: 'Start a Project',
                 path: 'react/',
                 element: <MarkdownPage title={'React Guide'} markdown={markdownDocs.React} />,
+            },
+            {
+                title: 'Component Catalog',
+                path: 'component-catalog',
+                element: <MarkdownPage title={'Components'} markdown={markdownDocs.Components} />,
             },
         ],
     },
@@ -529,16 +534,6 @@ export const pageDefinitions: RouteConfig[] = [
                         element: <UserMenuPlaygroundComponent />,
                     },
                 ],
-            },
-        ],
-    },
-    {
-        title: 'Getting Started',
-        pages: [
-            {
-                title: 'Component Catalog',
-                path: 'component-catalog',
-                element: <ComponentCatalog />,
             },
         ],
     },

@@ -1,27 +1,20 @@
 import React from 'react';
 import { Grid, Tooltip, Chip, Box } from '@mui/material';
 import { componentCatalogLinks } from './ComponentCatalogLinks';
-import { Angular, ReactBlue } from '../../assets/icons';
-import { InfoCard } from '../../shared/components/InfoCard';
+import { ReactBlue } from '../assets/icons';
+import { InfoCard } from '../shared/components/InfoCard';
 
 type CatalogStorybookLinkProp = {
-    name: 'Angular' | 'React' | 'React Native';
     content: string;
 };
 
 const CatalogStorybookLink: React.FC<CatalogStorybookLinkProp> = (props) => {
-    const { name, content } = props;
+    const { content } = props;
     if (content.startsWith('http')) {
         return (
             <Chip
-                label={name}
-                avatar={
-                    name === 'Angular' ? (
-                        <Angular sx={{ backgroundColor: 'transparent !important' }} />
-                    ) : (
-                        <ReactBlue sx={{ backgroundColor: 'transparent !important' }} />
-                    )
-                }
+                label="React"
+                avatar={<ReactBlue sx={{ backgroundColor: 'transparent !important' }} />}
                 onClick={(): void => {
                     window.open(content, '_blank');
                 }}
@@ -33,15 +26,9 @@ const CatalogStorybookLink: React.FC<CatalogStorybookLinkProp> = (props) => {
             <div>
                 <Chip
                     disabled
-                    label={name}
+                    label="React"
                     variant={'outlined'}
-                    avatar={
-                        name === 'Angular' ? (
-                            <Angular sx={{ backgroundColor: 'transparent !important', filter: 'grayscale(100%)' }} />
-                        ) : (
-                            <ReactBlue sx={{ backgroundColor: 'transparent !important', filter: 'grayscale(100%)' }} />
-                        )
-                    }
+                    avatar={<ReactBlue sx={{ backgroundColor: 'transparent !important', filter: 'grayscale(100%)' }} />}
                 />
             </div>
         </Tooltip>
@@ -67,9 +54,7 @@ export const ComponentCatalogGrids: React.FC = () => (
                                 gap: 1,
                             }}
                         >
-                            <CatalogStorybookLink name="Angular" content={link.angular} />
-                            <CatalogStorybookLink name="React" content={link.react} />
-                            <CatalogStorybookLink name="React Native" content={link.reactNative} />
+                            <CatalogStorybookLink content={link.react} />
                         </Box>
                     }
                 />
