@@ -56,7 +56,7 @@ export const NavigationDrawer: React.FC = () => {
     const dispatch = useAppDispatch();
     const location = useLocation();
     const navigate = useNavigate();
-    const activeItem = location.pathname.replace(/\/(examples|api-docs|playground)/, '');
+    const activeItem = location.pathname.replace(/\/(examples|api-docs|playground)/, '').replace(/\/$/, '');
 
     const handleNavigate = useCallback(
         (id: string): void => {
