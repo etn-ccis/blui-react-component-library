@@ -88,7 +88,7 @@ export const pageDefinitions: RouteConfig[] = [
             },
             {
                 title: 'Start a Project',
-                path: 'react/',
+                path: 'react-guide/',
                 element: <MarkdownPage title={'React Guide'} markdown={markdownDocs.React} />,
             },
         ],
