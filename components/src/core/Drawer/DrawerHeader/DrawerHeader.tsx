@@ -110,7 +110,10 @@ const Background = styled(Box, {
     opacity: backgroundOpacity,
 }));
 
-const Navigation = styled(Box, {})(({ theme }) => ({
+const Navigation = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     marginLeft: theme.spacing(2),
     minWidth: '2.5rem',
     height: '100%',
@@ -119,7 +122,10 @@ const Navigation = styled(Box, {})(({ theme }) => ({
     zIndex: 1,
 }));
 
-const Content = styled(Box, {})(({ theme }) => ({
+const Content = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     marginLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     minHeight: '4rem',
@@ -135,17 +141,26 @@ const Content = styled(Box, {})(({ theme }) => ({
     },
 }));
 
-const Title = styled(Typography, {})(() => ({
+const Title = styled(
+    Typography,
+    {}
+)(() => ({
     fontWeight: 600,
     lineHeight: '1.6rem', // Anything lower than 1.6rem cuts off bottom text of 'g' or 'y'.
 }));
 
-const Subtitle = styled(Typography, {})(() => ({
+const Subtitle = styled(
+    Typography,
+    {}
+)(() => ({
     lineHeight: '1.2rem', // Anything lower than 1.2rem cuts off bottom text of 'g' or 'y'.
     marginTop: '-0.125rem',
 }));
 
-const NonClickableIcon = styled(Box, {})(() => ({
+const NonClickableIcon = styled(
+    Box,
+    {}
+)(() => ({
     display: 'flex',
     padding: 0,
 }));

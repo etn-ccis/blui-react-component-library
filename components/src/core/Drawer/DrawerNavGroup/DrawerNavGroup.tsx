@@ -57,7 +57,10 @@ const Root = styled(List, {
     paddingTop: 0,
 }));
 
-const SubHeader = styled(ListSubheader, {})(({ theme }) => ({
+const SubHeader = styled(
+    ListSubheader,
+    {}
+)(({ theme }) => ({
     paddingBottom: 0,
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
@@ -65,7 +68,10 @@ const SubHeader = styled(ListSubheader, {})(({ theme }) => ({
     cursor: 'text',
 }));
 
-const Title = styled(Typography, {})(() => ({
+const Title = styled(
+    Typography,
+    {}
+)(() => ({
     display: 'block',
     alignItems: 'center',
     lineHeight: '3rem',

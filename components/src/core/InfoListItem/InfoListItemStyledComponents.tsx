@@ -164,8 +164,10 @@ export const Info = styled(Typography, {
     })
 );
 
-export const RightComponent = styled(Box, {
-})(({ theme }) => ({
+export const RightComponent = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     flex: '0 0 auto',
     marginLeft: theme.spacing(2),
     display: 'flex',

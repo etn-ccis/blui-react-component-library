@@ -37,7 +37,10 @@ export type UserMenuGroup = {
     title?: string;
 };
 
-const Root = styled(Box, {})(() => ({
+const Root = styled(
+    Box,
+    {}
+)(() => ({
     [`& .${userMenuClasses.avatarRoot}`]: {
         cursor: 'pointer',
         height: `2.5rem`,
@@ -45,7 +48,10 @@ const Root = styled(Box, {})(() => ({
     },
 }));
 
-const Header = styled(Box, {})(() => ({
+const Header = styled(
+    Box,
+    {}
+)(() => ({
     '&:active, &:focus': {
         outline: 'none',
     },
@@ -64,13 +70,19 @@ const Header = styled(Box, {})(() => ({
     },
 }));
 
-const UserMenuNavGroups = styled(Box, {})(() => ({
+const UserMenuNavGroups = styled(
+    Box,
+    {}
+)(() => ({
     '&:active, &:focus': {
         outline: 'none',
     },
 }));
 
-const DrawerBottomSheet = styled(Drawer, {})(({ theme }) => ({
+const DrawerBottomSheet = styled(
+    Drawer,
+    {}
+)(({ theme }) => ({
     [`& .${userMenuClasses.bottomSheet}`]: {
         width: '100%',
         maxWidth: theme.breakpoints.values.sm,

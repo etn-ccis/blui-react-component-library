@@ -68,8 +68,10 @@ const Root = styled(Box)<Pick<ChannelValueProps, 'fontSize' | 'color'>>(({ fontS
     [`& .${channelValueClasses.text}`]: { fontSize: 'inherit', lineHeight: 'inherit', letterSpacing: 0 },
 }));
 
-const IconSpan = styled('span', {
-})(() => ({
+const IconSpan = styled(
+    'span',
+    {}
+)(() => ({
     marginRight: '0.35em',
     display: 'inline',
     fontSize: 'inherit',
