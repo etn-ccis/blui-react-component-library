@@ -9,6 +9,7 @@ import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import { DRAWER_WIDTH } from '../shared';
 import AvatarSvg from '../assets/react_logo.svg';
+import * as Colors from '@brightlayer-ui/colors';
 
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { RootState } from '../redux/store';
@@ -32,6 +33,7 @@ const convertNavItems = (
         const fullURL = `${parentUrl}${item.path || ''}`;
         convertedItems.push({
             title: item.title,
+            divider: i === navData.length - 1,
             icon: depth === 0 ? item.icon : undefined,
             itemID: fullURL.replace(/\/$/, ''),
             hidePadding: depth > 0 ? false : true,
@@ -131,6 +133,8 @@ export const NavigationDrawer: React.FC = () => {
             <DrawerBody hidePadding>
                 {pageDefinitions.map((navGroup) => (
                     <DrawerNavGroup
+                        titleColor={Colors.blue[500]}
+                        titleDivider={false}
                         key={navGroup.title}
                         title={navGroup.title}
                         items={convertNavItems(navGroup.pages || [], navGroup.path || '', 0, handleNavigate, dispatch)}
