@@ -151,12 +151,11 @@ export const NavigationDrawer: React.FC = () => {
                 <DrawerNavGroup
                     title="COMMUNITY"
                     titleColor={Colors.blue[500]}
-                    titleDivider={false}
                     items={[
                         {
                             title: 'Resources',
                             itemID: 'Resources',
-                            rightComponent: <OpenInNew sx={{ color: Colors.gray[200] }} />,
+                            rightComponent: <OpenInNew sx={{ color: theme.palette.grey[400] }} />,
                             onClick: () => openInNewTab('https://brightlayer-ui.github.io/resources/developer'),
                         },
                         {
@@ -170,7 +169,7 @@ export const NavigationDrawer: React.FC = () => {
                                     }}
                                 >
                                     <ListItemTag sx={{ mr: 1 }} label="New" />
-                                    <OpenInNew sx={{ color: Colors.gray[200] }} />
+                                    <OpenInNew sx={{ color: theme.palette.grey[400] }} />
                                 </Box>
                             ),
                             onClick: () => openInNewTab('https://brightlayer-ui.github.io/release-notes'),
@@ -179,7 +178,7 @@ export const NavigationDrawer: React.FC = () => {
                             title: 'Roadmap',
                             itemID: 'Roadmap',
                             divider: true,
-                            rightComponent: <OpenInNew sx={{ color: Colors.gray[200] }} />,
+                            rightComponent: <OpenInNew sx={{ color: theme.palette.grey[400] }} />,
                             onClick: () => openInNewTab('https://brightlayer-ui.github.io/roadmap'),
                         },
                     ]}
