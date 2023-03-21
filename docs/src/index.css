@@ -26,7 +26,7 @@ code[class*='language-'],
 pre[class*='language-'],
 code[class*='language-'] *,
 pre[class*='language-'] * {
-    font-family: monospace !important;
+    font-family: 'Roboto Mono' !important;
 }
 
 pre[class*='language-'] {

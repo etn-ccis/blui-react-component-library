@@ -160,7 +160,7 @@ export const componentsMap = {
                 border: '1px solid #EEEEEE',
                 backgroundColor: '#F8F8F8',
                 borderRadius: '3px',
-                fontFamily: 'monospace',
+                fontFamily: 'Roboto Mono',
                 lineHeight: '1.6',
             }}
             {...props}
