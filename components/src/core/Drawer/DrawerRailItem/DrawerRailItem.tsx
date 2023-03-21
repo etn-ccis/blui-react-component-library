@@ -219,7 +219,10 @@ const Title = styled(Typography, {
     }),
 }));
 
-const DrawerRailItemDivider = styled(Divider, {})(() => ({
+const DrawerRailItemDivider = styled(
+    Divider,
+    {}
+)(() => ({
     position: 'absolute',
     bottom: 0,
     left: 0,
