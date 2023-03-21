@@ -21,7 +21,7 @@ import * as Colors from '@brightlayer-ui/colors';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { RootState } from '../redux/store';
 import { closeDrawer, toggleDrawer } from '../redux/appState';
-import { ExternalLinkIcon } from '../shared/components/ExternalLinkIcon';
+import { OpenInNew } from '@mui/icons-material';
 
 const backgroundImage = require('../assets/cubes_tile.png');
 const linearGradientOverlayImage = `linear-gradient(to right, rgba(0, 123, 193, 1) 22.4%, rgba(0, 123, 193, 0.2) 100%), url(${backgroundImage})`;
@@ -77,6 +77,9 @@ export const NavigationDrawer: React.FC = () => {
         },
         [location.pathname, dispatch, navigate]
     );
+    const openInNewTab = (url = '#'): any => {
+        window.open(url);
+    };
 
     return (
         <Drawer
@@ -153,9 +156,8 @@ export const NavigationDrawer: React.FC = () => {
                         {
                             title: 'Resources',
                             itemID: 'Resources',
-                            rightComponent: (
-                                <ExternalLinkIcon url="https://brightlayer-ui.github.io/resources/developer" />
-                            ),
+                            rightComponent: <OpenInNew sx={{ color: Colors.gray[200] }} />,
+                            onClick: () => openInNewTab('https://brightlayer-ui.github.io/resources/developer'),
                         },
                         {
                             title: 'Release Notes',
@@ -167,16 +169,18 @@ export const NavigationDrawer: React.FC = () => {
                                         alignItems: 'center',
                                     }}
                                 >
-                                    <ListItemTag label="New" />
-                                    <ExternalLinkIcon url="https://brightlayer-ui.github.io/release-notes" />
+                                    <ListItemTag sx={{ mr: 1 }} label="New" />
+                                    <OpenInNew sx={{ color: Colors.gray[200] }} />
                                 </Box>
                             ),
+                            onClick: () => openInNewTab('https://brightlayer-ui.github.io/release-notes'),
                         },
                         {
                             title: 'Roadmap',
                             itemID: 'Roadmap',
                             divider: true,
-                            rightComponent: <ExternalLinkIcon url="https://brightlayer-ui.github.io/roadmap" />,
+                            rightComponent: <OpenInNew sx={{ color: Colors.gray[200] }} />,
+                            onClick: () => openInNewTab('https://brightlayer-ui.github.io/roadmap'),
                         },
                     ]}
                 />
