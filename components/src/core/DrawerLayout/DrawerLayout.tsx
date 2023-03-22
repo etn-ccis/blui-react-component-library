@@ -25,7 +25,10 @@ const useUtilityClasses = (ownerState: DrawerLayoutProps): Record<DrawerLayoutCl
     return composeClasses(slots, getDrawerLayoutUtilityClass, classes);
 };
 
-const Root = styled(Box, {})(({ theme }) => ({
+const Root = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     display: 'flex',
     width: '100%',
     '&$expanded $content': {
@@ -36,7 +39,10 @@ const Root = styled(Box, {})(({ theme }) => ({
     [`& .${drawerLayoutClasses.expanded}`]: {},
 }));
 
-const Drawer = styled(Box, {})(({ theme }) => ({
+const Drawer = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     display: 'flex',
     position: 'fixed',
     height: '100%',
@@ -44,7 +50,10 @@ const Drawer = styled(Box, {})(({ theme }) => ({
     zIndex: theme.zIndex.drawer,
 }));
 
-const Content = styled(Box, {})(({ theme }) => ({
+const Content = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     width: '100%',
     transition: theme.transitions.create('padding', { duration: theme.transitions.duration.leavingScreen }),
     zIndex: 0,

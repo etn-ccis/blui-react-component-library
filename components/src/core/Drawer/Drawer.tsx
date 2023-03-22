@@ -111,7 +111,10 @@ const Root = styled(MUIDrawer, {
     },
 }));
 
-const Content = styled(Box, {})(() => ({
+const Content = styled(
+    Box,
+    {}
+)(() => ({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
