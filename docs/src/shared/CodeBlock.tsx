@@ -39,7 +39,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
                     borderRadius: 4,
                 }}
             >
-                <code style={{ fontFamily: 'monospace' }} className={`language-${language}`}>
+                <code style={{ fontFamily: `'Roboto Mono', monospace` }} className={`language-${language}`}>
                     {code}
                 </code>
             </pre>

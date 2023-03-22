@@ -12,8 +12,6 @@ import Chevron from '@mui/icons-material/ChevronRight';
 import Typography, { TypographyProps } from '@mui/material/Typography';
 
 export const Root = styled(ListItem, {
-    name: 'info-list-item',
-    slot: 'root',
     shouldForwardProp: (prop) =>
         prop !== 'iconColor' &&
         prop !== 'iconColor' &&
@@ -65,8 +63,6 @@ export const InfoListItemContentContainer = styled(ListItemButton)(() => ({
 }));
 
 export const StatusStripe = styled(Box, {
-    name: 'info-list-item',
-    slot: 'statusStripe',
     shouldForwardProp: (prop) => prop !== 'statusColor',
 })<Pick<InfoListItemProps, 'statusColor'>>(({ statusColor }) => ({
     position: 'absolute',
@@ -87,8 +83,6 @@ export const InfoListItemDivider = styled(Divider)<Pick<InfoListItemProps, 'divi
 }));
 
 export const Icon = styled(Avatar, {
-    name: 'info-list-item',
-    slot: 'icon',
     shouldForwardProp: (prop) =>
         prop !== 'statusColor' &&
         prop !== 'iconColor' &&
@@ -143,8 +137,6 @@ export const Icon = styled(Avatar, {
 );
 
 export const InfoListItemText = styled(ListItemText, {
-    name: 'info-list-item',
-    slot: 'listItemText',
     shouldForwardProp: (prop) => prop !== 'leftComponent',
 })<Pick<InfoListItemProps, 'leftComponent'>>(({ leftComponent, theme }) => ({
     // we have to specify both here because the auto-swap from JSS isn't smart enough to do it when we use a function
@@ -153,8 +145,6 @@ export const InfoListItemText = styled(ListItemText, {
 }));
 
 export const Subtitle = styled(Typography, {
-    name: 'info-list-item',
-    slot: 'subtitle',
     shouldForwardProp: (prop) => prop !== 'fontColor',
 })<Pick<InfoListItemProps & TypographyProps & BoxProps, 'fontColor' | 'component' | 'noWrap'>>(
     ({ fontColor, theme }) => ({
@@ -165,8 +155,6 @@ export const Subtitle = styled(Typography, {
 );
 
 export const Info = styled(Typography, {
-    name: 'info-list-item',
-    slot: 'info',
     shouldForwardProp: (prop) => prop !== 'fontColor',
 })<Pick<InfoListItemProps & TypographyProps & BoxProps, 'fontColor' | 'component' | 'noWrap'>>(
     ({ fontColor, theme }) => ({
@@ -176,10 +164,10 @@ export const Info = styled(Typography, {
     })
 );
 
-export const RightComponent = styled(Box, {
-    name: 'info-list-item',
-    slot: 'rightComponent',
-})(({ theme }) => ({
+export const RightComponent = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     flex: '0 0 auto',
     marginLeft: theme.spacing(2),
     display: 'flex',
@@ -187,8 +175,6 @@ export const RightComponent = styled(Box, {
 }));
 
 export const InfoListItemChevron = styled(Chevron, {
-    name: 'info-list-item',
-    slot: 'chevron',
     shouldForwardProp: (prop) => prop !== 'chevronColor',
 })<Pick<InfoListItemProps, 'chevronColor'>>(({ chevronColor, theme }) => ({
     color: chevronColor ? chevronColor : theme.palette.text.secondary,

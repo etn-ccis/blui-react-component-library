@@ -17,7 +17,7 @@ export const ScoreCardWithActionsExample = (): JSX.Element => (
                 headerTitle="Header Actions"
                 actionItems={[<Star />, <Settings />, <MoreVert />]}
                 actionRow={
-                    <List sx={{ p: 0 }}>
+                    <List disablePadding>
                         <InfoListItem dense chevron title="View Location" hidePadding />
                     </List>
                 }

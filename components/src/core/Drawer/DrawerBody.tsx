@@ -25,15 +25,16 @@ export type DrawerBodyProps = BoxProps &
         classes?: DrawerBodyClasses;
     };
 
-const Root = styled(Box, { name: 'drawer-body', slot: 'root' })<Pick<DrawerBodyProps, 'backgroundColor'>>(
-    ({ backgroundColor }) => ({
-        display: 'flex',
-        flex: '1 1 0px',
-        flexDirection: 'column',
-        overflowY: 'auto',
-        backgroundColor: backgroundColor,
-    })
-);
+const Root = styled(
+    Box,
+    {}
+)<Pick<DrawerBodyProps, 'backgroundColor'>>(({ backgroundColor }) => ({
+    display: 'flex',
+    flex: '1 1 0px',
+    flexDirection: 'column',
+    overflowY: 'auto',
+    backgroundColor: backgroundColor,
+}));
 
 const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps> = (
     bodyProps: DrawerBodyProps,

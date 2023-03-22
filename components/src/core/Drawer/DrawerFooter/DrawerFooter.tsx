@@ -42,10 +42,10 @@ export type DrawerFooterProps = BoxProps & {
     sx?: SxProps<Theme>;
 };
 
-const Root = styled(Box, {
-    name: 'drawer-footer',
-    slot: 'root',
-})<Pick<DrawerFooterProps, 'backgroundColor'>>(({ backgroundColor }) => ({
+const Root = styled(
+    Box,
+    {}
+)<Pick<DrawerFooterProps, 'backgroundColor'>>(({ backgroundColor }) => ({
     width: '100%',
     backgroundColor: backgroundColor,
     [`&.${drawerFooterClasses.hidden}`]: {

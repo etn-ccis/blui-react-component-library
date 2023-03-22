@@ -43,7 +43,10 @@ export type HeroProps = BoxProps & {
     ChannelValueProps?: ChannelValuePropsType;
 };
 
-const Root = styled(Box, { name: 'hero', slot: 'root' })<Pick<HeroProps, 'onClick'>>(({ onClick, theme }) => ({
+const Root = styled(
+    Box,
+    {}
+)<Pick<HeroProps, 'onClick'>>(({ onClick, theme }) => ({
     fontSize: '1rem',
     display: 'flex',
     flexDirection: 'column',
@@ -57,8 +60,6 @@ const Root = styled(Box, { name: 'hero', slot: 'root' })<Pick<HeroProps, 'onClic
 }));
 
 const Icon = styled(Box, {
-    name: 'hero',
-    slot: 'icon',
     shouldForwardProp: (prop) => !['iconSize', 'iconBackgroundColor'].includes(prop.toString()),
 })<Pick<HeroProps, 'iconSize' | 'iconBackgroundColor'>>(({ iconSize, iconBackgroundColor, theme }) => ({
     lineHeight: 1,
@@ -79,7 +80,10 @@ const Icon = styled(Box, {
     backgroundColor: iconBackgroundColor,
 }));
 
-const Values = styled(Box, { name: 'hero', slot: 'values' })(({ theme }) => ({
+const Values = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     color: theme.palette.text.primary,
@@ -89,7 +93,10 @@ const Values = styled(Box, { name: 'hero', slot: 'values' })(({ theme }) => ({
     fontSize: '1.25rem',
 }));
 
-const Label = styled(Typography, { name: 'hero', slot: 'values' })(() => ({
+const Label = styled(
+    Typography,
+    {}
+)(() => ({
     fontSize: 'inherit',
     lineHeight: 1.2,
     letterSpacing: 0,
