@@ -1,4 +1,5 @@
 export * from './CodeBlock';
+export * from './MarkdownCodeBlock';
 export * from './ComponentPreviewTabs';
 export * from './constants';
 export * from './CopyToClipboardButton';
