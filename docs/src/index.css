@@ -34,6 +34,12 @@ pre[class*='language-'] {
     padding-right: 1rem;
 }
 
+/* Used in MarkdownCodeBlock */
+code[class*='language-sh'] *,
+pre[class*='language-sh'] * {
+    font-family: 'Roboto mono', monospace !important;
+}
+
 /* HIDE INCREMENT/DECREMENT BUTTONS ON NUMBER INPUTS */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
