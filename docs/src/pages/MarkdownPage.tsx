@@ -36,7 +36,7 @@ export const MarkdownPage: React.FC<MarkdownPageProps> = (props): JSX.Element =>
                                 dispatch(toggleDrawer());
                             }}
                             edge={'start'}
-                            sx={{ mr: 3 }}
+                            sx={{ mr: 2.5 }}
                             size="large"
                         >
                             <Menu />
