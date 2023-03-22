@@ -160,7 +160,7 @@ export const componentsMap = {
                 border: '1px solid #EEEEEE',
                 backgroundColor: '#F8F8F8',
                 borderRadius: '3px',
-                fontFamily: 'Roboto Mono',
+                fontFamily: `'Roboto Mono', monospace`,
                 lineHeight: '1.6',
             }}
             {...props}
@@ -173,7 +173,7 @@ export const componentsMap = {
             sx={{
                 backgroundColor: (theme: Theme) =>
                     theme.palette.mode === 'light' ? theme.palette.background.default : Colors.darkBlack[300],
-                fontFamily: 'Roboto Mono, Monospaced',
+                fontFamily: `'Roboto Mono', monospace`,
                 border: (theme: Theme) =>
                     theme.palette.mode === 'light' ? undefined : `${theme.palette.divider} 1px solid`,
             }}
