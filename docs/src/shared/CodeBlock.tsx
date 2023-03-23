@@ -7,10 +7,11 @@ export type CodeBlockProps = BoxProps & {
     code: string;
     language: string;
     dataLine?: string;
+    smallFont?: boolean;
 };
 
 export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
-    const { code, language, dataLine, sx, ...boxProps } = props;
+    const { code, language, dataLine, sx, smallFont = false, ...boxProps } = props;
     useEffect(() => {
         Prism.highlightAll();
     }, [code]);
@@ -22,8 +23,8 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
                         display: 'none',
                     },
                     '.line-highlight::after': { display: 'none' },
-                    height: '100%',
                     display: 'flex',
+                    fontSize: smallFont ? '0.875rem' : undefined,
                 },
                 ...(Array.isArray(sx) ? sx : [sx]),
             ]}

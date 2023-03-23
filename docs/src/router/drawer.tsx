@@ -8,8 +8,7 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import { DRAWER_WIDTH } from '../shared';
-import AvatarSvg from '../assets/react_logo.svg';
-// import * as Colors from '@brightlayer-ui/colors';
+import { React as ReactIcon } from '@brightlayer-ui/icons-mui';
 
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { RootState } from '../redux/store';
@@ -119,7 +118,7 @@ export const NavigationDrawer: React.FC = () => {
                                     color: 'primary.main',
                                     backgroundColor: 'white',
                                 }}
-                                icon={<img src={AvatarSvg} />}
+                                icon={<ReactIcon color={'primary'} />}
                                 label={
                                     <Typography variant={'overline'} sx={{ fontWeight: 700, letterSpacing: 1 }}>
                                         REACT

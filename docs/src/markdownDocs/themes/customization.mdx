@@ -1,0 +1,176 @@
+import { CodeBlock, CallToActionButton } from '../../shared';
+import ZebraStripingTable from '../../assets/zebra-striping-table.svg';
+import { Web } from '@mui/icons-material';
+
+# Customizing Your Theme
+
+Whether you are developing for a white-labeled product or need to modify a component style across the whole application, theme customization is a great way to tune the default Brightlayer UI theme into exactly what your brand design calls for.
+
+<CallToActionButton
+    title={`Theming - Material UI`}
+    description={`Read more about theming on Material UI.`}
+    url={`https://mui.com/material-ui/customization/theming/`}
+    avatar={<Web sx={{ width: 48, height: 48 }} />}
+/>
+
+# Changing Individual Component Styles
+
+If your goal is to change Brightlayer UI component styles case by case instead, please refer to our [style overrides guide](https://github.com/etn-ccis/blui-react-component-library/blob/master/docs/src/shared/markdown/StyleOverridesGuide.md). Note however, that this approach drives up maintenance cost significantly in the long run, especially when you have to maintain multiple products. The better approach is to build your custom theme.
+
+# Overriding Brightlayer UI's Theme
+
+To override Brightlayer UI's blue theme color without changing anything else, you can simply provide your own color palette:
+
+<CodeBlock
+    language={'jsx'}
+    code={`/* myNewTheme.ts */
+import * as BLUIThemes from '@brightlayer-ui/react-themes';
+import { createTheme } from '@mui/material/styles';
+
+export const myNewColorPalette = {
+    light: '#f3e2e7',
+    main: '#9c0e33',
+    dark: '#6e0414',
+    contrastText: '#fff',
+};
+
+export const myNewTheme = createTheme(BLUIThemes.blue, {
+    palette: {
+        primary: myNewColorPalette,
+    },
+});
+`} />
+
+Once you are finished, use the new theme for your `ThemeProvider`:
+
+<CodeBlock
+    language={'jsx'}
+    code={`import { ThemeProvider } from '@mui/material/styles';
+import { myNewTheme } from './myNewTheme.ts';
+...
+<ThemeProvider theme={myNewTheme}>
+    <App />
+</ThemeProvider>
+`}
+    dataLine={'2,4'}
+/>
+
+Likewise, you can inject a custom font to be applied to the whole application:
+
+<CodeBlock
+    language={'jsx'}
+    code={`...
+export const myNewTheme = createTheme(BLUIThemes.blue, {
+    typography: {
+        fontFamily: '"Noto Sans SC", "Open Sans", sans-serif',
+    }
+});
+`}
+/>
+
+You can change the default style of a Material UI component too:
+
+<CodeBlock
+    language={'jsx'}
+    code={`...
+export const myNewTheme = createTheme(BLUIThemes.blue, {
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    // prefer pill-shaped buttons?
+                    borderRadius: 999,
+                }
+            }
+        }
+    }
+});
+`}
+/>
+
+# Common Theme Overrides
+
+## Zebra-Striping Table
+
+Table styles can be overridden to have alternate colors for table rows.
+
+<img src={ZebraStripingTable} style={{ width: '100%' }} />
+
+If you want to override a single table:
+
+<CodeBlock
+    language={'jsx'}
+    code={`/* Tables Component */
+import Color from 'color';
+import * as BLUIColors from '@brightlayer-ui/colors';
+import Table from "@mui/material/Table";
+import TableRow from "@mui/material/TableRow";
+import { styled } from '@mui/material/styles';
+...
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    backgroundColor: BLUIColors.white[100],
+    "&:hover": {
+        backgroundColor: Color(BLUIColors.white[100])
+            .mix(Color(BLUIColors.black[50]), 0.5)
+            .string()
+    },
+    "&:nth-of-type(odd)": {
+        backgroundColor: BLUIColors.white[50],
+        "&:hover": {
+            backgroundColor: Color(BLUIColors.white[50])
+                .mix(Color(BLUIColors.black[50]), 0.5)
+                .string()
+      }
+    }
+}));
+...
+<Table>
+    <StyledTableRow>{/* Table row contents */}</StyledTableRow>
+</Table>
+`}
+/>
+
+If you want to change the theme to do this for all tables, you can override the default theme to change this behavior:
+
+<CodeBlock
+    language={'jsx'}
+    code={`/* App.tsx */
+import * as BluiTheme from '@brightlayer-ui/react-themes';
+import * as BLUIColors from '@brightlayer-ui/colors';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Color from 'color';
+...
+const myNewLightTheme = createTheme(BluiTheme.blue, {
+    components: {
+        MuiTableRow: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: BLUIColors.white[100],
+                    "&:hover": {
+                        backgroundColor: Color(BLUIColors.white[100])
+                            .mix(Color(BLUIColors.black[50]), 0.5)
+                            .string()
+                    },
+                    "&:nth-of-type(odd)": {
+                        backgroundColor: BLUIColors.black[900],
+                            "&:hover": {
+                                backgroundColor: Color(BLUIColors.black[900])
+                                    .mix(Color(BLUIColors.black[50]), 0.5)
+                                    .string()
+                            }
+                    }
+                }
+            }
+        }
+    }
+});
+...
+<ThemeProvider theme={myNewLightTheme}>
+    {/* Your table contents */}
+</ThemeProvider>
+`}
+/>
+
+# Write a New Theme
+
+You can fork our [themes repository](https://github.com/etn-ccis/blui-react-themes/tree/master), change it to fit your branding needs and use your new theme for your application's `ThemeProvider`. Note however, that you may loose all subsequent update supports from Brightlayer UI.

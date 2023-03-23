@@ -1,0 +1,48 @@
+import { CodeBlock, CallToActionButton } from '../../shared';
+import { PlayArrow, Code, BugReport, Difference } from '@mui/icons-material';
+
+# React Themes Overview
+
+This package, `@brightlayer-ui/react-themes`, provides theming support for Eaton applications using the Brightlayer UI design system. It includes resources for developers using React with [MUI's Material UI](https://www.npmjs.com/package/@mui/material) version 5+. This package comes with two theme options: a Blue theme (standard) and a Dark theme.
+
+<CallToActionButton
+    title={`Style Guide: Themes`}
+    description={`Follow Brightlayer UI's design guideline.`}
+    url={`https://brightlayer-ui.github.io/style/themes`}
+/>
+<CallToActionButton
+    title={`Example Project`}
+    description={`Try out this package in an interactive demo project.`}
+    url={`https://blui-react-showcase.web.app/`}
+    avatar={<PlayArrow sx={{ height: 48, width: 48 }} />}
+/>
+<CallToActionButton
+    title={`Source Code`}
+    description={`Examine the source code on GitHub.`}
+    url={`https://github.com/etn-ccis/blui-react-themes/tree/master`}
+    avatar={<Code sx={{ height: 48, width: 48 }} />}
+/>
+<CallToActionButton
+    title={`Submit an Issue`}
+    description={`Log a bug or request for a new feature on GitHub.`}
+    url={`https://github.com/etn-ccis/blui-react-themes/issues`}
+    avatar={<BugReport sx={{ height: 48, width: 48 }} />}
+/>
+<CallToActionButton
+    title={`Change Log`}
+    description={`Learn what’s new in the latest version.`}
+    url={`https://github.com/etn-ccis/blui-react-themes/blob/master/CHANGELOG.md`}
+    avatar={<Difference sx={{ height: 48, width: 48 }} />}
+/>
+
+## Installation
+
+We encourage you to use Brightlayer UI CLI (LINK) to generate a new project. The CLI is a tool that can generate a blank React project that includes all essential Brightlayer UI packages, including the Brightlayer UI themes.
+
+To integrate the package into an existing project, you may install with npm
+
+<CodeBlock code={`npm install --save @brightlayer-ui/react-themes`} language={'sh'} />
+
+or yarn
+
+<CodeBlock code={`yarn add @brightlayer-ui/react-themes`} language={'sh'} />
