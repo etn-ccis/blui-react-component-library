@@ -1,16 +1,18 @@
 import React, { HTMLAttributes, useMemo } from 'react';
-import * as Colors from '@brightlayer-ui/colors';
-import { useBackgroundColor } from '../hooks/useBackgroundColor';
+// import * as Colors from '@brightlayer-ui/colors';
+// import { useBackgroundColor } from '../hooks/useBackgroundColor';
+import Box from '@mui/material/Box';
 import { PAGE_WIDTH, PADDING } from '../shared';
+import { useTheme } from '@mui/material/styles';
 
 export type PageContentProps = HTMLAttributes<HTMLDivElement> & {
     noPadding?: boolean;
-    backgroundColor?: string;
     wideLayout?: boolean;
 };
 
 export const PageContent: React.FC<PageContentProps> = (props): JSX.Element => {
-    const { noPadding, children, style, backgroundColor, wideLayout, ...other } = props;
+    const theme = useTheme();
+    const { noPadding, children, wideLayout, ...other } = props;
     const pageBodyWidth = useMemo((): number => {
         if (wideLayout) {
             return PAGE_WIDTH.WIDE;
@@ -18,27 +20,18 @@ export const PageContent: React.FC<PageContentProps> = (props): JSX.Element => {
         return PAGE_WIDTH.REGULAR;
     }, [wideLayout]);
 
-    useBackgroundColor(backgroundColor);
-
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div
-                style={Object.assign(
-                    {
-                        width: '100%',
-                        padding: noPadding ? 0 : PADDING,
-                        maxWidth: pageBodyWidth,
-                    },
-                    style
-                )}
+        <Box sx={{ display: 'flex', justifyContent: 'center', backgroundColor: theme.palette.background.paper }}>
+            <Box
+                sx={{
+                    width: '100%',
+                    padding: noPadding ? 0 : `${PADDING}px`,
+                    maxWidth: pageBodyWidth,
+                }}
                 {...other}
             >
                 {children}
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
-};
-PageContent.displayName = 'PageContent';
-PageContent.defaultProps = {
-    backgroundColor: Colors.white[50],
 };

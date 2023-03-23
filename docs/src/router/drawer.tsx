@@ -62,10 +62,13 @@ export const NavigationDrawer: React.FC = () => {
 
     const handleNavigate = useCallback(
         (id: string): void => {
-            const tabName = tabs.includes(location.pathname.split('/')[4])
-                ? location.pathname.split('/')[4]
-                : location.pathname.split('/')[3];
-            navigate(`${id}${tabName || ''}`);
+            const pathArray = location.pathname.split('/');
+            const tabName = tabs.includes(pathArray[4])
+                ? pathArray[4]
+                : tabs.includes(pathArray[3])
+                ? pathArray[3]
+                : '';
+            navigate(`${id}${id.includes('/components/') ? tabName || '' : ''}`);
             dispatch(toggleDrawer());
         },
         [location.pathname, dispatch, navigate]

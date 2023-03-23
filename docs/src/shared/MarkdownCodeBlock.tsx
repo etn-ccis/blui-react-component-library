@@ -3,14 +3,13 @@ import Prism from 'prismjs';
 import Box, { BoxProps } from '@mui/material/Box';
 import * as Colors from '@brightlayer-ui/colors';
 
-export type CodeBlockProps = BoxProps & {
+export type MarkdownCodeBlockProps = BoxProps & {
     code: string;
     language: string;
-    dataLine?: string;
 };
 
-export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
-    const { code, language, dataLine, sx, ...boxProps } = props;
+export const MarkdownCodeBlock: React.FC<MarkdownCodeBlockProps> = (props): JSX.Element => {
+    const { code, language = 'sh', sx, ...boxProps } = props;
     useEffect(() => {
         Prism.highlightAll();
     }, [code]);
@@ -18,11 +17,8 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
         <Box
             sx={[
                 {
-                    '.line-highlight::before': {
-                        display: 'none',
-                    },
-                    '.line-highlight::after': { display: 'none' },
-                    height: '100%',
+                    height: 'auto',
+                    fontSize: '14px',
                     display: 'flex',
                 },
                 ...(Array.isArray(sx) ? sx : [sx]),
@@ -31,7 +27,6 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
             className="Code"
         >
             <pre
-                data-line={dataLine}
                 style={{
                     margin: 0,
                     width: '100%',
@@ -39,7 +34,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = (props): JSX.Element => {
                     borderRadius: 4,
                 }}
             >
-                <code style={{ fontFamily: `'Roboto Mono', monospace` }} className={`language-${language}`}>
+                <code style={{ fontFamily: '"Roboto Mono", monospace' }} className={`language-${language}`}>
                     {code}
                 </code>
             </pre>
