@@ -2,15 +2,8 @@ import React, { useCallback } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate, useLocation } from 'react-router';
-import {
-    Drawer,
-    DrawerBody,
-    DrawerHeader,
-    DrawerNavGroup,
-    ListItemTag,
-    NavItem,
-} from '@brightlayer-ui/react-components';
-import { pageDefinitions, RouteConfig } from '../__configuration__/navigationMenu/navigation';
+import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-components';
+import { externalLinkDefinitions, pageDefinitions, RouteConfig } from '../__configuration__/navigationMenu/navigation';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
@@ -21,7 +14,6 @@ import * as Colors from '@brightlayer-ui/colors';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { RootState } from '../redux/store';
 import { closeDrawer, toggleDrawer } from '../redux/appState';
-import { OpenInNew } from '@mui/icons-material';
 
 const backgroundImage = require('../assets/cubes_tile.png');
 const linearGradientOverlayImage = `linear-gradient(to right, rgba(0, 123, 193, 1) 22.4%, rgba(0, 123, 193, 0.2) 100%), url(${backgroundImage})`;
@@ -77,9 +69,6 @@ export const NavigationDrawer: React.FC = () => {
         },
         [location.pathname, dispatch, navigate]
     );
-    const openInNewTab = (url = '#'): any => {
-        window.open(url);
-    };
 
     return (
         <Drawer
@@ -148,41 +137,7 @@ export const NavigationDrawer: React.FC = () => {
                         items={convertNavItems(navGroup.pages || [], navGroup.path || '', 0, handleNavigate, dispatch)}
                     />
                 ))}
-                <DrawerNavGroup
-                    title="COMMUNITY"
-                    titleColor={Colors.blue[500]}
-                    items={[
-                        {
-                            title: 'Resources',
-                            itemID: 'Resources',
-                            rightComponent: <OpenInNew color="disabled" />,
-                            onClick: () => openInNewTab('https://brightlayer-ui.github.io/resources/developer'),
-                        },
-                        {
-                            title: 'Release Notes',
-                            itemID: 'Release Notes',
-                            rightComponent: (
-                                <Box
-                                    sx={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    <ListItemTag sx={{ mr: 1 }} label="New" />
-                                    <OpenInNew color="disabled" />
-                                </Box>
-                            ),
-                            onClick: () => openInNewTab('https://brightlayer-ui.github.io/release-notes'),
-                        },
-                        {
-                            title: 'Roadmap',
-                            itemID: 'Roadmap',
-                            divider: true,
-                            rightComponent: <OpenInNew color="disabled" />,
-                            onClick: () => openInNewTab('https://brightlayer-ui.github.io/roadmap'),
-                        },
-                    ]}
-                />
+                <DrawerNavGroup title="COMMUNITY" titleColor={Colors.blue[500]} items={externalLinkDefinitions} />
             </DrawerBody>
         </Drawer>
     );

@@ -64,6 +64,9 @@ import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/pl
 import { ToolbarMenuPlaygroundComponent } from '../../componentDocs/ToolbarMenu/playground';
 import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 import { Outlet, RouteProps } from 'react-router';
+import { OpenInNew } from '@mui/icons-material';
+import { Box } from '@mui/material';
+import { ListItemTag } from '@brightlayer-ui/react-components';
 
 export type RouteConfig = Omit<RouteProps, 'children'> & {
     title: string;
@@ -511,5 +514,41 @@ export const pageDefinitions: RouteConfig[] = [
                 ],
             },
         ],
+    },
+];
+
+const openInNewTab = (url = '#'): any => {
+    window.open(url);
+};
+
+export const externalLinkDefinitions = [
+    {
+        title: 'Resources',
+        itemID: 'Resources',
+        rightComponent: <OpenInNew color="disabled" />,
+        onClick: (): void => openInNewTab('https://brightlayer-ui.github.io/resources/developer'),
+    },
+    {
+        title: 'Release Notes',
+        itemID: 'Release Notes',
+        rightComponent: (
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                }}
+            >
+                <ListItemTag sx={{ mr: 1 }} label="New" />
+                <OpenInNew color="disabled" />
+            </Box>
+        ),
+        onClick: (): void => openInNewTab('https://brightlayer-ui.github.io/release-notes'),
+    },
+    {
+        title: 'Roadmap',
+        itemID: 'Roadmap',
+        divider: true,
+        rightComponent: <OpenInNew color="disabled" />,
+        onClick: (): void => openInNewTab('https://brightlayer-ui.github.io/roadmap'),
     },
 ];
