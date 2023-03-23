@@ -86,13 +86,13 @@ export const pageDefinitions: RouteConfig[] = [
         pages: [
             {
                 title: 'Environment',
-                path: 'environment/',
+                path: 'environment',
                 element: <MarkdownPage title={'Environment Setup'} markdown={markdownDocs.Environment} />,
             },
             {
                 title: 'Start a Project',
-                path: 'react-guide/',
-                element: <MarkdownPage title={'React Guide'} markdown={markdownDocs.React} />,
+                path: 'start-a-project',
+                element: <MarkdownPage title={'Start a Project'} markdown={markdownDocs.React} />,
             },
         ],
     },
@@ -104,7 +104,7 @@ export const pageDefinitions: RouteConfig[] = [
             {
                 title: 'All Components',
                 path: 'component-catalog',
-                element: <MarkdownPage title={'Components'} markdown={markdownDocs.Components} />,
+                element: <MarkdownPage title={'Components'} markdown={markdownDocs.AllComponents} />,
             },
             {
                 title: 'App Bar',
@@ -537,6 +537,18 @@ export const pageDefinitions: RouteConfig[] = [
                         element: <UserMenuPlaygroundComponent />,
                     },
                 ],
+            },
+        ],
+    },
+    {
+        title: 'Themes',
+        path: '/themes/',
+        element: <Outlet />,
+        pages: [
+            {
+                title: 'Overview',
+                path: 'overview',
+                element: <MarkdownPage title={'Themes'} markdown={markdownDocs.ThemesOverview} />,
             },
         ],
     },
