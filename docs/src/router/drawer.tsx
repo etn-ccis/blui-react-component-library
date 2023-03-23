@@ -3,12 +3,13 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate, useLocation } from 'react-router';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-components';
-import { pageDefinitions, RouteConfig } from '../__configuration__/navigationMenu/navigation';
+import { externalLinkDefinitions, pageDefinitions, RouteConfig } from '../__configuration__/navigationMenu/navigation';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import { DRAWER_WIDTH } from '../shared';
 import AvatarSvg from '../assets/react_logo.svg';
+// import * as Colors from '@brightlayer-ui/colors';
 
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { RootState } from '../redux/store';
@@ -139,6 +140,11 @@ export const NavigationDrawer: React.FC = () => {
                         items={convertNavItems(navGroup.pages || [], navGroup.path || '', 0, handleNavigate, dispatch)}
                     />
                 ))}
+                <DrawerNavGroup
+                    title="COMMUNITY"
+                    titleColor={theme.palette.primary.main}
+                    items={externalLinkDefinitions}
+                />
             </DrawerBody>
         </Drawer>
     );
