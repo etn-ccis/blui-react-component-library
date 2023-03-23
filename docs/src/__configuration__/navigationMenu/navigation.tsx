@@ -64,6 +64,9 @@ import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/pl
 import { ToolbarMenuPlaygroundComponent } from '../../componentDocs/ToolbarMenu/playground';
 import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 import { Outlet, RouteProps } from 'react-router';
+import { Playground } from '../../components';
+import exampleConfig from '../../components/Playground/exampleConfig';
+import { ChannelValue } from '@brightlayer-ui/react-components/core/ChannelValue';
 
 export type RouteConfig = Omit<RouteProps, 'children'> & {
     title: string;
@@ -72,7 +75,28 @@ export type RouteConfig = Omit<RouteProps, 'children'> & {
     children?: RouteConfig[];
 };
 
+const testPlaygroundCodeSnippet = <ChannelValue color={'red'} units={'hz'} value={'300'} />;
+const testPlaygroundSourceCode = `<ChannelValue color={'red'} units={'hz'} value={'300'} />`;
+const testPlaygroundControlsConfig = exampleConfig;
+
 export const pageDefinitions: RouteConfig[] = [
+    {
+        title: 'Test Playground',
+        path: '/test-playground/',
+        pages: [
+            {
+                title: 'Channel Value',
+                path: 'channel-value',
+                element: (
+                    <Playground
+                        previewContent={testPlaygroundCodeSnippet}
+                        sourceCode={testPlaygroundSourceCode}
+                        controlsConfig={testPlaygroundControlsConfig}
+                    />
+                ),
+            },
+        ],
+    },
     {
         title: 'Components',
         path: '/components/',

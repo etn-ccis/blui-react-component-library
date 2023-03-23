@@ -4,17 +4,17 @@ import {
     resetProps,
     updateProp,
     updateSharedProp,
-    updateOtherProp,
-    updateOtherComponentProp,
-} from '../redux/componentsPropsState';
-import { useAppDispatch } from '../redux/hooks';
+    updateAdditionalProp,
+    updateChildComponentProp,
+} from './redux/componentsPropsState';
+import { useAppDispatch } from './redux/hooks';
 import Typography from '@mui/material/Typography';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { useTheme } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Box from '@mui/material/Box';
+import Box, { BoxProps } from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox/Checkbox';
 import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl/FormControl';
@@ -30,14 +30,14 @@ import { DocTextField } from './custom-inputs/DocTextField';
 
 type Anchor = 'right';
 
-type PlaygroundControlsProps = {
-    controlData: PlaygroundComponent;
+type PlaygroundControlsProps = BoxProps & {
+    controlsConfig: PlaygroundComponent;
     playgroundDrawerWidth?: number;
 };
 
 const PlaygroundControls = (props: PlaygroundControlsProps): JSX.Element => {
-    const { controlData, playgroundDrawerWidth = 375 } = props;
-    const componentName = controlData.componentName as string;
+    const { controlsConfig, playgroundDrawerWidth, sx } = props;
+    const componentName = controlsConfig.componentName as string;
     const dispatch = useAppDispatch();
     const theme = useTheme();
     const [state, setState] = React.useState({
@@ -66,13 +66,13 @@ const PlaygroundControls = (props: PlaygroundControlsProps): JSX.Element => {
                 dispatch(updateProp(newPropState));
                 break;
             case 'additionalProps':
-                dispatch(updateOtherProp(newPropState));
+                dispatch(updateAdditionalProp(newPropState));
                 break;
             case 'sharedProps':
                 dispatch(updateSharedProp(newPropState));
                 break;
             case 'childComponent':
-                dispatch(updateOtherComponentProp(newPropState));
+                dispatch(updateChildComponentProp(newPropState));
                 break;
             default:
                 dispatch(updateProp(newPropState));
@@ -258,14 +258,12 @@ const PlaygroundControls = (props: PlaygroundControlsProps): JSX.Element => {
     };
 
     return (
-        <div>
+        <Box sx={[...(Array.isArray(sx) ? sx : [sx])]}>
             <React.Fragment key={'right'}>
                 <Drawer
                     PaperProps={{
                         sx: {
-                            top: '112px',
                             width: playgroundDrawerWidth,
-                            paddingBottom: '112px',
                             '& .MuiInputBase-root, & .MuiFormControlLabel-label': {
                                 fontFamily: '"Roboto Mono", monospace',
                             },
@@ -277,10 +275,10 @@ const PlaygroundControls = (props: PlaygroundControlsProps): JSX.Element => {
                     onClose={toggleDrawer('right', false)}
                     variant={'persistent'}
                 >
-                    {displayPropsByGroupType(controlData)}
+                    {displayPropsByGroupType(controlsConfig)}
                 </Drawer>
             </React.Fragment>
-        </div>
+        </Box>
     );
 };
 

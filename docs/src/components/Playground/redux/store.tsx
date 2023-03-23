@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import appStateReducer from './appState';
 import componentsPropsStateReducer from './componentsPropsState';
 
 export const store = configureStore({
     reducer: {
-        appState: appStateReducer,
         componentsPropsState: componentsPropsStateReducer,
     },
 });

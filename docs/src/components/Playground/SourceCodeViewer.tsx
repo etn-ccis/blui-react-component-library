@@ -1,25 +1,28 @@
 import React, { HTMLAttributes } from 'react';
-import Box from '@mui/material/Box/Box';
+import Box, { BoxProps } from '@mui/material/Box/Box';
 import * as Colors from '@brightlayer-ui/colors';
 import { CopyToClipboardButton } from './CopyToClipboardButton';
 import { CodeBlock } from './CodeBlock';
 
-export type PreviewComponentProps = HTMLAttributes<HTMLDivElement> & {
-    previewContent: JSX.Element;
-    code: string;
-};
+export type SourceCodeViewerProps = HTMLAttributes<HTMLDivElement> &
+    BoxProps & {
+        code: string;
+    };
 
-const SourceCodeViewer: React.FC<PreviewComponentProps> = (props): JSX.Element => {
-    const { code } = props;
+const SourceCodeViewer: React.FC<SourceCodeViewerProps> = (props): JSX.Element => {
+    const { code, sx } = props;
     const [show, setShow] = React.useState(false);
 
     return (
         <Box
-            sx={{
-                height: '30vh',
-                overflow: 'auto',
-                boxSizing: 'border-box',
-            }}
+            sx={[
+                {
+                    height: '100%',
+                    overflow: 'auto',
+                    boxSizing: 'border-box',
+                },
+                ...(Array.isArray(sx) ? sx : [sx]),
+            ]}
             onMouseEnter={(): void => setShow(!show)}
             onMouseLeave={(): void => setShow(false)}
         >

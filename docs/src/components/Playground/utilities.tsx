@@ -15,13 +15,13 @@ import RouterIcon from '@mui/icons-material/Router';
 import SensorsOffIcon from '@mui/icons-material/SensorsOff';
 import TrendingUp from '@mui/icons-material/TrendingUp';
 import TrendingDown from '@mui/icons-material/TrendingDown';
-import { RootState } from '../redux/store';
-import { ComponentType, PropsType } from '../__types__';
+import { RootState } from './redux/store';
+import { PlaygroundComponent, PlaygroundComponentProp } from './types';
 import { SvgIconProps } from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
 
-const topologyBgImage = require('../shared/images/topology_40.png');
-const farmBgImage = require('../shared/images/farm.jpg');
+// const topologyBgImage = require('../../shared/images/topology_40.png');
+// const farmBgImage = require('../shared/images/farm.jpg');
 
 export const getSnakeCase = (str: string): string => str.replace(/[A-Z]/g, '_$&').toLowerCase().slice(1);
 
@@ -101,7 +101,7 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
     }
 };
 
-export const createProps = (props: PropsType[]): any => {
+export const createProps = (props: PlaygroundComponentProp[]): any => {
     const componentProps = props?.reduce(
         (acc: any, cur: any) => ({
             ...acc,
@@ -112,61 +112,30 @@ export const createProps = (props: PropsType[]): any => {
     return componentProps;
 };
 
-export const getComponentState = (componentName: string, state: RootState['componentsPropsState']): ComponentType => {
+export const getComponentState = (
+    componentName: string,
+    state: RootState['componentsPropsState']
+): PlaygroundComponent => {
     switch (componentName) {
-        case 'App Bar':
-            return state.appBarComponent;
         case 'Channel Value':
             return state.channelValueComponent;
-        case 'Drawer Header':
-            return state.drawerHeaderComponent;
-        case 'Drawer':
-            return state.drawerComponent;
-        case 'Drawer Subheader':
-            return state.drawerSubheaderComponent;
-        case 'Drawer Footer':
-            return state.drawerFooterComponent;
-        case 'Drawer Nav Group':
-            return state.drawerNavGroupComponent;
-        case 'Drawer Nav Item':
-            return state.drawerNavItemComponent;
-        case 'Drawer Rail Item':
-            return state.drawerRailItemComponent;
-        case 'Empty State':
-            return state.emptyStateComponent;
-        case 'Hero':
-            return state.heroComponent;
-        case 'Info List Item':
-            return state.infoListItemComponent;
-        case 'List Item Tag':
-            return state.listItemTagComponent;
-        // case 'Spacer':
-        //     return state.spacerComponent;
-        case 'Score Card':
-            return state.scoreCardComponent;
-        case 'Three Liner':
-            return state.threeLinerComponent;
-        case 'Toolbar Menu':
-            return state.toolbarMenuComponent;
-        case 'User Menu':
-            return state.userMenuComponent;
         default:
-            return state.drawerComponent;
+            return state.channelValueComponent;
     }
 };
 
-export const getImage = (image: string): string => {
-    switch (image) {
-        case 'Pattern':
-            return topologyBgImage;
-        case 'Farm':
-            return farmBgImage;
-        case 'undefined':
-            return 'undefined';
-        default:
-            return 'undefined';
-    }
-};
+// export const getImage = (image: string): string => {
+//     switch (image) {
+//         case 'Pattern':
+//             return topologyBgImage;
+//         case 'Farm':
+//             return farmBgImage;
+//         case 'undefined':
+//             return 'undefined';
+//         default:
+//             return 'undefined';
+//     }
+// };
 
 const iterateIconProps = (iconProps: any): string => {
     let str = '';
@@ -183,24 +152,24 @@ export const getIconWithProp = (icon: string, iconProps: SvgIconProps): string =
 };
 
 export const filterPropsAsPerGroupType = (
-    state: ComponentType,
+    state: PlaygroundComponent,
     propName: string,
     groupType?: string
-): PropsType | undefined => {
+): PlaygroundComponentProp | undefined => {
     switch (groupType) {
         case 'props':
-            return state.props?.filter((prop) => prop.propName === propName)[0];
+            return state.props?.filter((prop: PlaygroundComponentProp) => prop.propName === propName)[0];
         case 'sharedProps':
-            return state.sharedProps?.filter((prop) => prop.propName === propName)[0];
+            return state.sharedProps?.filter((prop: PlaygroundComponentProp) => prop.propName === propName)[0];
         case 'otherProps':
-            return state.otherProps?.filter((prop) => prop.propName === propName)[0];
+            return state.additionalProps?.filter((prop: PlaygroundComponentProp) => prop.propName === propName)[0];
         default:
-            return state.props?.filter((prop) => prop.propName === propName)[0];
+            return state.props?.filter((prop: PlaygroundComponentProp) => prop.propName === propName)[0];
     }
 };
 
 export const hideDefaultPropsFromSnippet = (
-    state: ComponentType,
+    state: PlaygroundComponent,
     propName: string,
     currentValue: any,
     groupType?: string,
