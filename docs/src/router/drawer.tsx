@@ -155,7 +155,7 @@ export const NavigationDrawer: React.FC = () => {
                         {
                             title: 'Resources',
                             itemID: 'Resources',
-                            rightComponent: <OpenInNew sx={{ color: theme.palette.grey[400] }} />,
+                            rightComponent: <OpenInNew color="disabled" />,
                             onClick: () => openInNewTab('https://brightlayer-ui.github.io/resources/developer'),
                         },
                         {
@@ -169,7 +169,7 @@ export const NavigationDrawer: React.FC = () => {
                                     }}
                                 >
                                     <ListItemTag sx={{ mr: 1 }} label="New" />
-                                    <OpenInNew sx={{ color: theme.palette.grey[400] }} />
+                                    <OpenInNew color="disabled" />
                                 </Box>
                             ),
                             onClick: () => openInNewTab('https://brightlayer-ui.github.io/release-notes'),
@@ -178,7 +178,7 @@ export const NavigationDrawer: React.FC = () => {
                             title: 'Roadmap',
                             itemID: 'Roadmap',
                             divider: true,
-                            rightComponent: <OpenInNew sx={{ color: theme.palette.grey[400] }} />,
+                            rightComponent: <OpenInNew color="disabled" />,
                             onClick: () => openInNewTab('https://brightlayer-ui.github.io/roadmap'),
                         },
                     ]}
