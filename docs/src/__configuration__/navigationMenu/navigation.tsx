@@ -91,11 +91,6 @@ export const pageDefinitions: RouteConfig[] = [
                 path: 'react-guide/',
                 element: <MarkdownPage title={'React Guide'} markdown={markdownDocs.React} />,
             },
-            {
-                title: 'Component Catalog',
-                path: 'component-catalog',
-                element: <MarkdownPage title={'Components'} markdown={markdownDocs.Components} />,
-            },
         ],
     },
     {
@@ -103,6 +98,11 @@ export const pageDefinitions: RouteConfig[] = [
         path: '/components/',
         element: <Outlet />,
         pages: [
+            {
+                title: 'All Components',
+                path: 'component-catalog',
+                element: <MarkdownPage title={'Components'} markdown={markdownDocs.Components} />,
+            },
             {
                 title: 'App Bar',
                 path: 'app-bar/',
