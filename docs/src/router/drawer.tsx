@@ -9,7 +9,7 @@ import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import { DRAWER_WIDTH } from '../shared';
 import AvatarSvg from '../assets/react_logo.svg';
-import * as Colors from '@brightlayer-ui/colors';
+// import * as Colors from '@brightlayer-ui/colors';
 
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { RootState } from '../redux/store';
@@ -137,7 +137,11 @@ export const NavigationDrawer: React.FC = () => {
                         items={convertNavItems(navGroup.pages || [], navGroup.path || '', 0, handleNavigate, dispatch)}
                     />
                 ))}
-                <DrawerNavGroup title="COMMUNITY" titleColor={Colors.blue[500]} items={externalLinkDefinitions} />
+                <DrawerNavGroup
+                    title="COMMUNITY"
+                    titleColor={theme.palette.primary.main}
+                    items={externalLinkDefinitions}
+                />
             </DrawerBody>
         </Drawer>
     );
