@@ -67,7 +67,7 @@ export const NavigationDrawer: React.FC = () => {
                 : tabs.includes(pathArray[3])
                 ? pathArray[3]
                 : '';
-            navigate(`${id}${id.includes('/components/') ? tabName || '' : ''}`);
+            navigate(`${id}${id.includes('/component-catalog') || !id.includes('/components/') ? '' : tabName || ''}`);
             dispatch(toggleDrawer());
         },
         [location.pathname, dispatch, navigate]
@@ -135,6 +135,7 @@ export const NavigationDrawer: React.FC = () => {
             <DrawerBody hidePadding>
                 {pageDefinitions.map((navGroup) => (
                     <DrawerNavGroup
+                        titleColor={theme.palette.primary.main}
                         key={navGroup.title}
                         title={navGroup.title}
                         items={convertNavItems(navGroup.pages || [], navGroup.path || '', 0, handleNavigate, dispatch)}

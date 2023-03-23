@@ -102,6 +102,11 @@ export const pageDefinitions: RouteConfig[] = [
         element: <Outlet />,
         pages: [
             {
+                title: 'All Components',
+                path: 'component-catalog',
+                element: <MarkdownPage title={'Components'} markdown={markdownDocs.Components} />,
+            },
+            {
                 title: 'App Bar',
                 path: 'app-bar/',
                 element: <ComponentPreviewPage title={'App Bar'} />,

@@ -4,6 +4,8 @@ export type RangeDataTypes = {
     step: number;
 };
 
+export type FrameworkFilter = 'all' | 'angular' | 'react' | 'react-native';
+
 export type PayloadType = {
     propName: string;
     propValue: boolean | number | string | string[] | [];
