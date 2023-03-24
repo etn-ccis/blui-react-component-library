@@ -25,7 +25,7 @@ export const PageContent: React.FC<PageContentProps> = (props): JSX.Element => {
             <Box
                 sx={{
                     width: '100%',
-                    padding: noPadding ? 0 : `${PADDING}px`,
+                    padding: noPadding ? 0 : `${theme.spacing(8)} ${PADDING}px ${theme.spacing(24)}`,
                     maxWidth: pageBodyWidth,
                 }}
                 {...other}

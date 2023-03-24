@@ -1,5 +1,4 @@
 export * from './CodeBlock';
-export * from './MarkdownCodeBlock';
 export * from './ComponentPreviewTabs';
 export * from './constants';
 export * from './CopyToClipboardButton';
@@ -11,3 +10,5 @@ export * from './TabPanel';
 export * from './FullCodeOnGithubButton';
 export * from './CodeBlockActionButtonRow';
 export * from './ExampleShowcase';
+export * from './CallToActionButton';
+export * from './theme';

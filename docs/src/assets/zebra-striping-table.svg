@@ -1,0 +1,84 @@
+<svg width="366" height="173" viewBox="0 0 366 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="366" height="173" fill="#F7F8F8"/>
+<g clip-path="url(#clip0_1665_203442)">
+<rect width="121" height="120" transform="translate(28 27)" fill="white"/>
+<mask id="path-1-inside-1_1665_203442" fill="white">
+<path d="M28 27H149V51H28V27Z"/>
+</mask>
+<path d="M28 27H149V51H28V27Z" fill="white"/>
+<rect x="36" y="35" width="25" height="8" fill="#D9D9D9"/>
+<rect x="109" y="35" width="32" height="8" fill="#D9D9D9"/>
+<path d="M149 50H28V52H149V50Z" fill="#424E54" fill-opacity="0.12" mask="url(#path-1-inside-1_1665_203442)"/>
+<mask id="path-5-inside-2_1665_203442" fill="white">
+<path d="M28 51H149V75H28V51Z"/>
+</mask>
+<path d="M28 51H149V75H28V51Z" fill="white"/>
+<rect x="36" y="59" width="17" height="8" fill="#D9D9D9"/>
+<rect x="100" y="59" width="41" height="8" fill="#D9D9D9"/>
+<path d="M149 74H28V76H149V74Z" fill="#424E54" fill-opacity="0.12" mask="url(#path-5-inside-2_1665_203442)"/>
+<mask id="path-9-inside-3_1665_203442" fill="white">
+<path d="M28 75H149V99H28V75Z"/>
+</mask>
+<path d="M28 75H149V99H28V75Z" fill="white"/>
+<rect x="36" y="83" width="17" height="8" fill="#D9D9D9"/>
+<rect x="121" y="83" width="20" height="8" fill="#D9D9D9"/>
+<path d="M149 98H28V100H149V98Z" fill="#424E54" fill-opacity="0.12" mask="url(#path-9-inside-3_1665_203442)"/>
+<mask id="path-13-inside-4_1665_203442" fill="white">
+<path d="M28 99H149V123H28V99Z"/>
+</mask>
+<path d="M28 99H149V123H28V99Z" fill="white"/>
+<rect x="36" y="107" width="23" height="8" fill="#D9D9D9"/>
+<rect x="94" y="107" width="47" height="8" fill="#D9D9D9"/>
+<path d="M149 122H28V124H149V122Z" fill="#424E54" fill-opacity="0.12" mask="url(#path-13-inside-4_1665_203442)"/>
+<mask id="path-17-inside-5_1665_203442" fill="white">
+<path d="M28 123H149V147H28V123Z"/>
+</mask>
+<path d="M28 123H149V147H28V123Z" fill="white"/>
+<rect x="36" y="131" width="24" height="8" fill="#D9D9D9"/>
+<rect x="109" y="131" width="32" height="8" fill="#D9D9D9"/>
+<path d="M149 146H28V148H149V146Z" fill="#424E54" fill-opacity="0.12" mask="url(#path-17-inside-5_1665_203442)"/>
+</g>
+<g clip-path="url(#clip1_1665_203442)">
+<rect width="121" height="120" transform="translate(217 27)" fill="white"/>
+<mask id="path-21-inside-6_1665_203442" fill="white">
+<path d="M217 27H338V51H217V27Z"/>
+</mask>
+<path d="M217 27H338V51H217V27Z" fill="white"/>
+<rect x="225" y="35" width="25" height="8" fill="#D9D9D9"/>
+<rect x="298" y="35" width="32" height="8" fill="#D9D9D9"/>
+<path d="M338 50H217V52H338V50Z" fill="#424E54" fill-opacity="0.12" mask="url(#path-21-inside-6_1665_203442)"/>
+<mask id="path-25-inside-7_1665_203442" fill="white">
+<path d="M217 51H338V75H217V51Z"/>
+</mask>
+<path d="M217 51H338V75H217V51Z" fill="white"/>
+<rect x="225" y="59" width="17" height="8" fill="#D9D9D9"/>
+<rect x="289" y="59" width="41" height="8" fill="#D9D9D9"/>
+<path d="M338 74H217V76H338V74Z" fill="#424E54" fill-opacity="0.12" mask="url(#path-25-inside-7_1665_203442)"/>
+<mask id="path-29-inside-8_1665_203442" fill="white">
+<path d="M217 75H338V99H217V75Z"/>
+</mask>
+<path d="M217 75H338V99H217V75Z" fill="#FBFBFB"/>
+<rect x="225" y="83" width="17" height="8" fill="#D9D9D9"/>
+<rect x="310" y="83" width="20" height="8" fill="#D9D9D9"/>
+<path d="M338 98H217V100H338V98Z" fill="#424E54" fill-opacity="0.12" mask="url(#path-29-inside-8_1665_203442)"/>
+<mask id="path-33-inside-9_1665_203442" fill="white">
+<path d="M217 99H338V123H217V99Z"/>
+</mask>
+<path d="M217 99H338V123H217V99Z" fill="white"/>
+<rect x="225" y="107" width="23" height="8" fill="#D9D9D9"/>
+<rect x="283" y="107" width="47" height="8" fill="#D9D9D9"/>
+<path d="M338 122H217V124H338V122Z" fill="#424E54" fill-opacity="0.12" mask="url(#path-33-inside-9_1665_203442)"/>
+<rect width="121" height="24" transform="translate(217 123)" fill="#FBFBFB"/>
+<rect x="225" y="131" width="24" height="8" fill="#D9D9D9"/>
+<rect x="298" y="131" width="32" height="8" fill="#D9D9D9"/>
+</g>
+<path d="M166 85.5C165.172 85.5 164.5 86.1716 164.5 87C164.5 87.8284 165.172 88.5 166 88.5V85.5ZM201.061 88.0607C201.646 87.4749 201.646 86.5251 201.061 85.9393L191.515 76.3934C190.929 75.8076 189.979 75.8076 189.393 76.3934C188.808 76.9792 188.808 77.9289 189.393 78.5147L197.879 87L189.393 95.4853C188.808 96.0711 188.808 97.0208 189.393 97.6066C189.979 98.1924 190.929 98.1924 191.515 97.6066L201.061 88.0607ZM166 88.5H200V85.5H166V88.5Z" fill="#727E84"/>
+<defs>
+<clipPath id="clip0_1665_203442">
+<rect width="121" height="120" fill="white" transform="translate(28 27)"/>
+</clipPath>
+<clipPath id="clip1_1665_203442">
+<rect width="121" height="120" fill="white" transform="translate(217 27)"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,76 @@
+import { CodeBlock, CallToActionButton } from '../../shared';
+import { Code } from '@mui/icons-material';
+
+# Usage
+
+# Import
+
+To use these themes in your application, simply wrap the app in a `ThemeProvider` and pass in your desired theme (`blue` or `blueDark`). You'll also need to include the Open Sans font resources (included with the themes):
+
+<CodeBlock
+    language={'jsx'}
+    code={`import { ThemeProvider } from '@mui/material/styles';
+import * as BLUIThemes from '@brightlayer-ui/react-themes';
+import "@brightlayer-ui/react-themes/open-sans";
+...
+<ThemeProvider theme={BLUIThemes.blue}>
+    <App />
+</ThemeProvider>`}
+/>
+
+## Updating From Version 5 ~> 6
+
+In version 6, we have migrated from the deprecated `typeface-open-sans` package to `@fontsource/open-sans` (bundled with the Brightlayer UI themes). You'll need to update your Open Sans import references in your root file:
+
+Before:
+
+<CodeBlock language={'js'} code={`require('typeface-open-sans');`} />
+
+After:
+
+<CodeBlock language={'jsx'} code={`import '@brightlayer-ui/react-themes/open-sans';`} />
+
+# Accessing the Theme in a Component
+
+We use the same theme builder as [MUI's Material UI](https://mui.com/material-ui/customization/theming/). Similar to Material UI, you are able to access the theme from a child component by using the `useTheme` hook:
+
+<CodeBlock
+    code={`import { useTheme } from '@mui/material/styles';
+...
+const ChildComponent: React.FC<> = () => {
+    const theme = useTheme();
+    return <div sx={{ backgroundColor: theme.palette.background.paper }} />;
+}`}
+    language={`jsx`}
+/>
+
+Avoid using colors from `@brightlayer-ui/colors` directly. Using theme colors makes the code easier to read and allows the app to transition between `blue` and `blueDark` themes easily.
+
+<CodeBlock
+    code={`/* 
+ * Avoid doing this! 
+ * The red color can be accessed via the useTheme hook 
+ * as theme.palette.error.main
+ */
+import \* as Colors from '@brightlayer-ui/colors';
+const ChildComponent = () => <div sx={{ color: Color.red[500] }} />;`}
+    language={`jsx`}
+/>
+
+# Default Theme Colors
+
+You can examine Brightlayer UI's default theme configuration on GitHub.
+
+<CallToActionButton
+    title={`Blue Theme`}
+    description={`Source code for the default blue theme.`}
+    url={`https://github.com/etn-ccis/blui-react-themes/blob/master/src/blueTheme.ts`}
+    avatar={<Code sx={{ height: 48, width: 48 }} />}
+/>
+
+<CallToActionButton
+    title={`Blue Dark Theme`}
+    description={`Source code for the default blue dark theme.`}
+    url={`https://github.com/etn-ccis/blui-react-themes/blob/master/src/blueDarkTheme.ts`}
+    avatar={<Code sx={{ height: 48, width: 48 }} />}
+/>
