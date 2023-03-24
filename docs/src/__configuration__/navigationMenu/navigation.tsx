@@ -558,7 +558,7 @@ export const pageDefinitions: RouteConfig[] = [
             {
                 title: 'Customization',
                 path: 'customization',
-                element: <MarkdownPage title={'Customization'} markdown={markdownDocs.ThemeCustomization} />,
+                element: <MarkdownPage title={'Theme Customization'} markdown={markdownDocs.ThemeCustomization} />,
             },
         ],
     },
