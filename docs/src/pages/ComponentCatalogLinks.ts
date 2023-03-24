@@ -10,71 +10,69 @@ import ThreeLiner from '../assets/component-catalog/three-liner.png';
 import ToolbarMenu from '../assets/component-catalog/toolbar-menu.png';
 import UserMenu from '../assets/component-catalog/user-menu.png';
 
-const branchSuffix = window.location.hostname === 'brightlayer-ui.github.io' ? '' : '-dev';
-
 type ComponentCatalogType = {
     title: string;
     /**
      * URL to React component doc, or description for why URL is not available
      */
-    react: string;
+    path: string;
     image: string;
 };
 
 export const componentCatalogLinks: ComponentCatalogType[] = [
     {
         title: 'App Bar / Header',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/app-bar/examples`,
+        path: 'app-bar',
         image: AppBar,
     },
     {
         title: 'Channel Value',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/channel-value/examples`,
+        path: 'channel-value',
         image: ChannelValue,
     },
     {
         title: 'Drawer',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/drawer/examples`,
+        path: 'drawer',
         image: Drawer,
     },
     {
         title: 'Empty State',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/empty-state/examples`,
+        path: 'empty-state',
         image: EmptyState,
     },
     {
         title: 'Hero',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/hero/examples`,
+        path: 'hero',
         image: Hero,
     },
     {
         title: 'Info List Item',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/info-list-item/examples`,
+        path: 'info-list-item',
         image: InfoListItem,
     },
     {
         title: 'List Item Tag',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/list-item-tag/examples`,
+        path: 'list-item-tag',
         image: ListItemTag,
     },
     {
         title: 'Scorecard',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/score-card/examples`,
+        path: 'score-card',
         image: Scorecard,
     },
     {
         title: 'Three Liner',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/three-liner/examples`,
+        path: 'three-liner',
         image: ThreeLiner,
     },
     {
         title: 'Toolbar Menu',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/toolbar-menu/examples`,
+        path: 'toolbar-menu',
         image: ToolbarMenu,
     },
     {
         title: 'User Menu',
-        react: `https://brightlayer-ui-components.github.io/react${branchSuffix}/components/user-menu/examples`,
+        path: 'user-menu',
         image: UserMenu,
     },
 ];
