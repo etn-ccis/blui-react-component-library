@@ -6,7 +6,7 @@ export const GoogleAnalyticsWrapper: React.FC = () => {
     const location = useLocation();
     useEffect(() => {
         ReactGA.send({
-            hitType: 'window.location.pathname + window.location.search',
+            hitType: 'window.location.pathname + window.location.search + pageview',
         });
     }, [location.pathname, location.search]);
 
