@@ -126,10 +126,10 @@ export const componentsMap = {
             sx={{
                 pr: 2,
                 mb: 1,
-                borderLeft: ' 4px solid #DDDDDD',
+                borderLeft: (theme: Theme) => `4px solid ${theme.palette.text.disabled}`,
                 p: '0 15px',
                 m: '15px 0',
-                color: '#666666',
+                color: 'text.secondary',
             }}
             {...props}
         />
@@ -157,9 +157,10 @@ export const componentsMap = {
                 m: '0px 2px',
                 p: '0px 5px',
                 whiteSpace: 'nowrap',
-                border: '1px solid #EEEEEE',
-                backgroundColor: '#F8F8F8',
-                borderRadius: '3px',
+                border: (theme: Theme) => `1px solid ${theme.palette.divider}`,
+                backgroundColor: (theme: Theme) =>
+                    theme.palette.mode === 'light' ? theme.palette.background.default : Colors.darkBlack[300],
+                borderRadius: '2px',
                 fontFamily: `'Roboto Mono', monospace`,
                 lineHeight: '1.6',
             }}
