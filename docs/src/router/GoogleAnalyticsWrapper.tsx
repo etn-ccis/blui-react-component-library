@@ -4,12 +4,12 @@ import { useLocation } from 'react-router-dom';
 
 export const GoogleAnalyticsWrapper: React.FC = () => {
     const location = useLocation();
-        useEffect(() => {
-            window.gtag("event", "page_view", {
-                page_path: location.pathname + location.search + location.hash,
-                page_search: location.search,
-                page_hash: location.hash,
-            });
-        }, [location]);
-        return null;
+    useEffect(() => {
+        window.gtag('event', 'page_view', {
+            page_path: location.pathname + location.search + location.hash,
+            page_search: location.search,
+            page_hash: location.hash,
+        });
+    }, [location]);
+    return null;
 };
