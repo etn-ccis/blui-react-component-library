@@ -6,9 +6,9 @@ export const GoogleAnalyticsWrapper: React.FC = () => {
     const location = useLocation();
     useEffect(() => {
         window.gtag('event', 'page_view', {
-            page_path: location.pathname + location.search + location.hash,
-            page_search: location.search,
-            page_hash: location.hash,
+            PAGE_PATH: location.pathname + location.search + location.hash,
+            PAGE_SEARCH: location.search,
+            PAGE_HASH: location.hash,
         });
     }, [location]);
     return null;
