@@ -15,7 +15,6 @@ import RouterIcon from '@mui/icons-material/Router';
 import SensorsOffIcon from '@mui/icons-material/SensorsOff';
 import TrendingUp from '@mui/icons-material/TrendingUp';
 import TrendingDown from '@mui/icons-material/TrendingDown';
-import { RootState } from './redux/store';
 import { PlaygroundComponent, PlaygroundComponentProp } from './types';
 import { SvgIconProps } from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
@@ -110,18 +109,6 @@ export const createProps = (props: PlaygroundComponentProp[]): any => {
         {}
     );
     return componentProps;
-};
-
-export const getComponentState = (
-    componentName: string,
-    state: RootState['componentsPropsState']
-): PlaygroundComponent => {
-    switch (componentName) {
-        case 'Channel Value':
-            return state.channelValueComponent;
-        default:
-            return state.channelValueComponent;
-    }
 };
 
 // export const getImage = (image: string): string => {

@@ -1,13 +1,5 @@
 import React, { useEffect } from 'react';
 import Drawer from '@mui/material/Drawer';
-import {
-    resetProps,
-    updateProp,
-    updateSharedProp,
-    updateAdditionalProp,
-    updateChildComponentProp,
-} from './redux/componentsPropsState';
-import { useAppDispatch } from './redux/hooks';
 import Typography from '@mui/material/Typography';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -27,55 +19,40 @@ import Select from '@mui/material/Select/Select';
 import { ColorPicker, NumberPicker } from './custom-inputs';
 import { ChildComponent, PlaygroundComponent, PlaygroundComponentProp } from './types';
 import { DocTextField } from './custom-inputs/DocTextField';
-
-type Anchor = 'right';
+import { PLAYGROUND_ACTIONS } from './Playground';
 
 type PlaygroundControlsProps = BoxProps & {
-    controlsConfig: PlaygroundComponent;
+    config: PlaygroundComponent;
     playgroundDrawerWidth?: number;
+    dispatch: any;
 };
 
 const PlaygroundControls = (props: PlaygroundControlsProps): JSX.Element => {
-    const { controlsConfig, playgroundDrawerWidth, sx } = props;
-    const componentName = controlsConfig.componentName as string;
-    const dispatch = useAppDispatch();
+    const { config, playgroundDrawerWidth, dispatch, sx } = props;
+    const componentName = config.componentName as string;
     const theme = useTheme();
-    const [state, setState] = React.useState({
-        right: true,
-    });
 
     useEffect(() => {
-        dispatch(resetProps());
+        dispatch({ type: PLAYGROUND_ACTIONS.RESET_PROPS });
     }, []);
-
-    const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-        if (
-            event.type === 'keydown' &&
-            ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
-        ) {
-            return;
-        }
-
-        setState({ ...state, [anchor]: open });
-    };
 
     const dispatchActions = (groupType: string, newPropState: any): void => {
         const groupName = groupType.substring(0, groupType.indexOf('-'));
         switch (groupName) {
             case 'props':
-                dispatch(updateProp(newPropState));
+                dispatch({ type: PLAYGROUND_ACTIONS.UPDATE_PROP, payload: newPropState });
                 break;
             case 'additionalProps':
-                dispatch(updateAdditionalProp(newPropState));
+                dispatch({ type: PLAYGROUND_ACTIONS.UPDATE_ADDITIONAL_PROP, payload: newPropState });
                 break;
             case 'sharedProps':
-                dispatch(updateSharedProp(newPropState));
+                dispatch({ type: PLAYGROUND_ACTIONS.UPDATE_SHARED_PROP, payload: newPropState });
                 break;
             case 'childComponent':
-                dispatch(updateChildComponentProp(newPropState));
+                dispatch({ type: PLAYGROUND_ACTIONS.UPDATE_CHILD_COMPONENT_PROP, payload: newPropState });
                 break;
             default:
-                dispatch(updateProp(newPropState));
+                dispatch({ type: PLAYGROUND_ACTIONS.UPDATE_PROP, payload: newPropState });
                 break;
         }
     };
@@ -271,11 +248,10 @@ const PlaygroundControls = (props: PlaygroundControlsProps): JSX.Element => {
                         },
                     }}
                     anchor={'right'}
-                    open={state['right']}
-                    onClose={toggleDrawer('right', false)}
+                    open
                     variant={'persistent'}
                 >
-                    {displayPropsByGroupType(controlsConfig)}
+                    {displayPropsByGroupType(config)}
                 </Drawer>
             </React.Fragment>
         </Box>
