@@ -42,7 +42,7 @@ export const PreviewComponent = (): JSX.Element => {
     ${toggleDefaultProp('units', channelValueProps.units)}
     ${toggleDefaultProp('unitSpace', channelValueProps.unitSpace)}
     value={"${channelValueProps.value}"}
-/>`;
+    />`;
         return removeEmptyLines(jsx);
     };
 

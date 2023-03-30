@@ -91,8 +91,8 @@ const PlaygroundControls = (props: PlaygroundControlsProps): JSX.Element => {
             >
                 {Array.isArray(prop.options)
                     ? prop.options?.map(
-                          (item: any, id: number): JSX.Element => (
-                              <MenuItem key={id} value={item}>
+                          (item: any, optionsIndex: number): JSX.Element => (
+                              <MenuItem key={optionsIndex} value={item}>
                                   {item}
                               </MenuItem>
                           )

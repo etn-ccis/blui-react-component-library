@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export type RangeData = {
     min: number;
     max: number;
@@ -17,6 +19,8 @@ export type PlaygroundComponentProp = {
     inputValue: boolean | number | string | string[] | [];
     defaultValue?: boolean | number | string | string[] | [];
     options?: string[] | [];
+    // values to use for the items provided in the `options` prop
+    optionsValueMapping?: ReactNode[] | [];
     propType: string;
     helperText: string;
     required: boolean;
@@ -36,5 +40,6 @@ export type PlaygroundComponent = {
     props?: PlaygroundComponentProp[];
     sharedProps?: PlaygroundComponentProp[];
     childComponent?: ChildComponent;
+    // @TODO: either remove these or we need to extend the type definition so we know which component this belongs to
     additionalProps?: PlaygroundComponentProp[];
 };

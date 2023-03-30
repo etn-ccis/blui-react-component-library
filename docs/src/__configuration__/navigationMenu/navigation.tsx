@@ -75,9 +75,6 @@ export type RouteConfig = Omit<RouteProps, 'children'> & {
     children?: RouteConfig[];
 };
 
-const testPlaygroundSourceCode = `<ChannelValue color={'red'} units={'hz'} value={'300'} />`;
-const testPlaygroundConfig = exampleConfig;
-
 export const pageDefinitions: RouteConfig[] = [
     {
         title: 'Test Playground',
@@ -86,13 +83,7 @@ export const pageDefinitions: RouteConfig[] = [
             {
                 title: 'Channel Value',
                 path: 'channel-value',
-                element: (
-                    <Playground
-                        demoComponent={ChannelValue}
-                        sourceCode={testPlaygroundSourceCode}
-                        config={testPlaygroundConfig}
-                    />
-                ),
+                element: <Playground demoComponent={ChannelValue} config={exampleConfig} />,
             },
         ],
     },

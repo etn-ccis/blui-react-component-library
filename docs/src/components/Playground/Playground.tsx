@@ -1,12 +1,12 @@
-import React, { useCallback, useReducer } from 'react';
+import React, { ComponentType, useCallback, useReducer } from 'react';
 import Box from '@mui/material/Box';
 import ComponentPreview from './ComponentPreview';
 import PlaygroundControls from './PlaygroundControls';
 import { PlaygroundComponent, PlaygroundComponentProp } from './types';
 import SourceCodeViewer from './SourceCodeViewer';
+import { findStringIndex } from './utilities';
 
 type PlaygroundProps = {
-    sourceCode: string;
     config: PlaygroundComponent;
     playgroundDrawerWidth?: number;
     demoComponent: any;
@@ -71,7 +71,7 @@ function getInitialState(config: PlaygroundComponent): any {
 }
 
 export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
-    const { demoComponent, sourceCode, config, playgroundDrawerWidth = 375 } = props;
+    const { demoComponent, config, playgroundDrawerWidth = 375 } = props;
     const [state, dispatch] = useReducer(playgroundReducer, getInitialState(config));
 
     React.useEffect(() => {
@@ -79,25 +79,76 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         console.log('state: ', state);
     }, [state]);
 
-    const getComponentProps = useCallback((): any => {
+    const getCoreComponentProps = useCallback((): any => {
         const propKeyValuePairs: any = {};
+        const propsWithMapping: PlaygroundComponentProp[] = [];
 
         config?.props?.forEach((prop: PlaygroundComponentProp) => {
-            propKeyValuePairs[prop.propName] = prop.inputValue;
+            if (prop.propType === 'JSX.Element') {
+                propsWithMapping.push(prop);
+            } else {
+                propKeyValuePairs[prop.propName] = prop.inputValue;
+            }
         });
 
         config?.sharedProps?.forEach((prop: PlaygroundComponentProp) => {
-            propKeyValuePairs[prop.propName] = prop.inputValue;
+            if (prop.propType === 'JSX.Element') {
+                propsWithMapping.push(prop);
+            } else {
+                propKeyValuePairs[prop.propName] = prop.inputValue;
+            }
         });
 
-        config?.additionalProps?.forEach((prop: PlaygroundComponentProp) => {
-            propKeyValuePairs[prop.propName] = prop.inputValue;
+        // config?.additionalProps?.forEach((prop: PlaygroundComponentProp) => {
+        //     if (prop.propType === 'JSX.Element') {
+        //         JSXProps.push(prop);
+        //     } else {
+        //         propKeyValuePairs[prop.propName] = prop.inputValue;
+        //     }
+        // });
+
+        // Mapping for select-inputs whose need values mapped to the provided options strings
+        propsWithMapping.forEach((prop: PlaygroundComponentProp) => {
+            if (prop.inputType === 'select' && prop.options?.length && prop.optionsValueMapping?.length) {
+                propKeyValuePairs[prop.propName] =
+                    prop.optionsValueMapping[findStringIndex(prop.options, prop.inputValue as string)];
+            }
         });
+
+        // eslint-disable-next-line no-console
+        console.log('propKeyValuePairs:', propKeyValuePairs);
 
         return propKeyValuePairs;
     }, [state]);
 
-    const previewContent = React.createElement(demoComponent, getComponentProps());
+    const PreviewContent = React.createElement(demoComponent, getCoreComponentProps());
+
+    type GenericProps = {
+        [key: string]: any;
+    };
+
+    function generateComponentCode<T extends ComponentType>(
+        _componentName: string,
+        _component: T,
+        _props: GenericProps
+    ): string {
+        const propsString = Object.entries(_props)
+            .map(([key, value]) => {
+                const valueString = typeof value === 'string' ? `'${value}'` : `{${value}}`;
+                return `${key}=${valueString}`;
+            })
+            .join(' ');
+
+        const exampleCode = `<${_componentName} ${propsString} />`;
+
+        return exampleCode;
+    }
+
+    const sourceCode = generateComponentCode(
+        config.componentName?.split(' ').join('') as string | 'Component',
+        PreviewContent as unknown as ComponentType<any>,
+        getCoreComponentProps()
+    );
 
     return (
         <Box
@@ -116,62 +167,10 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
                     paddingRight: `${playgroundDrawerWidth}px`,
                 }}
             >
-                <ComponentPreview previewContent={previewContent} sx={{ flex: 7 }} />
+                <ComponentPreview previewContent={PreviewContent} sx={{ flex: 7 }} />
                 <SourceCodeViewer code={sourceCode} sx={{ flex: 3 }} />
             </Box>
             <PlaygroundControls config={config} playgroundDrawerWidth={playgroundDrawerWidth} dispatch={dispatch} />
         </Box>
     );
 };
-
-// export const PreviewComponent = (): JSX.Element => {
-//     const channelValueJson = useAppSelector((state: RootState) => state.componentsPropsState.channelValueComponent);
-
-//     const channelValueProps = createProps(channelValueJson.props as PropsType[]);
-//     const otherProps = createProps(channelValueJson.otherProps as PropsType[]);
-
-//     const toggleDefaultProp = (propName: string, currentValue: any): string =>
-//         hideDefaultPropsFromSnippet(channelValueJson, propName, currentValue, 'props');
-
-//     const toggleIconProp = (icon: string): string => {
-//         if (icon === 'undefined') {
-//             return toggleDefaultProp('icon', channelValueProps.icon);
-//         }
-//         return `icon={${getIconWithProp(
-//             channelValueProps.icon,
-//             otherProps.htmlColor
-//                 ? { fontSize: 'inherit', htmlColor: `${otherProps.htmlColor}` }
-//                 : { fontSize: 'inherit' }
-//         )}}`;
-//     };
-
-//     const generateCodeSnippet = (): string => {
-//         const jsx = `<ChannelValue
-//     ${toggleDefaultProp('color', channelValueProps.color)}
-//     ${toggleDefaultProp('fontSize', channelValueProps.fontSize)}
-//     ${toggleIconProp(channelValueProps.icon)}
-//     ${toggleDefaultProp('prefix', channelValueProps.prefix)}
-//     ${toggleDefaultProp('units', channelValueProps.units)}
-//     ${toggleDefaultProp('unitSpace', channelValueProps.unitSpace)}
-//     value={"${channelValueProps.value}"}
-// />`;
-//         return removeEmptyLines(jsx);
-//     };
-
-//     return (
-//         <PreviewComponentWithCode
-//             previewContent={
-//                 <ChannelValue
-//                     color={channelValueProps.color}
-//                     fontSize={channelValueProps.fontSize}
-//                     icon={getIcon(channelValueProps.icon, { fontSize: 'inherit', htmlColor: otherProps.htmlColor })}
-//                     prefix={channelValueProps.prefix}
-//                     units={channelValueProps.units}
-//                     unitSpace={channelValueProps.unitSpace}
-//                     value={channelValueProps.value}
-//                 />
-//             }
-//             code={generateCodeSnippet()}
-//         />
-//     );
-// };

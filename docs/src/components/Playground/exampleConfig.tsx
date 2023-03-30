@@ -1,5 +1,6 @@
 import { PlaygroundComponent } from './types';
 import * as Colors from '@brightlayer-ui/colors';
+import { TrendingDown, TrendingUp } from '@mui/icons-material';
 
 export const channelValueConfig: PlaygroundComponent = {
     componentName: 'Channel Value',
@@ -25,16 +26,17 @@ export const channelValueConfig: PlaygroundComponent = {
                 step: 10,
             },
         },
-        // {
-        //     propName: 'icon',
-        //     inputType: 'select',
-        //     inputValue: '<TrendingUp />',
-        //     options: ['undefined', '<TrendingUp />', '<TrendingDown />'],
-        //     propType: 'JSX.Element',
-        //     helperText: 'The inline icon to display',
-        //     required: false,
-        //     defaultValue: 'undefined',
-        // },
+        {
+            propName: 'icon',
+            inputType: 'select',
+            inputValue: '<TrendingUp />',
+            options: ['undefined', '<TrendingUp />', '<TrendingDown />'],
+            optionsValueMapping: [undefined, <TrendingUp />, <TrendingDown />],
+            propType: 'JSX.Element',
+            helperText: 'The inline icon to display',
+            required: false,
+            defaultValue: 'undefined',
+        },
         {
             propName: 'prefix',
             inputType: 'boolean',
@@ -71,17 +73,17 @@ export const channelValueConfig: PlaygroundComponent = {
             required: true,
         },
     ],
-    // additionalProps: [
-    //     {
-    //         propName: 'htmlColor',
-    //         inputType: 'colorPicker',
-    //         inputValue: Colors.red[500],
-    //         propType: 'string',
-    //         helperText: 'The color apply to primary icon',
-    //         required: false,
-    //         label: 'Icon Color',
-    //     },
-    // ],
+    additionalProps: [
+        {
+            propName: 'htmlColor',
+            inputType: 'colorPicker',
+            inputValue: Colors.red[500],
+            propType: 'string',
+            helperText: 'The color apply to primary icon',
+            required: false,
+            label: 'Icon Color',
+        },
+    ],
 };
 
 export default channelValueConfig;
