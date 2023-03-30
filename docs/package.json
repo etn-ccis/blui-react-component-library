@@ -13,9 +13,7 @@
         "prettier": "prettier \"src/**/**/*.{ts,tsx,js,jsx,json,css,scss,html,mdx,md}\" --write",
         "prettier:check": "prettier \"src/**/**/*.{ts,tsx,js,jsx,json,css,scss,html,mdx,md}\" --check",
         "lint": "eslint \"**/**/*.{ts,tsx}\"",
-        "lint:fix": "eslint \"**/**/*.{ts,tsx}\" --fix",
-        "ga:master": "cp -r ./googleAnalytics/ga.master.js ./src/ga.js",
-        "ga:dev": "cp -r ./googleAnalytics/ga.dev.js ./src/ga.js"
+        "lint:fix": "eslint \"**/**/*.{ts,tsx}\" --fix"
     },
     "prettier": "@brightlayer-ui/prettier-config",
     "eslintConfig": {
