@@ -1,4 +1,4 @@
-import React, { ComponentType, useCallback, useReducer } from 'react';
+import React, { useCallback, useReducer } from 'react';
 import Box from '@mui/material/Box';
 import ComponentPreview from './ComponentPreview';
 import PlaygroundControls from './PlaygroundControls';
@@ -127,11 +127,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         [key: string]: any;
     };
 
-    function generateComponentCode<T extends ComponentType>(
-        _componentName: string,
-        _component: T,
-        _props: GenericProps
-    ): string {
+    function generateComponentCode(_componentName: string, _props: GenericProps): string {
         const propsString = Object.entries(_props)
             .map(([key, value]) => {
                 const valueString = typeof value === 'string' ? `'${value}'` : `{${value}}`;
@@ -146,7 +142,6 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
 
     const sourceCode = generateComponentCode(
         config.componentName?.split(' ').join('') as string | 'Component',
-        PreviewContent as unknown as ComponentType<any>,
         getCoreComponentProps()
     );
 
