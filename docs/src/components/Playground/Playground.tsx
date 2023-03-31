@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useCallback, useReducer } from 'react';
 import Box from '@mui/material/Box';
 import ComponentPreview from './ComponentPreview';
@@ -99,6 +100,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
             }
         });
 
+        // @TODO: This will require updates to the config type definition so that users can associate props to the correct components
         // config?.additionalProps?.forEach((prop: PlaygroundComponentProp) => {
         //     if (prop.propType === 'JSX.Element') {
         //         JSXProps.push(prop);
@@ -128,6 +130,16 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
     };
 
     function generateComponentCode(_componentName: string, _props: GenericProps): string {
+        const propsWithDefaults = config?.props?.filter((prop) => prop.defaultValue);
+
+        // remove all _props that are using the default value
+        // @TODO: Update to deal with props that use JSX.Element or select value mappings
+        propsWithDefaults?.forEach((propWithDefault) => {
+            if (propWithDefault.defaultValue === _props[propWithDefault.propName]) {
+                delete _props[propWithDefault.propName];
+            }
+        });
+
         const propsString = Object.entries(_props)
             .map(([key, value]) => {
                 const valueString = typeof value === 'string' ? `'${value}'` : `{${value}}`;
