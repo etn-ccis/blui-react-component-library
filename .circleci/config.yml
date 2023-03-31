@@ -155,18 +155,18 @@ jobs:
                       cd docs
                       yarn lint
             - run:
-                  name: Build React Dev
+                  name: Build React Docs
                   command: |
                       cd docs
                     
                       if [ $CIRCLE_BRANCH == $MASTER_BRANCH ]; then
                         export PUBLIC_URL=/react
                         export REACT_APP_BRANCH=master
-                        yarn ga:master
+                        export REACT_APP_GAID=G-Y2TXKYRFM0
                       else
                         export PUBLIC_URL=/react-dev
                         export REACT_APP_BRANCH=dev
-                        yarn ga:dev
+                        export REACT_APP_GAID=G-JY7JTQ87MB
                       fi
                     
                       yarn build

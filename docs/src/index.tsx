@@ -31,10 +31,9 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 
 // google analytics
 import ReactGA from 'react-ga4';
-import { gaID } from './ga.js';
 import { ScrollToTop } from './router/ScrollToTop';
-if (gaID) {
-    ReactGA.initialize(gaID);
+if (process.env.REACT_APP_GAID) {
+    ReactGA.initialize(process.env.REACT_APP_GAID);
 }
 
 // Brightlayer UI Icon font
