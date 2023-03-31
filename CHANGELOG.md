@@ -9,7 +9,7 @@
 ### Fixed
 
 -   Issue with `sx` prop in `<UserMenu>` component ([#437](https://github.com/etn-ccis/blui-react-component-library/issues/437)).
--   Padding issue in `<InfoListItem>`, when `wrapTitle`, `wrapSubtitle` and `wrapInfo` props are enabled ([#712](https://github.com/etn-ccis/blui-react-component-library/issues/712)).
+-   Padding and margin issue in `<InfoListItem>`, when `wrapTitle`, `wrapSubtitle` and `wrapInfo` props are enabled ([#712](https://github.com/etn-ccis/blui-react-component-library/issues/712)).
 
 ## v6.2.0 (January 24, 2023)
 
@@ -271,11 +271,11 @@ Previous versions listed after this indicator refer to our deprecated `@pxblue` 
 
     /* New syntax */
     <DrawerNavGroup
-      	activeItem={'item1id'}
+        activeItem={'item1id'}
         items={[
             {
                 title: 'Item 1',
-              	itemID: 'item1id',
+                itemID: 'item1id',
             },
         ]}
     />
