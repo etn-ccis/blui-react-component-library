@@ -155,16 +155,16 @@ export const getComponentState = (componentName: string, state: RootState['compo
     }
 };
 
-export const getImage = (image: string): string => {
+export const getImage = (image: string): string | undefined => {
     switch (image) {
         case 'Pattern':
             return topologyBgImage;
         case 'Farm':
             return farmBgImage;
         case 'undefined':
-            return 'undefined';
+            return undefined;
         default:
-            return 'undefined';
+            return undefined;
     }
 };
 
