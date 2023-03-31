@@ -39,7 +39,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                 onMouseEnter={(): void => setShow(!show)}
                 onMouseLeave={(): void => setShow(false)}
             >
-                <CodeBlock code={code} language="jsx" />
+                <CodeBlock code={code} language="jsx" sx={{ height: '100%' }} />
                 <Box
                     sx={{
                         position: 'absolute',

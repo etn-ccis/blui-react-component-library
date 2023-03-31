@@ -5,7 +5,7 @@ import { Code } from '@mui/icons-material';
 
 # Import
 
-To use these themes in your application, simply wrap the app in a `ThemeProvider` and pass in your desired theme (`blue` or `blueDark`). You'll also need to include the Open Sans font resources (included with the themes):
+To use these themes in your application, simply wrap the app in a `ThemeProvider` and pass in your desired theme (`blue` or `blueDark`). You'll also need to import the Open Sans font resources (included with the themes):
 
 <CodeBlock
     language={'jsx'}
@@ -32,14 +32,23 @@ After:
 
 # Accessing the Theme in a Component
 
-We use the same theme builder as [MUI's Material UI](https://mui.com/material-ui/customization/theming/). Similar to Material UI, you are able to access the theme from a child component by using the `useTheme` hook:
+Our themes are built on top of [Material UI](https://mui.com/material-ui/customization/theming/). You can access the themes from a functional component by using the `useTheme` hook:
 
 <CodeBlock
     code={`import { useTheme } from '@mui/material/styles';
 ...
 const ChildComponent: React.FC<> = () => {
     const theme = useTheme();
-    return <div sx={{ backgroundColor: theme.palette.background.paper }} />;
+    return <div style={{ backgroundColor: theme.palette.background.paper }} />;
+}`}
+    language={`jsx`}
+/>
+
+You can access color tokens in the [`sx` prop](https://mui.com/system/getting-started/the-sx-prop/), introduced in Material UI v5, without using the hook:
+
+<CodeBlock
+    code={`const ChildComponent: React.FC<> = () => {
+    return <div sx={{ backgroundColor: "background.paper" }} />;
 }`}
     language={`jsx`}
 />
@@ -49,8 +58,9 @@ Avoid using colors from `@brightlayer-ui/colors` directly. Using theme colors ma
 <CodeBlock
     code={`/* 
  * Avoid doing this! 
- * The red color can be accessed via the useTheme hook 
- * as theme.palette.error.main
+ * The red color can be accessed via: 
+ * * the useTheme hook as theme.palette.error.main
+ * * or by using the sx prop as "error.main"
  */
 import \* as Colors from '@brightlayer-ui/colors';
 const ChildComponent = () => <div sx={{ color: Color.red[500] }} />;`}
