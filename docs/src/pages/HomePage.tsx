@@ -20,12 +20,13 @@ const styles = {
     pageRoot: {
         background: (theme: Theme): string =>
             `url('${CirclesImage}') no-repeat center/200%, ${theme.palette.primary.main}`,
-        height: '100%',
+        minHeight: '100%',
         color: 'primary.contrastText',
     },
     content: {
         maxWidth: CONTENT_WIDTH,
-        margin: (theme: Theme): string => `${theme.spacing(9)} auto`,
+        my: 9,
+        mx: 'auto',
         padding: `${PADDING}px`,
     },
     pageTitle: {
@@ -33,6 +34,12 @@ const styles = {
             fontFamily: `"Roboto Mono", monospace !important`,
         },
         height: 200,
+    },
+    dollarSign: {
+        position: 'relative',
+        right: '1em',
+        top: 'calc( 1em + 10px )',
+        opacity: 0.5,
     },
     packageStats: {
         maxWidth: (CONTENT_WIDTH - PADDING * 2) / 2,
@@ -69,11 +76,9 @@ export const HomePage = (): JSX.Element => {
                 <Box sx={styles.pageTitle}>
                     <Typography variant={lgUp ? 'h2' : 'h3'}>
                         {lgUp && (
-                            <span
-                                style={{ position: 'relative', right: '1em', top: 'calc( 1em + 10px )', opacity: 0.5 }}
-                            >
+                            <Box component={'span'} sx={styles.dollarSign}>
                                 $
-                            </span>
+                            </Box>
                         )}
                         <Typewriter
                             options={{
