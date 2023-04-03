@@ -20,7 +20,7 @@ export const drawerTypes: ComponentType = {
             propType: 'string',
             helperText: 'An image to display in the header',
             required: false,
-            defaultValue: 'undefined',
+            defaultValue: 'Pattern',
         },
         {
             propName: 'backgroundOpacity',

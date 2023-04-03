@@ -24,7 +24,7 @@ export const appBarConfig: ComponentType = {
             propType: 'string',
             helperText: 'Image to use as the app bar background',
             required: false,
-            defaultValue: 'undefined',
+            defaultValue: 'Farm',
         },
         {
             propName: 'collapsedHeight',
