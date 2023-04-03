@@ -21,6 +21,6 @@ const buildRoutes = (routes: RouteConfig[]): JSX.Element[] =>
 export const MainRouter = (
     <>
         {buildRoutes(pageDefinitions)}
-        <Route path={'*'} element={<Navigate replace to={'/components/app-bar'} />} />
+        <Route path={'*'} element={<Navigate replace to={'/'} />} />
     </>
 );

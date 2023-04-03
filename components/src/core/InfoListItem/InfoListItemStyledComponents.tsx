@@ -52,18 +52,18 @@ export const Root = styled(ListItem, {
             outline: 'none',
         },
         padding: onClick && ripple ? 0 : undefined,
-        paddingTop: (isWrapEnabled() ? '0' : undefined),
-        paddingBottom: (isWrapEnabled() ? '0' : undefined),
+        paddingTop: isWrapEnabled() ? '0' : undefined,
+        paddingBottom: isWrapEnabled() ? '0' : undefined,
         '& .MuiListItemButton-root': {
             minHeight: isWrapEnabled() ? getHeight() : 'initial',
             height: !isWrapEnabled() ? getHeight() : 'auto',
-            paddingTop: (isWrapEnabled() ? '0' : undefined),
-            paddingBottom: (isWrapEnabled() ? '0' : undefined),
+            paddingTop: isWrapEnabled() ? '0' : undefined,
+            paddingBottom: isWrapEnabled() ? '0' : undefined,
         },
         '& .MuiListItemText-dense': {
             marginTop: 0,
             marginBottom: 0,
-        }
+        },
     };
 });
 
