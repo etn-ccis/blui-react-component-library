@@ -15,7 +15,7 @@ export const drawerTypes: ComponentType = {
         {
             propName: 'backgroundImage',
             inputType: 'select',
-            inputValue: 'Pattern',
+            inputValue: 'undefined',
             options: ['undefined', 'Pattern', 'Farm'],
             propType: 'string',
             helperText: 'An image to display in the header',

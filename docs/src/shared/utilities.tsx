@@ -155,7 +155,7 @@ export const getComponentState = (componentName: string, state: RootState['compo
     }
 };
 
-export const getImage = (image: string): string => {
+export const getImage = (image?: string | undefined): string => {
     switch (image) {
         case 'Pattern':
             return topologyBgImage;
