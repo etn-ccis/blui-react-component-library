@@ -1,6 +1,6 @@
 # Changelog
 
-## v6.3.0 (Unreleased)
+## v6.3.0 (April 4, 2023)
 
 ### Removed
 
