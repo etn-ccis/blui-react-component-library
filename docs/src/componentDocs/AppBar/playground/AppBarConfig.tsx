@@ -19,7 +19,7 @@ export const appBarConfig: ComponentType = {
         {
             propName: 'backgroundImage',
             inputType: 'select',
-            inputValue: 'undefined',
+            inputValue: 'Farm',
             options: ['undefined', 'Farm'],
             propType: 'string',
             helperText: 'Image to use as the app bar background',
