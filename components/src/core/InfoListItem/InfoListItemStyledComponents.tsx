@@ -27,7 +27,7 @@ export const Root = styled(ListItem, {
     >
 >(({ onClick, backgroundColor, wrapSubtitle, wrapTitle, wrapInfo, dense, ripple, theme }) => {
     const isWrapEnabled = (): boolean => wrapSubtitle || wrapTitle || wrapInfo;
-    const getHeight = (): string => (dense ? `3.25rem` : `4.5rem`);
+    const getHeight = (): string => (dense ? `3.5rem` : `4.5rem`);
 
     let isCssColor = true;
     try {
@@ -52,8 +52,18 @@ export const Root = styled(ListItem, {
             outline: 'none',
         },
         padding: onClick && ripple ? 0 : undefined,
-        paddingTop: isWrapEnabled() ? 0 : 'auto',
-        paddingBottom: isWrapEnabled() ? 0 : 'auto',
+        paddingTop: isWrapEnabled() ? '0' : undefined,
+        paddingBottom: isWrapEnabled() ? '0' : undefined,
+        '& .MuiListItemButton-root': {
+            minHeight: isWrapEnabled() ? getHeight() : 'initial',
+            height: !isWrapEnabled() ? getHeight() : 'auto',
+            paddingTop: isWrapEnabled() ? '0' : undefined,
+            paddingBottom: isWrapEnabled() ? '0' : undefined,
+        },
+        '& .MuiListItemText-dense': {
+            marginTop: 0,
+            marginBottom: 0,
+        },
     };
 });
 

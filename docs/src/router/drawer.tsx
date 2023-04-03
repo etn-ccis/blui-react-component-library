@@ -130,16 +130,26 @@ export const NavigationDrawer: React.FC = () => {
                         </Box>
                     </div>
                 }
+                onClick={(): void => navigate('/')}
             />
             <DrawerBody hidePadding>
-                {pageDefinitions.map((navGroup) => (
-                    <DrawerNavGroup
-                        titleColor={theme.palette.primary.main}
-                        key={navGroup.title}
-                        title={navGroup.title}
-                        items={convertNavItems(navGroup.pages || [], navGroup.path || '', 0, handleNavigate, dispatch)}
-                    />
-                ))}
+                {pageDefinitions.map(
+                    (navGroup) =>
+                        !navGroup.hidden && (
+                            <DrawerNavGroup
+                                titleColor={theme.palette.primary.main}
+                                key={navGroup.title}
+                                title={navGroup.title}
+                                items={convertNavItems(
+                                    navGroup.pages || [],
+                                    navGroup.path || '',
+                                    0,
+                                    handleNavigate,
+                                    dispatch
+                                )}
+                            />
+                        )
+                )}
                 <DrawerNavGroup
                     title="COMMUNITY"
                     titleColor={theme.palette.primary.main}
