@@ -15,12 +15,12 @@ export const drawerTypes: ComponentType = {
         {
             propName: 'backgroundImage',
             inputType: 'select',
-            inputValue: 'undefined',
+            inputValue: 'Pattern',
             options: ['undefined', 'Pattern', 'Farm'],
             propType: 'string',
             helperText: 'An image to display in the header',
             required: false,
-            defaultValue: 'Pattern',
+            defaultValue: 'undefined',
         },
         {
             propName: 'backgroundOpacity',
