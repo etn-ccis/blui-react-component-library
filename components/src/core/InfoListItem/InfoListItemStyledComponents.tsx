@@ -55,6 +55,8 @@ export const Root = styled(ListItem, {
         paddingTop: (isWrapEnabled() ? '0' : undefined),
         paddingBottom: (isWrapEnabled() ? '0' : undefined),
         '& .MuiListItemButton-root': {
+            minHeight: isWrapEnabled() ? getHeight() : 'initial',
+            height: !isWrapEnabled() ? getHeight() : 'auto',
             paddingTop: (isWrapEnabled() ? '0' : undefined),
             paddingBottom: (isWrapEnabled() ? '0' : undefined),
         },
