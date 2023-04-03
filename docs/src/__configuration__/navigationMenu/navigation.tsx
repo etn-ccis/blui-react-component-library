@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentPreviewPage, MarkdownPage } from '../../pages';
+import { ComponentPreviewPage, MarkdownPage, HomePage } from '../../pages';
 
 // API Docs markdown
 import DrawerNavGroupAPIDocs from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupAPIDocs.mdx';
@@ -76,9 +76,16 @@ export type RouteConfig = Omit<RouteProps, 'children'> & {
     icon?: JSX.Element;
     pages?: RouteConfig[];
     children?: RouteConfig[];
+    hidden?: boolean;
 };
 
 export const pageDefinitions: RouteConfig[] = [
+    {
+        title: 'Home',
+        path: '/',
+        element: <HomePage />,
+        hidden: true,
+    },
     {
         title: 'Getting Started',
         path: '/getting-started/',
