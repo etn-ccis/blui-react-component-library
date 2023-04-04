@@ -49,9 +49,6 @@ const styles = {
         outlined: {
             color: 'primary.contrastText',
             borderColor: 'primary.contrastText',
-            '&:not(.MuiTab-root):visited': {
-                color: 'primary.contrastText',
-            },
         },
     },
 };

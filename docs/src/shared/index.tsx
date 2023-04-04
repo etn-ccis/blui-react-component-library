@@ -12,3 +12,4 @@ export * from './CodeBlockActionButtonRow';
 export * from './ExampleShowcase';
 export * from './CallToActionButton';
 export * from './theme';
+export * from './markdown';

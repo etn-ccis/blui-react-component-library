@@ -9,7 +9,18 @@ export type ExampleShowcaseProps = BoxProps & {
 
 export const ExampleShowcase = React.forwardRef(
     (props: ExampleShowcaseProps, ref): JSX.Element => (
-        <Box ref={ref} sx={{ my: 2, backgroundColor: colors.white[600], p: 4, borderRadius: '4px', ...props.sx }}>
+        <Box
+            ref={ref}
+            sx={{
+                my: 2,
+                backgroundColor: (theme: Theme) =>
+                    theme.palette.mode === 'light' ? colors.white[600] : colors.darkBlack[300],
+                p: 4,
+                color: 'text.primary',
+                borderRadius: '4px',
+                ...props.sx,
+            }}
+        >
             {props.children}
         </Box>
     )

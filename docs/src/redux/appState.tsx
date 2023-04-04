@@ -1,11 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AppStatePayloadType, SiteThemeType } from '../__types__';
 
 type AppState = {
     drawerOpen: boolean;
+    siteTheme: SiteThemeType;
 };
+
+const siteTheme = localStorage.getItem('site-theme') as null | SiteThemeType;
 
 const initialState: AppState = {
     drawerOpen: false,
+    siteTheme: siteTheme === null ? 'light' : siteTheme,
 };
 
 export const appStateSlice = createSlice({
@@ -20,9 +25,16 @@ export const appStateSlice = createSlice({
             ...state,
             drawerOpen: !state.drawerOpen,
         }),
+        changeSiteTheme: (state, action: PayloadAction<AppStatePayloadType>) => {
+            localStorage.setItem('site-theme', action.payload.siteTheme);
+            return {
+                ...state,
+                siteTheme: action.payload.siteTheme,
+            };
+        },
     },
 });
 
-export const { closeDrawer, toggleDrawer } = appStateSlice.actions;
+export const { closeDrawer, toggleDrawer, changeSiteTheme } = appStateSlice.actions;
 
 export default appStateSlice.reducer;

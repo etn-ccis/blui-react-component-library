@@ -3,8 +3,13 @@ export type RangeDataTypes = {
     max: number;
     step: number;
 };
+export type SiteThemeType = 'light' | 'dark' | 'system';
 
-export type PayloadType = {
+export type AppStatePayloadType = {
+    siteTheme: SiteThemeType;
+};
+
+export type ComponentDocPayloadType = {
     propName: string;
     propValue: boolean | number | string | string[] | [];
     componentName: string;

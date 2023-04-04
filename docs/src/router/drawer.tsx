@@ -115,7 +115,7 @@ export const NavigationDrawer: React.FC = () => {
                             </Typography>
                             <Chip
                                 sx={{
-                                    color: 'primary.main',
+                                    color: theme.palette.mode === 'light' ? 'primary.main' : 'primary.dark',
                                     backgroundColor: 'white',
                                 }}
                                 icon={<ReactIcon color={'primary'} />}

@@ -8,11 +8,10 @@ import { ExampleShowcase } from '../../../shared';
 export const ListItemTagUsingInfoListItemExample = (): JSX.Element => (
     <ExampleShowcase sx={{ display: 'flex', justifyContent: 'center' }}>
         <InfoListItem
-            sx={{ width: 'auto' }}
+            sx={{ width: 'auto', backgroundColor: 'background.paper' }}
             icon={<BatteryChargingFull />}
             title="Info List Item"
             subtitle="with a ListItemTag component to the right"
-            backgroundColor="white"
             iconColor="text.primary"
             rightComponent={
                 <Stack spacing={2} direction={'row'}>

@@ -206,6 +206,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                 '&:before': {
                     display: 'none',
                 },
+                backgroundImage: 'unset',
             }}
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: 'primary.main' }} />}>
@@ -260,6 +261,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                                 fontFamily: '"Roboto Mono", monspace',
                             },
                             zIndex: theme.zIndex.appBar - 1,
+                            backgroundColor: 'background.paper',
                         },
                     }}
                     anchor={'right'}

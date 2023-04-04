@@ -114,11 +114,11 @@ export const componentsMap = {
         return <InternalLink to={props.href} {...tProps} />;
     },
     p: (props: TypographyProps): JSX.Element => (
-        <Typography sx={{ lineHeight: '1.6', m: '15px auto' }} paragraph {...props} />
+        <Typography sx={{ lineHeight: '1.6', m: '15px auto' }} color={'text.primary'} paragraph {...props} />
     ),
     ul: (props: BoxProps): JSX.Element => <Box component={'ul'} sx={{ m: '15px auto', pl: '60px' }} {...props} />,
     li: (props: TypographyProps<'li'>): JSX.Element => (
-        <Typography component={'li'} className={'mdLi'} sx={{ m: '15px auto' }} {...props} />
+        <Typography component={'li'} className={'mdLi'} sx={{ m: '15px auto' }} color={'text.primary'} {...props} />
     ),
     blockquote: (props: TypographyProps<'blockquote'>): JSX.Element => (
         <Typography
@@ -188,6 +188,7 @@ export const componentsMap = {
                 overflow: 'auto',
                 boxSizing: 'border-box',
                 mb: 2,
+                color: 'text.primary',
 
                 table: {
                     textAlign: 'left',
@@ -216,13 +217,15 @@ export const componentsMap = {
                     borderBottom: 0,
                 },
                 thead: {
-                    backgroundColor: Colors.white[100],
+                    backgroundColor: (theme: Theme): string =>
+                        theme.palette.mode === 'light' ? Colors.white[100] : Colors.black[800],
                 },
                 'tbody tr:nth-of-type(odd)': {
-                    backgroundColor: Colors.white[50],
+                    backgroundColor: 'background.paper',
                 },
                 'tbody tr:nth-of-type(even)': {
-                    backgroundColor: Colors.white[100],
+                    backgroundColor: (theme: Theme): string =>
+                        theme.palette.mode === 'light' ? Colors.white[100] : Colors.black[800],
                 },
                 td: {
                     fontSize: '0.875rem',
