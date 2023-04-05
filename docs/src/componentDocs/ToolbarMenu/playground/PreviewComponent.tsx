@@ -17,18 +17,31 @@ export const PreviewComponent = (): JSX.Element => {
     const generateCodeSnippet = (): string => {
         const jsx = `<ToolbarMenu
     ${toggleDefaultProp('icon', toolbarMenuProps.icon)}
-    label={"${toolbarMenuProps.label}"}
-    menuGroups={
-        {
-            items: [{ title: "Menu Item 1", onClick: (): void => {
-                console.log("clicked 1");
-            } }, { title: "Menu Item 2", onClick: (): void => {
-                console.log("clicked 2");
-            } }, { title: "Menu Item 3", onClick: (): void => {
-                console.log("clicked 3");
-            } }],
-        },
-    ]} />`;
+    label={'${toolbarMenuProps.label}'}
+    menuGroups={{
+        items: [
+            {
+                title: 'Menu Item 1',
+                onClick: (): void => {
+                    console.log('clicked 1');
+                },
+            },
+            {
+                title: 'Menu Item 2',
+                onClick: (): void => {
+                    console.log('clicked 2');
+                },
+            },
+            {
+                title: 'Menu Item 3',
+                onClick: (): void => {
+                    console.log('clicked 3');
+                },
+            },
+        ],
+    }}
+/>`;
+
         return removeEmptyLines(jsx);
     };
     const menuGroups = [
