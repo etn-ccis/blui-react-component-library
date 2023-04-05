@@ -37,18 +37,14 @@
         <base href="%PUBLIC_URL%/" />
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
         <title>Brightlayer UI React Docs</title>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=%REACT_APP_GAID%"></script>
         <script>
-            var googleTagManagerScript = document.createElement('script');
-            googleTagManagerScript.async = true;
-            googleTagManagerScript.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.REACT_APP_GAID}`;
-            document.getElementsByTagName('head')[0].appendChild(googleTagManagerScript);
-
             window.dataLayer = window.dataLayer || [];
             function gtag() {
                 dataLayer.push(arguments);
             }
             gtag('js', new Date());
-            gtag('config', `${process.env.REACT_APP_GAID}`, { send_page_view: false });
+            gtag('config', `%REACT_APP_GAID%`, { send_page_view: false });
         </script>
     </head>
 
