@@ -8,7 +8,7 @@ import Typewriter from 'typewriter-effect';
 import { Github } from '@brightlayer-ui/icons-mui';
 import Mail from '@mui/icons-material/Mail';
 import { SharedAppBar } from '../layout';
-import { Theme } from '@mui/system';
+import { Theme } from '@mui/material';
 import { PADDING } from '../shared/constants';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { listOfAllBluiReactPackages } from '../__configuration__/listOfAllBluiReactPackages';
