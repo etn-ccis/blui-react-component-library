@@ -37,14 +37,14 @@
         <base href="%PUBLIC_URL%/" />
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
         <title>Brightlayer UI React Docs</title>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=%REACT_APP_GAID%"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=%gaID%"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag() {
                 dataLayer.push(arguments);
             }
             gtag('js', new Date());
-            gtag('config', `%REACT_APP_GAID%`, { send_page_view: false });
+            gtag('config', `%gaID%`, { send_page_view: false });
         </script>
     </head>
 
