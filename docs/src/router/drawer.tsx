@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { DRAWER_WIDTH } from '../shared';
 import { React as ReactIcon } from '@brightlayer-ui/icons-mui';
-
+import { Theme } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { RootState } from '../redux/store';
 import { closeDrawer, toggleDrawer } from '../redux/appState';
@@ -47,6 +47,18 @@ const convertNavItems = (
         });
     }
     return convertedItems;
+};
+
+const styles = {
+    denseDrawerItem: {
+        '& .BluiDrawerNavItem-root, & .BluiInfoListItem-root, & .MuiButtonBase-root.MuiListItemButton-root': {
+            height: (theme: Theme): string => theme.spacing(5),
+        },
+    },
+    navGroupTopDivider: {
+        borderTop: (theme: Theme): string => `1px solid ${theme.palette.divider}`,
+        mt: 1,
+    },
 };
 
 export const NavigationDrawer: React.FC = () => {
@@ -127,9 +139,9 @@ export const NavigationDrawer: React.FC = () => {
                 }
                 onClick={(): void => navigate('/')}
             />
-            <DrawerBody hidePadding>
+            <DrawerBody hidePadding sx={styles.denseDrawerItem}>
                 {pageDefinitions.map(
-                    (navGroup) =>
+                    (navGroup, navGroupIndex) =>
                         !navGroup.hidden && (
                             <DrawerNavGroup
                                 titleColor={theme.palette.primary.main}
@@ -142,6 +154,9 @@ export const NavigationDrawer: React.FC = () => {
                                     handleNavigate,
                                     dispatch
                                 )}
+                                titleDivider={false}
+                                // navGroupIndex 0 is a hidden group used by the landing page
+                                sx={navGroupIndex !== 1 ? styles.navGroupTopDivider : undefined}
                             />
                         )
                 )}
@@ -149,6 +164,8 @@ export const NavigationDrawer: React.FC = () => {
                     title="COMMUNITY"
                     titleColor={theme.palette.primary.main}
                     items={externalLinkDefinitions}
+                    titleDivider={false}
+                    sx={styles.navGroupTopDivider}
                 />
             </DrawerBody>
         </Drawer>
