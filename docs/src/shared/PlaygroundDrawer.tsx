@@ -107,6 +107,11 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                 onChange={(event): void =>
                     handleChange(prop.propName, String(event.target.value), componentName, index)
                 }
+                MenuProps={{
+                    BackdropProps: {
+                        sx: { display: 'none' },
+                    },
+                }}
             >
                 {Array.isArray(prop.options)
                     ? prop.options?.map(
