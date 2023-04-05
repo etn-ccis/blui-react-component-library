@@ -27,6 +27,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                     alignItems: 'center',
                     bgcolor: 'background.default',
                     color: 'text.primary',
+                    overflow: 'hidden',
                 }}
             >
                 {previewContent}
