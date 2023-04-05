@@ -35,7 +35,7 @@ export const PreviewComponent = (): JSX.Element => {
         const jsx = `<Drawer open={true}>
     <DrawerHeader
         ${toggleDefaultProp('backgroundColor', drawerHeaderProps.backgroundColor, theme.palette.primary.main)}
-        ${toggleDefaultProp('backgroundImage', `${getImage(drawerHeaderProps.backgroundImage)}`)}
+        ${toggleDefaultProp('backgroundImage', getImage(drawerHeaderProps.backgroundImage))}
         ${toggleDefaultProp('divider', drawerHeaderProps.divider)}
         ${toggleDefaultProp('backgroundOpacity', drawerHeaderProps.backgroundOpacity)}
         ${toggleDefaultProp('fontColor', drawerHeaderProps.fontColor)}
