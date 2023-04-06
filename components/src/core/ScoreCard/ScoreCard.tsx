@@ -75,11 +75,17 @@ export type ScoreCardProps = CardProps &
 
 const fontColor = (headerFontColor: string): string => headerFontColor || Colors.white[50];
 
-const Root = styled(Card, {})(() => ({
+const Root = styled(
+    Card,
+    {}
+)(() => ({
     flex: '1 1 0px',
 }));
 
-const FlexColumn = styled(Box, {})(() => ({
+const FlexColumn = styled(
+    Box,
+    {}
+)(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'stretch',
@@ -98,7 +104,10 @@ const Header = styled(Box, {
     color: fontColor(headerFontColor),
 }));
 
-const HeaderContent = styled(Box, {})(({ theme }) => ({
+const HeaderContent = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     display: 'flex',
     position: 'relative',
     zIndex: 1,
@@ -140,13 +149,19 @@ const HeaderBackground = styled(Box, {
     backgroundImage: `url(${headerBackgroundImage})`,
 }));
 
-const Content = styled(Box, {})(() => ({
+const Content = styled(
+    Box,
+    {}
+)(() => ({
     display: 'flex',
     alignItems: 'center',
     position: 'relative',
 }));
 
-const BodyWrapper = styled(Box, {})(() => ({
+const BodyWrapper = styled(
+    Box,
+    {}
+)(() => ({
     flex: '1 1 0px',
 }));
 
@@ -160,7 +175,10 @@ const BadgeWrapper = styled(Box, {
     marginTop: badgeOffset,
 }));
 
-const ActionItems = styled(Box, {})(({ theme }) => ({
+const ActionItems = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     marginLeft: theme.spacing(1.5),
     cursor: 'pointer',
 }));

@@ -43,7 +43,10 @@ export type ToolbarMenuCompGroup = {
     title?: string;
 };
 
-const Root = styled(Typography, {})(() => ({
+const Root = styled(
+    Typography,
+    {}
+)(() => ({
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
@@ -51,23 +54,35 @@ const Root = styled(Typography, {})(() => ({
     [`&.${toolbarMenuClasses.cursorPointer}`]: { cursor: 'pointer ' },
 }));
 
-const DropDownArrow = styled(ArrowDropDown, {})(({ theme }) => ({
+const DropDownArrow = styled(
+    ArrowDropDown,
+    {}
+)(({ theme }) => ({
     marginLeft: theme.spacing(0.5),
     [`&.${toolbarMenuClasses.rotatedDropdownArrow}`]: { transform: 'rotate(180deg)' },
 }));
 
-const ToolbarMenuIcon = styled(Box, {})(({ theme }) => ({
+const ToolbarMenuIcon = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     marginRight: theme.spacing(1),
     display: 'inline-flex',
     fontSize: 'inherit',
 }));
 
-const ToolbarMenuLabel = styled(Box, {})(() => ({
+const ToolbarMenuLabel = styled(
+    Box,
+    {}
+)(() => ({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
 }));
 
-const ToolbarMenuNavGroups = styled(Box, {})(() => ({
+const ToolbarMenuNavGroups = styled(
+    Box,
+    {}
+)(() => ({
     '&:active, &:focus': {
         outline: 'none',
     },

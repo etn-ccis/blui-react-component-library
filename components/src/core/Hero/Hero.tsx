@@ -43,7 +43,10 @@ export type HeroProps = BoxProps & {
     ChannelValueProps?: ChannelValuePropsType;
 };
 
-const Root = styled(Box, {})<Pick<HeroProps, 'onClick'>>(({ onClick, theme }) => ({
+const Root = styled(
+    Box,
+    {}
+)<Pick<HeroProps, 'onClick'>>(({ onClick, theme }) => ({
     fontSize: '1rem',
     display: 'flex',
     flexDirection: 'column',
@@ -77,7 +80,10 @@ const Icon = styled(Box, {
     backgroundColor: iconBackgroundColor,
 }));
 
-const Values = styled(Box, {})(({ theme }) => ({
+const Values = styled(
+    Box,
+    {}
+)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     color: theme.palette.text.primary,
@@ -87,7 +93,10 @@ const Values = styled(Box, {})(({ theme }) => ({
     fontSize: '1.25rem',
 }));
 
-const Label = styled(Typography, {})(() => ({
+const Label = styled(
+    Typography,
+    {}
+)(() => ({
     fontSize: 'inherit',
     lineHeight: 1.2,
     letterSpacing: 0,
