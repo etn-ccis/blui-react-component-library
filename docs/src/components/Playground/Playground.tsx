@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { useCallback, useReducer } from 'react';
+// import { renderToString } from 'react-dom/server';
 import Box from '@mui/material/Box';
 import ComponentPreview from './ComponentPreview';
 import PlaygroundControls from './PlaygroundControls';
@@ -80,11 +81,19 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         console.log('state: ', state);
     }, [state]);
 
+    const getFullPropObjectByPropName = useCallback(
+        (propName: string): PlaygroundComponentProp | undefined =>
+            config?.props?.filter((prop) => prop.propName === propName)[0],
+        [config]
+    );
+
     const getCoreComponentProps = useCallback((): any => {
         const propKeyValuePairs: any = {};
         const propsWithMapping: PlaygroundComponentProp[] = [];
 
         config?.props?.forEach((prop: PlaygroundComponentProp) => {
+            if (prop.inputValue === 'undefined') return;
+
             if (prop.propType === 'JSX.Element') {
                 propsWithMapping.push(prop);
             } else {
@@ -109,7 +118,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         //     }
         // });
 
-        // Mapping for select-inputs whose need values mapped to the provided options strings
+        // Map prop.options to prop.optionsValueMapping for select-inputs whose values need mapped
         propsWithMapping.forEach((prop: PlaygroundComponentProp) => {
             if (prop.inputType === 'select' && prop.options?.length && prop.optionsValueMapping?.length) {
                 propKeyValuePairs[prop.propName] =
@@ -129,32 +138,67 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         [key: string]: any;
     };
 
-    function generateComponentCode(_componentName: string, _props: GenericProps): string {
-        const propsWithDefaults = config?.props?.filter((prop) => prop.defaultValue);
+    function generateComponentCode(_componentName: string, _props?: GenericProps): string {
+        let exampleCode = `<${_componentName} />`;
 
-        // remove all _props that are using the default value
-        // @TODO: Update to deal with props that use JSX.Element or select value mappings
-        propsWithDefaults?.forEach((propWithDefault) => {
-            if (propWithDefault.defaultValue === _props[propWithDefault.propName]) {
-                delete _props[propWithDefault.propName];
-            }
-        });
+        if (_props) {
+            // find all props that have a defaultValue
+            const propsWithDefaults = config?.props?.filter((prop) => prop.defaultValue);
 
-        const propsString = Object.entries(_props)
-            .map(([key, value]) => {
-                const valueString = typeof value === 'string' ? `'${value}'` : `{${value}}`;
-                return `${key}=${valueString}`;
-            })
-            .join(' ');
+            // remove all _props that are using the default value
+            // @TODO: Update to deal with props that use JSX.Element or select value mappings
+            propsWithDefaults?.forEach((propWithDefault) => {
+                if (propWithDefault.defaultValue === _props[propWithDefault.propName]) {
+                    delete _props[propWithDefault.propName];
+                }
+            });
 
-        const exampleCode = `<${_componentName} ${propsString} />`;
+            const propsString = Object.entries(_props)
+                .map(([propName, currentValue]) => {
+                    console.log('typeof Value: ', typeof currentValue);
+
+                    switch (typeof currentValue) {
+                        case undefined:
+                            return '';
+                        case 'string':
+                            return `${propName}={"${currentValue}"}`;
+                        case 'object': {
+                            const fullPropObject = getFullPropObjectByPropName(propName);
+                            if (fullPropObject?.propType === 'JSX.Element') {
+                                const subComponentCode =
+                                    fullPropObject &&
+                                    fullPropObject.inputValue &&
+                                    fullPropObject.inputValue !== undefined
+                                        ? generateComponentCode(fullPropObject.inputValue as string)
+                                        : '';
+                                return subComponentCode ? `${propName}={${subComponentCode}}` : '';
+                            }
+
+                            return `${propName}={${currentValue}}`;
+                        }
+                        case 'boolean':
+                        case 'number':
+                        default:
+                            return `${propName}={${currentValue}}`;
+                    }
+                })
+                .join(' ');
+
+            exampleCode = `<${_componentName} ${propsString} />`;
+        }
+
+        console.log(exampleCode);
 
         return exampleCode;
     }
 
-    const sourceCode = generateComponentCode(
-        config.componentName?.split(' ').join('') as string | 'Component',
-        getCoreComponentProps()
+    const sourceCode = useCallback(
+        (): string =>
+            generateComponentCode(
+                config.componentName?.split(' ').join('') as string | 'Component',
+                getCoreComponentProps()
+            ),
+        [config]
     );
 
     return (
@@ -175,7 +219,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
                 }}
             >
                 <ComponentPreview previewContent={PreviewContent} sx={{ flex: 7 }} />
-                <SourceCodeViewer code={sourceCode} sx={{ flex: 3 }} />
+                <SourceCodeViewer code={sourceCode()} sx={{ flex: 3 }} />
             </Box>
             <PlaygroundControls config={config} playgroundDrawerWidth={playgroundDrawerWidth} dispatch={dispatch} />
         </Box>
