@@ -83,7 +83,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
     return (
         <>
             <Tabs
-                value={!hidePlaygroundTab ? value : 0}
+                value={hidePlaygroundTab && value === 2 ? 0 : value}
                 onChange={handleChange}
                 aria-label="component docs tabs"
                 centered
