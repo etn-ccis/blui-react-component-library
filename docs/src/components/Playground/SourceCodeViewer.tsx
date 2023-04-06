@@ -13,6 +13,11 @@ const SourceCodeViewer: React.FC<SourceCodeViewerProps> = (props): JSX.Element =
     const { code, sx } = props;
     const [show, setShow] = React.useState(false);
 
+    React.useEffect(() => {
+        // eslint-disable-next-line no-console
+        console.log('code from sourcecodeviewer', code);
+    }, []);
+
     return (
         <Box
             sx={[

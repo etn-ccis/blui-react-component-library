@@ -6,13 +6,6 @@ export type RangeData = {
     step: number;
 };
 
-export type Payload = {
-    propName: string;
-    propValue: boolean | number | string | string[] | [];
-    componentName: string;
-    groupType: string;
-};
-
 export type PlaygroundComponentProp = {
     propName: string;
     inputType: 'boolean' | 'colorPicker' | 'select' | 'string' | 'number';

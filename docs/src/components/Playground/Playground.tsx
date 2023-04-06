@@ -17,6 +17,8 @@ type PlaygroundProps = {
      * Default: {}
      */
     demoComponentProps?: any;
+    /** An element to be rendered as the child of the demoComponent */
+    demoComponentChild?: JSX.Element;
     /** Configuration object for the playground */
     config: PlaygroundComponent;
     /** The width of the playground controls drawer
@@ -95,20 +97,16 @@ function getInitialState(config: PlaygroundComponent): any {
 export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
     const {
         demoComponent,
+        demoComponentProps = {},
+        demoComponentChild,
         config,
         playgroundDrawerWidth = 375,
         sx,
         previewContainerSx,
         sourceCodeSx,
         controlsDrawerSx,
-        demoComponentProps = {},
     } = props;
     const [state, dispatch] = useReducer(playgroundReducer, getInitialState(config));
-
-    React.useEffect(() => {
-        // eslint-disable-next-line no-console
-        console.log('state: ', state);
-    }, [state]);
 
     const getFullPropObjectByPropName = useCallback(
         (propName: string): PlaygroundComponentProp | undefined =>
@@ -159,15 +157,20 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         console.log('propKeyValuePairs:', propKeyValuePairs);
 
         return propKeyValuePairs;
-    }, [state]);
+    }, [state, config]);
 
-    const PreviewContent = React.createElement(demoComponent, { ...getCoreComponentProps(), ...demoComponentProps });
+    const PreviewContent = React.createElement(
+        demoComponent,
+        { ...getCoreComponentProps(), ...demoComponentProps },
+        demoComponentChild ? demoComponentChild : undefined
+    );
 
     type GenericProps = {
         [key: string]: any;
     };
 
-    function generateComponentCode(_componentName: string, _props?: GenericProps): string {
+    const generateComponentCode = (_componentName: string, _props?: GenericProps): string => {
+        const propOffset = `    `;
         let exampleCode = `<${_componentName} />`;
 
         if (_props) {
@@ -184,8 +187,6 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
 
             const propsString = Object.entries(_props)
                 .map(([propName, currentValue]) => {
-                    console.log('typeof Value: ', typeof currentValue);
-
                     switch (typeof currentValue) {
                         case undefined:
                             return '';
@@ -211,24 +212,31 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
                             return `${propName}={${currentValue}}`;
                     }
                 })
-                .join(' ');
+                .join(`\n${propOffset}`);
 
-            exampleCode = `<${_componentName} ${propsString} />`;
+            exampleCode = `<${_componentName}\n${propOffset}${propsString}\n/>`;
         }
 
-        console.log(exampleCode);
-
         return exampleCode;
-    }
+    };
 
-    const sourceCode = useCallback(
+    const getSourceCode = useCallback(
         (): string =>
             generateComponentCode(
-                config.componentName?.split(' ').join('') as string | 'Component',
+                state.componentName?.split(' ').join('') as string | 'Component',
                 getCoreComponentProps()
             ),
-        [config]
+        [config, state]
     );
+
+    React.useEffect(() => {
+        // eslint-disable-next-line no-console
+        console.log('state: ', state);
+    }, [state]);
+
+    React.useEffect(() => {
+        dispatch({ type: PLAYGROUND_ACTIONS.RESET_PROPS });
+    }, []);
 
     return (
         <Box
@@ -258,7 +266,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
                     ]}
                 />
                 <SourceCodeViewer
-                    code={sourceCode()}
+                    code={getSourceCode()}
                     sx={[{ flex: 3 }, ...(Array.isArray(sourceCodeSx) ? sourceCodeSx : [sourceCodeSx])]}
                 />
             </Box>
