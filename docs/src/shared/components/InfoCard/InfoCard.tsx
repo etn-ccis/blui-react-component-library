@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react';
-import { Typography, useTheme, SxProps, Box } from '@mui/material';
+import { Typography, SxProps, Box } from '@mui/material';
 
 const getTopPaddingForAspectRatio = (ratio: AspectRatio | undefined): string => {
     switch (ratio) {
@@ -51,7 +51,6 @@ const styles: { [key: string]: SxProps } = {
 
 export const InfoCard: React.FC<InfoCardProps> = (props): JSX.Element => {
     const { background = {} } = props;
-    const theme = useTheme();
 
     return (
         <Box
@@ -97,8 +96,10 @@ export const InfoCard: React.FC<InfoCardProps> = (props): JSX.Element => {
                     </div>
                 </Box>
             )}
-            <Typography variant={'h6'}>{props.title}</Typography>
-            <Typography variant={'body2'} style={{ color: theme.palette.text.secondary, marginTop: theme.spacing(1) }}>
+            <Typography variant={'h6'} color={'text.primary'}>
+                {props.title}
+            </Typography>
+            <Typography variant={'body2'} sx={{ color: 'text.secondary', mt: 1 }}>
                 {props.description}
             </Typography>
             <div>{props.descriptionContent}</div>

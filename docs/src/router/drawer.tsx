@@ -4,9 +4,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate, useLocation } from 'react-router';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-components';
 import { externalLinkDefinitions, pageDefinitions, RouteConfig } from '../__configuration__/navigationMenu/navigation';
-import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 import { DRAWER_WIDTH } from '../shared';
 import { React as ReactIcon } from '@brightlayer-ui/icons-mui';
 import { Theme } from '@mui/material';
@@ -108,26 +108,21 @@ export const NavigationDrawer: React.FC = () => {
                     },
                 }}
                 titleContent={
-                    <div
-                        style={{
-                            display: 'flex',
+                    <Stack
+                        justifyContent={'center'}
+                        sx={{
                             zIndex: 1,
-                            padding: '0 16px',
-                            alignItems: 'flex-start',
-                            width: '100%',
-                            height: '100%',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
+                            px: 2,
                         }}
                     >
                         <Typography variant="subtitle1">Brightlayer User Interface</Typography>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Stack direction={'row'} alignItems={'center'} gap={1}>
                             <Typography variant={'body2'} paragraph={false}>
                                 Developer Docs
                             </Typography>
                             <Chip
                                 sx={{
-                                    color: 'primary.main',
+                                    color: theme.palette.mode === 'light' ? 'primary.main' : 'primary.dark',
                                     backgroundColor: 'white',
                                 }}
                                 icon={<ReactIcon color={'primary'} />}
@@ -139,8 +134,8 @@ export const NavigationDrawer: React.FC = () => {
                                 variant={'filled'}
                                 size={'small'}
                             />
-                        </Box>
-                    </div>
+                        </Stack>
+                    </Stack>
                 }
                 onClick={(): void => navigate('/')}
             />

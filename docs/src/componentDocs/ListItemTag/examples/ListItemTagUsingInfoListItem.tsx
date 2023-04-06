@@ -7,7 +7,6 @@ const codeSnippet = `<InfoListItem
     icon={<BatteryChargingFull />}
     title="Info List Item"
     subtitle="with a ListItemTag component to the right"
-    backgroundColor="white"
     iconColor="text.primary"
     rightComponent={
         <Stack spacing={2} direction={'row'}>
