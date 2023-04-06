@@ -92,7 +92,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         const propsWithMapping: PlaygroundComponentProp[] = [];
 
         config?.props?.forEach((prop: PlaygroundComponentProp) => {
-            if (prop.inputValue === 'undefined') return;
+            if (!prop.inputValue || prop.inputValue === 'undefined') return;
 
             if (prop.propType === 'JSX.Element') {
                 propsWithMapping.push(prop);
