@@ -47,6 +47,7 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
     const dispatch = useAppDispatch();
     const [themeSelectorAnchorEl, setThemeSelectorAnchorEl] = React.useState<null | HTMLElement>(null);
     const siteTheme = useAppSelector((state: RootState) => state.appState.siteTheme);
+    const linkToThemesOverview = `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : ''}/themes/overview`;
 
     const onClickThemeSelectorItem = React.useCallback(
         (option: SiteThemeType): void => {
@@ -95,7 +96,7 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                 <Box sx={styles.caption}>
                     <Typography variant={'caption'} color={'text.secondary'}>
                         This website is themed using our React theme package. Learn more{' '}
-                        <a href={'/themes/overview'} style={{ color: 'inherit' }}>
+                        <a href={linkToThemesOverview} style={{ color: 'inherit' }}>
                             here
                         </a>
                         .
