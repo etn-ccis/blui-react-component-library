@@ -7,11 +7,26 @@ import PlaygroundControls from './PlaygroundControls';
 import { PlaygroundComponent, PlaygroundComponentProp } from './types';
 import SourceCodeViewer from './SourceCodeViewer';
 import { findStringIndex } from './utilities';
+import { SxProps } from '@mui/material';
 
 type PlaygroundProps = {
-    config: PlaygroundComponent;
-    playgroundDrawerWidth?: number;
+    /** The component to be rendered in the playground */
     demoComponent: any;
+    /** Configuration object for the playground */
+    config: PlaygroundComponent;
+    /** The width of the playground controls drawer
+     *
+     * Default: '375'
+     */
+    playgroundDrawerWidth?: number;
+    /** Styles applied to the root */
+    sx?: SxProps;
+    /** Styles applied to the container where the component is rendered */
+    previewContainerSx?: SxProps;
+    /** Styles applied to the container where the source code snippet is generated */
+    sourceCodeSx?: SxProps;
+    /** Styles applied to the drawer that contains the playground controls */
+    controlsDrawerSx?: SxProps;
 };
 
 export const PLAYGROUND_ACTIONS = {
@@ -73,7 +88,15 @@ function getInitialState(config: PlaygroundComponent): any {
 }
 
 export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
-    const { demoComponent, config, playgroundDrawerWidth = 375 } = props;
+    const {
+        demoComponent,
+        config,
+        playgroundDrawerWidth = 375,
+        sx,
+        previewContainerSx,
+        sourceCodeSx,
+        controlsDrawerSx,
+    } = props;
     const [state, dispatch] = useReducer(playgroundReducer, getInitialState(config));
 
     React.useEffect(() => {
@@ -203,12 +226,15 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
 
     return (
         <Box
-            sx={{
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'row',
-                height: '100%',
-            }}
+            sx={[
+                {
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    height: '100%',
+                },
+                ...(Array.isArray(sx) ? sx : [sx]),
+            ]}
         >
             <Box
                 sx={{
@@ -218,10 +244,24 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
                     paddingRight: `${playgroundDrawerWidth}px`,
                 }}
             >
-                <ComponentPreview previewContent={PreviewContent} sx={{ flex: 7 }} />
-                <SourceCodeViewer code={sourceCode()} sx={{ flex: 3 }} />
+                <ComponentPreview
+                    previewContent={PreviewContent}
+                    sx={[
+                        { flex: 7 },
+                        ...(Array.isArray(previewContainerSx) ? previewContainerSx : [previewContainerSx]),
+                    ]}
+                />
+                <SourceCodeViewer
+                    code={sourceCode()}
+                    sx={[{ flex: 3 }, ...(Array.isArray(sourceCodeSx) ? sourceCodeSx : [sourceCodeSx])]}
+                />
             </Box>
-            <PlaygroundControls config={config} playgroundDrawerWidth={playgroundDrawerWidth} dispatch={dispatch} />
+            <PlaygroundControls
+                config={config}
+                playgroundDrawerWidth={playgroundDrawerWidth}
+                dispatch={dispatch}
+                sx={[...(Array.isArray(controlsDrawerSx) ? controlsDrawerSx : [controlsDrawerSx])]}
+            />
         </Box>
     );
 };

@@ -51,46 +51,6 @@ export const getHash = (str: string): string =>
         .replace(/[#?/&]/g, '')
         .toLowerCase();
 
-// export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | undefined => {
-//     switch (icon) {
-//         case '<Add />':
-//             return <Add />;
-//         case '<AddAPhoto />':
-//             return <AddAPhoto />;
-//         case '<Device />':
-//             return React.createElement(Device, iconProps);
-//         case '<Devices />':
-//             return React.createElement(Devices, iconProps);
-//         case '<Fan />':
-//             return React.createElement(Fan, iconProps);
-//         case '<FanCircled />':
-//             return React.createElement(FanCircled, iconProps);
-//         case '<FitnessCenter />':
-//             return <FitnessCenter />;
-//         case '<Home />':
-//             return <Home />;
-//         case '<Menu />':
-//             return <Menu />;
-//         case '<Place />':
-//             return <Place />;
-//         case '<PinDrop />':
-//             return <PinDrop />;
-//         case '<Remove />':
-//             return <Remove />;
-//         case '<RouterIcon />':
-//             return React.createElement(RouterIcon, iconProps);
-//         case '<SensorsOffIcon />':
-//             return React.createElement(SensorsOffIcon, iconProps);
-//         case '<TrendingUp />':
-//             return React.createElement(TrendingUp, iconProps);
-//         case '<TrendingDown />':
-//             return React.createElement(TrendingDown, iconProps);
-//         case 'undefined':
-//         default:
-//             return undefined;
-//     }
-// };
-
 export const createProps = (props: PlaygroundComponentProp[]): any => {
     const componentProps = props?.reduce(
         (acc: any, cur: any) => ({
@@ -101,19 +61,6 @@ export const createProps = (props: PlaygroundComponentProp[]): any => {
     );
     return componentProps;
 };
-
-// export const getImage = (image: string): string => {
-//     switch (image) {
-//         case 'Pattern':
-//             return topologyBgImage;
-//         case 'Farm':
-//             return farmBgImage;
-//         case 'undefined':
-//             return 'undefined';
-//         default:
-//             return 'undefined';
-//     }
-// };
 
 const iterateIconProps = (iconProps: any): string => {
     let str = '';
@@ -143,36 +90,6 @@ export const filterPropsAsPerGroupType = (
             return state.additionalProps?.filter((prop: PlaygroundComponentProp) => prop.propName === propName)[0];
         default:
             return state.props?.filter((prop: PlaygroundComponentProp) => prop.propName === propName)[0];
-    }
-};
-
-export const hideDefaultPropsFromSnippet = (
-    state: PlaygroundComponent,
-    propName: string,
-    currentValue: any,
-    groupType?: string,
-    themeDefaultValue?: string | number
-): string => {
-    const knob = filterPropsAsPerGroupType(state, propName, groupType);
-    if (knob?.defaultValue === currentValue || themeDefaultValue === currentValue) {
-        return '';
-    }
-    switch (knob?.propType) {
-        case 'string':
-        case 'string | Array<React.ReactNode>':
-            return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
-        case 'ReactNode':
-            if (knob.inputType === 'string') {
-                return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
-            }
-            return `${propName}={${currentValue}}`;
-        case 'boolean':
-            return `${propName}={${currentValue}}`;
-        case 'number':
-        case 'number | string':
-            return currentValue === '' ? '' : `${propName}={${currentValue}}`;
-        default:
-            return `${propName}={${currentValue}}`;
     }
 };
 

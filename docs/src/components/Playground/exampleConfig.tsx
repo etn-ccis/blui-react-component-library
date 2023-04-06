@@ -31,7 +31,7 @@ export const channelValueConfig: PlaygroundComponent = {
             inputType: 'select',
             inputValue: 'TrendingUp',
             options: ['undefined', 'TrendingUp', 'TrendingDown'],
-            optionsValueMapping: [undefined, <TrendingUp />, <TrendingDown />],
+            optionsValueMapping: [undefined, <TrendingUp color={'primary'} />, <TrendingDown color={'error'} />],
             propType: 'JSX.Element',
             helperText: 'The inline icon to display',
             required: false,

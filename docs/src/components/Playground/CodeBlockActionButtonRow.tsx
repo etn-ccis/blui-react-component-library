@@ -22,7 +22,7 @@ export const CodeBlockActionButtonRow: React.FC<CodeBlockActionButtonRowProps> =
     const { title = 'Copy All', copyText = '', url = '', sx } = props;
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1, ...sx }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1, ...(Array.isArray(sx) ? sx : [sx]) }}>
             {copyText !== '' && (
                 <CopyToClipboardButton
                     title={title}

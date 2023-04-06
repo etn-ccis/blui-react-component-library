@@ -67,6 +67,8 @@ import { Outlet, RouteProps } from 'react-router';
 import { Playground } from '../../components';
 import exampleConfig from '../../components/Playground/exampleConfig';
 import { ChannelValue } from '@brightlayer-ui/react-components/core/ChannelValue';
+import { ScoreCard } from '@brightlayer-ui/react-components/core/ScoreCard';
+import exampleConfig2 from '../../components/Playground/exampleConfig2';
 
 export type RouteConfig = Omit<RouteProps, 'children'> & {
     title: string;
@@ -84,6 +86,17 @@ export const pageDefinitions: RouteConfig[] = [
                 title: 'Channel Value',
                 path: 'channel-value',
                 element: <Playground demoComponent={ChannelValue} config={exampleConfig} />,
+            },
+            {
+                title: 'Score Card',
+                path: 'score-card',
+                element: (
+                    <Playground
+                        demoComponent={ScoreCard}
+                        config={exampleConfig2}
+                        previewContainerSx={{ width: '50%', backgroundColor: 'red' }}
+                    />
+                ),
             },
         ],
     },
