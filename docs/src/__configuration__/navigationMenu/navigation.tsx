@@ -69,6 +69,12 @@ import exampleConfig from '../../components/Playground/exampleConfig';
 import { ChannelValue } from '@brightlayer-ui/react-components/core/ChannelValue';
 import { ScoreCard } from '@brightlayer-ui/react-components/core/ScoreCard';
 import exampleConfig2 from '../../components/Playground/exampleConfig2';
+import Search from '@mui/icons-material/Search';
+import Mail from '@mui/icons-material/Mail';
+import Notifications from '@mui/icons-material/Notifications';
+import Favorite from '@mui/icons-material/Favorite';
+import Cloud from '@mui/icons-material/Cloud';
+import MoreVert from '@mui/icons-material/MoreVert';
 
 export type RouteConfig = Omit<RouteProps, 'children'> & {
     title: string;
@@ -93,8 +99,18 @@ export const pageDefinitions: RouteConfig[] = [
                 element: (
                     <Playground
                         demoComponent={ScoreCard}
+                        demoComponentProps={{
+                            actionItems: [
+                                <Search key={'search'} />,
+                                <Mail key={'mail'} />,
+                                <Notifications key={'notifications'} />,
+                                <Favorite key={'favorite'} />,
+                                <Cloud key={'cloud'} />,
+                                <MoreVert key={'more-vert'} />,
+                            ],
+                        }}
                         config={exampleConfig2}
-                        previewContainerSx={{ width: '50%', backgroundColor: 'red' }}
+                        previewContainerSx={{ width: '50%', alignSelf: 'center' }}
                     />
                 ),
             },

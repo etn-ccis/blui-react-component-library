@@ -12,11 +12,16 @@ import { SxProps } from '@mui/material';
 type PlaygroundProps = {
     /** The component to be rendered in the playground */
     demoComponent: any;
+    /** An object with the props that should be added to the demoComponent
+     *
+     * Default: {}
+     */
+    demoComponentProps?: any;
     /** Configuration object for the playground */
     config: PlaygroundComponent;
     /** The width of the playground controls drawer
      *
-     * Default: '375'
+     * Default: 375
      */
     playgroundDrawerWidth?: number;
     /** Styles applied to the root */
@@ -96,6 +101,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         previewContainerSx,
         sourceCodeSx,
         controlsDrawerSx,
+        demoComponentProps = {},
     } = props;
     const [state, dispatch] = useReducer(playgroundReducer, getInitialState(config));
 
@@ -155,7 +161,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         return propKeyValuePairs;
     }, [state]);
 
-    const PreviewContent = React.createElement(demoComponent, getCoreComponentProps());
+    const PreviewContent = React.createElement(demoComponent, { ...getCoreComponentProps(), ...demoComponentProps });
 
     type GenericProps = {
         [key: string]: any;
