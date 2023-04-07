@@ -111,7 +111,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
     const getFullPropObjectByPropName = useCallback(
         (propName: string): PlaygroundComponentProp | undefined =>
             config?.props?.filter((prop) => prop.propName === propName)[0],
-        [config]
+        [config, state]
     );
 
     const getCoreComponentProps = useCallback((): any => {
@@ -226,7 +226,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
                 state.componentName?.split(' ').join('') as string | 'Component',
                 getCoreComponentProps()
             ),
-        [config, state]
+        [state, config]
     );
 
     React.useEffect(() => {
