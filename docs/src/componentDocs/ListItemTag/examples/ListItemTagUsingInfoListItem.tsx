@@ -7,17 +7,16 @@ const codeSnippet = `<InfoListItem
     icon={<BatteryChargingFull />}
     title="Info List Item"
     subtitle="with a ListItemTag component to the right"
-    backgroundColor="white"
     iconColor="text.primary"
     rightComponent={
-        <Box>
+        <Stack spacing={2} direction={'row'}>
             <ListItemTag
                 label="Build Passing"
                 backgroundColor={Colors.green[300]}
                 fontColor={Colors.black[900]}
             />
             <ListItemTag label="5 Bugs" backgroundColor={Colors.red[300]} fontColor={Colors.black[900]} />
-        </Box>
+        </Stack>
     }
 />`;
 

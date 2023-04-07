@@ -114,7 +114,7 @@ export const PreviewComponent = (): JSX.Element => {
     ${toggleDefaultProp('headerInfo', scoreCardProps.headerInfo)}
     ${toggleDefaultProp('headerColor', scoreCardProps.headerColor)}
     ${toggleDefaultProp('headerFontColor', scoreCardProps.headerFontColor)}
-    ${toggleDefaultProp('headerBackgroundImage', `${getImage(scoreCardProps.headerBackgroundImage)}`)}
+    ${toggleDefaultProp('headerBackgroundImage', getImage(scoreCardProps.headerBackgroundImage))}
     ${toggleDefaultProp('actionLimit', scoreCardProps.actionLimit)}
     actionItems={[
         <Search key={"search"} />,

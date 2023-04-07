@@ -3,13 +3,13 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate, useLocation } from 'react-router';
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-components';
-import { pageDefinitions, RouteConfig } from '../__configuration__/navigationMenu/navigation';
-import Box from '@mui/material/Box';
+import { externalLinkDefinitions, pageDefinitions, RouteConfig } from '../__configuration__/navigationMenu/navigation';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 import { DRAWER_WIDTH } from '../shared';
-import AvatarSvg from '../assets/react_logo.svg';
-
+import { React as ReactIcon } from '@brightlayer-ui/icons-mui';
+import { Theme } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { RootState } from '../redux/store';
 import { closeDrawer, toggleDrawer } from '../redux/appState';
@@ -49,6 +49,18 @@ const convertNavItems = (
     return convertedItems;
 };
 
+const styles = {
+    denseDrawerItem: {
+        '& .BluiDrawerNavItem-root, & .BluiInfoListItem-root, & .MuiButtonBase-root.MuiListItemButton-root': {
+            height: (theme: Theme): string => theme.spacing(5),
+        },
+    },
+    navGroupTopDivider: {
+        borderTop: (theme: Theme): string => `1px solid ${theme.palette.divider}`,
+        mt: 1,
+    },
+};
+
 export const NavigationDrawer: React.FC = () => {
     const drawerOpen = useAppSelector((state: RootState) => state.appState.drawerOpen);
     const theme = useTheme();
@@ -56,14 +68,17 @@ export const NavigationDrawer: React.FC = () => {
     const dispatch = useAppDispatch();
     const location = useLocation();
     const navigate = useNavigate();
-    const activeItem = location.pathname.replace(/\/(examples|api-docs|playground)/, '');
+    const activeItem = location.pathname.replace(/\/(examples|api-docs|playground)/, '').replace(/\/$/, '');
 
     const handleNavigate = useCallback(
         (id: string): void => {
-            const tabName = tabs.includes(location.pathname.split('/')[4])
-                ? location.pathname.split('/')[4]
-                : location.pathname.split('/')[3];
-            navigate(`${id}${tabName || ''}`);
+            const pathArray = location.pathname.split('/');
+            const tabName = tabs.includes(pathArray[4])
+                ? pathArray[4]
+                : tabs.includes(pathArray[3])
+                ? pathArray[3]
+                : '';
+            navigate(`${id}${id.includes('/component-catalog') || !id.includes('/components/') ? '' : tabName || ''}`);
             dispatch(toggleDrawer());
         },
         [location.pathname, dispatch, navigate]
@@ -93,29 +108,24 @@ export const NavigationDrawer: React.FC = () => {
                     },
                 }}
                 titleContent={
-                    <div
-                        style={{
-                            display: 'flex',
+                    <Stack
+                        justifyContent={'center'}
+                        sx={{
                             zIndex: 1,
-                            padding: '0 16px',
-                            alignItems: 'flex-start',
-                            width: '100%',
-                            height: '100%',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
+                            px: 2,
                         }}
                     >
                         <Typography variant="subtitle1">Brightlayer User Interface</Typography>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Stack direction={'row'} alignItems={'center'} gap={1}>
                             <Typography variant={'body2'} paragraph={false}>
                                 Developer Docs
                             </Typography>
                             <Chip
                                 sx={{
-                                    color: 'primary.main',
+                                    color: theme.palette.mode === 'light' ? 'primary.main' : 'primary.dark',
                                     backgroundColor: 'white',
                                 }}
-                                icon={<img src={AvatarSvg} />}
+                                icon={<ReactIcon color={'primary'} />}
                                 label={
                                     <Typography variant={'overline'} sx={{ fontWeight: 700, letterSpacing: 1 }}>
                                         REACT
@@ -124,18 +134,39 @@ export const NavigationDrawer: React.FC = () => {
                                 variant={'filled'}
                                 size={'small'}
                             />
-                        </Box>
-                    </div>
+                        </Stack>
+                    </Stack>
                 }
+                onClick={(): void => navigate('/')}
             />
-            <DrawerBody hidePadding>
-                {pageDefinitions.map((navGroup) => (
-                    <DrawerNavGroup
-                        key={navGroup.title}
-                        title={navGroup.title}
-                        items={convertNavItems(navGroup.pages || [], navGroup.path || '', 0, handleNavigate, dispatch)}
-                    />
-                ))}
+            <DrawerBody hidePadding sx={styles.denseDrawerItem}>
+                {pageDefinitions.map(
+                    (navGroup, navGroupIndex) =>
+                        !navGroup.hidden && (
+                            <DrawerNavGroup
+                                titleColor={theme.palette.primary.main}
+                                key={navGroup.title}
+                                title={navGroup.title}
+                                items={convertNavItems(
+                                    navGroup.pages || [],
+                                    navGroup.path || '',
+                                    0,
+                                    handleNavigate,
+                                    dispatch
+                                )}
+                                titleDivider={false}
+                                // navGroupIndex 0 is a hidden group used by the landing page
+                                sx={navGroupIndex !== 1 ? styles.navGroupTopDivider : undefined}
+                            />
+                        )
+                )}
+                <DrawerNavGroup
+                    title="COMMUNITY"
+                    titleColor={theme.palette.primary.main}
+                    items={externalLinkDefinitions}
+                    titleDivider={false}
+                    sx={styles.navGroupTopDivider}
+                />
             </DrawerBody>
         </Drawer>
     );

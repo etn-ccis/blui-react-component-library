@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentPreviewPage } from '../../pages';
+import { ComponentPreviewPage, MarkdownPage, HomePage } from '../../pages';
 
 // API Docs markdown
 import DrawerNavGroupAPIDocs from '../../componentDocs/DrawerNavGroup/markdown/DrawerNavGroupAPIDocs.mdx';
@@ -64,6 +64,12 @@ import { ThreeLinerPlaygroundComponent } from '../../componentDocs/ThreeLiner/pl
 import { ToolbarMenuPlaygroundComponent } from '../../componentDocs/ToolbarMenu/playground';
 import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 import { Outlet, RouteProps } from 'react-router';
+import { OpenInNew } from '@mui/icons-material';
+import { Box } from '@mui/material';
+import { ListItemTag } from '@brightlayer-ui/react-components';
+
+// Site markdown docs
+import * as markdownDocs from '../../markdownDocs/';
 
 // import ExampleConfigRender from '../../components/Playground/exampleConfigRender';
 // import ExampleConfig2Render from '../../components/Playground/exampleConfig2Render';
@@ -73,6 +79,7 @@ export type RouteConfig = Omit<RouteProps, 'children'> & {
     icon?: JSX.Element;
     pages?: RouteConfig[];
     children?: RouteConfig[];
+    hidden?: boolean;
 };
 
 export const pageDefinitions: RouteConfig[] = [
@@ -93,10 +100,38 @@ export const pageDefinitions: RouteConfig[] = [
     //     ],
     // },
     {
+        title: 'Home',
+        path: '/',
+        element: <HomePage />,
+        hidden: true,
+    },
+    {
+        title: 'Getting Started',
+        path: '/getting-started/',
+        element: <Outlet />,
+        pages: [
+            {
+                title: 'Environment',
+                path: 'environment',
+                element: <MarkdownPage title={'Environment Setup'} markdown={markdownDocs.Environment} />,
+            },
+            {
+                title: 'Start a BLUI Project',
+                path: 'start-a-project',
+                element: <MarkdownPage title={'Start a Brightlayer UI Project'} markdown={markdownDocs.React} />,
+            },
+        ],
+    },
+    {
         title: 'Components',
         path: '/components/',
         element: <Outlet />,
         pages: [
+            {
+                title: 'All Components',
+                path: 'component-catalog',
+                element: <MarkdownPage title={'Components'} markdown={markdownDocs.AllComponents} />,
+            },
             {
                 title: 'App Bar',
                 path: 'app-bar/',
@@ -530,5 +565,63 @@ export const pageDefinitions: RouteConfig[] = [
                 ],
             },
         ],
+    },
+    {
+        title: 'Themes',
+        path: '/themes/',
+        element: <Outlet />,
+        pages: [
+            {
+                title: 'Overview',
+                path: 'overview',
+                element: <MarkdownPage title={'Theme Overview'} markdown={markdownDocs.ThemesOverview} />,
+            },
+            {
+                title: 'Usage',
+                path: 'usage',
+                element: <MarkdownPage title={'Theme Usage'} markdown={markdownDocs.ThemesUsage} />,
+            },
+            {
+                title: 'Customization',
+                path: 'customization',
+                element: <MarkdownPage title={'Theme Customization'} markdown={markdownDocs.ThemeCustomization} />,
+            },
+        ],
+    },
+];
+
+const openInNewTab = (url = '#'): any => {
+    window.open(url);
+};
+
+export const externalLinkDefinitions = [
+    {
+        title: 'Resources',
+        itemID: 'Resources',
+        rightComponent: <OpenInNew color="disabled" />,
+        onClick: (): void => openInNewTab('https://brightlayer-ui.github.io/resources/developer'),
+    },
+    {
+        title: 'Release Notes',
+        itemID: 'Release Notes',
+        rightComponent: (
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                }}
+            >
+                <ListItemTag sx={{ mr: 1 }} label="New" />
+                <OpenInNew color="disabled" />
+            </Box>
+        ),
+        onClick: (): void => openInNewTab('https://brightlayer-ui.github.io/release-notes'),
+    },
+    {
+        title: 'Roadmap',
+        itemID: 'Roadmap',
+        divider: true,
+        rightComponent: <OpenInNew color="disabled" />,
+        onClick: (): void => openInNewTab('https://brightlayer-ui.github.io/roadmap'),
     },
 ];

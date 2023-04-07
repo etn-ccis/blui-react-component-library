@@ -25,7 +25,9 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    bgcolor: Colors.white[200],
+                    bgcolor: 'background.default',
+                    color: 'text.primary',
+                    overflow: 'hidden',
                 }}
             >
                 {previewContent}
@@ -39,7 +41,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                 onMouseEnter={(): void => setShow(!show)}
                 onMouseLeave={(): void => setShow(false)}
             >
-                <CodeBlock code={code} language="jsx" />
+                <CodeBlock code={code} language="jsx" sx={{ height: '100%' }} />
                 <Box
                     sx={{
                         position: 'absolute',

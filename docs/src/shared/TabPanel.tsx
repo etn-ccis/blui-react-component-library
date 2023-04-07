@@ -20,7 +20,7 @@ export const TabPanel = (props: TabPanelProps): JSX.Element => {
             {...other}
         >
             {value === index && (
-                <Box sx={{ backgroundColor: '#FFFFFF' }}>
+                <Box sx={{ backgroundColor: 'background.paper' }}>
                     <Typography component={'div'}>{children}</Typography>
                 </Box>
             )}

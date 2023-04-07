@@ -114,11 +114,11 @@ export const componentsMap = {
         return <InternalLink to={props.href} {...tProps} />;
     },
     p: (props: TypographyProps): JSX.Element => (
-        <Typography sx={{ lineHeight: '1.6', m: '15px auto' }} paragraph {...props} />
+        <Typography sx={{ lineHeight: '1.6', m: '15px auto' }} color={'text.primary'} paragraph {...props} />
     ),
     ul: (props: BoxProps): JSX.Element => <Box component={'ul'} sx={{ m: '15px auto', pl: '60px' }} {...props} />,
     li: (props: TypographyProps<'li'>): JSX.Element => (
-        <Typography component={'li'} className={'mdLi'} sx={{ m: '15px auto' }} {...props} />
+        <Typography component={'li'} className={'mdLi'} sx={{ m: '15px auto' }} color={'text.primary'} {...props} />
     ),
     blockquote: (props: TypographyProps<'blockquote'>): JSX.Element => (
         <Typography
@@ -126,10 +126,10 @@ export const componentsMap = {
             sx={{
                 pr: 2,
                 mb: 1,
-                borderLeft: ' 4px solid #DDDDDD',
+                borderLeft: (theme: Theme) => `4px solid ${theme.palette.text.disabled}`,
                 p: '0 15px',
                 m: '15px 0',
-                color: '#666666',
+                color: 'text.secondary',
             }}
             {...props}
         />
@@ -157,10 +157,11 @@ export const componentsMap = {
                 m: '0px 2px',
                 p: '0px 5px',
                 whiteSpace: 'nowrap',
-                border: '1px solid #EEEEEE',
-                backgroundColor: '#F8F8F8',
-                borderRadius: '3px',
-                fontFamily: 'monospace',
+                border: (theme: Theme) => `1px solid ${theme.palette.divider}`,
+                backgroundColor: (theme: Theme) =>
+                    theme.palette.mode === 'light' ? theme.palette.background.default : Colors.darkBlack[300],
+                borderRadius: '2px',
+                fontFamily: `'Roboto Mono', monospace`,
                 lineHeight: '1.6',
             }}
             {...props}
@@ -173,7 +174,7 @@ export const componentsMap = {
             sx={{
                 backgroundColor: (theme: Theme) =>
                     theme.palette.mode === 'light' ? theme.palette.background.default : Colors.darkBlack[300],
-                fontFamily: 'Roboto Mono, Monospaced',
+                fontFamily: `'Roboto Mono', monospace`,
                 border: (theme: Theme) =>
                     theme.palette.mode === 'light' ? undefined : `${theme.palette.divider} 1px solid`,
             }}
@@ -187,6 +188,7 @@ export const componentsMap = {
                 overflow: 'auto',
                 boxSizing: 'border-box',
                 mb: 2,
+                color: 'text.primary',
 
                 table: {
                     textAlign: 'left',
@@ -215,13 +217,15 @@ export const componentsMap = {
                     borderBottom: 0,
                 },
                 thead: {
-                    backgroundColor: Colors.white[100],
+                    backgroundColor: (theme: Theme): string =>
+                        theme.palette.mode === 'light' ? Colors.white[100] : Colors.black[800],
                 },
                 'tbody tr:nth-of-type(odd)': {
-                    backgroundColor: Colors.white[50],
+                    backgroundColor: 'background.paper',
                 },
                 'tbody tr:nth-of-type(even)': {
-                    backgroundColor: Colors.white[100],
+                    backgroundColor: (theme: Theme): string =>
+                        theme.palette.mode === 'light' ? Colors.white[100] : Colors.black[800],
                 },
                 td: {
                     fontSize: '0.875rem',

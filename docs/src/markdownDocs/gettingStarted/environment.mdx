@@ -1,0 +1,59 @@
+import React from 'react';
+import { Divider } from '../../layout/Divider';
+import { CodeBlock } from '../../shared';
+
+{/* KEYWORDS: developer develop environment guide tutorial */}
+
+# Setting up Your Development Environment
+
+Getting started is often the most frustrating part of application development. Fortunately, many of the modern JavaScript frameworks have made great strides in providing tools to get you up and running as quickly as possible. Below, we walk through the basics of getting your system set up to develop.
+
+## Integrated Development Environment (IDE)
+
+There are a bunch of different IDEs on the market, and in general you should be able to use any of these that you like and are comfortable with. If you don't have a personal preference, we recommend trying [Visual Studio Code](https://code.visualstudio.com) - it is quite excellent and comes with a variety of tools to make your development experience seamless. And it's free!
+
+## Git
+
+Chances are, you probably want to keep your application in source control. Git is one of the big players in this space (it's also the backbone for BitBucket).
+
+You may already have git installed. To check, run:
+
+<CodeBlock code={`git --version`} language={'sh'} />
+
+in a command prompt. If you don't have git installed, you can download it from the [Git Website](http://git-scm.com/downloads).
+
+If you are behind a proxy, you'll also need to set up the git proxies as well:
+
+<CodeBlock
+    code={`git config --global http.proxy http://url.to.your.proxy:port
+git config --global https.proxy http://url.to.your.proxy:port`}
+    language={'sh'}
+/>
+
+The proxy addresses may vary depending on your location. Consult your local IT department if you’re not sure.
+
+## Node
+
+The majority of JavaScript frameworks (and Brightlayer UI resources) are available via the Node Package Manager (NPM). This package manager allows you to install a variety of third party tools, packages, and other dependencies that you need for your applications. To use NPM, you will need to install [NodeJS](https://nodejs.org/en/download/).
+
+## Yarn
+
+Our projects and example code are set up to be run using yarn, but if you prefer, you're welcome to use NPM in your projects instead. Instructions for installing yarn on various operating systems can be found on the [Yarn Website](https://yarnpkg.com/en/docs/install).
+
+To check if you have yarn installed, run:
+
+<CodeBlock code={`yarn -v`} language={'sh'} />
+
+from a command prompt. If you are behind a proxy, you will also need to configure your proxy settings. It may be sufficient for you to set `HTTP_PROXY` and `HTTPS_PROXY` in your environment variables. However, you may need to also explicitly set proxy values for yarn:
+
+<CodeBlock
+    code={`yarn config set proxy http://url.to.your.proxy:port
+yarn config set https-proxy http://url.to.your.proxy:port`}
+    language={'sh'}
+/>
+
+The proxy addresses may vary depending on your location. Consult your local IT department if you’re not sure. Once you have configured the proxy, you should be able to install packages by using:
+
+<CodeBlock code={`yarn add <package-name>`} language={'sh'} />
+
+> If you are installing packages globally using yarn, you will need to ensure that your PATH variable has an entry pointing to your global yarn install directory. This location will vary based on your operating system.
