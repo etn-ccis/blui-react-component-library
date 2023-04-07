@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useCallback, useReducer } from 'react';
-// import { renderToString } from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 import Box from '@mui/material/Box';
 import ComponentPreview from './ComponentPreview';
 import PlaygroundControls from './PlaygroundControls';
@@ -171,7 +171,8 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
     };
 
     const generateComponentCode = (_componentName: string, _props?: GenericProps): string => {
-        const propOffset = `    `;
+        // Used to add empty space for new lines in the code window
+        const newLineSpacing = `    `;
         let exampleCode = `<${_componentName} />`;
 
         if (_props) {
@@ -215,9 +216,13 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
                             return `${propName}={${currentValue}}`;
                     }
                 })
-                .join(`\n${propOffset}`);
+                .join(`\n${newLineSpacing}`);
 
-            exampleCode = `<${_componentName}\n${propOffset}${propsString}\n/>`;
+            const exampleCodeSuffix = demoComponentChild
+                ? `>\n${newLineSpacing}${renderToString(demoComponentChild)}\n/>`
+                : `\n/>`;
+
+            exampleCode = `<${_componentName}\n${newLineSpacing}${propsString}${exampleCodeSuffix}`;
         }
 
         return exampleCode;

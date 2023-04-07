@@ -65,8 +65,8 @@ import { ToolbarMenuPlaygroundComponent } from '../../componentDocs/ToolbarMenu/
 import { UserMenuPlaygroundComponent } from '../../componentDocs/UserMenu/playground';
 import { Outlet, RouteProps } from 'react-router';
 
-import ExampleConfigRender from '../../components/Playground/exampleConfigRender';
-import ExampleConfig2Render from '../../components/Playground/exampleConfig2Render';
+// import ExampleConfigRender from '../../components/Playground/exampleConfigRender';
+// import ExampleConfig2Render from '../../components/Playground/exampleConfig2Render';
 
 export type RouteConfig = Omit<RouteProps, 'children'> & {
     title: string;
@@ -76,22 +76,22 @@ export type RouteConfig = Omit<RouteProps, 'children'> & {
 };
 
 export const pageDefinitions: RouteConfig[] = [
-    {
-        title: 'Test Playground',
-        path: '/test-playground/',
-        pages: [
-            {
-                title: 'Channel Value',
-                path: 'channel-value',
-                element: <ExampleConfigRender />,
-            },
-            {
-                title: 'Score Card',
-                path: 'score-card',
-                element: <ExampleConfig2Render />,
-            },
-        ],
-    },
+    // {
+    //     title: 'Test Playground',
+    //     path: '/test-playground/',
+    //     pages: [
+    //         {
+    //             title: 'Channel Value',
+    //             path: 'channel-value',
+    //             element: <ExampleConfigRender />,
+    //         },
+    //         {
+    //             title: 'Score Card',
+    //             path: 'score-card',
+    //             element: <ExampleConfig2Render />,
+    //         },
+    //     ],
+    // },
     {
         title: 'Components',
         path: '/components/',
