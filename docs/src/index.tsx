@@ -31,11 +31,11 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 
 // google analytics
-import ReactGA from 'react-ga4';
+// import ReactGA from 'react-ga4';
 import { ScrollToTop } from './router/ScrollToTop';
-if (process.env.REACT_APP_GAID) {
-    ReactGA.initialize(process.env.REACT_APP_GAID);
-}
+// if (process.env.REACT_APP_GAID) {
+//     ReactGA.initialize(process.env.REACT_APP_GAID);
+// }
 
 // Brightlayer UI Icon font
 require('@brightlayer-ui/icons/iconfont/BrightlayerUIIcons.css');
