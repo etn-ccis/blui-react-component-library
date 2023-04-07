@@ -24,7 +24,6 @@ import { store, RootState } from './redux/store';
 import { useAppSelector } from './redux/hooks';
 import { MDXProvider } from '@mdx-js/react';
 import { componentsMap } from './__configuration__/markdownMapping';
-import { GoogleAnalyticsWrapper } from './router/GoogleAnalyticsWrapper';
 
 // prismJs
 import 'prismjs/components/prism-jsx.js';
@@ -73,7 +72,6 @@ root.render(
     <StyledEngineProvider injectFirst>
         <BrowserRouter basename={basename}>
             <ScrollToTop />
-            <GoogleAnalyticsWrapper />
             <CssBaseline />
             <Provider store={store}>
                 <ThemedApp />
