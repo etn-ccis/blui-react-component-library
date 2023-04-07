@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 import Accordion from '@mui/material/Accordion';
@@ -31,10 +31,6 @@ const PlaygroundControls = (props: PlaygroundControlsProps): JSX.Element => {
     const { config, playgroundDrawerWidth, dispatch, sx } = props;
     const componentName = config.componentName as string;
     const theme = useTheme();
-
-    useEffect(() => {
-        dispatch({ type: PLAYGROUND_ACTIONS.RESET_PROPS });
-    }, []);
 
     const dispatchActions = (groupType: string, newPropState: any): void => {
         const groupName = groupType.substring(0, groupType.indexOf('-'));

@@ -47,8 +47,9 @@ export const PLAYGROUND_ACTIONS = {
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function playgroundReducer(state: any, action: any) {
     switch (action.type) {
-        case PLAYGROUND_ACTIONS.RESET_PROPS:
+        case PLAYGROUND_ACTIONS.RESET_PROPS: {
             return { ...state };
+        }
         case PLAYGROUND_ACTIONS.UPDATE_PROP: {
             const updatedControl = state?.props?.filter(
                 (prop: PlaygroundComponentProp) => prop.propName === action.payload.propName
@@ -110,15 +111,15 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
 
     const getFullPropObjectByPropName = useCallback(
         (propName: string): PlaygroundComponentProp | undefined =>
-            config?.props?.filter((prop) => prop.propName === propName)[0],
-        [config, state]
+            state?.props?.filter((prop: PlaygroundComponentProp) => prop.propName === propName)[0],
+        [state]
     );
 
     const getCoreComponentProps = useCallback((): any => {
         const propKeyValuePairs: any = {};
         const propsWithMapping: PlaygroundComponentProp[] = [];
 
-        config?.props?.forEach((prop: PlaygroundComponentProp) => {
+        state?.props?.forEach((prop: PlaygroundComponentProp) => {
             if (!prop.inputValue || prop.inputValue === 'undefined') return;
 
             if (prop.propType === 'JSX.Element') {
@@ -128,7 +129,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
             }
         });
 
-        config?.sharedProps?.forEach((prop: PlaygroundComponentProp) => {
+        state?.sharedProps?.forEach((prop: PlaygroundComponentProp) => {
             if (prop.propType === 'JSX.Element') {
                 propsWithMapping.push(prop);
             } else {
@@ -137,7 +138,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         });
 
         // @TODO: This will require updates to the config type definition so that users can associate props to the correct components
-        // config?.additionalProps?.forEach((prop: PlaygroundComponentProp) => {
+        // state?.additionalProps?.forEach((prop: PlaygroundComponentProp) => {
         //     if (prop.propType === 'JSX.Element') {
         //         JSXProps.push(prop);
         //     } else {
@@ -157,7 +158,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
         console.log('propKeyValuePairs:', propKeyValuePairs);
 
         return propKeyValuePairs;
-    }, [state, config]);
+    }, [state]);
 
     const PreviewContent = React.createElement(
         demoComponent,
@@ -175,7 +176,9 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
 
         if (_props) {
             // find all props that have a defaultValue
-            const propsWithDefaults = config?.props?.filter((prop) => prop.defaultValue);
+            const propsWithDefaults: PlaygroundComponentProp[] = state?.props?.filter(
+                (prop: PlaygroundComponentProp) => prop.defaultValue
+            );
 
             // remove all _props that are using the default value
             // @TODO: Update to deal with props that use JSX.Element or select value mappings
@@ -226,17 +229,13 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
                 state.componentName?.split(' ').join('') as string | 'Component',
                 getCoreComponentProps()
             ),
-        [state, config]
+        [state]
     );
 
     React.useEffect(() => {
         // eslint-disable-next-line no-console
         console.log('state: ', state);
     }, [state]);
-
-    React.useEffect(() => {
-        dispatch({ type: PLAYGROUND_ACTIONS.RESET_PROPS });
-    }, []);
 
     return (
         <Box
