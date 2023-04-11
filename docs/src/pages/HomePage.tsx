@@ -107,7 +107,7 @@ export const HomePage = (): JSX.Element => {
                 </Stack>
                 <Stack direction={'row'} gap={2} flexWrap={'wrap'}>
                     <Button
-                        href="/getting-started/environment"
+                        href={`${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : ''}/getting-started/environment`}
                         variant={'contained'}
                         disableElevation
                         sx={styles.buttons.contained}
