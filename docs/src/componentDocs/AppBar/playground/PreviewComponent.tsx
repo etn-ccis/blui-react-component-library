@@ -30,7 +30,7 @@ export const PreviewComponent = (): JSX.Element => {
     const generateCodeSnippet = (): string => {
         const jsx = `<AppBar
     ${toggleDefaultProp('animationDuration', appBarProps.animationDuration, theme.transitions.duration.standard)}
-    ${toggleDefaultProp('backgroundImage', `${getImage(appBarProps.backgroundImage)}`)}
+    ${toggleDefaultProp('backgroundImage', getImage(appBarProps.backgroundImage))}
     ${toggleDefaultProp('collapsedHeight', appBarProps.collapsedHeight)}
     ${toggleDefaultProp('expandedHeight', appBarProps.expandedHeight)}
     scrollContainerId={"appbarBodyFiller1"}

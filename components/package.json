@@ -1,6 +1,6 @@
 {
     "name": "@brightlayer-ui/react-components",
-    "version": "6.2.0",
+    "version": "6.3.0",
     "description": "React components for Brightlayer UI applications",
     "scripts": {
         "test": "jest src",
@@ -29,7 +29,7 @@
         "@testing-library/react": "^13.4.0",
         "@types/color": "^3.0.3",
         "@types/jest": "^29.2.4",
-        "@types/node": "^16.11.63",
+        "@types/node": "^18.14.2",
         "@types/react-dom": "^18.0.5",
         "@typescript-eslint/eslint-plugin": "^5.14.0",
         "@typescript-eslint/parser": "^5.14.0",
@@ -38,7 +38,6 @@
         "eslint-plugin-jest-dom": "^4.0.3",
         "eslint-plugin-react": "^7.29.4",
         "eslint-plugin-testing-library": "^5.9.1",
-        "i": "^0.3.7",
         "jest": "^29.3.1",
         "jest-environment-jsdom": "^29.3.1",
         "npm": "^8.12.1",

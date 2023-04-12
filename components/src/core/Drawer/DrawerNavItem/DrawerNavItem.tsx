@@ -107,8 +107,6 @@ const calcNestedPadding = (theme: Theme, depth: number): string => {
 };
 
 const Root = styled(Box, {
-    name: 'drawer-nav-item',
-    slot: 'value',
     shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
 })<Pick<DrawerNavItemProps, 'depth' | 'nestedBackgroundColor' | 'backgroundColor'>>(
     ({ depth, nestedBackgroundColor, backgroundColor }) => ({
@@ -117,8 +115,6 @@ const Root = styled(Box, {
 );
 
 const ActiveItem = styled(Box, {
-    name: 'drawer-nav-item',
-    slot: 'active',
     shouldForwardProp: (prop) => prop !== 'activeItemBackgroundShape',
 })<Pick<DrawerNavItemProps, 'activeItemBackgroundShape'>>(({ activeItemBackgroundShape, theme }) => ({
     content: '""',
@@ -133,8 +129,6 @@ const ActiveItem = styled(Box, {
 }));
 
 const InfoListItemRoot = styled(InfoListItem, {
-    name: 'drawer-nav-item',
-    slot: 'info-list-item-root',
     shouldForwardProp: (prop) => prop !== 'drawerOpen' && prop !== 'active',
 })<Pick<DrawerNavItemProps, 'depth' | 'hidePadding' | 'icon'> & { drawerOpen: boolean; active: boolean }>(
     ({ depth, hidePadding, icon, drawerOpen, active, theme }) => ({
@@ -171,8 +165,6 @@ const InfoListItemRoot = styled(InfoListItem, {
 );
 
 const ActiveComponent = styled(Box, {
-    name: 'drawer-nav-item',
-    slot: 'active-component',
     shouldForwardProp: (prop) => !['collapseIcon', 'expanded'].includes(prop.toString()),
 })<Pick<DrawerNavItemProps, 'collapseIcon'> & { expanded: boolean }>(({ collapseIcon, expanded, theme }) => ({
     transitionDuration: `${theme.transitions.duration.standard}ms`,
@@ -186,8 +178,6 @@ const ActiveComponent = styled(Box, {
 }));
 
 const NestedListGroup = styled(List, {
-    name: 'drawer-nav-item',
-    slot: 'nested-list-group',
     shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
 })<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(({ nestedBackgroundColor, theme }) => ({
     backgroundColor: nestedBackgroundColor || (theme.palette.mode === 'light' ? white[200] : darkBlack[500]),

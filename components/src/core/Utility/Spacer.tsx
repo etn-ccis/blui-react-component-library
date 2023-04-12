@@ -29,10 +29,10 @@ export type SpacerProps = BoxProps & {
     classes?: SpacerClasses;
 };
 
-const Root = styled(Box, {
-    name: 'spacer',
-    slot: 'root',
-})<Pick<SpacerProps, 'flex' | 'height' | 'width'>>(({ flex, height, width }) => ({
+const Root = styled(
+    Box,
+    {}
+)<Pick<SpacerProps, 'flex' | 'height' | 'width'>>(({ flex, height, width }) => ({
     flex: `${flex} ${flex} ${flex === 0 ? 'auto' : '0px'}`,
     height: height || 'auto',
     width: width || 'auto',

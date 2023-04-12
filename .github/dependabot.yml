@@ -3,29 +3,32 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
       day: "wednesday"
     open-pull-requests-limit: 1
     target-branch: "dev"
     labels:
-      - "external-dependency"
+      - 'external-dependency'
+      - 'brightlayer-ui'
 
   - package-ecosystem: "npm"
     directory: "/components"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
       day: "wednesday"
     open-pull-requests-limit: 1
     target-branch: "dev"
     labels:
-      - "external-dependency"
+      - 'external-dependency'
+      - 'brightlayer-ui'
       
   - package-ecosystem: "npm"
     directory: "/docs"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
       day: "wednesday"
     open-pull-requests-limit: 1
     target-branch: "dev"
     labels:
-      - "external-dependency"      
+      - 'external-dependency'
+      - 'brightlayer-ui'

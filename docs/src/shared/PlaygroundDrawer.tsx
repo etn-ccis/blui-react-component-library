@@ -107,6 +107,11 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                 onChange={(event): void =>
                     handleChange(prop.propName, String(event.target.value), componentName, index)
                 }
+                MenuProps={{
+                    BackdropProps: {
+                        sx: { display: 'none' },
+                    },
+                }}
             >
                 {Array.isArray(prop.options)
                     ? prop.options?.map(
@@ -206,6 +211,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                 '&:before': {
                     display: 'none',
                 },
+                backgroundImage: 'unset',
             }}
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: 'primary.main' }} />}>
@@ -260,6 +266,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                                 fontFamily: '"Roboto Mono", monspace',
                             },
                             zIndex: theme.zIndex.appBar - 1,
+                            backgroundColor: 'background.paper',
                         },
                     }}
                     anchor={'right'}

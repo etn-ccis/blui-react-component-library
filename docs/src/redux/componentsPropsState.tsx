@@ -18,7 +18,7 @@ import threeLinerConfig from '../componentDocs/ThreeLiner/playground/ThreeLinerC
 import toolbarMenuConfig from '../componentDocs/ToolbarMenu/playground/ToolbarMenuConfig';
 import userMenuConfig from '../componentDocs/UserMenu/playground/UserMenuConfig';
 import { getComponentState } from '../shared/utilities';
-import { PayloadType, ComponentType } from '../__types__';
+import { ComponentDocPayloadType, ComponentType } from '../__types__';
 
 type ComponentState = {
     appBarComponent: ComponentType;
@@ -67,28 +67,28 @@ export const componentPropsStateSlice = createSlice({
     initialState: initialState,
     reducers: {
         resetProps: () => initialState,
-        updateProp: (state, action: PayloadAction<PayloadType>) => {
+        updateProp: (state, action: PayloadAction<ComponentDocPayloadType>) => {
             const newArray = getComponentState(action.payload.componentName, state);
             const updatedKnob = newArray?.props?.filter((prop) => prop.propName === action.payload.propName);
             if (updatedKnob) {
                 updatedKnob[0].inputValue = action.payload.propValue;
             }
         },
-        updateSharedProp: (state, action: PayloadAction<PayloadType>) => {
+        updateSharedProp: (state, action: PayloadAction<ComponentDocPayloadType>) => {
             const newArray = getComponentState(action.payload.componentName, state);
             const updatedKnob = newArray?.sharedProps?.filter((prop) => prop.propName === action.payload.propName);
             if (updatedKnob) {
                 updatedKnob[0].inputValue = action.payload.propValue;
             }
         },
-        updateOtherProp: (state, action: PayloadAction<PayloadType>) => {
+        updateOtherProp: (state, action: PayloadAction<ComponentDocPayloadType>) => {
             const newArray = getComponentState(action.payload.componentName, state);
             const updatedKnob = newArray?.otherProps?.filter((prop) => prop.propName === action.payload.propName);
             if (updatedKnob) {
                 updatedKnob[0].inputValue = action.payload.propValue;
             }
         },
-        updateOtherComponentProp: (state, action: PayloadAction<PayloadType>) => {
+        updateOtherComponentProp: (state, action: PayloadAction<ComponentDocPayloadType>) => {
             const newArray = getComponentState(action.payload.componentName, state);
             const updatedKnob = newArray?.otherComponentProps?.childComponentProps?.filter(
                 (prop) => prop.propName === action.payload.propName
@@ -97,7 +97,7 @@ export const componentPropsStateSlice = createSlice({
                 updatedKnob[0].inputValue = action.payload.propValue;
             }
         },
-        updateComponentProp: (state, action: PayloadAction<PayloadType>) => {
+        updateComponentProp: (state, action: PayloadAction<ComponentDocPayloadType>) => {
             const newArray = getComponentState(action.payload.componentName, state);
             const updatedKnob = newArray?.props?.filter((prop) => prop.propName === action.payload.propName);
             if (updatedKnob) {

@@ -1,6 +1,11 @@
 .markdownH1:first-child {
     margin-top: 32px;
 }
+
+.markdownH1:first-child .MuiTypography-h4 {
+    font-size: 3rem;
+}
+
 .markdownH1:first-child .MuiSvgIcon-root {
     display: none;
 }

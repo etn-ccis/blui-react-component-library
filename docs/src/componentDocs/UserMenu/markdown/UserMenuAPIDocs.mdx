@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import UserMenuAvatar from '../images/userMenuAvatar.png';
 import UserMenuOpened from '../images/userMenuOpened.png';
 import UserMenuOpenedMobile from '../images/userMenuOpenedMobile.png';
-import { DOCS_BRANCH } from '../../../shared/constants';
+import { ForMoreDetailsOnStylingOptions } from '../../../shared';
 
 # User Menu
 
@@ -83,25 +83,22 @@ You can override the default styles used by Brightlayer UI by:
 -   passing a `classes` prop with keys from the Name column below
 -   using the Global CSS Class in your main stylesheet
 
-{/* prettier-ignore */}
-<p>For more details on styling options check out our <a href={`https://github.com/etn-ccis/blui-react-component-library/blob/${DOCS_BRANCH}/docs/src/shared/markdown/StyleOverridesGuide.md`}>Styling Guide</a>.</p>
+<ForMoreDetailsOnStylingOptions />
 
 <Box>
 
-| Name        | Global CSS Class            | Description                               |
-| :---------- | :-------------------------- | :---------------------------------------- |
-| root        | .BluiUserMenu-root          | Styles applied to the root element        |
-| bottomSheet | .BluiUserMenu-bottomsheet\* | Styles applied to responsive bottom sheet |
-|             | .BluiUserMenu-avatarRoot    | Styles applied to the avatarRoot element  |
-|             | .BluiUserMenu-header        | Styles applied to the header element      |
-|             | .BluiUserMenu-headerRoot    | Styles applied to the headerRoot element  |
-|             | .BluiUserMenu-menuTitle     | Styles applied to the menuTitle element   |
-|             | .BluiUserMenu-navigation    | Styles applied to the navigation element  |
-|             | .BluiUserMenu-navGroups     | Styles applied to the navGroups element   |
+| Name        | Global CSS Class          | Description                               |
+| :---------- | :------------------------ | :---------------------------------------- |
+| root        | .BluiUserMenu-root        | Styles applied to the root element        |
+| bottomSheet | .BluiUserMenu-bottomsheet | Styles applied to responsive bottom sheet |
+|             | .BluiUserMenu-avatarRoot  | Styles applied to the avatarRoot element  |
+|             | .BluiUserMenu-header      | Styles applied to the header element      |
+|             | .BluiUserMenu-headerRoot  | Styles applied to the headerRoot element  |
+|             | .BluiUserMenu-menuTitle   | Styles applied to the menuTitle element   |
+|             | .BluiUserMenu-navigation  | Styles applied to the navigation element  |
+|             | .BluiUserMenu-navGroups   | Styles applied to the navGroups element   |
 
 </Box>
-
-\* This element lives in a separate container and can't be styled via `sx` nesting rules.
 
 ### User Menu Groups Object
 

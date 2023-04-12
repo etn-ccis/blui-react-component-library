@@ -32,7 +32,7 @@ const codeSnippet = `<AppBar variant="collapsed">
 export const ToolbarMenuWithinToolbar = (): JSX.Element => (
     <Box>
         <ToolbarMenuWithinToolbarExample />
-        <CodeBlock code={codeSnippet} language="jsx" dataLine="2-23" />
+        <CodeBlock code={codeSnippet} language="jsx" dataLine="10-21" />
         <CodeBlockActionButtonRow
             copyText={codeSnippet}
             url="componentDocs/ToolbarMenu/examples/ToolbarMenuWithinToolbarExample.tsx"

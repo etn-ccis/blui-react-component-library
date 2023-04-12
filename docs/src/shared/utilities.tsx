@@ -155,16 +155,16 @@ export const getComponentState = (componentName: string, state: RootState['compo
     }
 };
 
-export const getImage = (image: string): string => {
+export const getImage = (image: string): string | undefined => {
     switch (image) {
         case 'Pattern':
             return topologyBgImage;
         case 'Farm':
             return farmBgImage;
         case 'undefined':
-            return 'undefined';
+            return undefined;
         default:
-            return 'undefined';
+            return undefined;
     }
 };
 
@@ -202,7 +202,7 @@ export const filterPropsAsPerGroupType = (
 export const hideDefaultPropsFromSnippet = (
     state: ComponentType,
     propName: string,
-    currentValue: any,
+    currentValue: any | undefined,
     groupType?: string,
     themeDefaultValue?: string | number
 ): string => {

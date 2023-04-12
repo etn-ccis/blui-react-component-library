@@ -37,10 +37,10 @@ export type UserMenuGroup = {
     title?: string;
 };
 
-const Root = styled(Box, {
-    name: 'user-menu',
-    slot: 'root',
-})(() => ({
+const Root = styled(
+    Box,
+    {}
+)(() => ({
     [`& .${userMenuClasses.avatarRoot}`]: {
         cursor: 'pointer',
         height: `2.5rem`,
@@ -48,10 +48,10 @@ const Root = styled(Box, {
     },
 }));
 
-const Header = styled(Box, {
-    name: 'user-menu',
-    slot: 'header',
-})(() => ({
+const Header = styled(
+    Box,
+    {}
+)(() => ({
     '&:active, &:focus': {
         outline: 'none',
     },
@@ -70,19 +70,19 @@ const Header = styled(Box, {
     },
 }));
 
-const UserMenuNavGroups = styled(Box, {
-    name: 'user-menu',
-    slot: 'nav-groups',
-})(() => ({
+const UserMenuNavGroups = styled(
+    Box,
+    {}
+)(() => ({
     '&:active, &:focus': {
         outline: 'none',
     },
 }));
 
-const DrawerBottomSheet = styled(Drawer, {
-    name: 'user-menu',
-    slot: 'bottom-sheet',
-})(({ theme }) => ({
+const DrawerBottomSheet = styled(
+    Drawer,
+    {}
+)(({ theme }) => ({
     [`& .${userMenuClasses.bottomSheet}`]: {
         width: '100%',
         maxWidth: theme.breakpoints.values.sm,
@@ -272,6 +272,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 transitionDuration={theme.transitions.duration.short}
                 open={Boolean(anchorEl)}
                 onClose={closeMenu}
+                disablePortal
                 classes={{ paper: cx(defaultClasses.bottomSheet, classes.bottomSheet) }}
                 {...BottomSheetProps}
             >
@@ -279,6 +280,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
             </DrawerBottomSheet>
         ) : (
             <Menu
+                disablePortal
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
                 onClose={closeMenu}
