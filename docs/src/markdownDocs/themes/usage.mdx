@@ -47,8 +47,10 @@ const ChildComponent: React.FC<> = () => {
 You can access color tokens in the [`sx` prop](https://mui.com/system/getting-started/the-sx-prop/), introduced in Material UI v5, without using the hook:
 
 <CodeBlock
-    code={`const ChildComponent: React.FC<> = () => {
-    return <div sx={{ backgroundColor: "background.paper" }} />;
+    code={`import Box from '@mui/material/Box';
+...
+const ChildComponent: React.FC<> = () => {
+    return <Box sx={{ backgroundColor: "background.paper" }} />;
 }`}
     language={`jsx`}
 />
