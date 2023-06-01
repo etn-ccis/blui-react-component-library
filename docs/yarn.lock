@@ -1124,10 +1124,10 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-mui/-/icons-mui-3.4.0.tgz#b5df32f89d329f9a5d2d9b01c84a645e997f3c1c"
   integrity sha512-MJWXLEjnjsSeXUtpZhqsWDalzZD+L4J4whw0ErYJ/pfkcC37w3JG07pTyxFJY+Lm1v8TDjZQoaKTT3NjYOE6tA==
 
-"@brightlayer-ui/icons@^1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons/-/icons-1.11.0.tgz#412baae591b9c5fc87dda7b3cdd278dc2671d667"
-  integrity sha512-2pHKJY7Xpao6BQ1ZIRcXxpTFuhSlalOJKw2//D05mNSzIFTZmBCv+6OVtAE45NxbLNIDP/To0/Cykm2mA9I1Vw==
+"@brightlayer-ui/icons@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons/-/icons-2.1.0.tgz#732f917f1275e430c57d225946a6df5ea68ac893"
+  integrity sha512-qRROlcwoXKUrWCtIpzy69n+jmHBJztOLVnyAFL+TXcz360rNVCBEQRNOBKIk2+Z2ltlhsbGFpF5P0t6Hoz69jQ==
 
 "@brightlayer-ui/prettier-config@^1.0.3":
   version "1.0.3"
