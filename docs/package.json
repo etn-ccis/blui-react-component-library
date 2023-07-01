@@ -73,7 +73,7 @@
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "@emotion/css": "^11.10.5",
         "@testing-library/jest-dom": "^5.16.5",
-        "@testing-library/react": "^13.4.0",
+        "@testing-library/react": "^14.0.0",
         "@testing-library/user-event": "^14.2.0",
         "@types/color": "^3.0.3",
         "@types/gtag.js": "^0.0.12",
