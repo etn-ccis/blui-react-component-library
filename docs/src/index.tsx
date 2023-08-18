@@ -49,6 +49,7 @@ const basename = process.env.PUBLIC_URL || '/';
 
 const ThemedApp = (): JSX.Element => {
     const siteTheme = useAppSelector((state: RootState) => state.appState.siteTheme);
+    const siteDirection = useAppSelector((state: RootState) => state.appState.siteDirection);
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     let theme = BLUIThemes.blue;
     if (siteTheme === 'dark' || (siteTheme === 'system' && prefersDarkMode)) {
@@ -58,7 +59,10 @@ const ThemedApp = (): JSX.Element => {
     // force an update
     const MemoThemedApp = React.useCallback(
         () => (
-            <ThemeProvider theme={createTheme(theme)}>
+            <ThemeProvider theme={createTheme({
+                ...theme,
+                direction: siteDirection,
+              })}>
                 <MDXProvider components={componentsMap as any}>
                     <App />
                 </MDXProvider>

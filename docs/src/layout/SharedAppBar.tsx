@@ -18,11 +18,11 @@ import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 
 // hooks
-import { toggleDrawer, changeSiteTheme } from '../redux/appState';
+import { toggleDrawer, changeSiteTheme, changeDirection } from '../redux/appState';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useTheme } from '@mui/material/styles';
 import { RootState } from '../redux/store';
-import { SiteThemeType } from '../__types__';
+import { SiteThemeType, UIDirection } from '../__types__';
 
 export type SharedAppBarProps = {
     title: string;
@@ -52,6 +52,14 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
     const onClickThemeSelectorItem = React.useCallback(
         (option: SiteThemeType): void => {
             dispatch(changeSiteTheme({ siteTheme: option }));
+            setThemeSelectorAnchorEl(null);
+        },
+        [dispatch]
+    );
+
+    const onDirectionChange = React.useCallback(
+        (option: UIDirection): void => {
+            dispatch(changeDirection({ direction: option }));
             setThemeSelectorAnchorEl(null);
         },
         [dispatch]
@@ -89,6 +97,22 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                             control={<Radio />}
                             label="System Default"
                             onClick={(): void => onClickThemeSelectorItem('system')}
+                        />
+                    </RadioGroup>
+                </FormControl>
+                <FormControl >
+                <RadioGroup sx={styles.formControl}>
+                    <FormControlLabel
+                            value="ltr"
+                            control={<Radio />}
+                            label="Left-to-Right"
+                            onClick={(): void => onDirectionChange('ltr')}
+                        />
+                        <FormControlLabel
+                            value="rtl"
+                            control={<Radio />}
+                            label="Right-to-Left"
+                            onClick={(): void => onDirectionChange('rtl')}
                         />
                     </RadioGroup>
                 </FormControl>
