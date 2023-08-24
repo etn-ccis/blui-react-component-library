@@ -51,7 +51,10 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
 
     const onClickThemeSelectorItem = React.useCallback(
         (option: SiteThemeType): void => {
-            dispatch(changeSiteTheme({ siteTheme: option }));
+            dispatch(changeSiteTheme({
+                siteTheme: option,
+                siteDirection: "ltr"
+            }));
             setThemeSelectorAnchorEl(null);
         },
         [dispatch]

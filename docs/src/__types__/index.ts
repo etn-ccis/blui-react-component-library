@@ -8,6 +8,7 @@ export type UIDirection = 'ltr' | 'rtl';
 
 
 export type AppStatePayloadType = {
+    siteDirection: UIDirection;
     siteTheme: SiteThemeType;
 };
 
