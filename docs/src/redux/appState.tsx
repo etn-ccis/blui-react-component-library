@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppStatePayloadType, SiteThemeType, UIDirection } from '../__types__';
+import { SiteThemePayloadType, SiteDirectionPayloadType, SiteThemeType, UIDirection } from '../__types__';
 
 type AppState = {
     drawerOpen: boolean;
@@ -28,14 +28,14 @@ export const appStateSlice = createSlice({
             ...state,
             drawerOpen: !state.drawerOpen,
         }),
-        changeSiteTheme: (state:AppState, action: PayloadAction<AppStatePayloadType>) => {
+        changeSiteTheme: (state:AppState, action: PayloadAction<SiteThemePayloadType>) => {
             localStorage.setItem('site-theme', action.payload.siteTheme);
             return {
                 ...state,
                 siteTheme: action.payload.siteTheme,
             };
         },
-        changeDirection: (state:AppState, action: PayloadAction<AppStatePayloadType>) => {
+        changeDirection: (state:AppState, action: PayloadAction<SiteDirectionPayloadType>) => {
             localStorage.setItem('site-direction', action.payload.siteDirection);
             return {
                 ...state,

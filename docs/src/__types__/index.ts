@@ -6,10 +6,12 @@ export type RangeDataTypes = {
 export type SiteThemeType = 'light' | 'dark' | 'system';
 export type UIDirection = 'ltr' | 'rtl';
 
-
-export type AppStatePayloadType = {
-    siteDirection: UIDirection;
+export type SiteThemePayloadType = {
     siteTheme: SiteThemeType;
+};
+
+export type SiteDirectionPayloadType = {
+    siteDirection: UIDirection;
 };
 
 export type ComponentDocPayloadType = {
