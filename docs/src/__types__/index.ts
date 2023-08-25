@@ -4,9 +4,14 @@ export type RangeDataTypes = {
     step: number;
 };
 export type SiteThemeType = 'light' | 'dark' | 'system';
+export type UIDirection = 'ltr' | 'rtl';
 
-export type AppStatePayloadType = {
+export type SiteThemePayloadType = {
     siteTheme: SiteThemeType;
+};
+
+export type SiteDirectionPayloadType = {
+    siteDirection: UIDirection;
 };
 
 export type ComponentDocPayloadType = {

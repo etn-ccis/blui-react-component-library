@@ -49,11 +49,14 @@ const basename = process.env.PUBLIC_URL || '/';
 
 const ThemedApp = (): JSX.Element => {
     const siteTheme = useAppSelector((state: RootState) => state.appState.siteTheme);
+    const siteDirection = useAppSelector((state: RootState) => state.appState.siteDirection);
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     let theme = BLUIThemes.blue;
     if (siteTheme === 'dark' || (siteTheme === 'system' && prefersDarkMode)) {
         theme = BLUIThemes.blueDark;
     }
+    theme.direction = siteDirection;
+    document.dir = siteDirection;
 
     // force an update
     const MemoThemedApp = React.useCallback(
@@ -64,7 +67,7 @@ const ThemedApp = (): JSX.Element => {
                 </MDXProvider>
             </ThemeProvider>
         ),
-        [siteTheme, prefersDarkMode]
+        [siteTheme, siteDirection, prefersDarkMode]
     );
     return <MemoThemedApp />;
 };
