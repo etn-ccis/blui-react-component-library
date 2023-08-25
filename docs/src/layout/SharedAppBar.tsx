@@ -35,9 +35,14 @@ const styles = {
     },
     caption: {
         px: 2,
-        pt: 1,
+        pt: 2,
+        pb: 1,
         width: 280,
     },
+    menuContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+    }
 };
 
 export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element => {
@@ -77,7 +82,10 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                     setThemeSelectorAnchorEl(null);
                 }}
             >
-                <FormControl sx={styles.formControl}>
+                <Box
+                    sx={styles.menuContainer}>
+                <FormControl 
+                    sx={styles.formControl}>
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
                         defaultValue={siteTheme}
@@ -103,10 +111,11 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                         />
                     </RadioGroup>
                 </FormControl>
-                <FormControl >
+                <Divider />
+                <FormControl 
+                    sx={[styles.formControl, {pt:1}]}>
                     <RadioGroup 
-                        defaultValue={siteDirection}
-                        sx={styles.formControl}>
+                        defaultValue={siteDirection}>
                         <FormControlLabel
                                 value="ltr"
                                 control={<Radio />}
@@ -123,13 +132,13 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                 </FormControl>
                 <Divider />
                 <Box sx={styles.caption}>
-                    <Typography variant={'caption'} color={'text.secondary'}>
+                    <Typography sx={{lineHeight:'16.34px'}} variant={'caption'} color={'text.secondary'}>
                         This website is themed using our React theme package. Learn more{' '}
                         <a href={linkToThemesOverview} style={{ color: 'inherit' }}>
                             here
                         </a>
-                        .
                     </Typography>
+                </Box>
                 </Box>
             </Menu>
         ),
