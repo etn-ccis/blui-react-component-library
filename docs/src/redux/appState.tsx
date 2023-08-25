@@ -20,22 +20,22 @@ export const appStateSlice = createSlice({
     name: 'appState',
     initialState: initialState,
     reducers: {
-        closeDrawer: (state:AppState) => ({
+        closeDrawer: (state: AppState) => ({
             ...state,
             drawerOpen: false,
         }),
-        toggleDrawer: (state:AppState) => ({
+        toggleDrawer: (state: AppState) => ({
             ...state,
             drawerOpen: !state.drawerOpen,
         }),
-        changeSiteTheme: (state:AppState, action: PayloadAction<SiteThemePayloadType>) => {
+        changeSiteTheme: (state: AppState, action: PayloadAction<SiteThemePayloadType>) => {
             localStorage.setItem('site-theme', action.payload.siteTheme);
             return {
                 ...state,
                 siteTheme: action.payload.siteTheme,
             };
         },
-        changeDirection: (state:AppState, action: PayloadAction<SiteDirectionPayloadType>) => {
+        changeDirection: (state: AppState, action: PayloadAction<SiteDirectionPayloadType>) => {
             localStorage.setItem('site-direction', action.payload.siteDirection);
             return {
                 ...state,

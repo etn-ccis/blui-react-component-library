@@ -55,15 +55,13 @@ const ThemedApp = (): JSX.Element => {
     if (siteTheme === 'dark' || (siteTheme === 'system' && prefersDarkMode)) {
         theme = BLUIThemes.blueDark;
     }
-    theme.direction=siteDirection;
+    theme.direction = siteDirection;
     document.dir = siteDirection;
-    
+
     // force an update
     const MemoThemedApp = React.useCallback(
         () => (
-            <ThemeProvider theme={createTheme(
-                theme
-              )}>
+            <ThemeProvider theme={createTheme(theme)}>
                 <MDXProvider components={componentsMap as any}>
                     <App />
                 </MDXProvider>

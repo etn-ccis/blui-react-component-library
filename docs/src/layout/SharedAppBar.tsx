@@ -48,7 +48,7 @@ const styles = {
         fontWeight: '600',
         color: 'text.primary',
         py: 1,
-    }
+    },
 };
 
 export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element => {
@@ -63,9 +63,11 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
 
     const onClickThemeSelectorItem = React.useCallback(
         (option: SiteThemeType): void => {
-            dispatch(changeSiteTheme({
-                siteTheme: option,
-            }));
+            dispatch(
+                changeSiteTheme({
+                    siteTheme: option,
+                })
+            );
             setThemeSelectorAnchorEl(null);
         },
         [dispatch]
@@ -88,65 +90,61 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                     setThemeSelectorAnchorEl(null);
                 }}
             >
-                <Box
-                    sx={styles.menuContainer}>
-                <FormControl 
-                    sx={styles.formControl}>
-                        <FormLabel sx={styles.formLabel} >Choose Theme</FormLabel>
-                    <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue={siteTheme}
-                        name="radio-buttons-group"
-                    >
-                        <FormControlLabel
-                            value="light"
-                            control={<Radio />}
-                            label="Light Theme"
-                            onClick={(): void => onClickThemeSelectorItem('light')}
-                        />
-                        <FormControlLabel
-                            value="dark"
-                            control={<Radio />}
-                            label="Dark Theme"
-                            onClick={(): void => onClickThemeSelectorItem('dark')}
-                        />
-                        <FormControlLabel
-                            value="system"
-                            control={<Radio />}
-                            label="System Default"
-                            onClick={(): void => onClickThemeSelectorItem('system')}
-                        />
-                    </RadioGroup>
-                </FormControl>
-                <Divider />
-                <FormControl 
-                    sx={[styles.formControl, {pt:1}]}>
-                    <RadioGroup 
-                        defaultValue={siteDirection}>
-                        <FormLabel sx={styles.formLabel}>Choose Direction</FormLabel>
-                        <FormControlLabel
+                <Box sx={styles.menuContainer}>
+                    <FormControl sx={styles.formControl}>
+                        <FormLabel sx={styles.formLabel}>Choose Theme</FormLabel>
+                        <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue={siteTheme}
+                            name="radio-buttons-group"
+                        >
+                            <FormControlLabel
+                                value="light"
+                                control={<Radio />}
+                                label="Light Theme"
+                                onClick={(): void => onClickThemeSelectorItem('light')}
+                            />
+                            <FormControlLabel
+                                value="dark"
+                                control={<Radio />}
+                                label="Dark Theme"
+                                onClick={(): void => onClickThemeSelectorItem('dark')}
+                            />
+                            <FormControlLabel
+                                value="system"
+                                control={<Radio />}
+                                label="System Default"
+                                onClick={(): void => onClickThemeSelectorItem('system')}
+                            />
+                        </RadioGroup>
+                    </FormControl>
+                    <Divider />
+                    <FormControl sx={[styles.formControl, { pt: 1 }]}>
+                        <RadioGroup defaultValue={siteDirection}>
+                            <FormLabel sx={styles.formLabel}>Choose Direction</FormLabel>
+                            <FormControlLabel
                                 value="ltr"
                                 control={<Radio />}
                                 label="Left-to-Right"
                                 onClick={(): void => onDirectionChange('ltr')}
                             />
-                        <FormControlLabel
-                            value="rtl"
-                            control={<Radio />}
-                            label="Right-to-Left"
-                            onClick={(): void => onDirectionChange('rtl')}
-                        />
-                    </RadioGroup>
-                </FormControl>
-                <Divider />
-                <Box sx={styles.caption}>
-                    <Typography variant={'caption'} color={'text.secondary'}>
-                        This website is themed using our React theme package. Learn more{' '}
-                        <a href={linkToThemesOverview} style={{ color: 'inherit' }}>
-                            here
-                        </a>
-                    </Typography>
-                </Box>
+                            <FormControlLabel
+                                value="rtl"
+                                control={<Radio />}
+                                label="Right-to-Left"
+                                onClick={(): void => onDirectionChange('rtl')}
+                            />
+                        </RadioGroup>
+                    </FormControl>
+                    <Divider />
+                    <Box sx={styles.caption}>
+                        <Typography variant={'caption'} color={'text.secondary'}>
+                            This website is themed using our React theme package. Learn more{' '}
+                            <a href={linkToThemesOverview} style={{ color: 'inherit' }}>
+                                here
+                            </a>
+                        </Typography>
+                    </Box>
                 </Box>
             </Menu>
         ),
