@@ -10,6 +10,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import Typography from '@mui/material/Typography';
 import { Spacer } from '@brightlayer-ui/react-components';
 import { Settings } from '@mui/icons-material';
@@ -42,6 +43,11 @@ const styles = {
     menuContainer: {
         display: 'flex',
         flexDirection: 'column',
+    },
+    formLabel: {
+        fontWeight: '600',
+        color: 'text.primary',
+        py: 1,
     }
 };
 
@@ -86,6 +92,7 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                     sx={styles.menuContainer}>
                 <FormControl 
                     sx={styles.formControl}>
+                        <FormLabel sx={styles.formLabel} >Choose Theme</FormLabel>
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
                         defaultValue={siteTheme}
@@ -116,6 +123,7 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                     sx={[styles.formControl, {pt:1}]}>
                     <RadioGroup 
                         defaultValue={siteDirection}>
+                        <FormLabel sx={styles.formLabel}>Choose Direction</FormLabel>
                         <FormControlLabel
                                 value="ltr"
                                 control={<Radio />}
@@ -132,7 +140,7 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                 </FormControl>
                 <Divider />
                 <Box sx={styles.caption}>
-                    <Typography sx={{lineHeight:'16.34px'}} variant={'caption'} color={'text.secondary'}>
+                    <Typography variant={'caption'} color={'text.secondary'}>
                         This website is themed using our React theme package. Learn more{' '}
                         <a href={linkToThemesOverview} style={{ color: 'inherit' }}>
                             here
