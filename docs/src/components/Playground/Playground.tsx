@@ -201,8 +201,8 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
                             if (fullPropObject?.propType === 'JSX.Element') {
                                 const subComponentCode =
                                     fullPropObject &&
-                                    fullPropObject.inputValue &&
-                                    fullPropObject.inputValue !== undefined
+                                        fullPropObject.inputValue &&
+                                        fullPropObject.inputValue !== undefined
                                         ? generateComponentCode(fullPropObject.inputValue as string)
                                         : '';
                                 return subComponentCode ? `${propName}={${subComponentCode}}` : '';
@@ -243,7 +243,7 @@ export const Playground: React.FC<PlaygroundProps> = (props): JSX.Element => {
     }, [state]);
 
     return (
-        <Box
+        <Box className='FINDME'
             sx={[
                 {
                     width: '100%',

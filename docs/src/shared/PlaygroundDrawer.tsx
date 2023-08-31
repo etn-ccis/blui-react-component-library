@@ -28,6 +28,7 @@ import Stack from '@mui/material/Stack';
 import Select from '@mui/material/Select/Select';
 import { ColorPicker } from './components/ColorPicker/ColorPicker.component';
 import { NumberPicker } from './components/NumberPicker/NumberPicker.component';
+import { Tab, Tabs } from '@mui/material';
 
 type Anchor = 'right';
 type DrawerProps = {
@@ -36,6 +37,7 @@ type DrawerProps = {
 const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     const { drawerData: DrawerData } = props;
     const componentName = DrawerData.componentName as string;
+    const [selectedTab, setSelectedTab] = React.useState('Props')
     const dispatch = useAppDispatch();
     const theme = useTheme();
     const [state, setState] = React.useState({
@@ -99,6 +101,10 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
         createNewPropState(propName, propValue, componentTitle, groupType);
     };
 
+    const handleTabChange = (event: React.SyntheticEvent, newValue: string): void => {
+        setSelectedTab(newValue);
+    };
+
     const renderSelect = (prop: PropsType, index: string): JSX.Element => (
         <FormControl variant={'filled'} sx={{ width: '100%' }} key={index}>
             <InputLabel>{`${prop.propName}: ${prop.propType}`}</InputLabel>
@@ -115,12 +121,12 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             >
                 {Array.isArray(prop.options)
                     ? prop.options?.map(
-                          (item: any, id: number): JSX.Element => (
-                              <MenuItem key={id} value={item}>
-                                  {item}
-                              </MenuItem>
-                          )
-                      )
+                        (item: any, id: number): JSX.Element => (
+                            <MenuItem key={id} value={item}>
+                                {item}
+                            </MenuItem>
+                        )
+                    )
                     : undefined}
             </Select>
             <FormHelperText>{prop.helperText}</FormHelperText>
@@ -142,9 +148,8 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             sx={{ alignItems: 'flex-start' }}
             label={
                 <Box>
-                    <Typography sx={{ fontFamily: 'inherit' }}>{`${
-                        prop.label ? prop.label : prop.propName
-                    }`}</Typography>
+                    <Typography sx={{ fontFamily: 'inherit' }}>{`${prop.label ? prop.label : prop.propName
+                        }`}</Typography>
                     <Typography variant={'caption'} color={prop.disabled ? 'text.disabled' : 'text.secondary'}>
                         {prop.helperText}
                     </Typography>
@@ -274,10 +279,54 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                     onClose={toggleDrawer('right', false)}
                     variant={'persistent'}
                 >
+
+
+                    <Tabs
+                        value={selectedTab}
+                        textColor='primary'
+                        onChange={handleTabChange}
+                        sx={{
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'space-evenly',
+                            borderBottom: 1,
+                            borderColor: 'divider',
+                            '& .MuiTabs-indicator': {
+                                backgroundColor: 'primary.main',
+                            },
+                        }}
+                    >
+                        <Tab
+                            sx={{
+                                flex: 1,
+                                color: 'text.primary',
+                                '&.Mui-selected': {
+                                    color: 'primary.main',
+                                },
+                            }}
+                            label="Props" value='Props' />
+                        <Tab
+                            sx={{
+                                flex: 1,
+                                color: 'text.primary',
+                                '&.Mui-selected': {
+                                    color: 'primary.main',
+                                },
+                            }}
+                            label="Code" value='Code' />
+                    </Tabs>
+                    {/* <CustomTabPanel value={value} index={0}>
+                    Item One
+                    </CustomTabPanel>
+                    <CustomTabPanel value={value} index={1}>
+                        Item Two
+                    </CustomTabPanel>
+                    */}
+
                     {displayPropsByGroupType(DrawerData)}
                 </Drawer>
             </React.Fragment>
-        </div>
+        </div >
     );
 };
 
