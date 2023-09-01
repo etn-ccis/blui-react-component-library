@@ -262,7 +262,6 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
     type PlaygroundTabPanelProps = {
         children?: React.ReactNode;
-        // index: number;
         value: string;
         selectedValue: string;
     };
@@ -291,6 +290,8 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                     PaperProps={{
                         sx: {
                             top: '112px',
+                            // make width 100%, height:70%
+                            // make <Drawer> or React.Fragment conditional (!isMobile &&)
                             width: PLAYGROUND_DRAWER_WIDTH,
                             paddingBottom: '112px',
                             '& .MuiInputBase-root, & .MuiFormControlLabel-label': {

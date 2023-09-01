@@ -19,7 +19,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const PreviewComponent = (): JSX.Element => {
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMobile = useMediaQuery(theme.breakpoints.up('md'));
     const appBarJson = useAppSelector((state: RootState) => state.componentsPropsState.appBarComponent);
 
     const appBarProps = createProps(appBarJson.props as PropsType[]);
