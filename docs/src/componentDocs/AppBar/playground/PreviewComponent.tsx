@@ -76,7 +76,8 @@ export const PreviewComponent = (): JSX.Element => {
                     </Box>
                 </Box>
             }
-            code={generateCodeSnippet()}
+
+            code={isMobile ? generateCodeSnippet() : undefined}
         />
     );
 };

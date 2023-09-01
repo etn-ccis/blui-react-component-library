@@ -5,7 +5,7 @@ import * as Colors from '@brightlayer-ui/colors';
 
 export type PreviewComponentProps = HTMLAttributes<HTMLDivElement> & {
     previewContent: JSX.Element;
-    code: string;
+    code?: string;
 };
 
 const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.Element => {
@@ -41,7 +41,8 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                 onMouseEnter={(): void => setShow(!show)}
                 onMouseLeave={(): void => setShow(false)}
             >
-                <CodeBlock code={code} language="jsx" sx={{ height: '100%' }} />
+                {code && <CodeBlock code={code} language="jsx" sx={{ height: '100%' }} />}
+
                 <Box
                     sx={{
                         position: 'absolute',
@@ -49,7 +50,7 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                         right: '400px',
                     }}
                 >
-                    {show && (
+                    {show && code && (
                         <CopyToClipboard
                             copyButtonProps={{
                                 sx: {

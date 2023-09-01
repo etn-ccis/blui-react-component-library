@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Drawer from '@mui/material/Drawer';
-import { DocTextField, PLAYGROUND_DRAWER_WIDTH } from '../shared';
+import { DocTextField, CodeBlock, PLAYGROUND_DRAWER_WIDTH } from '../shared';
 import { ComponentType, OtherComponentPropsType, PropsType } from '../__types__';
 import {
     resetProps,
@@ -29,6 +29,7 @@ import Select from '@mui/material/Select/Select';
 import { ColorPicker } from './components/ColorPicker/ColorPicker.component';
 import { NumberPicker } from './components/NumberPicker/NumberPicker.component';
 import { Tab, Tabs } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 type Anchor = 'right';
 type DrawerProps = {
@@ -40,6 +41,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     const [selectedTab, setSelectedTab] = React.useState('Props')
     const dispatch = useAppDispatch();
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [state, setState] = React.useState({
         right: true,
     });
@@ -258,6 +260,30 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
         );
     };
 
+    type PlaygroundTabPanelProps = {
+        children?: React.ReactNode;
+        // index: number;
+        value: string;
+        selectedValue: string;
+    };
+
+    const PlaygroundTabPanel = (playgroundTabPanelProps: PlaygroundTabPanelProps): JSX.Element => {
+        const { children, value, selectedValue } = playgroundTabPanelProps;
+
+        return (
+            <Box
+                role="tabpanel"
+                hidden={value !== selectedValue}
+            >
+                {value === selectedValue && (
+                    <Box sx={{ backgroundColor: 'background.paper' }}>
+                        <Typography component={'div'}>{children}</Typography>
+                    </Box>
+                )}
+            </Box>
+        );
+    };
+
     return (
         <div>
             <React.Fragment key={'right'}>
@@ -279,51 +305,56 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                     onClose={toggleDrawer('right', false)}
                     variant={'persistent'}
                 >
+                    {isMobile && (
+                        <>
+                            <Tabs
+                                value={selectedTab}
+                                textColor='primary'
+                                onChange={handleTabChange}
+                                sx={{
+                                    width: '100%',
+                                    display: 'flex',
+                                    justifyContent: 'space-evenly',
+                                    borderBottom: 1,
+                                    borderColor: 'divider',
+                                    '& .MuiTabs-indicator': {
+                                        backgroundColor: 'primary.main',
+                                    },
+                                }}
+                            >
+                                <Tab
+                                    sx={{
+                                        flex: 1,
+                                        color: 'text.primary',
+                                        '&.Mui-selected': {
+                                            color: 'primary.main',
+                                        },
+                                    }}
+                                    label="Props" value='Props' />
+                                <Tab
+                                    sx={{
+                                        flex: 1,
+                                        color: 'text.primary',
+                                        '&.Mui-selected': {
+                                            color: 'primary.main',
+                                        },
+                                    }}
+                                    label="Code" value='Code' />
+                            </Tabs>
 
+                            <PlaygroundTabPanel value={'Props'} selectedValue={selectedTab}>
+                                Props test
+                                {displayPropsByGroupType(DrawerData)}
+                            </PlaygroundTabPanel>
+                            <PlaygroundTabPanel value={'Code'} selectedValue={selectedTab}>
+                                CodeBlock test
+                                <CodeBlock code={''} language="jsx" sx={{ height: '100%' }} />
+                            </PlaygroundTabPanel>
+                        </>
+                    )}
 
-                    <Tabs
-                        value={selectedTab}
-                        textColor='primary'
-                        onChange={handleTabChange}
-                        sx={{
-                            width: '100%',
-                            display: 'flex',
-                            justifyContent: 'space-evenly',
-                            borderBottom: 1,
-                            borderColor: 'divider',
-                            '& .MuiTabs-indicator': {
-                                backgroundColor: 'primary.main',
-                            },
-                        }}
-                    >
-                        <Tab
-                            sx={{
-                                flex: 1,
-                                color: 'text.primary',
-                                '&.Mui-selected': {
-                                    color: 'primary.main',
-                                },
-                            }}
-                            label="Props" value='Props' />
-                        <Tab
-                            sx={{
-                                flex: 1,
-                                color: 'text.primary',
-                                '&.Mui-selected': {
-                                    color: 'primary.main',
-                                },
-                            }}
-                            label="Code" value='Code' />
-                    </Tabs>
-                    {/* <CustomTabPanel value={value} index={0}>
-                    Item One
-                    </CustomTabPanel>
-                    <CustomTabPanel value={value} index={1}>
-                        Item Two
-                    </CustomTabPanel>
-                    */}
+                    {!isMobile && displayPropsByGroupType(DrawerData)}
 
-                    {displayPropsByGroupType(DrawerData)}
                 </Drawer>
             </React.Fragment>
         </div >
