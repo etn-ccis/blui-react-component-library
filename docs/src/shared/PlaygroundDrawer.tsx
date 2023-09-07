@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Drawer from '@mui/material/Drawer';
-import { DocTextField, CodeBlock, PLAYGROUND_DRAWER_WIDTH } from '../shared';
+import { DocTextField, CodeBlock, PLAYGROUND_DRAWER_WIDTH, createProps } from '../shared';
 import { ComponentType, OtherComponentPropsType, PropsType } from '../__types__';
 import {
     resetProps,
@@ -30,6 +30,19 @@ import { ColorPicker } from './components/ColorPicker/ColorPicker.component';
 import { NumberPicker } from './components/NumberPicker/NumberPicker.component';
 import { Tab, Tabs } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { generateCodeSnippet as generateAppBarCodeSnippet } from '../componentDocs/AppBar/playground/utils';
+
+const getCodeGenerator = (componentName: string) => {
+    console.log(componentName);
+    switch (componentName) {
+        case 'AppBar': {
+            return generateAppBarCodeSnippet;
+        }
+        default: {
+            return generateAppBarCodeSnippet;
+        }
+    }
+}
 
 type Anchor = 'right';
 type DrawerProps = {
@@ -37,6 +50,7 @@ type DrawerProps = {
 };
 const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     const { drawerData: DrawerData } = props;
+    const componentProps = createProps(DrawerData.props as PropsType[]);
     const componentName = DrawerData.componentName as string;
     const [selectedTab, setSelectedTab] = React.useState('Props')
     const dispatch = useAppDispatch();
@@ -290,7 +304,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                     PaperProps={{
                         sx: {
                             top: '112px',
-                            // make width 100%, height:70%
+                            // make width 100%, height:70% (see PreviewComponentWithCode)
                             // make <Drawer> or React.Fragment conditional (!isMobile &&)
                             width: PLAYGROUND_DRAWER_WIDTH,
                             paddingBottom: '112px',
@@ -344,12 +358,10 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                             </Tabs>
 
                             <PlaygroundTabPanel value={'Props'} selectedValue={selectedTab}>
-                                Props test
                                 {displayPropsByGroupType(DrawerData)}
                             </PlaygroundTabPanel>
                             <PlaygroundTabPanel value={'Code'} selectedValue={selectedTab}>
-                                CodeBlock test
-                                <CodeBlock code={''} language="jsx" sx={{ height: '100%' }} />
+                                <CodeBlock code={(getCodeGenerator(componentName))(DrawerData, componentProps, theme)} language="jsx" sx={{ height: '100%' }} />
                             </PlaygroundTabPanel>
                         </>
                     )}

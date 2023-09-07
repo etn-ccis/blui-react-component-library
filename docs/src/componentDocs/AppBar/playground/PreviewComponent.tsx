@@ -16,6 +16,7 @@ import Box from '@mui/material/Box/Box';
 import Typography from '@mui/material/Typography';
 import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { generateCodeSnippet } from './utils';
 
 export const PreviewComponent = (): JSX.Element => {
     const theme = useTheme();
@@ -24,25 +25,6 @@ export const PreviewComponent = (): JSX.Element => {
 
     const appBarProps = createProps(appBarJson.props as PropsType[]);
 
-    const toggleDefaultProp = (propName: string, currentValue: any, themeDefaultValue?: string | number): string =>
-        hideDefaultPropsFromSnippet(appBarJson, propName, currentValue, 'props', themeDefaultValue);
-
-    const generateCodeSnippet = (): string => {
-        const jsx = `<AppBar
-    ${toggleDefaultProp('animationDuration', appBarProps.animationDuration, theme.transitions.duration.standard)}
-    ${toggleDefaultProp('backgroundImage', getImage(appBarProps.backgroundImage))}
-    ${toggleDefaultProp('collapsedHeight', appBarProps.collapsedHeight)}
-    ${toggleDefaultProp('expandedHeight', appBarProps.expandedHeight)}
-    scrollContainerId={"appbarBodyFiller1"}
-    ${toggleDefaultProp('scrollThreshold', appBarProps.scrollThreshold)}
-    ${toggleDefaultProp('variant', appBarProps.variant)}
->
-    <Toolbar>
-        <Typography variant="h6">Title</Typography>
-    </Toolbar>
-</AppBar>`;
-        return removeEmptyLines(jsx);
-    };
 
     return (
         <PreviewComponentWithCode
@@ -77,7 +59,7 @@ export const PreviewComponent = (): JSX.Element => {
                 </Box>
             }
 
-            code={isMobile ? generateCodeSnippet() : undefined}
+            code={isMobile ? generateCodeSnippet(appBarJson, appBarProps, theme) : undefined}
         />
     );
 };
