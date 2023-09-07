@@ -56,13 +56,11 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     const dispatch = useAppDispatch();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-    const [state, setState] = React.useState({
-        right: true,
-    });
+    const [drawerOpen, setDrawerOpen] = React.useState(true);
     useEffect(() => {
         dispatch(resetProps());
     }, []);
-    const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
         if (
             event.type === 'keydown' &&
             ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
@@ -70,7 +68,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             return;
         }
 
-        setState({ ...state, [anchor]: open });
+        setDrawerOpen(open);
     };
 
     const dispatchActions = (groupType: string, newPropState: any): void => {
@@ -315,9 +313,11 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                             backgroundColor: 'background.paper',
                         },
                     }}
+                    // toggle anchor
+                    // anchor={isMobile ? 'bottom' : 'right'}
                     anchor={'right'}
-                    open={state['right']}
-                    onClose={toggleDrawer('right', false)}
+                    open={drawerOpen}
+                    onClose={toggleDrawer(false)}
                     variant={'persistent'}
                 >
                     {isMobile && (
