@@ -313,9 +313,8 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                             backgroundColor: 'background.paper',
                         },
                     }}
-                    // toggle anchor
-                    // anchor={isMobile ? 'bottom' : 'right'}
-                    anchor={'right'}
+
+                    anchor={isMobile ? 'bottom' : 'right'}
                     open={drawerOpen}
                     onClose={toggleDrawer(false)}
                     variant={'persistent'}
