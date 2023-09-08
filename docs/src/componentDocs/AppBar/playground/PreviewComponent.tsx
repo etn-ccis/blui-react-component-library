@@ -5,8 +5,6 @@ import {
     createProps,
     getBodyFiller,
     getImage,
-    hideDefaultPropsFromSnippet,
-    removeEmptyLines,
 } from '../../../shared/utilities';
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';

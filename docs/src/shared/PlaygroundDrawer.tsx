@@ -28,12 +28,14 @@ import Stack from '@mui/material/Stack';
 import Select from '@mui/material/Select/Select';
 import { ColorPicker } from './components/ColorPicker/ColorPicker.component';
 import { NumberPicker } from './components/NumberPicker/NumberPicker.component';
-import { Tab, Tabs } from '@mui/material';
+import { IconButton, Tab, Tabs } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { generateCodeSnippet as generateAppBarCodeSnippet } from '../componentDocs/AppBar/playground/utils';
+import { KeyboardArrowDown } from '@mui/icons-material';
+import { InfoListItem } from '@brightlayer-ui/react-components';
 
 const getCodeGenerator = (componentName: string) => {
-    console.log(componentName);
+    // console.log(componentName);
     switch (componentName) {
         case 'AppBar': {
             return generateAppBarCodeSnippet;
@@ -44,7 +46,7 @@ const getCodeGenerator = (componentName: string) => {
     }
 }
 
-type Anchor = 'right';
+// type Anchor = 'right';
 type DrawerProps = {
     drawerData: ComponentType;
 };
@@ -297,78 +299,88 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
     return (
         <div>
-            <React.Fragment key={'right'}>
-                <Drawer
-                    PaperProps={{
-                        sx: {
-                            top: '112px',
-                            // make width 100%, height:70% (see PreviewComponentWithCode)
-                            // make <Drawer> or React.Fragment conditional (!isMobile &&)
-                            width: PLAYGROUND_DRAWER_WIDTH,
-                            paddingBottom: '112px',
-                            '& .MuiInputBase-root, & .MuiFormControlLabel-label': {
-                                fontFamily: '"Roboto Mono", monspace',
-                            },
-                            zIndex: theme.zIndex.appBar - 1,
-                            backgroundColor: 'background.paper',
-                        },
-                    }}
 
-                    anchor={isMobile ? 'bottom' : 'right'}
-                    open={drawerOpen}
-                    onClose={toggleDrawer(false)}
-                    variant={'persistent'}
-                >
-                    {isMobile && (
-                        <>
-                            <Tabs
-                                value={selectedTab}
-                                textColor='primary'
-                                onChange={handleTabChange}
+            <Drawer
+                PaperProps={{
+                    sx: {
+                        top: isMobile ? 'auto' : '112px',
+                        // make width 100%, height:70% (see PreviewComponentWithCode)
+                        // make <Drawer> or React.Fragment conditional (!isMobile &&)
+                        // look at sx prop on mui website
+                        width: isMobile ? '100%' : PLAYGROUND_DRAWER_WIDTH,
+                        height: {
+                            xs: 'calc(70vh - 105px)', sm: 'calc(70vh - 113px)'
+                        },
+                        '& .MuiInputBase-root, & .MuiFormControlLabel-label': {
+                            fontFamily: '"Roboto Mono", monspace',
+                        },
+                        // zIndex: theme.zIndex.appBar - 1,
+                        backgroundColor: 'background.paper',
+                    },
+                }
+                }
+
+                anchor={isMobile ? 'bottom' : 'right'}
+                open={drawerOpen}
+                onClose={toggleDrawer(false)}
+                variant={'persistent'}
+            >
+                <InfoListItem
+                    hidePadding
+                    title="Props & Code"
+                    rightComponent={<IconButton onClick={toggleDrawer(!drawerOpen)} >
+                        <KeyboardArrowDown /></IconButton>}
+                />
+                {isMobile && (
+                    <>
+                        <Tabs
+                            value={selectedTab}
+                            textColor='primary'
+                            onChange={handleTabChange}
+                            sx={{
+                                width: '100%',
+                                display: 'flex',
+                                justifyContent: 'space-evenly',
+                                borderBottom: 1,
+                                borderColor: 'divider',
+                                '& .MuiTabs-indicator': {
+                                    backgroundColor: 'primary.main',
+                                },
+                            }}
+                        >
+                            <Tab
                                 sx={{
-                                    width: '100%',
-                                    display: 'flex',
-                                    justifyContent: 'space-evenly',
-                                    borderBottom: 1,
-                                    borderColor: 'divider',
-                                    '& .MuiTabs-indicator': {
-                                        backgroundColor: 'primary.main',
+                                    flex: 1,
+                                    color: 'text.primary',
+                                    '&.Mui-selected': {
+                                        color: 'primary.main',
                                     },
                                 }}
-                            >
-                                <Tab
-                                    sx={{
-                                        flex: 1,
-                                        color: 'text.primary',
-                                        '&.Mui-selected': {
-                                            color: 'primary.main',
-                                        },
-                                    }}
-                                    label="Props" value='Props' />
-                                <Tab
-                                    sx={{
-                                        flex: 1,
-                                        color: 'text.primary',
-                                        '&.Mui-selected': {
-                                            color: 'primary.main',
-                                        },
-                                    }}
-                                    label="Code" value='Code' />
-                            </Tabs>
+                                label="Props" value='Props' />
+                            <Tab
+                                sx={{
+                                    flex: 1,
+                                    color: 'text.primary',
+                                    '&.Mui-selected': {
+                                        color: 'primary.main',
+                                    },
+                                }}
+                                label="Code" value='Code' />
+                        </Tabs>
 
-                            <PlaygroundTabPanel value={'Props'} selectedValue={selectedTab}>
-                                {displayPropsByGroupType(DrawerData)}
-                            </PlaygroundTabPanel>
-                            <PlaygroundTabPanel value={'Code'} selectedValue={selectedTab}>
-                                <CodeBlock code={(getCodeGenerator(componentName))(DrawerData, componentProps, theme)} language="jsx" sx={{ height: '100%' }} />
-                            </PlaygroundTabPanel>
-                        </>
-                    )}
+                        <PlaygroundTabPanel value={'Props'} selectedValue={selectedTab}>
+                            {displayPropsByGroupType(DrawerData)}
+                        </PlaygroundTabPanel>
+                        <PlaygroundTabPanel value={'Code'} selectedValue={selectedTab}>
+                            <CodeBlock code={(getCodeGenerator(componentName))(DrawerData, componentProps, theme)} language="jsx" sx={{ height: '100%' }} />
+                        </PlaygroundTabPanel>
+                    </>
+                )}
 
-                    {!isMobile && displayPropsByGroupType(DrawerData)}
+                {!isMobile && displayPropsByGroupType(DrawerData)}
 
-                </Drawer>
-            </React.Fragment>
+            </Drawer>
+
         </div >
     );
 };
