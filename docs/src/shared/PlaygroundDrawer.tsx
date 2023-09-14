@@ -301,9 +301,24 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
         <div>
 
             <Drawer
+                sx={{
+                    '& .MuiPaper-root': {
+                        transform: 'none',
+                        visibility: 'visible !important',
+                        height: !drawerOpen && isMobile ? '72px' : 'auto',
+                        overflow: !drawerOpen && isMobile ? 'hidden' : 'visible',
+                    }
+                }}
+
                 PaperProps={{
                     sx: {
                         top: isMobile ? 'auto' : '112px',
+                        // left: '0',
+                        // right: '0',
+                        // visibility: 'visible',
+                        // overflow: 'auto',
+                        // position: 'absolute',
+                        // keepMounted: true,
                         // make width 100%, height:70% (see PreviewComponentWithCode)
                         // make <Drawer> or React.Fragment conditional (!isMobile &&)
                         // look at sx prop on mui website
@@ -321,18 +336,21 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                 }
 
                 anchor={isMobile ? 'bottom' : 'right'}
-                open={drawerOpen}
+                open={isMobile ? drawerOpen : true}
                 onClose={toggleDrawer(false)}
                 variant={'persistent'}
             >
-                <InfoListItem
-                    hidePadding
-                    title="Props & Code"
-                    rightComponent={<IconButton onClick={toggleDrawer(!drawerOpen)} >
-                        <KeyboardArrowDown /></IconButton>}
-                />
+                {/* <Box className='FINDME'> */}
+
+
                 {isMobile && (
                     <>
+                        <InfoListItem
+                            hidePadding
+                            title="Props & Code"
+                            rightComponent={<IconButton onClick={toggleDrawer(!drawerOpen)} >
+                                <KeyboardArrowDown /></IconButton>}
+                        />
                         <Tabs
                             value={selectedTab}
                             textColor='primary'
@@ -379,6 +397,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
                 {!isMobile && displayPropsByGroupType(DrawerData)}
 
+                {/* </Box> */}
             </Drawer>
 
         </div >
