@@ -33,7 +33,7 @@ export const PreviewComponent = (): JSX.Element => {
                     sx={{
                         overflow: 'hidden',
                         width: isMobile ? '100%' : PLAYGROUND_DRAWER_WIDTH,
-                        maxWidth: 450,
+                        maxWidth: isMobile ? '100vw' : 450,
                         maxHeight: 400,
                         position: 'relative',
                     }}

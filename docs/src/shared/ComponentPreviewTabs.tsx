@@ -6,6 +6,7 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { SxProps, Theme, useTheme } from '@mui/material/styles';
 import { TabPanel } from '../shared';
 import { PLAYGROUND_DRAWER_WIDTH } from './constants';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const hidePlaygroundTabs = ['drawer-layout', 'spacer', 'drawer-body'];
 
@@ -64,13 +65,22 @@ const playgroundContentStyles = {
     marginRight: `${PLAYGROUND_DRAWER_WIDTH}px`,
 };
 
+const mobilePlaygroundContentStyles = {
+    maxHeight: `calc(100vh - 56px)`,
+    height: '100%',
+    display: 'flex',
+    flex: '1 1 0px',
+    marginRight: `0`,
+};
+
 export const ComponentPreviewTabs = (): JSX.Element => {
     const navigate = useNavigate();
     const location = useLocation();
     const [value, setValue] = React.useState(0);
     const [hidePlaygroundTab, setHidePlaygroundTab] = React.useState(false);
-
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
     const handleChange = (event: React.SyntheticEvent, newValue: number): void => {
         navigate(`/${newValue === 1 ? 'api-docs' : newValue === 2 ? 'playground' : 'examples'}`);
     };
@@ -146,7 +156,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                 </Box>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <Box sx={playgroundContentStyles}>
+                <Box sx={isMobile ? mobilePlaygroundContentStyles : playgroundContentStyles}>
                     <Outlet />
                 </Box>
             </TabPanel>
