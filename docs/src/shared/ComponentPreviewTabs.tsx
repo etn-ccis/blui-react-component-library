@@ -58,6 +58,7 @@ const outletContainerStyles = {
 };
 
 const playgroundContentStyles = {
+    // '& .MuiTypography-root, & MuiTypography-body1, & .MuiBox-root': {}
     maxHeight: `calc(100vh - 64px)`,
     height: '100%',
     display: 'flex',

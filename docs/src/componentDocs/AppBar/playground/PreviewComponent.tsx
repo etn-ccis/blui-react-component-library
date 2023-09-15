@@ -1,11 +1,7 @@
 import React from 'react';
 import { RootState } from '../../../redux/store';
 import { useAppSelector } from '../../../redux/hooks';
-import {
-    createProps,
-    getBodyFiller,
-    getImage,
-} from '../../../shared/utilities';
+import { createProps, getBodyFiller, getImage } from '../../../shared/utilities';
 import { PropsType } from '../../../__types__';
 import PreviewComponentWithCode from '../../../shared/PreviewComponentWithCode';
 import { AppBar } from '@brightlayer-ui/react-components/core/AppBar';
@@ -23,7 +19,6 @@ export const PreviewComponent = (): JSX.Element => {
     const appBarJson = useAppSelector((state: RootState) => state.componentsPropsState.appBarComponent);
 
     const appBarProps = createProps(appBarJson.props as PropsType[]);
-
 
     return (
         <PreviewComponentWithCode
@@ -58,7 +53,6 @@ export const PreviewComponent = (): JSX.Element => {
                     </Box>
                 </Box>
             }
-
             code={isMobile ? generateCodeSnippet(appBarJson, appBarProps, theme) : undefined}
         />
     );

@@ -44,7 +44,7 @@ const getCodeGenerator = (componentName: string) => {
             return generateAppBarCodeSnippet;
         }
     }
-}
+};
 
 // type Anchor = 'right';
 type DrawerProps = {
@@ -54,7 +54,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     const { drawerData: DrawerData } = props;
     const componentProps = createProps(DrawerData.props as PropsType[]);
     const componentName = DrawerData.componentName as string;
-    const [selectedTab, setSelectedTab] = React.useState('Props')
+    const [selectedTab, setSelectedTab] = React.useState('Props');
     const dispatch = useAppDispatch();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -137,12 +137,12 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             >
                 {Array.isArray(prop.options)
                     ? prop.options?.map(
-                        (item: any, id: number): JSX.Element => (
-                            <MenuItem key={id} value={item}>
-                                {item}
-                            </MenuItem>
-                        )
-                    )
+                          (item: any, id: number): JSX.Element => (
+                              <MenuItem key={id} value={item}>
+                                  {item}
+                              </MenuItem>
+                          )
+                      )
                     : undefined}
             </Select>
             <FormHelperText>{prop.helperText}</FormHelperText>
@@ -164,8 +164,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             sx={{ alignItems: 'flex-start' }}
             label={
                 <Box>
-                    <Typography sx={{ fontFamily: 'inherit' }}>{`${prop.label ? prop.label : prop.propName
-                        }`}</Typography>
+                    <Typography sx={{ fontFamily: 'inherit' }}>{`${
+                        prop.label ? prop.label : prop.propName
+                    }`}</Typography>
                     <Typography variant={'caption'} color={prop.disabled ? 'text.disabled' : 'text.secondary'}>
                         {prop.helperText}
                     </Typography>
@@ -284,16 +285,15 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
         const { children, value, selectedValue } = playgroundTabPanelProps;
 
         return (
-            <Box
-                role="tabpanel"
-                hidden={value !== selectedValue}
-            >
+            <Box role="tabpanel" hidden={value !== selectedValue}>
                 {value === selectedValue && (
-                    <Box sx={{
-                        backgroundColor: 'background.paper',
-                        height: 'calc(70vh - 113px)',
-                        overflow: 'scroll',
-                    }}>
+                    <Box
+                        sx={{
+                            backgroundColor: 'background.paper',
+                            height: 'calc(70vh - 113px)',
+                            overflow: 'scroll',
+                        }}
+                    >
                         <Typography component={'div'}>{children}</Typography>
                     </Box>
                 )}
@@ -303,7 +303,6 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
     return (
         <div>
-
             <Drawer
                 sx={{
                     '& .MuiPaper-root, & .MuiDrawer-root': {
@@ -311,9 +310,8 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                         visibility: 'visible !important',
                         height: !drawerOpen && isMobile ? '72px' : 'auto',
                         overflow: !drawerOpen && isMobile ? 'hidden' : 'visible',
-                    }
+                    },
                 }}
-
                 PaperProps={{
                     sx: {
                         top: isMobile ? 'auto' : '112px',
@@ -322,7 +320,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                         // position: 'absolute',
                         width: isMobile ? '100%' : PLAYGROUND_DRAWER_WIDTH,
                         height: {
-                            sm: 'calc(70vh - 113px)'
+                            sm: 'calc(70vh - 113px)',
                         },
                         '& .MuiInputBase-root, & .MuiFormControlLabel-label': {
                             fontFamily: '"Roboto Mono", monspace',
@@ -330,9 +328,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                         // zIndex: theme.zIndex.appBar - 1,
                         backgroundColor: 'background.paper',
                     },
-                }
-                }
-
+                }}
                 anchor={isMobile ? 'bottom' : 'right'}
                 open={isMobile ? drawerOpen : true}
                 onClose={toggleDrawer(false)}
@@ -340,18 +336,20 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             >
                 {/* <Box className='FINDME'> */}
 
-
                 {isMobile && (
                     <>
                         <InfoListItem
                             hidePadding
                             title="Props & Code"
-                            rightComponent={<IconButton onClick={toggleDrawer(!drawerOpen)} >
-                                <KeyboardArrowDown /></IconButton>}
+                            rightComponent={
+                                <IconButton onClick={toggleDrawer(!drawerOpen)}>
+                                    <KeyboardArrowDown />
+                                </IconButton>
+                            }
                         />
                         <Tabs
                             value={selectedTab}
-                            textColor='primary'
+                            textColor="primary"
                             onChange={handleTabChange}
                             sx={{
                                 width: '100%',
@@ -373,7 +371,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                                         color: 'primary.main',
                                     },
                                 }}
-                                label="Props" value='Props' />
+                                label="Props"
+                                value="Props"
+                            />
                             <Tab
                                 sx={{
                                     flex: 1,
@@ -382,14 +382,20 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                                         color: 'primary.main',
                                     },
                                 }}
-                                label="Code" value='Code' />
+                                label="Code"
+                                value="Code"
+                            />
                         </Tabs>
 
                         <PlaygroundTabPanel value={'Props'} selectedValue={selectedTab}>
                             {displayPropsByGroupType(DrawerData)}
                         </PlaygroundTabPanel>
                         <PlaygroundTabPanel value={'Code'} selectedValue={selectedTab}>
-                            <CodeBlock code={(getCodeGenerator(componentName))(DrawerData, componentProps, theme)} language="jsx" sx={{ height: '100%' }} />
+                            <CodeBlock
+                                code={getCodeGenerator(componentName)(DrawerData, componentProps, theme)}
+                                language="jsx"
+                                sx={{ height: '100%' }}
+                            />
                         </PlaygroundTabPanel>
                     </>
                 )}
@@ -398,8 +404,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
                 {/* </Box> */}
             </Drawer>
-
-        </div >
+        </div>
     );
 };
 
