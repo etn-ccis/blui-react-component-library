@@ -289,7 +289,11 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                 hidden={value !== selectedValue}
             >
                 {value === selectedValue && (
-                    <Box sx={{ backgroundColor: 'background.paper' }}>
+                    <Box sx={{
+                        backgroundColor: 'background.paper',
+                        height: 'calc(70vh - 113px)',
+                        overflow: 'scroll',
+                    }}>
                         <Typography component={'div'}>{children}</Typography>
                     </Box>
                 )}
@@ -302,8 +306,8 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
 
             <Drawer
                 sx={{
-                    '& .MuiPaper-root': {
-                        transform: 'none',
+                    '& .MuiPaper-root, & .MuiDrawer-root': {
+                        transform: 'none !important',
                         visibility: 'visible !important',
                         height: !drawerOpen && isMobile ? '72px' : 'auto',
                         overflow: !drawerOpen && isMobile ? 'hidden' : 'visible',
@@ -313,18 +317,12 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                 PaperProps={{
                     sx: {
                         top: isMobile ? 'auto' : '112px',
-                        // left: '0',
-                        // right: '0',
                         // visibility: 'visible',
                         // overflow: 'auto',
                         // position: 'absolute',
-                        // keepMounted: true,
-                        // make width 100%, height:70% (see PreviewComponentWithCode)
-                        // make <Drawer> or React.Fragment conditional (!isMobile &&)
-                        // look at sx prop on mui website
                         width: isMobile ? '100%' : PLAYGROUND_DRAWER_WIDTH,
                         height: {
-                            xs: 'calc(70vh - 105px)', sm: 'calc(70vh - 113px)'
+                            sm: 'calc(70vh - 113px)'
                         },
                         '& .MuiInputBase-root, & .MuiFormControlLabel-label': {
                             fontFamily: '"Roboto Mono", monspace',
@@ -357,6 +355,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                             onChange={handleTabChange}
                             sx={{
                                 width: '100%',
+                                height: '100%',
                                 display: 'flex',
                                 justifyContent: 'space-evenly',
                                 borderBottom: 1,

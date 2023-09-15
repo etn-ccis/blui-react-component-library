@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import useTheme from '@mui/material/styles/useTheme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { generateCodeSnippet } from './utils';
+import { PLAYGROUND_DRAWER_WIDTH } from '../../../shared';
 
 export const PreviewComponent = (): JSX.Element => {
     const theme = useTheme();
@@ -26,11 +27,12 @@ export const PreviewComponent = (): JSX.Element => {
 
     return (
         <PreviewComponentWithCode
+            // sx={{ width: isMobile ? '100%' : PLAYGROUND_DRAWER_WIDTH, }}
             previewContent={
                 <Box
                     sx={{
                         overflow: 'hidden',
-                        width: '100%',
+                        width: isMobile ? '100%' : PLAYGROUND_DRAWER_WIDTH,
                         maxWidth: 450,
                         maxHeight: 400,
                         position: 'relative',
