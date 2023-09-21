@@ -58,7 +58,6 @@ const outletContainerStyles = {
 };
 
 const playgroundContentStyles = {
-    // '& .MuiTypography-root, & MuiTypography-body1, & .MuiBox-root': {}
     maxHeight: `calc(100vh - 64px)`,
     height: '100%',
     display: 'flex',
@@ -67,11 +66,14 @@ const playgroundContentStyles = {
 };
 
 const mobilePlaygroundContentStyles = {
-    maxHeight: `calc(100vh - 56px)`,
-    height: '100%',
-    display: 'flex',
-    flex: '1 1 0px',
-    marginRight: `0`,
+    // '& .MuiTypography-root, & MuiTypography-body1, & .MuiBox-root': {}
+    '& MuiTypography-root': {
+        maxHeight: `calc(100vh - 56px)`,
+        height: '100%',
+        display: 'flex',
+        flex: '1 1 0px',
+        marginRight: `0`,
+    }
 };
 
 export const ComponentPreviewTabs = (): JSX.Element => {

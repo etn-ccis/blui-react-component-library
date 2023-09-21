@@ -31,7 +31,7 @@ import { NumberPicker } from './components/NumberPicker/NumberPicker.component';
 import { IconButton, Tab, Tabs } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { generateCodeSnippet as generateAppBarCodeSnippet } from '../componentDocs/AppBar/playground/utils';
-import { KeyboardArrowDown } from '@mui/icons-material';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { InfoListItem } from '@brightlayer-ui/react-components';
 
 const getCodeGenerator = (componentName: string) => {
@@ -137,12 +137,12 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             >
                 {Array.isArray(prop.options)
                     ? prop.options?.map(
-                          (item: any, id: number): JSX.Element => (
-                              <MenuItem key={id} value={item}>
-                                  {item}
-                              </MenuItem>
-                          )
-                      )
+                        (item: any, id: number): JSX.Element => (
+                            <MenuItem key={id} value={item}>
+                                {item}
+                            </MenuItem>
+                        )
+                    )
                     : undefined}
             </Select>
             <FormHelperText>{prop.helperText}</FormHelperText>
@@ -164,9 +164,8 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             sx={{ alignItems: 'flex-start' }}
             label={
                 <Box>
-                    <Typography sx={{ fontFamily: 'inherit' }}>{`${
-                        prop.label ? prop.label : prop.propName
-                    }`}</Typography>
+                    <Typography sx={{ fontFamily: 'inherit' }}>{`${prop.label ? prop.label : prop.propName
+                        }`}</Typography>
                     <Typography variant={'caption'} color={prop.disabled ? 'text.disabled' : 'text.secondary'}>
                         {prop.helperText}
                     </Typography>
@@ -294,7 +293,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                             overflow: 'scroll',
                         }}
                     >
-                        <Typography component={'div'}>{children}</Typography>
+                        {children}
                     </Box>
                 )}
             </Box>
@@ -340,10 +339,10 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                     <>
                         <InfoListItem
                             hidePadding
-                            title="Props & Code"
+                            title={<Typography variant="h6">Props & Code</Typography>}
                             rightComponent={
                                 <IconButton onClick={toggleDrawer(!drawerOpen)}>
-                                    <KeyboardArrowDown />
+                                    {drawerOpen ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
                                 </IconButton>
                             }
                         />
