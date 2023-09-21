@@ -58,7 +58,7 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
     const dispatch = useAppDispatch();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-    const [drawerOpen, setDrawerOpen] = React.useState(true);
+    const [drawerOpen, setDrawerOpen] = React.useState(false);
     useEffect(() => {
         dispatch(resetProps());
     }, []);
