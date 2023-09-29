@@ -28,13 +28,13 @@ import Stack from '@mui/material/Stack';
 import Select from '@mui/material/Select/Select';
 import { ColorPicker } from './components/ColorPicker/ColorPicker.component';
 import { NumberPicker } from './components/NumberPicker/NumberPicker.component';
-import { IconButton, Tab, Tabs } from '@mui/material';
+import { IconButton, Tab, Tabs, Theme } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { generateCodeSnippet as generateAppBarCodeSnippet } from '../componentDocs/AppBar/playground/utils';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { InfoListItem } from '@brightlayer-ui/react-components';
 
-const getCodeGenerator = (componentName: string) => {
+const getCodeGenerator = (componentName: string): (appBarJson: any, appBarProps: any, theme: Theme) => string => {
     // console.log(componentName);
     switch (componentName) {
         case 'AppBar': {
@@ -290,13 +290,14 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                         sx={{
                             backgroundColor: 'background.paper',
                             height: 'calc(70vh - 113px)',
-                            overflow: 'scroll',
+                            overflowY: 'scroll',
                         }}
                     >
                         {children}
                     </Box>
-                )}
-            </Box>
+                )
+                }
+            </Box >
         );
     };
 
@@ -314,9 +315,6 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                 PaperProps={{
                     sx: {
                         top: isMobile ? 'auto' : '112px',
-                        // visibility: 'visible',
-                        // overflow: 'auto',
-                        // position: 'absolute',
                         width: isMobile ? '100%' : PLAYGROUND_DRAWER_WIDTH,
                         height: {
                             sm: 'calc(70vh - 113px)',
@@ -324,17 +322,18 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                         '& .MuiInputBase-root, & .MuiFormControlLabel-label': {
                             fontFamily: '"Roboto Mono", monspace',
                         },
-                        // zIndex: theme.zIndex.appBar - 1,
                         backgroundColor: 'background.paper',
                     },
                 }}
                 anchor={isMobile ? 'bottom' : 'right'}
                 open={isMobile ? drawerOpen : true}
                 onClose={toggleDrawer(false)}
-                variant={'persistent'}
+                variant={isMobile ? 'temporary' : 'persistent'}
+                transitionDuration={1000}
+                ModalProps={{
+                    keepMounted: true,
+                }}
             >
-                {/* <Box className='FINDME'> */}
-
                 {isMobile && (
                     <>
                         <InfoListItem
@@ -393,15 +392,15 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
                             <CodeBlock
                                 code={getCodeGenerator(componentName)(DrawerData, componentProps, theme)}
                                 language="jsx"
-                                sx={{ height: '100%' }}
+                                sx={{
+                                    height: '100%',
+                                    maxHeight: '100%',
+                                }}
                             />
                         </PlaygroundTabPanel>
                     </>
                 )}
-
                 {!isMobile && displayPropsByGroupType(DrawerData)}
-
-                {/* </Box> */}
             </Drawer>
         </div>
     );
