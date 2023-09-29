@@ -569,6 +569,18 @@ export const pageDefinitions: RouteConfig[] = [
             },
         ],
     },
+    {
+        title: 'Workflows',
+        path: '/workflows/',
+        element: <Outlet />,
+        pages: [
+            {
+                title: 'User Authentication',
+                path: 'user-auth',
+                element: <MarkdownPage title={'User Authentication Workflow'} markdown={markdownDocs.UserAuth} />,
+            },
+        ],
+    },
 ];
 
 const openInNewTab = (url = '#'): any => {
@@ -601,7 +613,6 @@ export const externalLinkDefinitions = [
     {
         title: 'Roadmap',
         itemID: 'Roadmap',
-        divider: true,
         rightComponent: <OpenInNew color="disabled" />,
         onClick: (): void => openInNewTab('https://brightlayer-ui.github.io/roadmap'),
     },
