@@ -71,9 +71,6 @@ import { ListItemTag } from '@brightlayer-ui/react-components';
 // Site markdown docs
 import * as markdownDocs from '../../markdownDocs/';
 
-// import ExampleConfigRender from '../../components/Playground/exampleConfigRender';
-// import ExampleConfig2Render from '../../components/Playground/exampleConfig2Render';
-
 export type RouteConfig = Omit<RouteProps, 'children'> & {
     title: string;
     icon?: JSX.Element;
@@ -83,22 +80,6 @@ export type RouteConfig = Omit<RouteProps, 'children'> & {
 };
 
 export const pageDefinitions: RouteConfig[] = [
-    // {
-    //     title: 'Test Playground',
-    //     path: '/test-playground/',
-    //     pages: [
-    //         {
-    //             title: 'Channel Value',
-    //             path: 'channel-value',
-    //             element: <ExampleConfigRender />,
-    //         },
-    //         {
-    //             title: 'Score Card',
-    //             path: 'score-card',
-    //             element: <ExampleConfig2Render />,
-    //         },
-    //     ],
-    // },
     {
         title: 'Home',
         path: '/',
@@ -588,6 +569,18 @@ export const pageDefinitions: RouteConfig[] = [
             },
         ],
     },
+    {
+        title: 'Workflows',
+        path: '/workflows/',
+        element: <Outlet />,
+        pages: [
+            {
+                title: 'User Authentication',
+                path: 'user-auth',
+                element: <MarkdownPage title={'User Authentication Workflow'} markdown={markdownDocs.UserAuth} />,
+            },
+        ],
+    },
 ];
 
 const openInNewTab = (url = '#'): any => {
@@ -620,7 +613,6 @@ export const externalLinkDefinitions = [
     {
         title: 'Roadmap',
         itemID: 'Roadmap',
-        divider: true,
         rightComponent: <OpenInNew color="disabled" />,
         onClick: (): void => openInNewTab('https://brightlayer-ui.github.io/roadmap'),
     },

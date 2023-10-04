@@ -10,4 +10,7 @@ import ThemeCustomization from './themes/customization.mdx';
 // Components
 import AllComponents from './allComponents.mdx';
 
-export { Environment, React, ThemesOverview, ThemesUsage, ThemeCustomization, AllComponents };
+// Workflows
+import UserAuth from './workflows/user-auth.mdx';
+
+export { Environment, React, ThemesOverview, ThemesUsage, ThemeCustomization, AllComponents, UserAuth };
