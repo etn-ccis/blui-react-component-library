@@ -45,7 +45,7 @@
         "@emotion/styled": "^11.10.5",
         "@fontsource/roboto": "^4.5.8",
         "@fontsource/roboto-mono": "^4.5.8",
-        "@mdx-js/loader": "^2.2.1",
+        "@mdx-js/loader": "^3.0.0",
         "@mdx-js/mdx": "^2.1.5",
         "@mdx-js/react": "^2.1.5",
         "@mui/icons-material": "^5.11.0",
