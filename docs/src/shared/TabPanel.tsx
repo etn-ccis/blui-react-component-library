@@ -1,8 +1,8 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import Box, { BoxProps } from '@mui/material/Box';
 
-type TabPanelProps = {
+type TabPanelProps = BoxProps & {
     children?: React.ReactNode;
     index: number;
     value: number;

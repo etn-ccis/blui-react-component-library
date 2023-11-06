@@ -146,7 +146,12 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                 </Box>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <Box sx={playgroundContentStyles}>
+                <Box
+                    sx={[
+                        playgroundContentStyles,
+                        location.pathname.includes('channel-value') ? { marginRight: 0 } : {},
+                    ]}
+                >
                     <Outlet />
                 </Box>
             </TabPanel>
