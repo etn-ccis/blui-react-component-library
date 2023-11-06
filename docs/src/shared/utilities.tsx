@@ -116,8 +116,6 @@ export const getComponentState = (componentName: string, state: RootState['compo
     switch (componentName) {
         case 'App Bar':
             return state.appBarComponent;
-        case 'Channel Value':
-            return state.channelValueComponent;
         case 'Drawer Header':
             return state.drawerHeaderComponent;
         case 'Drawer':
