@@ -149,6 +149,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                 <Box
                     sx={[
                         playgroundContentStyles,
+                        // @TODO Add each component here as we incrementally update them. Once all have been migrated to the new tools, we can refactor this to remove the right margin on the container.
                         location.pathname.includes('channel-value') ? { marginRight: 0 } : {},
                     ]}
                 >
