@@ -34,7 +34,7 @@ import { generateCodeSnippet as generateAppBarCodeSnippet } from '../componentDo
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { InfoListItem } from '@brightlayer-ui/react-components';
 
-const getCodeGenerator = (componentName: string) => {
+const getCodeGenerator = (componentName: string): any => {
     // console.log(componentName);
     switch (componentName) {
         case 'AppBar': {
@@ -137,12 +137,12 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             >
                 {Array.isArray(prop.options)
                     ? prop.options?.map(
-                        (item: any, id: number): JSX.Element => (
-                            <MenuItem key={id} value={item}>
-                                {item}
-                            </MenuItem>
-                        )
-                    )
+                          (item: any, id: number): JSX.Element => (
+                              <MenuItem key={id} value={item}>
+                                  {item}
+                              </MenuItem>
+                          )
+                      )
                     : undefined}
             </Select>
             <FormHelperText>{prop.helperText}</FormHelperText>
@@ -164,8 +164,9 @@ const PlaygroundDrawer = (props: DrawerProps): JSX.Element => {
             sx={{ alignItems: 'flex-start' }}
             label={
                 <Box>
-                    <Typography sx={{ fontFamily: 'inherit' }}>{`${prop.label ? prop.label : prop.propName
-                        }`}</Typography>
+                    <Typography sx={{ fontFamily: 'inherit' }}>{`${
+                        prop.label ? prop.label : prop.propName
+                    }`}</Typography>
                     <Typography variant={'caption'} color={prop.disabled ? 'text.disabled' : 'text.secondary'}>
                         {prop.helperText}
                     </Typography>

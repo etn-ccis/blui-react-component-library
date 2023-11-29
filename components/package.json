@@ -15,6 +15,7 @@
         "@brightlayer-ui/colors": "^3.1.1",
         "@emotion/css": "^11.10.5",
         "@seznam/compose-react-refs": "^1.0.6",
+        "codesandbox": "^2.2.3",
         "color": "^4.2.3"
     },
     "devDependencies": {

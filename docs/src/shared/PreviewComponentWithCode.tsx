@@ -5,7 +5,6 @@ import * as Colors from '@brightlayer-ui/colors';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material';
 
-
 export type PreviewComponentProps = HTMLAttributes<HTMLDivElement> & {
     previewContent: JSX.Element;
     code?: string;
@@ -37,8 +36,8 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
             >
                 {previewContent}
             </Box>
-            {!isMobile &&
-                < Box
+            {!isMobile && (
+                <Box
                     sx={{
                         height: '30vh',
                         overflow: 'auto',
@@ -63,7 +62,10 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                                         color: Colors.blue[200],
                                         borderColor: Colors.blue[200],
                                         backgroundColor: Colors.black[800],
-                                        '&:hover': { borderColor: Colors.blue[200], backgroundColor: Colors.black[800] },
+                                        '&:hover': {
+                                            borderColor: Colors.blue[200],
+                                            backgroundColor: Colors.black[800],
+                                        },
                                     },
                                 }}
                                 title={'Copy All'}
@@ -71,8 +73,8 @@ const PreviewComponentWithCode: React.FC<PreviewComponentProps> = (props): JSX.E
                             />
                         )}
                     </Box>
-                </Box >
-            }
+                </Box>
+            )}
         </>
     );
 };

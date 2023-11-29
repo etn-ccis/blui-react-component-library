@@ -73,7 +73,7 @@ const mobilePlaygroundContentStyles = {
         display: 'flex',
         flex: '1 1 0px',
         marginRight: `0`,
-    }
+    },
 };
 
 export const ComponentPreviewTabs = (): JSX.Element => {
