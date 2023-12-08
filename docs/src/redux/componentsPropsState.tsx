@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import appBarConfig from '../componentDocs/AppBar/playground/AppBarConfig';
 import drawerConfig from '../componentDocs/Drawer/playground/DrawerConfig';
 import drawerHeaderConfig from '../componentDocs/DrawerHeader/playground/DrawerHeaderConfig';
 import drawerSubheaderConfig from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderConfig';
@@ -20,7 +19,6 @@ import { getComponentState } from '../shared/utilities';
 import { ComponentDocPayloadType, ComponentType } from '../__types__';
 
 type ComponentState = {
-    appBarComponent: ComponentType;
     drawerComponent: ComponentType;
     drawerHeaderComponent: ComponentType;
     drawerSubheaderComponent: ComponentType;
@@ -40,7 +38,6 @@ type ComponentState = {
 };
 
 const initialState: ComponentState = {
-    appBarComponent: appBarConfig,
     drawerComponent: drawerConfig,
     drawerHeaderComponent: drawerHeaderConfig,
     drawerSubheaderComponent: drawerSubheaderConfig,

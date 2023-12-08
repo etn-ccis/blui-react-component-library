@@ -114,8 +114,6 @@ export const createProps = (props: PropsType[]): any => {
 
 export const getComponentState = (componentName: string, state: RootState['componentsPropsState']): ComponentType => {
     switch (componentName) {
-        case 'App Bar':
-            return state.appBarComponent;
         case 'Drawer Header':
             return state.drawerHeaderComponent;
         case 'Drawer':
