@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import Box from '@mui/material/Box';
 import {
@@ -102,8 +101,8 @@ const inputConfig: InputConfig = [
 ];
 
 const AppBarPreview: PreviewComponent = ({ data }) => {
-    const { backgroundImage, ...rest } = data as unknown as AppBarProps & {};
-    const SCROLL_CONTAINER_ID = 'BLUIAppBar-playground-scroll-container-1'
+    const { backgroundImage, ...rest } = data as unknown as AppBarProps;
+    const SCROLL_CONTAINER_ID = 'BLUIAppBar-playground-scroll-container-1';
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <Box
@@ -135,16 +134,16 @@ const AppBarPreview: PreviewComponent = ({ data }) => {
 const generateSnippet: CodeSnippetFunction = (data) =>
     `<AppBar 
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['backgroundImage'] })}
-    ${data.backgroundImage && data.backgroundImage !== 'undefined'
-            ? `backgroundImage={'${getImage(data.backgroundImage as string)}'}`
+    ${
+        data.backgroundImage && data.backgroundImage !== 'undefined'
+            ? `backgroundImage={'${getImage(data.backgroundImage as string) || ''}'}`
             : ''
-        }
+    }
 >
     <Toolbar>
         <Typography variant={'h6'}>Title</Typography>
     </Toolbar>
 </AppBar>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
-
 
 export const AppBarPlaygroundComponent = (): JSX.Element => (
     <Box

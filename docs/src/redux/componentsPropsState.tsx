@@ -6,7 +6,6 @@ import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerF
 import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
 import drawerNavItemConfig from '../componentDocs/DrawerNavItem/playground/DrawerNavItemConfig';
 import drawerRailItemConfig from '../componentDocs/DrawerRailItem/playground/DrawerRailItemConfig';
-import emptyStateConfig from '../componentDocs/EmptyState/playground/EmptyStateConfig';
 import heroConfig from '../componentDocs/Hero/playground/HeroConfig';
 import infoListItemConfig from '../componentDocs/InfoListItem/playground/InfoListItemConfig';
 import listItemTagConfig from '../componentDocs/ListItemTag/playground/ListItemTagConfig';
@@ -26,7 +25,6 @@ type ComponentState = {
     drawerNavGroupComponent: ComponentType;
     drawerNavItemComponent: ComponentType;
     drawerRailItemComponent: ComponentType;
-    emptyStateComponent: ComponentType;
     heroComponent: ComponentType;
     infoListItemComponent: ComponentType;
     listItemTagComponent: ComponentType;
@@ -45,7 +43,6 @@ const initialState: ComponentState = {
     drawerNavGroupComponent: drawerNavGroupConfig,
     drawerNavItemComponent: drawerNavItemConfig,
     drawerRailItemComponent: drawerRailItemConfig,
-    emptyStateComponent: emptyStateConfig,
     heroComponent: heroConfig,
     infoListItemComponent: infoListItemConfig,
     listItemTagComponent: listItemTagConfig,
