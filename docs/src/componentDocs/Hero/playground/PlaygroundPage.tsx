@@ -11,9 +11,7 @@ import {
 import Stack from '@mui/material/Stack';
 import { ChannelValueProps, Hero, HeroProps } from '@brightlayer-ui/react-components';
 import * as Colors from '@brightlayer-ui/colors';
-import { Fan, FanCircled } from '@brightlayer-ui/icons-mui';
-import TrendingUp from '@mui/icons-material/TrendingUp';
-import TrendingDown from '@mui/icons-material/TrendingDown';
+import { getIcon, getIconSnippetWithProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -118,30 +116,19 @@ const HeroPreview: PreviewComponent = ({ data }) => {
             'value' | 'units'
         >;
 
-    const getIcon = (value: string, preserveColor = true): JSX.Element | undefined => {
-        switch (value) {
-            case '<TrendingUp />':
-                return <TrendingUp fontSize={'inherit'} htmlColor={(preserveColor && htmlColor) || 'inherit'} />;
-            case '<TrendingDown />':
-                return <TrendingDown fontSize={'inherit'} htmlColor={(preserveColor && htmlColor) || 'inherit'} />;
-            case '<FanCircled />':
-                return <FanCircled fontSize={'inherit'} htmlColor={(preserveColor && htmlColor) || 'inherit'} />;
-            case '<Fan />':
-                return <Fan fontSize={'inherit'} htmlColor={(preserveColor && htmlColor) || 'inherit'} />;
-            default:
-                return undefined;
-        }
-    };
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <Box>
                 <Hero
                     {...rest}
-                    icon={getIcon(icon as unknown as string)}
+                    icon={getIcon(icon as unknown as string, {
+                        fontSize: 'inherit',
+                        htmlColor: htmlColor || 'inherit',
+                    })}
                     ChannelValueProps={{
                         value: channelValue,
                         units,
-                        icon: getIcon(valueIcon, false),
+                        icon: getIcon(valueIcon, { fontSize: 'inherit' }),
                     }}
                 />
             </Box>
@@ -157,9 +144,10 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     })}
     ${
         data.icon && data.icon !== 'undefined'
-            ? `icon={${(data.icon as string).replace('/>', '')}fontSize={'inherit'}${
-                  data.htmlColor && data.htmlColor !== 'undefined' ? ` htmlColor={'${data.htmlColor as string}'}` : ''
-              } />}`
+            ? `icon={${getIconSnippetWithProps(data.icon as string, {
+                  fontSize: 'inherit',
+                  htmlColor: data.htmlColor as string,
+              })}`
             : ''
     }
     ChannelValueProps={{
@@ -170,7 +158,7 @@ const generateSnippet: CodeSnippetFunction = (data) =>
         })}
         ${
             data.valueIcon && data.valueIcon !== 'undefined'
-                ? `icon: ${(data.valueIcon as string).replace('/>', '')}fontSize={'inherit'} />,`
+                ? `icon: ${getIconSnippetWithProps(data.valueIcon as string, { fontSize: 'inherit' })},`
                 : ''
         }
     }}

@@ -12,13 +12,14 @@ import Place from '@mui/icons-material/Place';
 import PinDrop from '@mui/icons-material/PinDrop';
 import Remove from '@mui/icons-material/Remove';
 import RouterIcon from '@mui/icons-material/Router';
-import SensorsOffIcon from '@mui/icons-material/SensorsOff';
+import SensorsOff from '@mui/icons-material/SensorsOff';
 import TrendingUp from '@mui/icons-material/TrendingUp';
 import TrendingDown from '@mui/icons-material/TrendingDown';
 import { RootState } from '../redux/store';
 import { ComponentType, PropsType } from '../__types__';
 import { SvgIconProps } from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 
 const topologyBgImage = require('../shared/images/topology_40.png');
 const farmBgImage = require('../shared/images/farm.jpg');
@@ -64,9 +65,11 @@ export const getHash = (str: string): string =>
 export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | undefined => {
     switch (icon) {
         case '<Add />':
-            return <Add />;
+            return React.createElement(Add, iconProps);
         case '<AddAPhoto />':
-            return <AddAPhoto />;
+            return React.createElement(AddAPhoto, iconProps);
+        case '<ArrowBack />':
+            return React.createElement(ArrowBack, iconProps);
         case '<Device />':
             return React.createElement(Device, iconProps);
         case '<Devices />':
@@ -76,21 +79,21 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
         case '<FanCircled />':
             return React.createElement(FanCircled, iconProps);
         case '<FitnessCenter />':
-            return <FitnessCenter />;
+            return React.createElement(FitnessCenter, iconProps);
         case '<Home />':
-            return <Home />;
+            return React.createElement(Home, iconProps);
         case '<Menu />':
-            return <Menu />;
+            return React.createElement(Menu, iconProps);
         case '<Place />':
-            return <Place />;
+            return React.createElement(Place, iconProps);
         case '<PinDrop />':
-            return <PinDrop />;
+            return React.createElement(PinDrop, iconProps);
         case '<Remove />':
-            return <Remove />;
+            return React.createElement(Remove, iconProps);
         case '<RouterIcon />':
             return React.createElement(RouterIcon, iconProps);
-        case '<SensorsOffIcon />':
-            return React.createElement(SensorsOffIcon, iconProps);
+        case '<SensorsOff />':
+            return React.createElement(SensorsOff, iconProps);
         case '<TrendingUp />':
             return React.createElement(TrendingUp, iconProps);
         case '<TrendingDown />':
@@ -137,15 +140,18 @@ export const getImage = (image: string): string | undefined => {
     }
 };
 
-const iterateIconProps = (iconProps: any): string => {
+const iterateIconProps = (iconProps?: SvgIconProps): string => {
+    if (!iconProps) return '';
     let str = '';
     for (const prop in iconProps) {
-        str = `${str}` + `${prop}="${iconProps[prop]}" `;
+        if (iconProps[prop as keyof SvgIconProps]) {
+            str = `${str}` + `${prop}={'${iconProps[prop as keyof SvgIconProps] as string}'} `;
+        }
     }
     return str;
 };
 
-export const getIconWithProp = (icon: string, iconProps: SvgIconProps): string => {
+export const getIconSnippetWithProps = (icon: string, iconProps?: SvgIconProps): string => {
     const index = icon.lastIndexOf('/>');
     const result = icon.slice(0, index) + iterateIconProps(iconProps) + icon.slice(index);
     return result;

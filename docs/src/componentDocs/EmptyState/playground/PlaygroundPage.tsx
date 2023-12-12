@@ -10,8 +10,9 @@ import {
 } from '@brightlayer-ui/react-doc-components';
 import Stack from '@mui/material/Stack';
 import { EmptyState, EmptyStateProps } from '@brightlayer-ui/react-components';
-import { Add, Devices, Router, SensorsOff } from '@mui/icons-material';
+import Add from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
+import { getIcon, getIconSnippetWithProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -61,22 +62,11 @@ const inputConfig: InputConfig = [
 const EmptyStatePreview: PreviewComponent = ({ data }) => {
     const { icon, showAction, ...rest } = data as unknown as EmptyStateProps & { showAction?: boolean };
 
-    const getIcon = (value: string): JSX.Element | undefined => {
-        switch (value) {
-            case '<SensorsOff />':
-                return <SensorsOff fontSize={'inherit'} />;
-            case '<Router />':
-                return <Router fontSize={'inherit'} />;
-            case '<Devices>':
-            default:
-                return <Devices fontSize={'inherit'} />;
-        }
-    };
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <EmptyState
                 {...rest}
-                icon={getIcon(icon as unknown as string)}
+                icon={getIcon(icon as unknown as string, { fontSize: 'inherit' })}
                 actions={
                     showAction ? (
                         <Button variant={'outlined'} color={'primary'} startIcon={<Add />}>
@@ -94,7 +84,7 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['icon', 'showAction'] })}
     ${
         data.icon && data.icon !== 'undefined'
-            ? `icon={${(data.icon as string).replace('/>', '')}fontSize={'inherit'} />}`
+            ? `icon={${getIconSnippetWithProps(data.icon as string, { fontSize: 'inherit' })}}`
             : ''
     }
     ${

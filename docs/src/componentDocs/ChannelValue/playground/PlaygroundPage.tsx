@@ -1,12 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-
 import { ChannelValue, ChannelValueProps } from '@brightlayer-ui/react-components';
-
-import TrendingUp from '@mui/icons-material/TrendingUp';
-import TrendingDown from '@mui/icons-material/TrendingDown';
-
 import {
     InputConfig,
     PreviewComponent,
@@ -15,6 +10,7 @@ import {
     getPropsMapping,
     Playground,
 } from '@brightlayer-ui/react-doc-components';
+import { getIcon, getIconSnippetWithProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -114,21 +110,10 @@ const inputConfig: InputConfig = [
 
 const ChannelValuePreview: PreviewComponent = ({ data }) => {
     const { htmlColor, icon, ...rest } = data as unknown as ChannelValueProps & { htmlColor: string };
-    const getIcon = (value: string): JSX.Element | undefined => {
-        switch (value) {
-            case '<TrendingUp />':
-                return <TrendingUp htmlColor={htmlColor || 'inherit'} />;
-            case '<TrendingDown />':
-                return <TrendingDown htmlColor={htmlColor || 'inherit'} />;
-            case 'undefined':
-            default:
-                return undefined;
-        }
-    };
 
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
-            <ChannelValue {...rest} icon={getIcon(icon as unknown as string)} />
+            <ChannelValue {...rest} icon={getIcon(icon as unknown as string, { htmlColor: htmlColor || 'inherit' })} />
         </Stack>
     );
 };
@@ -138,9 +123,10 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['icon', 'htmlColor'] })}
     ${
         data.icon && data.icon !== 'undefined'
-            ? `icon={${(data.icon as string).replace('/>', '')}fontSize={'inherit'}${
-                  data.htmlColor && data.htmlColor !== 'undefined' ? ` htmlColor={'${data.htmlColor as string}'}` : ''
-              } />}`
+            ? `icon={${getIconSnippetWithProps(data.icon as string, {
+                  fontSize: 'inherit',
+                  htmlColor: data.htmlColor as string,
+              })}}`
             : ''
     }
 />`.replace(/^\s*$(?:\r\n?|\n)/gm, '');

@@ -30,6 +30,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { sharedPropsConfig } from './sharedPropsConfig';
+import { getIcon, getIconSnippetWithProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -128,7 +129,10 @@ const inputConfig: InputConfig = [
 ];
 
 const DrawerPreview: PreviewComponent = ({ data }) => {
-    const { variant, open, ...rest } = data as unknown as DrawerProps;
+    const { variant, open, collapseIcon, expandIcon, ...rest } = data as unknown as Omit<
+        DrawerProps,
+        'collapseIcon' | 'expandIcon'
+    > & { collapseIcon: string; expandIcon: string };
     const { updateData } = usePlaygroundValues();
     const containerRef = useRef(null);
     const persistent = variant === 'persistent';
@@ -193,12 +197,16 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                     open={open}
                     noLayout
                     variant={variant}
-                    disablePortal={temporary}
+                    collapseIcon={getIcon(collapseIcon)}
+                    expandIcon={getIcon(expandIcon)}
+                    ModalProps={{
+                        disablePortal: temporary,
+                        slotProps: {
+                            backdrop: { sx: { position: 'absolute' } },
+                        },
+                    }}
                     SlideProps={{
                         container: containerRef.current,
-                    }}
-                    slotProps={{
-                        backdrop: { sx: { position: 'absolute' } },
                     }}
                     sx={{
                         position: 'absolute',
@@ -287,7 +295,9 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
 
 const generateSnippet: CodeSnippetFunction = (data) =>
     `<Drawer 
-    ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: [] })}
+    ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['collapseIcon', 'expandIcon'] })}
+    ${data.collapseIcon !== 'undefined' ? `collapseIcon={${getIconSnippetWithProps(data.collapseIcon as string)}}` : ''}
+    ${data.expandIcon !== 'undefined' ? `expandIcon={${getIconSnippetWithProps(data.expandIcon as string)}}` : ''}
 >
     <DrawerHeader {...headerProps} />
     <DrawerBody>

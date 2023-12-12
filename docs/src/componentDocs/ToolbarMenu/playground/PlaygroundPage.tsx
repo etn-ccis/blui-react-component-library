@@ -10,8 +10,7 @@ import {
 } from '@brightlayer-ui/react-doc-components';
 import Stack from '@mui/material/Stack';
 import { ToolbarMenu, ToolbarMenuProps } from '@brightlayer-ui/react-components';
-import Home from '@mui/icons-material/Home';
-import Place from '@mui/icons-material/Place';
+import { getIcon, getIconSnippetWithProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -44,17 +43,6 @@ const inputConfig: InputConfig = [
 const ToolbarMenuPreview: PreviewComponent = ({ data }) => {
     const { icon, ...rest } = data as unknown as ToolbarMenuProps;
 
-    const getIcon = (value: string): JSX.Element | undefined => {
-        switch (value) {
-            case '<Home />':
-                return <Home />;
-            case '<Place />':
-                return <Place />;
-            case 'undefined':
-            default:
-                return undefined;
-        }
-    };
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <ToolbarMenu
@@ -86,7 +74,7 @@ const ToolbarMenuPreview: PreviewComponent = ({ data }) => {
 const generateSnippet: CodeSnippetFunction = (data) =>
     `<ToolbarMenu 
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['icon'] })}
-    ${data.icon && data.icon !== 'undefined' ? `icon={${data.icon as string}}` : ''}
+    ${data.icon && data.icon !== 'undefined' ? `icon={${getIconSnippetWithProps(data.icon as string)}}` : ''}
     menuGroups={[{
         items: [
             {

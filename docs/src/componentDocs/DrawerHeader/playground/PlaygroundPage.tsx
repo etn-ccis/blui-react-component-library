@@ -18,13 +18,11 @@ import {
     DrawerNavItem,
 } from '@brightlayer-ui/react-components';
 import * as Colors from '@brightlayer-ui/colors';
-import Menu from '@mui/icons-material/Menu';
 import NotificationsActive from '@mui/icons-material/NotificationsActive';
 import Person from '@mui/icons-material/Person';
 import Today from '@mui/icons-material/Today';
 import Accessibility from '@mui/icons-material/Accessibility';
-import ArrowBack from '@mui/icons-material/ArrowBack';
-import { getImage } from '../../../shared';
+import { getIcon, getIconSnippetWithProps, getImage } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -118,17 +116,6 @@ const inputConfig: InputConfig = [
 const DrawerHeaderPreview: PreviewComponent = ({ data }) => {
     const { icon, backgroundImage, ...rest } = data as unknown as DrawerHeaderProps;
 
-    const getIcon = (value: string): JSX.Element | undefined => {
-        switch (value) {
-            case '<Menu />':
-                return <Menu />;
-            case '<ArrowBack />':
-                return <ArrowBack />;
-            case 'undefined':
-            default:
-                return undefined;
-        }
-    };
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <Drawer noLayout open={true} sx={{ minHeight: 'unset' }}>
@@ -157,7 +144,7 @@ const DrawerHeaderPreview: PreviewComponent = ({ data }) => {
 const generateSnippet: CodeSnippetFunction = (data) =>
     `<DrawerHeader 
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['icon', 'backgroundImage'] })}
-    ${data.icon && data.icon !== 'undefined' ? `icon={${data.icon as string}}` : ''}
+    ${data.icon && data.icon !== 'undefined' ? `icon={${getIconSnippetWithProps(data.icon as string)}}` : ''}
     ${data.backgroundImage !== 'undefined' ? `backgroundImage={'../images/${data.backgroundImage as string}.png'}` : ''}
 />`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
 

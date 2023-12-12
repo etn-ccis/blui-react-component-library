@@ -11,7 +11,7 @@ import {
 import Stack from '@mui/material/Stack';
 import { InfoListItem, InfoListItemProps } from '@brightlayer-ui/react-components';
 import * as Colors from '@brightlayer-ui/colors';
-import Devices from '@mui/icons-material/Devices';
+import { getIcon, getIconSnippetWithProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -222,15 +222,6 @@ const InfoListItemPreview: PreviewComponent = ({ data }) => {
         clickable: boolean;
     };
 
-    const getIcon = (value: string): JSX.Element | undefined => {
-        switch (value) {
-            case '<Devices />':
-                return <Devices />;
-            case 'undefined':
-            default:
-                return undefined;
-        }
-    };
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <InfoListItem
@@ -247,7 +238,7 @@ const InfoListItemPreview: PreviewComponent = ({ data }) => {
 const generateSnippet: CodeSnippetFunction = (data) =>
     `<InfoListItem 
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['icon', 'clickable'] })}
-    ${data.icon && data.icon !== 'undefined' ? `icon={${data.icon as string}}` : ''}
+    ${data.icon && data.icon !== 'undefined' ? `icon={${getIconSnippetWithProps(data.icon as string)}}` : ''}
     ${data.clickable ? `onClick={(): void => {}}` : ``}
 />`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
 
