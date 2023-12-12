@@ -162,7 +162,8 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                         location.pathname.includes('score-card') ||
                         location.pathname.includes('drawer-header') ||
                         location.pathname.includes('drawer-subheader') ||
-                        location.pathname.includes('drawer-footer')
+                        location.pathname.includes('drawer-footer') ||
+                        location.pathname.includes('drawer/')
                             ? { marginRight: 0 }
                             : {},
                     ]}

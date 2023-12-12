@@ -114,16 +114,13 @@ export const createProps = (props: PropsType[]): any => {
 
 export const getComponentState = (componentName: string, state: RootState['componentsPropsState']): ComponentType => {
     switch (componentName) {
-        case 'Drawer':
-            return state.drawerComponent;
         case 'Drawer Nav Group':
             return state.drawerNavGroupComponent;
         case 'Drawer Nav Item':
             return state.drawerNavItemComponent;
         case 'Drawer Rail Item':
-            return state.drawerRailItemComponent;
         default:
-            return state.drawerComponent;
+            return state.drawerRailItemComponent;
     }
 };
 
