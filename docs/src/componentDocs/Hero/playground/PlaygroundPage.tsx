@@ -15,7 +15,6 @@ import { Fan, FanCircled } from '@brightlayer-ui/icons-mui';
 import TrendingUp from '@mui/icons-material/TrendingUp';
 import TrendingDown from '@mui/icons-material/TrendingDown';
 
-
 const inputConfig: InputConfig = [
     // Required Props
     {
@@ -107,7 +106,17 @@ const inputConfig: InputConfig = [
 ];
 
 const HeroPreview: PreviewComponent = ({ data }) => {
-    const { icon, htmlColor, value: channelValue, units, valueIcon, ...rest } = data as unknown as HeroProps & { htmlColor: string; valueIcon: string } & Pick<ChannelValueProps, 'value' | 'units'>;
+    const {
+        icon,
+        htmlColor,
+        value: channelValue,
+        units,
+        valueIcon,
+        ...rest
+    } = data as unknown as HeroProps & { htmlColor: string; valueIcon: string } & Pick<
+            ChannelValueProps,
+            'value' | 'units'
+        >;
 
     const getIcon = (value: string, preserveColor = true): JSX.Element | undefined => {
         switch (value) {
@@ -132,7 +141,7 @@ const HeroPreview: PreviewComponent = ({ data }) => {
                     ChannelValueProps={{
                         value: channelValue,
                         units,
-                        icon: getIcon(valueIcon, false)
+                        icon: getIcon(valueIcon, false),
                     }}
                 />
             </Box>
@@ -142,18 +151,28 @@ const HeroPreview: PreviewComponent = ({ data }) => {
 
 const generateSnippet: CodeSnippetFunction = (data) =>
     `<Hero 
-    ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['icon', 'htmlColor', 'value', 'units', 'valueIcon'] })}
-    ${data.icon && data.icon !== 'undefined'
-            ? `icon={${(data.icon as string).replace('/>', '')}fontSize={'inherit'}${data.htmlColor && data.htmlColor !== 'undefined' ? ` htmlColor={'${data.htmlColor as string}'}` : ''
-            } />}`
+    ${getPropsToString(getPropsMapping(data, inputConfig), {
+        join: '\n\t',
+        skip: ['icon', 'htmlColor', 'value', 'units', 'valueIcon'],
+    })}
+    ${
+        data.icon && data.icon !== 'undefined'
+            ? `icon={${(data.icon as string).replace('/>', '')}fontSize={'inherit'}${
+                  data.htmlColor && data.htmlColor !== 'undefined' ? ` htmlColor={'${data.htmlColor as string}'}` : ''
+              } />}`
             : ''
-        }
-    ChannelValueProps={{
-        ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t\t', format: 'object', skip: ['icon', 'label', 'iconBackgroundColor', 'iconSize', 'htmlColor', 'valueIcon'] })}
-        ${data.valueIcon && data.valueIcon !== 'undefined'
-        ? `icon: ${(data.valueIcon as string).replace('/>', '')}fontSize={'inherit'} />,`
-        : ''
     }
+    ChannelValueProps={{
+        ${getPropsToString(getPropsMapping(data, inputConfig), {
+            join: '\n\t\t',
+            format: 'object',
+            skip: ['icon', 'label', 'iconBackgroundColor', 'iconSize', 'htmlColor', 'valueIcon'],
+        })}
+        ${
+            data.valueIcon && data.valueIcon !== 'undefined'
+                ? `icon: ${(data.valueIcon as string).replace('/>', '')}fontSize={'inherit'} />,`
+                : ''
+        }
     }}
 />`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
 
