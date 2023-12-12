@@ -152,7 +152,8 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                         // @TODO Add each component here as we incrementally update them. Once all have been migrated to the new tools, we can refactor this to remove the right margin on the container.
                         location.pathname.includes('channel-value') ||
                         location.pathname.includes('app-bar') ||
-                        location.pathname.includes('empty-state')
+                        location.pathname.includes('empty-state') ||
+                        location.pathname.includes('hero')
                             ? { marginRight: 0 }
                             : {},
                     ]}

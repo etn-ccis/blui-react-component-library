@@ -128,8 +128,6 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.drawerNavItemComponent;
         case 'Drawer Rail Item':
             return state.drawerRailItemComponent;
-        case 'Hero':
-            return state.heroComponent;
         case 'Info List Item':
             return state.infoListItemComponent;
         case 'List Item Tag':

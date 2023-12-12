@@ -39,7 +39,7 @@
         "@brightlayer-ui/icons": "^1.11.0",
         "@brightlayer-ui/icons-mui": "^3.4.0",
         "@brightlayer-ui/react-components": "^6.2.0",
-        "@brightlayer-ui/react-doc-components": "^1.0.0-alpha.2",
+        "@brightlayer-ui/react-doc-components": "^1.0.0-alpha.5",
         "@brightlayer-ui/react-themes": "^7.1.0",
         "@craco/craco": "^7.0.0",
         "@emotion/react": "^11.10.8",

@@ -1236,10 +1236,10 @@
     "@seznam/compose-react-refs" "^1.0.6"
     color "^4.2.3"
 
-"@brightlayer-ui/react-doc-components@^1.0.0-alpha.2":
-  version "1.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-doc-components/-/react-doc-components-1.0.0-alpha.2.tgz#5b23c517238c0199e8d8df78875634cd4cba2828"
-  integrity sha512-fHo2JzZQ+/mlUQ5/gYadwz1hwQZwwG8JE2OYu38ZnVxQIGK21A/ehg5kO+NK4I9DeT9PgKZAfmX9uMkYd428oA==
+"@brightlayer-ui/react-doc-components@^1.0.0-alpha.5":
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-doc-components/-/react-doc-components-1.0.0-alpha.5.tgz#45d7b52af2056df69c43bdfef5688095afe00126"
+  integrity sha512-iA5nwu/qgcAGc0NOLdbZS+tshxLVKBuRhpAgZ9kYRbVWnNSPRXc5GmwJWffHUFa8tpf/xXuvHZ0+IG87u/B2OQ==
   dependencies:
     color "^4.0.0"
     lodash.debounce "^4.0.8"
