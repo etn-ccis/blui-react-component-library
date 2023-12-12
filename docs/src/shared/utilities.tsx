@@ -128,18 +128,16 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.drawerNavItemComponent;
         case 'Drawer Rail Item':
             return state.drawerRailItemComponent;
-        case 'Score Card':
-            return state.scoreCardComponent;
         default:
             return state.drawerComponent;
     }
 };
 
 export const getImage = (image: string): string | undefined => {
-    switch (image) {
-        case 'Pattern':
+    switch (image.toLowerCase()) {
+        case 'pattern':
             return topologyBgImage;
-        case 'Farm':
+        case 'farm':
             return farmBgImage;
         case 'undefined':
             return undefined;

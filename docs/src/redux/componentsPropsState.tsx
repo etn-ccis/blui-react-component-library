@@ -6,7 +6,6 @@ import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerF
 import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
 import drawerNavItemConfig from '../componentDocs/DrawerNavItem/playground/DrawerNavItemConfig';
 import drawerRailItemConfig from '../componentDocs/DrawerRailItem/playground/DrawerRailItemConfig';
-import scoreCardConfig from '../componentDocs/ScoreCard/playground/ScoreCardConfig';
 import { getComponentState } from '../shared/utilities';
 import { ComponentDocPayloadType, ComponentType } from '../__types__';
 
@@ -18,7 +17,6 @@ type ComponentState = {
     drawerNavGroupComponent: ComponentType;
     drawerNavItemComponent: ComponentType;
     drawerRailItemComponent: ComponentType;
-    scoreCardComponent: ComponentType;
 };
 
 const initialState: ComponentState = {
@@ -29,7 +27,6 @@ const initialState: ComponentState = {
     drawerNavGroupComponent: drawerNavGroupConfig,
     drawerNavItemComponent: drawerNavItemConfig,
     drawerRailItemComponent: drawerRailItemConfig,
-    scoreCardComponent: scoreCardConfig,
 };
 
 export const componentPropsStateSlice = createSlice({

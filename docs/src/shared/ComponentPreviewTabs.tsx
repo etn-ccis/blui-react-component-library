@@ -158,7 +158,8 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                         location.pathname.includes('list-item-tag') ||
                         location.pathname.includes('three-liner') ||
                         location.pathname.includes('toolbar-menu') ||
-                        location.pathname.includes('user-menu')
+                        location.pathname.includes('user-menu') ||
+                        location.pathname.includes('score-card')
                             ? { marginRight: 0 }
                             : {},
                     ]}
