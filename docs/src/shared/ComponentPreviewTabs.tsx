@@ -155,7 +155,8 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                         location.pathname.includes('empty-state') ||
                         location.pathname.includes('hero') ||
                         location.pathname.includes('info-list-item') ||
-                        location.pathname.includes('list-item-tag')
+                        location.pathname.includes('list-item-tag') ||
+                        location.pathname.includes('three-liner')
                             ? { marginRight: 0 }
                             : {},
                     ]}

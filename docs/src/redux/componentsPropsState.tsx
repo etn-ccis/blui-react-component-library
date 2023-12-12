@@ -8,7 +8,6 @@ import drawerNavItemConfig from '../componentDocs/DrawerNavItem/playground/Drawe
 import drawerRailItemConfig from '../componentDocs/DrawerRailItem/playground/DrawerRailItemConfig';
 import spacerConfig from '../componentDocs/Spacer/playground/SpacerConfig';
 import scoreCardConfig from '../componentDocs/ScoreCard/playground/ScoreCardConfig';
-import threeLinerConfig from '../componentDocs/ThreeLiner/playground/ThreeLinerConfig';
 import toolbarMenuConfig from '../componentDocs/ToolbarMenu/playground/ToolbarMenuConfig';
 import userMenuConfig from '../componentDocs/UserMenu/playground/UserMenuConfig';
 import { getComponentState } from '../shared/utilities';
@@ -24,7 +23,6 @@ type ComponentState = {
     drawerRailItemComponent: ComponentType;
     spacerComponent: ComponentType;
     scoreCardComponent: ComponentType;
-    threeLinerComponent: ComponentType;
     toolbarMenuComponent: ComponentType;
     userMenuComponent: ComponentType;
 };
@@ -39,7 +37,6 @@ const initialState: ComponentState = {
     drawerRailItemComponent: drawerRailItemConfig,
     spacerComponent: spacerConfig,
     scoreCardComponent: scoreCardConfig,
-    threeLinerComponent: threeLinerConfig,
     toolbarMenuComponent: toolbarMenuConfig,
     userMenuComponent: userMenuConfig,
 };

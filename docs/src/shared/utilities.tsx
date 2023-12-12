@@ -130,8 +130,6 @@ export const getComponentState = (componentName: string, state: RootState['compo
             return state.drawerRailItemComponent;
         case 'Score Card':
             return state.scoreCardComponent;
-        case 'Three Liner':
-            return state.threeLinerComponent;
         case 'Toolbar Menu':
             return state.toolbarMenuComponent;
         case 'User Menu':
