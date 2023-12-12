@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import drawerConfig from '../componentDocs/Drawer/playground/DrawerConfig';
-import drawerSubheaderConfig from '../componentDocs/DrawerSubheader/playground/DrawerSubheaderConfig';
 import drawerFooterConfig from '../componentDocs/DrawerFooter/playground/DrawerFooterConfig';
 import drawerNavGroupConfig from '../componentDocs/DrawerNavGroup/playground/DrawerNavGroupConfig';
 import drawerNavItemConfig from '../componentDocs/DrawerNavItem/playground/DrawerNavItemConfig';
@@ -10,7 +9,6 @@ import { ComponentDocPayloadType, ComponentType } from '../__types__';
 
 type ComponentState = {
     drawerComponent: ComponentType;
-    drawerSubheaderComponent: ComponentType;
     drawerFooterComponent: ComponentType;
     drawerNavGroupComponent: ComponentType;
     drawerNavItemComponent: ComponentType;
@@ -19,7 +17,6 @@ type ComponentState = {
 
 const initialState: ComponentState = {
     drawerComponent: drawerConfig,
-    drawerSubheaderComponent: drawerSubheaderConfig,
     drawerFooterComponent: drawerFooterConfig,
     drawerNavGroupComponent: drawerNavGroupConfig,
     drawerNavItemComponent: drawerNavItemConfig,

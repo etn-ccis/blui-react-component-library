@@ -116,8 +116,6 @@ export const getComponentState = (componentName: string, state: RootState['compo
     switch (componentName) {
         case 'Drawer':
             return state.drawerComponent;
-        case 'Drawer Subheader':
-            return state.drawerSubheaderComponent;
         case 'Drawer Footer':
             return state.drawerFooterComponent;
         case 'Drawer Nav Group':
