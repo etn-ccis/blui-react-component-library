@@ -123,7 +123,10 @@ const AppBarPreview: PreviewComponent = ({ data }) => {
                         <Typography variant="h6">Title</Typography>
                     </Toolbar>
                 </AppBar>
-                <Box id={SCROLL_CONTAINER_ID} sx={{ height: 400, overflow: 'scroll' }}>
+                <Box
+                    id={SCROLL_CONTAINER_ID}
+                    sx={{ height: 400, overflow: 'scroll', backgroundColor: 'background.paper' }}
+                >
                     {getBodyFiller()}
                 </Box>
             </Box>
@@ -143,7 +146,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     <Toolbar>
         <Typography variant={'h6'}>Title</Typography>
     </Toolbar>
-</AppBar>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+</AppBar>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/^<AppBar(\s)+\n>/, '<AppBar>');
 
 export const AppBarPlaygroundComponent = (): JSX.Element => (
     <Box

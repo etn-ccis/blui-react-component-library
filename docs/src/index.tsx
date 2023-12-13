@@ -62,6 +62,7 @@ const ThemedApp = (): JSX.Element => {
     const MemoThemedApp = React.useCallback(
         () => (
             <ThemeProvider theme={createTheme(theme)}>
+                <CssBaseline />
                 <MDXProvider components={componentsMap as any}>
                     <App />
                 </MDXProvider>
@@ -77,7 +78,6 @@ root.render(
         <BrowserRouter basename={basename}>
             <ScrollToTop />
             <GoogleAnalyticsWrapper />
-            <CssBaseline />
             <Provider store={store}>
                 <ThemedApp />
             </Provider>
