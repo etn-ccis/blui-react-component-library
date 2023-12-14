@@ -117,8 +117,6 @@ export const createProps = (props: PropsType[]): any => {
 
 export const getComponentState = (componentName: string, state: RootState['componentsPropsState']): ComponentType => {
     switch (componentName) {
-        case 'Drawer Nav Item':
-            return state.drawerNavItemComponent;
         case 'Drawer Rail Item':
         default:
             return state.drawerRailItemComponent;
