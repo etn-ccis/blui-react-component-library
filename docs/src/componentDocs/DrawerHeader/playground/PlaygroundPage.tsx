@@ -17,7 +17,6 @@ import {
     DrawerNavGroup,
     DrawerNavItem,
 } from '@brightlayer-ui/react-components';
-import * as Colors from '@brightlayer-ui/colors';
 import NotificationsActive from '@mui/icons-material/NotificationsActive';
 import Person from '@mui/icons-material/Person';
 import Today from '@mui/icons-material/Today';
@@ -35,7 +34,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'The color used for the background',
         required: false,
-        initialValue: Colors.blue[500],
+        initialValue: '',
         category: 'Optional Props',
     },
     {
@@ -77,7 +76,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'The color of the text elements',
         required: false,
-        initialValue: Colors.white[50],
+        initialValue: '',
         category: 'Optional Props',
     },
     {

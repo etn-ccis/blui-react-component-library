@@ -1,5 +1,4 @@
 import { InputConfig } from '@brightlayer-ui/react-doc-components';
-import * as Colors from '@brightlayer-ui/colors';
 
 export const sharedPropsConfig: InputConfig = [
     // Shared Props
@@ -9,7 +8,7 @@ export const sharedPropsConfig: InputConfig = [
         typeLabel: 'string',
         description: `Background color for the active item`,
         required: false,
-        initialValue: Colors.blue[50],
+        initialValue: '',
         category: 'Shared Props',
     },
     {
@@ -29,7 +28,7 @@ export const sharedPropsConfig: InputConfig = [
         typeLabel: 'string',
         description: `Font color for the active item`,
         required: false,
-        initialValue: Colors.blue[500],
+        initialValue: '',
         category: 'Shared Props',
     },
     {
@@ -38,7 +37,7 @@ export const sharedPropsConfig: InputConfig = [
         typeLabel: 'string',
         description: `Icon color for the active item`,
         required: false,
-        initialValue: Colors.blue[500],
+        initialValue: '',
         category: 'Shared Props',
     },
     {
@@ -56,7 +55,7 @@ export const sharedPropsConfig: InputConfig = [
         typeLabel: 'string',
         description: `Color override for the chevron icon`,
         required: false,
-        initialValue: Colors.gray[500],
+        initialValue: '',
         category: 'Shared Props',
     },
     {
@@ -113,7 +112,7 @@ export const sharedPropsConfig: InputConfig = [
         typeLabel: 'string',
         description: `Color for the item text`,
         required: false,
-        initialValue: Colors.black[500],
+        initialValue: '',
         category: 'Shared Props',
     },
     {
@@ -122,7 +121,7 @@ export const sharedPropsConfig: InputConfig = [
         typeLabel: 'string',
         description: `Color for the item icon`,
         required: false,
-        initialValue: Colors.black[500],
+        initialValue: '',
         category: 'Shared Props',
     },
     {
@@ -131,7 +130,7 @@ export const sharedPropsConfig: InputConfig = [
         typeLabel: 'string',
         description: `Background color for nested menu items`,
         required: false,
-        initialValue: Colors.white[200],
+        initialValue: '',
         category: 'Shared Props',
     },
     {

@@ -39,7 +39,7 @@ if (process.env.REACT_APP_GAID) {
 }
 
 // Brightlayer UI Icon font
-require('@brightlayer-ui/icons/iconfont/BrightlayerUIIcons.css');
+require('@brightlayer-ui/icons/BrightlayerUIIcons.css');
 const container = document.getElementById('root');
 
 if (!container) throw new Error('Root Element was not found in the DOM');

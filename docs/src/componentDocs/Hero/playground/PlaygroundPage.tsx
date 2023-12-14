@@ -10,7 +10,6 @@ import {
 } from '@brightlayer-ui/react-doc-components';
 import Stack from '@mui/material/Stack';
 import { ChannelValueProps, Hero, HeroProps } from '@brightlayer-ui/react-components';
-import * as Colors from '@brightlayer-ui/colors';
 import { getIcon, getIconSnippetWithProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
@@ -42,7 +41,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'The color used behind the primary icon',
         required: false,
-        initialValue: Colors.blue[500],
+        initialValue: '',
         defaultValue: 'transparent',
         category: 'Optional Props',
     },
@@ -98,7 +97,7 @@ const inputConfig: InputConfig = [
         type: 'color',
         description: 'The color applied to the primary icon',
         required: false,
-        initialValue: Colors.white[50],
+        initialValue: '',
         category: 'Other Configuration',
     },
 ];

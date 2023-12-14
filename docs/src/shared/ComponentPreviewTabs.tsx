@@ -163,7 +163,8 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                         location.pathname.includes('drawer-header') ||
                         location.pathname.includes('drawer-subheader') ||
                         location.pathname.includes('drawer-footer') ||
-                        location.pathname.includes('drawer/')
+                        location.pathname.includes('drawer/') ||
+                        location.pathname.includes('drawer-nav-group')
                             ? { marginRight: 0 }
                             : {},
                     ]}

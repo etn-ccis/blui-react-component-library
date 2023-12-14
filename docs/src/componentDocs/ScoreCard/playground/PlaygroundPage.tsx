@@ -78,7 +78,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'The color of the background background',
         required: false,
-        initialValue: Colors.blue[500],
+        initialValue: '',
         category: 'Optional Props',
     },
     {
@@ -87,7 +87,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'The color of the header text',
         required: false,
-        initialValue: Colors.white[50],
+        initialValue: '',
         defaultValue: '#ffffff',
         category: 'Optional Props',
     },

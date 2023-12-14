@@ -10,7 +10,6 @@ import {
 } from '@brightlayer-ui/react-doc-components';
 import Stack from '@mui/material/Stack';
 import { InfoListItem, InfoListItemProps } from '@brightlayer-ui/react-components';
-import * as Colors from '@brightlayer-ui/colors';
 import { getIcon, getIconSnippetWithProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
@@ -41,7 +40,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'The color used for the background',
         required: false,
-        initialValue: Colors.white[50],
+        initialValue: '',
         category: 'Optional Props',
     },
     {
@@ -59,7 +58,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'Color override for the chevron icon',
         required: false,
-        initialValue: Colors.gray[500],
+        initialValue: '',
         category: 'Optional Props',
     },
     {
@@ -97,7 +96,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'Main text color',
         required: false,
-        initialValue: Colors.black[500],
+        initialValue: '',
         category: 'Optional Props',
     },
     {
@@ -136,7 +135,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'The color used for the icon',
         required: false,
-        initialValue: Colors.black[500],
+        initialValue: '',
         category: 'Optional Props',
     },
     {
@@ -163,7 +162,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'Status stripe and icon color',
         required: false,
-        initialValue: Colors.blue[500],
+        initialValue: '',
         category: 'Optional Props',
     },
     {

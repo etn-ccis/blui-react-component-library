@@ -23,7 +23,6 @@ import NotificationsActive from '@mui/icons-material/NotificationsActive';
 import Person from '@mui/icons-material/Person';
 import Today from '@mui/icons-material/Today';
 import Accessibility from '@mui/icons-material/Accessibility';
-import * as Colors from '@brightlayer-ui/colors';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -36,7 +35,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'The color used for the background',
         required: false,
-        initialValue: Colors.white[50],
+        initialValue: '',
         category: 'Optional Props',
     },
     {

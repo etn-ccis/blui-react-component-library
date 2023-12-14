@@ -10,7 +10,6 @@ import {
 } from '@brightlayer-ui/react-doc-components';
 import Stack from '@mui/material/Stack';
 import { ListItemTag, ListItemTagProps } from '@brightlayer-ui/react-components';
-import * as Colors from '@brightlayer-ui/colors';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -31,7 +30,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'Color of the label background',
         required: false,
-        initialValue: Colors.red[500],
+        initialValue: '',
         category: 'Optional Props',
     },
     {
@@ -40,7 +39,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'string',
         description: 'Main text color',
         required: false,
-        initialValue: Colors.white[50],
+        initialValue: '',
         category: 'Optional Props',
     },
 
