@@ -336,3 +336,13 @@ export const getBodyFiller = (): JSX.Element => (
         interdum, justo sit amet maximus pellentesque, eros orci dictum diam, id bibendum risus neque non risus.
     </Box>
 );
+
+export const removeEmptyProps = (props: { [key: string]: any }): { [key: string]: any } => {
+    const newProps: { [key: string]: any } = {};
+    Object.keys(props)
+        .filter((p: string) => !['', 'undefined', undefined, null].includes(props[p]))
+        .forEach((p) => {
+            newProps[p] = props[p];
+        });
+    return newProps;
+};

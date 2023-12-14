@@ -10,7 +10,7 @@ import {
     getPropsMapping,
     Playground,
 } from '@brightlayer-ui/react-doc-components';
-import { getIcon, getIconSnippetWithProps } from '../../../shared';
+import { getIcon, getIconSnippetWithProps, removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -113,7 +113,11 @@ const ChannelValuePreview: PreviewComponent = ({ data }) => {
 
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
-            <ChannelValue {...rest} icon={getIcon(icon as unknown as string, { htmlColor: htmlColor || 'inherit' })} />
+            <ChannelValue
+                {...removeEmptyProps(rest)}
+                value={rest.value}
+                icon={getIcon(icon as unknown as string, { htmlColor: htmlColor || 'inherit' })}
+            />
         </Stack>
     );
 };

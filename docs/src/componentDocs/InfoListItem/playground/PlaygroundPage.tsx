@@ -10,7 +10,7 @@ import {
 } from '@brightlayer-ui/react-doc-components';
 import Stack from '@mui/material/Stack';
 import { InfoListItem, InfoListItemProps } from '@brightlayer-ui/react-components';
-import { getIcon, getIconSnippetWithProps } from '../../../shared';
+import { getIcon, getIconSnippetWithProps, removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -224,7 +224,8 @@ const InfoListItemPreview: PreviewComponent = ({ data }) => {
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <InfoListItem
-                {...rest}
+                {...removeEmptyProps(rest)}
+                title={rest.title}
                 sx={{ maxWidth: 700 }}
                 onClick={clickable ? (): void => {} : undefined}
                 icon={getIcon(icon as unknown as string)}

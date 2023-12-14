@@ -21,7 +21,7 @@ import NotificationsActive from '@mui/icons-material/NotificationsActive';
 import Person from '@mui/icons-material/Person';
 import Today from '@mui/icons-material/Today';
 import Accessibility from '@mui/icons-material/Accessibility';
-import { getIcon, getIconSnippetWithProps, getImage } from '../../../shared';
+import { getIcon, getIconSnippetWithProps, getImage, removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -119,7 +119,7 @@ const DrawerHeaderPreview: PreviewComponent = ({ data }) => {
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <Drawer noLayout open={true} sx={{ minHeight: 'unset' }}>
                 <DrawerHeader
-                    {...rest}
+                    {...removeEmptyProps(rest)}
                     icon={getIcon(icon as string)}
                     backgroundImage={getImage(backgroundImage as string)}
                 ></DrawerHeader>

@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack';
 import { EmptyState, EmptyStateProps } from '@brightlayer-ui/react-components';
 import Add from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { getIcon, getIconSnippetWithProps } from '../../../shared';
+import { getIcon, getIconSnippetWithProps, removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -65,7 +65,8 @@ const EmptyStatePreview: PreviewComponent = ({ data }) => {
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <EmptyState
-                {...rest}
+                {...removeEmptyProps(rest)}
+                title={rest.title}
                 icon={getIcon(icon as unknown as string, { fontSize: 'inherit' })}
                 actions={
                     showAction ? (

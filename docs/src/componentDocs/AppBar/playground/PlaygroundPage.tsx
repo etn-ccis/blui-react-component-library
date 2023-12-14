@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack';
 import { AppBar, AppBarProps } from '@brightlayer-ui/react-components';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { getBodyFiller, getImage } from '../../../shared';
+import { getBodyFiller, getImage, removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -115,7 +115,7 @@ const AppBarPreview: PreviewComponent = ({ data }) => {
                 }}
             >
                 <AppBar
-                    {...rest}
+                    {...removeEmptyProps(rest)}
                     backgroundImage={getImage(backgroundImage as string)}
                     scrollContainerId={SCROLL_CONTAINER_ID}
                 >

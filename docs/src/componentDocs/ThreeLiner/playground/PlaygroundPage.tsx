@@ -10,6 +10,7 @@ import {
 } from '@brightlayer-ui/react-doc-components';
 import Stack from '@mui/material/Stack';
 import { ThreeLiner, ThreeLinerProps } from '@brightlayer-ui/react-components';
+import { removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -52,7 +53,7 @@ const ThreeLinerPreview: PreviewComponent = ({ data }) => {
     const { ...rest } = data as unknown as ThreeLinerProps;
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
-            <ThreeLiner {...rest} />
+            <ThreeLiner {...removeEmptyProps(rest)} />
         </Stack>
     );
 };

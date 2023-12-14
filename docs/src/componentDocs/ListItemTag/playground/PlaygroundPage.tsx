@@ -10,6 +10,7 @@ import {
 } from '@brightlayer-ui/react-doc-components';
 import Stack from '@mui/material/Stack';
 import { ListItemTag, ListItemTagProps } from '@brightlayer-ui/react-components';
+import { removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -51,7 +52,7 @@ const ListItemTagPreview: PreviewComponent = ({ data }) => {
     const { ...rest } = data as unknown as ListItemTagProps;
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
-            <ListItemTag {...rest} />
+            <ListItemTag {...removeEmptyProps(rest)} label={rest.label} />
         </Stack>
     );
 };

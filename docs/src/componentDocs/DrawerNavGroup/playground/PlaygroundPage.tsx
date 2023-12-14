@@ -24,7 +24,7 @@ import Toc from '@mui/icons-material/Toc';
 import Devices from '@mui/icons-material/Devices';
 import AirportShuttle from '@mui/icons-material/AirportShuttle';
 import { sharedPropsConfig } from '../../Drawer/playground/sharedPropsConfig';
-import { getIcon, getIconSnippetWithProps } from '../../../shared';
+import { getIcon, getIconSnippetWithProps, removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -124,7 +124,7 @@ const DrawerNavGroupPreview: PreviewComponent = ({ data }) => {
                             items={navGroupItems}
                             collapseIcon={getIcon(collapseIcon)}
                             expandIcon={getIcon(expandIcon)}
-                            {...rest}
+                            {...removeEmptyProps(rest)}
                         />
                     </DrawerBody>
                 </Drawer>

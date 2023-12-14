@@ -30,7 +30,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { sharedPropsConfig } from './sharedPropsConfig';
-import { getIcon, getIconSnippetWithProps } from '../../../shared';
+import { getIcon, getIconSnippetWithProps, removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -217,7 +217,7 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                         },
                         '& .BluiDrawer-content': { backgroundColor: 'background.paper' },
                     }}
-                    {...rest}
+                    {...removeEmptyProps(rest)}
                 >
                     {temporary && (
                         <DrawerHeader

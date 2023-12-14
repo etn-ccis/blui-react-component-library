@@ -254,6 +254,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         style,
     } = props;
 
+    console.log(`activeItemBackgroundColor: "${activeItemBackgroundColor}"`);
+
     const [expanded, setExpanded] = useState(isInActiveTree);
     const active: boolean = activeItem === itemID;
     const hasAction = Boolean(onItemSelect || onClick || (items && items.length > 0) || Boolean(children));

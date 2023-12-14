@@ -20,7 +20,7 @@ import Mail from '@mui/icons-material/Mail';
 import MoreVert from '@mui/icons-material/MoreVert';
 import Favorite from '@mui/icons-material/Favorite';
 import { Temp, Moisture } from '@brightlayer-ui/icons-mui';
-import { getImage } from '../../../shared';
+import { getImage, removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -156,7 +156,8 @@ const ScoreCardPreview: PreviewComponent = ({ data }) => {
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <Box>
                 <ScoreCard
-                    {...rest}
+                    {...removeEmptyProps(rest)}
+                    headerTitle={rest.headerTitle}
                     headerBackgroundImage={getImage(headerBackgroundImage || '')}
                     actionItems={[
                         <Search key={'search'} />,

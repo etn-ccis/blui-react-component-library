@@ -23,6 +23,7 @@ import NotificationsActive from '@mui/icons-material/NotificationsActive';
 import Person from '@mui/icons-material/Person';
 import Today from '@mui/icons-material/Today';
 import Accessibility from '@mui/icons-material/Accessibility';
+import { removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -88,7 +89,7 @@ const DrawerFooterPreview: PreviewComponent = ({ data }) => {
                         />
                     </DrawerNavGroup>
                 </DrawerBody>
-                <DrawerFooter {...rest}>
+                <DrawerFooter {...removeEmptyProps(rest)}>
                     <Box sx={{ p: 2 }}>Footer Content Here</Box>
                 </DrawerFooter>
             </Drawer>

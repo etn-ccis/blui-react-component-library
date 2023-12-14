@@ -10,7 +10,7 @@ import {
 } from '@brightlayer-ui/react-doc-components';
 import Stack from '@mui/material/Stack';
 import { ToolbarMenu, ToolbarMenuProps } from '@brightlayer-ui/react-components';
-import { getIcon, getIconSnippetWithProps } from '../../../shared';
+import { getIcon, getIconSnippetWithProps, removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -46,7 +46,8 @@ const ToolbarMenuPreview: PreviewComponent = ({ data }) => {
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <ToolbarMenu
-                {...rest}
+                {...removeEmptyProps(rest)}
+                label={rest.label}
                 icon={getIcon(icon as unknown as string)}
                 menuGroups={[
                     {

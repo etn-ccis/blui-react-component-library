@@ -10,7 +10,7 @@ import {
 } from '@brightlayer-ui/react-doc-components';
 import Stack from '@mui/material/Stack';
 import { ChannelValueProps, Hero, HeroProps } from '@brightlayer-ui/react-components';
-import { getIcon, getIconSnippetWithProps } from '../../../shared';
+import { getIcon, getIconSnippetWithProps, removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -119,7 +119,8 @@ const HeroPreview: PreviewComponent = ({ data }) => {
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <Box>
                 <Hero
-                    {...rest}
+                    {...removeEmptyProps(rest)}
+                    label={rest.label}
                     icon={getIcon(icon as unknown as string, {
                         fontSize: 'inherit',
                         htmlColor: htmlColor || 'inherit',

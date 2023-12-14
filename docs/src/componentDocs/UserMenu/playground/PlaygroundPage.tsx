@@ -15,6 +15,7 @@ import trex from '../images/trex.png';
 import Email from '@mui/icons-material/Email';
 import ExitToApp from '@mui/icons-material/ExitToApp';
 import Settings from '@mui/icons-material/Settings';
+import { removeEmptyProps } from '../../../shared';
 
 const inputConfig: InputConfig = [
     // Required Props
@@ -72,7 +73,7 @@ const UserMenuPreview: PreviewComponent = ({ data }) => {
     return (
         <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
             <UserMenu
-                {...rest}
+                {...removeEmptyProps(rest)}
                 avatar={imageAvatar ? <Avatar src={trex} alt={'User Avatar'} /> : <Avatar>AB</Avatar>}
                 menuGroups={[
                     {
