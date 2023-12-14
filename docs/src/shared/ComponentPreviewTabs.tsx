@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { SxProps, Theme, useTheme } from '@mui/material/styles';
 import { TabPanel } from '../shared';
-import { PLAYGROUND_DRAWER_WIDTH } from './constants';
 
 const hidePlaygroundTabs = ['drawer-layout', 'spacer', 'drawer-body'];
 
@@ -61,7 +60,6 @@ const playgroundContentStyles = {
     height: '100%',
     display: 'flex',
     flex: '1 1 0px',
-    marginRight: `${PLAYGROUND_DRAWER_WIDTH}px`,
 };
 
 export const ComponentPreviewTabs = (): JSX.Element => {
@@ -146,30 +144,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                 </Box>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <Box
-                    sx={[
-                        playgroundContentStyles,
-                        // @TODO Add each component here as we incrementally update them. Once all have been migrated to the new tools, we can refactor this to remove the right margin on the container.
-                        location.pathname.includes('channel-value') ||
-                        location.pathname.includes('app-bar') ||
-                        location.pathname.includes('empty-state') ||
-                        location.pathname.includes('hero') ||
-                        location.pathname.includes('info-list-item') ||
-                        location.pathname.includes('list-item-tag') ||
-                        location.pathname.includes('three-liner') ||
-                        location.pathname.includes('toolbar-menu') ||
-                        location.pathname.includes('user-menu') ||
-                        location.pathname.includes('score-card') ||
-                        location.pathname.includes('drawer-header') ||
-                        location.pathname.includes('drawer-subheader') ||
-                        location.pathname.includes('drawer-footer') ||
-                        location.pathname.includes('drawer/') ||
-                        location.pathname.includes('drawer-nav-group') ||
-                        location.pathname.includes('drawer-nav-item')
-                            ? { marginRight: 0 }
-                            : {},
-                    ]}
-                >
+                <Box sx={[playgroundContentStyles]}>
                     <Outlet />
                 </Box>
             </TabPanel>

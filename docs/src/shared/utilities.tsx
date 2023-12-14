@@ -15,8 +15,6 @@ import RouterIcon from '@mui/icons-material/Router';
 import SensorsOff from '@mui/icons-material/SensorsOff';
 import TrendingUp from '@mui/icons-material/TrendingUp';
 import TrendingDown from '@mui/icons-material/TrendingDown';
-import { RootState } from '../redux/store';
-import { ComponentType, PropsType } from '../__types__';
 import { SvgIconProps } from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
 import ArrowBack from '@mui/icons-material/ArrowBack';
@@ -104,25 +102,6 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
     }
 };
 
-export const createProps = (props: PropsType[]): any => {
-    const componentProps = props?.reduce(
-        (acc: any, cur: any) => ({
-            ...acc,
-            [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
-        }),
-        {}
-    );
-    return componentProps;
-};
-
-export const getComponentState = (componentName: string, state: RootState['componentsPropsState']): ComponentType => {
-    switch (componentName) {
-        case 'Drawer Rail Item':
-        default:
-            return state.drawerRailItemComponent;
-    }
-};
-
 export const getImage = (image: string): string | undefined => {
     switch (image.toLowerCase()) {
         case 'pattern':
@@ -151,53 +130,6 @@ export const getIconSnippetWithProps = (icon: string, iconProps?: SvgIconProps):
     const index = icon.lastIndexOf('/>');
     const result = icon.slice(0, index) + iterateIconProps(iconProps) + icon.slice(index);
     return result;
-};
-
-export const filterPropsAsPerGroupType = (
-    state: ComponentType,
-    propName: string,
-    groupType?: string
-): PropsType | undefined => {
-    switch (groupType) {
-        case 'props':
-            return state.props?.filter((prop) => prop.propName === propName)[0];
-        case 'sharedProps':
-            return state.sharedProps?.filter((prop) => prop.propName === propName)[0];
-        case 'otherProps':
-            return state.otherProps?.filter((prop) => prop.propName === propName)[0];
-        default:
-            return state.props?.filter((prop) => prop.propName === propName)[0];
-    }
-};
-
-export const hideDefaultPropsFromSnippet = (
-    state: ComponentType,
-    propName: string,
-    currentValue: any | undefined,
-    groupType?: string,
-    themeDefaultValue?: string | number
-): string => {
-    const knob = filterPropsAsPerGroupType(state, propName, groupType);
-    if (knob?.defaultValue === currentValue || themeDefaultValue === currentValue) {
-        return '';
-    }
-    switch (knob?.propType) {
-        case 'string':
-        case 'string | Array<React.ReactNode>':
-            return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
-        case 'ReactNode':
-            if (knob.inputType === 'string') {
-                return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
-            }
-            return `${propName}={${currentValue}}`;
-        case 'boolean':
-            return `${propName}={${currentValue}}`;
-        case 'number':
-        case 'number | string':
-            return currentValue === '' ? '' : `${propName}={${currentValue}}`;
-        default:
-            return `${propName}={${currentValue}}`;
-    }
 };
 
 export const removeEmptyLines = (code: string): string => code.replace(/^\s*$(?:\r\n?|\n)/gm, '');
