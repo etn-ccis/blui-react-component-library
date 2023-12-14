@@ -19,11 +19,13 @@ import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 
 // hooks
-import { toggleDrawer, changeSiteTheme, changeDirection } from '../redux/appState';
+import { toggleDrawer, changeSiteTheme } from '../redux/appState';
+// import { changeDirection } from '../redux/appState';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useTheme } from '@mui/material/styles';
 import { RootState } from '../redux/store';
-import { SiteThemeType, UIDirection } from '../__types__';
+import { SiteThemeType } from '../__types__';
+// import { UIDirection } from '../__types__';
 
 export type SharedAppBarProps = {
     title: string;
@@ -58,7 +60,8 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
     const dispatch = useAppDispatch();
     const [themeSelectorAnchorEl, setThemeSelectorAnchorEl] = React.useState<null | HTMLElement>(null);
     const siteTheme = useAppSelector((state: RootState) => state.appState.siteTheme);
-    const siteDirection = useAppSelector((state: RootState) => state.appState.siteDirection);
+    // See hidden RTL site comment below
+    // const siteDirection = useAppSelector((state: RootState) => state.appState.siteDirection);
     const linkToThemesOverview = `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : ''}/themes/overview`;
 
     const onClickThemeSelectorItem = React.useCallback(
@@ -73,13 +76,14 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
         [dispatch]
     );
 
-    const onDirectionChange = React.useCallback(
-        (option: UIDirection): void => {
-            dispatch(changeDirection({ siteDirection: option }));
-            setThemeSelectorAnchorEl(null);
-        },
-        [dispatch]
-    );
+    // See hidden RTL site options below
+    // const onDirectionChange = React.useCallback(
+    //     (option: UIDirection): void => {
+    //         dispatch(changeDirection({ siteDirection: option }));
+    //         setThemeSelectorAnchorEl(null);
+    //     },
+    //     [dispatch]
+    // );
 
     const ThemeSelector = React.useCallback(
         () => (
@@ -119,7 +123,8 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                         </RadioGroup>
                     </FormControl>
                     <Divider />
-                    <FormControl sx={[styles.formControl, { pt: 1 }]}>
+                    {/* hide the site RTL options in future only provide RTL to running examples */}
+                    {/* <FormControl sx={[styles.formControl, { pt: 1 }]}>
                         <RadioGroup defaultValue={siteDirection}>
                             <FormLabel sx={styles.formLabel}>Choose Direction</FormLabel>
                             <FormControlLabel
@@ -135,7 +140,7 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                                 onClick={(): void => onDirectionChange('rtl')}
                             />
                         </RadioGroup>
-                    </FormControl>
+                    </FormControl> */}
                     <Divider />
                     <Box sx={styles.caption}>
                         <Typography variant={'caption'} color={'text.secondary'}>
