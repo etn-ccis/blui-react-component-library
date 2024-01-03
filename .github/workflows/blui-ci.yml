@@ -83,6 +83,7 @@ jobs:
         path: dist
 
   test-artifacts:
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v3
