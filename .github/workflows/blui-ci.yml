@@ -30,7 +30,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
-    - run: yarn --frozen-lockfile
+    - run: yarn install:dependencies
     - run: yarn prettier
     - run: yarn lint
 
