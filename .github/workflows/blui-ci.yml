@@ -34,8 +34,6 @@ jobs:
     - run: yarn prettier
       working-directory: components
     - run: yarn prettier
-      working-directory: demos/showcase
-    - run: yarn prettier
       working-directory: docs
     - run: yarn lint
       working-directory: components
