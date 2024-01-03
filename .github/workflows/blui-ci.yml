@@ -32,6 +32,7 @@ jobs:
         cache: 'yarn'
     - run: yarn install:dependencies
     - run: yarn prettier
+      working-directory: components
     - run: yarn lint
 
   unit_test:
