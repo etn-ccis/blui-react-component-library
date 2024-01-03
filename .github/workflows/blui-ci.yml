@@ -32,8 +32,6 @@ jobs:
         cache: 'yarn'
     - run: yarn install:dependencies
     - run: yarn prettier
-      working-directory: ./
-    - run: yarn prettier
       working-directory: components
     - run: yarn prettier
       working-directory: demos/showcase
@@ -41,6 +39,10 @@ jobs:
       working-directory: docs
     - run: yarn lint
       working-directory: components
+    - run: yarn lint
+      working-directory: demos/showcase
+    - run: yarn lint
+      working-directory: docs
 
   unit_test:
     runs-on: ubuntu-latest
