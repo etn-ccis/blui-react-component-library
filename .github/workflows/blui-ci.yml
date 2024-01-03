@@ -61,7 +61,7 @@ jobs:
     - name: Upload to Codecov
       uses: codecov/codecov-action@v3
       with:
-        directory: ./coverage/
+        directory: ./components/coverage/
         files: clover.xml
         flags: unittests
         name: codecov-report
