@@ -1,4 +1,4 @@
-# Brightlayer UI React Components
+## Brightlayer UI React Components
 
 [![](https://img.shields.io/circleci/project/github/etn-ccis/blui-react-component-library/master.svg?style=flat)](https://circleci.com/gh/etn-ccis/blui-react-component-library/tree/master)
 ![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-components?label=%40brightlayer-ui%2Freact-components) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-component-library/branch/master/graph/badge.svg?token=HQFW5YF7WP)](https://codecov.io/gh/etn-ccis/blui-react-component-library)
