@@ -67,7 +67,7 @@ jobs:
         name: codecov-report
         verbose: true
 
-  build:
+  build_library:
     runs-on: ubuntu-latest
 
     strategy:
@@ -82,6 +82,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
     - run: yarn --frozen-lockfile
+      working-directory: components
     - run: yarn build
     - name: Save build
       uses: actions/upload-artifact@v3
