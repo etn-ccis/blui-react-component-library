@@ -39,7 +39,7 @@ if (process.env.REACT_APP_GAID) {
 }
 
 // Brightlayer UI Icon font
-require('@brightlayer-ui/icons/iconfont/BrightlayerUIIcons.css');
+require('@brightlayer-ui/icons/BrightlayerUIIcons.css');
 const container = document.getElementById('root');
 
 if (!container) throw new Error('Root Element was not found in the DOM');
@@ -62,6 +62,7 @@ const ThemedApp = (): JSX.Element => {
     const MemoThemedApp = React.useCallback(
         () => (
             <ThemeProvider theme={createTheme(theme)}>
+                <CssBaseline />
                 <MDXProvider components={componentsMap as any}>
                     <App />
                 </MDXProvider>
@@ -77,7 +78,6 @@ root.render(
         <BrowserRouter basename={basename}>
             <ScrollToTop />
             <GoogleAnalyticsWrapper />
-            <CssBaseline />
             <Provider store={store}>
                 <ThemedApp />
             </Provider>

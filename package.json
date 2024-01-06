@@ -10,7 +10,7 @@
         "link:components": "cd scripts && bash ./linkComponents.sh && cd ..",
         "install:dependencies": "cd demos/showcase && yarn && cd ../../docs && yarn && cd ../components && yarn",
         "start:showcase": "yarn initialize && yarn install:dependencies && yarn link:components && cd demos/showcase && yarn start",
-        "start:reactdev": "yarn install:dependencies && yarn link:components && cd docs && yarn start",
+        "start:docs": "yarn install:dependencies && yarn link:components && cd docs && yarn start",
         "start": "yarn start:showcase",
         "lint": "cd components && yarn lint",
         "lint:fix": "cd components && yarn lint:fix",
