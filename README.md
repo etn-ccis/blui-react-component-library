@@ -62,4 +62,4 @@ See the [documentation](https://brightlayer-ui-components.github.io/react) for i
 
 ## Browser Support
 
-Brightlayer UI libraries will work with any modern browser. For details refer to our [Browser Support](https://brightlayer-ui.github.io/development/frameworks-web/react#browser-support) documentation.
+Brightlayer UI libraries will work with any modern browser. For details, please refer to our [Browser Support](https://brightlayer-ui.github.io/development/frameworks-web/react#browser-support) documentation.

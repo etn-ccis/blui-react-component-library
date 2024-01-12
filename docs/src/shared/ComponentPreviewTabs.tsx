@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { SxProps, Theme, useTheme } from '@mui/material/styles';
 import { TabPanel } from '../shared';
-import { PLAYGROUND_DRAWER_WIDTH } from './constants';
 
 const hidePlaygroundTabs = ['drawer-layout', 'spacer', 'drawer-body'];
 
@@ -61,7 +60,6 @@ const playgroundContentStyles = {
     height: '100%',
     display: 'flex',
     flex: '1 1 0px',
-    marginRight: `${PLAYGROUND_DRAWER_WIDTH}px`,
 };
 
 export const ComponentPreviewTabs = (): JSX.Element => {
@@ -146,7 +144,7 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                 </Box>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <Box sx={playgroundContentStyles}>
+                <Box sx={[playgroundContentStyles]}>
                     <Outlet />
                 </Box>
             </TabPanel>

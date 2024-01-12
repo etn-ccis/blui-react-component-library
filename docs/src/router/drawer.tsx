@@ -54,6 +54,7 @@ const styles = {
         '& .BluiDrawerNavItem-root, & .BluiInfoListItem-root, & .MuiButtonBase-root.MuiListItemButton-root': {
             height: (theme: Theme): string => theme.spacing(5),
         },
+        paddingBottom: (theme: Theme): string => theme.spacing(2),
     },
     navGroupTopDivider: {
         borderTop: (theme: Theme): string => `1px solid ${theme.palette.divider}`,

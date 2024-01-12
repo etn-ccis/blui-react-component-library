@@ -2,11 +2,11 @@ version: 2.1
 orbs:
     codecov: codecov/codecov@3.2.2
     gh: circleci/github-cli@1.0.3
-    browser-tools: circleci/browser-tools@1.2.4
+    browser-tools: circleci/browser-tools@1.4.6
 jobs:
     build_library:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         steps:
             - checkout
             - browser-tools/install-browser-tools
@@ -61,7 +61,7 @@ jobs:
     coverage_report:
         working_directory: ~/react-component-library
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         steps:
             - checkout
             - attach_workspace:
@@ -73,7 +73,7 @@ jobs:
     # Builds the Showcase app using @brightlayer-ui/react-components persisted in /dist folder.
     build_showcase:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         environment:
             - MASTER_BRANCH: master
         steps:
@@ -119,7 +119,7 @@ jobs:
     # Builds the React Dev app using @brightlayer-ui/react-components persisted in /dist folder.
     build_reactdev:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
@@ -180,7 +180,7 @@ jobs:
 
     deploy_reactdev:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
@@ -218,7 +218,7 @@ jobs:
                       git push
     publish:
         docker:
-            - image: cimg/node:14.19.0-browsers
+            - image: cimg/node:18.17.1-browsers
         steps:
             - checkout
             - attach_workspace:

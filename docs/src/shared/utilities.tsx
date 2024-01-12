@@ -12,13 +12,12 @@ import Place from '@mui/icons-material/Place';
 import PinDrop from '@mui/icons-material/PinDrop';
 import Remove from '@mui/icons-material/Remove';
 import RouterIcon from '@mui/icons-material/Router';
-import SensorsOffIcon from '@mui/icons-material/SensorsOff';
+import SensorsOff from '@mui/icons-material/SensorsOff';
 import TrendingUp from '@mui/icons-material/TrendingUp';
 import TrendingDown from '@mui/icons-material/TrendingDown';
-import { RootState } from '../redux/store';
-import { ComponentType, PropsType } from '../__types__';
 import { SvgIconProps } from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 
 const topologyBgImage = require('../shared/images/topology_40.png');
 const farmBgImage = require('../shared/images/farm.jpg');
@@ -64,9 +63,11 @@ export const getHash = (str: string): string =>
 export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | undefined => {
     switch (icon) {
         case '<Add />':
-            return <Add />;
+            return React.createElement(Add, iconProps);
         case '<AddAPhoto />':
-            return <AddAPhoto />;
+            return React.createElement(AddAPhoto, iconProps);
+        case '<ArrowBack />':
+            return React.createElement(ArrowBack, iconProps);
         case '<Device />':
             return React.createElement(Device, iconProps);
         case '<Devices />':
@@ -76,21 +77,21 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
         case '<FanCircled />':
             return React.createElement(FanCircled, iconProps);
         case '<FitnessCenter />':
-            return <FitnessCenter />;
+            return React.createElement(FitnessCenter, iconProps);
         case '<Home />':
-            return <Home />;
+            return React.createElement(Home, iconProps);
         case '<Menu />':
-            return <Menu />;
+            return React.createElement(Menu, iconProps);
         case '<Place />':
-            return <Place />;
+            return React.createElement(Place, iconProps);
         case '<PinDrop />':
-            return <PinDrop />;
+            return React.createElement(PinDrop, iconProps);
         case '<Remove />':
-            return <Remove />;
+            return React.createElement(Remove, iconProps);
         case '<RouterIcon />':
             return React.createElement(RouterIcon, iconProps);
-        case '<SensorsOffIcon />':
-            return React.createElement(SensorsOffIcon, iconProps);
+        case '<SensorsOff />':
+            return React.createElement(SensorsOff, iconProps);
         case '<TrendingUp />':
             return React.createElement(TrendingUp, iconProps);
         case '<TrendingDown />':
@@ -101,65 +102,11 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
     }
 };
 
-export const createProps = (props: PropsType[]): any => {
-    const componentProps = props?.reduce(
-        (acc: any, cur: any) => ({
-            ...acc,
-            [cur.propName]: Array.isArray(cur.inputValue) ? cur.defaultValue : cur.inputValue,
-        }),
-        {}
-    );
-    return componentProps;
-};
-
-export const getComponentState = (componentName: string, state: RootState['componentsPropsState']): ComponentType => {
-    switch (componentName) {
-        case 'App Bar':
-            return state.appBarComponent;
-        case 'Channel Value':
-            return state.channelValueComponent;
-        case 'Drawer Header':
-            return state.drawerHeaderComponent;
-        case 'Drawer':
-            return state.drawerComponent;
-        case 'Drawer Subheader':
-            return state.drawerSubheaderComponent;
-        case 'Drawer Footer':
-            return state.drawerFooterComponent;
-        case 'Drawer Nav Group':
-            return state.drawerNavGroupComponent;
-        case 'Drawer Nav Item':
-            return state.drawerNavItemComponent;
-        case 'Drawer Rail Item':
-            return state.drawerRailItemComponent;
-        case 'Empty State':
-            return state.emptyStateComponent;
-        case 'Hero':
-            return state.heroComponent;
-        case 'Info List Item':
-            return state.infoListItemComponent;
-        case 'List Item Tag':
-            return state.listItemTagComponent;
-        // case 'Spacer':
-        //     return state.spacerComponent;
-        case 'Score Card':
-            return state.scoreCardComponent;
-        case 'Three Liner':
-            return state.threeLinerComponent;
-        case 'Toolbar Menu':
-            return state.toolbarMenuComponent;
-        case 'User Menu':
-            return state.userMenuComponent;
-        default:
-            return state.drawerComponent;
-    }
-};
-
 export const getImage = (image: string): string | undefined => {
-    switch (image) {
-        case 'Pattern':
+    switch (image.toLowerCase()) {
+        case 'pattern':
             return topologyBgImage;
-        case 'Farm':
+        case 'farm':
             return farmBgImage;
         case 'undefined':
             return undefined;
@@ -168,65 +115,21 @@ export const getImage = (image: string): string | undefined => {
     }
 };
 
-const iterateIconProps = (iconProps: any): string => {
+const iterateIconProps = (iconProps?: SvgIconProps): string => {
+    if (!iconProps) return '';
     let str = '';
     for (const prop in iconProps) {
-        str = `${str}` + `${prop}="${iconProps[prop]}" `;
+        if (iconProps[prop as keyof SvgIconProps]) {
+            str = `${str}` + `${prop}={'${iconProps[prop as keyof SvgIconProps] as string}'} `;
+        }
     }
     return str;
 };
 
-export const getIconWithProp = (icon: string, iconProps: SvgIconProps): string => {
+export const getIconSnippetWithProps = (icon: string, iconProps?: SvgIconProps): string => {
     const index = icon.lastIndexOf('/>');
     const result = icon.slice(0, index) + iterateIconProps(iconProps) + icon.slice(index);
     return result;
-};
-
-export const filterPropsAsPerGroupType = (
-    state: ComponentType,
-    propName: string,
-    groupType?: string
-): PropsType | undefined => {
-    switch (groupType) {
-        case 'props':
-            return state.props?.filter((prop) => prop.propName === propName)[0];
-        case 'sharedProps':
-            return state.sharedProps?.filter((prop) => prop.propName === propName)[0];
-        case 'otherProps':
-            return state.otherProps?.filter((prop) => prop.propName === propName)[0];
-        default:
-            return state.props?.filter((prop) => prop.propName === propName)[0];
-    }
-};
-
-export const hideDefaultPropsFromSnippet = (
-    state: ComponentType,
-    propName: string,
-    currentValue: any | undefined,
-    groupType?: string,
-    themeDefaultValue?: string | number
-): string => {
-    const knob = filterPropsAsPerGroupType(state, propName, groupType);
-    if (knob?.defaultValue === currentValue || themeDefaultValue === currentValue) {
-        return '';
-    }
-    switch (knob?.propType) {
-        case 'string':
-        case 'string | Array<React.ReactNode>':
-            return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
-        case 'ReactNode':
-            if (knob.inputType === 'string') {
-                return currentValue === '' ? '' : `${propName}={"${currentValue}"}`;
-            }
-            return `${propName}={${currentValue}}`;
-        case 'boolean':
-            return `${propName}={${currentValue}}`;
-        case 'number':
-        case 'number | string':
-            return currentValue === '' ? '' : `${propName}={${currentValue}}`;
-        default:
-            return `${propName}={${currentValue}}`;
-    }
 };
 
 export const removeEmptyLines = (code: string): string => code.replace(/^\s*$(?:\r\n?|\n)/gm, '');
@@ -363,3 +266,13 @@ export const getBodyFiller = (): JSX.Element => (
         interdum, justo sit amet maximus pellentesque, eros orci dictum diam, id bibendum risus neque non risus.
     </Box>
 );
+
+export const removeEmptyProps = (props: { [key: string]: any }): { [key: string]: any } => {
+    const newProps: { [key: string]: any } = {};
+    Object.keys(props)
+        .filter((p: string) => !['', 'undefined', undefined, null].includes(props[p]))
+        .forEach((p) => {
+            newProps[p] = props[p];
+        });
+    return newProps;
+};

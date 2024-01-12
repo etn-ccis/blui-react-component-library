@@ -10,6 +10,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import Typography from '@mui/material/Typography';
 import { Spacer } from '@brightlayer-ui/react-components';
 import { Settings } from '@mui/icons-material';
@@ -19,10 +20,12 @@ import Box from '@mui/material/Box';
 
 // hooks
 import { toggleDrawer, changeSiteTheme } from '../redux/appState';
+// import { changeDirection } from '../redux/appState';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useTheme } from '@mui/material/styles';
 import { RootState } from '../redux/store';
 import { SiteThemeType } from '../__types__';
+// import { UIDirection } from '../__types__';
 
 export type SharedAppBarProps = {
     title: string;
@@ -35,8 +38,18 @@ const styles = {
     },
     caption: {
         px: 2,
-        pt: 1,
+        pt: 2,
+        pb: 1,
         width: 280,
+    },
+    menuContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    formLabel: {
+        fontWeight: '600',
+        color: 'text.primary',
+        py: 1,
     },
 };
 
@@ -47,15 +60,30 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
     const dispatch = useAppDispatch();
     const [themeSelectorAnchorEl, setThemeSelectorAnchorEl] = React.useState<null | HTMLElement>(null);
     const siteTheme = useAppSelector((state: RootState) => state.appState.siteTheme);
+    // See hidden RTL site comment below
+    // const siteDirection = useAppSelector((state: RootState) => state.appState.siteDirection);
     const linkToThemesOverview = `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : ''}/themes/overview`;
 
     const onClickThemeSelectorItem = React.useCallback(
         (option: SiteThemeType): void => {
-            dispatch(changeSiteTheme({ siteTheme: option }));
+            dispatch(
+                changeSiteTheme({
+                    siteTheme: option,
+                })
+            );
             setThemeSelectorAnchorEl(null);
         },
         [dispatch]
     );
+
+    // See hidden RTL site options below
+    // const onDirectionChange = React.useCallback(
+    //     (option: UIDirection): void => {
+    //         dispatch(changeDirection({ siteDirection: option }));
+    //         setThemeSelectorAnchorEl(null);
+    //     },
+    //     [dispatch]
+    // );
 
     const ThemeSelector = React.useCallback(
         () => (
@@ -66,41 +94,62 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                     setThemeSelectorAnchorEl(null);
                 }}
             >
-                <FormControl sx={styles.formControl}>
-                    <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue={siteTheme}
-                        name="radio-buttons-group"
-                    >
-                        <FormControlLabel
-                            value="light"
-                            control={<Radio />}
-                            label="Light Theme"
-                            onClick={(): void => onClickThemeSelectorItem('light')}
-                        />
-                        <FormControlLabel
-                            value="dark"
-                            control={<Radio />}
-                            label="Dark Theme"
-                            onClick={(): void => onClickThemeSelectorItem('dark')}
-                        />
-                        <FormControlLabel
-                            value="system"
-                            control={<Radio />}
-                            label="System Default"
-                            onClick={(): void => onClickThemeSelectorItem('system')}
-                        />
-                    </RadioGroup>
-                </FormControl>
-                <Divider />
-                <Box sx={styles.caption}>
-                    <Typography variant={'caption'} color={'text.secondary'}>
-                        This website is themed using our React theme package. Learn more{' '}
-                        <a href={linkToThemesOverview} style={{ color: 'inherit' }}>
-                            here
-                        </a>
-                        .
-                    </Typography>
+                <Box sx={styles.menuContainer}>
+                    <FormControl sx={styles.formControl}>
+                        <FormLabel sx={styles.formLabel}>Choose Theme</FormLabel>
+                        <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue={siteTheme}
+                            name="radio-buttons-group"
+                        >
+                            <FormControlLabel
+                                value="light"
+                                control={<Radio />}
+                                label="Light Theme"
+                                onClick={(): void => onClickThemeSelectorItem('light')}
+                            />
+                            <FormControlLabel
+                                value="dark"
+                                control={<Radio />}
+                                label="Dark Theme"
+                                onClick={(): void => onClickThemeSelectorItem('dark')}
+                            />
+                            <FormControlLabel
+                                value="system"
+                                control={<Radio />}
+                                label="System Default"
+                                onClick={(): void => onClickThemeSelectorItem('system')}
+                            />
+                        </RadioGroup>
+                    </FormControl>
+                    <Divider />
+                    {/* hide the site RTL options in future only provide RTL to running examples */}
+                    {/* <FormControl sx={[styles.formControl, { pt: 1 }]}>
+                        <RadioGroup defaultValue={siteDirection}>
+                            <FormLabel sx={styles.formLabel}>Choose Direction</FormLabel>
+                            <FormControlLabel
+                                value="ltr"
+                                control={<Radio />}
+                                label="Left-to-Right"
+                                onClick={(): void => onDirectionChange('ltr')}
+                            />
+                            <FormControlLabel
+                                value="rtl"
+                                control={<Radio />}
+                                label="Right-to-Left"
+                                onClick={(): void => onDirectionChange('rtl')}
+                            />
+                        </RadioGroup>
+                    </FormControl> */}
+                    <Divider />
+                    <Box sx={styles.caption}>
+                        <Typography variant={'caption'} color={'text.secondary'}>
+                            This website is themed using our React theme package. Learn more{' '}
+                            <a href={linkToThemesOverview} style={{ color: 'inherit' }}>
+                                here
+                            </a>
+                        </Typography>
+                    </Box>
                 </Box>
             </Menu>
         ),
