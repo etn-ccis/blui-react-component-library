@@ -121,7 +121,7 @@ jobs:
       with:
         name: tarball
         if-no-files-found: error
-        path: tarball
+        path: dist
 
   # build_showcase:
   #   runs-on: ubuntu-latest
