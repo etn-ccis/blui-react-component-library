@@ -152,7 +152,7 @@ jobs:
         name: tarball
         path: tarball
     - run: |
-        cp -r tarball/package.json demos/showcase/package.json
+        cp -r demos/showcase/package.json tarball/package.json
         yarn add tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
       working-directory: tarball
 
