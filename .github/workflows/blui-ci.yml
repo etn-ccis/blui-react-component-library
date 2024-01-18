@@ -151,7 +151,7 @@ jobs:
       with:
         name: tarball
         path: tarball
-    - run: tar xzf tarball.tgz -C $RUNNER_TEMP
+    - run: tar xzf tarball.* -C $RUNNER_TEMP
       working-directory: tarball
     - run: |
         cp -r demos/showcase/package.json $TAR_DIR/package.json
