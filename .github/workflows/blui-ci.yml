@@ -152,8 +152,8 @@ jobs:
         name: tarball
         path: tarball
     - run: |
-        cp -r $TAR_DIR/package.json demos/showcase/package.json
-        yarn add $TAR_DIR/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
+        cp -r tarball/package.json demos/showcase/package.json
+        yarn add tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
       working-directory: tarball
 
     - uses: actions/checkout@v3
