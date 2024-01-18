@@ -151,7 +151,7 @@ jobs:
       with:
         name: tarball
         path: tarball
-    - run: tar xzf tarball/*.tar.gz -C $RUNNER_TEMP
+    - run: tar xzf tarball/*.tar.tgz -C $RUNNER_TEMP
     - run: |
         cp -r demos/showcase/package.json $TAR_DIR/package.json
         yarn add $TAR_DIR/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
