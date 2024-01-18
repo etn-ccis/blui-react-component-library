@@ -119,6 +119,7 @@ jobs:
         name: dist
         path: dist
     - run: npm pack
+      working-directory: dist
     - name: Save npm pack
       uses: actions/upload-artifact@v3
       with:
@@ -126,31 +127,36 @@ jobs:
         if-no-files-found: error
         path: dist
 
-  build_showcase:
-    runs-on: ubuntu-latest
-    needs: npm_pack
+  # build_showcase:
+  #   runs-on: ubuntu-latest
+  #   needs: npm_pack
 
-    strategy:
-      matrix:
-        node-version: [16.x]
+  #   strategy:
+  #     matrix:
+  #       node-version: [16.x]
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-    - run: git submodule init && git submodule update
-    - run: yarn --frozen-lockfile
-      working-directory: demos/showcase
-    - name: Download tarball & extract
-      uses: actions/download-artifact@v3
-      with:
-        name: tarball
-        path: tarball
-    - run: tar xzf tarball/*.tar.gz
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v3
+  #   - name: Use Node.js ${{ matrix.node-version }}
+  #     uses: actions/setup-node@v3
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+  #       cache: 'yarn'
+  #   - run: git submodule init && git submodule update
+  #   - run: yarn --frozen-lockfile
+  #     working-directory: demos/showcase
+  #   - run: yarn install:dependencies
+  #     working-directory: demos/showcase
+  #   - name: Download tarball & extract
+  #     uses: actions/download-artifact@v3
+  #     with:
+  #       name: tarball
+  #       path: tarball
+  #   - run: tar xzf tarball/*.tar.gz -C $RUNNER_TEMP
+  #   - run: |
+  #       cp -r demos/showcase/node_modules/@brightlayer-ui/react-components $TAR_DIR/react-components
+  #       cp -r demos/showcase/package.json $TAR_DIR/package.json
 
     # - uses: actions/checkout@v3
     # - name: Use Node.js ${{ matrix.node-version }}
