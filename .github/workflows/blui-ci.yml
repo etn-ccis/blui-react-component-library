@@ -151,11 +151,10 @@ jobs:
       with:
         name: tarball
         path: tarball
-    - run: tar xzf tarball.* -C $RUNNER_TEMP
-      working-directory: tarball
     - run: |
         cp -r demos/showcase/package.json $TAR_DIR/package.json
         yarn add $TAR_DIR/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
+      working-directory: tarball
 
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
