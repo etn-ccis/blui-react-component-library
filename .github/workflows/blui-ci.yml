@@ -151,11 +151,10 @@ jobs:
       with:
         name: tarball
         path: tarball
-    - run: |
+    - run: unzip tarball.zip
         cp -r demos/showcase/package.json tarball/package.json
         yarn add tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
-      working-directory: tarball
-
+      working-directory: demos/showcase
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
