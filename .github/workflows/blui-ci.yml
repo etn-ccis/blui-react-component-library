@@ -152,6 +152,7 @@ jobs:
         name: tarball
         path: tarball
     - run: unzip tarball
+      working-directory: tarball
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
