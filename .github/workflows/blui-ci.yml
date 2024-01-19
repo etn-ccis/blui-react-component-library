@@ -160,10 +160,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
-    - run: yarn --frozen-lockfile
-      working-directory: demos/showcase
-    - run: yarn
-      working-directory: demos/showcase
     - run: yarn build
       working-directory: demos/showcase
 
