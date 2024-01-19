@@ -31,10 +31,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+    - run: yarn initialize
     - run: yarn install:dependencies
     - run: yarn prettier
       working-directory: components
-    - run: yarn initialize
     - run: yarn prettier
       working-directory: demos/showcase
     - run: yarn prettier
@@ -198,5 +198,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+    - run: yarn
     - run: yarn build
       working-directory: docs
