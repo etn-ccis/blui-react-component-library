@@ -34,6 +34,9 @@ jobs:
     - run: yarn install:dependencies
     - run: yarn prettier
       working-directory: components
+    - run: yarn initialize
+    - run: yarn prettier
+      working-directory: demos/showcase
     - run: yarn prettier
       working-directory: docs
     - run: yarn lint
@@ -187,16 +190,13 @@ jobs:
         name: tarball
         path: tarball
     - run: |
-        cp -r docs/package.json tarball/package.json
+        PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
+        yarn add ./tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
-    - run: yarn --frozen-lockfile
-      working-directory: docs
-    - run: yarn
-      working-directory: docs
     - run: yarn build
       working-directory: docs
