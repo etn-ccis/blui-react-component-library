@@ -152,9 +152,8 @@ jobs:
         name: tarball
         path: tarball
     - run: |
-        # cp -r demos/showcase/package.json tarball/package.json
-        PACKAGED_VERSION=`node -p "require('../../tarball/package.json').version"`
-        yarn add ../../tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
+        PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
+        yarn add ./tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
