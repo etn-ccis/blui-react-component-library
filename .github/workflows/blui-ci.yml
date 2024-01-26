@@ -177,7 +177,8 @@ jobs:
 
     steps:
     - uses: actions/github-script@v6
-      with: 
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           export PUBLIC_URL=/react-dev
           export REACT_APP_BRANCH=dev
