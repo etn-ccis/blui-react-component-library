@@ -168,7 +168,11 @@ jobs:
 
   build_reactdev:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.base.ref == 'dev' }}
+    if: ${{ github.event.pull_request.base.ref == 'dev' }}; then
+      export PUBLIC_URL=/react-dev
+      export REACT_APP_BRANCH=dev
+      export REACT_APP_GAID=G-JY7JTQ87MB
+      echo "dev"
     needs: npm_pack
 
     strategy:
@@ -176,14 +180,6 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - uses: actions/github-script@v6
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          export PUBLIC_URL=/react-dev
-          export REACT_APP_BRANCH=dev
-          export REACT_APP_GAID=G-JY7JTQ87MB
-          echo "dev"
     - name: Checkout
       uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
