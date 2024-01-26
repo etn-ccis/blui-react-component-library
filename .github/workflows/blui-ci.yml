@@ -168,6 +168,7 @@ jobs:
 
   build_reactdev:
     runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.base.ref == 'dev' }}
     needs: npm_pack
 
     strategy:
@@ -175,6 +176,13 @@ jobs:
         node-version: [16.x]
 
     steps:
+    - uses: actions/github-script@v6
+      with: 
+        script: |
+          export PUBLIC_URL=/react-dev
+          export REACT_APP_BRANCH=dev
+          export REACT_APP_GAID=G-JY7JTQ87MB
+          echo "dev"
     - name: Checkout
       uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
@@ -198,7 +206,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
-    - run: yarn
+    - run: yarn && yarn build
       working-directory: docs
-    - run: yarn build
-      working-directory: docs
+    - name: Save build
+      uses: actions/upload-artifact@v3
+      with:
+        name: build
+        if-no-files-found: error
+        path: build
