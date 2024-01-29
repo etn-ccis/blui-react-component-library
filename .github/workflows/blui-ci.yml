@@ -168,11 +168,6 @@ jobs:
 
   build_reactdev:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.base.ref == 'dev' }}; then
-      export PUBLIC_URL=/react-dev
-      export REACT_APP_BRANCH=dev
-      export REACT_APP_GAID=G-JY7JTQ87MB
-      echo "dev"
     needs: npm_pack
 
     strategy:
@@ -182,6 +177,21 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Check branch ref
+      run: |
+        if [ ${{ github.event.pull_request.base.ref == 'dev' }} ]; then
+          export PUBLIC_URL=/react-dev
+          export REACT_APP_BRANCH=dev
+          export REACT_APP_GAID=G-JY7JTQ87MB
+          echo "dev branch"
+        elif [ ${{ github.event.pull_request.base.ref == 'master' }} ]; then
+          export PUBLIC_URL=/react
+          export REACT_APP_BRANCH=master
+          export REACT_APP_GAID=G-Y2TXKYRFM0
+          echo "master branch"
+        else
+          echo "error exporting config"
+        fi
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
