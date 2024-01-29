@@ -91,7 +91,7 @@ jobs:
       working-directory: components
     - run: yarn build
     - name: Save build
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: dist
         if-no-files-found: error
@@ -124,7 +124,7 @@ jobs:
     - run: npm pack
       working-directory: dist
     - name: Save npm pack
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: tarball
         if-no-files-found: error
@@ -216,7 +216,7 @@ jobs:
     - run: yarn && yarn build
       working-directory: docs
     - name: Save build
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: build
         if-no-files-found: error
