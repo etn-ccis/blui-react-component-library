@@ -226,6 +226,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_reactdev
     env:
+      DEV_DEPLOY_TOKEN: ${{secrets.DEV_DEPLOY_TOKEN}}
       MASTER_BRANCH: master
       DEV_BRANCH: dev
       DEV_TARGET: https://github.com/brightlayer-ui-components/react-dev
@@ -242,7 +243,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
             folder: docs/build
-            token: whatever
+            token: $DEV_DEPLOY_TOKEN
             repository-name: brightlayer-ui-components/react-dev
             branch: master
             dry-run: true
