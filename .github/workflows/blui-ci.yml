@@ -234,6 +234,8 @@ jobs:
       GH_EMAIL: brightlayer-ui@eaton.com
       GH_NAME: Brightlayer UI Agent
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Download build
         uses: actions/download-artifact@v3
         with:
