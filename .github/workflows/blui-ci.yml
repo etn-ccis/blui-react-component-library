@@ -241,9 +241,10 @@ jobs:
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-            folder: build
+            folder: docs/build
             token: whatever
             repository-name: brightlayer-ui-components/react-dev
+            branch: master
             dry-run: true
       # - run: |
       #     git config --global user.email "$GH_EMAIL"
