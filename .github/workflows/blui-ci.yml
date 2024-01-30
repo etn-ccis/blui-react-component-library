@@ -248,7 +248,6 @@ jobs:
             token: $DEV_DEPLOY_TOKEN
             repository-name: brightlayer-ui-components/react-dev
             branch: master
-            dry-run: true
       # - run: |
       #     git config --global user.email "$GH_EMAIL"
       #     git config --global user.name "$GH_NAME"
