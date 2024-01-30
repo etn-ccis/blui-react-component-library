@@ -222,17 +222,11 @@ jobs:
         if-no-files-found: error
         path: docs/build
 
-  deploy_reactdev:
+  deploy_react_dev:
     runs-on: ubuntu-latest
     needs: build_reactdev
     env:
       DEV_DEPLOY_TOKEN: ${{secrets.DEV_DEPLOY_TOKEN}}
-      MASTER_BRANCH: master
-      DEV_BRANCH: dev
-      DEV_TARGET: https://github.com/brightlayer-ui-components/react-dev
-      MASTER_TARGET: https://github.com/brightlayer-ui-components/react
-      GH_EMAIL: brightlayer-ui@eaton.com
-      GH_NAME: Brightlayer UI Agent
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -250,26 +244,28 @@ jobs:
             branch: master
             git-config-name: Brightlayer UI Agent
             git-config-email: brightlayer-ui@eaton.com
-            commit-message: "Automated deployment to GitHub Pages ${GITHUB_SHA}"
-      # - run: |
-      #     git config --global user.email "$GH_EMAIL"
-      #     git config --global user.name "$GH_NAME"
-      #     cd docs
-      #     if [ ${{ github.event.pull_request.base.ref == 'master' }} ]; then
-      #       git clone $MASTER_TARGET out
-      #     elif [ ${{ github.event.pull_request.base.ref == 'dev' }} ]; then
-      #       git clone $DEV_TARGET out
-      #     else
-      #       echo "error cloning"
-      #     fi
+            commit-message: "Automated deployment to GitHub Pages ${{github.sha}}"
 
-      #     cd out
-      #     git rm-rf .
-      #     cd ..
-
-      #     cp -a build/. out/.
-      #     cd out
-
-      #     git add -A
-      #     git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty 
-      #     git push
+  # deploy_react_prod:
+  #   runs-on: ubuntu-latest
+  #   needs: build_reactdev
+  #   env:
+  #     DEV_DEPLOY_TOKEN: ${{secrets.DEV_DEPLOY_TOKEN}}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Download build
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: build
+  #         path: docs/build
+  #     - name: deploy
+  #       uses: JamesIves/github-pages-deploy-action@v4
+  #       with:
+  #           folder: docs/build
+  #           token: ${{env.DEV_DEPLOY_TOKEN}}
+  #           repository-name: brightlayer-ui-components/react
+  #           branch: master
+  #           git-config-name: Brightlayer UI Agent
+  #           git-config-email: brightlayer-ui@eaton.com
+  #           commit-message: "Automated deployment to GitHub Pages ${{github.sha}}"
