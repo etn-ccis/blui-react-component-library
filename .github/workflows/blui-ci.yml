@@ -245,9 +245,12 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
             folder: docs/build
-            token: $DEV_DEPLOY_TOKEN
+            token: ${{env.DEV_DEPLOY_TOKEN}}
             repository-name: brightlayer-ui-components/react-dev
             branch: master
+            git-config-name: Brightlayer UI Agent
+            git-config-email: brightlayer-ui@eaton.com
+            commit-message: "Automated deployment to GitHub Pages ${GITHUB_SHA}"
       # - run: |
       #     git config --global user.email "$GH_EMAIL"
       #     git config --global user.name "$GH_NAME"
