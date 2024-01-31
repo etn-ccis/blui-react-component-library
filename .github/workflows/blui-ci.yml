@@ -235,7 +235,6 @@ jobs:
       - name: Check branch ref
         run: |
           if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
-          echo "dev branch deployed"
       - name: Download build
         uses: actions/download-artifact@v3
         with:
