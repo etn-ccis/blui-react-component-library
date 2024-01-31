@@ -226,15 +226,16 @@ jobs:
 
   deploy_react_doc_dev:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
     needs: build_reactdev
     env:
       DEV_DEPLOY_TOKEN: ${{secrets.DEV_DEPLOY_TOKEN}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Check branch ref
-        run: |
-          if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
+      # - name: Check branch ref
+      #   run: |
+      #     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
       - name: Download build
         uses: actions/download-artifact@v3
         with:
