@@ -192,13 +192,13 @@ jobs:
         else
           echo "error exporting config"
         fi
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-    - run: yarn --frozen-lockfile
-      working-directory: docs
+    # - name: Use Node.js ${{ matrix.node-version }}
+    #   uses: actions/setup-node@v4
+    #   with:
+    #     node-version: ${{ matrix.node-version }}
+    #     cache: 'yarn'
+    # - run: yarn --frozen-lockfile
+    #   working-directory: docs
     - name: Download tarball
       uses: actions/download-artifact@v3
       with:
@@ -213,6 +213,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+    - run: yarn --frozen-lockfile
+      working-directory: docs
     - run: yarn build
       working-directory: docs
     - name: Save build
