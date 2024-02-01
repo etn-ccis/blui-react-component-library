@@ -269,6 +269,9 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      BRANCH: ${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
     steps:
       - uses: actions/checkout@v4
       - name: Download dist
@@ -281,7 +284,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
       - run: yarn --frozen-lockfile
-      - run: yarn build
-      - run: yarn npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn publish:package -b ${{env.BRANCH}}
