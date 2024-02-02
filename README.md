@@ -53,10 +53,12 @@ You can build, link, and start the applications in a single step by running
 ```shell
 yarn start:showcase
 ```
+
 or
+
 ```shell
 yarn start:docs
-``````
+```
 
 from the root directory.
 
