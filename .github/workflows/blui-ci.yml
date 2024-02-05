@@ -169,9 +169,9 @@ jobs:
       matrix:
         node-version: [18.x]
     env:
-        REACT_APP_BRANCH: 'master'
-        PUBLIC_URL: '/react-dev'
-        REACT_APP_GAID: 'G-JY7JTQ87MB'
+        REACT_APP_BRANCH:  ${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
+        PUBLIC_URL: ${{ github.ref == 'refs/heads/master' && '/react' || '/react-dev' }}
+        REACT_APP_GAID: ${{ github.ref == 'refs/heads/master' && 'G-Y2TXKYRFM0' || 'G-JY7JTQ87MB' }}
 
     steps:
     - name: Checkout
@@ -192,7 +192,7 @@ jobs:
         cache: 'yarn'
     - run: yarn --frozen-lockfile
       working-directory: docs
-    - run: yarn build ${{env.REACT_APP_BRANCH}} ${{env.PUBLIC_URL}} ${{env.REACT_APP_GAID}}
+    - run: yarn build
       working-directory: docs
     - name: Save build
       uses: actions/upload-artifact@v3
