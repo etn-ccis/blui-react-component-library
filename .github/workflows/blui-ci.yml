@@ -168,24 +168,26 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+    env:
+        REACT_APP_BRANCH: ${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
+        PUBLIC_URL: ${{ github.ref == 'refs/heads/master' && '/react' || '/react-dev' }}
+        REACT_APP_GAID: ${{ github.ref == 'refs/heads/master' && 'G-Y2TXKYRFM0' || 'G-JY7JTQ87MB' }}
 
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Check branch ref
+    - name: branch inputs
       run: |
         if [ ${{ github.event.pull_request.base.ref == 'dev' }} ]; then
-          export PUBLIC_URL=/react-dev
-          export REACT_APP_BRANCH=dev
-          export REACT_APP_GAID=G-JY7JTQ87MB
-          echo "dev branch"
+          ${{env.REACT_APP_BRANCH}}
+          ${{env.PUBLIC_URL}}
+          ${{env.REACT_APP_GAID}}
         elif [ ${{ github.event.pull_request.base.ref == 'master' }} ]; then
-          export PUBLIC_URL=/react
-          export REACT_APP_BRANCH=master
-          export REACT_APP_GAID=G-Y2TXKYRFM0
-          echo "master branch"
+          ${{env.REACT_APP_BRANCH}}
+          ${{env.PUBLIC_URL}}
+          ${{env.REACT_APP_GAID}}
         else
-          echo "error exporting config"
+          echo "error exporting inputs"
         fi
     - name: Download tarball
       uses: actions/download-artifact@v3
