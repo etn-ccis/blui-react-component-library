@@ -192,12 +192,8 @@ jobs:
         cache: 'yarn'
     - run: yarn --frozen-lockfile
       working-directory: docs
-    - run: yarn build
+    - run: yarn build ${{env.REACT_APP_BRANCH}} ${{env.PUBLIC_URL}} ${{env.REACT_APP_GAID}}
       working-directory: docs
-    - run: |
-        ${{env.REACT_APP_BRANCH}}
-        ${{env.PUBLIC_URL}}
-        ${{env.REACT_APP_GAID}}
     - name: Save build
       uses: actions/upload-artifact@v3
       with:
