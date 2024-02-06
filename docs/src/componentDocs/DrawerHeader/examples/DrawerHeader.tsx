@@ -4,7 +4,7 @@ import { CodeBlock, CodeBlockActionButtonRow } from '../../../shared';
 import { DrawerHeaderExample } from './DrawerHeaderExample';
 
 const codeSnippet = `<Drawer open={true} width={250}>
-    <DrawerHeader title="Title" subtitle="Subtitle" />
+    <DrawerHeader title="Title" subtitle="Subtitle" icon={<Menu />} />
 </Drawer>
 `;
 
