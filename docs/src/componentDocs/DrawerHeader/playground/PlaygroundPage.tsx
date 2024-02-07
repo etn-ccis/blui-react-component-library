@@ -145,7 +145,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['icon', 'backgroundImage'] })}
     ${data.icon && data.icon !== 'undefined' ? `icon={${getIconSnippetWithProps(data.icon as string)}}` : ''}
     ${data.backgroundImage !== 'undefined' ? `backgroundImage={'../images/${data.backgroundImage as string}.png'}` : ''}
-/>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+/>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const DrawerHeaderPlaygroundComponent = (): JSX.Element => (
     <Box

@@ -139,7 +139,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     `<DrawerRailItem
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['icon', 'condensed'] })}
     ${data.icon !== 'undefined' ? `icon={${getIconSnippetWithProps(data.icon as string)}}` : ''}
-/>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+/>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const DrawerRailItemPlaygroundComponent = (): JSX.Element => (
     <Box

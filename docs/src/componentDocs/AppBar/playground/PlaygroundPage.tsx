@@ -148,6 +148,7 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     </Toolbar>
 </AppBar>`
         .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ')
         .replace(/^<AppBar(\s)+\n>/, '<AppBar>');
 
 export const AppBarPlaygroundComponent = (): JSX.Element => (

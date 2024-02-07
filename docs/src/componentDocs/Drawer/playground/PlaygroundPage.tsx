@@ -303,7 +303,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     <DrawerBody>
         <DrawerNavGroup {...navGroupProps} />
     </DrawerBody>
-</Drawer>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+</Drawer>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const DrawerPlaygroundComponent = (): JSX.Element => (
     <Box
