@@ -94,7 +94,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['open'] })}
 >
     <Box sx={{ p: 2 }}>Subheader Content Here</Box>
-</DrawerSubheader>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+</DrawerSubheader>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/^<DrawerSubheader(\s)+\n>/, '<DrawerSubheader>');
 
 export const DrawerSubheaderPlaygroundComponent = (): JSX.Element => (
     <Box
