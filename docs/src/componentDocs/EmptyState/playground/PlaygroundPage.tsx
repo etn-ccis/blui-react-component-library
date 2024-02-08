@@ -22,7 +22,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'ReactNode',
         description: 'The primary icon',
         initialValue: '<Devices />',
-        options: ['<Devices />', '<Router />', '<SensorsOff />'],
+        options: ['<Devices />', '<RouterIcon />', '<SensorsOff />'],
         required: true,
         category: 'Required Props',
     },
@@ -97,7 +97,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     }`
             : ''
     }
-/>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+/>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const EmptyStatePlaygroundComponent = (): JSX.Element => (
     <Box

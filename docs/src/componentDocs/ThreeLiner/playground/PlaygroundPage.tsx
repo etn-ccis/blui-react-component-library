@@ -61,7 +61,9 @@ const ThreeLinerPreview: PreviewComponent = ({ data }) => {
 const generateSnippet: CodeSnippetFunction = (data) =>
     `<ThreeLiner 
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t' })}
-/>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+/>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const ThreeLinerPlaygroundComponent = (): JSX.Element => (
     <Box
