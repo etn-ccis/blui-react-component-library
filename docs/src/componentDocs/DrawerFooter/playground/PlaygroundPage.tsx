@@ -102,7 +102,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['open'] })}
 >
     <Box sx={{ p: 2 }}>Footer Content Here</Box>
-</DrawerFooter>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+</DrawerFooter>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/^<DrawerFooter(\s)+\n>/, '<DrawerFooter>');
 
 export const DrawerFooterPlaygroundComponent = (): JSX.Element => (
     <Box
