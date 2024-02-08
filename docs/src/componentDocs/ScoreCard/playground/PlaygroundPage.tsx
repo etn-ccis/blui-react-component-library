@@ -254,7 +254,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
         icon={<Cloud />}
     />
     </List>
-</ScoreCard>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+</ScoreCard>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const ScoreCardPlaygroundComponent = (): JSX.Element => (
     <Box
