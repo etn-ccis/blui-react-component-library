@@ -104,6 +104,7 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     <Box sx={{ p: 2 }}>Footer Content Here</Box>
 </DrawerFooter>`
         .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/^<DrawerFooter(\s)+\n>/, '<DrawerFooter>')
         .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const DrawerFooterPlaygroundComponent = (): JSX.Element => (
