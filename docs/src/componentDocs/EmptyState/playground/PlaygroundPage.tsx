@@ -22,7 +22,7 @@ const inputConfig: InputConfig = [
         typeLabel: 'ReactNode',
         description: 'The primary icon',
         initialValue: '<Devices />',
-        options: ['<Devices />', '<RouterIcon />', '<SensorsOff />'],
+        options: ['<Devices />', '<Router />', '<SensorsOff />'],
         required: true,
         category: 'Required Props',
     },

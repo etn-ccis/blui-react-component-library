@@ -11,7 +11,7 @@ import Menu from '@mui/icons-material/Menu';
 import Place from '@mui/icons-material/Place';
 import PinDrop from '@mui/icons-material/PinDrop';
 import Remove from '@mui/icons-material/Remove';
-import RouterIcon from '@mui/icons-material/Router';
+import Router from '@mui/icons-material/Router';
 import SensorsOff from '@mui/icons-material/SensorsOff';
 import TrendingUp from '@mui/icons-material/TrendingUp';
 import TrendingDown from '@mui/icons-material/TrendingDown';
@@ -88,8 +88,8 @@ export const getIcon = (icon: string, iconProps?: SvgIconProps): JSX.Element | u
             return React.createElement(PinDrop, iconProps);
         case '<Remove />':
             return React.createElement(Remove, iconProps);
-        case '<RouterIcon />':
-            return React.createElement(RouterIcon, iconProps);
+        case '<Router />':
+            return React.createElement(Router, iconProps);
         case '<SensorsOff />':
             return React.createElement(SensorsOff, iconProps);
         case '<TrendingUp />':
