@@ -246,7 +246,6 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                     sx={{
                         backgroundColor: 'background.paper',
                         height: 350,
-                        width: `calc(100vw - 850px)`,
                         maxWidth: 700,
                     }}
                 >
