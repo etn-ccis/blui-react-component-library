@@ -38,7 +38,7 @@ const convertNavItems = (
             onClick: item.element
                 ? (): void => {
                       handleNavigate(fullURL);
-                      dispatch(toggleDrawer());
+                      dispatch(closeDrawer());
                   }
                 : undefined,
             items: item.pages
