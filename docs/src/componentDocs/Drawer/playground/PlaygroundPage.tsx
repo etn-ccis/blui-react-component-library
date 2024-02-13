@@ -187,9 +187,9 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                 sx={{
                     m: '16px 0',
                     backgroundColor: Colors.white[600],
-                    minHeight: 250,
+                    maxHeight: '100%',
                     position: 'relative',
-                    overflow: 'hidden',
+                    overflow: 'auto',
                 }}
                 ref={containerRef}
             >
