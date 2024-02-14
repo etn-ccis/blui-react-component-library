@@ -5,7 +5,7 @@ import { CustomNavGroupTitleContentExample } from './CustomNavGroupTitleContentE
 
 const codeSnippet = `<Drawer open width={250}>
     <DrawerBody>
-        <DrawerNavGroup hidePadding divider
+        <DrawerNavGroup hidePadding
             titleContent={
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1 }}>
                     <Typography variant="subtitle2">Nav Group Title Content</Typography>
