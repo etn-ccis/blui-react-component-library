@@ -102,8 +102,8 @@ export const ComplexDrawerExample = (): JSX.Element => {
             <Drawer open width={300} sx={{ mx: 'auto', height: 580 }} activeItem={selected} noLayout>
                 <DrawerHeader icon={<Menu />} title="Brightlayer UI" subtitle="Drawer Component" />
                 <DrawerBody>
-                    <DrawerNavGroup title="Group 1" hidePadding divider items={group1} />
-                    <DrawerNavGroup title="Group 2" hidePadding divider items={group2} />
+                    <DrawerNavGroup title="Group 1" hidePadding items={group1} />
+                    <DrawerNavGroup title="Group 2" hidePadding items={group2} />
                 </DrawerBody>
             </Drawer>
         </ExampleShowcase>
