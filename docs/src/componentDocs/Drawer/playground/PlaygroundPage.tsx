@@ -182,14 +182,14 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
     ];
 
     return (
-        <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
+        <Stack alignItems={'center'} justifyContent={'center'} sx={{ overflowY: 'auto', width: '100%', height: '100%', p: 1 }}>
             <Box
                 sx={{
                     m: '16px 0',
                     backgroundColor: Colors.white[600],
                     maxHeight: '100%',
+                    maxWidth: '100%',
                     position: 'relative',
-                    overflow: 'auto',
                 }}
                 ref={containerRef}
             >
@@ -246,7 +246,8 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                     sx={{
                         backgroundColor: 'background.paper',
                         height: 350,
-                        maxWidth: 700,
+                        width: 650,
+                        maxWidth: '100%',
                     }}
                 >
                     {rail ? (
