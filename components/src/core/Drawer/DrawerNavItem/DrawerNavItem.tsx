@@ -283,7 +283,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: cx(defaultClasses.ripple, classes.ripple),
+                          child: cx(defaultClasses.ripple),
                       },
                   },
               }
@@ -316,7 +316,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         e.stopPropagation();
                     }
                 }}
-                className={cx(defaultClasses.expandIcon, classes.expandIcon)}
+                className={cx(defaultClasses.expandIcon)}
                 collapseIcon={collapseIcon}
                 expanded={expanded}
             >
@@ -416,18 +416,15 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
-        root: ripple && hasAction ? undefined : cx(defaultClasses.infoListItemRoot, classes.infoListItemRoot),
-        listItemButtonRoot:
-            ripple && hasAction ? cx(defaultClasses.infoListItemRoot, classes.infoListItemRoot) : undefined,
+        root: ripple && hasAction ? undefined : cx(defaultClasses.infoListItemRoot),
+        listItemButtonRoot: ripple && hasAction ? cx(defaultClasses.infoListItemRoot) : undefined,
         title: cx(
             defaultClasses.title,
-            classes.title,
             active || (!disableActiveItemParentStyles && isInActiveTree) ? defaultClasses.titleActive : undefined,
             (active || (!disableActiveItemParentStyles && isInActiveTree)) && classes.titleActive
                 ? classes.titleActive
                 : undefined,
-            depth > 0 ? defaultClasses.nestedTitle : undefined,
-            depth > 0 && classes.nestedTitle ? classes.nestedTitle : undefined
+            depth > 0 ? defaultClasses.nestedTitle : undefined
         ),
     };
 
@@ -437,7 +434,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 <Root
                     ref={ref}
                     style={{ ...style, position: 'relative' }}
-                    className={cx(defaultClasses.root, className, classes.root)}
+                    className={cx(defaultClasses.root, className)}
                     depth={depth}
                     nestedBackgroundColor={nestedBackgroundColor}
                     backgroundColor={backgroundColor}
@@ -445,7 +442,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 >
                     {active && (
                         <ActiveItem
-                            className={cx(defaultClasses.active, classes.active)}
+                            className={cx(defaultClasses.active)}
                             style={{ backgroundColor: activeItemBackgroundColor }}
                             activeItemBackgroundShape={activeItemBackgroundShape}
                         />
@@ -493,7 +490,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             {((items && items.length > 0) || Boolean(children)) && (
                 <Collapse in={expanded && drawerOpen !== false} key={`${itemTitle}_group_${depth}`}>
                     <NestedListGroup
-                        className={cx(defaultClasses.nestedListGroup, classes.nestedListGroup)}
+                        className={cx(defaultClasses.nestedListGroup)}
                         nestedBackgroundColor={nestedBackgroundColor}
                     >
                         {items &&

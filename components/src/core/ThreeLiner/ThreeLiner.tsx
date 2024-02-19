@@ -90,7 +90,6 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
         title,
         subtitle,
         info,
-        classes = {},
         className: userClassName,
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -104,11 +103,11 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
             ref={ref}
             {...otherProps}
             animationDuration={animationDuration}
-            className={cx(defaultClasses.root, classes.root, userClassName)}
+            className={cx(defaultClasses.root, userClassName)}
         >
-            <Title className={cx(defaultClasses.title, classes.title)}>{title}</Title>
-            <Subtitle className={cx(defaultClasses.subtitle, classes.subtitle)}>{subtitle}</Subtitle>
-            <Info className={cx(defaultClasses.info, classes.info)}>{info}</Info>
+            <Title className={cx(defaultClasses.title)}>{title}</Title>
+            <Subtitle className={cx(defaultClasses.subtitle)}>{subtitle}</Subtitle>
+            <Info className={cx(defaultClasses.info)}>{info}</Info>
         </Root>
     );
 };

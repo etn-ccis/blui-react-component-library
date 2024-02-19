@@ -195,11 +195,11 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
     const getHeaderContent = useCallback(
         (): ReactNode =>
             titleContent || (
-                <Content className={cx(defaultClasses.content, classes.content)}>
+                <Content className={cx(defaultClasses.content)}>
                     <Title
                         noWrap
                         variant={'h6'}
-                        className={cx(defaultClasses.title, classes.title)}
+                        className={cx(defaultClasses.title)}
                         data-testid={'blui-drawer-header-title'}
                     >
                         {title}
@@ -209,7 +209,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                         <Subtitle
                             noWrap
                             variant={'body2'}
-                            className={cx(defaultClasses.subtitle, classes.subtitle)}
+                            className={cx(defaultClasses.subtitle)}
                             data-testid={'blui-drawer-header-subtitle'}
                         >
                             {subtitle}
@@ -224,7 +224,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         (): JSX.Element | null =>
             backgroundImage ? (
                 <Background
-                    className={cx(defaultClasses.background, classes.background)}
+                    className={cx(defaultClasses.background)}
                     backgroundImage={backgroundImage}
                     backgroundOpacity={backgroundOpacity}
                 />
@@ -237,7 +237,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
             <Root
                 ref={ref}
                 data-testid={'blui-drawer-header'}
-                className={cx(defaultClasses.root, classes.root)}
+                className={cx(defaultClasses.root)}
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}
                 disableGutters={disableGutters}
@@ -266,9 +266,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                             </IconButton>
                         )}
                         {!onIconClick && (
-                            <NonClickableIcon className={cx(defaultClasses.nonClickableIcon, classes.nonClickableIcon)}>
-                                {icon}
-                            </NonClickableIcon>
+                            <NonClickableIcon className={cx(defaultClasses.nonClickableIcon)}>{icon}</NonClickableIcon>
                         )}
                     </Navigation>
                 )}

@@ -59,7 +59,6 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
 ) => {
     const defaultClasses = useUtilityClasses(props);
     const {
-        classes,
         className: userClassName,
         children,
         divider = true,
@@ -80,9 +79,7 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
                 data-testid={'blui-drawer-footer'}
                 className={cx(
                     defaultClasses.root,
-                    classes.root,
                     { [defaultClasses.hidden]: !drawerOpen && hideContentOnCollapse },
-                    { [classes.hidden]: !drawerOpen && hideContentOnCollapse },
                     userClassName
                 )}
                 backgroundColor={backgroundColor}

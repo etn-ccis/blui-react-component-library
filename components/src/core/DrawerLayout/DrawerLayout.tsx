@@ -92,7 +92,6 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
                 ref={ref}
                 className={cx(
                     defaultClasses.root,
-                    classes.root,
                     {
                         [defaultClasses.expanded]: drawerOpen,
                         [classes.expanded]: drawerOpen,
@@ -101,8 +100,8 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
                 )}
                 {...otherProps}
             >
-                <Drawer className={cx(defaultClasses.drawer, classes.drawer)}>{drawer}</Drawer>
-                <Content className={cx(defaultClasses.content, classes.content)} style={style}>
+                <Drawer className={cx(defaultClasses.drawer)}>{drawer}</Drawer>
+                <Content className={cx(defaultClasses.content)} style={style}>
                     {children}
                 </Content>
             </Root>

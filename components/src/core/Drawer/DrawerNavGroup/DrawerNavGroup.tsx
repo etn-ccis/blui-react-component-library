@@ -116,7 +116,6 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     const {
         // Nav Group Props
         children,
-        classes,
         className: userClassName,
         items = [],
         title,
@@ -245,17 +244,17 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
             <Root
                 ref={ref}
                 data-testid={'blui-drawer-nav-group'}
-                className={cx(defaultClasses.root, classes.root, userClassName)}
+                className={cx(defaultClasses.root, userClassName)}
                 subheader={
                     variant !== 'rail' && (
                         <SubHeader
-                            className={cx(defaultClasses.subheader, classes.subheader)}
+                            className={cx(defaultClasses.subheader)}
                             style={{
                                 color: drawerOpen ? titleColor : 'transparent',
                             }}
                         >
                             {title && (
-                                <Title noWrap variant={'overline'} className={cx(defaultClasses.title, classes.title)}>
+                                <Title noWrap variant={'overline'} className={cx(defaultClasses.title)}>
                                     {title}
                                 </Title>
                             )}

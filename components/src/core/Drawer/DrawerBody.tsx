@@ -61,7 +61,6 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         nestedDivider,
         ripple,
         // DrawerBody-specific props
-        classes,
         children: bodyChildren,
         // Other props
         ...otherProps
@@ -73,7 +72,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         <Root
             ref={ref}
             data-testid={'blui-drawer-body'}
-            className={cx(defaultClasses.root, classes.root)}
+            className={cx(defaultClasses.root)}
             backgroundColor={backgroundColor}
             {...otherProps}
         >

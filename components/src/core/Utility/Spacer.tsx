@@ -39,7 +39,7 @@ const Root = styled(
 }));
 
 const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (props: SpacerProps, ref: any) => {
-    const { children, classes, flex, height, width, ...otherProps } = props;
+    const { children, flex, height, width, ...otherProps } = props;
     const ownerState = {
         ...props,
     };
@@ -52,7 +52,7 @@ const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (prop
             flex={flex}
             height={height}
             width={width}
-            className={cx(defaultClasses.root, classes.root)}
+            className={cx(defaultClasses.root)}
             {...otherProps}
         >
             {children}

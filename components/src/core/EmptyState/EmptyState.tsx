@@ -82,11 +82,11 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
     return (
         <Root
             ref={ref}
-            className={cx(defaultClasses.root, classes.root, userClassName)}
+            className={cx(defaultClasses.root, userClassName)}
             data-testid={'blui-empty-state-root'}
             {...otherProps}
         >
-            {icon && <Icon className={cx(defaultClasses.icon, classes.icon)}>{icon}</Icon>}
+            {icon && <Icon className={cx(defaultClasses.icon)}>{icon}</Icon>}
             {title &&
                 (typeof title === 'string' ? (
                     <Typography variant="h6" color="inherit" className={classes.title}>
@@ -97,17 +97,13 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
                 ))}
             {description &&
                 (typeof description === 'string' ? (
-                    <Description
-                        variant="subtitle2"
-                        color={'textSecondary'}
-                        className={cx(defaultClasses.description, classes.description)}
-                    >
+                    <Description variant="subtitle2" color={'textSecondary'} className={cx(defaultClasses.description)}>
                         {description}
                     </Description>
                 ) : (
                     description
                 ))}
-            {actions && <Actions className={cx(defaultClasses.actions, classes.actions)}>{actions}</Actions>}
+            {actions && <Actions className={cx(defaultClasses.actions)}>{actions}</Actions>}
         </Root>
     );
 };

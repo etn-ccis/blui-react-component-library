@@ -288,7 +288,6 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             data-testid={'blui-appbar-root'}
             className={cx(
                 defaultClasses.root,
-                classes.root,
                 {
                     [classes.expanded]: isExpanded,
                     [classes.collapsed]: !isExpanded,

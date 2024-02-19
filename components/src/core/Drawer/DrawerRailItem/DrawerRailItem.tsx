@@ -272,16 +272,15 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: cx(defaultClasses.ripple, classes.ripple),
+                          child: cx(defaultClasses.ripple),
                       },
                   },
               }
             : {};
 
     const combine = useCallback(
-        (drawerRailItemClassName: keyof DrawerRailItemClasses): string =>
-            cx(defaultClasses[drawerRailItemClassName], classes[drawerRailItemClassName]),
-        [defaultClasses, classes]
+        (drawerRailItemClassName: keyof DrawerRailItemClasses): string => cx(defaultClasses[drawerRailItemClassName]),
+        [defaultClasses]
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
@@ -313,7 +312,6 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {...directButtonBaseProps}
             className={cx(
                 defaultClasses.root,
-                classes.root,
                 condensed && classes.condensed ? classes.condensed : undefined,
                 className
             )}
@@ -349,7 +347,6 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                     variant={'caption'}
                     className={cx(
                         defaultClasses.title,
-                        classes.title,
                         active && classes.titleActive ? classes.titleActive : undefined
                     )}
                     itemFontColor={itemFontColor}
