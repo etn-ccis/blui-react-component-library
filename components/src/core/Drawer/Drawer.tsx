@@ -8,7 +8,6 @@ import { DrawerContext } from './DrawerContext';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import { findChildByType, mergeStyleProp } from './utilities';
 import clsx from 'clsx';
-import { cx } from '@emotion/css';
 import drawerClasses, { DrawerClasses, DrawerClassKey, getDrawerUtilityClass } from './DrawerClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import Box from '@mui/material/Box';
@@ -123,7 +122,7 @@ const Content = styled(
 
 const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (props: DrawerProps, ref: any) => {
     let hoverDelay: NodeJS.Timeout;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const theme = useTheme();
     const { setPadding, setDrawerOpen } = useDrawerLayout();
     const [hover, setHover] = useState(false);
@@ -316,12 +315,12 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
             classes={{
-                root: clsx(defaultClasses.root, classes.root, className, {
-                    [defaultClasses.expanded]: isDrawerOpen(),
+                root: clsx(generatedClasses.root, classes.root, className, {
+                    [generatedClasses.expanded]: isDrawerOpen(),
                     [classes.expanded]: isDrawerOpen() && classes.expanded,
                 }),
-                paper: clsx(defaultClasses.paper, classes.paper, {
-                    [defaultClasses.sideBorder]: sideBorder,
+                paper: clsx(generatedClasses.paper, classes.paper, {
+                    [generatedClasses.sideBorder]: sideBorder,
                     [classes.sideBorder]: sideBorder && classes.sideBorder,
                 }),
             }}
@@ -342,7 +341,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                     activeItem: activeItem,
                 }}
             >
-                <Content className={cx(defaultClasses.content)} style={{ width: getContentWidth() }}>
+                <Content className={(generatedClasses.content)} style={{ width: getContentWidth() }}>
                     {getDrawerContents()}
                 </Content>
             </DrawerContext.Provider>

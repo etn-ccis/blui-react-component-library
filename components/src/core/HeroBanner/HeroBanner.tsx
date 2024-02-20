@@ -40,14 +40,14 @@ const HeroBannerRender: React.ForwardRefRenderFunction<unknown, HeroBannerProps>
     ref: any
 ) => {
     const { className: userClassName, divider, limit, ...otherProps } = props;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const isArray = Array.isArray(props.children);
     return (
         <>
             <Root
                 ref={ref}
                 data-testid={'blui-hero-banner-root'}
-                className={cx(defaultClasses.root, userClassName)}
+                className={cx(generatedClasses.root, userClassName)}
                 {...otherProps}
             >
                 {props.children &&

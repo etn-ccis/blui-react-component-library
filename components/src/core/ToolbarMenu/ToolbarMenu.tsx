@@ -124,7 +124,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
     } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const [anchorEl, setAnchorEl] = useState(null);
     const anchor = useRef(null);
 
@@ -183,7 +183,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 >
                     {!menu &&
                         menuGroups.map((group: ToolbarMenuCompGroup, index: number) => (
-                            <ToolbarMenuNavGroups className={defaultClasses.navGroups} key={index}>
+                            <ToolbarMenuNavGroups className={generatedClasses.navGroups} key={index}>
                                 <DrawerNavGroup
                                     divider={false}
                                     hidePadding={true}
@@ -200,7 +200,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 </Menu>
             );
         }
-    }, [menuGroups, menu, anchorEl, MenuProps, defaultClasses]);
+    }, [menuGroups, menu, anchorEl, MenuProps, generatedClasses]);
 
     return (
         <>
@@ -209,9 +209,9 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 aria-haspopup="true"
                 {...otherTypographyProps}
                 className={cx(
-                    defaultClasses.root,
+                    generatedClasses.root,
                     userClassName,
-                    menuGroups || menu ? defaultClasses.cursorPointer : ''
+                    menuGroups || menu ? generatedClasses.cursorPointer : ''
                 )}
                 data-testid={'blui-menu-root'}
                 onClick={(): void => {
@@ -221,7 +221,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 {icon && (
                     <ToolbarMenuIcon
                         component={'span'}
-                        className={cx(defaultClasses.icon)}
+                        className={(generatedClasses.icon)}
                         data-testid={'blui-toolbar-menu-icon'}
                     >
                         {icon}
@@ -229,7 +229,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 )}
                 <ToolbarMenuLabel
                     component={'span'}
-                    className={cx(defaultClasses.label)}
+                    className={(generatedClasses.label)}
                     data-testid={'blui-toolbar-menu-label'}
                 >
                     {label || ''}
@@ -238,8 +238,8 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                     <DropDownArrow
                         data-testid={'blui-arrow-dropdown'}
                         className={cx(
-                            defaultClasses.dropdownArrow,
-                            anchorEl ? defaultClasses.rotatedDropdownArrow : ''
+                            generatedClasses.dropdownArrow,
+                            anchorEl ? generatedClasses.rotatedDropdownArrow : ''
                         )}
                     />
                 )}

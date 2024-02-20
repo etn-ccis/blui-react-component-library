@@ -116,7 +116,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         fontSize,
         ...otherProps
     } = props;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const prefixUnitAllowSpaceList = ['$'];
     const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
 
@@ -139,7 +139,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                     <Unit
                         variant={'h6'}
                         color={'inherit'}
-                        className={cx(defaultClasses.text, defaultClasses.units)}
+                        className={cx(generatedClasses.text, generatedClasses.units)}
                         isSuffix={applySuffix()}
                         data-testid={'blui-channel-value-units'}
                     >
@@ -148,21 +148,21 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                 )}
             </>
         ),
-        [units, prefix, classes, defaultClasses, unitSpace]
+        [units, prefix, classes, generatedClasses, unitSpace]
     );
 
     return (
         <Root
             component="span"
             ref={ref}
-            className={cx(defaultClasses.root, userClassName)}
+            className={cx(generatedClasses.root, userClassName)}
             data-testid={'blui-channel-value-root'}
             fontSize={fontSize}
             color={color}
             {...otherProps}
         >
             {icon && (
-                <IconSpan className={cx(defaultClasses.icon)} data-testid={'blui-channel-value-icon'}>
+                <IconSpan className={(generatedClasses.icon)} data-testid={'blui-channel-value-icon'}>
                     {changeIconDisplay(icon)}
                 </IconSpan>
             )}
@@ -170,7 +170,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
             <Value
                 variant={'h6'}
                 color={'inherit'}
-                className={cx(defaultClasses.text, defaultClasses.value)}
+                className={cx(generatedClasses.text, generatedClasses.value)}
                 data-testid={'blui-channel-value-value'}
                 isPrefix={applyPrefix()}
             >

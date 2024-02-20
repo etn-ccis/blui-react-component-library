@@ -96,18 +96,18 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
         animationDuration,
         ...otherProps
     } = props;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     //const animationDuration = durationProp || theme.transitions.duration.standard;
     return (
         <Root
             ref={ref}
             {...otherProps}
             animationDuration={animationDuration}
-            className={cx(defaultClasses.root, userClassName)}
+            className={cx(generatedClasses.root, userClassName)}
         >
-            <Title className={cx(defaultClasses.title)}>{title}</Title>
-            <Subtitle className={cx(defaultClasses.subtitle)}>{subtitle}</Subtitle>
-            <Info className={cx(defaultClasses.info)}>{info}</Info>
+            <Title className={(generatedClasses.title)}>{title}</Title>
+            <Subtitle className={(generatedClasses.subtitle)}>{subtitle}</Subtitle>
+            <Info className={(generatedClasses.info)}>{info}</Info>
         </Root>
     );
 };

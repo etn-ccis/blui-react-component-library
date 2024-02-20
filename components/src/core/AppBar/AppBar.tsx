@@ -152,7 +152,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     const scrollElement = scrollContainerId ? document.getElementById(scrollContainerId) : null;
     const scrollTop = scrollElement ? scrollElement.scrollTop : window.scrollY;
 
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const animationDuration = durationProp || theme.transitions.duration.standard;
 
     const [offset, setOffset] = useState(0);
@@ -242,14 +242,14 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         if (backgroundImage) {
             return (
                 <div
-                    className={clsx(defaultClasses.background, classes.background, {
-                        [defaultClasses.expandedBackground]: isExpanded,
+                    className={clsx(generatedClasses.background, classes.background, {
+                        [generatedClasses.expandedBackground]: isExpanded,
                         [classes.expandedBackground]: isExpanded,
                     })}
                 />
             );
         }
-    }, [backgroundImage, defaultClasses, classes, isExpanded]);
+    }, [backgroundImage, generatedClasses, classes, isExpanded]);
 
     // This handler checks if the scrolling variable is true and adjusts the offset accordingly
     // We do not do this directly in the scroll event callback for performance reasons
@@ -287,7 +287,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             {...muiAppBarProps}
             data-testid={'blui-appbar-root'}
             className={cx(
-                defaultClasses.root,
+                generatedClasses.root,
                 {
                     [classes.expanded]: isExpanded,
                     [classes.collapsed]: !isExpanded,

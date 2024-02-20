@@ -125,7 +125,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     props: InfoListItemProps,
     ref: any
 ) => {
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const {
         avatar,
         chevron,
@@ -157,8 +157,8 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     } = props;
 
     const combine = useCallback(
-        (className: keyof InfoListItemClasses): string => cx(defaultClasses[className]),
-        [defaultClasses]
+        (className: keyof InfoListItemClasses): string => cx(generatedClasses[className]),
+        [generatedClasses]
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {

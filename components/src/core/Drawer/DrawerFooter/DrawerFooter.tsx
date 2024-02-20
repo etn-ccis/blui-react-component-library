@@ -57,7 +57,7 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
     props: DrawerFooterProps,
     ref: any
 ) => {
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const {
         className: userClassName,
         children,
@@ -78,8 +78,8 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
                 ref={ref}
                 data-testid={'blui-drawer-footer'}
                 className={cx(
-                    defaultClasses.root,
-                    { [defaultClasses.hidden]: !drawerOpen && hideContentOnCollapse },
+                    generatedClasses.root,
+                    { [generatedClasses.hidden]: !drawerOpen && hideContentOnCollapse },
                     userClassName
                 )}
                 backgroundColor={backgroundColor}

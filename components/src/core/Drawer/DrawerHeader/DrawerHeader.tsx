@@ -10,7 +10,6 @@ import drawerHeaderClasses, {
     DrawerHeaderClassKey,
     getDrawerHeaderUtilityClass,
 } from './DrawerHeaderClasses';
-import { cx } from '@emotion/css';
 import clsx from 'clsx';
 import { styled, SxProps, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -169,7 +168,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
     props: DrawerHeaderProps,
     ref: any
 ) => {
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const {
         backgroundImage,
         classes,
@@ -195,11 +194,11 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
     const getHeaderContent = useCallback(
         (): ReactNode =>
             titleContent || (
-                <Content className={cx(defaultClasses.content)}>
+                <Content className={(generatedClasses.content)}>
                     <Title
                         noWrap
                         variant={'h6'}
-                        className={cx(defaultClasses.title)}
+                        className={(generatedClasses.title)}
                         data-testid={'blui-drawer-header-title'}
                     >
                         {title}
@@ -209,7 +208,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                         <Subtitle
                             noWrap
                             variant={'body2'}
-                            className={cx(defaultClasses.subtitle)}
+                            className={(generatedClasses.subtitle)}
                             data-testid={'blui-drawer-header-subtitle'}
                         >
                             {subtitle}
@@ -217,19 +216,19 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                     )}
                 </Content>
             ),
-        [defaultClasses, classes, title, subtitle, titleContent]
+        [generatedClasses, classes, title, subtitle, titleContent]
     );
 
     const getBackgroundImage = useCallback(
         (): JSX.Element | null =>
             backgroundImage ? (
                 <Background
-                    className={cx(defaultClasses.background)}
+                    className={(generatedClasses.background)}
                     backgroundImage={backgroundImage}
                     backgroundOpacity={backgroundOpacity}
                 />
             ) : null,
-        [backgroundImage, defaultClasses, classes]
+        [backgroundImage, generatedClasses, classes]
     );
 
     return (
@@ -237,7 +236,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
             <Root
                 ref={ref}
                 data-testid={'blui-drawer-header'}
-                className={cx(defaultClasses.root)}
+                className={(generatedClasses.root)}
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}
                 disableGutters={disableGutters}
@@ -247,10 +246,10 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                 {getBackgroundImage()}
                 {icon && (
                     <Navigation
-                        className={clsx(defaultClasses.navigation, classes.navigation, {
-                            [defaultClasses.railIcon]: variant === 'rail' && !condensed,
+                        className={clsx(generatedClasses.navigation, classes.navigation, {
+                            [generatedClasses.railIcon]: variant === 'rail' && !condensed,
                             [classes.railIcon]: variant === 'rail' && !condensed && classes.railIcon,
-                            [defaultClasses.nonClickable]: variant === 'rail' && !condensed && !onIconClick,
+                            [generatedClasses.nonClickable]: variant === 'rail' && !condensed && !onIconClick,
                         })}
                     >
                         {onIconClick && (
@@ -266,7 +265,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                             </IconButton>
                         )}
                         {!onIconClick && (
-                            <NonClickableIcon className={cx(defaultClasses.nonClickableIcon)}>{icon}</NonClickableIcon>
+                            <NonClickableIcon className={(generatedClasses.nonClickableIcon)}>{icon}</NonClickableIcon>
                         )}
                     </Navigation>
                 )}

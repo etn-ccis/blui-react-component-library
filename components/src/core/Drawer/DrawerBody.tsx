@@ -7,7 +7,6 @@ import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { DrawerBodyClasses, DrawerBodyClassKey, getDrawerBodyUtilityClass } from './DrawerBodyClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { cx } from '@emotion/css';
 
 const useUtilityClasses = (ownerState: DrawerBodyProps): Record<DrawerBodyClassKey, string> => {
     const { classes } = ownerState;
@@ -40,7 +39,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
     bodyProps: DrawerBodyProps,
     ref: any
 ) => {
-    const defaultClasses = useUtilityClasses(bodyProps);
+    const generatedClasses = useUtilityClasses(bodyProps);
     const {
         // Inheritable Props
         activeItemBackgroundColor,
@@ -72,7 +71,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         <Root
             ref={ref}
             data-testid={'blui-drawer-body'}
-            className={cx(defaultClasses.root)}
+            className={(generatedClasses.root)}
             backgroundColor={backgroundColor}
             {...otherProps}
         >

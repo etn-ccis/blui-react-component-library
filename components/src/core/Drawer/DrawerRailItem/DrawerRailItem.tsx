@@ -263,7 +263,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     const { activeItem, onItemSelect, condensed: drawerCondensed = false } = useDrawerContext();
     const active = activeItem === itemID;
     const condensed = itemCondensed !== undefined ? itemCondensed : drawerCondensed;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const hasAction = Boolean(onClick || onItemSelect);
 
     // Customize the color of the Touch Ripple
@@ -272,15 +272,15 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: cx(defaultClasses.ripple),
+                          child: (generatedClasses.ripple),
                       },
                   },
               }
             : {};
 
     const combine = useCallback(
-        (drawerRailItemClassName: keyof DrawerRailItemClasses): string => cx(defaultClasses[drawerRailItemClassName]),
-        [defaultClasses]
+        (drawerRailItemClassName: keyof DrawerRailItemClasses): string => cx(generatedClasses[drawerRailItemClassName]),
+        [generatedClasses]
     );
 
     const getIcon = useCallback((): JSX.Element | undefined => {
@@ -311,7 +311,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {...ButtonBaseProps}
             {...directButtonBaseProps}
             className={cx(
-                defaultClasses.root,
+                generatedClasses.root,
                 condensed && classes.condensed ? classes.condensed : undefined,
                 className
             )}
@@ -346,7 +346,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                 <Title
                     variant={'caption'}
                     className={cx(
-                        defaultClasses.title,
+                        generatedClasses.title,
                         active && classes.titleActive ? classes.titleActive : undefined
                     )}
                     itemFontColor={itemFontColor}

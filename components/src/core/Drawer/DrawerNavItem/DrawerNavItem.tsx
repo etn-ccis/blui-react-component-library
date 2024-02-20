@@ -190,7 +190,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     ref: any
 ) => {
     const theme = useTheme();
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const { open: drawerOpen = true, activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem);
@@ -283,7 +283,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: cx(defaultClasses.ripple),
+                          child: (generatedClasses.ripple),
                       },
                   },
               }
@@ -316,14 +316,14 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         e.stopPropagation();
                     }
                 }}
-                className={cx(defaultClasses.expandIcon)}
+                className={(generatedClasses.expandIcon)}
                 collapseIcon={collapseIcon}
                 expanded={expanded}
             >
                 {collapseIcon && expanded ? collapseIcon : expandIcon}
             </ActiveComponent>
         );
-    }, [items, children, classes, defaultClasses, collapseIcon, expanded, expandIcon]);
+    }, [items, children, classes, generatedClasses, collapseIcon, expanded, expandIcon]);
     const actionComponent = getActionComponent();
 
     const getChildren = useCallback(
@@ -416,15 +416,15 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
-        root: ripple && hasAction ? undefined : cx(defaultClasses.infoListItemRoot),
-        listItemButtonRoot: ripple && hasAction ? cx(defaultClasses.infoListItemRoot) : undefined,
+        root: ripple && hasAction ? undefined : (generatedClasses.infoListItemRoot),
+        listItemButtonRoot: ripple && hasAction ? (generatedClasses.infoListItemRoot) : undefined,
         title: cx(
-            defaultClasses.title,
-            active || (!disableActiveItemParentStyles && isInActiveTree) ? defaultClasses.titleActive : undefined,
+            generatedClasses.title,
+            active || (!disableActiveItemParentStyles && isInActiveTree) ? generatedClasses.titleActive : undefined,
             (active || (!disableActiveItemParentStyles && isInActiveTree)) && classes.titleActive
                 ? classes.titleActive
                 : undefined,
-            depth > 0 ? defaultClasses.nestedTitle : undefined
+            depth > 0 ? generatedClasses.nestedTitle : undefined
         ),
     };
 
@@ -434,7 +434,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 <Root
                     ref={ref}
                     style={{ ...style, position: 'relative' }}
-                    className={cx(defaultClasses.root, className)}
+                    className={cx(generatedClasses.root, className)}
                     depth={depth}
                     nestedBackgroundColor={nestedBackgroundColor}
                     backgroundColor={backgroundColor}
@@ -442,7 +442,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 >
                     {active && (
                         <ActiveItem
-                            className={cx(defaultClasses.active)}
+                            className={(generatedClasses.active)}
                             style={{ backgroundColor: activeItemBackgroundColor }}
                             activeItemBackgroundShape={activeItemBackgroundShape}
                         />
@@ -490,7 +490,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             {((items && items.length > 0) || Boolean(children)) && (
                 <Collapse in={expanded && drawerOpen !== false} key={`${itemTitle}_group_${depth}`}>
                     <NestedListGroup
-                        className={cx(defaultClasses.nestedListGroup)}
+                        className={(generatedClasses.nestedListGroup)}
                         nestedBackgroundColor={nestedBackgroundColor}
                     >
                         {items &&

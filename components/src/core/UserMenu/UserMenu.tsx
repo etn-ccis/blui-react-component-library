@@ -134,7 +134,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         onOpen,
         ...otherProps
     } = props;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const [anchorEl, setAnchorEl] = useState(null);
 
     const closeMenu = useCallback(() => {
@@ -186,14 +186,14 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 classes: {
                     ...aProps.classes,
                     root: cx(
-                        defaultClasses.avatarRoot,
-                        preserveOnClick ? '' : defaultClasses.noCursor,
+                        generatedClasses.avatarRoot,
+                        preserveOnClick ? '' : generatedClasses.noCursor,
                         aProps?.classes?.root
                     ),
                 },
             });
         },
-        [avatar, onOpen, defaultClasses, classes]
+        [avatar, onOpen, generatedClasses, classes]
     );
 
     /* DrawerHeader needs wrapped with key div to avoid ref warning on FC. */
@@ -201,7 +201,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         if (menuTitle) {
             const nonClickableAvatar = formatAvatar(false);
             return (
-                <Header className={defaultClasses.header} key={'header'}>
+                <Header className={generatedClasses.header} key={'header'}>
                     <DrawerHeader
                         icon={nonClickableAvatar}
                         title={menuTitle}
@@ -210,9 +210,9 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                         backgroundColor={'inherit'}
                         divider
                         classes={{
-                            root: defaultClasses.headerRoot,
-                            title: defaultClasses.menuTitle,
-                            navigation: defaultClasses.navigation,
+                            root: generatedClasses.headerRoot,
+                            title: generatedClasses.menuTitle,
+                            navigation: generatedClasses.navigation,
                         }}
                     />
                 </Header>
@@ -224,7 +224,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     const printMenuItems = useCallback(
         (): JSX.Element[] =>
             menuGroups.map((group: UserMenuGroup, index: number) => (
-                <UserMenuNavGroups className={defaultClasses.navGroups} key={index}>
+                <UserMenuNavGroups className={generatedClasses.navGroups} key={index}>
                     <DrawerNavGroup
                         divider={false}
                         itemIconColor={group.iconColor}
@@ -245,7 +245,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                     />
                 </UserMenuNavGroups>
             )),
-        [menuGroups, defaultClasses]
+        [menuGroups, generatedClasses]
     );
 
     const printMenu = useCallback(
@@ -273,7 +273,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 open={Boolean(anchorEl)}
                 onClose={closeMenu}
                 disablePortal
-                classes={{ paper: cx(defaultClasses.bottomSheet, classes.bottomSheet) }}
+                classes={{ paper: cx(generatedClasses.bottomSheet, classes.bottomSheet) }}
                 {...BottomSheetProps}
             >
                 {printMenu()}
@@ -293,7 +293,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt, BottomSheetProps]);
 
     return (
-        <Root ref={ref} className={cx(defaultClasses.root)} {...otherProps}>
+        <Root ref={ref} className={(generatedClasses.root)} {...otherProps}>
             {formatAvatar(true)}
             {canDisplayMenu() && formatMenu()}
         </Root>

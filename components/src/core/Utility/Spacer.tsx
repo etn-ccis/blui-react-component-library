@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Box, { BoxProps } from '@mui/material/Box';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { SpacerClasses, getSpacerUtilityClass, SpacerClassKey } from './SpacerClasses';
-import { cx } from '@emotion/css';
 import { styled } from '@mui/material/styles';
 
 const useUtilityClasses = (ownerState: SpacerProps): Record<SpacerClassKey, string> => {
@@ -43,7 +42,7 @@ const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (prop
     const ownerState = {
         ...props,
     };
-    const defaultClasses = useUtilityClasses(ownerState);
+    const generatedClasses = useUtilityClasses(ownerState);
 
     return (
         <Root
@@ -52,7 +51,7 @@ const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (prop
             flex={flex}
             height={height}
             width={width}
-            className={cx(defaultClasses.root)}
+            className={(generatedClasses.root)}
             {...otherProps}
         >
             {children}
