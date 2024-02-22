@@ -279,7 +279,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 </ActionItems>
             ));
         }
-    }, [actionItems, actionLimit, generatedClasses, classes]);
+    }, [actionItems, actionLimit, generatedClasses]);
 
     const getHeroes = useCallback((): JSX.Element | undefined => {
         if (badge) {
