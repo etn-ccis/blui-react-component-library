@@ -315,7 +315,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
             classes={{
-                root: clsx(generatedClasses.root, classes.root, className, {
+                root: clsx(generatedClasses.root, className, {
                     [generatedClasses.expanded]: isDrawerOpen(),
                     [classes.expanded]: isDrawerOpen() && classes.expanded,
                 }),
