@@ -317,7 +317,6 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             classes={{
                 root: clsx(generatedClasses.root, className, {
                     [generatedClasses.expanded]: isDrawerOpen(),
-                    [classes.expanded]: isDrawerOpen() && classes.expanded,
                 }),
                 paper: clsx(generatedClasses.paper, classes.paper, {
                     [generatedClasses.sideBorder]: sideBorder,
