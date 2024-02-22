@@ -320,7 +320,6 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                 }),
                 paper: clsx(generatedClasses.paper, {
                     [generatedClasses.sideBorder]: sideBorder,
-                    [classes.sideBorder]: sideBorder && classes.sideBorder,
                 }),
             }}
             backgroundColor={backgroundColor}
