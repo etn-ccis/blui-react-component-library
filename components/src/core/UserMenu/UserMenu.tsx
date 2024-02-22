@@ -273,7 +273,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 open={Boolean(anchorEl)}
                 onClose={closeMenu}
                 disablePortal
-                classes={{ paper: cx(generatedClasses.bottomSheet, classes.bottomSheet) }}
+                classes={{ paper: cx(generatedClasses.bottomSheet) }}
                 {...BottomSheetProps}
             >
                 {printMenu()}
