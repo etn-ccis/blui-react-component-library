@@ -246,7 +246,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                 {getBackgroundImage()}
                 {icon && (
                     <Navigation
-                        className={clsx(generatedClasses.navigation, classes.navigation, {
+                        className={clsx(generatedClasses.navigation, {
                             [generatedClasses.railIcon]: variant === 'rail' && !condensed,
                             [generatedClasses.nonClickable]: variant === 'rail' && !condensed && !onIconClick,
                         })}
