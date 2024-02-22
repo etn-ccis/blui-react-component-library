@@ -264,7 +264,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 {getHeaderInfo()}
             </FlexColumn>
         ),
-        [generatedClasses, classes, headerTitle, getHeaderSubtitle, getHeaderInfo]
+        [generatedClasses, headerTitle, getHeaderSubtitle, getHeaderInfo]
     );
 
     const getActionItems = useCallback((): JSX.Element[] | undefined => {
