@@ -293,7 +293,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 </BadgeWrapper>
             );
         }
-    }, [badge, generatedClasses, classes]);
+    }, [badge, generatedClasses]);
 
     const getFooter = useCallback((): JSX.Element | undefined => {
         if (actionRow) {
