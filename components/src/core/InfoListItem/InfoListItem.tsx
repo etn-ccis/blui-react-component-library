@@ -202,7 +202,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 )}
             </>
         ),
-        [rightComponent, chevron]
+        [rightComponent, chevron, generatedClasses]
     );
 
     const getSeparator = useCallback(
