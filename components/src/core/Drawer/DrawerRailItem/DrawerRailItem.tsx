@@ -322,10 +322,16 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {...RippleProps}
         >
             {/* Active Item Highlight */}
-            {active && <ActiveItem className={generatedClasses.active} activeItemBackgroundColor={activeItemBackgroundColor} />}
+            {active && (
+                <ActiveItem className={generatedClasses.active} activeItemBackgroundColor={activeItemBackgroundColor} />
+            )}
             {/* Status Color Stripe */}
             {statusColor !== undefined && statusColor !== '' && (
-                <StatusStripe className={generatedClasses.statusStripe} data-testid={'blui-status-stripe'} statusColor={statusColor} />
+                <StatusStripe
+                    className={generatedClasses.statusStripe}
+                    data-testid={'blui-status-stripe'}
+                    statusColor={statusColor}
+                />
             )}
             {/* Icon */}
             {getIcon()}

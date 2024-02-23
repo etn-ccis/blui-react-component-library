@@ -244,7 +244,11 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
 
     const getInfoListItemContent = (): JSX.Element => (
         <>
-            <StatusStripe statusColor={statusColor} className={generatedClasses['statusStripe']} data-testid={'blui-status-stripe'} />
+            <StatusStripe
+                statusColor={statusColor}
+                className={generatedClasses['statusStripe']}
+                data-testid={'blui-status-stripe'}
+            />
             {divider && <InfoListItemDivider divider={divider} className={generatedClasses['divider']} />}
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}
