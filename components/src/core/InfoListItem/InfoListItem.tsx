@@ -313,7 +313,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             dense={props.dense}
             ripple={ripple}
             iconColor={iconColor}
-            className={(generatedClasses.root, userClassName)}
+            className={cx(generatedClasses.root, userClassName)}
             ref={ref}
             {...otherListItemProps}
         >
