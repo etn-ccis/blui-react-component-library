@@ -287,7 +287,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                     lineHeight: 1.25,
                     display: 'block',
                     color: fontColor || 'inherit',
-                    generatedClasses: 'title',
+                    className: generatedClasses['title'],
                     component: 'div',
                 }}
                 secondaryTypographyProps={{
