@@ -322,7 +322,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {...RippleProps}
         >
             {/* Active Item Highlight */}
-            {active && <ActiveItem className={'active'} activeItemBackgroundColor={activeItemBackgroundColor} />}
+            {active && <ActiveItem className={generatedClasses.active} activeItemBackgroundColor={activeItemBackgroundColor} />}
             {/* Status Color Stripe */}
             {statusColor !== undefined && statusColor !== '' && (
                 <StatusStripe className={'statusStripe'} data-testid={'blui-status-stripe'} statusColor={statusColor} />
