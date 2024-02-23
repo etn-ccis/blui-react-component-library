@@ -11,6 +11,7 @@ module.exports = {
     },
     rules: {
         '@typescript-eslint/no-empty-function': 'off',
+        "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
         'no-empty-function': 'off',
         '@typescript-eslint/naming-convention': [
             'error',

@@ -278,20 +278,15 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
               }
             : {};
 
-    const combine = useCallback(
-        (drawerRailItemClassName: keyof DrawerRailItemClasses): string => cx(generatedClasses[drawerRailItemClassName]),
-        [generatedClasses]
-    );
-
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
             return (
-                <Icon className={combine('icon')} itemIconColor={itemIconColor}>
+                <Icon className={'icon'} itemIconColor={itemIconColor}>
                     {icon}
                 </Icon>
             );
         }
-    }, [icon, combine]);
+    }, [icon]);
 
     const onClickAction = useCallback(
         (e: React.MouseEvent<HTMLElement>): void => {
@@ -328,16 +323,10 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {...RippleProps}
         >
             {/* Active Item Highlight */}
-            {active && (
-                <ActiveItem className={combine('active')} activeItemBackgroundColor={activeItemBackgroundColor} />
-            )}
+            {active && <ActiveItem className={'active'} activeItemBackgroundColor={activeItemBackgroundColor} />}
             {/* Status Color Stripe */}
             {statusColor !== undefined && statusColor !== '' && (
-                <StatusStripe
-                    className={combine('statusStripe')}
-                    data-testid={'blui-status-stripe'}
-                    statusColor={statusColor}
-                />
+                <StatusStripe className={'statusStripe'} data-testid={'blui-status-stripe'} statusColor={statusColor} />
             )}
             {/* Icon */}
             {getIcon()}
@@ -345,10 +334,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {!condensed && (
                 <Title
                     variant={'caption'}
-                    className={cx(
-                        generatedClasses.title,
-                        active && generatedClasses.titleActive
-                    )}
+                    className={cx(generatedClasses.title, active && generatedClasses.titleActive)}
                     itemFontColor={itemFontColor}
                     active={active}
                 >
@@ -356,7 +342,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                 </Title>
             )}
             {/* Divider */}
-            {divider && <DrawerRailItemDivider className={combine('divider')} />}
+            {divider && <DrawerRailItemDivider className={'divider'} />}
         </Root>
     );
 
