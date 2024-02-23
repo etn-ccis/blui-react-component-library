@@ -128,6 +128,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     const {
         avatar,
         chevron,
+        classes,
         className: userClassName,
         divider,
         hidePadding,
