@@ -247,7 +247,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
             );
         }
         return headerSubtitle;
-    }, [headerSubtitle, generatedClasses, classes]);
+    }, [headerSubtitle, generatedClasses]);
 
     const getHeaderText = useCallback(
         (): JSX.Element => (

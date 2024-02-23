@@ -323,7 +323,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 {collapseIcon && expanded ? collapseIcon : expandIcon}
             </ActiveComponent>
         );
-    }, [items, children, classes, generatedClasses, collapseIcon, expanded, expandIcon]);
+    }, [items, children, generatedClasses, collapseIcon, expanded, expandIcon]);
     const actionComponent = getActionComponent();
 
     const getChildren = useCallback(

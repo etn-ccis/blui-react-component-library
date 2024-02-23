@@ -248,7 +248,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
                 />
             );
         }
-    }, [backgroundImage, generatedClasses, classes, isExpanded]);
+    }, [backgroundImage, generatedClasses, isExpanded]);
 
     // This handler checks if the scrolling variable is true and adjusts the offset accordingly
     // We do not do this directly in the scroll event callback for performance reasons

@@ -148,7 +148,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                 )}
             </>
         ),
-        [units, prefix, classes, generatedClasses, unitSpace]
+        [units, prefix, generatedClasses, unitSpace]
     );
 
     return (

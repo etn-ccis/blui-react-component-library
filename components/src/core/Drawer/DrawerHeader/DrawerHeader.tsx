@@ -216,7 +216,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                     )}
                 </Content>
             ),
-        [generatedClasses, classes, title, subtitle, titleContent]
+        [generatedClasses, title, subtitle, titleContent]
     );
 
     const getBackgroundImage = useCallback(
@@ -228,7 +228,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                     backgroundOpacity={backgroundOpacity}
                 />
             ) : null,
-        [backgroundImage, generatedClasses, classes]
+        [backgroundImage, generatedClasses]
     );
 
     return (
