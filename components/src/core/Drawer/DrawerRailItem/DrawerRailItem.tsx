@@ -347,7 +347,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                     variant={'caption'}
                     className={cx(
                         generatedClasses.title,
-                        active && classes.titleActive ? classes.titleActive : undefined
+                        active && generatedClasses.titleActive
                     )}
                     itemFontColor={itemFontColor}
                     active={active}
