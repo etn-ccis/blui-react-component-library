@@ -341,7 +341,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                 </Title>
             )}
             {/* Divider */}
-            {divider && <DrawerRailItemDivider className={'divider'} />}
+            {divider && <DrawerRailItemDivider className={generatedClasses.divider} />}
         </Root>
     );
 
