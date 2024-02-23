@@ -184,7 +184,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 </ListItemAvatar>
             );
         }
-    }, [icon, avatar, hidePadding]);
+    }, [icon, avatar, hidePadding, generatedClasses]);
 
     const getRightComponent = useCallback(
         (): JSX.Element | undefined => (
