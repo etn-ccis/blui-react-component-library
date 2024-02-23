@@ -280,7 +280,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
             return (
-                <Icon className={'icon'} itemIconColor={itemIconColor}>
+                <Icon className={generatedClasses.icon} itemIconColor={itemIconColor}>
                     {icon}
                 </Icon>
             );
