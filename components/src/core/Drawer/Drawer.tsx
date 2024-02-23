@@ -339,7 +339,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                     activeItem: activeItem,
                 }}
             >
-                <Content className={(generatedClasses.content)} style={{ width: getContentWidth() }}>
+                <Content className={generatedClasses.content} style={{ width: getContentWidth() }}>
                     {getDrawerContents()}
                 </Content>
             </DrawerContext.Provider>

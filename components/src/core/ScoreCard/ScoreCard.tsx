@@ -208,7 +208,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         if (headerBackgroundImage) {
             return (
                 <HeaderBackground
-                    className={(generatedClasses.headerBackground)}
+                    className={generatedClasses.headerBackground}
                     headerBackgroundImage={headerBackgroundImage}
                 />
             );
@@ -223,7 +223,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                     noWrap
                     variant={'body2'}
                     headerFontColor={headerFontColor}
-                    className={(generatedClasses.headerInfo)}
+                    className={generatedClasses.headerInfo}
                 >
                     {headerInfo}
                 </HeaderInfo>
@@ -240,7 +240,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                     headerFontColor={headerFontColor}
                     noWrap
                     variant={'body2'}
-                    className={(generatedClasses.headerSubtitle)}
+                    className={generatedClasses.headerSubtitle}
                 >
                     {headerSubtitle}
                 </HeaderSubtitle>
@@ -256,7 +256,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                     headerFontColor={headerFontColor}
                     variant={'h6'}
                     noWrap
-                    className={(generatedClasses.headerTitle)}
+                    className={generatedClasses.headerTitle}
                 >
                     {headerTitle}
                 </HeaderTitle>
@@ -270,11 +270,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
     const getActionItems = useCallback((): JSX.Element[] | undefined => {
         if (actionItems) {
             return actionItems.slice(0, actionLimit).map((actionItem, index) => (
-                <ActionItems
-                    key={`${index}`}
-                    className={(generatedClasses.actionItems)}
-                    data-testid={'blui-action-item'}
-                >
+                <ActionItems key={`${index}`} className={generatedClasses.actionItems} data-testid={'blui-action-item'}>
                     {actionItem}
                 </ActionItems>
             ));
@@ -285,7 +281,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         if (badge) {
             return (
                 <BadgeWrapper
-                    className={(generatedClasses.badgeWrapper)}
+                    className={generatedClasses.badgeWrapper}
                     badgeOffset={badgeOffset}
                     data-testid={'blui-badge-wrapper'}
                 >
@@ -315,18 +311,18 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         >
             <Header
                 data-testid={'blui-score-card-header'}
-                className={(generatedClasses.header)}
+                className={generatedClasses.header}
                 headerColor={headerColor}
                 headerFontColor={headerFontColor}
             >
                 {getBackgroundImage()}
-                <HeaderContent className={(generatedClasses.headerContent)}>
+                <HeaderContent className={generatedClasses.headerContent}>
                     {getHeaderText()}
                     {getActionItems()}
                 </HeaderContent>
             </Header>
-            <Content className={(generatedClasses.content)} data-testid={'blui-body-content'}>
-                <BodyWrapper className={(generatedClasses.bodyWrapper)} data-testid={'blui-body-wrapper'}>
+            <Content className={generatedClasses.content} data-testid={'blui-body-content'}>
+                <BodyWrapper className={generatedClasses.bodyWrapper} data-testid={'blui-body-wrapper'}>
                     {children}
                 </BodyWrapper>
                 {getHeroes()}

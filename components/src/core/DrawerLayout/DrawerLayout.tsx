@@ -94,14 +94,13 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
                     generatedClasses.root,
                     {
                         [generatedClasses.expanded]: drawerOpen,
-                        [classes.expanded]: drawerOpen,
                     },
                     userClassName
                 )}
                 {...otherProps}
             >
-                <Drawer className={(generatedClasses.drawer)}>{drawer}</Drawer>
-                <Content className={(generatedClasses.content)} style={style}>
+                <Drawer className={generatedClasses.drawer}>{drawer}</Drawer>
+                <Content className={generatedClasses.content} style={style}>
                     {children}
                 </Content>
             </Root>

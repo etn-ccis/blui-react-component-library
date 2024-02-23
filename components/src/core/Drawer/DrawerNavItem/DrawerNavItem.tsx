@@ -283,7 +283,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: (generatedClasses.ripple),
+                          child: generatedClasses.ripple,
                       },
                   },
               }
@@ -316,7 +316,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                         e.stopPropagation();
                     }
                 }}
-                className={(generatedClasses.expandIcon)}
+                className={generatedClasses.expandIcon}
                 collapseIcon={collapseIcon}
                 expanded={expanded}
             >
@@ -416,14 +416,11 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Combine the classes to pass down the the InfoListItem
     const infoListItemClasses = {
-        root: ripple && hasAction ? undefined : (generatedClasses.infoListItemRoot),
-        listItemButtonRoot: ripple && hasAction ? (generatedClasses.infoListItemRoot) : undefined,
+        root: ripple && hasAction ? undefined : generatedClasses.infoListItemRoot,
+        listItemButtonRoot: ripple && hasAction ? generatedClasses.infoListItemRoot : undefined,
         title: cx(
             generatedClasses.title,
             active || (!disableActiveItemParentStyles && isInActiveTree) ? generatedClasses.titleActive : undefined,
-            (active || (!disableActiveItemParentStyles && isInActiveTree)) && classes.titleActive
-                ? classes.titleActive
-                : undefined,
             depth > 0 ? generatedClasses.nestedTitle : undefined
         ),
     };
@@ -442,7 +439,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 >
                     {active && (
                         <ActiveItem
-                            className={(generatedClasses.active)}
+                            className={generatedClasses.active}
                             style={{ backgroundColor: activeItemBackgroundColor }}
                             activeItemBackgroundShape={activeItemBackgroundShape}
                         />
@@ -490,7 +487,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             {((items && items.length > 0) || Boolean(children)) && (
                 <Collapse in={expanded && drawerOpen !== false} key={`${itemTitle}_group_${depth}`}>
                     <NestedListGroup
-                        className={(generatedClasses.nestedListGroup)}
+                        className={generatedClasses.nestedListGroup}
                         nestedBackgroundColor={nestedBackgroundColor}
                     >
                         {items &&

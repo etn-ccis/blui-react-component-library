@@ -130,16 +130,16 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
             data-testid={'blui-hero-root'}
             {...otherProps}
         >
-            <Icon className={(generatedClasses.icon)} iconSize={iconSize} iconBackgroundColor={iconBackgroundColor}>
+            <Icon className={generatedClasses.icon} iconSize={iconSize} iconBackgroundColor={iconBackgroundColor}>
                 {icon}
             </Icon>
-            <Values component={'span'} className={(generatedClasses.values)}>
+            <Values component={'span'} className={generatedClasses.values}>
                 {!props.children && ChannelValueProps?.value && (
                     <ChannelValue fontSize={ChannelValueProps?.fontSize} {...ChannelValueProps} />
                 )}
                 {props.children}
             </Values>
-            <Label variant={'body1'} color={'inherit'} className={(generatedClasses.label)}>
+            <Label variant={'body1'} color={'inherit'} className={generatedClasses.label}>
                 {label}
             </Label>
         </Root>

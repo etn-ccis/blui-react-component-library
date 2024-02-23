@@ -86,10 +86,10 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
             data-testid={'blui-empty-state-root'}
             {...otherProps}
         >
-            {icon && <Icon className={(generatedClasses.icon)}>{icon}</Icon>}
+            {icon && <Icon className={generatedClasses.icon}>{icon}</Icon>}
             {title &&
                 (typeof title === 'string' ? (
-                    <Typography variant="h6" color="inherit" className={classes.title}>
+                    <Typography variant="h6" color="inherit" className={generatedClasses.title}>
                         {title}
                     </Typography>
                 ) : (
@@ -97,13 +97,13 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
                 ))}
             {description &&
                 (typeof description === 'string' ? (
-                    <Description variant="subtitle2" color={'textSecondary'} className={(generatedClasses.description)}>
+                    <Description variant="subtitle2" color={'textSecondary'} className={generatedClasses.description}>
                         {description}
                     </Description>
                 ) : (
                     description
                 ))}
-            {actions && <Actions className={(generatedClasses.actions)}>{actions}</Actions>}
+            {actions && <Actions className={generatedClasses.actions}>{actions}</Actions>}
         </Root>
     );
 };

@@ -272,7 +272,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: (generatedClasses.ripple),
+                          child: generatedClasses.ripple,
                       },
                   },
               }
@@ -312,7 +312,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {...directButtonBaseProps}
             className={cx(
                 generatedClasses.root,
-                condensed && classes.condensed ? classes.condensed : undefined,
+                condensed && generatedClasses.condensed ? generatedClasses.condensed : undefined,
                 className
             )}
             statusColor={statusColor}

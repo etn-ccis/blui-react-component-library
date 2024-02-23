@@ -120,6 +120,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
         onClose,
         onOpen,
         className: userClassName,
+        classes = {},
         ...otherTypographyProps
     } = props;
     const theme = useTheme();
@@ -221,7 +222,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 {icon && (
                     <ToolbarMenuIcon
                         component={'span'}
-                        className={(generatedClasses.icon)}
+                        className={generatedClasses.icon}
                         data-testid={'blui-toolbar-menu-icon'}
                     >
                         {icon}
@@ -229,7 +230,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 )}
                 <ToolbarMenuLabel
                     component={'span'}
-                    className={(generatedClasses.label)}
+                    className={generatedClasses.label}
                     data-testid={'blui-toolbar-menu-label'}
                 >
                     {label || ''}

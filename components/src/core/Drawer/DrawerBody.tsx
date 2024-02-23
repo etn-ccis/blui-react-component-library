@@ -71,7 +71,7 @@ const DrawerBodyRender: React.ForwardRefRenderFunction<unknown, DrawerBodyProps>
         <Root
             ref={ref}
             data-testid={'blui-drawer-body'}
-            className={(generatedClasses.root)}
+            className={generatedClasses.root}
             backgroundColor={backgroundColor}
             {...otherProps}
         >

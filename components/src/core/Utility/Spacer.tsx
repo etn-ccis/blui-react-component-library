@@ -51,7 +51,7 @@ const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (prop
             flex={flex}
             height={height}
             width={width}
-            className={(generatedClasses.root)}
+            className={generatedClasses.root}
             {...otherProps}
         >
             {children}

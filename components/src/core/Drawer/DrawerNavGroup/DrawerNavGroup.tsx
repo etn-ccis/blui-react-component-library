@@ -248,13 +248,13 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
                 subheader={
                     variant !== 'rail' && (
                         <SubHeader
-                            className={(generatedClasses.subheader)}
+                            className={generatedClasses.subheader}
                             style={{
                                 color: drawerOpen ? titleColor : 'transparent',
                             }}
                         >
                             {title && (
-                                <Title noWrap variant={'overline'} className={(generatedClasses.title)}>
+                                <Title noWrap variant={'overline'} className={generatedClasses.title}>
                                     {title}
                                 </Title>
                             )}

@@ -293,7 +293,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt, BottomSheetProps]);
 
     return (
-        <Root ref={ref} className={(generatedClasses.root)} {...otherProps}>
+        <Root ref={ref} className={generatedClasses.root} {...otherProps}>
             {formatAvatar(true)}
             {canDisplayMenu() && formatMenu()}
         </Root>

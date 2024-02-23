@@ -194,11 +194,11 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
     const getHeaderContent = useCallback(
         (): ReactNode =>
             titleContent || (
-                <Content className={(generatedClasses.content)}>
+                <Content className={generatedClasses.content}>
                     <Title
                         noWrap
                         variant={'h6'}
-                        className={(generatedClasses.title)}
+                        className={generatedClasses.title}
                         data-testid={'blui-drawer-header-title'}
                     >
                         {title}
@@ -208,7 +208,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                         <Subtitle
                             noWrap
                             variant={'body2'}
-                            className={(generatedClasses.subtitle)}
+                            className={generatedClasses.subtitle}
                             data-testid={'blui-drawer-header-subtitle'}
                         >
                             {subtitle}
@@ -223,7 +223,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
         (): JSX.Element | null =>
             backgroundImage ? (
                 <Background
-                    className={(generatedClasses.background)}
+                    className={generatedClasses.background}
                     backgroundImage={backgroundImage}
                     backgroundOpacity={backgroundOpacity}
                 />
@@ -236,7 +236,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
             <Root
                 ref={ref}
                 data-testid={'blui-drawer-header'}
-                className={(generatedClasses.root)}
+                className={generatedClasses.root}
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}
                 disableGutters={disableGutters}
@@ -264,7 +264,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                             </IconButton>
                         )}
                         {!onIconClick && (
-                            <NonClickableIcon className={(generatedClasses.nonClickableIcon)}>{icon}</NonClickableIcon>
+                            <NonClickableIcon className={generatedClasses.nonClickableIcon}>{icon}</NonClickableIcon>
                         )}
                     </Navigation>
                 )}

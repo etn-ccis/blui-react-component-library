@@ -242,9 +242,8 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         if (backgroundImage) {
             return (
                 <div
-                    className={clsx(generatedClasses.background, classes.background, {
+                    className={clsx(generatedClasses.background, {
                         [generatedClasses.expandedBackground]: isExpanded,
-                        [classes.expandedBackground]: isExpanded,
                     })}
                 />
             );
@@ -289,8 +288,8 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             className={cx(
                 generatedClasses.root,
                 {
-                    [classes.expanded]: isExpanded,
-                    [classes.collapsed]: !isExpanded,
+                    [generatedClasses.expanded]: isExpanded,
+                    [generatedClasses.collapsed]: !isExpanded,
                 },
                 userClassName
             )}
