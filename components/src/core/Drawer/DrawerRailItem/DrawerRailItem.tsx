@@ -244,7 +244,6 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         /* eslint-enable @typescript-eslint/no-unused-vars */
         divider,
         ripple = true,
-        classes = {},
         className,
         condensed: itemCondensed,
         hidden,

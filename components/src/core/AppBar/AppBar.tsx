@@ -141,7 +141,6 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         expandedHeight = 200,
         backgroundImage,
         className: userClassName,
-        classes = {},
         collapsedHeight = defaultAppBarHeight,
         // onExpandedHeightReached,
         // onCollapsedHeightReached,

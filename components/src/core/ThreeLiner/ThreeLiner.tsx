@@ -90,7 +90,6 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
         title,
         subtitle,
         info,
-        classes = {},
         className: userClassName,
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */

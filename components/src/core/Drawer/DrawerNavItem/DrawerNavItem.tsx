@@ -227,7 +227,6 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         chevronColor,
         children,
         className,
-        classes = {},
         collapseIcon,
         depth = 0,
         disableActiveItemParentStyles = false,
