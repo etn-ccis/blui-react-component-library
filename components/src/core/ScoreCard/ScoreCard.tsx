@@ -213,7 +213,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 />
             );
         }
-    }, [headerBackgroundImage, generatedClasses, classes]);
+    }, [headerBackgroundImage, generatedClasses]);
 
     const getHeaderInfo = useCallback((): JSX.Element | undefined => {
         if (!headerInfo) return;
