@@ -2,7 +2,6 @@ import React, { ReactNode, useCallback } from 'react';
 import { ListItemProps } from '@mui/material/ListItem';
 import { ListItemButtonProps as MuiListItemButtonProps } from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import { cx } from '@emotion/css';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { separate, withKeys } from '../utilities';
 import PropTypes from 'prop-types';
@@ -165,7 +164,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                         iconColor={iconColor}
                         avatar={avatar}
                         iconAlign={iconAlign}
-                        className={avatar ? 'avatar' : 'icon'}
+                        className={generatedClasses[avatar ? 'avatar' : 'icon']}
                     >
                         {icon}
                     </Icon>
@@ -176,7 +175,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 // a dummy component to maintain the padding
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
                     <Icon
-                        className={'avatar'}
+                        className={generatedClasses['avatar']}
                         statusColor={statusColor}
                         iconColor={iconColor}
                         avatar={avatar}
@@ -190,13 +189,15 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     const getRightComponent = useCallback(
         (): JSX.Element | undefined => (
             <>
-                {rightComponent && <RightComponent className={'rightComponent'}>{rightComponent}</RightComponent>}
+                {rightComponent && (
+                    <RightComponent className={generatedClasses['rightComponent']}>{rightComponent}</RightComponent>
+                )}
                 {chevron && (
                     <InfoListItemChevron
                         chevronColor={chevronColor}
                         color={'inherit'}
                         role={'button'}
-                        className={'chevron'}
+                        className={generatedClasses['chevron']}
                     />
                 )}
             </>
@@ -206,7 +207,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
 
     const getSeparator = useCallback(
         (): JSX.Element => (
-            <SubtitleSeparator className={'separator'} component="span">
+            <SubtitleSeparator className={generatedClasses['separator']} component="span">
                 {subtitleSeparator || '\u00B7'}
             </SubtitleSeparator>
         ),
@@ -250,7 +251,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             <InfoListItemText
                 primary={title}
                 leftComponent={leftComponent}
-                className={'listItemText'}
+                className={generatedClasses.listItemText}
                 secondary={
                     subtitle || info ? (
                         <>
@@ -260,7 +261,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                                     component="div"
                                     fontColor={fontColor}
                                     noWrap={!wrapSubtitle}
-                                    className={'subtitle'}
+                                    className={generatedClasses.subtitle}
                                 >
                                     {getSubtitle()}
                                 </Subtitle>
@@ -271,7 +272,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                                     component="div"
                                     fontColor={fontColor}
                                     noWrap={!wrapInfo}
-                                    className={'info'}
+                                    className={generatedClasses.info}
                                 >
                                     {getInfo()}
                                 </Info>
@@ -286,7 +287,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                     lineHeight: 1.25,
                     display: 'block',
                     color: fontColor || 'inherit',
-                    className: 'title',
+                    generatedClasses: 'title',
                     component: 'div',
                 }}
                 secondaryTypographyProps={{
@@ -308,12 +309,12 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             dense={props.dense}
             ripple={ripple}
             iconColor={iconColor}
-            className={cx('root', userClassName)}
+            className={(generatedClasses.root, userClassName)}
             ref={ref}
             {...otherListItemProps}
         >
             {props.onClick && ripple ? (
-                <InfoListItemContentContainer className={'listItemButtonRoot'} focusRipple={ripple}>
+                <InfoListItemContentContainer className={generatedClasses.listItemButtonRoot} focusRipple={ripple}>
                     {getInfoListItemContent()}
                 </InfoListItemContentContainer>
             ) : (
