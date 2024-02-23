@@ -182,7 +182,11 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
     ];
 
     return (
-        <Stack alignItems={'center'} justifyContent={'center'} sx={{ overflowY: 'auto', width: '100%', height: '100%', p: 1 }}>
+        <Stack
+            alignItems={'center'}
+            justifyContent={'center'}
+            sx={{ overflowY: 'auto', width: '100%', height: '100%', p: 1 }}
+        >
             <Box
                 sx={{
                     m: '16px 0',

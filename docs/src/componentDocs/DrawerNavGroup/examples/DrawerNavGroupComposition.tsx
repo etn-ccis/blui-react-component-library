@@ -5,13 +5,14 @@ import { DrawerNavGroupCompositionExample } from './DrawerNavGroupCompositionExa
 
 const codeSnippet = `<Drawer open width={250}>
     <DrawerBody>
-        <DrawerNavGroup title="Group 1" hidePadding>
+        <DrawerNavGroup title="Group 1" hidePadding titleDivider={false}>
             <DrawerNavItem title="Item 1" itemID="1" />
             <DrawerNavItem title="Item 2" itemID="2" />
         </DrawerNavGroup>
         <DrawerNavGroup
             title="Group 2"
             hidePadding
+            titleDivider={false}
             items={[
                 {
                     title: 'Item 3',
