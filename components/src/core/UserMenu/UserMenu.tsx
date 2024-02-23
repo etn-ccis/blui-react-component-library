@@ -193,7 +193,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 },
             });
         },
-        [avatar, onOpen, generatedClasses, classes]
+        [avatar, onOpen, generatedClasses]
     );
 
     /* DrawerHeader needs wrapped with key div to avoid ref warning on FC. */
