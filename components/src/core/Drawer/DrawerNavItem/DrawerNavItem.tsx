@@ -266,7 +266,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         if (isInActiveTree && !expanded) {
             setExpanded(true);
         }
-    }, [isInActiveTree]); // Only update if the active tree changes (not after manual expand/collapse action)
+    }, [expanded, isInActiveTree]); // Only update if the active tree changes (not after manual expand/collapse action)
 
     // If the active item changes
     useEffect(() => {
@@ -274,7 +274,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             // notify the parent that it should now be in the active tree
             notifyActiveParent([itemID]);
         }
-    }, [activeItem, notifyActiveParent]);
+    }, [activeItem, itemID, previousActive, notifyActiveParent]);
 
     // Customize the color of the Touch Ripple
     const RippleProps =
@@ -300,7 +300,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
                 setExpanded(!expanded);
             }
         },
-        [onItemSelect, onClick, itemID, items, expanded, setExpanded]
+        [onItemSelect, onClick, itemID, items, expanded, setExpanded, children]
     );
 
     const getActionComponent = useCallback((): JSX.Element => {
@@ -398,17 +398,21 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
             backgroundColor,
             chevron,
             chevronColor,
-            collapseIcon,
+            depth,
             disableActiveItemParentStyles,
             divider,
-            expandIcon,
             hidePadding,
+            itemID,
             itemFontColor,
             itemIconColor,
             nestedBackgroundColor,
             nestedDivider,
             notifyActiveParent,
+            props.collapseIcon,
+            props.expandIcon,
             ripple,
+            style,
+            sx,
             children,
         ]
     );

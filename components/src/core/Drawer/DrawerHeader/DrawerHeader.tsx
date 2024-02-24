@@ -228,7 +228,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                     backgroundOpacity={backgroundOpacity}
                 />
             ) : null,
-        [backgroundImage, generatedClasses]
+        [backgroundImage, generatedClasses, backgroundOpacity]
     );
 
     return (

@@ -19,6 +19,7 @@ import {
     SubtitleSeparator,
 } from './InfoListItemStyledComponents';
 import { getInfoListItemUtilityClass, InfoListItemClassKey, InfoListItemClasses } from './InfoListItemClasses';
+import { cx } from '@emotion/css';
 
 const MAX_SUBTITLE_ELEMENTS = 6;
 
@@ -185,7 +186,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 </ListItemAvatar>
             );
         }
-    }, [icon, avatar, hidePadding, generatedClasses]);
+    }, [avatar, icon, iconAlign, iconColor, statusColor, hidePadding, generatedClasses]);
 
     const getRightComponent = useCallback(
         (): JSX.Element | undefined => (
@@ -203,7 +204,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 )}
             </>
         ),
-        [rightComponent, chevron, generatedClasses]
+        [rightComponent, chevron, chevronColor, generatedClasses]
     );
 
     const getSeparator = useCallback(
@@ -212,7 +213,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 {subtitleSeparator || '\u00B7'}
             </SubtitleSeparator>
         ),
-        [subtitleSeparator]
+        [generatedClasses, subtitleSeparator]
     );
 
     const getSubtitle = useCallback((): string | null => {

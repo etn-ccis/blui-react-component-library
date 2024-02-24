@@ -152,7 +152,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     useEffect(() => {
         if (!findID({ items: props.items, children: props.children } as DrawerNavItemProps, activeItem))
             setActiveHierarchyItems([]);
-    }, [activeItem]);
+    }, [activeItem, props.children, props.items]);
 
     const getChildren = useCallback(
         (): JSX.Element[] =>

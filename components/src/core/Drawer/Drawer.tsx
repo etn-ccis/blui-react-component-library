@@ -227,6 +227,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             activeItemBackgroundShape,
             activeItemFontColor,
             activeItemIconColor,
+            backgroundColor,
             chevron,
             chevronColor,
             collapseIcon,
@@ -239,7 +240,6 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             nestedBackgroundColor,
             nestedDivider,
             ripple,
-            onItemSelect,
             props.children,
         ]
     );
@@ -306,7 +306,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             setPadding(variant === 'temporary' ? 0 : getDrawerWidth());
             setDrawerOpen(isDrawerOpen());
         }
-    }, [variant, noLayout, isDrawerOpen, getDrawerWidth]);
+    }, [variant, noLayout, isDrawerOpen, getDrawerWidth, setDrawerOpen, setPadding]);
 
     return (
         <Root

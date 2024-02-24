@@ -244,6 +244,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         /* eslint-enable @typescript-eslint/no-unused-vars */
         divider,
         ripple = true,
+        classes = {},
         className,
         condensed: itemCondensed,
         hidden,
@@ -285,7 +286,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                 </Icon>
             );
         }
-    }, [icon]);
+    }, [generatedClasses.icon, icon, itemIconColor]);
 
     const onClickAction = useCallback(
         (e: React.MouseEvent<HTMLElement>): void => {

@@ -1,7 +1,7 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: ["jest-dom", "testing-library"],
-    extends: ['@brightlayer-ui/eslint-config/tsx'],
+    extends: ['@brightlayer-ui/eslint-config/tsx', 'plugin:react-hooks/recommended'],
     parserOptions: {
         project: './tsconfig.json',
     },

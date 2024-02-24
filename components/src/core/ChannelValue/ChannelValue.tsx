@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import Typography, { TypographyProps } from '@mui/material/Typography';
 import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
@@ -117,19 +117,21 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         ...otherProps
     } = props;
     const generatedClasses = useUtilityClasses(props);
-    const prefixUnitAllowSpaceList = ['$'];
-    const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
+    // const prefixUnitAllowSpaceList = ['$'];
+    const prefixUnitAllowSpaceList = useMemo(() => ['$'], []);
+    // const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
+    const suffixUnitAllowSpaceList = useMemo(() => ['%', '℉', '°F', '℃', '°C', '°'], []);
 
     const applyPrefix = useCallback(
         (): boolean =>
             prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !prefixUnitAllowSpaceList.includes(units)),
-        [prefix, units, unitSpace]
+        [prefix, units, unitSpace, prefixUnitAllowSpaceList]
     );
 
     const applySuffix = useCallback(
         (): boolean =>
             !prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !suffixUnitAllowSpaceList.includes(units)),
-        [prefix, units, unitSpace]
+        [prefix, units, unitSpace, suffixUnitAllowSpaceList]
     );
 
     const getUnitElement = useCallback(
@@ -148,7 +150,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                 )}
             </>
         ),
-        [units, prefix, generatedClasses, unitSpace]
+        [units, generatedClasses, applySuffix]
     );
 
     return (

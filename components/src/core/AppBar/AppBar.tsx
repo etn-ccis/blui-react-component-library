@@ -206,7 +206,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         else if (previousOffset > 0 && offset === 0) {
             expandToolbar();
         }
-    }, [offset, scrollThreshold]);
+    }, [offset, scrollThreshold, animating, collapseToolbar, expandToolbar, previousOffset, variant]);
 
     // Properly update the height whenever the variant property changes
     useEffect(() => {
@@ -221,7 +221,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
                 expandToolbar();
             }
         }
-    }, [variant]);
+    }, [variant, collapseToolbar, expandToolbar, offset, scrollThreshold]);
 
     // Properly update the size when either height property changes
     useEffect(() => {
@@ -234,7 +234,15 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         } else {
             expandToolbar();
         }
-    }, [collapsedHeight, expandedHeight]);
+    }, [
+        collapsedHeight,
+        expandedHeight,
+        collapseToolbar,
+        expandToolbar,
+        height,
+        previousCollapsedHeight,
+        previousExpandedHeight,
+    ]);
 
     // Returns the background image to apply on the app bar
     const getBackgroundImage = useCallback((): JSX.Element | undefined => {
@@ -265,7 +273,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             setOffset(scrollTop);
             setEndScrollHandled(true);
         }
-    }, [scrolling, animating, offset, endScrollHandled]);
+    }, [scrolling, animating, offset, endScrollHandled, scrollTop]);
 
     // This function listens for scroll events on the window and sets the scrolling variable to true
     useEffect(() => {
@@ -277,7 +285,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             clearInterval(scrollCheck);
             (scrollElement || window).removeEventListener('scroll', () => setScrolling(true));
         };
-    }, [handleScroll]);
+    }, [handleScroll, scrollElement]);
 
     return (
         <Root

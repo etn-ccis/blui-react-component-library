@@ -230,7 +230,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
             );
         }
         return headerInfo;
-    }, [headerInfo, generatedClasses]);
+    }, [headerFontColor, headerInfo, generatedClasses]);
 
     const getHeaderSubtitle = useCallback((): JSX.Element | undefined => {
         if (!headerSubtitle) return;
@@ -247,7 +247,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
             );
         }
         return headerSubtitle;
-    }, [headerSubtitle, generatedClasses]);
+    }, [headerFontColor, headerSubtitle, generatedClasses]);
 
     const getHeaderText = useCallback(
         (): JSX.Element => (
@@ -264,7 +264,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 {getHeaderInfo()}
             </FlexColumn>
         ),
-        [generatedClasses, headerTitle, getHeaderSubtitle, getHeaderInfo]
+        [generatedClasses, headerFontColor, headerTitle, getHeaderSubtitle, getHeaderInfo]
     );
 
     const getActionItems = useCallback((): JSX.Element[] | undefined => {
@@ -289,7 +289,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 </BadgeWrapper>
             );
         }
-    }, [badge, generatedClasses]);
+    }, [badge, badgeOffset, generatedClasses]);
 
     const getFooter = useCallback((): JSX.Element | undefined => {
         if (actionRow) {

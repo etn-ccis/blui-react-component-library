@@ -159,7 +159,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 }
             }
         }
-    }, [menuGroups]);
+    }, [closeMenu, menuGroups]);
 
     const getMenu = useCallback(() => {
         if (menu && Boolean(anchorEl)) {
@@ -200,7 +200,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 </Menu>
             );
         }
-    }, [menuGroups, menu, anchorEl, MenuProps, generatedClasses]);
+    }, [closeMenu, menuGroups, menu, anchorEl, MenuProps, generatedClasses, rtl]);
 
     return (
         <>

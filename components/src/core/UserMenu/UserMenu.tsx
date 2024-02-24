@@ -155,7 +155,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 }
             }
         }
-    }, [menuGroups]);
+    }, [closeMenu, menuGroups]);
 
     const canDisplayMenu = useCallback(() => Boolean(menu || menuGroups.length > 0), [menu, menuGroups]);
 
@@ -193,7 +193,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 },
             });
         },
-        [avatar, onOpen, generatedClasses]
+        [avatar, openMenu, generatedClasses]
     );
 
     /* DrawerHeader needs wrapped with key div to avoid ref warning on FC. */
@@ -218,7 +218,15 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 </Header>
             );
         }
-    }, [menuTitle, menuSubtitle, avatar]);
+    }, [
+        formatAvatar,
+        menuTitle,
+        menuSubtitle,
+        generatedClasses.header,
+        generatedClasses.headerRoot,
+        generatedClasses.menuTitle,
+        generatedClasses.navigation,
+    ]);
 
     /* DrawerNavGroup needs wrapped with key div to avoid ref warning on FC. */
     const printMenuItems = useCallback(
@@ -245,7 +253,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                     />
                 </UserMenuNavGroups>
             )),
-        [menuGroups, generatedClasses]
+        [menuGroups, generatedClasses, theme.palette.text.secondary]
     );
 
     const printMenu = useCallback(
@@ -290,7 +298,17 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 {printMenu()}
             </Menu>
         );
-    }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt, BottomSheetProps]);
+    }, [
+        menu,
+        anchorEl,
+        closeMenu,
+        MenuProps,
+        printMenu,
+        useBottomSheetAt,
+        BottomSheetProps,
+        generatedClasses.bottomSheet,
+        theme.transitions.duration.short,
+    ]);
 
     return (
         <Root ref={ref} className={generatedClasses.root} {...otherProps}>
