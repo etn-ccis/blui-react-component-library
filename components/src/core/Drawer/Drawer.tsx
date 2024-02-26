@@ -123,7 +123,6 @@ const Content = styled(
 const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (props: DrawerProps, ref: any) => {
     const hoverDelay = useRef<NodeJS.Timeout | null>(null);
     const generatedClasses = useUtilityClasses(props);
-    // const theme = useTheme();
     const { setPadding, setDrawerOpen } = useDrawerLayout();
     const [hover, setHover] = useState(false);
     const {
