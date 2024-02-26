@@ -263,8 +263,6 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     );
 
     const formatMenu = useCallback((): JSX.Element => {
-        // const showBottomSheet = useMediaQuery(`(max-width:${useBottomSheetAt}px)`);
-
         /* If the user provides a menu, provide default props. */
         if (menu) {
             return React.cloneElement(menu, {
