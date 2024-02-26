@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import Typography, { TypographyProps } from '@mui/material/Typography';
 import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
@@ -100,6 +100,9 @@ const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
         style: Object.assign({}, newIcon.props.style, { display: 'block', fontSize: 'inherit' }),
     });
 
+const prefixUnitAllowSpaceList = ['$'];
+const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
+
 const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValueProps> = (
     props: ChannelValueProps,
     ref: any
@@ -117,21 +120,17 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         ...otherProps
     } = props;
     const generatedClasses = useUtilityClasses(props);
-    // const prefixUnitAllowSpaceList = ['$'];
-    const prefixUnitAllowSpaceList = useMemo(() => ['$'], []);
-    // const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
-    const suffixUnitAllowSpaceList = useMemo(() => ['%', '℉', '°F', '℃', '°C', '°'], []);
 
     const applyPrefix = useCallback(
         (): boolean =>
             prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !prefixUnitAllowSpaceList.includes(units)),
-        [prefix, units, unitSpace, prefixUnitAllowSpaceList]
+        [prefix, units, unitSpace]
     );
 
     const applySuffix = useCallback(
         (): boolean =>
             !prefix && unitSpace !== 'hide' && (unitSpace === 'show' || !suffixUnitAllowSpaceList.includes(units)),
-        [prefix, units, unitSpace, suffixUnitAllowSpaceList]
+        [prefix, units, unitSpace]
     );
 
     const getUnitElement = useCallback(

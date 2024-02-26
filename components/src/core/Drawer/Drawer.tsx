@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useTheme, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import MUIDrawer, { DrawerProps as MUIDrawerProps } from '@mui/material/Drawer';
 import { DrawerBodyProps } from './DrawerBody';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
@@ -121,9 +121,9 @@ const Content = styled(
 }));
 
 const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (props: DrawerProps, ref: any) => {
-    let hoverDelay: NodeJS.Timeout;
+    const hoverDelay = useRef<NodeJS.Timeout | null>(null);
     const generatedClasses = useUtilityClasses(props);
-    const theme = useTheme();
+    // const theme = useTheme();
     const { setPadding, setDrawerOpen } = useDrawerLayout();
     const [hover, setHover] = useState(false);
     const {
@@ -261,14 +261,14 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                     onMouseEnter={
                         openOnHover
                             ? (): void => {
-                                  hoverDelay = setTimeout(() => setHover(true), openOnHoverDelay);
+                                  hoverDelay.current = setTimeout(() => setHover(true), openOnHoverDelay);
                               }
                             : undefined
                     }
                     onMouseLeave={
                         openOnHover
                             ? (): void => {
-                                  clearTimeout(hoverDelay);
+                                  clearTimeout(hoverDelay.current);
                                   setHover(false);
                               }
                             : undefined
@@ -280,7 +280,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                 </div>
             </>
         ),
-        [setHover, openOnHover, openOnHoverDelay, getSubHeader, getBody, getFooter]
+        [setHover, openOnHover, openOnHoverDelay, getSubHeader, getHeader, getBody, getFooter]
     );
 
     /* Default Drawer Sizes */
@@ -292,13 +292,13 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
         if (isRail) return condensed ? RAIL_WIDTH_CONDENSED : RAIL_WIDTH;
         if (isDrawerOpen()) return width || EXPANDED_DRAWER_WIDTH_DEFAULT;
         return COLLAPSED_DRAWER_WIDTH_DEFAULT;
-    }, [isRail, condensed, theme, isDrawerOpen, width]);
+    }, [isRail, condensed, isDrawerOpen, width]);
 
     // Get the width of the content inside the drawer - if the drawer is collapsed, content maintains its size in order to clip
     const getContentWidth = useCallback((): number | string => {
         if (isRail) return condensed ? RAIL_WIDTH_CONDENSED : RAIL_WIDTH;
         return width || EXPANDED_DRAWER_WIDTH_DEFAULT;
-    }, [isRail, condensed, width, theme]);
+    }, [isRail, condensed, width]);
 
     // Update the drawer layout padding when the drawer changes
     useEffect(() => {

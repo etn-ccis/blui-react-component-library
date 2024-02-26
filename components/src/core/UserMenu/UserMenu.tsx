@@ -136,6 +136,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     } = props;
     const generatedClasses = useUtilityClasses(props);
     const [anchorEl, setAnchorEl] = useState(null);
+    const showBottomSheet = useMediaQuery(`(max-width:${useBottomSheetAt}px)`);
 
     const closeMenu = useCallback(() => {
         onClose();
@@ -262,7 +263,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     );
 
     const formatMenu = useCallback((): JSX.Element => {
-        const showBottomSheet = useMediaQuery(`(max-width:${useBottomSheetAt}px)`);
+        // const showBottomSheet = useMediaQuery(`(max-width:${useBottomSheetAt}px)`);
 
         /* If the user provides a menu, provide default props. */
         if (menu) {
@@ -304,7 +305,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         closeMenu,
         MenuProps,
         printMenu,
-        useBottomSheetAt,
+        showBottomSheet,
         BottomSheetProps,
         generatedClasses.bottomSheet,
         theme.transitions.duration.short,
