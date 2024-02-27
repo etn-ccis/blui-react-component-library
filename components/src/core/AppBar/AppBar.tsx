@@ -166,10 +166,10 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         variant === 'collapsed'
             ? collapsedHeight
             : variant === 'expanded'
-                ? expandedHeight
-                : scrollTop > scrollThreshold
-                    ? collapsedHeight
-                    : expandedHeight
+            ? expandedHeight
+            : scrollTop > scrollThreshold
+            ? collapsedHeight
+            : expandedHeight
     );
     const isExpanded = height === expandedHeight;
 
