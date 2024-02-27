@@ -108,6 +108,7 @@ const AppBarPreview: PreviewComponent = ({ data }) => {
             <Box
                 sx={{
                     overflow: 'hidden',
+                    m: '16px 0',
                     width: '100%',
                     maxWidth: 450,
                     maxHeight: 400,

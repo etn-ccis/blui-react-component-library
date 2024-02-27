@@ -5,11 +5,11 @@ import { DrawerNavGroupExample } from './DrawerNavGroupExample';
 
 const codeSnippet = `<Drawer open={true} width={250}>
     <DrawerBody>
-        <DrawerNavGroup title="Locations" hidePadding divider>
+        <DrawerNavGroup title="Locations" hidePadding>
             <DrawerNavItem title="Regional" itemID="1" />
             <DrawerNavItem title="National" itemID="2" />
         </DrawerNavGroup>
-        <DrawerNavGroup title="Status" hidePadding divider>
+        <DrawerNavGroup title="Status" hidePadding>
             <DrawerNavItem title="Network" itemID="3" />
             <DrawerNavItem title="Node" itemID="4" />
         </DrawerNavGroup>
