@@ -161,15 +161,16 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     const previousExpandedHeight = usePrevious(expandedHeight);
     const [scrolling, setScrolling] = useState(false);
     const [animating, setAnimating] = useState(false);
+    const previousAnimating = usePrevious(animating);
     const [endScrollHandled, setEndScrollHandled] = useState(false);
     const [height, setHeight] = useState(
         variant === 'collapsed'
             ? collapsedHeight
             : variant === 'expanded'
-            ? expandedHeight
-            : scrollTop > scrollThreshold
-            ? collapsedHeight
-            : expandedHeight
+                ? expandedHeight
+                : scrollTop > scrollThreshold
+                    ? collapsedHeight
+                    : expandedHeight
     );
     const isExpanded = height === expandedHeight;
 
@@ -267,7 +268,15 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             setOffset(scrollTop);
             setEndScrollHandled(true);
         }
-    }, [scrolling, animating, offset, endScrollHandled]);
+    }, [scrolling, offset, endScrollHandled]);
+
+    // listen for animating to finish and update scroll position
+    useEffect(() => {
+        if (previousAnimating && !animating) {
+            setEndScrollHandled(false);
+            handleScroll();
+        }
+    }, [previousAnimating, animating, handleScroll]);
 
     // This function listens for scroll events on the window and sets the scrolling variable to true
     useEffect(() => {
