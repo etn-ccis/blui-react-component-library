@@ -75,7 +75,20 @@ const inputConfig: InputConfig = [
     },
 
     // Shared Props
-    ...sharedPropsConfig.filter((prop) => !['collapseIcon', 'expandIcon', 'nestedDivider'].includes(prop.id)),
+    ...sharedPropsConfig.filter(
+        (prop) =>
+            ![
+                'activeItemBackgroundShape',
+                'chevron',
+                'chevronColor',
+                'collapseIcon',
+                'expandIcon',
+                'hidePadding',
+                'disableActiveItemParentStyles',
+                'nestedBackgroundColor',
+                'nestedDivider',
+            ].includes(prop.id)
+    ),
 
     // Other Configuration
     {
