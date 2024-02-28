@@ -266,7 +266,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         if (isInActiveTree && !expanded) {
             setExpanded(true);
         }
-    }, [expanded, isInActiveTree]); // Only update if the active tree changes (not after manual expand/collapse action)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isInActiveTree]); // Only update if the active tree changes (not after manual expand/collapse action)
 
     // If the active item changes
     useEffect(() => {
