@@ -305,7 +305,8 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             setPadding(variant === 'temporary' ? 0 : getDrawerWidth());
             setDrawerOpen(isDrawerOpen());
         }
-    }, [variant, noLayout, isDrawerOpen, getDrawerWidth, setDrawerOpen, setPadding]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [variant, noLayout, isDrawerOpen, getDrawerWidth]);
 
     return (
         <Root
