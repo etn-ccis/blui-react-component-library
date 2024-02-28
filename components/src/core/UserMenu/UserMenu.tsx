@@ -134,8 +134,9 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         onOpen,
         ...otherProps
     } = props;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const [anchorEl, setAnchorEl] = useState(null);
+    const showBottomSheet = useMediaQuery(`(max-width:${useBottomSheetAt}px)`);
 
     const closeMenu = useCallback(() => {
         onClose();
@@ -155,7 +156,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 }
             }
         }
-    }, [menuGroups]);
+    }, [closeMenu, menuGroups]);
 
     const canDisplayMenu = useCallback(() => Boolean(menu || menuGroups.length > 0), [menu, menuGroups]);
 
@@ -186,14 +187,14 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 classes: {
                     ...aProps.classes,
                     root: cx(
-                        defaultClasses.avatarRoot,
-                        preserveOnClick ? '' : defaultClasses.noCursor,
+                        generatedClasses.avatarRoot,
+                        preserveOnClick ? '' : generatedClasses.noCursor,
                         aProps?.classes?.root
                     ),
                 },
             });
         },
-        [avatar, onOpen, defaultClasses, classes]
+        [avatar, openMenu, generatedClasses]
     );
 
     /* DrawerHeader needs wrapped with key div to avoid ref warning on FC. */
@@ -201,7 +202,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
         if (menuTitle) {
             const nonClickableAvatar = formatAvatar(false);
             return (
-                <Header className={defaultClasses.header} key={'header'}>
+                <Header className={generatedClasses.header} key={'header'}>
                     <DrawerHeader
                         icon={nonClickableAvatar}
                         title={menuTitle}
@@ -210,21 +211,29 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                         backgroundColor={'inherit'}
                         divider
                         classes={{
-                            root: defaultClasses.headerRoot,
-                            title: defaultClasses.menuTitle,
-                            navigation: defaultClasses.navigation,
+                            root: generatedClasses.headerRoot,
+                            title: generatedClasses.menuTitle,
+                            navigation: generatedClasses.navigation,
                         }}
                     />
                 </Header>
             );
         }
-    }, [menuTitle, menuSubtitle, avatar]);
+    }, [
+        formatAvatar,
+        menuTitle,
+        menuSubtitle,
+        generatedClasses.header,
+        generatedClasses.headerRoot,
+        generatedClasses.menuTitle,
+        generatedClasses.navigation,
+    ]);
 
     /* DrawerNavGroup needs wrapped with key div to avoid ref warning on FC. */
     const printMenuItems = useCallback(
         (): JSX.Element[] =>
             menuGroups.map((group: UserMenuGroup, index: number) => (
-                <UserMenuNavGroups className={defaultClasses.navGroups} key={index}>
+                <UserMenuNavGroups className={generatedClasses.navGroups} key={index}>
                     <DrawerNavGroup
                         divider={false}
                         itemIconColor={group.iconColor}
@@ -245,7 +254,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                     />
                 </UserMenuNavGroups>
             )),
-        [menuGroups, defaultClasses]
+        [menuGroups, generatedClasses, theme.palette.text.secondary]
     );
 
     const printMenu = useCallback(
@@ -254,8 +263,6 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
     );
 
     const formatMenu = useCallback((): JSX.Element => {
-        const showBottomSheet = useMediaQuery(`(max-width:${useBottomSheetAt}px)`);
-
         /* If the user provides a menu, provide default props. */
         if (menu) {
             return React.cloneElement(menu, {
@@ -273,7 +280,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 open={Boolean(anchorEl)}
                 onClose={closeMenu}
                 disablePortal
-                classes={{ paper: cx(defaultClasses.bottomSheet, classes.bottomSheet) }}
+                classes={{ paper: cx(generatedClasses.bottomSheet) }}
                 {...BottomSheetProps}
             >
                 {printMenu()}
@@ -290,10 +297,20 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 {printMenu()}
             </Menu>
         );
-    }, [menu, anchorEl, closeMenu, MenuProps, printMenu, useBottomSheetAt, BottomSheetProps]);
+    }, [
+        menu,
+        anchorEl,
+        closeMenu,
+        MenuProps,
+        printMenu,
+        showBottomSheet,
+        BottomSheetProps,
+        generatedClasses.bottomSheet,
+        theme.transitions.duration.short,
+    ]);
 
     return (
-        <Root ref={ref} className={cx(defaultClasses.root, classes.root)} {...otherProps}>
+        <Root ref={ref} className={generatedClasses.root} {...otherProps}>
             {formatAvatar(true)}
             {canDisplayMenu() && formatMenu()}
         </Root>

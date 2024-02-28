@@ -202,18 +202,18 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
         ...otherCardProps
     } = props;
 
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
 
     const getBackgroundImage = useCallback((): JSX.Element | undefined => {
         if (headerBackgroundImage) {
             return (
                 <HeaderBackground
-                    className={cx(defaultClasses.headerBackground, classes.headerBackground)}
+                    className={generatedClasses.headerBackground}
                     headerBackgroundImage={headerBackgroundImage}
                 />
             );
         }
-    }, [headerBackgroundImage, defaultClasses, classes]);
+    }, [headerBackgroundImage, generatedClasses]);
 
     const getHeaderInfo = useCallback((): JSX.Element | undefined => {
         if (!headerInfo) return;
@@ -223,14 +223,14 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                     noWrap
                     variant={'body2'}
                     headerFontColor={headerFontColor}
-                    className={cx(defaultClasses.headerInfo, classes.headerInfo)}
+                    className={generatedClasses.headerInfo}
                 >
                     {headerInfo}
                 </HeaderInfo>
             );
         }
         return headerInfo;
-    }, [headerInfo, defaultClasses, classes]);
+    }, [headerFontColor, headerInfo, generatedClasses]);
 
     const getHeaderSubtitle = useCallback((): JSX.Element | undefined => {
         if (!headerSubtitle) return;
@@ -240,14 +240,14 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                     headerFontColor={headerFontColor}
                     noWrap
                     variant={'body2'}
-                    className={cx(defaultClasses.headerSubtitle, classes.headerSubtitle)}
+                    className={generatedClasses.headerSubtitle}
                 >
                     {headerSubtitle}
                 </HeaderSubtitle>
             );
         }
         return headerSubtitle;
-    }, [headerSubtitle, defaultClasses, classes]);
+    }, [headerFontColor, headerSubtitle, generatedClasses]);
 
     const getHeaderText = useCallback(
         (): JSX.Element => (
@@ -256,7 +256,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                     headerFontColor={headerFontColor}
                     variant={'h6'}
                     noWrap
-                    className={cx(defaultClasses.headerTitle, classes.headerTitle)}
+                    className={generatedClasses.headerTitle}
                 >
                     {headerTitle}
                 </HeaderTitle>
@@ -264,28 +264,24 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 {getHeaderInfo()}
             </FlexColumn>
         ),
-        [defaultClasses, classes, headerTitle, getHeaderSubtitle, getHeaderInfo]
+        [generatedClasses, headerFontColor, headerTitle, getHeaderSubtitle, getHeaderInfo]
     );
 
     const getActionItems = useCallback((): JSX.Element[] | undefined => {
         if (actionItems) {
             return actionItems.slice(0, actionLimit).map((actionItem, index) => (
-                <ActionItems
-                    key={`${index}`}
-                    className={cx(defaultClasses.actionItems, classes.actionItems)}
-                    data-testid={'blui-action-item'}
-                >
+                <ActionItems key={`${index}`} className={generatedClasses.actionItems} data-testid={'blui-action-item'}>
                     {actionItem}
                 </ActionItems>
             ));
         }
-    }, [actionItems, actionLimit, defaultClasses, classes]);
+    }, [actionItems, actionLimit, generatedClasses]);
 
     const getHeroes = useCallback((): JSX.Element | undefined => {
         if (badge) {
             return (
                 <BadgeWrapper
-                    className={cx(defaultClasses.badgeWrapper, classes.badgeWrapper)}
+                    className={generatedClasses.badgeWrapper}
                     badgeOffset={badgeOffset}
                     data-testid={'blui-badge-wrapper'}
                 >
@@ -293,7 +289,7 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
                 </BadgeWrapper>
             );
         }
-    }, [badge, defaultClasses, classes]);
+    }, [badge, badgeOffset, generatedClasses]);
 
     const getFooter = useCallback((): JSX.Element | undefined => {
         if (actionRow) {
@@ -309,27 +305,24 @@ const ScoreCardRender: React.ForwardRefRenderFunction<unknown, ScoreCardProps> =
     return (
         <Root
             ref={ref}
-            className={cx(defaultClasses.root, classes.root, userClassName)}
+            className={cx(generatedClasses.root, userClassName)}
             data-testid={'blui-score-card-root'}
             {...otherCardProps}
         >
             <Header
                 data-testid={'blui-score-card-header'}
-                className={cx(defaultClasses.header, classes.header)}
+                className={generatedClasses.header}
                 headerColor={headerColor}
                 headerFontColor={headerFontColor}
             >
                 {getBackgroundImage()}
-                <HeaderContent className={cx(defaultClasses.headerContent, classes.headerContent)}>
+                <HeaderContent className={generatedClasses.headerContent}>
                     {getHeaderText()}
                     {getActionItems()}
                 </HeaderContent>
             </Header>
-            <Content className={cx(defaultClasses.content, classes.content)} data-testid={'blui-body-content'}>
-                <BodyWrapper
-                    className={cx(defaultClasses.bodyWrapper, classes.bodyWrapper)}
-                    data-testid={'blui-body-wrapper'}
-                >
+            <Content className={generatedClasses.content} data-testid={'blui-body-content'}>
+                <BodyWrapper className={generatedClasses.bodyWrapper} data-testid={'blui-body-wrapper'}>
                     {children}
                 </BodyWrapper>
                 {getHeroes()}

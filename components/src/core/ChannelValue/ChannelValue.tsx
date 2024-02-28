@@ -100,6 +100,9 @@ const changeIconDisplay = (newIcon: JSX.Element): JSX.Element =>
         style: Object.assign({}, newIcon.props.style, { display: 'block', fontSize: 'inherit' }),
     });
 
+const prefixUnitAllowSpaceList = ['$'];
+const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
+
 const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValueProps> = (
     props: ChannelValueProps,
     ref: any
@@ -116,9 +119,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
         fontSize,
         ...otherProps
     } = props;
-    const defaultClasses = useUtilityClasses(props);
-    const prefixUnitAllowSpaceList = ['$'];
-    const suffixUnitAllowSpaceList = ['%', '℉', '°F', '℃', '°C', '°'];
+    const generatedClasses = useUtilityClasses(props);
 
     const applyPrefix = useCallback(
         (): boolean =>
@@ -139,7 +140,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                     <Unit
                         variant={'h6'}
                         color={'inherit'}
-                        className={cx(defaultClasses.text, classes.text, defaultClasses.units, classes.units)}
+                        className={cx(generatedClasses.text, generatedClasses.units)}
                         isSuffix={applySuffix()}
                         data-testid={'blui-channel-value-units'}
                     >
@@ -148,21 +149,21 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
                 )}
             </>
         ),
-        [units, prefix, classes, defaultClasses, unitSpace]
+        [units, generatedClasses, applySuffix]
     );
 
     return (
         <Root
             component="span"
             ref={ref}
-            className={cx(defaultClasses.root, classes.root, userClassName)}
+            className={cx(generatedClasses.root, userClassName)}
             data-testid={'blui-channel-value-root'}
             fontSize={fontSize}
             color={color}
             {...otherProps}
         >
             {icon && (
-                <IconSpan className={cx(defaultClasses.icon, classes.icon)} data-testid={'blui-channel-value-icon'}>
+                <IconSpan className={generatedClasses.icon} data-testid={'blui-channel-value-icon'}>
                     {changeIconDisplay(icon)}
                 </IconSpan>
             )}
@@ -170,7 +171,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
             <Value
                 variant={'h6'}
                 color={'inherit'}
-                className={cx(defaultClasses.text, classes.text, defaultClasses.value, classes.value)}
+                className={cx(generatedClasses.text, generatedClasses.value)}
                 data-testid={'blui-channel-value-value'}
                 isPrefix={applyPrefix()}
             >

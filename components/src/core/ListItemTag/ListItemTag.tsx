@@ -78,13 +78,13 @@ const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProp
     ref: any
 ) => {
     const { classes: userClasses, label, variant, className: userClassName, ...otherTypographyProps } = props;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const { root: rootUserClass, ...otherUserClasses } = userClasses;
     return (
         <Root
             ref={ref}
             variant={variant || 'overline'}
-            className={cx(defaultClasses.root, { [defaultClasses.noVariant]: !variant }, userClassName)}
+            className={cx(generatedClasses.root, { [generatedClasses.noVariant]: !variant }, userClassName)}
             classes={{ root: rootUserClass, ...otherUserClasses }}
             data-testid={'blui-list-item-tag'}
             {...otherTypographyProps}

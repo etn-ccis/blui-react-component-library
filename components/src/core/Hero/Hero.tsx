@@ -109,9 +109,8 @@ const Label = styled(
 }));
 
 const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: HeroProps, ref: any) => {
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const {
-        classes,
         className: userClassName,
         icon,
         label,
@@ -127,24 +126,20 @@ const HeroRender: React.ForwardRefRenderFunction<unknown, HeroProps> = (props: H
     return (
         <Root
             ref={ref}
-            className={cx(defaultClasses.root, classes.root, userClassName)}
+            className={cx(generatedClasses.root, userClassName)}
             data-testid={'blui-hero-root'}
             {...otherProps}
         >
-            <Icon
-                className={cx(defaultClasses.icon, classes.icon)}
-                iconSize={iconSize}
-                iconBackgroundColor={iconBackgroundColor}
-            >
+            <Icon className={generatedClasses.icon} iconSize={iconSize} iconBackgroundColor={iconBackgroundColor}>
                 {icon}
             </Icon>
-            <Values component={'span'} className={cx(defaultClasses.values, classes.values)}>
+            <Values component={'span'} className={generatedClasses.values}>
                 {!props.children && ChannelValueProps?.value && (
                     <ChannelValue fontSize={ChannelValueProps?.fontSize} {...ChannelValueProps} />
                 )}
                 {props.children}
             </Values>
-            <Label variant={'body1'} color={'inherit'} className={cx(defaultClasses.label, classes.label)}>
+            <Label variant={'body1'} color={'inherit'} className={generatedClasses.label}>
                 {label}
             </Label>
         </Root>

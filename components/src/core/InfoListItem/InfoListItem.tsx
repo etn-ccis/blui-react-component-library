@@ -2,7 +2,6 @@ import React, { ReactNode, useCallback } from 'react';
 import { ListItemProps } from '@mui/material/ListItem';
 import { ListItemButtonProps as MuiListItemButtonProps } from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import { cx } from '@emotion/css';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { separate, withKeys } from '../utilities';
 import PropTypes from 'prop-types';
@@ -20,6 +19,7 @@ import {
     SubtitleSeparator,
 } from './InfoListItemStyledComponents';
 import { getInfoListItemUtilityClass, InfoListItemClassKey, InfoListItemClasses } from './InfoListItemClasses';
+import { cx } from '@emotion/css';
 
 const MAX_SUBTITLE_ELEMENTS = 6;
 
@@ -125,7 +125,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
     props: InfoListItemProps,
     ref: any
 ) => {
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const {
         avatar,
         chevron,
@@ -157,11 +157,6 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         ...otherListItemProps
     } = props;
 
-    const combine = useCallback(
-        (className: keyof InfoListItemClasses): string => cx(defaultClasses[className], classes[className]),
-        [defaultClasses, classes]
-    );
-
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
             return (
@@ -171,7 +166,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                         iconColor={iconColor}
                         avatar={avatar}
                         iconAlign={iconAlign}
-                        className={avatar ? combine('avatar') : combine('icon')}
+                        className={generatedClasses[avatar ? 'avatar' : 'icon']}
                     >
                         {icon}
                     </Icon>
@@ -182,7 +177,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 // a dummy component to maintain the padding
                 <ListItemAvatar style={{ minWidth: 'unset' }}>
                     <Icon
-                        className={combine('avatar')}
+                        className={generatedClasses['avatar']}
                         statusColor={statusColor}
                         iconColor={iconColor}
                         avatar={avatar}
@@ -191,34 +186,34 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                 </ListItemAvatar>
             );
         }
-    }, [icon, avatar, hidePadding, combine]);
+    }, [avatar, icon, iconAlign, iconColor, statusColor, hidePadding, generatedClasses]);
 
     const getRightComponent = useCallback(
         (): JSX.Element | undefined => (
             <>
                 {rightComponent && (
-                    <RightComponent className={combine('rightComponent')}>{rightComponent}</RightComponent>
+                    <RightComponent className={generatedClasses['rightComponent']}>{rightComponent}</RightComponent>
                 )}
                 {chevron && (
                     <InfoListItemChevron
                         chevronColor={chevronColor}
                         color={'inherit'}
                         role={'button'}
-                        className={combine('chevron')}
+                        className={generatedClasses['chevron']}
                     />
                 )}
             </>
         ),
-        [rightComponent, chevron, combine]
+        [rightComponent, chevron, chevronColor, generatedClasses]
     );
 
     const getSeparator = useCallback(
         (): JSX.Element => (
-            <SubtitleSeparator className={combine('separator')} component="span">
+            <SubtitleSeparator className={generatedClasses['separator']} component="span">
                 {subtitleSeparator || '\u00B7'}
             </SubtitleSeparator>
         ),
-        [combine, subtitleSeparator]
+        [generatedClasses, subtitleSeparator]
     );
 
     const getSubtitle = useCallback((): string | null => {
@@ -253,16 +248,16 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
         <>
             <StatusStripe
                 statusColor={statusColor}
-                className={combine('statusStripe')}
+                className={generatedClasses['statusStripe']}
                 data-testid={'blui-status-stripe'}
             />
-            {divider && <InfoListItemDivider divider={divider} className={combine('divider')} />}
+            {divider && <InfoListItemDivider divider={divider} className={generatedClasses['divider']} />}
             {(icon || !hidePadding) && getIcon()}
             {leftComponent}
             <InfoListItemText
                 primary={title}
                 leftComponent={leftComponent}
-                className={combine('listItemText')}
+                className={generatedClasses.listItemText}
                 secondary={
                     subtitle || info ? (
                         <>
@@ -272,7 +267,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                                     component="div"
                                     fontColor={fontColor}
                                     noWrap={!wrapSubtitle}
-                                    className={combine('subtitle')}
+                                    className={generatedClasses.subtitle}
                                 >
                                     {getSubtitle()}
                                 </Subtitle>
@@ -283,7 +278,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                                     component="div"
                                     fontColor={fontColor}
                                     noWrap={!wrapInfo}
-                                    className={combine('info')}
+                                    className={generatedClasses.info}
                                 >
                                     {getInfo()}
                                 </Info>
@@ -298,7 +293,7 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
                     lineHeight: 1.25,
                     display: 'block',
                     color: fontColor || 'inherit',
-                    className: combine('title'),
+                    className: generatedClasses['title'],
                     component: 'div',
                 }}
                 secondaryTypographyProps={{
@@ -320,12 +315,12 @@ const InfoListItemRender: React.ForwardRefRenderFunction<unknown, InfoListItemPr
             dense={props.dense}
             ripple={ripple}
             iconColor={iconColor}
-            className={cx(combine('root'), userClassName)}
+            className={cx(generatedClasses.root, userClassName)}
             ref={ref}
             {...otherListItemProps}
         >
             {props.onClick && ripple ? (
-                <InfoListItemContentContainer className={combine('listItemButtonRoot')} focusRipple={ripple}>
+                <InfoListItemContentContainer className={generatedClasses.listItemButtonRoot} focusRipple={ripple}>
                     {getInfoListItemContent()}
                 </InfoListItemContentContainer>
             ) : (

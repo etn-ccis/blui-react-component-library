@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useTheme, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import MUIDrawer, { DrawerProps as MUIDrawerProps } from '@mui/material/Drawer';
 import { DrawerBodyProps } from './DrawerBody';
 import { useDrawerLayout } from '../DrawerLayout/contexts/DrawerLayoutContextProvider';
@@ -8,7 +8,6 @@ import { DrawerContext } from './DrawerContext';
 import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps, SharedStylePropTypes } from './types';
 import { findChildByType, mergeStyleProp } from './utilities';
 import clsx from 'clsx';
-import { cx } from '@emotion/css';
 import drawerClasses, { DrawerClasses, DrawerClassKey, getDrawerUtilityClass } from './DrawerClasses';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import Box from '@mui/material/Box';
@@ -122,9 +121,8 @@ const Content = styled(
 }));
 
 const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (props: DrawerProps, ref: any) => {
-    let hoverDelay: NodeJS.Timeout;
-    const defaultClasses = useUtilityClasses(props);
-    const theme = useTheme();
+    const hoverDelay = useRef<NodeJS.Timeout | null>(null);
+    const generatedClasses = useUtilityClasses(props);
     const { setPadding, setDrawerOpen } = useDrawerLayout();
     const [hover, setHover] = useState(false);
     const {
@@ -228,6 +226,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             activeItemBackgroundShape,
             activeItemFontColor,
             activeItemIconColor,
+            backgroundColor,
             chevron,
             chevronColor,
             collapseIcon,
@@ -240,7 +239,6 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             nestedBackgroundColor,
             nestedDivider,
             ripple,
-            onItemSelect,
             props.children,
         ]
     );
@@ -262,14 +260,14 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                     onMouseEnter={
                         openOnHover
                             ? (): void => {
-                                  hoverDelay = setTimeout(() => setHover(true), openOnHoverDelay);
+                                  hoverDelay.current = setTimeout(() => setHover(true), openOnHoverDelay);
                               }
                             : undefined
                     }
                     onMouseLeave={
                         openOnHover
                             ? (): void => {
-                                  clearTimeout(hoverDelay);
+                                  clearTimeout(hoverDelay.current);
                                   setHover(false);
                               }
                             : undefined
@@ -281,7 +279,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                 </div>
             </>
         ),
-        [setHover, openOnHover, openOnHoverDelay, getSubHeader, getBody, getFooter]
+        [setHover, openOnHover, openOnHoverDelay, getSubHeader, getHeader, getBody, getFooter]
     );
 
     /* Default Drawer Sizes */
@@ -293,13 +291,13 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
         if (isRail) return condensed ? RAIL_WIDTH_CONDENSED : RAIL_WIDTH;
         if (isDrawerOpen()) return width || EXPANDED_DRAWER_WIDTH_DEFAULT;
         return COLLAPSED_DRAWER_WIDTH_DEFAULT;
-    }, [isRail, condensed, theme, isDrawerOpen, width]);
+    }, [isRail, condensed, isDrawerOpen, width]);
 
     // Get the width of the content inside the drawer - if the drawer is collapsed, content maintains its size in order to clip
     const getContentWidth = useCallback((): number | string => {
         if (isRail) return condensed ? RAIL_WIDTH_CONDENSED : RAIL_WIDTH;
         return width || EXPANDED_DRAWER_WIDTH_DEFAULT;
-    }, [isRail, condensed, width, theme]);
+    }, [isRail, condensed, width]);
 
     // Update the drawer layout padding when the drawer changes
     useEffect(() => {
@@ -307,6 +305,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             setPadding(variant === 'temporary' ? 0 : getDrawerWidth());
             setDrawerOpen(isDrawerOpen());
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [variant, noLayout, isDrawerOpen, getDrawerWidth]);
 
     return (
@@ -316,13 +315,11 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
             variant={variant === 'temporary' ? variant : 'permanent'}
             open={isDrawerOpen()}
             classes={{
-                root: clsx(defaultClasses.root, classes.root, className, {
-                    [defaultClasses.expanded]: isDrawerOpen(),
-                    [classes.expanded]: isDrawerOpen() && classes.expanded,
+                root: clsx(generatedClasses.root, className, {
+                    [generatedClasses.expanded]: isDrawerOpen(),
                 }),
-                paper: clsx(defaultClasses.paper, classes.paper, {
-                    [defaultClasses.sideBorder]: sideBorder,
-                    [classes.sideBorder]: sideBorder && classes.sideBorder,
+                paper: clsx(generatedClasses.paper, {
+                    [generatedClasses.sideBorder]: sideBorder,
                 }),
             }}
             backgroundColor={backgroundColor}
@@ -342,7 +339,7 @@ const DrawerRenderer: React.ForwardRefRenderFunction<unknown, DrawerProps> = (pr
                     activeItem: activeItem,
                 }}
             >
-                <Content className={cx(defaultClasses.content, classes.content)} style={{ width: getContentWidth() }}>
+                <Content className={generatedClasses.content} style={{ width: getContentWidth() }}>
                     {getDrawerContents()}
                 </Content>
             </DrawerContext.Provider>

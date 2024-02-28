@@ -111,7 +111,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     props: DrawerNavGroupProps,
     ref: any
 ) => {
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const theme = useTheme();
     const {
         // Nav Group Props
@@ -153,6 +153,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     useEffect(() => {
         if (!findID({ items: props.items, children: props.children } as DrawerNavItemProps, activeItem))
             setActiveHierarchyItems([]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeItem]);
 
     const getChildren = useCallback(
@@ -245,17 +246,17 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
             <Root
                 ref={ref}
                 data-testid={'blui-drawer-nav-group'}
-                className={cx(defaultClasses.root, classes.root, userClassName)}
+                className={cx(generatedClasses.root, userClassName)}
                 subheader={
                     variant !== 'rail' && (
                         <SubHeader
-                            className={cx(defaultClasses.subheader, classes.subheader)}
+                            className={generatedClasses.subheader}
                             style={{
                                 color: drawerOpen ? titleColor : 'transparent',
                             }}
                         >
                             {title && (
-                                <Title noWrap variant={'overline'} className={cx(defaultClasses.title, classes.title)}>
+                                <Title noWrap variant={'overline'} className={generatedClasses.title}>
                                     {title}
                                 </Title>
                             )}

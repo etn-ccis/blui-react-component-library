@@ -75,7 +75,7 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
     const theme = useTheme();
     const [padding, setPadding] = useState<number | string>(0);
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
 
     const style: CSSProperties = { paddingLeft: 0, paddingRight: 0 };
     style.paddingLeft = theme.direction === 'ltr' ? padding : 0;
@@ -91,18 +91,16 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
             <Root
                 ref={ref}
                 className={cx(
-                    defaultClasses.root,
-                    classes.root,
+                    generatedClasses.root,
                     {
-                        [defaultClasses.expanded]: drawerOpen,
-                        [classes.expanded]: drawerOpen,
+                        [generatedClasses.expanded]: drawerOpen,
                     },
                     userClassName
                 )}
                 {...otherProps}
             >
-                <Drawer className={cx(defaultClasses.drawer, classes.drawer)}>{drawer}</Drawer>
-                <Content className={cx(defaultClasses.content, classes.content)} style={style}>
+                <Drawer className={generatedClasses.drawer}>{drawer}</Drawer>
+                <Content className={generatedClasses.content} style={style}>
                     {children}
                 </Content>
             </Root>
