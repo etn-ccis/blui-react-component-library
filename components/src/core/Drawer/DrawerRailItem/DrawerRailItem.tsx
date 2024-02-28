@@ -272,7 +272,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: classes.ripple,
+                          child: generatedClasses.ripple,
                       },
                   },
               }
@@ -286,7 +286,8 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                 </Icon>
             );
         }
-    }, [generatedClasses.icon, icon, itemIconColor]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [icon]);
 
     const onClickAction = useCallback(
         (e: React.MouseEvent<HTMLElement>): void => {

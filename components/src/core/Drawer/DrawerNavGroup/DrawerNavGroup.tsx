@@ -116,6 +116,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
     const {
         // Nav Group Props
         children,
+        classes,
         className: userClassName,
         items = [],
         title,

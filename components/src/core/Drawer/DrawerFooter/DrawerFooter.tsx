@@ -59,6 +59,7 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
 ) => {
     const generatedClasses = useUtilityClasses(props);
     const {
+        classes,
         className: userClassName,
         children,
         divider = true,
