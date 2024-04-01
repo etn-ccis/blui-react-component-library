@@ -1594,10 +1594,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-5.0.18.tgz#215008af81249849661ec16e9b6e972383d4ff97"
   integrity sha512-DnqTxjqEQM+Ei3FbgJV0GmL5uGCAJnLtLuQj06mjVBcszobrkPbOHmLtnTBlhW3DmejuO1LgJCM7ki96mQIG9Q==
 
-"@fontsource/roboto-mono@^4.5.8":
-  version "4.5.8"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.5.8.tgz#f3a48195528b10e154c98365671de14e27605bdb"
-  integrity sha512-AW44UkbQD0w1CT5mzDbsvhGZ6/bb0YmZzoELj6Sx8vcVEzcbYGUdt2Dtl5zqlOuYMWQFY1mniwWyVv+Bm/lVxw==
+"@fontsource/roboto-mono@^5.0.17":
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-5.0.17.tgz#c73c650c8da27a7f89bf8829da7d14573d1da9a5"
+  integrity sha512-MU6FrAyG7DWMCL8mu0JDPvB2tnFcn/lYvVKixzqHb2uefRsLaD6OBFfF1q5RMFsKcFHyPySHM7ZcGw/Q6A1/FA==
 
 "@fontsource/roboto@^4.5.8":
   version "4.5.8"
