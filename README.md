@@ -1,6 +1,6 @@
 # Brightlayer UI React Components
 
-[![](https://img.shields.io/circleci/project/github/etn-ccis/blui-react-component-library/master.svg?style=flat)](https://circleci.com/gh/etn-ccis/blui-react-component-library/tree/master)
+[![Build](https://github.com/etn-ccis/blui-react-component-library/actions/workflows/blui-ci.yml/badge.svg?branch=master)](https://github.com/etn-ccis/blui-react-component-library/actions/workflows/blui-ci.yml)
 ![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-components?label=%40brightlayer-ui%2Freact-components) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-component-library/branch/master/graph/badge.svg?token=HQFW5YF7WP)](https://codecov.io/gh/etn-ccis/blui-react-component-library)
 
 This is a library of re-usable React components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
