@@ -1,0 +1,6 @@
+fixes:
+  - "::components/"         # move root   e.g., "path/" => "after/path/"
+coverage:
+  status:
+    project: off
+    patch: off
