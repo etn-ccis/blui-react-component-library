@@ -86,7 +86,7 @@
         "@types/react-dom": "^18.2.17",
         "@types/react-router-dom": "^5.3.3",
         "@typescript-eslint/eslint-plugin": "^5.62.0",
-        "@typescript-eslint/parser": "^5.42.1",
+        "@typescript-eslint/parser": "^5.62.0",
         "color": "^4.2.3",
         "eslint": "^8.46.0",
         "eslint-config-prettier": "^8.5.0",
