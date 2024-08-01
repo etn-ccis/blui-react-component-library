@@ -45,7 +45,7 @@
     "devDependencies": {
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "npm-license-crawler": "^0.2.1",
-        "prettier": "^3.3.2"
+        "prettier": "^3.3.3"
     },
     "prettier": "@brightlayer-ui/prettier-config"
 }
