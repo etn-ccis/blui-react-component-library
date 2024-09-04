@@ -32,13 +32,16 @@ const useUtilityClasses = (ownerState: ToolbarMenuProps): Record<ToolbarMenuClas
 };
 
 export type ToolbarMenuCompItem = Omit<NavItem, 'itemID'> & { itemID?: string };
+
+export type ToolbarMenuItem = ToolbarMenuCompItem;
+
 export type ToolbarMenuCompGroup = {
     /** The color used for the text */
     fontColor?: string;
     /** The color used for icons */
     iconColor?: string;
     /** List of navigation items to render */
-    items: ToolbarMenuCompItem[];
+    items: ToolbarMenuItem[];
     /** Text to display in the group header */
     title?: string;
 };
