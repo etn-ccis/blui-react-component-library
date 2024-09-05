@@ -78,4 +78,20 @@ You can override the default styles used by Brightlayer UI by:
 
 You can render the `<DrawerRailItem>` as a link by setting the `component` prop in the `ButtonBaseProps` to a [`Link`](https://reactrouter.com/web/api/Link) component from `react-router-dom` (recommended), or the native HTML anchor tag `'a'`. This allows you to perform helpful actions such as opening a link in a new browser tab via right-click.
 
-<SharedProps />
+## Shared Props
+
+The following props can be set at any level in the drawer hierarchy ([`<Drawer>`](/components/drawer/api-docs), [`<DrawerBody>`](/components/drawer-body/api-docs), [`<DrawerNavGroup>`](/components/drawer-nav-group/api-docs), [`<DrawerNavItem>`](/components/drawer-nav-item/api-docs), or [`<DrawerRailItem>`](/components/drawer-rail-item/api-docs)). If they are set on a parent, they will be used for all children. For more customization, you can set these props on individual children and they will override any value set on the parent.
+
+<Box id='shared-props'>
+
+| Name                          | Description                                                                    | Type                    | Required | Default                        |
+| :---------------------------- | :----------------------------------------------------------------------------- | :---------------------- | :------- | :----------------------------- |
+| activeItemBackgroundColor     | Background color for the 'active' item                                         | `string`                | no       | varies for light/dark theme    |
+| activeItemFontColor           | Font color for the 'active' item                                               | `string`                | no       | varies for light/dark theme    |
+| activeItemIconColor           | Icon color for the 'active' item                                               | `string`                | no       | varies for light/dark theme    |
+| divider                       | Whether to show a line between non-nested items                                | `boolean`               | no       | false                          |
+| itemFontColor                 | The color used for the item text                                               | `string`                | no       | varies for light/dark theme    |
+| itemIconColor                 | The color used for the icon                                                    | `string`                | no       | varies for light/dark theme    |
+| ripple                        | Whether to apply material ripple effect to items on click                      | `boolean`               | no       | true                           |
+
+</Box>
