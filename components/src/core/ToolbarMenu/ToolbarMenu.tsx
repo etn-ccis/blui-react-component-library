@@ -31,9 +31,7 @@ const useUtilityClasses = (ownerState: ToolbarMenuProps): Record<ToolbarMenuClas
     return composeClasses(slots, getToolbarMenuUtilityClass, classes);
 };
 
-export type ToolbarMenuCompItem = Omit<NavItem, 'itemID'> & { itemID?: string };
-
-export type ToolbarMenuItem = ToolbarMenuCompItem;
+export type ToolbarMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
 
 export type ToolbarMenuCompGroup = {
     /** The color used for the text */
@@ -194,7 +192,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                                     itemFontColor={group.fontColor}
                                     title={group.title}
                                     items={group.items.map(
-                                        (item: ToolbarMenuCompItem, itemIndex: number): NavItem =>
+                                        (item: ToolbarMenuItem, itemIndex: number): NavItem =>
                                             Object.assign({ itemID: itemIndex.toString() }, item)
                                     )}
                                 />
