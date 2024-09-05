@@ -193,7 +193,7 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                     m: '16px 0',
                     backgroundColor: Colors.white[600],
                     maxHeight: '100%',
-                    maxWidth: '100%',
+                    maxWidth: '80%',
                     position: 'relative',
                 }}
                 ref={containerRef}
@@ -218,7 +218,7 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                             }}
                             sx={{
                                 position: 'absolute',
-                                minWidth: '100%',
+                                // minWidth: '100%',
                                 '& .MuiPaper-root': {
                                     background: 'transparent',
                                     width: persistent ? 'inherit' : 'initial',
