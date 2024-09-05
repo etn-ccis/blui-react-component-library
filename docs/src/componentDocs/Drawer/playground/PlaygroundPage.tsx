@@ -198,7 +198,6 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                 }}
                 ref={containerRef}
             >
-
                 <DrawerLayout
                     drawer={
                         <Drawer
@@ -224,7 +223,6 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                                     width: persistent ? 'inherit' : 'initial',
                                 },
                                 '& .BluiDrawer-content': { backgroundColor: 'background.paper' },
-
                             }}
                             {...removeEmptyProps(rest)}
                         >
@@ -254,7 +252,8 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                     }
                     sx={{
                         '& .BluiDrawerLayout-drawer': { height: 330 },
-                    }}>
+                    }}
+                >
                     <Box
                         sx={{
                             backgroundColor: 'background.paper',
@@ -269,16 +268,18 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                             <>
                                 <AppBar position="static">
                                     <Toolbar>
-                                        {variant === 'temporary' && <IconButton
-                                            size="large"
-                                            edge="start"
-                                            color="inherit"
-                                            aria-label="menu"
-                                            sx={{ mr: 2 }}
-                                            onClick={(): void => updateData('open', !open)}
-                                        >
-                                            <Menu />
-                                        </IconButton>}
+                                        {variant === 'temporary' && (
+                                            <IconButton
+                                                size="large"
+                                                edge="start"
+                                                color="inherit"
+                                                aria-label="menu"
+                                                sx={{ mr: 2 }}
+                                                onClick={(): void => updateData('open', !open)}
+                                            >
+                                                <Menu />
+                                            </IconButton>
+                                        )}
                                         <Typography variant="h6">Toolbar</Typography>
                                     </Toolbar>
                                 </AppBar>
@@ -296,7 +297,6 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                     </Box>
                 </DrawerLayout>
             </Box>
-
         </Stack>
     );
 };
