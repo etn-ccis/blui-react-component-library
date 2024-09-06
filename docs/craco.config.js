@@ -7,14 +7,14 @@ module.exports = {
         configure(webpackConfig) {
             addAfterLoader(webpackConfig, loaderByName('babel-loader'), {
                 test: /\.mdx?$/,
-
-                loader: '@mdx-js/loader',
-
-                options: {
-                    providerImportSource: '@mdx-js/react',
-
-                    remarkPlugins: [remarkGfm],
-                },
+                use: [
+                    { loader: 'babel-loader', options: {} },
+                    {
+                        loader: '@mdx-js/loader',
+                        /** @type {Options} */
+                        options: {}
+                    }
+                ]
             });
 
             return webpackConfig;
