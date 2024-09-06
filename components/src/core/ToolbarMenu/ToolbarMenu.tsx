@@ -31,7 +31,8 @@ const useUtilityClasses = (ownerState: ToolbarMenuProps): Record<ToolbarMenuClas
     return composeClasses(slots, getToolbarMenuUtilityClass, classes);
 };
 
-export type ToolbarMenuItem = Omit<NavItem, 'itemID'> & { itemID?: string };
+export type ToolbarMenuCompItem = Omit<NavItem, 'itemID'> & { itemID?: string };
+export type ToolbarMenuItem = ToolbarMenuCompItem;
 
 export type ToolbarMenuCompGroup = {
     /** The color used for the text */
