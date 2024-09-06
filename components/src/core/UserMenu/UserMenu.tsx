@@ -291,8 +291,8 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
                 onClose={closeMenu}
+                MenuListProps={{ style: { padding: 0 }, ...MenuProps.MenuListProps }}
                 {...MenuProps}
-                MenuListProps={{ style: { padding: 0 } }}
             >
                 {printMenu()}
             </Menu>
