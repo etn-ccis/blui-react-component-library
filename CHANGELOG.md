@@ -1,5 +1,11 @@
 # Changelog
 
+## v6.3.1 (Unreleased)
+
+### Fixed
+
+-   Issue with `MenuListProps` in `<UserMenu>` component ([#893](https://github.com/etn-ccis/blui-react-component-library/issues/893)).
+
 ## v6.3.0 (April 12, 2023)
 
 ### Removed
