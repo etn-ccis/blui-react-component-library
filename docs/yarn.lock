@@ -1211,10 +1211,10 @@
   optionalDependencies:
     eslint-plugin-react "^7.28.0"
 
-"@brightlayer-ui/icons-mui@^3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-mui/-/icons-mui-3.5.0.tgz#f2eaab9328180aab28b8b6157bd8bdfb72783d60"
-  integrity sha512-mGN7f+d6Ia40JaQ0faqFMRi5sWWLOmquOEzR26n3jyz5Qhs4Ufs6Nnq6DZGlyABz2hDq2eSQf9cZlgauu4tBxQ==
+"@brightlayer-ui/icons-mui@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-mui/-/icons-mui-3.6.0.tgz#a15f145fad4360ae5aef00059c192bdb1376cd84"
+  integrity sha512-SW5+xMCAsF6kAQXkfj5EcD7K0DB8gwoqeEpnvIa4SC1dzToqIaxxSDZVFqWlFSi7s//h20DJWOIuujjeQJcqtQ==
 
 "@brightlayer-ui/icons@^2.2.0":
   version "2.2.0"
