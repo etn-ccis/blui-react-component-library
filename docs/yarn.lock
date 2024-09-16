@@ -1168,11 +1168,7 @@
   optionalDependencies:
     eslint-plugin-react "^7.28.0"
 
-<<<<<<< bug/BLUI-6031-mdx-js-version-upgrade
-"@brightlayer-ui/icons-mui@^3.5.0":
-=======
 "@brightlayer-ui/icons-mui@^3.6.0":
->>>>>>> dev
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-mui/-/icons-mui-3.6.0.tgz#a15f145fad4360ae5aef00059c192bdb1376cd84"
   integrity sha512-SW5+xMCAsF6kAQXkfj5EcD7K0DB8gwoqeEpnvIa4SC1dzToqIaxxSDZVFqWlFSi7s//h20DJWOIuujjeQJcqtQ==
