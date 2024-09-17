@@ -37,7 +37,19 @@ import { ScrollToTop } from './router/ScrollToTop';
 if (process.env.REACT_APP_GAID) {
     ReactGA.initialize(process.env.REACT_APP_GAID);
 }
-
+// TODO: Remove this after the issues with @types/react goes away
+// https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/68444
+/* eslint-disable */
+declare global {
+    namespace React {
+        interface DOMAttributes<T> {
+            placeholder?: string | undefined;
+            onPointerEnterCapture?: string | undefined;
+            onPointerLeaveCapture?: string | undefined;
+        }
+    }
+}
+/* eslint-enable */
 // Brightlayer UI Icon font
 require('@brightlayer-ui/icons/BrightlayerUIIcons.css');
 const container = document.getElementById('root');
