@@ -1,4 +1,4 @@
-# Brightlayer UI React Components...
+# Brightlayer UI React Components
 
 [![Build](https://github.com/etn-ccis/blui-react-component-library/actions/workflows/blui-ci.yml/badge.svg?branch=master)](https://github.com/etn-ccis/blui-react-component-library/actions/workflows/blui-ci.yml)
 ![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-components?label=%40brightlayer-ui%2Freact-components) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-component-library/branch/master/graph/badge.svg?token=HQFW5YF7WP)](https://codecov.io/gh/etn-ccis/blui-react-component-library)
