@@ -1,13 +1,13 @@
-const { defaults: tsjPreset } = require('ts-jest/presets');
-
 module.exports = {
+    preset: 'ts-jest',
+    testEnvironment: 'jest-environment-jsdom',
     transform: {
-        ...tsjPreset.transform,
+        '^.+\\.tsx?$': 'ts-jest',
     },
-    globals: {
-        'ts-jest': {
-            tsconfig: 'tsconfig.test.json',
-        },
-    },
-    testEnvironment: 'jsdom',
+    collectCoverageFrom: ['./src/**/*.tsx'],
+    coverageThreshold: {
+        "global": {
+          "lines": 86
+        }
+      }
 };

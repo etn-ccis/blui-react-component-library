@@ -8,11 +8,11 @@
         "test:artifacts": "cd scripts && bash ./buildTest.sh && cd ..",
         "build": "bash ./scripts/buildComponents.sh",
         "link:components": "cd scripts && bash ./linkComponents.sh && cd ..",
-        "install:dependencies": "cd demos/showcase && yarn && cd ../../docs && yarn && cd ../components && yarn",
+        "install:dependencies": "yarn && cd demos/showcase && yarn && cd ../../docs && yarn && cd ../components && yarn",
         "start:showcase": "yarn initialize && yarn install:dependencies && yarn link:components && cd demos/showcase && yarn start",
         "start:docs": "yarn install:dependencies && yarn link:components && cd docs && yarn start",
         "start": "yarn start:showcase",
-        "lint": "cd components && yarn lint",
+        "lint": "cd components && yarn lint && cd .. && cd docs && yarn lint",
         "lint:fix": "cd components && yarn lint:fix",
         "prettier": "prettier \"*.{json,css,scss,html,md}\" --write && cd components && yarn prettier && cd ../demos/showcase && yarn prettier && cd ../../docs && yarn prettier",
         "prettier:check": "prettier \"*.{json,css,scss,html,md}\" --check && cd components && yarn prettier:check && cd ../demos/showcase && yarn prettier:check && cd ../../docs && yarn prettier",
@@ -22,7 +22,8 @@
         "codecov": "./node_modules/.bin/codecov -f coverage/coverage-final.json",
         "publish:package": "cd dist && rm -f *.tgz && set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
         "tag:package": "cd dist && npx -p @brightlayer-ui/tag blui-tag -s -blui-react-components",
-        "generate:licenses": "cd ./components && npm-license-crawler -onlyDirectDependencies -json LICENSES.json"
+        "generate:licenses": "cd ./components && npm-license-crawler -onlyDirectDependencies -json LICENSES.json",
+        "prepare": "husky"
     },
     "repository": {
         "type": "git",
@@ -44,6 +45,7 @@
     "license": "BSD-3-Clause",
     "devDependencies": {
         "@brightlayer-ui/prettier-config": "^1.0.3",
+        "husky": "^9.1.6",
         "npm-license-crawler": "^0.2.1",
         "prettier": "^3.3.3"
     },
