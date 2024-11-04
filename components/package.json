@@ -29,7 +29,7 @@
         "@testing-library/react": "^14.2.2",
         "@types/color": "^3.0.3",
         "@types/jest": "^29.2.4",
-        "@types/node": "^18.14.2",
+        "@types/node": "^22.8.6",
         "@types/react-dom": "^18.0.5",
         "@typescript-eslint/eslint-plugin": "^5.14.0",
         "@typescript-eslint/parser": "^5.14.0",
