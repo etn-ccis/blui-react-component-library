@@ -153,10 +153,10 @@ const InfoListItemRoot = styled(InfoListItem, {
         '& .BluiInfoListItem-subtitle': {
             opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
             transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
-            color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
+            color: !active && theme.applyStyles('dark', { color: theme.palette.text.secondary }),
         },
         '& .BluiInfoListItem-info': {
-            color: !active && theme.palette.mode === 'dark' ? theme.palette.text.secondary : undefined,
+            color: !active && theme.applyStyles('dark', { color: theme.palette.text.secondary }),
         },
         [`&. ${drawerNavItemClasses.ripple}`]: {
             backgroundColor: theme.palette.primary.main,

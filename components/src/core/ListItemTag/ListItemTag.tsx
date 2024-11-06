@@ -52,18 +52,13 @@ const Root = styled(Typography, {
         display: inline-block;
         cursor: ${onClick ? 'pointer' : 'inherit'};
         background-color:
-            ${
-                backgroundColor ||
-                (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
-            };
+            ${backgroundColor || theme.palette.primary.main};
         color:
-            ${
-                fontColor ||
-                theme.palette.getContrastText(
-                    backgroundColor ||
-                        (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
-                )
-            };
+            ${fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.main)};
+        ${theme.applyStyles('dark', {
+            backgroundColor: backgroundColor || theme.palette.primary.dark,
+            color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.dark),
+        })}
         &.${listItemTagClasses.noVariant} {
             font-weight: 700; // bold
             letter-spacing: 1px;

@@ -160,7 +160,10 @@ export const Subtitle = styled(Typography, {
     ({ fontColor, theme }) => ({
         fontWeight: 400,
         lineHeight: 1.3,
-        color: fontColor || (theme.palette.mode === 'dark' ? theme.palette.text.secondary : 'inherit'),
+        color: fontColor || 'inherit',
+        ...theme.applyStyles('dark', {
+            color: fontColor || theme.palette.text.secondary,
+        }),
     })
 );
 
@@ -170,7 +173,10 @@ export const Info = styled(Typography, {
     ({ fontColor, theme }) => ({
         fontWeight: 400,
         lineHeight: 1.3,
-        color: fontColor || (theme.palette.mode === 'dark' ? theme.palette.text.secondary : 'inherit'),
+        color: fontColor || 'inherit',
+        ...theme.applyStyles('dark', {
+            color: fontColor || theme.palette.text.secondary,
+        }),
     })
 );
 

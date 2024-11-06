@@ -99,9 +99,11 @@ const Header = styled(Box, {
     height: `6.25rem`,
     overflow: 'hidden',
     position: 'relative',
-    backgroundColor:
-        headerColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
+    backgroundColor: headerColor || theme.palette.primary.main,
     color: fontColor(headerFontColor),
+    ...theme.applyStyles('dark', {
+        backgroundColor: headerColor || theme.palette.primary.dark,
+    }),
 }));
 
 const HeaderContent = styled(

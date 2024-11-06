@@ -62,7 +62,8 @@ const Description = styled(
     Typography,
     {}
 )(({ theme }) => ({
-    color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
+    color: theme.palette.text.primary,
+    ...theme.applyStyles('dark', { color: theme.palette.text.secondary }),
 }));
 
 const Actions = styled(

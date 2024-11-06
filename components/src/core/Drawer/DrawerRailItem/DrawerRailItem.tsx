@@ -137,14 +137,16 @@ const Root = styled(ButtonBase, {
             },
             ...(itemActive && {
                 [`& .${drawerRailItemClasses.icon}`]: {
-                    color:
-                        activeItemIconColor ||
-                        (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
+                    color: activeItemIconColor || theme.palette.primary.main,
+                    ...theme.applyStyles('dark', {
+                        color: activeItemIconColor || lightenedPrimary,
+                    }),
                 },
                 [`& .${drawerRailItemClasses.title}`]: {
-                    color:
-                        activeItemFontColor ||
-                        (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
+                    color: activeItemFontColor || theme.palette.primary.main,
+                    ...theme.applyStyles('dark', {
+                        color: activeItemFontColor || lightenedPrimary,
+                    }),
                 },
             }),
             ...(condensed && {
@@ -178,9 +180,10 @@ const ActiveItem = styled(Box, {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor:
-            activeItemBackgroundColor ||
-            (theme.palette.mode === 'light' ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary),
+        backgroundColor: activeItemBackgroundColor || fivePercentOpacityPrimary,
+        ...theme.applyStyles('dark', {
+            backgroundColor: activeItemBackgroundColor || twentyPercentOpacityPrimary,
+        }),
     };
 });
 
