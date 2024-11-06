@@ -1,7 +1,7 @@
 // Getting Started
 import Environment from './gettingStarted/environment.mdx';
 import React from './gettingStarted/react.mdx';
-import ReactTesting from './gettingStarted/reactTesting.mdx'
+import ReactTesting from './gettingStarted/reactTesting.mdx';
 
 // Themes
 import ThemesOverview from './themes/overview.mdx';

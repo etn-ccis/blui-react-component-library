@@ -11,7 +11,7 @@ Testing is a critical component of successfully building and releasing an applic
 There are many [varieties of tests](https://www.geeksforgeeks.org/types-software-testing/), each with their own intended purpose. The most common types of tests are:
 
 -   **Unit Tests**: verify individual methods, functions, or components.
--   **Integration Tests**:  verify that different modules or services in your application work together.
+-   **Integration Tests**: verify that different modules or services in your application work together.
 -   **Functional Tests**: verify the output of certain actions based on business requirements.
 -   **End-to-end (E2E) Tests**: verify that user behaviors / workflows function as expected.
 -   **Acceptance Tests**: verify that the entire system meets the business requirements.
@@ -56,7 +56,6 @@ Vitest offers compatibility with most of the Jest API and ecosystem libraries an
 
 If your team prefers Jest, it is possible to use Jest in Vite React setups. [Vite-jest](https://www.npmjs.com/package/vite-jest) integration for Vite and Jest, so this is a valid option for your unit tests but the preference for Brightlayer UI React Vite applications will be to use Vitest testing framework.
 
-
 ### React Vite
 
 The Brightlayer UI [React Vite template](https://github.com/etn-ccis/blui-react-cli-templates) projects are pre-configured with [Vitest](https://v3.vitejs.dev/guide/) testing framework. When creating a new React Vite project from Brightlayer UI templates, a sample test is created in your project for you (test files are identified by the `.spec.tsx` or `.test.tsx` file extension). You can execute the tests by running the following in your terminal:
@@ -69,10 +68,10 @@ This will run your tests and show the pass / fail output in the terminal.
 
 There are additional utilities that complement Vitest well. See the [Vitest Environment](https://vitest.dev/guide/environment.html#test-environment) and [features](https://vitest.dev/guide/features.html).
 For testing React components in a Vite project using Vitest, you'll primarily use the following libraries:
+
 1. [Vitest](https://v3.vitejs.dev/guide/): The testing framework itself, which is a fast alternative to Jest, designed specifically for Vite projects.
 2. [React Testing Library](https://github.com/testing-library/react-testing-library#readme): A library that encourages testing your components from the user's perspective, interacting with them as a real user would.
 3. [Jest-dom](https://github.com/testing-library/jest-dom#readme): A library providing custom matchers for testing DOM elements, making your assertions more readable and maintainable.
-
 
 # End-to-End Testing
 

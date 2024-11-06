@@ -104,7 +104,9 @@ export const pageDefinitions: RouteConfig[] = [
             {
                 title: 'Testing a BLUI Project',
                 path: 'test-a-project',
-                element: <MarkdownPage title={'Testing Brightlayer UI Projects'} markdown={markdownDocs.ReactTesting} />,
+                element: (
+                    <MarkdownPage title={'Testing Brightlayer UI Projects'} markdown={markdownDocs.ReactTesting} />
+                ),
             },
         ],
     },
