@@ -37,7 +37,7 @@ const Root = styled(
     Box,
     {}
 )(({ theme }) => ({
-    color: theme.palette.text.primary,
+    color: theme.vars.palette.text.primary,
     height: '100%',
     minHeight: '100%',
     display: 'flex',
@@ -52,7 +52,7 @@ const Icon = styled(
     Box,
     {}
 )(({ theme }) => ({
-    color: theme.palette.text.secondary,
+    color: theme.vars.palette.text.secondary,
     marginBottom: '1rem',
     display: 'flex',
     fontSize: 96,
@@ -62,8 +62,8 @@ const Description = styled(
     Typography,
     {}
 )(({ theme }) => ({
-    color: theme.palette.text.primary,
-    ...theme.applyStyles('dark', { color: theme.palette.text.secondary }),
+    color: theme.vars.palette.text.primary,
+    ...theme.applyStyles('dark', { color: theme.vars.palette.text.secondary }),
 }));
 
 const Actions = styled(

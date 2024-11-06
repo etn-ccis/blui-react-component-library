@@ -20,13 +20,13 @@ const useUtilityClasses = (ownerState: ListItemTagProps): Record<ListItemTagClas
 export type ListItemTagProps = TypographyProps & {
     /** Color of the label background
      *
-     * Default: theme.palette.primary.main
+     * Default: theme.vars.palette.primary.main
      */
     backgroundColor?: string;
 
     /** Color of the label text
      *
-     * Default: theme.palette.primary.contrastText
+     * Default: theme.vars.palette.primary.contrastText
      */
     fontColor?: string;
 
@@ -52,12 +52,12 @@ const Root = styled(Typography, {
         display: inline-block;
         cursor: ${onClick ? 'pointer' : 'inherit'};
         background-color:
-            ${backgroundColor || theme.palette.primary.main};
+            ${backgroundColor || theme.vars.palette.primary.main};
         color:
-            ${fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.main)};
+            ${fontColor || theme.vars.palette.getContrastText(backgroundColor || theme.vars.palette.primary.main)};
         ${theme.applyStyles('dark', {
-            backgroundColor: backgroundColor || theme.palette.primary.dark,
-            color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.dark),
+            backgroundColor: backgroundColor || theme.vars.palette.primary.dark,
+            color: fontColor || theme.vars.palette.getContrastText(backgroundColor || theme.vars.palette.primary.dark),
         })}
         &.${listItemTagClasses.noVariant} {
             font-weight: 700; // bold

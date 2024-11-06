@@ -57,7 +57,7 @@ export type ScoreCardProps = CardProps &
         headerBackgroundImage?: string;
         /** The color of the header
          *
-         * Default: theme.palette.primary.main
+         * Default: theme.vars.palette.primary.main
          */
         headerColor?: string;
         /** The color for text and icons in header
@@ -99,10 +99,10 @@ const Header = styled(Box, {
     height: `6.25rem`,
     overflow: 'hidden',
     position: 'relative',
-    backgroundColor: headerColor || theme.palette.primary.main,
+    backgroundColor: headerColor || theme.vars.palette.primary.main,
     color: fontColor(headerFontColor),
     ...theme.applyStyles('dark', {
-        backgroundColor: headerColor || theme.palette.primary.dark,
+        backgroundColor: headerColor || theme.vars.palette.primary.dark,
     }),
 }));
 

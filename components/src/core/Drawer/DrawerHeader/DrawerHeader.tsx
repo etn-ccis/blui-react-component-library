@@ -78,11 +78,11 @@ const Root = styled(Toolbar, {
     [theme.breakpoints.down('sm')]: {
         minHeight: `3.5rem`,
     },
-    backgroundColor: backgroundColor || theme.palette.primary.main,
-    color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.main),
+    backgroundColor: backgroundColor || theme.vars.palette.primary.main,
+    color: fontColor || theme.vars.palette.getContrastText(backgroundColor || theme.vars.palette.primary.main),
     ...theme.applyStyles('dark', {
-        backgroundColor: backgroundColor || theme.palette.primary.dark,
-        color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.dark),
+        backgroundColor: backgroundColor || theme.vars.palette.primary.dark,
+        color: fontColor || theme.vars.palette.getContrastText(backgroundColor || theme.vars.palette.primary.dark),
     }),
     [`& .${drawerHeaderClasses.nonClickable}`]: {},
     [`& .${drawerHeaderClasses.railIcon}`]: {

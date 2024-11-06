@@ -120,7 +120,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         className: userClassName,
         items = [],
         title,
-        titleColor = theme.palette.text.primary,
+        titleColor = theme.vars.palette.text.primary,
         titleContent,
         titleDivider = true,
         // Shared Style Props

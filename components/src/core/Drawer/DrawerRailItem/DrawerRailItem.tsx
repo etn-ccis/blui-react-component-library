@@ -115,7 +115,7 @@ const Root = styled(ButtonBase, {
         theme,
     }) => {
         const lightenedPrimary = color(
-            theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+            theme.vars.palette.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
         )
             .lighten(0.83)
             .desaturate(0.39)
@@ -133,17 +133,17 @@ const Root = styled(ButtonBase, {
             textAlign: 'center',
             backgroundColor: backgroundColor || 'transparent',
             '&:hover': {
-                backgroundColor: onClick ? theme.palette.action.hover : undefined,
+                backgroundColor: onClick ? theme.vars.palette.action.hover : undefined,
             },
             ...(itemActive && {
                 [`& .${drawerRailItemClasses.icon}`]: {
-                    color: activeItemIconColor || theme.palette.primary.main,
+                    color: activeItemIconColor || theme.vars.palette.primary.main,
                     ...theme.applyStyles('dark', {
                         color: activeItemIconColor || lightenedPrimary,
                     }),
                 },
                 [`& .${drawerRailItemClasses.title}`]: {
-                    color: activeItemFontColor || theme.palette.primary.main,
+                    color: activeItemFontColor || theme.vars.palette.primary.main,
                     ...theme.applyStyles('dark', {
                         color: activeItemFontColor || lightenedPrimary,
                     }),
@@ -154,7 +154,7 @@ const Root = styled(ButtonBase, {
                 minHeight: RAIL_WIDTH_CONDENSED,
             }),
             [`& .${drawerRailItemClasses.ripple}`]: {
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: theme.vars.palette.primary.main,
             },
         };
     }
@@ -164,12 +164,12 @@ const ActiveItem = styled(Box, {
     shouldForwardProp: (prop) => prop !== 'activeItemBackgroundColor',
 })<Pick<DrawerRailItemProps, 'activeItemBackgroundColor'>>(({ activeItemBackgroundColor, theme }) => {
     const fivePercentOpacityPrimary = color(
-        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        theme.vars.palette.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
     )
         .fade(0.95)
         .string();
     const twentyPercentOpacityPrimary = color(
-        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        theme.vars.palette.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
     )
         .fade(0.8)
         .string();
@@ -202,7 +202,7 @@ const StatusStripe = styled(Box, {
 const Icon = styled(Avatar, {
     shouldForwardProp: (prop) => prop !== 'itemIconColor',
 })<Pick<DrawerRailItemProps, 'itemIconColor'>>(({ itemIconColor, theme }) => ({
-    color: itemIconColor || theme.palette.text.primary,
+    color: itemIconColor || theme.vars.palette.text.primary,
     backgroundColor: 'transparent',
     height: 'auto',
     width: 'auto',
@@ -216,7 +216,7 @@ const Title = styled(Typography, {
     wordBreak: 'break-word',
     hyphens: 'auto',
     zIndex: 200,
-    color: itemFontColor || theme.palette.text.primary,
+    color: itemFontColor || theme.vars.palette.text.primary,
     ...(active && {
         fontWeight: 600,
     }),
