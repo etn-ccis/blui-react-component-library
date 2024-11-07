@@ -1,5 +1,5 @@
 import Typography, { TypographyProps } from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
+import { styled, useColorScheme } from '@mui/material/styles';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
@@ -41,31 +41,42 @@ export type ListItemTagProps = TypographyProps & {
 const Root = styled(Typography, {
     shouldForwardProp: (prop) => prop !== 'fontColor',
 })<Pick<ListItemTagProps, 'backgroundColor' | 'fontColor' | 'onClick' | 'variant'>>(
-    ({ backgroundColor, fontColor, onClick, theme }) => `
-        border-radius: 0.125rem;
-        padding: 0;
-        /* @noflip */
-        padding-left: 0.25rem;
-        /* @noflip */
-        padding-right: calc(0.25rem - 1px); // to account for extra pixel from letter-spacing
-        overflow: hidden;
-        display: inline-block;
-        cursor: ${onClick ? 'pointer' : 'inherit'};
-        background-color:
-            ${backgroundColor || theme.vars.palette.primary.main};
-        color:
-            ${fontColor || theme.vars.palette.getContrastText(backgroundColor || theme.vars.palette.primary.main)};
-        ${theme.applyStyles('dark', {
-            backgroundColor: backgroundColor || theme.vars.palette.primary.dark,
-            color: fontColor || theme.vars.palette.getContrastText(backgroundColor || theme.vars.palette.primary.dark),
-        })}
-        &.${listItemTagClasses.noVariant} {
-            font-weight: 700; // bold
-            letter-spacing: 1px;
-            font-size: 0.625rem;
-            line-height: 1rem;
-            height: 1rem;
-        },`
+    ({ backgroundColor, fontColor, onClick, theme }) => {
+        const colorScheme = useColorScheme();
+
+        return `
+            border-radius: 0.125rem;
+            padding: 0;
+            /* @noflip */
+            padding-left: 0.25rem;
+            /* @noflip */
+            padding-right: calc(0.25rem - 1px); // to account for extra pixel from letter-spacing
+            overflow: hidden;
+            display: inline-block;
+            cursor: ${onClick ? 'pointer' : 'inherit'};
+            background-color:
+                ${
+                    backgroundColor ||
+                    (colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main)
+                };
+            color:
+                ${
+                    fontColor ||
+                    theme.palette.getContrastText(
+                        backgroundColor ||
+                            (colorScheme.mode === 'dark'
+                                ? theme.vars.palette.primary.dark
+                                : theme.vars.palette.primary.main)
+                    )
+                };
+            &.${listItemTagClasses.noVariant} {
+                font-weight: 700; // bold
+                letter-spacing: 1px;
+                font-size: 0.625rem;
+                line-height: 1rem;
+                height: 1rem;
+            },`;
+    }
 );
 
 const ListItemTagRender: React.ForwardRefRenderFunction<unknown, ListItemTagProps> = (

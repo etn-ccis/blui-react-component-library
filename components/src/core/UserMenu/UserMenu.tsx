@@ -245,7 +245,9 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                                     InfoListItemProps: Object.assign(
                                         {
                                             iconColor:
-                                                item.itemIconColor || group.iconColor || theme.vars.palette.text.secondary,
+                                                item.itemIconColor ||
+                                                group.iconColor ||
+                                                theme.vars.palette.text.secondary,
                                         },
                                         item.InfoListItemProps
                                     ),

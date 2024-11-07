@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDrawerContext } from '../DrawerContext';
 import { useNavGroupContext } from '../NavGroupContext';
 import { usePrevious } from '../../hooks/usePrevious';
-import { Theme, useTheme, styled, SxProps } from '@mui/material/styles';
+import { Theme, useTheme, styled, SxProps, useColorScheme } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Collapse from '@mui/material/Collapse';
 import { InfoListItem, InfoListItemProps as BLUIInfoListItemProps } from '../../InfoListItem';
@@ -22,6 +22,7 @@ import drawerNavItemClasses, {
 } from './DrawerNavItemClasses';
 import Box, { BoxProps } from '@mui/material/Box';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 const useUtilityClasses = (ownerState: DrawerNavItemProps): Record<DrawerNavItemClassKey, string> => {
     const { classes } = ownerState;
@@ -179,11 +180,14 @@ const ActiveComponent = styled(Box, {
 
 const NestedListGroup = styled(List, {
     shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
-})<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(({ nestedBackgroundColor, theme }) => ({
-    backgroundColor: nestedBackgroundColor || (theme.vars.palette.mode === 'light' ? white[200] : darkBlack[500]),
-    paddingBottom: 0,
-    paddingTop: 0,
-}));
+})<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(({ nestedBackgroundColor }) => {
+    const colorScheme = useColorScheme();
+    return {
+        backgroundColor: nestedBackgroundColor || (colorScheme.mode === 'light' ? white[200] : darkBlack[500]),
+        paddingBottom: 0,
+        paddingTop: 0,
+    };
+});
 
 const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNavItemProps> = (
     props: DrawerNavItemProps,
@@ -194,21 +198,22 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     const { open: drawerOpen = true, activeItem, onItemSelect } = useDrawerContext();
     const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem);
+    const colorScheme = useColorScheme();
 
     // Primary color manipulation
     const fivePercentOpacityPrimary = color(
-        theme.vars.palette.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
+        colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
     )
         .fade(0.95)
         .string();
     const twentyPercentOpacityPrimary = color(
-        theme.vars.palette.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
+        colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
     )
         .fade(0.8)
         .string();
     // approximating primary[200] but we don't have access to it directly from the theme
     const lightenedPrimary = color(
-        theme.vars.palette.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
+        colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
     )
         .lighten(0.83)
         .desaturate(0.39)
@@ -216,12 +221,12 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Destructure the props
     const {
-        activeItemBackgroundColor = theme.vars.palette.mode === 'light'
+        activeItemBackgroundColor = colorScheme.mode === 'light'
             ? fivePercentOpacityPrimary
             : twentyPercentOpacityPrimary,
         activeItemBackgroundShape = 'square',
-        activeItemFontColor = theme.vars.palette.mode === 'light' ? theme.vars.palette.primary.main : lightenedPrimary,
-        activeItemIconColor = theme.vars.palette.mode === 'light' ? theme.vars.palette.primary.main : lightenedPrimary,
+        activeItemFontColor = colorScheme.mode === 'light' ? theme.vars.palette.primary.main : lightenedPrimary,
+        activeItemIconColor = colorScheme.mode === 'light' ? theme.vars.palette.primary.main : lightenedPrimary,
         backgroundColor,
         chevron,
         chevronColor,
