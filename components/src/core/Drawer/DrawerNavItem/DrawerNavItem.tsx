@@ -202,18 +202,18 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Primary color manipulation
     const fivePercentOpacityPrimary = color(
-        colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
+        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.95)
         .string();
     const twentyPercentOpacityPrimary = color(
-        colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
+        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.8)
         .string();
     // approximating primary[200] but we don't have access to it directly from the theme
     const lightenedPrimary = color(
-        colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
+        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .lighten(0.83)
         .desaturate(0.39)

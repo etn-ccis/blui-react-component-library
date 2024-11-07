@@ -2,12 +2,10 @@ import React from 'react';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { UserMenu } from './UserMenu';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import SendIcon from '@mui/icons-material/Send';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
-
-const theme = createTheme(BLUIThemes.blue);
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 
 afterEach(cleanup);
 

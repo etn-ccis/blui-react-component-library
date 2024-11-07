@@ -5,9 +5,7 @@ import { EmptyState } from './EmptyState';
 import Button from '@mui/material/Button';
 import PersonIcon from '@mui/icons-material/Person';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
-
-const theme = createTheme(BLUIThemes.blue);
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 
 afterEach(cleanup);
 

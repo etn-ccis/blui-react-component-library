@@ -117,7 +117,7 @@ const Root = styled(ButtonBase, {
         const colorScheme = useColorScheme();
 
         const lightenedPrimary = color(
-            colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
+            colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
         )
             .lighten(0.83)
             .desaturate(0.39)
@@ -168,12 +168,12 @@ const ActiveItem = styled(Box, {
     const colorScheme = useColorScheme();
 
     const fivePercentOpacityPrimary = color(
-        colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
+        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.95)
         .string();
     const twentyPercentOpacityPrimary = color(
-        colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main
+        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.8)
         .string();

@@ -3,10 +3,8 @@ import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ThreeLiner } from './ThreeLiner';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 import { ToolbarMenu } from '../ToolbarMenu';
-
-const theme = createTheme(BLUIThemes.blue);
 
 afterEach(cleanup);
 

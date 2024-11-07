@@ -4,9 +4,7 @@ import '@testing-library/jest-dom';
 import { ListItemTag } from './ListItemTag';
 import * as Colors from '@brightlayer-ui/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
-
-const theme = createTheme(BLUIThemes.blue);
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 
 afterEach(cleanup);
 

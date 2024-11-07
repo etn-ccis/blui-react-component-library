@@ -57,7 +57,7 @@ const Root = styled(Typography, {
             background-color:
                 ${
                     backgroundColor ||
-                    (colorScheme.mode === 'dark' ? theme.vars.palette.primary.dark : theme.vars.palette.primary.main)
+                    (colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
                 };
             color:
                 ${
@@ -65,8 +65,8 @@ const Root = styled(Typography, {
                     theme.palette.getContrastText(
                         backgroundColor ||
                             (colorScheme.mode === 'dark'
-                                ? theme.vars.palette.primary.dark
-                                : theme.vars.palette.primary.main)
+                                ? theme.palette.primary.dark
+                                : theme.palette.primary.main)
                     )
                 };
             &.${listItemTagClasses.noVariant} {
