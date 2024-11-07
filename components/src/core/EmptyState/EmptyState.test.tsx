@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { EmptyState } from './EmptyState';
 import Button from '@mui/material/Button';
 import PersonIcon from '@mui/icons-material/Person';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 
 afterEach(cleanup);

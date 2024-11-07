@@ -1151,7 +1151,7 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@brightlayer-ui/colors@^3.0.0", "@brightlayer-ui/colors@^3.1.1":
+"@brightlayer-ui/colors@^3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-3.1.1.tgz#7bc86498e30172c410ba4c3237149b16a2eed4c6"
   integrity sha512-fV10E5JDuVGDQ0gCY3pEfDwUo1+lvDFC5pmOAAGpN7YDramS6ggUpJ/LmYavKAudw7FNcaJnPi7tsQWJjvv/7w==
@@ -1202,12 +1202,12 @@
     lodash.debounce "^4.0.8"
     lodash.groupby "^4.6.0"
 
-"@brightlayer-ui/react-themes@^7.2.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-7.2.0.tgz#03985faba940dc3d94e2eb0d22a0e8f6a7a2b738"
-  integrity sha512-maNTWF4gck4nTUnh86p/7wFn6qQrdNgKYv+/XVGBR/fYceUcjeik5yFdJ9AlHzOFBp+WrsqnG+qr7yC6Q1iKQQ==
+"@brightlayer-ui/react-themes@^8.0.0-alpha.0":
+  version "8.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-8.0.0-alpha.0.tgz#683fdef86cb1a9e5248ebacdb1d73b9fc8799d9b"
+  integrity sha512-aC5IJD5bEnWvZJqxmNnR4PdZGz+fBqhRX/lNU9OTKRoYKRI8SpdhkgWpWibbboLGUjIWE1AB9WZeyqnybUUJGQ==
   dependencies:
-    "@brightlayer-ui/colors" "^3.0.0"
+    "@brightlayer-ui/colors" "^3.1.1"
     "@fontsource/open-sans" "^5.0.3"
     color "^4.2.3"
 

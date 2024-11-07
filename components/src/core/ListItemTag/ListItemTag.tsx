@@ -64,9 +64,7 @@ const Root = styled(Typography, {
                     fontColor ||
                     theme.palette.getContrastText(
                         backgroundColor ||
-                            (colorScheme.mode === 'dark'
-                                ? theme.palette.primary.dark
-                                : theme.palette.primary.main)
+                            (colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
                     )
                 };
             &.${listItemTagClasses.noVariant} {

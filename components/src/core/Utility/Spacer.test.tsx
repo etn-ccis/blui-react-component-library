@@ -3,7 +3,7 @@ import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Spacer } from './Spacer';
 import { ThemeProvider } from '@mui/material/styles';
-import { blueThemes as theme} from '@brightlayer-ui/react-themes';
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 
 afterEach(cleanup);
 
