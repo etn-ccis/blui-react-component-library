@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Spacer } from '@brightlayer-ui/react-components';
-import { blue as lightTheme, blueDark as darkTheme } from '@brightlayer-ui/react-themes';
-import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
+import { ThemeProvider, useTheme } from '@mui/material/styles';
 import {
     Card,
     Divider,
@@ -13,17 +13,19 @@ import {
     Typography,
     Box,
     Stack,
+    useColorScheme,
 } from '@mui/material';
 import { componentNameList, componentList } from './componentList';
 import { SystemStyleObject } from '@mui/system';
 
 export const ThemeExplorer: React.FC = () => {
+    const colorScheme = useColorScheme();
     const globalTheme = useTheme();
-    const [localThemeDark, setLocalThemeDark] = useState(globalTheme.palette.mode === 'dark');
+    const [localThemeDark, setLocalThemeDark] = useState(colorScheme.mode === 'dark');
     const [selectedComponent, setSelectedComponent] = useState(0);
 
     return (
-        <ThemeProvider theme={createTheme(localThemeDark ? darkTheme : lightTheme)}>
+        <ThemeProvider theme={theme}>
             <Card
                 sx={{ mb: 4, boxSizing: 'border-box', '&:hover': { boxShadow: 6 } }}
                 variant={globalTheme.palette.mode === 'dark' ? 'outlined' : undefined}
