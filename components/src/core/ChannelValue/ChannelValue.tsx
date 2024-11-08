@@ -154,7 +154,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
 
     return (
         <Root
-            component="span"
+            // component="span"
             ref={ref}
             className={cx(generatedClasses.root, userClassName)}
             data-testid={'blui-channel-value-root'}

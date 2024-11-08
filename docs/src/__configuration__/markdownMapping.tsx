@@ -45,7 +45,7 @@ const Headline: React.FC<HeadlineType> = ({
     ...otherDivProps
 }) => (
     <Box className={cx(className, 'headline')} {...otherDivProps} sx={{ ...otherDivProps.style }}>
-        <Box component="span" id={hash} sx={{ position: 'relative', top: -90 }} />
+        <Box id={hash} sx={{ position: 'relative', top: -90 }} />
         <Typography
             paragraph
             color={'primary'}

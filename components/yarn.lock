@@ -285,7 +285,7 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@brightlayer-ui/colors@^3.0.0", "@brightlayer-ui/colors@^3.1.1":
+"@brightlayer-ui/colors@^3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-3.1.1.tgz#7bc86498e30172c410ba4c3237149b16a2eed4c6"
   integrity sha512-fV10E5JDuVGDQ0gCY3pEfDwUo1+lvDFC5pmOAAGpN7YDramS6ggUpJ/LmYavKAudw7FNcaJnPi7tsQWJjvv/7w==
@@ -307,12 +307,12 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-themes@^7.1.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-7.2.0.tgz#03985faba940dc3d94e2eb0d22a0e8f6a7a2b738"
-  integrity sha512-maNTWF4gck4nTUnh86p/7wFn6qQrdNgKYv+/XVGBR/fYceUcjeik5yFdJ9AlHzOFBp+WrsqnG+qr7yC6Q1iKQQ==
+"@brightlayer-ui/react-themes@^8.0.0-alpha.0":
+  version "8.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-themes/-/react-themes-8.0.0-alpha.0.tgz#683fdef86cb1a9e5248ebacdb1d73b9fc8799d9b"
+  integrity sha512-aC5IJD5bEnWvZJqxmNnR4PdZGz+fBqhRX/lNU9OTKRoYKRI8SpdhkgWpWibbboLGUjIWE1AB9WZeyqnybUUJGQ==
   dependencies:
-    "@brightlayer-ui/colors" "^3.0.0"
+    "@brightlayer-ui/colors" "^3.1.1"
     "@fontsource/open-sans" "^5.0.3"
     color "^4.2.3"
 
@@ -1857,9 +1857,9 @@ camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001669:
-  version "1.0.30001677"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001677.tgz#27c2e2c637e007cfa864a16f7dfe7cde66b38b5f"
-  integrity sha512-fmfjsOlJUpMWu+mAAtZZZHz7UEwsUxIIvu1TJfO1HqFQvB/B+ii0xr9B5HpbZY/mC4XZ8SvjHJqtAY6pDPQEog==
+  version "1.0.30001678"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001678.tgz#b930b04cd0b295136405634aa32ad540d7eeb71e"
+  integrity sha512-RR+4U/05gNtps58PEBDZcPWTgEO2MBeoPZ96aQcjmfkBWRIDfN451fW2qyDA9/+HohLLIL5GqiMwA+IB1pWarw==
 
 chalk@^3.0.0:
   version "3.0.0"
@@ -2304,9 +2304,9 @@ ejs@^3.1.10:
     jake "^10.8.5"
 
 electron-to-chromium@^1.5.41:
-  version "1.5.51"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.51.tgz#bb99216fed4892d131a8585a8593b00739310163"
-  integrity sha512-kKeWV57KSS8jH4alKt/jKnvHPmJgBxXzGUSbMd4eQF+iOsVPl7bz2KUmu6eo80eMP8wVioTfTyTzdMgM15WXNg==
+  version "1.5.52"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.52.tgz#2bed832c95a56a195504f918150e548474687da8"
+  integrity sha512-xtoijJTZ+qeucLBDNztDOuQBE1ksqjvNjvqFoST3nGC7fSpqJ+X6BdTBaY5BHG+IhWWmpc6b/KfpeuEDupEPOQ==
 
 emittery@^0.13.1:
   version "0.13.1"
