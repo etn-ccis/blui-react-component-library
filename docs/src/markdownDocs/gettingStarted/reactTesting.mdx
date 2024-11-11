@@ -37,7 +37,7 @@ The most important thing to keep in mind about tests is that they should provide
 
 ## How to Write
 
-When unit testing components, the most effective tests are based on what is actually rendered on the screen rather than the internal implementation logic. The test should consider the application from the user's perspective and test things the user views and interacts with.
+When unit testing components, the most effective tests are based on what is rendered on the screen rather than the internal implementation logic. The test should consider the application from the user's perspective and test things the user views and interacts with.
 
 For example, consider testing an Open Button that should open a modal dialog when clicked. Your test should check that a button with the _Open_ label is rendered on the screen, and when it is clicked, the dialog is rendered on the screen with the correct content. You may be tempted to identify the button by a class or id, or test that a particular function is called when the button is pressed - these tests are not as effective because they are more likely to break if the implementation of the component changes, even though the end behavior is the same.
 
@@ -80,9 +80,9 @@ End-to-end tests at a step above unit tests, both in terms of complexity and wha
 -   **Acceptance Tests**: verify that various features and flows meet the customer expectations.
 -   **Regression Tests**: verify that existing functionality is not broken when new features are added.
 
-They should cover user stories that span multiple components and views, such as signing up for an accounts, logging in and out of the application, updating a profile, etc. These tests are not concerned with the underlying state or implementation of the application - just the end results.
+They should cover user stories that span multiple components and views, such as signing up accounts, logging in and out of the application, updating a profile, etc. These tests are not concerned with the underlying state or implementation of the application - just the end results.
 
-End-to-end tests usually run in a browser against a live system (in the case of web, using a test runner that automates the browser). Automated E2E tests can take a long time to run because of all of the different pieces involved and the scope of the tests. You should try to optimize your testing pipeline to run tests in parallel to finish faster.
+End-to-end tests usually run in a browser against a live system (in the case of web, using a test runner that automates the browser). Automated E2E tests can take a long time to run because of the different pieces involved and the scope of the tests. You should try to optimize your testing pipeline to run tests in parallel to finish faster.
 
 Functional tests alone will not give you enough test coverage to avoid regressions. Unit tests aim to provide code coverage depth, while functional tests provide coverage over the breadth of user test scenarios.
 
@@ -97,7 +97,7 @@ End-to-end tests rely on the ability to find elements on the screen and interact
 
 > You can read more about different selector strategies on [Selenium Dev](https://www.selenium.dev/documentation/webdriver/elements/locators/) and {/* <!-- markdown-link-check-disable --> */}[software testing help](https://www.softwaretestinghelp.com/using-selenium-xpath-and-other-locators-selenium-tutorial-5/){/* <!-- markdown-link-check-enable --> */}.
 
-Each of these methods has their own advantages and disadvantages. A common pain point in E2E test automation is that modern Javascript platforms are constantly changing, particularly in the open source community. Many of these frameworks automatically (and dynamically) generate IDs and classes for components resulting in a constantly moving target for automation tooling. Identifying elements by these values (i.e., using IDs, CSS, or xPath locators _without_ property attributes) makes your tests brittle because they are subject to change any time a new version comes out (or even any time the page is reloaded).
+Each of these methods has their own advantages and disadvantages. A common pain point in E2E test automation is that modern JavaScript platforms are constantly changing, particularly in the open-source community. Many of these frameworks automatically (and dynamically) generate IDs and classes for components resulting in a constantly moving target for automation tooling. Identifying elements by these values (i.e., using IDs, CSS, or xPath locators _without_ property attributes) makes your tests brittle because they are subject to change any time a new version comes out (or even any time the page is reloaded).
 
 One way to combat this in your own applications is to use dedicated attributes for testing (e.g., `test-id` or `dev-id`). By adding this test-specific attribute to the element, identifying the correct underlying component should be safer. Because this attribute is test-specific and the application logic does not use it, it will be less likely to change throughout the product lifecycle. Combining this approach with other selectors is a common and reliable approach for element identification.
 
@@ -122,19 +122,19 @@ Selenium is a popular automation testing suite which can be used to automate the
 
 Selenium test suite has several test frameworks available and each one can be customized to your project needs.
 
-For more information, check out the browserstack [selenium guide](https://www.browserstack.com/guide/selenium-framework) or the official [selenium documentation](https://github.com/SeleniumHQ/selenium).
+For more information, check out the browser stack site [selenium guide](https://www.browserstack.com/guide/selenium-framework) or the official [selenium documentation](https://github.com/SeleniumHQ/selenium).
 
 There are also a number of [Selenium tutorials](https://www.guru99.com/selenium-tutorial.html) available online to help you get started.
 
 ### Cypress
 
-Cypress is a popular open source testing framework that boasts support for any modern JavaScript framework. It works well for E2E tests in React applications and is easier to use than some of the more traditional tools, such as Selenium.
+Cypress is a popular open-source testing framework that boasts support for any modern JavaScript framework. It works well for E2E tests in React applications and is easier to use than some of the more traditional tools, such as Selenium.
 
 For a more detailed write-up on Cypress, check out the official [Cypress Documentation](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements).
 
 ### WebDriverIO
 
-WebdriverIO is a popular Javascript based test automation framework built on top of node.js. It is an open-source project developed for the automation testing community. WebdriverIO is extendible, compatible and feature-rich.
+WebdriverIO is a popular Javascript based test automation framework built on top of node.js. It is an open-source project developed for the automation testing community. WebdriverIO is extendible, compatible and feature rich.
 
 For more information, check out the official [Webdriver.io documentation](https://webdriver.io/) and their [getting started guide](https://webdriver.io/docs/gettingstarted.html).
 
