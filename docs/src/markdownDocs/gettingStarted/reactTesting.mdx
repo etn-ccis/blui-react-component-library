@@ -10,11 +10,11 @@ Testing is a critical component of successfully building and releasing an applic
 
 There are many [varieties of tests](https://www.geeksforgeeks.org/types-software-testing/), each with its own intended purpose. The most common types of tests are:
 
--   **Unit Tests**: verify individual methods, functions, or components.
--   **Integration Tests**: verify that different modules or services in your application work together.
--   **Functional Tests**: verify the output of certain actions based on business requirements.
--   **End-to-end (E2E) Tests**: verify that user behaviors / workflows function as expected.
--   **Acceptance Tests**: verify that the entire system meets the business requirements.
+-   **Unit Tests**: Verify individual methods, functions, or components.
+-   **Integration Tests**: Verify that different modules or services in your application work together.
+-   **Functional Tests**: Verify the output of certain actions based on business requirements.
+-   **End-to-end (E2E) Tests**: Verify that user behaviors / workflows function as expected.
+-   **Acceptance Tests**: Verify that the entire system meets the business requirements.
 
 This document focuses mainly on Unit Tests and E2E tests, as they are the easiest to automate.
 
@@ -90,10 +90,10 @@ Functional tests alone will not give you enough test coverage to avoid regressio
 
 End-to-end tests rely on the ability to find elements on the screen and interact with them in an automated way. This means that you need a reliable mechanism for selecting elements. Depending on your testing framework, there are different ways to select elements, including:
 
--   **CSS Selectors**: find elements by using CSS classes or rules (e.g., `.your-class-name`)
--   **Element Selectors**: find elements inside the elements (e.g., `#\@\@blui-drawerlayout-content > div > header > div > button`)
--   **xPath Selectors**: find selector within xPath (e.g., `//*[@id="@@blui-drawerlayout-content"]/div/header/div/button`)
--   **ID Selectors**: find attribute id within elements (e.g., `#login-button`)
+-   **CSS Selectors**: Find elements by using CSS classes or rules (e.g., `.your-class-name`)
+-   **Element Selectors**: Find elements inside the elements (e.g., `#\@\@blui-drawerlayout-content > div > header > div > button`)
+-   **xPath Selectors**: Find selector within xPath (e.g., `//*[@id="@@blui-drawerlayout-content"]/div/header/div/button`)
+-   **ID Selectors**: Find attribute id within elements (e.g., `#login-button`)
 
 > You can read more about different selector strategies on [Selenium Dev](https://www.selenium.dev/documentation/webdriver/elements/locators/) and {/* <!-- markdown-link-check-disable --> */}[software testing help](https://www.softwaretestinghelp.com/using-selenium-xpath-and-other-locators-selenium-tutorial-5/){/* <!-- markdown-link-check-enable --> */}.
 
@@ -101,11 +101,12 @@ Each of these methods has their own advantages and disadvantages. A common pain 
 
 One way to combat this in your own applications is to use dedicated attributes for testing (e.g., `test-id` or `dev-id`). By adding this test-specific attribute to the element, identifying the correct underlying component should be safer. Because this attribute is test-specific and the application logic does not use it, it will be less likely to change throughout the product lifecycle. Combining this approach with other selectors is a common and reliable approach for element identification.
 
-```html
+```sh
 {/* Component code */}
 <button id="login-button" class="default-button">Login</button>
 
-{/* Selector to use in a test */} WebElement click = driver.findElement(By.id("login-button"));
+{/* Selector to use in a test */}
+WebElement click = driver.findElement(By.id("login-button"));
 ```
 
 ## Testing Frameworks
@@ -134,12 +135,12 @@ For a more detailed write-up on Cypress, check out the official [Cypress Documen
 
 ### WebDriverIO
 
-WebdriverIO is a popular Javascript based test automation framework built on top of node.js. It is an open-source project developed for the automation testing community. WebdriverIO is extendible, compatible and feature rich.
+WebdriverIO is a popular Javascript based test automation framework built on top of node.js. It is an open-source project developed for the automation testing community. WebdriverIO is extendable, compatible and feature rich.
 
 For more information, check out the official [Webdriver.io documentation](https://webdriver.io/) and their [getting started guide](https://webdriver.io/docs/gettingstarted.html).
 
 ### Vitest Comparisons
 
-Read more about testing frameworks that works well with [Vitest](https://vitest.dev/guide/comparisons.html#comparisons-with-other-test-runners)
+Read more about testing frameworks that works well with [Vitest](https://vitest.dev/guide/comparisons.html#comparisons-with-other-test-runners).
 
 <Divider />
