@@ -1,0 +1,146 @@
+import React from 'react';
+import { Divider } from '../../layout/Divider';
+import { CodeBlock } from '../../shared';
+
+{/* KEYWORDS: react vite vitest testing web framework guide */}
+
+# Testing Your Brightlayer UI React Applications
+
+Testing is a critical component of successfully building and releasing an application. Despite the value and importance of testing, it is common for teams to overlook or neglect it. Testing should be considered from the very beginning of development, not as an afterthought once development is complete. In general, every time you write a new piece of code or update existing code, you should also write a test that verifies that your code is correct.
+
+There are many [varieties of tests](https://www.geeksforgeeks.org/types-software-testing/), each with its own intended purpose. The most common types of tests are:
+
+-   **Unit Tests**: Verify individual methods, functions, or components.
+-   **Integration Tests**: Verify that different modules or services in your application work together.
+-   **Functional Tests**: Verify the output of certain actions based on business requirements.
+-   **End-to-end (E2E) Tests**: Verify that user behaviors / workflows function as expected.
+-   **Acceptance Tests**: Verify that the entire system meets the business requirements.
+
+This document focuses mainly on Unit Tests and E2E tests, as they are the easiest to automate.
+
+<Divider />
+
+# Unit Tests
+
+Unit testing is a method of testing the smallest pieces of your application or the components of the application and is used to ensure that the individual units of the software are working as intended.
+
+Unit tests are usually automated and are designed to test specific parts of the code, such as a particular function or method and should closely resemble how your applications are interacted by the users.
+These will likely make up the bulk of your tests because they are quick to write, easy to automate, and can help you achieve significant code coverage.
+
+> Code Coverage measures the percentage of your code that is verified by your tests.
+
+## When to Write
+
+As long as you are writing tests and achieving acceptable levels of coverage, the _when_ is not as important.
+
+The most important thing to keep in mind about tests is that they should provide confidence that the code and design are working as intended without issues in any scenario. For most teams, it's fine to write tests after features and functions are developed, as long as you write quality tests and achieve good coverage.
+
+## How to Write
+
+When unit testing components, the most effective tests are based on what is rendered on the screen rather than the internal implementation logic. The test should consider the application from the user's perspective and test things the user views and interacts with.
+
+For example, consider testing an Open Button that should open a modal dialog when clicked. Your test should check that a button with the _Open_ label is rendered on the screen, and when it is clicked, the dialog is rendered on the screen with the correct content. You may be tempted to identify the button by a class or id, or test that a particular function is called when the button is pressed - these tests are not as effective because they are more likely to break if the implementation of the component changes, even though the end behavior is the same.
+
+-   Test what the user sees (i.e., rendered output) and what the user can do  (i.e., interactions).
+-   If there is visual change after an interaction, test for it.
+-   If there is a value returned after an action, test for it.
+
+## Testing Frameworks
+
+React applications scaffolded with Create React App, or CRA, was the official way to start a new React project since its introduction in 2016. Unfortunately, CRA was deprecated in 2023. React applications scaffolded by create-react-app (CRA) came with Jest, a built-in unit testing framework.
+
+The Brightlayer UI team researched modern ways to scaffold new React projects with the Brightlayer UI [React Component Library](https://github.com/etn-ccis/blui-react-component-library). Today and moving forward the Brightlayer UI
+team adopts [Vite](https://v3.vitejs.dev/guide/why.html), a platform-agnostic frontend tool for building web applications. When using the Brightlayer UI [React Vite templates](https://github.com/etn-ccis/blui-react-cli-templates) to scaffold your new React project it will include [Vitest](https://vitest.dev/guide/why.html), the unit testing framework for React Vite projects.
+
+Vitest offers compatibility with most of the Jest API and ecosystem libraries and transitioning to Vitest API is highly compatible with Jests API, so existing Jest knowledge can be applied.
+
+If your team prefers Jest, it is possible to use Jest in Vite React setups. [Vite-jest](https://www.npmjs.com/package/vite-jest) integration for Vite and Jest, so this is a valid option for your unit tests but the preference for Brightlayer UI React Vite applications will be to use Vitest testing framework.
+
+### React Vite
+
+The Brightlayer UI [React Vite template](https://github.com/etn-ccis/blui-react-cli-templates) projects are pre-configured with [Vitest](https://v3.vitejs.dev/guide/) testing framework. When creating a new React Vite project from Brightlayer UI templates, a sample test is created in your project for you (test files are identified by the `.spec.tsx` or `.test.tsx` file extension). You can execute the tests by running the following in your terminal:
+
+<CodeBlock code={`npm run test`} language={'sh'} />
+or
+<CodeBlock code={`yarn test`} language={'sh'} />
+
+This will run your tests and show the pass/fail output in the terminal.
+
+There are additional utilities that complement Vitest well. See the [Vitest Environment](https://vitest.dev/guide/environment.html#test-environment) and [features](https://vitest.dev/guide/features.html).
+For testing React components in a Vite project using Vitest, you'll primarily use the following libraries:
+
+1. [Vitest](https://v3.vitejs.dev/guide/): The testing framework itself, which is a fast alternative to Jest, designed specifically for Vite projects.
+2. [React Testing Library](https://github.com/testing-library/react-testing-library#readme): A library that encourages testing your components from the user's perspective, interacting with them as a real user would.
+3. [Jest-dom](https://github.com/testing-library/jest-dom#readme): A library providing custom matchers for testing DOM elements, making your assertions more readable and maintainable.
+
+# End-to-End Testing
+
+End-to-end tests are a step above unit tests, both in terms of complexity and what they test. They focus primarily on the flow of the application, making sure that a user's journey through the application has the expected outcomes. These tests can generally be categorized as:
+
+-   **Acceptance Tests**: verify that various features and flows meet the customer expectations.
+-   **Regression Tests**: verify that existing functionality is not broken when new features are added.
+
+They should cover user stories that span multiple components and views, such as signing up for an account, logging in and out of the application, updating a profile, etc. These tests are not concerned with the underlying state or implementation of the application - just the end results.
+
+End-to-end tests usually run in a browser against a live system (in the case of web, using a test runner that automates the browser). Automated E2E tests can take a long time to run because of the different pieces involved and the scope of the tests. You should try to optimize your testing pipeline to run tests in parallel to finish faster.
+
+Functional tests alone will not give you enough test coverage to avoid regressions. Unit tests aim to provide code coverage depth, while functional tests provide coverage over the breadth of user test scenarios.
+
+## How to Write
+
+End-to-end tests rely on the ability to find elements on the screen and interact with them in an automated way. This means that you need a reliable mechanism for selecting elements. Depending on your testing framework, there are different ways to select elements, including:
+
+-   **CSS Selectors**: Find elements by using CSS classes or rules (e.g., `.your-class-name`)
+-   **Element Selectors**: Find elements inside the elements (e.g., `#\@\@blui-drawerlayout-content > div > header > div > button`)
+-   **xPath Selectors**: Find selector within xPath (e.g., `//*[@id="@@blui-drawerlayout-content"]/div/header/div/button`)
+-   **ID Selectors**: Find attribute id within elements (e.g., `#login-button`)
+
+> You can read more about different selector strategies on [Selenium Dev](https://www.selenium.dev/documentation/webdriver/elements/locators/) and {/* <!-- markdown-link-check-disable --> */}[software testing help](https://www.softwaretestinghelp.com/using-selenium-xpath-and-other-locators-selenium-tutorial-5/){/* <!-- markdown-link-check-enable --> */}.
+
+Each of these methods has their own advantages and disadvantages. A common pain point in E2E test automation is that modern JavaScript platforms are constantly changing, particularly in the open-source community. Many of these frameworks automatically (and dynamically) generate IDs and classes for components resulting in a constantly moving target for automation tooling. Identifying elements by these values (i.e., using IDs, CSS, or xPath locators _without_ property attributes) makes your tests brittle because they are subject to change any time a new version comes out (or even any time the page is reloaded).
+
+One way to combat this in your own applications is to use dedicated attributes for testing (e.g., `test-id` or `dev-id`). By adding this test-specific attribute to the element, identifying the correct underlying component should be safer. Because this attribute is test-specific and the application logic does not use it, it will be less likely to change throughout the product lifecycle. Combining this approach with other selectors is a common and reliable approach for element identification.
+
+```sh
+{/* Component code */}
+<button id="login-button" class="default-button">Login</button>
+
+{/* Selector to use in a test */}
+WebElement click = driver.findElement(By.id("login-button"));
+```
+
+## Testing Frameworks
+
+There are many tools available for configuring automated E2E tests. Some of the more popular tools include:
+
+-   [Selenium](https://www.selenium.dev/documentation/en/)
+-   [Cypress](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell)
+-   [WebDriverIO](https://webdriver.io/docs/gettingstarted.html)
+
+### Selenium
+
+Selenium is a popular automation testing suite which can be used to automate the desktop and mobile web browser interactions. You can write test code in any of the languages supported by Selenium.
+
+Selenium test suite has several test frameworks available and each one can be customized to your project needs.
+
+For more information, check out the browser stack site [selenium guide](https://www.browserstack.com/guide/selenium-framework) or the official [selenium documentation](https://github.com/SeleniumHQ/selenium).
+
+There are also a number of [Selenium tutorials](https://www.guru99.com/selenium-tutorial.html) available online to help you get started.
+
+### Cypress
+
+Cypress is a popular open-source testing framework that boasts support for any modern JavaScript framework. It works well for E2E tests in React applications and is easier to use than some of the more traditional tools, such as Selenium.
+
+For a more detailed write-up on Cypress, check out the official [Cypress Documentation](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements).
+
+### WebDriverIO
+
+WebdriverIO is a popular Javascript based test automation framework built on top of node.js. It is an open-source project developed for the automation testing community. WebdriverIO is extendable, compatible and feature rich.
+
+For more information, check out the official [Webdriver.io documentation](https://webdriver.io/) and their [getting started guide](https://webdriver.io/docs/gettingstarted.html).
+
+### Vitest Comparisons
+
+Read more about testing frameworks that works well with [Vitest](https://vitest.dev/guide/comparisons.html#comparisons-with-other-test-runners).
+
+<Divider />
