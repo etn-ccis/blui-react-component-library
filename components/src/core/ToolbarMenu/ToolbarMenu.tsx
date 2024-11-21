@@ -222,7 +222,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
             >
                 {icon && (
                     <ToolbarMenuIcon
-                        component={'span'}
+                        as={'span'}
                         className={generatedClasses.icon}
                         data-testid={'blui-toolbar-menu-icon'}
                     >
@@ -230,7 +230,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                     </ToolbarMenuIcon>
                 )}
                 <ToolbarMenuLabel
-                    component={'span'}
+                    as={'span'}
                     className={generatedClasses.label}
                     data-testid={'blui-toolbar-menu-label'}
                 >
