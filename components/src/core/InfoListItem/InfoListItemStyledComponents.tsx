@@ -45,7 +45,7 @@ export const Root = styled(ListItem, {
             backgroundColor: onClick
                 ? backgroundColor && backgroundColor !== 'inherit' && backgroundColor !== 'transparent' && isCssColor
                     ? color(backgroundColor).darken(0.08).string()
-                    : theme.vars.palette.action.hover
+                    : (theme.vars || theme).palette.action.hover
                 : undefined,
         },
         '&:focus': {
@@ -105,12 +105,14 @@ export const Icon = styled(Avatar, {
             if (iconColor) return iconColor;
             if (avatar) {
                 return statusColor
+
+                //getContrastText check
                     ? color(statusColor).isDark()
                         ? Colors.white[50]
                         : Colors.black[500]
                     : Colors.white[50]; // default avatar is dark gray -> white text
             }
-            return statusColor ? statusColor : theme.vars.palette.text.secondary;
+            return statusColor ? statusColor : (theme.vars || theme).palette.text.secondary;
         };
         const getIconAlignment = (): string => {
             switch (iconAlign) {
@@ -162,7 +164,7 @@ export const Subtitle = styled(Typography, {
         lineHeight: 1.3,
         color: fontColor || 'inherit',
         ...theme.applyStyles('dark', {
-            color: fontColor || theme.vars.palette.text.secondary,
+            color: fontColor || (theme.vars || theme).palette.text.secondary,
         }),
     })
 );
@@ -175,7 +177,7 @@ export const Info = styled(Typography, {
         lineHeight: 1.3,
         color: fontColor || 'inherit',
         ...theme.applyStyles('dark', {
-            color: fontColor || theme.vars.palette.text.secondary,
+            color: fontColor || (theme.vars || theme).palette.text.secondary,
         }),
     })
 );
@@ -193,7 +195,7 @@ export const RightComponent = styled(
 export const InfoListItemChevron = styled(Chevron, {
     shouldForwardProp: (prop) => prop !== 'chevronColor',
 })<Pick<InfoListItemProps, 'chevronColor'>>(({ chevronColor, theme }) => ({
-    color: chevronColor ? chevronColor : theme.vars.palette.text.secondary,
+    color: chevronColor ? chevronColor : (theme.vars || theme).palette.text.secondary,
     transform: theme.direction === 'rtl' ? 'scaleX(-1)' : '',
 }));
 

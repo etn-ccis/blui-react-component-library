@@ -54,7 +54,7 @@ const Root = styled(
     justifyContent: 'flex-start',
     flex: '1 1 0px',
     overflow: 'hidden',
-    color: theme.vars.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     padding: `1rem ${theme.spacing()}`,
     cursor: onClick ? 'pointer' : 'inherit',
 }));
@@ -63,7 +63,7 @@ const Icon = styled(Box, {
     shouldForwardProp: (prop) => !['iconSize', 'iconBackgroundColor'].includes(prop.toString()),
 })<Pick<HeroProps, 'iconSize' | 'iconBackgroundColor'>>(({ iconSize, iconBackgroundColor, theme }) => ({
     lineHeight: 1,
-    color: theme.vars.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     marginBottom: '.5rem',
     display: 'flex',
     alignItems: 'center',
@@ -86,7 +86,7 @@ const Values = styled(
 )(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
-    color: theme.vars.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     lineHeight: 1.2,
     maxWidth: '100%',
     overflow: 'hidden',

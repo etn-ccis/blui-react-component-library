@@ -22,7 +22,6 @@ import drawerNavItemClasses, {
 } from './DrawerNavItemClasses';
 import Box, { BoxProps } from '@mui/material/Box';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type {} from '@mui/material/themeCssVarsAugmentation';
 
 const useUtilityClasses = (ownerState: DrawerNavItemProps): Record<DrawerNavItemClassKey, string> => {
     const { classes } = ownerState;
@@ -154,13 +153,17 @@ const InfoListItemRoot = styled(InfoListItem, {
         '& .BluiInfoListItem-subtitle': {
             opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
             transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
-            color: !active && theme.applyStyles('dark', { color: theme.vars.palette.text.secondary }),
+            ...theme.applyStyles('dark', {
+                color: !active && (theme.vars || theme).palette.text.secondary
+            })
         },
         '& .BluiInfoListItem-info': {
-            color: !active && theme.applyStyles('dark', { color: theme.vars.palette.text.secondary }),
+            ...theme.applyStyles('dark', {
+                color: !active && (theme.vars || theme).palette.text.secondary
+            })
         },
         [`&. ${drawerNavItemClasses.ripple}`]: {
-            backgroundColor: theme.vars.palette.primary.main,
+            backgroundColor: (theme.vars || theme).palette.primary.main,
         },
     })
 );
@@ -180,12 +183,14 @@ const ActiveComponent = styled(Box, {
 
 const NestedListGroup = styled(List, {
     shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
-})<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(({ nestedBackgroundColor }) => {
-    const colorScheme = useColorScheme();
+})<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(({ nestedBackgroundColor, theme }) => {
     return {
-        backgroundColor: nestedBackgroundColor || (colorScheme.mode === 'light' ? white[200] : darkBlack[500]),
+        backgroundColor: nestedBackgroundColor || white[200],
         paddingBottom: 0,
         paddingTop: 0,
+        ...theme.applyStyles('dark',{
+            backgroundColor: nestedBackgroundColor || darkBlack[500]
+        })
     };
 });
 
@@ -200,20 +205,11 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     const previousActive = usePrevious(activeItem);
     const colorScheme = useColorScheme();
 
-    // Primary color manipulation
-    const fivePercentOpacityPrimary = color(
-        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
-    )
-        .fade(0.95)
-        .string();
-    const twentyPercentOpacityPrimary = color(
-        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
-    )
-        .fade(0.8)
-        .string();
     // approximating primary[200] but we don't have access to it directly from the theme
     const lightenedPrimary = color(
-        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        colorScheme.mode === 'dark'
+            ? (theme.vars || theme).palette.primary.dark
+            : (theme.vars || theme).palette.primary.main
     )
         .lighten(0.83)
         .desaturate(0.39)
@@ -222,11 +218,15 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     // Destructure the props
     const {
         activeItemBackgroundColor = colorScheme.mode === 'light'
-            ? fivePercentOpacityPrimary
-            : twentyPercentOpacityPrimary,
+            ? `rgba(${(theme.vars || theme).palette.primary.mainChannel} / 0.05)`
+            : `rgba(${(theme.vars || theme).palette.primary.darkChannel} / 0.20)`,
         activeItemBackgroundShape = 'square',
-        activeItemFontColor = colorScheme.mode === 'light' ? theme.vars.palette.primary.main : lightenedPrimary,
-        activeItemIconColor = colorScheme.mode === 'light' ? theme.vars.palette.primary.main : lightenedPrimary,
+        activeItemFontColor = colorScheme.mode === 'light'
+            ? (theme.vars || theme).palette.primary.main
+            : lightenedPrimary,
+        activeItemIconColor = colorScheme.mode === 'light'
+            ? (theme.vars || theme).palette.primary.main
+            : lightenedPrimary,
         backgroundColor,
         chevron,
         chevronColor,
@@ -242,8 +242,8 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
         InfoListItemProps = {} as BLUIInfoListItemProps,
         isInActiveTree,
         itemID,
-        itemFontColor = theme.vars.palette.text.primary,
-        itemIconColor = theme.vars.palette.text.primary,
+        itemFontColor = (theme.vars || theme).palette.text.primary,
+        itemIconColor = (theme.vars || theme).palette.text.primary,
         items,
         nestedBackgroundColor,
         nestedDivider,

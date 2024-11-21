@@ -20,13 +20,13 @@ const useUtilityClasses = (ownerState: ListItemTagProps): Record<ListItemTagClas
 export type ListItemTagProps = TypographyProps & {
     /** Color of the label background
      *
-     * Default: theme.vars.palette.primary.main
+     * Default: (theme.vars || theme).palette.primary.main
      */
     backgroundColor?: string;
 
     /** Color of the label text
      *
-     * Default: theme.vars.palette.primary.contrastText
+     * Default: (theme.vars || theme).palette.primary.contrastText
      */
     fontColor?: string;
 
