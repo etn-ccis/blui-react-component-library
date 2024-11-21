@@ -104,13 +104,7 @@ export const Icon = styled(Avatar, {
         const getIconColor = (): string => {
             if (iconColor) return iconColor;
             if (avatar) {
-                return statusColor
-
-                //getContrastText check
-                    ? color(statusColor).isDark()
-                        ? Colors.white[50]
-                        : Colors.black[500]
-                    : Colors.white[50]; // default avatar is dark gray -> white text
+                return statusColor ? theme.palette.getContrastText(statusColor) : Colors.white[50]; // default avatar is dark gray -> white text
             }
             return statusColor ? statusColor : (theme.vars || theme).palette.text.secondary;
         };

@@ -79,11 +79,12 @@ const Root = styled(Toolbar, {
         minHeight: `3.5rem`,
     },
     backgroundColor: backgroundColor || (theme.vars || theme).palette.primary.main,
+    // TODO: Update to use theme.vars.palette.primary.main
     color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.main),
     ...theme.applyStyles('dark', {
         backgroundColor: backgroundColor || (theme.vars || theme).palette.primary.dark,
-        color:
-            fontColor || theme.palette.getContrastText(backgroundColor || (theme.vars || theme).palette.primary.dark),
+        // TODO: Update to use theme.vars.palette.primary.main
+        color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.dark),
     }),
     [`& .${drawerHeaderClasses.nonClickable}`]: {},
     [`& .${drawerHeaderClasses.railIcon}`]: {

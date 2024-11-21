@@ -154,13 +154,13 @@ const InfoListItemRoot = styled(InfoListItem, {
             opacity: hidePadding && !icon && drawerOpen ? 1 : hidePadding && !icon ? 0 : 'inherit',
             transition: hidePadding && !icon ? theme.transitions.create('opacity') : '',
             ...theme.applyStyles('dark', {
-                color: !active && (theme.vars || theme).palette.text.secondary
-            })
+                color: !active && (theme.vars || theme).palette.text.secondary,
+            }),
         },
         '& .BluiInfoListItem-info': {
             ...theme.applyStyles('dark', {
-                color: !active && (theme.vars || theme).palette.text.secondary
-            })
+                color: !active && (theme.vars || theme).palette.text.secondary,
+            }),
         },
         [`&. ${drawerNavItemClasses.ripple}`]: {
             backgroundColor: (theme.vars || theme).palette.primary.main,
@@ -183,16 +183,14 @@ const ActiveComponent = styled(Box, {
 
 const NestedListGroup = styled(List, {
     shouldForwardProp: (prop) => prop !== 'nestedBackgroundColor',
-})<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(({ nestedBackgroundColor, theme }) => {
-    return {
-        backgroundColor: nestedBackgroundColor || white[200],
-        paddingBottom: 0,
-        paddingTop: 0,
-        ...theme.applyStyles('dark',{
-            backgroundColor: nestedBackgroundColor || darkBlack[500]
-        })
-    };
-});
+})<Pick<DrawerNavItemProps, 'nestedBackgroundColor'>>(({ nestedBackgroundColor, theme }) => ({
+    backgroundColor: nestedBackgroundColor || white[200],
+    paddingBottom: 0,
+    paddingTop: 0,
+    ...theme.applyStyles('dark', {
+        backgroundColor: nestedBackgroundColor || darkBlack[500],
+    }),
+}));
 
 const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNavItemProps> = (
     props: DrawerNavItemProps,
@@ -207,9 +205,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // approximating primary[200] but we don't have access to it directly from the theme
     const lightenedPrimary = color(
-        colorScheme.mode === 'dark'
-            ? (theme.vars || theme).palette.primary.dark
-            : (theme.vars || theme).palette.primary.main
+        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .lighten(0.83)
         .desaturate(0.39)
