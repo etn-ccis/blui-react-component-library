@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 import { useDrawerContext } from '../DrawerContext';
 import { styled, Theme, SxProps } from '@mui/material/styles';
 import { cx } from '@emotion/css';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import drawerFooterClasses, {
     DrawerFooterClasses,
     DrawerFooterClassKey,

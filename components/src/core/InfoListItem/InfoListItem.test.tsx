@@ -4,17 +4,15 @@ import '@testing-library/jest-dom';
 import { InfoListItem } from './InfoListItem';
 import { OfflineBolt } from '@mui/icons-material';
 import PersonIcon from '@mui/icons-material/Person';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
-
-const theme = createTheme(BLUIThemes.blue);
+import { ThemeProvider } from '@mui/material/styles';
+import { blueThemes } from '@brightlayer-ui/react-themes';
 
 afterEach(cleanup);
 
 describe('InfoListItem', () => {
     it('renders without crashing', () => {
         render(
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={blueThemes}>
                 <InfoListItem title={'test'} />
             </ThemeProvider>
         );
@@ -22,7 +20,7 @@ describe('InfoListItem', () => {
 
     it('renders with icon', () => {
         render(
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={blueThemes}>
                 <InfoListItem hidePadding icon={<PersonIcon />} title="Test" />
             </ThemeProvider>
         );
@@ -31,7 +29,7 @@ describe('InfoListItem', () => {
 
     it('renders correct icon Color', () => {
         render(
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={blueThemes}>
                 <InfoListItem
                     title={'Test'}
                     icon={<OfflineBolt />}
@@ -49,7 +47,7 @@ describe('InfoListItem', () => {
 
     it('renders rightComponent', () => {
         render(
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={blueThemes}>
                 <InfoListItem title="Test" chevron />
             </ThemeProvider>
         );
@@ -60,7 +58,7 @@ describe('InfoListItem', () => {
 
     it('renders no rightComponent', () => {
         render(
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={blueThemes}>
                 <InfoListItem title="Test" />
             </ThemeProvider>
         );
@@ -71,7 +69,7 @@ describe('InfoListItem', () => {
 
     it('renders correct rightComponent icon', () => {
         render(
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={blueThemes}>
                 <InfoListItem title="Test" onClick={(): void => {}} rightComponent={<PersonIcon />} />
             </ThemeProvider>
         );
@@ -82,7 +80,7 @@ describe('InfoListItem', () => {
 
     it('renders leftComponent', () => {
         render(
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={blueThemes}>
                 <InfoListItem title="Test" leftComponent={<PersonIcon />} />
             </ThemeProvider>
         );

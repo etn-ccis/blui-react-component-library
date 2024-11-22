@@ -13,7 +13,7 @@ import drawerHeaderClasses, {
 import clsx from 'clsx';
 import { styled, SxProps, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: DrawerHeaderProps): Record<DrawerHeaderClassKey, string> => {
     const { classes } = ownerState;
@@ -78,13 +78,14 @@ const Root = styled(Toolbar, {
     [theme.breakpoints.down('sm')]: {
         minHeight: `3.5rem`,
     },
-    backgroundColor:
-        backgroundColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
-    color:
-        fontColor ||
-        theme.palette.getContrastText(
-            backgroundColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
-        ),
+    backgroundColor: backgroundColor || (theme.vars || theme).palette.primary.main,
+    // TODO: Update to use theme.vars.palette.primary.main
+    color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.main),
+    ...theme.applyStyles('dark', {
+        backgroundColor: backgroundColor || (theme.vars || theme).palette.primary.dark,
+        // TODO: Update to use theme.vars.palette.primary.main
+        color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.dark),
+    }),
     [`& .${drawerHeaderClasses.nonClickable}`]: {},
     [`& .${drawerHeaderClasses.railIcon}`]: {
         marginLeft: theme.spacing(0.5),

@@ -9,7 +9,7 @@ import { NavItemSharedStyleProps, NavItemSharedStylePropTypes, SharedStyleProps,
 import { findChildByType, mergeStyleProp } from './utilities';
 import clsx from 'clsx';
 import drawerClasses, { DrawerClasses, DrawerClassKey, getDrawerUtilityClass } from './DrawerClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import Box from '@mui/material/Box';
 
 export const RAIL_WIDTH = 'calc(3.5rem + 16px)'; // 72;

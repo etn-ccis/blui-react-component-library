@@ -6,9 +6,8 @@ import composeRefs from '@seznam/compose-react-refs';
 import { DrawerNavGroup, NavItem } from '../Drawer';
 import Menu, { MenuProps as standardMenuProps } from '@mui/material/Menu';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
+import { Box, unstable_composeClasses as composeClasses } from '@mui/material';
 import Typography, { TypographyProps } from '@mui/material/Typography';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
 import toolbarMenuClasses, {
     ToolbarMenuClasses,
     ToolbarMenuClassKey,
@@ -222,7 +221,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
             >
                 {icon && (
                     <ToolbarMenuIcon
-                        component={'span'}
+                        as={'span'}
                         className={generatedClasses.icon}
                         data-testid={'blui-toolbar-menu-icon'}
                     >
@@ -230,7 +229,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                     </ToolbarMenuIcon>
                 )}
                 <ToolbarMenuLabel
-                    component={'span'}
+                    as={'span'}
                     className={generatedClasses.label}
                     data-testid={'blui-toolbar-menu-label'}
                 >

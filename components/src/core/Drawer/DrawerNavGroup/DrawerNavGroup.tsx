@@ -13,7 +13,7 @@ import { DrawerRailItem, DrawerRailItemProps } from '../DrawerRailItem';
 import { findChildByType, mergeStyleProp } from '../utilities';
 import { cx } from '@emotion/css';
 import { DrawerNavGroupClasses, DrawerNavGroupClassKey, getDrawerNavGroupUtilityClass } from './DrawerNavGroupClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: DrawerNavGroupProps): Record<DrawerNavGroupClassKey, string> => {
     const { classes } = ownerState;
@@ -120,7 +120,7 @@ const DrawerNavGroupRender: React.ForwardRefRenderFunction<unknown, DrawerNavGro
         className: userClassName,
         items = [],
         title,
-        titleColor = theme.palette.text.primary,
+        titleColor = (theme.vars || theme).palette.text.primary,
         titleContent,
         titleDivider = true,
         // Shared Style Props

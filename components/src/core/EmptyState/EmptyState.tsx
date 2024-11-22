@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import Box, { BoxProps } from '@mui/material/Box';
 import { EmptyStateClasses, EmptyStateClassKey, getEmptyStateUtilityClass } from './EmptyStateClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: EmptyStateProps): Record<EmptyStateClassKey, string> => {
     const { classes } = ownerState;
@@ -37,7 +37,7 @@ const Root = styled(
     Box,
     {}
 )(({ theme }) => ({
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     height: '100%',
     minHeight: '100%',
     display: 'flex',
@@ -52,7 +52,7 @@ const Icon = styled(
     Box,
     {}
 )(({ theme }) => ({
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     marginBottom: '1rem',
     display: 'flex',
     fontSize: 96,
@@ -62,7 +62,8 @@ const Description = styled(
     Typography,
     {}
 )(({ theme }) => ({
-    color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
+    ...theme.applyStyles('dark', { color: (theme.vars || theme).palette.text.secondary }),
 }));
 
 const Actions = styled(

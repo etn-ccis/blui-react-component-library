@@ -8,11 +8,9 @@ import * as Colors from '@brightlayer-ui/colors';
 import MoreVert from '@mui/icons-material/MoreVert';
 import { HeroBanner } from '../HeroBanner';
 import { ScoreCard } from './ScoreCard';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
+import { ThemeProvider } from '@mui/material/styles';
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 import { Hero } from '../Hero';
-
-const theme = createTheme(BLUIThemes.blue);
 
 afterEach(cleanup);
 

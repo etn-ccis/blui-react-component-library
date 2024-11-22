@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { ScoreCardClasses, ScoreCardClassKey, getScoreCardUtilityClass } from './ScoreCardClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: ScoreCardProps): Record<ScoreCardClassKey, string> => {
     const { classes } = ownerState;
@@ -57,7 +57,7 @@ export type ScoreCardProps = CardProps &
         headerBackgroundImage?: string;
         /** The color of the header
          *
-         * Default: theme.palette.primary.main
+         * Default: (theme.vars || theme).palette.primary.main
          */
         headerColor?: string;
         /** The color for text and icons in header
@@ -99,9 +99,11 @@ const Header = styled(Box, {
     height: `6.25rem`,
     overflow: 'hidden',
     position: 'relative',
-    backgroundColor:
-        headerColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
+    backgroundColor: headerColor || (theme.vars || theme).palette.primary.main,
     color: fontColor(headerFontColor),
+    ...theme.applyStyles('dark', {
+        backgroundColor: headerColor || (theme.vars || theme).palette.primary.dark,
+    }),
 }));
 
 const HeaderContent = styled(

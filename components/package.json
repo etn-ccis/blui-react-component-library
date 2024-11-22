@@ -1,6 +1,6 @@
 {
     "name": "@brightlayer-ui/react-components",
-    "version": "6.3.1",
+    "version": "7.0.0-alpha.0",
     "description": "React components for Brightlayer UI applications",
     "scripts": {
         "test": "jest src --maxWorkers=50%",
@@ -20,11 +20,11 @@
     "devDependencies": {
         "@brightlayer-ui/eslint-config": "^3.0.1",
         "@brightlayer-ui/prettier-config": "^1.0.3",
-        "@brightlayer-ui/react-themes": "^7.1.0",
+        "@brightlayer-ui/react-themes": "^8.0.0-alpha.0",
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
-        "@mui/icons-material": "^5.10.9",
-        "@mui/material": "^5.15.11",
+        "@mui/icons-material": "^6.1.8",
+        "@mui/material": "^6.1.8",
         "@testing-library/jest-dom": "^6.1.3",
         "@testing-library/react": "^14.2.2",
         "@types/color": "^3.0.3",
@@ -52,8 +52,8 @@
         "@brightlayer-ui/colors": "^3.0.0",
         "@emotion/react": "^11.7.1",
         "@emotion/styled": "^11.6.0",
-        "@mui/icons-material": "^5.3.1",
-        "@mui/material": "^5.4.0",
+        "@mui/icons-material": "^6.1.8",
+        "@mui/material": "^6.1.8",
         "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
         "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
     },

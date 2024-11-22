@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ "dev", "master" ]
+    branches: [ "dev", "master", "release/mui-v6" ]
   pull_request:
-    branches: [ "dev", "master" ]
+    branches: [ "dev", "master", "release/mui-v6" ]
   pull_request_target:
     types:
       - opened
@@ -21,7 +21,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
 
     steps:
     - name: Checkout
@@ -46,7 +46,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
 
     steps:
     - name: Checkout
@@ -73,7 +73,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
 
     steps:
     - name: Checkout
@@ -132,7 +132,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
 
     steps:
     - name: Checkout
@@ -168,7 +168,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
     env:
         REACT_APP_BRANCH:  ${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
         PUBLIC_URL: ${{ github.ref == 'refs/heads/master' && '/react' || '/react-dev' }}
@@ -177,21 +177,25 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Download tarball
-      uses: actions/download-artifact@v3
-      with:
-        name: tarball
-        path: tarball
-    - run: |
-        PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
-        yarn add ./tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
-    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
     - run: yarn --immutable
+      working-directory: docs
+    - name: Download tarball
+      uses: actions/download-artifact@v3
+      with:
+        name: tarball
+        path: tarball
+    - run: yarn --immutable
+      working-directory: docs
+    - run: |
+        PACKAGED_VERSION=`node -p "require('../tarball/package.json').version"`
+        yarn add ../tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
+      working-directory: docs
+    - run: yarn
       working-directory: docs
     - run: yarn build
       working-directory: docs
@@ -258,7 +262,7 @@ jobs:
     needs: build_library
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
     env:
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       BRANCH: ${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
