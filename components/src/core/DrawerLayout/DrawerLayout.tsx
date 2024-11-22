@@ -10,7 +10,7 @@ import drawerLayoutClasses, {
     DrawerLayoutClassKey,
     getDrawerLayoutUtilityClass,
 } from './DrawerLayoutClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: DrawerLayoutProps): Record<DrawerLayoutClassKey, string> => {
     const { classes } = ownerState;

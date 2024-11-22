@@ -16,7 +16,7 @@ import drawerRailItemClasses, {
     DrawerRailItemClassKey,
     getDrawerRailItemUtilityClass,
 } from './DrawerRailItemClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import { styled, SxProps, Theme, useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 

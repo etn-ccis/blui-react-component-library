@@ -21,7 +21,7 @@ import drawerNavItemClasses, {
     getDrawerNavItemUtilityClass,
 } from './DrawerNavItemClasses';
 import Box, { BoxProps } from '@mui/material/Box';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: DrawerNavItemProps): Record<DrawerNavItemClassKey, string> => {
     const { classes } = ownerState;

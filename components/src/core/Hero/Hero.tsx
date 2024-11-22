@@ -5,7 +5,7 @@ import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import { getHeroUtilityClass, HeroClasses, HeroClassKey } from './HeroClasses';
 
 const useUtilityClasses = (ownerState: HeroProps): Record<HeroClassKey, string> => {

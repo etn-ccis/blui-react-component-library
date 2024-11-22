@@ -5,7 +5,7 @@ import { cx } from '@emotion/css';
 import { getHeroBannerUtilityClass, HeroBannerClasses, HeroBannerClassKey } from './HeroBannerClasses';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: HeroBannerProps): Record<HeroBannerClassKey, string> => {
     const { classes } = ownerState;

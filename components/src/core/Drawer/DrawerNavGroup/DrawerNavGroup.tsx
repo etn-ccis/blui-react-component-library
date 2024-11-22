@@ -13,7 +13,7 @@ import { DrawerRailItem, DrawerRailItemProps } from '../DrawerRailItem';
 import { findChildByType, mergeStyleProp } from '../utilities';
 import { cx } from '@emotion/css';
 import { DrawerNavGroupClasses, DrawerNavGroupClassKey, getDrawerNavGroupUtilityClass } from './DrawerNavGroupClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: DrawerNavGroupProps): Record<DrawerNavGroupClassKey, string> => {
     const { classes } = ownerState;
