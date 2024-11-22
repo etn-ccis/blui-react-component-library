@@ -10,7 +10,7 @@ import React from 'react';
 import ReactDOMClient from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -70,7 +70,7 @@ const ThemedApp = (): JSX.Element => {
     // force an update
     const MemoThemedApp = React.useCallback(
         () => (
-            <ThemeProvider theme={createTheme(theme)}>
+            <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <MDXProvider components={componentsMap as any}>
                     <App />
