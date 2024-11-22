@@ -1,5 +1,11 @@
 # Changelog
 
+## v7.0.0 (Unreleased)
+
+### Changed
+
+-   Components are now built to work with Material UI v6
+
 ## v6.3.1 (Unreleased)
 
 ### Fixed
