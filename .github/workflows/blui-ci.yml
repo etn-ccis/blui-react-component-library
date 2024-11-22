@@ -177,6 +177,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
     - name: Download tarball
       uses: actions/download-artifact@v3
       with:
@@ -185,12 +190,7 @@ jobs:
     - run: |
         PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
         yarn add ./tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
+      working-directory: docs
     - run: yarn --immutable
       working-directory: docs
     - run: yarn build
