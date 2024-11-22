@@ -66,6 +66,34 @@ from the root directory.
 
 See the [documentation](https://brightlayer-ui-components.github.io/react) for information on using these components.
 
+## Migration from v6 to v7
+
+With the release of version 7, Brightlayer UI React Components have been updated to use Material UI v6. This migration guide will help you update your project from v6 to v7.
+
+### Steps to Migrate
+
+1. **Update Dependencies**: Update your `package.json` to use the latest version of `@brightlayer-ui/react-components` and `@mui/material`.
+
+    ```shell
+    yarn add @brightlayer-ui/react-components@latest @mui/material@latest
+    ```
+
+2. **Theme Updates**: If you are using custom themes, update your theme configuration to be compatible with Material UI v6.
+
+    ```javascript
+    import { createTheme } from '@mui/material/styles';
+
+    const theme = createTheme({
+        // your theme configuration
+    });
+    ```
+
+3. **Component Changes**: Review the [Material UI v6 migration guide](https://mui.com/guides/migration-v4/) for any breaking changes that may affect your components.
+
+4. **Testing**: Thoroughly test your application to ensure all components are working as expected with the new version.
+
+By following these steps, you should be able to successfully migrate your project from v6 to v7 using Material UI v6.
+
 ## Browser Support
 
 Brightlayer UI libraries will work with any modern browser. For details, please refer to our [Browser Support](https://brightlayer-ui.github.io/development/frameworks-web/react#browser-support) documentation.
