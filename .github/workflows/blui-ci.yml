@@ -191,7 +191,7 @@ jobs:
         path: tarball
     - run: |
         PACKAGED_VERSION=`node -p "require('./tarball/package.json').version"`
-        yarn add ./tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz && cd
+        yarn add ./tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
     - run: yarn --immutable
       working-directory: docs
     - run: yarn build
