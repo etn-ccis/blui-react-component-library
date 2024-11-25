@@ -149,6 +149,7 @@ jobs:
     - run: yarn --immutable
       working-directory: demos/showcase
     - run: echo "ls -a ."
+      working-directory: demos/showcase
     - name: Download tarball
       uses: actions/download-artifact@v3
       with:
