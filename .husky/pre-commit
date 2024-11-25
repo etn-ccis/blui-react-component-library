@@ -1,1 +1,1 @@
-yarn initialize && yarn install:dependencies && yarn prettier:check && yarn lint && cd components && yarn test --coverage && cd ..
+yarn install:dependencies && cd components && yarn prettier:check && yarn lint && yarn test --coverage && cd .. && cd docs && yarn prettier:check && yarn lint

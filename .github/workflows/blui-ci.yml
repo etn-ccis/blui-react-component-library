@@ -143,8 +143,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
     - run: git submodule init && git submodule update
+    - uses: actions/checkout@v4
+      with:
+       ref: dev
     - run: yarn --immutable
       working-directory: demos/showcase
+    - run: echo "ls -a ."
     - name: Download tarball
       uses: actions/download-artifact@v3
       with:
