@@ -150,6 +150,7 @@ jobs:
       working-directory: demos/showcase
     - run: echo "ls -a ."
       working-directory: demos/showcase
+    - run: echo $PATH
     - name: Download tarball
       uses: actions/download-artifact@v3
       with:
