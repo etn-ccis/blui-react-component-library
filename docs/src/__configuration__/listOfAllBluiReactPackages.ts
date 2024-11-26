@@ -12,7 +12,6 @@ export const listOfAllBluiReactPackages = [
     '@brightlayer-ui/react-auth-workflow',
     '@brightlayer-ui/eslint-config',
     '@brightlayer-ui/prettier-config',
-    '@brightlayer-ui/cli',
     '@brightlayer-ui/cra-template-authentication-typescript',
     '@brightlayer-ui/cra-template-routing-typescript',
     '@brightlayer-ui/cra-template-blank-typescript',

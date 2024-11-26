@@ -29,7 +29,7 @@ const Root = styled(
     Box,
     {}
 )(({ theme }) => ({
-    display: 'flex',
+    display: 'block',
     width: '100%',
     '&$expanded $content': {
         transition: theme.transitions.create('padding', {
@@ -47,7 +47,7 @@ const Drawer = styled(
     position: 'fixed',
     height: '100%',
     alignItems: 'stretch',
-    zIndex: theme.zIndex.drawer,
+    zIndex: theme.zIndex.modal,
 }));
 
 const Content = styled(
