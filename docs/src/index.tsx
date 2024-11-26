@@ -10,9 +10,9 @@ import React from 'react';
 import ReactDOMClient from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import '@brightlayer-ui/react-themes/open-sans';
 import '@fontsource/roboto';
@@ -63,17 +63,14 @@ const ThemedApp = (): JSX.Element => {
     const siteTheme = useAppSelector((state: RootState) => state.appState.siteTheme);
     const siteDirection = useAppSelector((state: RootState) => state.appState.siteDirection);
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-    let theme = BLUIThemes.blue;
-    if (siteTheme === 'dark' || (siteTheme === 'system' && prefersDarkMode)) {
-        theme = BLUIThemes.blueDark;
-    }
+
     theme.direction = siteDirection;
     document.dir = siteDirection;
 
     // force an update
     const MemoThemedApp = React.useCallback(
         () => (
-            <ThemeProvider theme={createTheme(theme)}>
+            <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <MDXProvider components={componentsMap as any}>
                     <App />

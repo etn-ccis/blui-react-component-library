@@ -5,7 +5,7 @@ import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import { getHeroUtilityClass, HeroClasses, HeroClassKey } from './HeroClasses';
 
 const useUtilityClasses = (ownerState: HeroProps): Record<HeroClassKey, string> => {
@@ -54,7 +54,7 @@ const Root = styled(
     justifyContent: 'flex-start',
     flex: '1 1 0px',
     overflow: 'hidden',
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     padding: `1rem ${theme.spacing()}`,
     cursor: onClick ? 'pointer' : 'inherit',
 }));
@@ -63,7 +63,7 @@ const Icon = styled(Box, {
     shouldForwardProp: (prop) => !['iconSize', 'iconBackgroundColor'].includes(prop.toString()),
 })<Pick<HeroProps, 'iconSize' | 'iconBackgroundColor'>>(({ iconSize, iconBackgroundColor, theme }) => ({
     lineHeight: 1,
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     marginBottom: '.5rem',
     display: 'flex',
     alignItems: 'center',
@@ -86,7 +86,7 @@ const Values = styled(
 )(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     lineHeight: 1.2,
     maxWidth: '100%',
     overflow: 'hidden',

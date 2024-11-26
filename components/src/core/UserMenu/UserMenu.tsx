@@ -7,7 +7,7 @@ import { cx } from '@emotion/css';
 import PropTypes from 'prop-types';
 import { DrawerHeader, DrawerNavGroup, NavItem } from '../Drawer';
 import Box, { BoxProps } from '@mui/material/Box';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import userMenuClasses, { UserMenuClasses, UserMenuClassKey, getUserMenuUtilityClass } from './UserMenuClasses';
 
 const useUtilityClasses = (ownerState: UserMenuProps): Record<UserMenuClassKey, string> => {
@@ -245,7 +245,9 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                                     InfoListItemProps: Object.assign(
                                         {
                                             iconColor:
-                                                item.itemIconColor || group.iconColor || theme.palette.text.secondary,
+                                                item.itemIconColor ||
+                                                group.iconColor ||
+                                                (theme.vars || theme).palette.text.secondary,
                                         },
                                         item.InfoListItemProps
                                     ),
@@ -254,7 +256,7 @@ const UserMenuRender: React.ForwardRefRenderFunction<unknown, UserMenuProps> = (
                     />
                 </UserMenuNavGroups>
             )),
-        [menuGroups, generatedClasses, theme.palette.text.secondary]
+        [menuGroups, generatedClasses, theme]
     );
 
     const printMenu = useCallback(

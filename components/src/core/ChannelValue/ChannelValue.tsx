@@ -8,7 +8,7 @@ import channelValueClasses, {
     ChannelValueClassKey,
     getChannelValueUtilityClass,
 } from './ChannelValueClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
 
 const useUtilityClasses = (ownerState: ChannelValueProps): Record<ChannelValueClassKey, string> => {
@@ -157,7 +157,7 @@ const ChannelValueRender: React.ForwardRefRenderFunction<unknown, ChannelValuePr
             as="span"
             ref={ref}
             className={cx(generatedClasses.root, userClassName)}
-            data-testid={'blui-channel-value-root'}
+            data-testid={'blui-channel-value-root-test'}
             fontSize={fontSize}
             color={color}
             {...otherProps}

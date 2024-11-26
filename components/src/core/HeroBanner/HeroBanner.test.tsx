@@ -3,10 +3,8 @@ import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { HeroBanner } from './HeroBanner';
 import { Hero } from '../Hero';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
-
-const theme = createTheme(BLUIThemes.blue);
+import { ThemeProvider } from '@mui/material/styles';
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 
 afterEach(cleanup);
 

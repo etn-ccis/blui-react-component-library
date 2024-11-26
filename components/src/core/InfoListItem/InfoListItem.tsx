@@ -2,7 +2,7 @@ import React, { ReactNode, useCallback } from 'react';
 import { ListItemProps } from '@mui/material/ListItem';
 import { ListItemButtonProps as MuiListItemButtonProps } from '@mui/material/ListItemButton';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import { separate, withKeys } from '../utilities';
 import PropTypes from 'prop-types';
 import {

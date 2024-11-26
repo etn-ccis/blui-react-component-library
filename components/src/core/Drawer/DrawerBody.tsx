@@ -6,7 +6,7 @@ import { mergeStyleProp } from './utilities';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { DrawerBodyClasses, DrawerBodyClassKey, getDrawerBodyUtilityClass } from './DrawerBodyClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: DrawerBodyProps): Record<DrawerBodyClassKey, string> => {
     const { classes } = ownerState;
