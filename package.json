@@ -47,7 +47,7 @@
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "husky": "^9.1.6",
         "npm-license-crawler": "^0.2.1",
-        "prettier": "^3.3.3"
+        "prettier": "^3.4.1"
     },
     "prettier": "@brightlayer-ui/prettier-config"
 }
