@@ -153,8 +153,8 @@ jobs:
     - run: yarn --immutable
       working-directory: demos/showcase
     - run: |
-        PACKAGED_VERSION=`node -p "require('../tarball/package.json').version"`
-        yarn add ../tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
+        PACKAGED_VERSION=`node -p "require('../../tarball/package.json').version"`
+        yarn add ../../tarball/brightlayer-ui-react-components-$PACKAGED_VERSION.tgz
       working-directory: demos/showcase
     - run: yarn
       working-directory: demos/showcase
