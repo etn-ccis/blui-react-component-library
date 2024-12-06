@@ -19,12 +19,11 @@ import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 
 // hooks
-import { toggleDrawer, changeSiteTheme } from '../redux/appState';
+import { toggleDrawer } from '../redux/appState';
 // import { changeDirection } from '../redux/appState';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { useTheme } from '@mui/material/styles';
+import { useColorScheme, useTheme } from '@mui/material/styles';
 import { RootState } from '../redux/store';
-import { SiteThemeType } from '../__types__';
 // import { UIDirection } from '../__types__';
 
 export type SharedAppBarProps = {
@@ -64,17 +63,13 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
     // const siteDirection = useAppSelector((state: RootState) => state.appState.siteDirection);
     const linkToThemesOverview = `${process.env.PUBLIC_URL ? process.env.PUBLIC_URL : ''}/themes/overview`;
 
-    const onClickThemeSelectorItem = React.useCallback(
-        (option: SiteThemeType): void => {
-            dispatch(
-                changeSiteTheme({
-                    siteTheme: option,
-                })
-            );
-            setThemeSelectorAnchorEl(null);
-        },
-        [dispatch]
-    );
+    const { setMode } = useColorScheme();
+
+    const toggleThemeMode = (mode: 'light' | 'dark' | 'system' | null): void => {
+        if (setMode) {
+            setMode(mode ?? 'light');
+        }
+    };
 
     // See hidden RTL site options below
     // const onDirectionChange = React.useCallback(
@@ -106,19 +101,19 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
                                 value="light"
                                 control={<Radio />}
                                 label="Light Theme"
-                                onClick={(): void => onClickThemeSelectorItem('light')}
+                                onClick={(): void => toggleThemeMode('light')}
                             />
                             <FormControlLabel
                                 value="dark"
                                 control={<Radio />}
                                 label="Dark Theme"
-                                onClick={(): void => onClickThemeSelectorItem('dark')}
+                                onClick={(): void => toggleThemeMode('dark')}
                             />
                             <FormControlLabel
                                 value="system"
                                 control={<Radio />}
                                 label="System Default"
-                                onClick={(): void => onClickThemeSelectorItem('system')}
+                                onClick={(): void => toggleThemeMode('system')}
                             />
                         </RadioGroup>
                     </FormControl>
