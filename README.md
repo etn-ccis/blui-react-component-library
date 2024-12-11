@@ -15,7 +15,27 @@ To install the Brightlayer UI react components from NPM as a dependency for your
 yarn add @brightlayer-ui/react-components
 ```
 
-> **NOTE**: This install command will install the package from NPM. If you are a Brightlayer UI developer working with components locally, you will want to follow the manual linking instructions - see below.
+## Usage
+
+See the [developer documentation](https://brightlayer-ui-components.github.io/react) site for detailed information on using these components.
+
+> For use with MUI 6+, you must be using version 7 of @brightlayer-ui/react-components and version 8 of @brightlayer-ui/react-themes.
+
+## Migration from v6 to v7
+
+With the release of version 7, Brightlayer UI React Components have been updated to use Material UI v6. The usage of the BLUI components remains the same, but there may be some updates required in your project to migrate to MUI v6.
+
+You can refer to the official [MUI Migration Documentation](https://mui.com/material-ui/migration/upgrade-to-v6/) for details on the steps to upgrade. This will include:
+
+- updating dependency versions
+- updating any custom themes (BLUI themes have already been updated for you)
+- component API changes / deprecations
+
+## Browser Support
+
+Brightlayer UI libraries will work with any modern browser. For details, please refer to our [Browser Support](https://brightlayer-ui.github.io/development/frameworks-web/react#browser-support) documentation.
+
+# For Maintainers
 
 ## Building the Library
 
@@ -32,10 +52,6 @@ The library can be built by running the following command. The resulting output 
 ```shell
 yarn build
 ```
-
-## Using with @brightlayer-ui/react-themes
-
-We recommend using this library in conjunction with [@brightlayer-ui/react-themes](https://www.npmjs.com/package/@brightlayer-ui/react-themes). If you are using version 6.0.0+ of the Brightlayer UI themes, you must upgrade to at least version 5.1.0 of @brightlayer-ui/react-components, or you may see some unintended default styles on some components.
 
 ## Running the demo project and React Component Library API Docs
 
@@ -61,39 +77,3 @@ yarn start:docs
 ```
 
 from the root directory.
-
-## Using the Components
-
-See the [documentation](https://brightlayer-ui-components.github.io/react) for information on using these components.
-
-## Migration from v6 to v7
-
-With the release of version 7, Brightlayer UI React Components have been updated to use Material UI v6. This migration guide will help you update your project from v6 to v7.
-
-### Steps to Migrate
-
-1. **Update Dependencies**: Update your `package.json` to use the latest version of `@brightlayer-ui/react-components` and `@mui/material`.
-
-    ```shell
-    yarn add @brightlayer-ui/react-components@latest @mui/material@latest
-    ```
-
-2. **Theme Updates**: If you are using custom themes, update your theme configuration to be compatible with Material UI v6.
-
-    ```javascript
-    import { createTheme } from '@mui/material/styles';
-
-    const theme = createTheme({
-        // your theme configuration
-    });
-    ```
-
-3. **Component Changes**: Review the [Material UI v6 migration guide](https://mui.com/guides/migration-v4/) for any breaking changes that may affect your components.
-
-4. **Testing**: Thoroughly test your application to ensure all components are working as expected with the new version.
-
-By following these steps, you should be able to successfully migrate your project from v6 to v7 using Material UI v6.
-
-## Browser Support
-
-Brightlayer UI libraries will work with any modern browser. For details, please refer to our [Browser Support](https://brightlayer-ui.github.io/development/frameworks-web/react#browser-support) documentation.
