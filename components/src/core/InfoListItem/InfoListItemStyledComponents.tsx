@@ -127,6 +127,10 @@ export const Icon = styled(Avatar, {
                 height: `2.5rem`,
                 padding: `.5rem`,
                 marginRight: theme.spacing(2),
+                ...theme.applyStyles('dark', {
+                    color: getIconColor(),
+                    backgroundColor: statusColor || Colors.black[500],
+                }),
             };
         }
         return {
@@ -138,6 +142,10 @@ export const Icon = styled(Avatar, {
             height: `2.5rem`,
             marginRight: theme.spacing(2),
             opacity: isInvisible ? 0 : 'auto',
+            ...theme.applyStyles('dark', {
+                color: getIconColor(),
+                backgroundColor: 'transparent',
+            }),
         };
     }
 );
