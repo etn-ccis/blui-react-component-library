@@ -118,16 +118,14 @@ export const NavigationDrawer: React.FC = () => {
                     >
                         <Typography variant="subtitle1">Brightlayer User Interface</Typography>
                         <Stack direction={'row'} alignItems={'center'} gap={1}>
-                            <Typography variant={'body2'}>
-                                Developer Docs
-                            </Typography>
+                            <Typography variant={'body2'}>Developer Docs</Typography>
                             <Chip
                                 sx={{
                                     color: 'primary.main',
                                     backgroundColor: 'white',
                                     ...theme.applyStyles('dark', {
                                         color: theme.vars.palette.grey[200],
-                                    })
+                                    }),
                                 }}
                                 icon={<ReactIcon color={'primary'} />}
                                 label={
