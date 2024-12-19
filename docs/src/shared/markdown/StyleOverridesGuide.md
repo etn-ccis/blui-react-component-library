@@ -52,7 +52,7 @@ import { CheckCircle } from '@mui/icons-material';
 import * as Colors from '@brightlayer-ui/colors';
 ...
 const SuccessInfoListItem = styled(InfoListItem)<InfoListItemProps>(({ theme }) => ({
-    color: theme.palette.success.main,
+    color: theme.vars.palette.success.main,
     '& .BluiInfoListItem-icon': {
         fontSize: '1.5rem',
     },
@@ -86,7 +86,7 @@ import { Leaf } from '@brightlayer-ui/icons-mui';
 const useStyles = makeStyles()((theme: Theme) => ({
         root: {
             padding: '1rem',
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: theme.vars.palette.background.paper,
         },
     }));
 
@@ -170,7 +170,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
          root: {
             padding: '1rem'
-            backgroundColor: theme.palette.background.paper
+            backgroundColor: theme.vars.palette.background.paper
         },
     })
 );

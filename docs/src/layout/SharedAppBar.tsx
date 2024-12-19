@@ -19,11 +19,12 @@ import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 
 // hooks
-import { toggleDrawer } from '../redux/appState';
+import { changeSiteTheme, toggleDrawer } from '../redux/appState';
 // import { changeDirection } from '../redux/appState';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useColorScheme, useTheme } from '@mui/material/styles';
 import { RootState } from '../redux/store';
+import { SiteThemeType } from '../__types__';
 // import { UIDirection } from '../__types__';
 
 export type SharedAppBarProps = {
@@ -65,11 +66,18 @@ export const SharedAppBar: React.FC<SharedAppBarProps> = (props): JSX.Element =>
 
     const { setMode } = useColorScheme();
 
-    const toggleThemeMode = (mode: 'light' | 'dark' | 'system' | null): void => {
-        if (setMode) {
-            setMode(mode ?? 'light');
-        }
-    };
+    const toggleThemeMode = React.useCallback(
+        (option: SiteThemeType): void => {
+            setMode(option);
+            dispatch(
+                changeSiteTheme({
+                    siteTheme: option,
+                })
+            );
+            setThemeSelectorAnchorEl(null);
+        },
+        [dispatch]
+    );
 
     // See hidden RTL site options below
     // const onDirectionChange = React.useCallback(
