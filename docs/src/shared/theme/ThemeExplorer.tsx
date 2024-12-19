@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Spacer } from '@brightlayer-ui/react-components';
 import { blueThemes as theme } from '@brightlayer-ui/react-themes';
-import { ThemeProvider, useTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import {
     Card,
     Divider,
@@ -20,7 +20,6 @@ import { SystemStyleObject } from '@mui/system';
 
 export const ThemeExplorer: React.FC = () => {
     const colorScheme = useColorScheme();
-    const globalTheme = useTheme();
     const [localThemeDark, setLocalThemeDark] = useState(colorScheme.mode === 'dark');
     const [selectedComponent, setSelectedComponent] = useState(0);
 
@@ -28,7 +27,7 @@ export const ThemeExplorer: React.FC = () => {
         <ThemeProvider theme={theme}>
             <Card
                 sx={{ mb: 4, boxSizing: 'border-box', '&:hover': { boxShadow: 6 } }}
-                variant={globalTheme.palette.mode === 'dark' ? 'outlined' : undefined}
+                variant={colorScheme.mode === 'dark' ? 'outlined' : undefined}
             >
                 <Toolbar
                     sx={[
