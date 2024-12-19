@@ -1,6 +1,6 @@
 # Changelog
 
-## v7.0.0 (December 18, 2024)
+## v7.0.0 (December 19, 2024)
 
 ### Changed
 
