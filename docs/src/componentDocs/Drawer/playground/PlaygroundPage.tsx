@@ -17,6 +17,7 @@ import {
     DrawerProps,
     DrawerNavGroup,
     NavItem,
+    DrawerLayout,
 } from '@brightlayer-ui/react-components';
 import * as Colors from '@brightlayer-ui/colors';
 import Menu from '@mui/icons-material/Menu';
@@ -182,112 +183,119 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
     ];
 
     return (
-        <Stack alignItems={'center'} justifyContent={'center'} sx={{ width: '100%', height: '100%' }}>
+        <Stack
+            alignItems={'center'}
+            justifyContent={'center'}
+            sx={{ overflowY: 'auto', width: '100%', height: '100%', p: 1 }}
+        >
             <Box
                 sx={{
                     m: '16px 0',
                     backgroundColor: Colors.white[600],
-                    minHeight: 250,
+                    maxHeight: '100%',
+                    maxWidth: '80%',
                     position: 'relative',
-                    overflow: 'hidden',
                 }}
                 ref={containerRef}
             >
-                <Drawer
-                    open={open}
-                    noLayout
-                    variant={variant}
-                    collapseIcon={getIcon(collapseIcon)}
-                    expandIcon={getIcon(expandIcon)}
-                    ModalProps={{
-                        disablePortal: temporary,
-                        slotProps: {
-                            backdrop: { sx: { position: 'absolute' } },
-                        },
-                    }}
-                    SlideProps={{
-                        container: containerRef.current,
-                    }}
-                    sx={{
-                        position: 'absolute',
-                        minWidth: '100%',
-                        '& .MuiPaper-root': {
-                            background: 'transparent',
-                            width: persistent ? 'inherit' : 'initial',
-                        },
-                        '& .BluiDrawer-content': { backgroundColor: 'background.paper' },
-                    }}
-                    {...removeEmptyProps(rest)}
-                >
-                    {temporary && (
-                        <DrawerHeader
-                            title="Temporary"
-                            icon={<Close />}
-                            onClick={(): void => updateData('open', !open)}
-                            sx={{ cursor: 'pointer' }}
-                        />
-                    )}
+                <DrawerLayout
+                    drawer={
+                        <Drawer
+                            open={open}
+                            // noLayout
+                            variant={variant}
+                            collapseIcon={getIcon(collapseIcon)}
+                            expandIcon={getIcon(expandIcon)}
+                            ModalProps={{
+                                disablePortal: temporary,
+                                slotProps: {
+                                    backdrop: { sx: { position: 'absolute' } },
+                                },
+                            }}
+                            SlideProps={{
+                                container: containerRef.current,
+                            }}
+                            sx={{
+                                position: 'absolute',
+                                // minWidth: '100%',
+                                '& .MuiPaper-root': {
+                                    background: 'transparent',
+                                    width: persistent ? 'inherit' : 'initial',
+                                },
+                                '& .BluiDrawer-content': { backgroundColor: 'background.paper' },
+                            }}
+                            {...removeEmptyProps(rest)}
+                        >
+                            {temporary && (
+                                <DrawerHeader
+                                    title="Temporary"
+                                    icon={<Close />}
+                                    onClick={(): void => updateData('open', !open)}
+                                    sx={{ cursor: 'pointer' }}
+                                />
+                            )}
 
-                    {persistent && (
-                        <DrawerHeader
-                            title="Persistent"
-                            icon={<Menu />}
-                            onClick={(): void => updateData('open', !open)}
-                            sx={{ cursor: 'pointer' }}
-                        />
-                    )}
+                            {persistent && (
+                                <DrawerHeader
+                                    title="Persistent"
+                                    icon={<Menu />}
+                                    onClick={(): void => updateData('open', !open)}
+                                    sx={{ cursor: 'pointer' }}
+                                />
+                            )}
 
-                    {permanent && <DrawerHeader title="Permanent" />}
-                    <DrawerBody sx={{ flex: '1 1 auto' }}>
-                        <DrawerNavGroup items={navGroupItems}></DrawerNavGroup>
-                    </DrawerBody>
-                </Drawer>
-                <Box
+                            {permanent && <DrawerHeader title="Permanent" />}
+                            <DrawerBody sx={{ flex: '1 1 auto' }}>
+                                <DrawerNavGroup items={navGroupItems}></DrawerNavGroup>
+                            </DrawerBody>
+                        </Drawer>
+                    }
                     sx={{
-                        backgroundColor: 'background.paper',
-                        height: 350,
-                        width: `calc(100vw - 850px)`,
-                        maxWidth: 700,
+                        '& .BluiDrawerLayout-drawer': { height: 330 },
                     }}
                 >
-                    {rail ? (
-                        <Box sx={{ p: 2, ml: 9 }}>App Content Here.</Box>
-                    ) : (
-                        <>
-                            <AppBar position="static">
-                                <Toolbar>
-                                    <IconButton
-                                        size="large"
-                                        edge="start"
-                                        color="inherit"
-                                        aria-label="menu"
-                                        sx={{ mr: 2 }}
-                                        onClick={(): void => updateData('open', !open)}
-                                    >
-                                        <Menu />
-                                    </IconButton>
-                                    <Typography variant="h6">Toolbar</Typography>
-                                </Toolbar>
-                            </AppBar>
-                            <Box
-                                sx={{
-                                    p: 2,
-                                    ml: open
-                                        ? temporary
-                                            ? 1 // temporary open
-                                            : `${rest.width as number}px` // all other open
-                                        : persistent
-                                        ? 7 // closed persistent
-                                        : permanent
-                                        ? `${rest.width as number}px` // closed permanent
-                                        : 1, // all other closed
-                                }}
-                            >
-                                App Content Here.
-                            </Box>
-                        </>
-                    )}
-                </Box>
+                    <Box
+                        sx={{
+                            backgroundColor: 'background.paper',
+                            height: 330,
+                            width: 650,
+                            maxWidth: '100%',
+                        }}
+                    >
+                        {rail ? (
+                            <Box sx={{ p: 2, ml: 9 }}>App Content Here.</Box>
+                        ) : (
+                            <>
+                                <AppBar position="static">
+                                    <Toolbar>
+                                        {variant === 'temporary' && (
+                                            <IconButton
+                                                size="large"
+                                                edge="start"
+                                                color="inherit"
+                                                aria-label="menu"
+                                                sx={{ mr: 2 }}
+                                                onClick={(): void => updateData('open', !open)}
+                                            >
+                                                <Menu />
+                                            </IconButton>
+                                        )}
+                                        <Typography variant="h6">Toolbar</Typography>
+                                    </Toolbar>
+                                </AppBar>
+                                <Box
+                                    sx={{
+                                        p: 2,
+                                        ml: 1,
+                                        marginLeft: 0,
+                                    }}
+                                >
+                                    App Content Here.
+                                </Box>
+                            </>
+                        )}
+                    </Box>
+                </DrawerLayout>
             </Box>
         </Stack>
     );
@@ -303,7 +311,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     <DrawerBody>
         <DrawerNavGroup {...navGroupProps} />
     </DrawerBody>
-</Drawer>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+</Drawer>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const DrawerPlaygroundComponent = (): JSX.Element => (
     <Box

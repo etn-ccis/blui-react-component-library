@@ -5,7 +5,7 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 // import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import clsx from 'clsx';
 import { usePrevious } from '../hooks/usePrevious';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import appBarClasses, { AppBarClasses, AppBarClassKey, getAppBarUtilityClass } from './AppBarClasses';
 import { cx } from '@emotion/css';
 
@@ -141,7 +141,6 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         expandedHeight = 200,
         backgroundImage,
         className: userClassName,
-        classes = {},
         collapsedHeight = defaultAppBarHeight,
         // onExpandedHeightReached,
         // onCollapsedHeightReached,
@@ -152,7 +151,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     const scrollElement = scrollContainerId ? document.getElementById(scrollContainerId) : null;
     const scrollTop = scrollElement ? scrollElement.scrollTop : window.scrollY;
 
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const animationDuration = durationProp || theme.transitions.duration.standard;
 
     const [offset, setOffset] = useState(0);
@@ -161,6 +160,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
     const previousExpandedHeight = usePrevious(expandedHeight);
     const [scrolling, setScrolling] = useState(false);
     const [animating, setAnimating] = useState(false);
+    const previousAnimating = usePrevious(animating);
     const [endScrollHandled, setEndScrollHandled] = useState(false);
     const [height, setHeight] = useState(
         variant === 'collapsed'
@@ -207,6 +207,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         else if (previousOffset > 0 && offset === 0) {
             expandToolbar();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [offset, scrollThreshold]);
 
     // Properly update the height whenever the variant property changes
@@ -222,6 +223,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
                 expandToolbar();
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [variant]);
 
     // Properly update the size when either height property changes
@@ -235,6 +237,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         } else {
             expandToolbar();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [collapsedHeight, expandedHeight]);
 
     // Returns the background image to apply on the app bar
@@ -242,14 +245,13 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
         if (backgroundImage) {
             return (
                 <div
-                    className={clsx(defaultClasses.background, classes.background, {
-                        [defaultClasses.expandedBackground]: isExpanded,
-                        [classes.expandedBackground]: isExpanded,
+                    className={clsx(generatedClasses.background, {
+                        [generatedClasses.expandedBackground]: isExpanded,
                     })}
                 />
             );
         }
-    }, [backgroundImage, defaultClasses, classes, isExpanded]);
+    }, [backgroundImage, generatedClasses, isExpanded]);
 
     // This handler checks if the scrolling variable is true and adjusts the offset accordingly
     // We do not do this directly in the scroll event callback for performance reasons
@@ -267,7 +269,16 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             setOffset(scrollTop);
             setEndScrollHandled(true);
         }
-    }, [scrolling, animating, offset, endScrollHandled]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [scrolling, offset, endScrollHandled]);
+
+    // listen for animating to finish and update scroll position
+    useEffect(() => {
+        if (previousAnimating && !animating) {
+            setEndScrollHandled(false);
+            handleScroll();
+        }
+    }, [previousAnimating, animating, handleScroll]);
 
     // This function listens for scroll events on the window and sets the scrolling variable to true
     useEffect(() => {
@@ -279,7 +290,7 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             clearInterval(scrollCheck);
             (scrollElement || window).removeEventListener('scroll', () => setScrolling(true));
         };
-    }, [handleScroll]);
+    }, [handleScroll, scrollElement]);
 
     return (
         <Root
@@ -287,11 +298,10 @@ const AppBarRender: React.ForwardRefRenderFunction<unknown, AppBarProps> = (prop
             {...muiAppBarProps}
             data-testid={'blui-appbar-root'}
             className={cx(
-                defaultClasses.root,
-                classes.root,
+                generatedClasses.root,
                 {
-                    [classes.expanded]: isExpanded,
-                    [classes.collapsed]: !isExpanded,
+                    [generatedClasses.expanded]: isExpanded,
+                    [generatedClasses.collapsed]: !isExpanded,
                 },
                 userClassName
             )}

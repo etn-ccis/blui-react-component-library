@@ -6,9 +6,8 @@ import composeRefs from '@seznam/compose-react-refs';
 import { DrawerNavGroup, NavItem } from '../Drawer';
 import Menu, { MenuProps as standardMenuProps } from '@mui/material/Menu';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
+import { Box, unstable_composeClasses as composeClasses } from '@mui/material';
 import Typography, { TypographyProps } from '@mui/material/Typography';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
 import toolbarMenuClasses, {
     ToolbarMenuClasses,
     ToolbarMenuClassKey,
@@ -32,13 +31,15 @@ const useUtilityClasses = (ownerState: ToolbarMenuProps): Record<ToolbarMenuClas
 };
 
 export type ToolbarMenuCompItem = Omit<NavItem, 'itemID'> & { itemID?: string };
+export type ToolbarMenuItem = ToolbarMenuCompItem;
+
 export type ToolbarMenuCompGroup = {
     /** The color used for the text */
     fontColor?: string;
     /** The color used for icons */
     iconColor?: string;
     /** List of navigation items to render */
-    items: ToolbarMenuCompItem[];
+    items: ToolbarMenuItem[];
     /** Text to display in the group header */
     title?: string;
 };
@@ -120,12 +121,11 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
         onClose,
         onOpen,
         className: userClassName,
-        classes = {},
         ...otherTypographyProps
     } = props;
     const theme = useTheme();
     const rtl = theme.direction === 'rtl';
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const [anchorEl, setAnchorEl] = useState(null);
     const anchor = useRef(null);
 
@@ -160,7 +160,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 }
             }
         }
-    }, [menuGroups]);
+    }, [closeMenu, menuGroups]);
 
     const getMenu = useCallback(() => {
         if (menu && Boolean(anchorEl)) {
@@ -184,7 +184,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 >
                     {!menu &&
                         menuGroups.map((group: ToolbarMenuCompGroup, index: number) => (
-                            <ToolbarMenuNavGroups className={defaultClasses.navGroups} key={index}>
+                            <ToolbarMenuNavGroups className={generatedClasses.navGroups} key={index}>
                                 <DrawerNavGroup
                                     divider={false}
                                     hidePadding={true}
@@ -192,7 +192,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                                     itemFontColor={group.fontColor}
                                     title={group.title}
                                     items={group.items.map(
-                                        (item: ToolbarMenuCompItem, itemIndex: number): NavItem =>
+                                        (item: ToolbarMenuItem, itemIndex: number): NavItem =>
                                             Object.assign({ itemID: itemIndex.toString() }, item)
                                     )}
                                 />
@@ -201,7 +201,7 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 </Menu>
             );
         }
-    }, [menuGroups, menu, anchorEl, MenuProps, defaultClasses]);
+    }, [closeMenu, menuGroups, menu, anchorEl, MenuProps, generatedClasses, rtl]);
 
     return (
         <>
@@ -210,10 +210,9 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                 aria-haspopup="true"
                 {...otherTypographyProps}
                 className={cx(
-                    defaultClasses.root,
-                    classes.root,
+                    generatedClasses.root,
                     userClassName,
-                    menuGroups || menu ? defaultClasses.cursorPointer : ''
+                    menuGroups || menu ? generatedClasses.cursorPointer : ''
                 )}
                 data-testid={'blui-menu-root'}
                 onClick={(): void => {
@@ -222,16 +221,16 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
             >
                 {icon && (
                     <ToolbarMenuIcon
-                        component={'span'}
-                        className={cx(defaultClasses.icon, classes.icon)}
+                        as={'span'}
+                        className={generatedClasses.icon}
                         data-testid={'blui-toolbar-menu-icon'}
                     >
                         {icon}
                     </ToolbarMenuIcon>
                 )}
                 <ToolbarMenuLabel
-                    component={'span'}
-                    className={cx(defaultClasses.label, classes.label)}
+                    as={'span'}
+                    className={generatedClasses.label}
                     data-testid={'blui-toolbar-menu-label'}
                 >
                     {label || ''}
@@ -240,9 +239,8 @@ const ToolbarMenuRenderer: React.ForwardRefRenderFunction<unknown, ToolbarMenuPr
                     <DropDownArrow
                         data-testid={'blui-arrow-dropdown'}
                         className={cx(
-                            defaultClasses.dropdownArrow,
-                            classes.dropdownArrow,
-                            anchorEl ? defaultClasses.rotatedDropdownArrow : ''
+                            generatedClasses.dropdownArrow,
+                            anchorEl ? generatedClasses.rotatedDropdownArrow : ''
                         )}
                     />
                 )}

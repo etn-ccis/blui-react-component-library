@@ -19,7 +19,7 @@ export const ExternalLink = (tProps: TypographyProps<'a'>): JSX.Element => {
             component={'a'}
             target={'_blank'}
             rel={'noopener noreferrer'}
-            sx={{ fontWeight: 400, color: theme.palette.primary.main }}
+            sx={{ fontWeight: 400, color: theme.vars.palette.primary.main }}
             {...tProps}
         />
     );
@@ -28,7 +28,11 @@ export const ExternalLink = (tProps: TypographyProps<'a'>): JSX.Element => {
 export const InternalLink = (props: LinkProps): JSX.Element => {
     const theme = useTheme();
     return (
-        <Link rel={'noopener noreferrer'} style={{ fontWeight: 400, color: theme.palette.primary.main }} {...props} />
+        <Link
+            rel={'noopener noreferrer'}
+            style={{ fontWeight: 400, color: theme.vars.palette.primary.main }}
+            {...props}
+        />
     );
 };
 
@@ -126,7 +130,7 @@ export const componentsMap = {
             sx={{
                 pr: 2,
                 mb: 1,
-                borderLeft: (theme: Theme) => `4px solid ${theme.palette.text.disabled}`,
+                borderLeft: (theme: Theme) => `4px solid ${theme.vars.palette.text.disabled}`,
                 p: '0 15px',
                 m: '15px 0',
                 color: 'text.secondary',
@@ -134,106 +138,127 @@ export const componentsMap = {
             {...props}
         />
     ),
-    pre: (props: TypographyProps<'pre'>): JSX.Element => (
-        <Typography
-            component={'pre'}
-            color={'textPrimary'}
-            sx={{
-                pr: 2,
-                mb: 1,
-                display: 'flex',
-                backgroundColor: (theme: Theme) =>
-                    theme.palette.mode === 'light' ? theme.palette.background.default : Colors.darkBlack[300],
-            }}
-            {...props}
-        />
-    ),
-    code: (props: TypographyProps<'code'>): JSX.Element => (
-        <Typography
-            component={'code'}
-            color={'inherit'}
-            sx={{
-                fontSize: '0.875rem',
-                m: '0px 2px',
-                p: '0px 5px',
-                whiteSpace: 'nowrap',
-                border: (theme: Theme) => `1px solid ${theme.palette.divider}`,
-                backgroundColor: (theme: Theme) =>
-                    theme.palette.mode === 'light' ? theme.palette.background.default : Colors.darkBlack[300],
-                borderRadius: '2px',
-                fontFamily: `'Roboto Mono', monospace`,
-                lineHeight: '1.6',
-            }}
-            {...props}
-        />
-    ),
-    inlineCode: (props: TypographyProps<'code'>): JSX.Element => (
-        <Typography
-            component={'code'}
-            color={'textPrimary'}
-            sx={{
-                backgroundColor: (theme: Theme) =>
-                    theme.palette.mode === 'light' ? theme.palette.background.default : Colors.darkBlack[300],
-                fontFamily: `'Roboto Mono', monospace`,
-                border: (theme: Theme) =>
-                    theme.palette.mode === 'light' ? undefined : `${theme.palette.divider} 1px solid`,
-            }}
-            {...props}
-        />
-    ),
-    table: (props: TableProps): JSX.Element => (
-        <Box
-            className="tableContainer"
-            sx={{
-                overflow: 'auto',
-                boxSizing: 'border-box',
-                mb: 2,
-                color: 'text.primary',
+    pre: (props: TypographyProps<'pre'>): JSX.Element => {
+        const theme = useTheme();
+        return (
+            <Typography
+                component={'pre'}
+                color={'textPrimary'}
+                sx={{
+                    pr: 2,
+                    mb: 1,
+                    display: 'flex',
+                    backgroundColor: theme.vars.palette.background.default,
+                    ...theme.applyStyles('dark', {
+                        backgroundColor: Colors.darkBlack[300],
+                    }),
+                }}
+                {...props}
+            />
+        );
+    },
+    code: (props: TypographyProps<'code'>): JSX.Element => {
+        const theme = useTheme();
+        return (
+            <Typography
+                component={'code'}
+                color={'inherit'}
+                sx={{
+                    fontSize: '0.875rem',
+                    m: '0px 2px',
+                    p: '0px 5px',
+                    whiteSpace: 'nowrap',
+                    border: `1px solid ${theme.vars.palette.divider}`,
+                    backgroundColor: theme.vars.palette.background.default,
+                    ...theme.applyStyles('dark', {
+                        backgroundColor: Colors.darkBlack[300],
+                    }),
+                    borderRadius: '2px',
+                    fontFamily: `'Roboto Mono', monospace`,
+                    lineHeight: '1.6',
+                }}
+                {...props}
+            />
+        );
+    },
+    inlineCode: (props: TypographyProps<'code'>): JSX.Element => {
+        const theme = useTheme();
+        return (
+            <Typography
+                component={'code'}
+                color={'textPrimary'}
+                sx={{
+                    backgroundColor: theme.vars.palette.background.default,
+                    fontFamily: `'Roboto Mono', monospace`,
+                    ...theme.applyStyles('dark', {
+                        backgroundColor: Colors.darkBlack[300],
+                        border: `${theme.vars.palette.divider} 1px solid`,
+                    }),
+                }}
+                {...props}
+            />
+        );
+    },
+    table: (props: TableProps): JSX.Element => {
+        const theme = useTheme();
+        return (
+            <Box
+                className="tableContainer"
+                sx={{
+                    overflow: 'auto',
+                    boxSizing: 'border-box',
+                    mb: 2,
+                    color: 'text.primary',
 
-                table: {
-                    textAlign: 'left',
-                    borderCollapse: 'collapse',
-                    minWidth: '100%',
-                    border: (theme: Theme) => `1px solid ${theme.palette.divider}`,
-                },
-                a: {
-                    fontSize: '0.875rem',
-                },
-                tr: {
-                    border: 'unset',
-                    borderLeft: 0,
-                    borderRight: 0,
-                    borderBottom: (theme: Theme) => `1px solid ${theme.palette.divider}`,
-                },
-                th: {
-                    border: 'unset',
-                    borderLeft: 0,
-                    borderRight: 0,
-                    p: '1rem',
-                    fontSize: '0.875rem',
-                    borderBottom: (theme: Theme) => `1px solid ${theme.palette.divider}`,
-                },
-                'tr:last-of-type': {
-                    borderBottom: 0,
-                },
-                thead: {
-                    backgroundColor: (theme: Theme): string =>
-                        theme.palette.mode === 'light' ? Colors.white[100] : Colors.black[800],
-                },
-                'tbody tr:nth-of-type(odd)': {
-                    backgroundColor: 'background.paper',
-                },
-                'tbody tr:nth-of-type(even)': {
-                    backgroundColor: (theme: Theme): string =>
-                        theme.palette.mode === 'light' ? Colors.white[100] : Colors.black[800],
-                },
-                td: {
-                    fontSize: '0.875rem',
-                    p: '1rem',
-                },
-            }}
-        >
-            <table {...props} />
-        </Box>
-    ),
+                    table: {
+                        textAlign: 'left',
+                        borderCollapse: 'collapse',
+                        minWidth: '100%',
+                        border: `1px solid ${theme.vars.palette.divider}`,
+                    },
+                    a: {
+                        fontSize: '0.875rem',
+                    },
+                    tr: {
+                        border: 'unset',
+                        borderLeft: 0,
+                        borderRight: 0,
+                        borderBottom: `1px solid ${theme.vars.palette.divider}`,
+                    },
+                    th: {
+                        border: 'unset',
+                        borderLeft: 0,
+                        borderRight: 0,
+                        p: '1rem',
+                        fontSize: '0.875rem',
+                        borderBottom: `1px solid ${theme.vars.palette.divider}`,
+                    },
+                    'tr:last-of-type': {
+                        borderBottom: 0,
+                    },
+                    thead: {
+                        backgroundColor: Colors.white[100],
+                        ...theme.applyStyles('dark', {
+                            backgroundColor: Colors.black[800],
+                        }),
+                    },
+                    'tbody tr:nth-of-type(odd)': {
+                        backgroundColor: 'background.paper',
+                    },
+                    'tbody tr:nth-of-type(even)': {
+                        backgroundColor: Colors.white[100],
+                        ...theme.applyStyles('dark', {
+                            backgroundColor: Colors.black[800],
+                        }),
+                    },
+                    td: {
+                        fontSize: '0.875rem',
+                        p: '1rem',
+                    },
+                }}
+            >
+                <table {...props} />
+            </Box>
+        );
+    },
 };

@@ -6,8 +6,8 @@ import { ComplexDrawerExample } from './ComplexDrawerExample';
 const codeSnippet = `<Drawer open width={300}>
     <DrawerHeader icon={<Menu />} title="Brightlayer UI" subtitle="Drawer Component" />
     <DrawerBody>
-        <DrawerNavGroup title="Group 1" hidePadding divider items={group1} />
-        <DrawerNavGroup title="Group 2" hidePadding divider items={group2} />
+        <DrawerNavGroup title="Group 1" hidePadding items={group1} />
+        <DrawerNavGroup title="Group 2" hidePadding items={group2} />
     </DrawerBody>
 </Drawer>`;
 

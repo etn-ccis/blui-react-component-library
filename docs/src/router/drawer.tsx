@@ -38,7 +38,7 @@ const convertNavItems = (
             onClick: item.element
                 ? (): void => {
                       handleNavigate(fullURL);
-                      dispatch(toggleDrawer());
+                      dispatch(closeDrawer());
                   }
                 : undefined,
             items: item.pages
@@ -57,7 +57,7 @@ const styles = {
         paddingBottom: (theme: Theme): string => theme.spacing(2),
     },
     navGroupTopDivider: {
-        borderTop: (theme: Theme): string => `1px solid ${theme.palette.divider}`,
+        borderTop: (theme: Theme): string => `1px solid ${theme.vars.palette.divider}`,
         mt: 1,
     },
 };
@@ -118,13 +118,14 @@ export const NavigationDrawer: React.FC = () => {
                     >
                         <Typography variant="subtitle1">Brightlayer User Interface</Typography>
                         <Stack direction={'row'} alignItems={'center'} gap={1}>
-                            <Typography variant={'body2'} paragraph={false}>
-                                Developer Docs
-                            </Typography>
+                            <Typography variant={'body2'}>Developer Docs</Typography>
                             <Chip
                                 sx={{
-                                    color: theme.palette.mode === 'light' ? 'primary.main' : 'primary.dark',
+                                    color: 'primary.main',
                                     backgroundColor: 'white',
+                                    ...theme.applyStyles('dark', {
+                                        color: theme.vars.palette.grey[200],
+                                    }),
                                 }}
                                 icon={<ReactIcon color={'primary'} />}
                                 label={
@@ -145,7 +146,7 @@ export const NavigationDrawer: React.FC = () => {
                     (navGroup, navGroupIndex) =>
                         !navGroup.hidden && (
                             <DrawerNavGroup
-                                titleColor={theme.palette.primary.main}
+                                titleColor={theme.vars.palette.primary.main}
                                 key={navGroup.title}
                                 title={navGroup.title}
                                 items={convertNavItems(
@@ -163,7 +164,7 @@ export const NavigationDrawer: React.FC = () => {
                 )}
                 <DrawerNavGroup
                     title="COMMUNITY"
-                    titleColor={theme.palette.primary.main}
+                    titleColor={theme.vars.palette.primary.main}
                     items={externalLinkDefinitions}
                     titleDivider={false}
                     sx={styles.navGroupTopDivider}

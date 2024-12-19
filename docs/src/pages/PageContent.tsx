@@ -21,7 +21,7 @@ export const PageContent: React.FC<PageContentProps> = (props): JSX.Element => {
     }, [wideLayout]);
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', backgroundColor: theme.palette.background.paper }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', backgroundColor: theme.vars.palette.background.paper }}>
             <Box
                 sx={{
                     width: '100%',

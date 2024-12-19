@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import Box, { BoxProps } from '@mui/material/Box';
 import { EmptyStateClasses, EmptyStateClassKey, getEmptyStateUtilityClass } from './EmptyStateClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: EmptyStateProps): Record<EmptyStateClassKey, string> => {
     const { classes } = ownerState;
@@ -37,7 +37,7 @@ const Root = styled(
     Box,
     {}
 )(({ theme }) => ({
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     height: '100%',
     minHeight: '100%',
     display: 'flex',
@@ -52,7 +52,7 @@ const Icon = styled(
     Box,
     {}
 )(({ theme }) => ({
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     marginBottom: '1rem',
     display: 'flex',
     fontSize: 96,
@@ -62,7 +62,8 @@ const Description = styled(
     Typography,
     {}
 )(({ theme }) => ({
-    color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
+    ...theme.applyStyles('dark', { color: (theme.vars || theme).palette.text.secondary }),
 }));
 
 const Actions = styled(
@@ -77,19 +78,19 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
     ref: any
 ) => {
     const { actions, classes, className: userClassName, description, icon, title, ...otherProps } = props;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
 
     return (
         <Root
             ref={ref}
-            className={cx(defaultClasses.root, classes.root, userClassName)}
+            className={cx(generatedClasses.root, userClassName)}
             data-testid={'blui-empty-state-root'}
             {...otherProps}
         >
-            {icon && <Icon className={cx(defaultClasses.icon, classes.icon)}>{icon}</Icon>}
+            {icon && <Icon className={generatedClasses.icon}>{icon}</Icon>}
             {title &&
                 (typeof title === 'string' ? (
-                    <Typography variant="h6" color="inherit" className={classes.title}>
+                    <Typography variant="h6" color="inherit" className={generatedClasses.title}>
                         {title}
                     </Typography>
                 ) : (
@@ -97,17 +98,13 @@ const EmptyStateRender: React.ForwardRefRenderFunction<unknown, EmptyStateProps>
                 ))}
             {description &&
                 (typeof description === 'string' ? (
-                    <Description
-                        variant="subtitle2"
-                        color={'textSecondary'}
-                        className={cx(defaultClasses.description, classes.description)}
-                    >
+                    <Description variant="subtitle2" color={'textSecondary'} className={generatedClasses.description}>
                         {description}
                     </Description>
                 ) : (
                     description
                 ))}
-            {actions && <Actions className={cx(defaultClasses.actions, classes.actions)}>{actions}</Actions>}
+            {actions && <Actions className={generatedClasses.actions}>{actions}</Actions>}
         </Root>
     );
 };

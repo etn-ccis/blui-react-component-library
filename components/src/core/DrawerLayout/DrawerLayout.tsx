@@ -10,7 +10,7 @@ import drawerLayoutClasses, {
     DrawerLayoutClassKey,
     getDrawerLayoutUtilityClass,
 } from './DrawerLayoutClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: DrawerLayoutProps): Record<DrawerLayoutClassKey, string> => {
     const { classes } = ownerState;
@@ -29,7 +29,7 @@ const Root = styled(
     Box,
     {}
 )(({ theme }) => ({
-    display: 'flex',
+    display: 'block',
     width: '100%',
     '&$expanded $content': {
         transition: theme.transitions.create('padding', {
@@ -47,7 +47,7 @@ const Drawer = styled(
     position: 'fixed',
     height: '100%',
     alignItems: 'stretch',
-    zIndex: theme.zIndex.drawer,
+    zIndex: theme.zIndex.modal,
 }));
 
 const Content = styled(
@@ -75,7 +75,7 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
     const theme = useTheme();
     const [padding, setPadding] = useState<number | string>(0);
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
 
     const style: CSSProperties = { paddingLeft: 0, paddingRight: 0 };
     style.paddingLeft = theme.direction === 'ltr' ? padding : 0;
@@ -91,18 +91,16 @@ const DrawerLayoutRender: React.ForwardRefRenderFunction<unknown, DrawerLayoutPr
             <Root
                 ref={ref}
                 className={cx(
-                    defaultClasses.root,
-                    classes.root,
+                    generatedClasses.root,
                     {
-                        [defaultClasses.expanded]: drawerOpen,
-                        [classes.expanded]: drawerOpen,
+                        [generatedClasses.expanded]: drawerOpen,
                     },
                     userClassName
                 )}
                 {...otherProps}
             >
-                <Drawer className={cx(defaultClasses.drawer, classes.drawer)}>{drawer}</Drawer>
-                <Content className={cx(defaultClasses.content, classes.content)} style={style}>
+                <Drawer className={generatedClasses.drawer}>{drawer}</Drawer>
+                <Content className={generatedClasses.content} style={style}>
                     {children}
                 </Content>
             </Root>

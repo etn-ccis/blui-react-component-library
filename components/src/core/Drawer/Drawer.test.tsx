@@ -11,10 +11,8 @@ import { DrawerNavGroup } from './DrawerNavGroup';
 import MoreVert from '@mui/icons-material/MoreVert';
 import { DrawerRailItem } from './DrawerRailItem';
 import { DrawerNavItem } from './DrawerNavItem';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
-
-const theme = createTheme(BLUIThemes.blue);
+import { ThemeProvider } from '@mui/material/styles';
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 
 afterEach(cleanup);
 

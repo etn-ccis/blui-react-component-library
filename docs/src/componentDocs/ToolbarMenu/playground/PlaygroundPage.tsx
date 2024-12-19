@@ -92,7 +92,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
             },
         ],
     }]}
-/>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+/>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const ToolbarMenuPlaygroundComponent = (): JSX.Element => (
     <Box

@@ -10,7 +10,6 @@ export const CustomNavGroupTitleContentExample = (): JSX.Element => (
             <DrawerBody sx={{ flex: '1 1 auto' }}>
                 <DrawerNavGroup
                     hidePadding
-                    divider
                     titleContent={
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1 }}>
                             <Typography variant="subtitle2">Nav Group Title Content</Typography>

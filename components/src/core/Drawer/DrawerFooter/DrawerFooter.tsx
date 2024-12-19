@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 import { useDrawerContext } from '../DrawerContext';
 import { styled, Theme, SxProps } from '@mui/material/styles';
 import { cx } from '@emotion/css';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import drawerFooterClasses, {
     DrawerFooterClasses,
     DrawerFooterClassKey,
@@ -57,7 +57,7 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
     props: DrawerFooterProps,
     ref: any
 ) => {
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const {
         classes,
         className: userClassName,
@@ -79,10 +79,8 @@ const DrawerFooterRender: React.ForwardRefRenderFunction<unknown, DrawerFooterPr
                 ref={ref}
                 data-testid={'blui-drawer-footer'}
                 className={cx(
-                    defaultClasses.root,
-                    classes.root,
-                    { [defaultClasses.hidden]: !drawerOpen && hideContentOnCollapse },
-                    { [classes.hidden]: !drawerOpen && hideContentOnCollapse },
+                    generatedClasses.root,
+                    { [generatedClasses.hidden]: !drawerOpen && hideContentOnCollapse },
                     userClassName
                 )}
                 backgroundColor={backgroundColor}

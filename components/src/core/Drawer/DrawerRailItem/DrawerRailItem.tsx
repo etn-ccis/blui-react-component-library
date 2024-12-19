@@ -16,8 +16,8 @@ import drawerRailItemClasses, {
     DrawerRailItemClassKey,
     getDrawerRailItemUtilityClass,
 } from './DrawerRailItemClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { styled, SxProps, Theme } from '@mui/material/styles';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
+import { styled, SxProps, Theme, useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
 const useUtilityClasses = (ownerState: DrawerRailItemProps): Record<DrawerRailItemClassKey, string> => {
@@ -114,8 +114,10 @@ const Root = styled(ButtonBase, {
         itemActive,
         theme,
     }) => {
+        const colorScheme = useColorScheme();
+
         const lightenedPrimary = color(
-            theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+            colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
         )
             .lighten(0.83)
             .desaturate(0.39)
@@ -133,18 +135,20 @@ const Root = styled(ButtonBase, {
             textAlign: 'center',
             backgroundColor: backgroundColor || 'transparent',
             '&:hover': {
-                backgroundColor: onClick ? theme.palette.action.hover : undefined,
+                backgroundColor: onClick ? (theme.vars || theme).palette.action.hover : undefined,
             },
             ...(itemActive && {
                 [`& .${drawerRailItemClasses.icon}`]: {
-                    color:
-                        activeItemIconColor ||
-                        (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
+                    color: activeItemIconColor || (theme.vars || theme).palette.primary.main,
+                    ...theme.applyStyles('dark', {
+                        color: activeItemIconColor || lightenedPrimary,
+                    }),
                 },
                 [`& .${drawerRailItemClasses.title}`]: {
-                    color:
-                        activeItemFontColor ||
-                        (theme.palette.mode === 'light' ? theme.palette.primary.main : lightenedPrimary),
+                    color: activeItemFontColor || (theme.vars || theme).palette.primary.main,
+                    ...theme.applyStyles('dark', {
+                        color: activeItemFontColor || lightenedPrimary,
+                    }),
                 },
             }),
             ...(condensed && {
@@ -152,7 +156,7 @@ const Root = styled(ButtonBase, {
                 minHeight: RAIL_WIDTH_CONDENSED,
             }),
             [`& .${drawerRailItemClasses.ripple}`]: {
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: (theme.vars || theme).palette.primary.main,
             },
         };
     }
@@ -161,13 +165,15 @@ const Root = styled(ButtonBase, {
 const ActiveItem = styled(Box, {
     shouldForwardProp: (prop) => prop !== 'activeItemBackgroundColor',
 })<Pick<DrawerRailItemProps, 'activeItemBackgroundColor'>>(({ activeItemBackgroundColor, theme }) => {
+    const colorScheme = useColorScheme();
+
     const fivePercentOpacityPrimary = color(
-        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.95)
         .string();
     const twentyPercentOpacityPrimary = color(
-        theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
+        colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main
     )
         .fade(0.8)
         .string();
@@ -178,9 +184,10 @@ const ActiveItem = styled(Box, {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor:
-            activeItemBackgroundColor ||
-            (theme.palette.mode === 'light' ? fivePercentOpacityPrimary : twentyPercentOpacityPrimary),
+        backgroundColor: activeItemBackgroundColor || fivePercentOpacityPrimary,
+        ...theme.applyStyles('dark', {
+            backgroundColor: activeItemBackgroundColor || twentyPercentOpacityPrimary,
+        }),
     };
 });
 
@@ -199,7 +206,7 @@ const StatusStripe = styled(Box, {
 const Icon = styled(Avatar, {
     shouldForwardProp: (prop) => prop !== 'itemIconColor',
 })<Pick<DrawerRailItemProps, 'itemIconColor'>>(({ itemIconColor, theme }) => ({
-    color: itemIconColor || theme.palette.text.primary,
+    color: itemIconColor || (theme.vars || theme).palette.text.primary,
     backgroundColor: 'transparent',
     height: 'auto',
     width: 'auto',
@@ -213,7 +220,7 @@ const Title = styled(Typography, {
     wordBreak: 'break-word',
     hyphens: 'auto',
     zIndex: 200,
-    color: itemFontColor || theme.palette.text.primary,
+    color: itemFontColor || (theme.vars || theme).palette.text.primary,
     ...(active && {
         fontWeight: 600,
     }),
@@ -244,7 +251,6 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         /* eslint-enable @typescript-eslint/no-unused-vars */
         divider,
         ripple = true,
-        classes = {},
         className,
         condensed: itemCondensed,
         hidden,
@@ -263,7 +269,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
     const { activeItem, onItemSelect, condensed: drawerCondensed = false } = useDrawerContext();
     const active = activeItem === itemID;
     const condensed = itemCondensed !== undefined ? itemCondensed : drawerCondensed;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const hasAction = Boolean(onClick || onItemSelect);
 
     // Customize the color of the Touch Ripple
@@ -272,27 +278,22 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             ? {
                   TouchRippleProps: {
                       classes: {
-                          child: cx(defaultClasses.ripple, classes.ripple),
+                          child: generatedClasses.ripple,
                       },
                   },
               }
             : {};
 
-    const combine = useCallback(
-        (drawerRailItemClassName: keyof DrawerRailItemClasses): string =>
-            cx(defaultClasses[drawerRailItemClassName], classes[drawerRailItemClassName]),
-        [defaultClasses, classes]
-    );
-
     const getIcon = useCallback((): JSX.Element | undefined => {
         if (icon) {
             return (
-                <Icon className={combine('icon')} itemIconColor={itemIconColor}>
+                <Icon className={generatedClasses.icon} itemIconColor={itemIconColor}>
                     {icon}
                 </Icon>
             );
         }
-    }, [icon, combine]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [icon]);
 
     const onClickAction = useCallback(
         (e: React.MouseEvent<HTMLElement>): void => {
@@ -312,9 +313,8 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {...ButtonBaseProps}
             {...directButtonBaseProps}
             className={cx(
-                defaultClasses.root,
-                classes.root,
-                condensed && classes.condensed ? classes.condensed : undefined,
+                generatedClasses.root,
+                condensed && generatedClasses.condensed ? generatedClasses.condensed : undefined,
                 className
             )}
             statusColor={statusColor}
@@ -331,12 +331,12 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
         >
             {/* Active Item Highlight */}
             {active && (
-                <ActiveItem className={combine('active')} activeItemBackgroundColor={activeItemBackgroundColor} />
+                <ActiveItem className={generatedClasses.active} activeItemBackgroundColor={activeItemBackgroundColor} />
             )}
             {/* Status Color Stripe */}
             {statusColor !== undefined && statusColor !== '' && (
                 <StatusStripe
-                    className={combine('statusStripe')}
+                    className={generatedClasses.statusStripe}
                     data-testid={'blui-status-stripe'}
                     statusColor={statusColor}
                 />
@@ -347,11 +347,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             {!condensed && (
                 <Title
                     variant={'caption'}
-                    className={cx(
-                        defaultClasses.title,
-                        classes.title,
-                        active && classes.titleActive ? classes.titleActive : undefined
-                    )}
+                    className={cx(generatedClasses.title, active && generatedClasses.titleActive)}
                     itemFontColor={itemFontColor}
                     active={active}
                 >
@@ -359,7 +355,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                 </Title>
             )}
             {/* Divider */}
-            {divider && <DrawerRailItemDivider className={combine('divider')} />}
+            {divider && <DrawerRailItemDivider className={generatedClasses.divider} />}
         </Root>
     );
 

@@ -10,11 +10,10 @@ import drawerHeaderClasses, {
     DrawerHeaderClassKey,
     getDrawerHeaderUtilityClass,
 } from './DrawerHeaderClasses';
-import { cx } from '@emotion/css';
 import clsx from 'clsx';
 import { styled, SxProps, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: DrawerHeaderProps): Record<DrawerHeaderClassKey, string> => {
     const { classes } = ownerState;
@@ -79,13 +78,14 @@ const Root = styled(Toolbar, {
     [theme.breakpoints.down('sm')]: {
         minHeight: `3.5rem`,
     },
-    backgroundColor:
-        backgroundColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main),
-    color:
-        fontColor ||
-        theme.palette.getContrastText(
-            backgroundColor || (theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
-        ),
+    backgroundColor: backgroundColor || (theme.vars || theme).palette.primary.main,
+    // TODO: Update to use theme.vars.palette.primary.main
+    color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.main),
+    ...theme.applyStyles('dark', {
+        backgroundColor: backgroundColor || (theme.vars || theme).palette.primary.dark,
+        // TODO: Update to use theme.vars.palette.primary.main
+        color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.dark),
+    }),
     [`& .${drawerHeaderClasses.nonClickable}`]: {},
     [`& .${drawerHeaderClasses.railIcon}`]: {
         marginLeft: theme.spacing(0.5),
@@ -169,7 +169,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
     props: DrawerHeaderProps,
     ref: any
 ) => {
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     const {
         backgroundImage,
         classes,
@@ -195,11 +195,11 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
     const getHeaderContent = useCallback(
         (): ReactNode =>
             titleContent || (
-                <Content className={cx(defaultClasses.content, classes.content)}>
+                <Content className={generatedClasses.content}>
                     <Title
                         noWrap
                         variant={'h6'}
-                        className={cx(defaultClasses.title, classes.title)}
+                        className={generatedClasses.title}
                         data-testid={'blui-drawer-header-title'}
                     >
                         {title}
@@ -209,7 +209,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                         <Subtitle
                             noWrap
                             variant={'body2'}
-                            className={cx(defaultClasses.subtitle, classes.subtitle)}
+                            className={generatedClasses.subtitle}
                             data-testid={'blui-drawer-header-subtitle'}
                         >
                             {subtitle}
@@ -217,19 +217,19 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                     )}
                 </Content>
             ),
-        [defaultClasses, classes, title, subtitle, titleContent]
+        [generatedClasses, title, subtitle, titleContent]
     );
 
     const getBackgroundImage = useCallback(
         (): JSX.Element | null =>
             backgroundImage ? (
                 <Background
-                    className={cx(defaultClasses.background, classes.background)}
+                    className={generatedClasses.background}
                     backgroundImage={backgroundImage}
                     backgroundOpacity={backgroundOpacity}
                 />
             ) : null,
-        [backgroundImage, defaultClasses, classes]
+        [backgroundImage, generatedClasses, backgroundOpacity]
     );
 
     return (
@@ -237,7 +237,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
             <Root
                 ref={ref}
                 data-testid={'blui-drawer-header'}
-                className={cx(defaultClasses.root, classes.root)}
+                className={generatedClasses.root}
                 backgroundColor={backgroundColor}
                 fontColor={fontColor}
                 disableGutters={disableGutters}
@@ -247,10 +247,9 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                 {getBackgroundImage()}
                 {icon && (
                     <Navigation
-                        className={clsx(defaultClasses.navigation, classes.navigation, {
-                            [defaultClasses.railIcon]: variant === 'rail' && !condensed,
-                            [classes.railIcon]: variant === 'rail' && !condensed && classes.railIcon,
-                            [defaultClasses.nonClickable]: variant === 'rail' && !condensed && !onIconClick,
+                        className={clsx(generatedClasses.navigation, {
+                            [generatedClasses.railIcon]: variant === 'rail' && !condensed,
+                            [generatedClasses.nonClickable]: variant === 'rail' && !condensed && !onIconClick,
                         })}
                     >
                         {onIconClick && (
@@ -266,9 +265,7 @@ const DrawerHeaderRender: React.ForwardRefRenderFunction<unknown, DrawerHeaderPr
                             </IconButton>
                         )}
                         {!onIconClick && (
-                            <NonClickableIcon className={cx(defaultClasses.nonClickableIcon, classes.nonClickableIcon)}>
-                                {icon}
-                            </NonClickableIcon>
+                            <NonClickableIcon className={generatedClasses.nonClickableIcon}>{icon}</NonClickableIcon>
                         )}
                     </Navigation>
                 )}

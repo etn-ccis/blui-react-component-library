@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Box, { BoxProps } from '@mui/material/Box';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 import { SpacerClasses, getSpacerUtilityClass, SpacerClassKey } from './SpacerClasses';
-import { cx } from '@emotion/css';
 import { styled } from '@mui/material/styles';
 
 const useUtilityClasses = (ownerState: SpacerProps): Record<SpacerClassKey, string> => {
@@ -39,11 +38,11 @@ const Root = styled(
 }));
 
 const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (props: SpacerProps, ref: any) => {
-    const { children, classes, flex, height, width, ...otherProps } = props;
+    const { children, flex, height, width, ...otherProps } = props;
     const ownerState = {
         ...props,
     };
-    const defaultClasses = useUtilityClasses(ownerState);
+    const generatedClasses = useUtilityClasses(ownerState);
 
     return (
         <Root
@@ -52,7 +51,7 @@ const SpacerRender: React.ForwardRefRenderFunction<unknown, SpacerProps> = (prop
             flex={flex}
             height={height}
             width={width}
-            className={cx(defaultClasses.root, classes.root)}
+            className={generatedClasses.root}
             {...otherProps}
         >
             {children}

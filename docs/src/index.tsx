@@ -10,9 +10,9 @@ import React from 'react';
 import ReactDOMClient from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
+import { blueThemes as theme } from '@brightlayer-ui/react-themes';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import '@brightlayer-ui/react-themes/open-sans';
 import '@fontsource/roboto';
@@ -25,6 +25,7 @@ import { useAppSelector } from './redux/hooks';
 import { MDXProvider } from '@mdx-js/react';
 import { componentsMap } from './__configuration__/markdownMapping';
 import { GoogleAnalyticsWrapper } from './router/GoogleAnalyticsWrapper';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 // prismJs
 import 'prismjs/components/prism-jsx.js';
@@ -37,7 +38,19 @@ import { ScrollToTop } from './router/ScrollToTop';
 if (process.env.REACT_APP_GAID) {
     ReactGA.initialize(process.env.REACT_APP_GAID);
 }
-
+// TODO: Remove this after the issues with @types/react goes away
+// https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/68444
+/* eslint-disable */
+declare global {
+    namespace React {
+        interface DOMAttributes<T> {
+            placeholder?: string | undefined;
+            onPointerEnterCapture?: string | undefined;
+            onPointerLeaveCapture?: string | undefined;
+        }
+    }
+}
+/* eslint-enable */
 // Brightlayer UI Icon font
 require('@brightlayer-ui/icons/BrightlayerUIIcons.css');
 const container = document.getElementById('root');
@@ -51,17 +64,14 @@ const ThemedApp = (): JSX.Element => {
     const siteTheme = useAppSelector((state: RootState) => state.appState.siteTheme);
     const siteDirection = useAppSelector((state: RootState) => state.appState.siteDirection);
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-    let theme = BLUIThemes.blue;
-    if (siteTheme === 'dark' || (siteTheme === 'system' && prefersDarkMode)) {
-        theme = BLUIThemes.blueDark;
-    }
+
     theme.direction = siteDirection;
     document.dir = siteDirection;
 
     // force an update
     const MemoThemedApp = React.useCallback(
         () => (
-            <ThemeProvider theme={createTheme(theme)}>
+            <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <MDXProvider components={componentsMap as any}>
                     <App />

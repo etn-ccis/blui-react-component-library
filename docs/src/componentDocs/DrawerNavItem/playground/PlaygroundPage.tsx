@@ -104,7 +104,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     ${data.icon !== 'undefined' ? `icon={${getIconSnippetWithProps(data.icon as string)}}` : ''}
     ${data.collapseIcon !== 'undefined' ? `collapseIcon={${getIconSnippetWithProps(data.collapseIcon as string)}}` : ''}
     ${data.expandIcon !== 'undefined' ? `expandIcon={${getIconSnippetWithProps(data.expandIcon as string)}}` : ''}
-/>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+/>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const DrawerNavItemPlaygroundComponent = (): JSX.Element => (
     <Box

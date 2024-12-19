@@ -5,7 +5,7 @@ import { cx } from '@emotion/css';
 import { getHeroBannerUtilityClass, HeroBannerClasses, HeroBannerClassKey } from './HeroBannerClasses';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: HeroBannerProps): Record<HeroBannerClassKey, string> => {
     const { classes } = ownerState;
@@ -39,15 +39,15 @@ const HeroBannerRender: React.ForwardRefRenderFunction<unknown, HeroBannerProps>
     props: HeroBannerProps,
     ref: any
 ) => {
-    const { classes, className: userClassName, divider, limit, ...otherProps } = props;
-    const defaultClasses = useUtilityClasses(props);
+    const { className: userClassName, divider, limit, ...otherProps } = props;
+    const generatedClasses = useUtilityClasses(props);
     const isArray = Array.isArray(props.children);
     return (
         <>
             <Root
                 ref={ref}
                 data-testid={'blui-hero-banner-root'}
-                className={cx(defaultClasses.root, classes.root, userClassName)}
+                className={cx(generatedClasses.root, userClassName)}
                 {...otherProps}
             >
                 {props.children &&

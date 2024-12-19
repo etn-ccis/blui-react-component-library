@@ -60,7 +60,9 @@ const ListItemTagPreview: PreviewComponent = ({ data }) => {
 const generateSnippet: CodeSnippetFunction = (data) =>
     `<ListItemTag 
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t' })}
-/>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+/>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const ListItemTagPlaygroundComponent = (): JSX.Element => (
     <Box

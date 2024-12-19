@@ -10,10 +10,10 @@ To use these themes in your application, simply wrap the app in a `ThemeProvider
 <CodeBlock
     language={'jsx'}
     code={`import { ThemeProvider } from '@mui/material/styles';
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
+import { blueThemes } from '@brightlayer-ui/react-themes';
 import "@brightlayer-ui/react-themes/open-sans";
 ...
-<ThemeProvider theme={BLUIThemes.blue}>
+<ThemeProvider theme={blueThemes}>
     <App />
 </ThemeProvider>`}
 />
@@ -39,7 +39,7 @@ Our themes are built on top of [Material UI](https://mui.com/material-ui/customi
 ...
 const ChildComponent: React.FC<> = () => {
     const theme = useTheme();
-    return <div style={{ backgroundColor: theme.palette.background.paper }} />;
+    return <div style={{ backgroundColor: theme.vars.palette.background.paper }} />;
 }`}
     language={`jsx`}
 />
@@ -61,7 +61,7 @@ Avoid using colors from `@brightlayer-ui/colors` directly. Using theme colors ma
     code={`/* 
  * Avoid doing this! 
  * The red color can be accessed via: 
- * * the useTheme hook as theme.palette.error.main
+ * * the useTheme hook as theme.vars.palette.error.main
  * * or by using the sx prop as "error.main"
  */
 import \* as Colors from '@brightlayer-ui/colors';

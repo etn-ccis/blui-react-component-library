@@ -108,6 +108,7 @@ const AppBarPreview: PreviewComponent = ({ data }) => {
             <Box
                 sx={{
                     overflow: 'hidden',
+                    m: '16px 0',
                     width: '100%',
                     maxWidth: 450,
                     maxHeight: 400,
@@ -148,6 +149,7 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     </Toolbar>
 </AppBar>`
         .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ')
         .replace(/^<AppBar(\s)+\n>/, '<AppBar>');
 
 export const AppBarPlaygroundComponent = (): JSX.Element => (

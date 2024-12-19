@@ -240,7 +240,9 @@ const generateSnippet: CodeSnippetFunction = (data) =>
     ${getPropsToString(getPropsMapping(data, inputConfig), { join: '\n\t', skip: ['icon', 'clickable'] })}
     ${data.icon && data.icon !== 'undefined' ? `icon={${getIconSnippetWithProps(data.icon as string)}}` : ''}
     ${data.clickable ? `onClick={(): void => {}}` : ``}
-/>`.replace(/^\s*$(?:\r\n?|\n)/gm, '');
+/>`
+        .replace(/^\s*$(?:\r\n?|\n)/gm, '')
+        .replace(/(?:^|)( {4}|\t)/gm, '    ');
 
 export const InfoListItemPlaygroundComponent = (): JSX.Element => (
     <Box

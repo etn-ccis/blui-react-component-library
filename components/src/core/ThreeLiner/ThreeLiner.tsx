@@ -3,7 +3,7 @@ import { cx } from '@emotion/css';
 import Box, { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { ThreeLinerClasses, ThreeLinerClassKey, getThreeLinerUtilityClass } from './ThreeLinerClasses';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/material';
 
 const useUtilityClasses = (ownerState: ThreeLinerProps): Record<ThreeLinerClassKey, string> => {
     const { classes } = ownerState;
@@ -90,25 +90,24 @@ const ThreeLinerRenderer: React.ForwardRefRenderFunction<unknown, ThreeLinerProp
         title,
         subtitle,
         info,
-        classes = {},
         className: userClassName,
         // ignore unused vars so that we can do prop transferring to the root element
         /* eslint-disable @typescript-eslint/no-unused-vars */
         animationDuration,
         ...otherProps
     } = props;
-    const defaultClasses = useUtilityClasses(props);
+    const generatedClasses = useUtilityClasses(props);
     //const animationDuration = durationProp || theme.transitions.duration.standard;
     return (
         <Root
             ref={ref}
             {...otherProps}
             animationDuration={animationDuration}
-            className={cx(defaultClasses.root, classes.root, userClassName)}
+            className={cx(generatedClasses.root, userClassName)}
         >
-            <Title className={cx(defaultClasses.title, classes.title)}>{title}</Title>
-            <Subtitle className={cx(defaultClasses.subtitle, classes.subtitle)}>{subtitle}</Subtitle>
-            <Info className={cx(defaultClasses.info, classes.info)}>{info}</Info>
+            <Title className={generatedClasses.title}>{title}</Title>
+            <Subtitle className={generatedClasses.subtitle}>{subtitle}</Subtitle>
+            <Info className={generatedClasses.info}>{info}</Info>
         </Root>
     );
 };

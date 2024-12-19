@@ -1,14 +1,8 @@
 {
-    "@brightlayer-ui/colors@3.1.1": {
-        "licenses": "BSD-3-Clause",
-        "repository": "https://github.com/etn-ccis/blui-colors",
-        "licenseUrl": "https://github.com/etn-ccis/blui-colors/raw/master/LICENSE",
-        "parents": "@brightlayer-ui/react-components"
-    },
-    "@emotion/css@11.9.0": {
+    "@emotion/css@11.13.5": {
         "licenses": "MIT",
         "repository": "https://github.com/emotion-js/emotion/tree/main/packages/css",
-        "licenseUrl": "https://github.com/emotion-js/emotion/raw/main/packages/css/LICENSE",
+        "licenseUrl": "https://github.com/emotion-js/emotion/tree/main/packages/css/raw/master/LICENSE",
         "parents": "@brightlayer-ui/react-components"
     },
     "@seznam/compose-react-refs@1.0.6": {

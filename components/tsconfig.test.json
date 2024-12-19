@@ -1,7 +1,7 @@
 {
     "extends": "./tsconfig",
     "compilerOptions": {
-        "types": ["node", "jest", "enzyme"],
+        "types": ["node", "jest"],
         "declaration": false
     },
     "include": ["src"]

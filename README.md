@@ -1,6 +1,6 @@
 # Brightlayer UI React Components
 
-[![](https://img.shields.io/circleci/project/github/etn-ccis/blui-react-component-library/master.svg?style=flat)](https://circleci.com/gh/etn-ccis/blui-react-component-library/tree/master)
+[![Build](https://github.com/etn-ccis/blui-react-component-library/actions/workflows/blui-ci.yml/badge.svg?branch=master)](https://github.com/etn-ccis/blui-react-component-library/actions/workflows/blui-ci.yml)
 ![npm](https://img.shields.io/npm/v/@brightlayer-ui/react-components?label=%40brightlayer-ui%2Freact-components) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-component-library/branch/master/graph/badge.svg?token=HQFW5YF7WP)](https://codecov.io/gh/etn-ccis/blui-react-component-library)
 
 This is a library of re-usable React components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
@@ -15,7 +15,27 @@ To install the Brightlayer UI react components from NPM as a dependency for your
 yarn add @brightlayer-ui/react-components
 ```
 
-> **NOTE**: This install command will install the package from NPM. If you are a Brightlayer UI developer working with components locally, you will want to follow the manual linking instructions - see below.
+## Usage
+
+See the [developer documentation](https://brightlayer-ui-components.github.io/react) site for detailed information on using these components.
+
+> For use with MUI 6+, you must be using version 7 of @brightlayer-ui/react-components and version 8 of @brightlayer-ui/react-themes.
+
+## Migration from v6 to v7
+
+With the release of version 7, Brightlayer UI React Components have been updated to use Material UI v6. The usage of the BLUI components remains the same, but there may be some updates required in your project to migrate to MUI v6.
+
+You can refer to the official [MUI Migration Documentation](https://mui.com/material-ui/migration/upgrade-to-v6/) for details on the steps to upgrade. This will include:
+
+- updating dependency versions
+- updating any custom themes (BLUI themes have already been updated for you)
+- component API changes / deprecations
+
+## Browser Support
+
+Brightlayer UI libraries will work with any modern browser. For details, please refer to our [Browser Support](https://brightlayer-ui.github.io/development/frameworks-web/react#browser-support) documentation.
+
+# For Maintainers
 
 ## Building the Library
 
@@ -33,33 +53,27 @@ The library can be built by running the following command. The resulting output 
 yarn build
 ```
 
-## Using with @brightlayer-ui/react-themes
+## Running the demo project and React Component Library API Docs
 
-We recommend using this library in conjunction with [@brightlayer-ui/react-themes](https://www.npmjs.com/package/@brightlayer-ui/react-themes). If you are using version 6.0.0+ of the Brightlayer UI themes, you must upgrade to at least version 5.1.0 of @brightlayer-ui/react-components, or you may see some unintended default styles on some components.
+This repository comes with a demo project found within the `/demos` folder.
+The Showcase project (from [react-showcase-demo](https://github.com/etn-ccis/blui-react-showcase-demo)) that shows a combination of components in the context of a realistic interface.
 
-## Running the demo projects
+The [react-showcase-demo](https://blui-react-showcase.web.app/templates/dashboard) is deployed as part of the Brightlayer UI continuous integrations.
 
-This repository comes with two demo projects found within the `/demos` folder.
-The first is a [Storybook](https://storybook.js.org/) application that allows you to see the components in isolation and interact with their properties. The second is a Showcase project (from [react-showcase-demo](https://github.com/etn-ccis/blui-react-showcase-demo)) that shows a combination of components in the context of a realistic interface.
+The second project found within the /docs folder is the [React Component Library](https://github.com/etn-ccis/blui-react-component-library/tree/master/docs) API documentation that allows you to see the components in isolation and interact with their properties.
 
-You can build, link, and start the demo applications in a single step by calling either
+The [React Component Library](https://brightlayer-ui-components.github.io/react/) is deployed as part of the Brightlayer UI continuous integrations.
 
-```shell
-yarn start:storybook
-```
-
-or
+You can build, link, and start the applications in a single step by running
 
 ```shell
 yarn start:showcase
 ```
 
+or
+
+```shell
+yarn start:docs
+```
+
 from the root directory.
-
-## Using the Components
-
-See the [documentation](https://brightlayer-ui-components.github.io/react) for information on using these components.
-
-## Browser Support
-
-Brightlayer UI libraries will work with any modern browser. For details, please refer to our [Browser Support](https://brightlayer-ui.github.io/development/frameworks-web/react#browser-support) documentation.
