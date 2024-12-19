@@ -19,7 +19,7 @@ const CONTENT_WIDTH = 800;
 const styles = {
     pageRoot: {
         background: (theme: Theme): string =>
-            `url('${CirclesImage}') no-repeat center/200%, ${theme.palette.primary.main}`,
+            `url('${CirclesImage}') no-repeat center/200%, ${theme.vars.palette.primary.main}`,
         minHeight: '100%',
         color: 'primary.contrastText',
     },

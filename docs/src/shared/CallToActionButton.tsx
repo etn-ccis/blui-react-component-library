@@ -66,7 +66,7 @@ export const CallToActionButton: React.FC<CallToActionButtonProps> = (props): JS
     const {
         avatar = <DesignServices sx={{ height: 48, width: 48 }} />,
         description = `Learn about Material Design's description of this pattern. Follow their guidance unless Brightlayer UI recommends specific changes.`,
-        icon = <OpenInNew style={{ color: theme.palette.text.disabled }} />,
+        icon = <OpenInNew style={{ color: theme.vars.palette.text.disabled }} />,
         title = `Material's Description`,
         url,
         minCardHeight,
