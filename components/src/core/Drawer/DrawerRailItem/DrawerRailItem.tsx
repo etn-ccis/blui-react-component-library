@@ -158,6 +158,9 @@ const Root = styled(ButtonBase, {
             [`& .${drawerRailItemClasses.ripple}`]: {
                 backgroundColor: (theme.vars || theme).palette.primary.main,
             },
+            ['& .MuiAvatar-root']: {
+                backgroundColor: backgroundColor || 'transparent',
+            },
         };
     }
 );
