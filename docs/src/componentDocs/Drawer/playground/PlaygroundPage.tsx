@@ -220,7 +220,6 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                                 // minWidth: '100%',
                                 '& .MuiPaper-root': {
                                     background: 'transparent',
-                                    width: persistent ? 'inherit' : 'initial',
                                 },
                                 '& .BluiDrawer-content': { backgroundColor: 'background.paper' },
                             }}
