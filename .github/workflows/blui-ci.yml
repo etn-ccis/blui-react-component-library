@@ -87,7 +87,7 @@ jobs:
       working-directory: components
     - run: yarn build
     - name: Save build
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dist
         if-no-files-found: error
@@ -100,7 +100,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     - name: Download the dist folder
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: dist
         path: dist
@@ -113,14 +113,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     - name: Download the dist folder
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: dist
         path: dist
     - run: npm pack
       working-directory: dist
     - name: Save npm pack
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: tarball
         if-no-files-found: error
@@ -146,7 +146,7 @@ jobs:
     - run: yarn --immutable
       working-directory: demos/showcase
     - name: Download tarball
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: tarball
         path: tarball
@@ -184,7 +184,7 @@ jobs:
     - run: yarn --immutable
       working-directory: docs
     - name: Download tarball
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: tarball
         path: tarball
@@ -199,7 +199,7 @@ jobs:
     - run: yarn build
       working-directory: docs
     - name: Save build
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build
         if-no-files-found: error
@@ -215,7 +215,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Download build
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build
           path: docs/build
@@ -240,7 +240,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Download build
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build
           path: docs/build
@@ -268,7 +268,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Download dist
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
