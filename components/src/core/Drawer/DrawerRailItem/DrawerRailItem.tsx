@@ -137,6 +137,9 @@ const Root = styled(ButtonBase, {
             '&:hover': {
                 backgroundColor: onClick ? (theme.vars || theme).palette.action.hover : undefined,
             },
+            '& .MuiAvatar-root': {
+                backgroundColor: backgroundColor || 'transparent',
+            },
             ...(itemActive && {
                 [`& .${drawerRailItemClasses.icon}`]: {
                     color: activeItemIconColor || (theme.vars || theme).palette.primary.main,
