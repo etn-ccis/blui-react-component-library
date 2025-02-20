@@ -28,6 +28,7 @@ export const ThemeExplorer: React.FC = () => {
             <Card
                 sx={{ mb: 4, boxSizing: 'border-box', '&:hover': { boxShadow: 6 } }}
                 variant={colorScheme.mode === 'dark' ? 'outlined' : undefined}
+                className={localThemeDark ? 'dark' : 'light'}
             >
                 <Toolbar
                     sx={[
