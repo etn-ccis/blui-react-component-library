@@ -84,12 +84,13 @@ export const ComponentPreviewTabs = (): JSX.Element => {
                 value={hidePlaygroundTab && value === 2 ? 0 : value}
                 onChange={handleChange}
                 aria-label="component docs tabs"
+                textColor="inherit"
                 centered
                 sx={{
                     width: '100%',
                     display: 'flex',
                     justifyContent: 'space-evenly',
-                    bgcolor: theme.palette.background.paper,
+                    bgcolor: theme.vars.palette.background.paper,
                     borderBottom: 1,
                     borderColor: 'divider',
                     position: 'sticky',

@@ -25,6 +25,7 @@ import { useAppSelector } from './redux/hooks';
 import { MDXProvider } from '@mdx-js/react';
 import { componentsMap } from './__configuration__/markdownMapping';
 import { GoogleAnalyticsWrapper } from './router/GoogleAnalyticsWrapper';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 // prismJs
 import 'prismjs/components/prism-jsx.js';

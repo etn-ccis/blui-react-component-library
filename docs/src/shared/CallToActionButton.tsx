@@ -11,6 +11,7 @@ import {
     CardActionAreaProps,
     SxProps,
     Box,
+    useColorScheme,
 } from '@mui/material';
 
 type CallToActionButtonProps = {
@@ -63,17 +64,18 @@ const styles: { [key: string]: SxProps<Theme> } = {
 
 export const CallToActionButton: React.FC<CallToActionButtonProps> = (props): JSX.Element => {
     const theme = useTheme();
+    const colorScheme = useColorScheme();
     const {
         avatar = <DesignServices sx={{ height: 48, width: 48 }} />,
         description = `Learn about Material Design's description of this pattern. Follow their guidance unless Brightlayer UI recommends specific changes.`,
-        icon = <OpenInNew style={{ color: theme.palette.text.disabled }} />,
+        icon = <OpenInNew style={{ color: theme.vars.palette.text.disabled }} />,
         title = `Material's Description`,
         url,
         minCardHeight,
         ...cardProps
     } = props;
     return (
-        <Card sx={styles.root} variant={theme.palette.mode === 'light' ? 'elevation' : 'outlined'} {...cardProps}>
+        <Card sx={styles.root} variant={colorScheme.mode === 'light' ? 'elevation' : 'outlined'} {...cardProps}>
             <CardActionArea
                 onClick={(e): void => {
                     if (e) {

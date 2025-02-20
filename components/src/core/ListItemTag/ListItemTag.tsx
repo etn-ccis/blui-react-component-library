@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/material';
 import listItemTagClasses, { ListItemTagClassKey, getListItemTagUtilityClass } from './ListItemTagClasses';
 import { cx } from '@emotion/css';
+import { convertColorNameToHex } from '../Utility';
 
 const useUtilityClasses = (ownerState: ListItemTagProps): Record<ListItemTagClassKey, string> => {
     const { classes } = ownerState;
@@ -63,7 +64,7 @@ const Root = styled(Typography, {
                 ${
                     fontColor ||
                     theme.palette.getContrastText(
-                        backgroundColor ||
+                        convertColorNameToHex(backgroundColor) ||
                             (colorScheme.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.main)
                     )
                 };
