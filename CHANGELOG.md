@@ -1,5 +1,17 @@
 # Changelog
 
+## v7.1.0 (April 21, 2025)
+
+### Fixed
+
+- The Dev Doc landing page has display issues when viewed in dark theme. Specifically, the page height does not span the full height of the viewport.([#952](https://github.com/etn-ccis/blui-react-component-library/issues/952)).
+- The theme switcher in the Theme Explorer is not working as expected. When attempting to switch between themes, the application does not apply the selected theme, resulting in no visual changes.([#953](https://github.com/etn-ccis/blui-react-component-library/issues/953)).
+- When using the dark theme, the border color of the navigation drawer appears incorrect. This color does not match the intended dark theme styling and stands out against the dark background.([#954](https://github.com/etn-ccis/blui-react-component-library/issues/954)).
+- When "Code Red" is activated, the color selector fails to operate correctly, preventing users from choosing colors as intended.([#955](https://github.com/etn-ccis/blui-react-component-library/issues/955)).
+- When using the dark theme, the navigation drawer rail displays an unexpected fill color behind its icons. This fill color does not match the intended dark theme styling. ([#961](https://github.com/etn-ccis/blui-react-component-library/issues/961)).
+- The Dev Doc landing page has display issues when viewed in dark theme. Specifically, the button styles appear incorrect.([#975](https://github.com/etn-ccis/blui-react-component-library/issues/975)).
+- When implementing Google Analytics on comopoent library, website encountered a console error stating that the "send command doesn't exist.([#777](https://github.com/etn-ccis/blui-react-component-library/issues/777)).
+
 ## v7.0.0 (December 19, 2024)
 
 ### Changed
