@@ -14,6 +14,7 @@ import clsx from 'clsx';
 import { styled, SxProps, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { unstable_composeClasses as composeClasses } from '@mui/material';
+import { convertColorNameToHex } from '../../Utility';
 
 const useUtilityClasses = (ownerState: DrawerHeaderProps): Record<DrawerHeaderClassKey, string> => {
     const { classes } = ownerState;
@@ -80,11 +81,15 @@ const Root = styled(Toolbar, {
     },
     backgroundColor: backgroundColor || (theme.vars || theme).palette.primary.main,
     // TODO: Update to use theme.vars.palette.primary.main
-    color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.main),
+    color:
+        fontColor ||
+        theme.palette.getContrastText(convertColorNameToHex(backgroundColor) || theme.palette.primary.main),
     ...theme.applyStyles('dark', {
         backgroundColor: backgroundColor || (theme.vars || theme).palette.primary.dark,
         // TODO: Update to use theme.vars.palette.primary.main
-        color: fontColor || theme.palette.getContrastText(backgroundColor || theme.palette.primary.dark),
+        color:
+            fontColor ||
+            theme.palette.getContrastText(convertColorNameToHex(backgroundColor) || theme.palette.primary.dark),
     }),
     [`& .${drawerHeaderClasses.nonClickable}`]: {},
     [`& .${drawerHeaderClasses.railIcon}`]: {

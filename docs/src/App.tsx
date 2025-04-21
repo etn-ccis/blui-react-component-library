@@ -15,7 +15,13 @@ export const App = (): JSX.Element => {
                 setDrawerOpen,
             }}
         >
-            <DrawerLayout drawer={<NavigationDrawer />} style={{ height: '100%' }}>
+            <DrawerLayout
+                drawer={<NavigationDrawer />}
+                style={{ height: '100%' }}
+                sx={{
+                    '& .BluiDrawerLayout-content': { height: '100%' },
+                }}
+            >
                 <Routes>{MainRouter}</Routes>
             </DrawerLayout>
         </DrawerContext.Provider>
