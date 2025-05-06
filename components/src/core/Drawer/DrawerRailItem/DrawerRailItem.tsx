@@ -329,7 +329,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
             onClick={onClickAction}
             hasAction={hasAction}
             itemActive={active}
-            sx={sx}
+            sx={{ ...sx, padding: '8px 16px' }}
             {...RippleProps}
         >
             {/* Active Item Highlight */}
@@ -345,6 +345,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                 />
             )}
             {/* Icon */}
+
             {getIcon()}
             {/* Title */}
             {!condensed && (
@@ -357,6 +358,7 @@ const DrawerRailItemRender: React.ForwardRefRenderFunction<unknown, DrawerRailIt
                     {title}
                 </Title>
             )}
+
             {/* Divider */}
             {divider && <DrawerRailItemDivider className={generatedClasses.divider} />}
         </Root>
