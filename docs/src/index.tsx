@@ -36,7 +36,7 @@ import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 import ReactGA from 'react-ga4';
 import { ScrollToTop } from './router/ScrollToTop';
 if (process.env.REACT_APP_GAID) {
-    ReactGA.initialize(process.env.REACT_APP_GAID);
+    ReactGA.initialize(process.env.REACT_APP_GAID, { gaOptions: { cookieDomain: 'auto' } });
 }
 // TODO: Remove this after the issues with @types/react goes away
 // https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/68444
