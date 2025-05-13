@@ -77,8 +77,8 @@ export const NavigationDrawer: React.FC = () => {
             const tabName = tabs.includes(pathArray[4])
                 ? pathArray[4]
                 : tabs.includes(pathArray[3])
-                ? pathArray[3]
-                : '';
+                  ? pathArray[3]
+                  : '';
             navigate(`${id}${id.includes('/component-catalog') || !id.includes('/components/') ? '' : tabName || ''}`);
             dispatch(toggleDrawer());
         },
