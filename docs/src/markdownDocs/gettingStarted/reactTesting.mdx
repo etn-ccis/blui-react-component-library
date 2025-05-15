@@ -10,11 +10,11 @@ Testing is a critical component of successfully building and releasing an applic
 
 There are many [varieties of tests](https://www.geeksforgeeks.org/types-software-testing/), each with its own intended purpose. The most common types of tests are:
 
--   **Unit Tests**: Verify individual methods, functions, or components.
--   **Integration Tests**: Verify that different modules or services in your application work together.
--   **Functional Tests**: Verify the output of certain actions based on business requirements.
--   **End-to-end (E2E) Tests**: Verify that user behaviors / workflows function as expected.
--   **Acceptance Tests**: Verify that the entire system meets the business requirements.
+- **Unit Tests**: Verify individual methods, functions, or components.
+- **Integration Tests**: Verify that different modules or services in your application work together.
+- **Functional Tests**: Verify the output of certain actions based on business requirements.
+- **End-to-end (E2E) Tests**: Verify that user behaviors / workflows function as expected.
+- **Acceptance Tests**: Verify that the entire system meets the business requirements.
 
 This document focuses mainly on Unit Tests and E2E tests, as they are the easiest to automate.
 
@@ -41,9 +41,9 @@ When unit testing components, the most effective tests are based on what is rend
 
 For example, consider testing an Open Button that should open a modal dialog when clicked. Your test should check that a button with the _Open_ label is rendered on the screen, and when it is clicked, the dialog is rendered on the screen with the correct content. You may be tempted to identify the button by a class or id, or test that a particular function is called when the button is pressed - these tests are not as effective because they are more likely to break if the implementation of the component changes, even though the end behavior is the same.
 
--   Test what the user sees (i.e., rendered output) and what the user can do  (i.e., interactions).
--   If there is visual change after an interaction, test for it.
--   If there is a value returned after an action, test for it.
+- Test what the user sees (i.e., rendered output) and what the user can do  (i.e., interactions).
+- If there is visual change after an interaction, test for it.
+- If there is a value returned after an action, test for it.
 
 ## Testing Frameworks
 
@@ -75,8 +75,8 @@ For testing React components in a Vite project using Vitest, you'll primarily us
 
 End-to-end tests are a step above unit tests, both in terms of complexity and what they test. They focus primarily on the flow of the application, making sure that a user's journey through the application has the expected outcomes. These tests can generally be categorized as:
 
--   **Acceptance Tests**: verify that various features and flows meet the customer expectations.
--   **Regression Tests**: verify that existing functionality is not broken when new features are added.
+- **Acceptance Tests**: verify that various features and flows meet the customer expectations.
+- **Regression Tests**: verify that existing functionality is not broken when new features are added.
 
 They should cover user stories that span multiple components and views, such as signing up for an account, logging in and out of the application, updating a profile, etc. These tests are not concerned with the underlying state or implementation of the application - just the end results.
 
@@ -88,10 +88,10 @@ Functional tests alone will not give you enough test coverage to avoid regressio
 
 End-to-end tests rely on the ability to find elements on the screen and interact with them in an automated way. This means that you need a reliable mechanism for selecting elements. Depending on your testing framework, there are different ways to select elements, including:
 
--   **CSS Selectors**: Find elements by using CSS classes or rules (e.g., `.your-class-name`)
--   **Element Selectors**: Find elements inside the elements (e.g., `#\@\@blui-drawerlayout-content > div > header > div > button`)
--   **xPath Selectors**: Find selector within xPath (e.g., `//*[@id="@@blui-drawerlayout-content"]/div/header/div/button`)
--   **ID Selectors**: Find attribute id within elements (e.g., `#login-button`)
+- **CSS Selectors**: Find elements by using CSS classes or rules (e.g., `.your-class-name`)
+- **Element Selectors**: Find elements inside the elements (e.g., `#\@\@blui-drawerlayout-content > div > header > div > button`)
+- **xPath Selectors**: Find selector within xPath (e.g., `//*[@id="@@blui-drawerlayout-content"]/div/header/div/button`)
+- **ID Selectors**: Find attribute id within elements (e.g., `#login-button`)
 
 > You can read more about different selector strategies on [Selenium Dev](https://www.selenium.dev/documentation/webdriver/elements/locators/) and {/* <!-- markdown-link-check-disable --> */}[software testing help](https://www.softwaretestinghelp.com/using-selenium-xpath-and-other-locators-selenium-tutorial-5/){/* <!-- markdown-link-check-enable --> */}.
 
@@ -111,9 +111,9 @@ WebElement click = driver.findElement(By.id("login-button"));
 
 There are many tools available for configuring automated E2E tests. Some of the more popular tools include:
 
--   [Selenium](https://www.selenium.dev/documentation/en/)
--   [Cypress](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell)
--   [WebDriverIO](https://webdriver.io/docs/gettingstarted.html)
+- [Selenium](https://www.selenium.dev/documentation/en/)
+- [Cypress](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell)
+- [WebDriverIO](https://webdriver.io/docs/gettingstarted.html)
 
 ### Selenium
 

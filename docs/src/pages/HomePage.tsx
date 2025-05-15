@@ -49,11 +49,10 @@ const styles = {
         outlined: {
             color: 'primary.contrastText',
             borderColor: 'primary.contrastText',
-            '*:where(.dark) &.MuiButton-root':{
+            '*:where(.dark) &.MuiButton-root': {
                 borderColor: 'primary.contrastText',
-            }
+            },
         },
-    
     },
 };
 
