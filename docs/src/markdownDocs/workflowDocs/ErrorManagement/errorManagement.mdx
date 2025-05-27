@@ -1,0 +1,90 @@
+import { CodeBlock } from '../../../shared';
+
+# Error Management
+
+There are points throughout the workflow where a user may encounter errors, particularly when making calls to your back-end / API. There are a number of ways that you can control / configure how errors are presented throughout the UI.
+
+## TextField Validator Errors
+
+Text fields within the workflow have built in validator methods that you can customize. For more information on each screens validator functions, read our [Screens](/workflows/screens/) documentation.
+
+Text field validator props accept a function. We pass the current value of the field as an argument and you should return a boolean value (true if there is no error) or string (for a custom message). When a text field has a validator error (i.e., the input is not valid), the error message that you returned in the validator function will be displayed below the input (if you return false, the text field will be rendered in an error state but no message will be displayed).
+
+### Example
+
+As an example, if you wanted to change what is accepted as a valid username on the Login screen (default is any valid email address), you can do so as follows:
+
+<CodeBlock
+    language={'jsx'}
+    code={`// accept ONLY @eaton.com email addresses
+const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@eaton\.com$/i;
+...
+
+<LoginScreen
+    {...otherProps}
+    usernameValidator={{
+        (username: string): string | boolean => (
+            !EMAIL_REGEX.test(username) ? 'You must use your Eaton email address' : true
+        )
+    )}
+/>`}
+/>
+
+## API Errors
+
+For API-related errors, we have implemented a common `ErrorManager` component that manages the display of error messages across screens. It can be customized to present API errors in a Dialog (default) or in a Message Box. For full details, read the [ErrorManager](/workflows/error-manager/) API docs.
+
+To trigger the ErrorManager to display an error, you need to throw an error in your AuthUIAction or RegistrationUIAction function. 
+
+<CodeBlock
+    language={'jsx'}
+    code={`// throw a basic error
+throw new Error('My Custom Error');
+
+// customize the title via the cause property
+throw new Error('My Custom Error', {
+    cause: {
+        title: 'Custom Title',
+        errorMessage: 'My custom error message',
+    },
+});`}
+/>
+
+### Global Configuration
+
+You can customize how errors are displayed throughout the entire workflow by passing an `errorConfig` prop to the `AuthContextProvider` and / or `RegistrationContextProvider`. This will change the default used by all of the screens nested under the provider.
+
+<CodeBlock
+    language={'jsx'}
+    code={`<AuthContextProvider
+    {...otherProps}
+    errorConfig={{
+        mode: 'message-box',
+        messageBoxConfig: {
+            dismissible: true,
+            position: 'top',
+        },
+    }}
+>`}
+/>
+
+### Local Configuration
+
+You can configure how errors are rendered on each individual screen by adding an `errorConfig` prop directly on a screen component (e.g., if you want to show errors differently on the login screen vs. in the registration workflow).
+
+<CodeBlock
+    language={'jsx'}
+    code={`<LoginScreen
+    {...otherProps}
+    errorDisplayConfig={{
+        mode: 'message-box',
+        messageBoxConfig: {
+            dismissible: true,
+            position: 'top',
+        },
+    }}
+>`}
+/>
+
+
+
