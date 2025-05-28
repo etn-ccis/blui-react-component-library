@@ -1,6 +1,6 @@
 # Changelog
 
-## v7.1.1 (May 27, 2025)
+## v7.1.1 (May 28, 2025)
 
 ### Fixed
 
