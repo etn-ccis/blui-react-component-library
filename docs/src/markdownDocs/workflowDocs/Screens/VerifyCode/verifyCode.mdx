@@ -1,0 +1,36 @@
+import VerifyCodeScreen from './images/verify-email.png';
+import { CodeBlock } from '../../../../shared';
+
+# VerifyCodeScreen
+
+A screen that displays an input for a user to provide a verification code for the purposes of confirming an email address. The VerifyCodeScreen must be used within a `RegistrationContextProvider`.
+
+<img width="400" alt="Verify Code" src={VerifyCodeScreen} />
+
+## Usage
+
+<CodeBlock
+    language={'jsx'}
+    code={`import { RegistrationContextProvider, VerifyCodeScreen } from '@brightlayer-ui/react-native-auth-workflow';
+
+...
+
+<RegistrationContextProvider {...props}>
+    <VerifyCodeScreen />
+</RegistrationContextProvider>`}
+/>
+
+## API
+
+| Prop Name                | Type                                  | Description                                                                                                                                                             | Default                       |
+| ------------------------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| codeValidator            | `(code: string) => boolean \| string` | A function to validate the input value                                                                                                                                  | required to be > 0 characters |
+| errorDisplayConfig       | `ErrorManagerProps`                   | See [Error Management](/workflows/error-management/)                                                                                                                          |                               |
+| initialValue             | `string`                              | The initial value for the code input.                                                                                                                                   |                               |
+| onResend                 | `() => void`                          | A function that is called when the resend link/button is clicked.                                                                                                       |                               |
+| resendInstructions       | `string`                              | Text to display ahead of the resend link/button.                                                                                                                        | `t('bluiRegistration:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION_CODE_PROMPT') // “Didn't receive an email?”`    |
+| resendLabel              | `string`                              | Label/text for the resend link/button.                                                                                                                                  | `t('bluiCommon:ACTIONS.RESEND') // “Send Again”`                  |
+| verifyCodeInputLabel     | `string`                              | The label for the code text field.                                                                                                                                      | `t('bluiRegistration:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION') // “Verification Code”`           |
+| verifyCodeTextInputProps | `TextInputProps`                      | Props to pass to the verify code text input. See React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#textinput-props). |                               |
+
+This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](/workflows/workflow-card/) for more details.

@@ -1,0 +1,37 @@
+import ContactSupport from './images/contact-support.png';
+import { CodeBlock } from '../../../../shared';
+
+# ContactSupportScreen
+
+A screen that displays information for contacting support, including email and phone number. The ContactSupportScreen must be used within an `AuthContextProvider`.
+
+<img width="400" alt="Contact Support" src={ContactSupport} />
+
+## Usage
+
+<CodeBlock
+    language={'jsx'}
+    code={`import { AuthContextProvider, ContactSupportScreen } from '@brightlayer-ui/react-auth-workflow';
+...
+
+<AuthContextProvider {...props}>
+    <ContactSupportScreen />
+</AuthContextProvider>`}
+/>
+
+## API
+
+| Prop Name           | Type                                                                                                                | Description                                          | Default                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------- |
+| contactEmail        | `string`                                                                                                            | The email address for contacting support.            | `something@email.com`                                                  |
+| contactPhone        | `string`                                                                                                            | The phone number for contacting support              | `1-800-123-4567`                                                       |
+| dismissButtonLabel  | `string`                                                                                                            | Text to display on the dismiss button.               | `t('bluiCommon:ACTIONS.OKAY') // Okay`                                 |
+| onDismiss           | `() => void`                                                                                                        | Function to call when the dismiss button is clicked. |                                                                        |
+| emailSupportTitle   | `string`                                                                                                            | The title for the email support section.             | `t('bluiAuth:CONTACT_SUPPORT.GENERAL_QUESTIONS') // General Questions` |
+| emailSupportContent | `(email: string) => string \| JSX.Element`                                                                          | The content for the email support section.           |                                                                        |
+| icon                | [IconSource](https://github.com/etn-ccis/blui-react-native-component-library/blob/master/docs/Icons.md#icon-object) | An object to specify the source of the icon          |                                                                        |
+| iconSize            | `number`                                                                                                            | The Size of Icon                                     | 24                                                                     |
+| phoneSupportTitle   | `string`                                                                                                            | The title for the phone support section.             | `t('bluiAuth:CONTACT_SUPPORT.EMERGENCY_SUPPORT') // Emergency Support` |
+| phoneSupportContent | `(phone: string) => string \| JSX.Element`                                                                          | The content for the phone support section.           |                                                                        |
+
+This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](/workflows/workflow-card/) for more details.
