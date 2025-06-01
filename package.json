@@ -45,7 +45,7 @@
     "license": "BSD-3-Clause",
     "devDependencies": {
         "@brightlayer-ui/prettier-config": "^1.0.3",
-        "firebase-tools": "^14.2.2",
+        "firebase-tools": "^14.5.1",
         "husky": "^9.1.7",
         "npm-license-crawler": "^0.2.1",
         "prettier": "^3.5.3"
