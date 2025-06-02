@@ -207,6 +207,7 @@ const DrawerPreview: PreviewComponent = ({ data }) => {
                             collapseIcon={getIcon(collapseIcon)}
                             expandIcon={getIcon(expandIcon)}
                             ModalProps={{
+                                disableEnforceFocus: true,
                                 disablePortal: temporary,
                                 slotProps: {
                                     backdrop: { sx: { position: 'absolute' } },

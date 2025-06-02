@@ -1,5 +1,14 @@
 # Changelog
 
+## v7.1.1 (June 02, 2025)
+
+### Fixed
+
+- Drawer overlaps props & code modal on small screen. ([#994](https://github.com/etn-ccis/blui-react-component-library/issues/994)).
+- Drawer nav rail should be padded. ([#987](https://github.com/etn-ccis/blui-react-component-library/issues/987)).
+- Dev Doc light theme picking up dark theme colors. ([#967](https://github.com/etn-ccis/blui-react-component-library/issues/967)).
+- Temporary drawer in dev doc drawer playground causes the console to screen with errors. ([#852](https://github.com/etn-ccis/blui-react-component-library/issues/852)).
+
 ## v7.1.0 (April 21, 2025)
 
 ### Fixed

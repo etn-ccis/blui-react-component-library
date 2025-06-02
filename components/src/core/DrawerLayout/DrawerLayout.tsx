@@ -42,12 +42,11 @@ const Root = styled(
 const Drawer = styled(
     Box,
     {}
-)(({ theme }) => ({
+)(() => ({
     display: 'flex',
     position: 'fixed',
     height: '100%',
     alignItems: 'stretch',
-    zIndex: theme.zIndex.modal,
 }));
 
 const Content = styled(

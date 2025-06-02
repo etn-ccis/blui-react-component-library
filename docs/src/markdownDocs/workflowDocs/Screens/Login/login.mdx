@@ -1,0 +1,93 @@
+import LoginScreen from './images/login.png';
+import { CodeBlock } from '../../../../shared';
+
+# LoginScreen
+
+Component that renders a login screen that prompts a user to enter a username and password to login. The LoginScreen must be used within an `AuthContextProvider` .
+
+<img width="400" alt="Login" src={LoginScreen} />
+
+## Usage
+
+
+<CodeBlock
+    language={'jsx'}
+    code={`import { AuthContextProvider, LoginScreen } from '@brightlayer-ui/react-native-auth-workflow';
+
+...
+
+<AuthContextProvider {...props}>
+    <LoginScreen />
+</AuthContextProvider>`}
+/>
+
+## API
+
+### Login Configuration
+
+| Prop Name | Type | Description | Default |
+|---|---|---|---|
+| usernameLabel | `string` | Label for the username field. | `t('bluiCommon:LABELS.EMAIL') // 'Email Address'` |
+| usernameTextFieldProps | `TextFieldProps` | Props to pass to the React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props) component. |  |
+| usernameValidator | `(username: string) => boolean \| string` | A function that validates the username text field input. | checks against valid email regex |
+| initialUsernameValue | `string` | Username used to pre-populate the field. |  |
+| passwordLabel | `string` | Label for the password field. | `t('bluiCommon:LABELS.EMAIL') // 'Email Address'` |
+| passwordTextFieldProps | `TextFieldProps` | Props to pass to the React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props) component. |  |
+| passwordValidator | `(password: string) => boolean \| string` | A function that validates the password text field input. | checks against valid email regex |
+| initialUsernameValue | `string` | Username used to pre-populate the field. |  |
+| loginButtonLabel | `string` | Label for the login button. | `t('bluiCommon:ACTIONS.LOG_IN') // 'Log In'` |
+| onLogin | `(username: string, password: string, rememberMe: boolean) => Promise<void>` | Callback function that is called when the login button is clicked. |  |
+|  |  |  |  |
+
+### Remember Me Configuration
+
+| Prop Name | Type | Description | Default |
+|---|---|---|---|
+| showRememberMe | `boolean` | Whether or not to show the 'remember me' checkbox. | `true` |
+| rememberMeLabel | `string` | Label for the 'remember me' checkbox. | `t('bluiCommon:ACTIONS.REMEMBER') // 'Remember Me'` |
+| rememberMeInitialValue | `boolean` | Whether or not the 'remember me' checkbox should be checked by default. | `false` |
+| onRememberMeChanged | `(value: boolean) => void` | Callback function that is called when the 'remember me' checkbox is changed. |  |
+|  |  |  |  |
+
+
+### Forgot Password Configuration
+
+| Prop Name | Type | Description | Default |
+|---|---|---|---|
+| showForgotPassword | `boolean` | Whether or not to show the 'forgot password' link. | `true` |
+| forgotPasswordLabel | `string` | Label for the 'forgot password' link. | `t('bluiCommon:LABELS.FORGOT_PASSWORD') // 'Forgot your password?'` |
+| onForgotPassword | `() => void` | Callback function that is called when the 'forgot password' link is clicked. |  |
+|  |  |  |  |
+
+### Self Registration Configuration
+
+| Prop Name | Type | Description | Default |
+|---|---|---|---|
+| showSelfRegistration | `boolean` | Whether or not to show the 'self registration' link. | `true` |
+| selfRegisterButtonLabel | `string` | Label for the 'self registration' link. | `t('bluiCommon:ACTIONS.CREATE_ACCOUNT') // 'Create Account'` |
+| selfRegisterInstructions | `string` | Instructions to display before the 'self registration' link. | `t('bluiCommon:LABELS.NEED_ACCOUNT') // 'Need an account?'` |
+| onSelfRegister | `() => void` | Callback function that is called when the 'self registration' link is clicked. |  |
+|  |  |  |  |
+
+### Contact Support Configuration
+
+| Prop Name | Type | Description | Default |
+|---|---|---|---|
+| showContactSupport | `boolean` | Whether or not to show the 'contact support' link. | `true` |
+| contactSupportLabel | `string` | Label for the 'contact support' link. | `t('bluiCommon:MESSAGES.CONTACT') // 'Contact an Eaton Support Representative'` |
+| onContactSupport | `() => void` | Callback function that is called when the 'contact support' link is clicked. |  |
+|  |  |  |  |
+
+### Additional Visuals Configuration
+
+| Prop Name | Type | Description | Default |
+|---|---|---|---|
+| showCyberSecurityBadge | `boolean` | Whether or not to show the cyber security badge. | `true` |
+| cyberSecurityBadgeSize | `{height?: number \| string, width?: number \| string}` | Prop for adding custom height and width to cyber security badge. |  |
+| projectImage | `ReactNode` | Image to display at the top of the screen. |  |
+| header | `ReactNode` | Custom content to display at the top of the screen. |  |
+| footer | `ReactNode` | Custom content to display at the bottom of the screen. |  |
+| errorDisplayConfig | `ErrorManagerProps` | See [Error Management](/workflows/error-management/) |  |
+|  |  |  |  |
+
+This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](/workflows/workflow-card/) for more details.

@@ -1,0 +1,137 @@
+import { CodeBlock } from '../../../shared';
+
+# Customization Guide
+
+These workflows are designed to work out of the box without any additional configuration. However, we understand that you may need to customize certain aspects of the workflows to meet your needs. This guide will walk you through the various ways you can customize the workflow.
+
+## Customizing Screens
+
+All of the screens in the workflow support various levels of customization. Refer to the [Screens](/workflows/screens/) documentation for specific options available on each screen.
+
+## Customizing Registration Workflow
+
+The Registration component provides the default behavior without requiring any configuration or props.
+
+<CodeBlock
+    language={'jsx'}
+    code={`<RegistrationWorkflow />`}
+/>
+
+If you wish to customize any aspects of the workflow screens, you will need to provide them as children in order to access their screen-level props.
+
+<CodeBlock
+    language={'jsx'}
+    code={`<RegistrationWorkflow>
+    <EulaScreen />
+    <CreateAccountScreen />
+    <VerifyCodeScreen codeValidator={customValidator} />
+    <CreatePasswordScreen />
+    <AccountDetailsScreen />
+</RegistrationWorkflow>`}
+/>
+
+### Customizing the Screen Order
+
+When passing children to the `RegistrationWorkflow` component, you can easily adjust the order of screens by simply placing them in the order you wish for them to appear.
+
+<CodeBlock
+    language={'jsx'}
+    code={`<RegistrationWorkflow>
+    {/* Create Account screen will now come before the Eula screen */}
+    <CreateAccountScreen />
+    <EulaScreen />
+    <VerifyCodeScreen />
+    <CreatePasswordScreen />
+    <AccountDetailsScreen />
+</RegistrationWorkflow>`}
+/>
+
+### Removing / Injecting Screens
+
+If you want to skip a particular screen in the workflow, simply omit it in the list of children. Likewise, if you wish to add your own custom screens into the workflow, you simply pass them as another child element.
+
+When passing custom children, it is important to match the look and feel of the other steps in the workflow. In order to support this, we provide several WorkflowCard components that you can use to create your custom screens. For more information on how to use these components, refer to our [WorkflowCard](/workflows/workflow-card/) component documentation.
+
+Your custom implementation, removing the EulaScreen and VerifyCodeScreen, and adding a custom screen, might look like this:
+
+<CodeBlock
+    language={'jsx'}
+    code={`<RegistrationWorkflow initialScreenIndex={0}>
+    <CreateAccountScreen />
+    {/* Skip the Create Password scree */}
+    {/* <CreatePasswordScreen /> */}
+    <AccountDetailsScreen />
+    {/* Add a custom screen to collect more information */}
+    <CustomAdditionalDetailsScreen>
+</RegistrationWorkflow>`}
+/>
+
+### Reset Custom Screen Data
+
+To reset the workflow data when the user clicks on the close icon from the header, the custom screen should call `resetScreenData()` function.
+<CodeBlock
+    language={'jsx'}
+    code={`import {
+    WorkflowCardHeader,
+    useRegistrationContext,
+    useRegistrationWorkflowContext,
+} from '@brightlayer-ui/react-native-auth-workflow';
+
+const MyCustomScreen = () => {
+    const regWorkflow = useRegistrationWorkflowContext();
+    const { navigate } = useRegistrationContext();
+    const { resetScreenData } = regWorkflow;
+    const onIconPress = useCallback(() => {
+        navigate(-1);
+        resetScreenData();
+    }, [navigate, resetScreenData]);
+    return (
+        <WorkflowCard {...cardBaseProps}>
+          <WorkflowCardHeader title="Custom Screen" onIconPress={onIconPress} icon={{ name: 'arrow-back' }} />
+          <WorkflowCardInstructions {...instructionsProps} />
+          <WorkflowCardBody>{/* Your Screen Contents */}</WorkflowCardBody>
+          <WorkflowCardActions {...actionsProps} />
+        </WorkflowCard>;
+    );
+};`}
+/>
+
+### Customizing the Success Screen
+
+You may provide a custom success screen to be shown upon successful completion of the [Registration Workflow](/workflows/registration-workflow/). The [Success Screen](/workflows/success/) is used by default, but may be customized via props. If you wish to build your own success screen it may look something like this:
+
+<CodeBlock
+    language={'jsx'}
+    code={`import { SuccessScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
+
+const MyCustomSuccessScreen = () => {
+    return (
+        <SuccessScreenBase
+            EmptyStateProps={{
+                title: 'Congratulations!',
+                description: 'You have been registered successfully',
+            }}
+        />
+    );
+};
+
+<RegistrationWorkflow successScreen={<MyCustomSuccessScreen />} />;`}
+/>
+
+A similar prop exists for `existingAccountSuccessScreen` which will be used if the account being registered already exists. Refer [Existing Account Success Screen](/workflows/existing-account-success/)
+
+## Customizing the Language Support
+
+For information about supporting multiple languages and customizing the translations, refer to our [Language Support](/workflows/language-support/) guidelines.
+
+## Customizing Error Handling
+
+For information about handling errors in your application, refer to our [Error Management](/workflows/error-management/) documentation.
+
+## Components
+
+For more details on customizing our components, refer to our [Components](/workflows/components/) documentation.
+
+## Screens
+
+For more details on customizing our screens, refer to our [Screens](/workflows/screens/) documentation.

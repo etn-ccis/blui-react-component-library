@@ -202,6 +202,7 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
     const { activeHierarchy } = useNavGroupContext();
     const previousActive = usePrevious(activeItem);
     const colorScheme = useColorScheme();
+    const systemMode = colorScheme.mode === 'system' ? theme.palette.mode : colorScheme.mode;
 
     // approximating primary[200] but we don't have access to it directly from the theme
     const lightenedPrimary = color(
@@ -213,13 +214,15 @@ const DrawerNavItemRender: React.ForwardRefRenderFunction<HTMLElement, DrawerNav
 
     // Destructure the props
     const {
-        activeItemBackgroundColor = colorScheme.mode === 'light'
+        activeItemBackgroundColor = systemMode === 'light'
             ? `rgba(${(theme.vars || theme).palette.primary.mainChannel} / 0.05)`
             : `rgba(${(theme.vars || theme).palette.primary.darkChannel} / 0.20)`,
+
         activeItemBackgroundShape = 'square',
-        activeItemFontColor = colorScheme.mode === 'light'
+        activeItemFontColor = systemMode === 'light'
             ? (theme.vars || theme).palette.primary.main
-            : lightenedPrimary,
+            : color(theme.palette.primary.dark).lighten(0.83).desaturate(0.39).string(),
+
         activeItemIconColor = colorScheme.mode === 'light'
             ? (theme.vars || theme).palette.primary.main
             : lightenedPrimary,
