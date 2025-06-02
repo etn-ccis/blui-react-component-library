@@ -3,7 +3,7 @@ import { PlayArrow, Code, BugReport, Difference } from '@mui/icons-material';
 
 # React Themes Overview
 
-This package, `@brightlayer-ui/react-themes`, provides [Material UI](https://www.npmjs.com/package/@mui/material) themes for Eaton applications using the Brightlayer UI design system with React. We offer two theme options: a Blue theme (standard) and a Dark theme.
+This package, `@brightlayer-ui/react-themes`, provides [Material UI](https://www.npmjs.com/package/@mui/material) themes for Eaton applications using the Brightlayer UI design system with React. We offer a single unified blueThemes that supports both light and dark mode using MUI v6 color schemes.
 
 <CallToActionButton
     title={`Style Guide: Themes`}
@@ -19,19 +19,19 @@ This package, `@brightlayer-ui/react-themes`, provides [Material UI](https://www
 <CallToActionButton
     title={`Source Code`}
     description={`Examine the source code on GitHub.`}
-    url={`https://github.com/etn-ccis/blui-react-themes/tree/master`}
+    url={`https://github.com/etn-ccis/blui-react/tree/dev/packages/themes`}
     avatar={<Code sx={{ height: 48, width: 48 }} />}
 />
 <CallToActionButton
     title={`Submit an Issue`}
     description={`Log a bug or request for a new feature on GitHub.`}
-    url={`https://github.com/etn-ccis/blui-react-themes/issues`}
+    url={`https://github.com/etn-ccis/blui-react/issues`}
     avatar={<BugReport sx={{ height: 48, width: 48 }} />}
 />
 <CallToActionButton
     title={`Change Log`}
     description={`Learn what’s new in the latest version.`}
-    url={`https://github.com/etn-ccis/blui-react-themes/blob/master/CHANGELOG.md`}
+    url={`https://github.com/etn-ccis/blui-react/blob/dev/packages/themes/CHANGELOG.md`}
     avatar={<Difference sx={{ height: 48, width: 48 }} />}
 />
 
@@ -47,7 +47,11 @@ You are also encouraged to explore our more detailed [example / showcase project
 
 ## For New Projects
 
-We encourage you to use [Brightlayer UI CLI](https://brightlayer-ui.github.io/development/templates) to generate a new project. The CLI is a tool that can generate a bare bones React project that includes all essential Brightlayer UI packages, including the Brightlayer UI themes.
+We recommend starting a new project using our [Brightlayer UI Templates](https://brightlayer-ui.github.io/development/templates).
+
+You can create new project with our standard template with following command:
+
+<CodeBlock code={`npx create-blui-react-app`} language={'sh'} />
 
 ## For Existing Projects
 

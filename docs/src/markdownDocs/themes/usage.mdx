@@ -5,7 +5,7 @@ import { Code } from '@mui/icons-material';
 
 # Import
 
-To use these themes in your application, simply wrap the app in a `ThemeProvider` and pass in your desired theme (`blue` or `blueDark`). You'll also need to import the Open Sans font resources (included with the themes):
+To use these themes in your application, simply wrap the app in a `ThemeProvider` and pass in theme.
 
 <CodeBlock
     language={'jsx'}
@@ -18,17 +18,90 @@ import "@brightlayer-ui/react-themes/open-sans";
 </ThemeProvider>`}
 />
 
-## Updating From Version 5 ~> 6
+# Updating From Version 7 ~> 8
 
-In version 6, we have migrated from the deprecated `typeface-open-sans` package to `@fontsource/open-sans` (bundled with the Brightlayer UI themes). You'll need to update your Open Sans import references in your root file:
+In version 8, the theme now follows the standard from MUI v6, which combines light and dark theme into a single theme object. In order to use the new version, you will need to:
 
-Before:
+## Update Material UI
 
-<CodeBlock language={'js'} code={`require('typeface-open-sans');`} />
+Ensure you have updated your Material UI dependencies to version 6 (this includes @mui/material, @mui/icons-material, etc.). Refer to the official MUI [migration docs](https://mui.com/material-ui/migration/upgrade-to-v6/) for more details.
 
-After:
+## Consolidate themes
 
-<CodeBlock language={'jsx'} code={`import '@brightlayer-ui/react-themes/open-sans';`} />
+If you were previously switching between `blue` and `blueDark` themes in your `ThemeProvider`, this should be replaced with the single `theme` object.
+
+<CodeBlock
+    code={`// Before (v7)
+import { blue, blueDark } from '@brightlayer-ui/react-themes';
+
+<ThemeProvider theme={isDark ? blueDark : blue}></ThemeProvider>
+
+// After (v8)
+import { theme } from '@brightlayer-ui/react-themes';
+
+<ThemeProvider theme={theme}></ThemeProvider>
+`} language={`jsx`}
+/>
+
+## Theme Switching
+
+The theme will default to light/dark mode based on the user's system preference. To manually toggle the theme mode (e.g., from settings), you will need to use the `useColorScheme` hook (see below).
+
+## Changing the default mode
+
+If you do not want to use the system setting as the default, you can set the `defaultMode` on the `ThemeProvider`:
+
+<CodeBlock
+    code={`<ThemeProvider theme={theme} defaultMode={"dark" /* or 'light' */}></ThemeProvider>`}
+    language={`jsx`}
+/>
+
+## Manually toggling the mode
+
+You can manually toggle the theme mode using the `useColorScheme` hook:
+
+<CodeBlock
+    code={`import { useColorScheme } from "@mui/material/styles";
+import InvertColors from "@mui/icons-material/InvertColors";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+
+const ToggleComponent = () => {
+const { mode, setMode } = useColorScheme();
+
+    return (
+        <Tooltip title={"Toggle Theme"}>
+            <IconButton
+                onClick={() => {
+                    setMode(mode === "light" ? "dark" : "light");
+                }}
+            >
+                <InvertColors />
+            </IconButton>
+        </Tooltip>
+    );
+
+};`}
+    language={`jsx`}
+/>
+
+For more information on toggling modes, refer to the [MUI docs](https://mui.com/material-ui/customization/dark-mode/).
+
+> Note: For few cases some styles may not apply correctly, hence they need to be declared explicitly for specific mode.
+
+<CodeBlock
+    code={`sx={{
+    backgroundColor: statusColor || Colors.black[500],
+    color: getIconColor(),
+    ...theme.applyStyles('dark', {
+        color: getIconColor(),
+        backgroundColor: statusColor || Colors.black[500],
+    }),
+}}`}
+    language={`jsx`}
+/>
+
+For a full list of updates introduced in version 8, see the [Changelog](https://github.com/etn-ccis/blui-react/blob/dev/packages/themes/CHANGELOG.md).
 
 # Accessing the Theme in a Component
 
@@ -55,7 +128,7 @@ const ChildComponent: React.FC<> = () => {
     language={`jsx`}
 />
 
-Avoid using colors from `@brightlayer-ui/colors` directly. Using theme colors makes the code easier to read and allows the app to transition between `blue` and `blueDark` themes easily.
+Avoid using colors from `@brightlayer-ui/colors` directly. Using theme colors makes the code easier to read and allows the app to transition between light and dark modes easily.
 
 <CodeBlock
     code={`/* 
@@ -74,15 +147,8 @@ const ChildComponent = () => <div sx={{ color: Color.red[500] }} />;`}
 You can examine Brightlayer UI's default theme configuration on GitHub.
 
 <CallToActionButton
-    title={`Blue Theme`}
-    description={`Source code for the default blue theme.`}
-    url={`https://github.com/etn-ccis/blui-react-themes/blob/master/src/blueTheme.ts`}
-    avatar={<Code sx={{ height: 48, width: 48 }} />}
-/>
-
-<CallToActionButton
-    title={`Blue Dark Theme`}
-    description={`Source code for the default blue dark theme.`}
-    url={`https://github.com/etn-ccis/blui-react-themes/blob/master/src/blueDarkTheme.ts`}
+    title={`blueTheme`}
+    description={`Source code for the default Brightlayer UI theme (including both light and dark color schemes).`}
+    url={`https://github.com/etn-ccis/blui-react/blob/dev/packages/themes/src/blueMergedTheme.ts`}
     avatar={<Code sx={{ height: 48, width: 48 }} />}
 />
