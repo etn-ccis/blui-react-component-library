@@ -12,12 +12,12 @@ If you want to change Brightlayer UI component styles on a case-by-case basis, p
 
 # Overriding Brightlayer UI's Theme
 
-To override Brightlayer UI's blue theme color without changing anything else, you can simply provide your own color palette:
+To override Brightlayer UI's blueThemes color without changing anything else, you can simply provide your own color palette:
 
 <CodeBlock
     language={'jsx'}
     code={`/* myNewTheme.ts */
-import * as BLUIThemes from '@brightlayer-ui/react-themes';
+import * as blueThemes from '@brightlayer-ui/react-themes';
 import { createTheme } from '@mui/material/styles';
 
 export const myNewColorPalette = {
@@ -27,9 +27,13 @@ export const myNewColorPalette = {
     contrastText: '#fff',
 };
 
-export const myNewTheme = createTheme(BLUIThemes.blue, {
-    palette: {
-        primary: myNewColorPalette,
+export const myNewTheme = createTheme(blueThemes, {
+    colorSchemes: {
+        light: {
+            palette: {
+                primary: myNewColorPalette,
+            },
+        },
     },
 });
 `} />
@@ -53,10 +57,10 @@ Likewise, you can inject a custom font to be applied to the whole application:
 <CodeBlock
     language={'jsx'}
     code={`...
-export const myNewTheme = createTheme(BLUIThemes.blue, {
+export const myNewTheme = createTheme(blueThemes, {
     typography: {
         fontFamily: '"Noto Sans SC", "Open Sans", sans-serif',
-    }
+    },
 });
 `}
 />
@@ -66,7 +70,7 @@ You can change the default style of a Material UI component too:
 <CodeBlock
     language={'jsx'}
     code={`...
-export const myNewTheme = createTheme(BLUIThemes.blue, {
+export const myNewTheme = createTheme(blueThemes, {
     components: {
         MuiButton: {
             styleOverrides: {
@@ -136,12 +140,12 @@ If you want to change the theme to do this for all tables, you can override the 
 <CodeBlock
     language={'jsx'}
     code={`/* App.tsx */
-import * as BluiTheme from '@brightlayer-ui/react-themes';
+import * as blueThemes from '@brightlayer-ui/react-themes';
 import * as BLUIColors from '@brightlayer-ui/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Color from 'color';
 ...
-const myNewLightTheme = createTheme(BluiTheme.blue, {
+export const myNewLightTheme = createTheme(blueThemes, {
     components: {
         MuiTableRow: {
             styleOverrides: {
@@ -150,20 +154,20 @@ const myNewLightTheme = createTheme(BluiTheme.blue, {
                     "&:hover": {
                         backgroundColor: Color(BLUIColors.white[100])
                             .mix(Color(BLUIColors.black[50]), 0.5)
-                            .string()
+                            .string(),
                     },
                     "&:nth-of-type(odd)": {
                         backgroundColor: BLUIColors.black[900],
-                            "&:hover": {
-                                backgroundColor: Color(BLUIColors.black[900])
-                                    .mix(Color(BLUIColors.black[50]), 0.5)
-                                    .string()
-                            }
-                    }
-                }
-            }
-        }
-    }
+                        "&:hover": {
+                            backgroundColor: Color(BLUIColors.black[900])
+                                .mix(Color(BLUIColors.black[50]), 0.5)
+                                .string(),
+                        },
+                    },
+                },
+            },
+        },
+    },
 });
 ...
 <ThemeProvider theme={myNewLightTheme}>
@@ -174,4 +178,4 @@ const myNewLightTheme = createTheme(BluiTheme.blue, {
 
 # Writing a New Theme
 
-Most of the time, you should be able to extend on top of our existing themes so that you can maintain your customization while benefiting from any future package updates from Brightlayer UI. However, if you want to build your own theme from scratch, you can fork our [themes repository](https://github.com/etn-ccis/blui-react-themes/tree/master), change it to fit your branding needs, and use your new theme in the `ThemeProvider`.
+Most of the time, you should be able to extend on top of our existing themes so that you can maintain your customization while benefiting from any future package updates from Brightlayer UI. However, if you want to build your own theme from scratch, you can fork our [themes repository](https://github.com/etn-ccis/blui-react/tree/dev/packages/themes), change it to fit your branding needs, and use your new theme in the `ThemeProvider`.
