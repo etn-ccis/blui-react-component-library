@@ -34,7 +34,7 @@ const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@eaton\.com$/i;
 
 For API-related errors, we have implemented a common `ErrorManager` component that manages the display of error messages across screens. It can be customized to present API errors in a Dialog (default) or in a Message Box. For full details, read the [ErrorManager](/workflows/error-manager/) API docs.
 
-To trigger the ErrorManager to display an error, you need to throw an error in your AuthUIAction or RegistrationUIAction function. 
+To trigger the ErrorManager to display an error, you need to throw an error in your AuthUIAction or RegistrationUIAction function.
 
 <CodeBlock
     language={'jsx'}
@@ -43,10 +43,10 @@ throw new Error('My Custom Error');
 
 // customize the title via the cause property
 throw new Error('My Custom Error', {
-    cause: {
-        title: 'Custom Title',
-        errorMessage: 'My custom error message',
-    },
+cause: {
+title: 'Custom Title',
+errorMessage: 'My custom error message',
+},
 });`}
 />
 
@@ -85,6 +85,3 @@ You can configure how errors are rendered on each individual screen by adding an
     }}
 >`}
 />
-
-
-

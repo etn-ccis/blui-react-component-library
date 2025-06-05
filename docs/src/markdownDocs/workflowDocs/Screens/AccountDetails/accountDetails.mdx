@@ -1,8 +1,6 @@
 import AccountDetails from './images/account-details.png';
 import { CodeBlock } from '../../../../shared';
 
-# AccountDetailsScreen
-
 A screen that displays text fields to collect the user's basic account details (first name and last name). The AccountDetailsScreen must be used within a `RegistrationContextProvider`.
 
 <img width="400" alt="Account Details" src={AccountDetails} />
@@ -11,7 +9,7 @@ A screen that displays text fields to collect the user's basic account details (
 
 <CodeBlock
     language={'jsx'}
-    code={`import { RegistrationContextProvider, AccountDetailsScreen } from '@brightlayer-ui/react-native-auth-workflow';
+    code={`import { RegistrationContextProvider, AccountDetailsScreen } from '@brightlayer-ui/react-auth-workflow';
 
 ...
 
@@ -24,14 +22,14 @@ A screen that displays text fields to collect the user's basic account details (
 
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
-| errorDisplayConfig | `ErrorManagerProps` | See [Error Management](/workflows/error-management/) |  |
-| firstNameLabel | `string` | Label for the firstName text field | `t('bluiCommon:FORMS.FIRST_NAME') // "First Name"` |
-| firstNameTextInputProps | `TextFieldProps` | Props to pass to the firstName component. See React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props). |  |
-| firstNameValidator | `(firstName: string) => boolean \| string` | A function to validate the first name input value | required to be > 0 characters |
+| firstNameLabel | `string` | Label for the firstName text field | `'First Name'` |
 | initialFirstName | `string` | Initial value to populate in the firstName text field |  |
+| firstNameValidator | `(firstName: string) => boolean \| string` | A function to validate the first name input value | required to be > 0 characters |
+| firstNameTextFieldProps | `TextFieldProps` | Props to pass to the firstName component. See MUI's [TextFieldProps API](https://mui.com/material-ui/api/text-field/). |  |
+| lastNameLabel | `string` | Label for the lastName text field | `'Last Name'` |
 | initialLastName | `string` | Initial value to populate in the lastName text field |  |
-| lastNameLabel | `string` | Label for the lastName text field | `t('bluiCommon:FORMS.LAST_NAME') // "Last Name"` |
-| lastNameTextInputProps | `TextFieldProps` | Props to pass to the lastName component. See React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props). |  |
 | lastNameValidator | `(lastName: string) => boolean \| string` | A function to validate the last name input value | required to be > 0 characters |
+| lastNameTextFieldProps | `TextFieldProps` | Props to pass to the lastName component. See MUI's [TextFieldProps API](https://mui.com/material-ui/api/text-field/). |  |
+| errorDisplayConfig | `ErrorManagerProps` | See [Error Management](/workflows/error-management/) |  |
 
 This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](/workflows/workflow-card/) for more details.

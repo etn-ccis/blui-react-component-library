@@ -10,11 +10,12 @@ All of the screens in the workflow support various levels of customization. Refe
 
 ## Customizing Registration Workflow
 
-The Registration component provides the default behavior without requiring any configuration or props.
+The Registration is provided as a single component that will provide the default behavior without requiring any configuration or props.
 
 <CodeBlock
     language={'jsx'}
-    code={`<RegistrationWorkflow />`}
+    code={`// default appearance / behaviour
+<RegistrationWorkflow />`}
 />
 
 If you wish to customize any aspects of the workflow screens, you will need to provide them as children in order to access their screen-level props.
@@ -57,7 +58,9 @@ Your custom implementation, removing the EulaScreen and VerifyCodeScreen, and ad
 <CodeBlock
     language={'jsx'}
     code={`<RegistrationWorkflow initialScreenIndex={0}>
+    <EulaScreen />
     <CreateAccountScreen />
+    <VerifyCodeScreen codeValidator={customValidator}/>
     {/* Skip the Create Password scree */}
     {/* <CreatePasswordScreen /> */}
     <AccountDetailsScreen />
@@ -66,43 +69,13 @@ Your custom implementation, removing the EulaScreen and VerifyCodeScreen, and ad
 </RegistrationWorkflow>`}
 />
 
-### Reset Custom Screen Data
-
-To reset the workflow data when the user clicks on the close icon from the header, the custom screen should call `resetScreenData()` function.
-<CodeBlock
-    language={'jsx'}
-    code={`import {
-    WorkflowCardHeader,
-    useRegistrationContext,
-    useRegistrationWorkflowContext,
-} from '@brightlayer-ui/react-native-auth-workflow';
-
-const MyCustomScreen = () => {
-    const regWorkflow = useRegistrationWorkflowContext();
-    const { navigate } = useRegistrationContext();
-    const { resetScreenData } = regWorkflow;
-    const onIconPress = useCallback(() => {
-        navigate(-1);
-        resetScreenData();
-    }, [navigate, resetScreenData]);
-    return (
-        <WorkflowCard {...cardBaseProps}>
-          <WorkflowCardHeader title="Custom Screen" onIconPress={onIconPress} icon={{ name: 'arrow-back' }} />
-          <WorkflowCardInstructions {...instructionsProps} />
-          <WorkflowCardBody>{/* Your Screen Contents */}</WorkflowCardBody>
-          <WorkflowCardActions {...actionsProps} />
-        </WorkflowCard>;
-    );
-};`}
-/>
-
 ### Customizing the Success Screen
 
 You may provide a custom success screen to be shown upon successful completion of the [Registration Workflow](/workflows/registration-workflow/). The [Success Screen](/workflows/success/) is used by default, but may be customized via props. If you wish to build your own success screen it may look something like this:
 
 <CodeBlock
     language={'jsx'}
-    code={`import { SuccessScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
+    code={`import { SuccessScreenBase } from '@brightlayer-ui/react-auth-workflow';
 
 const MyCustomSuccessScreen = () => {
     return (
@@ -115,10 +88,10 @@ const MyCustomSuccessScreen = () => {
     );
 };
 
-<RegistrationWorkflow successScreen={<MyCustomSuccessScreen />} />;`}
-/>
+<RegistrationWorkflow successScreen={<MyCustomSuccessScreen />} />
+;`} />
 
-A similar prop exists for `existingAccountSuccessScreen` which will be used if the account being registered already exists. Refer [Existing Account Success Screen](/workflows/existing-account-success/)
+A similar prop exists for `existingAccountSuccessScreen` which will be used if the account being registered already exists.Refer [Existing Account Success Screen](/workflows/existing-account-success/).
 
 ## Customizing the Language Support
 

@@ -1,78 +1,121 @@
-import accountDetails from './images/landscape-mode.png';
 import { CodeBlock } from '../../../shared';
 
 # Setting up Routing
 
-While this workflow library will work with different routing providers, we generally recommend using [React Navigation](https://reactnavigation.org/) and will do so in all of the examples.
+While this workflow library will work with different routing providers, we generally recommend using [React Router](https://reactrouter.com/) and will do so in all of the examples.
 
 ## Usage
 
 Because this workflow package is router-agnostic, you will be required to set up your routing solution and configure which of the workflow screens will appear on each of your routes.
 
-The Login Workflow has been set up to only support Portrait mode on mobile devices. It is important to use Portrait mode because when the soft keyboard is opened in Landscape mode, the text input fields can get pushed under the workflow card header in certain views, causing inconvenience.
+You will also want to set up Auth/Guest Guard wrappers to control which users can access which screens / routes. For more information see [Protecting Routes](#protecting-routes) below.
 
-<img width="400" alt="Account Details" src={accountDetails} />
+### Authentication (Okta Redirect)
 
-To update the router to lock the orientation, you need to pass the logic to `orientation` attribute which is present inside `screenOptions` prop of `Stack.Navigator`. Please refer to the example below.
+The **Authentication** workflow screens are rendered individually on separate routes (e.g., the Okta Redirect Login screen is on '/login'). This means you can deep-link to any of these screens directly if you have them configured.
 
-<CodeBlock
-    language={'jsx'}
-    code={`<NavigationContainer ref={navigationRef}>
-    <Stack.Navigator
-        initialRouteName={'AuthProviderExample'}
-        screenOptions={{
-            headerShown: false,
-            orientation: width >= 768 && height >= 768 ? 'all' : 'portrait',
-        }}
-    >
-        <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
-    </Stack.Navigator>
-</NavigationContainer>`}
-/>
+You have to add a `Security` component as a wrapper to the `Routes` from [@okta/okta-react](https://www.npmjs.com/package/@okta/okta-react) package. This component initializes the Okta authentication context and provides methods to interact with Okta.
 
-### Authentication
-
-The **Authentication** workflow screens are rendered individually on separate routes. For more information on the `AuthContextProvider`, refer to the [Authentication Workflow](/workflows/authentication-workflow/) Guide.
+For more information on the `OktaAuthContextProvider`, refer to the [Authentication Workflow](/workflows/authentication-workflow/) Guide.
 
 #### Example Setup
 
 <CodeBlock
     language={'jsx'}
-    code={`import React, { ReactNode } from 'react';
-import { NavigationContainer, createNavigationContainerRef, useNavigation } from '@react-navigation/native';
+    code={`import React from 'react';
 import {
     AuthContextProvider,
     ContactSupportScreen,
-    ResetPasswordScreen,
     ForgotPasswordScreen,
-    OktaAuthContextProvider,
+    ResetPasswordScreen,
     OktaRedirectLoginScreen,
-} from '@brightlayer-ui/react-native-auth-workflow';
-import { NavigationDrawer } from './navigation-drawer';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Dimensions, View } from 'react-native';
+    ReactRouterGuestGuard,
+    ContactSupportScreen,
+} from '@brightlayer-ui/react-auth-workflow';
+import { useNavigate } from 'react-router';
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
-import { Login } from '../screens/Login';
-import { ChangePassword } from '../screens/ChangePassword';
-
-const Stack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
-const navigationRef = createNavigationContainerRef();
-
-const CustomDrawerContent = (props: any): any => (
-    <View style={{ height: '100%' }}>
-        <NavigationDrawer {...props} />
-    </View>
-);
+import { Outlet, Route, Routes } from 'react-router-dom';
+import { Security } from '@okta/okta-react';
+import OktaAuth, { OktaAuthOptions, toRelativeUrl } from '@okta/okta-auth-js';
+import oktaConfig from '../oktaConfig';
+import { OktaLogin } from '../screens/OktaLogin';
 
 export const routes: RouteConfig = {
-    LOGIN: 'Login',
-    FORGOT_PASSWORD: 'ForgotPassword',
-    RESET_PASSWORD: 'ResetPassword',
-    REGISTER_INVITE: 'RegisterInvite',
-    REGISTER_SELF: 'SelfRegister',
-    SUPPORT: 'ContactSupport',
+    LOGIN: '/login',
+    REGISTER_INVITE: '/register-by-invite?code=8k27jshInvite234Code&email=example@example.com',
+    REGISTER_SELF: '/self-registration',
+    FORGOT_PASSWORD: '/forgot-password',
+    RESET_PASSWORD: '/reset-password',
+    SUPPORT: '/support',
+};
+
+const oktaAuth = new OktaAuth(oktaConfig as OktaAuthOptions);
+
+export const AppRouter: React.FC = () => {
+    const navigation = useNavigate();
+    const navigate = useCallback((destination: -1 | string) => {
+        navigation(destination as To);
+    }, []);
+    
+    const restoreOriginalUri = (_oktaAuth: any, originalUri: any): void => {
+        navigate(toRelativeUrl(originalUri || '/', window.location.origin));
+    };
+
+    return (
+        <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
+            <Routes>
+                <Route
+                    path={routes.LOGIN}
+                    element={
+                        <ReactRouterGuestGuard isAuthenticated={appState.isAuthenticated} fallBackUrl={'/'}>
+                            <OktaAuthContextProvider
+                                language={'en'}
+                                navigate={navigate}
+                                routeConfig={routes}
+                            >
+                                <OktaRedirectLoginScreen />
+                            </OktaAuthContextProvider>
+                        </ReactRouterGuestGuard>
+                    }
+                />
+            </Routes>
+        </Security>
+    );
+};`}
+/>
+
+
+### Authentication for Custom Login
+
+The **Authentication** workflow screens are rendered individually on separate routes (e.g., the Login screen is on '/login' and the support screen is on '/support'). This means you can deep-link to any of these screens directly if you have them configured.
+
+For more information on the `AuthContextProvider` , refer to the [Authentication Workflow](/workflows/authentication-workflow/) Guide.
+
+#### Example Setup
+
+<CodeBlock
+    language={'jsx'}
+    code={`import React from 'react';
+import {
+    AuthContextProvider,
+    ContactSupportScreen,
+    ForgotPasswordScreen,
+    ResetPasswordScreen,
+    LoginScreen,
+    ReactRouterGuestGuard,
+    ContactSupportScreen,
+} from '@brightlayer-ui/react-auth-workflow';
+import { useNavigate } from 'react-router';
+import { ProjectAuthUIActions } from '../actions/AuthUIActions';
+import { Outlet, Route, Routes } from 'react-router-dom';
+
+export const routes: RouteConfig = {
+    LOGIN: '/login',
+    REGISTER_INVITE: '/register-by-invite?code=8k27jshInvite234Code&email=example@example.com',
+    REGISTER_SELF: '/self-registration',
+    FORGOT_PASSWORD: '/forgot-password',
+    RESET_PASSWORD: '/reset-password',
+    SUPPORT: '/support',
 };
 
 // Retrieve data that you are storing about the logged-in status of the user
@@ -80,107 +123,66 @@ const getAuthState = () => ({
     isAuthenticated: true;
 })
 
-const OktaLogin = () => {
-    return (
-        <OktaAuthContextProvider {...props}>
-            <OktaRedirectLoginScreen {...props} />
-        </OktaAuthContextProvider>
-    )
-}
-
-const AuthRouter = (): any => {
-    const authState = getAuthState();
-    const navigation = useNavigation();
+export const AppRouter: React.FC = () => {
+    const navigation = useNavigate();
     const navigate = useCallback((destination: -1 | string) => {
         navigation(destination as To);
     }, []);
-
-    const LoginNavigatorComponent = useCallback(
-        () => (
-            <LoginStack.Navigator screenOptions={{ headerShown: false }}>
-                <LoginStack.Screen name="Login" component={OktaLogin} />
-                <LoginStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-                <LoginStack.Screen name="ResetPassword" component={ResetPasswordScreen} />
-                <LoginStack.Screen name="ContactSupport" component={ContactSupportScreen} />
-            </LoginStack.Navigator>
-        ),
-        []
-    );
-
-    const DrawerNavigatorComponent = (): any => (
-        <Drawer.Navigator
-            screenOptions={{
-                headerShown: false,
-                drawerType: 'front',
-                drawerStyle: { backgroundColor: 'transparent' },
-            }}
-            drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
-            backBehavior="history"
-            initialRouteName="LoginScreen"
-        >
-            {!app.isAuthenticated && <Drawer.Screen name="LoginScreen" component={LoginNavigatorComponent} />}
-
-            {app.isAuthenticated && (
-                <>
-                    <Drawer.Screen name="Homepage" component={Homepage} />
-                    <Drawer.Screen name="Dashboard" component={Dashboard} />
-                    <Drawer.Screen name="Locations" component={Locations} />
-
-                    <Drawer.Screen
-                        name="ContactSupport"
-                        options={{
-                            swipeEnabled: false,
-                        }}
-                        component={ContactSupportScreen}
-                    />
-
-                    <Drawer.Screen
-                        name="ChangePassword"
-                        options={{
-                            swipeEnabled: false,
-                        }}
-                        component={ChangePassword}
-                    />
-                </>
-            )}
-        </Drawer.Navigator>
-    );
-
+    const authState = getAuthState();
     return (
-        <>
-            <AuthContextProvider
-                language={'en'}
-                actions={ProjectAuthUIActions}
-                navigate={navigate}
-                routeConfig={routes}
+        <Routes>
+            <Route
+                element={
+                    <AuthContextProvider
+                        actions={ProjectAuthUIActions}
+                        language={'en'}
+                        navigate={navigate}
+                        routeConfig={routes}
+                    >
+                        <Outlet />
+                    </AuthContextProvider>
+                }
             >
-                {DrawerNavigatorComponent()}
-            </AuthContextProvider>
-        </>
-    );
-};
-
-export const MainRouter = (): any => {
-    const { height, width } = Dimensions.get('screen');
-    return (
-        <NavigationContainer ref={navigationRef}>
-            <Stack.Navigator
-                initialRouteName={'AuthProviderExample'}
-                screenOptions={{
-                    headerShown: false,
-                    orientation: width >= 768 && height >= 768 ? 'all' : 'portrait',
-                }}
-            >
-                <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
-            </Stack.Navigator>
-        </NavigationContainer>
+                <Route
+                    path={routes.LOGIN}
+                    element={
+                        <ReactRouterGuestGuard isAuthenticated={appState.isAuthenticated} fallBackUrl={'/'}>
+                            <LoginScreen />
+                        </ReactRouterGuestGuard>
+                    }
+                />
+                <Route
+                    path={routes.FORGOT_PASSWORD}
+                    element={
+                        <ReactRouterGuestGuard isAuthenticated={app.isAuthenticated} fallBackUrl={'/'}>
+                            <ForgotPasswordScreen />
+                        </ReactRouterGuestGuard>
+                    }
+                />
+                <Route
+                    path={routes.RESET_PASSWORD}
+                    element={
+                        <ReactRouterGuestGuard isAuthenticated={app.isAuthenticated} fallBackUrl={'/'}>
+                            <ResetPasswordScreen />
+                        </ReactRouterGuestGuard>
+                    }
+                />
+                <Route
+                    path={routes.SUPPORT}
+                    element={
+                        // No GuestGuard means this screen can be accessed by any user regardless of whether or not they are logged in
+                        <ContactSupportScreen />
+                    }
+                />
+            </Route>
+        </Routes>
     );
 };`}
 />
 
 ### Registration
 
-The **Registration** workflow is intended to be used on a _single_ route because the screens work together and share data, etc. This single route renders a component that manages the transitions between the screens.
+The **Registration** workflow is intended to be used on a _single_ route (e.g., '/register') because the screens work together and share data, etc. This single route renders a component that manages the transitions between the screens. You are not intended to be able to deep-link to any particular screen in the flow (e.g., you would not want a user to be able to jump right to '/register/create-password' — it wouldn't make sense without the context of the other screens in the flow). However, all of these screens are exported as individual components if you wanted to build the workflow differently (see [Customization Workflow](/workflows/customization/)).
 
 For more information on the `RegistrationContextProvider`, refer to the [Registration Workflow](/workflows/registration-workflow/) Guide.
 
@@ -189,82 +191,110 @@ For more information on the `RegistrationContextProvider`, refer to the [Registr
 <CodeBlock
     language={'jsx'}
     code={`import React from 'react';
-import { NavigationContainer, createNavigationContainerRef, useNavigation } from '@react-navigation/native';
-import { RegistrationContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+    RegistrationContextProvider,
+    RegistrationWorkflow,
+} from '@brightlayer-ui/react-auth-workflow';
+import { useNavigate } from 'react-router';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
-import { Registration } from '../screens/Registration';
-import { RegistrationInvite } from '../screens/RegistrationInvite';
-import { Dimensions } from 'react-native';
-
-const Stack = createNativeStackNavigator();
-const navigationRef = createNavigationContainerRef();
+import { i18nAppInstance } from './i18n';
 
 export const routes: RouteConfig = {
-    LOGIN: 'Login',
-    FORGOT_PASSWORD: 'ForgotPassword',
-    RESET_PASSWORD: 'ResetPassword',
-    REGISTER_INVITE: 'RegisterInvite',
-    REGISTER_SELF: 'SelfRegister',
-    SUPPORT: 'ContactSupport',
+    LOGIN: '/login',
+    REGISTER_INVITE: '/register-by-invite?code=8k27jshInvite234Code&email=example@example.com',
+    REGISTER_SELF: '/self-registration',
+    FORGOT_PASSWORD: '/forgot-password',
+    RESET_PASSWORD: '/reset-password',
+    SUPPORT: '/support',
 };
 
 // Retrieve data that you are storing about the logged-in status of the user
 const getAuthState = () => ({
     isAuthenticated: true;
 })
-const RegistrationRouter = (): any => {
+
+export const AppRouter: React.FC = () => {
+   const navigate = useNavigate();
     const authState = getAuthState();
-    const navigation = useNavigation();
-    const navigate = useCallback((destination: -1 | string) => {
-        navigation(destination as To);
-    }, []);
     return (
-        <>
-            <RegistrationContextProvider
-                language={'en'}
-                actions={ProjectRegistrationUIActions()}
-                routeConfig={routes}
-                navigate={navigate}
+        <Routes>
+            <Route
+                element={
+                    <RegistrationContextProvider
+                        language={language}
+                        routeConfig={routes}
+                        navigate={navigate}
+                        actions={ProjectRegistrationUIActions}
+                        i18n={i18nAppInstance}
+                    >
+                        <Outlet />
+                    </RegistrationContextProvider>
+                }
             >
-                <Stack.Navigator
-                    screenOptions={{
-                        headerShown: false,
-                    }}
-                    initialRouteName="SelfRegister"
-                >
-                    {!authState && (
-                        <Stack.Screen
-                            name="SelfRegister"
-                            component={Registration}
-                        ></Stack.Screen>
-                    )}
-                    {!authState && (
-                        <Stack.Screen
-                            name="RegisterInvite"
-                            component={RegistrationInvite}
-                        ></Stack.Screen>
-                    )}
-                </Stack.Navigator>
-            </RegistrationContextProvider>
-        </>
-    );
-};
-export const MainRouter = (): any => {
-    const { height, width } = Dimensions.get('screen');
-    return (
-        <NavigationContainer ref={navigationRef}>
-            <Stack.Navigator
-                initialRouteName={'RegistrationProviderExample'}
-                screenOptions={{
-                    headerShown: false,
-                    orientation: width >= 768 && height >= 768 ? 'all' : 'portrait',
-                }}
-            >
-                <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
-            </Stack.Navigator>
-        </NavigationContainer>
+                <Route
+                    path={routes.REGISTER_SELF}
+                    element={
+                        <ReactRouterGuestGuard isAuthenticated={appState.isAuthenticated} fallBackUrl={'/'}>
+                            <RegistrationWorkflow />
+                        </ReactRouterGuestGuard>
+                    }
+                />
+                <Route 
+                    path={routes.REGISTER_INVITE} 
+                    element={
+                        <ReactRouterGuestGuard isAuthenticated={appState.isAuthenticated} fallBackUrl={'/'}>
+                            <RegistrationWorkflow isInviteRegistration />
+                        </ReactRouterGuestGuard>
+                    } 
+                />
+            </Route>
+        </Routes>
     );
 };`}
 />
 
+### Protecting Routes
+
+Different routes in your application should be accessible under different conditions. Some routes (e.g., Login or Reset Password) should only be available when a user is unauthenticated (a logged in user should never be able to get back to the login screen without logging out first). Other routes (like your main application content) should only be accessible when a user is authenticated. Some routes (like Contact Support or Terms and Conditions) may be available to any user regardless of authentication status.
+
+This is where Route Guard components / protected routes are handy. We provide implementations of a `ReactRouterAuthGuard` (prevents access to the child unless the user is logged in) and `ReactRouterGuestGuard` (prevents access to child routes if the user is logged in) for use with React Router. If you are using another routing provider, you will need to implement these guards yourself.
+
+
+#### Examples
+
+<CodeBlock
+    language={'jsx'}
+    code={`import { 
+    ReactRouterAuthGuard,
+    ReactRouterGuestGuard
+} from '@brightlayer-ui/react-auth-workflow';
+
+...
+
+// AUTH GUARD
+
+// This will redirect to the login screen since the user is not authenticated
+// The user will be returned to Page1 after they enter their credentials
+<ReactRouterAuthGuard isAuthenticated={false} fallBackUrl={'/login'}>
+    <Page1 />
+</ReactRouterAuthGuard>
+
+// Page1 will be rendered because the user is authenticated
+<ReactRouterAuthGuard isAuthenticated={true} fallBackUrl={'/login'}>
+    <Page1 />
+</ReactRouterAuthGuard>
+
+
+// GUEST GUARD
+
+// Page1 will be rendered because the user is NOT authenticated
+<ReactRouterGuestGuard isAuthenticated={false} fallBackUrl={'/'}>
+    <Page1 />
+</ReactRouterGuestGuard>
+
+// This will redirect to the base url because the user is authenticated and this screen is for guests only
+<ReactRouterGuestGuard isAuthenticated={true} fallBackUrl={'/'}>
+    <Page1 />
+</ReactRouterGuestGuard>`}
+/>

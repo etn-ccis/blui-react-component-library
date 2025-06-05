@@ -66,6 +66,9 @@ export const i18nAppInstance = i18next.createInstance(
                     ...AppDictionaries.korean.translation,
                 },
                 // provide the custom workflow translations to the workflow namespaces
+                bluiAuth: {
+                    ...authWorkflowKorean.translation,
+                },
                 bluiRegistration: {
                     ...registrationWorkflowKorean.translation,
                 },
@@ -81,5 +84,6 @@ export const i18nAppInstance = i18next.createInstance(
 You will then need to pass this i18n instance through the `i18n` prop on the `RegistrationContextProvider` wrappers.
 
 > For a complete list of resource IDs available, refer to the documentation for
+[Authentication Workflow](../src/contexts/AuthContext/AuthDictionaries/english.ts)
 [Registration Workflow](../src/contexts/RegistrationContext/RegistrationDictionaries/english.ts).
 [Common translations](../src/contexts/SharedDictionaries/english.ts).
