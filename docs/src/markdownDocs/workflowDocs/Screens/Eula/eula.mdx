@@ -17,8 +17,8 @@ A screen that displays an End User License Agreement and a checkbox to confirm t
 
 <RegistrationContextProvider {...props}>
     <EulaScreen />
-</RegistrationContextProvider>`}
-/>
+</RegistrationContextProvider>
+`} />
 
 ## API
 
@@ -30,7 +30,7 @@ A screen that displays an End User License Agreement and a checkbox to confirm t
 | html                 | `boolean`                     | True if the EULA should be rendered as HTML, false for plain text                          | `false`                           |
 | initialCheckboxValue | `boolean`                     | Used to pre-populate the checked/unchecked checkbox when the screen loads.                 | `false`                           |
 | onEulaAcceptedChange | `(accepted: boolean) => void` | Called when the acceptance checkbox clicked.                                               |                                   |
-| errorDisplayConfig   | `ErrorManagerProps`           | See [Error Management](/workflows/error-management/)                                             |                                   |
+| errorDisplayConfig   | `ErrorManagerProps`           | See [Error Management](/workflows/error-management/)                                       |                                   |
 | refreshConfig        | `RefreshConfigProps`          | configuration for refresh screen                                                           |                                   |
 
 This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](/workflows/workflow-card/) for more details.

@@ -10,10 +10,10 @@ The screens in this workflow access shared data / configuration / API definition
 
 You must supply the `AuthContextProvider` with the following props / data:
 
--   `actions`: defines the API calls / functions to execute when certain actions are performed in the UI (such as submitting the password form)
--   `language`: configures the language displayed on the screens
--   `navigate`: a function that can be called to navigate to a new route
--   `routeConfig`: an object describing the URLs you are using for the relevant routes so the workflow can correctly navigate between screens
+- `actions`: defines the API calls / functions to execute when certain actions are performed in the UI (such as submitting the password form)
+- `language`: configures the language displayed on the screens
+- `navigate`: a function that can be called to navigate to a new route
+- `routeConfig`: an object describing the URLs you are using for the relevant routes so the workflow can correctly navigate between screens
 
 More information about the required and optional props can found in the [API](#api) section.
 
@@ -67,7 +67,7 @@ For a detailed explanation of setting up routes, see the [Routing](/workflows/ro
 | navigate\*    | `(url: string) => void`     | A function that is used to navigate to a new URL. This is used to navigate to the various screens of the workflow.                                                      |         |
 | routeConfig\* | `RouteConfig`               | An object that defines the various routes for the workflow. See [RouteConfig](#routeconfig) for more information.                                                       |         |
 | i18n          | `i18n`                      | An optional i18n object that is used to translate the UI. This is only needed if you want to use custom translation keys / languages inside any of the workflow screens |         |
-| errorConfig   | `ErrorContextProviderProps` | An object that is used to configure error handling within the workflow. See [Error Management](/workflows/error-management/) for more information.                             |         |
+| errorConfig   | `ErrorContextProviderProps` | An object that is used to configure error handling within the workflow. See [Error Management](/workflows/error-management/) for more information.                      |         |
 
 ### RegistrationUIActions
 

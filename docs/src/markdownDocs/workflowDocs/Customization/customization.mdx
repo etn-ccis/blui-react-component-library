@@ -78,14 +78,14 @@ You may provide a custom success screen to be shown upon successful completion o
     code={`import { SuccessScreenBase } from '@brightlayer-ui/react-auth-workflow';
 
 const MyCustomSuccessScreen = () => {
-    return (
-        <SuccessScreenBase
-            EmptyStateProps={{
+return (
+<SuccessScreenBase
+EmptyStateProps={{
                 title: 'Congratulations!',
                 description: 'You have been registered successfully',
             }}
-        />
-    );
+/>
+);
 };
 
 <RegistrationWorkflow successScreen={<MyCustomSuccessScreen />} />

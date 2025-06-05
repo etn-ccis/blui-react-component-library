@@ -81,9 +81,9 @@ export const AppRouter: React.FC = () => {
             </Routes>
         </Security>
     );
+
 };`}
 />
-
 
 ### Authentication for Custom Login
 
@@ -120,7 +120,7 @@ export const routes: RouteConfig = {
 
 // Retrieve data that you are storing about the logged-in status of the user
 const getAuthState = () => ({
-    isAuthenticated: true;
+isAuthenticated: true;
 })
 
 export const AppRouter: React.FC = () => {
@@ -211,7 +211,7 @@ export const routes: RouteConfig = {
 
 // Retrieve data that you are storing about the logged-in status of the user
 const getAuthState = () => ({
-    isAuthenticated: true;
+isAuthenticated: true;
 })
 
 export const AppRouter: React.FC = () => {
@@ -260,7 +260,6 @@ Different routes in your application should be accessible under different condit
 
 This is where Route Guard components / protected routes are handy. We provide implementations of a `ReactRouterAuthGuard` (prevents access to the child unless the user is logged in) and `ReactRouterGuestGuard` (prevents access to child routes if the user is logged in) for use with React Router. If you are using another routing provider, you will need to implement these guards yourself.
 
-
 #### Examples
 
 <CodeBlock
@@ -276,25 +275,28 @@ This is where Route Guard components / protected routes are handy. We provide im
 
 // This will redirect to the login screen since the user is not authenticated
 // The user will be returned to Page1 after they enter their credentials
+
 <ReactRouterAuthGuard isAuthenticated={false} fallBackUrl={'/login'}>
     <Page1 />
 </ReactRouterAuthGuard>
 
 // Page1 will be rendered because the user is authenticated
+
 <ReactRouterAuthGuard isAuthenticated={true} fallBackUrl={'/login'}>
     <Page1 />
 </ReactRouterAuthGuard>
 
-
 // GUEST GUARD
 
 // Page1 will be rendered because the user is NOT authenticated
+
 <ReactRouterGuestGuard isAuthenticated={false} fallBackUrl={'/'}>
     <Page1 />
 </ReactRouterGuestGuard>
 
 // This will redirect to the base url because the user is authenticated and this screen is for guests only
+
 <ReactRouterGuestGuard isAuthenticated={true} fallBackUrl={'/'}>
     <Page1 />
-</ReactRouterGuestGuard>`}
-/>
+</ReactRouterGuestGuard>
+`} />

@@ -16,29 +16,26 @@ The WorkflowCard is a set of components that can be used to define custom screen
 <WorkflowCard {...cardBaseProps}>
     <WorkflowCardHeader {...headerProps} />
     <WorkflowCardInstructions {...instructionsProps} />
-    <WorkflowCardBody>
-        {/* Your Screen Contents */}          
-    </WorkflowCardBody>
+    <WorkflowCardBody>{/* Your Screen Contents */}</WorkflowCardBody>
     <WorkflowCardActions {...actionsProps} />
 </WorkflowCard>
-`}
-/>
+`} />
 
 ## API
 
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| WorkflowCardBaseProps | `WorkflowCardBaseProps` | See [WorkflowCardBase](#workflowcardbaseprops) for more details. |  |
-| WorkflowCardHeaderProps | `WorkflowCardHeaderProps` | See [WorkflowCardHeader](#workflowcardheader) for more details. |  |
-| WorkflowCardInstructionProps | `WorkflowCardInstructionProps` | See [WorkflowCardInstructions](#workflowcardinstructions) for more details. |  |
-| WorkflowCardActionsProps | `WorkflowCardActionsProps` | See [WorkflowCardActions](#workflowcardactions) for more details. |  |
+| Prop Name                    | Type                           | Description                                                                 | Default |
+| ---------------------------- | ------------------------------ | --------------------------------------------------------------------------- | ------- |
+| WorkflowCardBaseProps        | `WorkflowCardBaseProps`        | See [WorkflowCardBase](#workflowcardbaseprops) for more details.            |         |
+| WorkflowCardHeaderProps      | `WorkflowCardHeaderProps`      | See [WorkflowCardHeader](#workflowcardheader) for more details.             |         |
+| WorkflowCardInstructionProps | `WorkflowCardInstructionProps` | See [WorkflowCardInstructions](#workflowcardinstructions) for more details. |         |
+| WorkflowCardActionsProps     | `WorkflowCardActionsProps`     | See [WorkflowCardActions](#workflowcardactions) for more details.           |         |
 
 ### WorkflowCardBaseProps
 
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| loading | `boolean` | A boolean that indicates whether the loading spinner should be displayed. | `false` |
-| backgroundImage | `string` | The background image to display behind the card. |  |
+| Prop Name       | Type      | Description                                                               | Default |
+| --------------- | --------- | ------------------------------------------------------------------------- | ------- |
+| loading         | `boolean` | A boolean that indicates whether the loading spinner should be displayed. | `false` |
+| backgroundImage | `string`  | The background image to display behind the card.                          |         |
 
 The properties of the underlying MUI [Box](https://mui.com/components/box/) component are also available.
 
@@ -51,10 +48,11 @@ See MUI [CardHeaderProps](https://mui.com/components/cards/#cardheader) for more
 This component is a simple wrapper that is used for layout. Instructions and your main screen contents should be children of this component.
 
 ### WorkflowCardInstructions
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| instructions | `string \| JSX.Element` | The instructions to display in the card. |  |
-| divider | `boolean` | If true, a dividing line will be displayed below the instruction text | `true` |
+
+| Prop Name    | Type                    | Description                                                           | Default |
+| ------------ | ----------------------- | --------------------------------------------------------------------- | ------- |
+| instructions | `string \| JSX.Element` | The instructions to display in the card.                              |         |
+| divider      | `boolean`               | If true, a dividing line will be displayed below the instruction text | `true`  |
 
 The properties of the underlying MUI [Typography](https://mui.com/components/typography/) component are also available.
 
@@ -62,19 +60,19 @@ The properties of the underlying MUI [Typography](https://mui.com/components/typ
 
 The WorkflowCardActions is used to configure the buttons that appear at the bottom of the card.
 
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| divider | `boolean` | If true, a dividing line will be displayed above the button panel | `true` |
-| showPrevious | `boolean` | Indicates whether the previous button should be displayed | `true` |
-| canGoPrevious | `boolean \| (() => boolean)` | A boolean or function that indicates whether the previous button should be enabled. | `true` |
-| previousLabel | `string` | The label on the previous button |  |
-| onPrevious |  `() => void` | A function that is called when the previous button is clicked. |  |
-| showNext | `boolean` | Indicates whether the next button should be displayed | `true` |
-| canGoNext | `boolean \| (() => boolean)` | A boolean or function that indicates whether the next button should be enabled. | `true` |
-| nextLabel | `string` | The label on the next button |  |
-| onNext |  `() => void` | A function that is called when the next button is clicked. |  |
-| currentStep | `number` | Indicates the current step in a multi-step workflow | `0` |
-| totalSteps | `number` | Indicates the total number of steps in the multi-step workflow | `0` |
-| fullWidthButton | `boolean` | If true, buttons will expand to the full width of the panel (useful if you only have one button configured) | `false` |
+| Prop Name       | Type                         | Description                                                                                                 | Default |
+| --------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------- | ------- |
+| divider         | `boolean`                    | If true, a dividing line will be displayed above the button panel                                           | `true`  |
+| showPrevious    | `boolean`                    | Indicates whether the previous button should be displayed                                                   | `true`  |
+| canGoPrevious   | `boolean \| (() => boolean)` | A boolean or function that indicates whether the previous button should be enabled.                         | `true`  |
+| previousLabel   | `string`                     | The label on the previous button                                                                            |         |
+| onPrevious      | `() => void`                 | A function that is called when the previous button is clicked.                                              |         |
+| showNext        | `boolean`                    | Indicates whether the next button should be displayed                                                       | `true`  |
+| canGoNext       | `boolean \| (() => boolean)` | A boolean or function that indicates whether the next button should be enabled.                             | `true`  |
+| nextLabel       | `string`                     | The label on the next button                                                                                |         |
+| onNext          | `() => void`                 | A function that is called when the next button is clicked.                                                  |         |
+| currentStep     | `number`                     | Indicates the current step in a multi-step workflow                                                         | `0`     |
+| totalSteps      | `number`                     | Indicates the total number of steps in the multi-step workflow                                              | `0`     |
+| fullWidthButton | `boolean`                    | If true, buttons will expand to the full width of the panel (useful if you only have one button configured) | `false` |
 
 The properties of the underlying MUI [CardActions](https://mui.com/material-ui/api/card-actions/) component are also available.
