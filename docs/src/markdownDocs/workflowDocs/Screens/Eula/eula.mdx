@@ -5,33 +5,33 @@ import { CodeBlock } from '../../../../shared';
 
 A screen that displays an End User License Agreement and a checkbox to confirm that they have read and agree to the terms. The EulaScreen must be used within a `RegistrationContextProvider`.
 
-<img width="400" alt="EULA" src={EulaScreen} />
+<img width="400" alt="Eula Screen" src={EulaScreen} />
 
 ## Usage
 
 <CodeBlock
     language={'jsx'}
-    code={`import { RegistrationContextProvider, EulaScreen } from '@brightlayer-ui/react-native-auth-workflow';
+    code={`import { RegistrationContextProvider, EulaScreen } from '@brightlayer-ui/react-auth-workflow';
 
 ...
 
 <RegistrationContextProvider {...props}>
     <EulaScreen />
-</RegistrationContextProvider>`}
-/>
+</RegistrationContextProvider>
+`} />
+
 ## API
 
-| Prop Name            | Type                          | Description                                                                                                                                              | Default |
-| -------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| checkboxLabel        | `string`                      | The text to render for the acceptance checkbox.                                                                                                          |         |
-| checkboxProps        | `CheckboxProps`               | Props to spread to the React Native Paper [CheckboxItem](https://callstack.github.io/react-native-paper/docs/components/Checkbox/CheckboxItem) component |         |
-| eulaContent          | `string \| JSX.Element`       | The content to render for the EULA. Can be a plain string or HTML.                                                                                       |         |
-| errorDisplayConfig   | `ErrorManagerProps`           | See [Error Management](/workflows/error-manager/)                                                                                                |         |
-| html                 | `boolean`                     | True if the EULA should be rendered as HTML, false for plain text                                                                                        | `false` |
-| initialCheckboxValue | `boolean`                     | Used to pre-populate the checked/unchecked checkbox when the screen loads.                                                                               | `false` |
-| onEulaAcceptedChange | `(accepted: boolean) => void` | Called when the acceptance checkbox clicked.                                                                                                             |         |
-| errorDisplayConfig   | `ErrorManagerProps`           | See [Error Management](/workflows/error-management/)                                                                                                           |
-| refreshConfig        | `RefreshConfigProps`          | configuration for refresh screen                                                                                                                         |         |
+| Prop Name            | Type                          | Description                                                                                | Default                           |
+| -------------------- | ----------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------- |
+| eulaContent          | `string \| JSX.Element`       | The content to render for the EULA. Can be a plain string or HTML.                         | `t('bluiAuth:EULA.EULA_CONTENT')` |
+| checkboxLabel        | `string`                      | The text to render for the acceptance checkbox.                                            | `t('bluiAuth:EULA.ACCEPT_EULA')`  |
+| checkboxProps        | `CheckboxProps`               | Props to spread to the MUI [Checkbox](https://mui.com/material-ui/api/checkbox/) component |                                   |
+| html                 | `boolean`                     | True if the EULA should be rendered as HTML, false for plain text                          | `false`                           |
+| initialCheckboxValue | `boolean`                     | Used to pre-populate the checked/unchecked checkbox when the screen loads.                 | `false`                           |
+| onEulaAcceptedChange | `(accepted: boolean) => void` | Called when the acceptance checkbox clicked.                                               |                                   |
+| errorDisplayConfig   | `ErrorManagerProps`           | See [Error Management](/workflows/error-management/)                                       |                                   |
+| refreshConfig        | `RefreshConfigProps`          | configuration for refresh screen                                                           |                                   |
 
 This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](/workflows/workflow-card/) for more details.
 
