@@ -5,7 +5,7 @@
 
 > **Important Migration Notice:**
 >
-> This repository has been migrated to a monorepo to consolidate All the React libraries developed by Brightlayer Team into a single workspace. Future development and updates will now occur in the following location: [https://github.com/etn-ccis/blui-react/tree/dev/packages/component-library]. Please update your bookmarks and contribute to the monorepo for the latest changes.
+> This repository has been migrated to a monorepo to consolidate all the React libraries developed by Brightlayer UI team into a single workspace. Future development and updates will now occur in [this location](https://github.com/etn-ccis/blui-react/tree/dev/packages/component-library). Please update your bookmarks and contribute to the monorepo for the latest changes.
 
 This is a library of re-usable React components for use in Brightlayer UI applications. For the most part, these components are meant to simplify building your application by providing drop-in components that implement common use cases in Brightlayer UI and eliminate the need for multiple teams to build their own components for these.
 
